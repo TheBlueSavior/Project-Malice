@@ -1,0 +1,1334 @@
+Actor PM_Tyrant : Cyberdemon
+{
+  Speed 18
+  Species "Cyberdemon"
+  +DONTHARMSPECIES
+  +DONTHURTSPECIES
+  +DONTRIP
+  +BOSS
+  +BOSSDEATH
+  +NOFEAR
+  +NORADIUSDMG
+  +MISSILEevenMORE
+  Obituary "%o ate a Tyrant's rocket."
+  Tag "Tyrant"
+  PainChance 3
+  Scale 1.2
+  MeleeRange 130
+  SeeSound "TYRSEE"
+  PainSound "TYRPAI"
+  DeathSound "TYRDIE"
+  ActiveSound "TYRACT"
+  States
+  {
+  Spawn:
+	DUKE A 10 A_Look
+	Loop
+  See:
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Quake(1, 3, 0, 412, "")
+	TNT1 A 0 A_PlaySound("TYRHOOF",CHAN_5)
+	DUKE A 5 A_Chase
+	DUKE ABB 5 A_Chase
+	TNT1 A 0 A_Quake(1, 3, 0, 412, "")
+	TNT1 A 0 A_PlaySound("TYRHOOF",CHAN_5)
+	DUKE C 5 A_Chase
+    DUKE CDD 5 A_Chase
+	TNT1 A 0 A_Jump(25,"See2")
+	Loop 
+   See2:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 A 0 A_Quake(1, 3, 0, 412, "")
+	TNT1 A 0 A_PlaySound("TYRHOOF",CHAN_5)
+	DUKE A 3 A_Chase
+	DUKE ABB 3 A_Chase
+	TNT1 A 0 A_Quake(1, 3, 0, 412, "")
+	TNT1 A 0 A_PlaySound("TYRHOOF",CHAN_5)
+	DUKE C 3 A_Chase
+    DUKE CDD 3 A_Chase
+	TNT1 A 0 A_Jump(15,"See")
+	Loop 
+  Melee:
+	DUKE BBBB 5 Light("TyrantMExp") A_FaceTarget 
+	TNT1 A 0 A_PlaySound("Tyrant/Stomp",CHAN_5)
+	TNT1 A 0 A_PlaySound("TYMEXP",CHAN_7)
+	TNT1 A 0 
+		{
+		A_CustomMissile("TyrantStomp",10,0,0,0);
+		A_Explode(100,240);
+		//Radius_Quake (2, 54, 0, 25, 0);
+		}
+	TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbers",0,-30,2,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,10)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,20)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,30)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,40)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,50)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,60)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,70)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,80)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-10)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-20)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-30)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-40)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-50)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-60)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-70)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-80)
+	TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig")
+	TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare")
+	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("MancuBallExplode",0,0,3,random(-5,5),random(-5,5),random(0,5),random(0,360))
+	DUKE CCC 5 Light("TyrantMExp")
+  Goto See
+  
+  Missile:
+	TNT1 A 0 A_Jump(80,"Missile0","DodgeLeft","DodgeRight","StrafeRockets","BackMissiles")
+	TNT1 A 0 A_JumpIfCloser(500,"PlasmaThrower","StrafeRockets")
+	TNT1 A 0 A_Jump(35,"Missile4","Missile5")
+	TNT1 A 0 A_Jump(255,"Missile1","Missile2","Missile3","Missile4","Missile6","Missile7","Missile8","Missile9","StrafeRockets","BackMissiles")
+	
+  StrafeRockets:
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
+	DUKE E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+192, 20,0,0)
+	DUKE DDDDDDDDDDDDDDDDDDDD 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EEE 2 A_FaceTarget
+	DUKE F 8 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE EE 3 A_FaceTarget
+	DUKE E 1 A_FaceTarget
+    TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+64, 20,0,0)
+	DUKE DDDDDDDDDDDDDDDDDDDD 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,2,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,2,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EEE 2 A_FaceTarget
+	DUKE F 8 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE EE 3 A_FaceTarget
+	DUKE E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+192, 20,0,0)
+	DUKE DDDDDDDDDDDDDDDDDDDD 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EEE 2 A_FaceTarget
+	DUKE F 8 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE EE 3 A_FaceTarget
+	DUKE E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+64, 20,0,0)
+	DUKE DDDDDDDDDDDDDDDDDDDD 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EEE 2 A_FaceTarget
+	DUKE F 8 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE EE 3 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
+	Goto See
+	
+  BackMissiles:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_PlaySound("TYRATK",CHAN_6)
+	DUKE AAA 5 A_FaceTarget
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,60);
+	}
+	DUKE D 10 Light("TyrantFire")
+	{
+	A_FaceTarget;
+	A_CustomMissile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,60);
+	}
+	DUKE A 5 A_FaceTarget
+	Goto See
+	
+  DodgeLeft:
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
+	DUKE E 1 A_FaceTarget
+	TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+192, 20,0,0)
+	DUKE EEEEEEEEEEEEEEEEEE 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EE 2 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
+	Goto Missile0
+	
+  DodgeRight:
+  TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
+	DUKE E 1 A_FaceTarget
+    TNT1 A 0 A_PlaySound("Tyrant/Dodge",CHAN_7)
+	DUKE E 0 ThrustThing (angle*256/360+64, 20,0,0)
+	DUKE EEEEEEEEEEEEEEEEEE 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("OrangeEmbers",0,40,2,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("OrangeEmbers",0,-40,2,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	DUKE EE 2 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
+	Goto Missile0
+	
+  PlasmaThrower:
+	TNT1 A 0 A_Jump(180,"Missile1","Missile2","Missile3","Missile4","Missile6","Missile7","Missile8","Missile9")
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 3 A_FaceTarget
+	DUKE FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 Light("TyrantRail")
+		{
+		A_PlaySound("Tyrant/Flamer",CHAN_7,1.0,True);
+		A_CustomMissile("RedChargeFlare",68,-22);
+		A_CustomMissile("TyrantPlasmaThrower",68,-25,random(-3,3),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-2,pitch*-1+2));
+		A_CustomMissile("TyrantPlasmaThrower",68,-25,random(-3,3),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-2,pitch*-1+2));
+		A_FaceTarget(2,3,0,0);
+		}
+	TNT1 A 0 A_StopSound(CHAN_7)
+	DUKE ED 4 A_FaceTarget
+	Goto See
+	
+  Missile0:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 3 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE E 2 A_FaceTarget
+	DUKE F 2 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget;
+		}
+	DUKE ED 2 A_FaceTarget
+	Goto See
+	
+  Missile1:
+	TNT1 A 0 A_PlaySound("TYRATK",CHAN_6)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 6 A_FaceTarget
+	DUKE F 12 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 12 A_FaceTarget
+	DUKE F 12 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 12 A_FaceTarget
+	DUKE F 12 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE ED 8 A_FaceTarget
+	Goto See
+  Missile2:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 6 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 5 A_FaceTarget
+	DUKE F 5 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE ED 8 A_FaceTarget
+	Goto See
+  Missile3:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 3 A_FaceTarget
+	DUKE FFFFFFFFFFFFFFF 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantSmallRocket",68,-25,random(-10,10),CMF_OFFSETPITCH,0);
+		A_FaceTarget;
+		}
+	DUKE ED 4 A_FaceTarget
+	Goto See
+  Missile4:
+	TNT1 A 0 A_Jump(150,"Missile5")
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_PlaySound("TYRRCH",CHAN_5)
+	DUKE EEEEEEEEE 1 Light("TyrantFire")
+		{
+		A_FaceTarget;
+		A_CustomMissile("RedChargeFlare",60,-22);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 5, "RailNullPuff", -2.1, 0, 4096, 2, 5,0, "RailAimDot1", 0);
+		}
+	DUKE EEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 2, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE EEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRBE",CHAN_6)
+	DUKE EEEEEEEEEEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot2", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRFI",CHAN_5)
+	DUKE F 10 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(25, -25, "Red", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "OrangeShockwave", -2.1, 0, 4096, 2, 8, 0, "RailFireDot", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE GGGGGGGGGG 1
+	DUKE EEEEEEE 1
+	TNT1 A 0 A_PlaySound("UCHAIN/Steam",CHAN_6)
+	DUKE EEEEEEEEEEEEE 1 A_SpawnItemEx("PM_VentSmoke",60,-17,68,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
+	DUKE D 5
+	Goto See
+	
+	Missile5:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	TNT1 A 0 A_PlaySound("TYRRCH",CHAN_5)
+	DUKE EEEEEEEEE 1 Light("TyrantFire")
+		{
+		A_FaceTarget;
+		A_CustomMissile("RedChargeFlare",60,-22);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 5, "RailNullPuff", -2.1, 0, 4096, 2, 5,0, "RailAimDot1", 0);
+		}
+	DUKE EEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 2, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE EEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRBE",CHAN_6)
+	DUKE EEEEEEEEEEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot2", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRFI",CHAN_5)
+	DUKE F 10 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(25, -25, "Red", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "OrangeShockwave", -2.1, 0, 4096, 2, 8, 0, "RailFireDot", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE GGGGGGGGGGG 1
+	DUKE EEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRBE",CHAN_6)
+	DUKE EEEEEEEEEEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot2", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRFI",CHAN_5)
+	DUKE F 10 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(25, -25, "Red", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "OrangeShockwave", -2.1, 0, 4096, 2, 8, 0, "RailFireDot", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE GGGGGGGGGGG 1
+	DUKE EEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget;
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot1", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRBE",CHAN_6)
+	DUKE EEEEEEEEEEEEEEEEEEE 1 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(0, -25, "None", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "RailNullPuff", -2.1, 0, 4096, 2, 5, 0, "RailAimDot2", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	TNT1 A 0 A_PlaySound("TYRRFI",CHAN_5)
+	DUKE F 10 Light("TyrantRail")
+		{
+		A_FaceTarget(0.2,3,0,0);
+		A_CustomRailgun(25, -25, "Red", "Red", RGF_FULLBRIGHT|RGF_SILENT|RGF_EXPLICITANGLE  , 1, 0, "OrangeShockwave", -2.1, 0, 4096, 2, 8, 0, "RailFireDot", 0);
+		A_CustomMissile("FakeTyrantActor",60,-22,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("RedChargeFlareLarge",60,-22);
+		}
+	DUKE GGGGGGGGGGGGGGGG 1
+	DUKE EEEEEEE 1
+	TNT1 A 0 A_PlaySound("UCHAIN/Steam")
+	DUKE EEEEEEEEEEEEEEE 1 A_SpawnItemEx("PM_VentSmoke",60,-17,68,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
+	DUKE D 5
+	Goto See
+	
+  Missile6:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 6 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-30);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-25);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-20);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-15);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-10);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-5);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-3);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,3);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,5);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,10);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,15);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,20);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,25);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,30);
+		A_FaceTarget;
+		}
+	DUKE ED 8 A_FaceTarget
+	Goto See
+
+  Missile7:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEEE 3 A_FaceTarget
+	DUKE F 12 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE EED 8 A_FaceTarget
+	Goto See
+	
+	Missile8:
+	TNT1 A 0 A_PlaySound("TYRATK",CHAN_6)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEEEEE 6 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE E 7 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE E 7 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE E 7 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE E 7 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE E 7 A_FaceTarget
+	DUKE F 7 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+		A_FaceTarget;
+		}
+	DUKE EEDD 4 A_FaceTarget
+	Goto See
+
+	Missile9:
+	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	DUKE EEE 6 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,30);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,25);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,20);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,15);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,10);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,5);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,3);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,0);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-3);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-5);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-10);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-15);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-20);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-25);
+		A_FaceTarget;
+		}
+	DUKE E 3 A_FaceTarget
+	DUKE F 3 Light("TyrantFire")
+		{
+		A_CustomMissile("PlasmatronFlare",68,-25);
+		A_CustomMissile("TyrantStreamRocket",68,-25,-30);
+		A_FaceTarget;
+		}
+	DUKE ED 8 A_FaceTarget
+	Goto See
+
+  Pain:
+    DUKE G 10 A_Pain
+    Goto See
+  Death: 
+	TNT1 A 0 A_StopSound(CHAN_7)
+	TNT1 AAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3))
+    DUKE H 11 Light("TyrantFire") A_Scream 
+	TNT1 AAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3))
+    DUKE I 9 Light("TyrantFire")
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3))
+	DUKE JKL 6 Light("TyrantFire")
+	TNT1 AAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3))
+	TNT1 A 0 A_NoBlocking
+	TNT1 AAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3))
+	DUKE MNO 6 Light("TyrantFire")
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,10)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,20)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,30)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,40)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,50)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,60)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,70)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,80)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-10)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-20)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-30)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-40)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-50)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-60)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-70)
+	TNT1 A 0 A_CustomMissile("DefilerBreath",3,-30,-80)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,10)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,30)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,50)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,70)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,90)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,-10)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,-30)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,-50)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,-70)
+	//TNT1 A 0 A_CustomMissile("RictusBall",3,-30,-90)
+	TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig")
+	TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare")
+	DUKE P 20 Light("TyrantFire")
+    DUKE P -1 A_BossDeath 
+	Stop
+  }
+}
+
+ACTOR TyrantTargetingBase
+{
+	Radius 1
+	Height 1
+	Damage 0
+	Speed 6
+	+THRUACTORS
+	+MISSILE
+	//+CLIENTSIDEONLY
+	States
+	{
+	Spawn:
+		TNT1 AAA 1
+		TNT1 A 1 A_CustomRailgun(0, 0, "None", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 2, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "None", 0)
+		Stop
+	Death:
+		Stop
+	}
+}
+
+ACTOR PM_TyrantBackMissile
+{
+	Radius 5
+	Height 5
+	Speed 12
+	FastSpeed 15
+	damage (15)
+	Scale 1.4
+	Projectile
+	Alpha 1
+	+MISSILE
+	+BRIGHT
+	+SEEKERMISSILE
+	//+RIPPER
+	Reactiontime 400
+	SeeSound "pyro/flame"
+	DeathSound "HectebusBall/Exp"
+	States
+	{
+	Spawn:
+		CMIS AA 1 Light("HectebusBallLight") 
+		{
+		A_SpawnItemEx("PM_TyrantBackFireGlobs",0,0,0,0,0,0,0,128);
+		}
+		Go:
+		CMIS A 2 Light("HectebusBallLight") 
+		{
+		A_SeekerMissile(5,5);
+		A_Countdown;
+		A_SpawnItemEx("PM_TyrantBackFireGlobs",0,0,0,0,0,0,0,128);
+		}
+		Loop
+	Death:
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwave",0,0,0,0,0,0,0,128,0)
+		TNT1 AAAAA 0 A_CustomMissile("PM_BigFireGlobs",10,0,random(0,360),2,random(0,360))
+		TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0)
+		TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
+		TNT1 AAA 0 A_CustomMissile("MancuBallExplode",0,0,random(0,360),2,random(0,360))
+		TABE CDE 3 Bright Light("YellowMediumFlicker2")
+		Stop
+	}
+}
+
+ACTOR TyrantHeavyRocket : RevenantTracer
+{
+	Radius 8
+	Height 8
+	Scale 0.97
+	Damage (50)
+	Speed 20
+	Projectile 
+	+RANDOMIZE
+	RenderStyle Normal
+	SeeSound "TYRFIR"
+	DeathSound "TYMEXP"
+	States
+	{
+	Spawn:
+		TYM1 AAABBB 1 BRIGHT Light("AvatarFireball4") 
+		{
+		//A_SpawnItemEx("FireSmoke",random(-1,1),0,random(-1,1));
+		A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
+		}
+		Loop
+	Death:
+		TNT1 A 0 
+		{
+		A_Explode(50,200);
+		Radius_Quake (2, 54, 0, 25, 0);
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig")
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare")
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("MancuBallExplode",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360))
+		TNT1 A 18 BRIGHT Light("TyrantMExp")
+		Stop
+	}
+}
+
+ACTOR TyrantStreamRocket : RevenantTracer
+{
+	Radius 3
+	Height 3
+	Scale 1
+	Damage (20)
+	Speed 20
+	Projectile 
+	+RANDOMIZE
+	RenderStyle Normal
+	SeeSound "TYSMFI"
+	DeathSound "TYSMEX"
+	States
+	{
+	Spawn:
+		TYM2 A 1 BRIGHT Light("AvatarFireball3") 
+		{
+		//A_SpawnItemEx("FireSmoke",random(-1,1),0,random(-1,1));
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		//A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
+		}
+		Loop
+	Death:
+		TNT1 A 0 
+		{
+		A_Explode(8,100);
+		Radius_Quake (2, 54, 0, 10, 0);
+		}
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
+		TNT1 AAAAA 0 A_CustomMissile("FiendBallExplode",0,0,random(0,360),2,random(0,360))
+		TNT1 A 15 BRIGHT Light("AvatarFireball5")
+		Stop
+	}
+}
+
+ACTOR TyrantSmallRocket : RevenantTracer
+{
+	Radius 3
+	Height 3
+	Damage (15)
+	Speed 20
+	Projectile 
+	+RANDOMIZE
+	+SeekerMissile
+	RenderStyle Normal
+	SeeSound "REVROCK"
+	DeathSound ""
+	Scale 0.7
+	States
+	{
+	Spawn:
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE)
+	SeekTime:
+		TYM3 AAAAAA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SeekerMissile(5,6,SMF_PRECISE);
+		}
+	SeekDone:
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		Loop
+	Death:
+		TNT1 A 0 A_Explode(8,100)
+		TNT1 A 0 A_PlaySound("FIERXP")
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
+		TNT1 AAAA 0 A_CustomMissile("FiendBallExplode",0,0,random(0,360),2,random(0,360))
+		FSHT BBCCDDEE 1 BRIGHT Light("AvatarFireball1")
+		Stop
+	}
+}
+
+
+Actor TyrantMFireEffect
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +FORCEXYBILLBOARD
+  +ROLLSPRITE
+  Renderstyle Add
+  Scale 0.25
+  +Bright
+  States
+  {
+  Spawn:
+	TNT1 A 2
+	TNT1 A 0 A_SetRoll(random(0,360))
+  Go:
+	TNT1 A 0 A_SetScale(ScaleX-0.01)
+	FIR1 A 1 Bright A_FadeOut(0.12)
+	Loop
+	}
+}
+
+ACTOR TyrantPlasmaThrower
+{
+   Radius 14
+   Height 14
+   Speed 26
+   Damage 2
+   PROJECTILE
+   RENDERSTYLE ADD
+   DamageType Fire
+   Scale 0.13
+   DeathSound "weapons/scorch"
+   +THRUGHOST
+   +ROLLSPRITE
+   +FORCEXYBILLBOARD
+   Translation "0:255=%[0,0,0]:[1.9,0.5,0.5]"
+   States
+   {
+   Spawn:
+	  TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
+      NULL A 1 Bright
+	  TNT1 A 0 A_Jump(255,"Go","Go2")
+	  Go:
+	  TNT1 A 0 A_SetRoll(random(0,360))
+      FLMF ABCDEFEDCBA 2 Bright Light("TyrantRail")
+	  {
+	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+	  A_SetScale(ScaleX+0.06);
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
+	  FLMF ABCDEF 2 Bright Light("TyrantRail")
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
+	  FLMF EDCBABC 2 Bright Light("TyrantRail")
+	  {
+	  A_SetScale(ScaleX+0.07);
+	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+	  A_Fadeout(0.1);
+	  }
+	  Stop
+	  Go2:
+	  TNT1 A 0 A_SetRoll(random(0,360))
+	  FLMF FEDCBABCDEF 2 Bright
+	  {
+	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+	  A_SetScale(ScaleX+0.05);
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-2,-5),random(-2,2),random(0,4),CVF_RELATIVE)
+	  FLMF EDCBA 2 Bright
+	  TNT1 A 0 A_ChangeVelocity(random(-2,-5),random(-2,2),random(0,4),CVF_RELATIVE)
+	  FLMF BCDEFED 2 Bright
+	  {
+	  A_SetScale(ScaleX+0.07);
+	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+	  A_Fadeout(0.1);
+	  }
+      stop
+   Death:
+      FRFX HIJ 2 Bright
+      FRFX J 0 A_CustomMissile ("TyrantPFire",0,0,0,4)
+      FRFX KLM 2 Bright
+      FRFX NO 2 Bright
+      stop
+   }
+}
+
+ACTOR TyrantPFire : ZombieDropFire
+{
+	Translation "0:255=%[0,0,0]:[1.9,0.5,0.5]"
+}
+
+ACTOR TyrantStomp
+{
+	Radius 12
+	Height 8
+	+MISSILE
+	Speed 15
+    Damage 50
+	renderstyle translucent
+	alpha 0.9
+	DamageType Stomp
+    Gravity 1.0
+    Decal "Cracks"
+    -NOGRAVITY
+    +EXTREMEDEATH
+	+NOTELEPORT
+	+THRUACTORS
+	Obituary "%o was stepped by a Cyberdemon."
+	HitObituary "%o was stepped by a Cyberdemon."
+	States
+	{
+	Spawn:
+        TNT1 A 1
+		TNT1 A 0 ThrustThingZ(0, -35, 0, 0)
+		TNT1 A 10
+		Stop
+	Death:
+		MARN A 0 //A_SpawnItemEx("FootStepStrong", 0, 0, 8, 0, 0)
+        TNT1 A 0 A_PlaySound("CLAP", 1)
+		EXPL AAAA 0 //A_CustomMissile ("ExplosionSmoke", 0, 0, random (0, 360), 2, random (10, 12))
+		TNT1 A 0 Radius_Quake(4, 15, 0, 25, 0)
+		TNT1 A 0 Radius_Quake(2, 15, 0, 45, 0)
+		EXPL A 0 A_Explode
+		SM8K BDFHJLNPRTVXZ 1
+		Stop
+	}
+}

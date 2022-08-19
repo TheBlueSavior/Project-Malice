@@ -1,0 +1,329 @@
+ACTOR PM_Infested
+{
+  Health 320
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 12
+  PainChance 20
+  Monster
+  MeleeThreshold 196
+  Scale 1.12
+  //+MISSILEMORE 
+  BloodColor "Dark Red"
+  +FLOORCLIP
+  //+ALWAYSFAST
+  +DONTHARMSPECIES
+  //+NOINFIGHTING
+  Species "Revenant"
+  //DropItem "RagePoint1"
+  SeeSound ""
+  PainSound "Infested/See"
+  DeathSound "INFEDIE"
+  ActiveSound "Infested/Active"
+  MeleeSound "skeleton/melee"
+  Tag "Infested"
+  HitObituary "%o was infested."
+  States
+  {
+  Spawn:
+		TNT1 A 0 A_Look
+		ZKEL A 10 A_wander
+		TNT1 A 0 A_Look
+		ZKEL B 10 A_wander
+		TNT1 A 0 A_Look
+		NULL A 0 A_PlaySound("skeleton/step",5)
+		ZKEL C 10
+		TNT1 A 0 A_Look
+		ZKEL D 10 A_wander
+		TNT1 A 0 A_Look
+		ZKEL E 10 A_wander
+		TNT1 A 0 A_Look
+		NULL A 0 A_PlaySound("skeleton/step",5)
+		ZKEL F 10
+		TNT1 A 0 A_Jump(45,"Bark")
+        Loop
+  Bark:
+	TNT1 A 0 A_PlaySound("Infested/Idle")
+	Goto Spawn
+  See:
+	TNT1 A 0 A_SetSpeed(7)
+	ZKEL AABBCC 4 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	ZKEL DDEEFF 4 A_Chase("Melee","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	TNT1 A 0 A_CheckSight("See")
+	Goto Spotted
+  Spotted:
+	TNT1 A 0 A_PlaySound("Infested/See",CHAN_7)
+	ZKEL BBBLLLLLLLLBBBB 2 A_FaceTarget
+  See2:
+	TNT1 A 0 A_SetSpeed(7)
+	ZKEL AABBCC 4 A_Chase("Melee","")
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	ZKEL DDEEFF 4 A_Chase("Melee","")
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	ZKEL AABBCC 4 A_Chase("Melee","")
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	ZKEL DDEEFF 4 A_Chase("Melee","")
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	//ZKEL AABBCC 4 A_Chase
+	//TNT1 A 0 A_PlaySound("skeleton/step",5)
+	//ZKEL DDEEFF 4 A_Chase
+	//TNT1 A 0 A_PlaySound("skeleton/step",5)
+  See3:
+	TNT1 A 0 A_SetSpeed(12)
+	TNT1 A 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+    ZKEL AABBCC 2 A_Chase
+	TNT1 A 0 A_Recoil(-1)
+	TNT1 A 0 A_CustomMissile("MaggotSpawn", random(35,74), random(-4,4), 0, 0, 0)
+	TNT1 A 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+	TNT1 A 0 A_CustomMissile("MaggotSpawn", random(35,74), random(-4,4), 0, 0, 0)
+	ZKEL DDE 2 A_Chase
+	TNT1 A 0 A_Recoil(-1)
+	TNT1 A 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+	ZKEL EFF 2 A_Chase
+	TNT1 A 0 A_Recoil(-1)
+	TNT1 A 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+	TNT1 A 0 A_PlaySound("skeleton/step",5)
+    Loop
+  Melee:
+    ZKEL G 1 A_FaceTarget
+    ZKEL G 6 A_SkelWhoosh
+    ZKEL H 0 A_FaceTarget
+   ZKEL H 2 A_Recoil(-8)
+    ZKEL H 0 A_FaceTarget
+   ZKEL H 2 A_Recoil(-8)
+    ZKEL H 0 A_FaceTarget
+   ZKEL H 2 A_Recoil(-8 )
+    ZKEL I 6 A_SkelFist
+    Goto See2
+  Missile:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(100,"See3")
+	ZKEL L 0 A_FaceTarget
+	ZKEL L 13 A_PlaySound("ZFODDGIB")
+	ZKEL G 1 A_SkelWhoosh
+	ZKEL H 4 A_Facetarget
+	ZKEL IIIIIIIIIII 0 A_CustomMissile("PM_InfestedThrownMaggots",46,0,random(-8,8),CMF_OFFSETPITCH,random(-6,6))
+	ZKEL I 10 A_FaceTarget
+	Goto See3
+  Pain:
+	TNT1 A 0 A_Jump(100,"Pain2")
+    ZKEL L 5
+	TNT1 AAAAAAA 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+    ZKEL L 5 A_Pain
+	ZKEL LLLLLL 1 A_SpawnItemEx("MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5))
+    Goto See3
+  Pain2:
+    ZKEL L 5
+	TNT1 AAAAA 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+    ZKEL B 10 A_Pain
+	TNT1 A 0 A_PlaySound("ZFODDGIB")
+	ZKEL LLLLLLLLLLLLLLL 1 A_SpawnItemEx("MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5))
+	TNT1 AAAAA 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+	ZKEL A 5
+    Goto See3
+  Death:
+    ZKEL LM 7 A_SpawnItemEx("LargeWhiteMaggot")
+	TNT1 AAAAAAAAAA 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
+    ZKEL N 7 A_Scream
+	TNT1 AAAA 0 A_CustomMissile("MaggotFall",random(35,74), 0, random(-300,300),70)
+    ZKEL O 7 A_NoBlocking
+	TNT1 AAAA 0 A_CustomMissile("MaggotFall", random(25,44), 0, random(-300,300),0,75)
+    ZKEL P 7 A_SpawnItemEx("LargeWhiteMaggot")
+	TNT1 AAAA 0 A_CustomMissile("MaggotFall", random(5,24), 0, random(-300,300),80)
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	ZKEL QQQQQQQQQQQQQQQQ 3 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6))
+	ZKEL QQQQQQQQQQQQQQQQQQ 1 A_SpawnItemEx("PassiveMaggot",0,0,0,random(-3,3),random(-3,3),random(0,5))
+    ZKEL Q -1
+    Stop
+  Raise:
+    ZKEL Q 5
+    ZKEL PONML 5
+    Goto See
+  }
+}
+
+Actor PM_InfestedThrownMaggots
+{
+  Damage 1
+  Height 1
+  Radius 1
+  Speed 30
+  Mass 1
+  Scale 2.5
+  Gravity 1.0
+  +ROLLSPRITE
+  +FORCEXYBILLBOARD
+  PROJECTILE
+  //+LOWGRAVITY
+  States
+  {
+  Spawn:
+	MRMG J 1
+	Go:
+	TNT1 A 0
+	TNT1 A 0 A_SetRoll(random(0,360))
+	MRMG J 2
+	MRMG IHGFEFGFEFGHIJ 3
+	Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_SetRoll(0)
+	TNT1 A 0 A_ChangeFlag("NOGRAVITY",False)
+    MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}
+
+Actor MaliceGoreFliesWSound: MaliceGoreFlies
+{
+States
+	{
+	Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("FLEAS", 1, 1, 1)
+	TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5", "Spawn6", "Spawn7", "Spawn8")
+	
+	Spawn1:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(1.3, 2.0)
+		Goto Live
+	Death:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(1)
+	TNT1 A 0 A_NoBlocking
+	Stop
+}
+}
+
+Actor MaliceMaggotSpawner2: MaliceGoreFlies
+{
++CLIENTSIDEONLY
+States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 20
+		TNT1 A 0 A_Jump(128, "Live")
+		TNT1 A 20
+		TNT1 A 0 A_SetScale(-1.0, 1.0)
+
+	Live:
+		GRMG ABCDCDCD 4
+		TNT1 A 0 A_CustomMissile("MaliceSpawnedMaggotDec2", 0, 0, 0, 2, 0)
+		TNT1 A 0 A_NoBlocking
+		Stop
+	}
+}
+
+
+
+Actor MaliceSpawnedMaggotDec2
+{
+  Height 1
+  Radius 1
+  Mass 0
+  PROJECTILE
+  +Missile
+  +NoBlockMap
+  +DontSplash
+  +FORCEXYBILLBOARD
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  -NOGRAVITY
+  Gravity 1.0
+  Speed 0
+  States
+  {
+  Spawn:
+  Death:
+    GRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}
+
+Actor MaggotSpawn
+{
+  Height 1
+  Radius 1
+  Mass 1
+  +DontSplash
+  +FORCEXYBILLBOARD
+  +THRUACTORS
+  Gravity 1.0
+  Speed 0
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_Die
+  Death:
+    MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}
+
+Actor WMaggotSpawn
+{
+  Height 1
+  Radius 1
+  Mass 1
+  +DontSplash
+  +FORCEXYBILLBOARD
+  +THRUACTORS
+  Gravity 1.0
+  Speed 0
+  States
+  {
+  Spawn:
+	TNT1 A 0 A_Die
+  Death:
+    MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}
+
+Actor MaggotPuke
+{
+  Damage 1
+  Height 1
+  Radius 1
+  Speed 9
+  Mass 1
+  +FORCEXYBILLBOARD
+  Gravity 0.8
+  PROJECTILE
+  -NOGRAVITY
+  States
+  {
+  Spawn:
+	MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+  Death:
+    MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}
+
+Actor MaggotFall
+{
+  Damage 1
+  Height 1
+  Radius 1
+  Speed 3
+  Mass 1
+  Scale 1.8
+  +FORCEXYBILLBOARD
+  Gravity 0.7
+  PROJECTILE
+  -NOGRAVITY
+  States
+  {
+  Spawn:
+	MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+  Death:
+    MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+    Stop
+  }
+}

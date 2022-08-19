@@ -1,0 +1,187 @@
+ACTOR PM_HellifiedSoldier
+{ 
+    Health 50
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 200
+    Damage 1
+    MONSTER
+	+MISSILEevenMORE
+    +FloorClip
+	//+NOINFIGHTING
+	+DONTHURTSPECIES
+	+DONTHARMSPECIES
+	Species "Zombie"
+	Tag "Hellified Soldier"
+    OBITUARY "%o was killed by A Zombie Soldier!"
+    SEESOUND "HFSSEE"
+    PainSound "HFSPAI"
+    DeathSound "HFSDIE"
+    ACTIVESOUND "HFSACT"
+    DropItem Clip
+    states
+    {
+    Spawn:
+        HFS1 AA 10 A_Look
+        Loop
+    See:
+        HFS1 AA 3 A_Chase
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		HFS1 BB 3 A_Chase
+		HFS1 CC 3 A_Chase
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		HFS1 DD 3 A_Chase
+		HFS1 EE 3 A_Chase
+        Loop
+    Missile:
+		TNT1 A 0 A_Jump(50,"Missile2")
+        HFS1 F 8 A_FaceTarget
+		//TNT1 A 0 A_PlaySound("HFSPLA")
+		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
+        HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 F 1 A_FaceTarget
+		//TNT1 A 0 A_PlaySound("HFSPLA")
+		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 F 1 A_FaceTarget
+		//TNT1 A 0 A_PlaySound("HFSPLA")
+		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 F 1 A_FaceTarget
+		//TNT1 A 0 A_PlaySound("HFSPLA")
+		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 F 8 A_FaceTarget
+        Goto See
+	Missile2:
+		HFS1 F 8 A_FaceTarget
+		//TNT1 A 0 A_PlaySound("HFSPLA")
+		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
+        HFS1 G 2 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 F 4 A_FaceTarget
+		TNT1 A 0 A_Jump(30,"See")
+		D3CG E 0 A_MonsterRefire(60,"See")
+		Goto Missile2+1
+    Pain:
+        HFS1 H 5
+        HFS1 H 3 A_Pain
+        Goto See
+    Death:
+		TNT1 A 0 A_Jump(35,"PossDeath")
+        HFS1 I 7 A_NoBlocking
+        HFS1 J 7 A_Scream
+        HFS1 K 7
+        HFS1 L 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        HFS1 M -1
+        Stop
+	PossDeath:
+        HFS1 I 7 A_NoBlocking
+        HFS1 J 7 A_Scream
+        HFS1 K 7
+        HFS1 L 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        HFS1 M 90
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+		HFS1 M -1
+        Stop
+    XDeath:
+        HFS1 N 5 A_NoBlocking
+        HFS1 O 5 A_XScream
+        HFS1 P 5
+        HFS1 QRSTU 5
+        HFS1 V -1
+        Stop
+    Raise:
+        HFS1 MLKJI 5
+        Goto See
+    }
+}
+
+ACTOR HellifiedSoldierBall
+{
+   Height 3
+   Radius 3
+   Speed 18
+   damage (random(10,10))
+   Scale 0.07
+   PROJECTILE
+   RenderStyle Add
+   +BRIGHT
+   SeeSound "HFSPLA"
+   DeathSound "HELLPEXP"
+   States
+   {
+   Spawn:
+      DTPR R 1 Bright Light("Shadowball")
+	  {
+	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
+	  }
+      Loop
+   Death:
+	  TNT1 AAA 0 A_SpawnItemEx("HellPlasmaExp",0,0,0)
+	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0)
+	  TNT1 A 5 Light("Shadowball2")
+      Stop
+	  }
+}
+
+Actor HellPlasmaExp
+{
+	Scale 0.3
+	Alpha 0.6
+	Renderstyle Add
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+Bright
+	Speed 1
+	States
+{
+Spawn:
+	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
+	Stop
+	}
+}
+
+ACTOR HellPlasmaTrail
+{
++CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle Add
++Bright
+Scale 0.07
+Alpha 0.95
+States
+{
+Spawn:
+	TNT1 A 2
+Go:
+    DTPR R 1 Bright 
+	{
+	A_SetScale(ScaleX-0.008);
+	A_FadeOut(0.27);
+	}
+    Loop
+    }
+}
+
+ACTOR HellPlasmaFlare
+{
++CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle Add
++Bright
+Scale 0.15
+Alpha 0.95
+States
+{
+Spawn:
+    DTPR RR 1 Bright 
+	{
+	A_FadeOut(0.05);
+	A_SetScale(ScaleX+0.008);
+	}
+    Loop
+    }
+}

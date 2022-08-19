@@ -1,0 +1,155 @@
+ACTOR PM_ZombieSoldier : Zombieman
+{ 
+	var int user_called;
+    Health 20
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 200
+    Damage 1
+    MONSTER
+	//+MISSILEMORE
+    +FloorClip
+	+SLIDESONWALLS
+	//+NOINFIGHTING
+	+DONTHURTSPECIES
+	+DONTHARMSPECIES
+	Species "Zombie"
+	Tag "Zombie Soldier"
+    OBITUARY "%o was killed by a Zombie Soldier!"
+    SEESOUND "ZombieSoldier/See"
+    PainSound "ZombieSoldier/Pain"
+    DeathSound "ZombieSoldier/Death"
+    ACTIVESOUND "ZombieSoldier/Active"
+    DropItem "Clip"
+    Decal Bulletchip
+    states
+    {
+    Spawn:
+        POS1 A 10 A_Look
+        Loop
+    See:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        POS1 AA 4 A_Chase
+		//TNT1 AA 0 A_Recoil(-1)
+		POS1 BB 4 A_Chase
+		//TNT1 AA 0 A_Recoil(-1)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		POS1 CC 4 A_Chase
+		//TNT1 AA 0 A_Recoil(-1)
+		POS1 DD 4 A_Chase
+		//TNT1 AA 0 A_Recoil(-1)
+        Loop
+    Missile:
+		TNT1 A 0 A_Jump(30,"Puke")
+		TNT1 A 0 A_Jump(50,"Missile2")
+        POS1 EEE 6 A_FaceTarget
+		TNT1 A 0 A_Jump(60,"OnceShot")
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 6 A_FaceTarget
+        Goto See
+	OnceShot:
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 6 A_FaceTarget
+		Goto See
+	Missile2:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Attack",CHAN_6)
+		POS1 EE 6 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,9,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 9, 0, 0);
+		}
+		POS1 E 6 A_FaceTarget
+		TNT1 A 0 A_Jump(30,"See")
+		D3CG E 0 A_MonsterRefire(60,"See")
+		Goto Missile2+1
+	Puke:
+		TNT1 A 0 A_PlaySound("BLDPUK")
+		POS1 GGGGGGGGG 1
+		{
+		A_CustomMissile("HungerBloodSpray",46,0,random(20,-20),CMF_AIMDIRECTION);
+		}
+		POS1 G 1 A_CustomMissile("HungerMaggotMissile",46,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
+		POS1 GGGGGGGGG 1
+		{
+		A_CustomMissile("HungerBloodSpray",46,0,random(20,-20),CMF_AIMDIRECTION);
+		}
+		POS1 G 3
+		Goto See
+    Pain:
+        POS1 G 5
+        POS1 G 3 A_Pain
+        Goto See
+    Death:
+		TNT1 A 0 A_Jump(35,"PossDeath")
+        POS1 H 5 A_NoBlocking
+        POS1 I 5 A_Scream
+        POS1 J 5
+        POS1 K 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        POS1 L -1
+        Stop
+	PossDeath:
+		POS1 H 5 A_NoBlocking
+        POS1 I 5 A_Scream
+        POS1 J 5
+        POS1 K 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        POS1 L 90
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+		POS1 L -1
+		Stop
+    XDeath:
+		POS1 M 5 A_NoBlocking
+		POS1 N 5 A_XScream
+        POS1 O 5
+        POS1 P 5
+        POS1 Q 5 
+        POS1 RST 5
+        POS1 U -1
+        Stop
+    Raise:
+        POS1 LKJIH 5
+        Goto See
+    }
+}
+

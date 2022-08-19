@@ -1,0 +1,204 @@
+
+//=====================================================================================
+//=====================================================================================
+
+
+//=====================================================================================
+//=====================================================================================
+actor PM_Bruiser
+{
+    Health 1000
+    Radius 22
+    Height 64
+    Speed 10
+	Scale 1.2
+    PainChance 8
+	MeleeRange 50
+    Mass 1500
+    MONSTER 
+    +FLOORCLIP
+	+DontHurtSpecies
+	+DONTHARMSPECIES
+	Species "Nobles"
+    SeeSound "Bruiser/Sight"
+    PainSound "Bruiser/Pain"
+    DeathSound "Bruiser/Death"
+    ActiveSound "Bruiser/Active"
+    MeleeSound "baron/melee"
+	Tag "Bruiser"
+	Bloodcolor "Green"
+    Obituary "%o was pulverized by a Brusier"
+    MeleeDamage 8
+    States
+    {
+    Spawn:
+        I01A A 10 A_Look
+        Loop
+    See:
+        I01A AABB 4 A_Chase
+		TNT1 A 0 A_Recoil(-2)
+		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
+		TNT1 A 0 A_PlaySound("hoofstep",3)
+		I01A CCDD 4 A_Chase
+		TNT1 A 0 A_Recoil(-2)
+		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,-10,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
+		TNT1 A 0 A_PlaySound("hoofstep",3)
+        Loop
+    Missile:
+	  TNT1 A 0 A_Jump(128,"Missile2")
+	  TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	  TNT1 A 0 A_PlaySound("Bruiser/Sight",CHAN_7)
+	  I01A D 7 Light("GreenBall3") A_FaceTarget
+	  I01A IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 Light("GreenBall3")
+	  {
+       A_SpawnItemEX("PM_LargeGreenFireEffect",12,random(45,40),70,0,0,random(1,3));
+	   A_SpawnItemEX("PM_LargeGreenFireEffect",12,random(-45,-40),70,0,0,random(1,3));
+	   A_FaceTarget;
+	  }
+	  I01A J 12 Light("GreenBall3") A_FaceTarget
+	  TNT1 A 0 A_PlaySound("baron/attack")
+	  I01A K 12 Light("GreenBall3")
+	  {
+	  A_CustomMissile("PM_BruiserMeteor",38,-5,0);
+	  }
+	  TNT1 A 0 A_StopSound(CHAN_6)
+	  Goto see
+	Missile2:
+	  TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	  TNT1 A 0 A_PlaySound("Bruiser/Attack",CHAN_7)
+	  I01A D 7 Light("GreenBall3") A_FaceTarget
+	  I01A EEEEEEEEEEEEEEEEEEEEEEEEE 1 Light("GreenBall3")
+	  {
+       A_SpawnItemEX("PM_LargeGreenFireEffect",12,random(40,35),70,0,0,random(1,3));
+	   A_FaceTarget;
+	  }
+	  I01A F 7 Light("GreenBall3") A_FaceTarget
+	  TNT1 A 0 A_PlaySound("baron/attack")
+	  I01A G 7 Light("GreenBall3")
+	  {
+	  A_CustomMissile("PM_BruiserSmallFireball",38,-5,15);
+	  A_CustomMissile("PM_BruiserSmallFireball",38,-5,5);
+	  A_CustomMissile("PM_BruiserSmallFireball",38,-5,-5);
+	  A_CustomMissile("PM_BruiserSmallFireball",38,-5,-15);
+	  }
+	  TNT1 A 0 A_StopSound(CHAN_6)
+	  Goto see
+    Melee:
+	  TNT1 A 0 A_Jump(128,"Melee2")
+	  TNT1 A 0 A_PlaySound("baron/attack")
+        I01A EF 7 A_FaceTarget
+        I01A G 7 A_MeleeAttack
+	  Goto See
+    Pain:
+		TNT1 A 0 A_StopSound(CHAN_6)
+        I01A H 5
+		I01A H 5 A_Pain
+        Goto See
+    Death:
+		TNT1 A 0
+		TNT1 A 0 A_StopSound(CHAN_6)
+		TNT1 A 0 A_PlaySound("vile/firecrkl",CHAN_7,1.0,1)
+		TNT1 A 0 A_PlaySound("ExileImmolate",CHAN_5,1.0)
+        I01I AAAAAA 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,80),random(-1,1),random(-1,1),random(0,4))
+		TNT1 A 0 A_Scream
+		I01I BBBBB 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,80),random(-1,1),random(-1,1),random(0,4))
+		TNT1 A 0 A_Fall
+		I01I CCCCC 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,80),random(-1,1),random(-1,1),random(0,4))
+		I01I DDDDEEEEFFFGGGGHHHHIIIIJKKKKLLLL 1 A_SpawnItemEx("PM_BruiserDeathFire",random(-40,40),random(-40,40),random(0,60),random(-1,1),random(-1,1),random(0,4))
+		I01I MMMMNNNNOOOOPPPPQQQQRRRR 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,40),random(-1,1),random(-1,1),random(0,4))
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		TNT1 A 0 A_StopSound(CHAN_7)
+		I01I SSSTTTUUUVVV 1 A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,30),random(-1,1),random(-1,1),random(0,4))
+		I01I W -1
+        Stop
+    }
+}
+
+Actor PM_BruiserWalkFire
+{
+  +NoClip
+  +Missile
+  +DropOff
+  +Randomize
+  +CLIENTSIDEONLY
+  Scale 1.5
+  Speed 0
+  RenderStyle Add
+  Alpha 1
+  Translation "0:255=%[0,0,0]:[0.6,2.0,0.28]"
+  States
+  {
+  Spawn:
+    FRTF A 3 Bright
+    FRTF A 0 
+    FRTF B 3 Bright
+    FRTF B 0 
+    FRTF C 3 Bright
+    FRTF CDEFGEFCDEFGEFGHIJKLMNO 3 Bright
+    Stop
+  }
+}
+
+ACTOR PM_BruiserMeteor : DoomImpBall
+{
+  Speed 16
+  Damage (random(5,5))
+  Scale 1.4
+  Radius 6
+  Height 8
+  Projectile 
+  +RANDOMIZE
+  renderstyle Translucent
+  Alpha 0.9
+  SeeSound "HUSCRG"
+  DeathSound "HUBEXP"
+  States
+ {
+  Spawn:
+    I01X AAABBBCCC 1 BRIGHT Light("GreenBall4")
+	{
+	A_SpawnItemEx("PM_BruiserTrailFireGlobs",0,random(-10,10),random(-10,10),0,0,0,0,128,0);
+	A_SpawnItemEx("PM_HectebusBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
+	}
+	Loop
+  Death:
+	TNT1 A 0 Radius_Quake (2, 54, 0, 15, 0)
+	TNT1 A 0 A_Explode(50,180)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_BruiserGenericExplosionFlames",0,0,0,random(-5,5),random(-5,5),random(-2,5),0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAAAAA 0 A_CustomMissile("PM_DarkExpSmokeFast",7,0,random(0,360),2,random(0,360))
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_BruiserFireGlobs",0,0,0,random(-7,7),random(-7,7),random(-3,7),0,SXF_NOCHECKPOSITION)
+	TNT1 AAA 0 A_SpawnItemEx("PM_BruiserExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION)
+	I01X DEFGHI 1 BRIGHT Light("GreenBall3") A_SpawnItemEx("PM_BruiserFireGlobs",0,0,0,random(-7,7),random(-7,7),random(-3,7),0,SXF_NOCHECKPOSITION)
+	Stop
+	}
+}
+
+Actor PM_BruiserSmallFireball : DoomImpBall
+{
+	+NOGRAVITY
+	-LOWGRAVITY
+	Speed 13
+	SeeSound "redballbsee"
+	Damage (random(19,25))
+	Scale 0.15
+	states
+  	{
+  Spawn:
+    PBAL C 1 bright Light("GreenFireLight") 
+	{
+	A_SpawnItemEx("PM_BruiserSmallFlameTrails",0,0,0,0,0,0,0,128,0);
+	A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
+	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+	}
+	loop
+  Death:
+    NDEB D 2 bright Light("GreenFireLight")
+	TNT1 A 0 A_SpawnItemEx("GFireBallExplode")
+	TNT1 A 0 A_SpawnItemEx("PM_GreenFireballExpFlames")
+    NDEB EFGH 2 Light("GreenFireLight") bright
+    stop
+  }
+}

@@ -1,0 +1,284 @@
+Class PM_NetherImp : Actor
+{
+  Default
+  {
+    Health 120;
+    radius 20;
+	height 56;
+    Speed 6;
+    PainChance 28;
+    Mass 500;
+    Scale 1.2;
+	MeleeRange 150;
+	Species "Imp";
+	seesound "dimp/see";
+	painsound "dimp/pain";
+	deathsound "dimp/death";
+	activesound "dimp/active";
+    Obituary "%o was cursed by a Nether Imp.";
+    HitObituary "%o was touched by a Nether Imp.";
+	//DropItem "RagePoint1";
+	Tag "Nether Imp";
+    MONSTER;
+    +FLOORCLIP
+	+MISSILEMORE
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	//+NOINFIGHTING
+	
+  }
+
+  States
+  {
+  Spawn:
+    DRKF AB 10 A_Look();
+    Loop;
+  See:
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+    DRKF AAABBB 2 A_Chase();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	DRKF CCCDDD 2 A_Chase();
+    Loop;
+  Melee:
+    DRKF IJ 4 A_FaceTarget();
+    DRKF K 3 A_SpawnProjectile("FastImpBall",42);
+    Goto See;
+  Missile:
+    DRKF E 1 A_Jump (255, "Attack1", "Attack2");
+    Goto See;
+  Attack1:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,"AttackActual1");
+	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0);
+	TNT1 A 0 A_PlaySound("DSSHOCK");
+    DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("NetherLightning")
+	{
+	A_FaceTarget();
+	A_SpawnProjectile ("GreenSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
+	A_SpawnProjectile ("GreenSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
+	}
+	DRKF FFFFFFFF 1 Light("NetherLightning") A_FaceTarget();
+    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("MaliceNetherLightning", 42, 0, 0);
+	DRKF GGG 5 A_FaceTarget();
+    Goto See;
+  AttackActual1:
+	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0);
+	TNT1 A 0 A_PlaySound("DSSHOCK");
+    DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("NetherLightning")
+	{
+	A_FaceTarget();
+	A_SpawnProjectile ("GreenSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
+	A_SpawnProjectile ("GreenSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
+	}
+	DRKF FFFFFFFF 1 Light("NetherLightning") A_FaceTarget();
+    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("MaliceNetherLightning", 42, 0, 0);
+	DRKF GGG 5 A_FaceTarget();
+    Goto See;
+  Attack2:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(128,"AttackActual2");
+	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0);
+	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6);
+    DRKF IIIIIIIIIIIIIIIIIIIIIIII 1 Light("InfernoBall")
+	{
+	A_FaceTarget();
+	A_SpawnItemEx("AzazelFire", 20, 30, 37,0,0,random(0,2));
+	A_SpawnItemEx("AzazelFire", 20, -30, 37,0,0,random(0,2));
+	}
+	DRKF JJJJJJJJ 1 Light("InfernoBall") A_FaceTarget();
+    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("MaliceInfernoBall", 42, 0, 0);
+	DRKF KK 5 A_FaceTarget();
+	TNT1 A 0 A_StopSound(CHAN_6);
+    Goto See;
+  AttackActual2:
+	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0);
+	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6);
+    DRKF IIIIIIIIIIIIIIIIIIIIIIII 1 Light("InfernoBall")
+	{
+	A_FaceTarget();
+	A_SpawnItemEx("AzazelFire", 20, 30, 37,0,0,random(0,2));
+	A_SpawnItemEx("AzazelFire", 20, -30, 37,0,0,random(0,2));
+	}
+	DRKF JJJJJJJJ 1 Light("InfernoBall") A_FaceTarget();
+    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("MaliceInfernoBall", 42, 0, 0);
+	DRKF KK 5 A_FaceTarget();
+	TNT1 A 0 A_StopSound(CHAN_6);
+    Goto See;
+  Pain:
+	TNT1 A 0 A_StopSound(CHAN_6);
+    DRKF H 2;
+    DRKF H 2 A_Pain();
+    Goto See;
+  Death:
+	TNT1 A 0 A_StopSound(CHAN_6);
+    DRKF L 8;
+    DRKF M 8 A_Scream();
+    DRKF N 5;
+    DRKF O 5 A_Fall();
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+    DRKF P -1;
+    Stop;
+  XDeath:
+	TNT1 A 0 A_StopSound(CHAN_6);
+    DRKF Q 5;
+    DRKF R 5 A_XScream();
+    DRKF S 5;
+    DRKF T 5 A_Fall();
+    DRKF UVW 5;
+    DRKF X -1;
+    Stop;
+  Raise:
+    DRKF PO 8;
+    DRKF NML 6;
+    Goto See;
+  }
+}
+
+Class MaliceInfernoBall : Actor
+{
+  Default
+  {
+    Radius 8;
+    Height 6;
+    Speed 15;
+    Damage (45);
+    RenderStyle "Add";
+    Alpha 1;
+	Scale 1.2;
+    SeeSound "baron/attack";
+    DeathSound "NIBALHIT";
+    PROJECTILE;
+	+MISSILE
+  }
+
+  States
+  {
+  Spawn:
+    TA1F AABB 1 Bright Light("ShadowBall2")
+	{
+	A_SpawnItemEx("PM_HectebusBallSmoke",0,0,0,0,0,0,0,128,0);
+	A_SpawnItemEx("PM_NetherFlameTrails",0,0,0,0,0,0,0,128,0);
+	}
+    Loop;
+  Death:
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_NetherFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+	TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 A 0 Radius_Quake (2, 54, 0, 15, 0);
+	TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_NetherFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+	TNT1 A 0 A_SpawnItemEx("InfernoBallExplode",0,0,0,random(-2,2),random(-2,2),random(-2,2));
+	TNT1 A 0 A_SpawnItemEx("InfernoBallExplode",0,0,0,random(-2,2),random(-2,2),random(-2,2));
+	TNT1 A 0 A_SpawnItemEx("InfernoBallExplode",0,0,0,random(-2,2),random(-2,2),random(-2,2));
+    IB1L CDE 4 Bright Light("ShadowBall2");
+    Stop;
+  }
+}
+
+Class MaliceInfernoBallTrail : Actor
+{
+  Default
+  {
+    Radius 1;
+    Height 1;
+    Speed 0;
+    Damage 0;
+    Scale 0.9;
+    +NOGRAVITY
+    +ClientSideOnly
+	RENDERSTYLE "ADD";
+  }
+
+  States
+  {
+  Spawn:
+    TA1F AB 1 Bright A_FadeOut(0.20);
+    Goto Spawn;
+  }
+}
+
+Class MaliceNetherLightning : Actor
+{
+  Default
+  {
+    Radius 8;
+    Height 6;
+    Speed 28;
+    Damage 2;
+    RENDERSTYLE "ADD";
+    ALPHA 0.75;
+    Scale 0.75;
+    SeeSound "NLITE";
+    DeathSound "SHOCXPL";
+    PROJECTILE;
+    +RIPPER
+  }
+
+  States
+  {
+  Spawn:
+    NLIT AA 1 Bright Light("NetherLightning") A_SpawnItemEx ("MaliceNetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    NLIT AAA 0 Bright A_SpawnItemEx ("MaliceNetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+    NLIT AA 1 Light("NetherLightning") Bright A_SpawnItemEx ("MaliceNetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    NLIT AAA 0 Bright A_SpawnItemEx ("MaliceNetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+    loop;
+  Death:
+	TNT1 A 0 A_SpawnItemEx("NetherShocks",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("GreenLongFlare",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("NetherShockFlare",0,0,0);
+	TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+	TNT1 A 0 A_SpawnItemEx("GreenEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("GreenEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("GreenEmbersSpawn");
+    NLIT ABC 1 Bright Light("NetherLightning2");
+	NLIT DEFG 1 Bright Light("NetherLightning");
+    Stop;
+  }
+}
+
+Class MaliceNetherLightningTrail : Actor
+{
+  Default
+  {
+    Radius 8;
+    Height 6;
+    Speed 1;
+    Damage 0;
+    RENDERSTYLE "ADD";
+    ALPHA 0.75;
+    Scale 0.75;
+    PROJECTILE;
+    +RIPPER
+    +ClientSideOnly
+  }
+
+  States
+  {
+  Spawn:
+    NLIT A 1 A_FadeOut (0.025);
+    NLIT A 0 A_Jump (32, "Spark");
+    loop;
+  Spark:
+    NLIT AAA 0 A_SpawnItemEx ("MaliceNetherLightningSpark", random(-50,50), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+    goto Spawn;
+  }
+}
+
+Class MaliceNetherLightningSpark : Actor
+{
+  Default
+  {
+    Radius 1;
+    Height 1;
+    Speed 0;
+    Damage 0;
+    Scale 0.3;
+    +NOGRAVITY
+    +ClientSideOnly
+  }
+
+  States
+  {
+  Spawn:
+    NLIT BCDEFG 1 Bright;
+    stop;
+  }
+}

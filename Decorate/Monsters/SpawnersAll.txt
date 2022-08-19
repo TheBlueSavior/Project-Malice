@@ -1,0 +1,320 @@
+Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
+{
+	DropItem "PM_CyberFodder", 255, 1
+	DropItem "HeadDropper", 255, 1
+	//DropItem "FallenMarine", 255, 3
+	DropItem "PM_DecayedSoldier", 255, 4
+	DropItem "RatDropper", 255, 1
+	DropItem "PM_ZombieSoldier", 255, 58
+	DropItem "PM_PistolZombie", 255, 68
+	DropItem "PM_ZombieMarine", 255, 16
+	DropItem "PM_ZombieTrooper", 255, 6
+	DropItem "PM_HellifiedSoldier", 255, 8
+	DropItem "PM_RFZombie", 255, 4
+}
+
+
+Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
+{
+	DropItem "PM_CyberFodder", 255, 10
+	DropItem "PM_Nailgunner", 255, 8
+	DropItem "PM_FShotgunner", 255, 56
+	DropItem "PM_Remnant", 255, 1
+	DropItem "PM_DecayedShotgunner", 255, 4
+	DropItem "PM_FallenShotgunner", 255, 4
+}
+
+
+Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
+{
+	DropItem "PM_MutatedGunner", 255, 8
+	DropItem "PM_FallenMarine", 255, 6
+	DropItem "PM_HeavyCarbineZombie", 255, 35
+	DropItem "PM_HellPriest", 255, 1
+	DropItem "PM_DecayedCommando", 255, 1
+}
+
+
+Actor MaliceDemonSpawner : RandomSpawner replaces Demon
+{
+	Dropitem "PM_Brute", 255, 24
+	Dropitem "PM_CyberBrute", 255, 4
+	Dropitem "PM_DemonTechBrute", 255, 2
+	Dropitem "PM_BloodStalker", 255, 1
+	Dropitem "PM_Glutton", 255, 2
+}
+
+
+
+Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
+{
+	DropItem "PM_PhaseBrute", 255, 54
+	DropItem "PM_CyberSpectre", 255, 17
+	DropItem "PM_Nightmare", 255, 15
+	DropItem "PM_DemonTechSpectre", 255, 10
+	DropItem "PM_Prowler", 255, 9
+	DropItem "PM_Skulker", 255, 1
+}
+
+
+Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
+{
+	DropItem "PM_Tainted", 255, 4
+	DropItem "PM_Charred", 255, 7
+	DropItem "PM_Host", 255, 3
+	DropItem "PM_Hellion", 255, 1
+	DropItem "PM_Harvester", 255, 2
+	DropItem "PM_Zephyr", 255, 7
+	DropItem "PM_Devil", 255, 48
+	DropItem "PM_NetherImp", 255, 1
+	DropItem "PM_FeralImp", 255, 3
+}
+
+
+Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
+{
+	DropItem "PM_Blot", 255, 4
+	DropItem "PM_BurntSoul", 255, 16
+	DropItem "PM_FleshspawnDropper", 255, 2
+	DropItem "PM_BloodSkull", 255, 1
+}
+
+
+Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
+{
+	DropItem "PM_Cadaver", 255, 36
+	DropItem "PM_Depraved", 255, 2
+	DropItem "PM_Infested", 255, 2
+	DropItem "PM_Draugr", 255, 2
+	DropItem "PM_Husk", 255, 3
+	DropItem "PM_Fiend", 255, 8
+}
+
+
+Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
+{
+	DropItem "PM_Wretched", 255, 30
+	DropItem "PM_PhaseCaco", 255, 4
+	DropItem "PM_Watcher", 225, 2
+	DropItem "PM_Beholder", 225, 2
+	DropItem "PM_Wicked", 255, 2
+}
+
+Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
+{
+	DropItem "PM_Defiler",255, 10
+	DropItem "PM_GrossElemental",255, 1
+}
+
+Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight
+{
+	DropItem "PM_Vore", 255, 11
+	//DropItem "Void", 255, 1
+	DropItem "PM_HellsFury", 255, 4
+	DropItem "PM_Whiplash", 255, 4
+	DropItem "PM_Squire", 255, 35
+	DropItem "PM_Noble", 255, 28
+}
+
+Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
+{
+	DropItem "PM_HeresyLord",255, 3
+	DropItem "PM_Bruiser",255, 1
+}
+
+Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso 
+{
+	DropItem "PM_Hectebus", 255, 10
+	DropItem "PM_Corpulent", 255, 8
+	DropItem "PM_Abhorrent", 255, 1
+}
+
+Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
+{
+	DropItem "PM_Fusionite", 255, 25
+	DropItem "PM_Plasmatron", 255, 5
+}
+
+Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
+{
+	DropItem "PM_Exile", 255, 1
+}
+
+Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
+{
+	DropItem "PM_AracnorbQueen", 255, 1
+}
+
+Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
+{
+	DropItem "PM_Tyrant", 255, 1
+}
+
+
+//Decoration
+
+Actor MaliceDeadCacodemonSpawner : RandomSpawner replaces DeadCacodemon
+{
+	DropItem "CorpsePile", 255, 8
+	DropItem "PM_Remnantspawn", 255, 1
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 6
+	DropItem "MaliceTorturedMarine", 255, 2
+	DropItem "CorpseGroup", 255, 10
+	DropItem "DeadWretched", 255, 75
+}
+
+Actor MaliceDeadDemonSpawner : RandomSpawner replaces DeadDemon
+{
+	DropItem "CorpsePile", 255, 8
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 6
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 10
+	DropItem "DeadBrute", 255, 75
+}
+
+Actor MaliceDeadDoomImpSpawner : RandomSpawner replaces DeadDoomImp
+{
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 58
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 2
+	DropItem "DeadDevil", 255, 75
+}
+
+Actor MaliceDeadShotgunGuySpawner : RandomSpawner replaces DeadShotgunGuy
+{
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 58
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 2
+	DropItem "DeadFacelessShotgunner", 255, 75
+}
+
+Actor MaliceDeadZombieManSpawner : RandomSpawner replaces DeadZombieMan
+{
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 58
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 2
+	DropItem "DeadZombieSoldier", 255, 75
+}
+
+Actor MaliceDeadMarineSpawner : RandomSpawner replaces DeadMarine
+{
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 95
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 2
+}
+
+Actor MaliceGibbedMarineSpawner : RandomSpawner replaces GibbedMarine
+{
+	DropItem "PM_Remnantspawn", 255, 2
+	DropItem "MimicSpawn", 255, 1
+	DropItem "DeadMarineNew", 255, 95
+	DropItem "MaliceTorturedMarine", 255, 1
+	DropItem "CorpseGroup", 255, 2
+}
+
+Actor MaliceGibSpawner : RandomSpawner replaces Gibs
+{
+	DropItem "BrainMush", 255, 1
+	DropItem "GoreChunk1", 255, 1
+	DropItem "GoreChunk2", 255, 1
+	DropItem "GoreChunk3", 255, 1
+	DropItem "EyeBall", 255, 1
+	DropItem "Organ1", 255, 1
+	DropItem "Organ2", 255, 1
+	DropItem "Ribcage", 255, 1
+	DropItem "SpinalCord", 255, 1
+	DropItem "Organs", 255, 1
+	DropItem "Torso", 255, 1
+	DropItem "Head1", 255, 1
+	DropItem "Head2", 255, 1
+	DropItem "Head3", 255, 1
+	DropItem "Head4", 255, 1
+	DropItem "MColonGibs", 255, 1
+	//DropItem "MMeat2", 255, 1
+	//DropItem "MMeat3", 255, 1
+	//DropItem "MMeat4", 255, 1
+	//DropItem "MMeat5", 255, 1
+}
+
+Actor MaliceColonGibsSpawner : RandomSpawner replaces ColonGibs
+{
+	DropItem "BrainMush", 255, 1
+	DropItem "GoreChunk1", 255, 1
+	DropItem "GoreChunk2", 255, 1
+	DropItem "GoreChunk3", 255, 1
+	DropItem "EyeBall", 255, 1
+	DropItem "Organ1", 255, 1
+	DropItem "Organ2", 255, 1
+	DropItem "Ribcage", 255, 1
+	DropItem "SpinalCord", 255, 1
+	DropItem "Organs", 255, 1
+	DropItem "Torso", 255, 1
+	DropItem "Head1", 255, 1
+	DropItem "Head2", 255, 1
+	DropItem "Head3", 255, 1
+	DropItem "Head4", 255, 1
+	DropItem "MColonGibs", 255, 1
+	//DropItem "MMeat2", 255, 1
+	//DropItem "MMeat3", 255, 1
+	//DropItem "MMeat4", 255, 1
+	//DropItem "MMeat5", 255, 1
+}
+
+Actor MaliceBrainStemSpawner : RandomSpawner replaces BrainStem
+{
+	DropItem "BrainMush", 255, 1
+	DropItem "GoreChunk1", 255, 1
+	DropItem "GoreChunk2", 255, 1
+	DropItem "GoreChunk3", 255, 1
+	DropItem "EyeBall", 255, 1
+	DropItem "Organ1", 255, 1
+	DropItem "Organ2", 255, 1
+	DropItem "Ribcage", 255, 1
+	DropItem "SpinalCord", 255, 1
+	DropItem "Organs", 255, 1
+	DropItem "Torso", 255, 1
+	DropItem "Head1", 255, 1
+	DropItem "Head2", 255, 1
+	DropItem "Head3", 255, 1
+	DropItem "Head4", 255, 1
+	DropItem "MColonGibs", 255, 1
+	//DropItem "MMeat2", 255, 1
+	//DropItem "MMeat3", 255, 1
+	//DropItem "MMeat4", 255, 1
+	//DropItem "MMeat5", 255, 1
+}
+
+Actor MaliceSmallBloodPoolSpawner : RandomSpawner replaces SmallBloodPool
+{
+	DropItem "BrainMush", 255, 1
+	DropItem "GoreChunk1", 255, 1
+	DropItem "GoreChunk2", 255, 1
+	DropItem "GoreChunk3", 255, 1
+	DropItem "EyeBall", 255, 1
+	DropItem "Organ1", 255, 1
+	DropItem "Organ2", 255, 1
+	DropItem "Ribcage", 255, 1
+	DropItem "SpinalCord", 255, 1
+	DropItem "Organs", 255, 1
+	DropItem "Torso", 255, 1
+	DropItem "Head1", 255, 1
+	DropItem "Head2", 255, 1
+	DropItem "Head3", 255, 1
+	DropItem "Head4", 255, 1
+	DropItem "MColonGibs", 255, 1
+	//DropItem "MMeat2", 255, 1
+	//DropItem "MMeat3", 255, 1
+	//DropItem "MMeat4", 255, 1
+	//DropItem "MMeat5", 255, 1
+}

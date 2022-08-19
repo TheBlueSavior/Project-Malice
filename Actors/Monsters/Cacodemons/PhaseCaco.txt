@@ -1,0 +1,392 @@
+ACTOR PM_PhaseCaco: Cacodemon
+{
+  SeeSound "PCACSEE"
+  PainSound "PCACPAI"
+  DeathSound "PCACDIE"
+  ActiveSound "PCACACT"
+  Obituary "%o's was ambushed by a Phase Cacodemon"
+  Bloodcolor "Purple"
+  //DropItem "RagePoint1"
+  HitObituary "%o's head was bitten off by a Phase Cacodemon"
+  health 420
+  speed 5
+  MinMissileChance 230
+  FloatBobStrength 0.4
+   +DONTHARMSPECIES
+   Tag "Phase Cacodemon"
+  Species "Cacodemon"
+  +FLOATBOB
+  +SLIDESONWALLS
+  //+NOINFIGHTING
+  //+MISSILEMORE
+  +DONTHURTSPECIES
+  States
+  {
+  Spawn:
+		CAC4 P 10 BRIGHT A_Look
+		Loop
+	See:
+		CAC4 P 2 BRIGHT
+			{
+			A_Chase(0,0);
+			}
+		TNT1 A 0 A_JumpIfInTargetLOS("Approach",360,JLOSF_DEADNOJUMP,2000)
+		Loop
+	Approach:
+		TNT1 A 0 A_PlaySound("PCACPHA")
+		CAC4 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 BRIGHT
+			{
+			A_JumpIfCloser(300,"Appear");
+			A_Chase(0,0);
+			A_Recoil(-0.1);
+			}
+	Appear:
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+		CAC4 A 3
+			{
+			A_SetTranslucent(0.2);
+			A_FaceTarget;
+			}
+		CAC4 A 3
+			{
+			A_SetTranslucent(0.4);
+			A_FaceTarget;
+			}
+		CAC4 A 3
+			{
+			A_SetTranslucent(0.6);
+			A_FaceTarget;
+			}
+		CAC4 A 3
+			{
+			A_SetTranslucent(0.8);
+			A_FaceTarget;
+			}
+		CAC4 A 3
+			{
+			A_SetTranslucent(1);
+			A_FaceTarget;
+			}
+		Goto See2
+	See2:
+		CAC4 A 2
+		{
+		A_SetTranslucent(1);
+		A_Chase;
+		A_Facetarget;
+		A_SetSpeed(4);
+		}
+		TNT1 A 0 A_Jump(1,"Roar")
+		Loop
+  Roar:
+	TNT1 A 0 A_PlaySound("PCACSEE")
+	CAC4 BCDDDCCDDCCB 3 A_FaceTarget
+	Goto See2
+  Missile:
+	TNT1 A 0 A_Jump(22,"Retreat","Reposition")
+    TNT1 A 0 A_Jump(200,"Missile1")
+    CAC4 BC 7
+	{
+	A_Facetarget;
+	}
+    CAC4 D 5
+	{
+	A_FaceTarget;
+	A_CustomMissile("PhaseCacoBall2",22,0,0);
+	A_CustomMissile("PhaseCacoBall2",22,0,-10);
+	A_CustomMissile("PhaseCacoBall2",22,0,10);
+	A_FaceTarget;
+	}
+	CAC4 D 5
+	{
+	A_FaceTarget;
+	}
+	CAC4 CB 3
+	{
+	A_Facetarget;
+	}
+    Goto See2
+  Missile1:
+    CAC4 BC 7
+	{
+	A_Facetarget;
+	}
+    CAC4 D 5
+	{
+	A_FaceTarget;
+	A_CustomMissile("PhaseCacoBall",22);
+	A_FaceTarget;
+	}
+	CAC4 D 5 
+	{
+	A_FaceTarget;
+	}
+	CAC4 CB 3
+	{
+	A_Facetarget;
+	}
+    Goto See2
+  Retreat:
+	TNT1 A 0 A_PlaySound("PCACPHA")
+	CAC4 AAA 2 
+	{
+	A_Recoil(0.3);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.8);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.5);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.2);
+	A_FaceTarget;
+	}
+	TNT1 A 0 A_SetTranslucent(1)
+	CAC4 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 BRIGHT A_Recoil(0.2)
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	Goto Appear
+	Reposition:
+	TNT1 A 0 A_PlaySound("PCACPHA")
+	CAC4 AAA 2 
+	{
+	A_Recoil(0.2);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.8);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.5);
+	A_FaceTarget;
+	}
+	CAC4 A 2
+	{
+	A_Recoil(0.3);
+	A_SetTranslucent(0.2);
+	A_FaceTarget;
+	}
+	TNT1 A 0 A_SetTranslucent(1)
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	TNT1 A 0 A_SetSpeed(10)
+	CAC4 PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 BRIGHT A_Wander
+	TNT1 A 0 A_SetSpeed(5)
+	Goto Appear
+	 AvoidLeft:
+		TNT1 A 0 A_SetTranslucent(0.6)
+	    CAC4 A 1 A_FaceTarget
+		TNT1 A 0 A_SetTranslucent(0.2)
+	    TNT1 A 0 ThrustThing(angle*256/360+192, 20, 0, 0)
+        CAC4 AA 5 A_FaceTarget
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+		TNT1 A 0 A_Jump(150,"Missile")
+        Goto See
+	AvoidRight:
+		TNT1 A 0 A_SetTranslucent(0.6)
+	    CAC4 A 1 A_FaceTarget
+		TNT1 A 0 A_SetTranslucent(0.2)
+	    TNT1 A 0 ThrustThing(angle*256/360+64, 20, 0, 0)
+        CAC4 AA 5 A_FaceTarget
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+		TNT1 A 0 A_Jump(150,"Missile")
+        Goto See
+	Pain:
+		TNT1 A 0 A_SetTranslucent(1)
+		CAC4 E 3
+		CAC4 F 3 A_Pain
+		TNT1 A 0 A_Jump(200, "AvoidLeft", "AvoidRight")
+		Goto See2
+	XDeath:
+	Death:
+		TNT1 A 0 A_SetTranslucent(1)
+		CAC4 G 5 A_Changeflag(FLOATBOB,0)
+		CAC4 H 5 A_Scream
+		CAC4 I 5
+		CAC4 J 5 
+		CAC4 K 5 
+		CAC4 L 5 
+		CAC4 M 5 
+		CAC4 N 5 A_NoBlocking
+		CAC4 O -1 A_SetFloorClip
+		Stop
+	Raise:
+		CAC4 L 8 A_UnSetFloorClip
+		CAC4 ONMLKJIHG 6
+		Goto See2
+  }
+}
+
+actor PhaseCacoBall
+{
+	Radius 5
+	Height 6
+	Speed 15
+	FastSpeed 27
+	Scale 0.4
+	Damage (34)
+	Projectile 
+	+RANDOMIZE
+	RenderStyle Add
+	Alpha 1
+	SeeSound "PCACFIR"
+	DeathSound "PCABEXP"
+	+FORCEXYBILLBOARD
+	MaxTargetRange 2
+	DamageType "Cacoball"
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_PlaySound("PCACFIR",2,1,0)
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		Sound:
+		TNT1 A 0 A_PlaySound("PCACBAL",CHAN_5,0.7)
+		Go:
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 A 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 B 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 B 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 B 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 C 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 C 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 C 1 Bright Light("PhaseCacBall")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 D 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 D 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		CAB4 D 1 Bright Light("PhaseCacBall2")
+		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
+		loop
+	Death:
+		TNT1 A 0 A_StopSound(CHAN_5)
+		TNT1 AAAA 0 A_CustomMissile("BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360))
+		TNT1 AAAA 0 A_CustomMissile("RedShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360))
+		TNT1 A 0 A_SpawnItemEx("PhaseBallFlare",0,0,0)
+	    DKB1 CDE 6 Bright Light("PhaseCacBall3")
+		stop
+	}
+}
+
+ACTOR PhaseCacoBallTrail
+{
+Scale 0.3
+Alpha 0.9
++NOINTERACTION
++CLIENTSIDEONLY
++NOBLOCKMAP
++THRUACTORS
++DONTSPLASH
++NOCLIP
+RenderStyle Add
+States
+{
+Spawn:
+TNT1 A 2
+	Flying:
+    CAB4 AABBCCDD 1 BRIGHT
+	{
+	A_FadeOut(0.20);
+	A_SetScale(ScaleX-0.025);
+	}
+    Goto Flying
+    }
+}
+
+Actor PhaseCacoBall2
+{
+    Damage(14)
+    Speed 12
+    Radius 3
+    Height 5
+	Scale 1.1
+	FastSpeed 25
+    SeeSound "monster/watatk"
+    DeathSound "monster/wathit"
+    RenderStyle "Add"
+    Alpha 1
+    Projectile
+  states
+  {
+  Spawn:
+    BAL2 AAABBB 1 Bright Light("PCacoSmallBall") A_SpawnItemEx("PhaseCacoBallTrail2",0,0,0) 
+    Loop
+  Death:
+    BAL2 CDE 4 Bright Light("WhipKnife2")
+    Stop
+  }
+}
+
+ACTOR PhaseCacoBallTrail2
+{
+Scale 0.94
+Alpha 0.9
++NOINTERACTION
++CLIENTSIDEONLY
++NOBLOCKMAP
++THRUACTORS
++DONTSPLASH
++NOCLIP
+RenderStyle Add
+States
+{
+Spawn:
+TNT1 A 2
+	Flying:
+    BAL2 AAABBB 1 BRIGHT
+	{
+	A_FadeOut(0.20);
+	A_SetScale(ScaleX-0.20);
+	}
+    Goto Flying
+    }
+}
+
+ACTOR PhaseBallFlare
+{
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++NOINTERACTION
+RenderStyle Add
++Bright
+Scale 1.5
+Alpha 0.95
+States
+{
+Spawn:
+    SPKP AAA 1 Bright 
+	{
+	A_FadeOut(0.05);
+	A_SetScale(ScaleX+0.05);
+	}
+    Loop
+    }
+}

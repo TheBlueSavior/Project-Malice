@@ -1,0 +1,127 @@
+Actor PM_FShotgunner
+{
+  Health 30
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 8
+  PainChance 170
+  Monster
+  SEESOUND "FSHOSEE"
+  ATTACKSOUND "FSHOATK"
+  PAINSOUND "FSHOPAI"
+  DEATHSOUND "FSHODIE"
+  ACTIVESOUND "FSHOIDL"
+  +FloorClip
+  //+NOINFIGHTING
+  +DONTHURTSPECIES
+  +DONTHARMSPECIES
+  Tag "Faceless Shotgunner"
+  Species "Shotgunner"
+  Obituary "%o had their face blown off by a Faceless Shotgunner."
+  DropItem "Shotgun"
+  States
+  {
+  Spawn:
+    F1SH AA 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+    F1SH AA 3 A_Chase
+	F1SH BB 3 A_Chase
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+	F1SH CC 3 A_Chase
+	F1SH DD 3 A_Chase
+	//TNT1 A 0 A_Recoil(-1)
+    Loop
+  Missile:
+    F1SH EE 7 A_FaceTarget
+	TNT1 A 0 A_PlaySound("ds12gfir",CHAN_5)
+	TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+    F1SH F 5 Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 15, 15, 0);
+		A_CustomMissile("BulletFlare", 32, 15, 15, 0);
+		A_CustomMissile("PM_PelletTracer",35,7,random(-6, 6), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",35,7,random(-6, 6), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",35,7,random(-6, 6), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",35,7,random(-6, 6), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",35,7,random(-6, 6), CMF_OFFSETPITCH, random(-3, 3));
+		}
+    F1SH EEE 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("SHT1PMP")
+	F1SH AA 5 A_FaceTarget
+	F1SH BB 5 A_FaceTarget
+    Goto See
+  Pain:
+    F1SH G 3
+    F1SH G 3 A_Pain
+    Goto See
+  Death:
+	TNT1 A 0 A_Jump(35,"PossDeath")
+    F1SH H 5
+    F1SH I 5 A_Scream
+    F1SH J 5 A_NoBlocking
+    F1SH K 5
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+    F1SH L -1
+    Stop
+  PossDeath:
+    F1SH H 5
+    F1SH I 5 A_Scream
+    F1SH J 5 A_NoBlocking
+    F1SH K 5
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	F1SH L 90
+	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+    F1SH L -1
+    Stop
+  XDeath:
+    F1SH M 5
+    F1SH N 5 A_XScream
+    F1SH O 5 A_NoBlocking
+    F1SH PQRST 5
+    F1SH U -1
+    Stop
+  Raise:
+    F1SH L 5
+    F1SH KJIH 5
+    Goto See
+  }
+}
+
+Actor PM_PelletTracer
+{
+Projectile
++BLOODSPLATTER 
++THRUGHOST
+height 2
+radius 2
+speed 36
+damage (random(5,6))
+scale 0.85
+RenderStyle Add
+Alpha 1.0
+States
+{
+	Spawn:
+		//TNT1 A 0 A_SpawnItemEX("BulletFlare",0,0,0)
+	//Go:
+		TRCR A 1 BRIGHT A_Quake(1,4,0,100,0)
+        Loop
+	Death:
+		TNT1 A 0 A_Jump(256,"Death1","Death2")
+  Death1:
+	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TRCR A 0 A_PlaySound("PM/BulletHit",2)
+	TNT1 A 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170)
+    stop
+  Death2:
+	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TRCR A 0 A_PlaySound("PM/BulletHit",2)
+    TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletShrapnel",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,170)
+	TNT1 A 0 A_SpawnItemEx("PM_BulletHitFog",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,150)
+    stop
+	}
+}

@@ -1,0 +1,220 @@
+Actor PM_HellsFury
+{
+    Health 500
+    Radius 24
+    Height 64
+    Speed 10
+    PainChance 50
+    Mass 1000
+	Scale 1.15
+    SeeSound "HFurySight"
+    ActiveSound "HFuryActive"
+    PainSound "HFuryPain"
+    DeathSound "HFuryDeath"
+	Species "Nobles"
+	//DropItem "RagePoint1"
+    Obituary "%o felt the wrath of Hell's Fury"
+    HitObituary "%o got ripped apart by Hell's Fury"
+	Tag "Hell's Fury"
+    MONSTER
+	+DONTHARMSPECIES
+    +FLOORCLIP
+	+MissileMore
+	+DONTHARMSPECIES
+	+DONTHURTSPECIES
+  States
+  {
+  Spawn:
+    HFRY AB 10 A_Look
+    Loop
+  See:
+    HFRY AABB 3 A_Chase
+	TNT1 A 0 A_PlaySound("Squire/Step")
+	HFRY CCDD 3 A_Chase
+	TNT1 A 0 A_PlaySound("Squire/Step")
+    Loop
+  Missile:
+		TNT1 A 0 A_JumpIfCloser(270,"FireBreath")
+		TNT1 A 0 A_Jump(90,"Missile2")
+		HFRY EEEEE 1 Light("InfernoBall") 
+		{
+		A_FaceTarget;
+		A_Spawnitemex("AzazelFire",10,random(30,25),65,0,0,2);
+		}
+		HFRY EEEE 1 Light("InfernoBall")
+		{
+		A_FaceTarget;
+		A_Spawnitemex("AzazelFire",10,random(30,25),60,0,0,2);
+		}
+		HFRY FFFF 1 Light("InfernoBall") 
+		{
+		A_FaceTarget;
+		A_Spawnitemex("AzazelFire",10,random(30,25),50,0,0,2);
+		}
+		HFRY G 8 Light("InfernoBall")
+		{
+		A_FaceTarget;
+		A_CustomMissile("PM_HellsFuryBall",40);
+		}
+		Goto See
+	
+   FireBreath:
+	TNT1 A 0 A_Jump(60,"Melee")
+	TNT1 A 0 A_PlaySound("CYFLAME",CHAN_5,1,1)
+	TNT1 A 0 A_PlaySound("HFuryRoar",CHAN_7)
+	HFRY PP 5 Light("AvatarFireball4")  A_FaceTarget
+	HFRY QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 1 Light("Avatarfireball4")
+	{
+	A_FaceTarget;
+	//A_FaceTarget(0.8,3,0,0);
+	A_SpawnItemEx("CFireFlare",5,0,65);
+	A_CustomMissile("ZombieFire",65,0,random(-1,1));
+	}
+	TNT1 A 0 A_StopSound(CHAN_5)
+	Goto See
+	
+  Missile2:
+    HFRY P 8 Light("AvatarFireball3") A_FaceTarget
+    HFRY Q 20 Light("AvatarFireball4") 
+    {
+	  A_SpawnProjectile("PM_FireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   0);
+    }
+	HFRY P 1 Light("AvatarFireball3") A_FaceTarget
+	HFRY Q 20 Light("AvatarFireball4") 
+    {
+	  A_SpawnProjectile("PM_FireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, -45);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, -15);
+	  A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, 15);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, 45);
+    }
+	 HFRY P 1 Light("AvatarFireball3") A_FaceTarget
+	 HFRY Q 20 Light("AvatarFireball4") 
+    {
+	  A_SpawnProjectile("PM_FireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 60, 0, -30);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 60, 0,   0);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 60, 0,  30);
+    }
+	HFRY P 1 Light("AvatarFireball3") A_FaceTarget
+	HFRY Q 20 Light("AvatarFireball4") 
+    {
+	  A_SpawnProjectile("PM_FireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, -25);
+	  A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, -8);
+	  A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, 8);
+	  A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0, 25);
+    }
+	HFRY P 1 Light("AvatarFireball3") A_FaceTarget
+    Goto See
+  Melee:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(CHAN_5)
+	TNT1 A 0 A_Jump(50,"FireBreath")
+    Goto Missile+3
+  Pain:
+    HFRY H 2
+	TNT1 A 0 A_StopSound(CHAN_5)
+    HFRY H 2 A_Pain
+    Goto See
+  Death:
+    HFRY I 8 A_Scream
+	TNT1 A 0 A_StopSound(CHAN_5)
+    HFRY J 0 A_FaceTarget
+    HFRY J 8 A_SpawnItemEx("HellsFurySkull", 0, 0, 65, 5, 0, 0, RandomPick(20, 10, 0, -10, -20), SXF_CLIENTSIDE)
+    HFRY K 8
+    HFRY L 8 A_Fall
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+    HFRY MN 8
+    HFRY O -1
+    Stop
+  Raise:
+    HFRY NMLKJI 8
+    Goto See
+   }
+}
+
+Actor PM_HellsFuryBall
+{
+    Radius 6
+    Height 8
+    Speed 17
+    Damage (random(30,40))
+    RenderStyle "Add"
+    Alpha 1
+	Scale 0.24
+	SeeSound "Defiler/Shoot"
+    DeathSound "PCABEXP"
+	Translation "0:255=%[0,0,0]:[2.0,0.4,0.28]"
+    Projectile
+  States
+  {
+  Spawn:
+    PBAL C 1 Bright Light("PM_RedFireLight")
+    {
+	A_SpawnItemEx("PM_HFuryFlameTrails",0,0,0,0,0,0,0,128,0);
+	A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
+	}
+    Loop
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("imp/shotx",CHAN_7)
+	TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+	TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_NetherFireGlobs",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("RedShock",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEX("RFireBallExplode",0,0,0)
+    HFBB CDE 5 Bright
+    Stop
+  }
+}
+
+Actor HellsFurySkull
+{
+    Radius 5
+    Height 5
+    Speed 5
+    Mass 5000
+	Scale 1.15
+    +DropOff
+    +DoomBounce
+    +Missile
+  States
+  {
+  Spawn:
+    FSKL ABCDEFGHIJK 2
+    Loop
+  Death:
+    FSKL L -1
+    Loop
+  }
+}
+
+actor PM_HellsFurySpreadFire : PyroImpBall
+{
+	Damage (random(18,18))
+	+NOGRAVITY
+	-LOWGRAVITY
+	//+SEEKERMISSILE
+	seesound "rictus/fire"
+	Speed 15
+	FastSpeed 15
+	Scale 0.93
+	states
+  	{
+  Spawn:
+    TNT1 A 1
+	{
+	//A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
+	A_SpawnItemEx("PM_DevilFlameTrails",0,0,0,0,0,0,0,128,0);
+	}
+	loop
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
+	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames")
+    AFX5 D 2 bright Light("AvatarFireball4")
+    AFX5 EFGH 2 Light("AvatarFireball4") bright
+    stop
+  }
+}

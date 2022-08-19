@@ -1,0 +1,98 @@
+actor Mimic
+{
+  obituary "%o was consumed by a Mimic."
+  hitobituary "%o was consumed by a Mimic."
+  health 400
+  radius 20
+  height 56
+  mass 120
+  speed 5
+  Monster
+  painchance 100
+  MeleeThreshold 196
+  MeleeRange 112
+  +DONTHURTSPECIES
+  +NOINFIGHTING
+  -COUNTKILL
+  +NOTARGET
+  DropItem "Shell",255,3
+  seesound ""
+  painsound "MIMPAIN"
+  deathsound "MIMDIE"
+  activesound "MIMIDLE"
+  +FLOORCLIP
+  states
+  {
+  Spawn:
+    MIMD J 1 A_Look
+	MIMD JKLM 3 A_Wander
+    loop
+  See:
+	MIMD ABCDEFGH 2 A_FaceTarget
+	TNT1 A 0 A_PlaySound("MIMROAR",CHAN_7)
+	MIMD VVVVWWVVWWV 4 A_FaceTarget
+	SeeGo:
+	MIMD JJJKKKLLLMMM 1 A_Chase
+	Loop
+  Melee:
+	MIMD OPQR 6 A_FaceTarget
+	TNT1 A 0 A_Recoil(-14)
+	TNT1 A 0 ThrustThingZ(0,12,0,1)
+	TNT1 A 0 A_SkelWhoosh
+	MIMD RRSTTTT 2 A_CustomMissile("BruteJump",5,0,0,2)
+	Goto SeeGo
+  Pain:
+	MIMD V 5
+	MIMD VW 10 A_Pain
+	Goto SeeGo
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Scream
+	MIMD VWWWVWVVWVVV 3  A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	MIMD YZ 6
+	MIME A 6 A_NoBlocking
+	MIME BCDEF 6  A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	MIME G -1
+	}
+}
+
+actor Mimicspawn
+{ 
+  +DONTHURTSPECIES
+  +AMBUSH
+  +NOBLOCKMAP
+  +MOVEWITHSECTOR
+  states
+  {
+  Spawn:
+	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
+	TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
+	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
+	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
+	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+	TNT1 A 1 A_SpawnItemEx("RatSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
+	TNT1 A 1 A_SpawnItemEx("MaliceSwarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
+	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
+	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
+    DEAD F 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
+  Idle:
+	DEAD F 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
+	loop
+  See:
+     DEAD F 105
+     DEAD F 5 A_FaceTarget
+	 TNT1 A 0 A_KillChildren
+	 TNT1 A 0 A_PlaySound("MIMSPAWN")
+	MIMC AAAABBBBCCBCDD 2
+	MIMC CCDEF 2
+	MIMC GHIJKLMNOP 3 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	MIMC Q 3 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	MIMC RSTU 3 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0)
+	MIMC VW 3 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	MIMC XYZ 2 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+	TNT1 AAAA 0 A_SpawnItemEX("PM_TumorBurstBlood",0,0,0,random(3,8),random(3,8),random(3,8),random(0, 360))
+    ZOD1 A 0 A_SpawnItemEx("Mimic",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
+    stop
+  }
+}

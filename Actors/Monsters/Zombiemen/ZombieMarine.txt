@@ -1,0 +1,161 @@
+ACTOR PM_ZombieMarine : Zombieman
+{ 
+    Health 35
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 200
+    Damage 1
+    MONSTER
+	//+MISSILEMORE
+    +FloorClip
+	//+NOINFIGHTING
+	+SLIDESONWALLS
+	+DONTHURTSPECIES
+	+DONTHARMSPECIES
+	Species "Zombie"
+	Tag "Zombie Marine"
+    OBITUARY "%o was killed by A Zombie Marine!"
+    SeeSound "Zombie/See"
+	PainSound "Zombie/Pain"
+	DeathSound "Zombie/Death"
+	ActiveSound "Zombie/Active"
+    DropItem "Clip"
+    Decal Bulletchip
+    states
+    {
+    Spawn:
+		UDM2 A 10 A_Look
+        Loop
+    See:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        UDM2 AA 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		UDM2 BB 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		UDM2 CC 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		UDM2 DD 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+        Loop
+    Missile:
+		TNT1 A 0 A_Jump(100, "MissileLeft", "MissileRight")
+		TNT1 A 0 A_Jump(60,"Missile2")
+        UDM2 EE 7 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2") 
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 2 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2") 
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 2 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2") 
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 2 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2") 
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 2 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2") 
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 8 A_FaceTarget
+        Goto See
+	Missile2:
+		UDM2 E 12 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+        UDM2 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UDM2 E 3 A_FaceTarget
+		TNT1 A 0 A_Jump(30,"See")
+		UDM2 E 0 A_MonsterRefire(60,"See")
+		Goto Missile2+1
+	MissileLeft:
+	  UDM2 E 2 A_FaceTarget
+	  TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0)
+	  UDM2 E 2 A_FaceTarget
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+      TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+      UDM2 F 4 BRIGHT Light("YellowMediumFlicker2")
+	  {
+		A_CustomMissile("UberTracer",33,7,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+	  }
+	  TNT1 A 0 A_Jump(150, "MissileLeft")
+	  Goto See
+   MissileRight:
+	  UDM2 E 2 A_FaceTarget
+      TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0)
+	  UDM2 E 2 A_FaceTarget
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+      TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+	  UDM2 F 4 BRIGHT Light("YellowMediumFlicker2")
+	  {
+		A_CustomMissile("UberTracer",33,7,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+	  }
+	  TNT1 A 0 A_Jump(150, "MissileRight")
+	  Goto See
+    Pain:
+        UDM2 G 5
+        UDM2 G 3 A_Pain
+        Goto See
+    Death:
+		TNT1 A 0 A_Jump(35,"PossDeath")
+        UDM2 J 5 A_NoBlocking
+        UDM2 K 5 A_Scream
+        UDM2 L 5 
+        UDM2 M 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        UDM2 N -1
+        Stop
+	 PossDeath:
+        UDM2 J 5 A_NoBlocking
+        UDM2 K 5 A_Scream
+        UDM2 L 5 
+        UDM2 M 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		UDM2 N 90
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+        UDM2 N -1
+        Stop
+    XDeath:
+        UDM2 O 5 A_NoBlocking
+        UDM2 P 5 A_XScream
+        UDM2 Q 5 
+        UDM2 RSTU 5
+        UDM2 V -1
+        Stop
+    Raise:
+        UDM2 NMLKJIH 5
+        Goto See
+    }
+}
+

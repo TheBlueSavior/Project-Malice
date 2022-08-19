@@ -1,0 +1,74 @@
+ACTOR MColonGibs
+{
+  Radius 20
+  Height 4
+  -SOLID
+  +NOBLOCKMAP
+  +MOVEWITHSECTOR
+  States
+  {
+  Spawn:
+    POB1 A -1
+    Stop
+  }
+}
+
+ACTOR MMeat2
+{
+  Radius 16
+  Height 84
+  -SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    GOR2 A -1
+    Stop
+  }
+}
+
+ACTOR MMeat3
+{
+  Radius 16
+  Height 84
+  -SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    GOR3 A -1
+    Stop
+  }
+}
+
+ACTOR MMeat4
+{
+  Radius 16
+  Height 68
+  -SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    GOR4 A -1
+    Stop
+  }
+}
+
+ACTOR MMeat5
+{
+  Radius 16
+  Height 52
+  -SOLID
+  +NOGRAVITY
+  +SPAWNCEILING
+  States
+  {
+  Spawn:
+    GOR5 A -1
+    Stop
+  }
+}

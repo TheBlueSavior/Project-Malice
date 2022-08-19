@@ -1,0 +1,271 @@
+ACTOR PM_DemonTechSpectre : Demon
+{ 
+    Health 230
+    Speed 10
+    Height 56
+    Radius 30
+    Mass 400
+    PainChance 160
+	MeleeThreshold 300
+	MeleeRange 60
+	Scale 1.1
+    MONSTER
+    +FLOORCLIP
+	//+NOINFIGHTING
+	+DONTHARMSPECIES
+	+DONTHURTSPECIES
+	Species "Brute"
+	BloodColor "Dark Red"
+	//DropItem "RagePoint1"
+    SeeSound "DTechSee"
+    PainSound "DTechPain"
+    DeathSound "DTechDeath"
+    ActiveSound "DTechActive"
+	AttackSound "DTechAttack"
+    Obituary "%o was mowed down by a Demon Tech Spectre." 
+	Tag "Demon Tech Spectre"
+    States 
+    { 
+    Spawn: 
+       CRG3 AB 10 A_Look
+       Loop 
+    See: 
+	   TNT1 A 0 A_SetTranslucent(0)
+	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 AA 2 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 BB 2 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+       CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 CC 2 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 DD 2 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   TNT1 A 0 A_Jump(30,"Rush")
+	   TNT1 A 0 A_Jump(30,"Retreat")
+       Loop 
+	Rush:
+       TNT1 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   TNT1 A 0 A_SpawnItemEx("DTechSTrailA")
+       CRG3 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_SpawnItemEx("DTechSTrailB")
+	   CRG3 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG3 C 0 A_PlaySound("DTechWalk",CHAN_7)
+	   TNT1 A 0 A_SpawnItemEx("DTechSTrailC")
+       CRG3 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_SpawnItemEx("DTechSTrailD")
+	   CRG3 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Jump(5,"See")
+       Loop 
+	Retreat:
+	   TNT1 A 0 A_SetTranslucent(0.0)
+	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
+	   CRG3 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG3 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG3 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG3 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG3 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG3 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 AA 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 BB 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+       CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
+       CRG2 CC 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   CRG2 DD 1 A_Chase
+	   TNT1 A 0 A_Recoil(-0.8)
+	   Goto See
+    Missile: 
+		TNT1 A 0 A_SetTranslucent(0.3)
+	   TNT1 A 0 A_JumpIfCloser(300,"Melee")
+	   TNT1 A 0 A_SetTranslucent(0.5)
+	   TNT1 A 0 A_PlaySound("DTechAttack",CHAN_7)
+	   CRG3 H 17 A_FaceTarget
+	   TNT1 A 0 A_JumpIfCloser(240,"Melee")
+	   TNT1 A 0 A_SetTranslucent(1)
+       CRG3 EFEFEFEF 3 Light("Shadowball")
+	   {
+	   A_FaceTarget;
+	   A_CustomMissile("PM_DTechSBall",35,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
+	   A_SpawnItemEx("CFodFlare",29,0,35);
+	   }
+	   TNT1 A 0 A_SetTranslucent(0.4)
+	   CRG3 H 5
+	   Goto See
+	Melee:
+		TNT1 A 0 A_SetTranslucent(0.5)
+		CRG3 H 5 A_FaceTarget
+		CRG3 H 3
+		TNT1 A 0 A_PlaySound("DTechSee")
+		CRG3 H 3
+		TNT1 A 0 A_SetTranslucent(1)
+		TNT1 A 0 A_Recoil(-12)
+		TNT1 A 0 ThrustThingZ(0,5,0,1)
+		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
+		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
+		TNT1 A 0 A_SetTranslucent(0.5)
+		CRG3 A 8
+		Goto See
+	Pain: 
+	   TNT1 A 0 A_SetTranslucent(1)
+       CRG3 H 2
+       CRG3 H 2 A_Pain
+	   TNT1 A 0 A_Jump(100,"Rush")
+       Goto See
+    Death: 
+	   TNT1 A 0 A_SetTranslucent(1)
+       SRG3 I 8 
+       SRG3 I 0 A_FaceTarget
+       SRG3 J 0 A_SpawnItemEx("PM_DTechSpectreArm", 10, 0, 32, 0, 8, 0, 0, 128)
+       SRG3 J 8 A_Scream
+       SRG3 K 4 
+       SRG3 L 4 A_NoBlocking
+       SRG3 M 4 
+	   TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+       SRG3 N -1 
+       Stop 
+    Raise: 
+       SRG3 NMLKJI 5 
+       Goto See 
+    } 
+}
+
+ACTOR DTechSTrailA
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Alpha 0.50
+States
+{
+Spawn:
+    CRG3 A 1 A_FadeOut(0.1)
+    Loop
+    }
+}
+
+ACTOR DTechSTrailB
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Alpha 0.50
+States
+{
+Spawn:
+    CRG3 B 1 A_FadeOut(0.1)
+    Loop
+    }
+}
+
+ACTOR DTechSTrailC
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Alpha 0.50
+States
+{
+Spawn:
+    CRG3 C 1 A_FadeOut(0.1)
+    Loop
+    }
+}
+
+ACTOR DTechSTrailD
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Alpha 0.50
+States
+{
+Spawn:
+    CRG3 D 1 A_FadeOut(0.1)
+    Loop
+    }
+}
+
+ACTOR PM_DTechSpectreArm
+{
+	Radius 8
+	Height 8
+	Speed 8
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+      States
+	{
+	Spawn:
+         SG3A ABCDEFGH 2
+         Loop
+	Death:
+	 SG3A I -1
+	 Loop
+	}
+}
+
+ACTOR PM_DTechSBall
+{
+   Height 4
+   Radius 4
+   Speed 15
+   Damage 3
+   Scale 0.12
+   PROJECTILE
+   +FORCERADIUSDMG
+   RenderStyle Add
+   +BRIGHT
+   SeeSound "weapons/demontechfire"
+   DeathSound "weapons/demontechex"
+   States
+   {
+   Spawn:
+      DTPR R 1 Bright Light("Shadowball")
+	  {
+	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
+	  }
+      Loop
+   Death:
+	  TNT1 AAA 0 A_CustomMissile("RFireBallExplode",0,0,random(0,360),2,random(0,360))
+	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0)
+      Stop
+	  }
+}

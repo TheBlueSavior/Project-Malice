@@ -1,0 +1,287 @@
+ACTOR Paladin
+{
+	Health 775
+	Scale 1.15
+	Radius 32
+	Height 64
+	Mass 1200 
+	Speed 8
+	PainChance 80
+	Monster
+	+FloorClip
+	+DontHarmClass
+	+DontHarmSpecies
+	+DontHurtSpecies
+	+DONTBLAST
+	+USEKILLSCRIPTS
+	Obituary "%o played dodgeball with a paladin and lost."
+	HitObituary "A Paladin blew %o away."
+	SeeSound "Paladin/Sight" 
+	PainSound "Paladin/Pain" 
+	DeathSound "Paladin/Death" 
+	ActiveSound "Paladin/Active"
+	Species "Nobles"
+	Tag "Paladin"
+	States 
+	{ 
+		Spawn: 
+		HPAL AB 10 A_Look 
+        Loop 
+		See:
+		   TNT1 A 0 A_UnSetInvulnerable
+		   HPAL AABB 3 Fast A_Chase
+		   TNT1 A 0 A_PlaySound("Paladin/Step")
+		   HPAL CCDD 3 Fast A_Chase
+		   TNT1 A 0 A_PlaySound("Paladin/Step")
+		   TNT1 A 0 A_Jump(32, "SeeShield")
+	    Goto See+1
+		SeeShield:
+		   TNT1 A 0 A_SetInvulnerable
+		   HPAL EEFF 4 Fast A_Chase
+		   TNT1 A 0 A_PlaySound("Paladin/Step")
+		   HPAL GGHH 4 Fast A_Chase
+		   TNT1 A 0 A_PlaySound("Paladin/Step")
+		   TNT1 A 0 A_Jump (96, "See")
+	    Goto SeeShield
+		Melee:
+			TNT1 A 0 A_UnSetInvulnerable
+			HPAL MN 6 Fast A_FaceTarget
+			TNT1 A 0 A_CustomMissile("PaladinBash")
+			HPAL O 6 Fast A_CustomMeleeAttack(random(1, 10) * 4 )
+			TNT1 A 0 A_Jump(128, "Missile")
+		Goto See
+		Missile: 
+			TNT1 A 0 A_UnSetInvulnerable
+			TNT1 A 0 A_Jump(64, "Missile2")
+			TNT1 A 0 A_JumpIfCloser(720, "Missile1")
+		Goto Missile2
+		Missile1: 
+			TNT1 A 0 A_Jump(32, "Missile2") 
+			HPAL I 5 Fast A_FaceTarget
+			TNT1 A 0 A_JumpIfCloser(360, "MissileLow")	
+			HPAL I 5 Fast A_FaceTarget	
+			TNT1 A 0 A_PlaySound("Paladin/Grenade")			
+			HPAL J 4 Fast Bright A_CustomMissile("PaladinGrenadeThrust", 30, 16, 0)
+			HPAL J 4 Fast Bright A_FaceTarget
+			HPAL II 5 Fast A_FaceTarget
+		Goto See
+		MissileLow: 
+			HPAL I 5 Fast A_FaceTarget
+			TNT1 A 0 A_PlaySound("Paladin/Grenade")
+			HPAL J 4 Fast Bright A_CustomMissile("PaladinGrenade", 30, 16, 0)
+			HPAL J 4 Fast Bright A_FaceTarget
+			HPAL II 5 Fast A_FaceTarget
+		Goto See
+		Missile2: 
+			TNT1 A 0 A_SetInvulnerable
+			HPAL KK 5 Fast A_FaceTarget      
+			HPAL L 4 Fast Bright A_CustomMissile("PaladinBall",32,0,0,0)
+			HPAL KK 4 Fast A_FaceTarget      
+			HPAL L 4 Fast Bright A_CustomMissile("PaladinBall",32,0,0,0)
+			HPAL KK 4 Fast A_FaceTarget      
+			HPAL L 4 Fast Bright A_CustomMissile("PaladinBall",32,0,0,0)
+			HPAL KK 4 Fast A_FaceTarget      
+			HPAL L 4 Fast Bright A_CustomMissile("PaladinBall",32,0,0,0)
+			HPAL KK 4 Fast A_FaceTarget      
+			HPAL L 4 Fast Bright A_CustomMissile("PaladinBall",32,0,0,0)
+			HPAL KK 4 Fast A_FaceTarget  
+			TNT1 A 0 A_UnSetInvulnerable
+		Goto See
+		Pain:
+			HPAL P 3 Fast A_Pain
+			TNT1 A 0 A_JumpIfCloser (512, "ClosePain")
+			HPAL P 3 Fast
+			TNT1 A 0 A_Jump (96, "See")
+			TNT1 A 0 A_SetInvulnerable
+			HPAL KKKKKKKKKKKKKKKKKKKK 3 A_FaceTarget
+			TNT1 A 0 A_Jump (160, "SeeShield")
+			TNT1 A 0 A_UnSetInvulnerable
+		Goto See
+		ClosePain: 
+			HPAL P 3
+			TNT1 A 0 A_Jump (184, "See")
+			TNT1 A 0 A_SetInvulnerable
+			HPAL KKKKKKKKKKKKKKKKKKKK 3 A_FaceTarget
+			TNT1 A 0 A_Jump (48, "SeeShield")
+			TNT1 A 0 A_UnSetInvulnerable
+		Goto See
+	Death:
+		HPAL Q 7 A_Scream
+		HPAL R 7 A_SpawnItemEx("PaladinShield", 0, 0, 25, 6, 0, 0, 60, SXF_SETMASTER|SXF_CLIENTSIDE)
+		HPAL S 7
+		HPAL T 7 A_NoBlocking
+		HPAL UV 7
+		HPAL W -1 A_BossDeath
+		Stop
+	Raise: 
+		HPAL VUTSRQ 7
+		Goto See 
+
+}
+}
+
+ACTOR PaladinGrenade 
+{
+	Radius 8
+	Height 8
+	Speed 25
+	Damage (5 * random(4, 6) )
+	Projectile
+	-NOGRAVITY
+	+GRENADETRAIL
+	+THRUGHOST
+	+FORCEXYBILLBOARD
+	+DONTBLAST
+	+DEHEXPLOSION
+	BounceType "Doom"
+	Gravity 0.67
+	DeathSound "Paladin/Explode"
+	BounceSound "Paladin/Bounce"
+	States {
+		Spawn:
+			PGRN A 1 Bright A_SpawnItem("PaladinGrenadeTrail")
+		Loop
+		Death:
+			TNT1 A 0 A_ChangeFlag ("NoGravity", 1)
+			TNT1 A 0 A_Stop
+			TNT1 A 0 A_SetTranslucent(1,1)
+			MISL B 8 Bright A_Explode
+			MISL C 6 Bright
+			MISL D 4 Bright
+		Stop
+	}
+}
+
+Actor PaladinGrenadeThrust : PaladinGrenade 
+{
+	States {
+		Spawn:
+			TNT1 AA 0 ThrustThingZ(0, 16, 0, 0)
+		Goto Super::Spawn
+	}
+}
+
+Actor PaladinGrenadeTrail 
+{
+	Scale .5
+	Height 1
+	Radius 1
+	Renderstyle Add
+	Alpha 0.67
+	Speed 0
+	+NOGRAVITY
+	+NOTELEPORT
+	+CLIENTSIDEONLY
+	
+	States {
+		Spawn:
+			TNT1 A 2
+			FRB1 DEFHG 2 Bright
+		Stop
+	}
+}
+
+ACTOR PaladinBall 
+{
+	Radius 6
+	Height 8
+	Speed 18
+	Damage (8 * random(2, 4))
+	Projectile
+	RenderStyle Add
+	Alpha 0.67
+	+SeekerMissile
+	+FORCEXYBILLBOARD
+	+DONTBLAST
+	SeeSound "Paladin/Shoot"
+	DeathSound "Paladin/Hit"
+	States 
+	{
+		Spawn:
+			HPLB A 2 Bright A_SeekerMissile(2, 2)
+			HPLB A 0 Bright A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+			HPLB B 2 Bright A_SeekerMissile(2, 2)
+			HPLB B 0 Bright A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+			HPLB C 2 Bright A_SeekerMissile(2, 2)
+			HPLB C 0 Bright A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+			HPLB D 2 Bright A_SeekerMissile(2, 2)
+			HPLB D 0 Bright A_SpawnItemEx("PaladinBallTrail",0,0,0,0,0,0,0,128)
+		Loop
+		Death:
+			HPLB EFHIJ 3 Bright
+		Stop
+	}
+}
+
+actor PaladinBash 
+{
+	radius 5
+	height 5
+	speed 28
+	damage (5 * random(1, 2) )
+	deathsound "Paladin/Melee"
+	PROJECTILE
+	+SEEKERMISSILE
+	+DONTBLAST
+	States {
+		spawn:
+			TNT1 AA 1 A_SeekerMissile(90, 90, SMF_PRECISE)
+			stop
+		death:
+			TNT1 A 0 A_Quake(4, 17, 0, 256)
+			TNT1 A 1 A_Blast(0, 4, 40, 20)
+			TNT1 A 1
+		stop
+	}
+}
+
+Actor PaladinBallTrail 
+{   
+	Radius 3
+	Height 3
+	Scale 1
+	Speed 0
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	RenderStyle Add
+	Alpha 0.67
+	+CLIENTSIDEONLY
+	States {
+		Spawn:
+		TNT1 A 2 Bright
+		HPLB KLMNOP 2 Bright
+		Stop 
+	}
+}
+
+ACTOR PaladinShield 
+{
+	Radius 8
+	Height 8
+	+CLIENTSIDEONLY
+	States {
+		Spawn:
+			HPLS ABCDEFGH 3 A_CheckFloor("Ground")
+		Loop
+		Ground:
+			HPLS I 2100 A_SetFloorClip
+			HPLS I 5 A_FadeOut(0.1)
+		Wait
+		Death:
+			TNT1 A 0 A_SpawnItemEx("PaladinShieldFade")
+		Stop
+	}
+}
+
+Actor PaladinShieldFade 
+{
+	Radius 8
+	Height 8
+	+CLIENTSIDEONLY
+	States {
+		Spawn:
+			HPLS I 1
+			HPLS I 1 A_FadeOut(0.01) 
+		Wait
+	}
+}

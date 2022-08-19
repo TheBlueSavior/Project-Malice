@@ -1,0 +1,146 @@
+ACTOR PM_ZombieTrooper : Zombieman
+{ 
+    Health 40
+    Radius 20
+    Height 56
+    Speed 8
+    PainChance 200
+    Damage 1
+    MONSTER
+	+MissileMore
+	+MISSILEevenMORE
+    +FloorClip
+	//+NOINFIGHTING
+	+SLIDESONWALLS
+	+DONTHURTSPECIES
+	+DONTHARMSPECIES
+	Species "Zombie"
+	Tag "Zombie Trooper"
+    OBITUARY "%o was killed by A Zombie Marine!"
+    SeeSound "Zombie/See"
+	PainSound "Zombie/Pain"
+	DeathSound "Zombie/Death"
+	ActiveSound "Zombie/Active"
+    DropItem "Clip"
+    Decal Bulletchip
+    states
+    {
+    Spawn:
+		UTM2 A 10 A_Look
+        Loop
+    See:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        UTM2 AA 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		UTM2 BB 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		UTM2 CC 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+		UTM2 DD 4 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
+        Loop
+    Missile:
+		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight")
+		TNT1 A 0 A_Jump(40,"Missile2")
+        UTM2 E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 F 1 bright Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UTM2 E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 F 1 bright Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UTM2 E 1 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 F 1 bright Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(0, 3));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UTM2 EEE 5 A_FaceTarget
+      goto see 
+	Missile2:
+		UTM2 E 4 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+        UTM2 F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		}
+		UTM2 E 4 A_FaceTarget
+		TNT1 A 0 A_Jump(30,"See")
+		UTM2 E 0 A_MonsterRefire(60,"See")
+		Goto Missile2+1
+	MissileLeft:
+	  UTM2 E 2 A_FaceTarget
+	  TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0)
+	  UTM2 E 2 A_FaceTarget
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+      TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+      UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
+	  {
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+	  }
+	  TNT1 A 0 A_Jump(150, "MissileLeft")
+	  Goto See
+   MissileRight:
+	  UTM2 E 2 A_FaceTarget
+      TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0)
+	  UTM2 E 2 A_FaceTarget
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
+      TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+	  UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
+	  {
+		A_CustomMissile("UberTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+	  }
+	  TNT1 A 0 A_Jump(150, "MissileRight")
+	  Goto See
+    Pain:
+        UTM2 G 5
+        UTM2 G 3 A_Pain
+        Goto See
+    Death:
+		TNT1 A 0 A_Jump(35,"PossDeath")
+        UTM2 J 5 A_NoBlocking
+        UTM2 K 5 A_Scream
+        UTM2 L 5 
+        UTM2 M 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        UTM2 N -1
+        Stop
+	PossDeath:
+        UTM2 J 5 A_NoBlocking
+        UTM2 K 5 A_Scream
+        UTM2 L 5 
+        UTM2 M 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		UTM2 N 90
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+        UTM2 N -1
+        Stop
+    XDeath:
+        UTM2 O 5 A_NoBlocking
+        UTM2 P 5 A_XScream
+        UTM2 Q 5 
+        UTM2 RSTU 5
+        UTM2 V -1
+        Stop
+    Raise:
+        UTM2 NMLKJIH 5
+        Goto See
+    }
+}
+

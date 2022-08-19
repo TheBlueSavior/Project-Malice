@@ -1,0 +1,177 @@
+ACTOR PM_HeavyCarbineZombie
+{
+  Health 70
+  Radius 20
+  Height 56
+  Mass 100
+  Speed 8
+  PainChance 100
+  Monster
+  +FLOORCLIP
+  //+NOINFIGHTING
+  +DONTHARMSPECIES
+  SeeSound "Heavycarbinezombie/sight"
+  PainSound "Heavycarbinezombie/pain"
+  DeathSound "Heavycarbinezombie/death"
+  ActiveSound "Heavycarbinezombie/active"
+  Tag "Heavy Carbine Zombie"
+  Obituary "%o was shot to pieces by a Heavy Carbine-wielding zombie."
+  Dropitem "Chaingun"
+  Species "Chaingunner"
+  States
+  {
+  Spawn:
+    HCPO AA 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+    HCPO AABB 3 A_Chase
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+	HCPO CCDD 3 A_Chase
+    Loop
+  Missile:
+    HCPO E 1 A_PlaySound("10MM/Cock")
+    HCPO EEEE 5 A_FaceTarget
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright Light("Shootlight") 
+	{
+	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_CustomMissile("CarbineZombieBullet",37,10,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("CFodFlare",37,10);
+	}
+	HCPO E 2 A_FaceTarget
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright Light("Shootlight")
+	{
+	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_CustomMissile("CarbineZombieBullet",37,10,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
+	A_CustomMissile("CFodFlare",37,10);
+	}
+	HCPO E 2 A_FaceTarget
+	HCPO F 0 A_playsound("HCSHOT",0)
+    HCPO F 2 Bright Light("Shootlight")
+	{
+	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_CustomMissile("CarbineZombieBullet",37,10,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("CFodFlare",37,10);
+	}
+	HCPO E 2 A_FaceTarget
+	HCPO E 1 A_CPosRefire
+	Goto Missile+5
+	Melee:
+    HCPO D 16 A_FaceTarget
+    HCPO E 8 A_custommeleeattack(6,"HCSTAB")
+	HCPO D 6
+	Goto See
+  Pain:
+    HCPO G 3
+    HCPO G 3 A_Pain
+    Goto See
+  Death:
+	TNT1 A 0 A_Jump(35,"PossDeath")
+    HCPO H 5
+    HCPO I 5 A_Scream
+    HCPO J 5 A_NoBlocking
+    HCPO K 5
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+    HCPO L -1
+    Stop
+  PossDeath:
+    HCPO H 5
+    HCPO I 5 A_Scream
+    HCPO J 5 A_NoBlocking
+    HCPO K 5
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	HCPO L 90
+	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+    HCPO L -1
+    Stop
+  XDeath:
+    HCPO M 5 
+    HCPO N 5 A_XScream
+    HCPO O 5 A_NoBlocking
+    HCPO PQR 5
+    HCPO S -1
+    Stop
+  Raise:
+    HCPO L 5
+    HCPO KJIH 5
+    Goto See
+  }
+}
+
+Actor CarbineZombieBullet
+{
+Projectile
++BLOODSPLATTER 
++THRUGHOST
+height 2
+radius 2
+speed 36
+damage (random(7,7))
+scale 0.45
+RenderStyle Add
+Alpha 0.5
+States
+{
+	Spawn:
+		TRCR B 1 BRIGHT A_Quake(2,4,0,100,0)
+        Loop
+	Death:
+		TNT1 A 0 A_Jump(256,"Death1","Death2")
+  Death1:
+	TRCR B 1 A_PlaySound("PM/BulletHit",2)
+	TNT1 A 0 A_SpawnItemEx("PM_HitPuff")
+	TNT1 A 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170)
+    //FX57 ABCDEFGHIJ 1 bright A_SetTranslucent(0.85,1)
+    stop
+  Death2:
+	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	TRCR A 0 A_PlaySound("PM/BulletHit",2)
+    TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletShrapnel",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,170)
+	TNT1 A 0 A_SpawnItemEx("PM_BulletHitFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
+    stop
+}
+}
+
+ACTOR DamagedBlueArmor : BasicArmorPickup
+{
+  Radius 20
+  Height 16
+  Inventory.PickupMessage "Salvaged a damaged Mega armour"
+  Inventory.Icon "ARM2A0"
+  Armor.SavePercent 50
+  Armor.SaveAmount 50
+  States
+  {
+  Spawn:
+    BRAM A 6
+    BRAM B 6 Bright
+    Loop
+  }
+}
+
+ACTOR deadcarbineguy1 //20126
+{
+  Height 56
+  Radius 12
+  +SOLID
+  States
+  {
+  Spawn:
+    HCPD A -1
+    Stop
+  }
+}
+
+ACTOR deadcarbineguy2 //20127
+{
+  Height 56
+  Radius 12
+  States
+  {
+  Spawn:
+    HCPD B -1
+    Stop
+  }
+}

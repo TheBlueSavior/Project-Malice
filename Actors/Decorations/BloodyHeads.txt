@@ -1,0 +1,47 @@
+Actor Head1
+{
+  Radius 20
+  Height 4
+  States
+  {
+  Spawn:
+    HED1 A -1
+    Loop
+  }
+}
+
+Actor Head2
+{
+  Radius 20
+  Height 4
+  States
+  {
+  Spawn:
+    HED2 A -1
+    Loop
+  }
+}
+
+Actor Head3
+{
+  Radius 20
+  Height 4
+  States
+  {
+  Spawn:
+    HED3 A -1
+    Loop
+  }
+}
+
+Actor Head4
+{
+  Radius 20
+  Height 4
+  States
+  {
+  Spawn:
+    HED4 A -1
+    Loop
+  }
+}

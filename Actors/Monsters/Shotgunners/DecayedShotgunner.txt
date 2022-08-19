@@ -1,0 +1,232 @@
+ACTOR PM_DecayedShotgunner
+{ 
+    Health 45
+    Radius 20
+    Height 56
+    Speed 9
+    PainChance 200
+    Damage 1
+    MONSTER
+	+MISSILEMORE
+    +FloorClip
+	+SLIDESONWALLS
+	//+NOINFIGHTING
+	+DONTHURTSPECIES
+	+DONTHARMSPECIES
+	Species "Shotgunner"
+	Tag "Decayed Shotgunner"
+    OBITUARY "%o was killed by A Decayed Shotgunner!"
+    SEESOUND "DEZSEE"
+    PainSound "DEZPAI"
+    DeathSound "DEZDIE"
+    ACTIVESOUND "DEZACT"
+    DropItem "Shotgun"
+    states
+    {
+    Spawn:
+        SPO6 AA 10 A_Look
+        Loop
+    See:
+		TNT1 A 0 A_SetSpeed(9)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        SPO6 AA 2 A_Chase
+		TNT1 AA 0 A_Recoil(-0.6)
+		SPO6 BB 2 A_Chase
+		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		SPO6 CC 2 A_Chase
+		TNT1 AA 0 A_Recoil(-0.6)
+		SPO6 DD 2 A_Chase
+		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 A 0 A_Jump(15,"Backup")
+		TNT1 A 0 A_Jump(30,"MaggotDrop")
+		TNT1 A 0 A_Jump(30,"See2")
+        Loop
+	See2:
+		TNT1 A 0 A_SetSpeed(7)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        SPO6 AA 3 A_Chase
+		SPO6 BB 3 A_Chase
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		SPO6 CC 3 A_Chase
+		SPO6 DD 3 A_Chase
+		TNT1 A 0 A_Jump(45,"See")
+		Loop
+    Missile:
+		TNT1 A 0 A_Jump(13,"Puke")
+		TNT1 A 0 A_Jump(20,"Missile2")
+		TNT1 A 0 A_Jump(110,"RollRight","RollLeft")
+        SPO6 E 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+        SPO6 F 3 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 11, 15, 0);
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		}
+		SPO6 EE 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("SHT1PMP")
+		SPO6 AA 5 A_FaceTarget
+		SPO6 BB 5 A_FaceTarget
+		TNT1 A 0 A_Jump(50,"See2")
+        Goto See2
+	Missile2:
+        SPO6 E 8 A_FaceTarget
+		SPO6 EEE 5
+		{
+		A_CustomMissile("CFodFlare",32,15,15,0);
+		A_CustomMissile("CFodFlare",32,15,15,0);
+		A_FaceTarget;
+		A_PlaySound("SHOBEP");
+		}
+		SPO6 E 3 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+        SPO6 F 5 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 15, 15, 0);
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		}
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+		SPO6 F 5 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 15, 15, 0);
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		}
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+		SPO6 F 5 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 15, 15, 0);
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		A_CustomMissile("UberTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+		}
+		SPO6 E 6
+		TNT1 A 0 A_PlaySound("SHT1PMP")
+		SPO6 AA 5 A_FaceTarget
+		SPO6 BB 5 A_FaceTarget
+        Goto See2
+	MaggotDrop:
+		TNT1 A 0 A_CustomMissile("WMaggotSpawn", 45, random(-4,4), 0, 0, 0)
+		Goto See
+	RollRight:
+		TNT1 A 0 A_PlaySound("DEZROL")
+		ZRO3 A 2 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+64, 19, 0, 0)
+		ZRO3 ABCDEFGH 3 A_FaceTarget
+		 SPO6 E 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+        SPO6 F 3 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 11, 15, 0);
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		}
+		SPO6 EE 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("SHT1PMP")
+		SPO6 AA 5 A_FaceTarget
+		SPO6 BB 5 A_FaceTarget
+		TNT1 A 0 A_Jump(50,"See2")
+        Goto See
+	RollLeft:
+		TNT1 A 0 A_PlaySound("DEZROL")
+		ZRO4 A 2 A_FaceTarget
+		TNT1 A 0 ThrustThing(angle*256/360+192, 19, 0, 0)
+		ZRO4 ABCDEFGH 3 A_FaceTarget
+		 SPO6 E 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("ds12gfir",CHAN_WEAPON,1)
+        SPO6 F 3 Bright Light("YellowMediumFlicker2")
+		{
+		A_FaceTarget;
+		A_CustomMissile("BulletFlare", 32, 11, 15, 0);
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("UberTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		}
+		SPO6 EE 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("SHT1PMP")
+		SPO6 AA 5 A_FaceTarget
+		SPO6 BB 5 A_FaceTarget
+		TNT1 A 0 A_Jump(50,"See2")
+        Goto See
+	Puke:
+		TNT1 A 0 A_PlaySound("BLDPUK")
+		SPO6 GGGGGGGGGGGGGGGGGG 1
+		{
+		A_FaceTarget;
+		A_CustomMissile("MaggotPuke",46,-6,random(6,-6),CMF_OFFSETPITCH,random(-6,6));
+		}
+		SPO6 G 3
+		Goto See
+	Backup:
+	SPO6 DCBADCBADCBA 2
+	{
+	A_FaceTarget;
+	A_Recoil(2);
+	A_FaceTarget;
+	}
+	Goto See
+    Pain:
+        SPO6 G 5 A_Pain
+		TNT1 A 0 A_Jump(105,"RollRight","RollLeft")
+        Goto See
+    Death:
+		TNT1 A 0 A_Jump(35,"PossDeath")
+        SPO6 H 5 A_NoBlocking
+        SPO6 I 5 A_Scream
+        SPO6 J 5
+        SPO6 K 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+        SPO6 L -1
+        Stop
+	PossDeath:
+        SPO6 H 5 A_NoBlocking
+        SPO6 I 5 A_Scream
+        SPO6 J 5
+        SPO6 K 5
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		SP06 L 90
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+        SPO6 L -1
+        Stop
+    XDeath:
+        SPO6 M 5 A_NoBlocking
+        SPO6 N 5 A_XScream
+        SPO6 O 5 
+        SPO6 PQRST 5
+        SPO6 U -1
+        Stop
+    Raise:
+        SPO6 NMLKJIH 5
+        Goto See
+    }
+}
+
