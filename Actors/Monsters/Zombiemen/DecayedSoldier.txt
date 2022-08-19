@@ -16,7 +16,7 @@ ACTOR PM_DecayedSoldier
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Decayed Soldier"
-    OBITUARY "%o was killed by A Zombie Soldier!"
+    OBITUARY "%o was punctured by a Decayed Soldier."
     SEESOUND "DEZSEE"
     PainSound "DEZPAI"
     DeathSound "DEZDIE"

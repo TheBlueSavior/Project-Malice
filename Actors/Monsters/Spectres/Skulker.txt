@@ -11,10 +11,10 @@ Actor PM_Skulker
     PainSound ""
     DeathSound ""
     ActiveSound ""
-    Obituary "%o was consumed by a Horrorspawn."
+    Obituary "%o can't."
 	DropItem "Clip", 155
 	//DropItem "RagePoint1"
-	Tag "UNKNOWN"
+	Tag "S??KUL??K"
 	Species "Brute"
 	//Scale 1.15
 	StencilColor Black

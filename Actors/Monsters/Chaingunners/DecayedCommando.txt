@@ -1,6 +1,6 @@
 Actor PM_DecayedCommando
 {
-  Obituary "%o was ripped to bloody ribbons by a Chaingunner."
+  Obituary "%o was reduced to a bloody mist by a Decayed Commando."
   Health 70
   Radius 20
   Height 56

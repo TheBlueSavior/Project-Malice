@@ -13,7 +13,7 @@ Actor Voidspawn
     ActiveSound "Voidspawn/Active"
     Obituary "%o is gone."
 	DropItem "Clip", 100
-	Tag "VOIDSPAWN"
+	Tag "V??IDSP?WN"
     Monster
 	MeleeRange 50
 	//XScale 0.84

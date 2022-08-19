@@ -16,7 +16,7 @@ ACTOR PM_ZombieSoldier : Zombieman
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Soldier"
-    OBITUARY "%o was killed by a Zombie Soldier!"
+    OBITUARY "%o was finished off by a Zombie Soldier."
     SEESOUND "ZombieSoldier/See"
     PainSound "ZombieSoldier/Pain"
     DeathSound "ZombieSoldier/Death"

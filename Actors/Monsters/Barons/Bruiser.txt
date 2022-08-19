@@ -27,7 +27,7 @@ actor PM_Bruiser
     MeleeSound "baron/melee"
 	Tag "Bruiser"
 	Bloodcolor "Green"
-    Obituary "%o was pulverized by a Brusier"
+    Obituary "%o was pulverized by a Bruiser."
     MeleeDamage 8
     States
     {

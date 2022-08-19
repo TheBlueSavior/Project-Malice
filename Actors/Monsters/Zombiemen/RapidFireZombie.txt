@@ -16,7 +16,7 @@ ACTOR PM_RFZombie: Zombieman
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Rapid Fire Zombie"
-    OBITUARY "%o was killed by a Rapid Fire Zombie!"
+    OBITUARY "%o was packed with lead by a Rapid Fire Zombie."
     SeeSound "PNZombie/See"
 	PainSound "PNZombie/Pain"
 	DeathSound "PNZombie/Die"

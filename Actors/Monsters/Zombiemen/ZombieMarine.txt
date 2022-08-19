@@ -15,7 +15,7 @@ ACTOR PM_ZombieMarine : Zombieman
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Marine"
-    OBITUARY "%o was killed by A Zombie Marine!"
+    OBITUARY "%o was killed by a Zombie Marine!"
     SeeSound "Zombie/See"
 	PainSound "Zombie/Pain"
 	DeathSound "Zombie/Death"
