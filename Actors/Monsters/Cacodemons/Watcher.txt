@@ -11,10 +11,10 @@ Class PM_Watcher : Actor
     PainChance 160;
     MeleeRange 40;
     DamageType "normal";
-    SeeSound "monster/watsit";
-    PainSound "monster/watpai";
-    DeathSound "monster/watdth";
-    ActiveSound "monster/watact";
+    SeeSound "Watcher/Sight";
+    PainSound "Watcher/Pain";
+    DeathSound "Watcher/Death";
+    ActiveSound "Watcher/Active";
     MONSTER;
 	BloodColor "Black";
 	//DropItem "RagePoint1";
