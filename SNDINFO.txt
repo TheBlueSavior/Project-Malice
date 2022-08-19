@@ -1,15 +1,15 @@
 //Horrorspawn
 
 $random Horrorspawn/Step { Horrorspawn/Step1 Horrorspawn/Step2 Horrorspawn/Step3 Horrorspawn/Step4 Horrorspawn/Step5 Horrorspawn/Step6 Horrorspawn/Step7 Horrorspawn/Step8 Horrorspawn/Step9 }
-Horrorspawn/Step1 "Sounds/Monsters/Horrorspawn/HorrorspawnStep1"
-Horrorspawn/Step2 "Sounds/Monsters/Horrorspawn/HorrorspawnStep2"
-Horrorspawn/Step3 "Sounds/Monsters/Horrorspawn/HorrorspawnStep3"
-Horrorspawn/Step4 "Sounds/Monsters/Horrorspawn/HorrorspawnStep4"
-Horrorspawn/Step5 "Sounds/Monsters/Horrorspawn/HorrorspawnStep5"
-Horrorspawn/Step6 "Sounds/Monsters/Horrorspawn/HorrorspawnStep6"
-Horrorspawn/Step7 "Sounds/Monsters/Horrorspawn/HorrorspawnStep7"
-Horrorspawn/Step8 "Sounds/Monsters/Horrorspawn/HorrorspawnStep8"
-Horrorspawn/Step9 "Sounds/Monsters/Horrorspawn/HorrorspawnStep9"
+Horrorspawn/Step1 "Sounds/Monsters/Horrorspawn/HorrorspawnStep1.ogg"
+Horrorspawn/Step2 "Sounds/Monsters/Horrorspawn/HorrorspawnStep2.ogg"
+Horrorspawn/Step3 "Sounds/Monsters/Horrorspawn/HorrorspawnStep3.ogg"
+Horrorspawn/Step4 "Sounds/Monsters/Horrorspawn/HorrorspawnStep4.ogg"
+Horrorspawn/Step5 "Sounds/Monsters/Horrorspawn/HorrorspawnStep5.ogg"
+Horrorspawn/Step6 "Sounds/Monsters/Horrorspawn/HorrorspawnStep6.ogg"
+Horrorspawn/Step7 "Sounds/Monsters/Horrorspawn/HorrorspawnStep7.ogg"
+Horrorspawn/Step8 "Sounds/Monsters/Horrorspawn/HorrorspawnStep8.ogg"
+Horrorspawn/Step9 "Sounds/Monsters/Horrorspawn/HorrorspawnStep9.ogg"
 
 $rolloff Horrorspawn/Step 100 370
 
@@ -59,10 +59,10 @@ $limit skeleton/step 4
 $rolloff skeleton/step 150 800
 $volume skeleton/step 0.3
 $random Depraved/Sprint	{ Depraved/Sprint1 Depraved/Sprint2 Depraved/Sprint3 Depraved/Sprint4 }
-Depraved/Sprint1	"Sounds/Monsters/Depraved/DepravedSprint1"
-Depraved/Sprint2	"Sounds/Monsters/Depraved/DepravedSprint2"
-Depraved/Sprint3	"Sounds/Monsters/Depraved/DepravedSprint3"
-Depraved/Sprint4	"Sounds/Monsters/Depraved/DepravedSprint4"
+Depraved/Sprint1	"Sounds/Monsters/Depraved/DepravedSprint1.ogg"
+Depraved/Sprint2	"Sounds/Monsters/Depraved/DepravedSprint2.ogg"
+Depraved/Sprint3	"Sounds/Monsters/Depraved/DepravedSprint3.ogg"
+Depraved/Sprint4	"Sounds/Monsters/Depraved/DepravedSprint4.ogg"
 monster/incsit                d5incsit
 monster/incdth                d5incdth
 monster/incexp                d5incexp
@@ -202,28 +202,28 @@ BPinky/Idle BPGRUMBL
 $volume BPinky/Death 0.5
 $volume BPinky/Bite 0.7
 
-Brute/Grumble "Sounds/Monsters/Brute/BruteGrumble"
+Brute/Grumble "Sounds/Monsters/Brute/BruteGrumble.ogg"
 
 $random Brute/Active { Brute/Active1 Brute/Active2 Brute/Active3 Brute/Active4 }
-Brute/Active1 "Sounds/Monsters/Brute/BruteActive1"
-Brute/Active2 "Sounds/Monsters/Brute/BruteActive2"
-Brute/Active3 "Sounds/Monsters/Brute/BruteActive3"
-Brute/Active4 "Sounds/Monsters/Brute/BruteActive4"
+Brute/Active1 "Sounds/Monsters/Brute/BruteActive1.ogg"
+Brute/Active2 "Sounds/Monsters/Brute/BruteActive2.ogg"
+Brute/Active3 "Sounds/Monsters/Brute/BruteActive3.ogg"
+Brute/Active4 "Sounds/Monsters/Brute/BruteActive4.ogg"
 
 $random Brute/Death { Brute/Death1 Brute/Death2 Brute/Death3 }
-Brute/Death1 "Sounds/Monsters/Brute/BruteDeath1"
-Brute/Death2 "Sounds/Monsters/Brute/BruteDeath2"
-Brute/Death3 "Sounds/Monsters/Brute/BruteDeath3"
+Brute/Death1 "Sounds/Monsters/Brute/BruteDeath1.ogg"
+Brute/Death2 "Sounds/Monsters/Brute/BruteDeath2.ogg"
+Brute/Death3 "Sounds/Monsters/Brute/BruteDeath3.ogg"
 
 $random Brute/Pain { Brute/Pain1 Brute/Pain2 Brute/Pain3 }
-Brute/Pain1 "Sounds/Monsters/Brute/BrutePain1"
-Brute/Pain2 "Sounds/Monsters/Brute/BrutePain2"
-Brute/Pain3 "Sounds/Monsters/Brute/BrutePain3"
+Brute/Pain1 "Sounds/Monsters/Brute/BrutePain1.ogg"
+Brute/Pain2 "Sounds/Monsters/Brute/BrutePain2.ogg"
+Brute/Pain3 "Sounds/Monsters/Brute/BrutePain3.ogg"
 
 $random Brute/Sight { Brute/Sight1 Brute/Sight2 Brute/Sight3 }
-Brute/Sight1 "Sounds/Monsters/Brute/BruteSight1"
-Brute/Sight2 "Sounds/Monsters/Brute/BruteSight2"
-Brute/Sight3 "Sounds/Monsters/Brute/BruteSight3"
+Brute/Sight1 "Sounds/Monsters/Brute/BruteSight1.ogg"
+Brute/Sight2 "Sounds/Monsters/Brute/BruteSight2.ogg"
+Brute/Sight3 "Sounds/Monsters/Brute/BruteSight3.ogg"
 
 $volume Brute/Grumble 0.7
 $volume Brute/Sight 0.4
@@ -464,11 +464,11 @@ UCHAIN/UCBHIT4 UCBHIT4
 UCHAIN/UCBHIT5 UCBHIT5
 
 $random PM/BulletHit { PM/BulletHit1 PM/BulletHit2 PM/BulletHit3 PM/BulletHit4 PM/BulletHit5 }
-PM/BulletHit1 "Sounds/Other/PMBulletHit1"
-PM/BulletHit2 "Sounds/Other/PMBulletHit2"
-PM/BulletHit3 "Sounds/Other/PMBulletHit3"
-PM/BulletHit4 "Sounds/Other/PMBulletHit4"
-PM/BulletHit5 "Sounds/Other/PMBulletHit5"
+PM/BulletHit1 "Sounds/Other/PMBulletHit1.wav"
+PM/BulletHit2 "Sounds/Other/PMBulletHit2.wav"
+PM/BulletHit3 "Sounds/Other/PMBulletHit3.wav"
+PM/BulletHit4 "Sounds/Other/PMBulletHit4.wav"
+PM/BulletHit5 "Sounds/Other/PMBulletHit5.wav"
 
 $limit PM/BulletHit 20
 
@@ -561,27 +561,27 @@ $limit monster/hlnatk 12
 //Harvester
 
 $random Harvester/Sight { Harvester/Sight1 Harvester/Sight2 Harvester/Sight3 Harvester/Sight4 Harvester/Sight5 Harvester/Sight6 }
-Harvester/Sight1 "Sounds/Monsters/Harvester/HarvesterSight1"
-Harvester/Sight2 "Sounds/Monsters/Harvester/HarvesterSight2"
-Harvester/Sight3 "Sounds/Monsters/Harvester/HarvesterSight3"
-Harvester/Sight4 "Sounds/Monsters/Harvester/HarvesterSight4"
-Harvester/Sight5 "Sounds/Monsters/Harvester/HarvesterSight5"
-Harvester/Sight6 "Sounds/Monsters/Harvester/HarvesterSight6"
+Harvester/Sight1 "Sounds/Monsters/Harvester/HarvesterSight1.ogg"
+Harvester/Sight2 "Sounds/Monsters/Harvester/HarvesterSight2.ogg"
+Harvester/Sight3 "Sounds/Monsters/Harvester/HarvesterSight3.ogg"
+Harvester/Sight4 "Sounds/Monsters/Harvester/HarvesterSight4.ogg"
+Harvester/Sight5 "Sounds/Monsters/Harvester/HarvesterSight5.ogg"
+Harvester/Sight6 "Sounds/Monsters/Harvester/HarvesterSight6.ogg"
 
 $random Harvester/Active { Harvester/Active1 Harvester/Active2 Harvester/Active3 Harvester/Active4 Harvester/Active5 }
-Harvester/Active1 "Sounds/Monsters/Harvester/HarvesterActive1"
-Harvester/Active2 "Sounds/Monsters/Harvester/HarvesterActive2"
-Harvester/Active3 "Sounds/Monsters/Harvester/HarvesterActive3"
-Harvester/Active4 "Sounds/Monsters/Harvester/HarvesterActive4"
-Harvester/Active5 "Sounds/Monsters/Harvester/HarvesterActive5"
+Harvester/Active1 "Sounds/Monsters/Harvester/HarvesterActive1.ogg"
+Harvester/Active2 "Sounds/Monsters/Harvester/HarvesterActive2.ogg"
+Harvester/Active3 "Sounds/Monsters/Harvester/HarvesterActive3.ogg"
+Harvester/Active4 "Sounds/Monsters/Harvester/HarvesterActive4.ogg"
+Harvester/Active5 "Sounds/Monsters/Harvester/HarvesterActive5.ogg"
 
 $Random Harvester/Death { Harvester/Death1 Harvester/Death2 }
-Harvester/Death1 "Sounds/Monsters/Harvester/HarvesterDeath1"
-Harvester/Death2 "Sounds/Monsters/Harvester/HarvesterDeath2"
+Harvester/Death1 "Sounds/Monsters/Harvester/HarvesterDeath1.ogg"
+Harvester/Death2 "Sounds/Monsters/Harvester/HarvesterDeath2.ogg"
 
 $Random Harvester/Pain { Harvester/Pain1 Harvester/Pain2 }
-Harvester/Pain1 "Sounds/Monsters/Harvester/HarvesterPain1"
-Harvester/Pain2 "Sounds/Monsters/Harvester/HarvesterPain2"
+Harvester/Pain1 "Sounds/Monsters/Harvester/HarvesterPain1.ogg"
+Harvester/Pain2 "Sounds/Monsters/Harvester/HarvesterPain2.ogg"
 
 harvester/scream shfbscrm
 
@@ -619,8 +619,8 @@ DBLBEXP2 DBLBEXP2
 DBLBEXP3 DBLBEXP3
 
 $random Blob/Slosh { BlobSlosh1 BlobSlosh2 }
-BlobSlosh1 "Sounds/Monsters/Pustule/BlobSlosh1"
-BlobSlosh2 "Sounds/Monsters/Pustule/BlobSlosh2"
+BlobSlosh1 "Sounds/Monsters/Pustule/BlobSlosh1.ogg"
+BlobSlosh2 "Sounds/Monsters/Pustule/BlobSlosh2.ogg"
 $rolloff Blob/Slosh 25 750
 
 Blob/Sight	DSBLBSEE
@@ -723,10 +723,10 @@ Doom4/Monsters/BaronFireBallHit1		"Sounds/Monsters/SFX/BaronFireBallHit1.ogg"
 //CyberZombie
 
 $random CyberZombie/Step { CyberZombie/Step1 CyberZombie/Step2 CyberZombie/Step3 CyberZombie/Step4 }
-CyberZombie/Step1 "Sounds/Monsters/CyberFodder/CyberFodderStep1"
-CyberZombie/Step2 "Sounds/Monsters/CyberFodder/CyberFodderStep2"
-CyberZombie/Step3 "Sounds/Monsters/CyberFodder/CyberFodderStep3"
-CyberZombie/Step4 "Sounds/Monsters/CyberFodder/CyberFodderStep4"
+CyberZombie/Step1 "Sounds/Monsters/CyberFodder/CyberFodderStep1.ogg"
+CyberZombie/Step2 "Sounds/Monsters/CyberFodder/CyberFodderStep2.ogg"
+CyberZombie/Step3 "Sounds/Monsters/CyberFodder/CyberFodderStep3.ogg"
+CyberZombie/Step4 "Sounds/Monsters/CyberFodder/CyberFodderStep4.ogg"
 
 $volume CyberZombie/Step  0.6
 
@@ -788,11 +788,11 @@ HECTPAI2 HECTPAI2
 HECTPAI3 HECTPAI3
 
 $random HectebusBall/Exp { HectebusBall/Exp1 HectebusBall/Exp2 HectebusBall/Exp3 HectebusBall/Exp4 HectebusBall/Exp5 }
-HectebusBall/Exp1 "Sounds/Monsters/Hectebus/HectebusBallExp1"
-HectebusBall/Exp2 "Sounds/Monsters/Hectebus/HectebusBallExp2"
-HectebusBall/Exp3 "Sounds/Monsters/Hectebus/HectebusBallExp3"
-HectebusBall/Exp4 "Sounds/Monsters/Hectebus/HectebusBallExp4"
-HectebusBall/Exp5 "Sounds/Monsters/Hectebus/HectebusBallExp5"
+HectebusBall/Exp1 "Sounds/Monsters/Hectebus/HectebusBallExp1.ogg"
+HectebusBall/Exp2 "Sounds/Monsters/Hectebus/HectebusBallExp2.ogg"
+HectebusBall/Exp3 "Sounds/Monsters/Hectebus/HectebusBallExp3.ogg"
+HectebusBall/Exp4 "Sounds/Monsters/Hectebus/HectebusBallExp4.ogg"
+HectebusBall/Exp5 "Sounds/Monsters/Hectebus/HectebusBallExp5.ogg"
 
 $volume HectebusBall/Exp 0.8
 
@@ -888,67 +888,67 @@ $random Rat/Death	{ DSRATDI1 DSRATDI2 }
 //Zombie Soldier
 
 $random ZombieSoldier/Step { ZombieSoldier/Step1 ZombieSoldier/Step2 ZombieSoldier/Step3 ZombieSoldier/Step4 ZombieSoldier/Step5 ZombieSoldier/Step6 ZombieSoldier/Step7 ZombieSoldier/Step8 }
-ZombieSoldier/Step1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep1"
-ZombieSoldier/Step2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep2"
-ZombieSoldier/Step3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep3"
-ZombieSoldier/Step4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep4"
-ZombieSoldier/Step5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep5"
-ZombieSoldier/Step6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep6"
-ZombieSoldier/Step7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep7"
-ZombieSoldier/Step8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep8"
+ZombieSoldier/Step1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep1.ogg"
+ZombieSoldier/Step2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep2.ogg"
+ZombieSoldier/Step3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep3.ogg"
+ZombieSoldier/Step4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep4.ogg"
+ZombieSoldier/Step5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep5.ogg"
+ZombieSoldier/Step6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep6.ogg"
+ZombieSoldier/Step7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep7.ogg"
+ZombieSoldier/Step8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep8.ogg"
 
 $volume ZombieSoldier/Step 0.6
 $rolloff ZombieSoldier/Step 160 800
 
 $random ZombieSoldier/See { ZombieSoldier/See1 ZombieSoldier/See2 ZombieSoldier/See3 }
-ZombieSoldier/See1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee1"
-ZombieSoldier/See2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee2"
-ZombieSoldier/See3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee3"
+ZombieSoldier/See1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee1.ogg"
+ZombieSoldier/See2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee2.ogg"
+ZombieSoldier/See3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee3.ogg"
 
 $rolloff ZombieSoldier/See 240 1200
 
 $random ZombieSoldier/Active { ZombieSoldier/Active1 ZombieSoldier/Active2 ZombieSoldier/Active3 ZombieSoldier/Active4 ZombieSoldier/Active5 ZombieSoldier/Active6 ZombieSoldier/Active7 ZombieSoldier/Active8 ZombieSoldier/Active9 ZombieSoldier/Active10 }
-ZombieSoldier/Active1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive1"
-ZombieSoldier/Active2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive2"
-ZombieSoldier/Active3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive3"
-ZombieSoldier/Active4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive4"
-ZombieSoldier/Active5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive5"
-ZombieSoldier/Active6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive6"
-ZombieSoldier/Active7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive7"
-ZombieSoldier/Active8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive8"
-ZombieSoldier/Active9 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive9"
-ZombieSoldier/Active10 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive10"
+ZombieSoldier/Active1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive1.ogg"
+ZombieSoldier/Active2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive2.ogg"
+ZombieSoldier/Active3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive3.ogg"
+ZombieSoldier/Active4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive4.ogg"
+ZombieSoldier/Active5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive5.ogg"
+ZombieSoldier/Active6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive6.ogg"
+ZombieSoldier/Active7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive7.ogg"
+ZombieSoldier/Active8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive8.ogg"
+ZombieSoldier/Active9 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive9.ogg"
+ZombieSoldier/Active10 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive10.ogg"
 
 $rolloff ZombieSoldier/Active 280 1200
 
 $random ZombieSoldier/Attack { ZombieSoldier/Attack1 ZombieSoldier/Attack2 ZombieSoldier/Attack3 ZombieSoldier/Attack4 ZombieSoldier/Attack5 }
-ZombieSoldier/Attack1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack1"
-ZombieSoldier/Attack2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack2"
-ZombieSoldier/Attack3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack3"
-ZombieSoldier/Attack4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack4"
-ZombieSoldier/Attack5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack5"
+ZombieSoldier/Attack1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack1.ogg"
+ZombieSoldier/Attack2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack2.ogg"
+ZombieSoldier/Attack3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack3.ogg"
+ZombieSoldier/Attack4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack4.ogg"
+ZombieSoldier/Attack5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack5.ogg"
 
 $rolloff ZombieSoldier/Attack 400 1400
 
 $random ZombieSoldier/Pain { ZombieSoldier/Pain1 ZombieSoldier/Pain2 ZombieSoldier/Pain3 ZombieSoldier/Pain4 ZombieSoldier/Pain5 ZombieSoldier/Pain6 ZombieSoldier/Pain7 ZombieSoldier/Pain8 }
-ZombieSoldier/Pain1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain1"
-ZombieSoldier/Pain2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain2"
-ZombieSoldier/Pain3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain3"
-ZombieSoldier/Pain4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain4"
-ZombieSoldier/Pain5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain5"
-ZombieSoldier/Pain6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain6"
-ZombieSoldier/Pain7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain7"
-ZombieSoldier/Pain8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain8"
+ZombieSoldier/Pain1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain1.ogg"
+ZombieSoldier/Pain2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain2.ogg"
+ZombieSoldier/Pain3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain3.ogg"
+ZombieSoldier/Pain4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain4.ogg"
+ZombieSoldier/Pain5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain5.ogg"
+ZombieSoldier/Pain6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain6.ogg"
+ZombieSoldier/Pain7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain7.ogg"
+ZombieSoldier/Pain8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain8.ogg"
 
 $rolloff ZombieSoldier/Pain 400 1200
 
 $random ZombieSoldier/Death { ZombieSoldier/Death1 ZombieSoldier/Death2 ZombieSoldier/Death3 ZombieSoldier/Death4 ZombieSoldier/Death5 ZombieSoldier/Death6 }
-ZombieSoldier/Death1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath1"
-ZombieSoldier/Death2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath2"
-ZombieSoldier/Death3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath3"
-ZombieSoldier/Death4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath4"
-ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5"
-ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6"
+ZombieSoldier/Death1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath1.ogg"
+ZombieSoldier/Death2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath2.ogg"
+ZombieSoldier/Death3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath3.ogg"
+ZombieSoldier/Death4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath4.ogg"
+ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5.ogg"
+ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6.ogg"
 
 //HelmetedZombie
 
@@ -987,8 +987,8 @@ monsters/fusionfire			dsfusins
 $limit monsters/fusionfire 0
 monsters/fusionitepain		dsfupain
 
-ArachCrash "Sounds/Monsters/Fusionite/ArachCrash"
-ArachExpGore "Sounds/Monsters/Fusionite/ArachExpGore"
+ArachCrash "Sounds/Monsters/Fusionite/ArachCrash.ogg"
+ArachExpGore "Sounds/Monsters/Fusionite/ArachExpGore.ogg"
 
 $rolloff ArachCrash 700 1800
 $rolloff ArachExpGore 700 1800
@@ -1030,11 +1030,11 @@ pyro/bomb DSRDSHOT
 pyro/bombhit DSRDHIT
 
 $random demonstep { demonstep1 demonstep2 demonstep3 demonstep4 demonstep5 }
-demonstep1 "Sounds/Monsters/Brute/PinkyFootstep1"
-demonstep2 "Sounds/Monsters/Brute/PinkyFootstep2"
-demonstep3 "Sounds/Monsters/Brute/PinkyFootstep3"
-demonstep4 "Sounds/Monsters/Brute/PinkyFootstep4"
-demonstep5 "Sounds/Monsters/Brute/PinkyFootstep5"
+demonstep1 "Sounds/Monsters/Brute/PinkyFootstep1.ogg"
+demonstep2 "Sounds/Monsters/Brute/PinkyFootstep2.ogg"
+demonstep3 "Sounds/Monsters/Brute/PinkyFootstep3.ogg"
+demonstep4 "Sounds/Monsters/Brute/PinkyFootstep4.ogg"
+demonstep5 "Sounds/Monsters/Brute/PinkyFootstep5.ogg"
 $limit demonstep 6
 $limit spectre/death 0
 $limit spectre/melee 0
@@ -1092,62 +1092,63 @@ $volume RZombie/active 0.5
 $volume RZombie/die 0.5
 
 $random Devil/Pain	{ DevilPain1 DevilPain2 DevilPain3 }
-DevilPain1 "Sounds/Monsters/Devil/DevilPain1"
-DevilPain2 "Sounds/Monsters/Devil/DevilPain2"
-DevilPain3 "Sounds/Monsters/Devil/DevilPain3"
+DevilPain1 "Sounds/Monsters/Devil/DevilPain1.ogg"
+DevilPain2 "Sounds/Monsters/Devil/DevilPain2.ogg"
+DevilPain3 "Sounds/Monsters/Devil/DevilPain3.ogg"
 
 $random Devil/Sight	{ DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
-DevilSee1 "Sounds/Monsters/Devil/DevilSee1"
-DevilSee2 "Sounds/Monsters/Devil/DevilSee2"
-DevilSee3 "Sounds/Monsters/Devil/DevilSee3"
-DevilSee4 "Sounds/Monsters/Devil/DevilSee4"
+DevilSee1 "Sounds/Monsters/Devil/DevilSee1.ogg"
+DevilSee2 "Sounds/Monsters/Devil/DevilSee2.ogg"
+DevilSee3 "Sounds/Monsters/Devil/DevilSee3.ogg"
+DevilSee4 "Sounds/Monsters/Devil/DevilSee4.ogg"
 
 $random Devil/Roar	{ DevilRoar1 DevilRoar2 DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
-DevilRoar1 "Sounds/Monsters/Devil/DevilRoar1"
-DevilRoar2 "Sounds/Monsters/Devil/DevilRoar2"
+DevilRoar1 "Sounds/Monsters/Devil/DevilRoar1.ogg"
+DevilRoar2 "Sounds/Monsters/Devil/DevilRoar2.ogg"
 
 $random Devil/Death	{ DevilDeath1 DevilDeath2 DevilDeath3 DevilDeath4 }
-DevilDeath1 "Sounds/Monsters/Devil/DevilDeath1"
-DevilDeath2 "Sounds/Monsters/Devil/DevilDeath2"
-DevilDeath3 "Sounds/Monsters/Devil/DevilDeath3"
-DevilDeath4 "Sounds/Monsters/Devil/DevilDeath4"
+DevilDeath1 "Sounds/Monsters/Devil/DevilDeath1.ogg"
+DevilDeath2 "Sounds/Monsters/Devil/DevilDeath2.ogg"
+DevilDeath3 "Sounds/Monsters/Devil/DevilDeath3.ogg"
+DevilDeath4 "Sounds/Monsters/Devil/DevilDeath4.ogg"
 
 $random Devil/Active	{ DevilActive1 DevilActive2 DevilActive3 }
-DevilActive1 "Sounds/Monsters/Devil/DevilActive1"
-DevilActive2 "Sounds/Monsters/Devil/DevilActive2"
-DevilActive3 "Sounds/Monsters/Devil/DevilActive3"
+DevilActive1 "Sounds/Monsters/Devil/DevilActive1.ogg"
+DevilActive2 "Sounds/Monsters/Devil/DevilActive2.ogg"
+DevilActive3 "Sounds/Monsters/Devil/DevilActive3.ogg"
 
 $volume devil/sight 0.7
 $volume devil/active 0.8
 $volume devil/death 0.7
+
 //Hellion NEW
 $random Hellion/Sight { Hile/Sight1 Hile/Sight2 Hile/Sight3 Hile/Sight4 Hile/Sight4 Hile/Sight5 Hile/Sight6 }
-Hile/Sight1 "Sounds/Monsters/Hellion/HellionSight1"
-Hile/Sight2 "Sounds/Monsters/Hellion/HellionSight2"
-Hile/Sight3 "Sounds/Monsters/Hellion/HellionSight3"
-Hile/Sight4 "Sounds/Monsters/Hellion/HellionSight4"
-Hile/Sight5 "Sounds/Monsters/Hellion/HellionSight5"
-Hile/Sight6 "Sounds/Monsters/Hellion/HellionSight6"
+Hile/Sight1 "Sounds/Monsters/Hellion/HellionSight1.ogg"
+Hile/Sight2 "Sounds/Monsters/Hellion/HellionSight2.ogg"
+Hile/Sight3 "Sounds/Monsters/Hellion/HellionSight3.ogg"
+Hile/Sight4 "Sounds/Monsters/Hellion/HellionSight4.ogg"
+Hile/Sight5 "Sounds/Monsters/Hellion/HellionSight5.ogg"
+Hile/Sight6 "Sounds/Monsters/Hellion/HellionSight6.ogg"
 
 $random Hellion/Active { Hile/Active1 Hile/Active2 Hile/Active3 }
-Hile/Active1 "Sounds/Monsters/Hellion/HellionActive1"
-Hile/Active2 "Sounds/Monsters/Hellion/HellionActive2"
-Hile/Active3 "Sounds/Monsters/Hellion/HellionActive3"
+Hile/Active1 "Sounds/Monsters/Hellion/HellionActive1.ogg"
+Hile/Active2 "Sounds/Monsters/Hellion/HellionActive2.ogg"
+Hile/Active3 "Sounds/Monsters/Hellion/HellionActive3.ogg"
 
 $random Hellion/Pain { Hile/Pain1 Hile/Pain2 Hile/Pain3 Hile/Pain4 }
-Hile/Pain1 "Sounds/Monsters/Hellion/HellionPain1"
-Hile/Pain2 "Sounds/Monsters/Hellion/HellionPain2"
-Hile/Pain3 "Sounds/Monsters/Hellion/HellionPain3"
-Hile/Pain4 "Sounds/Monsters/Hellion/HellionPain4"
+Hile/Pain1 "Sounds/Monsters/Hellion/HellionPain1.ogg"
+Hile/Pain2 "Sounds/Monsters/Hellion/HellionPain2.ogg"
+Hile/Pain3 "Sounds/Monsters/Hellion/HellionPain3.ogg"
+Hile/Pain4 "Sounds/Monsters/Hellion/HellionPain4.ogg"
 
 $random Hellion/Death { Hile/Death1 Hile/Death2 Hile/Death3 Hile/Death4 }
-Hile/Death1 "Sounds/Monsters/Hellion/HellionDeath1"
-Hile/Death2 "Sounds/Monsters/Hellion/HellionDeath2"
-Hile/Death3 "Sounds/Monsters/Hellion/HellionDeath3"
-Hile/Death4 "Sounds/Monsters/Hellion/HellionDeath4"
+Hile/Death1 "Sounds/Monsters/Hellion/HellionDeath1.ogg"
+Hile/Death2 "Sounds/Monsters/Hellion/HellionDeath2.ogg"
+Hile/Death3 "Sounds/Monsters/Hellion/HellionDeath3.ogg"
+Hile/Death4 "Sounds/Monsters/Hellion/HellionDeath4.ogg"
 
-HellionProj "Sounds/Monsters/Hellion/HellionProj" //formerly DSHLNATK
-HellionProjExp "Sounds/Monsters/Hellion/HellionProjExp" //formerly DSHLNEXP 
+HellionProj "Sounds/Monsters/Hellion/HellionProj.ogg" //formerly DSHLNATK
+HellionProjExp "Sounds/Monsters/Hellion/HellionProjExp.ogg" //formerly DSHLNEXP 
 
 $limit HellionProj 12
 
@@ -1211,14 +1212,14 @@ $volume WRETDIE 0.5
 
 $volume Wretched/ShotLoop 0.68
 
-Wretched/ShotLoop "Sounds/Monsters/Wretched/WretchedShotLoop"
+Wretched/ShotLoop "Sounds/Monsters/Wretched/WretchedShotLoop.ogg"
 
 $random Wretched/Fire { Wretched/Fire1 Wretched/Fire2 Wretched/Fire3 Wretched/Fire4 }
 
-Wretched/Fire1 "Sounds/Monsters/Wretched/WretchedFire1"
-Wretched/Fire2 "Sounds/Monsters/Wretched/WretchedFire2"
-Wretched/Fire3 "Sounds/Monsters/Wretched/WretchedFire3"
-Wretched/Fire4 "Sounds/Monsters/Wretched/WretchedFire4"
+Wretched/Fire1 "Sounds/Monsters/Wretched/WretchedFire1.ogg"
+Wretched/Fire2 "Sounds/Monsters/Wretched/WretchedFire2.ogg"
+Wretched/Fire3 "Sounds/Monsters/Wretched/WretchedFire3.ogg"
+Wretched/Fire4 "Sounds/Monsters/Wretched/WretchedFire4.ogg"
 
 $rolloff Wretched/Fire 550 1700
 
@@ -1245,39 +1246,39 @@ TAINACT3	TAINACT3
 TAINACT4	TAINACT4
 
 $random Tainted/Active { Tainted/Active1 Tainted/Active2 Tainted/Active3 Tainted/Active4 Tainted/Active5 Tainted/Active6 Tainted/Active7 Tainted/Active8 Tainted/Active9 TAINSEE1 TAINSEE2 TAINSEE3 }
-Tainted/Active1 "Sounds/Monsters/Tainted/TaintedActive1"
-Tainted/Active2 "Sounds/Monsters/Tainted/TaintedActive2"
-Tainted/Active3 "Sounds/Monsters/Tainted/TaintedActive3"
-Tainted/Active4 "Sounds/Monsters/Tainted/TaintedActive4"
-Tainted/Active5 "Sounds/Monsters/Tainted/TaintedActive5"
-Tainted/Active6 "Sounds/Monsters/Tainted/TaintedActive6"
-Tainted/Active7 "Sounds/Monsters/Tainted/TaintedActive7"
-Tainted/Active8 "Sounds/Monsters/Tainted/TaintedActive8"
-Tainted/Active9 "Sounds/Monsters/Tainted/TaintedActive9"
+Tainted/Active1 "Sounds/Monsters/Tainted/TaintedActive1.ogg"
+Tainted/Active2 "Sounds/Monsters/Tainted/TaintedActive2.ogg"
+Tainted/Active3 "Sounds/Monsters/Tainted/TaintedActive3.ogg"
+Tainted/Active4 "Sounds/Monsters/Tainted/TaintedActive4.ogg"
+Tainted/Active5 "Sounds/Monsters/Tainted/TaintedActive5.ogg"
+Tainted/Active6 "Sounds/Monsters/Tainted/TaintedActive6.ogg"
+Tainted/Active7 "Sounds/Monsters/Tainted/TaintedActive7.ogg"
+Tainted/Active8 "Sounds/Monsters/Tainted/TaintedActive8.ogg"
+Tainted/Active9 "Sounds/Monsters/Tainted/TaintedActive9.ogg"
 $volume Tainted/Active 0.8
 
 $random Tainted/Step { Tainted/Step1 Tainted/Step2 Tainted/Step3 Tainted/Step4 Tainted/Step5 }
-Tainted/Step1 "Sounds/Monsters/Tainted/TaintedStep1"
-Tainted/Step2 "Sounds/Monsters/Tainted/TaintedStep2"
-Tainted/Step3 "Sounds/Monsters/Tainted/TaintedStep3"
-Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep4"
-Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep5"
+Tainted/Step1 "Sounds/Monsters/Tainted/TaintedStep1.ogg"
+Tainted/Step2 "Sounds/Monsters/Tainted/TaintedStep2.ogg"
+Tainted/Step3 "Sounds/Monsters/Tainted/TaintedStep3.ogg"
+Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep4.ogg"
+Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep5.ogg"
 
 $volume Tainted/Step 0.4
 $rolloff Tainted/Step 200 850
 $limit Tainted/Step 6
 
 //Blood FX
-TaintedProjFire            "sounds/Monsters/Tainted/TaintedProjFire"
-TaintedBloodFire           "sounds/Monsters/Tainted/TaintedBounceFire"
-TaintedBloodExp            "sounds/Monsters/Tainted/TaintedBounceExp"
+TaintedProjFire            "sounds/Monsters/Tainted/TaintedProjFire.ogg"
+TaintedBloodFire           "sounds/Monsters/Tainted/TaintedBounceFire.ogg"
+TaintedBloodExp            "sounds/Monsters/Tainted/TaintedBounceExp.ogg"
 $random BeholderBloodExp { BBExp1 BBExp2 }
-BBExp1                     "sounds/Monsters/Watcher/BeholderBloodExp1"
-BBExp2                     "sounds/Monsters/Watcher/BeholderBloodExp2"
-BeholderEyeExp             "sounds/Monsters/Watcher/BeholderEyeExp"
+BBExp1                     "sounds/Monsters/Watcher/BeholderBloodExp1.ogg"
+BBExp2                     "sounds/Monsters/Watcher/BeholderBloodExp2.ogg"
+BeholderEyeExp             "sounds/Monsters/Watcher/BeholderEyeExp.ogg"
 $random BloodSplash { GBloodSplash1 GBloodSplash2 }
-GBloodSplash1              "sounds/Monsters/SFX/GenericBloodSplash1"
-GBloodSplash2              "sounds/Monsters/SFX/GenericBloodSplash2"
+GBloodSplash1              "sounds/Monsters/SFX/GenericBloodSplash1.ogg"
+GBloodSplash2              "sounds/Monsters/SFX/GenericBloodSplash2.ogg"
 
 $limit BeholderBloodExp 13
 $limit BeholderEyeExp 13
@@ -1292,36 +1293,36 @@ Defiler/Death	DEFIDETH
 FUSWALK	FUSWALK
 
 $random hoofstep		{ hoof/step1 hoof/step2 hoof/step3 hoof/step4 }
-hoof/step1			"Sounds/Monsters/Azazel/BaronHoofStep1"
-hoof/step2			"Sounds/Monsters/Azazel/BaronHoofStep2"
-hoof/step3			"Sounds/Monsters/Azazel/BaronHoofStep3"
-hoof/step4			"Sounds/Monsters/Azazel/BaronHoofStep4"
+hoof/step1			"Sounds/Monsters/Azazel/BaronHoofStep1.ogg"
+hoof/step2			"Sounds/Monsters/Azazel/BaronHoofStep2.ogg"
+hoof/step3			"Sounds/Monsters/Azazel/BaronHoofStep3.ogg"
+hoof/step4			"Sounds/Monsters/Azazel/BaronHoofStep4.ogg"
 $limit hoofstep 0
 $rolloff hoofstep 700 1200
 
 //Heresy Lord
 
 $random HeresyLord/Sight	{  HeresyLordSight1 HeresyLordSight2 HeresyLordSight3 HeresyLordSight4 HeresyLordSight5 HeresyLordSight6 HeresyLordSight7 }
-HeresyLordSight1 "Sounds/Monsters/HeresyLord/HeresyLordSight1"
-HeresyLordSight2 "Sounds/Monsters/HeresyLord/HeresyLordSight2"
-HeresyLordSight3 "Sounds/Monsters/HeresyLord/HeresyLordSight3"
-HeresyLordSight4 "Sounds/Monsters/HeresyLord/HeresyLordSight4"
-HeresyLordSight5 "Sounds/Monsters/HeresyLord/HeresyLordSight5"
-HeresyLordSight6 "Sounds/Monsters/HeresyLord/HeresyLordSight6"
-HeresyLordSight7 "Sounds/Monsters/HeresyLord/HeresyLordSight7"
+HeresyLordSight1 "Sounds/Monsters/HeresyLord/HeresyLordSight1.ogg"
+HeresyLordSight2 "Sounds/Monsters/HeresyLord/HeresyLordSight2.ogg"
+HeresyLordSight3 "Sounds/Monsters/HeresyLord/HeresyLordSight3.ogg"
+HeresyLordSight4 "Sounds/Monsters/HeresyLord/HeresyLordSight4.ogg"
+HeresyLordSight5 "Sounds/Monsters/HeresyLord/HeresyLordSight5.ogg"
+HeresyLordSight6 "Sounds/Monsters/HeresyLord/HeresyLordSight6.ogg"
+HeresyLordSight7 "Sounds/Monsters/HeresyLord/HeresyLordSight7.ogg"
 
 $random HeresyLord/Active	{ HeresyLordActive1 HeresyLordActive2 HeresyLordActive3 HeresyLordActive4 HeresyLordActive5 HeresyLordActive6 }
-HeresyLordActive1 "Sounds/Monsters/HeresyLord/HeresyLordActive1"
-HeresyLordActive2 "Sounds/Monsters/HeresyLord/HeresyLordActive2"
-HeresyLordActive3 "Sounds/Monsters/HeresyLord/HeresyLordActive3"
-HeresyLordActive4 "Sounds/Monsters/HeresyLord/HeresyLordActive4"
-HeresyLordActive5 "Sounds/Monsters/HeresyLord/HeresyLordActive5"
-HeresyLordActive6 "Sounds/Monsters/HeresyLord/HeresyLordActive6"
+HeresyLordActive1 "Sounds/Monsters/HeresyLord/HeresyLordActive1.ogg"
+HeresyLordActive2 "Sounds/Monsters/HeresyLord/HeresyLordActive2.ogg"
+HeresyLordActive3 "Sounds/Monsters/HeresyLord/HeresyLordActive3.ogg"
+HeresyLordActive4 "Sounds/Monsters/HeresyLord/HeresyLordActive4.ogg"
+HeresyLordActive5 "Sounds/Monsters/HeresyLord/HeresyLordActive5.ogg"
+HeresyLordActive6 "Sounds/Monsters/HeresyLord/HeresyLordActive6.ogg"
 
 $random HeresyLord/Pain		{ HeresyLordPain1 HeresyLordPain2 HeresyLordPain3 }
-HeresyLordPain1 "Sounds/Monsters/HeresyLord/HeresyLordPain1"
-HeresyLordPain2 "Sounds/Monsters/HeresyLord/HeresyLordPain2"
-HeresyLordPain3 "Sounds/Monsters/HeresyLord/HeresyLordPain3"
+HeresyLordPain1 "Sounds/Monsters/HeresyLord/HeresyLordPain1.ogg"
+HeresyLordPain2 "Sounds/Monsters/HeresyLord/HeresyLordPain2.ogg"
+HeresyLordPain3 "Sounds/Monsters/HeresyLord/HeresyLordPain3.ogg"
 
 $random baron/melee			{ baron/melee1 baron/melee2 baron/melee3 }
 baron/melee1                    chomp1
@@ -1329,9 +1330,9 @@ baron/melee2                    chomp2
 baron/melee3                    chomp3
 
 $random HeresyLord/Death	{ HeresyLordDie1 HeresyLordDie2 HeresyLordDie3 }
-HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1"
-HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2"
-HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3"
+HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1.ogg"
+HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.ogg"
+HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.ogg"
 
 baron/attack			baronfir
 
@@ -1340,25 +1341,25 @@ DWIZTEL1 DWIZTEL1
 DWIZTEL2 DWIZTEL2
 
 $random MancubStep	{ beefy/step1 beefy/step2 beefy/step3 beefy/step4 }
-beefy/step1			"Sounds/Monsters/SFX/MancubusStep1"
-beefy/step2			"Sounds/Monsters/SFX/MancubusStep2"
-beefy/step3			"Sounds/Monsters/SFX/MancubusStep3"
-beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4"
+beefy/step1			"Sounds/Monsters/SFX/MancubusStep1.ogg"
+beefy/step2			"Sounds/Monsters/SFX/MancubusStep2.ogg"
+beefy/step3			"Sounds/Monsters/SFX/MancubusStep3.ogg"
+beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4.ogg"
 
 $volume MancubStep 0.7
 
 //Fiend
 
 $random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
-Fiend/Step1 "Sounds/Monsters/Fiend/FiendStep1"
-Fiend/Step2 "Sounds/Monsters/Fiend/FiendStep2"
-Fiend/Step3 "Sounds/Monsters/Fiend/FiendStep3"
-Fiend/Step4 "Sounds/Monsters/Fiend/FiendStep4"
-Fiend/Step5 "Sounds/Monsters/Fiend/FiendStep5"
-Fiend/Step6 "Sounds/Monsters/Fiend/FiendStep6"
-Fiend/Step7 "Sounds/Monsters/Fiend/FiendStep7"
-Fiend/Step8 "Sounds/Monsters/Fiend/FiendStep8"
-Fiend/Step9 "Sounds/Monsters/Fiend/FiendStep9"
+Fiend/Step1 "Sounds/Monsters/Fiend/FiendStep1.ogg"
+Fiend/Step2 "Sounds/Monsters/Fiend/FiendStep2.ogg"
+Fiend/Step3 "Sounds/Monsters/Fiend/FiendStep3.ogg"
+Fiend/Step4 "Sounds/Monsters/Fiend/FiendStep4.ogg"
+Fiend/Step5 "Sounds/Monsters/Fiend/FiendStep5.ogg"
+Fiend/Step6 "Sounds/Monsters/Fiend/FiendStep6.ogg"
+Fiend/Step7 "Sounds/Monsters/Fiend/FiendStep7.ogg"
+Fiend/Step8 "Sounds/Monsters/Fiend/FiendStep8.ogg"
+Fiend/Step9 "Sounds/Monsters/Fiend/FiendStep9.ogg"
 
 $random Fiend/Death { FIEDIE1 FIEDIE2  }
 FIEDIE1 FIEDIE1
@@ -1625,15 +1626,15 @@ GLUTACT4 GLUTACT4
 
 $random Glutton/Spit { GluttonSpit1 GluttonSpit2 }
 
-GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1"
-GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2"
+GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1.ogg"
+GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2.ogg"
 
 $random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
 
-GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1"
-GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2"
+GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.ogg"
+GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.ogg"
 
-$volume Glutton/Attack 0.7
+$volume Glutton/Attack 0.8
 
 GLUTPAI GLUTPAI
 
@@ -1693,35 +1694,35 @@ $limit SHOBEP 10
 
 //Belph NEW
 $random Zephyr/Active { Zephyr/Active1 Zephyr/Active2 Zephyr/Active3 Zephyr/Active4 Zephyr/Active5 Zephyr/Active6 Zephyr/Active7 Zephyr/Active8 Zephyr/Active9 }
-Zephyr/Active1 "Sounds/Monsters/Zephyr/ZephyrActive1"
-Zephyr/Active2 "Sounds/Monsters/Zephyr/ZephyrActive2"
-Zephyr/Active3 "Sounds/Monsters/Zephyr/ZephyrActive3"
-Zephyr/Active4 "Sounds/Monsters/Zephyr/ZephyrActive4"
-Zephyr/Active5 "Sounds/Monsters/Zephyr/ZephyrActive5"
-Zephyr/Active6 "Sounds/Monsters/Zephyr/ZephyrActive6"
-Zephyr/Active7 "Sounds/Monsters/Zephyr/ZephyrActive7"
-Zephyr/Active8 "Sounds/Monsters/Zephyr/ZephyrActive8"
-Zephyr/Active9 "Sounds/Monsters/Zephyr/ZephyrActive9"
+Zephyr/Active1 "Sounds/Monsters/Zephyr/ZephyrActive1.ogg"
+Zephyr/Active2 "Sounds/Monsters/Zephyr/ZephyrActive2.ogg"
+Zephyr/Active3 "Sounds/Monsters/Zephyr/ZephyrActive3.ogg"
+Zephyr/Active4 "Sounds/Monsters/Zephyr/ZephyrActive4.ogg"
+Zephyr/Active5 "Sounds/Monsters/Zephyr/ZephyrActive5.ogg"
+Zephyr/Active6 "Sounds/Monsters/Zephyr/ZephyrActive6.ogg"
+Zephyr/Active7 "Sounds/Monsters/Zephyr/ZephyrActive7.ogg"
+Zephyr/Active8 "Sounds/Monsters/Zephyr/ZephyrActive8.ogg"
+Zephyr/Active9 "Sounds/Monsters/Zephyr/ZephyrActive9.ogg"
 
 $random Zephyr/Sight { Zephyr/Sight1 Zephyr/Sight2 Zephyr/Sight3 Zephyr/Sight4 Zephyr/Sight5 }
-Zephyr/Sight1 "Sounds/Monsters/Zephyr/ZephyrSight1"
-Zephyr/Sight2 "Sounds/Monsters/Zephyr/ZephyrSight2"
-Zephyr/Sight3 "Sounds/Monsters/Zephyr/ZephyrSight3"
-Zephyr/Sight4 "Sounds/Monsters/Zephyr/ZephyrSight4"
-Zephyr/Sight5 "Sounds/Monsters/Zephyr/ZephyrSight5"
+Zephyr/Sight1 "Sounds/Monsters/Zephyr/ZephyrSight1.ogg"
+Zephyr/Sight2 "Sounds/Monsters/Zephyr/ZephyrSight2.ogg"
+Zephyr/Sight3 "Sounds/Monsters/Zephyr/ZephyrSight3.ogg"
+Zephyr/Sight4 "Sounds/Monsters/Zephyr/ZephyrSight4.ogg"
+Zephyr/Sight5 "Sounds/Monsters/Zephyr/ZephyrSight5.ogg"
 
 $random Zephyr/Pain { Zephyr/Pain1 Zephyr/Pain2 }
-Zephyr/Pain1 "Sounds/Monsters/Zephyr/ZephyrPain1"
-Zephyr/Pain2 "Sounds/Monsters/Zephyr/ZephyrPain2"
+Zephyr/Pain1 "Sounds/Monsters/Zephyr/ZephyrPain1.ogg"
+Zephyr/Pain2 "Sounds/Monsters/Zephyr/ZephyrPain2.ogg"
 
 $random Zephyr/Death { Zephyr/Death1 Zephyr/Death2 }
-Zephyr/Death1 "Sounds/Monsters/Zephyr/ZephyrDeath1"
-Zephyr/Death2 "Sounds/Monsters/Zephyr/ZephyrDeath2"
+Zephyr/Death1 "Sounds/Monsters/Zephyr/ZephyrDeath1.ogg"
+Zephyr/Death2 "Sounds/Monsters/Zephyr/ZephyrDeath2.ogg"
 
 $random Zephyr/Ball { Zephyr/Ball1 Zephyr/Ball2 Zephyr/Ball3 }
-Zephyr/Ball1 "Sounds/Monsters/Zephyr/ZephyrBall1"
-Zephyr/Ball2 "Sounds/Monsters/Zephyr/ZephyrBall2"
-Zephyr/Ball3 "Sounds/Monsters/Zephyr/ZephyrBall3"
+Zephyr/Ball1 "Sounds/Monsters/Zephyr/ZephyrBall1.ogg"
+Zephyr/Ball2 "Sounds/Monsters/Zephyr/ZephyrBall2.ogg"
+Zephyr/Ball3 "Sounds/Monsters/Zephyr/ZephyrBall3.ogg"
 
 $volume Zephyr/Sight 0.8
 $volume Zephyr/Active 0.7
@@ -1834,10 +1835,10 @@ CADHIR CADHIR
 HOMLOO HOMLOO
 
 $random Cadaver/Step { Cadaver/Step1 Cadaver/Step2 Cadaver/Step3 Cadaver/Step4 }
-Cadaver/Step1 "Sounds/Monsters/Cadaver/CadaverStep1"
-Cadaver/Step2 "Sounds/Monsters/Cadaver/CadaverStep2"
-Cadaver/Step3 "Sounds/Monsters/Cadaver/CadaverStep3"
-Cadaver/Step4 "Sounds/Monsters/Cadaver/CadaverStep4"
+Cadaver/Step1 "Sounds/Monsters/Cadaver/CadaverStep1.ogg"
+Cadaver/Step2 "Sounds/Monsters/Cadaver/CadaverStep2.ogg"
+Cadaver/Step3 "Sounds/Monsters/Cadaver/CadaverStep3.ogg"
+Cadaver/Step4 "Sounds/Monsters/Cadaver/CadaverStep4.ogg"
 
 $volume Cadaver/Step 0.8
 $rolloff Cadaver/Step 190 800
@@ -1925,12 +1926,12 @@ Blood/Impact	BLDIMPAC
 $limit Blood/Impact 0
 
 $random BloodSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
-BloodSkull/Croak1 "Sounds/Monsters/BloodSkull/SkullCroak1"
-BloodSkull/Croak2 "Sounds/Monsters/BloodSkull/SkullCroak2"
-BloodSkull/Croak3 "Sounds/Monsters/BloodSkull/SkullCroak3"
-BloodSkull/Croak4 "Sounds/Monsters/BloodSkull/SkullCroak4"
+BloodSkull/Croak1 "Sounds/Monsters/BloodSkull/SkullCroak1.ogg"
+BloodSkull/Croak2 "Sounds/Monsters/BloodSkull/SkullCroak2.ogg"
+BloodSkull/Croak3 "Sounds/Monsters/BloodSkull/SkullCroak3.ogg"
+BloodSkull/Croak4 "Sounds/Monsters/BloodSkull/SkullCroak4.ogg"
 
-BloodSkull/Active "Sounds/Monsters/BloodSkull/BloodSkullActive"
+BloodSkull/Active "Sounds/Monsters/BloodSkull/BloodSkullActive.ogg"
 
 HUNPUK	HUNPUK
 
@@ -2047,9 +2048,9 @@ Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase"
 Whiplash/GroundLoop "Sounds/Monsters/Whiplash/WhiplashGroundloop"
 
 $random Whiplash/Ground {Whiplash/Ground1 Whiplash/Ground2 Whiplash/Ground3 }
-Whiplash/Ground1 "Sounds/Monsters/Whiplash/WhiplashGround1"
-Whiplash/Ground2 "Sounds/Monsters/Whiplash/WhiplashGround2"
-Whiplash/Ground3 "Sounds/Monsters/Whiplash/WhiplashGround3"
+Whiplash/Ground1 "Sounds/Monsters/Whiplash/WhiplashGround1.ogg"
+Whiplash/Ground2 "Sounds/Monsters/Whiplash/WhiplashGround2.ogg"
+Whiplash/Ground3 "Sounds/Monsters/Whiplash/WhiplashGround3.ogg"
 
 $random WHIPSEE { WHIPSEE1 WHIPSEE2 WHIPSEE3 WHIPSEE4 WHIPSEE5 WHIPSEE6 WHIPSEE7 WHIPSEE8 WHIPSEE9 }
 WHIPSEE1 WHIPSEE1
@@ -2261,9 +2262,9 @@ DSPRI3 DSPRI3
 DSPRI4 DSPRI4
 $volume DSPRI 0.7
 
-Tyrant/Dodge "Sounds/Monsters/Tyrant/TyrantDodge"
-Tyrant/Flamer "Sounds/Monsters/Tyrant/TyrantFlamer"
-Tyrant/Stomp "Sounds/Monsters/Tyrant/TyrantStomp"
+Tyrant/Dodge "Sounds/Monsters/Tyrant/TyrantDodge.ogg"
+Tyrant/Flamer "Sounds/Monsters/Tyrant/TyrantFlamer.ogg"
+Tyrant/Stomp "Sounds/Monsters/Tyrant/TyrantStomp.ogg"
 
 $rolloff Tyrant/Flamer 850 2200
 $rolloff Tyrant/Stomp 850 2200
@@ -2295,20 +2296,20 @@ $random Draugr/Active { Draugr/Active1 Draugr/Active2 Draugr/Active3 }
 $random Draugr/Pain { Draugr/Pain1 Draugr/Pain2 }
 $random Draugr/Death { Draugr/Death1 Draugr/Death2 Draugr/Death3 }
 
-Draugr/Sight1 "Sounds/Monsters/Draugr/DraugrSight1"
-Draugr/Sight2 "Sounds/Monsters/Draugr/DraugrSight2"
-Draugr/Sight3 "Sounds/Monsters/Draugr/DraugrSight3"
+Draugr/Sight1 "Sounds/Monsters/Draugr/DraugrSight1.ogg"
+Draugr/Sight2 "Sounds/Monsters/Draugr/DraugrSight2.ogg"
+Draugr/Sight3 "Sounds/Monsters/Draugr/DraugrSight3.ogg"
 
-Draugr/Active1 "Sounds/Monsters/Draugr/DraugrActive1"
-Draugr/Active2 "Sounds/Monsters/Draugr/DraugrActive2"
-Draugr/Active3 "Sounds/Monsters/Draugr/DraugrActive3"
+Draugr/Active1 "Sounds/Monsters/Draugr/DraugrActive1.ogg"
+Draugr/Active2 "Sounds/Monsters/Draugr/DraugrActive2.ogg"
+Draugr/Active3 "Sounds/Monsters/Draugr/DraugrActive3.ogg"
 
-Draugr/Pain1  "Sounds/Monsters/Draugr/DraugrPain1"
-Draugr/Pain2  "Sounds/Monsters/Draugr/DraugrPain2"
+Draugr/Pain1  "Sounds/Monsters/Draugr/DraugrPain1.ogg"
+Draugr/Pain2  "Sounds/Monsters/Draugr/DraugrPain2.ogg"
 
-Draugr/Death1 "Sounds/Monsters/Draugr/DraugrDeath1"
-Draugr/Death2 "Sounds/Monsters/Draugr/DraugrDeath2"
-Draugr/Death3 "Sounds/Monsters/Draugr/DraugrDeath3"
+Draugr/Death1 "Sounds/Monsters/Draugr/DraugrDeath1.ogg"
+Draugr/Death2 "Sounds/Monsters/Draugr/DraugrDeath2.ogg"
+Draugr/Death3 "Sounds/Monsters/Draugr/DraugrDeath3.ogg"
 
 $rolloff Draugr/Sight 800 1650
 $rolloff Draugr/Active 550 1250
@@ -2331,10 +2332,10 @@ VS1DIE VS1DIE
 VS1SCR VS1SCR
 
 $random Voidspawn/Active { Voidspawn/Active1 Voidspawn/Active2 Voidspawn/Active3 Voidspawn/Active4 }
-Voidspawn/Active1 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive1"
-Voidspawn/Active2 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive2"
-Voidspawn/Active3 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive3"
-Voidspawn/Active4 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive4"
+Voidspawn/Active1 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive1.ogg"
+Voidspawn/Active2 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive2.ogg"
+Voidspawn/Active3 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive3.ogg"
+Voidspawn/Active4 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive4.ogg"
 
 $volume Voidspawn/Active 0.9
 
@@ -2342,24 +2343,24 @@ $volume Voidspawn/Active 0.9
 //Plasmatron
 PLTRFIR PLTRFIR
 
-Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee"
-Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain"
-Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive"
-Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath"
+Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee.ogg"
+Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain.ogg"
+Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive.ogg"
+Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath.ogg"
 
 $random Plasmatron/Step { Plasmatron/Step1 Plasmatron/Step2 Plasmatron/Step3 Plasmatron/Step4 Plasmatron/Step5 }
-Plasmatron/Step1 "Sounds/Monsters/Plasmatron/PlasmatronStep1"
-Plasmatron/Step2 "Sounds/Monsters/Plasmatron/PlasmatronStep2"
-Plasmatron/Step3 "Sounds/Monsters/Plasmatron/PlasmatronStep3"
-Plasmatron/Step4 "Sounds/Monsters/Plasmatron/PlasmatronStep4"
-Plasmatron/Step5 "Sounds/Monsters/Plasmatron/PlasmatronStep5"
+Plasmatron/Step1 "Sounds/Monsters/Plasmatron/PlasmatronStep1.ogg"
+Plasmatron/Step2 "Sounds/Monsters/Plasmatron/PlasmatronStep2.ogg"
+Plasmatron/Step3 "Sounds/Monsters/Plasmatron/PlasmatronStep3.ogg"
+Plasmatron/Step4 "Sounds/Monsters/Plasmatron/PlasmatronStep4.ogg"
+Plasmatron/Step5 "Sounds/Monsters/Plasmatron/PlasmatronStep5.ogg"
 
 $random Plasmatron/Servos { Plasmatron/Servos1 Plasmatron/Servos2 Plasmatron/Servos3 Plasmatron/Servos4 Plasmatron/Servos5 }
-Plasmatron/Servos1 "Sounds/Monsters/Plasmatron/PlasmatronServos1"
-Plasmatron/Servos2 "Sounds/Monsters/Plasmatron/PlasmatronServos2"
-Plasmatron/Servos3 "Sounds/Monsters/Plasmatron/PlasmatronServos3"
-Plasmatron/Servos4 "Sounds/Monsters/Plasmatron/PlasmatronServos4"
-Plasmatron/Servos5 "Sounds/Monsters/Plasmatron/PlasmatronServos5"
+Plasmatron/Servos1 "Sounds/Monsters/Plasmatron/PlasmatronServos1.ogg"
+Plasmatron/Servos2 "Sounds/Monsters/Plasmatron/PlasmatronServos2.ogg"
+Plasmatron/Servos3 "Sounds/Monsters/Plasmatron/PlasmatronServos3.ogg"
+Plasmatron/Servos4 "Sounds/Monsters/Plasmatron/PlasmatronServos4.ogg"
+Plasmatron/Servos5 "Sounds/Monsters/Plasmatron/PlasmatronServos5.ogg"
 
 $rolloff PLTRFIR 200 2000
 
@@ -2492,12 +2493,12 @@ EXIIMM EXIIMM
 EXIIMN EXIIMN
 EXIIM2 EXIIM2
 
-Exile/GroundStart "Sounds/Monsters/Exile/ExileGroundStart"
-Exile/GroundLoop "Sounds/Monsters/Exile/ExileGroundLoop"
-Exile/GroundEnd "Sounds/Monsters/Exile/ExileGroundEnd"
-Exile/Teleport "Sounds/Monsters/Exile/ExileTele"
-Exile/ShieldSpawn "Sounds/Monsters/Exile/ExileShieldSpawn"
-Exile/ShieldLoop "Sounds/Monsters/Exile/ExileShieldLoop"
+Exile/GroundStart "Sounds/Monsters/Exile/ExileGroundStart.ogg"
+Exile/GroundLoop "Sounds/Monsters/Exile/ExileGroundLoop.ogg"
+Exile/GroundEnd "Sounds/Monsters/Exile/ExileGroundEnd.ogg"
+Exile/Teleport "Sounds/Monsters/Exile/ExileTele.ogg"
+Exile/ShieldSpawn "Sounds/Monsters/Exile/ExileShieldSpawn.ogg"
+Exile/ShieldLoop "Sounds/Monsters/Exile/ExileShieldLoop.ogg"
 
 $rolloff Exile/ShieldSpawn 350 1700
 $rolloff Exile/ShieldLoop 350 1700
@@ -2519,93 +2520,93 @@ BLODMT2 BLODMT2
 
 //Squire
 $random Squire/Step { Squire/Step1 Squire/Step2 Squire/Step3 }
-Squire/Step1 "Sounds/Monsters/Squire/SquireStep1"
-Squire/Step2 "Sounds/Monsters/Squire/SquireStep2"
-Squire/Step3 "Sounds/Monsters/Squire/SquireStep3"
+Squire/Step1 "Sounds/Monsters/Squire/SquireStep1.ogg"
+Squire/Step2 "Sounds/Monsters/Squire/SquireStep2.ogg"
+Squire/Step3 "Sounds/Monsters/Squire/SquireStep3.ogg"
 
 $rolloff Squire/Step 200 800
 
 $random Squire/Sight { Squire/Sight1 Squire/Sight2 Squire/Sight3 Squire/Sight4 Squire/Sight5 Squire/Sight6 }
-Squire/Sight1 "Sounds/Monsters/Squire/SquireSight1"
-Squire/Sight2 "Sounds/Monsters/Squire/SquireSight2"
-Squire/Sight3 "Sounds/Monsters/Squire/SquireSight3"
-Squire/Sight4 "Sounds/Monsters/Squire/SquireSight4"
-Squire/Sight5 "Sounds/Monsters/Squire/SquireSight5"
-Squire/Sight6 "Sounds/Monsters/Squire/SquireSight6"
+Squire/Sight1 "Sounds/Monsters/Squire/SquireSight1.ogg"
+Squire/Sight2 "Sounds/Monsters/Squire/SquireSight2.ogg"
+Squire/Sight3 "Sounds/Monsters/Squire/SquireSight3.ogg"
+Squire/Sight4 "Sounds/Monsters/Squire/SquireSight4.ogg"
+Squire/Sight5 "Sounds/Monsters/Squire/SquireSight5.ogg"
+Squire/Sight6 "Sounds/Monsters/Squire/SquireSight6.ogg"
 
 $random Squire/Active { Squire/Active1 Squire/Active2 Squire/Active3 Squire/Active4 Squire/Active5 Squire/Active6 Squire/Active7 Squire/Active8 Squire/Active9 Squire/Active10 }
-Squire/Active1 "Sounds/Monsters/Squire/SquireActive1"
-Squire/Active2 "Sounds/Monsters/Squire/SquireActive2"
-Squire/Active3 "Sounds/Monsters/Squire/SquireActive3"
-Squire/Active4 "Sounds/Monsters/Squire/SquireActive4"
-Squire/Active5 "Sounds/Monsters/Squire/SquireActive5"
-Squire/Active6 "Sounds/Monsters/Squire/SquireActive6"
-Squire/Active7 "Sounds/Monsters/Squire/SquireActive7"
-Squire/Active8 "Sounds/Monsters/Squire/SquireActive8" 
-Squire/Active9 "Sounds/Monsters/Squire/SquireActive9"
-Squire/Active10 "Sounds/Monsters/Squire/SquireActive10"
+Squire/Active1 "Sounds/Monsters/Squire/SquireActive1.ogg"
+Squire/Active2 "Sounds/Monsters/Squire/SquireActive2.ogg"
+Squire/Active3 "Sounds/Monsters/Squire/SquireActive3.ogg"
+Squire/Active4 "Sounds/Monsters/Squire/SquireActive4.ogg"
+Squire/Active5 "Sounds/Monsters/Squire/SquireActive5.ogg"
+Squire/Active6 "Sounds/Monsters/Squire/SquireActive6.ogg"
+Squire/Active7 "Sounds/Monsters/Squire/SquireActive7.ogg"
+Squire/Active8 "Sounds/Monsters/Squire/SquireActive8.ogg" 
+Squire/Active9 "Sounds/Monsters/Squire/SquireActive9.ogg"
+Squire/Active10 "Sounds/Monsters/Squire/SquireActive10.ogg"
 
 $random Squire/Death { Squire/Death1 Squire/Death2 Squire/Death3 Squire/Death4 Squire/Death5 Squire/Death6 Squire/Death7 Squire/Death8 Squire/Death9 }
-Squire/Death1 "Sounds/Monsters/Squire/SquireDeath1"
-Squire/Death2 "Sounds/Monsters/Squire/SquireDeath2"
-Squire/Death3 "Sounds/Monsters/Squire/SquireDeath3"
-Squire/Death4 "Sounds/Monsters/Squire/SquireDeath4"
-Squire/Death5 "Sounds/Monsters/Squire/SquireDeath5"
-Squire/Death6 "Sounds/Monsters/Squire/SquireDeath6"
-Squire/Death7 "Sounds/Monsters/Squire/SquireDeath7"
-Squire/Death8 "Sounds/Monsters/Squire/SquireDeath8"
-Squire/Death9 "Sounds/Monsters/Squire/SquireDeath9"
+Squire/Death1 "Sounds/Monsters/Squire/SquireDeath1.ogg"
+Squire/Death2 "Sounds/Monsters/Squire/SquireDeath2.ogg"
+Squire/Death3 "Sounds/Monsters/Squire/SquireDeath3.ogg"
+Squire/Death4 "Sounds/Monsters/Squire/SquireDeath4.ogg"
+Squire/Death5 "Sounds/Monsters/Squire/SquireDeath5.ogg"
+Squire/Death6 "Sounds/Monsters/Squire/SquireDeath6.ogg"
+Squire/Death7 "Sounds/Monsters/Squire/SquireDeath7.ogg"
+Squire/Death8 "Sounds/Monsters/Squire/SquireDeath8.ogg"
+Squire/Death9 "Sounds/Monsters/Squire/SquireDeath9.ogg"
 
 $random Squire/Pain { Squire/Pain1 Squire/Pain2 Squire/Pain3 Squire/Pain4 Squire/Pain5 Squire/Pain6 Squire/Pain7 Squire/Pain8 Squire/Pain9 }
-Squire/Pain1 "Sounds/Monsters/Squire/SquirePain1"
-Squire/Pain2 "Sounds/Monsters/Squire/SquirePain2"
-Squire/Pain3 "Sounds/Monsters/Squire/SquirePain3"
-Squire/Pain4 "Sounds/Monsters/Squire/SquirePain4"
-Squire/Pain5 "Sounds/Monsters/Squire/SquirePain5"
-Squire/Pain6 "Sounds/Monsters/Squire/SquirePain6"
-Squire/Pain7 "Sounds/Monsters/Squire/SquirePain7"
-Squire/Pain8 "Sounds/Monsters/Squire/SquirePain8"
-Squire/Pain9 "Sounds/Monsters/Squire/SquirePain9"
+Squire/Pain1 "Sounds/Monsters/Squire/SquirePain1.ogg"
+Squire/Pain2 "Sounds/Monsters/Squire/SquirePain2.ogg"
+Squire/Pain3 "Sounds/Monsters/Squire/SquirePain3.ogg"
+Squire/Pain4 "Sounds/Monsters/Squire/SquirePain4.ogg"
+Squire/Pain5 "Sounds/Monsters/Squire/SquirePain5.ogg"
+Squire/Pain6 "Sounds/Monsters/Squire/SquirePain6.ogg"
+Squire/Pain7 "Sounds/Monsters/Squire/SquirePain7.ogg"
+Squire/Pain8 "Sounds/Monsters/Squire/SquirePain8.ogg"
+Squire/Pain9 "Sounds/Monsters/Squire/SquirePain9.ogg"
 
 //Defiler
 $random Defiler/Fire { Defiler/Fire1 Defiler/Fire2 Defiler/Fire3 Defiler/Fire4 }
-Defiler/Fire1 "Sounds/Monsters/Defiler/DefilerFire1"
-Defiler/Fire2 "Sounds/Monsters/Defiler/DefilerFire2"
-Defiler/Fire3 "Sounds/Monsters/Defiler/DefilerFire3"
-Defiler/Fire4 "Sounds/Monsters/Defiler/DefilerFire4"
+Defiler/Fire1 "Sounds/Monsters/Defiler/DefilerFire1.ogg"
+Defiler/Fire2 "Sounds/Monsters/Defiler/DefilerFire2.ogg"
+Defiler/Fire3 "Sounds/Monsters/Defiler/DefilerFire3.ogg"
+Defiler/Fire4 "Sounds/Monsters/Defiler/DefilerFire4.ogg"
 
 $rolloff Defiler/Fire 450 1400
 
 $random Defiler/Active { Defiler/Active1 Defiler/Active2 Defiler/Active3 Defiler/Active4 Defiler/Active5 Defiler/Active6 }
-Defiler/Active1 "Sounds/Monsters/Defiler/DefilerActive1"
-Defiler/Active2 "Sounds/Monsters/Defiler/DefilerActive2"
-Defiler/Active3 "Sounds/Monsters/Defiler/DefilerActive3"
-Defiler/Active4 "Sounds/Monsters/Defiler/DefilerActive4"
-Defiler/Active5 "Sounds/Monsters/Defiler/DefilerActive5"
-Defiler/Active6 "Sounds/Monsters/Defiler/DefilerActive6"
+Defiler/Active1 "Sounds/Monsters/Defiler/DefilerActive1.ogg"
+Defiler/Active2 "Sounds/Monsters/Defiler/DefilerActive2.ogg"
+Defiler/Active3 "Sounds/Monsters/Defiler/DefilerActive3.ogg"
+Defiler/Active4 "Sounds/Monsters/Defiler/DefilerActive4.ogg"
+Defiler/Active5 "Sounds/Monsters/Defiler/DefilerActive5.ogg"
+Defiler/Active6 "Sounds/Monsters/Defiler/DefilerActive6.ogg"
 
 $volume Defiler/Active 0.7
 
-Defiler/Death "Sounds/Monsters/Defiler/DefilerDeath"
+Defiler/Death "Sounds/Monsters/Defiler/DefilerDeath.ogg"
 
-Defiler/Breath "Sounds/Monsters/Defiler/DefilerBreath"
+Defiler/Breath "Sounds/Monsters/Defiler/DefilerBreath.ogg"
 
 $random Defiler/Roar { Defiler/Roar1 Defiler/Roar2 Defiler/Roar3 Defiler/Roar4 Defiler/Roar5 Defiler/Roar6 Defiler/Roar7 }
-Defiler/Roar1 "Sounds/Monsters/Defiler/DefilerRoar1"
-Defiler/Roar2 "Sounds/Monsters/Defiler/DefilerRoar2"
-Defiler/Roar3 "Sounds/Monsters/Defiler/DefilerRoar3"
-Defiler/Roar4 "Sounds/Monsters/Defiler/DefilerRoar4"
-Defiler/Roar5 "Sounds/Monsters/Defiler/DefilerRoar5"
-Defiler/Roar6 "Sounds/Monsters/Defiler/DefilerRoar6"
-Defiler/Roar7 "Sounds/Monsters/Defiler/DefilerRoar7"
+Defiler/Roar1 "Sounds/Monsters/Defiler/DefilerRoar1.ogg"
+Defiler/Roar2 "Sounds/Monsters/Defiler/DefilerRoar2.ogg"
+Defiler/Roar3 "Sounds/Monsters/Defiler/DefilerRoar3.ogg"
+Defiler/Roar4 "Sounds/Monsters/Defiler/DefilerRoar4.ogg"
+Defiler/Roar5 "Sounds/Monsters/Defiler/DefilerRoar5.ogg"
+Defiler/Roar6 "Sounds/Monsters/Defiler/DefilerRoar6.ogg"
+Defiler/Roar7 "Sounds/Monsters/Defiler/DefilerRoar7.ogg"
 
 //$rolloff Defiler/Roar 450 1300
 
 $random Defiler/Gag { Defiler/Gag1 Defiler/Gag2 Defiler/Gag3 Defiler/Gag4 }
-Defiler/Gag1 "Sounds/Monsters/Defiler/DefilerGag1"
-Defiler/Gag2 "Sounds/Monsters/Defiler/DefilerGag2"
-Defiler/Gag3 "Sounds/Monsters/Defiler/DefilerGag3"
-Defiler/Gag4 "Sounds/Monsters/Defiler/DefilerGag4"
+Defiler/Gag1 "Sounds/Monsters/Defiler/DefilerGag1.ogg"
+Defiler/Gag2 "Sounds/Monsters/Defiler/DefilerGag2.ogg"
+Defiler/Gag3 "Sounds/Monsters/Defiler/DefilerGag3.ogg"
+Defiler/Gag4 "Sounds/Monsters/Defiler/DefilerGag4.ogg"
 
 $rolloff Defiler/Gag 500 1400
 
@@ -2614,68 +2615,68 @@ Defiler/Ack "Sounds/Monsters/Defiler/DefilerAck"
 $rolloff Defiler/Ack 500 1400
 
 $random Defiler/Shoot { Defiler/Shoot1 Defiler/Shoot2 Defiler/Shoot3 Defiler/Shoot4 }
-Defiler/Shoot1 "Sounds/Monsters/Defiler/DefilerShoot1"
-Defiler/Shoot2 "Sounds/Monsters/Defiler/DefilerShoot2"
-Defiler/Shoot3 "Sounds/Monsters/Defiler/DefilerShoot3"
-Defiler/Shoot4 "Sounds/Monsters/Defiler/DefilerShoot4"
+Defiler/Shoot1 "Sounds/Monsters/Defiler/DefilerShoot1.ogg"
+Defiler/Shoot2 "Sounds/Monsters/Defiler/DefilerShoot2.ogg"
+Defiler/Shoot3 "Sounds/Monsters/Defiler/DefilerShoot3.ogg"
+Defiler/Shoot4 "Sounds/Monsters/Defiler/DefilerShoot4.ogg"
 
 Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush"
 
 $random Corpse/Fall { Corpse/Fall1 Corpse/Fall2 Corpse/Fall3 Corpse/Fall4 Corpse/Fall5 Corpse/Fall6 Corpse/Fall7 Corpse/Fall8 }
-Corpse/Fall1 "Sounds/Other/CorpseFall1"
-Corpse/Fall2 "Sounds/Other/CorpseFall2"
-Corpse/Fall3 "Sounds/Other/CorpseFall3"
-Corpse/Fall4 "Sounds/Other/CorpseFall4"
-Corpse/Fall5 "Sounds/Other/CorpseFall5"
-Corpse/Fall6 "Sounds/Other/CorpseFall6"
-Corpse/Fall7 "Sounds/Other/CorpseFall7"
-Corpse/Fall8 "Sounds/Other/CorpseFall8"
+Corpse/Fall1 "Sounds/Other/CorpseFall1.wav"
+Corpse/Fall2 "Sounds/Other/CorpseFall2.wav"
+Corpse/Fall3 "Sounds/Other/CorpseFall3.wav"
+Corpse/Fall4 "Sounds/Other/CorpseFall4.wav"
+Corpse/Fall5 "Sounds/Other/CorpseFall5.wav"
+Corpse/Fall6 "Sounds/Other/CorpseFall6.wav"
+Corpse/Fall7 "Sounds/Other/CorpseFall7.wav"
+Corpse/Fall8 "Sounds/Other/CorpseFall8.wav"
 
-ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire"
+ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire.ogg"
 $limit ZTrooper/Fire 20
 $rolloff ZTrooper/Fire 600 2200
 
-FSGunner/Fire "Sounds/Monsters/FallenShotgunner/FSGunnerFire"
+FSGunner/Fire "Sounds/Monsters/FallenShotgunner/FSGunnerFire.ogg"
 $limit FSGunner/Fire 20
 $rolloff FSGunner/Fire 300 2200
 
-RFZ/Fire "Sounds/Monsters/RFZombie/RFTBasicFire"
+RFZ/Fire "Sounds/Monsters/RFZombie/RFTBasicFire.ogg"
 $limit RFZ/Fire 30
 $rolloff RFZ/Fire 300 2200
 
-RFZ/Load "Sounds/Monsters/RFZombie/RFTLoad"
+RFZ/Load "Sounds/Monsters/RFZombie/RFTLoad.ogg"
 
-RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire"
+RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire.wav"
 $limit RFZ/RapidFire 0
 $rolloff RFZ/RapidFire 150 2200
 
-RFZ/Winddown "Sounds/Monsters/RFZombie/RFTWinddown"
+RFZ/Winddown "Sounds/Monsters/RFZombie/RFTWinddown.ogg"
 $rolloff RFZ/Winddown 500 1800
 
-Voidspawn/See "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnSee"
-Voidspawn/Charge "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnCharge"
+Voidspawn/See "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnSee.ogg"
+Voidspawn/Charge "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnCharge.ogg"
 
 
 $random Imp/Step { Imp/Step1 Imp/Step2 Imp/Step3 Imp/Step4 }
-Imp/Step1 "Sounds/Monsters/Devil/ImpStep1"
-Imp/Step2 "Sounds/Monsters/Devil/ImpStep2"
-Imp/Step3 "Sounds/Monsters/Devil/ImpStep3"
-Imp/Step4 "Sounds/Monsters/Devil/ImpStep4"
+Imp/Step1 "Sounds/Monsters/Devil/ImpStep1.ogg"
+Imp/Step2 "Sounds/Monsters/Devil/ImpStep2.ogg"
+Imp/Step3 "Sounds/Monsters/Devil/ImpStep3.ogg"
+Imp/Step4 "Sounds/Monsters/Devil/ImpStep4.ogg"
 
 $volume Imp/Step 0.5
 $rolloff Imp/Step 200 450
 $limit Imp/Step 4
 
 $random Gore/HeadBounce { Gore/HeadBounce1 Gore/HeadBounce2 Gore/HeadBounce3 }
-Gore/HeadBounce1 "Sounds/Monsters/Horrorspawn/HeadBounce1"
-Gore/HeadBounce2 "Sounds/Monsters/Horrorspawn/HeadBounce2"
-Gore/HeadBounce3 "Sounds/Monsters/Horrorspawn/HeadBounce3"
+Gore/HeadBounce1 "Sounds/Monsters/Horrorspawn/HeadBounce1.ogg"
+Gore/HeadBounce2 "Sounds/Monsters/Horrorspawn/HeadBounce2.ogg"
+Gore/HeadBounce3 "Sounds/Monsters/Horrorspawn/HeadBounce3.ogg"
 
 //Distant Guns
 
-ZombieRifleDistant	"Sounds/Other/ZombieRifleDistant"
-GunnerRifleDistant	"Sounds/Other/GunnerGunDistant"
-ShotgunnerGunDistant	"Sounds/Other/ShotgunnerGunDistant"
+ZombieRifleDistant	"Sounds/Other/ZombieRifleDistant.ogg"
+GunnerRifleDistant	"Sounds/Other/GunnerGunDistant.ogg"
+ShotgunnerGunDistant	"Sounds/Other/ShotgunnerGunDistant.ogg"
 
 $limit ZombieRifleDistant 20
 $limit GunnerRifleDistant 20
@@ -2687,9 +2688,9 @@ $rolloff ShotgunnerGunDistant 300 3800
 
 //Teleport
 
-TeleportVoices	"Sounds/Other/TeleportVoices"
+TeleportVoices	"Sounds/Other/TeleportVoices.ogg"
 
-TeleportSound	"Sounds/Other/TeleportSound"
+TeleportSound	"Sounds/Other/TeleportSound.ogg"
 
 $rolloff TeleportSound 350 1600
 $rolloff TeleportVoices 600 3200
@@ -2702,29 +2703,29 @@ Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4"
 
 //Skulker
 
-Skulker/See "Sounds/Monsters/Skulker/SkulkerSee"
+Skulker/See "Sounds/Monsters/Skulker/SkulkerSee.ogg"
 
 $rolloff Skulker/Taunt 400 1800
 
-Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge"
+Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge.ogg"
 
-Skulker/Flee "Sounds/Monsters/Skulker/SkulkerFlee"
+Skulker/Flee "Sounds/Monsters/Skulker/SkulkerFlee.ogg"
 
-Skulker/Flinch "Sounds/Monsters/Skulker/SkulkerFlinch"
+Skulker/Flinch "Sounds/Monsters/Skulker/SkulkerFlinch.ogg"
 
-Skulker/Breath "Sounds/Monsters/Skulker/SkulkerBreath"
+Skulker/Breath "Sounds/Monsters/Skulker/SkulkerBreath.ogg"
 
-Skulker/Hunt "Sounds/Monsters/Skulker/SkulkerHunt"
+Skulker/Hunt "Sounds/Monsters/Skulker/SkulkerHunt.ogg"
 
-Skulker/Hit "Sounds/Monsters/Skulker/SkulkerHit"
+Skulker/Hit "Sounds/Monsters/Skulker/SkulkerHit.ogg"
 
-Skulker/Miss "Sounds/Monsters/Skulker/SkulkerMiss"
+Skulker/Miss "Sounds/Monsters/Skulker/SkulkerMiss.ogg"
 
-Skulker/Swing "Sounds/Monsters/Skulker/SkulkerSwing"
+Skulker/Swing "Sounds/Monsters/Skulker/SkulkerSwing.ogg"
 
-Skulker/Port "Sounds/Monsters/Skulker/SkulkerPort"
+Skulker/Port "Sounds/Monsters/Skulker/SkulkerPort.ogg"
 
-Skulker/Phase "Sounds/Monsters/Skulker/SkulkerPhase"
+Skulker/Phase "Sounds/Monsters/Skulker/SkulkerPhase.ogg"
 
 $volume Skulker/Phase 0.7
 
@@ -2732,43 +2733,43 @@ $limit Skulker/Port 12
 
 $rolloff Skulker/Port 750 1300
 
-Skulker/Whisper "Sounds/Monsters/Skulker/SkulkerWhisper"
+Skulker/Whisper "Sounds/Monsters/Skulker/SkulkerWhisper.ogg"
 
-Skulker/Wail "Sounds/Monsters/Skulker/SkulkerWail"
+Skulker/Wail "Sounds/Monsters/Skulker/SkulkerWail.ogg"
 
 
 $random Skulker/Taunt { Skulker/Taunt1 Skulker/Taunt2 Skulker/Taunt3 }
-Skulker/Taunt1 "Sounds/Monsters/Skulker/SkulkerTaunt1"
-Skulker/Taunt2 "Sounds/Monsters/Skulker/SkulkerTaunt2"
-Skulker/Taunt3 "Sounds/Monsters/Skulker/SkulkerTaunt3"
+Skulker/Taunt1 "Sounds/Monsters/Skulker/SkulkerTaunt1.ogg"
+Skulker/Taunt2 "Sounds/Monsters/Skulker/SkulkerTaunt2.ogg"
+Skulker/Taunt3 "Sounds/Monsters/Skulker/SkulkerTaunt3.ogg"
 
 $rolloff Skulker/Taunt 350 1800
 
 $random imp/shotx {Malice/FireHit1 Malice/FireHit2 Malice/FireHit3 Malice/FireHit4}
-Malice/FireHit1 "Sounds/Other/MaliceFireHit1"
-Malice/FireHit2 "Sounds/Other/MaliceFireHit2"
-Malice/FireHit3 "Sounds/Other/MaliceFireHit3"
-Malice/FireHit4 "Sounds/Other/MaliceFireHit4"
+Malice/FireHit1 "Sounds/Other/MaliceFireHit1.ogg"
+Malice/FireHit2 "Sounds/Other/MaliceFireHit2.ogg"
+Malice/FireHit3 "Sounds/Other/MaliceFireHit3.ogg"
+Malice/FireHit4 "Sounds/Other/MaliceFireHit4.ogg"
 
-Beholder/Rush "Sounds/Monsters/Watcher/BeholderRush"
+Beholder/Rush "Sounds/Monsters/Watcher/BeholderRush.ogg"
 
 //Demon Tech Brute
 $random DTechSee { DTechSee1 DTechSee2 DTechSee3 }
-DTechSee1         "sounds/Monsters/DTechBrute/DTechBruteSight1"
-DTechSee2         "sounds/Monsters/DTechBrute/DTechBruteSight2"
-DTechSee3         "sounds/Monsters/DTechBrute/DTechBruteSight3"
+DTechSee1         "sounds/Monsters/DTechBrute/DTechBruteSight1.ogg"
+DTechSee2         "sounds/Monsters/DTechBrute/DTechBruteSight2.ogg"
+DTechSee3         "sounds/Monsters/DTechBrute/DTechBruteSight3.ogg"
 $random DTechActive { DTechActive1 DTechActive2 DTechActive3 }
-DTechActive1       "sounds/Monsters/DTechBrute/DTechBruteAct1"
-DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct2"
-DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct3"
+DTechActive1       "sounds/Monsters/DTechBrute/DTechBruteAct1.ogg"
+DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct2.ogg"
+DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct3.ogg"
 $random DTechPain { DTechPain1 DTechPain2 DTechPain3 DTechPain4 }
-DTechPain1         "sounds/Monsters/DTechBrute/DTechBrutePain1"
-DTechPain2         "sounds/Monsters/DTechBrute/DTechBrutePain2"
-DTechPain3         "sounds/Monsters/DTechBrute/DTechBrutePain3"
-DTechPain4         "sounds/Monsters/DTechBrute/DTechBrutePain4"      
-DTechAttack          "sounds/Monsters/DTechBrute/DTechBruteAttack"
-DTechMelee           "sounds/Monsters/DTechBrute/DTechBruteAttackMelee"
-DTechDeath           "sounds/Monsters/DTechBrute/DTechBruteDeath"
+DTechPain1         "sounds/Monsters/DTechBrute/DTechBrutePain1.ogg"
+DTechPain2         "sounds/Monsters/DTechBrute/DTechBrutePain2.ogg"
+DTechPain3         "sounds/Monsters/DTechBrute/DTechBrutePain3.ogg"
+DTechPain4         "sounds/Monsters/DTechBrute/DTechBrutePain4.ogg"      
+DTechAttack          "sounds/Monsters/DTechBrute/DTechBruteAttack.ogg"
+DTechMelee           "sounds/Monsters/DTechBrute/DTechBruteAttackMelee.ogg"
+DTechDeath           "sounds/Monsters/DTechBrute/DTechBruteDeath.ogg"
 
 $volume DTechSee 0.8
 $volume DTechActive 0.8
@@ -2778,29 +2779,29 @@ $volume DTechDeath 0.7
 
 $pitchshiftrange 3
 $random DTechWalk { DTechWalk3 DTechWalk3}       
-DTechWalk1	"sounds/Monsters/DTechBrute/DTechBruteWalk1"
-DTechWalk2	"sounds/Monsters/DTechBrute/DTechBruteWalk2"
-DTechWalk3	"sounds/Monsters/DTechBrute/DTechBruteWalk3"
+DTechWalk1	"sounds/Monsters/DTechBrute/DTechBruteWalk1.ogg"
+DTechWalk2	"sounds/Monsters/DTechBrute/DTechBruteWalk2.ogg"
+DTechWalk3	"sounds/Monsters/DTechBrute/DTechBruteWalk3.ogg"
 $pitchshiftrange 0
 $volume DTechWalk 1
 $limit DTechWalk 12
 
 //Wicked
 $random WickSight     { WickSight1 WickSight2 WickSight3 }
-WickSight1                "sounds/Monsters/Wicked/WickedSight1"
-WickSight2                "sounds/Monsters/Wicked/WickedSight2"
-WickSight3                "sounds/Monsters/Wicked/WickedSight3"      
+WickSight1                "sounds/Monsters/Wicked/WickedSight1.ogg"
+WickSight2                "sounds/Monsters/Wicked/WickedSight2.ogg"
+WickSight3                "sounds/Monsters/Wicked/WickedSight3.ogg"      
 $random WickActive		{ WickActive1 WickActive2 }
-WickActive1               "sounds/Monsters/Wicked/WickedActive1"
-WickActive2               "sounds/Monsters/Wicked/WickedActive2"
-WickAttack                "sounds/Monsters/Wicked/WickedAttack"
-WickRush                  "sounds/Monsters/Wicked/WickedRush"
-WickPain                  "sounds/Monsters/Wicked/WickedPain"
+WickActive1               "sounds/Monsters/Wicked/WickedActive1.ogg"
+WickActive2               "sounds/Monsters/Wicked/WickedActive2.ogg"
+WickAttack                "sounds/Monsters/Wicked/WickedAttack.ogg"
+WickRush                  "sounds/Monsters/Wicked/WickedRush.ogg"
+WickPain                  "sounds/Monsters/Wicked/WickedPain.ogg"
 $random WickDeath      { WickDeath1 WickDeath2 }
-WickDeath1                "sounds/Monsters/Wicked/WickedDeath1"
-WickDeath2                "sounds/Monsters/Wicked/WickedDeath2"
-WickFire                  "sounds/Monsters/Wicked/WickedFire"
-WickFireExp               "sounds/Monsters/Wicked/WickedFireExp"
+WickDeath1                "sounds/Monsters/Wicked/WickedDeath1.ogg"
+WickDeath2                "sounds/Monsters/Wicked/WickedDeath2.ogg"
+WickFire                  "sounds/Monsters/Wicked/WickedFire.ogg"
+WickFireExp               "sounds/Monsters/Wicked/WickedFireExp.ogg"
 
 $volume WickDeath 0.9
 $volume WickAttack 0.95
@@ -2810,19 +2811,19 @@ $volume WickFireExp 0.9
 
 //Hell's Fury
 $random HFurySight { HFurySight1 HFurySight2 }
-HFurySight            "sounds/Monsters/HellsFury/HellsFurySight1"
-HFurySight            "sounds/Monsters/HellsFury/HellsFurySight2"
-HFuryActive            "sounds/Monsters/HellsFury/HellsFuryActive"
+HFurySight            "sounds/Monsters/HellsFury/HellsFurySight1.ogg"
+HFurySight            "sounds/Monsters/HellsFury/HellsFurySight2.ogg"
+HFuryActive            "sounds/Monsters/HellsFury/HellsFuryActive.ogg"
 $random HFuryPain { HFuryPain1 HFuryPain2 }
-HFuryPain1            "sounds/Monsters/HellsFury/HellsFuryPain1"
-HFuryPain2            "sounds/Monsters/HellsFury/HellsFuryPain2"
+HFuryPain1            "sounds/Monsters/HellsFury/HellsFuryPain1.ogg"
+HFuryPain2            "sounds/Monsters/HellsFury/HellsFuryPain2.ogg"
 $random HFuryDeath { HFuryDeath1 HFuryDeath2 }
-HFuryDeath1            "sounds/Monsters/HellsFury/HellsFuryDeath1"
-HFuryDeath2            "sounds/Monsters/HellsFury/HellsFuryDeath2"
+HFuryDeath1            "sounds/Monsters/HellsFury/HellsFuryDeath1.ogg"
+HFuryDeath2            "sounds/Monsters/HellsFury/HellsFuryDeath2.ogg"
 
-HFuryProj            "sounds/Monsters/HellsFury/HellsFuryProj"
-HFuryRoar            "sounds/Monsters/HellsFury/HellsFuryRoar"
-HFuryProjExp            "sounds/Monsters/HellsFury/HellsFuryProjExp" 
+HFuryProj            "sounds/Monsters/HellsFury/HellsFuryProj.ogg"
+HFuryRoar            "sounds/Monsters/HellsFury/HellsFuryRoar.ogg"
+HFuryProjExp            "sounds/Monsters/HellsFury/HellsFuryProjExp.ogg" 
 
 $volume HFuryProjExp 0.6
 $volume HFuryProj 0.8
@@ -2831,108 +2832,108 @@ $volume HFuryProj 0.8
 FiendRocketFire            "sounds/Monsters/Fiend/FiendRocketFire"
 $limit FiendRocketFire 8
 $random SmallMissileExplosion { SmallMissileExp1 SmallMissileExp2 SmallMissileExp3 SmallMissileExp4 }
-SmallMissileExp1            "sounds/Monsters/Fiend/SmallMissileExp1"
-SmallMissileExp2            "sounds/Monsters/Fiend/SmallMissileExp2"
-SmallMissileExp3            "sounds/Monsters/Fiend/SmallMissileExp3"
-SmallMissileExp4            "sounds/Monsters/Fiend/SmallMissileExp4"
+SmallMissileExp1            "sounds/Monsters/Fiend/SmallMissileExp1.ogg"
+SmallMissileExp2            "sounds/Monsters/Fiend/SmallMissileExp2.ogg"
+SmallMissileExp3            "sounds/Monsters/Fiend/SmallMissileExp3.ogg"
+SmallMissileExp4            "sounds/Monsters/Fiend/SmallMissileExp4.ogg"
 
 //Hell Priest
 
 $random HellPriestActive { HPriestActive1 HPriestActive2 HPriestActive3 HPriestActive4 HPriestActive5 HPriestActive6 HPriestActive7 HPriestActive8 }
-HPriestActive1           "sounds/Monsters/HellPriest/HellPriestActive1"
-HPriestActive2           "sounds/Monsters/HellPriest/HellPriestActive2"
-HPriestActive3           "sounds/Monsters/HellPriest/HellPriestActive3"
-HPriestActive4           "sounds/Monsters/HellPriest/HellPriestActive4"
-HPriestActive5           "sounds/Monsters/HellPriest/HellPriestActive5"
-HPriestActive6           "sounds/Monsters/HellPriest/HellPriestActive6"
-HPriestActive7           "sounds/Monsters/HellPriest/HellPriestActive7"
-HPriestActive8           "sounds/Monsters/HellPriest/HellPriestActive8"
+HPriestActive1           "sounds/Monsters/HellPriest/HellPriestActive1.ogg"
+HPriestActive2           "sounds/Monsters/HellPriest/HellPriestActive2.ogg"
+HPriestActive3           "sounds/Monsters/HellPriest/HellPriestActive3.ogg"
+HPriestActive4           "sounds/Monsters/HellPriest/HellPriestActive4.ogg"
+HPriestActive5           "sounds/Monsters/HellPriest/HellPriestActive5.ogg"
+HPriestActive6           "sounds/Monsters/HellPriest/HellPriestActive6.ogg"
+HPriestActive7           "sounds/Monsters/HellPriest/HellPriestActive7.ogg"
+HPriestActive8           "sounds/Monsters/HellPriest/HellPriestActive8.ogg"
 
-HellPriestSee           "sounds/Monsters/HellPriest/HellPriestSee"
-HellPriestPain          "sounds/Monsters/HellPriest/HellPriestPain"
+HellPriestSee           "sounds/Monsters/HellPriest/HellPriestSee.ogg"
+HellPriestPain          "sounds/Monsters/HellPriest/HellPriestPain.ogg"
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
-RotflySee1          "sounds/Monsters/Rotfly/RotflySee1"
-RotflySee2          "sounds/Monsters/Rotfly/RotflySee2"
+RotflySee1          "sounds/Monsters/Rotfly/RotflySee1.ogg"
+RotflySee2          "sounds/Monsters/Rotfly/RotflySee2.ogg"
 
 $random Rotfly/Active { RotflyActive1 RotflyActive2 }
-RotflyActive1          "sounds/Monsters/Rotfly/RotflyActive1"
-RotflyActive2          "sounds/Monsters/Rotfly/RotflyActive2"
+RotflyActive1          "sounds/Monsters/Rotfly/RotflyActive1.ogg"
+RotflyActive2          "sounds/Monsters/Rotfly/RotflyActive2.ogg"
 
 $random Rotfly/Attack { RotflyAttack1 RotflyAttack2 RotflyAttack3 }
-RotflyAttack1          "sounds/Monsters/Rotfly/RotflyAttack1"
-RotflyAttack2          "sounds/Monsters/Rotfly/RotflyAttack2"
-RotflyAttack3          "sounds/Monsters/Rotfly/RotflyAttack3"
+RotflyAttack1          "sounds/Monsters/Rotfly/RotflyAttack1.ogg"
+RotflyAttack2          "sounds/Monsters/Rotfly/RotflyAttack2.ogg"
+RotflyAttack3          "sounds/Monsters/Rotfly/RotflyAttack3.ogg"
 
 $random Rotfly/Pain { RotflyPain1 RotflyPain2 }
-RotflyPain1          "sounds/Monsters/Rotfly/RotflyPain1"
-RotflyPain2          "sounds/Monsters/Rotfly/RotflyPain2"
+RotflyPain1          "sounds/Monsters/Rotfly/RotflyPain1.ogg"
+RotflyPain2          "sounds/Monsters/Rotfly/RotflyPain2.ogg"
 
 $random Rotfly/Death { RotflyDeath1 RotflyDeath2 }
-RotflyDeath1          "sounds/Monsters/Rotfly/RotflyDeath1"
-RotflyDeath2          "sounds/Monsters/Rotfly/RotflyDeath2"
+RotflyDeath1          "sounds/Monsters/Rotfly/RotflyDeath1.ogg"
+RotflyDeath2          "sounds/Monsters/Rotfly/RotflyDeath2.ogg"
 
 //Pistol Zombie
 
 $random PistolZombie/See { PistolZombie/See1 PistolZombie/See2 PistolZombie/See3 }
-PistolZombie/See1 "Sounds/Monsters/PistolZombie/PistolZombieSee1"
-PistolZombie/See2 "Sounds/Monsters/PistolZombie/PistolZombieSee2"
-PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee3"
-PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee4"
+PistolZombie/See1 "Sounds/Monsters/PistolZombie/PistolZombieSee1.ogg"
+PistolZombie/See2 "Sounds/Monsters/PistolZombie/PistolZombieSee2.ogg"
+PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee3.ogg"
+PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee4.ogg"
 
 $rolloff PistolZombie/See 200 1200
 
 $random PistolZombie/Active { PistolZombie/Active1 PistolZombie/Active2 PistolZombie/Active3 PistolZombie/Active4 PistolZombie/Active5 PistolZombie/Active6 PistolZombie/Active7 }
-PistolZombie/Active1 "Sounds/Monsters/PistolZombie/PistolZombieActive1"
-PistolZombie/Active2 "Sounds/Monsters/PistolZombie/PistolZombieActive2"
-PistolZombie/Active3 "Sounds/Monsters/PistolZombie/PistolZombieActive3"
-PistolZombie/Active4 "Sounds/Monsters/PistolZombie/PistolZombieActive4"
-PistolZombie/Active5 "Sounds/Monsters/PistolZombie/PistolZombieActive5"
-PistolZombie/Active6 "Sounds/Monsters/PistolZombie/PistolZombieActive6"
-PistolZombie/Active7 "Sounds/Monsters/PistolZombie/PistolZombieActive7"
+PistolZombie/Active1 "Sounds/Monsters/PistolZombie/PistolZombieActive1.ogg"
+PistolZombie/Active2 "Sounds/Monsters/PistolZombie/PistolZombieActive2.ogg"
+PistolZombie/Active3 "Sounds/Monsters/PistolZombie/PistolZombieActive3.ogg"
+PistolZombie/Active4 "Sounds/Monsters/PistolZombie/PistolZombieActive4.ogg"
+PistolZombie/Active5 "Sounds/Monsters/PistolZombie/PistolZombieActive5.ogg"
+PistolZombie/Active6 "Sounds/Monsters/PistolZombie/PistolZombieActive6.ogg"
+PistolZombie/Active7 "Sounds/Monsters/PistolZombie/PistolZombieActive7.ogg"
 
 $rolloff PistolZombie/Active 200 1200
 
 $random PistolZombie/Pain { PistolZombie/Pain1 PistolZombie/Pain2 PistolZombie/Pain3 }
-PistolZombie/Pain1 "Sounds/Monsters/PistolZombie/PistolZombiePain1"
-PistolZombie/Pain2 "Sounds/Monsters/PistolZombie/PistolZombiePain2"
-PistolZombie/Pain3 "Sounds/Monsters/PistolZombie/PistolZombiePain3"
+PistolZombie/Pain1 "Sounds/Monsters/PistolZombie/PistolZombiePain1.ogg"
+PistolZombie/Pain2 "Sounds/Monsters/PistolZombie/PistolZombiePain2.ogg"
+PistolZombie/Pain3 "Sounds/Monsters/PistolZombie/PistolZombiePain3,ogg"
 
 $rolloff PistolZombie/Pain 300 1200
 
 $random PistolZombie/Death { PistolZombie/Death1 PistolZombie/Death2 PistolZombie/Death3 }
-PistolZombie/Death1 "Sounds/Monsters/PistolZombie/PistolZombieDeath1"
-PistolZombie/Death2 "Sounds/Monsters/PistolZombie/PistolZombieDeath2"
-PistolZombie/Death3 "Sounds/Monsters/PistolZombie/PistolZombieDeath3"
+PistolZombie/Death1 "Sounds/Monsters/PistolZombie/PistolZombieDeath1.ogg"
+PistolZombie/Death2 "Sounds/Monsters/PistolZombie/PistolZombieDeath2.ogg"
+PistolZombie/Death3 "Sounds/Monsters/PistolZombie/PistolZombieDeath3.ogg"
 
-PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire"
+PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire.ogg"
 $rolloff PistolZombie/Fire 300 2200
 
 //Noble
 
 $random Noble/Sight { Noble/Sight1 Noble/Sight2 Noble/Sight3 Noble/Sight4 }
 
-Noble/Sight1 "sounds/Monsters/Noble/NobleSight1"
-Noble/Sight2 "sounds/Monsters/Noble/NobleSight2"
-Noble/Sight3 "sounds/Monsters/Noble/NobleSight3"
-Noble/Sight4 "sounds/Monsters/Noble/NobleSight4"
+Noble/Sight1 "sounds/Monsters/Noble/NobleSight1.ogg"
+Noble/Sight2 "sounds/Monsters/Noble/NobleSight2.ogg"
+Noble/Sight3 "sounds/Monsters/Noble/NobleSight3.ogg"
+Noble/Sight4 "sounds/Monsters/Noble/NobleSight4.ogg"
 
-$volume Noble/Sight 0.6
+$volume Noble/Sight 0.7
 
 $random Noble/Active { Noble/Active1 Noble/Active2 }
 
-Noble/Active1 "sounds/Monsters/Noble/NobleActive1"
-Noble/Active2 "sounds/Monsters/Noble/NobleActive2"
+Noble/Active1 "sounds/Monsters/Noble/NobleActive1.ogg"
+Noble/Active2 "sounds/Monsters/Noble/NobleActive2.ogg"
 
-$volume Noble/Active 0.6
+$volume Noble/Active 0.7
 
 $random Noble/PreBomb { Noble/PreBomb1 Noble/PreBomb2 }
 
-$volume Noble/PreBomb 0.6
+$volume Noble/PreBomb 0.7
 
-Noble/PreBomb1 "sounds/Monsters/Noble/NoblePreBomb1"
-Noble/PreBomb2 "sounds/Monsters/Noble/NoblePreBomb2"
+Noble/PreBomb1 "sounds/Monsters/Noble/NoblePreBomb1.ogg"
+Noble/PreBomb2 "sounds/Monsters/Noble/NoblePreBomb2.ogg"
 
 Noble/BombExp "sounds/Monsters/Noble/NobleBombExp"
 
@@ -2942,90 +2943,90 @@ $random BStalker/Sight { BStalker/Sight1 BStalker/Sight2 BStalker/Sight3 }
 
 $volume BStalker/Sight 0.8
 
-BStalker/Sight1 "Sounds/Monsters/BloodStalker/BStalkerSight1"
-BStalker/Sight2 "Sounds/Monsters/BloodStalker/BStalkerSight2"
-BStalker/Sight3 "Sounds/Monsters/BloodStalker/BStalkerSight3"
+BStalker/Sight1 "Sounds/Monsters/BloodStalker/BStalkerSight1.ogg"
+BStalker/Sight2 "Sounds/Monsters/BloodStalker/BStalkerSight2.ogg"
+BStalker/Sight3 "Sounds/Monsters/BloodStalker/BStalkerSight3.ogg"
 
 $random BStalker/Active { BStalker/Active1 BStalker/Active2 }
 
 $volume BStalker/Active 0.6
 
-BStalker/Active1 "Sounds/Monsters/BloodStalker/BStalkerActive1"
-BStalker/Active2 "Sounds/Monsters/BloodStalker/BStalkerActive2"
+BStalker/Active1 "Sounds/Monsters/BloodStalker/BStalkerActive1.ogg"
+BStalker/Active2 "Sounds/Monsters/BloodStalker/BStalkerActive2.ogg"
 
 $random BStalker/Pain { BStalker/Pain1 BStalker/Pain2 }
 
 $volume BStalker/Pain 0.7
 
-BStalker/Pain1 "Sounds/Monsters/BloodStalker/BStalkerPain1"
-BStalker/Pain2 "Sounds/Monsters/BloodStalker/BStalkerPain2"
+BStalker/Pain1 "Sounds/Monsters/BloodStalker/BStalkerPain1.ogg"
+BStalker/Pain2 "Sounds/Monsters/BloodStalker/BStalkerPain2.ogg"
 
-BloodStalker/Roar "Sounds/Monsters/BloodStalker/BStalkerRoar"
+BloodStalker/Roar "Sounds/Monsters/BloodStalker/BStalkerRoar.ogg"
 
 $volume BloodStalker/Roar 0.6
 
 
 //Corpulent
 $random Corpulent/Sight	{ Corpulent/Sight1 Corpulent/Sight2 }
-Corpulent/Sight1 "Sounds/Monsters/Corpulent/CorpulentSight1"
-Corpulent/Sight2 "Sounds/Monsters/Corpulent/CorpulentSight2"
+Corpulent/Sight1 "Sounds/Monsters/Corpulent/CorpulentSight1.ogg"
+Corpulent/Sight2 "Sounds/Monsters/Corpulent/CorpulentSight2.ogg"
 
 $random Corpulent/Active	{ Corpulent/Active1 Corpulent/Active2 }
-Corpulent/Active1 "Sounds/Monsters/Corpulent/CorpulentActive1"
-Corpulent/Active2 "Sounds/Monsters/Corpulent/CorpulentActive2"
+Corpulent/Active1 "Sounds/Monsters/Corpulent/CorpulentActive1.ogg"
+Corpulent/Active2 "Sounds/Monsters/Corpulent/CorpulentActive2.ogg"
 
 $random Corpulent/Pain		{ Corpulent/Pain1 Corpulent/Pain2 }
-Corpulent/Pain1 "Sounds/Monsters/Corpulent/CorpulentPain1"
-Corpulent/Pain2 "Sounds/Monsters/Corpulent/CorpulentPain2"
+Corpulent/Pain1 "Sounds/Monsters/Corpulent/CorpulentPain1.ogg"
+Corpulent/Pain2 "Sounds/Monsters/Corpulent/CorpulentPain2.ogg"
 
 $random Corpulent/Death	{ Corpulent/Death1 Corpulent/Death2 }
-Corpulent/Death1 "Sounds/Monsters/Corpulent/CorpulentDeath1"
-Corpulent/Death2 "Sounds/Monsters/Corpulent/CorpulentDeath2"
+Corpulent/Death1 "Sounds/Monsters/Corpulent/CorpulentDeath1.ogg"
+Corpulent/Death2 "Sounds/Monsters/Corpulent/CorpulentDeath2.ogg"
 
 $random Corpulent/Attack { Corpulent/Attack1 Corpulent/Attack2 Corpulent/Attack3 }
-Corpulent/Attack1 "Sounds/Monsters/Corpulent/CorpulentAttack1"
-Corpulent/Attack2 "Sounds/Monsters/Corpulent/CorpulentAttack2"
-Corpulent/Attack3 "Sounds/Monsters/Corpulent/CorpulentAttack3"
+Corpulent/Attack1 "Sounds/Monsters/Corpulent/CorpulentAttack1.ogg"
+Corpulent/Attack2 "Sounds/Monsters/Corpulent/CorpulentAttack2.ogg"
+Corpulent/Attack3 "Sounds/Monsters/Corpulent/CorpulentAttack3.ogg"
 
 $random Corpulent/Fire	{ Corpulent/Fire1 Corpulent/Fire2 }
-Corpulent/Fire1 "Sounds/Monsters/Corpulent/CorpulentFire1"
-Corpulent/Fire2 "Sounds/Monsters/Corpulent/CorpulentFire2"
+Corpulent/Fire1 "Sounds/Monsters/Corpulent/CorpulentFire1.ogg"
+Corpulent/Fire2 "Sounds/Monsters/Corpulent/CorpulentFire2.ogg"
 
 $random Corpulent/Whiz	{ Corpulent/Whiz1 Corpulent/Whiz2 }
-Corpulent/Whiz1 "Sounds/Monsters/Corpulent/CorpulentWhiz1"
-Corpulent/Whiz2 "Sounds/Monsters/Corpulent/CorpulentWhiz2"
+Corpulent/Whiz1 "Sounds/Monsters/Corpulent/CorpulentWhiz1.ogg"
+Corpulent/Whiz2 "Sounds/Monsters/Corpulent/CorpulentWhiz2.ogg"
 
 //Bruiser
 $random Bruiser/Sight	{ Bruiser/Sight1 Bruiser/Sight2 }
-Bruiser/Sight1 "Sounds/Monsters/Bruiser/BruiserSight1"
-Bruiser/Sight2 "Sounds/Monsters/Bruiser/BruiserSight2"
+Bruiser/Sight1 "Sounds/Monsters/Bruiser/BruiserSight1.ogg"
+Bruiser/Sight2 "Sounds/Monsters/Bruiser/BruiserSight2.ogg"
 
 $random Bruiser/Active	{ Bruiser/Active1 Bruiser/Active2 }
-Bruiser/Active1 "Sounds/Monsters/Bruiser/BruiserActive1"
-Bruiser/Active2 "Sounds/Monsters/Bruiser/BruiserActive2"
+Bruiser/Active1 "Sounds/Monsters/Bruiser/BruiserActive1.ogg"
+Bruiser/Active2 "Sounds/Monsters/Bruiser/BruiserActive2.ogg"
 
 $random Bruiser/Pain		{ Bruiser/Pain1 Bruiser/Pain2 }
-Bruiser/Pain1 "Sounds/Monsters/Bruiser/BruiserPain1"
-Bruiser/Pain2 "Sounds/Monsters/Bruiser/BruiserPain2"
+Bruiser/Pain1 "Sounds/Monsters/Bruiser/BruiserPain1.ogg"
+Bruiser/Pain2 "Sounds/Monsters/Bruiser/BruiserPain2.ogg"
 
 $random Bruiser/Death	{ Bruiser/Death1 Bruiser/Death2 }
-Bruiser/Death1 "Sounds/Monsters/Bruiser/BruiserDeath1"
-Bruiser/Death2 "Sounds/Monsters/Bruiser/BruiserDeath2"
+Bruiser/Death1 "Sounds/Monsters/Bruiser/BruiserDeath1.ogg"
+Bruiser/Death2 "Sounds/Monsters/Bruiser/BruiserDeath2.ogg"
 
 $random Bruiser/Attack { Bruiser/Attack1 Bruiser/Attack2 }
-Bruiser/Attack1 "Sounds/Monsters/Bruiser/BruiserAttack1"
-Bruiser/Attack2 "Sounds/Monsters/Bruiser/BruiserAttack2"
+Bruiser/Attack1 "Sounds/Monsters/Bruiser/BruiserAttack1.ogg"
+Bruiser/Attack2 "Sounds/Monsters/Bruiser/BruiserAttack2.ogg"
 
 
 $random GBloodSplashBig { BigBloodS1 BigBloodS2 BigBloodS3 BigBloodS4 }
 
-BigBloodS1 "Sounds/Monsters/SFX/GenericBloodSplashBig1"
-BigBloodS2 "Sounds/Monsters/SFX/GenericBloodSplashBig2"
-BigBloodS3 "Sounds/Monsters/SFX/GenericBloodSplashBig3"
-BigBloodS4 "Sounds/Monsters/SFX/GenericBloodSplashBig4"
+BigBloodS1 "Sounds/Monsters/SFX/GenericBloodSplashBig1.ogg"
+BigBloodS2 "Sounds/Monsters/SFX/GenericBloodSplashBig2.ogg"
+BigBloodS3 "Sounds/Monsters/SFX/GenericBloodSplashBig3.ogg"
+BigBloodS4 "Sounds/Monsters/SFX/GenericBloodSplashBig4.ogg"
 
 $rolloff GBloodSplashBig 700 1400
 
-DemonicSprite/Flee "Sounds/Other/PossSpriteFlee"
+DemonicSprite/Flee "Sounds/Other/PossSpriteFlee.ogg"
 $volume DemonicSprite/Flee 0.5
-DemonicSprite/Warn "Sounds/Other/PossSpriteWarn"
+DemonicSprite/Warn "Sounds/Other/PossSpriteWarn.ogg"
