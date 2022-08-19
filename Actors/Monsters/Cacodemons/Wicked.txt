@@ -10,7 +10,7 @@ Class PM_Wicked : Actor
 	Scale 1;
     PainChance 112;
 	//BloodColor "Black";
-    Obituary "%o got blasted by a Wicked.";
+    Obituary "%o was scragged by a Wicked.";
     SeeSound "WickSight";
     PainSound "WickPain";
     DeathSound "WickDeath";

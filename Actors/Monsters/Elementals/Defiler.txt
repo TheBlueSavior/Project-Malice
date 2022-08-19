@@ -25,7 +25,7 @@ ACTOR PM_Defiler
 	PainSound "HeresyLord/Pain"
 	DeathSound "Defiler/Death"
 	ActiveSound "Defiler/Active"
-	Obituary "%o was hunted down by a Defiler."
+	Obituary "%o was thoroughly cleansed by a Defiler's flames."
 	States
 	{
 	Spawn:
@@ -757,6 +757,7 @@ ACTOR ShootSoulAttack : DoomImpBall
   RenderStyle Normal
   BounceType None
   PROJECTILE
+  Obituary "o% bathed in unholy fire by a Defiler's soul."
   Seesound "Defiler/Shoot"
   DeathSound "imp/shotx"
   States

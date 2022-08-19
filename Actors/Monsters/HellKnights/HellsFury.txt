@@ -13,8 +13,7 @@ Actor PM_HellsFury
     DeathSound "HFuryDeath"
 	Species "Nobles"
 	//DropItem "RagePoint1"
-    Obituary "%o felt the wrath of Hell's Fury"
-    HitObituary "%o got ripped apart by Hell's Fury"
+    Obituary "%o turned to a sludge of %p former self by a Hell's Fury."
 	Tag "Hell's Fury"
     MONSTER
 	+DONTHARMSPECIES

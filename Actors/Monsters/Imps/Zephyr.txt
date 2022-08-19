@@ -1,7 +1,7 @@
 actor PM_Zephyr : DoomImp
 {
-  obituary "%o was fried by a Zephyr."
-  hitobituary "%o was flayed by a Zephyr."
+  obituary "%o was outpaced a Zephyr."
+  hitobituary "%o was ripped in half by a Zephyr."
   health 50
   //Radius 20
   //Height 56

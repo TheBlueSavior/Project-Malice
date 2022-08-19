@@ -19,8 +19,8 @@ ACTOR PM_Squire
 	ActiveSound "Squire/Active"
 	PainSound 	"Squire/Pain"
 	DeathSound 	"Squire/Death"
-	HitObituary "%o was splattered by a Squire."
-	Obituary "%o was burnt by a Squire."
+	HitObituary "%o was punched out by a Squire."
+	Obituary "%o was dispersed by a Squire."
 //	DropItem "RagePoint1"
 	Scale 1.05
 	Gravity 0.83

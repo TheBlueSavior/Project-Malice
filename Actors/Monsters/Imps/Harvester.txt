@@ -13,7 +13,7 @@ Class PM_Harvester : Actor
     DeathSound "Harvester/Death";
     ActiveSound "Harvester/Active";
 	//DropItem "RagePoint1";
-    Obituary "%o was harvested.";
+    Obituary "%o's soul belongs to a Harvester now.";
 	 Species "Imp";
 	 Tag "Harvester";
     MONSTER;

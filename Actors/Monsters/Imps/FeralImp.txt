@@ -2,8 +2,8 @@
 actor PM_FeralImp : DoomImp
 {
   var int user_leapstrength;
-  obituary "%o was splattered by a Feral Imp."
-  hitobituary "%o was flayed by a Feral Imp."
+  obituary "%o burned to a crisp by a Feral Imp's fireballs."
+  hitobituary "%o was cut down by a Feral Imp."
   health 75
   radius 20
   height 56
