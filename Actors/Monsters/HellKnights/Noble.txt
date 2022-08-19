@@ -11,7 +11,7 @@ ACTOR PM_Noble
 	+FLOORCLIP
 	+DONTHARMSPECIES
 	Species "Nobles"
-	Tag "Squire"
+	Tag "Noble"
 	SeeSound 	"Noble/Sight"
 	ActiveSound "Noble/Active"
 	PainSound 	"Squire/Pain"

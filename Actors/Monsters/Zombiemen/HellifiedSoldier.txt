@@ -14,7 +14,7 @@ ACTOR PM_HellifiedSoldier
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Hellified Soldier"
-    OBITUARY "%o was killed by A Zombie Soldier!"
+    OBITUARY "%o was blasted by a Hellified Soldier."
     SEESOUND "HFSSEE"
     PainSound "HFSPAI"
     DeathSound "HFSDIE"
@@ -184,4 +184,28 @@ Spawn:
 	}
     Loop
     }
+}
+
+Class HellifiedSoldierPuff : Actor
+{
+  Default
+  {
+    Radius 3;
+    Height 3;
+    RenderStyle "Add";
+    Alpha 0.67;
+	Scale 0.4;
+    +NoGravity
+    +NoBlockMap
+    +DontSplash
+    +ForceXYBillboard
+  }
+
+  States
+  {
+  Spawn:
+    TNT1 A 1 Bright;
+    HSB1 CDEFGHI 2 Bright;
+    Stop;
+  }
 }

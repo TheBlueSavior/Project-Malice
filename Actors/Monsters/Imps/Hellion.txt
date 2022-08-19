@@ -11,9 +11,9 @@ Class PM_Hellion : Actor
     PainChance 44;
     SeeSound "";
 	Species "Imp";
-    PainSound "hile/pain";
-    DeathSound "hile/death";
-    ActiveSound "HILEACT";
+    PainSound "Hellion/Pain";
+    DeathSound "Hellion/Death";
+    ActiveSound "Hellion/Active";
 	Tag "Hellion";
 	MinMissileChance 200;
     Monster;
@@ -28,7 +28,7 @@ Class PM_Hellion : Actor
     HELN AB 10 A_Look();
     Loop;
   See:
-  TNT1 A 0 A_PlaySound("hile/sight",CHAN_6,1.0);
+  TNT1 A 0 A_PlaySound("Hellion/Sight",CHAN_6,1.0);
 	See2:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
@@ -68,7 +68,7 @@ Class PM_Hellion : Actor
     HELN L 2;
     Goto SeeAlt;
   Missile2:
-	TNT1 A 0 A_PlaySound("hile/sight",CHAN_6,1.0);
+	TNT1 A 0 A_PlaySound("Hellion/Sight",CHAN_6,1.0);
     HELN G 0 A_VileStart();
     HELN GHIJK 8 Bright A_FaceTarget();
 	TNT1 A 0 {bFRIGHTENED = true;}//A_ChangeFlag("FRIGHTENED",1);
@@ -118,7 +118,7 @@ Class PM_Hellion : Actor
 	TNT1 A 0;
 	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
 	2ELN A 1 Light("Greenball3");
-	TNT1 A 0 A_PlaySound("hile/sight",CHAN_6);
+	TNT1 A 0 A_PlaySound("Hellion/Sight",CHAN_6);
 	TNT1 A 0 A_PlaySound("EXIRES",CHAN_7);
 	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
 	{
@@ -167,8 +167,8 @@ Class MaliceHellionBall : CacodemonBall
     Speed 18;
     Alpha 0.80;
     DamageType "Fire";
-    SeeSound "Monster/hlnatk";
-    DeathSound "Monster/hlnexp";
+    SeeSound "HellionProj";
+    DeathSound "HellionProjExp";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -193,8 +193,8 @@ Class HellionBallSeek : CacodemonBall
     Speed 12;
     Alpha 0.80;
     DamageType "Fire";
-    SeeSound "Monster/hlnatk";
-    DeathSound "Monster/hlnexp";
+    SeeSound "HellionProj";
+    DeathSound "HellionProjExp";
     +ThruGhost
 	+SEEKERMISSILE
     +ForceXYBillboard
@@ -245,30 +245,6 @@ Class MaliceHellionPuff : Actor
   Spawn:
     TNT1 A 3 Bright;
     HLBL CDEFGHI 3 Bright;
-    Stop;
-  }
-}
-
-Class HellifiedSoldierPuff : Actor
-{
-  Default
-  {
-    Radius 3;
-    Height 3;
-    RenderStyle "Add";
-    Alpha 0.67;
-	Scale 0.4;
-    +NoGravity
-    +NoBlockMap
-    +DontSplash
-    +ForceXYBillboard
-  }
-
-  States
-  {
-  Spawn:
-    TNT1 A 1 Bright;
-    HSB1 CDEFGHI 2 Bright;
     Stop;
   }
 }

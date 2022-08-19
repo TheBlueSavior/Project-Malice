@@ -22,7 +22,8 @@ ACTOR PM_DemonTechBrute : Demon
     DeathSound "DTechDeath"
     ActiveSound "DTechActive"
 	AttackSound "DTechAttack"
-    Obituary "%o was mowed down by a Demon Tech Brute." 
+    Obituary "%o became a successful target practice participant for the Demon Tech Brute."
+	HItObituary "%o was seared by a Demon Tech Brute."
 	Tag "Demon Tech Brute"
     States 
     { 
@@ -266,8 +267,8 @@ ACTOR DTechBall
    +FORCERADIUSDMG
    +BRIGHT
    RenderStyle Add
-   SeeSound "weapons/demontechfire"
-   DeathSound "weapons/demontechex"
+   SeeSound "DTech/Fire"
+   DeathSound "DTech/Exp"
    States
    {
    Spawn:

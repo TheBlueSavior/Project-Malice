@@ -5,10 +5,10 @@ Actor PM_BurntSoul : LostSoul
   PainChance 255
   Speed 11
   Mass 50
-  PainSound "Forgotten/Pain"
-  DeathSound "Forgotten/Death"
-  ActiveSound "Forgotten/Active"
-  AttackSound "Forgotten/Attack"
+  PainSound "BSoul/Pain"
+  DeathSound "BSoul/Death"
+  ActiveSound "BSoul/Active"
+  AttackSound "BSoul/Attack"
   +BRIGHT
   Renderstyle Normal
   Damage (random(15,15))

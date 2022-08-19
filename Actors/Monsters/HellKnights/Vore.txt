@@ -18,7 +18,7 @@ Actor PM_Vore
   +Donthurtspecies
   +MISSILEMORE
   +MissileEvenMore
-  Obituary "%o was burnt by the Vore's cursed magic!" 
+  Obituary "%o did not keep %p eyes on the Vore's cursed magic." 
   SeeSound "Vore/Sight"
   ActiveSound "Vore/Active"
   PainSound "Vore/Pain"
@@ -188,5 +188,61 @@ Actor PM_Vore
 	VORE P 4
 	VORE Q -1 A_bossdeath
 	Stop
+  }
+}
+
+Class VoreShadowBall : Actor
+{
+  Default
+  {
+    Radius 6;
+    Height 8;
+    Speed 28;
+    Damage 4;
+    RenderStyle "Add";
+	Scale 1.4;
+    Alpha 0.90;
+    SeeSound "Shadow/attack";
+    DeathSound "imp/shotx";
+    Projectile;
+    +RANDOMIZE
+  }
+
+  States
+  {
+  Spawn:
+    SBAL A 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE);
+	SBAL B 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE);
+	SBAL C 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE);
+    Loop;
+  Death:
+    SBAL C 5 Bright Light("GreenBall2");
+    SBAL DEFGH 4 BRIGHT;
+    Stop;
+  }
+}
+Class VoreShadowTrail : Actor
+{
+  Default
+  {
+    Radius 1;
+    Height 1;
+    Speed 0;
+    RENDERSTYLE "ADD";
+    ALPHA 0.6;
+    PROJECTILE;
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOBLOCKMAP
+	+THRUACTORS
+	+DONTSPLASH
+    +NOCLIP
+  }
+
+  States
+  {
+  Spawn:
+    2STR ABCDEF 3 Bright;
+    Stop;
   }
 }

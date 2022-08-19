@@ -4,16 +4,16 @@ actor PM_Abhorrent : fatso
  painchance 100
  Speed 5
  Scale 1.1
- SeeSound "ABHSEE"
- PainSound "ABHPAI"
- DeathSound "ABHDIE"
- ActiveSound "ABHACT"
+ SeeSound "Abhorrent/Sight"
+ PainSound "Abhorrent/Pain"
+ DeathSound "Abhorrent/Death"
+ ActiveSound "Abhorrent/Active"
  Bloodcolor "Black"
  Species "Mancubus"
  +DONTHARMSPECIES
  MinMissileChance 2000
  //DropItem "RagePoint1"
- Obituary "%o was scorched by a Hectebus."
+ Obituary "An Abhorrent satisfied its quench for %o's soul."
  Tag "Abhorrent"
  //+NOINFIGHTING
  +DONTHURTSPECIES
@@ -36,7 +36,7 @@ actor PM_Abhorrent : fatso
     Loop
   Missile:
 	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-	ABHR G 1 A_PlaySound("ABHATK",CHAN_6)
+	ABHR G 1 A_PlaySound("Abhorrent/Attack",CHAN_6)
 	ABHR GGGGGGG 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("MANCSHOT")
 	TNT1 A 0 A_CustomMissile("BlueSoulFlare", 20, 34,-10)
