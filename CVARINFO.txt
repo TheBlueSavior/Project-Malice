@@ -1,0 +1,1 @@
+Server Float projectmalice_fodderdivider = 0.25;

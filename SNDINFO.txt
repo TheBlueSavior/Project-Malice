@@ -1,0 +1,3024 @@
+//Horrorspawn
+
+$random Horrorspawn/Step { Horrorspawn/Step1 Horrorspawn/Step2 Horrorspawn/Step3 Horrorspawn/Step4 Horrorspawn/Step5 Horrorspawn/Step6 Horrorspawn/Step7 Horrorspawn/Step8 Horrorspawn/Step9 }
+Horrorspawn/Step1 "Sounds/Monsters/Horrorspawn/HorrorspawnStep1"
+Horrorspawn/Step2 "Sounds/Monsters/Horrorspawn/HorrorspawnStep2"
+Horrorspawn/Step3 "Sounds/Monsters/Horrorspawn/HorrorspawnStep3"
+Horrorspawn/Step4 "Sounds/Monsters/Horrorspawn/HorrorspawnStep4"
+Horrorspawn/Step5 "Sounds/Monsters/Horrorspawn/HorrorspawnStep5"
+Horrorspawn/Step6 "Sounds/Monsters/Horrorspawn/HorrorspawnStep6"
+Horrorspawn/Step7 "Sounds/Monsters/Horrorspawn/HorrorspawnStep7"
+Horrorspawn/Step8 "Sounds/Monsters/Horrorspawn/HorrorspawnStep8"
+Horrorspawn/Step9 "Sounds/Monsters/Horrorspawn/HorrorspawnStep9"
+
+$rolloff Horrorspawn/Step 100 370
+
+$volume Horrorspawn/Step 0.6
+
+$random ZombieFodder/Sight { FODDSEE1 FODDSEE2 FODDSEE3 FODDSEE4 FODDSEE5 FODDSEE6 FODDSEE7 }
+FODDSEE1 FODDSEE1
+FODDSEE2 FODDSEE2
+FODDSEE3 FODDSEE4
+FODDSEE4 FODDSEE4
+FODDSEE5 FODDSEE5
+FODDSEE6 FODDSEE6
+FODDSEE7 FODDSEE7
+
+$random ZombieFodder/Roar { FODDSEE3 FODDSEE4 FODDSEE5 FODDSEE6 FODDSEE7 }
+
+$random ZombieFodder/Active { FODDERACT1 FODDERACT2 }
+FODDERACT1	FODDACT1
+FODDERACT2	FODDACT2
+
+ZombieFodder/Pain	FODDPAIN
+
+$random ZombieFodder/Death { FODDERDIE1 FODDERDIE2 }
+FODDERDIE1	FODDDIE1
+FODDERDIE2	FODDDIE2
+
+ZombieFodder/Melee DSCLAW
+ZFODDGIB ZFODDGIB
+
+$volume ZombieFodder/Sight 0.7
+$volume ZombieFodder/Active 0.5
+$volume ZombieFodder/Pain 0.8
+$volume ZombieFodder/Death 0.6
+
+//Depraved
+$random skeleton/step		{ restep1  restep2 restep3 restep4 restep5 restep6 restep7 restep8 restep9 }
+restep1		revstep1
+restep2		revstep2
+restep3		revstep3
+restep4		revstep4
+restep5		revstep5
+restep6		revstep6
+restep7		revstep7
+restep8		revstep8
+restep9		revstep9
+$limit skeleton/step 4
+$rolloff skeleton/step 150 800
+$volume skeleton/step 0.3
+$random Depraved/Sprint	{ Depraved/Sprint1 Depraved/Sprint2 Depraved/Sprint3 Depraved/Sprint4 }
+Depraved/Sprint1	"Sounds/Monsters/Depraved/DepravedSprint1"
+Depraved/Sprint2	"Sounds/Monsters/Depraved/DepravedSprint2"
+Depraved/Sprint3	"Sounds/Monsters/Depraved/DepravedSprint3"
+Depraved/Sprint4	"Sounds/Monsters/Depraved/DepravedSprint4"
+monster/incsit                d5incsit
+monster/incdth                d5incdth
+monster/incexp                d5incexp
+monster/incatk                d5incatk
+monster/inchit                d5inchit
+
+$random monster/incact		{ monster/incact1 monster/incact2 monster/incact3 monster/incact4 }
+monster/incact1		DINCACT1
+monster/incact2		DINCACT2
+monster/incact3		DINCACT3
+monster/incact4		DINCACT4
+DEPSCR	DEPSCR
+$rolloff DEPSCR 500 1200
+DEPBEM	DEPBEM
+DEPBES	DEPBES
+DEPBEE	DEPBEE
+
+//Blot
+Blot/Sight		DSBLOTSE
+Blot/Death		DSBLOTDI
+
+//Wicked
+monster/wiksit                  dswiksit
+$random monster/wikact		{ monster/wikac1    monster/wikac2 }
+monster/wikac1                  dswikac1
+monster/wikac2                  dswikac2
+monster/wikatk                  dswikatk
+monster/wikpai                  dswikpai
+monster/wikdth                  dswikdth
+weapons/firmfi                  dsfirmfi
+weapons/firex5                  dsfirex5
+monster/tenpn1                  dstenpn1
+monster/tenpn2                  dstenpn2
+
+//Vore
+$random Vore/Sight	{ VORSEE1 VORSEE2 VORSEE3 VORSEE4 }
+VORSEE1 VORSEE1
+VORSEE2 VORSEE2
+VORSEE3 VORSEE3
+VORSEE4 VORSEE4
+$volume Vore/Sight 0.6
+
+$random Vore/Active	{ VORACT1 VORACT2 VORACT3 VORACT4 VORACT5 VORACT6 VORACT7 }
+VORACT1 VORACT1
+VORACT2 VORACT2
+VORACT3 VORACT3
+VORACT4 VORACT4
+VORACT5 VORACT5
+VORACT6 VORACT6
+VORACT7 VORACT7
+$volume Vore/Active 0.6
+
+Vore/Attack	VOREATTK
+Vore/Throw	VORETHRW
+Vore/Hit	dsbarexp
+
+$random Vore/Pain { VORPAI1 VORPAI2 VORPAI3 }
+VORPAI1 VORPAI1
+VORPAI2 VORPAI2
+VORPAI3 VORPAI3
+$volume Vore/Pain 0.6
+
+$random Vore/Death { VORDIE1 VORDIE2 VORDIE3 }
+VORDIE1 VORDIE1
+VORDIE2 VORDIE2
+VORDIE3 VORDIE3
+$volume Vore/Death 0.5
+
+Shadow/attack		SHDATTAK
+
+//Tainted
+RSWMZombie/Sight BZRD_SI1
+RSWMZombie/Pain BZRD_HIT
+RSWMZombie/Death BZRD_DED
+RSWMZombie/ProjDeath BZRD_PRD
+
+DormRSWMZombie/Sight BZRD_SI2
+
+//Azazel
+Goat/Attack				goata2
+Goat/death				goatbd2
+Goat/Pain				goath2
+Goat/Madattack			goats2
+
+missile1charge	h20017
+missile2charge	h20016
+
+waitingballsspawn	purfire
+whiteballssee		acidfire
+whiteballsdeth		acidhit
+redballssee		purfire3
+redballsdeth		r_exp3
+
+$limit redballssee 15
+
+redballbsee		mmfire
+redballbdeth	explode
+whiteballbsee	scream
+$volume whiteballbsee 0.7
+whiteballbdeth	scream2
+
+$limite whiteballsee 5
+
+groundfirestart  flamstrt
+
+//Host
+$random monster/vulsit 		{ monster/vulsi1  monster/vulsi2 }
+$random monster/vuldth 		{ monster/vuldt1  monster/vuldt2 }
+$random monster/vulact 		{ monster/vulact1  monster/vulact2 }
+monster/vulsi1                  dsvulsi1
+monster/vulsi2                  dsvulsi2
+monster/vulsi3                  dsvulsi3
+monster/vulsi4                  dsvulsi4
+monster/vulact1                  dsvulact1
+monster/vulact2                  dsvulact2
+monster/vulact3                  dsvulact3
+monster/vulpai                  dsvulpai
+monster/vuldt1                  dsvuldt1
+monster/vuldt2                  dsvuldt2
+monster/vulswg                  dsvulswg
+monster/vulhit                  dsvulhit
+monster/vulsh1                  dsvulsh1
+monster/vulsh2                  dsvulsh2
+agaures/active		AGURACTV
+
+//Void
+Heartbeat1 DSHRTBT1
+Heartbeat2 DSHRTBT2
+
+//Brute
+BPinky/Death BPDEATH
+BPinky/Pain BPPAIN
+BPinky/Bite BPBITE
+BPinky/Sight BPSEE
+BPinky/Idle BPGRUMBL
+
+$volume BPinky/Death 0.5
+$volume BPinky/Bite 0.7
+$volume BPinky/Idle 0.7
+
+$random Brute/Sight	{ BRUSEE1 BRUSEE2 BRUSEE3 }
+BRUSEE1 BRUSEE1
+BRUSEE2 BRUSEE2
+BRUSEE3 BRUSEE3
+$rolloff Brute/Sight 500 1200
+$random Brute/Death	{ BRUDIE1 BRUDIE2 BRUDIE3 }
+BRUDIE1 BRUDIE1
+BRUDIE2 BRUDIE2
+BRUDIE3 BRUDIE3
+$random Brute/Pain	{ BRUPAI1 BRUPAI2 BRUPAI3 }
+BRUPAI1 BRUPAI1
+BRUPAI2 BRUPAI2
+BRUPAI3 BRUPAI3
+$random Brute/Active { BRUACT1 BRUACT2 BRUACT3 BRUACT4 }
+BRUACT1 BRUACT1
+BRUACT2 BRUACT2
+BRUACT3 BRUACT3
+BRUACT4 BRUACT4
+$volume Brute/Sight 0.4
+$volume Brute/Active 0.4
+$volume Brute/Pain 0.4
+$volume Brute/Death 0.4
+//Cyber Brute
+$random CBrute/Active { CBRUACT1 CBRUACT2 CBRUACT3 }
+CBRUACT1 CBRUACT1
+CBRUACT2 CBRUACT2
+CBRUACT3 CBRUACT3
+$random CBrute/Sight	{ CBRUSEE1 CBRUSEE2 CBRUSEE3 }
+CBRUSEE1 CBRUSEE1
+CBRUSEE2 CBRUSEE2
+CBRUSEE3 CBRUSEE3
+$rolloff CBrute/Sight 500 1200
+$volume CBrute/Active 0.7
+
+$random Barks { BPBark BPBark2 }
+BPBark	BPBark
+BPBark2 BPBark2
+
+//Charred
+$random Charred/Sight { CHARSIG1 CHARSIG2 CHARSIG3 }
+CHARSIG1 CHARSIG1
+CHARSIG2 CHARSIG2
+CHARSIG3 CHARSIG3
+$volume CHARSIG2 0.1
+$random Charred/Active { CHARACT1 CHARACT2 CHARACT3 CHARACT4 }
+CHARACT1 CHARACT1
+CHARACT2 CHARACT2
+CHARACT3 CHARACT3
+CHARACT4 CHARACT4
+$random Charred/Pain { CHARPAI1 CHARPAI2 CHARPAI3 CHARPAI4 CHARPAI5 CHARPAI6}
+CHARPAI1 CHARPAI1
+CHARPAI2 CHARPAI2
+CHARPAI3 CHARPAI3
+CHARPAI4 CHARPAI4
+CHARPAI5 CHARPAI5
+CHARPAI6 CHARPAI6
+$random Charred/Death { CHARDEA1 CHARDEA2 CHARDEA3 CHARDEA4 }
+CHARDEA1 CHARDEA1
+CHARDEA2 CHARDEA2
+CHARDEA3 CHARDEA3
+CHARDEA4 CHARDEA4
+$volume Charred/Death 0.6
+$random Charred/Idle { CHARIDL1 CHARIDL2 CHARIDL3 CHARIDL4 CHARIDL5 CHARIDL6 CHARIDL7 CHARIDL8 CHARIDL9 CHARIDL10 CHARIDL11 }
+$limit Charred/Idle 4
+$volume Charred/Idle 0.3
+CHARIDL1 CHARIDL1
+CHARIDL2 CHARIDL2
+CHARIDL3 CHARIDL3
+CHARIDL4 CHARIDL4
+CHARIDL5 CHARIDL5
+CHARIDL6 CHARIDL6
+CHARIDL7 CHARIDL7
+CHARIDL8 CHARIDL8
+CHARIDL9 CHARIDL9
+CHARIDL10 CHARIDL10
+CHARIDL11 CHARIDL11
+
+
+
+//Famine
+FATSEE FATSEE
+FATDTH FATDTH
+FATACT FATACT
+FATPAI FATPAI
+FATSPIT FATSPIT
+torturedsoul/poison dstrtpsn
+SoFlesh/attack Dssoffir
+$limit SoFlesh/attack 10
+$limit Dssoffir 10
+$volume SoFlesh/attack 0.6
+SoFlesh/explode Dssofexp
+
+//Beholder
+cacobaldsee  BALDS
+cacobalddeath  BALDD
+cacobaldpain  BALDP
+$RANDOM cacobaldidle { cacobaldidle1 cacobaldidle2 cacobaldidle3 }
+cacobaldidle1 BALDI
+cacobaldidle2 BALDI2
+cacobaldidle3 BALDI3
+
+//Infested
+$random Infested/Idle { INFEIDL1 INFEIDL2 INFEIDL3 INFEIDL4 INFEIDL5 INFEIDL6 INFEIDL7 INFEIDL8 INFEIDL9 INFEIDL10 INFEIDL11 INFEIDL12 }
+$rolloff Infested/Idle 400 2200
+$limit Infested/Idle 5
+INFEIDL1 INFEIDL1
+INFEIDL2 INFEIDL2
+INFEIDL3 INFEIDL3
+INFEIDL4 INFEIDL4
+INFEIDL5 INFEIDL5
+INFEIDL6 INFEIDL6
+INFEIDL7 INFEIDL7
+INFEIDL8 INFEIDL8
+INFEIDL9 INFEIDL9
+INFEIDL10 INFEIDL10
+INFEIDL11 INFEIDL11
+INFEIDL12 INFEIDL12
+$volume Infested/Idle 0.5
+$random Infested/See { INFESEE1 INFESEE2 INFESEE3 INFESEE4 }
+$rolloff Infested/See 400 2200
+INFESEE1 INFESEE1
+INFESEE2 INFESEE2
+INFESEE3 INFESEE3
+INFESEE4 INFESEE4
+$volume Infested/Idle 0.5
+$volume Infested/See 0.4
+$random Infested/Active { INFEIDL1 INFEIDL3 INFEIDL5 INFEIDL7 INFEIDL9 INFEIDL11 INFEIDL12 }
+INFEDIE INFEDIE
+$volume Infested/Active 0.5
+
+//Trite
+$Random Trite/Sight { TRITSIG1 TRITSIG2 TRITSIG3 }
+TRITSIG1		TRITSIG1
+TRITSIG2		TRITSIG2
+TRITSIG3		TRITSIG3
+TRITSIG4		TRITSIG4
+$Random Trite/Active { TRITACT1 TRITACT2 TRITACT3 }
+TRITACT1		TRITACT1
+TRITACT2		TRITACT2
+TRITACT3		TRITACT3
+$Random Trite/Attack { TRITATT1 TRITATT2 TRITATT3 }
+TRITATT1		TRITATT1
+TRITATT2		TRITATT2
+TRITATT3		TRITATT3
+$Random Trite/MeleeHit { TRITHIT1 TRITHIT2 }
+TRITHIT1		TRITHIT1
+TRITHIT2		TRITHIT2
+$Random Trite/Step { TRITSTE1 TRITSTE2 TRITSTE3 TRITSTE4 }
+TRITSTE1		TRITSTE1
+TRITSTE2		TRITSTE2
+TRITSTE3		TRITSTE3
+TRITSTE4		TRITSTE4
+Trite/WebStart		TRITWEB1
+Trite/WebEnd		TRITWEB2
+$Random Trite/Pain { TRITPAI1 TRITPAI2 TRITPAI3 }
+TRITPAI1		TRITPAI1
+TRITPAI2		TRITPAI2
+TRITPAI3		TRITPAI3
+$Random Trite/Death { TRITDEA1 TRITDEA2 TRITDEA3 }
+TRITDEA1		TRITDEA1
+TRITDEA2		TRITDEA2
+TRITDEA3		TRITDEA3
+$Random Trite/Splat { TRITSPL1 TRITSPL2 }
+TRITSPL1		TRITSPL1
+TRITSPL2		TRITSPL2
+
+$Volume Trite/Sight 0.3
+$Volume Trite/Active 0.3
+$Volume Trite/Attack 0.4
+$Volume Trite/MeleeHit 0.5
+$Volume Trite/Pain 0.3
+$Volume Trite/Death 0.3
+$Volume Trite/Splat 0.5
+$Volume Trite/Step 0.2
+$rolloff Trite/Step 130 770
+
+//MutatedGunner
+$random Tentaclecommando/sight
+{ 
+Tentaclecommando/sight7
+Tentaclecommando/sight8
+Tentaclecommando/sight9
+Tentaclecommando/sight10
+Tentaclecommando/sight11
+Tentaclecommando/sight12
+Tentaclecommando/sight13
+}
+
+Tentaclecommando/sight7 zomsit7
+Tentaclecommando/sight8 zomsit8
+Tentaclecommando/sight9 zomsit9
+Tentaclecommando/sight10 zomsit10
+Tentaclecommando/sight11 zomsit11
+Tentaclecommando/sight12 zomsit12
+Tentaclecommando/sight13 zomsit13
+
+$volume Tentaclecommando/sight 0.4
+
+$random Tentaclecommando/death
+{ 
+Tentaclecommando/death4
+Tentaclecommando/death5
+Tentaclecommando/death6
+Tentaclecommando/death7 
+}
+
+
+Tentaclecommando/death4	zomdth4
+Tentaclecommando/death5	zomdth5
+Tentaclecommando/death6	zomdth6
+Tentaclecommando/death7	zomdth7
+
+$volume Tentaclecommando/death 0.4
+
+$random Tentaclecommando/pain
+{ 
+Tentaclecommando/pain7
+Tentaclecommando/pain8
+Tentaclecommando/pain9
+Tentaclecommando/pain10 
+}
+
+
+Tentaclecommando/pain7 zompn7
+Tentaclecommando/pain8 zompn8
+Tentaclecommando/pain9 zompn9
+Tentaclecommando/pain10 zompn10
+
+$volume Tentaclecommando/pain 0.4
+
+$random Tentaclecommando/active
+{ 
+Tentaclecommando/active9
+Tentaclecommando/active10
+Tentaclecommando/active11
+Tentaclecommando/active12
+Tentaclecommando/active13
+}
+
+Tentaclecommando/active9 zomact9
+Tentaclecommando/active10 zomact10
+Tentaclecommando/active11 zomact11
+Tentaclecommando/active12 zomact12
+Tentaclecommando/active13 zomact13
+
+$volume Tentaclecommando/active 0.4
+
+$random UCHAIN/Bullets { UCHAIN/UCBHIT1 UCHAIN/UCBHIT2 UCHAIN/UCBHIT3 UCHAIN/UCBHIT4 UCHAIN/UCBHIT5 }
+UCHAIN/UCBHIT1 UCBHIT1
+UCHAIN/UCBHIT2 UCBHIT2
+UCHAIN/UCBHIT3 UCBHIT3
+UCHAIN/UCBHIT4 UCBHIT4
+UCHAIN/UCBHIT5 UCBHIT5
+
+$random PM/BulletHit { PM/BulletHit1 PM/BulletHit2 PM/BulletHit3 PM/BulletHit4 PM/BulletHit5 }
+PM/BulletHit1 "Sounds/Other/PMBulletHit1"
+PM/BulletHit2 "Sounds/Other/PMBulletHit2"
+PM/BulletHit3 "Sounds/Other/PMBulletHit3"
+PM/BulletHit4 "Sounds/Other/PMBulletHit4"
+PM/BulletHit5 "Sounds/Other/PMBulletHit5"
+
+$limit PM/BulletHit 20
+
+UCHAIN/Windup UCFSTAR
+UCHAIN/Loop UCFLOOP
+$rolloff UCHAIN/Loop 350 2200
+UCHAIN/Winddown UCFSTOP
+UCHAIN/Steam STEAM
+UCHAIN/Idle UCIDLE
+UCHAIN/Pain UCPAIN
+
+//Watcher
+monster/watsit                  dswatsit
+monster/watact                  dswatact
+monster/watpai                  dswatpai
+monster/watdth                  dswatdth
+monster/watatk                  dswatatk
+monster/wathit                  dswathit
+caco/melee                      dsdembit
+
+//Husk
+RevGhoul/Sight	 	D4REVSEE
+RevGhoul/Pain 		D4REVPAI
+RevGhoul/active 	D4REVACT
+RevGhoul/melee 		GHOULPUN
+RevGhoul/Death 		D4REVDIE
+RevGhoul/Swing 		GHOULSWN
+RevGhoul/attack		GBALLFLY
+RevGhoul/tracex		GBALLEXP
+RevGhoul/cloud		GHOULCLD
+
+monsters/fatsofire			DSFATFIR
+
+$volume monsters/fatsofire 0.5
+
+DSPLAS2 DSPLAS2
+$limit DSPLAS2 0
+
+$Random ZSpecOps/Sight	{ FALLSEE1 FALLSEE2 FALLSEE3 FALLSEE4 FALLSEE5 FALLSEE6 }
+FALLSEE1 FALLSEE1
+FALLSEE2 FALLSEE2
+FALLSEE3 FALLSEE3
+FALLSEE4 FALLSEE4
+FALLSEE5 FALLSEE5
+FALLSEE6 FALLSEE6
+
+$Random ZSpecOps/Act	{ FALLACT1 FALLACT2 FALLACT3 FALLACT4 FALLACT5 FALLACT6 FALLACT7 FALLACT8 }
+FALLACT1 FALLACT1
+FALLACT2 FALLACT2
+FALLACT3 FALLACT3
+FALLACT4 FALLACT4
+FALLACT5 FALLACT5
+FALLACT6 FALLACT6
+FALLACT7 FALLACT7
+FALLACT8 FALLACT8
+
+$Random ZSpecOps/MGun	{ ZSPCMGN1 ZSPCMGN2 ZSPCMGN3 }
+ZSPCMGN1	ZSPCMGN1
+ZSPCMGN2	ZSPCMGN2
+ZSPCMGN3	ZSPCMGN3
+$Random ZSpecOps/Pain	{ FALLPAI1 FALLPAI2 FALLPAI3 FALLPAI4 }
+FALLPAI1 FALLPAI1
+FALLPAI2 FALLPAI2
+FALLPAI3 FALLPAI3
+FALLPAI4 FALLPAI4
+$Random ZSpecOps/Death	{ FALLDIE1 FALLDIE2 }
+FALLDIE1 FALLDIE1
+FALLDIE2 FALLDIE2
+
+$Limit ZSpecOps/MGun	0
+$rolloff ZSpecOps/MGun 400 3000
+
+zombie/rifle dsrifle
+
+monster/hadsit                dshadsit
+monster/haddth                dshaddth
+monster/hadexp                dshadexp
+monster/hadtel                dshadtel
+monster/hadwlk                dshadwlk
+
+monster/hlnsit                  dshlnsit
+monster/hlnact                  dshlnact
+monster/hlnpai                  dshlnpai
+monster/hlndth                  dshlndth
+monster/hlnatk                  dshlnatk
+monster/hlnexp                  dshlnexp
+
+$limit monster/hlnatk 12
+
+//Harvester
+
+$random Harvester/Sight { Harvester/Sight1 Harvester/Sight2 Harvester/Sight3 Harvester/Sight4 Harvester/Sight5 Harvester/Sight6 }
+Harvester/Sight1 "Sounds/Monsters/Harvester/HarvesterSight1"
+Harvester/Sight2 "Sounds/Monsters/Harvester/HarvesterSight2"
+Harvester/Sight3 "Sounds/Monsters/Harvester/HarvesterSight3"
+Harvester/Sight4 "Sounds/Monsters/Harvester/HarvesterSight4"
+Harvester/Sight5 "Sounds/Monsters/Harvester/HarvesterSight5"
+Harvester/Sight6 "Sounds/Monsters/Harvester/HarvesterSight6"
+
+$random Harvester/Active { Harvester/Active1 Harvester/Active2 Harvester/Active3 Harvester/Active4 Harvester/Active5 }
+Harvester/Active1 "Sounds/Monsters/Harvester/HarvesterActive1"
+Harvester/Active2 "Sounds/Monsters/Harvester/HarvesterActive2"
+Harvester/Active3 "Sounds/Monsters/Harvester/HarvesterActive3"
+Harvester/Active4 "Sounds/Monsters/Harvester/HarvesterActive4"
+Harvester/Active5 "Sounds/Monsters/Harvester/HarvesterActive5"
+
+$Random Harvester/Death { Harvester/Death1 Harvester/Death2 }
+Harvester/Death1 "Sounds/Monsters/Harvester/HarvesterDeath1"
+Harvester/Death2 "Sounds/Monsters/Harvester/HarvesterDeath2"
+
+$Random Harvester/Pain { Harvester/Pain1 Harvester/Pain2 }
+Harvester/Pain1 "Sounds/Monsters/Harvester/HarvesterPain1"
+Harvester/Pain2 "Sounds/Monsters/Harvester/HarvesterPain2"
+
+harvester/scream shfbscrm
+
+harvester/ghost shghscrm
+
+monster/dissit dsdissit
+
+HA1ATK HA1ATK
+HARSU1 HARSU1
+HARSU2 HARSU2
+HARSU3 HARSU3
+HARSU4 HARSU4
+
+$limit HARSU4 4
+
+monster/disdth dsdisdth
+monster/disact dsdisact
+monster/blur dsblur
+monster/disat1 dsdisat1
+monster/disat2 dsdisat2
+monster/disht1 dsdisht1
+monster/disht2 dsdisht2
+
+monster/acosit dsacosit
+monster/acopai dsacopai
+monster/acodth dsacodth
+monster/acoact dsacoact
+monster/blur dsblur
+monster/acosht dsacosht
+monster/acohit dsacohit
+
+$random Blob/Explode { DBLBEXP1 DBLBEXP2 DBLBEXP3 }
+DBLBEXP1 DBLBEXP1
+DBLBEXP2 DBLBEXP2
+DBLBEXP3 DBLBEXP3
+
+$random Blob/Slosh { BlobSlosh1 BlobSlosh2 }
+BlobSlosh1 "Sounds/Monsters/Pustule/BlobSlosh1"
+BlobSlosh2 "Sounds/Monsters/Pustule/BlobSlosh2"
+$rolloff Blob/Slosh 25 750
+
+Blob/Sight	DSBLBSEE
+Blob/Active	DSBLBACT
+$rolloff Blob/Active 20 600
+Blob/Pain	DSBLBPAN
+
+$limit Blob/Pain	0
+
+nightmare/sight DSNMRSIT
+$volume nightmare/sight 0.5
+nightmare/pain DSNMRPAI
+nightmare/death DSNMRDTH
+$random nightmare/active { DNMRACT1 DNMRACT2 DNMRACT3 DNMRACT4 }
+DNMRACT1 DNMRACT1
+DNMRACT2 DNMRACT2
+DNMRACT3 DNMRACT3
+DNMRACT4 DNMRACT4
+nightmare/melee DSNMRATK
+
+//Nailgunner
+PNZombie/See1	pnzsee1
+PNZombie/See2	pnzsee2
+PNZombie/See3	pnzsee3
+PNZombie/See4	pnzsee4
+$Random PNZombie/See	{ PNZombie/See1 PNZombie/See2 PNZombie/See3 PNZombie/See4 }
+
+PNZombie/Act1	pnzAct1
+PNZombie/Act2	pnzAct2
+PNZombie/Act3	pnzAct3
+PNZombie/Act4	pnzAct4
+PNZombie/Act5	pnzAct5
+PNZombie/Act6	pnzAct6
+PNZombie/Act7	pnzAct7
+$Random PNZombie/Act	{ PNZombie/Act1 PNZombie/Act2 PNZombie/Act3 PNZombie/Act4 PNZombie/Act5 PNZombie/Act6 PNZombie/Act7 }
+
+PNZombie/Pain1	pnzPain1
+PNZombie/Pain2	pnzPain2
+PNZombie/Pain3	pnzPain3
+PNZombie/Pain4	pnzPain4
+$Random PNZombie/Pain	{ PNZombie/Pain1 PNZombie/Pain2 PNZombie/Pain3 PNZombie/Pain4 }
+
+PNZombie/Die1	pnzDie1
+PNZombie/Die2	pnzDie2
+$Random PNZombie/Die	{ PNZombie/Die1 PNZombie/Die2 }
+
+Nailgunner/Altfire "Sounds/Monsters/Nailgunner/NailgunnerAltFire"
+
+Nailgunner/Charge "Sounds/Monsters/Nailgunner/NailgunnerCharge"
+
+$rolloff Nailgunner/Altfire 300 2200
+
+//Weapon Sounds
+PulseNail/fire dssngf
+$limit PulseNail/fire 0
+ricochet1 dssngh1
+ricochet2 dssngh2
+$RANDOM PulseNail/hit { ricochet1 ricochet2 }
+
+ds12gfir	ds12gfir
+//$volume ds12gfir 1
+$limit ds12gfir 12
+$rolloff ds12gfir 600 2200
+
+
+RatSpawn/Sight RATSPAWN
+RatHit/Pain RATHIT
+RatAttack/Attack RATATTAC
+RatDead/Dead RATDEAD
+
+$random Shadow/Idle { Shadow/Idle1 Shadow/Idle2}
+Shadow/Idle1 SHADIDL1
+Shadow/Idle2 SHADIDL2
+Shadow/Death SHADDEAD
+Shadow/Pain SHADPAIN
+Shadow/Sight SHADSIGH
+Shadow/Fire SHADGUN
+
+
+//	Hell knight
+
+Doom4/Monsters/HellKnight/Charge		"Sounds/Monsters/HellKnight/Charge.ogg"
+$random Doom4/Other/MeleeHit { Doom4/Other/MeleeHit1 Doom4/Other/MeleeHit2 Doom4/Other/MeleeHit3 }
+$random Doom4/Other/MeleeSwing { Doom4/Other/MeleeSwing1 Doom4/Other/MeleeSwing2 }
+
+Doom4/Other/MeleeSwing1				"sounds/Other/whoosh1.ogg"
+Doom4/Other/MeleeSwing2				"sounds/Other/whoosh2.ogg"
+Doom4/Other/MeleeHit1				"sounds/Other/MeleeHit1.ogg"
+Doom4/Other/MeleeHit2				"sounds/Other/MeleeHit2.ogg"
+Doom4/Other/MeleeHit3				"sounds/Other/MeleeHit3.ogg"
+
+Doom4/Other/FireballHit1			"sounds/Other/3IMPFHT1.ogg"
+Doom4/Other/FireballHit2			"sounds/Other/3IMPFHT3.ogg"
+
+Doom4/Monsters/BaronFloorPound				"Sounds/Monsters/SFX/BaronFloorPound.ogg"
+$random 	Doom4/Monsters/BaronFireBallHit 			{ Doom4/Monsters/BaronFireBallHit1 Doom4/Monsters/BaronFireBallHit2 }
+Doom4/Monsters/BaronFireBallHit1		"Sounds/Monsters/SFX/BaronFireBallHit1.ogg"
+	Doom4/Monsters/BaronFireBallHit2		"Sounds/Monsters/SFX/BaronFireBallHit2.ogg"
+	
+//CyberZombie
+
+$random CyberZombie/Step { CyberZombie/Step1 CyberZombie/Step2 CyberZombie/Step3 CyberZombie/Step4 }
+CyberZombie/Step1 "Sounds/Monsters/CyberFodder/CyberFodderStep1"
+CyberZombie/Step2 "Sounds/Monsters/CyberFodder/CyberFodderStep2"
+CyberZombie/Step3 "Sounds/Monsters/CyberFodder/CyberFodderStep3"
+CyberZombie/Step4 "Sounds/Monsters/CyberFodder/CyberFodderStep4"
+
+$volume CyberZombie/Step  0.6
+
+$random CyberZ/Sight { CZOMSEE1 CZOMSEE2 }
+CZOMSEE1 CZOMSEE1
+CZOMSEE2 CZOMSEE2
+
+$random CyberZ/Active { CZOMACT1 CZOMACT2 CZOMACT3 CZOMACT4 CZOMACT5 CZOMACT6 CZOMACT7 CZOMACT8 CZOMACT9 }
+CZOMACT1 CZOMACT1
+CZOMACT2 CZOMACT2
+CZOMACT3 CZOMACT3
+CZOMACT4 CZOMACT4
+CZOMACT5 CZOMACT5
+CZOMACT6 CZOMACT6
+CZOMACT7 CZOMACT7
+CZOMACT8 CZOMACT8
+CZOMACT9 CZOMACT9
+
+CyberZ/Pain			CZOMPAI
+
+CyberZ/Death		CZOMDTH
+
+
+$volume CyberZ/Sight 0.4
+$volume CyberZ/Active 0.4
+
+//Hectebus
+$random HECTSEE { HECTSEE1 HECTSEE2 HECTSEE3 HECTSEE4 }
+HECTSEE1 HECTSEE1
+HECTSEE2 HECTSEE2
+HECTSEE3 HECTSEE3
+HECTSEE4 HECTSEE4
+
+$random HECTACT { HECTACT1 HECTACT2 HECTACT3 HECTACT4 HECTACT5 HECTACT6 HECTACT7 HECTACT8 HECTACT9 HECTACT10 }
+HECTACT1 HECTACT1
+HECTACT2 HECTACT2
+HECTACT3 HECTACT3
+HECTACT4 HECTACT4
+HECTACT5 HECTACT5
+HECTACT6 HECTACT6
+HECTACT7 HECTACT7
+HECTACT8 HECTACT8
+HECTACT9 HECTACT9
+HECTACT10 HECTACT10
+
+$random HECTATK { HECTATK1 HECTATK2 HECTATK3 HECTATK4 HECTATK5 HECTATK6 HECTATK7 HECTATK8 }
+HECTATK1 HECTATK1
+HECTATK2 HECTATK2
+HECTATK3 HECTATK3
+HECTATK4 HECTATK4
+HECTATK5 HECTATK5
+HECTATK6 HECTATK6
+HECTATK7 HECTATK7
+HECTATK8 HECTATK8
+
+$random HECTPAI { HECTPAI1 HECTPAI2 HECTPAI3 }
+HECTPAI1 HECTPAI1
+HECTPAI2 HECTPAI2
+HECTPAI3 HECTPAI3
+
+$random HectebusBall/Exp { HectebusBall/Exp1 HectebusBall/Exp2 HectebusBall/Exp3 HectebusBall/Exp4 HectebusBall/Exp5 }
+HectebusBall/Exp1 "Sounds/Monsters/Hectebus/HectebusBallExp1"
+HectebusBall/Exp2 "Sounds/Monsters/Hectebus/HectebusBallExp2"
+HectebusBall/Exp3 "Sounds/Monsters/Hectebus/HectebusBallExp3"
+HectebusBall/Exp4 "Sounds/Monsters/Hectebus/HectebusBallExp4"
+HectebusBall/Exp5 "Sounds/Monsters/Hectebus/HectebusBallExp5"
+
+$volume HectebusBall/Exp 0.8
+
+HECTDIE 	HECTDIE
+HECTAIM		HECTAIM
+
+//Host
+$random Host/Sight { PLAGSIT1 PLAGSIT2 }
+PLAGSIT1 PLAGSIT1
+PLAGSIT2 PLAGSIT2
+$random Host/Active { PLAGACT1 PLAGACT2 }
+PLAGACT1 PLAGACT1
+PLAGACT2 PLAGACT2
+$random Host/Pain { PLAGPAI1 PLAGPAI2 }
+PLAGPAI1 PLAGPAI1
+PLAGPAI2 PLAGPAI2
+$random Host/Death { PLAGDTH1 PLAGDTH2 }
+PLAGDTH1 PLAGDTH1
+PLAGDTH2 PLAGDTH2
+Host/Attack		PLAGATK
+Host/Swing		PLAGSWIN
+Host/Melee		PLAGMLEE
+
+HOSTFLY HOSTFLY
+HOSTLOP HOSTLOP
+
+PoisonShot/Shot			POISSHOT
+PoisonShot/Hit			POISHIT
+
+$volume Host/Sight 0.7
+$volume Host/Active 0.7
+
+//Hunger
+$random Hunger/Sight { HUNSEE1 HUNSEE2 }
+HUNSEE1	HUNSEE1
+HUNSEE2	HUNSEE2
+HUNSEE3 HUNSEE3
+HUNSEE4 HUNSEE4
+HUNSEE5 HUNSEE5
+HUNSEE6 HUNSEE6
+$volume Hunger/Sight 0.5
+
+$random Hunger/Active { HUNACT1 HUNACT2 HUNACT3 HUNACT4 HUNACT5 HUNACT6 HUNSEE1 HUNSEE2 }
+HUNACT1	HUNACT1
+HUNACT2	HUNACT2
+HUNACT3	HUNACT3
+HUNACT4	HUNACT4
+HUNACT5	HUNACT5
+HUNACT6	HUNACT6
+HUNSEE1	HUNSEE1
+HUNSEE2	HUNSEE2
+$volume Hunger/Active 0.5
+
+$random Hunger/Pain	{ HUNPAI1 HUNPAI2 HUNPAI3 HUNPAI4 HUNPAI5 }
+HUNPAI1	HUNPAI1
+HUNPAI2 HUNPAI2
+HUNPAI3 HUNPAI3
+HUNPAI4 HUNPAI4
+HUNPAI5 HUNPAI5
+
+$volume HUNPAI5 0.3
+
+$random Hunger/Death { HUNDIE1 HUNDIE2 HUNDIE3 }
+HUNDIE1	HUNDIE1
+HUNDIE2	HUNDIE2
+HUNDIE3 HUNDIE3
+
+$volume Hunger/Death 1
+$volume HUNDIE3 0.15
+
+$random Hunger/Idle { HUNIDL1 HUNIDL2 HUNIDL3 HUNIDL4  }
+HUNIDL1 HUNIDL1 
+HUNIDL2 HUNIDL2
+HUNIDL3 HUNIDL3
+HUNIDL4 HUNIDL4
+$volume Hunger/Idle 0.3
+
+Flying/Fly FLYING
+FlyHit/Hit FLYHIT
+
+SFX/Buzz	DSBUZZ
+$rolloff SFX/Buzz 3 30
+
+weapons/assaultrifle		dscgun
+$rolloff weapons/assaultrifle 300 2200
+
+Rat/Squeek	DSRAT
+Rat/Active	DSRATIDL
+DSRATDI1	DSRATDI1
+DSRATDI2	DSRATDI2
+$random Rat/Death	{ DSRATDI1 DSRATDI2 }
+
+//Zombie Soldier
+
+$random ZombieSoldier/Step { ZombieSoldier/Step1 ZombieSoldier/Step2 ZombieSoldier/Step3 ZombieSoldier/Step4 ZombieSoldier/Step5 ZombieSoldier/Step6 ZombieSoldier/Step7 ZombieSoldier/Step8 }
+ZombieSoldier/Step1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep1"
+ZombieSoldier/Step2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep2"
+ZombieSoldier/Step3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep3"
+ZombieSoldier/Step4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep4"
+ZombieSoldier/Step5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep5"
+ZombieSoldier/Step6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep6"
+ZombieSoldier/Step7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep7"
+ZombieSoldier/Step8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierStep8"
+
+$volume ZombieSoldier/Step 0.6
+$rolloff ZombieSoldier/Step 160 800
+
+$random ZombieSoldier/See { ZombieSoldier/See1 ZombieSoldier/See2 ZombieSoldier/See3 }
+ZombieSoldier/See1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee1"
+ZombieSoldier/See2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee2"
+ZombieSoldier/See3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierSee3"
+
+$rolloff ZombieSoldier/See 240 1200
+
+$random ZombieSoldier/Active { ZombieSoldier/Active1 ZombieSoldier/Active2 ZombieSoldier/Active3 ZombieSoldier/Active4 ZombieSoldier/Active5 ZombieSoldier/Active6 ZombieSoldier/Active7 ZombieSoldier/Active8 ZombieSoldier/Active9 ZombieSoldier/Active10 }
+ZombieSoldier/Active1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive1"
+ZombieSoldier/Active2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive2"
+ZombieSoldier/Active3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive3"
+ZombieSoldier/Active4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive4"
+ZombieSoldier/Active5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive5"
+ZombieSoldier/Active6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive6"
+ZombieSoldier/Active7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive7"
+ZombieSoldier/Active8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive8"
+ZombieSoldier/Active9 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive9"
+ZombieSoldier/Active10 "Sounds/Monsters/ZombieSoldier/ZombieSoldierActive10"
+
+$rolloff ZombieSoldier/Active 280 1200
+
+$random ZombieSoldier/Attack { ZombieSoldier/Attack1 ZombieSoldier/Attack2 ZombieSoldier/Attack3 ZombieSoldier/Attack4 ZombieSoldier/Attack5 }
+ZombieSoldier/Attack1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack1"
+ZombieSoldier/Attack2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack2"
+ZombieSoldier/Attack3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack3"
+ZombieSoldier/Attack4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack4"
+ZombieSoldier/Attack5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierAttack5"
+
+$rolloff ZombieSoldier/Attack 400 1400
+
+$random ZombieSoldier/Pain { ZombieSoldier/Pain1 ZombieSoldier/Pain2 ZombieSoldier/Pain3 ZombieSoldier/Pain4 ZombieSoldier/Pain5 ZombieSoldier/Pain6 ZombieSoldier/Pain7 ZombieSoldier/Pain8 }
+ZombieSoldier/Pain1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain1"
+ZombieSoldier/Pain2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain2"
+ZombieSoldier/Pain3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain3"
+ZombieSoldier/Pain4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain4"
+ZombieSoldier/Pain5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain5"
+ZombieSoldier/Pain6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain6"
+ZombieSoldier/Pain7 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain7"
+ZombieSoldier/Pain8 "Sounds/Monsters/ZombieSoldier/ZombieSoldierPain8"
+
+$rolloff ZombieSoldier/Pain 400 1200
+
+$random ZombieSoldier/Death { ZombieSoldier/Death1 ZombieSoldier/Death2 ZombieSoldier/Death3 ZombieSoldier/Death4 ZombieSoldier/Death5 ZombieSoldier/Death6 }
+ZombieSoldier/Death1 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath1"
+ZombieSoldier/Death2 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath2"
+ZombieSoldier/Death3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath3"
+ZombieSoldier/Death4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath4"
+ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5"
+ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6"
+
+//HelmetedZombie
+
+$Random Zombie/See	{ ZTROSIG1 ZTROSIG2 ZTROSIG3 ZTROSIG4 }
+ZTROSIG1	ZTROSIG1
+ZTROSIG2	ZTROSIG2
+ZTROSIG3	ZTROSIG3
+ZTROSIG4	ZTROSIG4
+$Random Zombie/Pain	{ ZTROPAI1 ZTROPAI2 ZTROPAI3 ZTROPAI4 }
+ZTROPAI1	ZTROPAI1
+ZTROPAI2	ZTROPAI2
+ZTROPAI3	ZTROPAI3
+ZTROPAI4	ZTROPAI4
+$Random Zombie/Death	{ ZTRODEA1 ZTRODEA2 ZTRODEA3 ZTRODEA4 }
+ZTRODEA1	ZTRODEA1
+ZTRODEA2	ZTRODEA2
+ZTRODEA3	ZTRODEA3
+ZTRODEA4	ZTRODEA4
+$Random Zombie/Active	{ ZTROACT1 ZTROACT2 ZTROACT3 ZTROACT4 }
+ZTROACT1	ZTROACT1
+ZTROACT2	ZTROACT2
+ZTROACT3	ZTROACT3
+ZTROACT4	ZTROACT4
+
+$volume Zombie/See 0.5
+$volume Zombie/Pain 0.5
+$volume Zombie/Death 0.5
+$volume Zombie/Active 0.5
+
+LordOfHeresy/sight DSLOHSIT
+LordOfHeresy/act DSLOHACT
+LordOfHeresy/death DSLOHDTH
+
+electric/hum			elcthum1
+monsters/fusionfire			dsfusins
+$limit monsters/fusionfire 0
+monsters/fusionitepain		dsfupain
+
+ArachCrash "Sounds/Monsters/Fusionite/ArachCrash"
+ArachExpGore "Sounds/Monsters/Fusionite/ArachExpGore"
+
+$rolloff ArachCrash 700 1800
+$rolloff ArachExpGore 700 1800
+
+ARASEE ARASEE
+ARAPAI ARAPAI
+ARAACT ARAACT
+ARADIE ARADIE
+
+$volume ARAACT 0.6
+$volume ARAPAI 0.8
+$volume ARASEE 0.8
+$volume ARADIE 0.8
+
+$random wizard/tele 		{ wizard/tele1 wizard/tele2 wizard/tele3 wizard/tele4 }
+wizard/tele1                   dsdamnd1
+wizard/tele2                   dsdamnd2
+wizard/tele3                   dsdamnd3
+wizard/tele4                   dsdamnd4
+wizard/pain                     dwizpain
+wizard/sight                    dwizact
+wizard/active                   dwizact
+wizard/death                    dwizdth                    
+
+pyro/see BE-SEE
+pyro/idle BE-IDLE
+pyro/tele BE-TELE
+pyro/pain DE_PAIN_
+pyro/death BE-DEATH
+pyro/blast DP_ATTAC
+
+pyro/flame DSFLAMER
+pyro/explosion DSPIPEX1
+pyro/flamepoof DSHITW
+pyro/blastexplosion DSFRBXPL
+pyro/comet DSCMTLNC
+pyro/cometdeath DSCMTEXP
+pyro/bomb DSRDSHOT
+pyro/bombhit DSRDHIT
+
+$random demonstep { demonstep1 demonstep2 demonstep3 demonstep4 demonstep5 }
+demonstep1 "Sounds/Monsters/Brute/PinkyFootstep1"
+demonstep2 "Sounds/Monsters/Brute/PinkyFootstep2"
+demonstep3 "Sounds/Monsters/Brute/PinkyFootstep3"
+demonstep4 "Sounds/Monsters/Brute/PinkyFootstep4"
+demonstep5 "Sounds/Monsters/Brute/PinkyFootstep5"
+$limit demonstep 6
+$limit spectre/death 0
+$limit spectre/melee 0
+$volume demonstep 0.7
+$rolloff demonstep 200 650
+
+REVROCK REVROCK
+$limit REVROCK 0
+$volume REVROCK 0.7
+
+$random BEHCRY { BEHCRY1 BEHCRY2 BEHCRY3 }
+BEHCRY1 BEHCRY1
+BEHCRY2 BEHCRY2
+BEHCRY3 BEHCRY3
+$rolloff BEHCRY 400 1700
+
+flesh/sight		flspnsit
+flesh/melee		flspnatk
+flesh/pain		flspnhit
+flesh/death		flspndth
+flesh/active		flspnact
+
+MIMSPAWN MIMSPAWN
+MIMPAIN MIMPAIN
+MIMIDLE MIMIDLE
+MIMDIE MIMDIE
+MIMROAR MIMROAR
+
+$volume MIMDIE 0.7
+
+SwarmFly SFLY
+$RANDOM SwarmFlyAttack {SwarmFlyAttack1 SwarmFlyAttack2}
+SwarmFlyAttack1 SFLYATK1
+SwarmFlyAttack2 SFLYATK2
+SwarmFlyDeath SFLYDTH
+$RANDOM SwarmFlySight {SwarmFlySight1 SwarmFlySight2}
+SwarmFlySight1 SFLYSIT1
+SwarmFlySight2 SFLYSIT2
+
+//Remnant
+$random RZombie/see { zmhse1 zmhse2 zmhse3}
+zmhse1 romsit1
+zmhse2 romsit2
+zmhse3 romsit3
+$random RZombie/active { zmhac1 zmhac2}
+zmhac1 romact1
+zmhac2 romact1
+$random RZombie/die { zmhPn1 zmhpn2 zmhpn3}
+zmhpn1 romdth1
+zmhpn2 romdth2
+zmhpn3 romdth3
+
+$volume RZombie/see 0.65
+$volume RZombie/active 0.5
+$volume RZombie/die 0.5
+
+$random Devil/Pain	{ DevilPain1 DevilPain2 DevilPain3 }
+DevilPain1 "Sounds/Monsters/Devil/DevilPain1"
+DevilPain2 "Sounds/Monsters/Devil/DevilPain2"
+DevilPain3 "Sounds/Monsters/Devil/DevilPain3"
+
+$random Devil/Sight	{ DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
+DevilSee1 "Sounds/Monsters/Devil/DevilSee1"
+DevilSee2 "Sounds/Monsters/Devil/DevilSee2"
+DevilSee3 "Sounds/Monsters/Devil/DevilSee3"
+DevilSee4 "Sounds/Monsters/Devil/DevilSee4"
+
+$random Devil/Roar	{ DevilRoar1 DevilRoar2 DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
+DevilRoar1 "Sounds/Monsters/Devil/DevilRoar1"
+DevilRoar2 "Sounds/Monsters/Devil/DevilRoar2"
+
+$random Devil/Death	{ DevilDeath1 DevilDeath2 DevilDeath3 DevilDeath4 }
+DevilDeath1 "Sounds/Monsters/Devil/DevilDeath1"
+DevilDeath2 "Sounds/Monsters/Devil/DevilDeath2"
+DevilDeath3 "Sounds/Monsters/Devil/DevilDeath3"
+DevilDeath4 "Sounds/Monsters/Devil/DevilDeath4"
+
+$random Devil/Active	{ DevilActive1 DevilActive2 DevilActive3 }
+DevilActive1 "Sounds/Monsters/Devil/DevilActive1"
+DevilActive2 "Sounds/Monsters/Devil/DevilActive2"
+DevilActive3 "Sounds/Monsters/Devil/DevilActive3"
+
+$volume devil/sight 0.7
+$volume devil/active 0.8
+$volume devil/death 0.7
+//Hellion NEW
+$random hile/sight { vile/sight1	vile/sight2	vile/sight3 vile/sight4	vile/sight5	vile/sight6	}
+
+vile/sight1	vilesee1
+vile/sight2	vilesee2
+vile/sight3	vilesee3
+vile/sight4	vilesee4
+vile/sight5	vilesee5
+vile/sight6	vilesee6
+
+$random HILEACT { VILEACT1 VILEACT2 VILEACT3 }
+VILEACT1 VILEACT1
+VILEACT2 VILEACT2
+VILEACT3 VILEACT3
+
+$limit hile/sight 0
+
+$random hile/pain { vile/pain1 vile/pain2 vile/pain3 vile/pain4 }
+
+vile/pain1	vilpain1
+vile/pain2	vilpain2
+vile/pain3	vilpain3
+vile/pain4	vilpain4
+
+$random hile/death { vile/death1 vile/death2 vile/death3 vile/death4 }
+
+vile/death1	viledie1
+vile/death2	viledie2
+vile/death3	viledie3
+vile/death4	viledie4
+
+$random hile/active		{ vile/active1 vile/active2 vile/active3 }
+vile/active1                    breath1
+vile/active2                    breath2
+vile/active3                    breath3
+
+$Limit Roach/Fire 0
+$Limit Roach/Hit 0
+
+IMPCHARG IMPCHARG
+
+//Wretched NEW
+$random WRETSEE { WRETSEE1 WRETSEE2 }
+WRETSEE1 WRETSEE2
+WRETSEE2 WRETSEE2
+
+$random WRETCHR { WRETCHR1 WRETCHR2 WRETCHR3 WRETCHR4 WRETCHR5 }
+WRETCHR1 WRETCHR1
+WRETCHR2 WRETCHR2
+WRETCHR3 WRETCHR3
+WRETCHR4 WRETCHR4
+WRETCHR5 WRETCHR5
+
+$random WRETACT { WRETACT1 WRETACT2 WRETACT3 WRETACT4 WRETACT5 WRETACT6 WRETACT7 WRETACT8 }
+WRETACT1 WRETACT1
+WRETACT2 WRETACT2
+WRETACT3 WRETACT3
+WRETACT4 WRETACT4
+WRETACT5 WRETACT5
+WRETACT6 WRETACT6
+WRETACT7 WRETACT7
+WRETACT8 WRETACT8
+
+$random WRETPAI { WRETPAI1 WRETPAI2 WRETPAI3 WRETPAI4 WRETPAI5 WRETPAI6 }
+WRETPAI1 WRETPAI1
+WRETPAI2 WRETPAI2
+WRETPAI3 WRETPAI3
+WRETPAI4 WRETPAI4
+WRETPAI5 WRETPAI5
+WRETPAI6 WRETPAI6
+
+$random WRETDIE { WRETPAI1 WRETPAI2 }
+WRETDIE1 WRETDIE1
+WRETDIE2 WRETDIE2
+
+$random WRETSHO { WRETSHO1 WRETSHO2 WRETSHO3 }
+WRETSHO1 WRETSHO1
+WRETSHO2 WRETSHO2
+WRETSHO3 WRETSHO3
+$limit WRETSHO 0
+
+$random WRETSHI { WRETSHI1 WRETSHI2 }
+WRETSHI1 WRETSHI1
+WRETSHI2 WRETSHI2
+
+$random WRETDIE { WRETDIE1 WRETDIE2 }
+WRETDIE1 WRETDIE1
+WRETDIE2 WRETDIE2
+
+$volume WRETACT 0.5
+$volume WRETSEE 0.55
+$volume WRETPAI 0.5
+$volume WRETDIE 0.5
+
+$volume Wretched/ShotLoop 0.68
+
+Wretched/ShotLoop "Sounds/Monsters/Wretched/WretchedShotLoop"
+
+$random Wretched/Fire { Wretched/Fire1 Wretched/Fire2 Wretched/Fire3 Wretched/Fire4 }
+
+Wretched/Fire1 "Sounds/Monsters/Wretched/WretchedFire1"
+Wretched/Fire2 "Sounds/Monsters/Wretched/WretchedFire2"
+Wretched/Fire3 "Sounds/Monsters/Wretched/WretchedFire3"
+Wretched/Fire4 "Sounds/Monsters/Wretched/WretchedFire4"
+
+$rolloff Wretched/Fire 550 1700
+
+$random caco/attack		{ caco/attack1 caco/attack2 caco/attack3 caco/attack4 }
+caco/attack1                     fire_01
+caco/attack2                     fire_02
+caco/attack3                     fire_03
+caco/attack4                     fire_04
+$random caco/shotx		{ caco/shotx1 caco/shotx2 caco/shotx3 }
+caco/shotx1                      pimpact1
+caco/shotx2                      pimpact2
+caco/shotx3                      pimpact3
+
+//Tainted NEW
+$random Tainted/See	{ TAINSEE1 TAINSEE2 TAINSEE3 }
+TAINSEE1	TAINSEE1
+TAINSEE2	TAINSEE2
+TAINSEE3	TAINSEE3
+
+$random Tainted/Slide { TAINACT1 TAINACT2 TAINACT3 TAINACT4}
+TAINACT1	TAINACT1
+TAINACT2	TAINACT2
+TAINACT3	TAINACT3
+TAINACT4	TAINACT4
+
+$random Tainted/Active { Tainted/Active1 Tainted/Active2 Tainted/Active3 Tainted/Active4 Tainted/Active5 Tainted/Active6 Tainted/Active7 Tainted/Active8 Tainted/Active9 TAINSEE1 TAINSEE2 TAINSEE3 }
+Tainted/Active1 "Sounds/Monsters/Tainted/TaintedActive1"
+Tainted/Active2 "Sounds/Monsters/Tainted/TaintedActive2"
+Tainted/Active3 "Sounds/Monsters/Tainted/TaintedActive3"
+Tainted/Active4 "Sounds/Monsters/Tainted/TaintedActive4"
+Tainted/Active5 "Sounds/Monsters/Tainted/TaintedActive5"
+Tainted/Active6 "Sounds/Monsters/Tainted/TaintedActive6"
+Tainted/Active7 "Sounds/Monsters/Tainted/TaintedActive7"
+Tainted/Active8 "Sounds/Monsters/Tainted/TaintedActive8"
+Tainted/Active9 "Sounds/Monsters/Tainted/TaintedActive9"
+$volume Tainted/Active 0.8
+
+$random Tainted/Step { Tainted/Step1 Tainted/Step2 Tainted/Step3 Tainted/Step4 Tainted/Step5 }
+Tainted/Step1 "Sounds/Monsters/Tainted/TaintedStep1"
+Tainted/Step2 "Sounds/Monsters/Tainted/TaintedStep2"
+Tainted/Step3 "Sounds/Monsters/Tainted/TaintedStep3"
+Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep4"
+Tainted/Step4 "Sounds/Monsters/Tainted/TaintedStep5"
+
+$volume Tainted/Step 0.4
+$rolloff Tainted/Step 200 850
+$limit Tainted/Step 6
+
+//Blood FX
+TaintedProjFire            "sounds/Monsters/Tainted/TaintedProjFire"
+TaintedBloodFire           "sounds/Monsters/Tainted/TaintedBounceFire"
+TaintedBloodExp            "sounds/Monsters/Tainted/TaintedBounceExp"
+$random BeholderBloodExp { BBExp1 BBExp2 }
+BBExp1                     "sounds/Monsters/Watcher/BeholderBloodExp1"
+BBExp2                     "sounds/Monsters/Watcher/BeholderBloodExp2"
+BeholderEyeExp             "sounds/Monsters/Watcher/BeholderEyeExp"
+$random BloodSplash { GBloodSplash1 GBloodSplash2 }
+GBloodSplash1              "sounds/Monsters/SFX/GenericBloodSplash1"
+GBloodSplash2              "sounds/Monsters/SFX/GenericBloodSplash2"
+
+$limit BeholderBloodExp 13
+$limit BeholderEyeExp 13
+$limit TaintedBloodFire 10
+$limit TaintedBloodExp 10
+$limit BloodSplash 10
+
+Defiler/Attack	DEFIATK
+Defiler/Sight	DEFISIT
+Defiler/Death	DEFIDETH
+
+FUSWALK	FUSWALK
+
+$random hoofstep		{ hoof/step1 hoof/step2 hoof/step3 hoof/step4 }
+hoof/step1			"Sounds/Monsters/Azazel/BaronHoofStep1"
+hoof/step2			"Sounds/Monsters/Azazel/BaronHoofStep2"
+hoof/step3			"Sounds/Monsters/Azazel/BaronHoofStep3"
+hoof/step4			"Sounds/Monsters/Azazel/BaronHoofStep4"
+$limit hoofstep 0
+$rolloff hoofstep 700 1200
+
+//Heresy Lord
+
+$random HeresyLord/Sight	{  HeresyLordSight1 HeresyLordSight2 HeresyLordSight3 HeresyLordSight4 HeresyLordSight5 HeresyLordSight6 HeresyLordSight7 }
+HeresyLordSight1 "Sounds/Monsters/HeresyLord/HeresyLordSight1"
+HeresyLordSight2 "Sounds/Monsters/HeresyLord/HeresyLordSight2"
+HeresyLordSight3 "Sounds/Monsters/HeresyLord/HeresyLordSight3"
+HeresyLordSight4 "Sounds/Monsters/HeresyLord/HeresyLordSight4"
+HeresyLordSight5 "Sounds/Monsters/HeresyLord/HeresyLordSight5"
+HeresyLordSight6 "Sounds/Monsters/HeresyLord/HeresyLordSight6"
+HeresyLordSight7 "Sounds/Monsters/HeresyLord/HeresyLordSight7"
+
+$random HeresyLord/Active	{ HeresyLordActive1 HeresyLordActive2 HeresyLordActive3 HeresyLordActive4 HeresyLordActive5 HeresyLordActive6 }
+HeresyLordActive1 "Sounds/Monsters/HeresyLord/HeresyLordActive1"
+HeresyLordActive2 "Sounds/Monsters/HeresyLord/HeresyLordActive2"
+HeresyLordActive3 "Sounds/Monsters/HeresyLord/HeresyLordActive3"
+HeresyLordActive4 "Sounds/Monsters/HeresyLord/HeresyLordActive4"
+HeresyLordActive5 "Sounds/Monsters/HeresyLord/HeresyLordActive5"
+HeresyLordActive6 "Sounds/Monsters/HeresyLord/HeresyLordActive6"
+
+$random HeresyLord/Pain		{ HeresyLordPain1 HeresyLordPain2 HeresyLordPain3 }
+HeresyLordPain1 "Sounds/Monsters/HeresyLord/HeresyLordPain1"
+HeresyLordPain2 "Sounds/Monsters/HeresyLord/HeresyLordPain2"
+HeresyLordPain3 "Sounds/Monsters/HeresyLord/HeresyLordPain3"
+
+$random baron/melee			{ baron/melee1 baron/melee2 baron/melee3 }
+baron/melee1                    chomp1
+baron/melee2                    chomp2
+baron/melee3                    chomp3
+
+$random HeresyLord/Death	{ HeresyLordDie1 HeresyLordDie2 HeresyLordDie3 }
+HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1"
+HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2"
+HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3"
+
+baron/attack			baronfir
+
+$random wizard/telenew	{ DWIZTEL1 DWIZTEL2 }
+DWIZTEL1 DWIZTEL1
+DWIZTEL2 DWIZTEL2
+
+$random MancubStep	{ beefy/step1 beefy/step2 beefy/step3 beefy/step4 }
+beefy/step1			"Sounds/Monsters/SFX/MancubusStep1"
+beefy/step2			"Sounds/Monsters/SFX/MancubusStep2"
+beefy/step3			"Sounds/Monsters/SFX/MancubusStep3"
+beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4"
+
+$volume MancubStep 0.7
+
+//Fiend
+
+$random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
+Fiend/Step1 "Sounds/Monsters/Fiend/FiendStep1"
+Fiend/Step2 "Sounds/Monsters/Fiend/FiendStep2"
+Fiend/Step3 "Sounds/Monsters/Fiend/FiendStep3"
+Fiend/Step4 "Sounds/Monsters/Fiend/FiendStep4"
+Fiend/Step5 "Sounds/Monsters/Fiend/FiendStep5"
+Fiend/Step6 "Sounds/Monsters/Fiend/FiendStep6"
+Fiend/Step7 "Sounds/Monsters/Fiend/FiendStep7"
+Fiend/Step8 "Sounds/Monsters/Fiend/FiendStep8"
+Fiend/Step9 "Sounds/Monsters/Fiend/FiendStep9"
+
+$random Fiend/Death { FIEDIE1 FIEDIE2  }
+FIEDIE1 FIEDIE1
+FIEDIE2 FIEDIE2
+$random Fiend/Active { FIEACT1 FIEACT2 FIEACT3 }
+FIEACT1 FIEACT1
+FIEACT2 FIEACT2
+FIEACT3 FIEACT3
+$random Fiend/Pain { FIEPAI1 FIEPAI2  }
+FIEPAI1 FIEPAI1
+FIEPAI2 FIEPAI2
+$random Fiend/Sight { FIESEE1 FIESEE2 }
+FIESEE1 FIESEE1
+FIESEE2 FIESEE2
+
+queen/sight quesit
+queen/pain quepain
+queen/death quedie
+queen/active queact
+//queen/scream bqegg1a
+queen/fire qbfgfire
+electricplasma/shoot		PZAPSEE	
+electricplasma/hit		PZAPHIT
+queen/hit		qbfghit
+queen/melee		quebit
+
+weapons/bwoosh dsbwoosh
+$limit weapons/bwoosh 4
+$volume weapons/bwoosh 0.6
+
+$Random Forgotten/Attack { FRGOATK1 FRGOATK2 FRGOATK3 }
+FRGOATK1	FRGOATK1
+FRGOATK2	FRGOATK2
+FRGOATK3	FRGOATK3
+$Random Forgotten/Active { FRGOACT1 FRGOACT2 FRGOACT3 }
+FRGOACT1	FRGOACT1
+FRGOACT2	FRGOACT2
+FRGOACT3	FRGOACT3
+FRGOACT4	FRGOACT4
+$Random Forgotten/Pain { FRGOPAI1 FRGOPAI2 FRGOPAI3 }
+FRGOPAI1	FRGOPAI1
+FRGOPAI2	FRGOPAI2
+FRGOPAI3	FRGOPAI3
+$Random Forgotten/Death { FRGODEA1 FRGODEA2 FRGODEA3 }
+FRGODEA1	FRGODEA1
+FRGODEA2	FRGODEA2
+FRGODEA3	FRGODEA3
+
+CBRUHYD CBRUHYD
+CBRUJUM CBRUJUM
+CBRULAN CBRULAN
+
+FUSSCHOT FUSSCHOT
+$rolloff FUSSCHOT 500 2000
+$rolloff FUSSFIRE 500 2000
+FUSCHRG	FUSCHRG
+FUSRFIRE FUSRFIRE
+$limit FUSRFIRE 0
+FUSSEXP FUSSEXP
+$rolloff FUSSEXP 1500 2500
+
+blooddemon/sight DSBLDSIT
+blooddemon/pain DSBLDPAI
+blooddemon/death DSBLDDTH
+blooddemon/active DSBLDACT
+blooddemon/melee DSBLDATK
+blooddemon/walk DSBLDWAL
+
+weapons/demontechfire 		DECHFI
+weapons/demontechex 		DECHXP
+
+$limit weapons/demontechfire 0
+$limit weapons/demontechex 0
+
+AVASTAL AVASTAL
+$rolloff AVASTAL 300 2000
+AVAVOIC AVAVOIC
+$rolloff AVAVOIC 800 2600
+$rolloff Heartbeat1 200 600
+$rolloff Heartbeat2 200 600
+
+HCSHOT  HCSHOT
+HCSTAB  HCSTAB
+MGPDTH1 MGPDTH1
+MGPDTH2 MGPDTH2
+$random MGzombiedeath { MGPDTH1 MGPDTH2 }
+
+MGPPAIN MGPPAIN
+MGPSACT MGPSACT
+MGPSEE1 MGPSEE1
+MGPSEE2 MGPSEE2
+$random MGzombiesee { MGPSEE1 MGPSEE2 }
+$limit HCSHOT 0
+$rolloff HCSHOT 350 2200
+$volume HCSHOT 0.7
+
+weapons/bloodf dsbloodf
+weapons/bloodx dsbloodx
+
+10MM/Cock GUNCOCK
+
+//Blood Stalker
+BLDSWRP BLDSWRP
+BLDSCSH	BLDSCSH
+BLDSSTP	BLDSSTP
+BLDSSEE	BLDSSEE
+BLDSPAI	BLDSPAI
+BLDSDIE	BLDSDIE
+$random BLDSACT { BLDSACT1 BLDSACT2 BLDSACT3 }
+BLDSACT1 BLDSACT1
+BLDSACT2 BLDSACT2
+BLDSACT3 BLDSACT3
+$rolloff BLDSSEE 500 1200
+
+//Faceless Shotgunner
+$random FSHOATK { FSHOATK1 FSHOATK2 FSHOATK3 FSHOATK4 }
+FSHOATK1 FSHOATK1
+FSHOATK2 FSHOATK2
+FSHOATK3 FSHOATK3
+FSHOATK4 FSHOATK4
+$random FSHODIE { FSHODIE1 FSHODIE2 FSHODIE3 FSHODIE4 FSHODIE5 }
+FSHODIE1 FSHODIE1
+FSHODIE2 FSHODIE2
+FSHODIE3 FSHODIE3
+FSHODIE4 FSHODIE4
+FSHODIE5 FSHODIE5
+$random FSHOIDL { FSHOIDL1 FSHOIDL2 }
+FSHOIDL1 FSHOIDL1
+FSHOIDL2 FSHOIDL2
+$random FSHOPAI { FSHOPAI1 FSHOPAI2 FSHOPAI3 FSHOPAI4 FSHOPAI5 }
+FSHOPAI1 FSHOPAI1
+FSHOPAI2 FSHOPAI2
+FSHOPAI3 FSHOPAI3
+FSHOPAI4 FSHOPAI4
+FSHOPAI5 FSHOPAI5
+$random FSHOSEE { FSHOSEE1 FSHOSEE2 FSHOSEE3 FSHOSEE4 }
+FSHOSEE1 FSHOSEE1
+FSHOSEE2 FSHOSEE2
+FSHOSEE3 FSHOSEE3
+FSHOSEE4 FSHOSEE4
+
+$volume FSHOSEE 0.7
+$volume FSHOPAI 0.7
+$volume FSHOIDL 0.7
+$volume FSHOATK 0.7
+$volume FSHODIE 0.6
+
+$random HUNHOW { HUNHOW1 HUNHOW2 HUNHOW3 HUNHOW4}
+HUNHOW1 HUNHOW1
+HUNHOW2 HUNHOW2
+HUNHOW3 HUNHOW3
+HUNHOW4 HUNHOW4
+$rolloff HUNHOW 300 1200
+$volume HUNHOW 0.7
+
+weapons/scorch                dsscorch
+weapons/onfire                dsonfire
+weapons/flamer                dsflamer
+
+$random HFSSEE { HFSSEE1 HFSSEE2 HFSSEE3 }
+HFSSEE1 HFSSEE1
+HFSSEE2 HFSSEE2
+HFSSEE3 HFSSEE3
+
+$random HFSACT { HFSACT1 HFSACT2 HFSACT3 }
+HFSACT1 HFSACT1
+HFSACT2 HFSACT2
+HFSACT3 HFSACT3
+
+$random HFSPAI { HFSPAI1 HFSPAI2 HFSPAI3 }
+HFSPAI1 HFSPAI1
+HFSPAI2 HFSPAI2
+HFSPAI3 HFSPAI3
+
+$random HFSDIE { HFSDIE1 HFSDIE2 HFSDIE3 HFSDIE4 }
+HFSDIE1 HFSDIE1
+HFSDIE2 HFSDIE2
+HFSDIE3 HFSDIE3
+HFSDIE4 HFSDIE4
+
+$random FIERXP { FIERXP1 FIERXP2 FIERXP3 }
+FIERXP1 FIERXP1
+FIERXP2 FIERXP2
+FIERXP3 FIERXP3
+
+MANCSHOT MANCSHOT
+
+$random FIEJON { FIEJON1 FIEJON2 }
+FIEJON1 FIEJON1
+FIEJON2 FIEJON2
+
+FIELAN FIELAN
+
+$random HFSPLA { HFSPLA1 HFSPLA2 }
+HFSPLA1 HFSPLA1
+HFSPLA2 HFSPLA2
+
+$rolloff HFSPLA 700 2200
+$limit HFSPLA 12
+
+BLDPUK BLDPUK
+
+$random BELBAL { BELBAL1 BELBAL2 BELBAL3 }
+BELBAL1 BELBAL1
+BELBAL2 BELBAL2
+BELBAL3 BELBAL3
+
+$random HUNSPA { HUNSPA1 HUNSPA2 HUNSPA3 HUNSPA4 HUNSPA5 }
+HUNSPA1 HUNSPA1
+HUNSPA2 HUNSPA2
+HUNSPA3 HUNSPA3
+HUNSPA4 HUNSPA4
+HUNSPA5 HUNSPA5
+$rolloff HUNSPA 500 2500
+
+//Nether Imp
+NIBALHIT NIBALHIT
+DSSHOCK DSSHOCK
+SHOCXPL SHOCXPL
+
+$random dimp/pain { DImppain1 DImppain2 DImppain3 }
+DImppain1 dimppn1
+DImppain2 dimppn2
+DImppain3 dimppn3
+
+$random dimp/active { dimpact1 dimpact2 dimpact3 }
+dimpact1 dimpact1
+dimpact2 dimpact2
+dimpact3 dimpact3
+
+$random dimp/death { dimpdth1 dimpdth2 dimpdth3 }
+dimpdth1 dimpdth1
+dimpdth2 dimpdth2
+dimpdth3 dimpdth3
+
+$random dimp/see { dimpsit1 dimpsit2 dimpsit3 }
+dimpsit1 dimpsit1
+dimpsit2 dimpsit2
+dimpsit3 dimpsit3
+
+$volume dimp/see 0.7
+$volume dimp/active 0.7
+$volume dimp/death 0.7
+$volume dimp/pain 0.7
+
+NLITE NLITE
+
+//Glutton
+$random GLUTSEE { GLUTSEE1 GLUTSEE2 }
+GLUTSEE1 GLUTSEE1
+GLUTSEE2 GLUTSEE2
+
+$random GLUTACT { GLUTACT1 GLUTACT2 GLUTACT3 GLUTACT4 }
+GLUTACT1 GLUTACT1
+GLUTACT2 GLUTACT2
+GLUTACT3 GLUTACT3
+GLUTACT4 GLUTACT4
+
+$random Glutton/Spit { GluttonSpit1 GluttonSpit2 }
+
+GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1"
+GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2"
+
+$random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
+
+GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1"
+GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2"
+
+$volume Glutton/Attack 0.7
+
+GLUTPAI GLUTPAI
+
+GLUTDEA GLUTDEA1
+
+TORTURE4 TORTURE4
+
+$random MARTOR { MARTOR1 MARTOR2 MARTOR3 MARTOR4 MARTOR5 }
+MARTOR1 MARTOR1
+MARTOR2 MARTOR2
+MARTOR3 MARTOR3
+MARTOR4 MARTOR4
+MARTOR5 MARTOR5
+
+DESFIRE DESFIRE
+$rolloff DESFIRE 700 2200
+
+DEZPAI DEZPAI
+
+DEZROL DEZROL
+$volume DEZROL 0.6
+
+DEZDIE DEZDIE
+
+SHT1PMP SHT1PMP
+
+$random DEZSEE { DEZSEE1 DEZSEE2 DEZSEE3 }
+DEZSEE1 DEZSEE1
+DEZSEE2 DEZSEE2
+DEZSEE3 DEZSEE3
+
+maggdie maggdie
+
+$random DEZACT { DEZACT1 DEZACT2 DEZACT3 DEZACT4 }
+DEZACT1 DEZACT1
+DEZACT2 DEZACT2
+DEZACT3 DEZACT3
+DEZACT4 DEZACT4
+
+//Decayed Commando
+//DECACT DEZACT1
+
+//DECSEE DEZSEE1
+
+//DECDIE DEZDIE
+
+//DECPAI DEZPAI
+
+//$pitchset DECACT 0.8
+//$pitchset DECSEE 0.8
+//$pitchset DECDIE 0.8
+//$pitchset DECPAI 0.8
+
+
+SHOBEP SHOBEP
+$limit SHOBEP 10
+
+//Belph NEW
+$random Zephyr/Active { Zephyr/Active1 Zephyr/Active2 Zephyr/Active3 Zephyr/Active4 Zephyr/Active5 Zephyr/Active6 Zephyr/Active7 Zephyr/Active8 Zephyr/Active9 }
+Zephyr/Active1 "Sounds/Monsters/Zephyr/ZephyrActive1"
+Zephyr/Active2 "Sounds/Monsters/Zephyr/ZephyrActive2"
+Zephyr/Active3 "Sounds/Monsters/Zephyr/ZephyrActive3"
+Zephyr/Active4 "Sounds/Monsters/Zephyr/ZephyrActive4"
+Zephyr/Active5 "Sounds/Monsters/Zephyr/ZephyrActive5"
+Zephyr/Active6 "Sounds/Monsters/Zephyr/ZephyrActive6"
+Zephyr/Active7 "Sounds/Monsters/Zephyr/ZephyrActive7"
+Zephyr/Active8 "Sounds/Monsters/Zephyr/ZephyrActive8"
+Zephyr/Active9 "Sounds/Monsters/Zephyr/ZephyrActive9"
+
+$random Zephyr/Sight { Zephyr/Sight1 Zephyr/Sight2 Zephyr/Sight3 Zephyr/Sight4 Zephyr/Sight5 }
+Zephyr/Sight1 "Sounds/Monsters/Zephyr/ZephyrSight1"
+Zephyr/Sight2 "Sounds/Monsters/Zephyr/ZephyrSight2"
+Zephyr/Sight3 "Sounds/Monsters/Zephyr/ZephyrSight3"
+Zephyr/Sight4 "Sounds/Monsters/Zephyr/ZephyrSight4"
+Zephyr/Sight5 "Sounds/Monsters/Zephyr/ZephyrSight5"
+
+$random Zephyr/Pain { Zephyr/Pain1 Zephyr/Pain2 }
+Zephyr/Pain1 "Sounds/Monsters/Zephyr/ZephyrPain1"
+Zephyr/Pain2 "Sounds/Monsters/Zephyr/ZephyrPain2"
+
+$random Zephyr/Death { Zephyr/Death1 Zephyr/Death2 }
+Zephyr/Death1 "Sounds/Monsters/Zephyr/ZephyrDeath1"
+Zephyr/Death2 "Sounds/Monsters/Zephyr/ZephyrDeath2"
+
+$random Zephyr/Ball { Zephyr/Ball1 Zephyr/Ball2 Zephyr/Ball3 }
+Zephyr/Ball1 "Sounds/Monsters/Zephyr/ZephyrBall1"
+Zephyr/Ball2 "Sounds/Monsters/Zephyr/ZephyrBall2"
+Zephyr/Ball3 "Sounds/Monsters/Zephyr/ZephyrBall3"
+
+$volume Zephyr/Sight 0.8
+$volume Zephyr/Active 0.7
+$volume Zephyr/Pain 0.7
+
+
+//Prowler
+$random PROWFOT { PROWFOT1 PROWFOT2 PROWFOT3 PROWFOT4 }
+PROWFOT1 PROWFOT1
+PROWFOT2 PROWFOT2
+PROWFOT3 PROWFOT3
+PROWFOT4 PROWFOT4
+$limit PROWFOT 5
+$limit PROWFOT1 5
+$limit PROWFOT2 5
+$limit PROWFOT3 5
+$limit PROWFOT4 5
+
+$random PROWMIS { PROWMIS1 PROWMIS2 PROWMIS3 PROWMIS4 PROWMIS5 PROWMIS6 PROWMIS7 }
+PROWMIS1 PROWMIS1
+PROWMIS2 PROWMIS2
+PROWMIS3 PROWMIS3
+PROWMIS4 PROWMIS4
+PROWMIS5 PROWMIS5
+PROWMIS6 PROWMIS6
+PROWMIS7 PROWMIS7
+$volume PROWMIS 0.4
+$rolloff PROWMIS 300 20000
+
+$random PROWPAI { PROWPAI1 PROWPAI2 PROWPAI3 PROWPAI4 PROWPAI5 PROWPAI6 PROWPAI7 }
+PROWPAI1 PROWPAI1
+PROWPAI2 PROWPAI2
+PROWPAI3 PROWPAI3
+PROWPAI4 PROWPAI4
+PROWPAI5 PROWPAI5
+PROWPAI6 PROWPAI6
+PROWPAI7 PROWPAI7
+$volume PROWPAI 0.7
+$rolloff PROWPAI 240 16000
+
+$random PROWDIE { PROWDIE1 PROWDIE2 PROWDIE3 PROWDIE4 }
+PROWDIE1 PROWDIE1
+PROWDIE2 PROWDIE2
+PROWDIE3 PROWDIE3
+PROWDIE4 PROWDIE4
+
+$random PROWSWI { PROWSWI1 PROWSWI2 PROWSWI3 PROWSWI4 }
+PROWSWI1 PROWSWI1
+PROWSWI2 PROWSWI2
+PROWSWI3 PROWSWI3
+PROWSWI4 PROWSWI4
+
+$random PROWCOV { PROWCOV1 PROWCOV2 PROWCOV3 }
+PROWCOV1 PROWCOV1
+PROWCOV2 PROWCOV2
+PROWCOV3 PROWCOV3
+$volume PROWCOV 0.7
+
+$random PROWSNR { PROWSNR1 PROWSNR2 PROWSNR3 PROWSNR4 PROWSNR5 PROWSNR6 PROWSNR7 }
+PROWSNR1 PROWSNR1
+PROWSNR2 PROWSNR2
+PROWSNR3 PROWSNR3
+PROWSNR4 PROWSNR4
+PROWSNR5 PROWSNR5
+PROWSNR6 PROWSNR6
+PROWSNR7 PROWSNR7
+$volume PROWSNR 0.7
+
+$random PROWPEK { PROWPEK1 PROWPEK2 PROWPEK3 PROWPEK4 PROWPEK5 PROWPEK6 PROWPEK7 PROWPEK8 }
+PROWPEK1 PROWPEK1
+PROWPEK2 PROWPEK2
+PROWPEK3 PROWPEK3
+PROWPEK4 PROWPEK4
+PROWPEK5 PROWPEK5
+PROWPEK6 PROWPEK6
+PROWPEK7 PROWPEK7
+PROWPEK8 PROWPEK8
+$volume PROWPEK 0.7
+
+$random PROWCHA { PROWCHA1 PROWCHA2 PROWCHA3 PROWCHA4 }
+PROWCHA1 PROWCHA1
+PROWCHA2 PROWCHA2
+PROWCHA3 PROWCHA3
+PROWCHA4 PROWCHA4
+$limit PROWCHA 0
+$volume PROWCHA 0.8
+
+$rolloff PROWCOV 240 16000
+$rolloff PROWPEK 240 16000
+$rolloff PROWSNR 240 16000
+$rolloff PROWCHA 300 22000
+
+$volume PROWFOT 0.15
+
+rictus/sight		RICTSEE
+rictus/death		RICTDIE
+rictus/active		FIRE09
+rictus/pain		RICTPAIN
+rictus/fire		IMPFIRE2
+
+$limit rictus/fire 8
+rictus/fireimpact	IMPACT3
+rictus/kamakazi		RICTKAMA
+rictus/kamakaziimpact	STRIKE1
+
+//Cadaver
+CADFIR CADFIR
+CADHIR CADHIR
+//$rolloff CADHIR 200 1800
+HOMLOO HOMLOO
+
+$random Cadaver/Step { Cadaver/Step1 Cadaver/Step2 Cadaver/Step3 Cadaver/Step4 }
+Cadaver/Step1 "Sounds/Monsters/Cadaver/CadaverStep1"
+Cadaver/Step2 "Sounds/Monsters/Cadaver/CadaverStep2"
+Cadaver/Step3 "Sounds/Monsters/Cadaver/CadaverStep3"
+Cadaver/Step4 "Sounds/Monsters/Cadaver/CadaverStep4"
+
+$volume Cadaver/Step 0.8
+$rolloff Cadaver/Step 190 800
+
+$random CADSEE { CADSEE1 CADSEE2 CADSEE3 CADSEE4 CADSEE5 }
+CADSEE1 CADSEE1
+CADSEE2 CADSEE2
+CADSEE3 CADSEE3
+CADSEE4 CADSEE4
+CADSEE5 CADSEE5
+
+$random CADACT { CADACT1 CADACT2 CADACT3 CADACT4 CADACT5 CADACT6 CADACT7 }
+CADACT1 CADACT1
+CADACT2 CADACT2
+CADACT3 CADACT3
+CADACT4 CADACT4
+CADACT5 CADACT5
+CADACT6 CADACT6
+CADACT7 CADACT7
+
+$random CADPAI { CADPAI1 CADPAI2 CADPAI3 }
+CADPAI1 CADPAI1
+CADPAI2 CADPAI2
+CADPAI3 CADPAI3
+
+$random CADDIE { CADDIE1 CADDIE2 CADDIE3 }
+CADDIE1 CADDIE1
+CADDIE2 CADDIE2
+CADDIE3 CADDIE3
+
+HUBEXP HUBEXP
+HUSCRG HUSCRG
+HUSTHR HUSTHR
+
+//Phase Brute
+$random PBRUSEE { PBRUSEE1 PBRUSEE2 PBRUSEE3 PBRUSEE4 PBRUSEE5 }
+PBRUSEE1 PBRUSEE1
+PBRUSEE2 PBRUSEE2
+PBRUSEE3 PBRUSEE3
+PBRUSEE4 PBRUSEE4
+PBRUSEE5 PBRUSEE5
+
+$random PBRUACT { PBRUACT1 PBRUACT2 PBRUACT3 PBRUACT4 }
+PBRUACT1 PBRUACT1
+PBRUACT2 PBRUACT2
+PBRUACT3 PBRUACT3
+PBRUACT4 PBRUACT4
+
+$random PBRUPAI { PBRUPAI1 PBRUPAI2 PBRUPAI3 PBRUPAI4 PBRUPAI5 }
+PBRUPAI1 PBRUPAI1
+PBRUPAI2 PBRUPAI2
+PBRUPAI3 PBRUPAI3
+PBRUPAI4 PBRUPAI4
+PBRUPAI5 PBRUPAI5
+
+$random PBRUDIE { PBRUDIE1 PBRUDIE2 PBRUDIE3 }
+PBRUDIE1 PBRUDIE1
+PBRUDIE2 PBRUDIE2
+PBRUDIE3 PBRUDIE3
+
+$random HELLPEXP {DSD3PH1 DSD3PH2 DSD3PH3 }
+DSD3PH1 DSD3PH1
+DSD3PH2 DSD3PH2
+DSD3PH3 DSD3PH3
+
+Paladin/Sight	HPALSIT
+Paladin/Active	HPALACT
+Paladin/Pain	HPALPAIN
+Paladin/Death	HPALDTH
+Paladin/Swing	HPALSWG
+Paladin/Melee	HPALHIT
+Paladin/Shoot	HPALATK
+Paladin/Hit		HPALHIT2
+Paladin/Grenade	HPALGREN
+Paladin/Bounce	HPALBNC
+Paladin/Explode	HPALEXPL
+Paladin/Step	HPALSTEP
+
+BSkull/See		BSKULSEE
+BSkull/Pain		BSKULPIN
+BSkull/Death	BSKULEXP
+Blood/Spit		BLDSPIT
+$limit Blood/Spit 0
+Blood/Impact	BLDIMPAC
+$limit Blood/Impact 0
+
+$random BloodSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
+BloodSkull/Croak1 "Sounds/Monsters/BloodSkull/SkullCroak1"
+BloodSkull/Croak2 "Sounds/Monsters/BloodSkull/SkullCroak2"
+BloodSkull/Croak3 "Sounds/Monsters/BloodSkull/SkullCroak3"
+BloodSkull/Croak4 "Sounds/Monsters/BloodSkull/SkullCroak4"
+
+BloodSkull/Active "Sounds/Monsters/BloodSkull/BloodSkullActive"
+
+HUNPUK	HUNPUK
+
+$random FODDBIT { FODDBIT1 FODDBIT2 }
+FODDBIT1 FODDBIT1
+FODDBIT2 FODDBIT2
+
+$random FODDSUM { FODDSUM1 FODDSUM2 }
+FODDSUM1 FODDSUM1
+FODDSUM2 FODDSUM2
+
+$rolloff FODDSUM 500 2500
+
+$random FODDHOW { FODDHOW1 FODDHOW2 FODDHOW3 }
+FODDHOW1 FODDHOW1
+FODDHOW2 FODDHOW2
+FODDHOW3 FODDHOW3
+$rolloff FODDHOW 200 1300
+
+$random HTRISEE { HTRISEE1 HTRISEE2 HTRISEE3 }
+HTRISEE1 HTRISEE1
+HTRISEE2 HTRISEE2
+HTRISEE3 HTRISEE3
+
+$random HTRIACT { HTRIACT1 HTRIACT2 HTRIACT3 HTRIACT4 HTRIACT5 HTRIACT6 }
+HTRIACT1 HTRIACT1
+HTRIACT2 HTRIACT2
+HTRIACT3 HTRIACT3
+HTRIACT4 HTRIACT4
+HTRIACT5 HTRIACT5
+HTRIACT6 HTRIACT6
+
+$random HTRIPAI { HTRIPAI1 HTRIPAI2 HTRIPAI3 HTRIPAI4 }
+HTRIPAI1 HTRIPAI1
+HTRIPAI2 HTRIPAI2
+HTRIPAI3 HTRIPAI3
+HTRIPAI4 HTRIPAI4
+
+$random HTRIDIE { HTRIDIE1 HTRIDIE2 HTRIDIE3 }
+HTRIDIE1 HTRIDIE1
+HTRIDIE2 HTRIDIE2
+HTRIDIE3 HTRIDIE3
+
+$rolloff HTRISEE 25 800
+
+$rolloff HTRIACT 25 800
+
+GrossElem/Sight         BELSIT
+GrossElem/Idle          BELIDLE
+GrossElem/Pain          BELPAIN
+GrossElem/Die           BELDTH
+GrossElem/Fire          BELSPIT
+
+$Random VenMaggot/Sight          { VenMagSight1 VenMagSight2 }
+VenMagSight1            MAGSIT1
+VenMagSight2            MAGSIT2
+$Random VenMaggot/Idle           { VenMagIdl1 VenMagIdl2 }
+VenMagIdl1              MAGACT1
+VenMagIdl2              MAGACT2
+VenMaggot/Pain          BELPAIN
+VenMaggot/Die           MAGDTH
+VenMaggot/Melee         MAGATK
+
+$rolloff VenMagIdl1 25 800
+$rolloff VenMagIdl2 25 800
+
+$random PUSWAL { PUSWAL1 PUSWAL2 PUSWAL3 PUSWAL4 }
+PUSWAL1 PUSWAL1
+PUSWAL2 PUSWAL2
+PUSWAL3 PUSWAL3
+PUSWAL4 PUSWAL4
+
+$rolloff PUSWAL 5 600
+$volume PUSWAL 0.85
+
+//Abhorrent
+$random ABHACT { ABHACT1 ABHACT2 ABHACT3 ABHACT4 }
+ABHACT1 ABHACT1
+ABHACT2 ABHACT2
+ABHACT3 ABHACT3
+ABHACT4 ABHACT4
+
+$random ABHATK { ABHATK1 ABHATK2 ABHATK3 ABHATK4 }
+ABHATK1 ABHATK1
+ABHATK2 ABHATK2
+ABHATK3 ABHATK3
+ABHATK4 ABHATK4
+
+$random ABHDIE { ABHDIE1 ABHDIE2 ABHDIE3 }
+ABHDIE1 ABHDIE1
+ABHDIE2 ABHDIE2
+ABHDIE3 ABHDIE3
+
+$random ABHPAI { ABHPAI1 ABHPAI2 ABHPAI3 ABHPAI4 }
+ABHPAI1 ABHPAI1
+ABHPAI2 ABHPAI2
+ABHPAI3 ABHPAI3
+ABHPAI4 ABHPAI4
+
+$random ABHSEE { ABHSEE1 ABHSEE2 ABHSEE3 }
+ABHSEE1 ABHSEE1
+ABHSEE2 ABHSEE2
+ABHSEE3 ABHSEE3
+
+PLAGCHA PLAGCHA
+
+ABHFIR ABHFIR
+$rolloff ABHFIR 400 2200
+
+Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase"
+
+//Whiplash
+
+Whiplash/GroundLoop "Sounds/Monsters/Whiplash/WhiplashGroundloop"
+
+$random Whiplash/Ground {Whiplash/Ground1 Whiplash/Ground2 Whiplash/Ground3 }
+Whiplash/Ground1 "Sounds/Monsters/Whiplash/WhiplashGround1"
+Whiplash/Ground2 "Sounds/Monsters/Whiplash/WhiplashGround2"
+Whiplash/Ground3 "Sounds/Monsters/Whiplash/WhiplashGround3"
+
+$random WHIPSEE { WHIPSEE1 WHIPSEE2 WHIPSEE3 WHIPSEE4 WHIPSEE5 WHIPSEE6 WHIPSEE7 WHIPSEE8 WHIPSEE9 }
+WHIPSEE1 WHIPSEE1
+WHIPSEE2 WHIPSEE2
+WHIPSEE3 WHIPSEE3
+WHIPSEE4 WHIPSEE4
+WHIPSEE5 WHIPSEE5
+WHIPSEE6 WHIPSEE6
+WHIPSEE7 WHIPSEE7
+WHIPSEE8 WHIPSEE8
+WHIPSEE9 WHIPSEE9
+
+$random WHIPACT { WHIPACT1 WHIPACT2 WHIPACT3 WHIPACT4 WHIPACT5 WHIPACT6 WHIPACT7 }
+WHIPACT1 WHIPACT1
+WHIPACT2 WHIPACT2
+WHIPACT3 WHIPACT3
+WHIPACT4 WHIPACT4
+WHIPACT5 WHIPACT5
+WHIPACT6 WHIPACT6
+WHIPACT7 WHIPACT7
+
+$random WHIPPAI { WHIPPAI1 WHIPPAI2 WHIPPAI3 WHIPPAI4 WHIPPAI5 }
+WHIPPAI1 WHIPPAI1
+WHIPPAI2 WHIPPAI2
+WHIPPAI3 WHIPPAI3
+WHIPPAI4 WHIPPAI4
+WHIPPAI5 WHIPPAI5
+
+$random WHIPDIE { WHIPDIE1 WHIPDIE2 WHIPDIE3 WHIPDIE4 }
+WHIPDIE1 WHIPDIE1
+WHIPDIE2 WHIPDIE2
+WHIPDIE3 WHIPDIE3
+WHIPDIE4 WHIPDIE4
+
+WHIPFLA WHIPFLA
+WHIPHIT WHIPHIT
+WHIPSHA WHIPSHA
+
+$random WHIPBLA { WHIPBLA1 WHIPBLA2 WHIPBLA3 WHIPBLA4 WHIPBLA5 }
+WHIPBLA1 WHIPBLA1
+WHIPBLA2 WHIPBLA2
+WHIPBLA3 WHIPBLA3
+WHIPBLA4 WHIPBLA4
+WHIPBLA5 WHIPBLA5
+
+WHIGFIR WHIGFIR
+WHIGSUM WHIGSUM
+
+$limit WHIPHIT 10
+$limit WHIPBLA 6
+
+//Phase Cacodemon
+$random CACOMEL { CACOMEL1 CACOMEL2 CACOMEL3 }
+CACOMEL1 CACOMEL1
+CACOMEL2 CACOMEL2
+CACOMEL3 CACOMEL3
+
+$random PCABEXP { PCABEXP1 PCABEXP2 PCABEXP3 PCABEXP4 PCABEXP5 }
+PCABEXP1 PCABEXP1
+PCABEXP2 PCABEXP2
+PCABEXP3 PCABEXP3
+PCABEXP4 PCABEXP4
+PCABEXP5 PCABEXP5
+
+PCACACT PCACACT
+PCACBAL PCACBAL
+
+PCACDIE PCACDIE
+PCACFIR PCACFIR
+$limit PCACFIR 0
+
+$random PCACPAI { PCACPAI1 PCACPAI2 PCACPAI3 }
+PCACPAI1 PCACPAI1
+PCACPAI2 PCACPAI2
+PCACPAI3 PCACPAI3
+
+$volume PCACPAI 0.4
+$volume PCABEXP 0.5
+
+$random PCACSEE { PCACSEE1 PCACSEE2 PCACSEE3 PCACSEE4 PCACSEE5 PCACSEE6 PCACSEE7 PCACSEE8 }
+PCACSEE1 PCACSEE1
+PCACSEE2 PCACSEE2
+PCACSEE3 PCACSEE3
+PCACSEE4 PCACSEE4
+PCACSEE5 PCACSEE5
+PCACSEE6 PCACSEE6
+PCACSEE7 PCACSEE7
+PCACSEE8 PCACSEE8
+
+PCACPHA PCACPHA
+
+//Feral Imp
+
+$random FERIACT { FERIACT1 FERIACT2 FERIACT3 FERIACT4 FERIACT5 FERIACT6 FERIACT7 }
+FERIACT1 FERIACT1
+FERIACT2 FERIACT2
+FERIACT3 FERIACT3
+FERIACT4 FERIACT4
+FERIACT5 FERIACT5
+FERIACT6 FERIACT6
+FERIACT7 FERIACT7
+
+$random FERIATK { FERIATK1 FERIATK2 FERIATK3 FERIATK4 FERIATK5 }
+FERIATK1 FERIATK1
+FERIATK2 FERIATK2
+FERIATK3 FERIATK3
+FERIATK4 FERIATK4
+FERIATK5 FERIATK5
+
+$random FERIDIE { FERIDIE1 FERIDIE2 FERIDIE3 }
+FERIDIE1 FERIDIE1
+FERIDIE2 FERIDIE2
+FERIDIE3 FERIDIE3
+
+FERILEA FERILEA
+
+$random FERIPAI { FERIPAI1 FERIPAI2 FERIPAI3 }
+FERIPAI1 FERIPAI1
+FERIPAI2 FERIPAI2
+FERIPAI3 FERIPAI3
+
+$random FERISEE { FERISEE1 FERISEE2 }
+FERISEE1 FERISEE1
+FERISEE2 FERISEE2
+
+FERISWI FERISWI
+
+$volume FERIACT 0.4
+$volume FERIPAI 0.4
+$volume FERISEE 0.55
+$volume FERIDIE 0.4
+$volume FERIATK 0.5
+
+FERBSHT FERBSHT
+FERBEXP FERBEXP
+
+CYFLAME	CYFLAME
+$rolloff CYFLAME 500 1500
+
+//Fresh Horrorspawn
+$random FOD2ACT { FOD2ACT1 FOD2ACT2 FOD2ACT3 FOD2ACT4 }
+FOD2ACT1 FOD2ACT1
+FOD2ACT2 FOD2ACT2
+FOD2ACT3 FOD2ACT3
+FOD2ACT4 FOD2ACT4
+
+FOD2SEE FOD2SEE
+
+FOD2PAI FOD2PAI
+
+$random FOD2DIE { FOD2DIE1 FOD2DIE2 }
+FOD2DIE1 FOD2DIE1
+FOD2DIE2 FOD2DIE2
+
+//Tyrant
+
+$random TYRHOOF { TYRHOOF1 TYRHOOF2 TYRHOOF3 TYRHOOF4 }
+TYRHOOF1 TYRHOOF1
+TYRHOOF2 TYRHOOF2
+TYRHOOF3 TYRHOOF3
+TYRHOOF4 TYRHOOF4
+$rolloff TYRHOOF 300 1100
+
+TYRSEE TYRSEE
+TYRDIE TYRDIE
+
+$random TYRATK { TYRATK1 TYRATK2 TYRATK3 }
+TYRATK1 TYRATK1
+TYRATK2 TYRATK2
+TYRATK3 TYRATK3
+
+$random TYRPAI { TYRPAI1 TYRPAI2 TYRPAI3 }
+TYRPAI1 TYRPAI1
+TYRPAI2 TYRPAI2
+TYRPAI3 TYRPAI3
+
+$volume TYRSEE 0.5
+$volume TYRDIE 0.6
+$limit TYRSEE 1 32000
+$limit TYRDIE 1 32000
+
+TYRFIR TYRFIR
+TYMEXP TYMEXP
+$rolloff TYMEXP 300 2200
+$rolloff TYRFIR 450 1500
+
+$random TYSMFI { TYSMFI1 TYSMFI2 TYSMFI3 }
+TYSMFI1 TYSMFI1
+TYSMFI2 TYSMFI2
+TYSMFI3 TYSMFI3
+
+$random TYSMEX { TYSMEX1 TYSMEX2 TYSMEX3 }
+TYSMEX1 TYSMEX1
+TYSMEX2 TYSMEX2
+TYSMEX3 TYSMEX3
+
+TYRRFI TYRRFI
+TYRRCH TYRRCH
+TYRRBE TYRRBE
+
+$rolloff TYRRFI 850 3500
+$rolloff TYRRCH 500 3500
+$rolloff TYRRBE 650 3500
+
+$random DSPRI { DSPRI1 DSPRI2 DSPRI3 DSPRI4 }
+DSPRI1 DSPRI1
+DSPRI2 DSPRI2
+DSPRI3 DSPRI3
+DSPRI4 DSPRI4
+$volume DSPRI 0.7
+
+Tyrant/Dodge "Sounds/Monsters/Tyrant/TyrantDodge"
+Tyrant/Flamer "Sounds/Monsters/Tyrant/TyrantFlamer"
+Tyrant/Stomp "Sounds/Monsters/Tyrant/TyrantStomp"
+
+$rolloff Tyrant/Flamer 850 2200
+$rolloff Tyrant/Stomp 850 2200
+
+//Decayed Commando
+DCOMCRG DCOMCRG
+DCOMSTP DCOMSTP
+DCOMFIR DCOMFIR
+$rolloff DCOMSTP 400 2200
+$rolloff DCOMFIR 400 2200
+
+//Draugr
+DRAFI1 DRAFI1
+
+DRARO1 DRARO1
+
+DRAAI1 DRAAI1
+
+$random DRALAU { DRALAU1 DRALAU2 DRALAU3 DRALAU4 }
+DRALAU1 DRALAU1
+DRALAU2 DRALAU2
+DRALAU3 DRALAU3
+DRALAU4 DRALAU4
+
+DRAARM DRAARM
+
+$random Draugr/Sight { Draugr/Sight1 Draugr/Sight2 Draugr/Sight3 }
+$random Draugr/Active { Draugr/Active1 Draugr/Active2 Draugr/Active3 }
+$random Draugr/Pain { Draugr/Pain1 Draugr/Pain2 }
+$random Draugr/Death { Draugr/Death1 Draugr/Death2 Draugr/Death3 }
+
+Draugr/Sight1 "Sounds/Monsters/Draugr/DraugrSight1"
+Draugr/Sight2 "Sounds/Monsters/Draugr/DraugrSight2"
+Draugr/Sight3 "Sounds/Monsters/Draugr/DraugrSight3"
+
+Draugr/Active1 "Sounds/Monsters/Draugr/DraugrActive1"
+Draugr/Active2 "Sounds/Monsters/Draugr/DraugrActive2"
+Draugr/Active3 "Sounds/Monsters/Draugr/DraugrActive3"
+
+Draugr/Pain1  "Sounds/Monsters/Draugr/DraugrPain1"
+Draugr/Pain2  "Sounds/Monsters/Draugr/DraugrPain2"
+
+Draugr/Death1 "Sounds/Monsters/Draugr/DraugrDeath1"
+Draugr/Death2 "Sounds/Monsters/Draugr/DraugrDeath2"
+Draugr/Death3 "Sounds/Monsters/Draugr/DraugrDeath3"
+
+$rolloff Draugr/Sight 800 1650
+$rolloff Draugr/Active 550 1250
+$rolloff Draugr/Pain 550 1250
+$rolloff Draugr/Death 550 1250
+
+
+FIREBA1 FIREBA1
+$pitchset FIREBA1 0.0
+$pitchshift FIREBA1 0
+
+FUSCHR2 FUSCHR2
+
+SHAACT SHAACT
+
+//Voidspawn
+VS1ACT VS1ACT
+$rolloff VS1ACT 400 1250
+VS1DIE VS1DIE
+VS1SCR VS1SCR
+
+$random Voidspawn/Active { Voidspawn/Active1 Voidspawn/Active2 Voidspawn/Active3 Voidspawn/Active4 }
+Voidspawn/Active1 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive1"
+Voidspawn/Active2 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive2"
+Voidspawn/Active3 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive3"
+Voidspawn/Active4 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive4"
+
+$volume Voidspawn/Active 0.9
+
+
+//Plasmatron
+PLTRFIR PLTRFIR
+
+Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee"
+Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain"
+Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive"
+Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath"
+
+$random Plasmatron/Step { Plasmatron/Step1 Plasmatron/Step2 Plasmatron/Step3 Plasmatron/Step4 Plasmatron/Step5 }
+Plasmatron/Step1 "Sounds/Monsters/Plasmatron/PlasmatronStep1"
+Plasmatron/Step2 "Sounds/Monsters/Plasmatron/PlasmatronStep2"
+Plasmatron/Step3 "Sounds/Monsters/Plasmatron/PlasmatronStep3"
+Plasmatron/Step4 "Sounds/Monsters/Plasmatron/PlasmatronStep4"
+Plasmatron/Step5 "Sounds/Monsters/Plasmatron/PlasmatronStep5"
+
+$random Plasmatron/Servos { Plasmatron/Servos1 Plasmatron/Servos2 Plasmatron/Servos3 Plasmatron/Servos4 Plasmatron/Servos5 }
+Plasmatron/Servos1 "Sounds/Monsters/Plasmatron/PlasmatronServos1"
+Plasmatron/Servos2 "Sounds/Monsters/Plasmatron/PlasmatronServos2"
+Plasmatron/Servos3 "Sounds/Monsters/Plasmatron/PlasmatronServos3"
+Plasmatron/Servos4 "Sounds/Monsters/Plasmatron/PlasmatronServos4"
+Plasmatron/Servos5 "Sounds/Monsters/Plasmatron/PlasmatronServos5"
+
+$rolloff PLTRFIR 200 2000
+
+//HeavyCarbineZombie
+//MutatedGunner
+$random Heavycarbinezombie/sight
+{ 
+Heavycarbinezombie/sight7
+Heavycarbinezombie/sight8
+Heavycarbinezombie/sight9
+Heavycarbinezombie/sight10
+Heavycarbinezombie/sight11
+Heavycarbinezombie/sight12
+Heavycarbinezombie/sight13
+}
+
+Heavycarbinezombie/sight7 mgpsit7
+Heavycarbinezombie/sight8 mgpsit8
+Heavycarbinezombie/sight9 mgpsit9
+Heavycarbinezombie/sight10 mgpsit10
+Heavycarbinezombie/sight11 mgpsit11
+Heavycarbinezombie/sight12 mgpsit12
+Heavycarbinezombie/sight13 mgpsit13
+
+$volume Heavycarbinezombie/sight 1
+
+$random Heavycarbinezombie/death
+{ 
+Heavycarbinezombie/death4
+Heavycarbinezombie/death5
+Heavycarbinezombie/death6
+Heavycarbinezombie/death7 
+}
+
+
+Heavycarbinezombie/death4	mgpdth4
+Heavycarbinezombie/death5	mgpdth5
+Heavycarbinezombie/death6	mgpdth6
+Heavycarbinezombie/death7	mgpdth7
+
+$volume Heavycarbinezombie/death 1
+
+$random Heavycarbinezombie/pain
+{ 
+Heavycarbinezombie/pain7
+Heavycarbinezombie/pain8
+Heavycarbinezombie/pain9
+Heavycarbinezombie/pain10 
+}
+
+
+Heavycarbinezombie/pain7 mgppn7
+Heavycarbinezombie/pain8 mgppn8
+Heavycarbinezombie/pain9 mgppn9
+Heavycarbinezombie/pain10 mgppn10
+
+$volume Heavycarbinezombie/pain 1
+
+$random Heavycarbinezombie/active
+{ 
+Heavycarbinezombie/active9
+Heavycarbinezombie/active10
+Heavycarbinezombie/active11
+Heavycarbinezombie/active12
+Heavycarbinezombie/active13
+}
+
+Heavycarbinezombie/active9 mgpact9
+Heavycarbinezombie/active10 mgpact10
+Heavycarbinezombie/active11 mgpact11
+Heavycarbinezombie/active12 mgpact12
+Heavycarbinezombie/active13 mgpact13
+
+$volume Heavycarbinezombie/active 1
+
+//EXILE
+
+$random ExileStep { EXISTP1 EXISTP2 EXISTP3 }
+EXISTP1 EXISTP1
+EXISTP2 EXISTP2
+EXISTP3 EXISTP3
+
+$volume ExileStep 0.3
+
+$random ExileSee { EXISEE1 EXISEE2 EXISEE3 EXISEE4 }
+EXISEE1 EXISEE1
+EXISEE2 EXISEE2
+EXISEE3 EXISEE3
+EXISEE4 EXISEE4
+$rolloff ExileSee 380 1300
+
+$random ExileAct { EXIACT1 EXIACT2 EXIACT3 EXIACT4 }
+EXIACT1 EXIACT1
+EXIACT2 EXIACT2
+EXIACT3 EXIACT3
+EXIACT4 EXIACT4
+
+$random ExileAttack { EXIATK1 EXIATK2 EXIATK3 EXIATK4 }
+EXIATK1 EXIATK1
+EXIATK2 EXIATK2
+EXIATK3 EXIATK3
+EXIATK4 EXIATK4
+
+$random ExilePain { EXIPAI1 EXIPAI2 EXIPAI3 EXIPAI4 }
+EXIPAI1 EXIPAI1
+EXIPAI2 EXIPAI2
+EXIPAI3 EXIPAI3
+EXIPAI4 EXIPAI4
+
+$random ExileDie { EXIDIE1 EXIDIE2 EXIDIE3 EXIDIE4 }
+EXIDIE1 EXIDIE1
+EXIDIE2 EXIDIE2
+EXIDIE3 EXIDIE3
+EXIDIE4 EXIDIE4
+
+EXIRES EXIRES
+
+$random ExileImmolateStart { EXIIMS1 EXIIMS2 }
+EXIIMS1 EXIIMS1
+EXIIMS2 EXIIMS2
+
+$random ExileImmolate { EXIIMO1 EXIIMO2 EXIIMO3 }
+EXIIMO1 EXIIMO1
+EXIIMO2 EXIIMO2
+EXIIMO3 EXIIMO3
+$limit ExileImmolate 12
+$volume ExileImmolate 0.5
+
+EXIIMM EXIIMM
+EXIIMN EXIIMN
+EXIIM2 EXIIM2
+
+Exile/GroundStart "Sounds/Monsters/Exile/ExileGroundStart"
+Exile/GroundLoop "Sounds/Monsters/Exile/ExileGroundLoop"
+Exile/GroundEnd "Sounds/Monsters/Exile/ExileGroundEnd"
+Exile/Teleport "Sounds/Monsters/Exile/ExileTele"
+Exile/ShieldSpawn "Sounds/Monsters/Exile/ExileShieldSpawn"
+Exile/ShieldLoop "Sounds/Monsters/Exile/ExileShieldLoop"
+
+$rolloff Exile/ShieldSpawn 350 1700
+$rolloff Exile/ShieldLoop 350 1700
+$rolloff Exile/Teleport 350 1700
+
+//Gore
+$random MaliceBloodSpray { BLDSP11 BLDSP12 }
+BLDSP11 BLDSP11
+BLDSP12 BLDSP12
+
+$random MaliceHeadExp { BLDHED1 BLDHED2 BLDHED3 }
+BLDHED1 BLDHED1
+BLDHED2 BLDHED2
+BLDHED3 BLDHED3
+
+$random MaliceMetalGore { BLODMT1 BLODMT2 }
+BLODMT1 BLODMT1
+BLODMT2 BLODMT2
+
+//Squire
+$random Squire/Step { Squire/Step1 Squire/Step2 Squire/Step3 }
+Squire/Step1 "Sounds/Monsters/Squire/SquireStep1"
+Squire/Step2 "Sounds/Monsters/Squire/SquireStep2"
+Squire/Step3 "Sounds/Monsters/Squire/SquireStep3"
+
+$rolloff Squire/Step 200 800
+
+$random Squire/Sight { Squire/Sight1 Squire/Sight2 Squire/Sight3 Squire/Sight4 Squire/Sight5 Squire/Sight6 }
+Squire/Sight1 "Sounds/Monsters/Squire/SquireSight1"
+Squire/Sight2 "Sounds/Monsters/Squire/SquireSight2"
+Squire/Sight3 "Sounds/Monsters/Squire/SquireSight3"
+Squire/Sight4 "Sounds/Monsters/Squire/SquireSight4"
+Squire/Sight5 "Sounds/Monsters/Squire/SquireSight5"
+Squire/Sight6 "Sounds/Monsters/Squire/SquireSight6"
+
+$random Squire/Active { Squire/Active1 Squire/Active2 Squire/Active3 Squire/Active4 Squire/Active5 Squire/Active6 Squire/Active7 Squire/Active8 Squire/Active9 Squire/Active10 }
+Squire/Active1 "Sounds/Monsters/Squire/SquireActive1"
+Squire/Active2 "Sounds/Monsters/Squire/SquireActive2"
+Squire/Active3 "Sounds/Monsters/Squire/SquireActive3"
+Squire/Active4 "Sounds/Monsters/Squire/SquireActive4"
+Squire/Active5 "Sounds/Monsters/Squire/SquireActive5"
+Squire/Active6 "Sounds/Monsters/Squire/SquireActive6"
+Squire/Active7 "Sounds/Monsters/Squire/SquireActive7"
+Squire/Active8 "Sounds/Monsters/Squire/SquireActive8" 
+Squire/Active9 "Sounds/Monsters/Squire/SquireActive9"
+Squire/Active10 "Sounds/Monsters/Squire/SquireActive10"
+
+$random Squire/Death { Squire/Death1 Squire/Death2 Squire/Death3 Squire/Death4 Squire/Death5 Squire/Death6 Squire/Death7 Squire/Death8 Squire/Death9 }
+Squire/Death1 "Sounds/Monsters/Squire/SquireDeath1"
+Squire/Death2 "Sounds/Monsters/Squire/SquireDeath2"
+Squire/Death3 "Sounds/Monsters/Squire/SquireDeath3"
+Squire/Death4 "Sounds/Monsters/Squire/SquireDeath4"
+Squire/Death5 "Sounds/Monsters/Squire/SquireDeath5"
+Squire/Death6 "Sounds/Monsters/Squire/SquireDeath6"
+Squire/Death7 "Sounds/Monsters/Squire/SquireDeath7"
+Squire/Death8 "Sounds/Monsters/Squire/SquireDeath8"
+Squire/Death9 "Sounds/Monsters/Squire/SquireDeath9"
+
+$random Squire/Pain { Squire/Pain1 Squire/Pain2 Squire/Pain3 Squire/Pain4 Squire/Pain5 Squire/Pain6 Squire/Pain7 Squire/Pain8 Squire/Pain9 }
+Squire/Pain1 "Sounds/Monsters/Squire/SquirePain1"
+Squire/Pain2 "Sounds/Monsters/Squire/SquirePain2"
+Squire/Pain3 "Sounds/Monsters/Squire/SquirePain3"
+Squire/Pain4 "Sounds/Monsters/Squire/SquirePain4"
+Squire/Pain5 "Sounds/Monsters/Squire/SquirePain5"
+Squire/Pain6 "Sounds/Monsters/Squire/SquirePain6"
+Squire/Pain7 "Sounds/Monsters/Squire/SquirePain7"
+Squire/Pain8 "Sounds/Monsters/Squire/SquirePain8"
+Squire/Pain9 "Sounds/Monsters/Squire/SquirePain9"
+
+//Defiler
+$random Defiler/Fire { Defiler/Fire1 Defiler/Fire2 Defiler/Fire3 Defiler/Fire4 }
+Defiler/Fire1 "Sounds/Monsters/Defiler/DefilerFire1"
+Defiler/Fire2 "Sounds/Monsters/Defiler/DefilerFire2"
+Defiler/Fire3 "Sounds/Monsters/Defiler/DefilerFire3"
+Defiler/Fire4 "Sounds/Monsters/Defiler/DefilerFire4"
+
+$rolloff Defiler/Fire 450 1400
+
+$random Defiler/Active { Defiler/Active1 Defiler/Active2 Defiler/Active3 Defiler/Active4 Defiler/Active5 Defiler/Active6 }
+Defiler/Active1 "Sounds/Monsters/Defiler/DefilerActive1"
+Defiler/Active2 "Sounds/Monsters/Defiler/DefilerActive2"
+Defiler/Active3 "Sounds/Monsters/Defiler/DefilerActive3"
+Defiler/Active4 "Sounds/Monsters/Defiler/DefilerActive4"
+Defiler/Active5 "Sounds/Monsters/Defiler/DefilerActive5"
+Defiler/Active6 "Sounds/Monsters/Defiler/DefilerActive6"
+
+$volume Defiler/Active 0.7
+
+Defiler/Death "Sounds/Monsters/Defiler/DefilerDeath"
+
+Defiler/Breath "Sounds/Monsters/Defiler/DefilerBreath"
+
+$random Defiler/Roar { Defiler/Roar1 Defiler/Roar2 Defiler/Roar3 Defiler/Roar4 Defiler/Roar5 Defiler/Roar6 Defiler/Roar7 }
+Defiler/Roar1 "Sounds/Monsters/Defiler/DefilerRoar1"
+Defiler/Roar2 "Sounds/Monsters/Defiler/DefilerRoar2"
+Defiler/Roar3 "Sounds/Monsters/Defiler/DefilerRoar3"
+Defiler/Roar4 "Sounds/Monsters/Defiler/DefilerRoar4"
+Defiler/Roar5 "Sounds/Monsters/Defiler/DefilerRoar5"
+Defiler/Roar6 "Sounds/Monsters/Defiler/DefilerRoar6"
+Defiler/Roar7 "Sounds/Monsters/Defiler/DefilerRoar7"
+
+//$rolloff Defiler/Roar 450 1300
+
+$random Defiler/Gag { Defiler/Gag1 Defiler/Gag2 Defiler/Gag3 Defiler/Gag4 }
+Defiler/Gag1 "Sounds/Monsters/Defiler/DefilerGag1"
+Defiler/Gag2 "Sounds/Monsters/Defiler/DefilerGag2"
+Defiler/Gag3 "Sounds/Monsters/Defiler/DefilerGag3"
+Defiler/Gag4 "Sounds/Monsters/Defiler/DefilerGag4"
+
+$rolloff Defiler/Gag 500 1400
+
+Defiler/Ack "Sounds/Monsters/Defiler/DefilerAck"
+
+$rolloff Defiler/Ack 500 1400
+
+$random Defiler/Shoot { Defiler/Shoot1 Defiler/Shoot2 Defiler/Shoot3 Defiler/Shoot4 }
+Defiler/Shoot1 "Sounds/Monsters/Defiler/DefilerShoot1"
+Defiler/Shoot2 "Sounds/Monsters/Defiler/DefilerShoot2"
+Defiler/Shoot3 "Sounds/Monsters/Defiler/DefilerShoot3"
+Defiler/Shoot4 "Sounds/Monsters/Defiler/DefilerShoot4"
+
+Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush"
+
+$random Corpse/Fall { Corpse/Fall1 Corpse/Fall2 Corpse/Fall3 Corpse/Fall4 Corpse/Fall5 Corpse/Fall6 Corpse/Fall7 Corpse/Fall8 }
+Corpse/Fall1 "Sounds/Other/CorpseFall1"
+Corpse/Fall2 "Sounds/Other/CorpseFall2"
+Corpse/Fall3 "Sounds/Other/CorpseFall3"
+Corpse/Fall4 "Sounds/Other/CorpseFall4"
+Corpse/Fall5 "Sounds/Other/CorpseFall5"
+Corpse/Fall6 "Sounds/Other/CorpseFall6"
+Corpse/Fall7 "Sounds/Other/CorpseFall7"
+Corpse/Fall8 "Sounds/Other/CorpseFall8"
+
+ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire"
+$limit ZTrooper/Fire 20
+$rolloff ZTrooper/Fire 600 2200
+
+FSGunner/Fire "Sounds/Monsters/FallenShotgunner/FSGunnerFire"
+$limit FSGunner/Fire 20
+$rolloff FSGunner/Fire 300 2200
+
+RFZ/Fire "Sounds/Monsters/RFZombie/RFTBasicFire"
+$limit RFZ/Fire 30
+$rolloff RFZ/Fire 300 2200
+
+RFZ/Load "Sounds/Monsters/RFZombie/RFTLoad"
+
+RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire"
+$limit RFZ/RapidFire 0
+$rolloff RFZ/RapidFire 150 2200
+
+RFZ/Winddown "Sounds/Monsters/RFZombie/RFTWinddown"
+$rolloff RFZ/Winddown 500 1800
+
+Voidspawn/See "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnSee"
+Voidspawn/Charge "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnCharge"
+
+
+$random Imp/Step { Imp/Step1 Imp/Step2 Imp/Step3 Imp/Step4 }
+Imp/Step1 "Sounds/Monsters/Devil/ImpStep1"
+Imp/Step2 "Sounds/Monsters/Devil/ImpStep2"
+Imp/Step3 "Sounds/Monsters/Devil/ImpStep3"
+Imp/Step4 "Sounds/Monsters/Devil/ImpStep4"
+
+$volume Imp/Step 0.5
+$rolloff Imp/Step 200 450
+$limit Imp/Step 4
+
+$random Gore/HeadBounce { Gore/HeadBounce1 Gore/HeadBounce2 Gore/HeadBounce3 }
+Gore/HeadBounce1 "Sounds/Monsters/Horrorspawn/HeadBounce1"
+Gore/HeadBounce2 "Sounds/Monsters/Horrorspawn/HeadBounce2"
+Gore/HeadBounce3 "Sounds/Monsters/Horrorspawn/HeadBounce3"
+
+//Distant Guns
+
+ZombieRifleDistant	"Sounds/Other/ZombieRifleDistant"
+GunnerRifleDistant	"Sounds/Other/GunnerGunDistant"
+ShotgunnerGunDistant	"Sounds/Other/ShotgunnerGunDistant"
+
+$limit ZombieRifleDistant 20
+$limit GunnerRifleDistant 20
+$limit ShotgunnerGunDistant 20
+
+$rolloff ZombieRifleDistant 100 3800
+$rolloff GunnerRifleDistant 200 3800
+$rolloff ShotgunnerGunDistant 300 3800
+
+//Teleport
+
+TeleportVoices	"Sounds/Other/TeleportVoices"
+
+TeleportSound	"Sounds/Other/TeleportSound"
+
+$rolloff TeleportSound 350 1600
+$rolloff TeleportVoices 600 3200
+
+$random Wretched/Bite { Wretched/Bite1 Wretched/Bite2 Wretched/Bite3 Wretched/Bite4 }
+Wretched/Bite1 "Sounds/Monsters/Wretched/WretchedBite1"
+Wretched/Bite2 "Sounds/Monsters/Wretched/WretchedBite2"
+Wretched/Bite3 "Sounds/Monsters/Wretched/WretchedBite3"
+Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4"
+
+//Skulker
+
+Skulker/See "Sounds/Monsters/Skulker/SkulkerSee"
+
+$rolloff Skulker/Taunt 400 1800
+
+Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge"
+
+Skulker/Flee "Sounds/Monsters/Skulker/SkulkerFlee"
+
+Skulker/Flinch "Sounds/Monsters/Skulker/SkulkerFlinch"
+
+Skulker/Breath "Sounds/Monsters/Skulker/SkulkerBreath"
+
+Skulker/Hunt "Sounds/Monsters/Skulker/SkulkerHunt"
+
+Skulker/Hit "Sounds/Monsters/Skulker/SkulkerHit"
+
+Skulker/Miss "Sounds/Monsters/Skulker/SkulkerMiss"
+
+Skulker/Swing "Sounds/Monsters/Skulker/SkulkerSwing"
+
+Skulker/Port "Sounds/Monsters/Skulker/SkulkerPort"
+
+Skulker/Phase "Sounds/Monsters/Skulker/SkulkerPhase"
+
+$volume Skulker/Phase 0.7
+
+$limit Skulker/Port 12
+
+$rolloff Skulker/Port 750 1300
+
+Skulker/Whisper "Sounds/Monsters/Skulker/SkulkerWhisper"
+
+Skulker/Wail "Sounds/Monsters/Skulker/SkulkerWail"
+
+
+$random Skulker/Taunt { Skulker/Taunt1 Skulker/Taunt2 Skulker/Taunt3 }
+Skulker/Taunt1 "Sounds/Monsters/Skulker/SkulkerTaunt1"
+Skulker/Taunt2 "Sounds/Monsters/Skulker/SkulkerTaunt2"
+Skulker/Taunt3 "Sounds/Monsters/Skulker/SkulkerTaunt3"
+
+$rolloff Skulker/Taunt 350 1800
+
+$random imp/shotx {Malice/FireHit1 Malice/FireHit2 Malice/FireHit3 Malice/FireHit4}
+Malice/FireHit1 "Sounds/Other/MaliceFireHit1"
+Malice/FireHit2 "Sounds/Other/MaliceFireHit2"
+Malice/FireHit3 "Sounds/Other/MaliceFireHit3"
+Malice/FireHit4 "Sounds/Other/MaliceFireHit4"
+
+Beholder/Rush "Sounds/Monsters/Watcher/BeholderRush"
+
+//Demon Tech Brute
+$random DTechSee { DTechSee1 DTechSee2 DTechSee3 }
+DTechSee1         "sounds/Monsters/DTechBrute/DTechBruteSight1"
+DTechSee2         "sounds/Monsters/DTechBrute/DTechBruteSight2"
+DTechSee3         "sounds/Monsters/DTechBrute/DTechBruteSight3"
+$random DTechActive { DTechActive1 DTechActive2 DTechActive3 }
+DTechActive1       "sounds/Monsters/DTechBrute/DTechBruteAct1"
+DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct2"
+DTechActive2       "sounds/Monsters/DTechBrute/DTechBruteAct3"
+$random DTechPain { DTechPain1 DTechPain2 DTechPain3 DTechPain4 }
+DTechPain1         "sounds/Monsters/DTechBrute/DTechBrutePain1"
+DTechPain2         "sounds/Monsters/DTechBrute/DTechBrutePain2"
+DTechPain3         "sounds/Monsters/DTechBrute/DTechBrutePain3"
+DTechPain4         "sounds/Monsters/DTechBrute/DTechBrutePain4"      
+DTechAttack          "sounds/Monsters/DTechBrute/DTechBruteAttack"
+DTechMelee           "sounds/Monsters/DTechBrute/DTechBruteAttackMelee"
+DTechDeath           "sounds/Monsters/DTechBrute/DTechBruteDeath"
+
+$volume DTechSee 0.8
+$volume DTechActive 0.8
+$volume DTechPain 0.7
+$volume DTechDeath 0.7
+
+
+$pitchshiftrange 3
+$random DTechWalk { DTechWalk3 DTechWalk3}       
+DTechWalk1	"sounds/Monsters/DTechBrute/DTechBruteWalk1"
+DTechWalk2	"sounds/Monsters/DTechBrute/DTechBruteWalk2"
+DTechWalk3	"sounds/Monsters/DTechBrute/DTechBruteWalk3"
+$pitchshiftrange 0
+$volume DTechWalk 1
+$limit DTechWalk 12
+
+//Wicked
+$random WickSight     { WickSight1 WickSight2 WickSight3 }
+WickSight1                "sounds/Monsters/Wicked/WickedSight1"
+WickSight2                "sounds/Monsters/Wicked/WickedSight2"
+WickSight3                "sounds/Monsters/Wicked/WickedSight3"      
+$random WickActive		{ WickActive1 WickActive2 }
+WickActive1               "sounds/Monsters/Wicked/WickedActive1"
+WickActive2               "sounds/Monsters/Wicked/WickedActive2"
+WickAttack                "sounds/Monsters/Wicked/WickedAttack"
+WickRush                  "sounds/Monsters/Wicked/WickedRush"
+WickPain                  "sounds/Monsters/Wicked/WickedPain"
+$random WickDeath      { WickDeath1 WickDeath2 }
+WickDeath1                "sounds/Monsters/Wicked/WickedDeath1"
+WickDeath2                "sounds/Monsters/Wicked/WickedDeath2"
+WickFire                  "sounds/Monsters/Wicked/WickedFire"
+WickFireExp               "sounds/Monsters/Wicked/WickedFireExp"
+
+$volume WickDeath 0.9
+$volume WickAttack 0.95
+$volume WickSight 0.95
+$volume WickFire 0.95
+$volume WickFireExp 0.9
+
+//Hell's Fury
+$random HFurySight { HFurySight1 HFurySight2 }
+HFurySight            "sounds/Monsters/HellsFury/HellsFurySight1"
+HFurySight            "sounds/Monsters/HellsFury/HellsFurySight2"
+HFuryActive            "sounds/Monsters/HellsFury/HellsFuryActive"
+$random HFuryPain { HFuryPain1 HFuryPain2 }
+HFuryPain1            "sounds/Monsters/HellsFury/HellsFuryPain1"
+HFuryPain2            "sounds/Monsters/HellsFury/HellsFuryPain2"
+$random HFuryDeath { HFuryDeath1 HFuryDeath2 }
+HFuryDeath1            "sounds/Monsters/HellsFury/HellsFuryDeath1"
+HFuryDeath2            "sounds/Monsters/HellsFury/HellsFuryDeath2"
+
+HFuryProj            "sounds/Monsters/HellsFury/HellsFuryProj"
+HFuryRoar            "sounds/Monsters/HellsFury/HellsFuryRoar"
+HFuryProjExp            "sounds/Monsters/HellsFury/HellsFuryProjExp" 
+
+$volume HFuryProjExp 0.6
+$volume HFuryProj 0.8
+
+//Fiend stuff
+FiendRocketFire            "sounds/Monsters/Fiend/FiendRocketFire"
+$limit FiendRocketFire 8
+$random SmallMissileExplosion { SmallMissileExp1 SmallMissileExp2 SmallMissileExp3 SmallMissileExp4 }
+SmallMissileExp1            "sounds/Monsters/Fiend/SmallMissileExp1"
+SmallMissileExp2            "sounds/Monsters/Fiend/SmallMissileExp2"
+SmallMissileExp3            "sounds/Monsters/Fiend/SmallMissileExp3"
+SmallMissileExp4            "sounds/Monsters/Fiend/SmallMissileExp4"
+
+//Hell Priest
+
+$random HellPriestActive { HPriestActive1 HPriestActive2 HPriestActive3 HPriestActive4 HPriestActive5 HPriestActive6 HPriestActive7 HPriestActive8 }
+HPriestActive1           "sounds/Monsters/HellPriest/HellPriestActive1"
+HPriestActive2           "sounds/Monsters/HellPriest/HellPriestActive2"
+HPriestActive3           "sounds/Monsters/HellPriest/HellPriestActive3"
+HPriestActive4           "sounds/Monsters/HellPriest/HellPriestActive4"
+HPriestActive5           "sounds/Monsters/HellPriest/HellPriestActive5"
+HPriestActive6           "sounds/Monsters/HellPriest/HellPriestActive6"
+HPriestActive7           "sounds/Monsters/HellPriest/HellPriestActive7"
+HPriestActive8           "sounds/Monsters/HellPriest/HellPriestActive8"
+
+HellPriestSee           "sounds/Monsters/HellPriest/HellPriestSee"
+HellPriestPain          "sounds/Monsters/HellPriest/HellPriestPain"
+
+//RotFly
+$random Rotfly/See { RotflySee1 RotflySee2 }
+RotflySee1          "sounds/Monsters/Rotfly/RotflySee1"
+RotflySee2          "sounds/Monsters/Rotfly/RotflySee2"
+
+$random Rotfly/Active { RotflyActive1 RotflyActive2 }
+RotflyActive1          "sounds/Monsters/Rotfly/RotflyActive1"
+RotflyActive2          "sounds/Monsters/Rotfly/RotflyActive2"
+
+$random Rotfly/Attack { RotflyAttack1 RotflyAttack2 RotflyAttack3 }
+RotflyAttack1          "sounds/Monsters/Rotfly/RotflyAttack1"
+RotflyAttack2          "sounds/Monsters/Rotfly/RotflyAttack2"
+RotflyAttack3          "sounds/Monsters/Rotfly/RotflyAttack3"
+
+$random Rotfly/Pain { RotflyPain1 RotflyPain2 }
+RotflyPain1          "sounds/Monsters/Rotfly/RotflyPain1"
+RotflyPain2          "sounds/Monsters/Rotfly/RotflyPain2"
+
+$random Rotfly/Death { RotflyDeath1 RotflyDeath2 }
+RotflyDeath1          "sounds/Monsters/Rotfly/RotflyDeath1"
+RotflyDeath2          "sounds/Monsters/Rotfly/RotflyDeath2"
+
+//Pistol Zombie
+
+$random PistolZombie/See { PistolZombie/See1 PistolZombie/See2 PistolZombie/See3 }
+PistolZombie/See1 "Sounds/Monsters/PistolZombie/PistolZombieSee1"
+PistolZombie/See2 "Sounds/Monsters/PistolZombie/PistolZombieSee2"
+PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee3"
+PistolZombie/See3 "Sounds/Monsters/PistolZombie/PistolZombieSee4"
+
+$rolloff PistolZombie/See 200 1200
+
+$random PistolZombie/Active { PistolZombie/Active1 PistolZombie/Active2 PistolZombie/Active3 PistolZombie/Active4 PistolZombie/Active5 PistolZombie/Active6 PistolZombie/Active7 }
+PistolZombie/Active1 "Sounds/Monsters/PistolZombie/PistolZombieActive1"
+PistolZombie/Active2 "Sounds/Monsters/PistolZombie/PistolZombieActive2"
+PistolZombie/Active3 "Sounds/Monsters/PistolZombie/PistolZombieActive3"
+PistolZombie/Active4 "Sounds/Monsters/PistolZombie/PistolZombieActive4"
+PistolZombie/Active5 "Sounds/Monsters/PistolZombie/PistolZombieActive5"
+PistolZombie/Active6 "Sounds/Monsters/PistolZombie/PistolZombieActive6"
+PistolZombie/Active7 "Sounds/Monsters/PistolZombie/PistolZombieActive7"
+
+$rolloff PistolZombie/Active 200 1200
+
+$random PistolZombie/Pain { PistolZombie/Pain1 PistolZombie/Pain2 PistolZombie/Pain3 }
+PistolZombie/Pain1 "Sounds/Monsters/PistolZombie/PistolZombiePain1"
+PistolZombie/Pain2 "Sounds/Monsters/PistolZombie/PistolZombiePain2"
+PistolZombie/Pain3 "Sounds/Monsters/PistolZombie/PistolZombiePain3"
+
+$rolloff PistolZombie/Pain 300 1200
+
+$random PistolZombie/Death { PistolZombie/Death1 PistolZombie/Death2 PistolZombie/Death3 }
+PistolZombie/Death1 "Sounds/Monsters/PistolZombie/PistolZombieDeath1"
+PistolZombie/Death2 "Sounds/Monsters/PistolZombie/PistolZombieDeath2"
+PistolZombie/Death3 "Sounds/Monsters/PistolZombie/PistolZombieDeath3"
+
+PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire"
+$rolloff PistolZombie/Fire 300 2200
+
+//Noble
+
+$random Noble/Sight { Noble/Sight1 Noble/Sight2 Noble/Sight3 Noble/Sight4 }
+
+Noble/Sight1 "sounds/Monsters/Noble/NobleSight1"
+Noble/Sight2 "sounds/Monsters/Noble/NobleSight2"
+Noble/Sight3 "sounds/Monsters/Noble/NobleSight3"
+Noble/Sight4 "sounds/Monsters/Noble/NobleSight4"
+
+$volume Noble/Sight 0.6
+
+$random Noble/Active { Noble/Active1 Noble/Active2 }
+
+Noble/Active1 "sounds/Monsters/Noble/NobleActive1"
+Noble/Active2 "sounds/Monsters/Noble/NobleActive2"
+
+$volume Noble/Active 0.6
+
+$random Noble/PreBomb { Noble/PreBomb1 Noble/PreBomb2 }
+
+$volume Noble/PreBomb 0.6
+
+Noble/PreBomb1 "sounds/Monsters/Noble/NoblePreBomb1"
+Noble/PreBomb2 "sounds/Monsters/Noble/NoblePreBomb2"
+
+Noble/BombExp "sounds/Monsters/Noble/NobleBombExp"
+
+//Blood Stalker
+
+$random BStalker/Sight { BStalker/Sight1 BStalker/Sight2 BStalker/Sight3 }
+
+$volume BStalker/Sight 0.8
+
+BStalker/Sight1 "Sounds/Monsters/BloodStalker/BStalkerSight1"
+BStalker/Sight2 "Sounds/Monsters/BloodStalker/BStalkerSight2"
+BStalker/Sight3 "Sounds/Monsters/BloodStalker/BStalkerSight3"
+
+$random BStalker/Active { BStalker/Active1 BStalker/Active2 }
+
+$volume BStalker/Active 0.6
+
+BStalker/Active1 "Sounds/Monsters/BloodStalker/BStalkerActive1"
+BStalker/Active2 "Sounds/Monsters/BloodStalker/BStalkerActive2"
+
+$random BStalker/Pain { BStalker/Pain1 BStalker/Pain2 }
+
+$volume BStalker/Pain 0.7
+
+BStalker/Pain1 "Sounds/Monsters/BloodStalker/BStalkerPain1"
+BStalker/Pain2 "Sounds/Monsters/BloodStalker/BStalkerPain2"
+
+BloodStalker/Roar "Sounds/Monsters/BloodStalker/BStalkerRoar"
+
+$volume BloodStalker/Roar 0.6
+
+
+//Corpulent
+$random Corpulent/Sight	{ Corpulent/Sight1 Corpulent/Sight2 }
+Corpulent/Sight1 "Sounds/Monsters/Corpulent/CorpulentSight1"
+Corpulent/Sight2 "Sounds/Monsters/Corpulent/CorpulentSight2"
+
+$random Corpulent/Active	{ Corpulent/Active1 Corpulent/Active2 }
+Corpulent/Active1 "Sounds/Monsters/Corpulent/CorpulentActive1"
+Corpulent/Active2 "Sounds/Monsters/Corpulent/CorpulentActive2"
+
+$random Corpulent/Pain		{ Corpulent/Pain1 Corpulent/Pain2 }
+Corpulent/Pain1 "Sounds/Monsters/Corpulent/CorpulentPain1"
+Corpulent/Pain2 "Sounds/Monsters/Corpulent/CorpulentPain2"
+
+$random Corpulent/Death	{ Corpulent/Death1 Corpulent/Death2 }
+Corpulent/Death1 "Sounds/Monsters/Corpulent/CorpulentDeath1"
+Corpulent/Death2 "Sounds/Monsters/Corpulent/CorpulentDeath2"
+
+$random Corpulent/Attack { Corpulent/Attack1 Corpulent/Attack2 Corpulent/Attack3 }
+Corpulent/Attack1 "Sounds/Monsters/Corpulent/CorpulentAttack1"
+Corpulent/Attack2 "Sounds/Monsters/Corpulent/CorpulentAttack2"
+Corpulent/Attack3 "Sounds/Monsters/Corpulent/CorpulentAttack3"
+
+$random Corpulent/Fire	{ Corpulent/Fire1 Corpulent/Fire2 }
+Corpulent/Fire1 "Sounds/Monsters/Corpulent/CorpulentFire1"
+Corpulent/Fire2 "Sounds/Monsters/Corpulent/CorpulentFire2"
+
+$random Corpulent/Whiz	{ Corpulent/Whiz1 Corpulent/Whiz2 }
+Corpulent/Whiz1 "Sounds/Monsters/Corpulent/CorpulentWhiz1"
+Corpulent/Whiz2 "Sounds/Monsters/Corpulent/CorpulentWhiz2"
+
+//Bruiser
+$random Bruiser/Sight	{ Bruiser/Sight1 Bruiser/Sight2 }
+Bruiser/Sight1 "Sounds/Monsters/Bruiser/BruiserSight1"
+Bruiser/Sight2 "Sounds/Monsters/Bruiser/BruiserSight2"
+
+$random Bruiser/Active	{ Bruiser/Active1 Bruiser/Active2 }
+Bruiser/Active1 "Sounds/Monsters/Bruiser/BruiserActive1"
+Bruiser/Active2 "Sounds/Monsters/Bruiser/BruiserActive2"
+
+$random Bruiser/Pain		{ Bruiser/Pain1 Bruiser/Pain2 }
+Bruiser/Pain1 "Sounds/Monsters/Bruiser/BruiserPain1"
+Bruiser/Pain2 "Sounds/Monsters/Bruiser/BruiserPain2"
+
+$random Bruiser/Death	{ Bruiser/Death1 Bruiser/Death2 }
+Bruiser/Death1 "Sounds/Monsters/Bruiser/BruiserDeath1"
+Bruiser/Death2 "Sounds/Monsters/Bruiser/BruiserDeath2"
+
+$random Bruiser/Attack { Bruiser/Attack1 Bruiser/Attack2 }
+Bruiser/Attack1 "Sounds/Monsters/Bruiser/BruiserAttack1"
+Bruiser/Attack2 "Sounds/Monsters/Bruiser/BruiserAttack2"
+
+
+$random GBloodSplashBig { BigBloodS1 BigBloodS2 BigBloodS3 BigBloodS4 }
+
+BigBloodS1 "Sounds/Monsters/SFX/GenericBloodSplashBig1"
+BigBloodS2 "Sounds/Monsters/SFX/GenericBloodSplashBig2"
+BigBloodS3 "Sounds/Monsters/SFX/GenericBloodSplashBig3"
+BigBloodS4 "Sounds/Monsters/SFX/GenericBloodSplashBig4"
+
+$rolloff GBloodSplashBig 700 1400
+
+DemonicSprite/Flee "Sounds/Other/PossSpriteFlee"
+$volume DemonicSprite/Flee 0.5
+DemonicSprite/Warn "Sounds/Other/PossSpriteWarn"

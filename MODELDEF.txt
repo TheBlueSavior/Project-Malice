@@ -1,0 +1,79 @@
+Model UberTracer
+{ 
+Path "Models"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.4 0.4 0.4
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}
+
+Model PM_PelletTracer
+{ 
+Path "Models"
+Skin 0 "tracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.3 0.3 0.3
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}
+
+Model CarbineZombieBullet
+{ 
+Path "Models"
+Skin 0 "tracer2.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRCR B 0 0
+}
+
+Model WhiplashKnife
+{ 
+Path "Models"
+Skin 0 "knifetracer.tga"
+Model 0 "Tracer.md3"
+Scale 0.1 0.5 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLA2 A 0 0
+}
+
+Model WKnifeBlur
+{ 
+Path "Models"
+Skin 0 "knifetracer.tga"
+Model 0 "Tracer.md3"
+Scale 0.1 0.5 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLA2 A 0 0
+}
+
+Model HSummonCircle     
+{
+   Path "Models"    
+   Model 0 "summcircle.md3"    
+   Skin 0 "harvesterscircle.png"     
+   Scale 26.0 26.0 26.0           
+   ZOffset 1.0
+   FrameIndex HSU2 A 0 0         
+}
+
+Model TeleSummonCircle    
+{
+   Path "Models"    
+   Model 0 "telemdlcircle.md3"    
+   Skin 0 "telecircle.png"     
+   Scale 26.0 26.0 26.0           
+   ZOffset 1.0
+   FrameIndex TSU3 A 0 0         
+}
+
+Model PM_NailgunnerNail
+{ 
+Path "Models"
+Skin 0 "nailtracer.tga"
+Model 0 "Tracer.md3"
+Scale 0.1 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLAD A 0 0
+}

@@ -1,0 +1,16 @@
+
+AddOptionMenu "OptionsMenu"
+{
+    StaticText ""
+    Submenu "Project Malice", "projectmalice_options"
+	StaticText ""
+}
+
+OptionMenu "projectmalice_options"
+{
+	Title "Project Malice Options"
+	StaticText "Project Malice Options", white
+	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
+	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
+	StaticText " "
+}
