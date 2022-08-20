@@ -64,7 +64,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -72,7 +72,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -80,7 +80,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")
@@ -92,7 +92,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_Jump(30,"See2")
@@ -112,7 +112,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -120,7 +120,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -128,7 +128,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")
@@ -144,7 +144,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -152,7 +152,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Decayed/Fire")
@@ -160,7 +160,7 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")

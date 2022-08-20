@@ -43,7 +43,7 @@ ACTOR PM_ZombieTrooper : Zombieman
     Missile:
 		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight")
 		TNT1 A 0 A_Jump(40,"Missile2")
-        UTM2 E 1 A_FaceTarget
+        UTM2 EEEEE 1 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
 		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
 		UTM2 F 1 bright Light("YellowMediumFlicker2")
@@ -90,7 +90,7 @@ ACTOR PM_ZombieTrooper : Zombieman
       TNT1 A 0 A_PlaySound("ZTrooper/Fire")
       UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
 	  {
-		A_CustomMissile("PM_BulletTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",33,7,random(-5, 5), CMF_OFFSETPITCH, random(-4, 4));
 		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileLeft")
@@ -103,7 +103,7 @@ ACTOR PM_ZombieTrooper : Zombieman
       TNT1 A 0 A_PlaySound("ZTrooper/Fire")
 	  UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
 	  {
-		A_CustomMissile("PM_BulletTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",33,7,random(-5, 5), CMF_OFFSETPITCH, random(-4, 4));
 		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileRight")
