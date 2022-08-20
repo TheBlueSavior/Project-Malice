@@ -2779,7 +2779,7 @@ $volume HFuryProjExp 0.6
 $volume HFuryProj 0.8
 
 //Fiend
-FiendRocketFire            "sounds/Monsters/Fiend/FiendRocketFire"
+FiendRocketFire            "sounds/Monsters/Fiend/FiendRocketFire.ogg"
 $limit FiendRocketFire 8
 $random SmallMissileExplosion { SmallMissileExp1 SmallMissileExp2 SmallMissileExp3 SmallMissileExp4 }
 SmallMissileExp1            "sounds/Monsters/Fiend/SmallMissileExp1.ogg"

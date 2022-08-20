@@ -414,7 +414,7 @@ ACTOR PM_ExileFireball
 	Projectile
 	Alpha 1
 	SeeSound "pyro/flame"
-	DeathSound "HUBEXP"
+	DeathSound "GenericCometExp"
 	States
 	{
 	Spawn:

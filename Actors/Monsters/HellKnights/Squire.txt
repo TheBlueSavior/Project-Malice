@@ -123,6 +123,7 @@ ACTOR PM_Squire
 		BOS6 G 8 Light("Greenball3")
 		{
 		A_FaceTarget;
+		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_SquireFireball",40);
 		}
 		BOS6 G 7 Light("Greenball3")
