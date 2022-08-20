@@ -204,8 +204,8 @@ Actor AcolyteShot
     RenderStyle "Add"
     Alpha 0.99
 	Scale 0.37
-    SeeSound "whiteballbsee"
-    DeathSound "whiteballbdeth"
+    SeeSound "HeresyLord/WhiteFire"
+    DeathSound "HeresyLord/WhiteDeath"
     Decal "BishopScorch"
     Projectile
     +ThruGhost
@@ -238,8 +238,8 @@ actor PM_HellPriestVoidBall : DoomImpBall
 {
 	Damage (random(18,18))
 	+SEEKERMISSILE
-	Seesound "whiteballssee"
-	DeathSound "whiteballsdeth"
+	Seesound "HeresyLord/BarrageWhiteFire"
+	DeathSound "HeresyLord/BarrageWhiteDeath"
 	Speed 26
 	FastSpeed 30
 	Scale 0.93

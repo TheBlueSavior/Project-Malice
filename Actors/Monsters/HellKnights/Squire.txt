@@ -326,7 +326,8 @@ actor PM_SquireFireball : DoomImpBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 15
-	SeeSound "weapons/bwoosh"
+	SeeSound "HellKnight/Cast"
+	DeathSound "HellKnight/BallImpact"
 	Damage (random(30,37))
 	Scale 0.24
 	states

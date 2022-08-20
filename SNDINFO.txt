@@ -1367,10 +1367,6 @@ electricplasma/hit		PZAPHIT
 queen/hit		qbfghit
 queen/melee		quebit
 
-weapons/bwoosh dsbwoosh
-$limit weapons/bwoosh 4
-$volume weapons/bwoosh 0.6
-
 //Burnt Soul
 
 $random BurntSoul/Active { BSoul/Active1 BSoul/Active2 BSoul/Active3 BSoul/Active4 }
@@ -2529,6 +2525,26 @@ Squire/Pain6 "Sounds/Monsters/Squire/SquirePain6.ogg"
 Squire/Pain7 "Sounds/Monsters/Squire/SquirePain7.ogg"
 Squire/Pain8 "Sounds/Monsters/Squire/SquirePain8.ogg"
 Squire/Pain9 "Sounds/Monsters/Squire/SquirePain9.ogg"
+
+$random HellKnight/Cast { HKnightCast1 HKnightCast2 HKnightCast3 HKnightCast4 }
+HKnightCast1 "Sounds/Monsters/SFX/HellKCast1.ogg"
+HKnightCast2 "Sounds/Monsters/SFX/HellKCast2.ogg"
+HKnightCast3 "Sounds/Monsters/SFX/HellKCast3.ogg"
+HKnightCast4 "Sounds/Monsters/SFX/HellKCast4.ogg"
+$random HellKnight/BallImpact { HKnightBImpact1 HKnightBImpact2 HKnightBImpact3 HKnightBImpact4 }
+HKnightBImpact1 "Sounds/Monsters/SFX/HellKImpact1.ogg"
+HKnightBImpact2 "Sounds/Monsters/SFX/HellKImpact2.ogg"
+HKnightBImpact3 "Sounds/Monsters/SFX/HellKImpact3.ogg"
+HKnightBImpact4 "Sounds/Monsters/SFX/HellKImpact4.ogg"
+
+$volume HellKnight/BallImpact 0.7
+$volume HellKnight/Cast 0.8
+$limit HellKnight/Cast 4
+$limit HellKnight/BallImpact 5
+
+weapons/bwoosh dsbwoosh
+$limit weapons/bwoosh 4
+$volume weapons/bwoosh 0.6
 
 //Defiler
 $random Defiler/Fire { Defiler/Fire1 Defiler/Fire2 Defiler/Fire3 Defiler/Fire4 }

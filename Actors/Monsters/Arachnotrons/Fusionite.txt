@@ -245,6 +245,7 @@ ACTOR PM_SmallFusionShot
   {
   Spawn:
     FS03 AB 1 Bright Light("AgauresBall")
+	Loop
   Death:	
     FS03 HIJ 3 Bright
     Stop
