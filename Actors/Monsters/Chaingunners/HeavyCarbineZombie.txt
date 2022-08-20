@@ -83,7 +83,7 @@ ACTOR PM_HeavyCarbineZombie
     HCPO K 5
 	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
 	HCPO L 90
-	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION)
     HCPO L -1
     Stop
   XDeath:
