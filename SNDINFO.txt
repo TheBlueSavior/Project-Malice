@@ -1504,8 +1504,8 @@ $random HellSoldier/Plasma { HellSolPlas1 HellSolPlas2 }
 HellSolPlas1 "Sounds/Monsters/HellifiedSoldier/HellSolPlas1.ogg"
 HellSolPlas2 "Sounds/Monsters/HellifiedSoldier/HellSolPlas2.ogg"
 
-$rolloff HellSol/Plasma 700 2200
-$limit HellSol/Plasma 12
+$rolloff HellSoldier/Plasma 700 2200
+$limit HellSoldier/Plasma 12
 
 $random HUNSPA { HUNSPA1 HUNSPA2 HUNSPA3 HUNSPA4 HUNSPA5 }
 HUNSPA1 HUNSPA1
