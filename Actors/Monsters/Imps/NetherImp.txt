@@ -1,4 +1,4 @@
-Class PM_NetherConduit : Actor
+Class PM_NetherImp : Actor
 {
   Default
   {
