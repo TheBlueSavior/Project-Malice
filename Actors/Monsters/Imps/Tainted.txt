@@ -248,7 +248,7 @@ ACTOR PM_TaintedBall
 	+Strifedamage
 	+RANDOMIZE
 	Alpha 1
-	SeeSound "GBloodSplash2"
+	SeeSound "TaintedBall"
 	DeathSound "TaintedBloodExp"
 	States
 	{

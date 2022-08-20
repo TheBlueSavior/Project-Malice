@@ -1256,6 +1256,7 @@ $rolloff Tainted/Step 200 850
 $limit Tainted/Step 6
 
 //Blood FX
+TaintedBall                "Sounds/Monsters/Tainted/TaintedBall.ogg"
 TaintedProjFire            "sounds/Monsters/Tainted/TaintedProjFire.ogg"
 TaintedBloodFire           "sounds/Monsters/Tainted/TaintedBounceFire.ogg"
 TaintedBloodExp            "sounds/Monsters/Tainted/TaintedBounceExp.ogg"
