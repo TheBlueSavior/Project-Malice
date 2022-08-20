@@ -336,7 +336,7 @@ ACTOR PM_HuskMeteor : DoomImpBall
   Death:
 	TNT1 A 0 Radius_Quake (2, 54, 0, 15, 0)
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0)
-	TNT1 AAAA 0 A_CustomMissile("MancuBallExplode",0,0,random(0,360),2,random(0,360))
+	TNT1 AAAA 0 A_CustomMissile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360))
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0)
     HUBL EFGHI 1 BRIGHT Light("AvatarFireball4")
 	TNT1 A 0 A_CustomMissile("PyroImpBallFire2", 0, 0, 0, 0)

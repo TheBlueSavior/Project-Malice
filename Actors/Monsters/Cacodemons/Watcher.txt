@@ -100,7 +100,7 @@ Class PM_Watcher : Actor
 	}
     WATC G 3 BRIGHT 
 	{
-	A_SpawnProjectile("MaliceWatcherShot",10,0,0);
+	A_SpawnProjectile("PM_WatcherShot",10,0,0);
 	A_Chase();
 	A_FaceTarget();
 	}
@@ -117,7 +117,7 @@ Class PM_Watcher : Actor
 	}
     WATC GGGGGGGG 5 BRIGHT 
 	{
-	A_SpawnProjectile("Fleshspawnball",10,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
+	A_SpawnProjectile("PM_WatcherShotSmall",10,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
 	A_FaceTarget();
 	}
 	WATC FE 2
@@ -148,7 +148,7 @@ Class PM_Watcher : Actor
   }
 }
 
-Class MaliceWatcherShot : Actor
+Class PM_WatcherShot : Actor
 {
   Default
   {
@@ -176,4 +176,5 @@ Class MaliceWatcherShot : Actor
     stop;
   }
 }
-//End of Watcher
+
+//Projectile for the small shots are in Actors/Souls/Fleshspawn.txt

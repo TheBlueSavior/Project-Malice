@@ -39,26 +39,26 @@ ACTOR PM_HellifiedSoldier
         HFS1 F 8 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
-        HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+        HFS1 G 4 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
-		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
-		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
-		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+		HFS1 G 4 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 8 A_FaceTarget
         Goto See
 	Missile2:
 		HFS1 F 8 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
-        HFS1 G 2 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
+        HFS1 G 2 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 4 A_FaceTarget
 		TNT1 A 0 A_Jump(30,"See")
 		D3CG E 0 A_MonsterRefire(60,"See")
@@ -99,7 +99,7 @@ ACTOR PM_HellifiedSoldier
     }
 }
 
-ACTOR HellifiedSoldierBall
+ACTOR PM_HellifiedSoldierBall
 {
    Height 3
    Radius 3

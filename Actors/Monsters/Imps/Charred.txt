@@ -68,9 +68,9 @@ Actor PM_Charred : DoomImp
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	}
 	CH5R GGGG 1 Light("Avatarfireball4") A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2)
-	CH5R G 0 A_CustomMissile("PyroImpBallNoGravity", 32, 0, -11)
-	CH5R G 0 A_CustomMissile("PyroImpBallNoGravity", 32, 0, 0)
-	CH5R G 0 A_CustomMissile("PyroImpBallNoGravity", 32, 0, 11)
+	CH5R G 0 A_CustomMissile("PM_CharredBallNoGravity", 32, 0, -11)
+	CH5R G 0 A_CustomMissile("PM_CharredBallNoGravity", 32, 0, 0)
+	CH5R G 0 A_CustomMissile("PM_CharredBallNoGravity", 32, 0, 11)
 	CH5R G 7 A_FaceTarget
     Goto See
 	
@@ -101,7 +101,7 @@ Actor PM_Charred : DoomImp
 	{
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PyroImpBallNoGravity");
+	A_CustomMissile("PM_CharredBallNoGravity");
 	}
     CH5R B 2 Light("Avatarfireball4") A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -133,7 +133,7 @@ Actor PM_Charred : DoomImp
 	{
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PyroImpBallNoGravity");
+	A_CustomMissile("PM_CharredBallNoGravity");
 	}
     CH5R B 2 Light("Avatarfireball4") A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -146,7 +146,7 @@ Actor PM_Charred : DoomImp
 	CH5R AAAAA 3 A_FaceTarget
 	Goto See
   Missile2:
-	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6)
 	CH5R EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEFFF 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget;
@@ -155,7 +155,7 @@ Actor PM_Charred : DoomImp
 	CH5R GGGGGGGGGGGGGGGGG 5 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
-	A_CustomMissile("PyroImpBarrageBall", 32,0,Random(-3,3), 0,0);
+	A_CustomMissile("PM_CharredBarrageBall", 32,0,Random(-3,3), 0,0);
 	}
 	TNT1 A 0 A_StopSound(CHAN_6)
 	CH5R FE 4 A_FaceTarget
@@ -163,7 +163,7 @@ Actor PM_Charred : DoomImp
   Throw:
 		TNT1 A 0 A_PlaySound("IMPCHARG",CHAN_6)
         CH5R EEFF 4 Light("Avatarfireball4") A_FaceTarget
-        CH5R G 6 Light("Avatarfireball4") A_CustomMissile ("PyroImpBall", 32, 12, 0, 2, 10)
+        CH5R G 6 Light("Avatarfireball4") A_CustomMissile ("PM_CharredBall", 32, 12, 0, 2, 10)
 		CH5R F 6 A_FaceTarget
 		Goto See
   Evade:
@@ -199,7 +199,7 @@ Actor PM_Charred : DoomImp
 	}
 }
 
-actor PyroImpBall : DoomImpBall
+actor PM_CharredBall : DoomImpBall
 {
   renderstyle Add
   DamageType Fire
@@ -228,7 +228,7 @@ actor PyroImpBall : DoomImpBall
   }
 }
 
-actor PyroImpBallNoGravity : PyroImpBall
+actor PM_CharredBallNoGravity : PM_CharredBall
 {
 	+NOGRAVITY
 	-LOWGRAVITY
@@ -251,7 +251,7 @@ actor PyroImpBallNoGravity : PyroImpBall
   }
 }
 
-actor PyroImpBarrageBall : PyroImpBall
+actor PM_CharredBarrageBall : PM_CharredBall
 {
 	+NOGRAVITY
 	-LOWGRAVITY

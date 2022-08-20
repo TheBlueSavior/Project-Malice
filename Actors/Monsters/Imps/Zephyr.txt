@@ -112,7 +112,7 @@ actor PM_Zephyr : DoomImp
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),5,0,2);
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(-18,-26),5,0,2);
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(-18,-26),5,0,2);
-		A_CustomMissile("FastImpBall",5,5,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_CustomMissile("PM_FastImpBall",5,5,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
 		}
 		goto CeilingCrawl
 	
@@ -165,7 +165,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
     goto See
   StandoffCheck:
@@ -255,7 +255,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
 	CBEL B 10 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -318,7 +318,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
 	CBEL B 10 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -341,7 +341,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
 	CBEL B 10 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -365,7 +365,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
 	CBEL B 10 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -386,7 +386,7 @@ actor PM_Zephyr : DoomImp
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("FastImpBall",35,5);
+	A_CustomMissile("PM_FastImpBall",35,5);
 	}
 	CBEL B 10 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -516,7 +516,7 @@ Spawn:
 	}
 }
 
-actor FastImpBall : PyroImpBall
+actor PM_FastImpBall : PM_CharredBall
 {
 	Damage (random(11,11))
 	Scale 0.915

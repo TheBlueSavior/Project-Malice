@@ -146,7 +146,7 @@ ACTOR PM_DemonTechBrute : Demon
        CRG2 EFEFEFEF 3 
 	   {
 	   A_FaceTarget;
-	   A_CustomMissile("DTechBall",35,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
+	   A_CustomMissile("PM_DTechBall",35,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
 	   A_SpawnItemEx("DTechBallExplodeSmall",29,0,35);
 	   }
 	   CRG2 H 5
@@ -256,7 +256,7 @@ ACTOR BloodDemonArm
 	}
 }
 
-ACTOR DTechBall
+ACTOR PM_DTechBall
 {
    Height 4
    Radius 4

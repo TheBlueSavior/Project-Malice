@@ -194,7 +194,7 @@ Actor HellsFurySkull
   }
 }
 
-actor PM_HellsFurySpreadFire : PyroImpBall
+actor PM_HellsFurySpreadFire : PM_CharredBall
 {
 	Damage (random(18,18))
 	+NOGRAVITY

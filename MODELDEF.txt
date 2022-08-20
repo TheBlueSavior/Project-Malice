@@ -18,7 +18,7 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
 
-Model CarbineZombieBullet
+Model PM_CarbineBullet
 { 
 Path "Models"
 Skin 0 "tracer2.tga"
@@ -28,7 +28,7 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR B 0 0
 }
 
-Model WhiplashKnife
+Model PM_WhiplashKnife
 { 
 Path "Models"
 Skin 0 "knifetracer.tga"

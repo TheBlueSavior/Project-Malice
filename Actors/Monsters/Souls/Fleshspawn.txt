@@ -40,9 +40,6 @@ Class PM_Fleshspawn : Actor
     loop;
   Missile:
     FLSP C 0 A_Jump(256,"Charge");
-    FLSP C 15 A_FaceTarget();
-    FLSP G 8 A_FaceTarget();
-    FLSP H 4 Bright A_SpawnProjectile("Fleshspawnball", 12, 0, 0);
     goto See;
   Backup:
 	FLSP A 1 A_FaceTarget();
@@ -135,7 +132,7 @@ Class FleshSpawnGibs : Actor
   }
 }
 
-Class Fleshspawnball : Actor
+Class PM_WatcherShotSmall : Actor
 {
   Default
   {
@@ -160,6 +157,7 @@ Class Fleshspawnball : Actor
     Stop;
   }
 }
+
 
 Class Fleshspawngib1 : Actor
 {

@@ -189,7 +189,7 @@ Death:
 	  TNT1 AAA 0 A_CustomMissile("PM_BigFireGlobs",10,0,random(0,360),2,random(0,360))
 	  TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0)
 	  TNT1 AAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-	  TNT1 AAA 0 A_CustomMissile("MancuBallExplode",0,0,random(0,360),2,random(0,360))
+	  TNT1 AAA 0 A_CustomMissile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360))
       TABE CDE 3 Bright Light("YellowMediumFlicker2")
       Stop
       }

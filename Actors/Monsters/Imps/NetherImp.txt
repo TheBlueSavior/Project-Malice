@@ -40,7 +40,7 @@ Class PM_NetherImp : Actor
     Loop;
   Melee:
     DRKF IJ 4 A_FaceTarget();
-    DRKF K 3 A_SpawnProjectile("FastImpBall",42);
+    DRKF K 3 A_SpawnProjectile("PM_FastImpBall",42);
     Goto See;
   Missile:
     DRKF E 1 A_Jump (255, "Attack1", "Attack2");

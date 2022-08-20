@@ -78,7 +78,7 @@ Missile3:
     PL01 H 7 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
 	}
     PL01 G 2 A_SpidRefire
 	TNT1 A 0 A_Jump(10,"See")
@@ -90,112 +90,112 @@ Missile2:
     PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,0,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,0,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-7,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-7,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-15,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-15,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-30,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-30,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-50,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-50,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-30,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-30,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-15,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-15,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,-7,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,-7,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,0,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,0,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,7,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,7,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,15,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,15,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,30,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,30,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,50,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,50,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,30,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,30,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,15,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,15,CMF_OFFSETPITCH,random(-1,1));
 	}
 	PL01 G 2 A_FaceTarget
 	TNT1 A 0 A_PlaySound("PLTRFIR")
 	PL01 H 6 Light("AvatarFireball4")
 	{
 	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PTronBall",22,0,7,CMF_OFFSETPITCH,random(-1,1));
+	A_CustomMissile("PM_PTronBall",22,0,7,CMF_OFFSETPITCH,random(-1,1));
 	}
     PL01 G 2 A_SpidRefire
 	TNT1 A 0 A_Jump(5,"See")
@@ -257,7 +257,7 @@ Spawn:
     }
 }
 
-ACTOR PTronBall
+ACTOR PM_PTronBall
 {
    Height 7
    Radius 7

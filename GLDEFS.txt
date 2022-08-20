@@ -1316,7 +1316,7 @@ Color 0.6 0.0 0.0
 Size 15
 }
 
-Object PyroImpBall
+Object PM_CharredBall
 {
 Frame BAL1A { Light PyroImpBall }
 Frame BAL1B { Light PyroImpBall }
@@ -1325,7 +1325,7 @@ Frame BAL1D { Light PyroImpBall3 }
 Frame BAL1E { Light PyroImpBall4 }
 }
 
-Object PyroImpBallNoGravity
+Object PM_CharredBallNoGravity
 {
 Frame BAL1A { Light PyroImpBall }
 Frame BAL1B { Light PyroImpBall }
@@ -1718,7 +1718,7 @@ Object PM_Watcher
  Frame WATCG { Light WatcherG }
 }
 
-Object MaliceWatcherShot
+Object PM_WatcherShot
 {
  Frame FWATA { Light WatcherShotA }
  Frame FWATB { Light WatcherShotB }
@@ -2318,7 +2318,7 @@ Flickerlight2 HellionballN
  Interval 0.005
 }
 
-Object MaliceHellionball
+Object PM_HellionBall
 {
  Frame HLBLA { Light HellionballA }
  Frame HLBLB { Light HellionballB }
@@ -3232,7 +3232,7 @@ Color 0.2 0.2 0.2
 Size 16
 }
 
-Object AcolyteShot
+Object PM_AcolyteShot
 {
 Frame CFX1A { Light AcolyteShot1 }
 Frame CFX1B { Light AcolyteShot1 }
@@ -5588,7 +5588,7 @@ Color 0.2 0.0 0.0
 Size 22
 }
 
-Object Fleshspawnball
+Object PM_WatcherShotSmall
 {
 Frame FLBLA { Light Fleshspawnball1 }
 Frame FLBLB { Light Fleshspawnball2 }

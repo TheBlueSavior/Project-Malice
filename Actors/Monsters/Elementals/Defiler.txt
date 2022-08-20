@@ -57,7 +57,7 @@ ACTOR PM_Defiler
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_CustomMissile("ShootSoulAttack",15,0,0);
+		A_CustomMissile("PM_ShootSoulAttack",15,0,0);
 		}
 		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
 		Goto See2
@@ -121,7 +121,7 @@ ACTOR PM_Defiler
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_CustomMissile("ShootSoulAttack",15,0,0);
+		A_CustomMissile("PM_ShootSoulAttack",15,0,0);
 		}
 		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
 		Goto Barrage
@@ -135,8 +135,8 @@ ACTOR PM_Defiler
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		//A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
 		Goto Barrage
@@ -157,9 +157,9 @@ ACTOR PM_Defiler
 		DEFI F 8 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget
 		Goto See2
@@ -180,9 +180,9 @@ ACTOR PM_Defiler
 		DEFI F 5 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
 		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
@@ -192,9 +192,9 @@ ACTOR PM_Defiler
 		DEFI F 5 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
 		Goto See2
@@ -207,7 +207,7 @@ ACTOR PM_Defiler
 		DEFI F 8 Light("AvatarFireball4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget
 		Goto See2
@@ -558,7 +558,7 @@ ACTOR DefilerBreath
    }
 }
 
-Actor GagSoul
+Actor PM_GagSoul
 {
    Radius 25
    Height 25
@@ -659,7 +659,7 @@ Actor GagSoul
 	  A_FaceTarget;
 	  A_CustomMissile("PM_BurntSoulAttackFire",random(10,15),random(-4,4),random(0,360),2,random(0,160));
 	  }
-	  BEYE A 0 A_CustomMissile("GagSoulAttack",0,0,0,CMF_TRACKOWNER)
+	  BEYE A 0 A_CustomMissile("PM_GagSoulAttack",0,0,0,CMF_TRACKOWNER)
 	  Stop
    Bounce:
 	  TNT1 A 0 A_SpawnItemEx("BurntSoulFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
@@ -693,7 +693,7 @@ Actor GagSoul
 }
 
 
-ACTOR GagSoulAttack : DoomImpBall
+ACTOR PM_GagSoulAttack : DoomImpBall
 {
   Speed 21
   Damage (30)
@@ -741,7 +741,7 @@ ACTOR GagSoulAttack : DoomImpBall
 	}
 }
 
-ACTOR ShootSoulAttack : DoomImpBall
+ACTOR PM_ShootSoulAttack : DoomImpBall
 {
   Speed 30
   Damage 3

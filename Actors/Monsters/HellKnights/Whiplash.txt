@@ -143,7 +143,7 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 7, 0, 0)
 	WHIP EEEEEEFF 2 Light("WhipKnife2") A_FaceTarget
-	WHIP G 8 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48)
+	WHIP G 8 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48)
 	WHIP F 8 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
 	Goto See
@@ -151,7 +151,7 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 7, 0, 0)
 	WHIP EEEEEEFF 2 Light("WhipKnife2") A_FaceTarget
-	WHIP G 8 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48)
+	WHIP G 8 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48)
 	WHIP F 8 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
 	Goto See
@@ -159,11 +159,11 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_PlaySound("WHIPSHA")
 	WHI2 EEEEEEEE 2 Light("WhipKnife") A_FaceTarget
 	WHIP EE 2 Light("WhipKnife") A_FaceTarget
-	WHIP F 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,-12)
+	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,-12)
 	TNT1 A 0 A_FaceTarget
-	WHIP F 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,0)
+	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,0)
 	TNT1 A 0 A_FaceTarget
-	WHIP G 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,12)
+	WHIP G 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,12)
 	TNT1 A 0 A_FaceTarget
 	WHIP F 8 A_FaceTarget
 	Goto See
@@ -171,11 +171,11 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_PlaySound("WHIPSHA")
 	WHI2 EEEEEEEE 2 Light("WhipKnife") A_FaceTarget
 	WHIP EE 2 Light("WhipKnife") A_FaceTarget
-	WHIP F 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,12)
+	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,12)
 	TNT1 A 0 A_FaceTarget
-	WHIP F 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,0)
+	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,0)
 	TNT1 A 0 A_FaceTarget
-	WHIP G 4 Light("WhipKnife") A_CustomMissile("WhiplashKnife",48,0,-12)
+	WHIP G 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,-12)
 	TNT1 A 0 A_FaceTarget
 	WHIP F 8 A_FaceTarget
 	Goto See
@@ -367,12 +367,12 @@ Actor GroundSpikeSeeker
 		TNT1 A 0 A_PlaySound("IMPCHARG",CHAN_7)
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("PurpleFireEffect",random(-20,20),random(-20,20),0,0,0,random(1,2))
 		TNT1 A 0 A_PlaySound("Whiplash/Ground",CHAN_6)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-90,90),random(-90,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
 		Stop
 	Die:
 		Stop
@@ -420,9 +420,9 @@ ACTOR PM_WhiplashGroundSeeker
 	  FLME ABCD 1 Bright Light("WhipKnife") 
 	  TNT1 A 0 A_SpawnItemEx("PurpleShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	  TNT1 A 0 A_PlaySound("WHIPHIT",CHAN_5)
-	  TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-	  TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
-	  TNT1 A 0 A_SpawnItemEx("WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
+	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION)
       stop
    }
 }
@@ -459,18 +459,18 @@ ACTOR WhiplashFloorSpawner
   +THRUSPECIES
   +DONTHURTSPECIES
   Species "Hellknight"
-  SeeSound "HUSCRG"
+  SeeSound "Husk/Charge"
   Projectile
   Missileheight 0
   States
   {
   Spawn:
-	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6)
     TNT1 A 5 Bright Light("WhipKnife")
 	{
 	A_SpawnItemEx("PurpleShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 	A_PlaySound("WHIPHIT",CHAN_5);
-	A_SpawnItemEx("WhipFloorSpike",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("PM_WhipFloorSpike",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 	}
     Goto Spawn+1
   Death:
@@ -479,7 +479,7 @@ ACTOR WhiplashFloorSpawner
   }
 }
 
-Actor WhipFloorSpike
+Actor PM_WhipFloorSpike
 {
     Radius 8
     Height 28
@@ -522,7 +522,7 @@ Actor CrawlTrail
   }
 }
 
-ACTOR WhiplashKnife : MageWandMissile
+ACTOR PM_WhiplashKnife : MageWandMissile
 {
   damage 3
   Scale 1.8
