@@ -253,8 +253,8 @@ ACTOR PM_DTechSBall
    +FORCERADIUSDMG
    RenderStyle Add
    +BRIGHT
-   SeeSound "weapons/demontechfire"
-   DeathSound "weapons/demontechex"
+   SeeSound "DTech/Fire"
+   DeathSound "DTech/Exp"
    States
    {
    Spawn:
