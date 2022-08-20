@@ -68,7 +68,7 @@ ACTOR PM_Draugr : Revenant
 	TNT1 A 0 A_Playsound("DRAFI1", CHAN_5)
     DRGR I 8 Light("AvatarFireball4")  
 	{
-	A_CustomMissile("DraugrFastBall",66,-15,0,0);
+	A_CustomMissile("PM_DraugrFastBall",66,-15,0,0);
 	A_CustomMissile("PM_CadaverFireFlare",66,-15);
 	A_CustomMissile("PM_CadaverFireFlare",66,-15);
 	}
@@ -88,7 +88,7 @@ ACTOR PM_Draugr : Revenant
 	TNT1 A 0 A_Playsound("DRAFI1", CHAN_5)
     DRGR I 8 Light("AvatarFireball4")  
 	{
-	A_CustomMissile("DraugrHeavyRocket",66,-15,0,0);
+	A_CustomMissile("PM_DraugrHeavyRocket",66,-15,0,0);
 	A_CustomMissile("PM_CadaverFireFlare",66,-15,0,0);
 	A_CustomMissile("PM_CadaverFireFlare",66,-15,0,0);
 	A_CustomMissile("PM_CadaverFireFlare",66,-15,0,0);
@@ -111,7 +111,7 @@ ACTOR PM_Draugr : Revenant
 	TNT1 A 0 A_PlaySound("TYSMFI")
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
-	DRGR I 6 A_CustomMissile("DraugrHMissile",62,-15,-30,0)
+	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,-30,0)
 	DRGR G 6 A_FaceTarget
 		
 		
@@ -119,14 +119,14 @@ ACTOR PM_Draugr : Revenant
 	TNT1 A 0 A_PlaySound("TYSMFI")
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
-	DRGR I 6 A_CustomMissile("DraugrHMissile",62,-15,30,0)
+	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,30,0)
 	DRGR G 6 A_FaceTarget
 		
 	DRGR H 6 Bright
 	TNT1 A 0 A_PlaySound("TYSMFI")
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
-	DRGR I 6 A_CustomMissile("DraugrHMissile",62,-15,0,0)
+	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,0,0)
 	DRGR G 6 A_FaceTarget
 	Goto See
   Pain:
@@ -140,7 +140,7 @@ ACTOR PM_Draugr : Revenant
 	DRGR P 6 A_Scream
 	DRGR Q 6
 	DRGR R 6
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	DRGR S -1
   Raise:
     DRGR Q 5
@@ -216,7 +216,7 @@ Actor DraugrEXParticle
 	}
 }
 
-ACTOR DraugrFastBall : RevenantTracer
+ACTOR PM_DraugrFastBall : RevenantTracer
 {
 	Radius 2
 	Height 2
@@ -255,7 +255,7 @@ ACTOR DraugrFastBall : RevenantTracer
 	}
 }
 
-ACTOR DraugrHMissile : RevenantTracer
+ACTOR PM_DraugrHMissile : RevenantTracer
 {
 	Radius 3
 	Height 3
@@ -314,7 +314,7 @@ ACTOR DraugrHMissile : RevenantTracer
 	}
 }
 
-ACTOR DraugrHeavyRocket : RevenantTracer
+ACTOR PM_DraugrHeavyRocket : RevenantTracer
 {
 	Radius 3
 	Height 3

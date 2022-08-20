@@ -11,10 +11,10 @@ ACTOR PM_MutatedGunner
 	+DONTHARMSPECIES
 	//+NOINFIGHTING
 	Monster
-	SeeSound "Tentaclecommando/sight"
-	PainSound "Tentaclecommando/pain"
-	DeathSound "Tentaclecommando/death"
-	ActiveSound "Tentaclecommando/active"
+	SeeSound "MutatedGunner/Sight"
+	PainSound "MutatedGunner/Pain"
+	DeathSound "MutatedGunner/Death"
+	ActiveSound "MutatedGunner/Active"
 	Tag "Mutated Gunner"
 	Dropitem "Chaingun"
 	Species "Chaingunner"

@@ -258,7 +258,7 @@ Actor PM_Fiend : Revenant
 	FIEN O 7
 	FIEN P 7 A_ClearShadow
 	FIEN Q 7
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	FIEN Q -1
 	Stop
   XDeath:

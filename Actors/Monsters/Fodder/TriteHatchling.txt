@@ -10,10 +10,10 @@ Actor TriteHatchling
   Gravity 0.85
   PainChance 192
   BloodColor DarkGreen
-  PainSound "HTRIPAI"
-  SeeSound "HTRISEE"
-  DeathSound "HTRIDIE"
-  ActiveSound "HTRIACT"
+  PainSound "HTrite/Pain"
+  SeeSound "HTrite/Sight"
+  DeathSound "HTrite/Death"
+  ActiveSound "HTrite/Active"
   MeleeSound "Trite/MeleeHit"
   MeleeRange 6
   Tag "Trite Hatchling"

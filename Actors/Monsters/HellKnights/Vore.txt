@@ -184,7 +184,7 @@ Actor PM_Vore
 	VORE M 8
 	VORE N 5
 	VORE O 4 A_NoBlocking
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	VORE P 4
 	VORE Q -1 A_bossdeath
 	Stop

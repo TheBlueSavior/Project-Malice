@@ -108,7 +108,7 @@ actor PM_Bruiser
 		I01I CCCCC 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,80),random(-1,1),random(-1,1),random(0,4))
 		I01I DDDDEEEEFFFGGGGHHHHIIIIJKKKKLLLL 1 A_SpawnItemEx("PM_BruiserDeathFire",random(-40,40),random(-40,40),random(0,60),random(-1,1),random(-1,1),random(0,4))
 		I01I MMMMNNNNOOOOPPPPQQQQRRRR 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,40),random(-1,1),random(-1,1),random(0,4))
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 		TNT1 A 0 A_StopSound(CHAN_7)
 		I01I SSSTTTUUUVVV 1 A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,30),random(-1,1),random(-1,1),random(0,4))
 		I01I W -1

@@ -110,21 +110,24 @@ Actor PM_HellsFury
   Melee:
 	TNT1 A 0
 	TNT1 A 0 A_StopSound(CHAN_5)
+	TNT1 A 0 A_StopSound(CHAN_7)
 	TNT1 A 0 A_Jump(50,"FireBreath")
     Goto Missile+3
   Pain:
     HFRY H 2
 	TNT1 A 0 A_StopSound(CHAN_5)
+	TNT1 A 0 A_StopSound(CHAN_7)
     HFRY H 2 A_Pain
     Goto See
   Death:
     HFRY I 8 A_Scream
 	TNT1 A 0 A_StopSound(CHAN_5)
+	TNT1 A 0 A_StopSound(CHAN_7)
     HFRY J 0 A_FaceTarget
     HFRY J 8 A_SpawnItemEx("HellsFurySkull", 0, 0, 65, 5, 0, 0, RandomPick(20, 10, 0, -10, -20), SXF_CLIENTSIDE)
     HFRY K 8
     HFRY L 8 A_Fall
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
     HFRY MN 8
     HFRY O -1
     Stop

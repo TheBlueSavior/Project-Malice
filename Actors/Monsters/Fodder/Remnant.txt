@@ -7,10 +7,10 @@ Actor PM_Remnant
 	Mass 100
 	Painchance 26
 	Obituary "%o was turned into the Remnant's maggot barf bag!" 
-    SeeSound "RZombie/see"
-    PainSound "Zombie/pain"
-    DeathSound "RZombie/die"
-    ActiveSound "RZombie/active"
+    SeeSound "Remnant/Sight"
+    PainSound "Remnant/Pain"
+    DeathSound "Remnant/Death"
+    ActiveSound "Remnant/Active"
     MONSTER 
 	+FLOORCLIP
 	+DONTHURTSPECIES

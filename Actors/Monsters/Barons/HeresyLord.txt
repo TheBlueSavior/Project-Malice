@@ -120,7 +120,7 @@ actor PM_HeresyLord
 		LOHS J 8 A_Scream
 		LOHS K 8 A_Fall
 		LOHS LMN 8
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+		TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 		LOHS O -1
         Stop
     }

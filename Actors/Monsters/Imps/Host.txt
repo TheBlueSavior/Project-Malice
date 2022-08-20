@@ -54,7 +54,7 @@ Actor PM_Host : DoomImp
 	TNT1 A 0 A_Jump(20,"Roar")
 	AGUR A 0 A_Jump(70, "Missile2","Missile4")
     HOS1 EEF 5 Light("HostShot") A_FaceTarget
-    HOS1 G 6 Light("HostShot2") A_CustomMissile("HostPoisonShot", 37, 0, 0, 0, 0)
+    HOS1 G 6 Light("HostShot2") A_CustomMissile("PM_HostPoisonShot", 37, 0, 0, 0, 0)
     goto See
    Roar:
 	HOS1 FFFFFF 3 A_FaceTarget
@@ -67,8 +67,8 @@ Actor PM_Host : DoomImp
     HOS1 EEEF 5 Light("HostShot") A_FaceTarget
     HOS1 G 6 Light("HostShot2")
 	{
-	A_CustomMissile("HostPoisonShot", 37, 0, 10, 0, 0);
-	A_CustomMissile("HostPoisonShot", 37, 0, -10, 0, 0);
+	A_CustomMissile("PM_HostPoisonShot", 37, 0, 10, 0, 0);
+	A_CustomMissile("PM_HostPoisonShot", 37, 0, -10, 0, 0);
 	}
 	goto see
   ChargeSee:
@@ -77,17 +77,17 @@ Actor PM_Host : DoomImp
   Charge:
 	TNT1 A 0 A_Jump(70,"See")
 	TNT1 A 0 A_JumpIfHigherOrLower("See","See", 10,10)
-	TNT1 A 0 A_PlaySound("PLAGCHA",CHAN_6)
+	TNT1 A 0 A_PlaySound("Host/Charge",CHAN_6)
   Missile3:
     TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_JumpIfCloser(130,"Puke")
 	HOS1 AA 1 A_Chase(0,0)
-	TNT1 A 0 A_CustomMissile("HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("PM_HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	HOS1 BB 1 A_Chase(0,0)
-	TNT1 A 0 A_CustomMissile("HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("PM_HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
 	HOS1 CC 1 A_Chase(0,0)
-	TNT1 A 0 A_CustomMissile("HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
+	TNT1 A 0 A_CustomMissile("PM_HostDrool",43,0,random(5,-5),CMF_AIMDIRECTION)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	HOS1 DD 1 A_Chase(0,0)
 	TNT1 A 0 A_JumpIfCloser(370,"Missile3")
@@ -104,7 +104,7 @@ Actor PM_Host : DoomImp
 	TNT1 A 0 A_PlaySound("HUNPUK")
 	HOS1 FFFFFFFFFFFFFFFFFFFFF 1 Light("HostPuke")
 	{
-	A_CustomMissile("HostSprayPuke",44,0,random(5,-5),CMF_AIMDIRECTION);
+	A_CustomMissile("PM_HostSprayPuke",44,0,random(5,-5),CMF_AIMDIRECTION);
 	}
 	HOS1 A 6
 	TNT1 A 0 A_JumpIfTargetInLOS("Missile3",360,JLOSF_DEADNOJUMP)
@@ -120,7 +120,7 @@ Actor PM_Host : DoomImp
 	A_Spawnitemex("PM_HostFlyFire",7,random(16,21),40,0,0,2);
 	A_Spawnitemex("PM_HostFlyFire",7,random(-16,-21),40,0,0,2);
 	}
-	TNT1 A 0 A_PlaySound("HOSTFLY")
+	TNT1 A 0 A_PlaySound("HostFly")
 	HOS1 FFFFFFFFFFFF 2 Light("Feralfireball4")
 	{
 	A_FaceTarget;
@@ -129,7 +129,7 @@ Actor PM_Host : DoomImp
 	}
 	TNT1 AAAAAAA 0 A_SpawnItemEx("GreenEmbersFloat",7,random(16,21),40,random(-3,3),random(-3,3),random(-3,3),0,0,200,0)
 	TNT1 AAAAAAA 0 A_SpawnItemEx("GreenEmbersFloat",7,random(-16,-21),40,random(-3,3),random(-3,3),random(-3,3),0,0,200,0)
-	TNT1 A 0 A_Playsound("HOSTLOP",CHAN_6,1.0,1)
+	TNT1 A 0 A_Playsound("HostFlyLoop",CHAN_6,1.0,1)
    MissileFlyAttack:
    TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 	HOS1 F 2 Light("Feralfireball4")
@@ -216,7 +216,7 @@ Actor HostPoisonSplash
 	}
 }
 
-actor HostAttackFlies : DoomImpBall
+actor PM_HostAttackFlies : DoomImpBall
 {
   Height 2
   Radius 2
@@ -241,7 +241,7 @@ actor HostAttackFlies : DoomImpBall
   }
 }
 
-Actor HostDrool
+Actor PM_HostDrool
 {
   Damage 0
   Height 1
@@ -289,7 +289,7 @@ Actor HostDrool
   }
 }
 
-Actor HostSprayPuke
+Actor PM_HostSprayPuke
 {
   Damage(1)
   Height 1
@@ -579,7 +579,7 @@ Stop
 }
 }
 
-Actor HostPoisonShot
+Actor PM_HostPoisonShot
 {
     Radius 8
     Height 16
@@ -588,7 +588,7 @@ Actor HostPoisonShot
     PoisonDamage 32
     RENDERSTYLE "ADD"
     ALPHA 0.8
-    Seesound "PoisonShot/Shot"
+    Seesound "HostFire"
     DeathSound "monster/vulsh2"
     PROJECTILE
     +THRUGHOST

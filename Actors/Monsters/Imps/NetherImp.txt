@@ -58,7 +58,7 @@ Class PM_NetherImp : Actor
 	A_SpawnProjectile ("GreenSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
 	DRKF FFFFFFFF 1 Light("NetherLightning") A_FaceTarget();
-    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("MaliceNetherLightning", 42, 0, 0);
+    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("PM_NetherLightning", 42, 0, 0);
 	DRKF GGG 5 A_FaceTarget();
     Goto See;
   AttackActual1:
@@ -71,7 +71,7 @@ Class PM_NetherImp : Actor
 	A_SpawnProjectile ("GreenSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
 	DRKF FFFFFFFF 1 Light("NetherLightning") A_FaceTarget();
-    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("MaliceNetherLightning", 42, 0, 0);
+    DRKF G 6 Light("NetherLightning") A_SpawnProjectile ("PM_NetherLightning", 42, 0, 0);
 	DRKF GGG 5 A_FaceTarget();
     Goto See;
   Attack2:
@@ -86,7 +86,7 @@ Class PM_NetherImp : Actor
 	A_SpawnItemEx("AzazelFire", 20, -30, 37,0,0,random(0,2));
 	}
 	DRKF JJJJJJJJ 1 Light("InfernoBall") A_FaceTarget();
-    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("MaliceInfernoBall", 42, 0, 0);
+    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("PM_InfernoBall", 42, 0, 0);
 	DRKF KK 5 A_FaceTarget();
 	TNT1 A 0 A_StopSound(CHAN_6);
     Goto See;
@@ -100,7 +100,7 @@ Class PM_NetherImp : Actor
 	A_SpawnItemEx("AzazelFire", 20, -30, 37,0,0,random(0,2));
 	}
 	DRKF JJJJJJJJ 1 Light("InfernoBall") A_FaceTarget();
-    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("MaliceInfernoBall", 42, 0, 0);
+    DRKF K 8 Light("InfernoBall2") A_SpawnProjectile("PM_InfernoBall", 42, 0, 0);
 	DRKF KK 5 A_FaceTarget();
 	TNT1 A 0 A_StopSound(CHAN_6);
     Goto See;
@@ -134,7 +134,7 @@ Class PM_NetherImp : Actor
   }
 }
 
-Class MaliceInfernoBall : Actor
+Class PM_InfernoBall : Actor
 {
   Default
   {
@@ -173,7 +173,7 @@ Class MaliceInfernoBall : Actor
   }
 }
 
-Class MaliceInfernoBallTrail : Actor
+Class PM_InfernoBallTrail : Actor
 {
   Default
   {
@@ -195,7 +195,7 @@ Class MaliceInfernoBallTrail : Actor
   }
 }
 
-Class MaliceNetherLightning : Actor
+Class PM_NetherLightning : Actor
 {
   Default
   {
@@ -215,10 +215,10 @@ Class MaliceNetherLightning : Actor
   States
   {
   Spawn:
-    NLIT AA 1 Bright Light("NetherLightning") A_SpawnItemEx ("MaliceNetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    NLIT AAA 0 Bright A_SpawnItemEx ("MaliceNetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
-    NLIT AA 1 Light("NetherLightning") Bright A_SpawnItemEx ("MaliceNetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    NLIT AAA 0 Bright A_SpawnItemEx ("MaliceNetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+    NLIT AA 1 Bright Light("NetherLightning") A_SpawnItemEx ("PM_NetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+    NLIT AA 1 Light("NetherLightning") Bright A_SpawnItemEx ("PM_NetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
     loop;
   Death:
 	TNT1 A 0 A_SpawnItemEx("NetherShocks",0,0,0);
@@ -234,7 +234,7 @@ Class MaliceNetherLightning : Actor
   }
 }
 
-Class MaliceNetherLightningTrail : Actor
+Class PM_NetherLightningTrail : Actor
 {
   Default
   {
@@ -262,7 +262,7 @@ Class MaliceNetherLightningTrail : Actor
   }
 }
 
-Class MaliceNetherLightningSpark : Actor
+Class PM_NetherLightningSpark : Actor
 {
   Default
   {

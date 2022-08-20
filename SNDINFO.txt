@@ -302,13 +302,20 @@ $volume SoFlesh/attack 0.6
 SoFlesh/explode Dssofexp
 
 //Beholder
-cacobaldsee  BALDS
-cacobalddeath  BALDD
-cacobaldpain  BALDP
-$RANDOM cacobaldidle { cacobaldidle1 cacobaldidle2 cacobaldidle3 }
-cacobaldidle1 BALDI
-cacobaldidle2 BALDI2
-cacobaldidle3 BALDI3
+Beholder/Sight "Sounds/Monsters/Watcher/BeholderSight.ogg"
+Beholder/Pain "Sounds/Monsters/Watcher/BeholderPain.ogg"
+Beholder/Death "Sounds/Monsters/Watcher/BeholderDeath.ogg"
+$random Beholder/Active { Beholder/Active1 Beholder/Active2 Beholder/Active3 }
+Beholder/Active1 "Sounds/Monsters/Watcher/BeholderActive1.ogg"
+Beholder/Active2 "Sounds/Monsters/Watcher/BeholderActive2.ogg"
+Beholder/Active3 "Sounds/Monsters/Watcher/BeholderActive3.ogg"
+
+$random Beholder/Cry { Beholder/Cry1 Beholder/Cry2 Beholder/Cry3 }
+Beholder/Cry1 "Sounds/Monsters/Watcher/BeholderCry1.ogg"
+Beholder/Cry2 "Sounds/Monsters/Watcher/BeholderCry2.ogg"
+Beholder/Cry3 "Sounds/Monsters/Watcher/BeholderCry3.ogg"
+$rolloff Beholder/Cry 400 1700
+
 
 //Infested
 $random Infested/Idle { INFEIDL1 INFEIDL2 INFEIDL3 INFEIDL4 INFEIDL5 INFEIDL6 INFEIDL7 INFEIDL8 INFEIDL9 INFEIDL10 INFEIDL11 INFEIDL12 }
@@ -340,40 +347,49 @@ INFEDIE INFEDIE
 $volume Infested/Active 0.5
 
 //Trite
-$Random Trite/Sight { TRITSIG1 TRITSIG2 TRITSIG3 }
-TRITSIG1		TRITSIG1
-TRITSIG2		TRITSIG2
-TRITSIG3		TRITSIG3
-TRITSIG4		TRITSIG4
-$Random Trite/Active { TRITACT1 TRITACT2 TRITACT3 }
-TRITACT1		TRITACT1
-TRITACT2		TRITACT2
-TRITACT3		TRITACT3
-$Random Trite/Attack { TRITATT1 TRITATT2 TRITATT3 }
-TRITATT1		TRITATT1
-TRITATT2		TRITATT2
-TRITATT3		TRITATT3
-$Random Trite/MeleeHit { TRITHIT1 TRITHIT2 }
-TRITHIT1		TRITHIT1
-TRITHIT2		TRITHIT2
-$Random Trite/Step { TRITSTE1 TRITSTE2 TRITSTE3 TRITSTE4 }
-TRITSTE1		TRITSTE1
-TRITSTE2		TRITSTE2
-TRITSTE3		TRITSTE3
-TRITSTE4		TRITSTE4
-Trite/WebStart		TRITWEB1
-Trite/WebEnd		TRITWEB2
-$Random Trite/Pain { TRITPAI1 TRITPAI2 TRITPAI3 }
-TRITPAI1		TRITPAI1
-TRITPAI2		TRITPAI2
-TRITPAI3		TRITPAI3
-$Random Trite/Death { TRITDEA1 TRITDEA2 TRITDEA3 }
-TRITDEA1		TRITDEA1
-TRITDEA2		TRITDEA2
-TRITDEA3		TRITDEA3
-$Random Trite/Splat { TRITSPL1 TRITSPL2 }
-TRITSPL1		TRITSPL1
-TRITSPL2		TRITSPL2
+//Trite
+$random Trite/Sight { Trite/Sight1 Trite/Sight2 Trite/Sight3 }
+Trite/Sight1 "Sounds/Monsters/Trite/TriteSight1.ogg"
+Trite/Sight2 "Sounds/Monsters/Trite/TriteSight2.ogg"
+Trite/Sight3 "Sounds/Monsters/Trite/TriteSight3.ogg"
+
+$random Trite/Active { Trite/Active1 Trite/Active2 Trite/Active3 Trite/Active4 }
+Trite/Active1 "Sounds/Monsters/Trite/TriteActive1.ogg"
+Trite/Active2 "Sounds/Monsters/Trite/TriteActive2.ogg"
+Trite/Active3 "Sounds/Monsters/Trite/TriteActive3.ogg"
+Trite/Active4 "Sounds/Monsters/Trite/TriteActive4.ogg"
+
+$random Trite/Attack { Trite/Attack1 Trite/Attack2 Trite/Attack3 }
+Trite/Attack1 "Sounds/Monsters/Trite/TriteAttack1.ogg"
+Trite/Attack2 "Sounds/Monsters/Trite/TriteAttack2.ogg"
+Trite/Attack3 "Sounds/Monsters/Trite/TriteAttack3.ogg"
+
+$random Trite/MeleeHit { Trite/Hit1 Trite/Hit2 }
+Trite/Hit1 "Sounds/Monsters/Trite/TriteHit1.ogg"
+Trite/Hit2 "Sounds/Monsters/Trite/TriteHit2.ogg"
+
+$random Trite/Step { Trite/Step1 Trite/Step2 Trite/Step3 Trite/Step4 }
+Trite/Step1 "Sounds/Monsters/Trite/TriteStep1.ogg"
+Trite/Step2 "Sounds/Monsters/Trite/TriteStep2.ogg"
+Trite/Step3 "Sounds/Monsters/Trite/TriteStep3.ogg"
+Trite/Step4 "Sounds/Monsters/Trite/TriteStep4.ogg"
+
+$random Trite/Splat { Trite/Splat1 Trite/Splat2 }
+Trite/Splat1 "Sounds/Monsters/Trite/TriteSplat1.ogg"
+Trite/Splat2 "Sounds/Monsters/Trite/TriteSplat2.ogg"
+
+$random Trite/Pain { Trite/Pain1 Trite/Pain2 Trite/Pain3 }
+Trite/Pain1 "Sounds/Monsters/Trite/TritePain1.ogg"
+Trite/Pain2 "Sounds/Monsters/Trite/TritePain2.ogg"
+Trite/Pain3 "Sounds/Monsters/Trite/TritePain3.ogg"
+
+$random Trite/Death { Trite/Death1 Trite/Death2 Trite/Death3 }
+Trite/Death1 "Sounds/Monsters/Trite/TriteDeath1.ogg"
+Trite/Death2 "Sounds/Monsters/Trite/TriteDeath2.ogg"
+Trite/Death3 "Sounds/Monsters/Trite/TriteDeath3.ogg"
+
+Trite/WebStart		"Sounds/Monsters/Trite/TriteWeb1.ogg"
+Trite/WebEnd		"Sounds/Monsters/Trite/TriteWeb1.ogg"
 
 $Volume Trite/Sight 0.3
 $Volume Trite/Active 0.3
@@ -386,75 +402,37 @@ $Volume Trite/Step 0.2
 $rolloff Trite/Step 130 770
 
 //MutatedGunner
-$random Tentaclecommando/sight
-{ 
-Tentaclecommando/sight7
-Tentaclecommando/sight8
-Tentaclecommando/sight9
-Tentaclecommando/sight10
-Tentaclecommando/sight11
-Tentaclecommando/sight12
-Tentaclecommando/sight13
-}
 
-Tentaclecommando/sight7 zomsit7
-Tentaclecommando/sight8 zomsit8
-Tentaclecommando/sight9 zomsit9
-Tentaclecommando/sight10 zomsit10
-Tentaclecommando/sight11 zomsit11
-Tentaclecommando/sight12 zomsit12
-Tentaclecommando/sight13 zomsit13
+$random MutatedGunner/Sight { MGunner/Sight1 MGunner/Sight2 MGunner/Sight3 MGunner/Sight4 MGunner/Sight5 MGunner/Sight6 MGunner/Sight7 }
+MGunner/Sight1 "Sounds/Monsters/MutatedGunner/MutGunnerSight1.ogg"
+MGunner/Sight2 "Sounds/Monsters/MutatedGunner/MutGunnerSight2.ogg"
+MGunner/Sight3 "Sounds/Monsters/MutatedGunner/MutGunnerSight3.ogg"
+MGunner/Sight4 "Sounds/Monsters/MutatedGunner/MutGunnerSight4.ogg"
+MGunner/Sight5 "Sounds/Monsters/MutatedGunner/MutGunnerSight5.ogg"
+MGunner/Sight6 "Sounds/Monsters/MutatedGunner/MutGunnerSight6.ogg"
+MGunner/Sight7 "Sounds/Monsters/MutatedGunner/MutGunnerSight7.ogg"
 
-$volume Tentaclecommando/sight 0.4
+$random MutatedGunner/Active { MGunner/Active1 MGunner/Active2 MGunner/Active3 MGunner/Active4 MGunner/Active5 }
+MGunner/Active1 "Sounds/Monsters/MutatedGunner/MutGunnerActive1.ogg"
+MGunner/Active2 "Sounds/Monsters/MutatedGunner/MutGunnerActive2.ogg"
+MGunner/Active3 "Sounds/Monsters/MutatedGunner/MutGunnerActive3.ogg"
+MGunner/Active4 "Sounds/Monsters/MutatedGunner/MutGunnerActive4.ogg"
+MGunner/Active5 "Sounds/Monsters/MutatedGunner/MutGunnerActive5.ogg"
 
-$random Tentaclecommando/death
-{ 
-Tentaclecommando/death4
-Tentaclecommando/death5
-Tentaclecommando/death6
-Tentaclecommando/death7 
-}
+$random MutatedGunner/Pain { MGunner/Pain1 MGunner/Pain2 MGunner/Pain3 }
+MGunner/Pain1 "Sounds/Monsters/MutatedGunner/MutGunnerPain1.ogg"
+MGunner/Pain2 "Sounds/Monsters/MutatedGunner/MutGunnerPain2.ogg"
+MGunner/Pain3 "Sounds/Monsters/MutatedGunner/MutGunnerPain3.ogg"
 
+$random MutatedGunner/Death { MGunner/Death1 MGunner/Death2 MGunner/Death3 MGunner/Death4 }
+MGunner/Death1 "Sounds/Monsters/MutatedGunner/MutGunnerDeath1.ogg"
+MGunner/Death2 "Sounds/Monsters/MutatedGunner/MutGunnerDeath2.ogg"
+MGunner/Death3 "Sounds/Monsters/MutatedGunner/MutGunnerDeath3.ogg"
 
-Tentaclecommando/death4	zomdth4
-Tentaclecommando/death5	zomdth5
-Tentaclecommando/death6	zomdth6
-Tentaclecommando/death7	zomdth7
-
-$volume Tentaclecommando/death 0.4
-
-$random Tentaclecommando/pain
-{ 
-Tentaclecommando/pain7
-Tentaclecommando/pain8
-Tentaclecommando/pain9
-Tentaclecommando/pain10 
-}
-
-
-Tentaclecommando/pain7 zompn7
-Tentaclecommando/pain8 zompn8
-Tentaclecommando/pain9 zompn9
-Tentaclecommando/pain10 zompn10
-
-$volume Tentaclecommando/pain 0.4
-
-$random Tentaclecommando/active
-{ 
-Tentaclecommando/active9
-Tentaclecommando/active10
-Tentaclecommando/active11
-Tentaclecommando/active12
-Tentaclecommando/active13
-}
-
-Tentaclecommando/active9 zomact9
-Tentaclecommando/active10 zomact10
-Tentaclecommando/active11 zomact11
-Tentaclecommando/active12 zomact12
-Tentaclecommando/active13 zomact13
-
-$volume Tentaclecommando/active 0.4
+$volume MutatedGunner/Sight 0.4
+$volume MutatedGunner/Active 0.4
+$volume MutatedGunner/Pain 0.4
+$volume MutatedGunner/Death 0.4
 
 $random UCHAIN/Bullets { UCHAIN/UCBHIT1 UCHAIN/UCBHIT2 UCHAIN/UCBHIT3 UCHAIN/UCBHIT4 UCHAIN/UCBHIT5 }
 UCHAIN/UCBHIT1 UCBHIT1
@@ -507,39 +485,41 @@ $volume monsters/fatsofire 0.5
 DSPLAS2 DSPLAS2
 $limit DSPLAS2 0
 
-$Random ZSpecOps/Sight	{ FALLSEE1 FALLSEE2 FALLSEE3 FALLSEE4 FALLSEE5 FALLSEE6 }
-FALLSEE1 FALLSEE1
-FALLSEE2 FALLSEE2
-FALLSEE3 FALLSEE3
-FALLSEE4 FALLSEE4
-FALLSEE5 FALLSEE5
-FALLSEE6 FALLSEE6
+//Fallen Soldiers
+$Random FallenSoldiers/Sight { FallenS/Sight1 FallenS/Sight2 FallenS/Sight3 FallenS/Sight4 FallenS/Sight5 FallenS/Sight6 }
+FallenS/Sight1 "Sounds/Monsters/FallenMarine/FallenSight1"
+FallenS/Sight2 "Sounds/Monsters/FallenMarine/FallenSight2"
+FallenS/Sight3 "Sounds/Monsters/FallenMarine/FallenSight3"
+FallenS/Sight4 "Sounds/Monsters/FallenMarine/FallenSight4"
+FallenS/Sight5 "Sounds/Monsters/FallenMarine/FallenSight5"
+FallenS/Sight6 "Sounds/Monsters/FallenMarine/FallenSight6"
 
-$Random ZSpecOps/Act	{ FALLACT1 FALLACT2 FALLACT3 FALLACT4 FALLACT5 FALLACT6 FALLACT7 FALLACT8 }
-FALLACT1 FALLACT1
-FALLACT2 FALLACT2
-FALLACT3 FALLACT3
-FALLACT4 FALLACT4
-FALLACT5 FALLACT5
-FALLACT6 FALLACT6
-FALLACT7 FALLACT7
-FALLACT8 FALLACT8
+$Random FallenSoldiers/Active { FallenS/Active1 FallenS/Active2 FallenS/Active3 FallenS/Active4 FallenS/Active5 FallenS/Active6 FallenS/Active7 FallenS/Active8 }
+FallenS/Active1 "Sounds/Monsters/FallenMarine/FallenActive1"
+FallenS/Active2 "Sounds/Monsters/FallenMarine/FallenActive2"
+FallenS/Active3 "Sounds/Monsters/FallenMarine/FallenActive3"
+FallenS/Active4 "Sounds/Monsters/FallenMarine/FallenActive4"
+FallenS/Active5 "Sounds/Monsters/FallenMarine/FallenActive5"
+FallenS/Active6 "Sounds/Monsters/FallenMarine/FallenActive6"
+FallenS/Active7 "Sounds/Monsters/FallenMarine/FallenActive7"
+FallenS/Active8 "Sounds/Monsters/FallenMarine/FallenActive8"
 
-$Random ZSpecOps/MGun	{ ZSPCMGN1 ZSPCMGN2 ZSPCMGN3 }
-ZSPCMGN1	ZSPCMGN1
-ZSPCMGN2	ZSPCMGN2
-ZSPCMGN3	ZSPCMGN3
-$Random ZSpecOps/Pain	{ FALLPAI1 FALLPAI2 FALLPAI3 FALLPAI4 }
-FALLPAI1 FALLPAI1
-FALLPAI2 FALLPAI2
-FALLPAI3 FALLPAI3
-FALLPAI4 FALLPAI4
-$Random ZSpecOps/Death	{ FALLDIE1 FALLDIE2 }
-FALLDIE1 FALLDIE1
-FALLDIE2 FALLDIE2
+$Random FallenSoldiers/MGun	{ FallenS/MGun1 FallenS/MGun2 FallenS/MGun3 }
+FallenS/MGun1 "Sounds/Monsters/FallenMarine/FallenMGun1"
+FallenS/MGun2 "Sounds/Monsters/FallenMarine/FallenMGun2"
+FallenS/MGun3 "Sounds/Monsters/FallenMarine/FallenMGun3"
 
-$Limit ZSpecOps/MGun	0
-$rolloff ZSpecOps/MGun 400 3000
+$Random FallenSoldiers/Pain	{ FallenS/Pain1 FallenS/Pain2 FallenS/Pain3 }
+FallenS/Pain1 "Sounds/Monsters/FallenMarine/FallenPain1"
+FallenS/Pain2 "Sounds/Monsters/FallenMarine/FallenPain2"
+FallenS/Pain3 "Sounds/Monsters/FallenMarine/FallenPain3"
+
+$Random FallenSoldiers/Death { FallenS/Death1 FallenS/Death2 }
+FallenS/Death1 "Sounds/Monsters/FallenMarine/FallenDeath1"
+FallenS/Death2 "Sounds/Monsters/FallenMarine/FallenDeath2"
+
+$Limit FallenSoldiers/MGun	0
+$rolloff FallenSoldiers/MGun 400 3000
 
 zombie/rifle dsrifle
 
@@ -800,24 +780,32 @@ HECTDIE 	HECTDIE
 HECTAIM		HECTAIM
 
 //Host
-$random Host/Sight { PLAGSIT1 PLAGSIT2 }
-PLAGSIT1 PLAGSIT1
-PLAGSIT2 PLAGSIT2
-$random Host/Active { PLAGACT1 PLAGACT2 }
-PLAGACT1 PLAGACT1
-PLAGACT2 PLAGACT2
-$random Host/Pain { PLAGPAI1 PLAGPAI2 }
-PLAGPAI1 PLAGPAI1
-PLAGPAI2 PLAGPAI2
-$random Host/Death { PLAGDTH1 PLAGDTH2 }
-PLAGDTH1 PLAGDTH1
-PLAGDTH2 PLAGDTH2
+HostCharge "Sounds/Monsters/Host/HostCharge.ogg"
+HostAttack "Sounds/Monsters/Host/HostAttack.ogg"
+HostFire "Sounds/Monsters/Host/HostFire.ogg" //formerly POISSHOT
+
+$random Host/Active { Host/Active1 Host/Active2 }
+Host/Active1 "Sounds/Monsters/Host/HostActive1.ogg"
+Host/Active2 "Sounds/Monsters/Host/HostActive2.ogg"
+
+$random Host/Death { Host/Death1 Host/Death2 }
+Host/Death1 "Sounds/Monsters/Host/HostDeath1.mp3"
+Host/Death2 "Sounds/Monsters/Host/HostDeath2.mp3"
+
+$random Host/Sight { Host/Sight1 Host/Sight2 }
+Host/Sight1 "Sounds/Monsters/Host/HostSight1.ogg"
+Host/Sight2 "Sounds/Monsters/Host/HostSight2.ogg"
+
+$random Host/Pain { Host/Pain1 Host/Pain2 }
+Host/Pain1 "Sounds/Monsters/Host/HostPain1.ogg"
+Host/Pain2 "Sounds/Monsters/Host/HostPain2.ogg"
+
 Host/Attack		PLAGATK
 Host/Swing		PLAGSWIN
 Host/Melee		PLAGMLEE
 
-HOSTFLY HOSTFLY
-HOSTLOP HOSTLOP
+HostFly "Sounds/Monsters/Host/HostFly.ogg"
+HostFlyLoop "Sounds/Monsters/Host/HostFlyLoop.ogg"
 
 PoisonShot/Shot			POISSHOT
 PoisonShot/Hit			POISHIT
@@ -1045,12 +1033,6 @@ REVROCK REVROCK
 $limit REVROCK 0
 $volume REVROCK 0.7
 
-$random BEHCRY { BEHCRY1 BEHCRY2 BEHCRY3 }
-BEHCRY1 BEHCRY1
-BEHCRY2 BEHCRY2
-BEHCRY3 BEHCRY3
-$rolloff BEHCRY 400 1700
-
 flesh/sight		flspnsit
 flesh/melee		flspnatk
 flesh/pain		flspnhit
@@ -1075,21 +1057,26 @@ SwarmFlySight1 SFLYSIT1
 SwarmFlySight2 SFLYSIT2
 
 //Remnant
-$random RZombie/see { zmhse1 zmhse2 zmhse3}
-zmhse1 romsit1
-zmhse2 romsit2
-zmhse3 romsit3
-$random RZombie/active { zmhac1 zmhac2}
-zmhac1 romact1
-zmhac2 romact1
-$random RZombie/die { zmhPn1 zmhpn2 zmhpn3}
-zmhpn1 romdth1
-zmhpn2 romdth2
-zmhpn3 romdth3
+$random Remnant/Sight { Remnant/Sight1 Remnant/Sight2 Remnant/Sight3 }
+Remnant/Sight1 "Sounds/Monsters/Remnant/RemnantSight1.ogg"
+Remnant/Sight2 "Sounds/Monsters/Remnant/RemnantSight2.ogg"
+Remnant/Sight3 "Sounds/Monsters/Remnant/RemnantSight3.ogg"
 
-$volume RZombie/see 0.65
-$volume RZombie/active 0.5
-$volume RZombie/die 0.5
+$random Remnant/Pain { Remnant/Pain1 Remnant/Pain2 Remnant/Pain3 }
+Remnant/Pain1 "Sounds/Monsters/Remnant/RemnantPain1.ogg"
+Remnant/Pain2 "Sounds/Monsters/Remnant/RemnantPain2.ogg"
+Remnant/Pain3 "Sounds/Monsters/Remnant/RemnantPain3.ogg"
+
+$random Remnant/Death { Remnant/Death1 Remnant/Death2 Remnant/Death3 }
+Remnant/Death1 "Sounds/Monsters/Remnant/RemnantDeath1.ogg"
+Remnant/Death2 "Sounds/Monsters/Remnant/RemnantDeath2.ogg"
+Remnant/Death3 "Sounds/Monsters/Remnant/RemnantDeath3.ogg"
+
+Remnant/Active "Sounds/Monsters/Remnant/RemnantActive.ogg"
+
+$volume Remnant/Sight 0.65
+$volume Remnant/Active 0.5
+$volume Remnant/Death 0.5
 
 $random Devil/Pain	{ DevilPain1 DevilPain2 DevilPain3 }
 DevilPain1 "Sounds/Monsters/Devil/DevilPain1.ogg"
@@ -1951,33 +1938,34 @@ FODDHOW2 FODDHOW2
 FODDHOW3 FODDHOW3
 $rolloff FODDHOW 200 1300
 
-$random HTRISEE { HTRISEE1 HTRISEE2 HTRISEE3 }
-HTRISEE1 HTRISEE1
-HTRISEE2 HTRISEE2
-HTRISEE3 HTRISEE3
+//Trite Hatchling
+$random HTrite/Sight { HTrite/Sight1 HTrite/Sight2 HTrite/Sight3 }
+HTrite/Sight1 "Sounds/Monsters/TriteHatchling/HTriteSight1.ogg"
+HTrite/Sight2 "Sounds/Monsters/TriteHatchling/HTriteSight2.ogg"
+HTrite/Sight3 "Sounds/Monsters/TriteHatchling/HTriteSight3.ogg"
 
-$random HTRIACT { HTRIACT1 HTRIACT2 HTRIACT3 HTRIACT4 HTRIACT5 HTRIACT6 }
-HTRIACT1 HTRIACT1
-HTRIACT2 HTRIACT2
-HTRIACT3 HTRIACT3
-HTRIACT4 HTRIACT4
-HTRIACT5 HTRIACT5
-HTRIACT6 HTRIACT6
+$random HTrite/Active { HTrite/Active1 HTrite/Active2 HTrite/Active3 HTrite/Active4 HTrite/Active5 HTrite/Active6 }
+HTrite/Active1 "Sounds/Monsters/TriteHatchling/HTriteActive1.ogg"
+HTrite/Active2 "Sounds/Monsters/TriteHatchling/HTriteActive2.ogg"
+HTrite/Active3 "Sounds/Monsters/TriteHatchling/HTriteActive3.ogg"
+HTrite/Active4 "Sounds/Monsters/TriteHatchling/HTriteActive4.ogg"
+HTrite/Active5 "Sounds/Monsters/TriteHatchling/HTriteActive5.ogg"
+HTrite/Active6 "Sounds/Monsters/TriteHatchling/HTriteActive6.ogg"
 
-$random HTRIPAI { HTRIPAI1 HTRIPAI2 HTRIPAI3 HTRIPAI4 }
-HTRIPAI1 HTRIPAI1
-HTRIPAI2 HTRIPAI2
-HTRIPAI3 HTRIPAI3
-HTRIPAI4 HTRIPAI4
+$random HTrite/Pain { HTrite/Pain1 HTrite/Pain2 HTrite/Pain3 HTrite/Pain4 }
+HTrite/Pain1 "Sounds/Monsters/TriteHatchling/HTritePain1.ogg"
+HTrite/Pain2 "Sounds/Monsters/TriteHatchling/HTritePain2.ogg"
+HTrite/Pain3 "Sounds/Monsters/TriteHatchling/HTritePain3.ogg"
+HTrite/Pain4 "Sounds/Monsters/TriteHatchling/HTritePain4.ogg"
 
-$random HTRIDIE { HTRIDIE1 HTRIDIE2 HTRIDIE3 }
-HTRIDIE1 HTRIDIE1
-HTRIDIE2 HTRIDIE2
-HTRIDIE3 HTRIDIE3
+$random HTrite/Death { HTrite/Death1 HTrite/Death2 HTrite/Death3 }
+HTrite/Death1 "Sounds/Monsters/TriteHatchling/HTriteDeath1.ogg"
+HTrite/Death2 "Sounds/Monsters/TriteHatchling/HTriteDeath2.ogg"
+HTrite/Death3 "Sounds/Monsters/TriteHatchling/HTriteDeath3.ogg"
 
-$rolloff HTRISEE 25 800
+$rolloff HTrite/Sight 25 800
 
-$rolloff HTRIACT 25 800
+$rolloff HTrite/Active 25 800
 
 GrossElem/Sight         BELSIT
 GrossElem/Idle          BELIDLE
@@ -2631,6 +2619,13 @@ Corpse/Fall5 "Sounds/Other/CorpseFall5.wav"
 Corpse/Fall6 "Sounds/Other/CorpseFall6.wav"
 Corpse/Fall7 "Sounds/Other/CorpseFall7.wav"
 Corpse/Fall8 "Sounds/Other/CorpseFall8.wav"
+
+$random Corpse/FallMed { Corpse/FallMed1 Corpse/FallMed2 Corpse/FallMed3 Corpse/FallMed4 Corpse/FallMed5 }
+Corpse/FallMed1 "Sounds/Other/CorpseFallMedium1.ogg"
+Corpse/FallMed2 "Sounds/Other/CorpseFallMedium2.ogg"
+Corpse/FallMed3 "Sounds/Other/CorpseFallMedium3.ogg"
+Corpse/FallMed4 "Sounds/Other/CorpseFallMedium4.ogg"
+Corpse/FallMed5 "Sounds/Other/CorpseFallMedium5.ogg"
 
 ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire.ogg"
 $limit ZTrooper/Fire 20

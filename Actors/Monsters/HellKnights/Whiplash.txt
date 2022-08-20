@@ -336,7 +336,7 @@ Actor PM_Whiplash : PMMonster
 	WHIP I 12 A_Scream
 	WHIP J 8 A_NoBlocking
 	WHIP K 5
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	WHIP L -1 A_bossdeath
 	Stop
   XDeath:

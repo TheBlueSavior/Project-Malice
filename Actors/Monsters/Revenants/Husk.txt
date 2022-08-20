@@ -146,7 +146,7 @@ ACTOR PM_Husk : Revenant
     GHUL O 7 A_NoBlocking
 	TNT1 AAAAA 0 A_SpawnItemEx("PM_HuskSmokeCloud",0,0,2,random(-1,1),random(-1,1),random(0,1))
     GHUL P 7
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
     GHUL Q -1
     Stop
   Raise:

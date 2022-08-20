@@ -184,7 +184,7 @@ Actor PM_Cadaver : Revenant
     CREV N 7 A_Scream
     CREV O 7 A_NoBlocking
     CREV P 7
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
     CREV Q -1
     Stop
   Raise:
