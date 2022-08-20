@@ -2903,7 +2903,7 @@ PistolZombie/Death1 "Sounds/Monsters/PistolZombie/PistolZombieDeath1.ogg"
 PistolZombie/Death2 "Sounds/Monsters/PistolZombie/PistolZombieDeath2.ogg"
 PistolZombie/Death3 "Sounds/Monsters/PistolZombie/PistolZombieDeath3.ogg"
 
-PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire.ogg"
+PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire.wav"
 $rolloff PistolZombie/Fire 300 2200
 
 //Noble
@@ -2931,7 +2931,7 @@ $volume Noble/PreBomb 0.7
 Noble/PreBomb1 "sounds/Monsters/Noble/NoblePreBomb1.ogg"
 Noble/PreBomb2 "sounds/Monsters/Noble/NoblePreBomb2.ogg"
 
-Noble/BombExp "sounds/Monsters/Noble/NobleBombExp"
+Noble/BombExp "sounds/Monsters/Noble/NobleBombExp.ogg"
 
 //Blood Stalker
 
