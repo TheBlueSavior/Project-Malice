@@ -51,29 +51,43 @@ Actor PM_SmallBlotSmoke
 
 Actor PM_PossessingDemon : RandomSpawner
 {
-	DropItem "PM_PossSpriteFlee", 255, 1
-	DropItem "PM_PossSpriteLinger", 255, 1
+	DropItem "PM_PossessingDemonSprite", 255, 3
 	DropItem "PM_CrawlingDemonFlee", 255, 1
+}
+
+Actor PM_CrawlingDemonFleeStart
+{
+  +THRUACTORS
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	TNT1 A 0 A_CustomMissile("PM_CrawlingDemonFlee",2,0,random(-178,178))
+	Stop
+	}
 }
 
 Actor PM_CrawlingDemonFlee
 {
-  +NOINTERACTION
+  //+NOINTERACTION
   +THRUACTORS
   +FLOORHUGGER
-  +MISSILE
+  -Shootable
+  Monster
   SeeSound ""
   RenderStyle "Stencil"
   StencilColor Black
   Alpha 0.2
   Scale 0.9
   Speed 15
+  Height 5
+  Radius 5
   States
   {
   Spawn:
 	TNT1 A 1
 	TNT1 A 0 
-	CBEL DDCCBBAACCBBAACCBBAADDCCBBAADDCCBBAACCBBAACCBBAADDCCBBAA 2
+	CBEL DDCCBBAACCBBAACCBBAADDCCBBAADDCCBBAACCBBAACCBBAADDCCBBAADDCCBBAACCBBAACCBBAADDCC 2 A_Wander
 	Stop
 	}
 }
