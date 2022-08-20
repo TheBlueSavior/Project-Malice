@@ -135,14 +135,14 @@ Actor PM_Host : DoomImp
 	HOS1 F 2 Light("Feralfireball4")
 	{
 	A_FaceTarget;
-	A_CustomMissile("HostAttackFlies",40,20,0);
+	A_CustomMissile("PM_HostAttackFlies",40,20,0);
 	A_Spawnitemex("PM_HostFlyFire",7,random(16,21),40,0,0,2);
 	A_Spawnitemex("PM_HostFlyFire",7,random(-16,-21),40,0,0,2);
 	}
 	HOS1 F 2 Light("Feralfireball4")
 	{
 	A_FaceTarget;
-	A_CustomMissile("HostAttackFlies",40,-20,0);
+	A_CustomMissile("PM_HostAttackFlies",40,-20,0);
 	A_Spawnitemex("PM_HostFlyFire",7,random(16,21),40,0,0,2);
 	A_Spawnitemex("PM_HostFlyFire",7,random(-16,-21),40,0,0,2);
 	}
