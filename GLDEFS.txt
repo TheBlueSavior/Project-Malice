@@ -848,7 +848,7 @@ Color 0.4 0.4 0.4
 Size 16
 }
 
-Object SatyrLordMissile2
+Object PM_HeresyLordWhiteSoul
 {
 Frame PSMMA { Light SatyrLordMissile21 }
 Frame PSMMB { Light SatyrLordMissile22 }
@@ -900,7 +900,7 @@ Color 0.4 0.4 0.4
 Size 24
 }
 
-Object SatyrLordMissileDual2Real
+Object PM_HeresyLordMissileDual2Real
 {
 Frame CSSFD { Light SatyrLordWhiteMissile1 }
 Frame CSSFE { Light SatyrLordWhiteMissile1 }
@@ -981,7 +981,7 @@ Size 16
 Offset 0 24 0
 }
 
-Object SatyrLordMissileDual1Real
+Object PM_HeresyLordMissileDual1Real
 {
 Frame MSP2 { Light SatyrLordRedMissile1 }
 Frame MSP1G { Light SatyrLordRedMissile2 }
@@ -1615,7 +1615,7 @@ Attenuate 1
 Dontlightself 0
 }
 
-Object UberTracer
+Object PM_BulletTracer
 {
 	Frame UCHBA { Light UberBullet }
 

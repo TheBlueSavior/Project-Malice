@@ -1,4 +1,4 @@
-Model UberTracer
+Model PM_BulletTracer
 { 
 Path "Models"
 Skin 0 "tracer1.tga"

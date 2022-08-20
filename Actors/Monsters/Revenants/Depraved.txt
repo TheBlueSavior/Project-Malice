@@ -10,11 +10,11 @@ Actor PM_Depraved
 	PainChance 64
     Obituary "%o was killed by a Depraved."
     HitObituary "%o was beaten to death by a Depraved."
-    SeeSound "monster/incsit"
+    SeeSound "Depraved/Sight"
     PainSound ""
 	//DropItem "RagePoint1"
-    DeathSound "monster/incdth"
-    ActiveSound "monster/incact"
+    DeathSound ""
+    ActiveSound "Depraved/Active"
     AttackSound "monster/incatk"
 	Tag "Depraved"
     MONSTER
@@ -87,7 +87,7 @@ Actor PM_Depraved
     INCA UUUUUU 3 
 	{
 	A_FaceTarget;
-	A_CustomMissile("DepravedSpit",60,-10,random(-5,5),0,random(-3,3));
+	A_CustomMissile("PM_DepravedSpit",60,-10,random(-5,5),0,random(-3,3));
 	}
     INCA K 10 A_FaceTarget
 	TNT1 A 0 A_Jump(30,"See2")
@@ -98,7 +98,7 @@ Actor PM_Depraved
   Scream:
     INCA J 10 A_FaceTarget
 	INCA K 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("DEPSCR",3)
+	TNT1 A 0 A_PlaySound("Depraved/Scream",3)
 	INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 2
 	{
 	A_FaceTarget;
@@ -117,26 +117,26 @@ Actor PM_Depraved
 	INCA LLLLLLLLLLLLLLLLL 1 Light("ShadowBall4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("RedFireEffectBig",-3,0,60,0,0,3);
+		A_SpawnItemEx("PM_RedFireEffectBig",-3,0,60,0,0,3);
 		}
-	TNT1 A 0 A_PlaySound("DEPBES",6,1.0,0,0.6)
-	TNT1 A 0 A_PlaySound("DEPBEM",1,1.0,1,0.6)
+	TNT1 A 0 A_PlaySound("DepravedBeamStart",6,1.0,0,0.6)
+	TNT1 A 0 A_PlaySound("DepravedBeam",1,1.0,1,0.6)
   LaserFire:
     INCA UUUU 1 Bright Light("ShadowBall4")
 		{
 		A_FaceTarget(0.75,3,0,0);
-		A_SpawnItemEx("RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
-		A_CustomMissile("DepravedBeam",62,-8,0,CMF_OFFSETPITCH,0);
+		A_CustomMissile("PM_DepravedBeam",62,-8,0,CMF_OFFSETPITCH,0);
 		}
 	TNT1 A 0 A_JumpIfTargetInLOS("LaserFire",90,JLOSF_DEADNOJUMP)
   LaserStop:
-	TNT1 A 0 A_PlaySound("DEPBEE",1,1.0,0,0.6)
+	TNT1 A 0 A_PlaySound("DepravedBeamEnd",1,1.0,0,0.6)
 	INCA UUUUUUUUUUUUUUUUUUUUUUU 1 Light("ShadowBall4")
 		{
 		A_FaceTarget;
-		A_SpawnItemEx("RedFireEffectBig",4,-5,64,0,0,3);
-		A_SpawnItemEx("RedFireEffectBig",4,-1,64,0,0,3);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 1 A_FaceTarget
 	Goto See
@@ -192,14 +192,14 @@ Actor PM_Depraved
   Raise:
 	INCA Q 0 A_GiveInventory("RaiseLimit",1)
 	INCA L 0 A_JumpIfInventory("RaiseLimit",2,"Raise2")
-	INCA Q 0 A_Playsound("monster/incsit")
+	INCA Q 0 A_Playsound("Depraved/Sight")
 	INCA Q 0 A_KillChildren
     INCA Q 0 A_SetHealth(150)
 	INCA QPONML 5
     Goto See
   Raise2:
 	INCA Q 0 A_GiveInventory("RaiseLimit",1)
-	INCA Q 0 A_Playsound("monster/incsit")
+	INCA Q 0 A_Playsound("Depraved/Sight")
 	INCA Q 0 A_KillChildren
     INCA Q 0 A_SetHealth(75)
 	INCA QPONML 5
@@ -207,7 +207,7 @@ Actor PM_Depraved
   }
 }
 
-Actor RedFireEffect
+Actor PM_RedFireEffect
 {
   +NOINTERACTION
   +CLIENTSIDEONLY
@@ -243,7 +243,7 @@ Actor RedFlareEffect
 	}
 }
 
-Actor RedFireEffectBig
+Actor PM_RedFireEffectBig
 {
   +NOINTERACTION
   +CLIENTSIDEONLY
@@ -261,7 +261,7 @@ Actor RedFireEffectBig
 	}
 }
 
-Actor DepravedBeam : FastProjectile
+Actor PM_DepravedBeam : FastProjectile
 {
 	Projectile
 	Radius 3
@@ -285,12 +285,12 @@ Actor DepravedBeam : FastProjectile
 		FIR1 RRR 2 Bright
 		Loop
   Death:
-	TNT1 A 0 A_SpawnItemEx("RedFireEffectBig",0,0,0,0,0,2)
+	TNT1 A 0 A_SpawnItemEx("PM_RedFireEffectBig",0,0,0,0,0,2)
     Stop
 	}
 }
 
-ACTOR DepravedSpit
+ACTOR PM_DepravedSpit
 {
 	Radius 6
 	Height 8
@@ -309,29 +309,29 @@ ACTOR DepravedSpit
 	Spawn:
 		BZRB AAA 1
 		{
-		A_SpawnItemEx("BSwampTrail",0,0,0,0,0,0,0,128);
+		A_SpawnItemEx("PM_BlackBloodTrail",0,0,0,0,0,0,0,128);
 		//A_SpawnItemEx("IMPMTrail",0,0,0,0,0,0,0,128);
 		}
 		BZRB BAA 1
 		{
-		A_SpawnItemEx("BSwampTrail",0,0,0,0,0,0,0,128);
+		A_SpawnItemEx("PM_BlackBloodTrail",0,0,0,0,0,0,0,128);
 		//A_SpawnItemEx("IMPMTrail",0,0,0,0,0,0,0,128);
 		}
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",0,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",0,random(-6,6),random(-90,90))
 		Loop
 	Death:
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("BlackGroundStain",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("PM_PM_BlackGroundStain",1,random(-6,6),random(-90,90))
 		BZRB CDE 6
 		Stop
 	}
 }
 
-Actor BlackGroundOoze
+Actor PM_BlackGroundOoze
 {
 	Projectile
 	-NOGRAVITY
@@ -353,7 +353,7 @@ Actor BlackGroundOoze
 	}
 }
 
-Actor BlackGroundStain
+Actor PM_PM_BlackGroundStain
 {
 	Projectile
 	-NOGRAVITY
@@ -374,7 +374,7 @@ Actor BlackGroundStain
 	}
 }
 
-ACTOR BSwampTrail
+ACTOR PM_BlackBloodTrail
 {
 Scale 0.80
 +NOINTERACTION

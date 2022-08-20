@@ -78,7 +78,7 @@ ACTOR PM_FallenMarine
 	{
 	A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
-    A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
+    A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 	}
 	ZSP2 E 4 A_FaceTarget
@@ -86,7 +86,7 @@ ACTOR PM_FallenMarine
 	{
 	A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
-    A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
+    A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 	}
 	ZSP2 E 4 A_FaceTarget
@@ -94,7 +94,7 @@ ACTOR PM_FallenMarine
 	{
 	A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
-    A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
+    A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 	}
 	ZSP2 E 4 A_FaceTarget
@@ -102,7 +102,7 @@ ACTOR PM_FallenMarine
 	{
 	A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
-    A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
+    A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 	}
 	ZSP2 E 5 A_FaceTarget
@@ -151,7 +151,7 @@ ACTOR PM_FallenMarine
 	  {
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",35,7,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",35,7,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 35, 7, 15, 0);
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileLeft")
@@ -164,7 +164,7 @@ ACTOR PM_FallenMarine
 	  {
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileRight")
@@ -177,7 +177,7 @@ ACTOR PM_FallenMarine
 	  {
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileBack")
@@ -224,7 +224,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(1, -1), CMF_OFFSETPITCH, random(1, -1));
+		A_CustomMissile("PM_BulletTracer",33,9, random(1, -1), CMF_OFFSETPITCH, random(1, -1));
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 		}
 		ZSP2 E 8 A_FaceTarget
@@ -238,7 +238,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -10);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -10);
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -246,7 +246,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -8);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -8);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -254,7 +254,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -7);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -7);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -262,7 +262,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -6);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -6);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -270,7 +270,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -5);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -5);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -278,7 +278,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -4);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -4);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -286,7 +286,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -2);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -2);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -294,7 +294,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -1);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -1);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -302,7 +302,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -310,7 +310,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -318,7 +318,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -326,7 +326,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -334,7 +334,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -342,7 +342,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 1);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 1);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -350,7 +350,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 2);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 2);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -358,7 +358,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 3);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 3);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 1 A_FaceTarget
@@ -366,7 +366,7 @@ ACTOR PM_FallenMarine
 		{
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_CustomMissile("UberTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 4);
+		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 4);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
 		}
 		ZSP2 E 4 A_FaceTarget

@@ -50,7 +50,7 @@ Actor BlotSmoke
 
 Actor PM_Blot
 {
-  obituary "%o was engulfed by a blot."
+  obituary "%o was engulfed by a Dark Sprite."
   health 100
   radius 20
   height 30
@@ -59,8 +59,8 @@ Actor PM_Blot
   Scale 0.45
   PainChance 200
   Species "Soul"
-  Tag "Dark Sprite"
-  activesound "DSPRI"
+  Tag "D??RK SPRI?E"
+  activesound "Blot/Active"
   seesound "Blot/Sight"
   painsound ""
   deathsound ""

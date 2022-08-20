@@ -17,10 +17,10 @@ ACTOR PM_DecayedSoldier
 	Species "Zombie"
 	Tag "Decayed Soldier"
     OBITUARY "%o was punctured by a Decayed Soldier."
-    SEESOUND "DEZSEE"
-    PainSound "DEZPAI"
-    DeathSound "DEZDIE"
-    ACTIVESOUND "DEZACT"
+    SEESOUND "Decayed/Sight"
+    PainSound "Decayed/Pain"
+    DeathSound "Decayed/Death"
+    ACTIVESOUND "Decayed/Active"
     DropItem "Clip"
     Decal Bulletchip
     states
@@ -59,40 +59,40 @@ ACTOR PM_DecayedSoldier
 		TNT1 A 0 A_Jump(30,"Missile2")
 		TNT1 A 0 A_Jump(125,"RollRight","RollLeft")
         POSK E 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")
         Goto See2
 	Missile2:
 		POSK E 5 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
 		TNT1 A 0 A_Jump(30,"See2")
@@ -102,7 +102,7 @@ ACTOR PM_DecayedSoldier
 		TNT1 A 0 A_CustomMissile("WMaggotSpawn", 45, random(-4,4), 0, 0, 0)
 		Goto See2
 	RollRight:
-		TNT1 A 0 A_PlaySound("DEZROL")
+		TNT1 A 0 A_PlaySound("Decayed/Roll")
 		ZRO1 A 2 A_FaceTarget
 		TNT1 A 0 ThrustThing(angle*256/360+64, 16, 0, 0)
 		ZRO1 ABCDE 3 A_FaceTarget
@@ -112,55 +112,55 @@ ACTOR PM_DecayedSoldier
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")
         Goto See
 	RollLeft:
-		TNT1 A 0 A_PlaySound("DEZROL")
+		TNT1 A 0 A_PlaySound("Decayed/Roll")
 		ZRO1 A 2 A_FaceTarget
 		TNT1 A 0 ThrustThing(angle*256/360+192, 16, 0, 0)
 		ZRO1 EDCBA 3 A_FaceTarget
 		POSK E 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("BulletFlare", 32, 10, 0, 0);
-		A_CustomMissile("UberTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_BulletTracer",30,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
 		}
 		POSK E 8 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"See2")
@@ -174,7 +174,7 @@ ACTOR PM_DecayedSoldier
 	}
 	Goto See
 	Puke:
-		TNT1 A 0 A_PlaySound("BLDPUK")
+		TNT1 A 0 A_PlaySound("GenericBloodPuke")
 		POSK GGGGGGGGGGGGGGGGGG 1
 		{
 		A_FaceTarget;

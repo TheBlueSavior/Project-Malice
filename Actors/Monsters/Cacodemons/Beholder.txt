@@ -80,13 +80,13 @@ ACTOR PM_Beholder: Cacodemon
 	CAB1 D 30
 	{
 	A_FaceTarget;
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-	A_SpawnItemEx("BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+	A_SpawnItemEx("PM_BeholderEye",0,0,25,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 	}
 	CAB1 BBBBBBBBBB 5
 	{
@@ -175,12 +175,12 @@ Actor PM_BeholderGoreShot
 	  A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 	  A_SpawnItem("GoreFX1",0,0);
 	  }
-	  TNT1 A 0 A_SpawnItemEx("SwampTrail",0,0,0,0,0,0,0,128)
+	  TNT1 A 0 A_SpawnItemEx("PM_BloodTrail",0,0,0,0,0,0,0,128)
       FGOR B 2
 	  {
 	  A_SpawnItem("GoreFX1",0,0);
 	  }
-	  TNT1 A 0 A_SpawnItemEx("SwampTrail",0,0,0,0,0,0,0,128)
+	  TNT1 A 0 A_SpawnItemEx("PM_BloodTrail",0,0,0,0,0,0,0,128)
       FGOR C 2
 	  {
 	  A_SpawnItem("GoreFX1",0,0);
@@ -189,12 +189,12 @@ Actor PM_BeholderGoreShot
 	  {
 	  A_SpawnItem("GoreFX1",0,0);
 	  }
-	  TNT1 A 0 A_SpawnItemEx("SwampTrail",0,0,0,0,0,0,0,128)
+	  TNT1 A 0 A_SpawnItemEx("PM_BloodTrail",0,0,0,0,0,0,0,128)
       FGOR E 2
 	  {
 	  A_SpawnItem("GoreFX1",0,0);
 	  }
-	  TNT1 A 0 A_SpawnItemEx("SwampTrail",0,0,0,0,0,0,0,128)
+	  TNT1 A 0 A_SpawnItemEx("PM_BloodTrail",0,0,0,0,0,0,0,128)
 	  TNT1 A 0 A_CustomMissile("RedGroundOoze",0,random(-6,6),random(-90,90))
       FGOR F 2
 	  {
@@ -279,7 +279,7 @@ Actor PM_BeholderPukeSplatter
 	}
 }
 
-Actor BeholderEye
+Actor PM_BeholderEye
 {
    Radius 25
    Height 25
@@ -349,7 +349,7 @@ Actor BeholderEye
 	  A_FaceTarget;
 	  A_SpawnItemEx("HomingFlare",0,0,0);
 	  }
-	  BEYE A 0 A_CustomMissile("BeholderEyeAttack",0,0,0,CMF_TRACKOWNER)
+	  BEYE A 0 A_CustomMissile("PM_BeholderEyeAttack",0,0,0,CMF_TRACKOWNER)
 	  Stop
    Bounce:
 	  TNT1 A 0 A_CustomMissile("RedGroundOoze",0,random(-6,6),random(-90,90))
@@ -367,7 +367,7 @@ Actor BeholderEye
    }
 }
 
-ACTOR BeholderEyeAttack : DoomImpBall
+ACTOR PM_BeholderEyeAttack : DoomImpBall
 {
   Speed 25
   FastSpeed 36
@@ -390,7 +390,7 @@ ACTOR BeholderEyeAttack : DoomImpBall
 		BEYE ABCDEF 2 Bright Light("ShadowBall3") 
 		{
 		A_SpawnItem("GoreFX1",0,0);
-		A_SpawnItemEx("SwampTrail",0,0,0,0,0,0,0,128);
+		A_SpawnItemEx("PM_BloodTrail",0,0,0,0,0,0,0,128);
 		}
 		Loop
 	Death:

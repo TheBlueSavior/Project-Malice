@@ -21,7 +21,7 @@ ACTOR PM_PhaseBrute : Demon
 	DeathSound "PBRUDIE"
 	ActiveSound "PBRUACT"
 	PainSound "PBRUPAI"
-	AttackSound "BPinky/Bite"
+	AttackSound "GenericPinkyBite"
 	Tag "Phase Brute"
 	Obituary "%o didn't notice a hungry Phase Brute"
 	States

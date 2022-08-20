@@ -41,7 +41,7 @@ Missile:
 	A_CustomMissile("CFodFlare",22,0);
 	A_CustomMissile("CFodFlare",22,0);
 	A_CustomMissile("CFodFlare",22,0);
-	A_CustomMissile("FusionShot",22,0);
+	A_CustomMissile("PM_FusionShot",22,0);
 	}
     FSPI G 1 A_SpidRefire
 	TNT1 A 0 A_Jump(10,"See")
@@ -60,13 +60,13 @@ Shotgun:
 	A_CustomMissile("CFodFlare",22,0);
 	A_CustomMissile("CFodFlare",22,0);
 	A_CustomMissile("CFodFlare",22,0);
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
-	A_CustomMissile("ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-6,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-4,4));
+	A_CustomMissile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-6,4));
 	}
 	FSPI G 3 A_FaceTarget
 	TNT1 A 0 A_PlaySound("UCHAIN/Steam")
@@ -83,7 +83,7 @@ Rapid:
 	FSPI H 1 Light("Shadowball2")
 	{
 	A_CustomMissile("CFodFlare",22,0);
-	A_CustomMissile("SmallFusionShot",22,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
+	A_CustomMissile("PM_SmallFusionShot",22,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
 	}
 	FSPI G 1 A_SpidRefire
 	Goto Rapid+4
@@ -171,7 +171,7 @@ Spawn:
 	}
 }
 
-ACTOR FusionShot
+ACTOR PM_FusionShot
 {
   Radius 13
   Height 8
@@ -189,7 +189,7 @@ ACTOR FusionShot
   Spawn:
     FS03 AB 1 Bright Light("Shadowball2")
 	{
-	A_SpawnItemEx("FusionTrail",0,0,0,0,0,0,0,128,0);
+	A_SpawnItemEx("PM_FusionTrail",0,0,0,0,0,0,0,128,0);
 	}
     Loop
   Death:
@@ -200,7 +200,7 @@ ACTOR FusionShot
   }
 }
 
-ACTOR ScatterFusionShot
+ACTOR PM_ScatterFusionShot
 {
   Radius 13
   Height 8
@@ -217,7 +217,7 @@ ACTOR ScatterFusionShot
   Spawn:
     FS03 AB 1 Bright Light("Shadowball2")
 	{
-	A_SpawnItemEx("ScatterFusionTrail",0,0,0,0,0,0,0,128,0);
+	A_SpawnItemEx("PM_ScatterFusionTrail",0,0,0,0,0,0,0,128,0);
 	}
     Loop
   Death:
@@ -229,7 +229,7 @@ ACTOR ScatterFusionShot
   }
 }
 
-ACTOR SmallFusionShot
+ACTOR PM_SmallFusionShot
 {
   Radius 13
   Height 8
@@ -245,36 +245,13 @@ ACTOR SmallFusionShot
   {
   Spawn:
     FS03 AB 1 Bright Light("AgauresBall")
-	{
-	//A_SpawnItemEx("SmallFusionTrail",0,0,0,0,0,0,0,128,0);
-	}
-    Loop
   Death:	
     FS03 HIJ 3 Bright
     Stop
   }
 }
 
-ACTOR SmallFusionTrail
-{
-+Missile
- +NoGravity
- +NoBlockmap
- +NoInteraction
- -Solid
- +Bright
- RENDERSTYLE ADD
-Scale 0.5
-States
-{
-Spawn:
-	TNT1 A 1
-    FS03 AB 1 A_FadeOut(0.25)
-    Goto Spawn+1
-    }
-}
-
-ACTOR FusionTrail
+ACTOR PM_FusionTrail
 {
 +Missile
  +NoGravity
@@ -292,7 +269,7 @@ Spawn:
     }
 }
 
-ACTOR ScatterFusionTrail
+ACTOR PM_ScatterFusionTrail
 {
 +Missile
  +NoGravity
