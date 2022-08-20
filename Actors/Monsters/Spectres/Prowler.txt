@@ -1,7 +1,7 @@
 ACTOR PM_Prowler : PMMonster
 {
 	var int user_timer;
-	Health 140
+	Health 200
 	Radius 20
 	Height 56
 	Mass 150

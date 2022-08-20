@@ -53,6 +53,29 @@ Actor PM_PossessingDemon : RandomSpawner
 {
 	DropItem "PM_PossSpriteFlee", 255, 1
 	DropItem "PM_PossSpriteLinger", 255, 1
+	DropItem "PM_CrawlingDemonFlee", 255, 1
+}
+
+Actor PM_CrawlingDemonFlee
+{
+  +NOINTERACTION
+  +THRUACTORS
+  +FLOORHUGGER
+  +MISSILE
+  SeeSound ""
+  RenderStyle "Stencil"
+  StencilColor Black
+  Alpha 0.2
+  Scale 0.9
+  Speed 15
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	TNT1 A 0 
+	CBEL DDCCBBAACCBBAACCBBAADDCCBBAADDCCBBAACCBBAACCBBAADDCCBBAA 2
+	Stop
+	}
 }
 
 
