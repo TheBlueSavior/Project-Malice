@@ -331,7 +331,7 @@ ACTOR PM_Noble
 		NO1S G 5 Light("Greenball3")
 		{
 		A_FaceTarget;
-		A_PlaySound("HellKnight/Cast",CHAN_7);
+		A_PlaySound("HellKnight/Cast",CHAN_6);
 		A_CustomMissile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,7);
 		}
 		NO1S GGG 5 Light("Greenball3")
