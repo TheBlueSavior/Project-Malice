@@ -141,7 +141,7 @@ Actor PM_HellsFuryBall
 {
     Radius 6
     Height 8
-    Speed 17
+    Speed 15
     Damage (random(30,40))
     RenderStyle "Add"
     Alpha 1

@@ -2499,8 +2499,6 @@ HKnightBImpact2 "Sounds/Monsters/SFX/HellKImpact2.ogg"
 HKnightBImpact3 "Sounds/Monsters/SFX/HellKImpact3.ogg"
 HKnightBImpact4 "Sounds/Monsters/SFX/HellKImpact4.ogg"
 
-$volume HellKnight/BallImpact 0.7
-$volume HellKnight/Cast 0.8
 $limit HellKnight/Cast 4
 $limit HellKnight/BallImpact 5
 
