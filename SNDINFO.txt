@@ -487,36 +487,36 @@ $limit DSPLAS2 0
 
 //Fallen Soldiers
 $Random FallenSoldiers/Sight { FallenS/Sight1 FallenS/Sight2 FallenS/Sight3 FallenS/Sight4 FallenS/Sight5 FallenS/Sight6 }
-FallenS/Sight1 "Sounds/Monsters/FallenMarine/FallenSight1"
-FallenS/Sight2 "Sounds/Monsters/FallenMarine/FallenSight2"
-FallenS/Sight3 "Sounds/Monsters/FallenMarine/FallenSight3"
-FallenS/Sight4 "Sounds/Monsters/FallenMarine/FallenSight4"
-FallenS/Sight5 "Sounds/Monsters/FallenMarine/FallenSight5"
-FallenS/Sight6 "Sounds/Monsters/FallenMarine/FallenSight6"
+FallenS/Sight1 "Sounds/Monsters/FallenMarine/FallenSight1.ogg"
+FallenS/Sight2 "Sounds/Monsters/FallenMarine/FallenSight2.ogg"
+FallenS/Sight3 "Sounds/Monsters/FallenMarine/FallenSight3.ogg"
+FallenS/Sight4 "Sounds/Monsters/FallenMarine/FallenSight4.ogg"
+FallenS/Sight5 "Sounds/Monsters/FallenMarine/FallenSight5.ogg"
+FallenS/Sight6 "Sounds/Monsters/FallenMarine/FallenSight6.ogg"
 
 $Random FallenSoldiers/Active { FallenS/Active1 FallenS/Active2 FallenS/Active3 FallenS/Active4 FallenS/Active5 FallenS/Active6 FallenS/Active7 FallenS/Active8 }
-FallenS/Active1 "Sounds/Monsters/FallenMarine/FallenActive1"
-FallenS/Active2 "Sounds/Monsters/FallenMarine/FallenActive2"
-FallenS/Active3 "Sounds/Monsters/FallenMarine/FallenActive3"
-FallenS/Active4 "Sounds/Monsters/FallenMarine/FallenActive4"
-FallenS/Active5 "Sounds/Monsters/FallenMarine/FallenActive5"
-FallenS/Active6 "Sounds/Monsters/FallenMarine/FallenActive6"
-FallenS/Active7 "Sounds/Monsters/FallenMarine/FallenActive7"
-FallenS/Active8 "Sounds/Monsters/FallenMarine/FallenActive8"
+FallenS/Active1 "Sounds/Monsters/FallenMarine/FallenActive1.ogg"
+FallenS/Active2 "Sounds/Monsters/FallenMarine/FallenActive2.ogg"
+FallenS/Active3 "Sounds/Monsters/FallenMarine/FallenActive3.ogg"
+FallenS/Active4 "Sounds/Monsters/FallenMarine/FallenActive4.ogg"
+FallenS/Active5 "Sounds/Monsters/FallenMarine/FallenActive5.ogg"
+FallenS/Active6 "Sounds/Monsters/FallenMarine/FallenActive6.ogg"
+FallenS/Active7 "Sounds/Monsters/FallenMarine/FallenActive7.ogg"
+FallenS/Active8 "Sounds/Monsters/FallenMarine/FallenActive8.ogg"
 
 $Random FallenSoldiers/MGun	{ FallenS/MGun1 FallenS/MGun2 FallenS/MGun3 }
-FallenS/MGun1 "Sounds/Monsters/FallenMarine/FallenMGun1"
-FallenS/MGun2 "Sounds/Monsters/FallenMarine/FallenMGun2"
-FallenS/MGun3 "Sounds/Monsters/FallenMarine/FallenMGun3"
+FallenS/MGun1 "Sounds/Monsters/FallenMarine/FallenMGun1.ogg"
+FallenS/MGun2 "Sounds/Monsters/FallenMarine/FallenMGun2.ogg"
+FallenS/MGun3 "Sounds/Monsters/FallenMarine/FallenMGun3.ogg"
 
 $Random FallenSoldiers/Pain	{ FallenS/Pain1 FallenS/Pain2 FallenS/Pain3 }
-FallenS/Pain1 "Sounds/Monsters/FallenMarine/FallenPain1"
-FallenS/Pain2 "Sounds/Monsters/FallenMarine/FallenPain2"
-FallenS/Pain3 "Sounds/Monsters/FallenMarine/FallenPain3"
+FallenS/Pain1 "Sounds/Monsters/FallenMarine/FallenPain1.ogg"
+FallenS/Pain2 "Sounds/Monsters/FallenMarine/FallenPain2.ogg"
+FallenS/Pain3 "Sounds/Monsters/FallenMarine/FallenPain3.ogg"
 
 $Random FallenSoldiers/Death { FallenS/Death1 FallenS/Death2 }
-FallenS/Death1 "Sounds/Monsters/FallenMarine/FallenDeath1"
-FallenS/Death2 "Sounds/Monsters/FallenMarine/FallenDeath2"
+FallenS/Death1 "Sounds/Monsters/FallenMarine/FallenDeath1.ogg"
+FallenS/Death2 "Sounds/Monsters/FallenMarine/FallenDeath2.ogg"
 
 $Limit FallenSoldiers/MGun	0
 $rolloff FallenSoldiers/MGun 400 3000
