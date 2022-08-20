@@ -1560,13 +1560,13 @@ GLUTACT4 GLUTACT4
 
 $random Glutton/Spit { GluttonSpit1 GluttonSpit2 }
 
-GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1.ogg"
-GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2.ogg"
+GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1.wav"
+GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2.wav"
 
 $random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
 
-GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.ogg"
-GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.ogg"
+GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.wav"
+GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.wav"
 
 $volume Glutton/Attack 0.9
 
