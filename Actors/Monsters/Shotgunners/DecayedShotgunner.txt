@@ -16,10 +16,10 @@ ACTOR PM_DecayedShotgunner
 	Species "Shotgunner"
 	Tag "Decayed Shotgunner"
     OBITUARY "%o was killed by A Decayed Shotgunner!"
-    SEESOUND "DEZSEE"
-    PainSound "DEZPAI"
-    DeathSound "DEZDIE"
-    ACTIVESOUND "DEZACT"
+    SeeSound "Decayed/Sight"
+    PainSound "Decayed/Pain"
+    DeathSound "Decayed/Death"
+    ActiveSound "Decayed/Active"
     DropItem "Shotgun"
     states
     {
@@ -82,7 +82,7 @@ ACTOR PM_DecayedShotgunner
 		A_CustomMissile("CFodFlare",32,15,15,0);
 		A_CustomMissile("CFodFlare",32,15,15,0);
 		A_FaceTarget;
-		A_PlaySound("SHOBEP");
+		A_PlaySound("Decayed/ShottyCharge");
 		}
 		SPO6 E 3 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)

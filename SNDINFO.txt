@@ -398,7 +398,7 @@ MGunner/Pain1 "Sounds/Monsters/MutatedGunner/MutGunnerPain1.ogg"
 MGunner/Pain2 "Sounds/Monsters/MutatedGunner/MutGunnerPain2.ogg"
 MGunner/Pain3 "Sounds/Monsters/MutatedGunner/MutGunnerPain3.ogg"
 
-$random MutatedGunner/Death { MGunner/Death1 MGunner/Death2 MGunner/Death3 MGunner/Death4 }
+$random MutatedGunner/Death { MGunner/Death1 MGunner/Death2 MGunner/Death3 }
 MGunner/Death1 "Sounds/Monsters/MutatedGunner/MutGunnerDeath1.ogg"
 MGunner/Death2 "Sounds/Monsters/MutatedGunner/MutGunnerDeath2.ogg"
 MGunner/Death3 "Sounds/Monsters/MutatedGunner/MutGunnerDeath3.ogg"
@@ -1631,7 +1631,7 @@ MARTOR5 MARTOR5
 //Decayed Soldiers
 
 Decayed/Roll "Sounds/Monsters/DecayedSoldier/DecayedRoll.ogg"
-Decayed/Fire "Sounds/Monsters/DecayedSoldier/DecayedFire,ogg"
+Decayed/Fire "Sounds/Monsters/DecayedSoldier/DecayedFire.ogg"
 Decayed/Pain "Sounds/Monsters/DecayedSoldier/DecayedPain.ogg"
 Decayed/Death "Sounds/Monsters/DecayedSoldier/DecayedDeath.ogg"
 
