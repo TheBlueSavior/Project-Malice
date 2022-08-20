@@ -6268,7 +6268,7 @@ Size 16
 }
 
 
-Object MaliceInfernoBall
+Object PM_InfernoBall
 {
 Frame IBALA { Light InfernoBall }
 Frame IBALB { Light InfernoBall }
@@ -6277,7 +6277,7 @@ Frame IBALD { Light InfernoBall3 }
 Frame IBALE { Light InfernoBall4 }
 }
 
-Object MaliceInfernoBallTrail
+Object PM_InfernoBallTrail
 {
 Frame ITRLA { Light InfernoBall }
 Frame ITRLB { Light InfernoBall3 }
@@ -6307,7 +6307,7 @@ Color 0.0 0.8 0.0
 Size 70
 }
 
-Object MaliceNetherLightning
+Object PM_NetherLightning
 {
 Frame NLITA { Light NetherLightning }
 }
