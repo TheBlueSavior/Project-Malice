@@ -42,7 +42,7 @@ ACTOR PM_MutatedGunner
 			D3C2 F 1 BRIGHT Light("YellowMediumFlicker2") 
 			{
 			A_PlaySound("GunnerRifleDistant", CHAN_7);
-			A_CustomMissile("PM_BulletTracer",32,10, random(5, -5),CMF_OFFSETPITCH,random(-4,4));
+			A_CustomMissile("PM_BulletTracer",32,10, random(8,-8),CMF_OFFSETPITCH,random(-2,2));
 			A_CustomMissile("BulletFlare", 32, 10, 0, 0);
 			}
 			D3C2 E 1 A_MonsterRefire(130,"CoolDown")
