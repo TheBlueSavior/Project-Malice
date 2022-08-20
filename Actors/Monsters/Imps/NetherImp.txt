@@ -1,4 +1,4 @@
-Class PM_NetherImp : Actor
+Class PM_NetherConduit : Actor
 {
   Default
   {
@@ -11,14 +11,13 @@ Class PM_NetherImp : Actor
     Scale 1.2;
 	MeleeRange 150;
 	Species "Imp";
-	seesound "dimp/see";
-	painsound "dimp/pain";
-	deathsound "dimp/death";
-	activesound "dimp/active";
-    Obituary "%o was cursed by a Nether Imp.";
-    HitObituary "%o was touched by a Nether Imp.";
+	seesound "NetherConduit/Sight";
+	painsound "NetherConduit/Pain";
+	deathsound "NetherConduit/Death";
+	activesound "NetherConduit/Active";
+    Obituary "%o was violently cursed by a Nether Conduit.";
 	//DropItem "RagePoint1";
-	Tag "Nether Imp";
+	Tag "Nether Conduit";
     MONSTER;
     +FLOORCLIP
 	+MISSILEMORE
@@ -78,7 +77,7 @@ Class PM_NetherImp : Actor
 	TNT1 A 0;
 	TNT1 A 0 A_Jump(128,"AttackActual2");
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0);
-	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6);
+	TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6);
     DRKF IIIIIIIIIIIIIIIIIIIIIIII 1 Light("InfernoBall")
 	{
 	A_FaceTarget();
@@ -92,7 +91,7 @@ Class PM_NetherImp : Actor
     Goto See;
   AttackActual2:
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0);
-	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6);
+	TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6);
     DRKF IIIIIIIIIIIIIIIIIIIIIIII 1 Light("InfernoBall")
 	{
 	A_FaceTarget();

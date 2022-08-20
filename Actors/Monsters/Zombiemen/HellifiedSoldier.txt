@@ -15,10 +15,10 @@ ACTOR PM_HellifiedSoldier
 	Species "Zombie"
 	Tag "Hellified Soldier"
     OBITUARY "%o was blasted by a Hellified Soldier."
-    SEESOUND "HFSSEE"
-    PainSound "HFSPAI"
-    DeathSound "HFSDIE"
-    ACTIVESOUND "HFSACT"
+    SEESOUND "HellSoldier/Sight"
+    PainSound "HellSoldier/Pain"
+    DeathSound "HellSoldier/Death"
+    ACTIVESOUND "HellSoldier/Active"
     DropItem Clip
     states
     {
@@ -37,26 +37,26 @@ ACTOR PM_HellifiedSoldier
     Missile:
 		TNT1 A 0 A_Jump(50,"Missile2")
         HFS1 F 8 A_FaceTarget
-		//TNT1 A 0 A_PlaySound("HFSPLA")
+		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
         HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
-		//TNT1 A 0 A_PlaySound("HFSPLA")
+		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
 		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
-		//TNT1 A 0 A_PlaySound("HFSPLA")
+		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
 		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 1 A_FaceTarget
-		//TNT1 A 0 A_PlaySound("HFSPLA")
+		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
 		HFS1 G 4 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 8 A_FaceTarget
         Goto See
 	Missile2:
 		HFS1 F 8 A_FaceTarget
-		//TNT1 A 0 A_PlaySound("HFSPLA")
+		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
         HFS1 G 2 Light("Shadowball2") A_CustomMissile("HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-3, 3))
 		HFS1 F 4 A_FaceTarget
@@ -109,8 +109,8 @@ ACTOR HellifiedSoldierBall
    PROJECTILE
    RenderStyle Add
    +BRIGHT
-   SeeSound "HFSPLA"
-   DeathSound "HELLPEXP"
+   SeeSound "HellSoldier/Plasma"
+   DeathSound "GenericPlasmaExp"
    States
    {
    Spawn:

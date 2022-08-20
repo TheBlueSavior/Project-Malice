@@ -18,8 +18,8 @@ ACTOR PM_Infested
   Species "Revenant"
   //DropItem "RagePoint1"
   SeeSound ""
-  PainSound "Infested/See"
-  DeathSound "INFEDIE"
+  PainSound "Infested/Sight"
+  DeathSound "Infested/Death"
   ActiveSound "Infested/Active"
   MeleeSound "skeleton/melee"
   Tag "Infested"
@@ -55,7 +55,7 @@ ACTOR PM_Infested
 	TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
-	TNT1 A 0 A_PlaySound("Infested/See",CHAN_7)
+	TNT1 A 0 A_PlaySound("Infested/Sight",CHAN_7)
 	ZKEL BBBLLLLLLLLBBBB 2 A_FaceTarget
   See2:
 	TNT1 A 0 A_SetSpeed(7)

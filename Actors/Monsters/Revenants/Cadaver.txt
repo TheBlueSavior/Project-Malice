@@ -4,10 +4,10 @@ Actor PM_Cadaver : Revenant
   //+NOINFIGHTING
   Species "Revenant"
   Tag "Cadaver"
-  SeeSound "CADSEE"
-  PainSound "CADPAI"
-  DeathSound "CADDIE"
-  ActiveSound "CADACT"
+  SeeSound "Cadaver/Sight"
+  PainSound "Cadaver/Pain"
+  DeathSound "Cadaver/Death"
+  ActiveSound "Cadaver/Active"
   //DropItem "RagePoint1"
   //MeleeRange 90
   Obituary "%o had trouble dodging a Cadaver's missile."
@@ -39,20 +39,20 @@ Actor PM_Cadaver : Revenant
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 5 Light("AvatarFireball1")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
-		A_CustomMissile("CadaverRocket",56,-17,4);
-		A_CustomMissile("CadaverRocket",56,10,-4);
+		A_CustomMissile("PM_CadaverRocket",56,-17,4);
+		A_CustomMissile("PM_CadaverRocket",56,10,-4);
 		}
 	CREV K 15 
 	Goto See
   Roar:
 	CKLA A 6 A_FaceTarget
 	CKLA B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADSEE",CHAN_7)
+	TNT1 A 0 A_PlaySound("Cadaver/Sight",CHAN_7)
 	CKLA C 6 A_FaceTarget
 	CKLA D 6 A_FaceTarget
 	CKLA E 6 A_FaceTarget
@@ -63,7 +63,7 @@ Actor PM_Cadaver : Revenant
 	
   SpecialBarrage:
 	CKLA A 4 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADSEE",CHAN_7)
+	TNT1 A 0 A_PlaySound("Cadaver/Sight",CHAN_7)
 	CKLA B 4 A_FaceTarget
 	CKLA C 4 A_FaceTarget
 	CKLA D 4 A_FaceTarget
@@ -86,62 +86,62 @@ Actor PM_Cadaver : Revenant
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
-		A_CustomMissile("CadaverRocket",56,-17);
+		A_CustomMissile("PM_CadaverRocket",56,-17);
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
-		A_CustomMissile("CadaverRocket",56,10);
+		A_CustomMissile("PM_CadaverRocket",56,10);
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
-		A_CustomMissile("CadaverRocket",56,-17);
+		A_CustomMissile("PM_CadaverRocket",56,-17);
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
-		A_CustomMissile("CadaverRocket",56,10);
+		A_CustomMissile("PM_CadaverRocket",56,10);
 		}
 	CREV K 8 A_FaceTarget
 	Goto See
 	
   Missile1:
 	CREV BBB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
-		A_CustomMissile("CadaverRocket",56,-17);
+		A_CustomMissile("PM_CadaverRocket",56,-17);
 		}
 	CREV K 10
 	Goto See
   Missile2:
 	CREV BBB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("CADFIR",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
-		A_CustomMissile("CadaverRocket",56,10);
+		A_CustomMissile("PM_CadaverRocket",56,10);
 		}
 	CREV K 10
 	Goto See
@@ -156,7 +156,7 @@ Actor PM_Cadaver : Revenant
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
-		A_CustomMissile("CadaverHRocket",58,10);
+		A_CustomMissile("PM_CadaverHRocket",58,10);
 		}
 	CREV K 10
 	Goto See
@@ -171,7 +171,7 @@ Actor PM_Cadaver : Revenant
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
-		A_CustomMissile("CadaverHRocket",58,-17);
+		A_CustomMissile("PM_CadaverHRocket",58,-17);
 		}
 	CREV K 10
 	Goto See
@@ -193,7 +193,7 @@ Actor PM_Cadaver : Revenant
 	}
 }
 
-ACTOR CadaverRocket : RevenantTracer
+ACTOR PM_CadaverRocket : RevenantTracer
 {
 	Radius 2
 	Height 2
@@ -204,7 +204,7 @@ ACTOR CadaverRocket : RevenantTracer
 	+RANDOMIZE
 	RenderStyle Normal
 	SeeSound "skeleton/attack"
-	DeathSound "FIERXP"
+	DeathSound "Cadaver/MissileExp"
 	Scale 1.15
 	States
 	{
@@ -230,7 +230,7 @@ ACTOR CadaverRocket : RevenantTracer
 	}
 }
 
-ACTOR CadaverHRocket : RevenantTracer
+ACTOR PM_CadaverHRocket : RevenantTracer
 {
 	Radius 2
 	Height 2
@@ -241,14 +241,14 @@ ACTOR CadaverHRocket : RevenantTracer
 	+THRUGHOST
 	+FORCEXYBILLBOARD
 	RenderStyle Normal
-	SeeSound "CADHIR"
-	DeathSound "FIERXP"
+	SeeSound "Cadaver/Homing"
+	DeathSound "Cadaver/MissileExp"
 	Scale 1.15
 	States
 	{
 	Spawn:
-		TNT1 A 0 A_PlaySound("CADHIR",CHAN_5,1,false)
-		TNT1 A 0 A_PlaySound("HOMLOO",CHAN_6,0.8,true)
+		TNT1 A 0 A_PlaySound("Cadaver/Homing",CHAN_5,1,false)
+		TNT1 A 0 A_PlaySound("Cadaver/HomingLoop",CHAN_6,0.8,true)
 	Go:
 		CMHO A 1 BRIGHT Light("AvatarFireball4") 
 		{

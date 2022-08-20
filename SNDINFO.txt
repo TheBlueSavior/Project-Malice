@@ -292,33 +292,32 @@ $rolloff Beholder/Cry 400 1700
 
 
 //Infested
-$random Infested/Idle { INFEIDL1 INFEIDL2 INFEIDL3 INFEIDL4 INFEIDL5 INFEIDL6 INFEIDL7 INFEIDL8 INFEIDL9 INFEIDL10 INFEIDL11 INFEIDL12 }
-$rolloff Infested/Idle 400 2200
-$limit Infested/Idle 5
-INFEIDL1 INFEIDL1
-INFEIDL2 INFEIDL2
-INFEIDL3 INFEIDL3
-INFEIDL4 INFEIDL4
-INFEIDL5 INFEIDL5
-INFEIDL6 INFEIDL6
-INFEIDL7 INFEIDL7
-INFEIDL8 INFEIDL8
-INFEIDL9 INFEIDL9
-INFEIDL10 INFEIDL10
-INFEIDL11 INFEIDL11
-INFEIDL12 INFEIDL12
-$volume Infested/Idle 0.5
-$random Infested/See { INFESEE1 INFESEE2 INFESEE3 INFESEE4 }
-$rolloff Infested/See 400 2200
-INFESEE1 INFESEE1
-INFESEE2 INFESEE2
-INFESEE3 INFESEE3
-INFESEE4 INFESEE4
+$random Infested/Idle { InfestedIdle1 InfestedIdle2 InfestedIdle3 InfestedIdle4 InfestedIdle5 InfestedIdle6 InfestedIdle7 InfestedIdle8 InfestedIdle9 }
+InfestedIdle1 "Sounds/Monsters/Infested/InfestedIdle1.ogg"
+InfestedIdle2 "Sounds/Monsters/Infested/InfestedIdle2.ogg"
+InfestedIdle3 "Sounds/Monsters/Infested/InfestedIdle3.ogg"
+InfestedIdle4 "Sounds/Monsters/Infested/InfestedIdle4.ogg"
+InfestedIdle5 "Sounds/Monsters/Infested/InfestedIdle5.ogg"
+InfestedIdle6 "Sounds/Monsters/Infested/InfestedIdle6.ogg"
+InfestedIdle7 "Sounds/Monsters/Infested/InfestedIdle7.ogg"
+InfestedIdle8 "Sounds/Monsters/Infested/InfestedIdle8.ogg"
+InfestedIdle9 "Sounds/Monsters/Infested/InfestedIdle9.ogg"
+InfestedIdle10 "Sounds/Monsters/Infested/InfestedIdle10.ogg"
+InfestedIdle11 "Sounds/Monsters/Infested/InfestedIdle11.ogg"
+InfestedIdle12 "Sounds/Monsters/Infested/InfestedIdle12.ogg"
+$random Infested/Sight { InfestedSight1 InfestedIdle3 InfestedIdle10 InfestedIdle11 InfestedIdle12 }
+InfestedSight1 "Sounds/Monsters/Infested/InfestedSight1.ogg"
+InfestedSight2 "Sounds/Monsters/Infested/InfestedSight2.ogg"
+InfestedSight3 "Sounds/Monsters/Infested/InfestedSight3.ogg"
+InfestedSight4 "Sounds/Monsters/Infested/InfestedSight4.ogg"
+$random Infested/Active { InfestedIdle1 InfestedIdle3 InfestedIdle5 InfestedIdle7 InfestedIdle9 InfestedIdle11 InfestedIdle12 }
+Infested/Death "Sounds/Monsters/Infested/InfestedDeath.ogg"
+$volume Infested/Active 0.5
 $volume Infested/Idle 0.5
 $volume Infested/See 0.4
-$random Infested/Active { INFEIDL1 INFEIDL3 INFEIDL5 INFEIDL7 INFEIDL9 INFEIDL11 INFEIDL12 }
-INFEDIE INFEDIE
-$volume Infested/Active 0.5
+$rolloff Infested/Idle 400 2200
+$rolloff Infested/See 400 2200
+$limit Infested/Idle 5
 
 //Trite
 //Trite
@@ -442,22 +441,24 @@ monster/wathit                  dswathit
 caco/melee                      dsdembit
 
 //Husk
-RevGhoul/Sight	 	D4REVSEE
-RevGhoul/Pain 		D4REVPAI
-RevGhoul/active 	D4REVACT
-RevGhoul/melee 		GHOULPUN
-RevGhoul/Death 		D4REVDIE
-RevGhoul/Swing 		GHOULSWN
-RevGhoul/attack		GBALLFLY
-RevGhoul/tracex		GBALLEXP
-RevGhoul/cloud		GHOULCLD
+Husk/Sight	    "Sounds/Monsters/Husk/HuskSight.ogg"
+
+Husk/Pain       "Sounds/Monsters/Husk/HuskPain.ogg"
+
+Husk/Melee      "Sounds/Monsters/Husk/HuskPunch.ogg"
+Husk/MeleeSwing "Sounds/Monsters/Husk/HuskSwing.ogg"
+
+Husk/Cloud		"Sounds/Monsters/Husk/HuskCloud.ogg"
+
+Husk/Charge     "Sounds/Monsters/Husk/HuskCharge.ogg"
+
+Husk/Throw      "Sounds/Monsters/Husk/HuskThrow.ogg"
+
+GenericCometExp "Sounds/Monsters/SFX/GenericCometExplode.ogg" //formerly HUBEXP in Husk directory
 
 monsters/fatsofire			DSFATFIR
 
 $volume monsters/fatsofire 0.5
-
-DSPLAS2 DSPLAS2
-$limit DSPLAS2 0
 
 //Fallen Soldiers
 $Random FallenSoldiers/Sight { FallenS/Sight1 FallenS/Sight2 FallenS/Sight3 FallenS/Sight4 FallenS/Sight5 FallenS/Sight6 }
@@ -752,6 +753,7 @@ $volume HectebusBall/Exp 0.8
 
 HECTDIE 	HECTDIE
 HECTAIM		HECTAIM
+MANCSHOT    MANCSHOT
 
 //Host
 HostCharge "Sounds/Monsters/Host/HostCharge.ogg"
@@ -1329,32 +1331,6 @@ beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4.ogg"
 
 $volume MancubStep 0.7
 
-//Fiend
-
-$random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
-Fiend/Step1 "Sounds/Monsters/SFX/FiendStep1.ogg"
-Fiend/Step2 "Sounds/Monsters/SFX/FiendStep2.ogg"
-Fiend/Step3 "Sounds/Monsters/SFX/FiendStep3.ogg"
-Fiend/Step4 "Sounds/Monsters/SFX/FiendStep4.ogg"
-Fiend/Step5 "Sounds/Monsters/SFX/FiendStep5.ogg"
-Fiend/Step6 "Sounds/Monsters/SFX/FiendStep6.ogg"
-Fiend/Step7 "Sounds/Monsters/SFX/FiendStep7.ogg"
-Fiend/Step8 "Sounds/Monsters/SFX/FiendStep8.ogg"
-Fiend/Step9 "Sounds/Monsters/SFX/FiendStep9.ogg"
-
-$random Fiend/Death { FIEDIE1 FIEDIE2  }
-FIEDIE1 FIEDIE1
-FIEDIE2 FIEDIE2
-$random Fiend/Active { FIEACT1 FIEACT2 FIEACT3 }
-FIEACT1 FIEACT1
-FIEACT2 FIEACT2
-FIEACT3 FIEACT3
-$random Fiend/Pain { FIEPAI1 FIEPAI2  }
-FIEPAI1 FIEPAI1
-FIEPAI2 FIEPAI2
-$random Fiend/Sight { FIESEE1 FIESEE2 }
-FIESEE1 FIESEE1
-FIESEE2 FIESEE2
 
 queen/sight quesit
 queen/pain quepain
@@ -1502,51 +1478,34 @@ weapons/scorch                dsscorch
 weapons/onfire                dsonfire
 weapons/flamer                dsflamer
 
-$random HFSSEE { HFSSEE1 HFSSEE2 HFSSEE3 }
-HFSSEE1 HFSSEE1
-HFSSEE2 HFSSEE2
-HFSSEE3 HFSSEE3
+//Hellified Soldier
+$random HellSoldier/Sight { HellSolSight1 HellSolSight2 HellSolSight3 }
+HellSolSight1 "Sounds/Monsters/HellifiedSoldier/HellSolSight1.ogg"
+HellSolSight2 "Sounds/Monsters/HellifiedSoldier/HellSolSight2.ogg"
+HellSolSight3 "Sounds/Monsters/HellifiedSoldier/HellSolSight3.ogg"
 
-$random HFSACT { HFSACT1 HFSACT2 HFSACT3 }
-HFSACT1 HFSACT1
-HFSACT2 HFSACT2
-HFSACT3 HFSACT3
+$random HellSoldier/Active { HellSolActive1 HellSolActive2 HellSolActive3 }
+HellSolActive1 "Sounds/Monsters/HellifiedSoldier/HellSolActive1.ogg"
+HellSolActive2 "Sounds/Monsters/HellifiedSoldier/HellSolActive2.ogg"
+HellSolActive3 "Sounds/Monsters/HellifiedSoldier/HellSolActive3.ogg"
 
-$random HFSPAI { HFSPAI1 HFSPAI2 HFSPAI3 }
-HFSPAI1 HFSPAI1
-HFSPAI2 HFSPAI2
-HFSPAI3 HFSPAI3
+$random HellSoldier/Pain { HellSolPain1 HellSolPain2 HellSolPain3  }
+HellSolPain1 "Sounds/Monsters/HellifiedSoldier/HellSolPain1.ogg"
+HellSolPain2 "Sounds/Monsters/HellifiedSoldier/HellSolPain2.ogg"
+HellSolPain3 "Sounds/Monsters/HellifiedSoldier/HellSolPain3.ogg"
 
-$random HFSDIE { HFSDIE1 HFSDIE2 HFSDIE3 HFSDIE4 }
-HFSDIE1 HFSDIE1
-HFSDIE2 HFSDIE2
-HFSDIE3 HFSDIE3
-HFSDIE4 HFSDIE4
+$random HellSoldier/Death { HellSolDeath1 HellSolDeath2 HellSolDeath3 HellSolDeath4 }
+HellSolDeath1 "Sounds/Monsters/HellifiedSoldier/HellSolDeath1.ogg"
+HellSolDeath2 "Sounds/Monsters/HellifiedSoldier/HellSolDeath2.ogg"
+HellSolDeath3 "Sounds/Monsters/HellifiedSoldier/HellSolDeath3.ogg"
+HellSolDeath4 "Sounds/Monsters/HellifiedSoldier/HellSolDeath4.ogg"
 
-$random FIERXP { FIERXP1 FIERXP2 FIERXP3 }
-FIERXP1 FIERXP1
-FIERXP2 FIERXP2
-FIERXP3 FIERXP3
+$random HellSoldier/Plasma { HellSolPlas1 HellSolPlas2 }
+HellSolPlas1 "Sounds/Monsters/HellifiedSoldier/HellSolPlas1.ogg"
+HellSolPlas2 "Sounds/Monsters/HellifiedSoldier/HellSolPlas2.ogg"
 
-MANCSHOT MANCSHOT
-
-$random FIEJON { FIEJON1 FIEJON2 }
-FIEJON1 FIEJON1
-FIEJON2 FIEJON2
-
-FIELAN FIELAN
-
-$random HFSPLA { HFSPLA1 HFSPLA2 }
-HFSPLA1 HFSPLA1
-HFSPLA2 HFSPLA2
-
-$rolloff HFSPLA 700 2200
-$limit HFSPLA 12
-
-$random BELBAL { BELBAL1 BELBAL2 BELBAL3 }
-BELBAL1 BELBAL1
-BELBAL2 BELBAL2
-BELBAL3 BELBAL3
+$rolloff HellSol/Plasma 700 2200
+$limit HellSol/Plasma 12
 
 $random HUNSPA { HUNSPA1 HUNSPA2 HUNSPA3 HUNSPA4 HUNSPA5 }
 HUNSPA1 HUNSPA1
@@ -1561,30 +1520,30 @@ NIBALHIT NIBALHIT
 DSSHOCK DSSHOCK
 SHOCXPL SHOCXPL
 
-$random dimp/pain { DImppain1 DImppain2 DImppain3 }
-DImppain1 dimppn1
-DImppain2 dimppn2
-DImppain3 dimppn3
+$random NetherConduit/Death { NetherConDeath1 NetherConDeath2 NetherConDeath3 }
+NetherConDeath1 "Sounds/Monsters/NetherConduit/NetherConDeath1.ogg"
+NetherConDeath2 "Sounds/Monsters/NetherConduit/NetherConDeath2.ogg"
+NetherConDeath3 "Sounds/Monsters/NetherConduit/NetherConDeath3.ogg"
 
-$random dimp/active { dimpact1 dimpact2 dimpact3 }
-dimpact1 dimpact1
-dimpact2 dimpact2
-dimpact3 dimpact3
+$random NetherConduit/Active { NetherConAct1 NetherConAct2 NetherConAct3 }
+NetherConAct1 "Sounds/Monsters/NetherConduit/NetherConActive1.ogg"
+NetherConAct2 "Sounds/Monsters/NetherConduit/NetherConActive2.ogg"
+NetherConAct3 "Sounds/Monsters/NetherConduit/NetherConActive3.ogg"
 
-$random dimp/death { dimpdth1 dimpdth2 dimpdth3 }
-dimpdth1 dimpdth1
-dimpdth2 dimpdth2
-dimpdth3 dimpdth3
+$random NetherConduit/Pain { NetherConPain1 NetherConPain2 NetherConPain3 }
+NetherConPain1 "Sounds/Monsters/NetherConduit/NetherConPain1.ogg"
+NetherConPain2 "Sounds/Monsters/NetherConduit/NetherConPain2.ogg"
+NetherConPain3 "Sounds/Monsters/NetherConduit/NetherConPain3.ogg"
 
-$random dimp/see { dimpsit1 dimpsit2 dimpsit3 }
-dimpsit1 dimpsit1
-dimpsit2 dimpsit2
-dimpsit3 dimpsit3
+$random NetherConduit/Sight { NetherConSight1 NetherConSight2 NetherConSight3 }
+NetherConSight1 "Sounds/Monsters/NetherConduit/NetherConSight1.ogg"
+NetherConSight2 "Sounds/Monsters/NetherConduit/NetherConSight2.ogg"
+NetherConSight3 "Sounds/Monsters/NetherConduit/NetherConSight3.ogg"
 
-$volume dimp/see 0.7
-$volume dimp/active 0.7
-$volume dimp/death 0.7
-$volume dimp/pain 0.7
+$volume NetherConduit/Sight 0.7
+$volume NetherConduit/Active 0.7
+$volume NetherConduit/Pain 0.7
+$volume NetherConduit/Death 0.7
 
 NLITE NLITE
 
@@ -1609,10 +1568,9 @@ $random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
 GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.ogg"
 GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.ogg"
 
-$volume Glutton/Attack 0.8
+$volume Glutton/Attack 0.9
 
 GLUTPAI GLUTPAI
-
 GLUTDEA GLUTDEA1
 
 TORTURE4 TORTURE4
@@ -1786,49 +1744,50 @@ rictus/kamakazi		RICTKAMA
 rictus/kamakaziimpact	STRIKE1
 
 //Cadaver
-CADFIR CADFIR
-CADHIR CADHIR
+Cadaver/Fire "Sounds/Monsters/Cadaver/CadaverFire.ogg"
+Cadaver/Homing "Sounds/Monsters/Cadaver/CadaverHoming.ogg"
 //$rolloff CADHIR 200 1800
-HOMLOO HOMLOO
+Cadaver/HomingLoop "Sounds/Monsters/Cadaver/CadaverHomingLoop.ogg"
+
+$random Cadaver/Sight { CadaverSight1 CadaverSight2 CadaverSight3 CadaverSight4 CadaverSight5 }
+CadaverSight1 "Sounds/Monsters/Cadaver/CadaverSight1.ogg"
+CadaverSight2 "Sounds/Monsters/Cadaver/CadaverSight2.ogg"
+CadaverSight3 "Sounds/Monsters/Cadaver/CadaverSight3.ogg"
+CadaverSight4 "Sounds/Monsters/Cadaver/CadaverSight4.ogg"
+CadaverSight5 "Sounds/Monsters/Cadaver/CadaverSight5.ogg"
+
+$random Cadaver/Active { CadaverActive1 CadaverActive2 CadaverActive3 CadaverActive4 CadaverActive5 CadaverActive6 CadaverActive7 }
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive1.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive2.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive3.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive4.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive5.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive6.ogg"
+CadaverActive "Sounds/Monsters/Cadaver/CadaverActive7.ogg"
+
+$random Cadaver/Pain { CadaverPain1 CadaverPain2 CadaverPain3 }
+CadaverPain1 "Sounds/Monsters/Cadaver/CadaverPain1.ogg"
+CadaverPain2 "Sounds/Monsters/Cadaver/CadaverPain2.ogg"
+CadaverPain3 "Sounds/Monsters/Cadaver/CadaverPain3.ogg"
+
+$random Cadaver/Death { CadaverDeath1 CadaverDeath2 CadaverDeath3 }
+CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath1.ogg"
+CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath2.ogg"
+CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath3.ogg"
 
 $random Cadaver/Step { Cadaver/Step1 Cadaver/Step2 Cadaver/Step3 Cadaver/Step4 }
-Cadaver/Step1 "Sounds/Monsters/Cadaver/CadaverStep1.ogg"
-Cadaver/Step2 "Sounds/Monsters/Cadaver/CadaverStep2.ogg"
-Cadaver/Step3 "Sounds/Monsters/Cadaver/CadaverStep3.ogg"
-Cadaver/Step4 "Sounds/Monsters/Cadaver/CadaverStep4.ogg"
+Cadaver/Step1 "Sounds/Monsters/SFX/CadaverStep1.ogg"
+Cadaver/Step2 "Sounds/Monsters/SFX/CadaverStep2.ogg"
+Cadaver/Step3 "Sounds/Monsters/SFX/CadaverStep3.ogg"
+Cadaver/Step4 "Sounds/Monsters/SFX/CadaverStep4.ogg"
 
 $volume Cadaver/Step 0.8
 $rolloff Cadaver/Step 190 800
 
-$random CADSEE { CADSEE1 CADSEE2 CADSEE3 CADSEE4 CADSEE5 }
-CADSEE1 CADSEE1
-CADSEE2 CADSEE2
-CADSEE3 CADSEE3
-CADSEE4 CADSEE4
-CADSEE5 CADSEE5
-
-$random CADACT { CADACT1 CADACT2 CADACT3 CADACT4 CADACT5 CADACT6 CADACT7 }
-CADACT1 CADACT1
-CADACT2 CADACT2
-CADACT3 CADACT3
-CADACT4 CADACT4
-CADACT5 CADACT5
-CADACT6 CADACT6
-CADACT7 CADACT7
-
-$random CADPAI { CADPAI1 CADPAI2 CADPAI3 }
-CADPAI1 CADPAI1
-CADPAI2 CADPAI2
-CADPAI3 CADPAI3
-
-$random CADDIE { CADDIE1 CADDIE2 CADDIE3 }
-CADDIE1 CADDIE1
-CADDIE2 CADDIE2
-CADDIE3 CADDIE3
-
-HUBEXP HUBEXP
-HUSCRG HUSCRG
-HUSTHR HUSTHR
+$random Cadaver/MissileExp { CadMissileExp1 CadMissileExp2 CadMissileExp3 }
+CadMissileExp1 "Sounds/Monsters/Cadaver/CadMissileExp1.ogg"
+CadMissileExp2 "Sounds/Monsters/Cadaver/CadMissileExp2.ogg"
+CadMissileExp3 "Sounds/Monsters/Cadaver/CadMissileExp3.ogg"
 
 //Phase Brute
 $random PBRUSEE { PBRUSEE1 PBRUSEE2 PBRUSEE3 PBRUSEE4 PBRUSEE5 }
@@ -1856,10 +1815,13 @@ PBRUDIE1 PBRUDIE1
 PBRUDIE2 PBRUDIE2
 PBRUDIE3 PBRUDIE3
 
-$random HELLPEXP {DSD3PH1 DSD3PH2 DSD3PH3 }
-DSD3PH1 DSD3PH1
-DSD3PH2 DSD3PH2
-DSD3PH3 DSD3PH3
+$random GenericPlasmaExp { GPlasmaExp1 GPlasmaExp2 GPlasmaExp3 }
+GPlasmaExp1 "Sounds/Monsters/SFX/GPlasmaExp1.wav"
+GPlasmaExp2 "Sounds/Monsters/SFX/GPlasmaExp2.wav"
+GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.wav"
+
+GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
+$limit GenericPlasmaFire 0
 
 Paladin/Sight	HPALSIT
 Paladin/Active	HPALACT
@@ -2818,7 +2780,7 @@ HFuryProjExp            "sounds/Monsters/HellsFury/HellsFuryProjExp.ogg"
 $volume HFuryProjExp 0.6
 $volume HFuryProj 0.8
 
-//Fiend stuff
+//Fiend
 FiendRocketFire            "sounds/Monsters/Fiend/FiendRocketFire"
 $limit FiendRocketFire 8
 $random SmallMissileExplosion { SmallMissileExp1 SmallMissileExp2 SmallMissileExp3 SmallMissileExp4 }
@@ -2826,6 +2788,37 @@ SmallMissileExp1            "sounds/Monsters/Fiend/SmallMissileExp1.ogg"
 SmallMissileExp2            "sounds/Monsters/Fiend/SmallMissileExp2.ogg"
 SmallMissileExp3            "sounds/Monsters/Fiend/SmallMissileExp3.ogg"
 SmallMissileExp4            "sounds/Monsters/Fiend/SmallMissileExp4.ogg"
+
+$random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
+Fiend/Step1 "Sounds/Monsters/SFX/FiendStep1.ogg"
+Fiend/Step2 "Sounds/Monsters/SFX/FiendStep2.ogg"
+Fiend/Step3 "Sounds/Monsters/SFX/FiendStep3.ogg"
+Fiend/Step4 "Sounds/Monsters/SFX/FiendStep4.ogg"
+Fiend/Step5 "Sounds/Monsters/SFX/FiendStep5.ogg"
+Fiend/Step6 "Sounds/Monsters/SFX/FiendStep6.ogg"
+Fiend/Step7 "Sounds/Monsters/SFX/FiendStep7.ogg"
+Fiend/Step8 "Sounds/Monsters/SFX/FiendStep8.ogg"
+Fiend/Step9 "Sounds/Monsters/SFX/FiendStep9.ogg"
+
+$random Fiend/Death { FiendDeath1 FiendDeath2 }
+FiendDeath1 "Sounds/Monsters/Fiend/FiendDeath1.ogg"
+FiendDeath2 "Sounds/Monsters/Fiend/FiendDeath2.ogg"
+$random Fiend/Active { FiendActive1 FiendActive2 FiendActive3 }
+FiendActive1 "Sounds/Monsters/Fiend/FiendActive1.ogg"
+FiendActive2 "Sounds/Monsters/Fiend/FiendActive2.ogg"
+FiendActive3 "Sounds/Monsters/Fiend/FiendActive3.ogg"
+$random Fiend/Pain { FiendPain1 FiendPain2 }
+FiendPain1 "Sounds/Monsters/Fiend/FiendPain1.ogg"
+FiendPain2 "Sounds/Monsters/Fiend/FiendPain2.ogg"
+$random Fiend/Sight { FiendSight1 FiendSight2 }
+FiendSight1 "Sounds/Monsters/Fiend/FiendSight1.ogg"
+FiendSight2 "Sounds/Monsters/Fiend/FiendSight2.ogg"
+
+$random Fiend/Jump { FiendJump1 FiendJump2 }
+FiendJump1 "Sounds/Monsters/Fiend/FiendJump1.ogg"
+FiendJump2 "Sounds/Monsters/Fiend/FiendJump2.ogg"
+
+Fiend/Land "Sounds/Monsters/Fiend/FiendLand.ogg"
 
 //Hell Priest
 
