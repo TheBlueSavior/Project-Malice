@@ -1584,7 +1584,7 @@ MARTOR5 MARTOR5
 
 //Decayed Soldiers
 
-Decayed/Roll "Sounds/Monsters/DecayedSoldier/DecayedRoll.ogg"
+Decayed/Roll "Sounds/Monsters/DecayedSoldier/DecayedRoll.mp3"
 Decayed/Fire "Sounds/Monsters/DecayedSoldier/DecayedFire.ogg"
 Decayed/Pain "Sounds/Monsters/DecayedSoldier/DecayedPain.ogg"
 Decayed/Death "Sounds/Monsters/DecayedSoldier/DecayedDeath.ogg"

@@ -107,7 +107,7 @@ ACTOR PM_DecayedSoldier
 		TNT1 A 0 ThrustThing(angle*256/360+64, 16, 0, 0)
 		ZRO1 ABCDE 3 A_FaceTarget
 		POSK E 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("DESFIRE")
+		TNT1 A 0 A_PlaySound("Decayed/Fire")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
