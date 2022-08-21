@@ -8,10 +8,10 @@ Actor PM_Exile : Archvile
   Gibhealth 40
   Obituary "%o was immolated by an Exile."
   Tag "Exile"
-  SeeSound "Exile/See"
+  SeeSound "Exile/Sight"
   PainSound "Exile/Pain"
-  DeathSound "Exile/Die"
-  ActiveSound "Exile/Act"
+  DeathSound "Exile/Death"
+  ActiveSound "Exile/Active"
   +DONTHARMSPECIES
   //+MissileMore
   +DONTHURTSPECIES
@@ -34,7 +34,7 @@ Actor PM_Exile : Archvile
 	TNT1 A 0 A_Jump(200,"Fireball","GroundFlames","FirePort","FireWall")
 	
    FireLake:
-	TNT1 A 0 A_PlaySound("ExileAttack",CHAN_7)
+	TNT1 A 0 A_PlaySound("Exile/Attack",CHAN_7)
     EILE G 0 Bright A_PlaySound("vile/start",1)
 	TNT1 AAAAAAA 0 A_SpawnItemEx("ExileAttackFire",random(-50,50),random(-50,50),0)
     EILE GGGGG 2 Bright Light("EXILATK1")

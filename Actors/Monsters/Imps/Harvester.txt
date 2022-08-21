@@ -425,7 +425,7 @@ Class HSummonedSoul : Actor
     Damage 4;
     Renderstyle "Add";
     SeeSound "";
-    DeathSound "redballbdeth";
+    DeathSound "HeresyLord/RedDeath";
 	Species "Imp";
 	//PROJECTILE;
 	+MISSILE;
