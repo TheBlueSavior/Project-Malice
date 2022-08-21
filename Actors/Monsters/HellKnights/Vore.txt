@@ -36,13 +36,13 @@ Actor PM_Vore
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
 	VORE A 0 A_ChangeFlag("NOPAIN",0)
     VORE AA 3 A_Chase
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE B 6 A_Chase
     VORE CC 3 A_Chase
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE D 6 A_Chase
     VORE EE 3 A_Chase
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE F 6 A_Chase
 	Loop
   Melee:
@@ -105,7 +105,7 @@ Actor PM_Vore
 	A_Chase;
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE EE 2
 	{
 	A_Chase;
@@ -116,7 +116,7 @@ Actor PM_Vore
 	A_Chase;
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE CC 2
 	{
 	A_Chase;
@@ -127,7 +127,7 @@ Actor PM_Vore
 	A_Chase;
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE AA 2
 	{
 	A_Chase;
@@ -154,22 +154,22 @@ Actor PM_Vore
 	VORE A 1 A_Chase
   StandoffReposLoop:
     VORE AA 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE B 5 A_Wander
     VORE CC 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE D 5 A_Wander
     VORE EE 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE F 5 A_Wander
 	VORE AA 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE B 5 A_Wander
     VORE CC 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE D 5 A_Wander
     VORE EE 2 A_Wander
-	TNT1 A 0 A_PlaySound("FUSWALK")
+	TNT1 A 0 A_PlaySound("GenericArachWalk")
     VORE F 5 A_Wander
 	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 	TNT1 A 0 A_Jump(100,"Standoff")
