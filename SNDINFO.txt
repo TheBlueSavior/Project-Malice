@@ -1833,7 +1833,7 @@ BSkull/Pain		"Sounds/Monsters/BloodSkull/BSkullPain.ogg"
 GenericBloodSpit		BLDSPIT
 GenericBloodImpact	    BLDIMPAC
 
-$random BSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
+$random BloodSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
 BloodSkull/Croak1 "Sounds/Monsters/BloodSkull/SkullCroak1.ogg"
 BloodSkull/Croak2 "Sounds/Monsters/BloodSkull/SkullCroak2.ogg"
 BloodSkull/Croak3 "Sounds/Monsters/BloodSkull/SkullCroak3.ogg"
