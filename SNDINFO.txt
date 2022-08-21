@@ -991,13 +991,13 @@ Fusionite/SmallShot "Sounds/Monsters/Fusionite/SmallFusionShot.ogg"
 FUSSEXP FUSSEXP
 
 
-$volume ARAACT 0.6
-$volume ARAPAI 0.8
-$volume ARASEE 0.8
-$volume ARADIE 0.8
-$rolloff FUSSCHOT 500 2000
-$rolloff FUSSFIRE 500 2000
-$limit FUSRFIRE 0
+$volume Fusionite/Active 0.6
+$volume Fusionite/Pain 0.8
+$volume Fusionite/Sight 0.8
+$volume Fusionite/Death 0.8
+$rolloff Fusionite/Scattershot 500 2000
+$rolloff Fusionite/SmallShot 500 2000
+$limit Fusionite/SmallShot 0
 $rolloff FUSSEXP 1500 2500
 
 $random wizard/tele 		{ wizard/tele1 wizard/tele2 wizard/tele3 wizard/tele4 }
