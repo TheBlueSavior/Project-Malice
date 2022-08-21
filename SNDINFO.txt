@@ -2272,12 +2272,12 @@ CarbineZPain2 "Sounds/Monsters/HeavyCarbineZombies/CarbineZPain2.ogg"
 CarbineZPain3 "Sounds/Monsters/HeavyCarbineZombies/CarbineZPain3.ogg"
 CarbineZPain4 "Sounds/Monsters/HeavyCarbineZombies/CarbineZPain4.ogg"
 
-HCSHOT  HCSHOT
-HCSTAB  HCSTAB
-$limit HCSHOT 0
-$rolloff HCSHOT 350 2200
-$volume HCSHOT 0.7
-10MM/Cock GUNCOCK
+Carbine/Shot "Sounds/Monsters/HeavyCarbineZombie/CarbineShot.ogg"
+Carbine/Stab "Sounds/Monsters/HeavyCarbineZombie/CarbineStab.ogg"
+$limit Carbine/Shot 0
+$rolloff Carbine/Shot 350 2200
+$volume Carbine/Shot 0.7
+Carbine/Bolt "Sounds/Monsters/HeavyCarbineZombie/CarbineBolt.ogg"
 
 //EXILE
 
