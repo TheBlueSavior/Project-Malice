@@ -649,7 +649,7 @@ $random Nailgunner/Death { NailZDeath1 NailZDeath2 }
 NailZDeath1 "Sounds/Monsters/Nailgunner/NailgunnerDeath1.mp3"
 NailZDeath2 "Sounds/Monsters/Nailgunner/NailgunnerDeath2.mp3"
 
-Nailgunner/Fire "Sounds/Monsters/Nailgunner/NailgunnerFire.mp3"
+Nailgunner/Fire "Sounds/Monsters/Nailgunner/NailgunnerFire.wav"
 Nailgunner/Altfire "Sounds/Monsters/Nailgunner/NailgunnerAltFire.ogg"
 $random Nail/Ricochet { NailRic1 NailRic2 }
 NailRic1 "Sounds/Monsters/Nailgunner/NailImpact1.ogg"
