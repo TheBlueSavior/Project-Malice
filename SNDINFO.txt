@@ -2576,10 +2576,10 @@ $rolloff TeleportSound 350 1600
 $rolloff TeleportVoices 600 3200
 
 $random Wretched/Bite { Wretched/Bite1 Wretched/Bite2 Wretched/Bite3 Wretched/Bite4 }
-Wretched/Bite1 "Sounds/Monsters/Wretched/WretchedBite1"
-Wretched/Bite2 "Sounds/Monsters/Wretched/WretchedBite2"
-Wretched/Bite3 "Sounds/Monsters/Wretched/WretchedBite3"
-Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4"
+Wretched/Bite1 "Sounds/Monsters/Wretched/WretchedBite1.ogg"
+Wretched/Bite2 "Sounds/Monsters/Wretched/WretchedBite2.ogg"
+Wretched/Bite3 "Sounds/Monsters/Wretched/WretchedBite3.ogg"
+Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4.ogg"
 
 //Skulker
 
