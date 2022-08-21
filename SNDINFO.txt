@@ -980,7 +980,7 @@ $rolloff ArachExpGore 700 1800
 
 Fusionite/Sight "Sounds/Monsters/Fusionite/FusioniteSight.ogg"
 Fusionite/Active "Sounds/Monsters/Fusionite/FusioniteActive.ogg"
-Fusionite/Pain "Sounds/Monsters/Fusionite/FusioniteDeath.ogg"
+Fusionite/Pain "Sounds/Monsters/Fusionite/FusionitePain.ogg"
 Fusionite/Death "Sounds/Monsters/Fusionite/FusioniteDeath.ogg"
 
 Fusionite/ScatterCharge "Sounds/Monsters/Fusionite/ScatterFusionCharge.wav"
