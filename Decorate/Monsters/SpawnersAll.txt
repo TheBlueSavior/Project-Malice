@@ -6,7 +6,7 @@ Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 	DropItem "PM_DecayedSoldier", 255, 4
 	DropItem "RatDropper", 255, 1
 	DropItem "PM_ZombieSoldier", 255, 58
-	DropItem "PM_PistolZombie", 255, 68
+	DropItem "PM_PistolZombie", 255, 55
 	DropItem "PM_ZombieMarine", 255, 16
 	DropItem "PM_ZombieTrooper", 255, 6
 	DropItem "PM_HellifiedSoldier", 255, 8

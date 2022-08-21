@@ -239,7 +239,7 @@ Class PM_FallenShotgunner : Actor
     ZSP1 K 5 A_NoBlocking();
 	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
 	ZSP1 L 90;
-	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
     ZSP1 L -1;
 	Stop;
   XDeath:

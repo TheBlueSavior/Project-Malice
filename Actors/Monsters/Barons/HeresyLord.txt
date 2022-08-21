@@ -47,7 +47,7 @@ actor PM_HeresyLord
 	  TNT1 A 0 A_Jump(64,"MDoubleSerie")
 	  TNT1 A 0 A_Jump(128,"MRightHand")
     MLeftHand:
-	  TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	  TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6)
 	  LOHS D 7 Light("AzazelSoul") A_FaceTarget
 	  LOHS EEEEEEEEEEEEEE 1 Light("AzazelSoul")
 	  {
@@ -60,7 +60,7 @@ actor PM_HeresyLord
 	  TNT1 A 0 A_StopSound(CHAN_6)
 	  Goto see
 	MRightHand:
-	TNT1 A 0 A_PlaySound("HUSCRG",CHAN_6)
+	TNT1 A 0 A_PlaySound("Husk/Charge",CHAN_6)
     LOHS EEEEEEEEEE 1 Light("ShadowBall2")
 	{
 	A_SpawnItemEX("AzazelFire",7,random(40,35),65,0,0,2);

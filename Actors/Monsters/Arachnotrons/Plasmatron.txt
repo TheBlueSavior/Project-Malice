@@ -268,7 +268,7 @@ ACTOR PM_PTronBall
    RenderStyle Add
    +BRIGHT
    SeeSound ""
-   DeathSound "weapons/demontechex"
+   DeathSound "DTech/Exp"
    States
    {
    Spawn:

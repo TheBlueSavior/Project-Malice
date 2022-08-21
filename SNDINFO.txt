@@ -1575,7 +1575,7 @@ MARTOR5 MARTOR5
 
 //Decayed Soldiers
 
-Decayed/Roll "Sounds/Monsters/DecayedSoldier/DecayedRoll.ogg"
+Decayed/Roll "Sounds/Monsters/DecayedSoldier/DecayedRoll.mp3"
 Decayed/Fire "Sounds/Monsters/DecayedSoldier/DecayedFire.ogg"
 Decayed/Pain "Sounds/Monsters/DecayedSoldier/DecayedPain.ogg"
 Decayed/Death "Sounds/Monsters/DecayedSoldier/DecayedDeath.ogg"
@@ -1935,11 +1935,11 @@ PLAGCHA PLAGCHA
 ABHFIR ABHFIR
 $rolloff ABHFIR 400 2200
 
-Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase"
+Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase.ogg"
 
 //Whiplash
 
-Whiplash/GroundLoop "Sounds/Monsters/Whiplash/WhiplashGroundloop"
+Whiplash/GroundLoop "Sounds/Monsters/Whiplash/WhiplashGroundloop.ogg"
 
 $random Whiplash/Ground {Whiplash/Ground1 Whiplash/Ground2 Whiplash/Ground3 }
 Whiplash/Ground1 "Sounds/Monsters/Whiplash/WhiplashGround1.ogg"

@@ -64,7 +64,7 @@ ACTOR PM_PistolZombie : Zombieman
 		TNT1 A 0 A_PlaySound("PistolZombie/Fire")
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",43,5,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
+		A_CustomMissile("PM_BulletTracer",43,5,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare",43,5,0,0);
 		}
 		A02A EE 4 A_FaceTarget
@@ -89,7 +89,7 @@ ACTOR PM_PistolZombie : Zombieman
         A02A K 5
 		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6)
 		A02A L 90
-		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION)
         A02A L -1
         Stop
     XDeath:
