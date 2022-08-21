@@ -2342,7 +2342,7 @@ $volume Exile/Immolate 0.5
 
 ExileFireReady "Sounds/Monsters/Exile/ExileFireReady.ogg"
 ExileFireHum "Sounds/Monsters/Exile/ExileFireHum.ogg"
-ExileFireEnd "Sounds/Monsters/Exile/ExileFireEnd.ogg"
+ExileFireExplode "Sounds/Monsters/Exile/ExileFireExplode.ogg"
 
 Exile/GroundStart "Sounds/Monsters/Exile/ExileGroundStart.ogg"
 Exile/GroundLoop "Sounds/Monsters/Exile/ExileGroundLoop.ogg"
