@@ -1749,13 +1749,13 @@ CadaverSight4 "Sounds/Monsters/Cadaver/CadaverSight4.ogg"
 CadaverSight5 "Sounds/Monsters/Cadaver/CadaverSight5.ogg"
 
 $random Cadaver/Active { CadaverActive1 CadaverActive2 CadaverActive3 CadaverActive4 CadaverActive5 CadaverActive6 CadaverActive7 }
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive1.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive2.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive3.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive4.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive5.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive6.ogg"
-CadaverActive "Sounds/Monsters/Cadaver/CadaverActive7.ogg"
+CadaverActive1 "Sounds/Monsters/Cadaver/CadaverActive1.ogg"
+CadaverActive2 "Sounds/Monsters/Cadaver/CadaverActive2.ogg"
+CadaverActive3 "Sounds/Monsters/Cadaver/CadaverActive3.ogg"
+CadaverActive4 "Sounds/Monsters/Cadaver/CadaverActive4.ogg"
+CadaverActive5 "Sounds/Monsters/Cadaver/CadaverActive5.ogg"
+CadaverActive6 "Sounds/Monsters/Cadaver/CadaverActive6.ogg"
+CadaverActive7 "Sounds/Monsters/Cadaver/CadaverActive7.ogg"
 
 $random Cadaver/Pain { CadaverPain1 CadaverPain2 CadaverPain3 }
 CadaverPain1 "Sounds/Monsters/Cadaver/CadaverPain1.ogg"
@@ -1763,9 +1763,9 @@ CadaverPain2 "Sounds/Monsters/Cadaver/CadaverPain2.ogg"
 CadaverPain3 "Sounds/Monsters/Cadaver/CadaverPain3.ogg"
 
 $random Cadaver/Death { CadaverDeath1 CadaverDeath2 CadaverDeath3 }
-CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath1.ogg"
-CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath2.ogg"
-CadaverDeath "Sounds/Monsters/Cadaver/CadaverDeath3.ogg"
+CadaverDeath1 "Sounds/Monsters/Cadaver/CadaverDeath1.ogg"
+CadaverDeath2 "Sounds/Monsters/Cadaver/CadaverDeath2.ogg"
+CadaverDeath3 "Sounds/Monsters/Cadaver/CadaverDeath3.ogg"
 
 $random Cadaver/Step { Cadaver/Step1 Cadaver/Step2 Cadaver/Step3 Cadaver/Step4 }
 Cadaver/Step1 "Sounds/Monsters/SFX/CadaverStep1.ogg"
