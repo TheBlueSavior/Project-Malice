@@ -1052,10 +1052,6 @@ $limit spectre/melee 0
 $volume demonstep 0.7
 $rolloff demonstep 200 650
 
-REVROCK REVROCK
-$limit REVROCK 0
-$volume REVROCK 0.7
-
 //Fleshspawn
 Fleshspawn/Sight "Sounds/Monsters/FleshSpawn/FSpawnSight.ogg"
 Fleshspawn/Active "Sounds/Monsters/FleshSpawn/FSpawnActive.ogg"
@@ -1063,22 +1059,22 @@ Fleshspawn/Pain "Sounds/Monsters/FleshSpawn/FSpawnPain.ogg"
 Fleshspawn/Death "Sounds/Monsters/FleshSpawn/FSpawnDeath.ogg"
 Fleshspawn/Attack "Sounds/Monsters/FleshSpawn/FSpawnAttack.ogg"
 
-MIMSPAWN MIMSPAWN
-MIMPAIN MIMPAIN
-MIMIDLE MIMIDLE
-MIMDIE MIMDIE
-MIMROAR MIMROAR
+Mimic/Spawn "Sounds/Monsters/Mimic/MimicSpawn.ogg"
+Mimic/Pain "Sounds/Monsters/Mimic/MimicPain.ogg"
+Mimic/Active "Sounds/Monsters/Mimic/MimicActive.ogg"
+Mimic/Death "Sounds/Monsters/Mimic/MimicDeath.ogg"
+Mimic/Roar "Sounds/Monsters/Mimic/MimicHOLYSHITKILLIT.ogg"
 
-$volume MIMDIE 0.7
+$volume Mimic/Death 0.7
 
-SwarmFly SFLY
+SwarmFly "Sounds/Monsters/Swarm/SwarmFly.wav"
 $RANDOM SwarmFlyAttack {SwarmFlyAttack1 SwarmFlyAttack2}
-SwarmFlyAttack1 SFLYATK1
-SwarmFlyAttack2 SFLYATK2
-SwarmFlyDeath SFLYDTH
+SwarmFlyAttack1 "Sounds/Monsters/Swarm/SwarmFlyPester1.wav"
+SwarmFlyAttack2 "Sounds/Monsters/Swarm/SwarmFlyPester2.wav"
+SwarmFlyDeath "Sounds/Monsters/Swarm/SwarmFlyDeath.wav"
 $RANDOM SwarmFlySight {SwarmFlySight1 SwarmFlySight2}
-SwarmFlySight1 SFLYSIT1
-SwarmFlySight2 SFLYSIT2
+SwarmFlySight1 "Sounds/Monsters/Swarm/SwarmFlySight1.wav"
+SwarmFlySight2 "Sounds/Monsters/Swarm/SwarmFlySight2.wav"
 
 //Remnant
 $random Remnant/Sight { Remnant/Sight1 Remnant/Sight2 Remnant/Sight3 }
@@ -2134,6 +2130,10 @@ $random Tyrant/MissileExp { TyrMissileX1 TyrMissileX2 TyrMissileX3 }
 TyrMissileX1 "Sounds/Monsters/Tyrant/TyrMissileX1.ogg"
 TyrMissileX2 "Sounds/Monsters/Tyrant/TyrMissileX2.ogg"
 TyrMissileX3 "Sounds/Monsters/Tyrant/TyrMissileX3.ogg"
+
+Tyrant/RocketRiver "Sounds/Monsters/Tyrant/TyrSmallRocket.wav"
+$limit Tyrant/RocketRiver 0
+$volume Tyrant/RocketRiver 0.7
 
 Tyrant/RailCharge "Sounds/Monsters/Tyrant/TyrRailCharge.ogg"
 Tyrant/RailWarn "Sounds/Monsters/Tyrant/TyrRailWarning.ogg"
