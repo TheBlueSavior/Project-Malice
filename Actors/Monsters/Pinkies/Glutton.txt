@@ -18,12 +18,13 @@ ACTOR PM_Glutton : Demon
 	Species "Brute"
 	//DropItem "RagePoint1"
 	BloodColor "DarkRed"
-	SeeSound 	"GLUTSEE"
-	PainSound 	"GLUTPAI"
-	DeathSound 	"GLUTDEA"
-	ActiveSound "GLUTACT"
+	SeeSound 	"Glutton/Sight"
+	PainSound 	"Glutton/Pain"
+	DeathSound 	"Glutton/Death"
+	ActiveSound "Glutton/Active"
 	AttackSound "Glutton/Attack"
-	Obituary "%o was consumed by a Glutton"
+	Obituary "%o was digested alive by a Glutton's acid slurry."
+	HitObituary "%o became part of the Glutton's feeding cycle."
 	Tag "Glutton"
 	States
 	{

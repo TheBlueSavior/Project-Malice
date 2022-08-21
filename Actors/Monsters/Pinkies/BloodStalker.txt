@@ -21,7 +21,7 @@ ACTOR PM_BloodStalker : Demon
 	//MaxDropOffHeight 32
 	BloodColor "Black"
 	SeeSound "BStalker/Sight"
-	DeathSound "BLDSDIE"
+	DeathSound "BStalker/Death"
 	ActiveSound "BStalker/Active"
 	PainSound "BStalker/Pain"
 	Tag "Blood Stalker"
@@ -51,7 +51,7 @@ ACTOR PM_BloodStalker : Demon
 		TNT1 A 0 A_CheckSight("See")
 		SAR2 A 1 Bright A_UnSetShootable
 		SAR2 AA 1
-		SAR2 H 0 A_PlaySound("BLDSWRP",2)
+		SAR2 H 0 A_PlaySound("BStalker/Warp",2)
 		SAR2 AAAAAAAAAAAA 1 
 		{
 		A_FadeOut(0.1,0);
@@ -76,7 +76,7 @@ ACTOR PM_BloodStalker : Demon
 		TNT1 A 0 A_CheckSight("See")
 		SAR2 A 1 Bright A_UnSetShootable
 		SAR2 AA 1
-		SAR2 H 0 A_PlaySound("BLDSWRP",2)
+		SAR2 H 0 A_PlaySound("BStalker/Warp",2)
 		SAR2 AAAAAAAAAAAA 1 
 		{
 		A_FadeOut(0.1,0);

@@ -47,9 +47,9 @@ Actor Horrorspawn1
     Speed 5
     PainChance 256
     SeeSound ""
-    PainSound "ZombieFodder/pain"
-    DeathSound "ZombieFodder/death"
-    ActiveSound "ZombieFodder/active"
+    PainSound "ZombieFodder/Pain"
+    DeathSound "ZombieFodder/Death"
+    ActiveSound "ZombieFodder/Active"
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Horrorspawn"
@@ -206,7 +206,7 @@ Actor Horrorspawn1
 	Goto See
   Lunge:
 	ZFOD C 25
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-15)
 	TNT1 A 0 ThrustThingZ(0,40,0,1)
 	ZFOD B 35
@@ -223,7 +223,7 @@ Actor Horrorspawn1
 	TNT1 A 0 A_Jump(140,"Bite")
     ZFOD EE 9 A_FaceTarget
 	ZFOD F 2
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-6)
 	TNT1 A 0 ThrustThingZ(0,16,0,1)
 	ZFOD G 2
@@ -237,7 +237,7 @@ Actor Horrorspawn1
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	ZFOD B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     ZFOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
@@ -474,7 +474,7 @@ Actor Horrorspawn2
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	2FOD B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     2FOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	2FOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
@@ -704,7 +704,7 @@ Actor Horrorspawn3
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	3FOD B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     3FOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	3FOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
@@ -934,7 +934,7 @@ Actor Horrorspawn4
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	4FOD B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     4FOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	4FOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
@@ -1039,7 +1039,7 @@ Actor FreshHorrorspawn
 	TNT1 A 0 A_Jump(140,"Bite")
     ZFO1 EE 5 A_FaceTarget
 	ZFO1 F 2
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-6)
 	TNT1 A 0 ThrustThingZ(0,16,0,1)
 	ZFO1 G 2
@@ -1053,7 +1053,7 @@ Actor FreshHorrorspawn
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	ZFO1 B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     ZFO1 C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFO1 C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5")
@@ -1220,7 +1220,7 @@ Actor HorrorspawnScreamer
 		return state(0);
 	}
 	ZFOD C 8 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FODDHOW",CHAN_7)
+	TNT1 A 0 A_PlaySound("ZombieFodder/Howl",CHAN_7)
 	ZFOD B 30 A_FaceTarget
 	ZFOD B 15 A_FaceTarget
 	TNT1 A 0 A_SpawnItemEx("HorrorSeekSpawn")
@@ -1254,7 +1254,7 @@ Actor HorrorspawnScreamer
 	Goto See
   Lunge:
 	ZFOD C 25
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-15)
 	TNT1 A 0 ThrustThingZ(0,40,0,1)
 	ZFOD B 35
@@ -1273,7 +1273,7 @@ Actor HorrorspawnScreamer
 	TNT1 A 0 A_Jump(140,"Bite")
     ZFOD EE 9 A_FaceTarget
 	ZFOD F 2
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-6)
 	TNT1 A 0 ThrustThingZ(0,16,0,1)
 	ZFOD G 2
@@ -1287,7 +1287,7 @@ Actor HorrorspawnScreamer
 	TNT1 A 0 A_Recoil(-10)
 	TNT1 A 0 ThrustThingZ(0,6,0,1)
 	ZFOD B 2
-	TNT1 A 0 A_PlaySound("FODDBIT")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
     ZFOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5")

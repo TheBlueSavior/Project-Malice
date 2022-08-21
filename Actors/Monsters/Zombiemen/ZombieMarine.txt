@@ -15,11 +15,11 @@ ACTOR PM_ZombieMarine : Zombieman
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Marine"
-    OBITUARY "%o was killed by a Zombie Marine!"
-    SeeSound "Zombie/See"
-	PainSound "Zombie/Pain"
-	DeathSound "Zombie/Death"
-	ActiveSound "Zombie/Active"
+    OBITUARY "%o was put down by a Zombie Marine."
+    SeeSound "HelmetZombie/Sight"
+	PainSound "HelmetZombie/Pain"
+	DeathSound "HelmetZombie/Death"
+	ActiveSound "HelmetZombie/Active"
     DropItem "Clip"
     Decal Bulletchip
     states

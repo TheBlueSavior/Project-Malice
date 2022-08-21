@@ -18,10 +18,10 @@ actor PM_FeralImp : DoomImp
   Tag "Feral Imp"
   Species "Imp"
   //DropItem "RagePoint1"
-  seesound "FERISEE"
-  painsound "FERIPAI"
-  deathsound "FERIDIE"
-  activesound "FERIACT"
+  seesound "FeralImp/Sight"
+  painsound "FeralImp/Pain"
+  deathsound "FeralImp/Death"
+  activesound "FeralImp/Active"
   MeleeRange 155
   +FLOORCLIP
   states
@@ -51,13 +51,13 @@ actor PM_FeralImp : DoomImp
 	1ROO EEEEE 1 A_FaceTarget
 	TNT1 A 0 ThrustThingZ(0,14,0,1)
 	TNT1 A 0 A_Recoil(-9)
-	TNT1 A 0 A_PlaySound("FERISWI")
+	TNT1 A 0 A_PlaySound("FeralImp/Swing")
 	1ROO FFF 1 A_FaceTarget
 	1ROO G 8 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
 	1ROO IIIII 1 A_FaceTarget
 	TNT1 A 0 ThrustThingZ(0,14,0,1)
 	TNT1 A 0 A_Recoil(-9)
-	TNT1 A 0 A_PlaySound("FERISWI")
+	TNT1 A 0 A_PlaySound("FeralImp/Swing")
 	1ROA H 8 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
 	1ROO A 10
 	Goto See
@@ -69,7 +69,7 @@ actor PM_FeralImp : DoomImp
     TNT1 A 0 ThrustThingZ(0,25,0,1)
     TNT1 A 0 A_FaceTarget
     TNT1 A 0 A_Recoil (-20)
-	TNT1 A 0 A_PlaySound("FERIATK",CHAN_7)
+	TNT1 A 0 A_PlaySound("FeralImp/Attack",CHAN_7)
 	1ROT EF 2 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
     1ROT F 6 A_FaceTarget
 	1ROT G 1 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
@@ -78,7 +78,7 @@ actor PM_FeralImp : DoomImp
 	Goto See
   Missile:
 	TNT1 A 0 A_Jump(170,"Fireballs")
-	1ROO E 0 A_PlaySound("FERILEA")
+	1ROO E 0 A_PlaySound("FeralImp/Leap")
 	1ROZ AAAA 4 A_FaceTarget
 	1ROT EEEECD 4 A_FaceTarget
 	TNT1 A 0 A_JumpIfCloser(384,"Prep384")
@@ -96,7 +96,7 @@ actor PM_FeralImp : DoomImp
 	Prep704:	TNT1 A 0 A_SetUserVar(user_leapstrength,41)	goto ContinueLeap
 	Prep768:	TNT1 A 0 A_SetUserVar(user_leapstrength,43)	goto ContinueLeap	
   ContinueLeap:
-	1ROT A 0 A_PlaySound("FERIATK",CHAN_7)
+	1ROT A 0 A_PlaySound("FeralImp/Attack",CHAN_7)
 	1ROT A 0 A_Recoil(-(user_leapstrength/1.2))
 	1ROO F 1 ThrustThingZ(0,user_leapstrength,0,0)
 	Goto LeapLoop
@@ -176,7 +176,7 @@ actor PM_FeralImp : DoomImp
     goto See
   Roar:
 	1ROT AAAAA 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FERISEE",CHAN_7)
+	TNT1 A 0 A_PlaySound("FeralImp/Sight",CHAN_7)
 	1ROT BBCCCCCCCCCCCCCC 3 
 	{
 	A_FaceTarget;
@@ -250,8 +250,8 @@ actor PM_FeralImpBall : PM_CharredBall
 	Damage (random(17,17))
 	+NOGRAVITY
 	-LOWGRAVITY
-	seesound "FERBSHT"
-	//deathsound "FERBEXP"
+	seesound "FeralImp/Ball"
+	//deathsound "FeralImp/BallExp"
 	FastSpeed 23
 	Speed 14
 	Scale 0.95

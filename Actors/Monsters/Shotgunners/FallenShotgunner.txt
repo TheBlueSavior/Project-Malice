@@ -87,7 +87,7 @@ Class PM_FallenShotgunner : Actor
 	  A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
     }
     ZSP1 EEE 5 A_FaceTarget();
-	ZSP1 A 0 A_PlaySound("SHT1PMP");
+	ZSP1 A 0 A_PlaySound("GenericShotgunPump");
 	ZSP1 AA 5 A_FaceTarget();
 	ZSP1 BB 5 A_FaceTarget();
     Goto AggressiveSee;
@@ -166,7 +166,7 @@ Class PM_FallenShotgunner : Actor
 	  A_SpawnProjectile("PM_PelletTracer",35,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
     }
     ZSP1 EEE 5 A_FaceTarget();
-	ZSP1 A 0 A_PlaySound("SHT1PMP");
+	ZSP1 A 0 A_PlaySound("GenericShotgunPump");
 	ZSP1 AA 5 A_FaceTarget();
 	ZSP1 BB 5 A_FaceTarget();
     Goto CreepSee;
@@ -203,7 +203,7 @@ Class PM_FallenShotgunner : Actor
 	  A_SpawnProjectile("PM_PelletTracer",35,7,random(-2, 2), CMF_OFFSETPITCH, random(-3, 3));
     }
     ZSP1 EEE 5 A_FaceTarget();
-	ZSP1 A 0 A_PlaySound("SHT1PMP");
+	ZSP1 A 0 A_PlaySound("GenericShotgunPump");
 	ZSP1 AA 5 A_FaceTarget();
 	ZSP1 BB 5 A_FaceTarget();
     ZSP1 F 0 A_Jump(192, "BerserkSee");

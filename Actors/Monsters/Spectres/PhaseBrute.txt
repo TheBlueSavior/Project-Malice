@@ -17,10 +17,10 @@ ACTOR PM_PhaseBrute : Demon
 	Speed 13
 	MeleeDamage 4
 	//DropItem "RagePoint1"
-	SeeSound "PBRUSEE"
-	DeathSound "PBRUDIE"
-	ActiveSound "PBRUACT"
-	PainSound "PBRUPAI"
+	SeeSound "PBrute/Sight"
+	DeathSound "PBrute/Death"
+	ActiveSound "PBrute/Active"
+	PainSound "PBrute/Pain"
 	AttackSound "GenericPinkyBite"
 	Tag "Phase Brute"
 	Obituary "%o didn't notice a hungry Phase Brute"
@@ -43,7 +43,6 @@ ACTOR PM_PhaseBrute : Demon
 			loop
 		Melee:
 			TNT1 A 0 A_JumpIfCloser(52,"Bite")
-			TNT1 A 0 //A_PlaySound("demon/melee", 4)
 			PRUT A 7 A_FaceTarget
 			PRUT E 4 A_FaceTarget
 			TNT1 A 0 ThrustThingZ(0,20,0,1)

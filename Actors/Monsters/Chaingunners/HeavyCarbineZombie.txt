@@ -10,10 +10,10 @@ ACTOR PM_HeavyCarbineZombie
   +FLOORCLIP
   //+NOINFIGHTING
   +DONTHARMSPECIES
-  SeeSound "Heavycarbinezombie/sight"
-  PainSound "Heavycarbinezombie/pain"
-  DeathSound "Heavycarbinezombie/death"
-  ActiveSound "Heavycarbinezombie/active"
+  SeeSound "CarbineZombie/Sight"
+  PainSound "CarbineZombie/Pain"
+  DeathSound "CarbineZombie/Death"
+  ActiveSound "CarbineZombie/Active"
   Tag "Heavy Carbine Zombie"
   Obituary "%o was shot to pieces by a Heavy Carbine-wielding zombie."
   Dropitem "Chaingun"

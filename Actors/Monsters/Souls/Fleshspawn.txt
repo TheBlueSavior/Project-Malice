@@ -13,11 +13,11 @@ Class PM_Fleshspawn : Actor
 	Scale 0.7;
     painchance 224;
 	Species "Soul";
-    attacksound "flesh/melee";
-    seesound "flesh/sight";
-    painsound "flesh/pain";
-    deathsound "flesh/death";
-    activesound "flesh/active";
+    attacksound "Fleshspawn/Attack";
+    seesound "Fleshspawn/Sight";
+    painsound "Fleshspawn/Pain";
+    deathsound "Fleshspawn/Death";
+    activesound "Fleshspawn/Active";
 	Tag "Fleshspawn";
     MONSTER;
     +FLOAT

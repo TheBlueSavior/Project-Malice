@@ -17,10 +17,10 @@ ACTOR PM_RFZombie: Zombieman
 	Species "Zombie"
 	Tag "Rapid Fire Zombie"
     OBITUARY "%o was packed with lead by a Rapid Fire Zombie."
-    SeeSound "PNZombie/See"
-	PainSound "PNZombie/Pain"
-	DeathSound "PNZombie/Die"
-	ActiveSound "PNZombie/Act"
+    SeeSound "Nailgunner/Sight"
+	PainSound "Nailgunner/Pain"
+	DeathSound "Nailgunner/Death"
+	ActiveSound "Nailgunner/Active"
     DropItem "Clip"
     Decal Bulletchip
     states

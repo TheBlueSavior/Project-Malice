@@ -13,11 +13,10 @@ ACTOR PM_Prowler : PMMonster
 	+DONTHURTSPECIES
 	+NOINFIGHTING
 	+SLIDESONWALLS
-	SeeSound 	"PROWCOV"
-	PainSound 	"PROWPAI"
-	DeathSound 	"PROWDIE"
+	SeeSound 	"Prowler/Cover"
+	PainSound 	"Prowler/Pain"
+	DeathSound 	"Prowler/Death"
 	//DropItem "RagePoint1"
-	ActiveSound "Doom4/Monsters/Prowler/Idle"
 	Obituary "%o was dragged into the darkness by a Prowler."
 	BloodColor "Black"
 	Species "Brute"
@@ -42,10 +41,10 @@ ACTOR PM_Prowler : PMMonster
 		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 		TNT1 A 0 A_SetSpeed(10)
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",4)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",4)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",5)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",5)
 		SHDW DDDD 1 A_Chase
 		Loop
 	Melee:
@@ -54,7 +53,7 @@ ACTOR PM_Prowler : PMMonster
 		SHDW EEE 1 A_FaceTarget
 		SHDW FFFF 1
 		TNT1 A 0 A_StopSound(CHAN_7)
-		SHDW E 0 A_PlaySound("PROWSWI",CHAN_AUTO,1.0,false,1.2)
+		SHDW E 0 A_PlaySound("Prowler/Swing",CHAN_AUTO,1.0,false,1.2)
 		TNT1 A 0 A_Recoil(-20)
 		TNT1 A 0 ThrustThingZ(0,16,0,1)
 		SHDW FFFFF 1 A_SpawnItemEx("ProwlerShadowF")
@@ -68,7 +67,7 @@ ACTOR PM_Prowler : PMMonster
 		SHDW A 4 A_FaceTarget
 		Goto HereICome
 	QuickRetreat:
-		TNT1 A 0 A_PlaySound("PROWMIS")
+		TNT1 A 0 A_PlaySound("Prowler/Miss")
 		TNT1 A 0 
 			{
 			A_ChangeFlag("FRIGHTENED",1);
@@ -77,23 +76,23 @@ ACTOR PM_Prowler : PMMonster
 		TNT1 A 0 A_ChangeFlag("NOPAIN", true)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowA")
 		SHDW AAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowB")
 		SHDW BBB 1 A_Chase
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowC")
 		SHDW CCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowD")
 		SHDW DDD 1 A_Chase
 		TNT1 A 0 A_SetTranslucent(0.5)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowA")
 		SHDW AAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowB")
 		SHDW BBB 1 A_Chase
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowC")
 		SHDW CCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		TNT1 A 0 A_SpawnItemEx("ProwlerShadowD")
 		SHDW DDD 1 A_Chase
 		SHDW A 0 A_SetTranslucent(0.0)
@@ -105,41 +104,41 @@ ACTOR PM_Prowler : PMMonster
 			}
 		TNT1 A 0 A_Jump(180,"Stalk1")
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		SHDW AAAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBBB 1 A_Chase
 		TNT1 A 0 A_SetTranslucent(0.5)
 		SHDW CCCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DDDD 1 A_Chase
 		TNT1 A 0 A_SetTranslucent(1)
 		Goto HereICome
@@ -188,7 +187,7 @@ ACTOR PM_Prowler : PMMonster
 		TNT1 A 0 A_ChangeFlag("NOPAIN", false)
 		TNT1 A 0 A_SetSpeed(20)
 		TNT1 A 0 A_JumpIfCloser(250,"CloseChoice")
-		TNT1 A 0 A_PlaySound("PROWPEK")
+		TNT1 A 0 A_PlaySound("Prowler/Peek")
 		TNT1 A 0 A_JumpIfInTargetLOS("SawChoice",5,JLOSF_DEADNOJUMP,2000)
 		SHDW E 10 
 		{
@@ -288,11 +287,11 @@ ACTOR PM_Prowler : PMMonster
 		TNT1 A 0 A_JumpIfCloser(290,"CloseChoice")
 		TNT1 A 0 A_Jump(160,"Charge")
 		TNT1 A 0 A_ChangeFlag("FRIGHTENED", 1)
-		TNT1 A 0 A_PlaySound("PROWSNR",CHAN_7,1.0)
+		TNT1 A 0 A_PlaySound("Prowler/Snarl",CHAN_7,1.0)
 		SHDW AA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",2)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
 		SHDW BBCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",3)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
 		SHDW DD 1 A_Chase
 		TNT1 AAAAAAAAAAAAAAAAAAAA 1 A_Chase
 		Goto Stalk1
@@ -305,7 +304,7 @@ ACTOR PM_Prowler : PMMonster
 		Goto Stalk1
 	RealCharge:
 		TNT1 A 0 A_SetUserVar(user_timer,0)
-		SHDW A 1 A_PlaySound("PROWCHA",CHAN_7,1.0)
+		SHDW A 1 A_PlaySound("Prowler/Charge",CHAN_7,1.0)
 		TNT1 A 0 
 			{
 			A_SetSpeed(17);
@@ -314,23 +313,23 @@ ACTOR PM_Prowler : PMMonster
 			A_SetTranslucent(1.0);
 			}
 		SHDW AAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",4)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",4)
 		SHDW BBB 1 A_Chase
 		SHDW CCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",5)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",5)
 		SHDW DDD 1 A_Chase
 		SHDW AAA 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",4)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",4)
 		SHDW BBB 1 A_Chase
 		SHDW CCC 1 A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",5)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",5)
 		SHDW DDD 1 A_Chase
 	ChargeLoop:
 		SHDW AAA 1 Fast A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",4)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",4)
 		SHDW BBB 1 Fast A_Chase
 		SHDW CCC 1 Fast A_Chase
-		TNT1 A 0 A_PlaySound("PROWFOT",5)
+		TNT1 A 0 A_PlaySound("Prowler/Foot",5)
 		SHDW DDD 1 Fast A_Chase
 		TNT1 A 0 A_SetUserVar(user_timer, user_timer+1)
 		TNT1 A 0 A_JumpIf(user_timer >= 25, "QuickRetreat")
@@ -398,7 +397,7 @@ Actor ProwlerCoverSeek
 		TNT1 A 0 A_Jump(150,"Hint")
 		Goto Holdon
 	Hint:
-		TNT1 A 0 A_PlaySound("PROWSNR")
+		TNT1 A 0 A_PlaySound("Prowler/Snarl")
 		Goto Holdon
 	Holdon:
 		TNT1 A 400
@@ -440,7 +439,7 @@ Actor ProwlerJukeSee
 		Loop
 	Create:
 		TNT1 A 0 
-		TNT1 A 0 A_PlaySound("PROWPEK")
+		TNT1 A 0 A_PlaySound("Prowler/Peek")
 		Stop
 	Die:
 		Stop	
@@ -484,7 +483,7 @@ Actor ProwlerFakeOut
 		TNT1 A 0 A_Jump(60,"Hint")
 		Stop
 	Hint:
-		TNT1 A 0 A_PlaySound("PROWSNR")
+		TNT1 A 0 A_PlaySound("Prowler/Snarl")
 		Stop
 	Die:
 		Stop	

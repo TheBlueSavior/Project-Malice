@@ -16,11 +16,11 @@ ACTOR PM_ZombieTrooper : Zombieman
 	+DONTHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Trooper"
-    OBITUARY "%o was killed by A Zombie Marine!"
-    SeeSound "Zombie/See"
-	PainSound "Zombie/Pain"
-	DeathSound "Zombie/Death"
-	ActiveSound "Zombie/Active"
+    OBITUARY "%o was taken down by a Zombie Trooper."
+    SeeSound "HelmetZombie/Sight"
+	PainSound "HelmetZombie/Pain"
+	DeathSound "HelmetZombie/Death"
+	ActiveSound "HelmetZombie/Active"
     DropItem "Clip"
     Decal Bulletchip
     states
