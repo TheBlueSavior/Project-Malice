@@ -557,7 +557,7 @@ ACTOR NewArchvileFire2
 		A_SpawnItemEx("PM_FireGlobs",frandom(5,30),0,frandom(0,20),frandom(-1,1),frandom(-1,1),random(1,6),random(0,360));
 		}
   Kaboom:
-	TNT1 A 0 A_PlaySound("ExileFireEnd",CHAN_6)
+	TNT1 A 0 A_PlaySound("ExileFireExplode",CHAN_6)
 	TNT1 A 0 A_PlaySound("ExileFireReady",CHAN_5)
 	TNT1 A 0 A_Explode(40,105)
 	TNT1 A 0 Radius_Quake (2, 54, 0, 10, 0)
