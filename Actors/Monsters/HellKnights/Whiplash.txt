@@ -17,10 +17,10 @@ Actor PM_Whiplash : PMMonster
   +Donthurtspecies
   +MISSILEevenMORE
   Obituary "%o couldn't evade the Whiplash's cursed blades!"
-  SeeSound "WHIPSEE"
-  ActiveSound "WHIPACT"
-  PainSound "WHIPPAI"
-  DeathSound "WHIPDIE"
+  SeeSound "Whiplash/Sight"
+  ActiveSound "Whiplash/Active"
+  PainSound "Whiplash/Pain"
+  DeathSound "Whiplash/Death"
   Tag "Whiplash"
   Species "Nobles"
   States
@@ -39,7 +39,7 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_Jump(150,"Slither","SlitherWander")
 	Loop
   Slither:
-	TNT1 A 0 A_PlaySound("WHIPFLA")
+	TNT1 A 0 A_PlaySound("Whiplash/Flank")
 	TNT1 A 0 A_SetSpeed(12)
 	WHIP VVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVV 1 Bright
 	{
@@ -48,7 +48,7 @@ Actor PM_Whiplash : PMMonster
 	}
 	Goto See
   SlitherWander:
-	TNT1 A 0 A_PlaySound("WHIPFLA")
+	TNT1 A 0 A_PlaySound("Whiplash/Flank")
 	TNT1 A 0 A_SetSpeed(12)
 	WHIP VVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVVWWWWVVVVXXXXVVVV 1 Bright
 	{
@@ -156,7 +156,7 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
 	Goto See
   Missile2:
-	TNT1 A 0 A_PlaySound("WHIPSHA")
+	TNT1 A 0 A_PlaySound("Whiplash/Schwing")
 	WHI2 EEEEEEEE 2 Light("WhipKnife") A_FaceTarget
 	WHIP EE 2 Light("WhipKnife") A_FaceTarget
 	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,-12)
@@ -168,7 +168,7 @@ Actor PM_Whiplash : PMMonster
 	WHIP F 8 A_FaceTarget
 	Goto See
   Missile3:
-	TNT1 A 0 A_PlaySound("WHIPSHA")
+	TNT1 A 0 A_PlaySound("Whiplash/Schwing")
 	WHI2 EEEEEEEE 2 Light("WhipKnife") A_FaceTarget
 	WHIP EE 2 Light("WhipKnife") A_FaceTarget
 	WHIP F 4 Light("WhipKnife") A_CustomMissile("PM_WhiplashKnife",48,0,12)
@@ -225,7 +225,7 @@ Actor PM_Whiplash : PMMonster
 	A_FaceTarget;
 	A_SpawnItemEx("PurpleOrbSmall",14,17,37);
 	}
-	TNT1 A 0 A_PlaySound("WHIGFIR")
+	TNT1 A 0 A_PlaySound("Whiplash/GroundFire")
 	WHIP FF 1 A_FaceTarget
 	WHIP G 8 Light("WhipKnife") A_CustomMissile("PM_WhiplashGroundSeeker")
 	WHIP F 5 A_FaceTarget
@@ -252,7 +252,7 @@ Actor PM_Whiplash : PMMonster
 	TNT1 A 0 A_VileTarget("GroundSpikeSeeker")
 	WHI2 H 1 Light("WhipKnife")
 	{
-	A_PlaySound("WHIGSUM");
+	A_PlaySound("Whiplash/GSpikeSummon");
 	A_FaceTarget;
 	A_SpawnItemEx("PurpleFireEffect",14,random(7,12),75,random(-6,6),random(-6,6),random(-6,6),random(0,360));
 	A_SpawnItemEx("PurpleFireEffect",14,random(7,12),75,random(-6,6),random(-6,6),random(-6,6),random(0,360));
@@ -531,8 +531,8 @@ ACTOR PM_WhiplashKnife : MageWandMissile
   height 4
   -RIPPER
   RenderStyle Add
-  Seesound "WHIPBLA"
-  deathsound "WHIPHIT"
+  Seesound "Whiplash/Blades"
+  deathsound "Whiplash/KnifeStab"
   States
   {
   Spawn:

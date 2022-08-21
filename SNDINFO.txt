@@ -714,62 +714,58 @@ CyberZombie/Step4 "Sounds/Monsters/CyberFodder/CyberFodderStep4.ogg"
 
 $volume CyberZombie/Step  0.6
 
-$random CyberZ/Sight { CZOMSEE1 CZOMSEE2 }
-CZOMSEE1 CZOMSEE1
-CZOMSEE2 CZOMSEE2
+$random CyberZ/Sight { CyberZSight1 CyberZSight2 }
+CyberZSight1 "Sounds/Monsters/CyberFodder/CyberZSight1.ogg"
+CyberZSight2 "Sounds/Monsters/CyberFodder/CyberZSight2.ogg"
 
-$random CyberZ/Active { CZOMACT1 CZOMACT2 CZOMACT3 CZOMACT4 CZOMACT5 CZOMACT6 CZOMACT7 CZOMACT8 CZOMACT9 }
-CZOMACT1 CZOMACT1
-CZOMACT2 CZOMACT2
-CZOMACT3 CZOMACT3
-CZOMACT4 CZOMACT4
-CZOMACT5 CZOMACT5
-CZOMACT6 CZOMACT6
-CZOMACT7 CZOMACT7
-CZOMACT8 CZOMACT8
-CZOMACT9 CZOMACT9
+$random CyberZ/Active { CyberZActive1 CyberZActive2 CyberZActive3 CyberZActive4 CyberZActive5 CyberZActive6 CyberZActive7 CyberZActive8 CyberZActive9 }
+CyberZActive1 "Sounds/Monsters/CyberFodder/CyberZActive1.ogg"
+CyberZActive2 "Sounds/Monsters/CyberFodder/CyberZActive2.ogg"
+CyberZActive3 "Sounds/Monsters/CyberFodder/CyberZActive3.ogg"
+CyberZActive4 "Sounds/Monsters/CyberFodder/CyberZActive4.ogg"
+CyberZActive5 "Sounds/Monsters/CyberFodder/CyberZActive5.ogg"
+CyberZActive6 "Sounds/Monsters/CyberFodder/CyberZActive6.ogg"
+CyberZActive7 "Sounds/Monsters/CyberFodder/CyberZActive7.ogg"
+CyberZActive8 "Sounds/Monsters/CyberFodder/CyberZActive8.ogg"
+CyberZActive9 "Sounds/Monsters/CyberFodder/CyberZActive9.ogg"
 
-CyberZ/Pain			CZOMPAI
-
-CyberZ/Death		CZOMDTH
-
+CyberZ/Pain	"Sounds/Monsters/CyberFodder/CyberZPain.ogg"
 
 $volume CyberZ/Sight 0.4
 $volume CyberZ/Active 0.4
 
 //Hectebus
-$random HECTSEE { HECTSEE1 HECTSEE2 HECTSEE3 HECTSEE4 }
-HECTSEE1 HECTSEE1
-HECTSEE2 HECTSEE2
-HECTSEE3 HECTSEE3
-HECTSEE4 HECTSEE4
+$random Hectebus/Sight { HectSight1 HectSight2 HectSight3 HectSight4 }
+HectSight1 "Sounds/Monsters/Hectebus/HectebusSight1.ogg"
+HectSight2 "Sounds/Monsters/Hectebus/HectebusSight2.ogg"
+HectSight3 "Sounds/Monsters/Hectebus/HectebusSight3.ogg"
+HectSight4 "Sounds/Monsters/Hectebus/HectebusSight4.ogg"
 
-$random HECTACT { HECTACT1 HECTACT2 HECTACT3 HECTACT4 HECTACT5 HECTACT6 HECTACT7 HECTACT8 HECTACT9 HECTACT10 }
-HECTACT1 HECTACT1
-HECTACT2 HECTACT2
-HECTACT3 HECTACT3
-HECTACT4 HECTACT4
-HECTACT5 HECTACT5
-HECTACT6 HECTACT6
-HECTACT7 HECTACT7
-HECTACT8 HECTACT8
-HECTACT9 HECTACT9
-HECTACT10 HECTACT10
+$random Hectebus/Active { HectActive1 HectActive2 HectActive3 HectActive4 HectActive5 HectActive6 HectActive7 HectActive8 HectActive9 }
+HectActive1 "Sounds/Monsters/Hectebus/HectebusActive1.ogg"
+HectActive2 "Sounds/Monsters/Hectebus/HectebusActive2.ogg"
+HectActive3 "Sounds/Monsters/Hectebus/HectebusActive3.ogg"
+HectActive4 "Sounds/Monsters/Hectebus/HectebusActive4.ogg"
+HectActive5 "Sounds/Monsters/Hectebus/HectebusActive5.ogg"
+HectActive6 "Sounds/Monsters/Hectebus/HectebusActive6.ogg"
+HectActive7 "Sounds/Monsters/Hectebus/HectebusActive7.ogg"
+HectActive8 "Sounds/Monsters/Hectebus/HectebusActive8.ogg"
+HectActive9 "Sounds/Monsters/Hectebus/HectebusActive9.ogg"
 
-$random HECTATK { HECTATK1 HECTATK2 HECTATK3 HECTATK4 HECTATK5 HECTATK6 HECTATK7 HECTATK8 }
-HECTATK1 HECTATK1
-HECTATK2 HECTATK2
-HECTATK3 HECTATK3
-HECTATK4 HECTATK4
-HECTATK5 HECTATK5
-HECTATK6 HECTATK6
-HECTATK7 HECTATK7
-HECTATK8 HECTATK8
+$random Hectebus/Attack { HectAttack1 HectAttack2 HectAttack3 HectAttack4 HectAttack5 HectAttack6 HectAttack7 HectAttack8 }
+HectAttack1 "Sounds/Monsters/Hectebus/HectebusAttack1.ogg"
+HectAttack2 "Sounds/Monsters/Hectebus/HectebusAttack2.ogg"
+HectAttack3 "Sounds/Monsters/Hectebus/HectebusAttack3.ogg"
+HectAttack4 "Sounds/Monsters/Hectebus/HectebusAttack4.ogg"
+HectAttack5 "Sounds/Monsters/Hectebus/HectebusAttack5.ogg"
+HectAttack6 "Sounds/Monsters/Hectebus/HectebusAttack6.ogg"
+HectAttack7 "Sounds/Monsters/Hectebus/HectebusAttack7.ogg"
+HectAttack8 "Sounds/Monsters/Hectebus/HectebusAttack8.ogg"
 
-$random HECTPAI { HECTPAI1 HECTPAI2 HECTPAI3 }
-HECTPAI1 HECTPAI1
-HECTPAI2 HECTPAI2
-HECTPAI3 HECTPAI3
+$random Hectebus/Pain { HectPain1 HectPain2 HectPain3 }
+HectPain1 "Sounds/Monsters/Hectebus/HectebusPain1.ogg"
+HectPain2 "Sounds/Monsters/Hectebus/HectebusPain2.ogg"
+HectPain3 "Sounds/Monsters/Hectebus/HectebusPain3.ogg"
 
 $random HectebusBall/Exp { HectebusBall/Exp1 HectebusBall/Exp2 HectebusBall/Exp3 HectebusBall/Exp4 HectebusBall/Exp5 }
 HectebusBall/Exp1 "Sounds/Monsters/Hectebus/HectebusBallExp1.ogg"
@@ -780,9 +776,10 @@ HectebusBall/Exp5 "Sounds/Monsters/Hectebus/HectebusBallExp5.ogg"
 
 $volume HectebusBall/Exp 0.8
 
-HECTDIE 	HECTDIE
-HECTAIM		HECTAIM
-MANCSHOT    MANCSHOT
+Hectebus/Death "Sounds/Monsters/Hectebus/HectebusDeath.ogg"
+Hectebus/Aim "Sounds/Monsters/Hectebus/HectebusAim.ogg"
+
+GenericMancShot "Sounds/Monsters/SFX/GenericMancShot.ogg"
 
 //Host
 HostCharge "Sounds/Monsters/Host/HostCharge.ogg"
@@ -976,19 +973,32 @@ $volume HelmetZombie/Active 0.5
 
 ArachCrash "Sounds/Monsters/Fusionite/ArachCrash.ogg"
 ArachExpGore "Sounds/Monsters/Fusionite/ArachExpGore.ogg"
+GenericArachWalk "Sounds/Monsters/SFX/GenericArachWalk.wav"
 
 $rolloff ArachCrash 700 1800
 $rolloff ArachExpGore 700 1800
 
-ARASEE ARASEE
-ARAPAI ARAPAI
-ARAACT ARAACT
-ARADIE ARADIE
+Fusionite/Sight "Sounds/Monsters/Fusionite/FusioniteSight.ogg"
+Fusionite/Active "Sounds/Monsters/Fusionite/FusioniteActive.ogg"
+Fusionite/Pain "Sounds/Monsters/Fusionite/FusioniteDeath.ogg"
+Fusionite/Death "Sounds/Monsters/Fusionite/FusioniteDeath.ogg"
+
+Fusionite/ScatterCharge "Sounds/Monsters/Fusionite/ScatterFusionCharge.wav"
+Fusionite/Scattershot "Sounds/Monsters/Fusionite/ScatterFusionShot.ogg"
+Fusionite/SmallCharge "Sounds/Monsters/Fusionite/SmallFusionCharge.ogg"
+Fusionite/SmallShot "Sounds/Monsters/Fusionite/SmallFusionShot.ogg"
+
+FUSSEXP FUSSEXP
+
 
 $volume ARAACT 0.6
 $volume ARAPAI 0.8
 $volume ARASEE 0.8
 $volume ARADIE 0.8
+$rolloff FUSSCHOT 500 2000
+$rolloff FUSSFIRE 500 2000
+$limit FUSRFIRE 0
+$rolloff FUSSEXP 1500 2500
 
 $random wizard/tele 		{ wizard/tele1 wizard/tele2 wizard/tele3 wizard/tele4 }
 wizard/tele1                   dsdamnd1
@@ -1390,15 +1400,6 @@ $random BurntSoul/Death { BSoul/Death1 BSoul/Death2 BSoul/Death3 }
 BSoul/Death1 "Sounds/Monsters/BurnedSoul/BSoulDeath1.ogg"
 BSoul/Death2 "Sounds/Monsters/BurnedSoul/BSoulDeath2.ogg"
 BSoul/Death3 "Sounds/Monsters/BurnedSoul/BSoulDeath3.ogg"
-
-FUSSCHOT FUSSCHOT
-$rolloff FUSSCHOT 500 2000
-$rolloff FUSSFIRE 500 2000
-FUSCHRG	FUSCHRG
-FUSRFIRE FUSRFIRE
-$limit FUSRFIRE 0
-FUSSEXP FUSSEXP
-$rolloff FUSSEXP 1500 2500
 
 DTech/Fire "Sounds/Monsters/DTechBrute/DTechFire.ogg"
 DTech/Exp "Sounds/Monsters/DTechBrute/DTechExp.ogg"
@@ -1946,52 +1947,51 @@ Whiplash/Ground1 "Sounds/Monsters/Whiplash/WhiplashGround1.ogg"
 Whiplash/Ground2 "Sounds/Monsters/Whiplash/WhiplashGround2.ogg"
 Whiplash/Ground3 "Sounds/Monsters/Whiplash/WhiplashGround3.ogg"
 
-$random WHIPSEE { WHIPSEE1 WHIPSEE2 WHIPSEE3 WHIPSEE4 WHIPSEE5 WHIPSEE6 WHIPSEE7 WHIPSEE8 WHIPSEE9 }
-WHIPSEE1 WHIPSEE1
-WHIPSEE2 WHIPSEE2
-WHIPSEE3 WHIPSEE3
-WHIPSEE4 WHIPSEE4
-WHIPSEE5 WHIPSEE5
-WHIPSEE6 WHIPSEE6
-WHIPSEE7 WHIPSEE7
-WHIPSEE8 WHIPSEE8
-WHIPSEE9 WHIPSEE9
+$random Whiplash/Sight { WLashSight1 WLashSight2 WLashSight3 WLashSight4 WLashSight5 WLashSight6 WLashSight7 WLashSight8 WLashSight9 }
+WLashSight1 "Sounds/Monsters/Whiplash/WhiplashSight1.ogg"
+WLashSight2 "Sounds/Monsters/Whiplash/WhiplashSight2.ogg"
+WLashSight3 "Sounds/Monsters/Whiplash/WhiplashSight3.ogg"
+WLashSight4 "Sounds/Monsters/Whiplash/WhiplashSight4.ogg"
+WLashSight5 "Sounds/Monsters/Whiplash/WhiplashSight5.ogg"
+WLashSight6 "Sounds/Monsters/Whiplash/WhiplashSight6.ogg"
+WLashSight7 "Sounds/Monsters/Whiplash/WhiplashSight7.ogg"
+WLashSight8 "Sounds/Monsters/Whiplash/WhiplashSight8.ogg"
+WLashSight9 "Sounds/Monsters/Whiplash/WhiplashSight9.ogg"
 
-$random WHIPACT { WHIPACT1 WHIPACT2 WHIPACT3 WHIPACT4 WHIPACT5 WHIPACT6 WHIPACT7 }
-WHIPACT1 WHIPACT1
-WHIPACT2 WHIPACT2
-WHIPACT3 WHIPACT3
-WHIPACT4 WHIPACT4
-WHIPACT5 WHIPACT5
-WHIPACT6 WHIPACT6
-WHIPACT7 WHIPACT7
+$random Whiplash/Active { WLashActive1 WLashActive2 WLashActive3 WLashActive4 WLashActive5 WLashActive6 WLashActive7 }
+WLashActive1 "Sounds/Monsters/Whiplash/WhiplashActive1.ogg"
+WLashActive2 "Sounds/Monsters/Whiplash/WhiplashActive2.ogg"
+WLashActive3 "Sounds/Monsters/Whiplash/WhiplashActive3.ogg"
+WLashActive4 "Sounds/Monsters/Whiplash/WhiplashActive4.ogg"
+WLashActive5 "Sounds/Monsters/Whiplash/WhiplashActive5.ogg"
+WLashActive6 "Sounds/Monsters/Whiplash/WhiplashActive6.ogg"
+WLashActive7 "Sounds/Monsters/Whiplash/WhiplashActive7.ogg"
 
-$random WHIPPAI { WHIPPAI1 WHIPPAI2 WHIPPAI3 WHIPPAI4 WHIPPAI5 }
-WHIPPAI1 WHIPPAI1
-WHIPPAI2 WHIPPAI2
-WHIPPAI3 WHIPPAI3
-WHIPPAI4 WHIPPAI4
-WHIPPAI5 WHIPPAI5
+$random Whiplash/Pain { WLashPain1 WLashPain2 WLashPain3 WLashPain4 WLashPain5 }
+WLashPain1 "Sounds/Monsters/Whiplash/WhiplashPain1.ogg"
+WLashPain2 "Sounds/Monsters/Whiplash/WhiplashPain2.ogg"
+WLashPain3 "Sounds/Monsters/Whiplash/WhiplashPain3.ogg"
+WLashPain4 "Sounds/Monsters/Whiplash/WhiplashPain4.ogg"
+WLashPain5 "Sounds/Monsters/Whiplash/WhiplashPain5.ogg"
 
-$random WHIPDIE { WHIPDIE1 WHIPDIE2 WHIPDIE3 WHIPDIE4 }
-WHIPDIE1 WHIPDIE1
-WHIPDIE2 WHIPDIE2
-WHIPDIE3 WHIPDIE3
-WHIPDIE4 WHIPDIE4
+$random Whiplash/Death { WLashDeath1 WLashDeath2 WLashDeath3 WLashDeath4 }
+WLashDeath1 "Sounds/Monsters/Whiplash/WhiplashDeath1.ogg"
+WLashDeath2 "Sounds/Monsters/Whiplash/WhiplashDeath2.ogg"
+WLashDeath3 "Sounds/Monsters/Whiplash/WhiplashDeath3.ogg"
 
-WHIPFLA WHIPFLA
-WHIPHIT WHIPHIT
-WHIPSHA WHIPSHA
+Whiplash/Flank "Sounds/Monsters/Whiplash/WhiplashFlank.ogg"
+Whiplash/KnifeStab "Sounds/Monsters/Whiplash/WhipKnifeStab.wav"
+Whiplash/Schwing "Sounds/Monsters/Whiplash/WhipSchwing.wav"
 
-$random WHIPBLA { WHIPBLA1 WHIPBLA2 WHIPBLA3 WHIPBLA4 WHIPBLA5 }
-WHIPBLA1 WHIPBLA1
-WHIPBLA2 WHIPBLA2
-WHIPBLA3 WHIPBLA3
-WHIPBLA4 WHIPBLA4
-WHIPBLA5 WHIPBLA5
+$random Whiplash/Blades { WLashBlade1 WLashBlade2 WLashBlade3 WLashBlade4 WLashBlade5 }
+WLashBlade1 "Sounds/Monsters/Whiplash/WhiplashBlade1.ogg"
+WLashBlade2 "Sounds/Monsters/Whiplash/WhiplashBlade2.ogg"
+WLashBlade3 "Sounds/Monsters/Whiplash/WhiplashBlade3.ogg"
+WLashBlade4 "Sounds/Monsters/Whiplash/WhiplashBlade4.ogg"
+WLashBlade5 "Sounds/Monsters/Whiplash/WhiplashBlade5.ogg"
 
-WHIGFIR WHIGFIR
-WHIGSUM WHIGSUM
+Whiplash/GroundFire "Sounds/Monsters/Whiplash/WhiplashGroundFire.ogg"
+Whiplash/GSpikeSummon "Sounds/Monsters/Whiplash/WhiplashGSpikeSummon.ogg"
 
 $limit WHIPHIT 10
 $limit WHIPBLA 6
@@ -2085,19 +2085,18 @@ CYFLAME	CYFLAME
 $rolloff CYFLAME 500 1500
 
 //Fresh Horrorspawn
-$random FOD2ACT { FOD2ACT1 FOD2ACT2 FOD2ACT3 FOD2ACT4 }
-FOD2ACT1 FOD2ACT1
-FOD2ACT2 FOD2ACT2
-FOD2ACT3 FOD2ACT3
-FOD2ACT4 FOD2ACT4
+$random FreshZFodder/Active { FrZFodderActive1 FrZFodderActive2 FrZFodderActive3 }
+FrZFodderActive1 "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnActive1.ogg"
+FrZFodderActive2 "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnActive2.ogg"
+FrZFodderActive3 "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnActive3.ogg"
 
-FOD2SEE FOD2SEE
+FreshZFodder/Sight "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnSight.ogg"
 
-FOD2PAI FOD2PAI
+FreshZFodder/Pain "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnPain.ogg"
 
-$random FOD2DIE { FOD2DIE1 FOD2DIE2 }
-FOD2DIE1 FOD2DIE1
-FOD2DIE2 FOD2DIE2
+$random FreshZFodder/Death { FrZFodderDeath1 FrZFodderDeath2 }
+FrZFodderDeath1 "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnDeath1.ogg"
+FrZFodderDeath2 "Sounds/Monsters/Horrorspawn/FreshHorrorspawn/FreshHorrorspawnDeath2.ogg"
 
 //Tyrant
 
@@ -2220,10 +2219,10 @@ FUSCHR2 FUSCHR2
 SHAACT SHAACT
 
 //Voidspawn
-VS1ACT VS1ACT
-$rolloff VS1ACT 400 1250
-VS1DIE VS1DIE
-VS1SCR VS1SCR
+Voidspawn/Search "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnSearch.ogg"
+$rolloff Voidspawn/Search 400 1250
+Voidspawn/Death "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnDeath.ogg"
+Voidspawn/Scream "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnScream.ogg"
 
 $random Voidspawn/Active { Voidspawn/Active1 Voidspawn/Active2 Voidspawn/Active3 Voidspawn/Active4 }
 Voidspawn/Active1 "Sounds/Monsters/Horrorspawn/Voidspawn/VoidspawnActive1.ogg"
@@ -2235,12 +2234,12 @@ $volume Voidspawn/Active 0.9
 
 
 //Plasmatron
-PLTRFIR PLTRFIR
+Plasmatron/Fire "Sounds/Monsters/Plasmatron/PlasmatronFire.wav"
 
-Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee.ogg"
-Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain.ogg"
-Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive.ogg"
-Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath.ogg"
+Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee.wav"
+Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain.wav"
+Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive.wav"
+Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath.wav"
 
 $random Plasmatron/Step { Plasmatron/Step1 Plasmatron/Step2 Plasmatron/Step3 Plasmatron/Step4 Plasmatron/Step5 }
 Plasmatron/Step1 "Sounds/Monsters/Plasmatron/PlasmatronStep1.ogg"
@@ -2256,7 +2255,7 @@ Plasmatron/Servos3 "Sounds/Monsters/Plasmatron/PlasmatronServos3.ogg"
 Plasmatron/Servos4 "Sounds/Monsters/Plasmatron/PlasmatronServos4.ogg"
 Plasmatron/Servos5 "Sounds/Monsters/Plasmatron/PlasmatronServos5.ogg"
 
-$rolloff PLTRFIR 200 2000
+$rolloff Plasmatron/Fire 200 2000
 
 //HeavyCarbineZombie
 $random CarbineZombie/Sight { CarbineZSight1 CarbineZSight2 CarbineZSight3 CarbineZSight4 CarbineZSight5 CarbineZSight6 CarbineZSight7 }
@@ -2433,6 +2432,8 @@ HKnightBImpact4 "Sounds/Monsters/SFX/HellKImpact4.ogg"
 
 $limit HellKnight/Cast 4
 $limit HellKnight/BallImpact 5
+$rolloff HellKnight/Cast 500 1500
+$rolloff HellKnight/BallImpact 450 1200
 
 weapons/bwoosh dsbwoosh
 $limit weapons/bwoosh 4

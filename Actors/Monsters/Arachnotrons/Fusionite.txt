@@ -12,10 +12,10 @@ Actor PM_Fusionite : Arachnotron
 	//DropItem "RagePoint1"
 	Species "Arachnotron"
 	+DONTHARMSPECIES
-	SEESOUND "ARASEE"
-	PAINSOUND "ARAPAI"
-	DEATHSOUND "ARADIE"
-	ACTIVESOUND "ARAACT"
+	SEESOUND "Fusionite/Sight"
+	PAINSOUND "Fusionite/Pain"
+	DEATHSOUND "Fusionite/Death"
+	ACTIVESOUND "Fusionite/Active"
 	//+NOINFIGHTING
 	States
 {
@@ -26,9 +26,9 @@ Idle:
     FSPI A 10 A_Look
     Loop
 See:
-    FSPI A 2 A_PlaySound("FUSWALK")
+    FSPI A 2 A_PlaySound("GenericArachWalk")
     FSPI ABBCC 2 A_Chase
-    FSPI D 2 A_PlaySound("FUSWALK")
+    FSPI D 2 A_PlaySound("GenericArachWalk")
     FSPI DEEFF 2 A_Chase
     Loop
 Missile:
@@ -48,9 +48,9 @@ Missile:
     Goto Missile+2
 Shotgun:
 	FSPI A 9 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FUSCHRG")
+	TNT1 A 0 A_PlaySound("Fusionite/ScatterCharge")
 	FSPI GGGGGG 5 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FUSSCHOT")
+	TNT1 A 0 A_PlaySound("Fusionite/Scattershot")
     FSPI H 3 Light("Shadowball2")
 	{
 	A_FaceTarget;
@@ -76,7 +76,7 @@ Rapid:
 	FSPI A 8 
 	{
 	A_FaceTarget;
-	A_PlaySound("FUSCHR2");
+	A_PlaySound("Fusionite/SmallCharge");
 	}
 	FSPI GGG 5 A_FaceTarget
 	FSPI G 1 A_FaceTarget
@@ -209,7 +209,7 @@ ACTOR PM_ScatterFusionShot
   Damage 3
   Scale 1.7
   RENDERSTYLE ADD
-  SeeSound "FUSSCHOT" 
+  SeeSound "Fusionite/Scattershot" 
   DeathSound "GenericPlasmaExp"
   PROJECTILE
   States
@@ -238,7 +238,7 @@ ACTOR PM_SmallFusionShot
   Damage 2
   Scale 0.6  
   RENDERSTYLE ADD
-  SeeSound "FUSRFIRE" 
+  SeeSound "Fusionite/SmallShot" 
   DeathSound "GenericPlasmaExp"
   PROJECTILE
   States

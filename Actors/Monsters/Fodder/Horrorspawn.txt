@@ -973,10 +973,10 @@ Actor FreshHorrorspawn
     Height 56
     Speed 8
     PainChance 256
-    SeeSound "FOD2SEE"
-    PainSound "FOD2PAI"
-    DeathSound "FOD2DIE"
-    ActiveSound "FOD2ACT"
+    SeeSound "FreshZFodder/Sight"
+    PainSound "FreshZFodder/Pain"
+    DeathSound "FreshZFodder/Death"
+    ActiveSound "FreshZFodder/Active"
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Fresh Horrorspawn"
@@ -1012,14 +1012,14 @@ Actor FreshHorrorspawn
     Loop
   Roar:
 	ZFO1 C 15 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FOD2SEE")
+	TNT1 A 0 A_PlaySound("FreshZFodder/Sight")
 	ZFO1 B 60 A_FaceTarget
 	ZFO1 C 4 A_FaceTarget
 	TNT1 A 0 A_Jump(25,"See2","See3","See4","See5","Lunge")
 	Goto See
   Lunge:
 	ZFO1 C 25
-	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
 	TNT1 A 0 A_Recoil(-15)
 	TNT1 A 0 ThrustThingZ(0,40,0,1)
 	ZFO1 B 35
