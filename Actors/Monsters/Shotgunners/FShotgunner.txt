@@ -7,11 +7,11 @@ Actor PM_FShotgunner
   Speed 8
   PainChance 170
   Monster
-  SEESOUND "FSHOSEE"
-  ATTACKSOUND "FSHOATK"
-  PAINSOUND "FSHOPAI"
-  DEATHSOUND "FSHODIE"
-  ACTIVESOUND "FSHOIDL"
+  SEESOUND "FacelessZ/Sight"
+  ATTACKSOUND "FacelessZ/Attack"
+  PAINSOUND "FacelessZ/Pain"
+  DEATHSOUND "FacelessZ/Death"
+  ACTIVESOUND "FacelessZ/Active"
   +FloorClip
   //+NOINFIGHTING
   +DONTHURTSPECIES

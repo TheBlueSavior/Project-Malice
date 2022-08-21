@@ -5,10 +5,10 @@ Actor PM_Wretched : Cacodemon
   BloodColor "Blue"
   Obituary "%o was zapped by a Wretched."
   HitObituary "%o was devoured by a Wretched."
-  SeeSound "WRETSEE"
-  ActiveSound "WRETACT"
-  PainSound "WRETPAI"
-  DeathSound "WRETDIE"
+  SeeSound "Wretched/Sight"
+  ActiveSound "Wretched/Active"
+  PainSound "Wretched/Pain"
+  DeathSound "Wretched/Death"
   //DropItem "RagePoint1"
   FloatBobStrength 0.4
   +DONTHARMSPECIES
@@ -81,7 +81,7 @@ Actor PM_Wretched : Cacodemon
 		{
 		A_Chase;
 		A_FaceTarget;
-		A_PlaySound("WRETSHO",CHAN_7);
+		A_PlaySound("Wretched/Spit",CHAN_7);
 		A_CustomMissile("PM_WretchedBall",25);
 		}
 	C1C2 CBA 5 Light("Wretchball4")
@@ -170,7 +170,7 @@ Actor PM_Wretched : Cacodemon
 		{
 		A_Chase;
 		A_FaceTarget;
-		A_PlaySound("WRETSHO",CHAN_7);
+		A_PlaySound("Wretched/Spit",CHAN_7);
 		A_CustomMissile("PM_WretchedBall",25);
 		}
 	C1C2 CBA 5 Light("Wretchball4")
@@ -183,7 +183,7 @@ Actor PM_Wretched : Cacodemon
  StandoffRoar:
 	TNT1 A 0 A_Recoil(-0.6)
 	C1C2 AB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("WRETSEE")
+	TNT1 A 0 A_PlaySound("Wretched/Sight")
 	C1C2 CCDCCDCCC 6 A_FaceTarget
 	C1C2 BA 3 A_FaceTarget
 	Goto Standoff
@@ -211,14 +211,14 @@ Actor PM_Wretched : Cacodemon
 	TNT1 A 0 A_Recoil(-0.08)
 	CA22 A 30 Light("Wretchball2")
 		{
-		A_PlaySound("WRETCHR");
+		A_PlaySound("Wretched/Charge");
 		A_FaceTarget;
 		}
 	C1C2 ABC 2 A_FaceTarget
 	C1C2 DDDDDD 5 Light("Wretchball2")
 		{
 		A_FaceTarget;
-		A_PlaySound("WRETSHO",CHAN_7);
+		A_PlaySound("Wretched/Spit",CHAN_7);
 		A_CustomMissile("PM_WretchedBall",25,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
 		}
 	C1C2 DDCBA 7 Bright A_FaceTarget
@@ -237,7 +237,7 @@ Actor PM_Wretched : Cacodemon
   Roar:
 	TNT1 A 0 A_Recoil(-0.6)
 	C1C2 AB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("WRETSEE")
+	TNT1 A 0 A_PlaySound("Wretched/Sight")
 	C1C2 CCDCCDCCC 6 A_FaceTarget
 	C1C2 BA 3 A_FaceTarget
 	Goto See
@@ -307,7 +307,7 @@ actor PM_WretchedBall
 	RenderStyle Add
 	Alpha 0.99
 	SeeSound "Wretched/Fire"
-	DeathSound "WRETSHI"
+	DeathSound "imp/shotx"
 	+FORCEXYBILLBOARD
 	+FORCEXYBILLBOARD
 	//+SEEKERMISSILE
