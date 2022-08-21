@@ -44,8 +44,6 @@ $volume ZombieFodder/Active 0.5
 $volume ZombieFodder/Pain 0.8
 $volume ZombieFodder/Death 0.6
 
-HUNPUK	HUNPUK
-
 $random ZombieFodder/Bite { ZFodderBite1 ZFodderBite2 }
 ZFodderBite1 "Sounds/Monsters/Horrorspawn/ZFodderBite1.ogg"
 ZFodderBite2 "Sounds/Monsters/Horrorspawn/ZFodderBite2.ogg"
@@ -307,7 +305,7 @@ SoFlesh/explode Dssofexp
 //Beholder
 Beholder/Sight "Sounds/Monsters/Watcher/BeholderSight.ogg"
 Beholder/Pain "Sounds/Monsters/Watcher/BeholderPain.ogg"
-Beholder/Death "Sounds/Monsters/Watcher/BeholderDeath.ogg"
+Beholder/Death "Sounds/Monsters/Watcher/BeholderDie.ogg"
 $random Beholder/Active { Beholder/Active1 Beholder/Active2 Beholder/Active3 }
 Beholder/Active1 "Sounds/Monsters/Watcher/BeholderActive1.ogg"
 Beholder/Active2 "Sounds/Monsters/Watcher/BeholderActive2.ogg"
@@ -816,49 +814,62 @@ $volume Host/Sight 0.7
 $volume Host/Active 0.7
 
 //Hunger
-$random Hunger/Sight { HUNSEE1 HUNSEE2 }
-HUNSEE1	HUNSEE1
-HUNSEE2	HUNSEE2
-HUNSEE3 HUNSEE3
-HUNSEE4 HUNSEE4
-HUNSEE5 HUNSEE5
-HUNSEE6 HUNSEE6
-$volume Hunger/Sight 0.5
+$random Afflicted/Sight { AffSight1 AffSight2 }
+AffSight1 "Sounds/Monsters/Afflicted/AfflictedSight1.wav"
+AffSight2 "Sounds/Monsters/Afflicted/AfflictedSight2.wav"
+$volume Afflicted/Sight 0.5
 
-$random Hunger/Active { HUNACT1 HUNACT2 HUNACT3 HUNACT4 HUNACT5 HUNACT6 HUNSEE1 HUNSEE2 }
-HUNACT1	HUNACT1
-HUNACT2	HUNACT2
-HUNACT3	HUNACT3
-HUNACT4	HUNACT4
-HUNACT5	HUNACT5
-HUNACT6	HUNACT6
-HUNSEE1	HUNSEE1
-HUNSEE2	HUNSEE2
-$volume Hunger/Active 0.5
+$random Afflicted/Active { AffActive1 AffActive2 AffActive3 AffActive4 AffActive5 AffActive6 AffSight1 AffSight2 }
+AffActive1 "Sounds/Monsters/Afflicted/AfflictedActive1.wav"
+AffActive2 "Sounds/Monsters/Afflicted/AfflictedActive2.wav"
+AffActive3 "Sounds/Monsters/Afflicted/AfflictedActive3.wav"
+AffActive4 "Sounds/Monsters/Afflicted/AfflictedActive4.wav"
+AffActive5 "Sounds/Monsters/Afflicted/AfflictedActive5.wav"
+AffActive6 "Sounds/Monsters/Afflicted/AfflictedActive6.wav"
+$volume Afflicted/Active 0.5
 
-$random Hunger/Pain	{ HUNPAI1 HUNPAI2 HUNPAI3 HUNPAI4 HUNPAI5 }
-HUNPAI1	HUNPAI1
-HUNPAI2 HUNPAI2
-HUNPAI3 HUNPAI3
-HUNPAI4 HUNPAI4
-HUNPAI5 HUNPAI5
+$random Afflicted/Pain	{ AffPain1 AffPain2 AffPain3 AffPain4 AffPain5 }
+AffPain1 "Sounds/Monsters/Afflicted/AfflictedPain1.wav"
+AffPain2 "Sounds/Monsters/Afflicted/AfflictedPain2.wav"
+AffPain3 "Sounds/Monsters/Afflicted/AfflictedPain3.wav"
+AffPain4 "Sounds/Monsters/Afflicted/AfflictedPain4.wav"
+AffPain5 "Sounds/Monsters/Afflicted/AfflictedPain5.wav"
 
-$volume HUNPAI5 0.3
+$volume AffPain5 0.3
 
-$random Hunger/Death { HUNDIE1 HUNDIE2 HUNDIE3 }
-HUNDIE1	HUNDIE1
-HUNDIE2	HUNDIE2
-HUNDIE3 HUNDIE3
+$random Afflicted/Death { AffDeath1 AffDeath2 AffDeath3 }
+AffDeath1 "Sounds/Monsters/Afflicted/AfflictedDeath1.wav"
+AffDeath2 "Sounds/Monsters/Afflicted/AfflictedDeath2.wav"
+AffDeath3 "Sounds/Monsters/Afflicted/AfflictedDeath3.wav"
 
-$volume Hunger/Death 1
-$volume HUNDIE3 0.15
+$volume Afflicted/Death 1
+$volume AffDeath3 0.15
 
-$random Hunger/Idle { HUNIDL1 HUNIDL2 HUNIDL3 HUNIDL4  }
-HUNIDL1 HUNIDL1 
-HUNIDL2 HUNIDL2
-HUNIDL3 HUNIDL3
-HUNIDL4 HUNIDL4
-$volume Hunger/Idle 0.3
+$random Afflicted/Idle { AffIdle1 AffIdle2 AffIdle3 AffIdle4 }
+AffIdle1 "Sounds/Monsters/Afflicted/AfflictedIdle1.wav"
+AffIdle2 "Sounds/Monsters/Afflicted/AfflictedIdle2.wav"
+AffIdle3 "Sounds/Monsters/Afflicted/AfflictedIdle3.wav"
+
+$volume Afflicted/Idle 0.3
+
+$random Afflicted/Howl { AffHowl1 AffHowl2 AffHowl3 AffHowl4 }
+AffHowl1 "Sounds/Monsters/Afflicted/AfflictedHowl1.wav"
+AffHowl2 "Sounds/Monsters/Afflicted/AfflictedHowl2.wav"
+AffHowl3 "Sounds/Monsters/Afflicted/AfflictedHowl3.wav"
+AffHowl4 "Sounds/Monsters/Afflicted/AfflictedHowl4.wav"
+$rolloff Afflicted/Howl 300 1200
+$volume Afflicted/Howl 0.7
+
+Afflicted/Puke "Sounds/Monsters/Afflicted/AfflictedPuke.wav"
+
+$random Afflicted/Spawn { AffSpawn1 AffSpawn2 AffSpawn3 AffSpawn4 AffSpawn5 }
+AffSpawn1 "Sounds/Monsters/Afflicted/AfflictedSpawn1.ogg"
+AffSpawn2 "Sounds/Monsters/Afflicted/AfflictedSpawn2.ogg"
+AffSpawn3 "Sounds/Monsters/Afflicted/AfflictedSpawn3.ogg"
+AffSpawn4 "Sounds/Monsters/Afflicted/AfflictedSpawn4.ogg"
+AffSpawn5 "Sounds/Monsters/Afflicted/AfflictedSpawn5.ogg"
+
+$rolloff Afflicted/Spawn 500 2500
 
 Flying/Fly FLYING
 FlyHit/Hit FLYHIT
@@ -1458,14 +1469,6 @@ $volume FSHOIDL 0.7
 $volume FSHOATK 0.7
 $volume FSHODIE 0.6
 
-$random HUNHOW { HUNHOW1 HUNHOW2 HUNHOW3 HUNHOW4}
-HUNHOW1 HUNHOW1
-HUNHOW2 HUNHOW2
-HUNHOW3 HUNHOW3
-HUNHOW4 HUNHOW4
-$rolloff HUNHOW 300 1200
-$volume HUNHOW 0.7
-
 weapons/scorch                dsscorch
 weapons/onfire                dsonfire
 weapons/flamer                dsflamer
@@ -1498,14 +1501,6 @@ HellSolPlas2 "Sounds/Monsters/HellifiedSoldier/HellSolPlas2.ogg"
 
 $rolloff HellSoldier/Plasma 700 2200
 $limit HellSoldier/Plasma 12
-
-$random HUNSPA { HUNSPA1 HUNSPA2 HUNSPA3 HUNSPA4 HUNSPA5 }
-HUNSPA1 HUNSPA1
-HUNSPA2 HUNSPA2
-HUNSPA3 HUNSPA3
-HUNSPA4 HUNSPA4
-HUNSPA5 HUNSPA5
-$rolloff HUNSPA 500 2500
 
 //Nether Imp
 NIBALHIT NIBALHIT

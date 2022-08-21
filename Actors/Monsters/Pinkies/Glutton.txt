@@ -93,7 +93,7 @@ ACTOR PM_Glutton : Demon
 		BPBI C 20 A_SargAttack
 		Goto See
 	Missile:
-			TNT1 A 0 A_PlaySound("HUNPUK",CHAN_6)
+			TNT1 A 0 A_PlaySound("Afflicted/Puke",CHAN_6)
 			BPBI CCAABB 3
 			{
 			A_FaceTarget;

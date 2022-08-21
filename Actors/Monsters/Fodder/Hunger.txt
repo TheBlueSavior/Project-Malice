@@ -7,10 +7,10 @@ Actor Hunger
     Height 56
     Speed 6
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -78,7 +78,7 @@ Actor Hunger
 		return state(0);
 	}
 	ZHUN T 8 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	ZHUN U 3 A_FaceTarget
 	ZHUN V 1 A_FaceTarget
 	ZHUN W 1 A_FaceTarget
@@ -147,7 +147,7 @@ Actor Hunger
 	TNT1 A 0 A_CheckSight("See")
 	ZHUN H 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	ZHUN BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	ZHUN B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	ZHUN BBBBBBBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-20,10))
@@ -201,10 +201,10 @@ Actor PM_Hungry1
     Height 56
     Speed 6
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -264,7 +264,7 @@ Actor PM_Hungry1
 	TNT1 A 0 A_CheckSight("See")
 	ZHUN H 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	ZHUN BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	ZHUN B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	ZHUN BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
@@ -273,7 +273,7 @@ Actor PM_Hungry1
   Howl:
 	TNT1 A 0 A_CheckSight("See")
 	ZHUN C 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	ZHUN B 20 A_FaceTarget
 	ZHUN A 10 A_FaceTarget
 	Goto See
@@ -316,10 +316,10 @@ Actor PM_HungryMarine
     Height 56
     Speed 10
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -376,7 +376,7 @@ Actor PM_HungryMarine
 	TNT1 A 0 A_CheckSight("See")
 	ZOM3 G 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	ZOM3 BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	ZOM3 B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	ZOM3 BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
@@ -385,7 +385,7 @@ Actor PM_HungryMarine
   Howl:
 	TNT1 A 0 A_CheckSight("See")
 	ZOM3 D 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	ZOD4 A 20 A_FaceTarget
 	ZOM3 D 10 A_FaceTarget
 	Goto See
@@ -424,10 +424,10 @@ Actor PM_HungrySci1
     Height 56
     Speed 10
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -484,7 +484,7 @@ Actor PM_HungrySci1
 	TNT1 A 0 A_CheckSight("See")
 	SCZA G 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	SCZA BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	SCZA B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	SCZA BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
@@ -493,7 +493,7 @@ Actor PM_HungrySci1
   Howl:
 	TNT1 A 0 A_CheckSight("See")
 	SCZA B 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	SCZA G 20 A_FaceTarget
 	SCZA D 10 A_FaceTarget
 	Goto See
@@ -538,10 +538,10 @@ Actor PM_HungrySci2
     Height 56
     Speed 10
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -598,7 +598,7 @@ Actor PM_HungrySci2
 	TNT1 A 0 A_CheckSight("See")
 	SCZC G 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	SCZC BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	SCZC B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	SCZC BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
@@ -607,7 +607,7 @@ Actor PM_HungrySci2
   Howl:
 	TNT1 A 0 A_CheckSight("See")
 	SCZC B 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	SCZA G 20 A_FaceTarget
 	SCZC D 10 A_FaceTarget
 	Goto See
@@ -652,10 +652,10 @@ Actor PM_HungrySoldier
     Height 56
     Speed 10
     PainChance 200
-    SeeSound "Hunger/sight"
-    PainSound "Hunger/pain"
-    DeathSound "Hunger/death"
-    ActiveSound "Hunger/active"
+    SeeSound "Afflicted/Sight"
+    PainSound "Afflicted/Pain"
+    DeathSound "Afflicted/Death"
+    ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
 	Species "PukeMonster"
@@ -712,7 +712,7 @@ Actor PM_HungrySoldier
 	TNT1 A 0 A_CheckSight("See")
 	ZHU1 E 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	ZHU1 BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	ZHU1 B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	ZHU1 BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
@@ -721,7 +721,7 @@ Actor PM_HungrySoldier
   Howl:
 	TNT1 A 0 A_CheckSight("See")
 	ZHU1 B 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("HUNHOW")
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	ZHU1 E 20 A_FaceTarget
 	ZHU1 D 10 A_FaceTarget
 	Goto See

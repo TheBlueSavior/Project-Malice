@@ -76,7 +76,7 @@ ACTOR PM_Beholder: Cacodemon
   Eyes:
 	CAB1 BBBBBBC 5 A_FaceTarget
 	TNT1 A 0 A_PlaySound("BloodPuke/Fire")
-	TNT1 A 0 A_PlaySound("HUNPUK",CHAN_6)
+	TNT1 A 0 A_PlaySound("Afflicted/Puke",CHAN_6)
 	CAB1 D 30
 	{
 	A_FaceTarget;
