@@ -46,7 +46,7 @@ ACTOR PM_ZombieSoldier : Zombieman
         POS1 EEE 6 A_FaceTarget
 		TNT1 A 0 A_Jump(60,"OnceShot")
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
@@ -54,7 +54,7 @@ ACTOR PM_ZombieSoldier : Zombieman
 		}
 		POS1 E 3 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
@@ -62,7 +62,7 @@ ACTOR PM_ZombieSoldier : Zombieman
 		}
 		POS1 E 3 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
@@ -70,7 +70,7 @@ ACTOR PM_ZombieSoldier : Zombieman
 		}
 		POS1 E 3 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
@@ -80,7 +80,7 @@ ACTOR PM_ZombieSoldier : Zombieman
         Goto See
 	OnceShot:
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
@@ -92,7 +92,7 @@ ACTOR PM_ZombieSoldier : Zombieman
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Attack",CHAN_6)
 		POS1 EE 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("weapons/assaultrifle")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Rifle")
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		A_CustomMissile("PM_BulletTracer",33,9,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));

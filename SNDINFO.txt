@@ -655,6 +655,7 @@ $random Nail/Ricochet { NailRic1 NailRic2 }
 NailRic1 "Sounds/Monsters/Nailgunner/NailImpact1.ogg"
 NailRic2 "Sounds/Monsters/Nailgunner/NailImpact2.ogg"
 $limit Nailgunner/Fire 0
+$rolloff Nailgunner/Fire 300 2200
 
 Nailgunner/Charge "Sounds/Monsters/Nailgunner/NailgunnerCharge.ogg"
 
@@ -877,9 +878,6 @@ FlyHit/Hit FLYHIT
 SFX/Buzz	DSBUZZ
 $rolloff SFX/Buzz 3 30
 
-weapons/assaultrifle		dscgun
-$rolloff weapons/assaultrifle 300 2200
-
 Rat/Squeek	DSRAT
 Rat/Active	DSRATIDL
 DSRATDI1	DSRATDI1
@@ -950,6 +948,9 @@ ZombieSoldier/Death3 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath3.ogg"
 ZombieSoldier/Death4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath4.ogg"
 ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5.ogg"
 ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6.ogg"
+
+ZombieSoldier/Rifle		"Sounds/Monsters/SFX/ZombieSoldierRifle.ogg"
+$rolloff ZombieSoldier/Rifle 300 2200
 
 //HelmetedZombie
 
@@ -1802,6 +1803,7 @@ GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.wav"
 
 GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
 $limit GenericPlasmaFire 0
+$rolloff GenericPlasmaFire 350 2000
 
 Paladin/Sight	HPALSIT
 Paladin/Active	HPALACT
