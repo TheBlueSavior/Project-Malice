@@ -2119,7 +2119,7 @@ $limit Tyrant/Death 1 32000
 Tyrant/Rocket "Sounds/Monsters/Tyrant/TyrRocket.ogg"
 Tyrant/RocketExp "Sounds/Monsters/Tyrant/TyrRocketExp.ogg"
 $rolloff Tyrant/Rocket 300 2200
-$rolloff Tyrant/RocketX 450 1500
+$rolloff Tyrant/RocketExp 450 1500
 
 $random Tyrant/Missile { TyrMissile1 TyrMissile2 TyrMissile3 }
 TyrMissile1 "Sounds/Monsters/Tyrant/TyrMissile1.ogg"
