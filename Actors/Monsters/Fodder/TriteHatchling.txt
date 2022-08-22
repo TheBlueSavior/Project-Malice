@@ -96,14 +96,14 @@ Actor TriteHatchling
   Melee:
     TRI2 A 13 A_FaceTarget
     TRI2 A 0 A_Jump(192, 2)
-    TRI2 A 0 A_PlaySound("HTRISEE")
+    TRI2 A 0 A_PlaySound("HTrite/Sight")
     TRI2 E 13 A_CustomMeleeAttack(1,"Trite/MeleeHit",0,0,0)
     Goto See
   Missile:
 	TNT1 A 0 A_Jump(235,"See")
 	TRI2 A 1 A_FaceTarget
     TRI2 AAAAAAAAAAAAA 3
-    TRI2 F 0 A_PlaySound("HTRISEE")
+    TRI2 F 0 A_PlaySound("HTrite/Sight")
     TRI2 F 0 A_Recoil(-16)
     TRI2 F 10 ThrustThingZ(0, 25, 0, 1)
     TRI2 E 8 

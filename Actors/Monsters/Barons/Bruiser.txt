@@ -181,7 +181,8 @@ Actor PM_BruiserSmallFireball : DoomImpBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 13
-	SeeSound "redballbsee"
+	SeeSound "HeresyLord/RedFire"
+	DeathSound "HeresyLord/BarrageRedDeath"
 	Damage (random(19,25))
 	Scale 0.15
 	states

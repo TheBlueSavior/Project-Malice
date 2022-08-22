@@ -1348,6 +1348,8 @@ HeresyLord/BarrageRCharge "Sounds/Monsters/HeresyLord/HeresyLBRCharge.wav"   //m
 HeresyLord/BarrageWCharge "Sounds/Monsters/HeresyLord/HeresyLBWCharge.wav"   //missile2charge	h20016
 
 $limit HeresyLord/BarrageRedFire 15
+$pitchshift HeresyLord/BarrageRedDeath 5
+$pitchshift HeresyLord/BarrageRedFire 5
 
 HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.wav"
 HeresyLord/RedDeath	    "Sounds/Monsters/HeresyLord/HeresyLRBDeath.wav"
@@ -1551,7 +1553,9 @@ GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.wav"
 $volume Glutton/Attack 0.9
 
 Glutton/Pain "Sounds/Monsters/Glutton/GluttonPain.ogg"
-Glutton/Death "Sounds/Monsters/Glutton/GluttonDeath.ogg"
+$random Glutton/Death { GluttonDeath1 GluttonDeath2 }
+GluttonDeath1 "Sounds/Monsters/Glutton/GluttonDeath1.ogg"
+GluttonDeath2 "Sounds/Monsters/Glutton/GluttonDeath2.ogg"
 
 TORTURE4 TORTURE4
 

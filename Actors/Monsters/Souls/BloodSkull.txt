@@ -22,7 +22,7 @@ Species "Soul"
 SeeSound "BSkull/See"
 PainSound "BSkull/Pain"
 DeathSound "BSkull/Death"
-ActiveSound "BloodSkull/Active"
+ActiveSound "BSkull/Active"
 Obituary "%o got spat on by a blood skull."
 Tag "Blood Skull"
 States

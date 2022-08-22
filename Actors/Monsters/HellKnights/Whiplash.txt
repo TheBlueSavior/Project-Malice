@@ -198,7 +198,7 @@ Actor PM_Whiplash : PMMonster
 	A_FaceTarget;
 	A_SpawnItemEx("PurpleOrbSmall",14,17,37);
 	}
-	TNT1 A 0 A_PlaySound("WHIGFIR")
+	TNT1 A 0 A_PlaySound("Whiplash/GroundFire")
 	WHIP FF 1 A_FaceTarget
 	WHIP G 8 Light("WhipKnife") A_CustomMissile("PM_WhiplashGroundSeeker")
 	WHIP F 5 A_FaceTarget

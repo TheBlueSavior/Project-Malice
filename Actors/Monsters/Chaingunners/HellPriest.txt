@@ -68,7 +68,7 @@ Actor PM_HellPriest
 	Goto Missile2+2
   VoidMissile:
 	ACOL DD 5 A_FaceTarget
-	TNT1 A 0 A_PlaySoundEx("missile1charge",CHAN_6)
+	TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageRCharge",CHAN_6)
 	ACOL EEEEEEEEEEEEEEE 1 Light("SmallBlacklight")
 	{
 	A_FaceTarget;
