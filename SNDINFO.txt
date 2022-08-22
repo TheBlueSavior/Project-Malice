@@ -949,7 +949,7 @@ ZombieSoldier/Death4 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath4.ogg"
 ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5.ogg"
 ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6.ogg"
 
-ZombieSoldier/Rifle		"Sounds/Monsters/SFX/ZombieSoldierRifle.ogg"
+ZombieSoldier/Rifle		"Sounds/Monsters/ZombieSoldier/ZombieSoldierRifle.ogg"
 $rolloff ZombieSoldier/Rifle 300 2200
 
 //HelmetedZombie
