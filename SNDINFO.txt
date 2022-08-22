@@ -1553,9 +1553,8 @@ GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.wav"
 $volume Glutton/Attack 0.9
 
 Glutton/Pain "Sounds/Monsters/Glutton/GluttonPain.ogg"
-$random Glutton/Death { GluttonDeath1 GluttonDeath2 }
-GluttonDeath1 "Sounds/Monsters/Glutton/GluttonDeath1.ogg"
-GluttonDeath2 "Sounds/Monsters/Glutton/GluttonDeath2.ogg"
+Glutton/Death "Sounds/Monsters/Glutton/GluttonDeath.ogg"
+
 
 TORTURE4 TORTURE4
 
