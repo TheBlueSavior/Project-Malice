@@ -23,7 +23,7 @@ ACTOR PM_Brute : Demon
 	ActiveSound "Brute/Active"
 	PainSound "Brute/Pain"
 	AttackSound "GenericPinkyBite"
-	Obituary "%o was mauled by a hungry Brute"
+	Obituary "%o was mauled by a hungry Brute."
 	Tag "Brute"
 	States
 	{

@@ -5,9 +5,9 @@ ACTOR PM_Beholder: Cacodemon
 	DeathSound "Beholder/Death"
 	ActiveSound "Beholder/Active"
 	//DropItem "RagePoint1"
-  Obituary "A Beholder has shared it's torment with %o"
+  Obituary "A Beholder has shared it's torment with %o."
   Bloodcolor "DarkRed"
-	HitObituary "%o was assimilated by a Beholder"
+	HitObituary "%o was assimilated by a Beholder."
   health 450
   speed 4
   +DONTHARMSPECIES

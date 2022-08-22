@@ -16,8 +16,8 @@ ACTOR PM_Noble
 	ActiveSound "Noble/Active"
 	PainSound 	"Squire/Pain"
 	DeathSound 	"Squire/Death"
-	HitObituary "%o was pummeled by a Noble."
-	Obituary "%o was scorched by a Noble."
+	HitObituary "%o regrets getting close to a Noble."
+	Obituary "%o was flushed out by a Noble."
 	Scale 1.05
 	Gravity 0.83
 	WoundHealth 60

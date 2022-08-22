@@ -16,6 +16,7 @@ ACTOR PM_Rotfly
   PainSound "Rotfly/Pain"
   DeathSound "Rotfly/Death"
   Tag "Rotfly"
+  Obituary "o% was somehow killed by a Rotfly."
   +FLOAT
   +NOGRAVITY
   -COUNTKILL

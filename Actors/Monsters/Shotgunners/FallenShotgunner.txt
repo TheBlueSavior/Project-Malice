@@ -17,7 +17,7 @@ Class PM_FallenShotgunner : Actor
     ActiveSound "FallenSoldiers/Active";
     PainSound "FallenSoldiers/Pain";
     DeathSound "FallenSoldiers/Death";
-    Obituary "%o was gunned down by a Fallen Shotgunner";
+    Obituary "%o's innards were revealed by a Fallen Shotgunner.";
     //Decal "BulletChip";
     DropItem "Shotgun";
 	Species "Shotgunner";

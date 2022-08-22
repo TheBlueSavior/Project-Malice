@@ -9,9 +9,9 @@ Actor Voidspawn
     PainChance 256
     SeeSound "Voidspawn/See"
     PainSound ""
-    DeathSound "VS1DIE"
+    DeathSound "Voidspawn/Death"
     ActiveSound "Voidspawn/Active"
-    Obituary "%o is gone."
+    Obituary "%o was taken."
 	DropItem "Clip", 100
 	Tag "V??IDSP?WN"
     Monster

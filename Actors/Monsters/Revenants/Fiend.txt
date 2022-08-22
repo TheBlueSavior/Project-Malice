@@ -17,7 +17,7 @@ Actor PM_Fiend : Revenant
   DeathSound "Fiend/Death"
   ActiveSound "Fiend/Active"
   //DropItem "RagePoint1"
-  Obituary "%o had trouble dodging a Fiends's fireball barrage."
+  Obituary "%o had trouble dodging a Fiend's fireball barrage."
   HitObituary "%o was punched by a revenant."
   Gibhealth 40
   States

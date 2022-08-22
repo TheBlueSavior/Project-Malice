@@ -15,7 +15,7 @@ ACTOR PM_HeavyCarbineZombie
   DeathSound "CarbineZombie/Death"
   ActiveSound "CarbineZombie/Active"
   Tag "Heavy Carbine Zombie"
-  Obituary "%o was shot to pieces by a Heavy Carbine-wielding zombie."
+  Obituary "%o was shot to pieces by a Heavy Carbine Zombie."
   Dropitem "Chaingun"
   Species "Chaingunner"
   States

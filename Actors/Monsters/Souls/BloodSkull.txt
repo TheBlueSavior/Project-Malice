@@ -23,7 +23,7 @@ SeeSound "BSkull/See"
 PainSound "BSkull/Pain"
 DeathSound "BSkull/Death"
 ActiveSound "BloodSkull/Active"
-Obituary "%o got spitted by a blood skull."
+Obituary "%o got spat on by a blood skull."
 Tag "Blood Skull"
 States
 {

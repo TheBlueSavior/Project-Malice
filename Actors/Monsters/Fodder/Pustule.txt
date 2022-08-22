@@ -16,7 +16,7 @@ actor Pustule : RandomSpawner 14000
 
 actor Pustule1
 {
-  obituary "%o was popped by a pustule."
+  obituary "%o was popped by a Pustule."
   health 65
   radius 20
   height 24

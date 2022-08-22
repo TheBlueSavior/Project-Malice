@@ -15,7 +15,7 @@ ACTOR PM_DecayedShotgunner
 	+DONTHARMSPECIES
 	Species "Shotgunner"
 	Tag "Decayed Shotgunner"
-    OBITUARY "%o was killed by A Decayed Shotgunner!"
+    OBITUARY "%o was caught in a Decayed Shotgunner's blast."
     SeeSound "Decayed/Sight"
     PainSound "Decayed/Pain"
     DeathSound "Decayed/Death"

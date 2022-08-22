@@ -1,7 +1,7 @@
 actor PM_Devil : DoomImp
 {
-  obituary "%o was fried by a Devil."
-  hitobituary "%o was flayed by a Devil."
+  obituary "%o had a fireball thrown at %k face by a lucky Devil."
+  hitobituary "%o was clawed to death by a lucky Devil."
   health 60
   //radius 20
   //height 56

@@ -28,7 +28,7 @@ actor PM_HeresyLord
     ActiveSound "HeresyLord/Active"
     MeleeSound "baron/melee"
 	Tag "Heresy Lord"
-    Obituary "%o was slaughtered by a Heresy Lord."
+    Obituary "%o fell before the unholy might of a Heresy Lord."
     MeleeDamage 8
     States
     {

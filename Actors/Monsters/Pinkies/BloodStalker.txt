@@ -25,7 +25,7 @@ ACTOR PM_BloodStalker : Demon
 	ActiveSound "BStalker/Active"
 	PainSound "BStalker/Pain"
 	Tag "Blood Stalker"
-	Obituary "%o was torn apart by a bloodthirsty Blood Stalker"
+	Obituary "%o was torn apart before %g could react by a Blood Stalker."
 	States
 	{
 		Spawn:

@@ -15,6 +15,7 @@ ACTOR MaliceSwarm
 	Height 48
 	Speed 10
 	MeleeRange 7
+	Obituary "o% was pestered to death by a Fly Swarm."
 	DeathSound "SwarmFlyDeath"
 	RenderStyle None
 	States

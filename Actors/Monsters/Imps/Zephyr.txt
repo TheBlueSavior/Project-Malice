@@ -1,6 +1,6 @@
 actor PM_Zephyr : DoomImp
 {
-  obituary "%o was outpaced a Zephyr."
+  obituary "%o was outpaced by a Zephyr."
   hitobituary "%o was ripped in half by a Zephyr."
   health 50
   //Radius 20

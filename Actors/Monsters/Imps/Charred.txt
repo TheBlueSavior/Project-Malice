@@ -11,8 +11,8 @@ Actor PM_Charred : DoomImp
   ActiveSound "Charred/Active"
   PainSound "Charred/Pain"
   DeathSound "Charred/Death"
-  Obituary "%o was burnt by a Charred."
-  HitObituary "%o's skin melted off from a Charred."
+  Obituary "%o turned into a screeching inferno from a Charred."
+  HitObituary "%o's skin melted off from a Charred's claws."
   Bloodcolor "DarkRed"
   //DropItem "RagePoint1"
   +NOTARGET
