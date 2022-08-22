@@ -1073,7 +1073,7 @@ ACTOR TyrantStreamRocket : RevenantTracer
 	Projectile 
 	+RANDOMIZE
 	RenderStyle Normal
-	SeeSound "Tyrant/RocketRiver"
+	SeeSound "Tyrant/Missile"
 	DeathSound "Tyrant/MissileExp"
 	States
 	{
@@ -1110,7 +1110,7 @@ ACTOR TyrantSmallRocket : RevenantTracer
 	+RANDOMIZE
 	+SeekerMissile
 	RenderStyle Normal
-	SeeSound "Tyrant/Missile"
+	SeeSound "Tyrant/RocketRiver"
 	DeathSound "Tyrant/MissileExp"
 	Scale 0.7
 	States

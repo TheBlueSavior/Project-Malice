@@ -2134,6 +2134,11 @@ TyrMissileX3 "Sounds/Monsters/Tyrant/TyrMissileX3.ogg"
 Tyrant/RocketRiver "Sounds/Monsters/Tyrant/TyrSmallRocket.wav"
 $limit Tyrant/RocketRiver 0
 $volume Tyrant/RocketRiver 0.7
+$rolloff Tyrant/RocketRiver 450 2200
+$limit Tyrant/Missile 0
+$volume Tyrant/Missile 0.7
+$rolloff Tyrant/Missile 300 2200
+$rolloff Tyrant/MissileExp 300 1500
 
 Tyrant/RailCharge "Sounds/Monsters/Tyrant/TyrRailCharge.ogg"
 Tyrant/RailWarn "Sounds/Monsters/Tyrant/TyrRailWarning.ogg"
