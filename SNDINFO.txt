@@ -615,10 +615,10 @@ Nightmare/Sight "Sounds/Monsters/Nightmare/NightmareSight.ogg"
 Nightmare/Pain  "Sounds/Monsters/Nightmare/NightmarePain.flac"
 Nightmare/Death "Sounds/Monsters/Nightmare/NightmareDeath.ogg"
 $random Nightmare/Active { NMareAct1 NMareAct2 NMareAct3 NMAreAct4 }
-DNMareAct1 "Sounds/Monsters/Nightmare/NightmareActive1.ogg"
-DNMareAct2 "Sounds/Monsters/Nightmare/NightmareActive2.ogg"
-DNMareAct3 "Sounds/Monsters/Nightmare/NightmareActive3.ogg"
-DNMareAct4 "Sounds/Monsters/Nightmare/NightmareActive4.ogg"
+NMareAct1 "Sounds/Monsters/Nightmare/NightmareActive1.ogg"
+NMareAct2 "Sounds/Monsters/Nightmare/NightmareActive2.ogg"
+NMareAct3 "Sounds/Monsters/Nightmare/NightmareActive3.ogg"
+NMareAct4 "Sounds/Monsters/Nightmare/NightmareActive4.ogg"
 Nightmare/Melee "Sounds/Monsters/Nightmare/NightmareAttack.ogg"
 
 $volume Nightmare/Sight 0.5
@@ -781,7 +781,7 @@ Hectebus/Aim "Sounds/Monsters/Hectebus/HectebusAim.ogg"
 GenericMancShot "Sounds/Monsters/SFX/GenericMancShot.ogg"
 
 //Host
-HostCharge "Sounds/Monsters/Host/HostCharge.ogg"
+Host/Charge "Sounds/Monsters/Host/HostCharge.ogg"
 HostAttack "Sounds/Monsters/Host/HostAttack.ogg"
 HostFire "Sounds/Monsters/Host/HostFire.ogg" //formerly POISSHOT
 
@@ -950,6 +950,7 @@ ZombieSoldier/Death5 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath5.ogg"
 ZombieSoldier/Death6 "Sounds/Monsters/ZombieSoldier/ZombieSoldierDeath6.ogg"
 
 ZombieSoldier/Rifle		"Sounds/Monsters/ZombieSoldier/ZombieSoldierRifle.ogg"
+$limit ZombieSoldier/Rifle 20
 $rolloff ZombieSoldier/Rifle 300 2200
 
 //HelmetedZombie
@@ -1668,10 +1669,10 @@ ProwDeath3 "Sounds/Monsters/Prowler/ProwlerDeath3.ogg"
 ProwDeath4 "Sounds/Monsters/Prowler/ProwlerDeath4.ogg"
 
 $random Prowler/Swing { ProwSwing1 ProwSwing2 ProwSwing3 ProwSwing4 }
-Prowler/Swing1 "Sounds/Monsters/Prowler/ProwlerSwing1.ogg"
-Prowler/Swing2 "Sounds/Monsters/Prowler/ProwlerSwing2.ogg"
-Prowler/Swing3 "Sounds/Monsters/Prowler/ProwlerSwing3.ogg"
-Prowler/Swing4 "Sounds/Monsters/Prowler/ProwlerSwing4.ogg"
+ProwSwing1 "Sounds/Monsters/Prowler/ProwlerSwing1.ogg"
+ProwSwing2 "Sounds/Monsters/Prowler/ProwlerSwing2.ogg"
+ProwSwing3 "Sounds/Monsters/Prowler/ProwlerSwing3.ogg"
+ProwSwing4 "Sounds/Monsters/Prowler/ProwlerSwing4.ogg"
 
 $random Prowler/Cover { ProwCover1 ProwCover2 ProwCover3 }
 ProwCover1 "Sounds/Monsters/Prowler/ProwlerCover1.ogg"
@@ -2514,6 +2515,23 @@ Corpse/FallMed4 "Sounds/Other/CorpseFallMedium4.ogg"
 Corpse/FallMed5 "Sounds/Other/CorpseFallMedium5.ogg"
 
 $rolloff Corpse/FallMed 400 1200
+
+$random ZTrooper/FragBounce { ZTroFragBounce1 ZTroFragBounce2 ZTroFragBounce3 ZTroFragBounce4 }
+ZTroFragBounce1 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce1.ogg"
+ZTroFragBounce2 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce2.ogg"
+ZTroFragBounce3 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce3.ogg"
+ZTroFragBounce4 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce4.ogg"
+$limit ZTrooper/FragBounce 20
+
+ZTrooper/FragArm "Sounds/Monsters/ZombieTrooper/ZTroFragArm.ogg"
+$rolloff ZTrooper/FragArm 400 1500
+
+ZTrooper/FragThrow "Sounds/Monsters/ZombieTrooper/ZTroFragThrow.ogg"
+$limit ZTrooper/FragThrow 10
+
+ZTrooper/FragExp "Sounds/Monsters/ZombieTrooper/ZTroFragExp.wav"
+$rolloff ZTrooper/FragArm 600 2200
+
 
 ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire.ogg"
 $limit ZTrooper/Fire 20

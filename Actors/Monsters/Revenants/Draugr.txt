@@ -65,7 +65,7 @@ ACTOR PM_Draugr : Revenant
 	A_FaceTarget;
 	}
     DRGR H 6 Bright Light("AvatarFireball4") 
-	TNT1 A 0 A_Playsound("Draugr/Proj", CHAN_5)
+	TNT1 A 0 A_Playsound("Draugr/RocketLaunch", CHAN_5)
     DRGR I 8 Light("AvatarFireball4")  
 	{
 	A_CustomMissile("PM_DraugrFastBall",66,-15,0,0);
