@@ -23,6 +23,7 @@ ACTOR PM_FallenMarine
   DeathSound "FallenSoldiers/Death"
   Obituary "%o was gunned down by a Fallen Marine."
   Dropitem "Chaingun"
+  DropItem "Lith_ClipBox"
   Species "Chaingunner"
   States
   {

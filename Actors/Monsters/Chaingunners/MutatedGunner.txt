@@ -17,6 +17,7 @@ ACTOR PM_MutatedGunner
 	ActiveSound "MutatedGunner/Active"
 	Tag "Mutated Gunner"
 	Dropitem "Chaingun"
+	DropItem "Lith_ClipBox"
 	Species "Chaingunner"
 	Obituary "%o was riddled with holes by the Mutated Gunner."
 	States

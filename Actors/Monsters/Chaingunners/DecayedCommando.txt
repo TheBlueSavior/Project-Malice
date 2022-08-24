@@ -12,6 +12,7 @@ Actor PM_DecayedCommando
   Deathsound "Decayed/Death"
   Activesound "Decayed/Active"
   Dropitem "Chaingun"
+  DropItem "Lith_ClipBox"
   Species "Chaingunner"
   Tag "Decayed Commando"
   Monster

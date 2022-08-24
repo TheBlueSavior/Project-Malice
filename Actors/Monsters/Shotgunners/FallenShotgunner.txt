@@ -20,6 +20,7 @@ Class PM_FallenShotgunner : Actor
     Obituary "%o's innards were revealed by a Fallen Shotgunner.";
     //Decal "BulletChip";
     DropItem "Shotgun";
+	DropItem "Lith_Shell";
 	Species "Shotgunner";
 	Tag "Fallen Shotgunner";
     Monster;

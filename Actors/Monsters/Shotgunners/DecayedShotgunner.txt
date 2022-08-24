@@ -20,6 +20,7 @@ ACTOR PM_DecayedShotgunner
     PainSound "Decayed/Pain"
     DeathSound "Decayed/Death"
     ActiveSound "Decayed/Active"
+	DropItem "Lith_Shell"
     DropItem "Shotgun"
     states
     {

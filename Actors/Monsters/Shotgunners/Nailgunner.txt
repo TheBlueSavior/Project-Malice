@@ -21,6 +21,7 @@ ACTOR PM_Nailgunner
   DeathSound "Nailgunner/Death"
   ActiveSound "Nailgunner/Active"
   Obituary "%o got spiked by a Nailgunner."
+  DropItem "Lith_Shell"
   DropItem "Shotgun"
   States
   {

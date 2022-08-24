@@ -40,8 +40,8 @@ ACTOR PM_ZombieTrooper : Zombieman
 		UTM2 DD 4 A_Chase
 		TNT1 AA 0 A_Recoil(-1)
         Loop
-    Missile:
-	    TNT1 A 0 A_CheckRange(450,"GrenadeCheck")
+     Missile:
+        TNT1 A 0 A_Jump(43,"GrenadeCheck")
 		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight")
 		TNT1 A 0 A_Jump(40,"Missile2")
         UTM2 EEEEE 1 A_FaceTarget
@@ -109,12 +109,14 @@ ACTOR PM_ZombieTrooper : Zombieman
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileRight")
 	  Goto See
-	GrenadeCheck:
-      TNT1 A 0 A_Jump(138,"MissileLeft","MissileRight","Missile2")
+    GrenadeCheck:
       TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2")
-      Goto RealGrenade
+      TNT1 A 0 A_CheckRange(600,"GrenadeFar")
+      TNT1 A 0 A_CheckRange(450,"RealGrenade")
+      TNT1 A 0 A_CheckRange(150,"GrenadeNear")
+      TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2")
+      Goto Missile
     RealGrenade:
-      TNT1 A 0 A_Jump(88,"MissileLeft","MissileRight","Missile2")
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
       UTM2 AA 5 A_FaceTarget
@@ -126,7 +128,30 @@ ACTOR PM_ZombieTrooper : Zombieman
        A_FaceTarget;
       }
       Goto See
-    Pain:
+    GrenadeFar:
+      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
+      TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
+      UTM2 AA 5 A_FaceTarget
+      TNT1 A 0 A_PlaySound("ZTrooper/FragThrow",CHAN_6)
+      UTM2 AA 5 A_FaceTarget
+      UTM2 A 5 
+      {
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,19);
+       A_FaceTarget;
+      }
+      Goto See
+    GrenadeNear:
+      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
+      TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
+      UTM2 AA 5 A_FaceTarget
+      TNT1 A 0 A_PlaySound("ZTrooper/FragThrow",CHAN_6)
+      UTM2 AA 5 A_FaceTarget
+      UTM2 A 5 
+      {
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-5);
+       A_FaceTarget;
+      }
+      Goto See
     Pain:
         UTM2 G 5
         UTM2 G 3 A_Pain

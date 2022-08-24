@@ -17,6 +17,7 @@ ACTOR PM_HeavyCarbineZombie
   Tag "Heavy Carbine Zombie"
   Obituary "%o was shot to pieces by a Heavy Carbine Zombie."
   Dropitem "Chaingun"
+  DropItem "Lith_ClipBox"
   Species "Chaingunner"
   States
   {
