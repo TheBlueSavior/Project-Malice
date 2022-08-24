@@ -2179,7 +2179,7 @@ DraugProj2 "Sounds/Monsters/Draugr/DraugrProj2.ogg"
 DraugProj3 "Sounds/Monsters/Draugr/DraugrProj3.ogg"
 DraugProj4 "Sounds/Monsters/Draugr/DraugrProj4.ogg"
 
-DraugrArm "Sounds/Monsters/Draugr/DraugrArm.ogg"
+Draugr/Arm "Sounds/Monsters/Draugr/DraugrArm.ogg"
 
 $random Draugr/Sight { Draugr/Sight1 Draugr/Sight2 Draugr/Sight3 }
 $random Draugr/Active { Draugr/Active1 Draugr/Active2 Draugr/Active3 }
