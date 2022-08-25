@@ -793,7 +793,7 @@ Actor HungrySeekSpawn
 		Loop
 	Create:
 		TNT1 A 0 A_SpawnItemEx("Hungry")
-		TNT1 A 0 A_PlaySound("HUNSPA")
+		TNT1 A 0 A_PlaySound("Afflicted/Spawn")
 		Stop
 	Die:
 		Stop	
