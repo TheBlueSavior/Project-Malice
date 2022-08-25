@@ -492,7 +492,7 @@ Class HSummonedSoulBall : DoomImpBall
 	RenderStyle "Add";
 	Alpha 1;
 	Scale 1.3;
-	SeeSound "redballssee";
+	SeeSound "HeresyLord/BarrageRedFire";
 	DeathSound "imp/shotx";
    }
 	States
