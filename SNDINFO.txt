@@ -2338,9 +2338,9 @@ ExileImmoStart1 "Sounds/Monsters/Exile/ExileImmoStart1.ogg"
 ExileImmoStart2 "Sounds/Monsters/Exile/ExileImmoStart2.ogg"
 
 $random Exile/Immolate { ExileImmo1 ExileImmo2 ExileImmo3 }
-ExileImmo1 "Sounds/Monsters/Exile/ExileImmo1.ogg"
-ExileImmo2 "Sounds/Monsters/Exile/ExileImmo2.ogg"
-ExileImmo3 "Sounds/Monsters/Exile/ExileImmo3.ogg"
+ExileImmo1 "Sounds/Monsters/Exile/ExileImmolate1.ogg"
+ExileImmo2 "Sounds/Monsters/Exile/ExileImmolate2.ogg"
+ExileImmo3 "Sounds/Monsters/Exile/ExileImmolate3.ogg"
 $limit Exile/Immolate 12
 $volume Exile/Immolate 0.5
 
