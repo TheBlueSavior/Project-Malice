@@ -23,7 +23,7 @@ ACTOR PM_Infested
   ActiveSound "Infested/Active"
   MeleeSound "skeleton/melee"
   Tag "Infested"
-  HitObituary "o% fell victim to an Infested."
+  HitObituary "%o fell victim to an Infested."
   States
   {
   Spawn:
