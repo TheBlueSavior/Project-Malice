@@ -155,7 +155,7 @@ Actor PM_Exile : Archvile
 	FireWall:
 	TNT1 A 0 A_Jump(100,"Fireball","GroundFlames","FireLake")
 	TNT1 A 0 A_FaceTarget
-	TNT1 A 0 A_PlaySound("ExileImmolateStart",CHAN_6)
+	TNT1 A 0 A_PlaySound("Exile/ImmolateStart",CHAN_6)
 	TNT1 A 0 A_SpawnItemEx("ExileAttackFire",96,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SpawnItemEx("ExileAttackFire",88,24,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0 A_SpawnItemEx("ExileAttackFire",88,-24,0,0,0,0,0,SXF_NOCHECKPOSITION)
