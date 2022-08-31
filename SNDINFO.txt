@@ -1532,6 +1532,8 @@ NetherConduitSmallZap1 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap1.ogg
 NetherConduitSmallZap2 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap2.ogg"
 NetherConduitSmallZap3 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap3.ogg"
 
+NetherConduit/StreamCharge "Sounds/Monsters/NetherConduit/NetherConduitStreamCharge.ogg"
+$rolloff NetherConduit/StreamCharge 800 2000
 
 $rolloff NetherConduit/ZapExp 800 2000
 $volume NetherConduit/Sight 0.7
