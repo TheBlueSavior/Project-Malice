@@ -280,7 +280,7 @@ Actor WizardSmoke
 
 ACTOR PM_HuskSmallFireball : DoomImpBall
 {
-  Speed 10
+  Speed 8
   Damage 2
   Scale 0.8
   Projectile 
