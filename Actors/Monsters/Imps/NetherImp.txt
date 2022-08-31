@@ -53,6 +53,8 @@ Class PM_NetherImp : Actor
     DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("ConduitLightning")
 	{
 	A_FaceTarget();
+	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, 30, random (0, 140), 2, random (0, 360));
+	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, -30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
@@ -70,6 +72,8 @@ Class PM_NetherImp : Actor
     DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("ConduitLightning")
 	{
 	A_FaceTarget();
+	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, 30, random (0, 140), 2, random (0, 360));
+	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, -30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
@@ -229,18 +233,19 @@ Class PM_NetherLightning : Actor
     NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
     loop;
   Death:
-    TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+    TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
 	TNT1 A 0 A_SpawnItemEx("BlueShock",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("PM_BlueLongFlare",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("NetherShockFlare",0,0,0);
 	TNT1 AAAAA 0 A_SpawnProjectile("BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
-    NLIT ABC 1 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"BulletPuff",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
-	NLIT DEFG 1 Bright Light("ConduitLightning") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"BulletPuff",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+    NLIT ABC 2 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	NLIT DEFG 2 Bright Light("ConduitLightning") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
+	TNT1 AAAAA 5 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare2",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
     Stop;
   }
 }

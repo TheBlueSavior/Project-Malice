@@ -642,8 +642,8 @@ ACTOR PM_ConduitArcs
 	//+MISSILE
 	RenderStyle Add
 	Alpha 1
-	Scale 0.05
-	Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
+	Scale 0.04
+	Translation "0:255=%[0,0,0]:[1.6,1.6,1.9]"
 	States
 	{
     Spawn:
@@ -1077,6 +1077,77 @@ Spawn:
 	A_FadeOut(0.01);
 	}
     Loop
+    }
+}
+
+ACTOR PM_ConduitFallingSparks
+{
+    Radius 4
+    Height 4
+    Speed 9
+	Mass 3
+	BounceFactor 0.6
+	WallBounceFactor 0.6
+	Gravity 0.7
+	+DOOMBOUNCE
+    +NOBLOCKMAP
+	+MISSILE
+    +NOTELEPORT
+    +DONTSPLASH
+    //+MOVEWITHSECTOR
+	+ROLLSPRITE
+    Scale 0.76
+    States
+    {
+    Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnParticle("FF8E24",SPF_FULLBRIGHT|SPF_RELATIVE,90,8,random(0,360),0,0,0,random(-1,1),random(-1,1),random(-1,0),0,0,0,1,0,-0.2)
+		Loop
+	Death:
+		TNT1 A 0
+		Stop
+    }
+}
+
+ACTOR PM_BlueLongFlare2
+{
++CLIENTSIDEONLY
++NOINTERACTION
++ALWAYSPUFF
++Bright
+Scale 0.1
+Alpha 0.95
+Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6)
+	TNT1 AA 0 A_SpawnItemEx("PM_ConduitFallingSparks",0,0,0,random(-8,8),random(-8,8),random(2,15),0,SXF_NOCHECKPOSITION,180)
+	Go:
+    DTPR A 1 Bright 
+	{
+	A_FadeOut(0.03);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_ConduitChargeFlare
+{
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++NOINTERACTION
+RenderStyle Add
+Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
++Bright
+Scale 0.32
+Alpha 0.3
+States
+{
+Spawn:
+    SPKO S 2 Bright 
+    Stop
     }
 }
 

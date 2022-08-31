@@ -1527,6 +1527,11 @@ $random NetherConduit/ZapExp { NetherConduitZapExp1 NetherConduitZapExp2 }
 NetherConduitZapExp1 "Sounds/Monsters/NetherConduit/NetherConduitZapExp1.ogg"
 NetherConduitZapExp2 "Sounds/Monsters/NetherConduit/NetherConduitZapExp2.ogg"
 
+$random NetherConduit/SmallZap { NetherConduitSmallZap1 NetherConduitSmallZap2 NetherConduitSmallZap3 }
+NetherConduitSmallZap1 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap1.ogg"
+NetherConduitSmallZap2 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap2.ogg"
+NetherConduitSmallZap3 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap3.ogg"
+
 
 $rolloff NetherConduit/ZapExp 800 2000
 $volume NetherConduit/Sight 0.7
