@@ -463,6 +463,32 @@ ACTOR GreenSmallShock
 	}
 }
 
+ACTOR PM_BlueSmallShock
+{
+	Radius 1
+	Height 1
+	Speed 1
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+    +DONTSPLASH
+	+ROLLSPRITE
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	+MISSILE
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.3
+	States
+	{
+    Spawn:
+        TNT1 A 1 A_SetRoll(random(0,360))
+        SH1K ABCDEFG 3 BRIGHT
+        Stop
+	}
+}
+
 ACTOR RedChargeFlareLarge
 {
 	Radius 1
@@ -599,6 +625,33 @@ ACTOR RailAimDot1
 	}
 }
 
+ACTOR PM_ConduitArcs
+{
+	Radius 1
+	Height 1
+	Speed 9
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+    +DONTSPLASH
+	+ROLLSPRITE
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	//+MISSILE
+	RenderStyle Add
+	Alpha 1
+	Scale 0.05
+	Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
+	States
+	{
+    Spawn:
+        SPKR A 4 BRIGHT
+		Stop
+	}
+}
+
 ACTOR RailAimDot2
 {
 	Radius 1
@@ -660,6 +713,7 @@ RenderStyle Add
 +Bright
 Scale 0.5
 Alpha 0.8
+Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
 States
 {
 Spawn:
@@ -996,6 +1050,25 @@ ACTOR GreenLongFlare
 +Bright
 Scale 0.22
 Alpha 0.95
+States
+{
+Spawn:
+    DTPR A 1 Bright 
+	{
+	A_FadeOut(0.01);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_BlueLongFlare
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright
+Scale 0.22
+Alpha 0.95
+Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]"
 States
 {
 Spawn:
