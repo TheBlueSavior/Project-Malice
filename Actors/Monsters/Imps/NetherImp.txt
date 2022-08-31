@@ -90,9 +90,9 @@ Class PM_NetherImp : Actor
     DRKF GGGGGGGGGGGGGGGGGGGGG 3 Light("ConduitLightning")
 	{
 	A_FaceTarget(1,90);
-	A_CustomRailgun(10,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",0,0,random(500,2000),0,6,0,"PM_ConduitArcsBig",22);
-	A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",30,30,random(500,1000),0,3.2,0,"PM_ConduitArcs",22);
-	A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",20,20,random(500,1000),0,3.2,0,"PM_ConduitArcs",22);
+	A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",0,0,random(500,2000),0,6,0,"PM_ConduitArcsBig",22);
+	A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",30,30,random(300,1000),0,3.2,0,"PM_ConduitArcs",22);
+	A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",10,10,random(300,1000),0,3.2,0,"PM_ConduitArcs",22);
 	}
 	DRKF EEEEEEEEEEEEEEEEEEEEEE 1 Light("ConduitLightning")
 	{
@@ -221,19 +221,19 @@ Class PM_NetherLightning : Actor
     NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
     loop;
   Death:
-    TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
+    TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 A 0 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
 	TNT1 A 0 A_SpawnItemEx("BlueShock",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("PM_BlueLongFlare",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("NetherShockFlare",0,0,0);
 	TNT1 AAAAA 0 A_SpawnProjectile("BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
-    NLIT ABC 2 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	NLIT DEFG 2 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
-	TNT1 AAAAA 5 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.2,0,"PM_ConduitArcs");
+    NLIT ABC 2 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	NLIT DEFG 2 Bright Light("ConduitLightning2") A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
+	TNT1 AAAAA 5 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,1.6,0,"PM_ConduitArcs");
     Stop;
   }
 }
