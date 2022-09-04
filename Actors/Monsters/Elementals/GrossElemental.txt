@@ -11,6 +11,7 @@ DeathSound "GrossElem/Die"
 ActiveSound "GrossElem/Idle"
 PainSound "GrossElem/Pain"
 AttackSound "GrossElem/Fire"
+Tag "Gross Elemental"
 Species "Elemental"
 +DONTHARMSPECIES
 +FLOATBOB

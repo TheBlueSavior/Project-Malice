@@ -107,9 +107,9 @@ ACTOR PM_Defiler
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget
 		DEFI F 0 A_PlaySound("Defiler/Fire")
 		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		DEFI F 0 A_CustomMissile("DefilerBall", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 0 A_CustomMissile("DefilerBall", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("DefilerBall", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
 		DEFI FED 4 A_FaceTarget
 		Goto Barrage
 	BFastSkull:
@@ -216,9 +216,9 @@ ACTOR PM_Defiler
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget
 		DEFI F 0 A_PlaySound("Defiler/Fire")
 		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		DEFI F 0 A_CustomMissile("DefilerBall", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 0 A_CustomMissile("DefilerBall", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("DefilerBall", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
+		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
 		DEFI FED 4 A_FaceTarget
 		Goto See2
     Roar:
@@ -365,7 +365,7 @@ ACTOR DefilerFire
 	}
 }
 
-ACTOR DefilerBall
+ACTOR PM_DefilerSoulSlow
 {
     Radius 10
     Height 12
@@ -431,7 +431,7 @@ ACTOR DefilerBall
     }
 }
 
-ACTOR DefilerShot 
+ACTOR DefilerShot
 {
 	Scale 1.5
     Radius 12
@@ -583,8 +583,8 @@ Actor PM_GagSoul
    +BRIGHT
    BounceFactor 1
    RENDERSTYLE "Add"
-	SeeSound "Forgotten/Active"
-   DeathSound "Forgotten/Death"
+	SeeSound "BurntSoul/Active"
+   DeathSound "BurntSoul/Death"
    States
    {
    Spawn:
@@ -713,7 +713,7 @@ ACTOR PM_GagSoulAttack : DoomImpBall
   RenderStyle Normal
   BounceType None
   PROJECTILE
-  Seesound "Forgotten/Attack"
+  Seesound "BurntSoul/Attack"
   DeathSound "imp/shotx"
   States
 	{

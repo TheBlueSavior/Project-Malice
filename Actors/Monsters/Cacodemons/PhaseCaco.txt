@@ -244,7 +244,7 @@ actor PM_PhaseCacoBall
 	+RANDOMIZE
 	RenderStyle Add
 	Alpha 1
-	SeeSound ""
+	SeeSound "PhaseCaco/Fire"
 	DeathSound "PhaseCaco/BallExp"
 	+FORCEXYBILLBOARD
 	MaxTargetRange 2
@@ -252,7 +252,6 @@ actor PM_PhaseCacoBall
 	States
 	{
 	Spawn:
-		TNT1 A 0 A_PlaySound("PhaseCaco/Fire",2,1,0)
 		CAB4 A 1 Bright Light("PhaseCacBall")
 		TNT1 A 0 A_SpawnItemEx("PhaseCacoBallTrail",0,0,0)
 		CAB4 A 1 Bright Light("PhaseCacBall")
