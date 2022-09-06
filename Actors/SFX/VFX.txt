@@ -77,7 +77,7 @@ Actor PM_CrawlingDemonFlee
   Monster
   SeeSound ""
   RenderStyle "Stencil"
-  StencilColor Black
+  StencilColor "Black"
   Alpha 0.2
   Scale 0.9
   Speed 15

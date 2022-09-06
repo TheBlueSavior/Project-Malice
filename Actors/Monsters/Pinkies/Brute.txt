@@ -16,7 +16,7 @@ ACTOR PM_Brute : Demon
 	MeleeDamage 4
 	MeleeRange 60
 	Speed 13
-	Scale 1.1
+	Scale 1
 	//DropItem "RagePoint1"
 	SeeSound "Brute/Sight"
 	DeathSound "Brute/Death"

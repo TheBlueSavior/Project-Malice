@@ -1080,7 +1080,7 @@ Actor FreshHorrorspawn
     ZFO1 L 5
 	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
     ZFO1 MMMMMMMMMMMMMMMMMM 5
-	TNT1 A 0 A_PlaySound("HUNPUK")
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
 	ZFO1 LLLLL 1 A_SpawnItemEx("MaliceBloodSplash",0,random(-2,2),5,random(-5,5),random(-5,5),random(1,15))
 	ZFO1 LLMMMLMLM 3 A_SpawnItemEx("MaliceBloodSplash",0,random(-2,2),5,random(-5,5),random(-5,5),random(1,15))
 	ZFO1 L 1 A_SpawnItemEx("MaliceBloodSplash",0,random(-2,2),5,random(-5,5),random(-5,5),random(1,8))
