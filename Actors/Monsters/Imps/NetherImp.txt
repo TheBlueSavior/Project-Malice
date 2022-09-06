@@ -2,7 +2,7 @@ Class PM_NetherImp : Actor
 {
   Default
   {
-    Health 120;
+    Health 180;
     radius 20;
 	height 56;
     Speed 6;
