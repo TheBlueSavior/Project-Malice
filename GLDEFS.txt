@@ -1668,20 +1668,18 @@ Flickerlight2 WatcherG
 
 Flickerlight2 WatcherShotA
 {
- Color 1.0 1.0 1.0
+ Color 1.0 1.0 1.3
  Offset 0 2 0
  Size 30
  SecondarySize 40
  Interval 0.01
 }
 
-Flickerlight2 WatcherShotB
+Pointlight WatcherShotB
 {
- Color 1.0 1.0 1.0
+ Color 0.4 0.4 0.55
  Offset 0 2 0
- Size 35
- SecondarySize 45
- Interval 0.01
+ Size 60
 }
 
 Flickerlight2 WatcherShotC
