@@ -86,8 +86,8 @@ Class PM_Watcher : Actor
 	Goto SeeGood;
   RandomDodge:
 	TNT1 A 0;
-	TNT1 A 0 ThrustThing(random(0,360),10);
-	TNT1 A 0 ThrustThingZ(0,7,random(0,1),1);
+	TNT1 A 0 ThrustThing(random(0,360),16);
+	TNT1 A 0 ThrustThingZ(0,13,random(0,1),1);
 	WATC AAAAAA 2
 	{
 	A_FaceTarget();
@@ -126,7 +126,7 @@ Class PM_Watcher : Actor
 	{
 	A_FaceTarget();
 	}
-    WATC GGGGGGGG 5 BRIGHT 
+    WATC GGGGGGGG 4 BRIGHT 
 	{
 	A_SpawnProjectile("PM_WatcherShotSmall",10,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
 	A_FaceTarget();
