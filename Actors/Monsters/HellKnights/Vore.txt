@@ -208,9 +208,21 @@ Actor PM_VoreShadowBall
   States
   {
   Spawn:
-    SBAL A 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("PM_VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE)
-	SBAL B 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("PM_VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE)
-	SBAL C 1 BRIGHT Light("GreenBall5") A_SpawnItemEx("PM_VoreShadowTrail", -10,random(-2,2),random(-2,2), 0,0,0, 0, SXF_CLIENTSIDE)
+    SBAL A 1 BRIGHT Light("GreenBall5")
+	{
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	}
+	SBAL B 1 BRIGHT Light("GreenBall5")
+	{
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	}
+	SBAL C 1 BRIGHT Light("GreenBall5")
+	{
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	}
     Loop
   Death:
     SBAL C 5 Bright Light("GreenBall2")

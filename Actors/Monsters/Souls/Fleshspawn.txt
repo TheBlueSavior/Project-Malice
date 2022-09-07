@@ -132,33 +132,6 @@ Class FleshSpawnGibs : Actor
   }
 }
 
-Class PM_WatcherShotSmall : Actor
-{
-  Default
-  {
-    Damage 2;
-    Speed 10;
-    Radius 3;
-    Height 5;
-    SeeSound "monster/watatk";
-    DeathSound "monster/wathit";
-    RenderStyle "Add";
-    Alpha 0.9;
-    Projectile;
-  }
-
-  states
-  {
-  Spawn:
-    FLBL ABCBABCBABCBABCBIJKLM 8 Bright;
-    Stop;
-  Death:
-    FLBL DEFGH 4 Bright;
-    Stop;
-  }
-}
-
-
 Class Fleshspawngib1 : Actor
 {
   Default

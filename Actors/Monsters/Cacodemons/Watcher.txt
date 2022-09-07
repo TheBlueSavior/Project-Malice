@@ -52,7 +52,7 @@ Class PM_Watcher : Actor
     Loop;
   SeeGood:
 	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-	TNT1 A 0 A_Jump(10,"DodgeLeft","DodgeRight");
+	TNT1 A 0 A_Jump(10,"DodgeLeft","DodgeRight","RandomDodge");
 	WATC A 1
 	{
 	A_SetSpeed(0);
@@ -68,6 +68,7 @@ Class PM_Watcher : Actor
 	Goto See;
   DodgeLeft:
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0);
+	TNT1 A 0 ThrustThingZ(0,2,0,1);
 	WATC AAAAA 5
 	{
 	A_Chase();
@@ -76,9 +77,19 @@ Class PM_Watcher : Actor
 	Goto SeeGood;
   DodgeRight:
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0);
+	TNT1 A 0 ThrustThingZ(0,2,0,1);
 	WATC AAAAA 5
 	{
 	A_Chase();
+	A_FaceTarget();
+	}
+	Goto SeeGood;
+  RandomDodge:
+	TNT1 A 0;
+	TNT1 A 0 ThrustThing(random(0,360),10);
+	TNT1 A 0 ThrustThingZ(0,7,random(0,1),1);
+	WATC AAAAAA 2
+	{
 	A_FaceTarget();
 	}
 	Goto SeeGood;
@@ -93,18 +104,18 @@ Class PM_Watcher : Actor
 	Goto See;
   Missile:
 	TNT1 A 0 A_Jump(120,"Missile2");
-    WATC EF 3
+    WATC EF 6
 	{
 	A_Chase();
 	A_FaceTarget();
 	}
-    WATC G 3 BRIGHT 
+    WATC G 5 BRIGHT 
 	{
 	A_SpawnProjectile("PM_WatcherShot",10,0,0);
 	A_Chase();
 	A_FaceTarget();
 	}
-	WATC FE 2
+	WATC FE 4
 	{
 	A_Chase();
 	A_FaceTarget();
@@ -154,11 +165,12 @@ Class PM_WatcherShot : Actor
   {
     Radius 4;
     Height 8;
-    Speed 17;
+    Speed 22;
     Damage 3;
     RENDERSTYLE "ADD";
     DamageType "lightning";
-    ALPHA 0.67;
+    ALPHA 0.9;
+	Scale 1.75;
     SeeSound "monster/watatk";
     DeathSound "monster/wathit";
     PROJECTILE;
@@ -169,7 +181,11 @@ Class PM_WatcherShot : Actor
   States
   {
   Spawn:
-    FWAT AB 4 Bright;
+    FLBL AAAABBBBCCCCBBBBAAAA 1 Bright Light("WatcherShotA")
+	{
+	A_SpawnParticle("E390FF",SPF_FULLBRIGHT|SPF_RELATIVE,75,12,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
+	A_SpawnParticle("FF4A4A",SPF_FULLBRIGHT|SPF_RELATIVE,75,9,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
+	}
     loop;
   Death:
     FWAT CDE 4 Bright;
@@ -177,4 +193,28 @@ Class PM_WatcherShot : Actor
   }
 }
 
-//Projectile for the small shots are in Actors/Souls/Fleshspawn.txt
+Class PM_WatcherShotSmall : Actor
+{
+  Default
+  {
+    Damage 2;
+    Speed 10;
+    Radius 3;
+    Height 5;
+    SeeSound "monster/watatk";
+    DeathSound "monster/wathit";
+    RenderStyle "Add";
+    Alpha 0.9;
+    Projectile;
+  }
+
+  states
+  {
+  Spawn:
+    FLBL AAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBIIIIJJJJKKKKLLLLMMMM 4 Bright A_SpawnParticle("E390FF",SPF_FULLBRIGHT|SPF_RELATIVE,105,7,0,random(-22,-15),random(-3,3),random(-3,3),5,0,0,0,0,0,1,-1,-0.4);
+    Stop;
+  Death:
+    FLBL DEFGH 4 Bright;
+    Stop;
+  }
+}
