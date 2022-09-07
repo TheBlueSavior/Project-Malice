@@ -461,6 +461,22 @@ Watcher/Sight                   "Sounds/Monsters/Watcher/WatcherSight.ogg"
 Watcher/Active                  "Sounds/Monsters/Watcher/WatcherActive.ogg"
 Watcher/Pain                    "Sounds/Monsters/Watcher/WatcherPain.ogg"
 Watcher/Death                   "Sounds/Monsters/Watcher/WatcherDeath.ogg"
+
+$random Watcher/IShard { WatchIShard1 WatchIShard2 WatchIShard3 }
+WatchIShard1 "Sounds/Monsters/Watcher/WatcherIShard1.ogg"
+WatchIShard2 "Sounds/Monsters/Watcher/WatcherIShard2.ogg"
+WatchIShard3 "Sounds/Monsters/Watcher/WatcherIShard3.ogg"
+
+$random Watcher/IShardExp { WatchIShardExp1 WatchIShardExp2 WatchIShardExp3 }
+WatchIShardExp1 "Sounds/Monsters/Watcher/WatcherIShardExp1.ogg"
+WatchIShardExp2 "Sounds/Monsters/Watcher/WatcherIShardExp2.ogg"
+WatchIShardExp3 "Sounds/Monsters/Watcher/WatcherIShardExp3.ogg"
+
+Watcher/IBall "Sounds/Monsters/Watcher/WatcherIBall.ogg"
+Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
+Watcher/IBallExp "Sounds/Monsters/Watcher/WatcherIBallExp.ogg"
+Watcher/Kamikaze "Sounds/Monsters/Watcher/WatcherKamikaze.ogg"
+
 monster/watatk                  dswatatk
 monster/wathit                  dswathit
 caco/melee                      dsdembit
