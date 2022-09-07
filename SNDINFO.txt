@@ -476,6 +476,8 @@ WatchIShardExp3 "Sounds/Monsters/Watcher/WatcherIShardExp3.ogg"
 
 $rolloff Watcher/IShard 350 1600
 
+$rolloff Watcher/IShardExp 550 1800
+
 Watcher/IBall "Sounds/Monsters/Watcher/WatcherIBall.ogg"
 Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
 
