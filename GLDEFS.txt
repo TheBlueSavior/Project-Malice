@@ -5590,13 +5590,13 @@ Size 22
 
 Pointlight PM_WatcherBallSmall1
 {
-Color 0.6 0.2 0.4
+Color 0.6 0.6 0.6
 Size 22
 }
 
 Pointlight PM_WatcherBallSmall2
 {
-Color 0.6 0.2 0.4
+Color 0.6 0.6 0.6
 Size 30
 }
 
