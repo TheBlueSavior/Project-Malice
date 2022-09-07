@@ -481,6 +481,8 @@ Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
 Watcher/IBallExp "Sounds/Monsters/Watcher/WatcherIBallExp.ogg"
 Watcher/Kamikaze "Sounds/Monsters/Watcher/WatcherKamikaze.ogg"
 
+$rolloff Watcher/IBall 350 1600
+
 monster/watatk                  dswatatk
 monster/wathit                  dswathit
 caco/melee                      dsdembit
