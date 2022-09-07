@@ -5737,18 +5737,6 @@ Color 0.4 0.2 0.0
 Size 30
 }
 
-Object DefilerBall
-{
-Frame RVBAA { Light DefilerBall }
-Frame RVBAB { Light DefilerBall }
-Frame RVBAC { Light DefilerBall2 }
-Frame RVBAD { Light DefilerBall3 }
-Frame RVBAE { Light DefilerBall4 }
-Frame RVBAF { Light DefilerBall5 }
-Frame RVBAG { Light DefilerBall6 }
-Frame RVBAH { Light DefilerBall7 }
-}
-
 Pointlight DefilerFire1
 {
 Color 0.0 0.0 0.0
