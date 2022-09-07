@@ -199,29 +199,33 @@ Class PM_WatcherShot : Actor
   }
 }
 
-Class PM_WatcherShotSmall : Actor
+Class PM_WatcherShotSmall : MageWandMissile
 {
   Default
   {
     Damage 2;
-    Speed 10;
+    Speed 13;
     Radius 3;
     Height 5;
     SeeSound "Watcher/IShard";
-    DeathSound "monster/wathit";
+    DeathSound "Whiplash/KnifeStab";
     RenderStyle "Add";
 	Translation "0:255=%[0,0,0]:[1.0,1.0,1.0]";
     Alpha 0.9;
+	-RIPPER;
     Projectile;
   }
 
   states
   {
   Spawn:
-    FLBL AAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBIIIIJJJJKKKKLLLLMMMM 4 Bright Light("PM_WatcherBallSmall1") A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,105,7,0,random(-22,-15),random(-3,3),random(-3,6),0,0,0,0,0,0,1,-1,-0.4);
-    Stop;
+    BLA4 A 1 Bright Light("PM_WatcherBallSmall1") A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,105,7,0,random(-22,-15),random(-1,1),random(0,4),0,0,0,0,0,0,1,-1,-0.4);
+    Loop;
   Death:
-    FLBL DEFGH 4 Bright Light("PM_WatcherBallSmall2");
+    BLA4 A 70 Bright;
     Stop;
+  XDeath:
+	BLA4 A 1 Bright Light("PM_WatcherBallSmall2");
+	Stop;
   }
 }
