@@ -863,7 +863,7 @@ $volume AffPain5 0.3
 $random Afflicted/Death { AffDeath1 AffDeath2 AffDeath3 }
 AffDeath1 "Sounds/Monsters/Afflicted/AfflictedDeath1.wav"
 AffDeath2 "Sounds/Monsters/Afflicted/AfflictedDeath2.wav"
-AffDeath3 "Sounds/Monsters/Afflicted/AfflictedDeath3.wav"
+AffDeath3 "Sounds/Monsters/Afflicted/AfflictedDeath3.ogg"
 
 $volume Afflicted/Death 1
 $volume AffDeath3 0.15
@@ -1260,17 +1260,17 @@ caco/shotx1                      pimpact1
 caco/shotx2                      pimpact2
 caco/shotx3                      pimpact3
 
-//Tainted NEW
-$random Tainted/See	{ TAINSEE1 TAINSEE2 TAINSEE3 }
-TAINSEE1	TAINSEE1
-TAINSEE2	TAINSEE2
-TAINSEE3	TAINSEE3
+//Tainted
+$random Tainted/Sight	{ TaintedSight1 TaintedSight2 TaintedSight3 }
+TaintedSight1 "Sounds/Monsters/Tainted/TaintedSight1.ogg"
+TaintedSight2 "Sounds/Monsters/Tainted/TaintedSight2.ogg"
+TaintedSight3 "Sounds/Monsters/Tainted/TaintedSight3.ogg"
 
-$random Tainted/Slide { TAINACT1 TAINACT2 TAINACT3 TAINACT4}
-TAINACT1	TAINACT1
-TAINACT2	TAINACT2
-TAINACT3	TAINACT3
-TAINACT4	TAINACT4
+$random Tainted/Slide { TaintedSlide1 TaintedSlide2 TaintedSlide3 TaintedSlide4 }
+TaintedSlide1 "Sounds/Monsters/Tainted/TaintedSlide1.ogg"
+TaintedSlide2 "Sounds/Monsters/Tainted/TaintedSlide2.ogg"
+TaintedSlide3 "Sounds/Monsters/Tainted/TaintedSlide3.ogg"
+TaintedSlide4 "Sounds/Monsters/Tainted/TaintedSlide4.ogg"
 
 $random Tainted/Active { Tainted/Active1 Tainted/Active2 Tainted/Active3 Tainted/Active4 Tainted/Active5 Tainted/Active6 Tainted/Active7 Tainted/Active8 Tainted/Active9 TAINSEE1 TAINSEE2 TAINSEE3 }
 Tainted/Active1 "Sounds/Monsters/Tainted/TaintedActive1.ogg"
