@@ -131,7 +131,7 @@ Class PM_Watcher : Actor
 	A_SpawnProjectile("PM_WatcherShotSmall",10,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
 	A_FaceTarget();
 	}
-	WATC FE 2
+	WATC FE 7
 	{
 	A_FaceTarget();
 	}
