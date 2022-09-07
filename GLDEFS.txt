@@ -1641,7 +1641,7 @@ flickerlight YellowMediumFlicker2
 
 Flickerlight2 WatcherE
 {
- Color 0.8 0.0 0.8
+ Color 0.8 0.8 0.8
  Offset 0 8 0
  Size 40
  SecondarySize 50
@@ -1650,7 +1650,7 @@ Flickerlight2 WatcherE
 
 Flickerlight2 WatcherF
 {
- Color 1.0 0.0 1.0
+ Color 1.0 1.0 1.0
  Offset 0 8 0
  Size 45
  SecondarySize 55
@@ -1659,7 +1659,7 @@ Flickerlight2 WatcherF
 
 Flickerlight2 WatcherG
 {
- Color 0.6 0.0 0.6
+ Color 0.6 0.6 0.6
  Offset 0 8 0
  Size 50
  SecondarySize 60
@@ -1668,7 +1668,7 @@ Flickerlight2 WatcherG
 
 Flickerlight2 WatcherShotA
 {
- Color 1.0 0.0 1.0
+ Color 1.0 1.0 1.0
  Offset 0 2 0
  Size 30
  SecondarySize 40
@@ -1677,7 +1677,7 @@ Flickerlight2 WatcherShotA
 
 Flickerlight2 WatcherShotB
 {
- Color 1.0 0.0 1.0
+ Color 1.0 1.0 1.0
  Offset 0 2 0
  Size 35
  SecondarySize 45
@@ -1686,7 +1686,7 @@ Flickerlight2 WatcherShotB
 
 Flickerlight2 WatcherShotC
 {
- Color 1.0 0.0 1.0
+ Color 1.0 1.0 1.0
  Offset 0 2 0
  Size 50
  SecondarySize 55
@@ -1695,7 +1695,7 @@ Flickerlight2 WatcherShotC
 
 Flickerlight2 WatcherShotD
 {
- Color 0.7 0.0 0.7
+ Color 0.7 0.7 0.7
  Offset 0 2 0
  Size 60
  SecondarySize 65
@@ -1704,7 +1704,7 @@ Flickerlight2 WatcherShotD
 
 Flickerlight2 WatcherShotE
 {
- Color 0.2 0.0 0.2
+ Color 0.2 0.2 0.2
  Offset 0 2 0
  Size 65
  SecondarySize 70
@@ -5588,23 +5588,17 @@ Color 0.2 0.0 0.0
 Size 22
 }
 
-Object PM_WatcherShotSmall
+Pointlight PM_WatcherBallSmall1
 {
-Frame FLBLA { Light Fleshspawnball1 }
-Frame FLBLB { Light Fleshspawnball2 }
-Frame FLBLC { Light Fleshspawnball3 }
-Frame FLBLD { Light Fleshspawnball4 }
-Frame FLBLE { Light Fleshspawnball5 }
-Frame FLBLF { Light Fleshspawnball6 }
-Frame FLBLG { Light Fleshspawnball7 }
-Frame FLBLH { Light Fleshspawnball8 }
-Frame FLBLI { Light Fleshspawnball9 }
-Frame FLBLJ { Light Fleshspawnball10 }
-Frame FLBLK { Light Fleshspawnball11 }
-Frame FLBLL { Light Fleshspawnball12 }
-Frame FLBLM { Light Fleshspawnball13 }
+Color 0.6 0.2 0.4
+Size 22
 }
 
+Pointlight PM_WatcherBallSmall2
+{
+Color 0.6 0.2 0.4
+Size 30
+}
 
 //Brightmaps
 

@@ -173,6 +173,7 @@ Class PM_WatcherShot : Actor
 	Scale 1.75;
     SeeSound "monster/watatk";
     DeathSound "monster/wathit";
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.0]";
     PROJECTILE;
     +THRUGHOST
     +FORCEXYBILLBOARD
@@ -183,8 +184,8 @@ Class PM_WatcherShot : Actor
   Spawn:
     FLBL AAAABBBBCCCCBBBBAAAA 1 Bright Light("WatcherShotA")
 	{
-	A_SpawnParticle("E390FF",SPF_FULLBRIGHT|SPF_RELATIVE,75,12,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
-	A_SpawnParticle("FF4A4A",SPF_FULLBRIGHT|SPF_RELATIVE,75,9,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
+	A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,75,12,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
+	A_SpawnParticle("C2F7FF",SPF_FULLBRIGHT|SPF_RELATIVE,75,9,0,random(-22,-15),random(-3,3),random(-3,6),10,0,0,0,0,0,1,-1,-0.4);
 	}
     loop;
   Death:
@@ -204,6 +205,7 @@ Class PM_WatcherShotSmall : Actor
     SeeSound "monster/watatk";
     DeathSound "monster/wathit";
     RenderStyle "Add";
+	Translation "0:255=%[0,0,0]:[1.0,1.0,1.0]";
     Alpha 0.9;
     Projectile;
   }
@@ -211,10 +213,10 @@ Class PM_WatcherShotSmall : Actor
   states
   {
   Spawn:
-    FLBL AAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBIIIIJJJJKKKKLLLLMMMM 4 Bright A_SpawnParticle("E390FF",SPF_FULLBRIGHT|SPF_RELATIVE,105,7,0,random(-22,-15),random(-3,3),random(-3,3),5,0,0,0,0,0,1,-1,-0.4);
+    FLBL AAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBAAAABBBBCCCCBBBBIIIIJJJJKKKKLLLLMMMM 4 Bright Light("PM_WatcherBallSmall1") A_SpawnParticle("FFFFFF",SPF_FULLBRIGHT|SPF_RELATIVE,105,7,0,random(-22,-15),random(-3,3),random(-3,3),5,0,0,0,0,0,1,-1,-0.4);
     Stop;
   Death:
-    FLBL DEFGH 4 Bright;
+    FLBL DEFGH 4 Bright Light("PM_WatcherBallSmall2");
     Stop;
   }
 }
