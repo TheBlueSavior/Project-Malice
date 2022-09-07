@@ -126,7 +126,7 @@ Class PM_Watcher : Actor
 	{
 	A_FaceTarget();
 	}
-    WATC GGGGGGGG 4 BRIGHT 
+    WATC GGGGGG 4 BRIGHT 
 	{
 	A_SpawnProjectile("PM_WatcherShotSmall",10,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
 	A_FaceTarget();
