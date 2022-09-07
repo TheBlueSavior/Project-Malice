@@ -467,6 +467,8 @@ WatchIShard1 "Sounds/Monsters/Watcher/WatcherIShard1.ogg"
 WatchIShard2 "Sounds/Monsters/Watcher/WatcherIShard2.ogg"
 WatchIShard3 "Sounds/Monsters/Watcher/WatcherIShard3.ogg"
 
+$limit Watcher/IShard 12
+
 $random Watcher/IShardExp { WatchIShardExp1 WatchIShardExp2 WatchIShardExp3 }
 WatchIShardExp1 "Sounds/Monsters/Watcher/WatcherIShardExp1.ogg"
 WatchIShardExp2 "Sounds/Monsters/Watcher/WatcherIShardExp2.ogg"
