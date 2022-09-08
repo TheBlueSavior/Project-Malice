@@ -165,7 +165,7 @@ Actor PM_BeholderGoreShot
    PROJECTILE
    RENDERSTYLE "Translucent"
    Alpha 0.85
-	SeeSound "SoFlesh/attack"
+	SeeSound "TaintedBall"
    DeathSound "BeholderBloodExp"
    States
    {

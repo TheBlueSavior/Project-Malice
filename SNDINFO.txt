@@ -347,7 +347,6 @@ $rolloff Infested/See 400 2200
 $limit Infested/Idle 5
 
 //Trite
-//Trite
 $random Trite/Sight { Trite/Sight1 Trite/Sight2 Trite/Sight3 }
 Trite/Sight1 "Sounds/Monsters/Trite/TriteSight1.ogg"
 Trite/Sight2 "Sounds/Monsters/Trite/TriteSight2.ogg"
@@ -1356,6 +1355,7 @@ $random BloodSplash { GBloodSplash1 GBloodSplash2 }
 GBloodSplash1              "sounds/Monsters/SFX/GenericBloodSplash1.ogg"
 GBloodSplash2              "sounds/Monsters/SFX/GenericBloodSplash2.ogg"
 
+$limit TaintedBall 10
 $limit BeholderBloodExp 13
 $limit BeholderEyeExp 13
 $limit TaintedBloodFire 10
