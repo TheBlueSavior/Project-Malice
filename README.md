@@ -16,3 +16,7 @@ To download the latest experimental build of PM, scroll up to the top of this pa
 ## Settings
 
 **Fodder Multiplier** - Takes the level's monster count and multiplies it by this number to calculate how many extra fodder enemies to spawn.
+
+
+Fr fr dis stuff important
+  - Deimos Anomaly
