@@ -1329,6 +1329,9 @@ Tainted/Active8 "Sounds/Monsters/Tainted/TaintedActive8.ogg"
 Tainted/Active9 "Sounds/Monsters/Tainted/TaintedActive9.ogg"
 $volume Tainted/Active 0.8
 
+Tainted/Pain "Sounds/Monsters/Tainted/TaintedPain.ogg"
+Tainted/Death "Sounds/Monsters/Tainted/TaintedDeath.ogg"
+
 $random Tainted/Step { Tainted/Step1 Tainted/Step2 Tainted/Step3 Tainted/Step4 Tainted/Step5 }
 Tainted/Step1 "Sounds/Monsters/Tainted/TaintedStep1.ogg"
 Tainted/Step2 "Sounds/Monsters/Tainted/TaintedStep2.ogg"
