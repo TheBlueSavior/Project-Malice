@@ -519,6 +519,15 @@ Watcher/Kamikaze "Sounds/Monsters/Watcher/WatcherKamikaze.ogg"
 
 $rolloff Watcher/IBall 350 1600
 
+$random Watcher/Roar { Watcher/Roar1 Watcher/Roar2 Watcher/Roar3 Watcher/Roar4 }
+Watcher/Roar1 "Sounds/Monsters/Watcher/WatcherRoar1.ogg"
+Watcher/Roar2 "Sounds/Monsters/Watcher/WatcherRoar2.ogg"
+Watcher/Roar3 "Sounds/Monsters/Watcher/WatcherRoar3.ogg"
+Watcher/Roar4 "Sounds/Monsters/Watcher/WatcherRoar4.ogg"
+
+$volume Watcher/Roar 0.6
+$rolloff Watcher/Roar 250 1600
+
 monster/watatk                  dswatatk
 monster/wathit                  dswathit
 caco/melee                      dsdembit
