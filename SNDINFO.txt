@@ -457,10 +457,39 @@ UCHAIN/Winddown UCFSTOP
 UCHAIN/Steam STEAM
 
 //Watcher
-Watcher/Sight                   "Sounds/Monsters/Watcher/WatcherSight.ogg"
-Watcher/Active                  "Sounds/Monsters/Watcher/WatcherActive.ogg"
-Watcher/Pain                    "Sounds/Monsters/Watcher/WatcherPain.ogg"
-Watcher/Death                   "Sounds/Monsters/Watcher/WatcherDeath.ogg"
+
+$random Watcher/Sight  { Watcher/Sight1 Watcher/Sight2 Watcher/Sight3 }
+Watcher/Sight1 "Sounds/Monsters/Watcher/WatcherSight1.ogg"
+Watcher/Sight2 "Sounds/Monsters/Watcher/WatcherSight2.ogg"
+Watcher/Sight3 "Sounds/Monsters/Watcher/WatcherSight3.ogg"
+
+$volume Watcher/Sight 0.6
+
+
+$random Watcher/Active { Watcher/Active1 Watcher/Active2 Watcher/Active3 Watcher/Active4 Watcher/Active5 Watcher/Active6 }
+Watcher/Active1 "Sounds/Monsters/Watcher/WatcherActive1.ogg"
+Watcher/Active2 "Sounds/Monsters/Watcher/WatcherActive2.ogg"
+Watcher/Active3 "Sounds/Monsters/Watcher/WatcherActive3.ogg"
+Watcher/Active4 "Sounds/Monsters/Watcher/WatcherActive4.ogg"
+Watcher/Active5 "Sounds/Monsters/Watcher/WatcherActive5.ogg"
+Watcher/Active6 "Sounds/Monsters/Watcher/WatcherActive6.ogg"
+
+$volume Watcher/Active 0.5
+
+$random Watcher/Pain { Watcher/Pain1 Watcher/Pain2 Watcher/Pain3 Watcher/Pain4 }
+Watcher/Pain1 "Sounds/Monsters/Watcher/WatcherPain1.ogg"
+Watcher/Pain2 "Sounds/Monsters/Watcher/WatcherPain2.ogg"
+Watcher/Pain3 "Sounds/Monsters/Watcher/WatcherPain3.ogg"
+Watcher/Pain4 "Sounds/Monsters/Watcher/WatcherPain4.ogg"
+
+$volume Watcher/Pain 0.6
+
+$random Watcher/Death { Watcher/Death1 Watcher/Death2 Watcher/Death3 }
+Watcher/Death1 "Sounds/Monsters/Watcher/WatcherDeath1.ogg"
+Watcher/Death2 "Sounds/Monsters/Watcher/WatcherDeath2.ogg"
+Watcher/Death3 "Sounds/Monsters/Watcher/WatcherDeath3.ogg"
+
+$volume Watcher/Death 0.6
 
 $random Watcher/IShard { WatchIShard1 WatchIShard2 WatchIShard3 }
 WatchIShard1 "Sounds/Monsters/Watcher/WatcherIShard1.ogg"
@@ -474,14 +503,16 @@ WatchIShardExp1 "Sounds/Monsters/Watcher/WatcherIShardExp1.ogg"
 WatchIShardExp2 "Sounds/Monsters/Watcher/WatcherIShardExp2.ogg"
 WatchIShardExp3 "Sounds/Monsters/Watcher/WatcherIShardExp3.ogg"
 
-$rolloff Watcher/IShard 350 1600
+$rolloff Watcher/IShard 420 1600
 
-$rolloff Watcher/IShardExp 550 1800
+$rolloff Watcher/IShardExp 400 1800
 
 Watcher/IBall "Sounds/Monsters/Watcher/WatcherIBall.ogg"
 Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
 
 $volume Watcher/IBallWhiz 0.6
+
+Watcher/ShardCharge "Sounds/Monsters/Watcher/WatcherShardCharge.ogg"
 
 Watcher/IBallExp "Sounds/Monsters/Watcher/WatcherIBallExp.ogg"
 Watcher/Kamikaze "Sounds/Monsters/Watcher/WatcherKamikaze.ogg"

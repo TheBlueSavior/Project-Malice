@@ -3384,7 +3384,7 @@ ACTOR PM_GroundIce1
 	Gravity 500
 	Mass 10000000000
 	Radius 5
-	Health 100
+	Health 500
 	Height 5
 	Monster
 	Speed 0
@@ -3423,7 +3423,7 @@ ACTOR PM_GroundIce2
 	Gravity 500
 	Mass 10000000000
 	Radius 5
-	Health 100
+	Health 500
 	Height 5
 	Monster
 	Speed 0
