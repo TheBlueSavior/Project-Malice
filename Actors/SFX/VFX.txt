@@ -3300,8 +3300,9 @@ Actor PM_WatcherFrostCloud
   +ROLLSPRITE
   BounceFactor 0.3
   WallBounceFactor 0.3
- RenderStyle Shaded
-    StencilColor "A0 FF FF"
+  RenderStyle Shaded
+  StencilColor "A0 FF FF"
+  DamageType Ice
   Alpha 0.8
   Scale 1.3
   DeathSound "RevGhoul/cloud"
