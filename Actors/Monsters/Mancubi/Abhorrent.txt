@@ -115,8 +115,8 @@ Actor PM_AbhorBall : Fatshot
     Speed 11
 	Damage 8
     Renderstyle "Add"
-    seesound "HeresyLord/WhiteFire"
-	deathsound "HeresyLord/WhiteDeath"
+    seesound "Abhor/BallWhiz"
+	deathsound "Abhor/BallExp"
     PROJECTILE
     +SEEKERMISSILE
   States
@@ -134,13 +134,13 @@ Actor PM_AbhorBall : Fatshot
   Death:
 	TNT1 A 0 A_SpawnItemEx("BlueExplosionFlareSmall",0,0,0)
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",0,0,random(0,360),2,random(0,360))
-	TNT1 AAAAAAAA 0 A_CustomMissile("AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80))
+	TNT1 AAAAAAAA 0 A_CustomMissile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80))
     SHBA CDEFGHIJKL 4 Bright Light("SoulHarvesterBall2")
     Stop
   }
 }
 
-Actor AbhorSmallBall
+Actor PM_AbhorSmallBall
 {
     Radius 5
     Height 5
@@ -149,7 +149,7 @@ Actor AbhorSmallBall
     Damage 1
     Renderstyle "Add"
     //SeeSound "harvester/scream"
-    DeathSound "imp/shotx"
+    DeathSound "Abhor/SoulExp"
     PROJECTILE
     +SEEKERMISSILE
   States

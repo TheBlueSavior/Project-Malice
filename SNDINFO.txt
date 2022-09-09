@@ -1411,7 +1411,7 @@ HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.wav"
 HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.wav"
 
 HeresyLord/BarrageRedFire "Sounds/Monsters/HeresyLord/HeresyLRSFire.wav"     //redballssee		purfire3
-HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath.wav"   //redballsdeth		r_exp3
+HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath1.ogg"   //redballsdeth		r_exp3
 HeresyLord/BarrageSummon "Sounds/Monsters/HeresyLord/HeresyLBarrageS.wav"    //waitingballsspawn	purfire
 HeresyLord/BarrageWhiteFire "Sounds/Monsters/HeresyLord/HeresyLWSFire.wav"   //whiteballssee		acidfire
 HeresyLord/BarrageWhiteDeath "Sounds/Monsters/HeresyLord/HeresyLWSDeath.wav" //whiteballsdeth		acidhit
@@ -1423,7 +1423,11 @@ $pitchshift HeresyLord/BarrageRedDeath 5
 $pitchshift HeresyLord/BarrageRedFire 5
 
 HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.wav"
-HeresyLord/RedDeath	    "Sounds/Monsters/HeresyLord/HeresyLRBDeath.wav"
+$random HeresyLord/RedDeath	{ HeresyLRedDeath1 HeresyLRedDeath2 HeresyLRedDeath3 }
+HeresyLRedDeath1 "Sounds/Monsters/HeresyLord/HeresyLRBDeath1.ogg"
+HeresyLRedDeath2 "Sounds/Monsters/HeresyLord/HeresyLRBDeath2.ogg"
+HeresyLRedDeath3 "Sounds/Monsters/HeresyLord/HeresyLRBDeath3.ogg"
+$rolloff HeresyLord/RedDeath 500 1100
 HeresyLord/WhiteFire    "Sounds/Monsters/HeresyLord/HeresyLWBFire.wav"
 HeresyLord/WhiteDeath   "Sounds/Monsters/HeresyLord/HeresyLWBDeath.wav"
 $volume HeresyLord/WhiteFire 0.7
@@ -1604,6 +1608,12 @@ NetherConduitSmallZap3 "Sounds/Monsters/NetherConduit/NetherConduitSmallZap3.ogg
 
 NetherConduit/StreamCharge "Sounds/Monsters/NetherConduit/NetherConduitStreamCharge.ogg"
 $rolloff NetherConduit/StreamCharge 800 2000
+
+NetherConduit/HomingCharge "Sounds/Monsters/NetherConduit/NetherConduitHomingCharge.ogg"
+NetherConduit/HomingThunder "Sounds/Monsters/NetherConduit/NetherConduitHomingThunder.ogg"
+NetherConduit/HomingLoop "Sounds/Monsters/NetherConduit/NetherConduitHomingLoop.ogg"
+NetherConduit/HomingExp "Sounds/Monsters/NetherConduit/NetherConduitHomingExp.ogg"
+
 
 $rolloff NetherConduit/ZapExp 800 2000
 $volume NetherConduit/Sight 0.7
@@ -2013,6 +2023,24 @@ ABHFIR ABHFIR
 $rolloff ABHFIR 400 2200
 
 Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase.ogg"
+
+$random Abhor/BallWhiz { AbhorBallWhiz1 AbhorBallWhiz2 }
+AbhorBallWhiz1 "Sounds/Monsters/Abhorrent/AbhorBallWhiz1.ogg"
+AbhorBallWhiz2 "Sounds/Monsters/Abhorrent/AbhorBallWhiz2.ogg"
+
+$random Abhor/BallExp { AbhorBallExp1 AbhorBallExp2 }
+AbhorBallExp1 "Sounds/Monsters/Abhorrent/AbhorBallExp1.ogg"
+AbhorBallExp2 "Sounds/Monsters/Abhorrent/AbhorBallExp2.ogg"
+
+$random Abhor/SoulExp { AbhorSoulExp1 AbhorSoulExp2 AbhorSoulExp3 }
+AbhorSoulExp1 "Sounds/Monsters/Abhorrent/AbhorSoulExp1.ogg"
+AbhorSoulExp2 "Sounds/Monsters/Abhorrent/AbhorSoulExp2.ogg"
+AbhorSoulExp3 "Sounds/Monsters/Abhorrent/AbhorSoulExp3.ogg"
+
+$rolloff Abhor/BallWhiz 600 3000
+$rolloff Abhor/BallExp 650 2200
+$rolloff Abhor/SoulExp 450 1000
+$volume Abhor/SoulExp 0.5
 
 //Whiplash
 
@@ -2690,6 +2718,8 @@ Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4.ogg"
 Skulker/See "Sounds/Monsters/Skulker/SkulkerSee.ogg"
 
 $rolloff Skulker/Taunt 400 1800
+$volume Skulker/See 0.6
+$attenuation Skulker/See 0
 
 Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge.ogg"
 
