@@ -1422,7 +1422,7 @@ $limit HeresyLord/BarrageRedFire 15
 $pitchshift HeresyLord/BarrageRedDeath 5
 $pitchshift HeresyLord/BarrageRedFire 5
 
-HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.wav"
+HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.ogg"
 $random HeresyLord/RedDeath	{ HeresyLRedDeath1 HeresyLRedDeath2 HeresyLRedDeath3 }
 HeresyLRedDeath1 "Sounds/Monsters/HeresyLord/HeresyLRBDeath1.ogg"
 HeresyLRedDeath2 "Sounds/Monsters/HeresyLord/HeresyLRBDeath2.ogg"
