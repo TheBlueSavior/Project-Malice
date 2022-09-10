@@ -296,10 +296,11 @@ FATACT FATACT
 FATPAI FATPAI
 FATSPIT FATSPIT
 torturedsoul/poison dstrtpsn
-SoFlesh/attack Dssoffir
-$limit SoFlesh/attack 10
-$limit Dssoffir 10
-$volume SoFlesh/attack 0.6
+
+
+Beholder/Spit "Sounds/Monsters/Beholder/BeholderSpit.wav"
+$limit Beholder/Spit 10
+$volume Beholder/Spit 0.6
 SoFlesh/explode Dssofexp
 
 //Beholder
@@ -502,9 +503,9 @@ WatchIShardExp1 "Sounds/Monsters/Watcher/WatcherIShardExp1.ogg"
 WatchIShardExp2 "Sounds/Monsters/Watcher/WatcherIShardExp2.ogg"
 WatchIShardExp3 "Sounds/Monsters/Watcher/WatcherIShardExp3.ogg"
 
-$rolloff Watcher/IShard 420 1600
+$rolloff Watcher/IShard 520 1800
 
-$rolloff Watcher/IShardExp 400 1800
+$rolloff Watcher/IShardExp 580 1800
 
 Watcher/IBall "Sounds/Monsters/Watcher/WatcherIBall.ogg"
 Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
@@ -2725,7 +2726,7 @@ Skulker/See "Sounds/Monsters/Skulker/SkulkerSee.ogg"
 
 $rolloff Skulker/Taunt 400 1800
 $volume Skulker/See 0.7
-$attenuation Skulker/See 0
+$attenuation Skulker/See 0.1
 
 Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge.ogg"
 
@@ -2750,7 +2751,7 @@ Skulker/Phase "Sounds/Monsters/Skulker/SkulkerPhase.ogg"
 $volume Skulker/Phase 0.7
 
 $limit Skulker/Port 12
-$attenuation Skulker/Port 0
+$attenuation Skulker/Port 0.4
 $rolloff Skulker/Port 750 1300
 
 Skulker/Whisper "Sounds/Monsters/Skulker/SkulkerWhisper.ogg"

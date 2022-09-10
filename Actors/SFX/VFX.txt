@@ -1523,6 +1523,86 @@ Actor MaliceBloodSplash
 	}
 }
 
+Actor PM_LargerBloodSplash
+{
+	+CLIENTSIDEONLY
+	//+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	PROJECTILE
+	RenderStyle Translucent
+	//Translation "0:255=%[0,0,0]:[0.8,1.4,0.0]"
+	Scale 1.5
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Splash1","Splash2","Splash3")
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X057 ABCDEF 2 A_FadeOut(0.05)
+		X057 GHIJK 1 A_FadeOut(0.05)
+		X057 LMNOPQRS 1 A_FadeOut(0.03)
+		Wait
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X058 ABCDEF 2 A_FadeOut(0.05)
+		X058 GHIJK 1 A_FadeOut(0.05)
+		X058 LMNOPQR 1 A_FadeOut(0.03)
+		Wait
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X059 ABCD 2 A_FadeOut(0.03)
+		X059 EFGHIJ 1 A_FadeOut(0.04)
+		X059 KLM 1 A_FadeOut(0.05)
+		Wait
+	}
+}
+
+Actor PM_BeholderSpitTrail
+{
+	+CLIENTSIDEONLY
+	//+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	PROJECTILE
+	RenderStyle Translucent
+	//Translation "0:255=%[0,0,0]:[0.8,1.4,0.0]"
+	Scale 1.05
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.75
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Splash1","Splash2","Splash3")
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X057 ABCDEF 1 A_FadeOut(0.05)
+		X057 GHIJK 1 A_FadeOut(0.05)
+		X057 LMNOPQRS 1 A_FadeOut(0.03)
+		Wait
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X058 ABCDEF 1 A_FadeOut(0.05)
+		X058 GHIJK 1 A_FadeOut(0.05)
+		X058 LMNOPQR 1 A_FadeOut(0.03)
+		Wait
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360))
+		X059 ABCD 1 A_FadeOut(0.03)
+		X059 EFGHIJ 1 A_FadeOut(0.04)
+		X059 KLM 1 A_FadeOut(0.05)
+		Wait
+	}
+}
+
 Actor PM_BloodSkullTrail : MaliceBloodSplash
 {
 	+NOGRAVITY
