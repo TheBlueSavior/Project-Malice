@@ -2046,8 +2046,7 @@ AbhorSoulExp3 "Sounds/Monsters/Abhorrent/AbhorSoulExp3.ogg"
 
 $rolloff Abhor/BallWhiz 600 3000
 $rolloff Abhor/BallExp 650 2200
-$rolloff Abhor/SoulExp 450 1000
-$volume Abhor/SoulExp 0.5
+$rolloff Abhor/SoulExp 650 1000
 
 //Whiplash
 
@@ -2906,6 +2905,14 @@ HPriestActive8           "sounds/Monsters/HellPriest/HellPriestActive8.ogg"
 
 HellPriestSee           "sounds/Monsters/HellPriest/HellPriestSee.ogg"
 HellPriestPain          "sounds/Monsters/HellPriest/HellPriestPain.ogg"
+
+$random HPriest/VoidShot { HPriestVoid1 HPriestVoid2 HPriestVoid3 }
+HPriestVoid1 "Sounds/Monsters/HellPriest/HPriestVoid1.ogg"
+HPriestVoid2 "Sounds/Monsters/HellPriest/HPriestVoid2.ogg"
+HPriestVoid3 "Sounds/Monsters/HellPriest/HPriestVoid3.ogg"
+
+HPriest/SoulLoop "Sounds/Monsters/HellPriest/HPriestSoulLoop.ogg"
+$rolloff HPriest/SoulLoop 500 3000
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
