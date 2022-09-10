@@ -8,7 +8,7 @@ ACTOR PM_Beholder: Cacodemon
   Obituary "A Beholder has shared it's torment with %o."
   Bloodcolor "DarkRed"
 	HitObituary "%o was assimilated by a Beholder."
-  health 450
+  health 410
   speed 4
   +DONTHARMSPECIES
   Species "Cacodemon"
