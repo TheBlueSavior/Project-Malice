@@ -74,6 +74,7 @@ Actor PM_CrawlingDemonFlee
   +FLOORHUGGER
   +NOCLIP
   -Shootable
+  -COUNTKILL
   Monster
   SeeSound ""
   RenderStyle "Stencil"
@@ -128,6 +129,7 @@ Actor PM_PossessingDemonSprite
    +THRUACTORS
    +DONTHURTSPECIES
    -SHOOTABLE
+   -COUNTKILL
    Damage (1)
    BounceType Hexen
    BounceFactor 1
