@@ -62,8 +62,8 @@ Actor PM_HellPriest
     TNT1 A 0 A_PlaySound("Abhor/BallWhiz")
     ACOL D 4 Bright Light("AcolyteFire1") A_FaceTarget
     ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget
-    ACOL F 4 Bright Light("AcolyteFire3")
 	TNT1 A 0 A_PlaySound("HPriest/SoulLoop",CHAN_6,1,true)
+	ACOL F 4 Bright Light("AcolyteFire3")
     {
       A_FaceTarget;
       A_SpawnProjectile("PM_AcolyteShot",34,0,0,0);
