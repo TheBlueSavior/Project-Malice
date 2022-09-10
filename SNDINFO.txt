@@ -1411,7 +1411,7 @@ HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.wav"
 HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.wav"
 
 HeresyLord/BarrageRedFire "Sounds/Monsters/HeresyLord/HeresyLRSFire.wav"     //redballssee		purfire3
-HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath1.ogg"   //redballsdeth		r_exp3
+HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"   //redballsdeth		r_exp3
 HeresyLord/BarrageSummon "Sounds/Monsters/HeresyLord/HeresyLBarrageS.wav"    //waitingballsspawn	purfire
 HeresyLord/BarrageWhiteFire "Sounds/Monsters/HeresyLord/HeresyLWSFire.wav"   //whiteballssee		acidfire
 HeresyLord/BarrageWhiteDeath "Sounds/Monsters/HeresyLord/HeresyLWSDeath.wav" //whiteballsdeth		acidhit
@@ -1423,10 +1423,9 @@ $pitchshift HeresyLord/BarrageRedDeath 5
 $pitchshift HeresyLord/BarrageRedFire 5
 
 HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.ogg"
-$random HeresyLord/RedDeath	{ HeresyLRedDeath1 HeresyLRedDeath2 HeresyLRedDeath3 }
-HeresyLRedDeath1 "Sounds/Monsters/HeresyLord/HeresyLRBDeath1.ogg"
-HeresyLRedDeath2 "Sounds/Monsters/HeresyLord/HeresyLRBDeath2.ogg"
-HeresyLRedDeath3 "Sounds/Monsters/HeresyLord/HeresyLRBDeath3.ogg"
+HeresyLord/RedDeath	"Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"
+
+
 $rolloff HeresyLord/RedDeath 500 1100
 HeresyLord/WhiteFire    "Sounds/Monsters/HeresyLord/HeresyLWBFire.wav"
 HeresyLord/WhiteDeath   "Sounds/Monsters/HeresyLord/HeresyLWBDeath.wav"
@@ -1915,8 +1914,12 @@ Paladin/Bounce	HPALBNC
 Paladin/Explode	HPALEXPL
 Paladin/Step	HPALSTEP
 
-BSkull/See		"Sounds/Monsters/BloodSkull/BSkullSight.ogg"
-BSkull/Pain		"Sounds/Monsters/BloodSkull/BSkullPain.ogg"
+$random BSkull/See { BSkullSight1 BSkullSight2 }	
+BSkullSight1 "Sounds/Monsters/BloodSkull/BSkullSight1.ogg"
+BSkullSight2 "Sounds/Monsters/BloodSkull/BSkullSight2.ogg"
+$random BSkull/Pain { BSkullPain1 BSkullPain2 }
+BSkullPain1		"Sounds/Monsters/BloodSkull/BSkullPain1.ogg"
+BSkullPain2		"Sounds/Monsters/BloodSkull/BSkullPain2.ogg"
 GenericBloodSpit		BLDSPIT
 GenericBloodImpact	    BLDIMPAC
 
@@ -1926,7 +1929,11 @@ BloodSkull/Croak2 "Sounds/Monsters/BloodSkull/SkullCroak2.ogg"
 BloodSkull/Croak3 "Sounds/Monsters/BloodSkull/SkullCroak3.ogg"
 BloodSkull/Croak4 "Sounds/Monsters/BloodSkull/SkullCroak4.ogg"
 
-BSkull/Active "Sounds/Monsters/BloodSkull/BloodSkullActive.ogg"
+$random BSkull/Active { BSkullActive1 BSkullActive2 }
+BSkullActive1 "Sounds/Monsters/BloodSkull/BSkullActive1.ogg"
+BSkullActive2 "Sounds/Monsters/BloodSkull/BSkullActive2.ogg"
+
+BSkull/Death "Sounds/Monsters/BloodSkull/BSkullDeath.ogg"
 
 $limit GenericBloodSpit 0
 $limit GenericBloodImpact 0
@@ -2718,7 +2725,7 @@ Wretched/Bite4 "Sounds/Monsters/Wretched/WretchedBite4.ogg"
 Skulker/See "Sounds/Monsters/Skulker/SkulkerSee.ogg"
 
 $rolloff Skulker/Taunt 400 1800
-$volume Skulker/See 0.6
+$volume Skulker/See 0.7
 $attenuation Skulker/See 0
 
 Skulker/Charge "Sounds/Monsters/Skulker/SkulkerCharge.ogg"
@@ -2744,7 +2751,7 @@ Skulker/Phase "Sounds/Monsters/Skulker/SkulkerPhase.ogg"
 $volume Skulker/Phase 0.7
 
 $limit Skulker/Port 12
-
+$attenuation Skulker/Port 0
 $rolloff Skulker/Port 750 1300
 
 Skulker/Whisper "Sounds/Monsters/Skulker/SkulkerWhisper.ogg"

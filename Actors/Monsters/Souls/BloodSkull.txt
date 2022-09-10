@@ -48,7 +48,7 @@ Bite:
 	SWBS B 3
 	TNT1 A 0 A_Recoil(-20)
 	SWBS B 2
-	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
+	TNT1 A 0 A_PlaySound("BSkull/Active")
     SWBS BB 3 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	SWBS A 3
 	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
@@ -132,7 +132,7 @@ Charge:
 	SWBS A 2 A_SetRoll(-5,SPF_INTERPOLATE)
 	SWBS A 2 A_SetRoll(0)
 ChargeLoop:
-	TNT1 A 0 A_PlaySound("BSkull/See",CHAN_7)
+	TNT1 A 0 A_PlaySound("BloodSkull/Croak",CHAN_7)
 	SWBS B 1
 	{
 	A_SkullAttack(30);

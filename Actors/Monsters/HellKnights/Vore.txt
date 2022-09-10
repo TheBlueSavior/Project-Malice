@@ -201,7 +201,7 @@ Actor PM_VoreShadowBall
 	Scale 1.4
     Alpha 0.90
     SeeSound "Shadow/attack"
-    DeathSound "imp/shotx"
+    DeathSound "HellKnight/BallImpact"
     Projectile
     +RANDOMIZE
 
