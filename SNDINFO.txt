@@ -2608,7 +2608,7 @@ Defiler/Gag4 "Sounds/Monsters/Defiler/DefilerGag4.ogg"
 
 $rolloff Defiler/Gag 500 1400
 
-Defiler/Ack "Sounds/Monsters/Defiler/DefilerAck"
+Defiler/Ack "Sounds/Monsters/Defiler/DefilerAck.ogg"
 
 $rolloff Defiler/Ack 500 1400
 
@@ -2618,7 +2618,7 @@ Defiler/Shoot2 "Sounds/Monsters/Defiler/DefilerShoot2.ogg"
 Defiler/Shoot3 "Sounds/Monsters/Defiler/DefilerShoot3.ogg"
 Defiler/Shoot4 "Sounds/Monsters/Defiler/DefilerShoot4.ogg"
 
-Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush"
+Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush.ogg"
 
 $random Corpse/Fall { Corpse/Fall1 Corpse/Fall2 Corpse/Fall3 Corpse/Fall4 Corpse/Fall5 Corpse/Fall6 Corpse/Fall7 Corpse/Fall8 }
 Corpse/Fall1 "Sounds/Other/CorpseFall1.wav"
