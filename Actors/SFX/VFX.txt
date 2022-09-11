@@ -3317,7 +3317,7 @@ Actor PM_BruiserFireGlobs : PM_BigFireGlobs
 
 Actor PM_BruiserGenericExplosionFlames : PM_GenericExplosionFlames
 {
-	Translation "0:255=%[0,0,0]:[1.0,1.0,1.28]"
+	Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]"
 }
 
 Actor PM_WatcherShardFlare : PM_BurntSoulFlare
