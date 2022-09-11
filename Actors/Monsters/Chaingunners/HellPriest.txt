@@ -59,17 +59,24 @@ Actor PM_HellPriest
 	ACOL D 5 Bright Light("AcolyteFire1") A_FaceTarget
     Goto See
   Missile2:
-    TNT1 A 0 A_PlaySound("Abhor/BallWhiz")
+    TNT1 A 0 A_PlaySound("HeresyLord/WhiteFire",CHAN_7)
     ACOL D 4 Bright Light("AcolyteFire1") A_FaceTarget
-    ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget
+    ACOL E 20 Bright Light("AcolyteFire2") A_FaceTarget
 	TNT1 A 0 A_PlaySound("HPriest/SoulLoop",CHAN_6,1,true)
 	ACOL F 4 Bright Light("AcolyteFire3")
     {
       A_FaceTarget;
       A_SpawnProjectile("PM_AcolyteShot",34,0,0,0);
     }
-	UDM2 E 0 A_MonsterRefire(100,"See")
-	Goto Missile2+3
+	UDM2 E 0 A_Jump(2,"Missile2End")
+	Goto Missile2+4
+  Missile2End:
+    TNT1 A 0 A_StopSound(CHAN_6)
+    TNT1 A 0 A_PlaySound("HeresyLord/WhiteDeath",CHAN_7)
+    ACOL F 4 Bright Light("AcolyteFire3") A_FaceTarget
+    ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget
+	ACOL D 4 Bright Light("AcolyteFire1")
+    Goto See
   VoidMissile:
 	ACOL DD 5 A_FaceTarget
 	TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageRCharge",CHAN_6)

@@ -2921,6 +2921,7 @@ HPriestVoid3 "Sounds/Monsters/HellPriest/HPriestVoid3.ogg"
 
 HPriest/SoulLoop "Sounds/Monsters/HellPriest/HPriestSoulLoop.ogg"
 $rolloff HPriest/SoulLoop 500 3000
+$volume HPriest/SoulLoop 0.5
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
