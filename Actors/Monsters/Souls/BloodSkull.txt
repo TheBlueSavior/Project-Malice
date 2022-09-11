@@ -5,7 +5,7 @@ Radius 16
 Height 28
 Mass 9999
 Speed 5
-PainChance 100
+PainChance 130
 MeleeRange 135
 Monster
 +FLOAT
