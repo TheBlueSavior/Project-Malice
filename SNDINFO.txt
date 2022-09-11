@@ -1411,25 +1411,23 @@ HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1.wav"
 HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.wav"
 HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.wav"
 
-HeresyLord/BarrageRedFire "Sounds/Monsters/HeresyLord/HeresyLRSFire.wav"     //redballssee		purfire3
+HeresyLord/BarrageRedFire "Sounds/Monsters/HeresyLord/HeresyLRSFire.ogg"     //redballssee		purfire3
 HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"   //redballsdeth		r_exp3
 HeresyLord/BarrageSummon "Sounds/Monsters/HeresyLord/HeresyLBarrageS.wav"    //waitingballsspawn	purfire
-HeresyLord/BarrageWhiteFire "Sounds/Monsters/HeresyLord/HeresyLWSFire.wav"   //whiteballssee		acidfire
-HeresyLord/BarrageWhiteDeath "Sounds/Monsters/HeresyLord/HeresyLWSDeath.wav" //whiteballsdeth		acidhit
+HeresyLord/BarrageWhiteFire "Sounds/Monsters/HeresyLord/HeresyLWSFire.ogg"   //whiteballssee		acidfire
+HeresyLord/BarrageWhiteDeath "Sounds/Monsters/HeresyLord/HeresyLWSDeath.ogg" //whiteballsdeth		acidhit
 HeresyLord/BarrageRCharge "Sounds/Monsters/HeresyLord/HeresyLBRCharge.wav"   //missile1charge	h20017
 HeresyLord/BarrageWCharge "Sounds/Monsters/HeresyLord/HeresyLBWCharge.wav"   //missile2charge	h20016
 
 $limit HeresyLord/BarrageRedFire 15
-$pitchshift HeresyLord/BarrageRedDeath 5
-$pitchshift HeresyLord/BarrageRedFire 5
 
 HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.ogg"
 HeresyLord/RedDeath	"Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"
 
 
 $rolloff HeresyLord/RedDeath 500 1100
-HeresyLord/WhiteFire    "Sounds/Monsters/HeresyLord/HeresyLWBFire.wav"
-HeresyLord/WhiteDeath   "Sounds/Monsters/HeresyLord/HeresyLWBDeath.wav"
+HeresyLord/WhiteFire    "Sounds/Monsters/HeresyLord/HeresyLWBFire.ogg"
+HeresyLord/WhiteDeath   "Sounds/Monsters/HeresyLord/HeresyLWBDeath.ogg"
 $volume HeresyLord/WhiteFire 0.7
 
 baron/attack			baronfir
@@ -2099,7 +2097,7 @@ WLashDeath3 "Sounds/Monsters/Whiplash/WhiplashDeath3.ogg"
 
 Whiplash/Flank "Sounds/Monsters/Whiplash/WhiplashFlank.ogg"
 Whiplash/KnifeStab "Sounds/Monsters/Whiplash/WhipKnifeStab.wav"
-Whiplash/Schwing "Sounds/Monsters/Whiplash/WhipSchwing.wav"
+Whiplash/Schwing "Sounds/Monsters/Whiplash/WhipSchwing.ogg"
 
 $random Whiplash/Blades { WLashBlade1 WLashBlade2 WLashBlade3 WLashBlade4 WLashBlade5 }
 WLashBlade1 "Sounds/Monsters/Whiplash/WhiplashBlade1.ogg"
