@@ -3108,3 +3108,6 @@ GenericBloodPuke "Sounds/Monsters/SFX/GenericBloodPuke.ogg"
 DemonicSprite/Flee "Sounds/Other/PossSpriteFlee.ogg"
 $volume DemonicSprite/Flee 0.5
 DemonicSprite/Warn "Sounds/Other/PossSpriteWarn.ogg"
+
+Ice/Freeze "Sounds/Other/PMIceFreeze.ogg"
+$rolloff Ice/Freeze 700 1500
