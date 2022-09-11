@@ -7,6 +7,7 @@ Actor PM_HellPriest
     Radius 20
     Height 56
     Mass 150
+	Gravity 0.3
     Obituary "A Hell Priest was promoted for killing %o."
     SeeSound "HellPriestSee"
     PainSound "HellPriestPain"
@@ -16,22 +17,55 @@ Actor PM_HellPriest
 	//Dropitem "Chaingun"
 	Tag "Hell Priest"
 	Bloodcolor "Black"
+	FloatBobStrength 0.4
     Monster
     +FloorClip
     +DontHarmClass
 	+DONTHARMSPECIES
+	+LOWGRAVITY
     -NoGravity
     -Float
   States
   {
   Spawn:
+	TNT1 A 0 NoDelay
     ACOL AB 10 A_Look
     Loop
   See:
+	TNT1 A 0 A_Changeflag(FLOATBOB,0)
+	TNT1 A 0 A_Changeflag(NoGravity,0)
+	TNT1 A 0 A_Changeflag(Float,0)
+	TNT1 A 0 A_Changeflag(DROPOFF,0)
     TNT1 A 0 A_StopSound(CHAN_6)
     ACOL AAAAABBBBB 2 A_Chase
     ACOL A 0 A_Jump(96, "Slide")
+	ACOL A 0 A_Jump(60, "Fly")
     Loop
+	
+  SeeFly:
+    TNT1 A 0 A_StopSound(CHAN_6)
+    ACOL AAAAABBBBB 2 A_Chase("MissileFly","MissileFly")
+    ACOL A 0 A_Jump(96, "Slide2")
+	ACOL A 0 A_Jump(60, "Land")
+    Loop
+	
+  Fly:
+	TNT1 A 0
+	TNT1 A 0 A_Changeflag(FLOATBOB,1)
+	TNT1 A 0 A_Changeflag(NoGravity,1)
+	TNT1 A 0 A_Changeflag(Float,1)
+	TNT1 A 0 A_Changeflag(DROPOFF,1)
+	TNT1 A 0 ThrustThingZ(0,2,0,0)
+	Goto SeeFly
+	
+  Land:
+	TNT1 A 0
+	TNT1 A 0 A_Changeflag(FLOATBOB,0)
+	TNT1 A 0 A_Changeflag(NoGravity,0)
+	TNT1 A 0 A_Changeflag(Float,0)
+	TNT1 A 0 A_Changeflag(DROPOFF,0)
+	Goto See
+	
   Slide:
     ACOL A 1
     {
@@ -46,6 +80,22 @@ Actor PM_HellPriest
     ACOL B 0 Bright A_SpawnItem("AcolFX2",0,0)
     ACOL B 0 A_Jump(96, "See")
     Loop
+	
+	Slide2:
+    ACOL A 1
+    {
+      A_Chase("MissileFly","MissileFly");
+      //A_Playsound("monster/blur");
+    }
+    ACOL AAAAAABBBBBAAAAAAABBBBB 1
+	{
+	A_SpawnItem("AcolFX2",0,0);
+    A_Chase("MissileFly","MissileFly");
+	}
+    ACOL B 0 Bright A_SpawnItem("AcolFX2",0,0)
+    ACOL B 0 A_Jump(96, "SeeFly")
+    Loop
+	
   Missile:
 	TNT1 A 0 A_Jump(100,"Missile2","VoidMissile")
 	TNT1 A 0 A_PlaySound("Abhor/BallWhiz")
@@ -136,12 +186,107 @@ Actor PM_HellPriest
 	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,-27)
 	ACOL FEEDD 4 A_FaceTarget
 	Goto See
+	
+	MissileFly:
+	TNT1 A 0 A_Jump(100,"Missile2Fly","VoidMissileFly")
+	TNT1 A 0 A_PlaySound("Abhor/BallWhiz")
+    ACOL D 8 Bright Light("AcolyteFire1") A_FaceTarget
+    ACOL E 5 Bright Light("AcolyteFire2") A_FaceTarget
+    ACOL FFFFFF 3 Bright Light("AcolyteFire3")
+    {
+      A_FaceTarget;
+      A_SpawnProjectile("PM_AcolyteShot",34,0,0,0);
+    }
+	ACOL D 5 Bright Light("AcolyteFire1") A_FaceTarget
+    Goto SeeFly
+  Missile2Fly:
+    TNT1 A 0 A_PlaySound("HeresyLord/WhiteFire",CHAN_7)
+    ACOL D 4 Bright Light("AcolyteFire1") A_FaceTarget
+    ACOL E 20 Bright Light("AcolyteFire2") A_FaceTarget
+	TNT1 A 0 A_PlaySound("HPriest/SoulLoop",CHAN_6,1,true)
+	ACOL F 4 Bright Light("AcolyteFire3")
+    {
+      A_FaceTarget;
+      A_SpawnProjectile("PM_AcolyteShot",34,0,0,0);
+    }
+	UDM2 E 0 A_MonsterReFire(120,"Missile2EndFly")
+	Goto Missile2+4
+  Missile2EndFly:
+    TNT1 A 0 A_StopSound(CHAN_6)
+    TNT1 A 0 A_PlaySound("HeresyLord/WhiteDeath",CHAN_7)
+    ACOL F 4 Bright Light("AcolyteFire3") A_FaceTarget
+    ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget
+	ACOL D 4 Bright Light("AcolyteFire1")
+    Goto SeeFly
+  VoidMissileFly:
+	ACOL DD 5 A_FaceTarget
+	TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageRCharge",CHAN_6)
+	ACOL EEEEEEEEEEEEEEE 1 Light("SmallBlacklight")
+	{
+	A_FaceTarget;
+	A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,5,40,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-5,40,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,27)
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,-27)
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,27)
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,-27)
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,27)
+	ACOL F 1 Light("SmallBlacklight")
+	{
+		A_FaceTarget;
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,34,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,-28,60,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+	}
+	ACOL F 4 Light("SmallBlacklight") A_CustomMissile("PM_HellPriestVoidBall",60,-27)
+	ACOL FEEDD 4 A_FaceTarget
+	Goto SeeFly
+	
   Pain:
+	TNT1 A 0
     TNT1 A 0 A_StopSound(CHAN_6)
     ACOL C 2
     ACOL C 2 A_Pain
     Goto See
   Death:
+	TNT1 A 0
+	TNT1 A 0 A_StopSound(CHAN_6)
     ACOL G 8 Bright A_Scream
 	TNT1 AAAAAAA 0 A_SpawnItemEx("MonsterHole",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360))
 	TNT1 A 0 A_CustomMissile("PM_BlotFleeNoSound",10,0,random(-180,180),CMF_OFFSETPITCH,random(-10,90))
