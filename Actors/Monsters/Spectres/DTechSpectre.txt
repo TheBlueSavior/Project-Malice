@@ -188,7 +188,7 @@ ACTOR PM_DemonTechSpectre : Demon
        }
 	   CRG3 E 3
 	   TNT1 A 0 A_SetTranslucent(0.4)
-	   TNT1 A 0 A_PlaySound("UCHAIN/Steam")
+	   TNT1 A 0 A_PlaySound("GenericSteam")
 	   CRG3 HHHHHHHHHHHHHH 1
 	   {
 	    A_FaceTarget;

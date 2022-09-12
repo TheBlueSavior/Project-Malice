@@ -328,8 +328,8 @@ Actor PM_PhaseCacoBall2
     Height 5
 	Scale 1.1
 	FastSpeed 25
-    SeeSound "monster/watatk"
-    DeathSound "monster/wathit"
+    SeeSound "PhaseCaco/Small"
+    DeathSound "PhaseCaco/SmallExp"
     RenderStyle "Add"
     Alpha 1
     Projectile

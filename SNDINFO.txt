@@ -61,16 +61,16 @@ ZFodderHowl3 "Sounds/Monsters/Horrorspawn/ZFodderHowl3.ogg"
 $rolloff ZombieFodder/Howl 200 1300
 
 //Depraved
-$random skeleton/step		{ restep1  restep2 restep3 restep4 restep5 restep6 restep7 restep8 restep9 }
-restep1		revstep1
-restep2		revstep2
-restep3		revstep3
-restep4		revstep4
-restep5		revstep5
-restep6		revstep6
-restep7		revstep7
-restep8		revstep8
-restep9		revstep9
+$random Skeleton/Step { SkelStep1 SkelStep2 SkelStep3 SkelStep4 SkelStep5 SkelStep6 SkelStep7 SkelStep8 SkelStep9 }
+SkelStep1 "Sounds/Monsters/SFX/SkeletonStep1.ogg"
+SkelStep2 "Sounds/Monsters/SFX/SkeletonStep2.ogg"
+SkelStep3 "Sounds/Monsters/SFX/SkeletonStep3.ogg"
+SkelStep4 "Sounds/Monsters/SFX/SkeletonStep4.ogg"
+SkelStep5 "Sounds/Monsters/SFX/SkeletonStep5.ogg"
+SkelStep6 "Sounds/Monsters/SFX/SkeletonStep6.ogg"
+SkelStep7 "Sounds/Monsters/SFX/SkeletonStep7.ogg"
+SkelStep8 "Sounds/Monsters/SFX/SkeletonStep8.ogg"
+SkelStep9 "Sounds/Monsters/SFX/SkeletonStep9.ogg"
 $limit skeleton/step 4
 $rolloff skeleton/step 150 800
 $volume skeleton/step 0.3
@@ -142,26 +142,6 @@ VoreDeath3 "Sounds/Monsters/Vore/VoreDeath3.ogg"
 $volume Vore/Death 0.5
 
 Shadow/attack		"Sounds/Monsters/Vore/VShadowAttack.ogg"
-
-//Tainted
-RSWMZombie/Sight BZRD_SI1
-RSWMZombie/Pain BZRD_HIT
-RSWMZombie/Death BZRD_DED
-RSWMZombie/ProjDeath BZRD_PRD
-
-DormRSWMZombie/Sight BZRD_SI2
-
-//Azazel
-Goat/Attack				goata2
-Goat/death				goatbd2
-Goat/Pain				goath2
-Goat/Madattack			goats2
-
-
-
-$limite whiteballsee 5
-
-groundfirestart  flamstrt
 
 //Host
 $random monster/vulsit 		{ monster/vulsi1  monster/vulsi2 }
@@ -287,22 +267,6 @@ $volume Charred/Idle 0.3
 $volume Charred/Death 0.6
 $volume CharSight2 0.1
 
-
-
-//Famine
-FATSEE FATSEE
-FATDTH FATDTH
-FATACT FATACT
-FATPAI FATPAI
-FATSPIT FATSPIT
-torturedsoul/poison dstrtpsn
-
-
-Beholder/Spit "Sounds/Monsters/Beholder/BeholderSpit.wav"
-$limit Beholder/Spit 10
-$volume Beholder/Spit 0.6
-SoFlesh/explode Dssofexp
-
 //Beholder
 Beholder/Sight "Sounds/Monsters/Watcher/BeholderSight.ogg"
 Beholder/Pain "Sounds/Monsters/Watcher/BeholderPain.ogg"
@@ -317,6 +281,11 @@ Beholder/Cry1 "Sounds/Monsters/Watcher/BeholderCry1.ogg"
 Beholder/Cry2 "Sounds/Monsters/Watcher/BeholderCry2.ogg"
 Beholder/Cry3 "Sounds/Monsters/Watcher/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
+
+Beholder/Spit "Sounds/Monsters/Beholder/BeholderSpit.wav"
+$limit Beholder/Spit 10
+$volume Beholder/Spit 0.6
+SoFlesh/explode Dssofexp
 
 
 //Infested
@@ -434,13 +403,6 @@ $volume MutatedGunner/Active 0.4
 $volume MutatedGunner/Pain 0.4
 $volume MutatedGunner/Death 0.4
 
-$random UCHAIN/Bullets { UCHAIN/UCBHIT1 UCHAIN/UCBHIT2 UCHAIN/UCBHIT3 UCHAIN/UCBHIT4 UCHAIN/UCBHIT5 }
-UCHAIN/UCBHIT1 UCBHIT1
-UCHAIN/UCBHIT2 UCBHIT2
-UCHAIN/UCBHIT3 UCBHIT3
-UCHAIN/UCBHIT4 UCBHIT4
-UCHAIN/UCBHIT5 UCBHIT5
-
 $random PM/BulletHit { PM/BulletHit1 PM/BulletHit2 PM/BulletHit3 PM/BulletHit4 PM/BulletHit5 }
 PM/BulletHit1 "Sounds/Other/PMBulletHit1.wav"
 PM/BulletHit2 "Sounds/Other/PMBulletHit2.wav"
@@ -450,11 +412,10 @@ PM/BulletHit5 "Sounds/Other/PMBulletHit5.wav"
 
 $limit PM/BulletHit 20
 
-UCHAIN/Windup UCFSTAR
-UCHAIN/Loop UCFLOOP
-$rolloff UCHAIN/Loop 350 2200
-UCHAIN/Winddown UCFSTOP
-UCHAIN/Steam STEAM
+MutatedGunner/WindUp "Sounds/Monsters/MutatedGunner/MutGunnerStart.ogg"
+MutatedGunner/GunLoop "Sounds/Monsters/MutatedGunner/MutGunnerLoop.ogg"
+$rolloff MutatedGunner/GunLoop 350 2200
+MutatedGunner/WindDown "Sounds/Monsters/MutatedGunner/MutGunnerStop.ogg"
 
 //Watcher
 
@@ -528,8 +489,6 @@ Watcher/Roar4 "Sounds/Monsters/Watcher/WatcherRoar4.ogg"
 $volume Watcher/Roar 0.6
 $rolloff Watcher/Roar 250 1600
 
-monster/watatk                  dswatatk
-monster/wathit                  dswathit
 caco/melee                      dsdembit
 
 //Husk
@@ -1068,7 +1027,7 @@ Fusionite/Scattershot "Sounds/Monsters/Fusionite/ScatterFusionShot.ogg"
 Fusionite/SmallCharge "Sounds/Monsters/Fusionite/SmallFusionCharge.ogg"
 Fusionite/SmallShot "Sounds/Monsters/Fusionite/SmallFusionShot.ogg"
 
-FUSSEXP FUSSEXP
+ArachChassisExplode "Sounds/Monsters/Fusionite/ArachChassisExp.ogg"
 
 
 $volume Fusionite/Active 0.6
@@ -1362,12 +1321,6 @@ $limit BeholderEyeExp 13
 $limit TaintedBloodFire 10
 $limit TaintedBloodExp 10
 $limit BloodSplash 10
-
-Defiler/Attack	DEFIATK
-Defiler/Sight	DEFISIT
-Defiler/Death	DEFIDETH
-
-FUSWALK	FUSWALK
 
 $random hoofstep		{ hoof/step1 hoof/step2 hoof/step3 hoof/step4 }
 hoof/step1			"Sounds/Monsters/SFX/BaronHoofStep1.ogg"
@@ -1900,19 +1853,6 @@ GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
 $limit GenericPlasmaFire 0
 $rolloff GenericPlasmaFire 350 2000
 
-Paladin/Sight	HPALSIT
-Paladin/Active	HPALACT
-Paladin/Pain	HPALPAIN
-Paladin/Death	HPALDTH
-Paladin/Swing	HPALSWG
-Paladin/Melee	HPALHIT
-Paladin/Shoot	HPALATK
-Paladin/Hit		HPALHIT2
-Paladin/Grenade	HPALGREN
-Paladin/Bounce	HPALBNC
-Paladin/Explode	HPALEXPL
-Paladin/Step	HPALSTEP
-
 $random BSkull/See { BSkullSight1 BSkullSight2 }	
 BSkullSight1 "Sounds/Monsters/BloodSkull/BSkullSight1.ogg"
 BSkullSight2 "Sounds/Monsters/BloodSkull/BSkullSight2.ogg"
@@ -2032,9 +1972,6 @@ Abhor/Death3 "Sounds/Monsters/Abhorrent/AbhorrentDeath3.ogg"
 
 PLAGCHA PLAGCHA
 
-ABHFIR ABHFIR
-$rolloff ABHFIR 400 2200
-
 Abhor/Phase "Sounds/Monsters/Abhorrent/AbhorPhase.ogg"
 
 $random Abhor/BallWhiz { AbhorBallWhiz1 AbhorBallWhiz2 }
@@ -2109,8 +2046,8 @@ WLashBlade5 "Sounds/Monsters/Whiplash/WhiplashBlade5.ogg"
 Whiplash/GroundFire "Sounds/Monsters/Whiplash/WhiplashGroundFire.ogg"
 Whiplash/GSpikeSummon "Sounds/Monsters/Whiplash/WhiplashGSpikeSummon.ogg"
 
-$limit WHIPHIT 10
-$limit WHIPBLA 6
+$limit Whiplash/KnifeStab 10
+$limit Whiplash/Blades 6
 
 //Phase Cacodemon
 $random CACOMEL { CACOMEL1 CACOMEL2 CACOMEL3 }
@@ -2151,6 +2088,9 @@ PCacoSight7 "Sounds/Monsters/PhaseCaco/PCacoSight7.ogg"
 PCacoSight8 "Sounds/Monsters/PhaseCaco/PCacoSight8.ogg"
 
 PhaseCaco/Phase "Sounds/Monsters/PhaseCaco/PCacoPhase.ogg"
+
+PhaseCaco/Small                 "Sounds/Monsters/PhaseCaco/PCacoSBall.ogg"
+PhaseCaco/SmallExp              "Sounds/Monsters/PhaseCaco/PCacoSBallExp.ogg"
 
 //Feral Imp
 
@@ -3133,3 +3073,5 @@ DemonicSprite/Warn "Sounds/Other/PossSpriteWarn.ogg"
 
 Ice/Freeze "Sounds/Other/PMIceFreeze.ogg"
 $rolloff Ice/Freeze 700 1500
+
+GenericSteam "Sounds/Monsters/SFX/GenericSteam.ogg"
