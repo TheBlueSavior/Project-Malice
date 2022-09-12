@@ -28,6 +28,16 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR B 0 0
 }
 
+Model PM_DTechSpectreShot
+{ 
+Path "Models"
+Skin 0 "tracer2.tga"
+Model 0 "Tracer.md3"
+Scale 0.8 0.3 0.8
+PITCHFROMMOMENTUM
+FrameIndex TRCR B 0 0
+}
+
 Model PM_WhiplashKnife
 { 
 Path "Models"

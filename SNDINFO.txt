@@ -2826,6 +2826,9 @@ DTechSpecActive3 "Sounds/Monsters/DTechSpectre/DTechSpectreActive3.ogg"
 DTechSpectre/Ready "Sounds/Monsters/DTechSpectre/DTechSpectreReady.ogg"
 DTechSpectre/Death "Sounds/Monsters/DTechSpectre/DTechSpectreDeath.ogg"
 
+DTechSpectre/Fire "Sounds/Monsters/DTechSpectre/DTechSpectreFire.ogg"
+$rolloff DTechSpectre/Fire 600 2000
+
 $rolloff DTechSpectre/Ready 500 1700
 $random DTechSpectre/Walk { DTechWalk2 DTechWalk2 }       
 $volume DTechSpectre/Walk 0.5
