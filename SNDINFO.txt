@@ -1027,7 +1027,7 @@ Fusionite/Scattershot "Sounds/Monsters/Fusionite/ScatterFusionShot.ogg"
 Fusionite/SmallCharge "Sounds/Monsters/Fusionite/SmallFusionCharge.ogg"
 Fusionite/SmallShot "Sounds/Monsters/Fusionite/SmallFusionShot.ogg"
 
-ArachChassisExplode "Sounds/Monsters/Fusionite/ArachChassisExp.ogg"
+ArachChassisExplode "Sounds/Monsters/Fusionite/ArachChassisExplode.ogg"
 
 
 $volume Fusionite/Active 0.6
