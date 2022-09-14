@@ -302,7 +302,7 @@ InfestedIdle9 "Sounds/Monsters/Infested/InfestedIdle9.ogg"
 InfestedIdle10 "Sounds/Monsters/Infested/InfestedIdle10.ogg"
 InfestedIdle11 "Sounds/Monsters/Infested/InfestedIdle11.ogg"
 InfestedIdle12 "Sounds/Monsters/Infested/InfestedIdle12.ogg"
-$random Infested/Sight { InfestedSight1 InfestedIdle3 InfestedIdle10 InfestedIdle11 InfestedIdle12 }
+$random Infested/Sight { InfestedSight1 InfestedSight2 InfestedSight3 InfestedSight4 }
 InfestedSight1 "Sounds/Monsters/Infested/InfestedSight1.ogg"
 InfestedSight2 "Sounds/Monsters/Infested/InfestedSight2.ogg"
 InfestedSight3 "Sounds/Monsters/Infested/InfestedSight3.ogg"
@@ -311,9 +311,9 @@ $random Infested/Active { InfestedIdle1 InfestedIdle3 InfestedIdle5 InfestedIdle
 Infested/Death "Sounds/Monsters/Infested/InfestedDeath.ogg"
 $volume Infested/Active 0.5
 $volume Infested/Idle 0.5
-$volume Infested/See 0.4
+$volume Infested/Sight 0.4
 $rolloff Infested/Idle 400 2200
-$rolloff Infested/See 400 2200
+$rolloff Infested/Sight 400 2200
 $limit Infested/Idle 5
 
 //Trite
@@ -1599,6 +1599,7 @@ $volume Glutton/Attack 0.9
 
 Glutton/Pain "Sounds/Monsters/Glutton/GluttonPain.ogg"
 Glutton/Death "Sounds/Monsters/Glutton/GluttonDeath.ogg"
+$volume Glutton/Death 0.8
 
 
 TORTURE4 TORTURE4
