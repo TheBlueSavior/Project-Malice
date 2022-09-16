@@ -228,13 +228,13 @@ ACTOR MaliceTorturedMarine
 		TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
 	Torture:
-		TNT1 A 0 A_PlaySound("MARTOR")
+		TNT1 A 0 A_PlaySound("Marine/Torture")
 		TTR8 ABCBABCBABCBABCBABCBABCBABCBABCBABCBABCBABCBAB 6
 		Loop
 		
 	Death:	
 		TNT1 A 0
-		TNT1 A 0 A_PlaySound("TORTURE4")
+		TNT1 A 0 A_PlaySound("Marine/Death")
 		TTR8 DEFG 14
 		TTR8 H -1
 		Stop

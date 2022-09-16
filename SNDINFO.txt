@@ -268,21 +268,21 @@ $volume Charred/Death 0.6
 $volume CharSight2 0.1
 
 //Beholder
-Beholder/Sight "Sounds/Monsters/Watcher/BeholderSight.ogg"
-Beholder/Pain "Sounds/Monsters/Watcher/BeholderPain.ogg"
-Beholder/Death "Sounds/Monsters/Watcher/BeholderDie.ogg"
+Beholder/Sight "Sounds/Monsters/Beholder/BeholderSight.ogg"
+Beholder/Pain "Sounds/Monsters/Beholder/BeholderPain.ogg"
+Beholder/Death "Sounds/Monsters/Beholder/BeholderDie.ogg"
 $random Beholder/Active { Beholder/Active1 Beholder/Active2 Beholder/Active3 }
-Beholder/Active1 "Sounds/Monsters/Watcher/BeholderActive1.ogg"
-Beholder/Active2 "Sounds/Monsters/Watcher/BeholderActive2.ogg"
-Beholder/Active3 "Sounds/Monsters/Watcher/BeholderActive3.ogg"
+Beholder/Active1 "Sounds/Monsters/Beholder/BeholderActive1.ogg"
+Beholder/Active2 "Sounds/Monsters/Beholder/BeholderActive2.ogg"
+Beholder/Active3 "Sounds/Monsters/Beholder/BeholderActive3.ogg"
 
 $random Beholder/Cry { Beholder/Cry1 Beholder/Cry2 Beholder/Cry3 }
-Beholder/Cry1 "Sounds/Monsters/Watcher/BeholderCry1.ogg"
-Beholder/Cry2 "Sounds/Monsters/Watcher/BeholderCry2.ogg"
-Beholder/Cry3 "Sounds/Monsters/Watcher/BeholderCry3.ogg"
+Beholder/Cry1 "Sounds/Monsters/Beholder/BeholderCry1.ogg"
+Beholder/Cry2 "Sounds/Monsters/Beholder/BeholderCry2.ogg"
+Beholder/Cry3 "Sounds/Monsters/Beholder/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
 
-Beholder/Spit "Sounds/Monsters/Beholder/BeholderSpit.wav"
+Beholder/Spit "Sounds/Monsters/Beholder/BeholderSpit.ogg"
 $limit Beholder/Spit 10
 $volume Beholder/Spit 0.6
 SoFlesh/explode Dssofexp
@@ -404,11 +404,11 @@ $volume MutatedGunner/Pain 0.4
 $volume MutatedGunner/Death 0.4
 
 $random PM/BulletHit { PM/BulletHit1 PM/BulletHit2 PM/BulletHit3 PM/BulletHit4 PM/BulletHit5 }
-PM/BulletHit1 "Sounds/Other/PMBulletHit1.wav"
-PM/BulletHit2 "Sounds/Other/PMBulletHit2.wav"
-PM/BulletHit3 "Sounds/Other/PMBulletHit3.wav"
-PM/BulletHit4 "Sounds/Other/PMBulletHit4.wav"
-PM/BulletHit5 "Sounds/Other/PMBulletHit5.wav"
+PM/BulletHit1 "Sounds/Other/PMBulletHit1.ogg"
+PM/BulletHit2 "Sounds/Other/PMBulletHit2.ogg"
+PM/BulletHit3 "Sounds/Other/PMBulletHit3.ogg"
+PM/BulletHit4 "Sounds/Other/PMBulletHit4.ogg"
+PM/BulletHit5 "Sounds/Other/PMBulletHit5.ogg"
 
 $limit PM/BulletHit 20
 
@@ -842,52 +842,52 @@ $volume Host/Active 0.7
 
 //Hunger
 $random Afflicted/Sight { AffSight1 AffSight2 }
-AffSight1 "Sounds/Monsters/Afflicted/AfflictedSight1.wav"
-AffSight2 "Sounds/Monsters/Afflicted/AfflictedSight2.wav"
+AffSight1 "Sounds/Monsters/Afflicted/AfflictedSight1.ogg"
+AffSight2 "Sounds/Monsters/Afflicted/AfflictedSight2.ogg"
 $volume Afflicted/Sight 0.5
 
 $random Afflicted/Active { AffActive1 AffActive2 AffActive3 AffActive4 AffActive5 AffActive6 AffSight1 AffSight2 }
-AffActive1 "Sounds/Monsters/Afflicted/AfflictedActive1.wav"
-AffActive2 "Sounds/Monsters/Afflicted/AfflictedActive2.wav"
-AffActive3 "Sounds/Monsters/Afflicted/AfflictedActive3.wav"
-AffActive4 "Sounds/Monsters/Afflicted/AfflictedActive4.wav"
-AffActive5 "Sounds/Monsters/Afflicted/AfflictedActive5.wav"
-AffActive6 "Sounds/Monsters/Afflicted/AfflictedActive6.wav"
+AffActive1 "Sounds/Monsters/Afflicted/AfflictedActive1.ogg"
+AffActive2 "Sounds/Monsters/Afflicted/AfflictedActive2.ogg"
+AffActive3 "Sounds/Monsters/Afflicted/AfflictedActive3.ogg"
+AffActive4 "Sounds/Monsters/Afflicted/AfflictedActive4.ogg"
+AffActive5 "Sounds/Monsters/Afflicted/AfflictedActive5.ogg"
+AffActive6 "Sounds/Monsters/Afflicted/AfflictedActive6.ogg"
 $volume Afflicted/Active 0.5
 
 $random Afflicted/Pain	{ AffPain1 AffPain2 AffPain3 AffPain4 AffPain5 }
-AffPain1 "Sounds/Monsters/Afflicted/AfflictedPain1.wav"
-AffPain2 "Sounds/Monsters/Afflicted/AfflictedPain2.wav"
-AffPain3 "Sounds/Monsters/Afflicted/AfflictedPain3.wav"
-AffPain4 "Sounds/Monsters/Afflicted/AfflictedPain4.wav"
-AffPain5 "Sounds/Monsters/Afflicted/AfflictedPain5.wav"
+AffPain1 "Sounds/Monsters/Afflicted/AfflictedPain1.ogg"
+AffPain2 "Sounds/Monsters/Afflicted/AfflictedPain2.ogg"
+AffPain3 "Sounds/Monsters/Afflicted/AfflictedPain3.ogg"
+AffPain4 "Sounds/Monsters/Afflicted/AfflictedPain4.ogg"
+AffPain5 "Sounds/Monsters/Afflicted/AfflictedPain5.ogg"
 
 $volume AffPain5 0.3
 
 $random Afflicted/Death { AffDeath1 AffDeath2 AffDeath3 }
-AffDeath1 "Sounds/Monsters/Afflicted/AfflictedDeath1.wav"
-AffDeath2 "Sounds/Monsters/Afflicted/AfflictedDeath2.wav"
+AffDeath1 "Sounds/Monsters/Afflicted/AfflictedDeath1.ogg"
+AffDeath2 "Sounds/Monsters/Afflicted/AfflictedDeath2.ogg"
 AffDeath3 "Sounds/Monsters/Afflicted/AfflictedDeath3.ogg"
 
 $volume Afflicted/Death 1
 $volume AffDeath3 0.15
 
 $random Afflicted/Idle { AffIdle1 AffIdle2 AffIdle3 AffIdle4 }
-AffIdle1 "Sounds/Monsters/Afflicted/AfflictedIdle1.wav"
-AffIdle2 "Sounds/Monsters/Afflicted/AfflictedIdle2.wav"
-AffIdle3 "Sounds/Monsters/Afflicted/AfflictedIdle3.wav"
+AffIdle1 "Sounds/Monsters/Afflicted/AfflictedIdle1.ogg"
+AffIdle2 "Sounds/Monsters/Afflicted/AfflictedIdle2.ogg"
+AffIdle3 "Sounds/Monsters/Afflicted/AfflictedIdle3.ogg"
 
 $volume Afflicted/Idle 0.3
 
 $random Afflicted/Howl { AffHowl1 AffHowl2 AffHowl3 AffHowl4 }
-AffHowl1 "Sounds/Monsters/Afflicted/AfflictedHowl1.wav"
-AffHowl2 "Sounds/Monsters/Afflicted/AfflictedHowl2.wav"
-AffHowl3 "Sounds/Monsters/Afflicted/AfflictedHowl3.wav"
-AffHowl4 "Sounds/Monsters/Afflicted/AfflictedHowl4.wav"
+AffHowl1 "Sounds/Monsters/Afflicted/AfflictedHowl1.ogg"
+AffHowl2 "Sounds/Monsters/Afflicted/AfflictedHowl2.ogg"
+AffHowl3 "Sounds/Monsters/Afflicted/AfflictedHowl3.ogg"
+AffHowl4 "Sounds/Monsters/Afflicted/AfflictedHowl4.ogg"
 $rolloff Afflicted/Howl 300 1200
 $volume Afflicted/Howl 0.7
 
-Afflicted/Puke "Sounds/Monsters/Afflicted/AfflictedPuke.wav"
+Afflicted/Puke "Sounds/Monsters/Afflicted/AfflictedPuke.ogg"
 
 $random Afflicted/Spawn { AffSpawn1 AffSpawn2 AffSpawn3 AffSpawn4 AffSpawn5 }
 AffSpawn1 "Sounds/Monsters/Afflicted/AfflictedSpawn1.ogg"
@@ -1012,7 +1012,7 @@ $volume HelmetZombie/Active 0.5
 
 ArachCrash "Sounds/Monsters/Fusionite/ArachCrash.ogg"
 ArachExpGore "Sounds/Monsters/Fusionite/ArachExpGore.ogg"
-GenericArachWalk "Sounds/Monsters/SFX/GenericArachWalk.wav"
+GenericArachWalk "Sounds/Monsters/SFX/GenericArachWalk.ogg"
 
 $rolloff ArachCrash 700 1800
 $rolloff ArachExpGore 700 1800
@@ -1037,7 +1037,7 @@ $volume Fusionite/Death 0.8
 $rolloff Fusionite/Scattershot 500 2000
 $rolloff Fusionite/SmallShot 500 2000
 $limit Fusionite/SmallShot 0
-$rolloff FUSSEXP 1500 2500
+$rolloff ArachChassisExplode 1500 2500
 
 $random wizard/tele 		{ wizard/tele1 wizard/tele2 wizard/tele3 wizard/tele4 }
 wizard/tele1                   dsdamnd1
@@ -1308,9 +1308,9 @@ TaintedProjFire            "sounds/Monsters/Tainted/TaintedProjFire.ogg"
 TaintedBloodFire           "sounds/Monsters/Tainted/TaintedBounceFire.ogg"
 TaintedBloodExp            "sounds/Monsters/Tainted/TaintedBounceExp.ogg"
 $random BeholderBloodExp { BBExp1 BBExp2 }
-BBExp1                     "sounds/Monsters/Watcher/BeholderBloodExp1.ogg"
-BBExp2                     "sounds/Monsters/Watcher/BeholderBloodExp2.ogg"
-BeholderEyeExp             "sounds/Monsters/Watcher/BeholderEyeExp.ogg"
+BBExp1                     "sounds/Monsters/Beholder/BeholderBloodExp1.ogg"
+BBExp2                     "sounds/Monsters/Beholder/BeholderBloodExp2.ogg"
+BeholderEyeExp             "sounds/Monsters/Beholder/BeholderEyeExp.ogg"
 $random BloodSplash { GBloodSplash1 GBloodSplash2 }
 GBloodSplash1              "sounds/Monsters/SFX/GenericBloodSplash1.ogg"
 GBloodSplash2              "sounds/Monsters/SFX/GenericBloodSplash2.ogg"
@@ -1333,13 +1333,13 @@ $rolloff hoofstep 700 1200
 //Heresy Lord
 
 $random HeresyLord/Sight	{  HeresyLordSight1 HeresyLordSight2 HeresyLordSight3 HeresyLordSight4 HeresyLordSight5 HeresyLordSight6 HeresyLordSight7 }
-HeresyLordSight1 "Sounds/Monsters/HeresyLord/HeresyLordSight1.wav"
-HeresyLordSight2 "Sounds/Monsters/HeresyLord/HeresyLordSight2.wav"
-HeresyLordSight3 "Sounds/Monsters/HeresyLord/HeresyLordSight3.wav"
-HeresyLordSight4 "Sounds/Monsters/HeresyLord/HeresyLordSight4.wav"
-HeresyLordSight5 "Sounds/Monsters/HeresyLord/HeresyLordSight5.wav"
-HeresyLordSight6 "Sounds/Monsters/HeresyLord/HeresyLordSight6.wav"
-HeresyLordSight7 "Sounds/Monsters/HeresyLord/HeresyLordSight7.wav"
+HeresyLordSight1 "Sounds/Monsters/HeresyLord/HeresyLordSight1.ogg"
+HeresyLordSight2 "Sounds/Monsters/HeresyLord/HeresyLordSight2.ogg"
+HeresyLordSight3 "Sounds/Monsters/HeresyLord/HeresyLordSight3.ogg"
+HeresyLordSight4 "Sounds/Monsters/HeresyLord/HeresyLordSight4.ogg"
+HeresyLordSight5 "Sounds/Monsters/HeresyLord/HeresyLordSight5.ogg"
+HeresyLordSight6 "Sounds/Monsters/HeresyLord/HeresyLordSight6.ogg"
+HeresyLordSight7 "Sounds/Monsters/HeresyLord/HeresyLordSight7.ogg"
 
 $random HeresyLord/Active	{ HeresyLordActive1 HeresyLordActive2 HeresyLordActive3 HeresyLordActive4 HeresyLordActive5 HeresyLordActive6 }
 HeresyLordActive1 "Sounds/Monsters/HeresyLord/HeresyLordActive1.ogg"
@@ -1360,19 +1360,20 @@ baron/melee2                    chomp2
 baron/melee3                    chomp3
 
 $random HeresyLord/Death	{ HeresyLordDie1 HeresyLordDie2 HeresyLordDie3 }
-HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1.wav"
-HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.wav"
-HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.wav"
+HeresyLordDie1 "Sounds/Monsters/HeresyLord/HeresyLordDie1.ogg"
+HeresyLordDie2 "Sounds/Monsters/HeresyLord/HeresyLordDie2.ogg"
+HeresyLordDie3 "Sounds/Monsters/HeresyLord/HeresyLordDie3.ogg"
 
 HeresyLord/BarrageRedFire "Sounds/Monsters/HeresyLord/HeresyLRSFire.ogg"     //redballssee		purfire3
 HeresyLord/BarrageRedDeath "Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"   //redballsdeth		r_exp3
-HeresyLord/BarrageSummon "Sounds/Monsters/HeresyLord/HeresyLBarrageS.wav"    //waitingballsspawn	purfire
+HeresyLord/BarrageSummon "Sounds/Monsters/HeresyLord/HeresyLBarrageS.ogg"    //waitingballsspawn	purfire
 HeresyLord/BarrageWhiteFire "Sounds/Monsters/HeresyLord/HeresyLWSFire.ogg"   //whiteballssee		acidfire
 HeresyLord/BarrageWhiteDeath "Sounds/Monsters/HeresyLord/HeresyLWSDeath.ogg" //whiteballsdeth		acidhit
-HeresyLord/BarrageRCharge "Sounds/Monsters/HeresyLord/HeresyLBRCharge.wav"   //missile1charge	h20017
-HeresyLord/BarrageWCharge "Sounds/Monsters/HeresyLord/HeresyLBWCharge.wav"   //missile2charge	h20016
+HeresyLord/BarrageRCharge "Sounds/Monsters/HeresyLord/HeresyLBRCharge.ogg"   //missile1charge	h20017
+HeresyLord/BarrageWCharge "Sounds/Monsters/HeresyLord/HeresyLBWCharge.ogg"   //missile2charge	h20016
 
 $limit HeresyLord/BarrageRedFire 15
+$limit HeresyLord/BarrageWhiteFire 15
 
 HeresyLord/RedFire		"Sounds/Monsters/HeresyLord/HeresyLRBFire.ogg"
 HeresyLord/RedDeath	"Sounds/Monsters/HeresyLord/HeresyLRBDeath.ogg"
@@ -1587,13 +1588,13 @@ GluttonActive4 "Sounds/Monsters/Glutton/GluttonActive4.ogg"
 
 $random Glutton/Spit { GluttonSpit1 GluttonSpit2 }
 
-GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1.wav"
-GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2.wav"
+GluttonSpit1 "Sounds/Monsters/Glutton/GluttonSpit1.ogg"
+GluttonSpit2 "Sounds/Monsters/Glutton/GluttonSpit2.ogg"
 
 $random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
 
-GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.wav"
-GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.wav"
+GluttonAttack1 "Sounds/Monsters/Glutton/GluttonAttack1.ogg"
+GluttonAttack2 "Sounds/Monsters/Glutton/GluttonAttack2.ogg"
 
 $volume Glutton/Attack 0.9
 
@@ -1602,14 +1603,14 @@ Glutton/Death "Sounds/Monsters/Glutton/GluttonDeath.ogg"
 $volume Glutton/Death 0.8
 
 
-TORTURE4 TORTURE4
+Marine/Death "Sounds/Other/TorturedMarineDead.ogg"
 
-$random MARTOR { MARTOR1 MARTOR2 MARTOR3 MARTOR4 MARTOR5 }
-MARTOR1 MARTOR1
-MARTOR2 MARTOR2
-MARTOR3 MARTOR3
-MARTOR4 MARTOR4
-MARTOR5 MARTOR5
+$random Marine/Torture { MarTor1 MarTor2 MarTor3 MarTor4 MarTor5 }
+MarTor1 "Sounds/Other/TorturedMarine1.ogg"
+MarTor2 "Sounds/Other/TorturedMarine2.ogg"
+MarTor3 "Sounds/Other/TorturedMarine3.ogg"
+MarTor4 "Sounds/Other/TorturedMarine4.ogg"
+MarTor5 "Sounds/Other/TorturedMarine5.ogg"
 
 //Decayed Soldiers
 
@@ -1846,9 +1847,9 @@ PBruDeath3 "Sounds/Monsters/PhaseBrute/PBruteDeath3.ogg"
 
 
 $random GenericPlasmaExp { GPlasmaExp1 GPlasmaExp2 GPlasmaExp3 }
-GPlasmaExp1 "Sounds/Monsters/SFX/GPlasmaExp1.wav"
-GPlasmaExp2 "Sounds/Monsters/SFX/GPlasmaExp2.wav"
-GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.wav"
+GPlasmaExp1 "Sounds/Monsters/SFX/GPlasmaExp1.ogg"
+GPlasmaExp2 "Sounds/Monsters/SFX/GPlasmaExp2.ogg"
+GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.ogg"
 
 GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
 $limit GenericPlasmaFire 0
@@ -2034,7 +2035,7 @@ WLashDeath2 "Sounds/Monsters/Whiplash/WhiplashDeath2.ogg"
 WLashDeath3 "Sounds/Monsters/Whiplash/WhiplashDeath3.ogg"
 
 Whiplash/Flank "Sounds/Monsters/Whiplash/WhiplashFlank.ogg"
-Whiplash/KnifeStab "Sounds/Monsters/Whiplash/WhipKnifeStab.wav"
+Whiplash/KnifeStab "Sounds/Monsters/Whiplash/WhipKnifeStab.ogg"
 Whiplash/Schwing "Sounds/Monsters/Whiplash/WhipSchwing.ogg"
 
 $random Whiplash/Blades { WLashBlade1 WLashBlade2 WLashBlade3 WLashBlade4 WLashBlade5 }
@@ -2057,11 +2058,11 @@ CACOMEL2 CACOMEL2
 CACOMEL3 CACOMEL3
 
 $random PhaseCaco/BallExp { PCacoBallX1 PCacoBallX2 PCacoBallX3 PCacoBallX4 PCacoBallX5 }
-PCacoBallX1 "Sounds/Monsters/PhaseCaco/PCacoBallX1.wav"
-PCacoBallX2 "Sounds/Monsters/PhaseCaco/PCacoBallX2.wav"
-PCacoBallX3 "Sounds/Monsters/PhaseCaco/PCacoBallX3.wav"
-PCacoBallX4 "Sounds/Monsters/PhaseCaco/PCacoBallX4.wav"
-PCacoBallX5 "Sounds/Monsters/PhaseCaco/PCacoBallX5.wav"
+PCacoBallX1 "Sounds/Monsters/PhaseCaco/PCacoBallX1.ogg"
+PCacoBallX2 "Sounds/Monsters/PhaseCaco/PCacoBallX2.ogg"
+PCacoBallX3 "Sounds/Monsters/PhaseCaco/PCacoBallX3.ogg"
+PCacoBallX4 "Sounds/Monsters/PhaseCaco/PCacoBallX4.ogg"
+PCacoBallX5 "Sounds/Monsters/PhaseCaco/PCacoBallX5.ogg"
 
 PhaseCaco/Active "Sounds/Monsters/PhaseCaco/PCacoActive.ogg"
 PhaseCaco/BallLoop "Sounds/Monsters/PhaseCaco/PCacoBallLoop.ogg"
@@ -2201,7 +2202,7 @@ TyrMissileX1 "Sounds/Monsters/Tyrant/TyrMissileX1.ogg"
 TyrMissileX2 "Sounds/Monsters/Tyrant/TyrMissileX2.ogg"
 TyrMissileX3 "Sounds/Monsters/Tyrant/TyrMissileX3.ogg"
 
-Tyrant/RocketRiver "Sounds/Monsters/Tyrant/TyrSmallRocket.wav"
+Tyrant/RocketRiver "Sounds/Monsters/Tyrant/TyrSmallRocket.ogg"
 $limit Tyrant/RocketRiver 0
 $volume Tyrant/RocketRiver 0.7
 $rolloff Tyrant/RocketRiver 450 2200
@@ -2233,7 +2234,7 @@ $rolloff DComm/Stop 400 2200
 $rolloff DComm/Fire 400 2200
 
 //Draugr
-Draugr/RocketWhoosh "Sounds/Monsters/Draugr/DraugrRocket.wav"
+Draugr/RocketWhoosh "Sounds/Monsters/Draugr/DraugrRocket.ogg"
 Draugr/RocketLaunch "Sounds/Monsters/Draugr/DraugrRocketLaunch.ogg"
 Draugr/RocketAim "Sounds/Monsters/Draugr/DraugrRocketAim.ogg"
 
@@ -2295,12 +2296,12 @@ $volume Voidspawn/Active 0.9
 
 
 //Plasmatron
-Plasmatron/Fire "Sounds/Monsters/Plasmatron/PlasmatronFire.wav"
+Plasmatron/Fire "Sounds/Monsters/Plasmatron/PlasmatronFire.ogg"
 
-Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee.wav"
-Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain.wav"
-Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive.wav"
-Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath.wav"
+Plasmatron/See "Sounds/Monsters/Plasmatron/PlasmatronSee.ogg"
+Plasmatron/Pain "Sounds/Monsters/Plasmatron/PlasmatronPain.ogg"
+Plasmatron/Active "Sounds/Monsters/Plasmatron/PlasmatronActive.ogg"
+Plasmatron/Death "Sounds/Monsters/Plasmatron/PlasmatronDeath.ogg"
 
 $random Plasmatron/Step { Plasmatron/Step1 Plasmatron/Step2 Plasmatron/Step3 Plasmatron/Step4 Plasmatron/Step5 }
 Plasmatron/Step1 "Sounds/Monsters/Plasmatron/PlasmatronStep1.ogg"
@@ -2593,8 +2594,8 @@ $rolloff ZTrooper/FragArm 400 1500
 ZTrooper/FragThrow "Sounds/Monsters/ZombieTrooper/ZTroFragThrow.ogg"
 $limit ZTrooper/FragThrow 10
 
-ZTrooper/FragExp "Sounds/Monsters/ZombieTrooper/ZTroFragExp.wav"
-$rolloff ZTrooper/FragArm 600 2200
+ZTrooper/FragExp "Sounds/Monsters/ZombieTrooper/ZTroFragExp.ogg"
+$rolloff ZTrooper/FragArm 700 3000
 
 
 ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire.ogg"
@@ -2611,7 +2612,7 @@ $rolloff RFZ/Fire 300 2200
 
 RFZ/Load "Sounds/Monsters/RFZombie/RFTLoad.ogg"
 
-RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire.wav"
+RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire.ogg"
 $limit RFZ/RapidFire 0
 $rolloff RFZ/RapidFire 150 2200
 
@@ -2939,7 +2940,7 @@ PistolZombie/Death1 "Sounds/Monsters/PistolZombie/PistolZombieDeath1.ogg"
 PistolZombie/Death2 "Sounds/Monsters/PistolZombie/PistolZombieDeath2.ogg"
 PistolZombie/Death3 "Sounds/Monsters/PistolZombie/PistolZombieDeath3.ogg"
 
-PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire.wav"
+PistolZombie/Fire "Sounds/Monsters/PistolZombie/PistolZombieFire.ogg"
 $rolloff PistolZombie/Fire 300 2200
 
 //Noble
@@ -2998,7 +2999,7 @@ BloodStalker/Roar "Sounds/Monsters/BloodStalker/BStalkerRoar.ogg"
 $volume BloodStalker/Roar 0.6
 
 BStalker/Death "Sounds/Monsters/BloodStalker/BStalkerDeath.ogg"
-BStalker/Warp "Sounds/Monsters/BloodStalker/BStalkerWarp.wav"
+BStalker/Warp "Sounds/Monsters/BloodStalker/BStalkerWarp.ogg"
 
 
 //Corpulent

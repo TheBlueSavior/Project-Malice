@@ -61,13 +61,13 @@ Actor PM_DecayedCommando
 		}
     goto See
 	NormalWindup:
-	TNT1 A 0 A_PlaySound("UCHAIN/Windup")
+	TNT1 A 0 A_PlaySound(MutatedGunner/Windup")
 	DCOM EEEE 5 A_FaceTarget
 	Missile1:
 			DCOM E 1 A_FaceTarget
 	Missile12:
 			DCOM E 1 Light("YellowMediumFlicker1")
-			TNT1 A 0 A_PlaySound("UCHAIN/Loop")
+			TNT1 A 0 A_PlaySound("MutatedGunner/GunLoop")
 			TNT1 A 0 A_SpawnItemEx("PM_VentSmoke",20,10,32,1,0,1,0,0,0,0)
 			DCOM F 1 BRIGHT Light("YellowMediumFlicker2") 
 			{
@@ -86,7 +86,7 @@ Actor PM_DecayedCommando
 			TNT1 A 0 A_JumpIfinTargetLOS("Missile12",360,JLOSF_DEADNOJUMP,0)
 			Goto CoolDown
 		CoolDown:
-			TNT1 A 0 A_PlaySound("UCHAIN/Winddown")
+			TNT1 A 0 A_PlaySound("MutatedGunner/Winddown")
 			DCOM E 8
 			TNT1 A 0 A_PlaySound("GenericSteam")
 			DCOM GGGGGGGGGGGGGGGGGGGGGGGGGGG 1
