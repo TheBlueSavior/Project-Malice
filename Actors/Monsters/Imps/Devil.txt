@@ -109,7 +109,7 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 A_Jump(140,"StandoffCheck")
 	TNT1 A 0 A_Jump(60,"FireLeft","FireRight")
 	TNT1 A 0 A_Jump(30,"Roar")
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -143,7 +143,7 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
 	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -176,7 +176,7 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
 	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -235,7 +235,7 @@ actor PM_Devil : DoomImp
   StandoffMissile:
 	TNT1 A 0 A_Jump(60,"SFireLeft","SFireRight")
 	TNT1 A 0 A_Jump(50,"StandoffRoar")
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -269,7 +269,7 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
 	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -302,7 +302,7 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
 	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
@@ -362,7 +362,7 @@ actor PM_Devil : DoomImp
   DespMissile:
 	TNT1 A 0 ThrustThingZ(0,24,0,1)
 	//TNT1 A 0 A_Recoil(5)
-	TNT1 A 0 A_PlaySound("IMPCHARG")
+	TNT1 A 0 A_PlaySound("GenericChargeSmall")
     D3IM EEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;

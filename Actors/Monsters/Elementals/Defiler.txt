@@ -506,7 +506,7 @@ ACTOR DefilerBreath
    RENDERSTYLE ADD
    DamageType Fire
    Scale 0.08
-   DeathSound "weapons/scorch"
+   DeathSound "Fire/Unleash"
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD

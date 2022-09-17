@@ -368,7 +368,7 @@ Class PM_SmallSoulHarvesterBall : Actor
     Speed 14;
     Damage 1;
     Renderstyle "Add";
-    SeeSound "rictus/fire";
+    SeeSound "GenericSmallFireball";
     DeathSound "imp/shotx";
     PROJECTILE;
     +SEEKERMISSILE

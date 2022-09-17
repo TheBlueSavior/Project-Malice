@@ -59,7 +59,7 @@ Actor PM_HellsFury
 	
    FireBreath:
 	TNT1 A 0 A_Jump(60,"Melee")
-	TNT1 A 0 A_PlaySound("CYFLAME",CHAN_5,1,1)
+	TNT1 A 0 A_PlaySound("CyberFodder/Flamer",CHAN_5,1,1)
 	TNT1 A 0 A_PlaySound("HFuryRoar",CHAN_7)
 	HFRY PP 5 Light("AvatarFireball4")  A_FaceTarget
 	HFRY QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 1 Light("Avatarfireball4")
@@ -283,7 +283,7 @@ actor PM_HellsFurySpreadFire : PM_CharredBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	//+SEEKERMISSILE
-	seesound "rictus/fire"
+	seesound "GenericSmallFireball"
 	Speed 15
 	FastSpeed 15
 	Scale 0.93

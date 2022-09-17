@@ -267,6 +267,10 @@ $volume Charred/Idle 0.3
 $volume Charred/Death 0.6
 $volume CharSight2 0.1
 
+Charred/Fireball "Sounds/Monsters/Charred/CharredFireball.ogg"
+$limit Charred/Fireball 4
+$volume Charred/Fireball 0.6
+
 //Beholder
 Beholder/Sight "Sounds/Monsters/Beholder/BeholderSight.ogg"
 Beholder/Pain "Sounds/Monsters/Beholder/BeholderPain.ogg"
@@ -493,16 +497,10 @@ caco/melee                      dsdembit
 
 //Husk
 Husk/Sight	    "Sounds/Monsters/Husk/HuskSight.ogg"
-
 Husk/Pain       "Sounds/Monsters/Husk/HuskPain.ogg"
-
 Husk/Melee      "Sounds/Monsters/Husk/HuskPunch.ogg"
 Husk/MeleeSwing "Sounds/Monsters/Husk/HuskSwing.ogg"
-
 Husk/Cloud		"Sounds/Monsters/Husk/HuskCloud.ogg"
-
-Husk/Charge     "Sounds/Monsters/Husk/HuskCharge.ogg"
-
 Husk/Throw      "Sounds/Monsters/Husk/HuskThrow.ogg"
 
 GenericCometExp "Sounds/Monsters/SFX/GenericCometExplode.ogg" //formerly HUBEXP in Husk directory
@@ -1190,7 +1188,7 @@ $limit HellionProj 12
 $Limit Roach/Fire 0
 $Limit Roach/Hit 0
 
-IMPCHARG IMPCHARG
+GenericChargeSmall "Sounds/Monsters/SFX/GChargeSmall.ogg"
 
 //Wretched NEW
 $random Wretched/Sight { WretSight1 WretSight2 }
@@ -1491,9 +1489,9 @@ $volume FacelessZ/Pain 0.7
 $volume FacelessZ/Attack 0.7
 $volume FacelessZ/Death 0.6
 
-weapons/scorch                dsscorch
-weapons/onfire                dsonfire
-weapons/flamer                dsflamer
+FIre/Unleash     "Sounds/Other/FireUnleash.ogg"
+Fire/Idle        "Sounds/Other/FireIdle.ogg"
+
 
 //Hellified Soldier
 $random HellSoldier/Sight { HellSolSight1 HellSolSight2 HellSolSight3 }
@@ -1766,9 +1764,6 @@ rictus/sight		RICTSEE
 rictus/death		RICTDIE
 rictus/active		FIRE09
 rictus/pain		RICTPAIN
-rictus/fire		IMPFIRE2
-
-$limit rictus/fire 8
 rictus/fireimpact	IMPACT3
 rictus/kamakazi		RICTKAMA
 rictus/kamakaziimpact	STRIKE1
@@ -1854,6 +1849,8 @@ GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.ogg"
 GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
 $limit GenericPlasmaFire 0
 $rolloff GenericPlasmaFire 350 2000
+
+GenericChargeHeavy     "Sounds/Monsters/SFX/GChargeHeavy.ogg"
 
 $random BSkull/See { BSkullSight1 BSkullSight2 }	
 BSkullSight1 "Sounds/Monsters/BloodSkull/BSkullSight1.ogg"
@@ -2139,8 +2136,8 @@ $volume FeralImp/Attack 0.5
 FeralImp/Ball "Sounds/Monsters/FeralImp/FeralBallShot.ogg"
 FeralImp/BallExp "Sounds/Monsters/FeralImp/FeralBallExp.ogg"
 
-CYFLAME	CYFLAME
-$rolloff CYFLAME 500 1500
+CyberFodder/Flamer "Sounds/Monsters/CyberFodder/CyberFodderFlamer.ogg"
+$rolloff CyberFodder/Flamer 500 1500
 
 //Fresh Horrorspawn
 $random FreshZFodder/Active { FrZFodderActive1 FrZFodderActive2 FrZFodderActive3 }
@@ -2504,10 +2501,6 @@ $limit HellKnight/BallImpact 5
 $rolloff HellKnight/Cast 500 1500
 $rolloff HellKnight/BallImpact 450 1200
 
-weapons/bwoosh dsbwoosh
-$limit weapons/bwoosh 4
-$volume weapons/bwoosh 0.6
-
 //Defiler
 $random Defiler/Fire { Defiler/Fire1 Defiler/Fire2 Defiler/Fire3 Defiler/Fire4 }
 Defiler/Fire1 "Sounds/Monsters/Defiler/DefilerFire1.ogg"
@@ -2563,14 +2556,14 @@ Defiler/Shoot4 "Sounds/Monsters/Defiler/DefilerShoot4.ogg"
 Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush.ogg"
 
 $random Corpse/Fall { Corpse/Fall1 Corpse/Fall2 Corpse/Fall3 Corpse/Fall4 Corpse/Fall5 Corpse/Fall6 Corpse/Fall7 Corpse/Fall8 }
-Corpse/Fall1 "Sounds/Other/CorpseFall1.wav"
-Corpse/Fall2 "Sounds/Other/CorpseFall2.wav"
-Corpse/Fall3 "Sounds/Other/CorpseFall3.wav"
-Corpse/Fall4 "Sounds/Other/CorpseFall4.wav"
-Corpse/Fall5 "Sounds/Other/CorpseFall5.wav"
-Corpse/Fall6 "Sounds/Other/CorpseFall6.wav"
-Corpse/Fall7 "Sounds/Other/CorpseFall7.wav"
-Corpse/Fall8 "Sounds/Other/CorpseFall8.wav"
+Corpse/Fall1 "Sounds/Other/CorpseFall1.ogg"
+Corpse/Fall2 "Sounds/Other/CorpseFall2.ogg"
+Corpse/Fall3 "Sounds/Other/CorpseFall3.ogg"
+Corpse/Fall4 "Sounds/Other/CorpseFall4.ogg"
+Corpse/Fall5 "Sounds/Other/CorpseFall5.ogg"
+Corpse/Fall6 "Sounds/Other/CorpseFall6.ogg"
+Corpse/Fall7 "Sounds/Other/CorpseFall7.ogg"
+Corpse/Fall8 "Sounds/Other/CorpseFall8.ogg"
 
 $random Corpse/FallMed { Corpse/FallMed1 Corpse/FallMed2 Corpse/FallMed3 Corpse/FallMed4 Corpse/FallMed5 }
 Corpse/FallMed1 "Sounds/Other/CorpseFallMedium1.ogg"
@@ -2712,6 +2705,10 @@ Skulker/Taunt2 "Sounds/Monsters/Skulker/SkulkerTaunt2.ogg"
 Skulker/Taunt3 "Sounds/Monsters/Skulker/SkulkerTaunt3.ogg"
 
 $rolloff Skulker/Taunt 350 1800
+
+GenericSmallFireball	"Sounds/Monsters/SFX/GenericSmallFireball.ogg"
+
+$limit GenericSmallFireball 8
 
 $random imp/shotx {Malice/FireHit1 Malice/FireHit2 Malice/FireHit3 Malice/FireHit4}
 Malice/FireHit1 "Sounds/Other/MaliceFireHit1.ogg"
