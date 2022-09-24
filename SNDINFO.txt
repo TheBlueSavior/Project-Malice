@@ -2227,8 +2227,12 @@ $rolloff Tyrant/Stomp 850 2200
 DComm/WARNING "Sounds/Monsters/DecayedCommando/DCommandoWarn.ogg"
 DComm/Stop "Sounds/Monsters/DecayedCommando/DCommandoStop.ogg"
 DComm/Fire "Sounds/Monsters/DecayedCommando/DCommandoFire.ogg"
+DComm/GunLoop "Sounds/Monsters/DecayedCommando/DCommandoLoop.ogg"
+DComm/WindUp "Sounds/Monsters/DecayedCommando/DCommandoStart.ogg"
 $rolloff DComm/Stop 400 2200
 $rolloff DComm/Fire 400 2200
+$rolloff DComm/GunLoop 400 2200
+$rolloff DComm/WindUp 400 2200
 
 //Draugr
 Draugr/RocketWhoosh "Sounds/Monsters/Draugr/DraugrRocket.ogg"
@@ -2774,30 +2778,31 @@ $volume DTechSpectre/Walk 0.5
 $limit DTechSpectre/Walk 12
 
 //Wicked
-$random WickSight     { WickSight1 WickSight2 WickSight3 }
+$random WickSight     { WickSight1 WickSight2 }
 WickSight1                "sounds/Monsters/Wicked/WickedSight1.ogg"
-WickSight2                "sounds/Monsters/Wicked/WickedSight2.ogg"
-WickSight3                "sounds/Monsters/Wicked/WickedSight3.ogg"      
+WickSight2                "sounds/Monsters/Wicked/WickedSight2.ogg"     
 $random WickActive		{ WickActive1 WickActive2 }
 WickActive1               "sounds/Monsters/Wicked/WickedActive1.ogg"
 WickActive2               "sounds/Monsters/Wicked/WickedActive2.ogg"
 WickAttack                "sounds/Monsters/Wicked/WickedAttack.ogg"
 WickRush                  "sounds/Monsters/Wicked/WickedRush.ogg"
 WickPain                  "sounds/Monsters/Wicked/WickedPain.ogg"
-$random WickDeath      { WickDeath1 WickDeath2 }
-WickDeath1                "sounds/Monsters/Wicked/WickedDeath1.ogg"
-WickDeath2                "sounds/Monsters/Wicked/WickedDeath2.ogg"
+WickDeath                 "sounds/Monsters/Wicked/WickedDeath.ogg"
+
 WickFire                  "sounds/Monsters/Wicked/WickedFire.ogg"
 WickFireExp               "sounds/Monsters/Wicked/WickedFireExp.ogg"
 
 monster/tenpn1                  dstenpn1
 monster/tenpn2                  dstenpn2
 
-$volume WickDeath 0.9
 $volume WickAttack 0.95
-$volume WickSight 0.95
 $volume WickFire 0.95
 $volume WickFireExp 0.9
+
+$rolloff WickSight 800 1650
+$rolloff WickActive 550 1250
+$rolloff WickPain 550 1250
+$rolloff WickDeath 550 1250
 
 //Hell's Fury
 $random HFurySight { HFurySight1 HFurySight2 }
