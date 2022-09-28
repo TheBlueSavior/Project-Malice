@@ -113,7 +113,7 @@ VoreSight1 "Sounds/Monsters/Vore/VoreSight1.ogg"
 VoreSight2 "Sounds/Monsters/Vore/VoreSight2.ogg"
 VoreSight3 "Sounds/Monsters/Vore/VoreSight3.ogg"
 VoreSight4 "Sounds/Monsters/Vore/VoreSight4.ogg"
-$volume Vore/Sight 0.6
+$volume Vore/Sight 0.4
 
 $random Vore/Active	{ VoreActive1 VoreActive2 VoreActive3 VoreActive4 VoreActive5 VoreActive6 VoreActive7 }
 VoreActive1 "Sounds/Monsters/Vore/VoreActive1.ogg"
@@ -123,7 +123,7 @@ VoreActive4 "Sounds/Monsters/Vore/VoreActive4.ogg"
 VoreActive5 "Sounds/Monsters/Vore/VoreActive5.ogg"
 VoreActive6 "Sounds/Monsters/Vore/VoreActive6.ogg"
 VoreActive7 "Sounds/Monsters/Vore/VoreActive7.ogg"
-$volume Vore/Active 0.6
+$volume Vore/Active 0.5
 
 Vore/Attack	"Sounds/Monsters/Vore/VoreAttack.ogg"
 Vore/Throw	"Sounds/Monsters/Vore/VoreThrow.ogg"
@@ -133,13 +133,13 @@ $random Vore/Pain { VorePain1 VorePain2 VorePain3 }
 VorePain1 "Sounds/Monsters/Vore/VorePain1.ogg"
 VorePain2 "Sounds/Monsters/Vore/VorePain2.ogg"
 VorePain3 "Sounds/Monsters/Vore/VorePain3.ogg"
-$volume Vore/Pain 0.6
+$volume Vore/Pain 0.4
 
 $random Vore/Death { VoreDeath1 VoreDeath2 VoreDeath3 }
 VoreDeath1 "Sounds/Monsters/Vore/VoreDeath1.ogg"
 VoreDeath2 "Sounds/Monsters/Vore/VoreDeath2.ogg"
 VoreDeath3 "Sounds/Monsters/Vore/VoreDeath3.ogg"
-$volume Vore/Death 0.5
+$volume Vore/Death 0.4
 
 Shadow/attack		"Sounds/Monsters/Vore/VShadowAttack.ogg"
 
