@@ -6287,11 +6287,17 @@ Color 0.0 0.8 0.0
 Size 70
 }
 
-Object PM_NetherLightning
+Pointlight PM_ConduitLightning
 {
-Frame NLITA { Light NetherLightning }
+Color 0.7 0.6 0.9
+Size 30
 }
 
+Pointlight PM_ConduitLightning2
+{
+Color 0.7 0.6 0.9
+Size 70
+}
 
 Pointlight WretchBall
 {
