@@ -2720,7 +2720,7 @@ Malice/FireHit2 "Sounds/Other/MaliceFireHit2.ogg"
 Malice/FireHit3 "Sounds/Other/MaliceFireHit3.ogg"
 Malice/FireHit4 "Sounds/Other/MaliceFireHit4.ogg"
 
-Beholder/Rush "Sounds/Monsters/Watcher/BeholderRush.ogg"
+Beholder/Rush "Sounds/Monsters/Beholder/BeholderRush.ogg"
 
 //Demon Tech Brute
 $random DTechSee { DTechSee1 DTechSee2 DTechSee3 }
