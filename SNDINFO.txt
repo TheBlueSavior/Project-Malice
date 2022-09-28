@@ -462,27 +462,30 @@ WatchIShard2 "Sounds/Monsters/Watcher/WatcherIShard2.ogg"
 WatchIShard3 "Sounds/Monsters/Watcher/WatcherIShard3.ogg"
 
 $limit Watcher/IShard 12
+$rolloff Watcher/IShard 900 2000
 
 $random Watcher/IShardExp { WatchIShardExp1 WatchIShardExp2 WatchIShardExp3 }
 WatchIShardExp1 "Sounds/Monsters/Watcher/WatcherIShardExp1.ogg"
 WatchIShardExp2 "Sounds/Monsters/Watcher/WatcherIShardExp2.ogg"
 WatchIShardExp3 "Sounds/Monsters/Watcher/WatcherIShardExp3.ogg"
 
-$rolloff Watcher/IShard 520 1800
+$rolloff Watcher/IShard 720 1800
 
-$rolloff Watcher/IShardExp 580 1800
+$rolloff Watcher/IShardExp 780 1800
 
 Watcher/IBall "Sounds/Monsters/Watcher/WatcherIBall.ogg"
+$rolloff Watcher/IBall 780 1800
 Watcher/IBallWhiz "Sounds/Monsters/Watcher/WatcherIBallWhiz.ogg"
 
-$volume Watcher/IBallWhiz 0.6
+$volume Watcher/IBallWhiz 0.8
 
 Watcher/ShardCharge "Sounds/Monsters/Watcher/WatcherShardCharge.ogg"
 
 Watcher/IBallExp "Sounds/Monsters/Watcher/WatcherIBallExp.ogg"
+$rolloff Watcher/IBallExp 780 1800
 Watcher/Kamikaze "Sounds/Monsters/Watcher/WatcherKamikaze.ogg"
 
-$rolloff Watcher/IBall 350 1600
+$rolloff Watcher/IBall 750 1700
 
 $random Watcher/Roar { Watcher/Roar1 Watcher/Roar2 Watcher/Roar3 Watcher/Roar4 }
 Watcher/Roar1 "Sounds/Monsters/Watcher/WatcherRoar1.ogg"
@@ -3067,7 +3070,7 @@ BigBloodS2 "Sounds/Monsters/SFX/GenericBloodSplashBig2.ogg"
 BigBloodS3 "Sounds/Monsters/SFX/GenericBloodSplashBig3.ogg"
 BigBloodS4 "Sounds/Monsters/SFX/GenericBloodSplashBig4.ogg"
 
-$rolloff GBloodSplashBig 700 1400
+$rolloff GBloodSplashBig 450 1250
 
 GenericBloodPuke "Sounds/Monsters/SFX/GenericBloodPuke.ogg"
 
