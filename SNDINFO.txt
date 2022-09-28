@@ -3082,3 +3082,6 @@ Ice/Freeze "Sounds/Other/PMIceFreeze.ogg"
 $rolloff Ice/Freeze 700 1500
 
 GenericSteam "Sounds/Monsters/SFX/GenericSteam.ogg"
+
+SmokeGrenadeExp "Sounds/Other/SmokeGrenadeExp.ogg"
+$rolloff SmokeGrenadeExp 450 1650
