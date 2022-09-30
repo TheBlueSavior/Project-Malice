@@ -2218,6 +2218,7 @@ Tyrant/RailFire "Sounds/Monsters/Tyrant/TyrRailFire.ogg"
 
 $rolloff Tyrant/RailCharge 850 3500
 $rolloff Tyrant/RailWarn 500 3500
+$volume Tyrant/Railwarn 0.67
 $rolloff Tyrant/RailFire 650 3500
 
 Tyrant/Dodge "Sounds/Monsters/Tyrant/TyrantDodge.ogg"
@@ -3076,8 +3077,9 @@ $rolloff GBloodSplashBig 450 1250
 GenericBloodPuke "Sounds/Monsters/SFX/GenericBloodPuke.ogg"
 
 DemonicSprite/Flee "Sounds/Other/PossSpriteFlee.ogg"
-$volume DemonicSprite/Flee 0.5
+$volume DemonicSprite/Flee 0.20
 DemonicSprite/Warn "Sounds/Other/PossSpriteWarn.ogg"
+$volume DemonicSprite/Warn 0.4
 
 Ice/Freeze "Sounds/Other/PMIceFreeze.ogg"
 $rolloff Ice/Freeze 700 1500
