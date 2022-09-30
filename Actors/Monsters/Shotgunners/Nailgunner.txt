@@ -280,7 +280,7 @@ ACTOR PM_Nailgunner
 
 ACTOR PM_NailgunnerNail : FastProjectile
 {
-  damage (random(8,8))
+  damage (random(8,15))
   Scale 1
   Speed 26
   radius 2

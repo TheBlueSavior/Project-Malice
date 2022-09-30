@@ -315,7 +315,7 @@ ACTOR PM_FiendSmallRocket : RevenantTracer
 {
 	Radius 2
 	Height 2
-	Damage (10)
+	Damage (15)
 	Speed 20
 	Projectile 
 	+RANDOMIZE

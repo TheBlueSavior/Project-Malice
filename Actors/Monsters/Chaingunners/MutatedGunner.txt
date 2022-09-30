@@ -183,7 +183,7 @@ Projectile
 height 2
 radius 2
 speed 36
-damage (random(7,7))
+damage (random(5,15))
 scale 0.85
 RenderStyle Add
 Alpha 1.0

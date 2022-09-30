@@ -592,11 +592,12 @@ Actor PM_CyberFodderBall : FastProjectile
 {
   Radius 6
   Height 6
-  Speed 12
+  Speed 17
   Damage 2
   SeeSound "GenericPlasmaFire"
   DeathSound "GenericPlasmaExp"
   Renderstyle Add
+  Scale 0.85
   States
   {
   Spawn:

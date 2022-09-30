@@ -113,7 +113,7 @@ Actor PM_AbhorBall : Fatshot
     Height 6
     Scale 1.
     Speed 11
-	Damage 8
+	Damage (random(40,40))
     Renderstyle "Add"
     seesound "Abhor/BallWhiz"
 	deathsound "Abhor/BallExp"

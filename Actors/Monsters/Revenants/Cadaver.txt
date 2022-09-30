@@ -197,7 +197,7 @@ ACTOR PM_CadaverRocket : RevenantTracer
 {
 	Radius 2
 	Height 2
-	Damage (30)
+	Damage (40)
 	Speed 15
 	FastSpeed 20
 	Projectile 
@@ -234,7 +234,7 @@ ACTOR PM_CadaverHRocket : RevenantTracer
 {
 	Radius 2
 	Height 2
-	Damage (30)
+	Damage (40)
 	Speed 11
 	Projectile 
 	+RANDOMIZE

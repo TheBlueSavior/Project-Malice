@@ -89,8 +89,8 @@ ACTOR BruteJump: BaronBall
 	Radius 12
 	Height 48
 	Projectile 
-    Speed 12
-	FastSpeed 12
+    Speed 13
+	FastSpeed 13
     Damage (random(4,4))
 	+RANDOMIZE
     +RIPPER

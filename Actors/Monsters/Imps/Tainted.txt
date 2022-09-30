@@ -242,7 +242,7 @@ ACTOR PM_TaintedBall
 	Height 8
 	Speed 15
 	FastSpeed 20
-	damage (random(14,14))
+	damage (random(16,16))
 	Scale 0.8
 	Projectile
 	+Strifedamage
