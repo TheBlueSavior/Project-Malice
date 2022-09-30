@@ -2745,6 +2745,8 @@ DTechAttack          "sounds/Monsters/DTechBrute/DTechBruteAttack.ogg"
 DTechMelee           "sounds/Monsters/DTechBrute/DTechBruteAttackMelee.ogg"
 DTechDeath           "sounds/Monsters/DTechBrute/DTechBruteDeath.ogg"
 
+$rolloff DTechAttack 350 1900
+
 $volume DTechSee 0.8
 $volume DTechActive 0.8
 $volume DTechPain 0.7
@@ -2766,18 +2768,23 @@ DTechSpecSee1 "Sounds/Monsters/DTechSpectre/DTechSpectreSight1.ogg"
 DTechSpecSee2 "Sounds/Monsters/DTechSpectre/DTechSpectreSight2.ogg"
 DTechSpecSee3 "Sounds/Monsters/DTechSpectre/DTechSpectreSight3.ogg"
 
+$volume DTechSpectre/Sight 0.54
+
 $random DTechSpectre/Active { DTechSpecActive1 DTechSpecActive2 DTechSpecActive3 }
 DTechSpecActive1 "Sounds/Monsters/DTechSpectre/DTechSpectreActive1.ogg"
 DTechSpecActive2 "Sounds/Monsters/DTechSpectre/DTechSpectreActive2.ogg"
 DTechSpecActive3 "Sounds/Monsters/DTechSpectre/DTechSpectreActive3.ogg"
 
+$volume DTechSpectre/Active 0.85
+
 DTechSpectre/Ready "Sounds/Monsters/DTechSpectre/DTechSpectreReady.ogg"
+$volume DTechSpectre/Ready 0.85
 DTechSpectre/Death "Sounds/Monsters/DTechSpectre/DTechSpectreDeath.ogg"
+$volume DTechSpectre/Death 0.55
 
 DTechSpectre/Fire "Sounds/Monsters/DTechSpectre/DTechSpectreFire.ogg"
-$rolloff DTechSpectre/Fire 600 2000
+$rolloff DTechSpectre/Fire 800 2000
 
-$rolloff DTechSpectre/Ready 500 1700
 $random DTechSpectre/Walk { DTechWalk2 DTechWalk2 }       
 $volume DTechSpectre/Walk 0.5
 $limit DTechSpectre/Walk 12
