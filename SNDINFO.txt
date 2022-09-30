@@ -2803,11 +2803,14 @@ monster/tenpn2                  dstenpn2
 $volume WickAttack 0.95
 $volume WickFire 0.95
 $volume WickFireExp 0.9
+$volume WickSight 0.6
+$volume WickActive 0.5
+$volume WickPain 0.6
 
-$rolloff WickSight 800 1650
-$rolloff WickActive 550 1250
-$rolloff WickPain 550 1250
-$rolloff WickDeath 550 1250
+$rolloff WickSight 350 1650
+$rolloff WickActive 350 1250
+$rolloff WickPain 350 1250
+$rolloff WickDeath 350 1250
 
 //Hell's Fury
 $random HFurySight { HFurySight1 HFurySight2 }
