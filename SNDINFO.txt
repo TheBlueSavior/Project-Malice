@@ -3085,3 +3085,6 @@ GenericSteam "Sounds/Monsters/SFX/GenericSteam.ogg"
 
 SmokeGrenadeExp "Sounds/Other/SmokeGrenadeExp.ogg"
 $rolloff SmokeGrenadeExp 450 1650
+
+GrenadeLaunch "Sounds/Other/GrenadeLaunch.ogg"
+$rolloff GrenadeLaunch 250 1650
