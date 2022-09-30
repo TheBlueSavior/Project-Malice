@@ -57,6 +57,8 @@ Actor PM_FallenShotgunner
     TNT1 A 0 A_JumpIfInventory("FallenSGunnerSmokeToken",1,"RealMissile")
     Goto SmokeShield
   SmokeShield:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(90,"RealMissile")
     ZSP1 EEE 4 A_FaceTarget
 	TNT1 A 0 A_GiveInventory("FallenSGunnerSmokeToken",1)
     ZSP1 F 2 Bright Light("YellowMediumFlicker2")
