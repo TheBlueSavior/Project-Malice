@@ -104,7 +104,7 @@ ACTOR PM_HellifiedSoldierBall
    Height 3
    Radius 3
    Speed 18
-   damage (random(10,10))
+   damage (random(10,15))
    Scale 0.07
    PROJECTILE
    RenderStyle Add

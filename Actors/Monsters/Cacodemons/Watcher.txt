@@ -189,7 +189,7 @@ Class PM_WatcherShot : Actor
     Radius 4;
     Height 8;
     Speed 22;
-    Damage 3;
+    Damage (30);
     RENDERSTYLE "ADD";
     DamageType "lightning";
     ALPHA 0.9;
@@ -234,7 +234,7 @@ Class PM_WatcherShotSmall : MageWandMissile
   Default
   {
     Damage 2;
-    Speed 13;
+    Speed 16;
     Radius 3;
     Height 5;
     SeeSound "Watcher/IShard";
