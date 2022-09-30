@@ -1773,9 +1773,21 @@ rictus/kamakazi		RICTKAMA
 rictus/kamakaziimpact	STRIKE1
 
 //Cadaver
+
+$random Cadaver/Missile { Cadaver/Missile1 Cadaver/Missile2 Cadaver/Missile3 Cadaver/Missile4 }
+Cadaver/Missile1 "Sounds/Monsters/Cadaver/CadaverMissile1.ogg"
+Cadaver/Missile2 "Sounds/Monsters/Cadaver/CadaverMissile2.ogg"
+Cadaver/Missile3 "Sounds/Monsters/Cadaver/CadaverMissile3.ogg"
+Cadaver/Missile4 "Sounds/Monsters/Cadaver/CadaverMissile4.ogg"
+
+$limit Cadaver/Missile 10
+$rolloff Cadaver/Missile 600 1900
+
 Cadaver/Fire "Sounds/Monsters/Cadaver/CadaverFire.ogg"
+$volume Cadaver/Fire 0.85
 Cadaver/Homing "Sounds/Monsters/Cadaver/CadaverHoming.ogg"
-//$rolloff CADHIR 200 1800
+$volume Cadaver/Homing 0.55
+$rolloff Cadaver/Homing 200 1800
 Cadaver/HomingLoop "Sounds/Monsters/Cadaver/CadaverHomingLoop.ogg"
 
 $random Cadaver/Sight { CadaverSight1 CadaverSight2 CadaverSight3 CadaverSight4 CadaverSight5 }

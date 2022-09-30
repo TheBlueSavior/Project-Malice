@@ -39,7 +39,7 @@ Actor PM_Cadaver : Revenant
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 5 Light("AvatarFireball1")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
@@ -86,7 +86,7 @@ Actor PM_Cadaver : Revenant
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
@@ -95,7 +95,7 @@ Actor PM_Cadaver : Revenant
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
@@ -104,7 +104,7 @@ Actor PM_Cadaver : Revenant
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
@@ -113,7 +113,7 @@ Actor PM_Cadaver : Revenant
 		}
 	CREV K 8 A_FaceTarget
 	CREV B 6 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
@@ -125,7 +125,7 @@ Actor PM_Cadaver : Revenant
 	
   Missile1:
 	CREV BBB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,-17);
@@ -136,7 +136,7 @@ Actor PM_Cadaver : Revenant
 	Goto See
   Missile2:
 	CREV BBB 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Cadaver/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6)
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_CustomMissile("PM_CadaverFireFlare",56,10);
@@ -203,17 +203,29 @@ ACTOR PM_CadaverRocket : RevenantTracer
 	Projectile 
 	+RANDOMIZE
 	RenderStyle Normal
-	SeeSound "skeleton/attack"
+	SeeSound ""
 	DeathSound "Cadaver/MissileExp"
-	Scale 1.15
+	Scale 1
 	States
 	{
 	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_ScaleVelocity(0.6)
+		CMIS AAAAAAA 1 BRIGHT
+		TNT1 A 0 A_ScaleVelocity(0.6)
+		CMIS AAAAAA 1 BRIGHT
+		TNT1 A 0
+		{
+		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+	TNT1 A 0 A_ScaleVelocity(3)
+	TNT1 A 0 A_PlaySound("skeleton/attack",CHAN_7)
+	Spawn2:
 		CMIS A 1 BRIGHT Light("AvatarFireball4") 
 		TNT1 A 0
 		{
 		A_SpawnItemEx("PM_CadaverRocketFlare",0,0,0);
-		A_SpawnItemEx("PM_CadaverFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_CadaverFireGlobs2",random(-2,0),random(-3,3),random(-3,3),0,0,0,0,128,0);
 		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		Loop
@@ -241,19 +253,32 @@ ACTOR PM_CadaverHRocket : RevenantTracer
 	+THRUGHOST
 	+FORCEXYBILLBOARD
 	RenderStyle Normal
-	SeeSound "Cadaver/Homing"
+	SeeSound "Cadaver/Missile"
 	DeathSound "Cadaver/MissileExp"
-	Scale 1.15
+	Scale 1
 	States
 	{
 	Spawn:
+		TNT1 A 0
+		TNT1 A 0
+		TNT1 A 0 A_ScaleVelocity(0.6)
+		CMHO AAAAAAA 1 BRIGHT
+		TNT1 A 0 A_ScaleVelocity(0.6)
+		CMHO AAAAAA 1 BRIGHT
+		TNT1 A 0
+		{
+		A_SpawnItemEx("HomingFlare",0,0,0);
+		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
 		TNT1 A 0 A_PlaySound("Cadaver/Homing",CHAN_5,1,false)
 		TNT1 A 0 A_PlaySound("Cadaver/HomingLoop",CHAN_6,0.8,true)
+		TNT1 A 0 A_ScaleVelocity(3)
 	Go:
 		CMHO A 1 BRIGHT Light("AvatarFireball4") 
 		{
 		A_SpawnItemEx("HomingFlare",0,0,0);
-		A_SpawnItemEx("PM_CadaverHomingFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_CadaverHomingFireGlobs2",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
 		}
 		CMHO A 1 BRIGHT Light("AvatarFireball4") 
 		{
