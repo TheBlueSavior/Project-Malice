@@ -120,38 +120,47 @@ ACTOR PM_ZombieTrooper : Zombieman
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
       UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragThrow",CHAN_6)
-      UTM2 AA 5 A_FaceTarget
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
+      UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,8);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,14);
        A_FaceTarget;
       }
-      Goto See
+      Goto Backup
     GrenadeFar:
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
       UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragThrow",CHAN_6)
-      UTM2 AA 5 A_FaceTarget
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
+      UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,19);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,24);
        A_FaceTarget;
       }
-      Goto See
+      Goto Backup
     GrenadeNear:
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       TNT1 A 0 A_PlaySound("HelmetZombie/Sight")
       UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragThrow",CHAN_6)
-      UTM2 AA 5 A_FaceTarget
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
+      UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-5);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,2);
        A_FaceTarget;
       }
-      Goto See
+      Goto Backup
+	Backup:
+		TNT1 A 0 A_CheckSight("See")
+		UTM2 DCBADCBADCBA 3
+		{
+		A_FaceTarget;
+		A_Recoil(2);
+		A_FaceTarget;
+		}
+	Goto See
     Pain:
         UTM2 G 5
         UTM2 G 3 A_Pain
@@ -190,17 +199,17 @@ ACTOR PM_ZombieTrooper : Zombieman
 
 Actor PM_ZTrooperFragGrenade : Rocket
 {
-  var int user_grenadetime;
-  Speed 30
-  Scale 0.66
+  Bouncetype Doom
+  Speed 24
+  Scale 0.52
   Radius 4
   Height 10
-  Gravity 0.8
-  Bouncetype Hexen
-  BounceFactor 0.44
-  WallBounceFactor 0.66
+  Gravity 0.95
+  BounceFactor 0.65
+  WallBounceFactor 0.5
   BounceCount 5
-  SeeSound ""
+  Alpha 1.0
+  SeeSound "ZTrooper/FragThrow"
   DeathSound ""
   BounceSound "ZTrooper/FragBounce"
   Decal ""
@@ -208,44 +217,135 @@ Actor PM_ZTrooperFragGrenade : Rocket
   -ROCKETTRAIL
   +THRUACTORS
   +ROLLSPRITE
-  +CANBOUNCEWATER
+  +BOUNCEONFLOORS
+  +BOUNCEONWALLS
   +BOUNCEONCEILINGS
+  +CANBOUNCEWATER
   States
   {
   Spawn:
-	ZGRN A 1 
+	TNT1 A 0
+	TNT1 A 0 A_SpawnItemEx("PM_ZTrooperFragTick",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+  Spawn2:
+	ZGRN A 1 Light("SatyrLordRedMissile9")
     {
+	 A_SpawnParticle("FF2A2A",SPF_FULLBRIGHT|SPF_RELATIVE,95,13,0,0,0,0,0,0,0,0,0,0,0.85,-0.2,-1);
      A_SpawnItemEx("DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
      A_SetRoll(roll+15);
     }
 	Loop
+  Bounce:
+	Goto Spawn2
   Death:
-    TNT1 A 0 A_PlaySound("ZTrooper/FragArm")
+	TNT1 A 0 A_SetRoll(0)
+    TNT1 A 0 A_PlaySound("ZTrooper/FragBounce")
   Death2:
-	ZGRN AA 1 Light("SatyrLordRedMissile5")
-		{
-		if (user_grenadetime >= 35)
-			{
-			return state("XDeath");
-			}
-		A_SpawnItemEx("DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
-		A_SetUserVar(user_grenadetime,user_grenadetime+1);
-		return state(0);
-		}
+	ZGRN BB 1 Light("SatyrLordRedMissile9")
 	Loop
   XDeath:
 	TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6)
+	TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7)
 	TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-    TNT1 AAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-10,10),random(-10,10),random(-10,10),0,SXF_NOCHECKPOSITION)
-	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-10,10),random(-10,10),random(-10,10),0,SXF_NOCHECKPOSITION)
+    TNT1 AAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-4,4),random(-4,4),random(-1,4),0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION)
 	TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-	TNT1 A 0 A_QuakeEx(3,3,3,12,0,400,0,0,0,0,0,150)
-	TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(30,200)
+	TNT1 A 0 Radius_Quake (2, 24, 0, 15, 0)
+	TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(75,300)
 	TNT1 A 6 Bright Light("YellowMediumFlicker2")
     TNT1 A 5 Bright Light("YellowMediumFlicker2")
 	Stop
 	}
 }
+
+ACTOR PM_ZTrooperFragTick
+{
+	Radius 3
+	Height 3
+	Health 1000
+	Scale 0.75
+	-NOBLOCKMAP
+	+NOBLOOD
+	+NOICEDEATH
+	+NOGRAVITY
+	+NEVERTARGET
+	-SHOOTABLE
+	+NOTONAUTOMAP
+	-SOLID
+	-COUNTKILL
+	+NOTARGETSWITCH
+	+THRUSPECIES
+	+THRUACTORS
+	+DONTTHRUST
+	OBITUARY "%o was grenaded by a Zombie Trooper."
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 AAAAAAAAAA 1
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
+			{
+			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+			}
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+	Death:
+		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6)
+		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7)
+		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
+		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-4,4),random(-4,4),random(-1,4),0,SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION)
+		TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
+		TNT1 A 0 Radius_Quake (2, 24, 0, 15, 0)
+		TNT1 A 1
+		TNT1 A 0 A_SpawnItemEx("PM_FragShrapnelSparks",0,0,1)
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmoke",0,0,1,random(-3,3),random(-3,3),random(0,2))
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("PM_FragGrenadeShrapnel",15,0,random(-180,180),CMF_OFFSETPITCH,random(0,90))
+		TNT1 A 0 A_RemoveMaster(RMVF_EVERYTHING)
+		TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(70,300)
+		TNT1 A 6 Bright Light("YellowMediumFlicker2")
+		TNT1 A 5 Bright Light("YellowMediumFlicker2")
+		Stop
+	}
+}
+
 
 Actor ZTrooperFragToken : Inventory 
 { 

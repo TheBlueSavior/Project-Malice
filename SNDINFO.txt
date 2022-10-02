@@ -2601,15 +2601,22 @@ ZTroFragBounce2 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce2.ogg"
 ZTroFragBounce3 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce3.ogg"
 ZTroFragBounce4 "Sounds/Monsters/ZombieTrooper/ZTroFragBounce4.ogg"
 $limit ZTrooper/FragBounce 20
+$rolloff ZTrooper/FragBounce 500 1300
 
 ZTrooper/FragArm "Sounds/Monsters/ZombieTrooper/ZTroFragArm.ogg"
-$rolloff ZTrooper/FragArm 400 1500
+$rolloff ZTrooper/FragArm 600 1500
+
+ZTrooper/FragTick "Sounds/Monsters/ZombieTrooper/ZTroFragTick.ogg"
+$rolloff ZTrooper/FragTick 600 1500
 
 ZTrooper/FragThrow "Sounds/Monsters/ZombieTrooper/ZTroFragThrow.ogg"
 $limit ZTrooper/FragThrow 10
 
 ZTrooper/FragExp "Sounds/Monsters/ZombieTrooper/ZTroFragExp.ogg"
-$rolloff ZTrooper/FragArm 700 3000
+$rolloff ZTrooper/FragExp 700 3000
+
+ZTrooper/FragDebris "Sounds/Monsters/ZombieTrooper/ZTroFragDebris.ogg"
+$rolloff ZTrooper/FragDebris 400 2000
 
 
 ZTrooper/Fire "Sounds/Monsters/ZombieTrooper/ZBurstRifleFire.ogg"
