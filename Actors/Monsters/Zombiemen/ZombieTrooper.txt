@@ -124,7 +124,7 @@ ACTOR PM_ZombieTrooper : Zombieman
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,14);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,12);
        A_FaceTarget;
       }
       Goto Backup
@@ -136,7 +136,7 @@ ACTOR PM_ZombieTrooper : Zombieman
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,24);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,20);
        A_FaceTarget;
       }
       Goto Backup
@@ -148,7 +148,7 @@ ACTOR PM_ZombieTrooper : Zombieman
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,2);
+       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-2);
        A_FaceTarget;
       }
       Goto Backup
@@ -330,7 +330,7 @@ ACTOR PM_ZTrooperFragTick
 		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6)
 		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7)
 		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-4,4),random(-4,4),random(-1,4),0,SXF_NOCHECKPOSITION)
+		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
 		TNT1 A 0 Radius_Quake (2, 24, 0, 15, 0)
