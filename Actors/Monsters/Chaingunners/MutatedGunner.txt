@@ -19,7 +19,7 @@ ACTOR PM_MutatedGunner
 	Dropitem "Chaingun"
 	DropItem "Lith_ClipBox"
 	Species "Chaingunner"
-	Obituary "%o was riddled with holes by the Mutated Gunner."
+	Obituary "%o was riddled with holes by a Mutated Gunner."
 	States
 	{
 		Spawn:

@@ -15,7 +15,7 @@ Class PM_Watcher : Actor
     PainSound "Watcher/Pain";
     DeathSound "Watcher/Death";
     ActiveSound "Watcher/Active";
-	Obituary "%o was annoyed to death by a Watcher.";
+	Obituary "%o underestimated a Watcher.";
 	HitObituary "%o was nibbled by a Watcher.";
     MONSTER;
 	BloodColor "Black";
