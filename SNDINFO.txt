@@ -82,7 +82,7 @@ Depraved/Sprint4	"Sounds/Monsters/Depraved/DepravedSprint4.ogg"
 DepravedBeamStart   "Sounds/Monsters/Depraved/DepravedBeamStart.ogg"
 DepravedBeam        "Sounds/Monsters/Depraved/DepravedBeam.ogg"
 DepravedBeamEnd     "Sounds/Monsters/Depraved/DepravedBeamEnd.ogg"
-DepravedScream      "Sounds/Monsters/Depraved/DepravedScream.ogg"
+Depraved/Scream      "Sounds/Monsters/Depraved/DepravedScream.ogg"
 
 $random Depraved/Active { DeprayedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
 DepravedActive1 "Sounds/Monsters/Depraved/DepravedActive1.ogg"
