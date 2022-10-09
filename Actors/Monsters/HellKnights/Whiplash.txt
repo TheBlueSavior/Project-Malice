@@ -1,18 +1,18 @@
 Actor PM_Whiplash : PMMonster
 {
-  Health 450
+  Health 500
   Radius 25
   Height 64
   Mass 1000
   Speed 8
   Scale 1.15
-  PainChance 120
+  PainChance 80
   RadiusDamageFactor 0.5
   Monster
   //DropItem "RagePoint1"
   +FloorClip
   +BOSSDEATH
-  //+NOINFIGHTING
+  -NOINFIGHTING
   +DONTHARMSPECIES
   +Donthurtspecies
   +MISSILEevenMORE
