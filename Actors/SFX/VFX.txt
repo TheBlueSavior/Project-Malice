@@ -1,3 +1,21 @@
+Actor PM_WhiteFireballExplode
+{
+	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
+	Scale 0.65
+	Alpha 0.84
+	Renderstyle Add
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+Bright
+	Speed 1
+	States
+{
+Spawn:
+	FXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
+	Stop
+	}
+}
+
 Actor PM_SmallBlotSmoke
 {
   Radius 2
@@ -403,6 +421,60 @@ ACTOR BlueShock
 	RenderStyle Add
 	Alpha 0.6
 	Scale 0.8
+	States
+	{
+    Spawn:
+        TNT1 A 0 NoDelay A_SetRoll(random(0,360))
+        SH1K ABCDEFG 4 BRIGHT
+        Stop
+	}
+}
+
+ACTOR PM_BlueShockSmall
+{
+	Radius 1
+	Height 1
+	Speed 1
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+	+ROLLSPRITE
+    +DONTSPLASH
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	+MISSILE
+	RenderStyle Add
+	Alpha 0.6
+	Scale 0.4
+	States
+	{
+    Spawn:
+		TNT1 A 0 
+		TNT1 A 0 A_SetScale(frandom(0.15,0.6))
+        TNT1 A 0 A_SetRoll(random(0,360))
+        SH1K ABCDEFG 3 BRIGHT
+        Stop
+	}
+}
+
+ACTOR PM_BlueShockBig
+{
+	Radius 1
+	Height 1
+	Speed 1
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+	+ROLLSPRITE
+    +DONTSPLASH
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	+MISSILE
+	RenderStyle Add
+	Alpha 0.6
+	Scale 1.3
 	States
 	{
     Spawn:
@@ -2684,7 +2756,7 @@ ACTOR PM_WhiteExplosionFlames : PM_GenericExplosionFlames
 {
 Scale 2
 Speed 2
-Translation "0:255=%[0,0,0]:[1.0,1.0,1.2]"
+Translation "0:255=%[0,0,0]:[1.0,1.0,1.0]"
 	States
 	{
     Spawn:
@@ -2817,7 +2889,7 @@ ACTOR PM_SmallWhiteExplosionFlames : PM_GenericExplosionFlames
 {
 Scale 1.5
 Speed 2
-Translation "0:255=%[0,0,0]:[1.0,1.0,1.2]"
+Translation "0:255=%[0,0,0]:[1.0,1.0,1.0]"
 	States
 	{
     Spawn:
@@ -2906,6 +2978,7 @@ ACTOR PM_NobleFlameTrails: PM_GreenFlameTrails
 	}
 }
 
+
 ACTOR PM_BruiserSmallFlameTrails: PM_GreenFlameTrails
 {
 	Scale 0.60
@@ -2920,11 +2993,16 @@ ACTOR PM_BruiserSmallFlameTrails: PM_GreenFlameTrails
 	}
 }
 
+Actor PM_WhiteFireGlobs : PM_FireGlobs
+{
+	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
+}
+
 ACTOR PM_HFuryFlameTrails: PM_GenericExplosionFlames
 {
-	Scale 0.52
+	Scale 0.56
 	Speed 3
-	Translation "0:255=%[0,0,0]:[2.0,0.4,0.28]"
+	Translation "0:255=%[0,0,0]:[0.7,0.7,2.0]"
 	States
 	{
     Spawn:
@@ -2932,6 +3010,99 @@ ACTOR PM_HFuryFlameTrails: PM_GenericExplosionFlames
 		TNT1 A 0 A_SetRoll(random(0,360))
         FRPG CDEFGH 2 BRIGHT
         Stop
+	}
+}
+
+Actor PM_HFuryFireFlare
+{
++NOINTERACTION
++NOGRAVITY
++CLIENTSIDEONLY
+Translation "0:255=%[0,0,0]:[0.7,0.7,2.0]"
+Renderstyle Add
+Radius 1
+Height 1
+Alpha 0.9
+Scale 0.7
+states
+	{
+	Spawn:
+		LEYS O 2 bright
+		stop
+	}
+}
+
+Actor PM_HFuryBlueBallExplode
+{
+	Scale 1
+	Translation "0:255=%[0,0,0]:[0.7,0.7,2.0]"
+	Damage 0
+	Missile
+	Projectile
+	Renderstyle Add
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+ROLLSPRITE
+	+Bright
+	Speed 3
+	States
+{
+Spawn:
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
+	FXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.04)
+	Stop
+	}
+}
+
+Actor PM_BlueTrailFire : PM_BurntSoulFire
+{
+	Translation "0:255=%[0,0,0]:[0.5,0.5,2.0]"
+}
+
+ACTOR PM_BlueFireShrapnel
+{
+    Radius 4
+    Height 4
+    Speed 9
+	Mass 3
+	BounceFactor 0.6
+	WallBounceFactor 0.6
+	+DOOMBOUNCE
+    +NOBLOCKMAP
+	+MISSILE
+    +NOTELEPORT
+    +DONTSPLASH
+    //+MOVEWITHSECTOR
+	+ROLLSPRITE
+    Scale 0.76
+    States
+    {
+    Spawn:
+		TNT1 A 0
+		TNT1 A 2 A_CustomMissile("PM_BlueTrailFire",0,0,random(0,360),2,random(0,160))
+		Loop
+	Death:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItem("PM_BlueDropFire")
+		Stop
+    }
+}
+
+Actor PM_BFireBallExplode
+{
+	Scale 1.4
+	Alpha 0.84
+	Translation "0:255=%[0,0,0]:[0.5,0.5,2.0]"
+	Renderstyle Add
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+Bright
+	Speed 1
+	States
+{
+Spawn:
+	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
+	Stop
 	}
 }
 
@@ -2953,6 +3124,21 @@ ACTOR PM_FeralFlameTrails: PM_GenericExplosionFlames
 
 ACTOR PM_DevilFlameTrails: PM_GenericExplosionFlames
 {
+	Scale 0.35
+	Speed 3
+	States
+	{
+    Spawn:
+	    TNT1 A 2
+		TNT1 A 0 A_SetRoll(random(0,360))
+        FRPR CDEFGH 1 BRIGHT
+        Stop
+	}
+}
+
+ACTOR PM_WhiteFlameTrails: PM_GenericExplosionFlames
+{
+	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
 	Scale 0.35
 	Speed 3
 	States
@@ -2990,6 +3176,20 @@ ACTOR PM_FireballExplosionFlames: PM_DevilFlameTrails
         Stop
 	}
 }
+
+ACTOR PM_WhiteFireballExplosionFlames: PM_DevilFlameTrails
+{
+	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
+    Scale 0.9
+	Speed 1
+	States
+	{
+    Spawn:
+        FIR3 CDEFGHIJKLMNOP 1 BRIGHT
+        Stop
+	}
+}
+
 
 ACTOR PM_GreenFireballExpFlames: PM_FireballExplosionFlames
 {

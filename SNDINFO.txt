@@ -508,6 +508,7 @@ Husk/Cloud		"Sounds/Monsters/Husk/HuskCloud.ogg"
 Husk/Throw      "Sounds/Monsters/Husk/HuskThrow.ogg"
 
 GenericCometExp "Sounds/Monsters/SFX/GenericCometExplode.ogg" //formerly HUBEXP in Husk directory
+$rolloff GenericCometExp 350 1800
 
 monsters/fatsofire			DSFATFIR
 

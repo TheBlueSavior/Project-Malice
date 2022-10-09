@@ -1449,6 +1449,12 @@ flickerlight BurntSoulLight
     chance 0.25
 }
 
+Pointlight PM_SmallWhiteExpLight
+{
+Color 0.5 0.5 0.5
+Size 48
+}
+
 //Is this supposed to be a monster?
 //I commented this out I can't find this anywhere.
 //DM me on Discord if you have any questions.
@@ -3336,25 +3342,25 @@ Frame PNGZF { Light PNZombieLight }
 */
 Pointlight HellsFuryBall1
 {
-Color 0.8 0.0 0.00
+Color 0.3 0.3 0.8
 Size 48
 }
 
 Pointlight HellsFuryBall2
 {
-Color 1.0 0.0 0.00
+Color 0.3 0.3 1.0
 Size 64
 }
 
 Pointlight HellsFuryBall3
 {
-Color 0.8 0.0 0.00
+Color 0.0 0.0 0.8
 Size 56
 }
 
 Pointlight HellsFuryBall4
 {
-Color 0.4 0.0 0.00
+Color 0.0 0.0 0.4
 Size 32
 }
 
@@ -6508,6 +6514,12 @@ Pointlight AzazelSoul
 {
 Color 1.0 1.0 1.0
 Size 44
+}
+
+Pointlight AzazelSoul2
+{
+Color 1.0 1.0 1.0
+Size 64
 }
 
 FlickerLight P_GRENADE
