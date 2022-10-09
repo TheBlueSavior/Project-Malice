@@ -1330,7 +1330,7 @@ hoof/step2			"Sounds/Monsters/SFX/BaronHoofStep2.ogg"
 hoof/step3			"Sounds/Monsters/SFX/BaronHoofStep3.ogg"
 hoof/step4			"Sounds/Monsters/SFX/BaronHoofStep4.ogg"
 $limit hoofstep 0
-$rolloff hoofstep 700 1200
+$rolloff hoofstep 200 1000
 
 //Heresy Lord
 
@@ -2176,7 +2176,7 @@ TyrHoof1 "Sounds/Monsters/Tyrant/TyrantHoof1.ogg"
 TyrHoof2 "Sounds/Monsters/Tyrant/TyrantHoof2.ogg"
 TyrHoof3 "Sounds/Monsters/Tyrant/TyrantHoof3.ogg"
 TyrHoof4 "Sounds/Monsters/Tyrant/TyrantHoof4.ogg"
-$rolloff Tyrant/Hoof 300 1100
+$rolloff Tyrant/Hoof 400 1300
 
 Tyrant/Sight "Sounds/Monsters/Tyrant/TyrantSight.ogg" //uh-oh
 Tyrant/Death "Sounds/Monsters/Tyrant/TyrantDeath.ogg" //owned
@@ -2186,6 +2186,8 @@ TyrAttack1 "Sounds/Monsters/Tyrant/TyrantAttack1.ogg"
 TyrAttack2 "Sounds/Monsters/Tyrant/TyrantAttack2.ogg"
 TyrAttack3 "Sounds/Monsters/Tyrant/TyrantAttack3.ogg"
 
+$rolloff Tyrant/Attack 700 2200
+
 $random Tyrant/Pain { TyrPain1 TyrPain2 TyrPain3 }
 TyrPain1 "Sounds/Monsters/Tyrant/TyrantPain1.ogg"
 TyrPain2 "Sounds/Monsters/Tyrant/TyrantPain2.ogg"
@@ -2194,6 +2196,8 @@ TyrPain3 "Sounds/Monsters/Tyrant/TyrantPain3.ogg"
 $random Tyrant/Active { TyrActive1 TyrActive2 }
 TyrActive1 "Sounds/Monsters/Tyrant/TyrantActive1.ogg"
 TyrActive2 "Sounds/Monsters/Tyrant/TyrantActive2.ogg"
+
+$rolloff Tyrant/Active 900 2200
 
 $volume Tyrant/Sight 0.5
 $volume Tyrant/Death 0.6
@@ -2217,8 +2221,8 @@ TyrMissileX3 "Sounds/Monsters/Tyrant/TyrMissileX3.ogg"
 
 Tyrant/RocketRiver "Sounds/Monsters/Tyrant/TyrSmallRocket.ogg"
 $limit Tyrant/RocketRiver 0
-$volume Tyrant/RocketRiver 0.7
-$rolloff Tyrant/RocketRiver 450 2200
+$volume Tyrant/RocketRiver 0.45
+$rolloff Tyrant/RocketRiver 200 2200
 $limit Tyrant/Missile 0
 $volume Tyrant/Missile 0.7
 $rolloff Tyrant/Missile 300 2200
