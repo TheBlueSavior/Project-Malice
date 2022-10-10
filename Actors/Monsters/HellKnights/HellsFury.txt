@@ -35,7 +35,7 @@ Actor PM_HellsFury
     Loop
   Missile:
 		TNT1 A 0 A_JumpIfCloser(270,"FireBreath")
-		TNT1 A 0 A_Jump(90,"Missile2","Missile3","Missile4")
+		TNT1 A 0 A_Jump(90,"Missile2","Missile3","Missile32","Missile4")
 		HFRY EEEEE 1 Light("HellsFuryBall1")
 		{
 		A_FaceTarget;
@@ -150,6 +150,51 @@ Actor PM_HellsFury
     {
 	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
       A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   15);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    Goto See
+  Missile32:
+    HFRY P 8 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   15);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   10);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   5);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   0);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   -5);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   -10);
+    }
+	HFRY P 1 Light("AzazelSoul") A_FaceTarget
+    HFRY Q 5 Light("AzazelSoul2") 
+    {
+	  A_SpawnProjectile("PM_WhiteFireGlobs",65);
+      A_SpawnProjectile("PM_HellsFurySpreadFire", 65, 0,   -15);
     }
 	HFRY P 1 Light("AzazelSoul") A_FaceTarget
     Goto See

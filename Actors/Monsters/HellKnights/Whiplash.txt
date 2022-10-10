@@ -11,7 +11,7 @@ Actor PM_Whiplash : PMMonster
   Monster
   //DropItem "RagePoint1"
   +FloorClip
-  +BOSSDEATH
+  //+BOSSDEATH
   -NOINFIGHTING
   +DONTHARMSPECIES
   +Donthurtspecies
@@ -345,6 +345,9 @@ Actor PM_Whiplash : PMMonster
 	WHIP OPQRS 3
 	WHIP T -1
 	Stop
+  Raise:
+       WHIP LKJI 7
+       Goto See
   }
 }
 
@@ -508,7 +511,7 @@ Actor CrawlTrail
     Radius 2
     Height 2
     Speed 0
-    Scale 1
+    Scale 1.15
     RenderStyle "Translucent"
     Alpha 0.4
     Projectile
