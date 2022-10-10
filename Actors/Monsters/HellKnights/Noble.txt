@@ -45,7 +45,8 @@ ACTOR PM_Noble
     SpotMissile:
         TNT1 A 0 A_PlaySound("Noble/Sight",CHAN_5)
         NO1S EE 4 A_FaceTarget
-        Goto Missile
+		TNT1 A 0 A_Jump(256,"SingleFireball","Fireball1")
+        Goto SingleFireball
 	See2:
 		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 	    TNT1 A 0 A_SetSpeed(7)
