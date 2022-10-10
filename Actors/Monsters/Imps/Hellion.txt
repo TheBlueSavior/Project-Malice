@@ -30,12 +30,12 @@ Class PM_Hellion : Actor
     HELN AB 10 A_Look();
     Loop;
   See:
-    TNT1 A 0 A_CheckSight("See");
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
     HELN AABBCC 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	HELN DDEEFF 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+        TNT1 A 0 A_CheckSight("See");
 	Goto Spotted;
   Spotted:
     TNT1 A 0 A_Jump(256,"Roar","See2","See2");

@@ -31,7 +31,6 @@ Actor PM_Charred : DoomImp
 	TNT1 A 0 A_PlaySound("Charred/Idle")
 	Goto Spawn
   See:
-    TNT1 A 0 A_CheckSight("See")
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
     CH5R AAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_Recoil(-0.5)
@@ -44,6 +43,7 @@ Actor PM_Charred : DoomImp
 	TNT1 A 0 A_Recoil(-0.5)
 	TNT1 A 0 A_ChangeFlag(THRUSPECIES,0)
 	TNT1 A 0 A_Jump(1,"BarkSee")
+        TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   BarkSee:
 	TNT1 A 0 A_PlaySound("Charred/Idle")

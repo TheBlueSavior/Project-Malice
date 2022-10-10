@@ -30,7 +30,6 @@ actor PM_Zephyr : DoomImp
     BELA A 10 A_Look
     loop
   See:
-    TNT1 A 0 A_CheckSight("See")
 	TNT1 A 0 A_ChangeFlag("MISSILEMORE",False)
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
 	TNT1 A 0 A_SetSpeed(16)
@@ -40,6 +39,7 @@ actor PM_Zephyr : DoomImp
 	BELA DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	BELA EE 2 A_Chase("","",CHF_NOPLAYACTIVE)
+       TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
     BELA AAA 3 A_FaceTarget

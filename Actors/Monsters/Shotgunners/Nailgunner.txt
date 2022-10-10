@@ -29,7 +29,6 @@ ACTOR PM_Nailgunner
     PNGZ AA 10 A_Look
     Loop
   See:
-    TNT1 A 0 A_CheckSight("See")
 	TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
     PNGZ AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -41,6 +40,7 @@ ACTOR PM_Nailgunner
 	TNT1 AA 0 A_Recoil(-0.5)
 	PNGZ DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 AA 0 A_Recoil(-0.5)
+        TNT1 A 0 A_CheckSight("See")
     Goto Spotted
 	Spotted:
 	TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")

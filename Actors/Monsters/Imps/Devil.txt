@@ -29,13 +29,13 @@ actor PM_Devil : DoomImp
     D3IM AB 10 A_Look
     loop
   See:
-    TNT1 A 0 A_CheckSight("See")
 	TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",False)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	D3IM AAABBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	D3IM CCCDDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_SetSpeed(6)
+        TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
     TNT1 A 0 A_Jump(256,"FearCheck","See2","RoarNoAnim","Roar","Roar","Fight","BackCheck")

@@ -28,7 +28,6 @@ ACTOR PM_DecayedShotgunner
         SPO6 AA 10 A_Look
         Loop
     See:
-	    TNT1 A 0 A_CheckSight("See")
 		TNT1 A 0 A_SetSpeed(9)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
         SPO6 AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -40,6 +39,7 @@ ACTOR PM_DecayedShotgunner
 		TNT1 AA 0 A_Recoil(-0.6)
 		SPO6 DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-0.6)
+                TNT1 A 0 A_CheckSight("See")
         Goto Spotted
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","See2","See2")
