@@ -35,6 +35,7 @@ actor PM_Zephyr : DoomImp
 	TNT1 A 0 A_SetSpeed(16)
     BELA BB 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	BELA CC 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	BELA DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
@@ -43,7 +44,9 @@ actor PM_Zephyr : DoomImp
 	Goto Spotted
   Spotted:
     BELA AAA 3 A_FaceTarget
-    TNT1 A 0 A_Jump(256,"See2","See2","Jump","CeilingJump","Fight","Roar")
+    TNT1 A 0 A_Jump(256,"RoarNoAnim","RoarNoAnim","Jump","CeilingJump","Fight","Roar")
+  RoarNoAnim:
+    TNT1 A 0 A_PlaySound("Zephyr/Sight",CHAN_5)
   See2:
 	TNT1 A 0 A_ChangeFlag("MISSILEMORE",False)
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)

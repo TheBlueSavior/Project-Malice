@@ -35,19 +35,25 @@ Class PM_Fleshspawn : Actor
     FLSP AB 8 A_Look();
     loop;
   See:
+    FLSP AABB 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	TNT1 A 0 A_CheckSight("See");
+    Goto Spotted;
+  Spotted:
+    TNT1 A 0 A_PlaySound("FleshSpawn/Sight",CHAN_5);
+  See2:
     FLSP AABB 2 A_Chase();
 	TNT1 A 0 A_JumpIfCloser(170,"Backup");
     loop;
   Missile:
     FLSP C 0 A_Jump(256,"Charge");
-    goto See;
+    goto See2;
   Backup:
 	FLSP A 1 A_FaceTarget();
 	TNT1 A 0 A_Recoil(4);
 	FLSP AA 2;
 	FLSP BB 2;
 	FLSP AA 2;
-    Goto See;
+    Goto See2;
   Charge:
     FLSP C 0; //A_Jump(96, "StaggerCharge");
     FLSP C 15 A_FaceTarget();
@@ -69,7 +75,7 @@ Class PM_Fleshspawn : Actor
   Pain:
     FLSP I 3;
     FLSP I 3 A_Pain();
-    Goto See;
+    Goto See2;
   Death:
     FLSP I 5;
     FLSP J 5 A_Scream();

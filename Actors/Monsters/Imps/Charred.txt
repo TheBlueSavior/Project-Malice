@@ -37,6 +37,7 @@ Actor PM_Charred : DoomImp
 	CH5R BBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_Recoil(-0.5)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	CH5R CCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_Recoil(-0.5)
 	CH5R DDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
@@ -49,7 +50,8 @@ Actor PM_Charred : DoomImp
 	TNT1 A 0 A_PlaySound("Charred/Idle")
 	Goto See
   Spotted:
-	TNT1 A 0 A_Jump(256,"See2","See2","Roar","RoarNoAnim")
+	TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","RoarNoAnim")
+    GOTO RoarNoAnim
   See2:
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
     CH5R AAA 2 A_Chase

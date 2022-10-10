@@ -31,17 +31,18 @@ ACTOR PM_Brute : Demon
 			BRUT A 10 A_Look
 			loop
         See:
-			BRUT AA 2 A_Chase
+			BRUT AA 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT BB 2 A_Chase
-			BRUT CC 2 A_Chase
+			BRUT BB 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
+			BRUT CC 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
+            TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT DD 2 A_Chase
+			BRUT DD 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
 			TNT1 A 0 A_CheckSight("See")
 			goto Spotted
 		Spotted:
-		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim","See2")
-			Goto See2
+		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim")
+			Goto RoarNoAnim
 		RoarNoAnim:
 		    TNT1 A 0 A_PlaySound("Brute/Sight",CHAN_5)
 			Goto See2

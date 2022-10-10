@@ -29,16 +29,17 @@ ACTOR PM_ZombieMarine : Zombieman
         Loop
 	See:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        UDM2 AA 4 A_Chase("","",CHF_NOPLAYACTIVE)
+        UDM2 AA 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
-		UDM2 BB 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		UDM2 BB 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		UDM2 CC 4 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
 		UDM2 DD 4 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
-                TNT1 A 0 A_CheckSight("See")
+        TNT1 A 0 A_CheckSight("See")
         Goto Spotted
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
@@ -47,6 +48,7 @@ ACTOR PM_ZombieMarine : Zombieman
 	    TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
 		Goto See2
 	SpotMissile:
+        TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
 	    UDM2 EEE 3 A_FaceTarget
 	    Goto Missile
     See2:

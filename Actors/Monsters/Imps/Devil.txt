@@ -33,12 +33,13 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
 	D3IM AAABBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	D3IM CCCDDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_SetSpeed(6)
         TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
-    TNT1 A 0 A_Jump(256,"FearCheck","See2","RoarNoAnim","Roar","Roar","Fight","BackCheck")
+    TNT1 A 0 A_Jump(256,"FearCheck","RoarNoAnim","RoarNoAnim","Roar","Roar","Fight","BackCheck")
   RoarNoAnim:
     TNT1 A 0 A_PlaySound("Devil/Sight",CHAN_5)
 	Goto See2

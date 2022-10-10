@@ -32,17 +32,22 @@ ACTOR PM_DecayedSoldier
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		POSK AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
 		POSK BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 		POSK CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		POSK DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
                 TNT1 A 0 A_CheckSight("See")
         Goto Spotted
 	Spotted:
-	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
+	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile")
 		Goto See2
 	Roar:
 	    TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
 		Goto See2
+    SpotMissile:
+        TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
+        POSK EE 6 A_FaceTarget
+        Goto Missile
     See2:
 		TNT1 A 0 A_SetSpeed(9)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)

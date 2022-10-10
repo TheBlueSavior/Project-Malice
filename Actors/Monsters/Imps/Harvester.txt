@@ -37,12 +37,11 @@ Class PM_Harvester : Actor
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
     SLHV AAABBB 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
 	SLHV CCCDDD 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
        TNT1 A 0 A_CheckSight("ActualSee");
     Goto Spotted;
   Spotted:
-    TNT1 A 0 A_Jump(256,"Roar","See2","See2");
-	Goto See2;
   Roar:
     TNT1 A 0 A_PlaySound("Harvester/Sight",CHAN_5);
 	Goto See2;

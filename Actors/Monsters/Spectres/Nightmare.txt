@@ -10,7 +10,7 @@ Class PM_Nightmare : Actor
     RenderStyle "Subtract";
 	MeleeRange 70;
     Alpha 0.0;
-    SeeSound "Nightmare/Sight";
+    SeeSound "";
     PainSound "Nightmare/Pain";
     DeathSound "Nightmare/Death";
     ActiveSound "Nightmare/Active";
@@ -33,6 +33,21 @@ Class PM_Nightmare : Actor
   Spawn:
 	NMRE A 1 A_Look();
     Loop;
+  See:
+	NMRE AA 2 Fast A_Chase();
+	TNT1 A 0 A_SetRenderStyle(0.7,STYLE_Subtract);
+	NMRE BB 2 Fast A_Chase();
+	TNT1 A 0 A_SetRenderStyle(0.5,STYLE_Subtract);
+    TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+	NMRE CC 2 Fast A_Chase();
+	TNT1 A 0 A_SetRenderStyle(0.3,STYLE_Subtract);
+	NMRE DD 2 Fast A_Chase();
+	TNT1 A 0 A_SetRenderStyle(0.1,STYLE_Subtract);
+    TNT1 A 0 A_CheckSight("See");
+    goto Spotted;
+  Spotted:
+    TNT1 A 0 A_PlaySound("Nightmare/Sight",CHAN_5);
+    goto See2;
   SeeFade:
 	NMRE AA 2 Fast A_Chase();
 	TNT1 A 0 A_SetRenderStyle(0.7,STYLE_Subtract);
@@ -42,7 +57,7 @@ Class PM_Nightmare : Actor
 	TNT1 A 0 A_SetRenderStyle(0.3,STYLE_Subtract);
 	NMRE DD 2 Fast A_Chase();
 	TNT1 A 0 A_SetRenderStyle(0.1,STYLE_Subtract);
-  See:
+  See2:
     NMRE AABBCCDD 2 Fast A_Chase();
 	NMRE D 0 A_Jump(15, "Teleport");
     NMRE D 0 A_Jump(32, 1);
@@ -50,7 +65,7 @@ Class PM_Nightmare : Actor
     Loop;
     NMRE D 0 A_SpawnItemEx("NightmareWisp", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE);
     Loop;
-  See2:
+  AltSee:
 	TNT1 A 0 A_SetRenderStyle(0.80,STYLE_Subtract);
     NMRE AABBCCDDAABBCCDDAABBCCDD 2 Fast A_Chase();
 	NMRE D 0 A_Jump(15, "Teleport2");
@@ -70,7 +85,7 @@ Class PM_Nightmare : Actor
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander;
 	TNT1 A 0 A_SetSpeed(12);
 	NMRE ONMLKJI 2 A_SetShootable;	
-	Goto See;
+	Goto AltSee;
   Teleport2:
 	NMRE I 1 A_UnSetShootable;
 	NMRE KLMNO 1;
@@ -78,13 +93,13 @@ Class PM_Nightmare : Actor
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander;
 	TNT1 A 0 A_SetSpeed(12);
 	NMRE ONMLKJI 2 A_SetShootable;	
-	Goto See2;
+	Goto SeeFade;
   Pain:
 	TNT1 A 0 A_SetSpeed(12);
 	TNT1 A 0 A_SetRenderStyle(0.80,STYLE_Subtract);
     NMRE H 2;
     NMRE H 10 A_Pain();
-    Goto See2;
+    Goto AltSee;
   Death:
 	TNT1 A 0 A_SetRenderStyle(0.6,STYLE_Subtract);
     NMRE I 3 A_ScreamAndUnblock();

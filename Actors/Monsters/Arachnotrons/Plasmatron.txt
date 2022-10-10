@@ -13,7 +13,7 @@ Actor PM_Plasmatron : Arachnotron
 	Species "Arachnotron"
 	+DONTHARMSPECIES
 	+MISSILEMORE
-	SEESOUND "Plasmatron/See"
+	SEESOUND ""
 	PAINSOUND "Plasmatron/Pain"
 	DEATHSOUND "Plasmatron/Death"
 	ACTIVESOUND "Plasmatron/Active"
@@ -27,6 +27,20 @@ Idle:
     PL01 A 10 A_Look
     Loop
 See:
+    PL01 A 3 A_PlaySound("Plasmatron/Step")
+    PL01 ABB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
+	PL01 CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP)
+    PL01 D 3 A_PlaySound("Plasmatron/Step")
+    PL01 DEE 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
+	PL01 FF 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    TNT1 A 0 A_CheckSight("See")
+    Goto Spotted
+    Spotted:
+    TNT1 A 0 A_PlaySound("Plasmatron/Sight",CHAN_5)
+See2:
     PL01 A 3 A_PlaySound("Plasmatron/Step")
     PL01 ABB 3 A_Chase
 	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
@@ -70,7 +84,7 @@ Missile:
 	A_CustomMissile("PM_PTronBallSmall",15,-8,0,CMF_AIMOFFSET);
 	}
     PL01 G 4 A_FaceTarget
-	Goto See
+	Goto See2
 Missile3:
     PL01 AG 5 A_FaceTarget
 	PL01 G 5 A_FaceTarget
@@ -80,8 +94,8 @@ Missile3:
 	A_CustomMissile("PlasmatronFlare",22,0);
 	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
 	}
-    PL01 G 2 A_SpidRefire
-	TNT1 A 0 A_Jump(10,"See")
+    PL01 G 2 A_MonsterRefire(10,"See2")
+	TNT1 A 0 A_Jump(10,"See2")
     Goto Missile3+3
 Missile2:
     PL01 AGGG 5 A_FaceTarget
@@ -197,13 +211,13 @@ Missile2:
 	A_CustomMissile("PlasmatronFlare",22,0);
 	A_CustomMissile("PM_PTronBall",22,0,7,CMF_OFFSETPITCH,random(-1,1));
 	}
-    PL01 G 2 A_SpidRefire
-	TNT1 A 0 A_Jump(5,"See")
+    PL01 G 2 A_MonsterRefire(10,"See2")
+	TNT1 A 0 A_Jump(5,"See2")
     Goto Missile2+5
 Pain:
 	TNT1 A 0
     PL01 I 12 A_Pain
-    Goto See
+    Goto See2
 Death:
 	PL01 J 15 A_Scream
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30)
@@ -232,7 +246,7 @@ Death:
     Stop
 Raise:
 	PL01 ONMLKJ 6
-	Goto See+1
+	Goto See
     }
 }
 

@@ -34,6 +34,7 @@ ACTOR PM_ZombieTrooper : Zombieman
 		TNT1 AA 0 A_Recoil(-1)
 		UTM2 BB 4 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		UTM2 CC 4 A_Chase("","",CHF_NOPLAYACTIVE)
 		TNT1 AA 0 A_Recoil(-1)
@@ -48,6 +49,7 @@ ACTOR PM_ZombieTrooper : Zombieman
 	    TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
 		Goto See2
 	SpotMissile:
+        TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
 	    UTM2 EEE 2 A_FaceTarget
 	    Goto Missile
 	See2:

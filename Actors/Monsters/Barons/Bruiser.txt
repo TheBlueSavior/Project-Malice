@@ -20,7 +20,7 @@ actor PM_Bruiser
 	+DontHurtSpecies
 	+DONTHARMSPECIES
 	Species "Nobles"
-    SeeSound "Bruiser/Sight"
+    SeeSound ""
     PainSound "Bruiser/Pain"
     DeathSound "Bruiser/Death"
     ActiveSound "Bruiser/Active"
@@ -35,6 +35,28 @@ actor PM_Bruiser
         I01A A 10 A_Look
         Loop
     See:
+        I01A AABB 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_Recoil(-2)
+		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
+		TNT1 A 0 A_PlaySound("hoofstep",3)
+        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP)
+		I01A CCDD 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_Recoil(-2)
+		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,-10,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
+		TNT1 A 0 A_PlaySound("hoofstep",3)
+        TNT1 A 0 A_CheckSight("See")
+        Goto Spotted
+    Spotted:
+        TNT1 A 0 A_Jump(256,"Roar","SpotMissile")
+    Roar:
+        TNT1 A 0 A_PlaySound("Bruiser/Sight",CHAN_5)
+        Goto See2
+    SpotMissile:
+        I01A D 5 A_FaceTarget
+        Goto Missile
+    See2:
         I01A AABB 4 A_Chase
 		TNT1 A 0 A_Recoil(-2)
 		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,0,0,0,0,0,SXF_NOCHECKPOSITION)
@@ -64,7 +86,7 @@ actor PM_Bruiser
 	  A_CustomMissile("PM_BruiserMeteor",38,-5,0);
 	  }
 	  TNT1 A 0 A_StopSound(CHAN_6)
-	  Goto see
+	  Goto see2
 	Missile2:
 	  TNT1 A 0 A_PlaySound("GenericChargeHeavy",CHAN_6)
 	  TNT1 A 0 A_PlaySound("Bruiser/Attack",CHAN_7)
@@ -84,18 +106,18 @@ actor PM_Bruiser
 	  A_CustomMissile("PM_BruiserSmallFireball",38,-5,-15);
 	  }
 	  TNT1 A 0 A_StopSound(CHAN_6)
-	  Goto see
+	  Goto see2
     Melee:
 	  TNT1 A 0 A_Jump(128,"Melee2")
 	  TNT1 A 0 A_PlaySound("baron/attack")
         I01A EF 7 A_FaceTarget
         I01A G 7 A_MeleeAttack
-	  Goto See
+	  Goto See2
     Pain:
 		TNT1 A 0 A_StopSound(CHAN_6)
         I01A H 5
 		I01A H 5 A_Pain
-        Goto See
+        Goto See2
     Death:
 		TNT1 A 0
 		TNT1 A 0 A_StopSound(CHAN_6)

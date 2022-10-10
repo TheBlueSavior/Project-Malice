@@ -12,7 +12,7 @@ ACTOR PM_Noble
 	+DONTHARMSPECIES
 	Species "Nobles"
 	Tag "Noble"
-	SeeSound 	"Noble/Sight"
+	SeeSound 	""
 	ActiveSound "Noble/Active"
 	PainSound 	"Squire/Pain"
 	DeathSound 	"Squire/Death"
@@ -28,6 +28,25 @@ ACTOR PM_Noble
 		NO1S AB 10 A_Look 
 		Loop
 	See:
+		NO1S AA 3 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+		NO1S BB 3 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",170,JLOSF_DEADNOJUMP)
+		TNT1 A 0 A_PlaySound("Squire/Step")
+		NO1S CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		NO1S DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_PlaySound("Squire/Step")
+        TNT1 A 0 A_CheckSight("See")
+		Goto Spotted
+    Spotted:
+        TNT1 A 0 A_Jump(256,"Roar","SpotMissile")
+    Roar:
+        TNT1 A 0 A_PlaySound("Noble/Sight",CHAN_5)
+        Goto See2
+    SpotMissile:
+        TNT1 A 0 A_PlaySound("Noble/Sight",CHAN_5)
+        NO1S EE 4 A_FaceTarget
+        Goto Missile
+	See2:
 		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 	    TNT1 A 0 A_SetSpeed(7)
 		TNT1 A 0 A_ChangeFlag("MISSILEMORE",0)
@@ -44,7 +63,7 @@ ACTOR PM_Noble
 		NO1S E 6 A_FaceTarget
 		NO1S G 6 A_CustomMeleeAttack(random(10,30),"Doom4/Other/MeleeHit","",0,1)
 		NO1S F 2 A_Recoil(2)
-		Goto See
+		Goto See2
 	Missile:
 	TNT1 A 0 A_Jump(60,"StandoffCheck")
 	TNT1 A 0 A_JumpIfCloser(800,"CloserChoice")
@@ -88,12 +107,12 @@ ACTOR PM_Noble
 	A_Chase("Melee","StandoffMissile");
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_CheckSight("See")
+	TNT1 A 0 A_CheckSight("See2")
 	TNT1 A 0 A_Jump(80,"StandoffRepos")
 	Loop
 	
   RetreatCheck:
-	TNT1 A 0 A_JumpIfCloser(200,"See")
+	TNT1 A 0 A_JumpIfCloser(200,"See2")
 	TNT1 A 0 A_Jump(145,"Standoff")
   Retreat:
 	TNT1 A 0 A_SetScale(1.05,1.05)
@@ -185,7 +204,7 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-	    TNT1 A 0 A_JumpIfCloser(250,"See")
+	    TNT1 A 0 A_JumpIfCloser(250,"See2")
 	    TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck")
 	Goto Standoff
 
@@ -227,7 +246,7 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-		TNT1 A 0 A_JumpIfCloser(250,"See")
+		TNT1 A 0 A_JumpIfCloser(250,"See2")
 	    TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck")
 	Goto Standoff
 
@@ -269,7 +288,7 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-		Goto See
+		Goto See2
 	
 	FireBall1:
 		NO1S EEEEE 1 Light("Greenball4") 
@@ -309,7 +328,7 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-		Goto See
+		Goto See2
 		
 	Bomb:
 		TNT1 A 0 A_PlaySound("Noble/PreBomb",CHAN_7)
@@ -335,7 +354,7 @@ ACTOR PM_Noble
 		A_CustomMissile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,7);
 		}
 		NO1S GGG 5 Light("Greenball3")
-		Goto See
+		Goto See2
 		
 	 FireBall2:
 		NO2S EEEEE 1 Light("Greenball4") 
@@ -375,7 +394,7 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-		Goto See
+		Goto See2
 	FireBall3:
 		NO1S EEEEE 1 Light("Greenball4") 
 		{
@@ -451,11 +470,11 @@ ACTOR PM_Noble
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_NobleFireball",40);
 		}
-		Goto See
+		Goto See2
 	Pain:
 		NO1S H 2 A_StopSound(CHAN_7)
 		NO1S H 2 A_Pain
-		Goto See
+		Goto See2
 
 	Death:
 		NO1S I 8

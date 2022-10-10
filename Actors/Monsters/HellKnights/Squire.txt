@@ -32,7 +32,18 @@ ACTOR PM_Squire
 		BOS6 AB 10 A_Look 
 		Loop
 	See:
-		Goto Roar
+		TNT1 A 0 A_SetSpeed(5)
+		BOS6 AAAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS6 BBBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_PlaySound("Squire/Step")
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+		BOS6 CCCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS6 DDDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_PlaySound("Squire/Step")
+        TNT1 A 0 A_CheckSight("See")
+		Goto Spotted
+    Spotted:
+        Goto Roar
 	See1:
 		TNT1 A 0 A_Jump(20,"See2")
 		TNT1 A 0 A_SetSpeed(5)
