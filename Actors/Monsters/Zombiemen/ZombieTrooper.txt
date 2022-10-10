@@ -319,13 +319,6 @@ ACTOR PM_ZTrooperFragTick
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
 		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
-		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
-			{
-			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-			}
-		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
 	Death:
 		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6)
 		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7)
@@ -339,7 +332,7 @@ ACTOR PM_ZTrooperFragTick
 		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmoke",0,0,1,random(-3,3),random(-3,3),random(0,2))
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("PM_FragGrenadeShrapnel",random(2,20),random(-4,4),random(-180,180),CMF_OFFSETPITCH,random(5,80))
 		TNT1 A 0 A_RemoveMaster(RMVF_EVERYTHING)
-		TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(70,300)
+		TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(100,400)
 		TNT1 A 6 Bright Light("YellowMediumFlicker2")
 		TNT1 A 5 Bright Light("YellowMediumFlicker2")
 		Stop
