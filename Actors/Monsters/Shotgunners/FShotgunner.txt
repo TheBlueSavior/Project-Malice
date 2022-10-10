@@ -7,7 +7,7 @@ Actor PM_FShotgunner
   Speed 8
   PainChance 170
   Monster
-  SEESOUND "FacelessZ/Sight"
+  SEESOUND ""
   ATTACKSOUND "FacelessZ/Attack"
   PAINSOUND "FacelessZ/Pain"
   DEATHSOUND "FacelessZ/Death"
@@ -27,14 +27,28 @@ Actor PM_FShotgunner
     F1SH AA 10 A_Look
     Loop
   See:
+    TNT1 A 0 A_CheckSight("See")
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-    F1SH AA 3 A_Chase
-	F1SH BB 3 A_Chase
+    F1SH AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	F1SH BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-	F1SH CC 3 A_Chase
-	F1SH DD 3 A_Chase
-	//TNT1 A 0 A_Recoil(-1)
-    Loop
+	F1SH CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	F1SH DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
+      Goto Spotted
+	Spotted:
+	TNT1 A 0 A_Jump(256,"Roar","See2")
+	  Goto See2
+	Roar:
+	    TNT1 A 0 A_PlaySound("FacelessZ/Sight",CHAN_5)
+		Goto See2
+    See2:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+        F1SH AA 3 A_Chase
+		F1SH BB 3 A_Chase
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		F1SH CC 3 A_Chase
+		F1SH DD 3 A_Chase
+        Loop
   Missile:
     F1SH EE 7 A_FaceTarget
 	TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_5)
@@ -54,11 +68,11 @@ Actor PM_FShotgunner
 	TNT1 A 0 A_PlaySound("GenericShotgunPump")
 	F1SH AA 5 A_FaceTarget
 	F1SH BB 5 A_FaceTarget
-    Goto See
+    Goto See2
   Pain:
     F1SH G 3
     F1SH G 3 A_Pain
-    Goto See
+    Goto See2
   Death:
 	TNT1 A 0 A_Jump(35,"PossDeath")
     F1SH H 5

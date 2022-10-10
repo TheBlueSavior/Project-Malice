@@ -30,6 +30,27 @@ ACTOR PM_DemonTechSpectre : Demon
     See: 
 	   TNT1 A 0 A_SetTranslucent(0)
 	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+       TNT1 A 0 A_ChangeFlag("AVOIDMELEE",0)
+       CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
+       CRG2 AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 BB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	   TNT1 A 0 A_Recoil(-0.5)
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
+       CRG2 CC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	   TNT1 A 0 A_Recoil(-0.5)
+	   TNT1 A 0 A_CheckSight("See")
+       goto Spotted
+	Spotted:
+	   TNT1 A 0 A_Jump(256,"See2","See2","Roar","Roar")
+	 Roar:
+	   TNT1 A 0 A_PlaySound("DTechSpectre/Sight",CHAN_5)
+    See2: 
+	   TNT1 A 0 A_SetTranslucent(0)
+	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+           TNT1 A 0 A_ChangeFlag("AVOIDMELEE",0)
        CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
        CRG2 AA 2 A_Chase
 	   TNT1 A 0 A_Recoil(-0.5)
@@ -41,7 +62,7 @@ ACTOR PM_DemonTechSpectre : Demon
 	   CRG2 DD 2 A_Chase
 	   TNT1 A 0 A_Recoil(-0.5)
 	   TNT1 A 0 A_Jump(30,"Rush")
-	   TNT1 A 0 A_Jump(30,"Retreat")
+	   TNT1 A 0 A_Jump(30,"Hide")
        Loop 
 	Rush:
        TNT1 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
@@ -60,60 +81,75 @@ ACTOR PM_DemonTechSpectre : Demon
 	   TNT1 A 0 A_Recoil(-0.8)
 	   TNT1 A 0 A_Jump(5,"See")
        Loop 
-	Retreat:
+	Hide:
 	   TNT1 A 0 A_SetTranslucent(0.0)
 	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	   CRG3 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG3 AA 1 A_Chase
+	   CRG3 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG3 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 BB 1 A_Chase
+	   CRG3 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG3 CC 1 A_Chase
+       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG3 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 DD 1 A_Chase
+	   CRG3 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 1 A_Chase
+	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase
+	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 1 A_Chase
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase
+	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 1 A_Chase
+	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase
+	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 1 A_Chase
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase
+	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 1 A_Chase
+	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase
+	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 1 A_Chase
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase
+	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 1 A_Chase
+	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase
+	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 1 A_Chase
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase
+	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
 	   TNT1 A 0 A_Recoil(-0.8)
-	   Goto See
+	   TNT1 A 0 A_Jump(55,"Hide")
+	   Goto HideSeek
+	HideSeek:
+	   TNT1 A 0 A_SetTranslucent(0)
+	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+       CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 AA 4 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 BB 4 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+       CRG2 CC 4 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   CRG2 DD 4 A_Chase
+	   TNT1 A 0 A_Recoil(-0.5)
+	   Loop
     Melee: 
 	   TNT1 A 0 A_SetTranslucent(0.3)
 	   TNT1 A 0 A_JumpIfCloser(190,"Melee2")
@@ -196,7 +232,7 @@ ACTOR PM_DemonTechSpectre : Demon
 	   }
        CRG3 H 5 A_FaceTarget
 	   TNT1 A 0 A_Jump(128,"See")
-	   Goto Retreat
+	   Goto Hide
 	Melee2:
 		TNT1 A 0 A_SetTranslucent(0.5)
 		CRG3 H 5 A_FaceTarget
@@ -213,10 +249,10 @@ ACTOR PM_DemonTechSpectre : Demon
 		Goto See
 	Pain: 
 	   TNT1 A 0 A_SetTranslucent(1)
-       CRG3 H 2
-       CRG3 H 2 A_Pain
+           CRG3 H 2
+           CRG3 H 2 A_Pain
 	   TNT1 A 0 A_Jump(100,"Rush")
-       Goto See
+           Goto See
     Death: 
 	   TNT1 A 0 A_SetTranslucent(1)
        SRG3 I 8 
@@ -274,6 +310,7 @@ ACTOR DTechSTrailA
 +CLIENTSIDEONLY
 +NOINTERACTION
 Alpha 0.50
+Scale 1.1
 States
 {
 Spawn:
@@ -287,6 +324,7 @@ ACTOR DTechSTrailB
 +CLIENTSIDEONLY
 +NOINTERACTION
 Alpha 0.50
+Scale 1.1
 States
 {
 Spawn:
@@ -300,6 +338,7 @@ ACTOR DTechSTrailC
 +CLIENTSIDEONLY
 +NOINTERACTION
 Alpha 0.50
+Scale 1.1
 States
 {
 Spawn:
@@ -313,6 +352,7 @@ ACTOR DTechSTrailD
 +CLIENTSIDEONLY
 +NOINTERACTION
 Alpha 0.50
+Scale 1.1
 States
 {
 Spawn:

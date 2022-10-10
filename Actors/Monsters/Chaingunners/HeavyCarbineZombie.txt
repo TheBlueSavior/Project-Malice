@@ -10,7 +10,7 @@ ACTOR PM_HeavyCarbineZombie
   +FLOORCLIP
   //+NOINFIGHTING
   +DONTHARMSPECIES
-  SeeSound "CarbineZombie/Sight"
+  SeeSound ""
   PainSound "CarbineZombie/Pain"
   DeathSound "CarbineZombie/Death"
   ActiveSound "CarbineZombie/Active"
@@ -25,11 +25,23 @@ ACTOR PM_HeavyCarbineZombie
     HCPO AA 10 A_Look
     Loop
   See:
+    TNT1 A 0 A_CheckSight("See")
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+    HCPO AABB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+	HCPO CCDD 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    Goto Spotted
+  Spotted:
+    TNT1 A 0 A_Jump(256,"Roar","See2")
+	Goto See2
+  Roar:
+    TNT1 A 0 A_PlaySound("CarbineZombie/Sight",CHAN_5)
+  See2:
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
     HCPO AABB 3 A_Chase
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 	HCPO CCDD 3 A_Chase
-    Loop
+	Loop
   Missile:
     HCPO E 1 A_PlaySound("Carbine/Bolt")
     HCPO EEEE 5 A_FaceTarget
@@ -57,17 +69,17 @@ ACTOR PM_HeavyCarbineZombie
 	A_CustomMissile("CFodFlare",37,10);
 	}
 	HCPO E 2 A_FaceTarget
-	HCPO E 1 A_CPosRefire
+	HCPO E 1 A_MonsterRefire(68,"See2")
 	Goto Missile+5
 	Melee:
     HCPO D 16 A_FaceTarget
     HCPO E 8 A_custommeleeattack(6,"Carbine/Stab")
 	HCPO D 6
-	Goto See
+	Goto See2
   Pain:
     HCPO G 3
     HCPO G 3 A_Pain
-    Goto See
+    Goto See2
   Death:
 	TNT1 A 0 A_Jump(35,"PossDeath")
     HCPO H 5

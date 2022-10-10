@@ -99,6 +99,7 @@ ACTOR AbhorTrail
 +NOINTERACTION
 RenderStyle Add
 Alpha 0.60
+Scale 1.1
 States
 {
 Spawn:

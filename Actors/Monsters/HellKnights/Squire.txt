@@ -285,6 +285,7 @@ Actor KnightLeapTrail
 	+CLIENTSIDEONLY
 	Renderstyle Translucent
 	Alpha 0.5
+        Scale 1.05
 	States
 	{
 	Spawn:

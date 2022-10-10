@@ -7,6 +7,7 @@ actor PM_AracnorbQueen
   //+FLOAT
   +FLOATBOB
   +BOSS
+  +BOSSDEATH
   Health 3000
   Radius 34
   Height 100

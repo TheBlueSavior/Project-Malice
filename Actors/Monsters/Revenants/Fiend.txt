@@ -243,9 +243,9 @@ Actor PM_Fiend : Revenant
 	goto See
   Melee:
     FIEN G 0 A_FaceTarget
-	FIEN G 6 A_PlaySound("skeleton/swing")
+	FIEN G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
 	FIEN H 6 A_FaceTarget
-	FIEN I 6 A_CustomMeleeAttack(random(1,10)*6,"skeleton/melee","",Melee,True)
+	FIEN I 6 A_CustomMeleeAttack(random(1,10)*6,"Doom4/Other/MeleeHit","",Melee,True)
 	Goto See
   Pain:
     FIEN L 5
@@ -269,6 +269,9 @@ Actor PM_Fiend : Revenant
 	FIEN Q 7
 	FIEN Q -1
 	Stop
+  Raise:
+    FIEN QPONM 7
+	Goto See
 	}
 }
 

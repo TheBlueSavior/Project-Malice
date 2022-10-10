@@ -37,6 +37,26 @@ ACTOR PM_CyberSpectre
 			TNT1 A 0 A_SetTranslucent(0.1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
 			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
+			CYSP AA 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_PlaySound("DTechWalk", 3)
+			TNT1 A 0 A_Recoil(-0.5)
+			CYSP BB 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(-0.5)
+			CYSP CC 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_PlaySound("DTechWalk", 3)
+			TNT1 A 0 A_Recoil(-0.5)
+			CYSP DD 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(-0.5)
+			TNT1 A 0 A_CheckSight("See")
+			goto Spotted
+		Spotted:
+		    TNT1 A 0 A_Jump(256,"See2","Roar","RoarNoAnim")
+		RoarNoAnim:
+			TNT1 A 0 A_PlaySound("CBrute/Sight",CHAN_5)
+		See2:
+			TNT1 A 0 A_SetTranslucent(0.1)
+			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
+			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
 			CYSP AA 2 Fast A_Chase
 			TNT1 A 0 A_PlaySound("DTechWalk", 3)
 			TNT1 A 0 A_Recoil(-0.5)
@@ -47,13 +67,13 @@ ACTOR PM_CyberSpectre
 			TNT1 A 0 A_Recoil(-0.5)
 			CYSP DD 2 Fast A_Chase
 			TNT1 A 0 A_Recoil(-0.5)
-			TNT1 A 0 A_JumpIfCloser(230,"See")
+			TNT1 A 0 A_JumpIfCloser(230,"See2")
 			TNT1 A 0 A_JumpIfCloser(340,"Lunge")
 			loop
 		Lunge:
-			TNT1 A 0 A_CheckSight("See")
+			TNT1 A 0 A_CheckSight("See2")
 			TNT1 A 0 A_JumpIfCloser(350,1)
-			Goto See
+			Goto See2
 			CYSP H 14
 			{
 			A_SetTranslucent(1);
@@ -61,6 +81,7 @@ ACTOR PM_CyberSpectre
 			A_FaceTarget;
 			}
 			CYSP E 3 A_FaceTarget
+			TNT1 A 0 A_CheckSight("See2")
 			TNT1 A 0 A_ChangeFlag("NODROPOFF",True)
 			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,1)
 			TNT1 A 0 ThrustThingZ(0,35,0,1)
@@ -84,7 +105,7 @@ ACTOR PM_CyberSpectre
 			CYSP H 10 A_PlaySound("CBrute/Land",3)
 			TNT1 A 0 A_ChangeFlag("NODROPOFF",False)
 			TNT1 A 0 A_SetTranslucent(0.1)
-			Goto See
+			Goto See2
 		Melee:
 			TNT1 A 0 A_SetTranslucent(0.5)
 			CYSP E 2 A_FaceTarget
@@ -99,13 +120,13 @@ ACTOR PM_CyberSpectre
 			TNT1 A 0 A_SetTranslucent(0.5)
 			CYSP G 8
 			TNT1 A 0 A_SetTranslucent(0.1)
-			Goto See
+			Goto See2
 		Pain:
 			TNT1 A 0 A_SetTranslucent(0.5)
 			CYSP H 4 A_Pain
 			TNT1 A 0 A_ChangeFlag("NODROPOFF",False)
 			TNT1 A 0 A_SetTranslucent(0.1)
-			Goto See
+			Goto See2
 		Death:
 			TNT1 A 0 A_SetTranslucent(1)
 			CYSP I 6 A_Scream

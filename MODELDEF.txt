@@ -1,7 +1,7 @@
 Model PM_BulletTracer
 { 
 Path "Models"
-Skin 0 "tracer1.tga"
+Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
 Scale 0.4 0.4 0.4
 PITCHFROMMOMENTUM
@@ -11,7 +11,7 @@ FrameIndex TRCR A 0 0
 Model PM_PelletTracer
 { 
 Path "Models"
-Skin 0 "tracer1.tga"
+Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
 Scale 0.3 0.3 0.3
 PITCHFROMMOMENTUM
@@ -21,7 +21,7 @@ FrameIndex TRCR A 0 0
 Model PM_CarbineBullet
 { 
 Path "Models"
-Skin 0 "tracer2.tga"
+Skin 0 "malicetracer2.tga"
 Model 0 "Tracer.md3"
 Scale 1.0 1.0 1.0
 PITCHFROMMOMENTUM
@@ -31,7 +31,7 @@ FrameIndex TRCR B 0 0
 Model PM_DTechSpectreShot
 { 
 Path "Models"
-Skin 0 "tracer2.tga"
+Skin 0 "malicetracer2.tga"
 Model 0 "Tracer.md3"
 Scale 0.8 0.3 0.8
 PITCHFROMMOMENTUM
@@ -41,7 +41,7 @@ FrameIndex TRCR B 0 0
 Model PM_WhiplashKnife
 { 
 Path "Models"
-Skin 0 "knifetracer.tga"
+Skin 0 "maliceknifetracer.png"
 Model 0 "Tracer.md3"
 Scale 0.1 0.5 1.0
 PITCHFROMMOMENTUM
@@ -51,7 +51,7 @@ FrameIndex BLA2 A 0 0
 Model WKnifeBlur
 { 
 Path "Models"
-Skin 0 "knifetracer.tga"
+Skin 0 "maliceknifetracer.png"
 Model 0 "Tracer.md3"
 Scale 0.1 0.5 1.0
 PITCHFROMMOMENTUM
@@ -62,7 +62,7 @@ Model HSummonCircle
 {
    Path "Models"    
    Model 0 "summcircle.md3"    
-   Skin 0 "harvesterscircle.png"     
+   Skin 0 "maliceharvesterscircle.png"     
    Scale 26.0 26.0 26.0           
    ZOffset 1.0
    FrameIndex HSU2 A 0 0         
@@ -72,7 +72,7 @@ Model TeleSummonCircle
 {
    Path "Models"    
    Model 0 "telemdlcircle.md3"    
-   Skin 0 "telecircle.png"     
+   Skin 0 "malicetelecircle.png"     
    Scale 26.0 26.0 26.0           
    ZOffset 1.0
    FrameIndex TSU3 A 0 0         
@@ -81,17 +81,28 @@ Model TeleSummonCircle
 Model PM_NailgunnerNail
 { 
 Path "Models"
-Skin 0 "nailtracer.tga"
+Skin 0 "malicenailtracer.png"
 Model 0 "Tracer.md3"
 Scale 0.1 1.0 1.0
 PITCHFROMMOMENTUM
 FrameIndex BLAD A 0 0
 }
 
+Model PM_NailgunnerNailBlur
+{ 
+Path "Models"
+Skin 0 "malicenailtracer.tga"
+Model 0 "Tracer.md3"
+Scale 0.1 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLAD A 0 0
+}
+
+
 Model PM_WatcherShotSmall
 { 
 Path "Models"
-Skin 0 "shardtracer.tga"
+Skin 0 "maliceshardtracer.png"
 Model 0 "Tracer.md3"
 Scale 0.15 1.1 1.1
 PITCHFROMMOMENTUM

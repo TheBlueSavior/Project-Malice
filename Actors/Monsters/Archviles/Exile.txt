@@ -413,7 +413,7 @@ ACTOR PM_ExileFireball
 	Scale 1
 	Projectile
 	Alpha 1
-	SeeSound "pyro/flame"
+	SeeSound "Husk/Throw"
 	DeathSound "GenericCometExp"
 	States
 	{

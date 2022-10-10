@@ -113,6 +113,9 @@ actor PM_Bruiser
 		I01I SSSTTTUUUVVV 1 A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,30),random(-1,1),random(-1,1),random(0,4))
 		I01I W -1
         Stop
+	Raise:
+	    I01I WVUTSRQPONMLKJIHGFEDCBA 3
+		Goto See
     }
 }
 

@@ -90,14 +90,14 @@ ACTOR PM_Infested
     Loop
   Melee:
     ZKEL G 1 A_FaceTarget
-    ZKEL G 6 A_SkelWhoosh
+    ZKEL G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
     ZKEL H 0 A_FaceTarget
    ZKEL H 2 A_Recoil(-8)
     ZKEL H 0 A_FaceTarget
    ZKEL H 2 A_Recoil(-8)
     ZKEL H 0 A_FaceTarget
    ZKEL H 2 A_Recoil(-8 )
-    ZKEL I 6 A_SkelFist
+    ZKEL I 6 A_CustomMeleeAttack(30,"Doom4/Other/MeleeHit")
     Goto See2
   Missile:
 	TNT1 A 0

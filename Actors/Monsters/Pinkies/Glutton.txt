@@ -18,7 +18,7 @@ ACTOR PM_Glutton : Demon
 	Species "Brute"
 	//DropItem "RagePoint1"
 	BloodColor "DarkRed"
-	SeeSound 	"Glutton/Sight"
+	SeeSound 	""
 	PainSound 	"Glutton/Pain"
 	DeathSound 	"Glutton/Death"
 	ActiveSound "Glutton/Active"
@@ -32,6 +32,29 @@ ACTOR PM_Glutton : Demon
 		BPWA A 10 A_Look
 		Loop
 	See:
+			TNT1 A 0 A_SetSpeed(35)
+			BPWA A 8 Fast
+			{
+			A_Chase("","",CHF_NOPLAYACTIVE);
+		    A_PlaySound("demonstep", 3);
+			}
+			TNT1 A 0 A_SetSpeed(5)
+			BPWA BB 6 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_SetSpeed(35)
+			BPWA C 8 Fast
+			{
+			A_Chase("","",CHF_NOPLAYACTIVE);
+			A_PlaySound("demonstep", 3);
+			}
+			TNT1 A 0 A_SetSpeed(5)
+			BPWA DD 6 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			Goto Spotted
+	Spotted:
+	        TNT1 A 0 A_Jump(256,"Roar","See2","RoarNoAnim")
+			Goto See2
+	RoarNoAnim:
+	        TNT1 A 0 A_PlaySound("Glutton/Sight",CHAN_5)
+	See2:
 			TNT1 A 0 A_SetSpeed(35)
 			TNT1 A 0 A_Jump(26,"Roar")
 			BPWA A 8 Fast
@@ -49,9 +72,9 @@ ACTOR PM_Glutton : Demon
 			}
 			TNT1 A 0 A_SetSpeed(5)
 			BPWA DD 6 Fast A_Chase
-			TNT1 A 0 A_Jump(10,"See2")
+			TNT1 A 0 A_Jump(10,"Sprint")
 			Loop
-	See2:
+	Sprint:
 			TNT1 A 0 A_SetSpeed(35)
 			BPWA A 4 Fast
 			{
@@ -78,11 +101,11 @@ ACTOR PM_Glutton : Demon
 			A_Chase("Melee","");
 			A_Recoil(-1.5);
 			}
-			TNT1 A 0 A_Jump(20,"See")
+			TNT1 A 0 A_Jump(20,"See2")
 			Loop
 	Roar:
 		TNT1 A 0
-		TNT1 A 0 A_CheckSight("See")
+		TNT1 A 0 A_CheckSight("See2")
 		TNT1 A 0 A_PlaySound("GluttonSight2",CHAN_7)
 		BPBI A 7 A_FaceTarget
 		BPBI C 14 A_FaceTarget
@@ -91,7 +114,7 @@ ACTOR PM_Glutton : Demon
 	Melee:
 		BPBI AB 8 A_FaceTarget
 		BPBI C 20 A_SargAttack
-		Goto See
+		Goto See2
 	Missile:
 			TNT1 A 0 A_PlaySound("Afflicted/Puke",CHAN_6)
 			BPBI CCAABB 3
@@ -106,12 +129,12 @@ ACTOR PM_Glutton : Demon
 			TNT1 A 0 A_FaceTarget
 			BPBI BBBBBBBBB 1 A_CustomMissile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 			BPBI BA 5 A_FaceTarget
-			Goto See
+			Goto See2
 	Pain:
 		BPPA A 2
 		TNT1 A 0 A_StopSound(CHAN_7)
 		BPPA A 14  A_Pain
-		Goto See
+		Goto See2
 		
 	Death:
 		BPDE A 1

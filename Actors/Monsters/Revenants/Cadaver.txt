@@ -25,9 +25,9 @@ Actor PM_Cadaver : Revenant
     Loop
   Melee:
     CREV G 0 A_FaceTarget
-    CREV G 6 A_SkelWhoosh
+    CREV G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
     CREV H 6 A_FaceTarget
-    CREV I 6 A_CustomMeleeAttack(30,"skeleton/melee")
+    CREV I 6 A_CustomMeleeAttack(30,"Doom4/Other/MeleeHit")
     Goto See
   Missile:
 	TNT1 A 0 A_Jump(14,"Roar")

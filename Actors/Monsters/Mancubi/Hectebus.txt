@@ -210,24 +210,6 @@ Actor MancBallFire
 	}
 }
 
-ACTOR PM_HectebusBallTrail
-{
-Scale 0.80
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
-RenderStyle Add
-States
-{
-Spawn:
-    TABF AB 1 A_FadeOut(0.25)
-    Goto Spawn
-    }
-}
-
 Actor PM_HectebusBallExplode
 {
 	Scale 0.9

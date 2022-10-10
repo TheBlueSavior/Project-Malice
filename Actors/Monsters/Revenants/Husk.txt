@@ -382,7 +382,7 @@ Actor PM_HuskSmokeCloud
   Spawn:
 	TNT1 A 1
 	TNT1 A 0 A_SetRoll(random(0,360))
-    SMOK AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRR 10 A_Explode(Random(1,4),68)
+    X111 AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRR 10 A_Explode(Random(1,4),68)
   Death:
 	TNT1 A 1
 	Stop

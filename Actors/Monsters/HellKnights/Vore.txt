@@ -186,8 +186,11 @@ Actor PM_Vore
 	VORE O 4 A_NoBlocking
 	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	VORE P 4
-	VORE Q -1 A_bossdeath
+	VORE Q -1
 	Stop
+  Raise:
+    VORE QPONML 6
+	Goto See
   }
 }
 

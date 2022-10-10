@@ -11,7 +11,7 @@ Class PM_NetherImp : Actor
     Scale 1.2;
 	MeleeRange 170;
 	Species "Imp";
-	seesound "NetherConduit/Sight";
+	seesound "";
 	painsound "NetherConduit/Pain";
 	deathsound "NetherConduit/Death";
 	activesound "NetherConduit/Active";
@@ -33,11 +33,24 @@ Class PM_NetherImp : Actor
     DRKF AB 10 A_Look();
     Loop;
   See:
+    TNT1 A 0 A_CheckSight("See");
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+    DRKF AAABBB 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	DRKF CCCDDD 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+    goto Spotted;
+  Spotted:
+    TNT1 A 0 A_Jump(256,"Roar","Roar","See2");
+	Goto See2;
+  Roar:
+    TNT1 A 0 A_PlaySound("NetherConduit/Sight",CHAN_5);
+	Goto See2;
+   See2:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
     DRKF AAABBB 2 A_Chase();
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	DRKF CCCDDD 2 A_Chase();
-    Loop;
+    loop;
   Melee:
     DRKF EEEEEE 1 Light("PM_ConduitLightning")
 	{
@@ -73,10 +86,10 @@ Class PM_NetherImp : Actor
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
-    Goto See;
+    Goto See2;
   Missile:
     DRKF E 1 A_Jump (255, "Attack1");
-    Goto See;
+    Goto See2;
   Attack1:
 	TNT1 A 0;
 	TNT1 A 0 A_Jump(128,"Attack2");
@@ -96,7 +109,7 @@ Class PM_NetherImp : Actor
 	}
     DRKF G 6 Light("PM_ConduitLightning") A_SpawnProjectile ("PM_NetherLightning", 42, 0, 0);
 	DRKF GGG 5 A_FaceTarget();
-    Goto See;
+    Goto See2;
   Attack2:
 	TNT1 A 0;
 	TNT1 A 0 A_PlaySound("NetherConduit/Sight",CHAN_7);
@@ -143,12 +156,12 @@ Class PM_NetherImp : Actor
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
-    Goto See;
+    Goto See2;
   Pain:
 	TNT1 A 0 A_StopSound(CHAN_6);
     DRKF H 2;
     DRKF H 2 A_Pain();
-    Goto See;
+    Goto See2;
   Death:
 	TNT1 A 0 A_StopSound(CHAN_6);
     DRKF L 8;

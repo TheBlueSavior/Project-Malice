@@ -592,11 +592,19 @@ $Random Harvester/Pain { Harvester/Pain1 Harvester/Pain2 }
 Harvester/Pain1 "Sounds/Monsters/Harvester/HarvesterPain1.ogg"
 Harvester/Pain2 "Sounds/Monsters/Harvester/HarvesterPain2.ogg"
 
-harvester/scream shfbscrm
+harvester/scream "Sounds/Monsters/Harvester/HarvesterScream.flac" //shfbscrm
 
-harvester/ghost shghscrm
+harvester/ghost "Sounds/Monsters/Harvester/HarvesterGhost.flac" //shghscrm
 
-monster/dissit dsdissit
+//monster/dissit dsdissit (what?)
+
+Harvester/Screech "Sounds/Monsters/Harvester/HarvesterScreech.wav" //HA1ATK HA1ATK (keeping this, might be used for the orbit spirit attack later)
+Harvester/Summon1 "Sounds/Monsters/Harvester/HarvesterSummon1.wav" //HARSU1 HARSU1
+Harvester/Summon2 "Sounds/Monsters/Harvester/HarvesterSummon2.ogg" //HARSU2 HARSU2
+Harvester/Summon3 "Sounds/Monsters/Harvester/HarvesterSummon3.ogg" //HARSU3 HARSU3
+Harvester/Summon4 "Sounds/Monsters/Harvester/HarvesterSummon4.ogg" //HARSU4 HARSU4
+
+$limit Harvester/Summon4 4
 
 HA1ATK HA1ATK
 HARSU1 HARSU1
@@ -2047,6 +2055,7 @@ $random Whiplash/Death { WLashDeath1 WLashDeath2 WLashDeath3 WLashDeath4 }
 WLashDeath1 "Sounds/Monsters/Whiplash/WhiplashDeath1.ogg"
 WLashDeath2 "Sounds/Monsters/Whiplash/WhiplashDeath2.ogg"
 WLashDeath3 "Sounds/Monsters/Whiplash/WhiplashDeath3.ogg"
+WLashDeath4 "Sounds/Monsters/Whiplash/WhiplashDeath4.ogg"
 
 Whiplash/Flank "Sounds/Monsters/Whiplash/WhiplashFlank.ogg"
 Whiplash/KnifeStab "Sounds/Monsters/Whiplash/WhipKnifeStab.ogg"
@@ -2637,6 +2646,7 @@ $limit RFZ/Fire 30
 $rolloff RFZ/Fire 300 2200
 
 RFZ/Load "Sounds/Monsters/RFZombie/RFTLoad.ogg"
+$rolloff RFZ/Load 600 1500
 
 RFZ/RapidFire "Sounds/Monsters/RFZombie/RFTRapidFire.ogg"
 $limit RFZ/RapidFire 0
@@ -2765,8 +2775,9 @@ DTechPain1         "sounds/Monsters/DTechBrute/DTechBrutePain1.ogg"
 DTechPain2         "sounds/Monsters/DTechBrute/DTechBrutePain2.ogg"
 DTechPain3         "sounds/Monsters/DTechBrute/DTechBrutePain3.ogg"
 DTechPain4         "sounds/Monsters/DTechBrute/DTechBrutePain4.ogg"      
-DTechAttack          "sounds/Monsters/DTechBrute/DTechBruteAttack.ogg"
-DTechMelee           "sounds/Monsters/DTechBrute/DTechBruteAttackMelee.ogg"
+$random DTechAttack { DTechAttack1 DTechAttack2 }      
+DTechAttack1          "sounds/Monsters/DTechBrute/DTechBruteAttack1.ogg"
+DTechAttack2           "sounds/Monsters/DTechBrute/DTechBruteAttack2.ogg"
 DTechDeath           "sounds/Monsters/DTechBrute/DTechBruteDeath.ogg"
 
 $rolloff DTechAttack 350 1900
@@ -2787,10 +2798,9 @@ $volume DTechWalk 1
 $limit DTechWalk 12
 
 //Demon Tech Spectre
-$random DTechSpectre/Sight { DTechSpecSee1 DTechSpecSee2 DTechSpecSee3 }
+$random DTechSpectre/Sight { DTechSpecSee1 DTechSpecSee2 }
 DTechSpecSee1 "Sounds/Monsters/DTechSpectre/DTechSpectreSight1.ogg"
 DTechSpecSee2 "Sounds/Monsters/DTechSpectre/DTechSpectreSight2.ogg"
-DTechSpecSee3 "Sounds/Monsters/DTechSpectre/DTechSpectreSight3.ogg"
 
 $volume DTechSpectre/Sight 0.54
 

@@ -15,7 +15,7 @@ ACTOR PM_HellifiedSoldier
 	Species "Zombie"
 	Tag "Hellified Soldier"
     OBITUARY "%o was blasted by a Hellified Soldier."
-    SEESOUND "HellSoldier/Sight"
+    SEESOUND ""
     PainSound "HellSoldier/Pain"
     DeathSound "HellSoldier/Death"
     ACTIVESOUND "HellSoldier/Active"
@@ -26,14 +26,31 @@ ACTOR PM_HellifiedSoldier
         HFS1 AA 10 A_Look
         Loop
     See:
+	    TNT1 A 0 A_CheckSight("See")
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		HFS1 AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		HFS1 BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		HFS1 CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		HFS1 DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
+        Goto Spotted
+	Spotted:
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
+		Goto See2
+	Roar:
+	    TNT1 A 0 A_PlaySound("HellSoldier/Sight",CHAN_5)
+		Goto See2
+	See2:
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
         HFS1 AA 3 A_Chase
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		HFS1 BB 3 A_Chase
-		HFS1 CC 3 A_Chase
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+		HFS1 CC 3 A_Chase
 		HFS1 DD 3 A_Chase
-		HFS1 EE 3 A_Chase
         Loop
+    SpotMissile:
+	    HFS1 FF 3 A_FaceTarget
+		Goto Missile
     Missile:
 		TNT1 A 0 A_Jump(50,"Missile2")
         HFS1 F 8 A_FaceTarget
@@ -53,20 +70,20 @@ ACTOR PM_HellifiedSoldier
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
 		HFS1 G 4 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2))
 		HFS1 F 8 A_FaceTarget
-        Goto See
+        Goto See2
 	Missile2:
 		HFS1 F 8 A_FaceTarget
 		//TNT1 A 0 A_PlaySound("HellSoldier/Plasma")
 		TNT1 A 0 A_CustomMissile("CFodFlare",31,7)
         HFS1 G 2 Light("Shadowball2") A_CustomMissile("PM_HellifiedSoldierBall",31,7,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2))
 		HFS1 F 4 A_FaceTarget
-		TNT1 A 0 A_Jump(30,"See")
-		D3CG E 0 A_MonsterRefire(60,"See")
+		TNT1 A 0 A_Jump(30,"See2")
+		D3CG E 0 A_MonsterRefire(60,"See2")
 		Goto Missile2+1
     Pain:
         HFS1 H 5
         HFS1 H 3 A_Pain
-        Goto See
+        Goto See2
     Death:
 		TNT1 A 0 A_Jump(35,"PossDeath")
         HFS1 I 7 A_NoBlocking

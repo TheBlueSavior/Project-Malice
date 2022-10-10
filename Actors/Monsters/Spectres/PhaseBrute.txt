@@ -17,19 +17,37 @@ ACTOR PM_PhaseBrute : Demon
 	Speed 13
 	MeleeDamage 4
 	//DropItem "RagePoint1"
-	SeeSound "PBrute/Sight"
+	SeeSound ""
 	DeathSound "PBrute/Death"
 	ActiveSound "PBrute/Active"
 	PainSound "PBrute/Pain"
 	AttackSound "GenericPinkyBite"
 	Tag "Phase Brute"
-	Obituary "%o didn't notice a hungry Phase Brute"
+	Obituary "%o didn't notice a hungry Phase Brute."
 	States
 	{
 		Spawn:
 			PRUT A 4 A_Look
 			loop
 		See:
+			PRU1 AA 2 Fast A_Chase("","",CHF_NORANDOMTURN|CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(0.5)
+			TNT1 A 0 A_PlaySound("demonstep", 3,0.3)
+			PRU1 BB 2 Fast A_Chase("","",CHF_NORANDOMTURN|CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(0.5)
+			PRU1 CC 2 Fast A_Chase("","",CHF_NORANDOMTURN|CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(0.5)
+			TNT1 A 0 A_PlaySound("demonstep", 3,0.3)
+			PRU1 DD 2 Fast A_Chase("","",CHF_NORANDOMTURN|CHF_NOPLAYACTIVE)
+			TNT1 A 0 A_Recoil(0.5)
+			TNT1 A 0 A_CheckSight("See")
+			Goto Spotted
+		Spotted:
+		    TNT1 A 0 A_Jump(256,"See2","Roar","Roar")
+		Roar:
+		    TNT1 A 0 A_PlaySound("PBrute/Sight")
+			Goto See2
+		See2:
 			PRU1 AA 2 Fast A_Chase("_a_chase_default","_a_chase_default",CHF_NORANDOMTURN)
 			TNT1 A 0 A_Recoil(0.5)
 			TNT1 A 0 A_PlaySound("demonstep", 3,0.3)
@@ -50,15 +68,15 @@ ACTOR PM_PhaseBrute : Demon
 			PRUT FFBBB 1 
 			PRUT GGG 4 A_CustomMissile("BruteJump",40,0,0,2)
 			TNT1 A 0 A_CustomMissile("BruteJump",5,0,0,2)
-			Goto See
+			Goto See2
 		Bite:
 			PRUT E 8 A_FaceTarget
 			PRUT F 8 A_FaceTarget
 			PRUT G 8 A_MeleeAttack
-			Goto See
+			Goto See2
 		Pain:
 			PRUT H 9 A_Pain
-			Goto See
+			Goto See2
 		Death:
 			PRUT I 8 A_Scream
 			PRUT J 6 A_NoBlocking
