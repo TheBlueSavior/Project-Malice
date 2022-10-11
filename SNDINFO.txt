@@ -2837,6 +2837,13 @@ WickDeath                 "sounds/Monsters/Wicked/WickedDeath.ogg"
 
 WickFire                  "sounds/Monsters/Wicked/WickedFire.ogg"
 WickFireExp               "sounds/Monsters/Wicked/WickedFireExp.ogg"
+WickCharge                "sounds/monsters/Wicked/WickCharge.ogg"
+$random WickChargeThrow  { WickChr1 WickChr2 WickChr3 }
+WickChr1                  "Sounds/monsters/Wicked/WickProjThrow1.ogg"
+WickChr2                  "Sounds/monsters/Wicked/WickProjThrow2.ogg"
+WickChr3                  "Sounds/monsters/Wicked/WickProjThrow3.ogg"
+
+$limit WickFireExp 5
 
 monster/tenpn1                  dstenpn1
 monster/tenpn2                  dstenpn2

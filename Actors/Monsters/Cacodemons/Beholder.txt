@@ -49,27 +49,20 @@ ACTOR PM_Beholder: Cacodemon
 		}
 		TNT1 A 0 A_StopSound(CHAN_7)
 		Loop
-	Backup:
-	    CAB1 A 2
-		{
-		A_FaceTarget;
-		A_Recoil(2);
-		A_FaceTarget;
-		}
-		Goto See2
   Missile:
 	TNT1 A 0 A_StopSound(CHAN_7)
 	//TNT1 A 0 A_ChangeFlag(NOPAIN,0)
-	//TNT1 A 0 A_Jump(140,"Rush")
 	TNT1 A 0 A_Jump(14,"Cry")
 	TNT1 A 0 A_Jump(220,"Barrage","BloodPuke")
-	TNT1 A 0 A_Jump(80,"Rush")
+	TNT1 A 0 A_JumpIfCloser(500,"RushCheck")
 	TNT1 A 0 A_Jump(256,"Eyes")
+	Goto BloodPuke
   Melee:
-    TNT1 A 0 
-	TNT1 A 0 A_Jump(90,"Cry")
-	TNT1 A 0 A_Jump(122,"Backup")
-	Goto Rush
+    TNT1 A 0
+    CAB1 BCD 5 A_FaceTarget
+    CAB1 A 5 A_CustomMeleeAttack(4*Random(1,8), "caco/melee")
+    TNT1 A 0 A_Jump(35,"Rush")
+	Goto See2
   BloodPuke:
     CAB1 BBCC 4
 	{
@@ -126,6 +119,11 @@ ACTOR PM_Beholder: Cacodemon
 	}
 	CAB1 AAA 5 A_FaceTarget
 	Goto See2
+  RushCheck:
+    TNT1 A 0
+    TNT1 A 0 A_Jump(77,"Cry","Barrage","BloodPuke")
+    TNT1 A 0 A_Jump(35,"Eyes")
+    Goto Rush
   Rush:
 	TNT1 A 0
 	//TNT1 A 0 A_ChangeFlag(NOPAIN,1)

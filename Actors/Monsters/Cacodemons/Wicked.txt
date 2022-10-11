@@ -80,7 +80,7 @@ Class PM_Wicked : Actor
     //WIC2 E 0 A_Jump(2, "See");
     Loop;
   Missile:
-    TNT1 A 0 A_Jump(128,"Missile12","Missile2");
+    TNT1 A 0 A_Jump(128,"Missile12","Missile2","Charge");
 	TNT1 A 0  A_SetShootable();
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
@@ -131,6 +131,37 @@ Class PM_Wicked : Actor
     A_SpawnProjectile("WickedRevolveShot1",60,0,0);
     A_SpawnProjectile("WickedRevolveShot2",60,0,0);
     }
+    WIC2 L 5;
+    Goto See1;
+  Charge:
+	TNT1 A 0  A_SetShootable();
+	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+    WIC2 I 1 A_PlaySound("GenericChargeSmall");
+    WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("AvatarFireball2")
+	{
+	A_FaceTarget();
+    A_SpawnProjectile("BulletFlare",60,0);
+	A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
+	}
+    TNT1 A 0 A_PlaySound("WickCharge",CHAN_5);
+    WIC2 JJJJJJJJJJJJJJJJJJJJJJ 1 Light("AvatarFireball3")
+	{
+	A_FaceTarget();
+    A_SpawnProjectile("BulletFlare",60,0);
+    A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
+	A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
+	}
+    WIC2 KKKKKK 5 
+    {
+    A_PlaySound("WickAttack");
+    A_SpawnProjectile("WickedShot",60,0,random(-10,10),CMF_OFFSETPITCH,random(-5,5));
+    A_FaceTarget();
+    }
+	TNT1 A 0  A_SetShootable();
+    WIC2 K 4 A_FaceTarget();
+    WIC2 K 5 BRIGHT A_FaceTarget();
+    WIC2 K 8 BRIGHT A_FaceTarget();
     WIC2 L 5;
     Goto See1;
   Pain:
@@ -200,7 +231,6 @@ Class WickedShot : Actor
 	TNT1 A 0 A_ScaleVelocity(0.1);
 	WIBL ABCDABCDABCDABCDABCD 1 
 	{
-	A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
 	A_SpawnItemEx("WickedFX", 0,0,0, random(-2,2),random(-2,2),random(-2,2), 0, SXF_CLIENTSIDE, 0);
 	}
     TNT1 A 0 A_PlaySound("Vore/Throw");

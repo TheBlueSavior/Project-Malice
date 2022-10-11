@@ -81,8 +81,8 @@ ACTOR PM_Noble
 	Goto Retreat
     Standoff:
 	TNT1 A 0 A_ChangeFlag("MISSILEMORE",1)
-	TNT1 A 0 A_Jump(6,"See")
-	TNT1 A 0 A_JumpIfCloser(300,"See")
+	TNT1 A 0 A_Jump(6,"See2")
+	TNT1 A 0 A_JumpIfCloser(300,"See2")
 	TNT1 A 0 A_SetSpeed(0)
 	TNT1 A 0 A_SetScale(1.05,1.05)
 	NO1S BBB 3
