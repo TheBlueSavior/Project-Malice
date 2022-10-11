@@ -68,6 +68,7 @@ ACTOR PM_Nailgunner
 	Goto See2
   Missile:
 	TNT1 A 0
+	TNT1 A 0 A_JumpIfInventory("NailgunnerToken",1,"Missile3Wait2")
 	TNT1 A 0 A_Jump(115,"StandoffCheck")
 	TNT1 A 0 A_Jump(150,"Missile3")
   NormalMissile:
@@ -161,14 +162,15 @@ ACTOR PM_Nailgunner
 		}
 		Goto See2
         Missile3Wait1:
-	       TNT1 A 0 A_JumpIfTargetInLOS("Missile3Wait2",70,JLOSF_DEADNOJUMP)
+	       TNT1 A 0 A_GiveInventory("NailgunnerToken",1)
 	       PNGZ E 2 A_FaceTarget
-		Loop
+		Goto See2
         Missile3Wait2:
-	       TNT1 A 0 A_PlaySound("Nailgunner/Sight")
+	       TNT1 A 0 A_PlaySound("Nailgunner/QuickCharge")
 	       PNGZ EEEE 5 A_FaceTarget
 		Goto Missile3Go
 	Missile3Go:
+	       TNT1 A 0 A_TakeInventory("NailgunnerToken",1)
 	       TNT1 A 0 A_Recoil(8)
 	       TNT1 A 0 A_PlaySound("Nailgunner/Altfire",CHAN_7)
 	       TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_5)
@@ -408,4 +410,9 @@ Actor PM_NailgunnerNailBlur
       BLAD A 1 A_FadeOut(0.14)
       Loop
    }
+}
+
+ACTOR NailgunnerToken : Inventory
+{
+ Inventory.MaxAmount 1
 }

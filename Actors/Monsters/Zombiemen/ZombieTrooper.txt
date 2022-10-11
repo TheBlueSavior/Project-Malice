@@ -53,6 +53,7 @@ ACTOR PM_ZombieTrooper : Zombieman
 	    UTM2 EEE 2 A_FaceTarget
 	    Goto Missile
 	See2:
+	    TNT1 A 0
 	    TNT1 A 0 A_CheckSight("See3")
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
         UTM2 AA 4 A_Chase
@@ -80,6 +81,8 @@ ACTOR PM_ZombieTrooper : Zombieman
 		TNT1 A 0 A_CheckSight("See3")
         Goto See2
      Missile:
+	    TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"WaitGrenade2")
         TNT1 A 0 A_Jump(43,"GrenadeCheck")
 		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight")
 		TNT1 A 0 A_Jump(40,"Missile2")
@@ -198,17 +201,19 @@ ACTOR PM_ZombieTrooper : Zombieman
 	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See")
 	  Goto WaitGrenade1
 	WaitGrenade1:
+	  TNT1 A 0
+	  TNT1 A 0 A_GiveInventory("ZTrooperToken",1)
 	  TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
+	  Goto See2
 	WaitGrenade2:
-	  TNT1 A 0 A_JumpIfTargetInLOS("WaitGrenade3",70,JLOSF_DEADNOJUMP)
-	  UTM2 AA 5 A_FaceTarget
-	  Loop
-	WaitGrenade3:
+	  TNT1 A 0
 	  TNT1 A 0 A_CheckRange(600,"WaitGrenadeFar")
 	  TNT1 A 0 A_CheckRange(450,"WaitGrenade")
 	  TNT1 A 0 A_CheckRange(150,"WaitGrenadeNear")
 	  Goto WaitGrenadeFar
 	WaitGrenade:
+	  TNT1 A 0
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
 	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
@@ -218,6 +223,8 @@ ACTOR PM_ZombieTrooper : Zombieman
       }
       Goto Backup
 	WaitGrenadeFar:
+	  TNT1 A 0
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
 	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
@@ -227,6 +234,8 @@ ACTOR PM_ZombieTrooper : Zombieman
       }
       Goto Backup
 	WaitGrenadeNear:
+	  TNT1 A 0
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
 	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
       UTM2 AAA 5 A_FaceTarget
       UTM2 A 5 
@@ -423,4 +432,9 @@ Actor ZTrooperFragToken : Inventory
 { 
 +Inventory.undroppable
  Inventory.maxamount 3 
+}
+
+Actor ZTrooperToken : Inventory 
+{ 
+ Inventory.maxamount 1
 }

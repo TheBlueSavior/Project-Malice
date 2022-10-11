@@ -138,6 +138,7 @@ actor PM_FeralImp : DoomImp
   LeapWait:
     1ROT DD 2 A_FaceTarget
 	TNT1 A 0 A_JumpIfTargetInLOS("LeapWaitSee",360,JLOSF_DEADNOJUMP)
+	TNT1 A 0 A_Jump(4,"See2")
 	Loop
   LeapWaitSee:
     1ROT DDD 2 A_FaceTarget
