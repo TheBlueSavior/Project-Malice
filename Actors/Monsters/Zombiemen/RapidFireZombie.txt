@@ -90,7 +90,7 @@ ACTOR PM_RFZombie: Zombieman
 	Goto See2
     Missile:
 	    TNT1 A 0 
-		TNT1 A 0 A_JumpIfInventory("RFZToken",1,"Missile3Wait2")
+		TNT1 A 0 A_JumpIfInventory("RFZToken",1,"Missile2Wait2")
 		TNT1 A 0 A_Jump(60,"Missile2")
 		TNT1 A 0 A_Jump(100, "MissileLeft", "MissileRight")
         RFTR EE 5 A_FaceTarget
