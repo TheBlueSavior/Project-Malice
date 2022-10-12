@@ -197,8 +197,9 @@ ACTOR PM_ZombieTrooper : Zombieman
       Goto Backup
 	WaitGrenadeCheck:
 	  TNT1 A 0
-	  TNT1 A 0 A_Jump(90,"SeeSight")
-	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See")
+	  TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"See2")
+	  TNT1 A 0 A_Jump(90,"See2")
+	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See2")
 	  Goto WaitGrenade1
 	WaitGrenade1:
 	  TNT1 A 0

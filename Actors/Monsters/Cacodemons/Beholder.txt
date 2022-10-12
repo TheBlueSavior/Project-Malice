@@ -10,7 +10,7 @@ ACTOR PM_Beholder: Cacodemon
 	HitObituary "%o was assimilated by a Beholder."
   health 410
   speed 4
-  meleerange 450
+  meleerange 44
   meleethreshold 66
   +DONTHARMSPECIES
   Species "Cacodemon"

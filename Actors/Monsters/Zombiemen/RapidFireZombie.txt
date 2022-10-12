@@ -104,7 +104,8 @@ ACTOR PM_RFZombie: Zombieman
 		RFTR E 8 A_FaceTarget
         Goto See2
 	Missile2ReadyCheck:
-	    TNT1 A 0 
+	    TNT1 A 0
+		TNT1 A 0 A_JumpIfInventory("RFZToken",1,"See2")
 	    TNT1 A 0 A_Jump(90,"See2")
 		Goto Missile2
 	Missile2:

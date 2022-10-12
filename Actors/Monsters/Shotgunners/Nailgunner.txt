@@ -129,7 +129,7 @@ ACTOR PM_Nailgunner
 		TNT1 A 0
 		TNT1 A 0 A_PlaySound("Nailgunner/Charge",CHAN_6)
 		PNGZ AAABBB 5 A_FaceTarget
-                TNT1 A 0 A_CheckSight("Missile3Wait1")
+        TNT1 A 0 A_CheckSight("Missile3Wait1")
 		PNGZ EEEE 5 A_FaceTarget
 		TNT1 A 0 A_Recoil(8)
 		TNT1 A 0 A_PlaySound("Nailgunner/Altfire",CHAN_7)
