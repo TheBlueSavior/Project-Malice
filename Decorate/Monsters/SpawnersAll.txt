@@ -18,6 +18,7 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
 	DropItem "PM_CyberFodder", 255, 10
 	DropItem "PM_Nailgunner", 255, 8
+	DropItem "PM_SlugShotgunner", 255, 10
 	DropItem "PM_FShotgunner", 255, 56
 	DropItem "PM_Remnant", 255, 1
 	DropItem "PM_DecayedShotgunner", 255, 4

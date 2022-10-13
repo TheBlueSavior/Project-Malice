@@ -28,6 +28,16 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR B 0 0
 }
 
+Model PM_SlugBullet
+{ 
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 1.35 1.35
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}
+
 Model PM_DTechSpectreShot
 { 
 Path "Models"

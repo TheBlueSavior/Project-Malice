@@ -1251,9 +1251,10 @@ WretDeath1 "Sounds/Monsters/Wretched/WretchedDeath1.ogg"
 WretDeath2 "Sounds/Monsters/Wretched/WretchedDeath2.ogg"
 
 $volume Wretched/Active 0.5
-$volume Wretched/Sight 0.55
+$volume Wretched/Sight 0.65
 $volume Wretched/Pain 0.5
 $volume Wretched/Death 0.5
+$volume Wretched/Spit 0.8
 
 $volume Wretched/ShotLoop 0.68
 
@@ -3150,3 +3151,11 @@ $rolloff SmokeGrenadeExp 450 1650
 
 GrenadeLaunch "Sounds/Other/GrenadeLaunch.ogg"
 $rolloff GrenadeLaunch 250 1650
+
+$random PM/LargeBulletHit { PM/LargeBulletHit1 PM/LargeBulletHit2 }
+
+PM/LargeBulletHit1 "Sounds/Other/PMLargeBulletHit1.ogg"
+PM/LargeBulletHit2 "Sounds/Other/PMLargeBulletHit2.ogg"
+
+SlugShotgunner/Fire "Sounds/Monsters/SlugShotgunner/SlugShot.ogg"
+$rolloff SlugShotgunner/Fire 1200 2200

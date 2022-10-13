@@ -96,3 +96,4 @@
 #include "Actors/Monsters/Mancubi/Corpulent.txt"
 #include "Actors/Monsters/Barons/Bruiser.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"

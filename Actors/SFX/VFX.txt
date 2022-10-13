@@ -2220,6 +2220,62 @@ ACTOR PM_BulletShrapnel
 	}
 }
 
+ACTOR PM_BulletShrapnelNoCheck
+{
+	+Noteleport
+	+Missile
+	+Bounceonactors
+	+Doombounce
+	+Forcexybillboard
+    +CLIENTSIDEONLY
+	Scale 0.6
+    Speed 1
+    Gravity 0.7
+	Bouncefactor 0.2
+	Height 1
+	Radius 1
+	States
+	{
+	Spawn:
+		TNT1 A 0
+//		TNT1 A 0 A_GiveInventory ("Timer", random(1,4))
+	See:
+	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"See4")
+	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"See3")
+	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"See2")
+	See1:
+		DUST A 1
+		loop
+	See2:
+		DUST B 1
+		loop
+	See3:
+		DUST C 1
+		loop
+	See4:
+		DUST D 1
+		loop
+	Death:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
+	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"Death4")
+	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"Death3")
+	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"Death2")
+	Death1:
+		DUST A 100
+		Stop
+	Death2:
+		DUST B 100
+		Stop
+	Death3:
+		DUST C 100
+		Stop
+	Death4:
+		DUST D 100
+		Stop
+	}
+}
+
 Actor HomingFlare
 {
 +NOINTERACTION
