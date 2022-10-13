@@ -1252,7 +1252,7 @@ WretDeath2 "Sounds/Monsters/Wretched/WretchedDeath2.ogg"
 
 $volume Wretched/Active 0.5
 $volume Wretched/Sight 0.65
-$volume Wretched/Pain 0.5
+$volume Wretched/Pain 0.4
 $volume Wretched/Death 0.5
 $volume Wretched/Spit 0.8
 
