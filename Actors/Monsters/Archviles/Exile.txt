@@ -29,7 +29,7 @@ Actor PM_Exile : Archvile
     TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
-    TNT1 A 0 A_PlaySound("Exile/Sight",CHAN_5)
+    TNT1 A 0 A_PlaySound("Exile/Sight",CHAN_6)
   See2:
 	TNT1 A 0 A_PlaySound("Exile/Step",CHAN_5)
 	EILE AABBCC 2 A_VileChase

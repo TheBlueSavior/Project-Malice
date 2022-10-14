@@ -15,7 +15,7 @@ ACTOR PM_SlugShotgunner : Zombieman
 	+DONTHARMSPECIES
 	Species "Shotgunner"
 	Tag "Slug Shotgunner"
-    OBITUARY "%o was put down by a Zombie Marine."
+    OBITUARY "%o caught a big clump of shells from a Slug Shotgunner."
     SeeSound ""
 	PainSound "HelmetZombie/Pain"
 	DeathSound "HelmetZombie/Death"

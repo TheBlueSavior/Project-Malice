@@ -15,7 +15,7 @@ ACTOR PM_DemonTechSpectre : Demon
 	+DONTHURTSPECIES
 	Species "Brute"
 	BloodColor "Dark Red"
-    SeeSound "DTechSpectre/Sight"
+    SeeSound ""
     PainSound "DTechPain"
     DeathSound "DTechSpectre/Death"
     ActiveSound "DTechSpectre/Active"
