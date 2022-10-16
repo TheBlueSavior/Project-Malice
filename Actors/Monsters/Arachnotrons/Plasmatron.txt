@@ -315,7 +315,7 @@ ACTOR PM_PTronBallSmall
    RenderStyle Add
    +BRIGHT
    SeeSound ""
-   DeathSound "HELLPEXP"
+   DeathSound "GenericPlasmaExp"
    States
    {
    Spawn:
