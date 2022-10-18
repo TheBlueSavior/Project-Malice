@@ -137,6 +137,7 @@ actor PM_Bruiser
 	Raise:
 	    I01I WVUTSRQPONMLKJIHGFEDCBA 3
 		Goto See
+	
     }
 }
 

@@ -415,7 +415,20 @@ PM/BulletHit3 "Sounds/Other/PMBulletHit3.ogg"
 PM/BulletHit4 "Sounds/Other/PMBulletHit4.ogg"
 PM/BulletHit5 "Sounds/Other/PMBulletHit5.ogg"
 
+$random PM/BulletHitFlesh { PM/BulletHitFlesh1 PM/BulletHitFlesh2 PM/BulletHitFlesh3 PM/BulletHitFlesh4 PM/BulletHitFlesh5 }
+PM/BulletHitFlesh1 "Sounds/Other/PMBulletHitFlesh1.ogg"
+PM/BulletHitFlesh2 "Sounds/Other/PMBulletHitFlesh2.ogg"
+PM/BulletHitFlesh3 "Sounds/Other/PMBulletHitFlesh3.ogg"
+PM/BulletHitFlesh4 "Sounds/Other/PMBulletHitFlesh4.ogg"
+PM/BulletHitFlesh5 "Sounds/Other/PMBulletHitFlesh5.ogg"
+
 $limit PM/BulletHit 20
+$rolloff PM/BulletHit 200 950
+
+$limit PM/BulletHitFlesh 7
+$rolloff PM/BulletHitFlesh 2 500
+$volume PM/BulletHitFlesh 0.75
+
 
 MutatedGunner/WindUp "Sounds/Monsters/MutatedGunner/MutGunnerStart.ogg"
 MutatedGunner/GunLoop "Sounds/Monsters/MutatedGunner/MutGunnerLoop.ogg"
@@ -3159,3 +3172,4 @@ PM/LargeBulletHit2 "Sounds/Other/PMLargeBulletHit2.ogg"
 
 SlugShotgunner/Fire "Sounds/Monsters/SlugShotgunner/SlugShot.ogg"
 $rolloff SlugShotgunner/Fire 1200 2200
+ 

@@ -358,7 +358,7 @@ ACTOR PM_NailgunnerNail : FastProjectile
   +NODAMAGETHRUST
   +SPAWNSOUNDSOURCE
   +MISSILE
-  deathsound "Nail/Ricochet"
+  deathsound ""
   Decal "bulletchip"
   States
   {
@@ -369,10 +369,6 @@ ACTOR PM_NailgunnerNail : FastProjectile
   Death:
     TNT1 A 0 A_Jump(256,"Death1","Death2")
     Loop
-  XDeath:
-	TNT1 A 1 Bright A_RadiusThrust(3000,90)
-	TNT1 A 1
-    stop
   Death1:
 	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TRCR A 0 A_PlaySound("PM/BulletHit",2)
@@ -387,6 +383,17 @@ ACTOR PM_NailgunnerNail : FastProjectile
 	TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletShrapnel",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,170)
     BLAD A 80
     stop
+  XDeath:
+  	TNT1 A 1 Bright A_RadiusThrust(3000,90)
+	TNT1 A 0
+    TRCR A 0 A_PlaySound("PM/BulletHitFlesh",2)
+     stop
+  Crash:
+    TNT1 A 1 Bright A_RadiusThrust(3000,90)
+	TNT1 A 1
+    TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+    TRCR A 0 A_PlaySound("PM_BulletHit",2)
+    Stop
   }
 }
 

@@ -3,8 +3,8 @@ Class PM_Wicked : Actor
   Default
   {
     Health 350;
-    Radius 20;
-    Height 80;
+    Radius 31;
+    Height 56;
     Mass 200;
     Speed 10;
 	Scale 1;
