@@ -111,7 +111,7 @@ ACTOR PM_Glutton : Demon
 		BPBI A 7 A_FaceTarget
 		BPBI C 14 A_FaceTarget
 		BPBI BBBBABBAAA 5 A_FaceTarget
-		Goto See2
+		Goto Sprint
 	Melee:
 		BPBI AB 8 A_FaceTarget
 		BPBI C 20 A_SargAttack

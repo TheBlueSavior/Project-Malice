@@ -50,7 +50,7 @@ ACTOR PM_CyberBrute : Demon
             TNT1 A 0 A_CheckSight("See")
 			Goto Spotted
 		Spotted:
-		    TNT1 A 0 A_Jump(256,"Roar","Roar","See2")
+		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarCheck","See2")
 			Goto See2
 		See2:
 			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
@@ -65,10 +65,13 @@ ACTOR PM_CyberBrute : Demon
 			TNT1 A 0 A_Recoil(-0.5)
 			CBRU DD 2 Fast A_Chase
 			TNT1 A 0 A_Recoil(-0.5)
-			TNT1 A 0 A_Jump(8,"Roar")
+			TNT1 A 0 A_Jump(8,"RoarCheck")
 			TNT1 A 0 A_JumpIfCloser(230,"See")
 			TNT1 A 0 A_JumpIfCloser(340,"Lunge")
 			loop
+		RoarCheck:
+			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000)
+			Goto See2
 		Roar:
 			CBRU A 3 A_FaceTarget
 			CBRU E 1 A_PlaySound("CBrute/Sight")

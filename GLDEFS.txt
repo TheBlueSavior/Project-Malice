@@ -2010,31 +2010,31 @@ Frame ZSP2F { Light MGUNZSPECOPS }
 //brightmaps
 BrightMap Sprite ZSP2F1
 {
-Map "brightmaps/monsters/FallenMarine/BMZSP2F1"
+Map "brightmaps/monsters/FallenMarine/BMZSP2F1.png"
 DisableFullBright
 }
 
 BrightMap Sprite ZSP2F2F8
 {
-Map "brightmaps/monsters/FallenMarine/BMZSP2F2"
+Map "brightmaps/monsters/FallenMarine/BMZSP2F2.png"
 DisableFullBright
 }
 
 BrightMap Sprite ZSP2F3F7
 {
-Map "brightmaps/monsters/FallenMarine/BMZSP2F3"
+Map "brightmaps/monsters/FallenMarine/BMZSP2F3.png"
 DisableFullBright
 }
 
 BrightMap Sprite ZSP2F4F6
 {
-Map "brightmaps/monsters/FallenMarine/BMZSP2F4"
+Map "brightmaps/monsters/FallenMarine/BMZSP2F4.png"
 DisableFullBright
 }
 
 BrightMap Sprite ZSP2F5
 {
-Map "brightmaps/monsters/FallenMarine/BMZSP2F5"
+Map "brightmaps/monsters/FallenMarine/BMZSP2F5.png"
 DisableFullBright
 }
 

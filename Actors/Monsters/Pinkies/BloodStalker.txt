@@ -47,7 +47,7 @@ ACTOR PM_BloodStalker : Demon
 			TNT1 A 0 A_CheckSight("See")
 			Goto Spotted
 		Spotted:
-		    TNT1 A 0 A_Jump(256,"RoarNoAnim","Roar")
+		    TNT1 A 0 A_Jump(256,"RoarNoAnim","RoarCheck")
 			Goto RoarNoAnim
 		RoarNoAnim:
 		    TNT1 A 0 A_PlaySound("BStalker/Sight",CHAN_5)
@@ -63,7 +63,7 @@ ACTOR PM_BloodStalker : Demon
 			TNT1 A 0 A_PlaySound("demonstep", 3)
 			SAR2 DD 2 Fast A_Chase
 			TNT1 A 0 A_Recoil(-0.5)
-			TNT1 A 0 A_Jump(5,"Roar")
+			TNT1 A 0 A_Jump(5,"RoarCheck")
 			TNT1 A 0 A_Jump(17, "Teleport","Teleport2")
 			loop
 		Teleport2:
@@ -188,6 +188,9 @@ ACTOR PM_BloodStalker : Demon
 			TNT1 A 0 A_PlaySound("demonstep", 3)
 			SAR2 DD 1 A_Chase
 			TNT1 A 0 A_SpawnItemEx("BloodSTrailD")
+			Goto See2
+		RoarCheck:
+			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000)
 			Goto See2
 		Roar:
 			SAR2 A 3 A_FaceTarget

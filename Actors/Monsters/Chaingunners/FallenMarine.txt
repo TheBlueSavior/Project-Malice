@@ -58,7 +58,7 @@ ACTOR PM_FallenMarine
     Loop
   Missile:
 	TNT1 A 0
-	TNT1 A 0 A_Jump(55,"GrenadeCheck")
+	TNT1 A 0 A_Jump(47,"GrenadeCheck")
 	TNT1 A 0 A_Jump(115,"StandoffCheck")
 	TNT1 A 0 A_Jump(150,"NormalMissile")
 	Goto Retreat
