@@ -39,10 +39,8 @@ Class PM_Watcher : Actor
     WATC A 10 A_Look();
     Loop;
   See:
-	TNT1 A 0 A_JumpIfCloser(290,"SeeTooClose");
-	TNT1 A 0 A_JumpIfCloser(1600,"SeeGood");
 	TMT1 A 0 A_SetSpeed(4);
-    WATC A 1
+    WATC A 2
 	{
 	A_Recoil(-0.4);
 	A_Chase(null,null,CHF_NOPLAYACTIVE);
@@ -52,7 +50,8 @@ Class PM_Watcher : Actor
   Spotted:
     TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","RandomDodge");
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("Watcher/Sight",CHAN_5);
+	TNT1 A 0;
+    TNT1 A 0 A_PlaySound("Watcher/Sight",CHAN_6);
   See2:
 	TNT1 A 0 A_JumpIfCloser(290,"SeeTooClose");
 	TNT1 A 0 A_JumpIfCloser(1600,"SeeGood");
@@ -204,7 +203,7 @@ Class PM_WatcherShot : Actor
     Radius 4;
     Height 8;
     Speed 22;
-    Damage (30);
+    DamageFunction (35);
     RENDERSTYLE "ADD";
     DamageType "lightning";
     ALPHA 0.9;

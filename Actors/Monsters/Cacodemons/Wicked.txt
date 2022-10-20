@@ -172,7 +172,7 @@ Class PM_Wicked : Actor
     Goto See1;
   Death:
     TNT1 A 0 {bFLOATBOB = false;}
-	TNT1 A 0  A_SetShootable();
+	TNT1 A 0;
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
     WIC2 N 5 A_Scream();
     WIC2 OP 5;

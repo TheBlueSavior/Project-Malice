@@ -864,8 +864,9 @@ HostFlyLoop "Sounds/Monsters/Host/HostFlyLoop.ogg"
 PoisonShot/Shot			POISSHOT
 PoisonShot/Hit			POISHIT
 
-$volume Host/Sight 0.65
-$volume Host/Active 0.65
+$volume Host/Death 0.6
+$volume Host/Sight 0.45
+$volume Host/Active 0.55
 
 //Hunger
 $random Afflicted/Sight { AffSight1 AffSight2 }
@@ -1910,6 +1911,7 @@ GenericBloodSpit		BLDSPIT
 GenericBloodImpact	    BLDIMPAC
 
 $rolloff BSkull/Pain 500 1400
+$volume BSkull/Pain 0.8
 
 $random BloodSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
 BloodSkull/Croak1 "Sounds/Monsters/BloodSkull/SkullCroak1.ogg"
@@ -1924,6 +1926,7 @@ BSkullActive2 "Sounds/Monsters/BloodSkull/BSkullActive2.ogg"
 BSkull/Death "Sounds/Monsters/BloodSkull/BSkullDeath.ogg"
 
 $rolloff BSkull/Death 600 1500
+$volume BSkull/Death 0.8
 
 $limit GenericBloodSpit 0
 $limit GenericBloodImpact 0
@@ -2496,7 +2499,8 @@ Squire/Step1 "Sounds/Monsters/Squire/SquireStep1.ogg"
 Squire/Step2 "Sounds/Monsters/Squire/SquireStep2.ogg"
 Squire/Step3 "Sounds/Monsters/Squire/SquireStep3.ogg"
 
-$rolloff Squire/Step 200 800
+$rolloff Squire/Step 100 700
+$volume Squire/Step 0.8
 
 $random Squire/Sight { Squire/Sight1 Squire/Sight2 Squire/Sight3 Squire/Sight4 Squire/Sight5 Squire/Sight6 }
 Squire/Sight1 "Sounds/Monsters/Squire/SquireSight1.ogg"
@@ -2539,6 +2543,11 @@ Squire/Pain6 "Sounds/Monsters/Squire/SquirePain6.ogg"
 Squire/Pain7 "Sounds/Monsters/Squire/SquirePain7.ogg"
 Squire/Pain8 "Sounds/Monsters/Squire/SquirePain8.ogg"
 Squire/Pain9 "Sounds/Monsters/Squire/SquirePain9.ogg"
+
+$volume Squire/Death 0.6
+$volume Squire/Pain 0.6
+$volume Squire/Active 0.6
+$volume Squire/Sight 0.7
 
 $random HellKnight/Cast { HKnightCast1 HKnightCast2 HKnightCast3 HKnightCast4 }
 HKnightCast1 "Sounds/Monsters/SFX/HellKCast1.ogg"
@@ -3032,14 +3041,14 @@ Noble/Sight2 "sounds/Monsters/Noble/NobleSight2.ogg"
 Noble/Sight3 "sounds/Monsters/Noble/NobleSight3.ogg"
 Noble/Sight4 "sounds/Monsters/Noble/NobleSight4.ogg"
 
-$volume Noble/Sight 0.7
+$volume Noble/Sight 0.5
 
 $random Noble/Active { Noble/Active1 Noble/Active2 }
 
 Noble/Active1 "sounds/Monsters/Noble/NobleActive1.ogg"
 Noble/Active2 "sounds/Monsters/Noble/NobleActive2.ogg"
 
-$volume Noble/Active 0.7
+$volume Noble/Active 0.5
 
 $random Noble/PreBomb { Noble/PreBomb1 Noble/PreBomb2 }
 
@@ -3171,5 +3180,5 @@ PM/LargeBulletHit1 "Sounds/Other/PMLargeBulletHit1.ogg"
 PM/LargeBulletHit2 "Sounds/Other/PMLargeBulletHit2.ogg"
 
 SlugShotgunner/Fire "Sounds/Monsters/SlugShotgunner/SlugShot.ogg"
-$rolloff SlugShotgunner/Fire 1200 2200
+$rolloff SlugShotgunner/Fire 1200 4200
  
