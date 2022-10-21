@@ -588,6 +588,7 @@ Actor PM_GagSoul
    Species "Elemental"
    Damage 1
    Scale 0.76
+   Tag "Gag Soul"
    BounceType Hexen
    +BRIGHT
    BounceFactor 1
