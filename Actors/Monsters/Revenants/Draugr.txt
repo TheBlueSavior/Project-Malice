@@ -4,7 +4,7 @@ ACTOR PM_Draugr : Revenant
 	Speed 10
 	Monster
 	MeleeThreshold 10
-	SeeSound "Draugr/Sight"
+	SeeSound ""
 	PainSound "Draugr/Pain"
 	DeathSound "Draugr/Death"
 	ActiveSound "Draugr/Active"
@@ -23,30 +23,46 @@ ACTOR PM_Draugr : Revenant
 		Loop
   See:
 	    NULL A 0 A_PlaySound("Fiend/Step",5)
+		DRGR A 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR A 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR B 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR B 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR C 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR C 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		NULL A 0 A_PlaySound("Fiend/Step",5)
+		TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+		DRGR D 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR D 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR E 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR E 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR F 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR F 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		TNT1 A 0 A_CheckSight("See")
+		Goto Spotted
+	Spotted:
+	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile")
+		Goto See2
+	Roar:
+	    TNT1 A 0 A_PlaySound("Draugr/Sight",6)
+		Goto See2
+	SpotMissile:
+	    TNT1 A 0 A_PlaySound("Draugr/Sight",6)
+		Goto Missile
+  See2:
+	    NULL A 0 A_PlaySound("Fiend/Step",5)
 		DRGR A 2 A_Chase
 		DRGR A 2 A_Chase
-		//DRGR A 1 A_Chase
-
 		DRGR B 2 A_Chase
 		DRGR B 2 A_Chase
-		//DRGR B 1 A_Chase
-
 		DRGR C 2 A_Chase
 		DRGR C 2 A_Chase
-		//DRGR C 1 A_Chase
-
 		NULL A 0 A_PlaySound("Fiend/Step",5)
 		DRGR D 2 A_Chase
 		DRGR D 2 A_Chase
-		//DRGR D 1 A_Chase
-
 		DRGR E 2 A_Chase
 		DRGR E 2 A_Chase
-		//DRGR E 1 A_Chase
-		
 		DRGR F 2 A_Chase
 		DRGR F 2 A_Chase
-		//DRGR F 1 A_Chase
 		Loop
 	Melee:
 		DRGR J 1 A_FaceTarget
@@ -54,7 +70,7 @@ ACTOR PM_Draugr : Revenant
 		DRGR K 6 A_FaceTarget
 		TNT1 A 0 A_CustomMeleeAttack(random(20,25),"Doom4/Other/MeleeHit","",0,1)
 		DRGR L 6
-		Goto See		
+		Goto See2		
   Missile:
 	TNT1 A 0 A_Jump(80,"HomingAttack","HeavyRocket")
 	DRG2 C 3 A_FaceTarget
@@ -73,7 +89,7 @@ ACTOR PM_Draugr : Revenant
     DRGR I 12 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NOTARGET", 0)
 	TNT1 A 0 A_StopSound(2)
-    Goto See
+    Goto See2
   HeavyRocket:
 	TNT1 A 0 A_Playsound("Draugr/RocketAim")
 	DRG2 ABC 5 A_FaceTarget
@@ -94,7 +110,7 @@ ACTOR PM_Draugr : Revenant
     DRGR I 15 A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NOTARGET", 0)
 	TNT1 A 0 A_StopSound(2)
-    Goto See
+    Goto See2
   HomingAttack:
 	TNT1 A 0 A_PlaySound("Draugr/Sight3",CHAN_7)
 	DRG2 ABC 6 A_FaceTarget
@@ -111,25 +127,25 @@ ACTOR PM_Draugr : Revenant
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,-30,0)
 	DRGR G 6 A_FaceTarget	
-	TNT1 A 0 A_CheckSight("See")
+	TNT1 A 0 A_CheckSight("See2")
 	DRGR H 6 Bright
 	TNT1 A 0 A_PlaySound("Tyrant/Missile")
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,30,0)
 	DRGR G 6 A_FaceTarget
-    TNT1 A 0 A_CheckSight("See")
+    TNT1 A 0 A_CheckSight("See2")
 	DRGR H 6 Bright
 	TNT1 A 0 A_PlaySound("Tyrant/Missile")
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	TNT1 A 0 A_CustomMissile("PM_CadaverFireFlare",66,-15)
 	DRGR I 6 A_CustomMissile("PM_DraugrHMissile",62,-15,0,0)
 	DRGR G 6 A_FaceTarget
-	Goto See
+	Goto See2
   Pain:
     DRGR M 5
     DRGR M 5 A_Pain
-    Goto See
+    Goto See2
   XDeath:
   Death:
 	TNT1 A 0 A_NoBlocking
