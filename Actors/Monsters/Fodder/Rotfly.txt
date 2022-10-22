@@ -202,7 +202,7 @@ ACTOR PM_RotflyMaggot
 
 actor PM_RotflySpit : DoomImpBall
 {
-	Damage (2)
+	Damage (5)
 	seesound ""
 	deathsound ""
 	Speed 12
