@@ -386,6 +386,7 @@ ACTOR PM_DefilerSoulSlow
 	DeathSound "imp/shotx"
 	BloodType None
 	Renderstyle ADD
+	DamageType Fire
 	+SEEKERMISSILE
 	+MISSILE
 	+SHOOTABLE
@@ -448,6 +449,7 @@ ACTOR DefilerShot
     Speed 16
     Damage 6
     PROJECTILE
+	DamageType Fire
 	RENDERSTYLE ADD
 	ALPHA 0.9
     SeeSound "caco/attack"
@@ -722,6 +724,7 @@ ACTOR PM_GagSoulAttack : DoomImpBall
   +MISSILE
   RenderStyle Normal
   BounceType None
+  DamageType Fire
   PROJECTILE
   Seesound "BurntSoul/Attack"
   DeathSound "imp/shotx"
@@ -763,6 +766,7 @@ ACTOR PM_ShootSoulAttack : DoomImpBall
   -Clientsideonly
   -DONTHARMSPECIES
   -DONTHURTSPECIES
+  DamageType Fire
   -THRUACTORS
   +BRIGHT
   RenderStyle Normal

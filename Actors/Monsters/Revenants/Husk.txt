@@ -286,6 +286,7 @@ ACTOR PM_HuskSmallFireball : DoomImpBall
   Projectile 
   +RANDOMIZE
   +SEEKERMISSILE
+  DamageType Fire
   renderstyle Translucent
   Alpha 0.9
   SeeSound "GenericSmallFireball"
@@ -318,6 +319,7 @@ ACTOR PM_HuskMeteor : DoomImpBall
   Projectile 
   +RANDOMIZE
   +SEEKERMISSILE
+  DamageType Fire
   renderstyle Translucent
   Alpha 0.9
   SeeSound "GenericChargeHeavy"

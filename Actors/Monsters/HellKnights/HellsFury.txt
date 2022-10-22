@@ -305,6 +305,7 @@ Actor PM_HellsFuryBall
 	Scale 1
 	SeeSound "HFuryProj"
     DeathSound "HFuryProjExp"
+	DamageType Fire
 	+SEEKERMISSILE
     Projectile
   States

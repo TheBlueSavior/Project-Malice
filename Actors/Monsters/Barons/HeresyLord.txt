@@ -307,10 +307,11 @@ Actor SLGFXtra
 
 Actor PM_HeresyLordRedBall : DoomImpBall
 {
-	Damage (random(25,35))
+	Damage (random(30,38))
 	Scale 1
 	SeeSound "HeresyLord/RedFire"
 	DeathSound "HeresyLord/RedDeath"
+	DamageType Fire
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 14

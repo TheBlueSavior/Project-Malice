@@ -188,6 +188,7 @@ Scale 0.45
 Damage (random(40,40))
 DeathSound "HectebusBall/Exp"
 SeeSound "monsters/fatsofire"
+DamageType Fire
 RenderStyle Add
 States
 {

@@ -284,6 +284,7 @@ actor PM_FeralImpBall : PM_CharredBall
 	seesound "FeralImp/Ball"
 	//deathsound "FeralImp/BallExp"
 	FastSpeed 23
+	DamageType Fire
 	Speed 14
 	Scale 0.95
 	Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]"
@@ -337,10 +338,11 @@ Spawn:
 
 actor PM_FeralImpSpitFireball : PM_CharredBall
 {
-	Damage (random(5,5))
+	Damage (random(10,10))
 	+NOGRAVITY
 	-LOWGRAVITY
 	//+SEEKERMISSILE
+	DamageType Fire
 	seesound "GenericSmallFireball"
 	Speed 15
 	FastSpeed 20

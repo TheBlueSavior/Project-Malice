@@ -507,6 +507,7 @@ Actor PM_NobleBomb : Rocket
   BounceCount 4
   Damage 10
   RenderStyle Add
+  DamageType Fire
   SeeSound "weapons/bwoosh"
   BounceSound "imp/shotx"
   DeathSound "imp/shotx"
@@ -561,7 +562,8 @@ actor PM_NobleFireball : DoomImpBall
 	Speed 15
 	SeeSound "weapons/bwoosh"
 	DeathSound "HellKnight/BallImpact"
-	Damage (random(20,27))
+	Damage (random(20,30))
+	DamageType Fire
 	Scale 0.15
 	states
   	{

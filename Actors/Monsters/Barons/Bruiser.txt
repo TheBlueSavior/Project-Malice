@@ -310,6 +310,7 @@ ACTOR PM_BruiserMeteor : DoomImpBall
   Projectile 
   +RANDOMIZE
   renderstyle Translucent
+  DamageType Fire
   Alpha 0.9
   SeeSound "GenericChargeHeavy"
   DeathSound "GenericCometExp"
@@ -344,6 +345,7 @@ Actor PM_BruiserSmallFireball : DoomImpBall
 	SeeSound "HeresyLord/RedFire"
 	DeathSound "HeresyLord/BarrageRedDeath"
 	Damage (random(19,25))
+	DamageType Fire
 	Scale 0.15
 	states
   	{

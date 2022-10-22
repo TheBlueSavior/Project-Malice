@@ -344,6 +344,7 @@ actor PM_SquireFireball : DoomImpBall
 	SeeSound "HellKnight/Cast"
 	DeathSound "HellKnight/BallImpact"
 	Damage (random(30,37))
+	DamageType Fire
 	Scale 0.24
 	states
   	{
