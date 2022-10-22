@@ -8,7 +8,7 @@ Actor PM_Depraved
     Speed 7
     BloodColor "Black"
 	PainChance 64
-    Obituary "%o was killed by a Depraved."
+    Obituary "%o was tormented by a Depraved."
     HitObituary "%o was beaten to death by a Depraved."
     SeeSound ""
     PainSound ""
@@ -322,7 +322,7 @@ ACTOR PM_DepravedSpit
 	+Strifedamage
 	+RANDOMIZE
 	Alpha 1
-	SeeSound "TaintedBloodFire"
+	SeeSound ""
 	DeathSound "TaintedBloodExp"
 	States
 	{
