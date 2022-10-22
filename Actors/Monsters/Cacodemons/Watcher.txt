@@ -281,7 +281,9 @@ Class PM_WatcherShotSmall : MageWandMissile
 	TNT1 A 20 Light("WatcherShotB");
     Stop;
   XDeath:
+    TNT1 A 0;
 	BLA4 A 1 Bright Light("PM_WatcherBallSmall2");
+    TNT1 A 0 A_PlaySound("PM/BulletHitFlesh",2);
 	Stop;
   }
 }
