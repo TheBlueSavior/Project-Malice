@@ -10,7 +10,7 @@ Actor PM_Depraved
 	PainChance 64
     Obituary "%o was killed by a Depraved."
     HitObituary "%o was beaten to death by a Depraved."
-    SeeSound "Depraved/Sight"
+    SeeSound ""
     PainSound ""
 	//DropItem "RagePoint1"
     DeathSound ""
