@@ -275,16 +275,18 @@ Class PM_NetherLightning : Actor
     TNT1 A 0 A_PlaySound("NetherConduit/HomingLoop",CHAN_6,1,true);
     NLIT AA 1 Bright Light("PM_ConduitLightning")
 	{
-	A_SeekerMissile(1,1);
+	A_SeekerMissile(1,1,SMF_PRECISE);
 	A_SpawnItemEx("PM_NetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
 	}
     NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+	TNT1 A 0 A_Weave(random(-4,4),random(-4,4),random(-3,3),random(-3,3));
     NLIT AA 1 Light("PM_ConduitLightning") Bright
 	{
 	A_SpawnItemEx("PM_NetherLightningTrail", 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	A_SeekerMissile(1,1);
+	A_SeekerMissile(1,1,SMF_PRECISE);
 	}
     NLIT AAA 0 Bright A_SpawnItemEx ("PM_NetherLightningSpark", random(-10,10), 0, 0, random(0, -4), random(-2, 2), random(-2, 2), 0, 0, 0);
+	TNT1 A 0 A_Weave(random(-4,4),random(-4,4),random(-3,3),random(-3,3));
     loop;
   Death:
     TNT1 A 0 A_StopSound(CHAN_6);

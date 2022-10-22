@@ -1756,6 +1756,12 @@ Actor PM_TumorBurstBlood : MaliceBloodSplash
 	Scale 1.2
 }
 
+Actor PM_DepravedSpitBlood : MaliceBloodSplash
+{
+  Translation "0:255=[11,11,11]:[17,17,17]"
+  Scale 0.7
+}
+
 Actor PM_ArachExpGoreSplash : MaliceBloodSplash
 {
 	Scale 2

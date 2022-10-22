@@ -1595,6 +1595,9 @@ NetherConduit/HomingThunder "Sounds/Monsters/NetherConduit/NetherConduitHomingTh
 NetherConduit/HomingLoop "Sounds/Monsters/NetherConduit/NetherConduitHomingLoop.ogg"
 NetherConduit/HomingExp "Sounds/Monsters/NetherConduit/NetherConduitHomingExp.ogg"
 
+$rolloff NetherConduit/HomingLoop 400 1500
+$rolloff NetherConduit/HomingExp 600 2200
+
 
 $rolloff NetherConduit/ZapExp 800 2000
 $volume NetherConduit/Sight 0.7
