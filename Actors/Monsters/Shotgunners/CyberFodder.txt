@@ -615,12 +615,20 @@ Actor PM_CyberFodderBall : FastProjectile
   Damage 2
   SeeSound "GenericPlasmaFire"
   DeathSound "GenericPlasmaExp"
+  +ROLLSPRITE
+  +ROLLCENTER
   Renderstyle Add
   Scale 0.85
   States
   {
   Spawn:
-	RLSS AABB 1 Bright Light("Shadowball") A_SpawnItemEx("HellPlasmaTrail",0,0,0)
+    TNT1 A 0 A_SetRoll(random(0,360))
+  Go:
+	RLSS AABB 1 Bright Light("Shadowball") 
+    {
+    A_SpawnItemEx("HellPlasmaTrail",0,0,0);
+    A_SetRoll(roll+15);
+    }
     Loop
   Death:
 	TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0)

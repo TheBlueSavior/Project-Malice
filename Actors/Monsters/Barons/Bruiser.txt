@@ -29,6 +29,7 @@ actor PM_Bruiser
     Obituary "%o was pulverized by a Bruiser."
     MeleeDamage 8
 	MeleeRange 150
+	MeleeThreshold 196
     States
     {
     Spawn:
