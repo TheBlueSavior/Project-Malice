@@ -243,7 +243,7 @@ actor PM_Bruiser
                  A_CustomMissile("PM_BruiserFlamer",18,0,10,CMF_AIMDIRECTION,random(0,3));
                  A_CustomMissile("PM_BruiserFlamer",18,0,0,CMF_AIMDIRECTION,random(0,3));
                  }
-				 I01A I A_Explode(48,193,XF_NOTMISSILE,0,0)
+				 I01A I 1 A_Explode(48,193,XF_NOTMISSILE,0,0)
                 TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",random(12,15),random(7,-7),0,random(1,12),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION)
 				Goto ResumeLeapEnd
 			ResumeLeapEnd:
