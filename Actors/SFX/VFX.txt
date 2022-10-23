@@ -16,6 +16,47 @@ Spawn:
 	}
 }
 
+ACTOR PM_GreenFusioniteFlare
+{
++CLIENTSIDEONLY
++FORCEXYBILLBOARD
++NOINTERACTION
++ROLLSPRITE
+RenderStyle Add
++Bright
+Scale 0.8
+Alpha 1
+States
+{
+ Spawn:
+    TNT1 A 0 NoDelay A_SetRoll(random(0,360))
+    PLAG C 1 A_FadeOut(0.04)
+    Wait
+    }
+}
+
+ACTOR PM_GreenFusioniteFireFlare
+{
++CLIENTSIDEONLY
++NOINTERACTION
++MISSILE
+RenderStyle Add
+Speed 20
+Scale 0.3
+Alpha 0.95
+States
+{
+Spawn:
+    DTPR AAA 1 Bright
+	{
+	//A_FadeOut(0.05);
+	A_SetScale(ScaleX+0.08);
+	}
+    Stop
+    }
+}
+
+
 Actor PM_SmallBlotSmoke
 {
   Radius 2
