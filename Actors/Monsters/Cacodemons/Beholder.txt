@@ -415,7 +415,7 @@ ACTOR PM_BeholderEyeAttack : DoomImpBall
 {
   Speed 25
   FastSpeed 36
-  Damage (random(7,7))
+  Damage (random(10,30))
   Radius 10
   Height 10
   -THRUSPECIES

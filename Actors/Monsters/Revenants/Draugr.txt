@@ -238,6 +238,7 @@ ACTOR PM_DraugrFastBall : RevenantTracer
 	Projectile 
 	+RANDOMIZE
 	RENDERSTYLE ADD
+	DamageType Fire
 	SeeSound "Draugr/Proj"
 	DeathSound "Cadaver/MissileExp"
 	Scale 1.3
