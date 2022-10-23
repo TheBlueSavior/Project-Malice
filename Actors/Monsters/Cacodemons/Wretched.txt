@@ -335,6 +335,7 @@ actor PM_WretchedBall
 	Projectile 
 	+RANDOMIZE
 	RenderStyle Add
+	DamageType Electric
 	Alpha 0.99
 	SeeSound "Wretched/Fire"
 	DeathSound "imp/shotx"

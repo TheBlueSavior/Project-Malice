@@ -252,6 +252,7 @@ actor PM_PhaseCacoBall
 	Projectile 
 	+RANDOMIZE
 	RenderStyle Add
+	DamageType Electric
 	Alpha 1
 	SeeSound "PhaseCaco/Fire"
 	DeathSound "PhaseCaco/BallExp"
@@ -337,6 +338,7 @@ Actor PM_PhaseCacoBall2
     Height 5
 	Scale 1.1
 	FastSpeed 25
+	DamageType Electric
     SeeSound "PhaseCaco/Small"
     DeathSound "PhaseCaco/SmallExp"
     RenderStyle "Add"
