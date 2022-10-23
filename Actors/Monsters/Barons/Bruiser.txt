@@ -30,6 +30,7 @@ actor PM_Bruiser
     MeleeDamage 8
 	MeleeRange 150
 	MeleeThreshold 196
+	var int user_leapstrength;
     States
     {
     Spawn:
