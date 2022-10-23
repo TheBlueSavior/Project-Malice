@@ -90,6 +90,9 @@ DepravedBeamStart   "Sounds/Monsters/Depraved/DepravedBeamStart.ogg"
 DepravedBeam        "Sounds/Monsters/Depraved/DepravedBeam.ogg"
 DepravedBeamEnd     "Sounds/Monsters/Depraved/DepravedBeamEnd.ogg"
 Depraved/Scream      "Sounds/Monsters/Depraved/DepravedScream.ogg"
+Depraved/Spit "Sounds/Monsters/Depraved/DepravedSpit.ogg"
+
+$volume Depraved/Spit 0.85
 
 $random Depraved/Active { DeprayedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
 DepravedActive1 "Sounds/Monsters/Depraved/DepravedActive1.ogg"
@@ -3155,6 +3158,13 @@ Bruiser/Death2 "Sounds/Monsters/Bruiser/BruiserDeath2.ogg"
 $random Bruiser/Attack { Bruiser/Attack1 Bruiser/Attack2 }
 Bruiser/Attack1 "Sounds/Monsters/Bruiser/BruiserAttack1.ogg"
 Bruiser/Attack2 "Sounds/Monsters/Bruiser/BruiserAttack2.ogg"
+
+$random Bruiser/Swing { Bruiser/Swing1 Bruiser/Swing2 }
+Bruiser/Swing1 "Sounds/Monsters/Bruiser/BruiserSwing1.ogg"
+Bruiser/Swing2 "Sounds/Monsters/Bruiser/BruiserSwing2.ogg"
+
+$volume Bruiser/Swing 0.75
+$rolloff Bruiser/Swing 400 1400
 
 
 $random GBloodSplashBig { BigBloodS1 BigBloodS2 BigBloodS3 BigBloodS4 }

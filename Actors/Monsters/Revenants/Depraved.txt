@@ -100,7 +100,7 @@ Actor PM_Depraved
     INCA U 3 
 	{
 	A_FaceTarget;
-    A_PlaySound("TaintedBloodFire");
+    A_PlaySound("Depraved/Spit");
 	A_CustomMissile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
     A_CustomMissile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
     A_CustomMissile("PM_DepravedSpit",60,-10,random(-7,7),CMF_OFFSETPITCH,random(-3,3));
