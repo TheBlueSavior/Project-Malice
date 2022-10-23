@@ -222,7 +222,7 @@ ACTOR PM_ScatterFusionShot
   Height 8
   Speed 26
   FastSpeed 28
-  Damage (35)
+  Damage (22)
   Scale 2.8
   RENDERSTYLE ADD
   SeeSound "Fusionite/Scattershot" 
