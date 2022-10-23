@@ -3165,6 +3165,11 @@ Bruiser/Swing2 "Sounds/Monsters/Bruiser/BruiserSwing2.ogg"
 
 $volume Bruiser/Swing 0.75
 $rolloff Bruiser/Swing 400 1400
+$rolloff Bruiser/LeapPropel 400 1400
+$rolloff Bruiser/LeapCharge 800 2000
+$rolloff Bruiser/LeapLoop 400 1450
+
+$volume Bruiser/LeapCharge 0.65
 
 
 $random GBloodSplashBig { BigBloodS1 BigBloodS2 BigBloodS3 BigBloodS4 }
