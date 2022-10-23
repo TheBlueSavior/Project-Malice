@@ -220,6 +220,8 @@ Actor Horrorspawn1
 	TNT1 AAA 0 A_Recoil(-0.5)
     Loop
   Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
 	TNT1 A 0 A_Jump(140,"Bite")
     ZFOD EE 9 A_FaceTarget
 	ZFOD F 2
@@ -230,6 +232,10 @@ Actor Horrorspawn1
     ZFOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFOD G 5
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    ZFOD EF 10 A_FaceTarget
+    ZFOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Bite:
 	ZFOD BB 3 A_FaceTarget
@@ -457,6 +463,8 @@ Actor Horrorspawn2
 	TNT1 AAA 0 A_Recoil(-0.5)
     Loop
   Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
 	TNT1 A 0 A_Jump(140,"Bite")
     2FOD EE 9 A_FaceTarget
 	2FOD F 2
@@ -467,6 +475,10 @@ Actor Horrorspawn2
     2FOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	2FOD G 5
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    2FOD EF 10 A_FaceTarget
+    2FOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Bite:
 	2FOD BB 3 A_FaceTarget
@@ -687,6 +699,8 @@ Actor Horrorspawn3
 	TNT1 AAA 0 A_Recoil(-0.5)
     Loop
   Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
 	TNT1 A 0 A_Jump(140,"Bite")
     3FOD EE 9 A_FaceTarget
 	3FOD F 2
@@ -697,6 +711,10 @@ Actor Horrorspawn3
     3FOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	3FOD G 5
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    3FOD EF 10 A_FaceTarget
+    3FOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Bite:
 	3FOD BB 3 A_FaceTarget
@@ -917,6 +935,8 @@ Actor Horrorspawn4
 	TNT1 AAA 0 A_Recoil(-0.5)
     Loop
   Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
 	TNT1 A 0 A_Jump(140,"Bite")
     4FOD EE 9 A_FaceTarget
 	4FOD F 2
@@ -938,6 +958,10 @@ Actor Horrorspawn4
     4FOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	4FOD C 3
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    4FOD EF 10 A_FaceTarget
+    4FOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Pain:
     4FOD H 4
@@ -1036,6 +1060,8 @@ Actor FreshHorrorspawn
 	TNT1 A 0 A_Jump(14,"See")
     Loop
   Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
 	TNT1 A 0 A_Jump(140,"Bite")
     ZFO1 EE 5 A_FaceTarget
 	ZFO1 F 2
@@ -1046,6 +1072,10 @@ Actor FreshHorrorspawn
     ZFO1 G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFO1 G 5
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5")
+    Goto See
+  MeleeClose:
+    ZFO1 EF 10 A_FaceTarget
+    ZFO1 G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Bite:
 	ZFO1 B 3 A_FaceTarget
@@ -1280,6 +1310,10 @@ Actor HorrorspawnScreamer
     ZFOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
 	ZFOD G 5
 	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5")
+    Goto See
+  MeleeClose:
+    ZFOD EF 10 A_FaceTarget
+    ZFOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
     Goto See
   Bite:
 	ZFOD BB 3 A_FaceTarget
@@ -1769,6 +1803,9 @@ actor PM_SleepingHorrorspawn1
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	ZFOD LKJI 4
     ZFOD A 0 A_SpawnItemEx("Horrorspawn1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
@@ -1814,7 +1851,11 @@ Actor PM_SleepingHorrorspawn2
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD LKJJI 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
     2FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
   Pain:
@@ -1860,7 +1901,11 @@ Actor PM_SleepingHorrorspawn22
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD LKJJI 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
     2FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
   Pain:
@@ -1905,7 +1950,11 @@ Actor PM_SleepingHorrorspawn3
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD L 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	3FOD KJJI 10
     3FOD A 0 A_SpawnItemEx("Horrorspawn3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
@@ -1952,7 +2001,11 @@ Actor PM_SleepingHorrorspawn33
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD L 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	3FOD KJJI 10
     3FOD A 0 A_SpawnItemEx("Horrorspawn3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
@@ -1998,7 +2051,11 @@ Actor PM_SleepingHorrorspawn4
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD L 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	4FOD KJJI 10
     4FOD A 0 A_SpawnItemEx("Horrorspawn4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop
@@ -2045,7 +2102,11 @@ Actor PM_SleepingHorrorspawn44
 	TNT1 A 0 A_Jump(10,"Getup")
 	Loop
   Getup:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Horrorspawn/Wake",CHAN_7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	2FOD L 10
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6,1.0,0,0.5)
 	4FOD KJJI 10
     4FOD A 0 A_SpawnItemEx("Horrorspawn4",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
     stop

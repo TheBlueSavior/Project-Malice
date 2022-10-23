@@ -1,5 +1,12 @@
 //Horrorspawn
 
+$random Horrorspawn/Wake { Horrorspawn/Wake1 Horrorspawn/Wake2 Horrorspawn/Wake3 }
+Horrorspawn/Wake1 "Sounds/Monsters/Horrorspawn/HorrorspawnWake1.ogg"
+Horrorspawn/Wake2 "Sounds/Monsters/Horrorspawn/HorrorspawnWake2.ogg"
+Horrorspawn/Wake3 "Sounds/Monsters/Horrorspawn/HorrorspawnWake3.ogg"
+
+$rolloff Horrorspawn/Wake 200 1500
+
 $random Horrorspawn/Step { Horrorspawn/Step1 Horrorspawn/Step2 Horrorspawn/Step3 Horrorspawn/Step4 Horrorspawn/Step5 Horrorspawn/Step6 Horrorspawn/Step7 Horrorspawn/Step8 Horrorspawn/Step9 }
 Horrorspawn/Step1 "Sounds/Monsters/Horrorspawn/HorrorspawnStep1.ogg"
 Horrorspawn/Step2 "Sounds/Monsters/Horrorspawn/HorrorspawnStep2.ogg"
