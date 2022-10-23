@@ -111,7 +111,7 @@ actor PM_Bruiser
 	  TNT1 A 0 A_StopSound(CHAN_6)
 	  Goto see2
     Melee:
-      TNT1 A 0 A_PlaySound("Bruiser/Sight")
+      TNT1 A 0 A_PlaySound("Bruiser/Attack")
       I01A EEEEEEEEEEEEEEEEEEEEEEEEEE 1 Light("GreenBall3")
       {
        A_SpawnItemEX("PM_LargeGreenFireEffect",12,random(40,35),70,0,0,random(1,3));
