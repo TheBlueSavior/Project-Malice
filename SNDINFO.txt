@@ -793,6 +793,11 @@ CyberZActive9 "Sounds/Monsters/CyberFodder/CyberZActive9.ogg"
 
 CyberZ/Pain	"Sounds/Monsters/CyberFodder/CyberZPain.ogg"
 
+$random CyberZ/Death { CyberZDeath1 CyberZDeath2 }
+CyberZDeath1 "Sounds/Monsters/CyberFodder/CyberZDeath1.ogg"
+CyberZDeath2 "Sounds/Monsters/CyberFodder/CyberZDeath2.ogg"
+
+$volume CyberZ/Death 0.4
 $volume CyberZ/Sight 0.4
 $volume CyberZ/Active 0.4
 

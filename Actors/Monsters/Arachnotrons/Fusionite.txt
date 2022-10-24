@@ -201,7 +201,7 @@ ACTOR PM_FusionShot
   Spawn:
     APPL AAABBB 1 Bright Light("GreenBall4")
 	{
-	A_SetRoll(roll+15);
+	A_SetRoll(random(0,259),SPF_INTERPOLATE);
 	A_SpawnItemEx("PM_FusionTrail",16,0,0,0,0,0,0,128,0);
 	}
     Loop
