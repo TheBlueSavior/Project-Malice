@@ -117,6 +117,7 @@ Actor PM_CarbineBullet
 Projectile
 +BLOODSPLATTER 
 +THRUGHOST
++SEEKERMISSILE
 height 2
 radius 2
 speed 36
@@ -127,7 +128,14 @@ Alpha 0.5
 States
 {
 	Spawn:
-		TRCR B 1 BRIGHT A_Quake(2,4,0,100,0)
+        TNT1 A 0
+		TRCR A 1 BRIGHT A_Quake(2,4,0,100,0)
+        TNT1 A 0 A_JumpIfTracerCloser(150,"Noise")
+        Loop
+    Noise:
+        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50)
+    Cont:
+        TRCR A 1 BRIGHT A_Quake(2,4,0,100,0)
         Loop
 	Death:
 		TNT1 A 0 A_Jump(256,"Death1","Death2")

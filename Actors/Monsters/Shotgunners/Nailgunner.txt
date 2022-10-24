@@ -357,12 +357,20 @@ ACTOR PM_NailgunnerNail : FastProjectile
    +CANNOTPUSH
   +NODAMAGETHRUST
   +SPAWNSOUNDSOURCE
+  +SEEKERMISSILE
   +MISSILE
   deathsound ""
   Decal "bulletchip"
   States
   {
   Spawn:
+    BLAD A 1
+    TNT1 A 0 A_SpawnItemEx("PM_NailgunnerNailBlur")
+    TNT1 A 0 A_JumpIfTracerCloser(150,"Noise")
+    loop
+  Noise:
+    TNT1 A 0 A_PlaySound("PM/BulletWhiz",3)
+  Cont:
     BLAD A 1
     TNT1 A 0 A_SpawnItemEx("PM_NailgunnerNailBlur")
     loop

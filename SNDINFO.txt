@@ -425,12 +425,24 @@ PM/BulletHit3 "Sounds/Other/PMBulletHit3.ogg"
 PM/BulletHit4 "Sounds/Other/PMBulletHit4.ogg"
 PM/BulletHit5 "Sounds/Other/PMBulletHit5.ogg"
 
+$random PM/BulletWhiz { PM/BulletWhiz1 PM/BulletWhiz2 PM/BulletWhiz3 PM/BulletWhiz4 PM/BulletWhiz5 PM/BulletWhiz6 PM/BulletWhiz7 }
+PM/BulletWhiz1 "Sounds/Other/PMBulletWhiz1.ogg"
+PM/BulletWhiz2 "Sounds/Other/PMBulletWhiz2.ogg"
+PM/BulletWhiz3 "Sounds/Other/PMBulletWhiz3.ogg"
+PM/BulletWhiz4 "Sounds/Other/PMBulletWhiz4.ogg"
+PM/BulletWhiz5 "Sounds/Other/PMBulletWhiz5.ogg"
+PM/BulletWhiz6 "Sounds/Other/PMBulletWhiz6.ogg"
+PM/BulletWhiz7 "Sounds/Other/PMBulletWhiz7.ogg"
+
 $random PM/BulletHitFlesh { PM/BulletHitFlesh1 PM/BulletHitFlesh2 PM/BulletHitFlesh3 PM/BulletHitFlesh4 PM/BulletHitFlesh5 }
 PM/BulletHitFlesh1 "Sounds/Other/PMBulletHitFlesh1.ogg"
 PM/BulletHitFlesh2 "Sounds/Other/PMBulletHitFlesh2.ogg"
 PM/BulletHitFlesh3 "Sounds/Other/PMBulletHitFlesh3.ogg"
 PM/BulletHitFlesh4 "Sounds/Other/PMBulletHitFlesh4.ogg"
 PM/BulletHitFlesh5 "Sounds/Other/PMBulletHitFlesh5.ogg"
+
+$limit PM/BulletWhiz 3
+$volume PM/BulletWhiz 0.85
 
 $limit PM/BulletHit 20
 $rolloff PM/BulletHit 200 950

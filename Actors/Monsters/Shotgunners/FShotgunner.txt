@@ -112,6 +112,7 @@ Actor PM_PelletTracer
 Projectile
 +BLOODSPLATTER 
 +THRUGHOST
++SEEKERMISSILE
 height 2
 radius 2
 speed 36
@@ -122,9 +123,18 @@ Alpha 1.0
 States
 {
 	Spawn:
-		//TNT1 A 0 A_SpawnItemEX("BulletFlare",0,0,0)
-	//Go:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(96,"NoNoiseSpawn")
 		TRCR A 1 BRIGHT A_Quake(1,4,0,100,0)
+        TNT1 A 0 A_JumpIfTracerCloser(150,"Noise")
+        Loop
+    Noise:
+        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50)
+    Cont:
+        TRCR A 1 BRIGHT A_Quake(1,4,0,100,0)
+        Loop
+    NoNoiseSpawn:
+        TRCR A 1 BRIGHT A_Quake(1,4,0,100,0)
         Loop
 	Death:
 		TNT1 A 0 A_Jump(256,"Death1","Death2")
