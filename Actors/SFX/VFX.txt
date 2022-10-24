@@ -989,6 +989,8 @@ Actor PM_FragGrenadeShrapnel
 Projectile
 +BLOODSPLATTER 
 +THRUGHOST
++ROLLSPRITE
++ROLLCENTER
 height 2
 radius 2
 speed 70
@@ -998,8 +1000,7 @@ Alpha 1.0
 States
 {
 	Spawn:
-		//TNT1 A 0 A_SpawnItemEX("BulletFlare",0,0,0)
-	//Go:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST C 1 A_Quake(1,4,0,100,0)
         Loop
 	Death:
@@ -2230,39 +2231,45 @@ ACTOR PM_BulletShrapnel
 	Spawn:
 		TNT1 A 0
 		TNT1 A 0 A_CheckSight("SightNull")
-//		TNT1 A 0 A_GiveInventory ("Timer", random(1,4))
+		TNT1 A 0 A_Jump(200,"See2","See3","See4")
 	See:
-	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"See4")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"See3")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"See2")
-	See1:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST A 1
+        TNT1 A 0 A_CheckFloor("Death")
 		loop
 	See2:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST B 1
+        TNT1 A 0 A_CheckFloor("Death2")
 		loop
 	See3:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST C 1
+        TNT1 A 0 A_CheckFloor("Death3")
 		loop
 	See4:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST D 1
+        TNT1 A 0 A_CheckFloor("Death4")
 		loop
 	Death:
 		TNT1 A 0 A_ChangeFlag ("missile",0)
 		TNT1 A 0 A_ChangeFlag ("doombounce",0)
-	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"Death4")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"Death3")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"Death2")
-	Death1:
 		DUST A 100
 		Stop
 	Death2:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST B 100
 		Stop
 	Death3:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST C 100
 		Stop
 	Death4:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST D 100
 		Stop
 	SightNull:
@@ -2289,40 +2296,50 @@ ACTOR PM_BulletShrapnelNoCheck
 	{
 	Spawn:
 		TNT1 A 0
-//		TNT1 A 0 A_GiveInventory ("Timer", random(1,4))
+		TNT1 A 0 A_CheckSight("SightNull")
+		TNT1 A 0 A_Jump(200,"See2","See3","See4")
 	See:
-	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"See4")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"See3")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"See2")
-	See1:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST A 1
+        TNT1 A 0 A_CheckFloor("Death")
 		loop
 	See2:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST B 1
+        TNT1 A 0 A_CheckFloor("Death2")
 		loop
 	See3:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST C 1
+        TNT1 A 0 A_CheckFloor("Death3")
 		loop
 	See4:
+        TNT1 A 0 A_SetRoll(random(0,279))
 		DUST D 1
+        TNT1 A 0 A_CheckFloor("Death4")
 		loop
 	Death:
 		TNT1 A 0 A_ChangeFlag ("missile",0)
 		TNT1 A 0 A_ChangeFlag ("doombounce",0)
-	//	TNT1 A 0 A_JumpIfInventory("Timer",4,"Death4")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",3,"Death3")
-	//	TNT1 A 0 A_JumpIfInventory("Timer",2,"Death2")
-	Death1:
 		DUST A 100
 		Stop
 	Death2:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST B 100
 		Stop
 	Death3:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST C 100
 		Stop
 	Death4:
+		TNT1 A 0 A_ChangeFlag ("missile",0)
+		TNT1 A 0 A_ChangeFlag ("doombounce",0)
 		DUST D 100
+		Stop
+	SightNull:
+		TNT1 A 1
 		Stop
 	}
 }
@@ -3187,6 +3204,7 @@ ACTOR PM_BlueFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_BlueTrailFire",0,0,random(0,360),2,random(0,160))
+		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0
@@ -3608,6 +3626,7 @@ ACTOR PM_NetherFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_NetherShrapnelTrailFire",0,0,random(0,360),2,random(0,160))
+		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0
@@ -3637,6 +3656,7 @@ ACTOR PM_NobleFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_NobleShrapnelTrailFire",0,0,random(0,360),2,random(0,160))
+		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0
