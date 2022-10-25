@@ -124,7 +124,7 @@ States
 {
 	Spawn:
         TNT1 A 0
-        TNT1 A 0 A_Jump(96,"NoNoiseSpawn")
+        TNT1 A 0 A_Jump(56,"NoNoiseSpawn")
 		TRCR A 1 BRIGHT A_Quake(1,4,0,100,0)
         TNT1 A 0 A_JumpIfTracerCloser(150,"Noise")
         Loop

@@ -76,7 +76,7 @@ Class PM_Nightmare : Actor
     NMRE EEEEFF 3 A_FaceTarget();
 	TNT1 A 0 A_PlaySound("Nightmare/Melee");
   Melee2:
-    NMRE GGGGGGGGGGGGG 1
+    NMRE GGGGGGGGGGG 1
     {
     A_FaceTarget();
     A_SpawnProjectile("PM_NightmareWindPull1",52,20,random(-5,5),CMF_OFFSETPITCH,random(-4,4));
