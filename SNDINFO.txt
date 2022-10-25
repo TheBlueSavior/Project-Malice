@@ -696,6 +696,13 @@ NMareAct3 "Sounds/Monsters/Nightmare/NightmareActive3.ogg"
 NMareAct4 "Sounds/Monsters/Nightmare/NightmareActive4.ogg"
 Nightmare/Melee "Sounds/Monsters/Nightmare/NightmareAttack.ogg"
 
+$random Nightmare/WindPull { NMarePull1 NMarePull2 NMarePull3 NMarePull4 }
+NMarePull1 "Sounds/Monsters/Nightmare/NightmarePull1.ogg"
+NMarePull2 "Sounds/Monsters/Nightmare/NightmarePull2.ogg"
+NMarePull3 "Sounds/Monsters/Nightmare/NightmarePull3.ogg"
+NMarePull4 "Sounds/Monsters/Nightmare/NightmarePull4.ogg"
+
+$limit Nightmare/WindPull 5
 $volume Nightmare/Sight 0.5
 
 //Nailgunner
