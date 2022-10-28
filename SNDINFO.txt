@@ -2214,7 +2214,7 @@ $volume FeralImp/Attack 0.5
 FeralImp/Ball "Sounds/Monsters/Imps/FeralImp/FeralBallShot.ogg"
 FeralImp/BallExp "Sounds/Monsters/Imps/FeralImp/FeralBallExp.ogg"
 
-CyberFodder/Flamer "Sounds/Monsters/CyberFodder/CyberFodderFlamer.ogg"
+CyberFodder/Flamer "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderFlamer.ogg"
 $rolloff CyberFodder/Flamer 500 1500
 
 //Fresh Horrorspawn
