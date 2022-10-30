@@ -3,7 +3,6 @@ class PMMonster : Actor
   default
   {
     Monster;
-    +NOINFIGHTING
   }
 
   void forward(float speed)

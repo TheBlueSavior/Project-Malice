@@ -1,22 +1,22 @@
-Actor PM_Charred : DoomImp
+Actor PM_Charred : PMMonsterBase
 {
-  Health 60
+  Health 65
+  Radius 20
+  Height 56
   Speed 6
-  //Radius 20
-  //Height 56
   Mass 250
   Painchance 80
   Gibhealth 20
   SeeSound ""
+  Monster
   ActiveSound "Charred/Active"
   PainSound "Charred/Pain"
   DeathSound "Charred/Death"
   Obituary "%o turned into a screeching inferno from a Charred."
   HitObituary "%o's skin melted off from a Charred's claws."
   Bloodcolor "DarkRed"
-  //DropItem "RagePoint1"
   +NOTARGET
-  //+NOINFIGHTING
+  +FLOORCLIP
   +DONTHURTSPECIES
   +DONTHARMSPECIES
   Tag "Charred"
@@ -126,11 +126,13 @@ Actor PM_Charred : DoomImp
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",7,random(12,14),32,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",10,random(10,12),33,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2)
-    CH5R G 8 Light("Avatarfireball4") 
+	CH5R G 1 Light("Avatarfireball4") A_Aim()
+    CH5R G 7 Light("Avatarfireball4") 
 	{
+	A_LeadTarget(15);
+	A_SpawnProjectile("PM_CharredBallNoGravityFast",32,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PM_CharredBallNoGravity");
 	}
     CH5R B 2 Light("Avatarfireball4") A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -158,11 +160,13 @@ Actor PM_Charred : DoomImp
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",7,random(12,14),32,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",10,random(10,12),33,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2)
-    CH5R G 8 Light("Avatarfireball4") 
+	CH5R G 1 Light("Avatarfireball4") A_Aim()
+    CH5R G 7 Light("Avatarfireball4") 
 	{
+	A_LeadTarget(15);
+	A_SpawnProjectile("PM_CharredBallNoGravityFast",32,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PM_CharredBallNoGravity");
 	}
     CH5R B 2 Light("Avatarfireball4") A_FaceTarget
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
@@ -306,6 +310,11 @@ actor PM_CharredBallNoGravity : PM_CharredBall
     AFX5 EFGH 2 Light("AvatarFireball4") bright
     stop
   }
+}
+
+actor PM_CharredBallNoGravityFast : PM_CharredBallNoGravity
+{
+	Speed 15
 }
 
 actor PM_CharredBarrageBall : PM_CharredBall

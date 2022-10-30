@@ -1,0 +1,34 @@
+class PMMonsterBase : Actor abstract
+{
+	protected action void A_Aim()
+	{
+		A_FaceTarget(0, 0);
+		invoker.OldAim = (Angle, Pitch);
+	}
+
+	protected action void A_LeadTarget(double projSpeed)
+	{
+		if (!Target)
+		{
+			return;
+		}
+
+		A_FaceTarget(0, 0);
+		double ticsToTarget = Distance3D(Target) / projSpeed;
+
+		vector2 newAim = (DeltaAngle(invoker.OldAim.x, Angle), DeltaAngle(invoker.OldAim.y, Pitch));
+
+		// [Ace] The target's position changed abruptly, such as teleporting behind the enemy.
+		if (abs(newAim.x) > 45)
+		{
+			return;
+		}
+
+		newAim *= ticsToTarget;
+
+		Angle = invoker.OldAim.x + newAim.x;
+		Pitch = invoker.OldAim.y + newAim.y;
+	}
+
+	private Vector2 OldAim;
+}

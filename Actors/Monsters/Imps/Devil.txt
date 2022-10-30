@@ -1,28 +1,26 @@
-actor PM_Devil : DoomImp
+actor PM_Devil : PMMonsterBase
 {
-  obituary "%o was set on fire by a lucky Devil."
-  hitobituary "%o was clawed to death by a lucky Devil."
-  health 60
-  //radius 20
-  //height 56
-  mass 120
-  speed 6
-  painchance 160
-  +MissileMore
-  +DONTHURTSPECIES
-  +DONTHARMSPECIES
-  //+NOINFIGHTING
-  //+NOTARGET
-  +AVOIDMELEE
+  Health 60
+  Radius 20
+  Height 56
+  Mass 120
+  Speed 6
+  Painchance 160
+  Monster
   Tag "Devil"
   Species "Imp"
-  //DropItem "RagePoint1"
   seesound ""
   painsound "Devil/Pain"
   deathsound "Devil/Death"
   activesound "Devil/Active"
+  Obituary "%o was set on fire by a lucky Devil."
+  Hitobituary "%o was clawed to death by a lucky Devil."
   MeleeRange 4
   +FLOORCLIP
+  +MissileMore
+  +DONTHURTSPECIES
+  +DONTHARMSPECIES
+  +AVOIDMELEE
   states
   {
   Spawn:
@@ -268,11 +266,13 @@ actor PM_Devil : DoomImp
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",7,random(12,14),32,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",10,random(10,12),33,0,0,2)
 	TNT1 A 0 A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2)
-    D3IM G 8 Light("Avatarfireball4") 
+	D3IM G 1 Light("Avatarfireball4") A_Aim()
+    D3IM G 7 Light("Avatarfireball4") 
 	{
+	A_LeadTarget(12);
+	A_SpawnProjectile("PM_DevilImpBall",32,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PM_DevilImpBall");
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget
 	TNT1 A 0 A_JumpIfCloser(350,"Retreat")

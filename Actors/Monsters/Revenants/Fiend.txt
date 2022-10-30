@@ -1,25 +1,28 @@
-Actor PM_Fiend : Revenant
+Actor PM_Fiend : PMMonsterBase
 {
-  +DONTHARMSPECIES
-  //+NOINFIGHTING
-  +MISSILEMORE
-  +SLIDESONWALLS
   Health 300
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 10
+  PainChance 100
+  Monster
   Tag "Fiend"
   Bloodcolor Darkred
   MeleeThreshold 60
   Gravity 0.7
-  //MaxStepHeight 32
-  //MaxDropOffHeight 32
   Species "Revenant"
   SeeSound "Fiend/Sight"
   PainSound "Fiend/Pain"
   DeathSound "Fiend/Death"
   ActiveSound "Fiend/Active"
-  //DropItem "RagePoint1"
   Obituary "%o had trouble dodging a Fiend's fireball barrage."
-  HitObituary "%o was punched by a revenant."
+  HitObituary "%o was punched by a Fiend."
   Gibhealth 40
+  +DONTHARMSPECIES
+  +MISSILEMORE
+  +SLIDESONWALLS
+  +FLOORCLIP
   States
   {
   Spawn:
@@ -92,27 +95,140 @@ Actor PM_Fiend : Revenant
   MissileNormal:
 	TNT1 A 0 A_JumpIfCloser(400,"JetCharge")
 	TNT1 A 0 A_Jump(150,"StrafeAttackRight","StrafeAttackLeft","StrafeAttackBack","JetRush")
-	FIEN KK 5 A_FaceTarget
+	FIEN K 9
+	FIEN K 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
-	FIEN J 0 A_FaceTarget
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
 	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
-	FIEN J 6 Bright Light("AvatarFireball1") A_CustomMissile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_OFFSETPITCH,random(-3,3))
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,-18)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
+	FIEN J 1 A_Aim()
+	FIEN J 0 Bright Light("AvatarFireball1") A_CustomMissile("BulletFlare",62,10)
+	FIEN J 5 Bright Light("AvatarFireball1")
+	{
+	A_LeadTarget(20);
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	}
 	FIEN K 10 A_FaceTarget
 	Goto See
   MissileDistant:
