@@ -1,6 +1,6 @@
 Actor PM_Skulker
 {
-    Health 250
+    Health 800
     GibHealth 20
     Radius 20
     Height 56
