@@ -1,6 +1,6 @@
 Actor Voidspawn
 {
-    Health 100
+    Health 300
     GibHealth 20
     Radius 20
     Height 56
