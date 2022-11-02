@@ -52,6 +52,7 @@ Actor Horrorspawn1
     ActiveSound "ZombieFodder/Active"
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
+	Species "Horrorspawn"
 	Tag "Horrorspawn"
     Monster
 	MeleeRange 70
@@ -296,6 +297,7 @@ Actor Horrorspawn2
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Horrorspawn"
+	Species "Horrorspawn"
     Monster
 	MeleeRange 70
 	//XScale 0.84
@@ -532,6 +534,7 @@ Actor Horrorspawn3
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Horrorspawn"
+	Species "Horrorspawn"
     Monster
 	MeleeRange 70
 	//XScale 0.84
@@ -768,6 +771,7 @@ Actor Horrorspawn4
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Horrorspawn"
+	Species "Horrorspawn"
     Monster
 	MeleeRange 70
 	//XScale 0.84
@@ -1004,6 +1008,7 @@ Actor FreshHorrorspawn
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 100
 	Tag "Fresh Horrorspawn"
+	Species "Horrorspawn"
     Monster
 	MeleeRange 70
 	XScale 0.84
@@ -1146,6 +1151,7 @@ Actor HorrorspawnScreamer
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip", 50
 	Tag "Horrorspawn Screamer"
+	Species "Horrorspawn"
     Monster
 	MeleeRange 70
 	XScale 0.84
@@ -1376,6 +1382,7 @@ Actor HorrorspawnDecap
 	MaxStepHeight 50
 	MaxDropOffHeight 50
 	Tag "Horrorspawn"
+	Species "Horrorspawn"
     Monster
 	XScale 0.84
 	YScale 0.91
