@@ -28,6 +28,7 @@ Actor Hunger
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	-COUNTKILL
   States
   {
   Spawn:
