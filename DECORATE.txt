@@ -97,3 +97,5 @@
 #include "Actors/Monsters/Barons/Bruiser.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"
+
+#include "Actors/Monsters/Paranormal/ControlledSoldier.txt"

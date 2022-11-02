@@ -6795,3 +6795,13 @@ Pointlight HectebusBallLight
 Color 1.0 0.5 0.0
 Size 50
 }
+
+Flickerlight PM_HorrorBlackflash
+{
+Color 2.0 2.0 2.0
+Subtractive 1
+Size 150
+SecondarySize 40
+Chance 0.05
+Offset 0 100 0 
+}

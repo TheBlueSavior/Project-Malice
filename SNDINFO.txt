@@ -1427,6 +1427,9 @@ HeresyLord/BarrageWhiteDeath "Sounds/Monsters/Barons/HeresyLord/HeresyLWSDeath.o
 HeresyLord/BarrageRCharge "Sounds/Monsters/Barons/HeresyLord/HeresyLBRCharge.ogg"   //missile1charge	h20017
 HeresyLord/BarrageWCharge "Sounds/Monsters/Barons/HeresyLord/HeresyLBWCharge.ogg"   //missile2charge	h20016
 
+$pitchset HeresyLord/BarrageRCharge 0.7 1.3 
+
+$limit HeresyLord/BarrageRCharge 10
 $limit HeresyLord/BarrageRedFire 15
 $limit HeresyLord/BarrageWhiteFire 15
 
@@ -2819,7 +2822,7 @@ Malice/FireHit2 "Sounds/Other/MaliceFireHit2.ogg"
 Malice/FireHit3 "Sounds/Other/MaliceFireHit3.ogg"
 Malice/FireHit4 "Sounds/Other/MaliceFireHit4.ogg"
 
-Beholder/Rush "Sounds/Monsters/Beholder/BeholderRush.ogg"
+Beholder/Rush "Sounds/Monsters/Cacodemons/Beholder/BeholderRush.ogg"
 
 //Demon Tech Brute
 $random DTechSee { DTechSee1 DTechSee2 DTechSee3 }
@@ -3222,4 +3225,23 @@ PM/LargeBulletHit2 "Sounds/Other/PMLargeBulletHit2.ogg"
 
 SlugShotgunner/Fire "Sounds/Monsters/Shotgunners/SlugShotgunner/SlugShot.ogg"
 $rolloff SlugShotgunner/Fire 1200 4200
- 
+
+Paranormal/EvilDrone "Sounds/Other/PMEvilDrone.ogg"
+
+$random PM/ControllerScream { PM/ControllerScream1 PM/ControllerScream2 PM/ControllerScream3 }
+
+PM/ControllerScream1 "Sounds/Other/ControllerScream1.ogg"
+PM/ControllerScream2 "Sounds/Other/ControllerScream2.ogg"
+PM/ControllerScream3 "Sounds/Other/ControllerScream3.ogg"
+
+PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
+
+PM/ControllerFlee "Sounds/Other/ControllerFlee.ogg"
+$rolloff PM/ControllerFlee 50 1500
+
+
+PM/FreedHostLaugh "Sounds/Other/FreedHostLaugh.ogg"
+
+PM/TerrorMusicLoop "Sounds/Other/TerrorMusicLoop.ogg"
+$rolloff PM/TerrorMusicLoop 100 1470
+$limit PM/TerrorMusicLoop 1
