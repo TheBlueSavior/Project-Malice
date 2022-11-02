@@ -83,6 +83,7 @@ DeathSound "VenMaggot/Die"
 ActiveSound "VenMaggot/Idle"
 PainSound "VenMaggot/Pain"
 AttackSound "VenMaggot/Melee"
+-COUNTKILL
 states
 {
 Spawn:
