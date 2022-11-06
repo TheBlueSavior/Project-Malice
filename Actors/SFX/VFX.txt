@@ -320,13 +320,13 @@ Actor PM_CrawlingDemonFleeStart
 
 Actor PM_CrawlingDemonFlee
 {
+   Monster
   //+NOINTERACTION
   +THRUACTORS
   +FLOORHUGGER
   +NOCLIP
   -Shootable
   -COUNTKILL
-  Monster
   SeeSound ""
   RenderStyle "Stencil"
   StencilColor "Black"
