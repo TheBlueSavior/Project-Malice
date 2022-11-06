@@ -8,15 +8,10 @@ ACTOR PM_Infested
   PainChance 20
   Monster
   MeleeThreshold 196
-  Scale 1.12
-  //+MISSILEMORE 
   BloodColor "Dark Red"
   +FLOORCLIP
-  //+ALWAYSFAST
   +DONTHARMSPECIES
-  //+NOINFIGHTING
   Species "Revenant"
-  //DropItem "RagePoint1"
   SeeSound ""
   PainSound "Infested/Sight"
   DeathSound "Infested/Death"
