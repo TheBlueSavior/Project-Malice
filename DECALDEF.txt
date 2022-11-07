@@ -126,23 +126,65 @@ decal Hell
 	translucent 0.90
 }
 
-decal Negative
-{
-	pic NEGATIVE
-	translucent 0.90
-}
-
 decal Pentagram
 {
 	pic PENTA
 	translucent 0.90
 }
 
+decal AGONY
+{
+	pic MESA1
+	translucent 0.90
+}
+
+decal Beautiful
+{
+	pic MESA2
+	translucent 0.90
+}
+
+decal Cuttheskin
+{
+	pic MESA3
+	translucent 0.90
+}
+
+decal Negative
+{
+	pic MESA4
+	translucent 0.90
+}
+
+decal RUN
+{
+	pic MESA5
+	translucent 0.90
+}
+
+decal SHOOTTHEM
+{
+	pic MESA6
+	translucent 0.90
+}
+
+decal LEFTUS
+{
+	pic MESA7
+	translucent 0.90
+}
+
 DecalGroup Graffiti
 {
 	Hell 1
-	Negative 1
 	Pentagram 1
+	AGONY 1
+	Beautiful 1
+	Cuttheskin 1
+	Negative 1
+	RUN 1
+	SHOOTTHEM 1
+	LEFTUS 1
 }
 
 
