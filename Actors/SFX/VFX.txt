@@ -1393,6 +1393,11 @@ Spawn:
     }
 }
 
+ACTOR RedExplosionFlareReallySmall : OrangeExplosionFlareReallySmall
+{
+ Translation "0:255=%[0,0,0]:[2.0,0.7,0.7]"
+}
+
 ACTOR PurpleShockwave
 {
 +CLIENTSIDEONLY

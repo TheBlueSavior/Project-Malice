@@ -2951,6 +2951,13 @@ SmallMissileExp2            "sounds/Monsters/Revenants/Fiend/SmallMissileExp2.og
 SmallMissileExp3            "sounds/Monsters/Revenants/Fiend/SmallMissileExp3.ogg"
 SmallMissileExp4            "sounds/Monsters/Revenants/Fiend/SmallMissileExp4.ogg"
 
+$random FastMissileFlyby { FMisFly1 FMisFly2 FMisFly3 FMisFly4 }
+FMisFly1 "Sounds/Other/FastMissileFlyby1.ogg"
+FMisFly2 "Sounds/Other/FastMissileFlyby2.ogg"
+FMisFly3 "Sounds/Other/FastMissileFlyby3.ogg"
+FMisFly4 "Sounds/Other/FastMissileFlyby4.ogg"
+$limit FastMissileFlyby 4
+
 $random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
 Fiend/Step1 "Sounds/Monsters/SFX/FiendStep1.ogg"
 Fiend/Step2 "Sounds/Monsters/SFX/FiendStep2.ogg"

@@ -13,6 +13,7 @@
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_FallenShotgunner";
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_FShotgunner";
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_Nailgunner";
+   scr: 1200 exp: 10  type: zombiesg      filter: "PM_SlugShotgunner";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_DecayedCommando";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_FallenMarine";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_HeavyCarbineZombie";
@@ -54,6 +55,7 @@
    scr: 4100 exp: 40      type: hellknight    filter: "PM_Whiplash";
    scr: 7000 exp: 80      type: baron         filter: "PM_HeresyLord";
    scr: 7000 exp: 80      type: baron         filter: "PM_Bruiser";
+   scr: 0    exp: 85      type: baron         filter: "PM_ExposedController";
    scr: 4300 exp: 40      type: arachnotron   filter: "PM_Fusionite";
    scr: 4300 exp: 40      type: arachnotron   filter: "PM_Plasmatron";
    scr: 7000 exp: 140     type: painelemental filter: "PM_Defiler";

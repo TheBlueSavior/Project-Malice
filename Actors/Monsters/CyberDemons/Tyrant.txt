@@ -1084,12 +1084,13 @@ ACTOR TyrantStreamRocket : RevenantTracer
 	States
 	{
 	Spawn:
-		TYM2 A 1 BRIGHT Light("AvatarFireball3") 
-		{
-		//A_SpawnItemEx("FireSmoke",random(-1,1),0,random(-1,1));
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		//A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
-		}
+		TYM2 A 1 BRIGHT Light("AvatarFireball3") A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0)
+        TNT1 A 0 A_JumpIfTracerCloser(230,"Noise")
+		Loop
+    Noise:
+        TNT1 A 0 A_PlaySound("FastMissileFlyby",3,0.90)
+    Cont:
+        TYM2 A 1 BRIGHT Light("AvatarFireball3") A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0)
 		Loop
 	Death:
 		TNT1 A 0 
@@ -1194,6 +1195,15 @@ ACTOR TyrantSmallRocket : RevenantTracer
 		A_SeekerMissile(5,6,SMF_PRECISE);
 		}
 	SeekDone:
+		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
+		{
+		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+        TNT1 A 0 A_JumpIfTracerCloser(230,"Noise")
+        Loop
+    Noise:
+        TNT1 A 0 A_PlaySound("FastMissileFlyby",3,0.90)
+    Cont:
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
 		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);

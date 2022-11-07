@@ -288,7 +288,7 @@ Actor PM_ExposedController : PMMonsterBase
     Obituary "A demon found a new human host."
 	DropItem "Clip"
 	Species "Nobles"
-	Tag "Afflicted"
+	Tag "EXPO??S?D"
     Monster
     +FLOORCLIP
 	+NOINFIGHTING

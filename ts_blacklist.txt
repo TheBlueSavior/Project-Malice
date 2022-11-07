@@ -11,6 +11,7 @@ Horrorspawn1
 Horrorspawn2
 Horrorspawn3
 Horrorspawn4
+HorrorspawnDecap
 HorrorspawnScreamer
 FreshHorrorspawn
 Hungry1
@@ -31,5 +32,7 @@ PM_SleepingHorrorspawn3
 PM_SleepingHorrorspawn33
 PM_SleepingHorrorspawn4
 PM_SleepingHorrorspawn44
+PM_ControlledSoldier
+PM_ControlledSoldier2
 Pustule
 Voidspawn
