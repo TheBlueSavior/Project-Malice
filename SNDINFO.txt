@@ -1729,9 +1729,9 @@ Zephyr/Death1 "Sounds/Monsters/Imps/Zephyr/ZephyrDeath1.ogg"
 Zephyr/Death2 "Sounds/Monsters/Imps/Zephyr/ZephyrDeath2.ogg"
 
 $random Zephyr/Ball { Zephyr/Ball1 Zephyr/Ball2 Zephyr/Ball3 }
-Zephyr/Ball1 "Sounds/Monsters/Zephyr/Imps/ZephyrBall1.ogg"
-Zephyr/Ball2 "Sounds/Monsters/Zephyr/Imps/ZephyrBall2.ogg"
-Zephyr/Ball3 "Sounds/Monsters/Zephyr/Imps/ZephyrBall3.ogg"
+Zephyr/Ball1 "Sounds/Monsters/Imps/Zephyr/ZephyrBall1.ogg"
+Zephyr/Ball2 "Sounds/Monsters/Imps/Zephyr/ZephyrBall2.ogg"
+Zephyr/Ball3 "Sounds/Monsters/Imps/Zephyr/ZephyrBall3.ogg"
 
 $volume Zephyr/Sight 0.8
 $volume Zephyr/Active 0.7
