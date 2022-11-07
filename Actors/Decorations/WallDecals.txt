@@ -5,7 +5,7 @@ states
 	{
 	spawn:
 		tnt1 a 0
-		tnt1 a 0 a_jump(256,"goreSmall","goreBig","graffiti","killGraffiti")
+		tnt1 a 0 a_jump(256,"goreSmall","goreBig","graffiti","killGraffiti","EYESGraffiti")
 		stop
 	goresmall:
 		tnt1 a 0
@@ -28,6 +28,11 @@ states
 		tnt1 a 0
 		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		TNT1 AAAAAAAA 0 A_CustomMissile ("KillDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		stop
+	EYESGraffiti:
+		tnt1 a 0
+		TNT1 AAAA 0 A_CustomMissile ("EyesDecal", 32, 0, random (0, 360), 2, random (0, 60))	
+		TNT1 AAAAAAAA 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		stop
 	}
 }
@@ -74,4 +79,14 @@ ACTOR KillDecal : DecalTemplate
 ACTOR WallDMGDecal : DecalTemplate
 {
 	Decal wallDamage
+}
+
+ACTOR EyeDecal : DecalTemplate
+{
+	Decal EyeGraffiti
+}
+
+ACTOR EyesDecal : DecalTemplate
+{
+	Decal EyesGraffiti
 }
