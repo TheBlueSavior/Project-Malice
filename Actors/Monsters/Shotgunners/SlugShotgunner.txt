@@ -65,7 +65,7 @@ ACTOR PM_SlugShotgunner : Zombieman
         Loop
     Missile:
 		TNT1 A 0
-		TNT1 A 0 A_Jump(100,"Slug")
+		TNT1 A 0 A_Jump(80,"Slug")
 		SPS4 EE 7 A_FaceTarget
 		TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_5)
 		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
@@ -157,7 +157,7 @@ Projectile
 +SEEKERMISSILE
 height 2
 radius 2
-speed 40
+speed 35
 damage (random(35,45))
 scale 0.85
 RenderStyle Add

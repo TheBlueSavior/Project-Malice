@@ -45,9 +45,11 @@ Actor PM_FShotgunner
     See2:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
         F1SH AA 3 A_Chase
+		TNT1 A 0 A_Recoil(-1)
 		F1SH BB 3 A_Chase
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		F1SH CC 3 A_Chase
+		TNT1 AA 0 A_Recoil(-1)
 		F1SH DD 3 A_Chase
         Loop
   Missile:
