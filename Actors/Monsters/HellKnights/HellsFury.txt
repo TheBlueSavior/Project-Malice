@@ -39,8 +39,10 @@ Actor PM_HellsFury
     TNT1 A 0 A_PlaySound("HFurySight",CHAN_5)
   See2:
     HFRY AABB 3 A_Chase
+	TNT1 AA 0 A_Recoil(-1)
 	TNT1 A 0 A_PlaySound("Squire/Step")
 	HFRY CCDD 3 A_Chase
+	TNT1 AA 0 A_Recoil(-1)
 	TNT1 A 0 A_PlaySound("Squire/Step")
     Loop
   Missile:

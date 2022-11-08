@@ -18,6 +18,7 @@ actor PM_Bruiser
     +FLOORCLIP
 	+DontHurtSpecies
 	+DONTHARMSPECIES
+	+MISSILEMORE
 	Species "Nobles"
     SeeSound ""
     PainSound "Bruiser/Pain"

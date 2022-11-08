@@ -52,10 +52,14 @@ ACTOR PM_Noble : PMMonsterBase
 	    TNT1 A 0 A_SetSpeed(7)
 		TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
 		NO1S AA 3 A_Chase
+		TNT1 AA 0 A_Recoil(-0.7)
 		NO1S BB 3 A_Chase
+		TNT1 AA 0 A_Recoil(-0.7)
 		TNT1 A 0 A_PlaySound("Squire/Step")
 		NO1S CC 3 A_Chase
+		TNT1 AA 0 A_Recoil(-0.7)
 		NO1S DD 3 A_Chase
+		TNT1 AA 0 A_Recoil(-0.7)
 		TNT1 A 0 A_PlaySound("Squire/Step")
 		Loop
 	Melee:

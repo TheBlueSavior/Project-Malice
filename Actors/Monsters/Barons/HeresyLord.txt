@@ -19,7 +19,7 @@ actor PM_HeresyLord : PMMonsterBase
 	//+NOINFIGHTING
 	+DontHurtSpecies
 	+DONTHARMSPECIES
-	//+MISSILEMORE
+	+MISSILEMORE
 	Species "Nobles"
 	//DropItem "RagePoint1"
     SeeSound ""
