@@ -126,23 +126,23 @@ ACTOR PM_Squire
 		A_FaceTarget;
 		A_Spawnitemex("GreenFireEffect",10,random(30,25),60,0,0,2);
 		}
-		BOS6 EEEEE 1 Light("Greenball4")
+		BOS6 EEEE 1 Light("Greenball4")
 		{
 		A_FaceTarget;
 		A_Spawnitemex("GreenFireEffect",10,random(30,25),57,0,0,2);
 		}
-		BOS6 FFFFFFFFF 1 Light("Greenball3") 
+		BOS6 FFFF 1 Light("Greenball3") 
 		{
 		A_FaceTarget;
 		A_Spawnitemex("GreenFireEffect",10,random(30,25),45,0,0,2);
 		}
-		BOS6 G 8 Light("Greenball3")
+		BOS6 G 6 Light("Greenball3")
 		{
 		A_FaceTarget;
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		A_CustomMissile("PM_SquireFireball",40);
 		}
-		BOS6 G 7 Light("Greenball3")
+		BOS6 G 5 Light("Greenball3")
 		{
 		A_FaceTarget;
 		}
