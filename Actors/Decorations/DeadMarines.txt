@@ -16,7 +16,7 @@ ACTOR DeadMarineNew
 	TNT1 AAAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
 	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
 	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,180)
-	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 	TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
 	TNT1 A 0 A_Jump(256,"Marine1","Marine2","Marine3","Marine4","Marine5","Marine6","Marine7","Marine8","Marine9","Marine10","Marine11","Marine12","Marine13","Marine14","Marine15","Marine16","Marine17","Marine18","Marine19","Marine20",
 	"Marine21","Marine22","Marine23","Marine24","Marine25","Marine26","Marine27","Marine28","Marine29","Marine30","Marine31","Marine32")
@@ -225,7 +225,7 @@ ACTOR MaliceTorturedMarine
 		TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,155)
 		TNT1 AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(17,35))
-		TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
 	Torture:
 		TNT1 A 0 A_PlaySound("Marine/Torture")
@@ -391,7 +391,7 @@ Actor DeadZombieSoldier : DeadZombieMan
 		TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
 		TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-		TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
 		POS1 L -1
 		Stop
@@ -408,7 +408,7 @@ Actor DeadFacelessShotgunner : DeadShotgunGuy
 		TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
 		TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-		TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
 		F1SH L -1
 		Stop
