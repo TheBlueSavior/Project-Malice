@@ -10,113 +10,116 @@ ACTOR DeadMarineNew
   {
   Spawn:
 	//TNT1 A 0 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 AAA 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,220)
-	TNT1 A 0 A_SpawnItemEx("PM_SpiderSacSpawner",random(-15,15),random(-15,15),0,0,0,0,0,SXF_NOCHECKPOSITION,250)
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,225)
-	TNT1 AAAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
-	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
-	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,180)
-	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
-	TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+	TNT1 A 0
 	TNT1 A 0 A_Jump(256,"Marine1","Marine2","Marine3","Marine4","Marine5","Marine6","Marine7","Marine8","Marine9","Marine10","Marine11","Marine12","Marine13","Marine14","Marine15","Marine16","Marine17","Marine18","Marine19","Marine20",
 	"Marine21","Marine22","Marine23","Marine24","Marine25","Marine26","Marine27","Marine28","Marine29","Marine30","Marine31","Marine32")
+  BodyChoosed:
+	"####" "###" 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,220)
+	"####" "#" 0 A_SpawnItemEx("PM_SpiderSacSpawner",random(-15,15),random(-15,15),0,0,0,0,0,SXF_NOCHECKPOSITION,250)
+	"####" "####" 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,225)
+	"####" "#####" 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
+	"####" "###" 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
+	"####" "###" 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,180)
+	"####" "#" 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
+	"####" "#" 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
+	"####" "#" -1
+
 	Marine1:
-	DEAD A -1
-	Stop
+	DEAD A 1
+	Goto BodyChoosed
 	Marine2:
-	DEAD B -1
-	Stop
+	DEAD B 1
+	Goto BodyChoosed
 	Marine3:
-	DEAD C -1
-	Stop
+	DEAD C 1
+	Goto BodyChoosed
 	Marine4:
-	DEAD D -1
-	Stop
+	DEAD D 1
+	Goto BodyChoosed
 	Marine5:
-	DEAD E -1
-	Stop
+	DEAD E 1
+	Goto BodyChoosed
 	Marine6:
-	DEAD F -1
-	Stop
+	DEAD F 1
+	Goto BodyChoosed
 	Marine7:
-	DEAD I -1
-	Stop
+	DEAD I 1
+	Goto BodyChoosed
 	Marine8:
-	DEAD N -1
-	Stop
+	DEAD N 1
+	Goto BodyChoosed
 	Marine9:
-	DEAD O -1
-	Stop
+	DEAD O 1
+	Goto BodyChoosed
 	Marine10:
-	DEAD P -1
-	Stop
+	DEAD P 1
+	Goto BodyChoosed
 	Marine11:
-	DEAD Q -1
-	Stop
+	DEAD Q 1
+	Goto BodyChoosed
 	Marine12:
-	DEAD S -1
-	Stop
+	DEAD S 1
+	Goto BodyChoosed
 	Marine13:
-	DEAD T -1
-	Stop
+	DEAD T 1
+	Goto BodyChoosed
 	Marine14:
-	DEA2 C -1
-	Stop
+	DEA2 C 1
+	Goto BodyChoosed
 	Marine15:
-	DEAD Y -1
-	Stop
+	DEAD Y 1
+	Goto BodyChoosed
 	Marine16:
-	DEA2 E -1
-	Stop
+	DEA2 E 1
+	Goto BodyChoosed
 	Marine17:
-	DEA2 L -1
-	Stop
+	DEA2 L 1
+	Goto BodyChoosed
 	Marine18:
-	DEA2 N -1
-	Stop
+	DEA2 N 1
+	Goto BodyChoosed
 	Marine19:
-	DEA2 O -1
-	Stop
+	DEA2 O 1
+	Goto BodyChoosed
 	Marine20:
-	DEA3 M -1
-	Stop
+	DEA3 M 1
+	Goto BodyChoosed
 	Marine21:
-	DEA4 A -1
-	Stop
+	DEA4 A 1
+	Goto BodyChoosed
 	Marine22:
-	DEA4 B -1
-	Stop
+	DEA4 B 1
+	Goto BodyChoosed
 	Marine23:
-	DEA4 C -1
-	Stop
+	DEA4 C 1
+	Goto BodyChoosed
 	Marine24:
-	DEA4 D -1
-	Stop
+	DEA4 D 1
+	Goto BodyChoosed
 	Marine25:
-	DEA2 G -1
-	Stop
+	DEA2 G 1
+	Goto BodyChoosed
 	Marine26:
-	DEA2 I -1
-	Stop
+	DEA2 I 1
+	Goto BodyChoosed
 	Marine27:
-	GENE A -1
-	Stop
+	GENE A 1
+	Goto BodyChoosed
 	Marine28:
-	MSCI N -1
-	Stop
+	MSCI N 1
+	Goto BodyChoosed
 	Marine29:
-	FSCI N -1
-	Stop
+	FSCI N 1
+	Goto BodyChoosed
 	Marine30:
-	CRP1 A -1
-	Stop
+	CRP1 A 1
+	Goto BodyChoosed
 	Marine31:
-	CRP2 A -1
-	Stop
+	CRP2 A 1
+	Goto BodyChoosed
 	Marine32:
-	CRP3 A -1
-	Stop
-	
+	CRP3 A 1
+	Goto BodyChoosed
   }
 }
 

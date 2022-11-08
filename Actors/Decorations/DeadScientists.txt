@@ -5,13 +5,14 @@ Actor DeadMaleScientist
   States
   {
   Spawn:
-	TNT1 AA 1 A_SpawnItem("CorpseMaggotSpawner")
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,0,155)
-	TNT1 AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
-	TNT1 AAA 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
-	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
-	TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
-    MSCI N -1
+	MSCI N 0
+	"####" NN 1 A_SpawnItem("CorpseMaggotSpawner")
+	"####" NNNN 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,0,155)
+	"####" NNNN 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
+	"####" NNN 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
+	"####" N 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
+	"####" N 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
+    "####" N -1
     Loop
   }
 }
@@ -23,13 +24,14 @@ Actor DeadFemaleScientist
   States
   {
   Spawn:
-	TNT1 AA 1 A_SpawnItem("CorpseMaggotSpawner")
-	TNT1 AA 1 A_SpawnItemEx("Fly")
-	TNT1 AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
-	TNT1 AAA 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
-	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
-	TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
-    FSCI N -1
+	FSCI N 0
+	"####" NN 1 A_SpawnItem("CorpseMaggotSpawner")
+	"####" NN 1 A_SpawnItemEx("Fly")
+	"####" NNNN 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
+	"####" NNN 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
+	"####" N 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
+	"####" N 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
+    "####" N -1
     Loop
   }
 }

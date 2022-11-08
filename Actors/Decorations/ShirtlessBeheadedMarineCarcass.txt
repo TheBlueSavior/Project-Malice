@@ -5,13 +5,14 @@ Actor CarcassShirtlessBeheaded
   States
   {
   Spawn:
-	TNT1 AA 1 A_SpawnItem("CorpseMaggotSpawner")
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,0,155)
-	TNT1 AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
-	TNT1 AAA 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
-	TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
-	TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
-    CRP2 A -1
+	CRP2 A 0
+	"####" AA 1 A_SpawnItem("CorpseMaggotSpawner")
+	"####" AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,0,155)
+	"####" AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,0,100)
+	"####" AAA 0 A_SpawnItem("MaliceGoreFlies", 0, random(0, 15))
+	"####" A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
+	"####" A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
+    "####" A -1
     Loop
   }
 }
