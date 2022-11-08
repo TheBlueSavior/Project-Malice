@@ -4220,6 +4220,7 @@ ACTOR PM_GroundIceBouncer
 
 ACTOR PM_GroundIce1
 {
+	Monster
 	+SOLID
 	+FLOORHUGGER
 	+NOBLOOD
@@ -4232,7 +4233,6 @@ ACTOR PM_GroundIce1
 	Radius 5
 	Health 500
 	Height 5
-	Monster
 	Speed 0
 	Scale 1.5
 	PainChance 256
@@ -4261,6 +4261,7 @@ ACTOR PM_GroundIce1
 
 ACTOR PM_GroundIce2
 {
+	Monster
 	+SOLID
 	+FLOORHUGGER
 	+NOBLOOD
@@ -4273,7 +4274,6 @@ ACTOR PM_GroundIce2
 	Radius 5
 	Health 500
 	Height 5
-	Monster
 	Speed 0
 	Scale 1.5
 	PainChance 256
