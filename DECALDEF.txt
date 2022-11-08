@@ -126,9 +126,15 @@ decal Hell
 	translucent 0.90
 }
 
-decal Pentagram
+decal Pentagram1
 {
-	pic PENTA
+	pic PENTA1
+	translucent 0.90
+}
+
+decal Pentagram2
+{
+	pic PENTA2
 	translucent 0.90
 }
 
@@ -177,7 +183,8 @@ decal LEFTUS
 DecalGroup Graffiti
 {
 	Hell 1
-	Pentagram 1
+	Pentagram1 1
+	Pentagram2 1
 	AGONY 1
 	Beautiful 1
 	Cuttheskin 1
@@ -186,7 +193,6 @@ DecalGroup Graffiti
 	SHOOTTHEM 1
 	LEFTUS 1
 }
-
 
 //"Kill" graffiti
 Decal kill1
@@ -215,11 +221,54 @@ Decal kill4
 
 DecalGroup KillGraffiti
 {
-KILL1 1
-KILL2 1
-KILL3 1
-KILL4 1
+	KILL1 1
+	KILL2 1
+	KILL3 1
+	KILL4 1
 }
+
+//"Voices" graffiti
+Decal TheVoices1
+{
+	pic THVO1
+	translucent 0.90
+}
+
+Decal TheVoices2
+{
+	pic THVO2
+	translucent 0.90
+}
+
+Decal TheVoices3
+{
+	pic THVO3
+	translucent 0.90
+}
+
+Decal TheVoices4
+{
+	pic THVO4
+	translucent 0.90
+}
+
+Decal TheVoices
+{
+	pic THVO
+	translucent 0.90
+}
+
+DecalGroup TheVoicesAllGraffiti
+{
+	TheVoices 1
+	TheVoices1 1
+	TheVoices2 1
+	TheVoices3 1
+	TheVoices4 1
+}
+
+
+
 
 //"Eye" graffiti
 Decal EYE1
