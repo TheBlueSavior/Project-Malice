@@ -298,7 +298,7 @@ Actor PM_Fiend : PMMonsterBase
 	FIEN I 10
 		{
 		A_Stop();
-		A_PlaySound("Fiend/Land");
+		A_PlaySound("Fiend/Land",6);
 		}
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
 	goto See
@@ -354,7 +354,7 @@ Actor PM_Fiend : PMMonsterBase
 	FIEN I 6
 		{
 		A_Stop();
-		A_PlaySound("Fiend/Land");
+		A_PlaySound("Fiend/Land",6);
 		}
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
 	goto See
@@ -421,7 +421,6 @@ Actor FiendBallExplode
 	+NOINTERACTION
 	+ROLLSPRITE
 	+Bright
-	Translation "0:255=%[0,0,0]:[2.0,0.7,0.7]"
 	Speed 2
 	States
 {
@@ -452,7 +451,7 @@ ACTOR PM_FiendSmallRocket : RevenantTracer
 		A_Weave(2, 2, 2.0, 1.0);
 		A_SpawnItemEx("FiendRocketTrail",random(-2,2),0,random(-2,2));
 		}
-        TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
+        TNT1 A 0 A_JumpIfTracerCloser(330,"Noise")
         Loop
 	Spawn2:
 		PRJ3 A 1 BRIGHT Light("ShadowBall2") 
@@ -460,7 +459,7 @@ ACTOR PM_FiendSmallRocket : RevenantTracer
 		A_Weave(2, 2, -2.0, -1.0);
 		A_SpawnItemEx("FiendRocketTrail",random(-2,2),0,random(-2,2));
 		}
-        TNT1 A 0 A_JumpIfTracerCloser(250,"Noise2")
+        TNT1 A 0 A_JumpIfTracerCloser(330,"Noise2")
         Loop
 	Spawn3:
 		PRJ3 A 1 BRIGHT Light("ShadowBall2") 
@@ -468,7 +467,7 @@ ACTOR PM_FiendSmallRocket : RevenantTracer
 		A_Weave(3, 3, 2.0, 1.0);
 		A_SpawnItemEx("FiendRocketTrail",random(-2,2),0,random(-2,2));
 		}
-        TNT1 A 0 A_JumpIfTracerCloser(250,"Noise3")
+        TNT1 A 0 A_JumpIfTracerCloser(330,"Noise3")
         Loop
     Noise:
         TNT1 A 0 A_PlaySound("FastMissileFlyby",3,0.90)

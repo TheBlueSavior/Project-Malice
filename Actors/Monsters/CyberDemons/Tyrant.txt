@@ -1085,7 +1085,7 @@ ACTOR TyrantStreamRocket : RevenantTracer
 	{
 	Spawn:
 		TYM2 A 1 BRIGHT Light("AvatarFireball3") A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0)
-        TNT1 A 0 A_JumpIfTracerCloser(230,"Noise")
+        TNT1 A 0 A_JumpIfTracerCloser(330,"Noise")
 		Loop
     Noise:
         TNT1 A 0 A_PlaySound("FastMissileFlyby",3,0.90)
@@ -1199,7 +1199,7 @@ ACTOR TyrantSmallRocket : RevenantTracer
 		{
 		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
-        TNT1 A 0 A_JumpIfTracerCloser(230,"Noise")
+        TNT1 A 0 A_JumpIfTracerCloser(330,"Noise")
         Loop
     Noise:
         TNT1 A 0 A_PlaySound("FastMissileFlyby",3,0.90)

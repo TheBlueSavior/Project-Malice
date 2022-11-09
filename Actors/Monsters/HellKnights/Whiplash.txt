@@ -557,6 +557,7 @@ ACTOR PM_WhiplashKnife : MageWandMissile
     loop
   Death:
     BLA2 A 80 BRIGHT Light("WhipKnife2")
+	stop
   XDeath:
      TNT1 A 0
      TRCR A 0 A_PlaySound("PM/BulletHitFlesh",2)
