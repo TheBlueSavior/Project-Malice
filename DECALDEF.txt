@@ -353,8 +353,88 @@ decal WallDamage2
 	randomflipy
 }
 
+decal WallDamage3
+{
+	pic WallDMG3
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage4
+{
+	pic WallDMG4
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage5
+{
+	pic WallDMG5
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage6
+{
+	pic WallDMG6
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage7
+{
+	pic WallDMG7
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage8
+{
+	pic WallDMG8
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage9
+{
+	pic WallDMG9
+	translucent 0.6
+	randomflipx
+}
+
+decal WallDamage10
+{
+	pic WallDMG10
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
+decal WallDamage11
+{
+	pic WallDMG11
+	translucent 0.6
+	randomflipx
+	randomflipy
+}
+
 DecalGroup WallDamage
 {
 	WallDamage1 1
 	WallDamage2 1
+	WallDamage3 1
+	WallDamage4 1
+	WallDamage5 1
+	WallDamage6 1
+	WallDamage7 1
+	WallDamage8 1
+	WallDamage9 1
+	WallDamage10 1
+	WallDamage11 1
 }
