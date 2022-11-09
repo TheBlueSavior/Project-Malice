@@ -115,6 +115,7 @@ Projectile
 +BLOODSPLATTER 
 +THRUGHOST
 +SEEKERMISSILE
+decal "PM_BulletHoleSmall"
 height 2
 radius 2
 speed 36
