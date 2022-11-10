@@ -55,6 +55,7 @@ actor PM_Abhorrent : fatso
     ABHR G 5 A_FaceTarget
    Goto Missile
   Missile:
+    TNT1 A 0 A_Jump(122,"Missile2")
 	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 	ABHR G 1 A_PlaySound("Abhorrent/Attack",CHAN_6)
 	ABHR GGGGGGG 5 A_FaceTarget
@@ -71,6 +72,18 @@ actor PM_Abhorrent : fatso
 	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 	ABHR IG 12 A_FaceTarget
 	Goto See2
+  Missile2:
+    ABHR G 1 A_PlaySound("Abhorrent/Attack",CHAN_6)
+    ABHR GGGGGG 5 A_FaceTarget
+    TNT1 A 0 A_PlaySound("Abhor/BallWhiz")
+    ABHR GGGGGGGGGGGG 2 Light("SoulHarvesterBall2")
+    {
+    A_FaceTarget;
+    A_CustomMissile("PM_AbhorSoulVomit",40,0,random(-10,10),CMF_OFFSETPITCH,random(-5,5));
+    A_CustomMissile("BlueSoulFlare",45,0,0);
+    }
+    ABHR G 5 A_FaceTarget
+    Goto See2
   Phase:
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
 	ABHR G 5 A_FaceTarget
@@ -188,6 +201,67 @@ Actor PM_AbhorSmallBall
     Stop
   }
 }
+
+Actor PM_AbhorSoulVomit
+{
+    Radius 5
+    Height 5
+    Scale 0.4
+    Speed 8
+    Damage 1
+    Renderstyle "Add"
+    //SeeSound "harvester/scream"
+    DeathSound "Abhor/SoulExp"
+    PROJECTILE
+    +SEEKERMISSILE
+  States
+  {
+  Spawn:
+    TNT1 A 0 A_Jump(110,"Spawn2")
+    SHBA AABB 1 Bright A_Weave(1,1,1,-1)
+    TNT1 A 0 A_JumpIfTracerCloser(200,"Seek")
+    Loop
+  Seek:
+    SHBA AABB 1 Bright 
+    {
+    A_Weave(1,1,1,-1);
+    A_SeekerMissile(1,2);
+    A_SpawnItemEx("PM_AbhorSoulVomitTrail");
+    }
+    Loop
+  Spawn2:
+    SHBA AABB 1 Bright A_Weave(1,1,1,1)
+    TNT1 A 0 A_JumpIfTracerCloser(200,"Seek2")
+    Loop
+  Seek2:
+    SHBA AABB 1 Bright 
+    {
+    A_Weave(1,1,1,1);
+    A_SeekerMissile(1,2);
+    A_SpawnItemEx("PM_AbhorSoulVomitTrail");
+    }
+    Loop
+  Death:
+    SHBA CDEFGHIJKL 4 Bright
+    Stop
+  }
+}
+
+ACTOR PM_AbhorSoulVomitTrail
+{
++CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle Add
+Alpha 0.75
+Scale 0.4
+States
+{
+Spawn:
+    SHBA A 1 A_FadeOut(0.10)
+    Loop
+    }
+}
+
 
 Actor AbhorBallTrail
   {
