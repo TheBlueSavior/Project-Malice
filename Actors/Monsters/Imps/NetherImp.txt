@@ -201,6 +201,7 @@ Class PM_InfernoBall : Actor
     Alpha 1;
 	Scale 1.2;
     SeeSound "baron/attack";
+	Decal "DoomImpScorch";
     DeathSound "NIBALHIT";
     PROJECTILE;
 	+MISSILE
@@ -263,6 +264,7 @@ Class PM_NetherLightning : Actor
     Scale 0.75;
     SeeSound "NetherConduit/HomingThunder";
     DeathSound "NetherConduit/HomingExp";
+	Decal "DoomImpScorch";
     PROJECTILE;
 	Translation "0:255=%[0,0,0]:[0.9,0.9,1.9]";
 	DamageType "Electric";

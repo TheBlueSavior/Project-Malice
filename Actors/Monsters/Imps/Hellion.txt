@@ -462,6 +462,7 @@ Class PM_HellionBall : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -488,6 +489,7 @@ Class PM_HellionBall2 : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -514,6 +516,7 @@ Class PM_HellionBall3 : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -540,6 +543,7 @@ Class PM_HellionBall4 : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -566,6 +570,7 @@ Class PM_HellionBall5 : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
     +ForceXYBillboard
   }
@@ -659,6 +664,7 @@ Class PM_HellionHoming : CacodemonBall
     DamageType "Fire";
     SeeSound "HellionProj";
     DeathSound "HellionProjExp";
+	Decal "DoomImpScorch";
     +ThruGhost
 	+SEEKERMISSILE
     +ForceXYBillboard

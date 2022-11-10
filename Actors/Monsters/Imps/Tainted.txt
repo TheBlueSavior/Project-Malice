@@ -178,6 +178,7 @@ Actor PM_TaintedBounceShot
    RENDERSTYLE "Translucent"
    SeeSound "TaintedBloodFire"
   DeathSound "TaintedBloodExp"
+  Decal "Bloodsplat"
   Gravity 0.67
   BounceCount 5
   BounceSound "Tainted/Step"
@@ -274,6 +275,7 @@ ACTOR PM_TaintedBall
 	+Strifedamage
 	+RANDOMIZE
 	Alpha 1
+	Decal "Bloodsplat"
 	SeeSound "TaintedBall"
 	DeathSound "TaintedBloodExp"
 	States
