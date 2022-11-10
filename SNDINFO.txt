@@ -2934,7 +2934,12 @@ HFuryPain2            "sounds/Monsters/Hellknights/HellsFury/HellsFuryPain2.ogg"
 $random HFuryDeath { HFuryDeath1 HFuryDeath2 }
 HFuryDeath1            "sounds/Monsters/Hellknights/HellsFury/HellsFuryDeath1.ogg"
 HFuryDeath2            "sounds/Monsters/Hellknights/HellsFury/HellsFuryDeath2.ogg"
+$random HFury/Rush { HFuryRush1 HFuryRush2 HFuryRush3 }
+HFuryRush1 "Sounds/Monsters/Hellknights/HellsFury/HellsFuryRush1.ogg"
+HFuryRush2 "Sounds/Monsters/Hellknights/HellsFury/HellsFuryRush2.ogg"
+HFuryRush3 "Sounds/Monsters/Hellknights/HellsFury/HellsFuryRush3.ogg"
 
+HFuryRushAdd         "Sounds/Monsters/Hellknights/HellsFury/HellsFuryRushAdd.ogg"
 HFuryProj            "sounds/Monsters/Hellknights/HellsFury/HellsFuryProj.ogg"
 HFuryRoar            "sounds/Monsters/Hellknights/HellsFury/HellsFuryRoar.ogg"
 HFuryProjExp            "sounds/Monsters/Hellknights/HellsFury/HellsFuryProjExp.ogg" 

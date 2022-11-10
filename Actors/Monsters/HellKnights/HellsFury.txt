@@ -13,7 +13,7 @@ Actor PM_HellsFury
     PainSound "HFuryPain"
     DeathSound "HFuryDeath"
 	Species "Nobles"
-	//DropItem "RagePoint1"
+	MeleeRange 250
     Obituary "%o turned to a sludge of %p former self by a Hell's Fury."
 	Tag "Hell's Fury"
     MONSTER
@@ -73,7 +73,6 @@ Actor PM_HellsFury
       TNT1 A 0 A_Jump(176,"FireBreath2","FireBreath3")
       Goto FireBreath
    FireBreath:
-	TNT1 A 0 A_Jump(60,"Melee")
 	TNT1 A 0 A_PlaySound("CyberFodder/Flamer",CHAN_5,1,1)
 	TNT1 A 0 A_PlaySound("HFuryRoar",CHAN_7)
 	HFRY PP 5 Light("HellsFuryBall1")  A_FaceTarget
@@ -87,7 +86,6 @@ Actor PM_HellsFury
 	TNT1 A 0 A_StopSound(CHAN_5)
 	Goto See2
    FireBreath2:
-	TNT1 A 0 A_Jump(60,"Melee")
 	TNT1 A 0 A_PlaySound("CyberFodder/Flamer",CHAN_5,1,1)
 	TNT1 A 0 A_PlaySound("HFuryRoar",CHAN_7)
 	HFRY PP 5 Light("HellsFuryBall1")  A_FaceTarget
@@ -185,7 +183,6 @@ Actor PM_HellsFury
 	TNT1 A 0 A_StopSound(CHAN_5)
 	Goto See2
    FireBreath3:
-	TNT1 A 0 A_Jump(60,"Melee")
 	TNT1 A 0 A_PlaySound("CyberFodder/Flamer",CHAN_5,1,1)
 	TNT1 A 0 A_PlaySound("HFuryRoar",CHAN_7)
 	HFRY PP 5 Light("HellsFuryBall1")  A_FaceTarget
@@ -282,6 +279,24 @@ Actor PM_HellsFury
 	}
 	TNT1 A 0 A_StopSound(CHAN_5)
 	Goto See2
+  Rush:
+    TNT1 A 0 A_PlaySound("HFury/Rush",CHAN_5)
+    HFRY A 15 A_FaceTarget
+    TNT1 A 0 A_PlaySound("HFuryRushAdd",CHAN_6)
+   	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
+	HFRY A 8 A_FaceTarget
+	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_Recoil(-90)
+    TNT1 AAAAAA 1 
+    {
+    A_SpawnItemEx("PM_HFPhaseTrail");
+    }
+    TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
+    HFRY A 8 A_FaceTarget
+    TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
+    TNT1 A 0 A_JumpIfCloser(250,"FireBreath")
+    Goto See2
   Missile2:
     HFRY P 8 Light("AzazelSoul") A_FaceTarget
     HFRY Q 20 Light("AzazelSoul2") 
@@ -446,11 +461,11 @@ Actor PM_HellsFury
 	HFRY P 1 Light("AzazelSoul") A_FaceTarget
     Goto See2
   Melee:
-	TNT1 A 0
-	TNT1 A 0 A_StopSound(CHAN_5)
-	TNT1 A 0 A_StopSound(CHAN_7)
-	TNT1 A 0 A_Jump(50,"FireBreath")
-    Goto Missile+3
+    TNT1 A 0
+    TNT1 A 0 A_StopSound(CHAN_5)
+    TNT1 A 0 A_StopSound(CHAN_7)
+    TNT1 A 0 A_Jump(83,"Rush")
+    Goto See2
   Pain:
     HFRY H 2
 	TNT1 A 0 A_StopSound(CHAN_5)
@@ -658,4 +673,20 @@ ACTOR PM_HFuryFirebreath
       FRFX NO 2 Bright
       stop
    }
+}
+
+ACTOR PM_HFPhaseTrail
+{
++CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle "Stencil"
+StencilColor "63 66 F1"
+Alpha 0.80
+Scale 1.15
+States
+{
+Spawn:
+    HFRY A 1 A_FadeOut(0.06)
+    Loop
+    }
 }
