@@ -306,6 +306,7 @@ ACTOR PM_PTronBall
    +BRIGHT
    SeeSound ""
    DeathSound "DTech/Exp"
+   Decal "PM_PlasmatronScorchLarge"
    States
    {
    Spawn:
@@ -339,6 +340,7 @@ ACTOR PM_PTronBallSmall
    +BRIGHT
    SeeSound ""
    DeathSound "GenericPlasmaExp"
+   Decal "PM_PlasmatronScorchSmall"
    States
    {
    Spawn:

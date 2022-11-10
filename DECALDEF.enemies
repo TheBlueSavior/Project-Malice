@@ -29,3 +29,24 @@ decal PM_BulletHoleLarge
 	y-scale 0.7
 	randomflipx
 }
+
+
+decal PM_PlasmatronScorchSmall
+{
+	pic FXPOB0
+	x-scale 0.2
+	y-scale 0.2
+	add 1.0
+	animator GoAway
+	lowerdecal PlasmaScorchLower2
+}
+
+decal PM_PlasmatronScorchLarge
+{
+	pic FXPOB0
+	x-scale 0.4
+	y-scale 0.4
+	add 1.0
+	animator GoAway
+	lowerdecal Scorch
+}

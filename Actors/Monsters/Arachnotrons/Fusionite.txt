@@ -195,6 +195,7 @@ ACTOR PM_FusionShot
   +ROLLCENTER
   SeeSound "GenericPlasmaFire" 
   DeathSound "GenericPlasmaExp"
+  Decal "ArachnotronScorch"
   PROJECTILE
   States
   {
@@ -227,6 +228,7 @@ ACTOR PM_ScatterFusionShot
   RENDERSTYLE ADD
   SeeSound "Fusionite/Scattershot" 
   DeathSound "GenericPlasmaExp"
+  Decal "ArachnotronScorch"
   PROJECTILE
   States
   {
@@ -260,6 +262,7 @@ ACTOR PM_SmallFusionShot
   RENDERSTYLE ADD
   SeeSound "Fusionite/SmallShot" 
   DeathSound "GenericPlasmaExp"
+  Decal "ArachnotronScorch"
   PROJECTILE
   States
   {
