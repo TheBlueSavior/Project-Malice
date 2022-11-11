@@ -142,6 +142,7 @@ Class WizardBall : Actor
     renderstyle "Add";
     seesound "baron/attack";
     deathsound "eltimp/explode";
+	decal "Scorch";
     PROJECTILE;
     +NOGRAVITY
     +RANDOMIZE

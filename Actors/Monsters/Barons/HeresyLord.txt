@@ -327,6 +327,7 @@ Actor PM_HeresyLordRedBall : DoomImpBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 14
+	Decal "DoomImpScorch"
 	states
   	{
   Spawn:
@@ -383,6 +384,7 @@ Actor PM_HeresyLordWhiteSoul
 	PROJECTILE
 	seesound "HeresyLord/WhiteFire"
 	deathsound "HeresyLord/WhiteDeath"
+	Decal "BigScorch"
 	states
 	{
 	Spawn:

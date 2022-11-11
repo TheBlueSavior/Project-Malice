@@ -50,3 +50,15 @@ decal PM_PlasmatronScorchLarge
 	animator GoAway
 	lowerdecal Scorch
 }
+
+//PM_Bruiser
+
+decal PM_BruiserBiggestScorch
+{
+	pic SCORCH1
+	shade "00 00 00"
+	x-scale 1
+	y-scale 1
+	randomflipx
+	randomflipy
+}

@@ -259,6 +259,7 @@ actor PM_PhaseCacoBall
 	+FORCEXYBILLBOARD
 	MaxTargetRange 2
 	DamageType "Cacoball"
+	Decal "BigScorch"
 	States
 	{
 	Spawn:
@@ -344,6 +345,7 @@ Actor PM_PhaseCacoBall2
     RenderStyle "Add"
     Alpha 1
     Projectile
+	Decal "Scorch"
   states
   {
   Spawn:

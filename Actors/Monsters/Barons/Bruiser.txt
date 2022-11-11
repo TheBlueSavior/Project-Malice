@@ -455,6 +455,7 @@ ACTOR PM_BruiserMeteor : DoomImpBall
   Alpha 0.9
   SeeSound "GenericChargeHeavy"
   DeathSound "GenericCometExp"
+  Decal "PM_BruiserBiggestScorch"
   States
  {
   Spawn:
@@ -488,6 +489,7 @@ Actor PM_BruiserSmallFireball : DoomImpBall
 	Damage (random(19,25))
 	DamageType Fire
 	Scale 0.15
+	Decal "Scorch"
 	states
   	{
   Spawn:

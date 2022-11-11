@@ -360,6 +360,7 @@ ACTOR PM_ExileGroundFlames
    +DONTSPLASH
    +SEEKERMISSILE
 	DeathSound "Exile/GroundEnd"
+	Decal "BigScorch"
    States
    {
    Spawn: 
@@ -424,6 +425,7 @@ ACTOR PM_ExileFireball
 	Alpha 1
 	SeeSound "Husk/Throw"
 	DeathSound "GenericCometExp"
+	Decal "BigScorch"
 	States
 	{
 	Spawn:
@@ -462,6 +464,7 @@ ACTOR PM_ExileSeekingFireball
 	Reactiontime 400
 	SeeSound "pyro/flame"
 	DeathSound "HectebusBall/Exp"
+	Decal "BigScorch"
 	States
 	{
 	Spawn:
