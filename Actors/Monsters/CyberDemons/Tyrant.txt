@@ -1001,6 +1001,7 @@ ACTOR PM_TyrantBackMissile
 	Reactiontime 400
 	SeeSound "Tyrant/RocketRiver"
 	DeathSound "HectebusBall/Exp"
+	Decal "Scorch"
 	States
 	{
 	Spawn:
@@ -1039,6 +1040,7 @@ ACTOR TyrantHeavyRocket : RevenantTracer
 	RenderStyle Normal
 	SeeSound "Tyrant/Rocket"
 	DeathSound "Tyrant/RocketExp"
+	Decal "BigScorch"
 	States
 	{
 	Spawn:
@@ -1081,6 +1083,7 @@ ACTOR TyrantStreamRocket : RevenantTracer
 	RenderStyle Normal
 	SeeSound "Tyrant/Missile"
 	DeathSound "Tyrant/MissileExp"
+	Decal "DoomImpScorch"
 	States
 	{
 	Spawn:
@@ -1119,6 +1122,7 @@ ACTOR TyrantSmallRocket : RevenantTracer
 	RenderStyle Normal
 	SeeSound "Tyrant/RocketRiver"
 	DeathSound "Tyrant/MissileExp"
+	Decal "DoomImpScorch"
 	Scale 0.7
 	States
 	{
@@ -1254,6 +1258,7 @@ ACTOR TyrantPlasmaThrower
    DamageType Fire
    Scale 0.13
    DeathSound "Fire/Unleash"
+   Decal "scorch"
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD

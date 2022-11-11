@@ -398,6 +398,7 @@ ACTOR PM_DefilerSoulSlow
 	+NOTELEPORT
 	+DONTHARMSPECIES
 	Species "Elemental"
+	Decal "DoomImpScorch"
     States
     {
     Spawn:
@@ -454,6 +455,7 @@ ACTOR DefilerShot
 	ALPHA 0.9
     SeeSound "caco/attack"
 	DeathSound "caco/shotx"
+	Decal "scorch"
     States
     {
     Spawn:
@@ -521,6 +523,7 @@ ACTOR DefilerBreath
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD
+   Decal "scorch"
    States
    {
    Spawn:
@@ -728,6 +731,7 @@ ACTOR PM_GagSoulAttack : DoomImpBall
   PROJECTILE
   Seesound "BurntSoul/Attack"
   DeathSound "imp/shotx"
+  Decal "Scorch"
   States
 	{
 	Spawn:
@@ -775,6 +779,7 @@ ACTOR PM_ShootSoulAttack : DoomImpBall
   Obituary "o% bathed in unholy fire by a Defiler's soul."
   Seesound "Defiler/Shoot"
   DeathSound "imp/shotx"
+  Decal "Scorch"
   States
 	{
 	Spawn:

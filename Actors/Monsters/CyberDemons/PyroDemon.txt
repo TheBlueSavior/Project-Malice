@@ -218,6 +218,7 @@ Actor FirebombExplosion1
   +ActivateImpact
   +ActivatePCross
   Obituary "%o was killed by a firebomb explosion."
+  Decal "BigScorch"
   States
   {
   Spawn:

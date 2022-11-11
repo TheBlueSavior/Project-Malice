@@ -378,7 +378,6 @@ Actor PM_AcolyteShot
     SeeSound " "
     DeathSound "Abhor/SoulExp"
 	DamageType "Ice"
-    //Decal "BishopScorch"
     Projectile
     +ThruGhost
     +SeekerMissile
@@ -410,6 +409,7 @@ Actor PM_AcolyteBarrageShot : PM_AcolyteShot
 {
  SeeSound "Abhor/SoulExp"
  DeathSound " "
+ Decal "DoomImpScorch"
  -FloatBob
  States
  {
@@ -462,6 +462,7 @@ actor PM_HellPriestVoidBall : DoomImpBall
 	+SEEKERMISSILE
 	Seesound "HPriest/VoidShot"
 	DeathSound "Abhor/BallExp"
+	Decal "Scorch"
 	DamageType "Ice"
 	Speed 26
 	FastSpeed 30
