@@ -81,9 +81,61 @@ actor PM_Abhorrent : fatso
     A_FaceTarget;
     A_CustomMissile("PM_AbhorSoulVomit",40,0,random(-10,10),CMF_OFFSETPITCH,random(-5,5));
     A_CustomMissile("BlueSoulFlare",45,0,0);
+	A_CustomMissile("MancuBlueEmbers",45,0,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
     }
     ABHR G 5 A_FaceTarget
     Goto See2
+  Missile3:
+    TNT1 A 0 A_ChangeFlag(NOPAIN,1)
+	ABHR G 1 A_PlaySound("Abhorrent/Sight",CHAN_6)
+	ABHR HHHHHHHH 5 Light("SoulHarvesterBall1")
+    {
+    A_FaceTarget;
+    }
+	TNT1 AAAAA 0 A_CustomMissile("MancuBlueEmbers",30,-30,random(-90,90),CMF_OFFSETPITCH,random(-90,90))
+    ABHR H 6 Light("SoulHarvesterBall2") 
+    {
+    A_PlaySound("GenericMancShot");
+    A_CustomMissile("PM_AbhorBarrageBall", 20, 34,0);
+    A_CustomMissile("BlueSoulFlare", 20, 34,-10);
+    }
+    ABHR II 6 A_FaceTarget
+    TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	TNT1 AAAAA 0 A_CustomMissile("MancuBlueEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90))
+    ABHR H 6 Light("SoulHarvesterBall2") 
+    {
+    A_PlaySound("GenericMancShot");
+    A_CustomMissile("PM_AbhorBarrageBall", 20, -34,0);
+    A_CustomMissile("BlueSoulFlare", 20, -34,10);
+    }
+    ABHR II 6 A_FaceTarget
+	TNT1 AAAAA 0 A_CustomMissile("MancuBlueEmbers",30,-30,random(-90,90),CMF_OFFSETPITCH,random(-90,90))
+    ABHR H 6 Light("SoulHarvesterBall2") 
+    {
+    A_PlaySound("GenericMancShot");
+    A_CustomMissile("PM_AbhorBarrageBall", 20, 34,0);
+    A_CustomMissile("BlueSoulFlare", 20, 34,-10);
+    }
+    ABHR II 6 A_FaceTarget
+	TNT1 AAAAA 0 A_CustomMissile("MancuBlueEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90))
+    ABHR H 6 Light("SoulHarvesterBall2") 
+    {
+    A_PlaySound("GenericMancShot");
+    A_CustomMissile("PM_AbhorBarrageBall", 20, -34,0);
+    A_CustomMissile("BlueSoulFlare", 20, -34,10);
+    }
+    ABHR II 6 A_FaceTarget
+	TNT1 AAAAA 0 A_CustomMissile("MancuBlueEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90))
+    ABHR H 6 Light("SoulHarvesterBall2") 
+    {
+    A_PlaySound("GenericMancShot");
+    A_CustomMissile("PM_AbhorBarrageBall", 20, 34,0);
+    A_CustomMissile("BlueSoulFlare", 20, 34,-10);
+    }
+    ABHR II 6 A_FaceTarget
+	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
+	ABHR IG 12 A_FaceTarget
+	Goto See2
   Phase:
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
 	ABHR G 5 A_FaceTarget
@@ -170,6 +222,52 @@ Actor PM_AbhorBall : Fatshot
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",0,0,random(0,360),2,random(0,360))
 	TNT1 AAAAAAAA 0 A_CustomMissile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80))
     SHBA CDEFGHIJKL 4 Bright Light("SoulHarvesterBall2")
+    Stop
+  }
+}
+
+Actor PM_AbhorBarrageBall : Fatshot
+{
+    Radius 8
+    Height 6
+    Scale 0.8
+    Speed 16
+	Damage (random(25,30))
+    Renderstyle "Add"
+    seesound "HPriest/VoidShot"
+	deathsound "Abhor/BallExp"
+    PROJECTILE
+    +SEEKERMISSILE
+  States
+  {
+  Spawn:
+    ABHB AABB 1 Bright Light("SoulHarvesterBall1")
+	{
+    A_Weave(1, 1, 1.5, 0);
+    A_SpawnItemEx("BlueFireTrailEffect",0,random(-9,9),random(-9,9));
+	A_SpawnItemEx("AbhorBallTrail", 0, 0, 0, 0, 0, 0, 180, SXF_CLIENTSIDE);
+	}
+    TNT1 A 0 A_JumpIfTracerCloser(450,"Noise")
+    Loop
+  Noise:
+    TNT1 A 0 A_PlaySound("Abhor/BarrageWhiz",3,0.60)
+    TNT1 A 0 A_ScaleVelocity(3)
+	TNT1 AA 0 A_CustomMissile("AbhorBallExplode",0,0,random(0,360),2,random(0,360))
+  Seek:
+    ABHB AABB 1 Bright Light("SoulHarvesterBall1")
+	{
+    A_SeekerMissile(1,2);
+	A_SpawnItemEx("BlueSoulFlareSmall",-12);
+    A_SpawnItemEx("BlueFireTrailEffect",0,random(-9,9),random(-9,9));
+	A_SpawnItemEx("AbhorBallTrail", 0, 0, 0, 0, 0, 0, 180, SXF_CLIENTSIDE);
+	}
+    Loop
+  Death:
+    TNT1 A 0 A_StopSound(3)
+	TNT1 A 0 A_SpawnItemEx("BlueExplosionFlareSmall",0,0,0)
+    TNT1 AAAA 0 A_CustomMissile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80))
+	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",0,0,random(0,360),2,random(0,360))
+    SHBA CDEFGHIJKL 3 Bright Light("SoulHarvesterBall2")
     Stop
   }
 }

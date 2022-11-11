@@ -2052,6 +2052,7 @@ Abhor/Death3 "Sounds/Monsters/Mancubis/Abhorrent/AbhorrentDeath3.ogg"
 PLAGCHA PLAGCHA
 
 Abhor/Phase "Sounds/Monsters/Mancubis/Abhorrent/AbhorPhase.ogg"
+Abhor/BarrageWhiz "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageWhiz.ogg"
 
 $random Abhor/BallWhiz { AbhorBallWhiz1 AbhorBallWhiz2 }
 AbhorBallWhiz1 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBallWhiz1.ogg"
@@ -2067,6 +2068,7 @@ AbhorSoulExp2 "Sounds/Monsters/Mancubis/Abhorrent/AbhorSoulExp2.ogg"
 AbhorSoulExp3 "Sounds/Monsters/Mancubis/Abhorrent/AbhorSoulExp3.ogg"
 
 $rolloff Abhor/BallWhiz 600 3000
+$rolloff Abhor/BarrageWhiz 500 2200
 $rolloff Abhor/BallExp 650 2200
 $rolloff Abhor/SoulExp 650 1000
 

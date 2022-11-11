@@ -617,7 +617,7 @@ Actor PM_HostPoisonShot
   Spawn:
     FVUL AAABBB 1 Bright Light("HostShot")
 	{
-	A_SpawnItemEx("HostBarbtrail", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE, 0);
+	A_SpawnParticle("A6 FE 6C",SPF_RELATIVE,37,7,0,random(-3,3),random(-3,3),random(-3,3),0,0,0,0,0,0,1,-1,0);
 	A_SpawnItemEx("HostGasTrail", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE, 0);
 	}
     loop
