@@ -195,6 +195,7 @@ ACTOR PaladinBall
 	+DONTBLAST
 	SeeSound "Paladin/Shoot"
 	DeathSound "Paladin/Hit"
+	Decal "DoomImpScorch"
 	States 
 	{
 		Spawn:

@@ -347,6 +347,7 @@ actor PM_SquireFireball : DoomImpBall
 	Speed 15
 	SeeSound "HellKnight/Cast"
 	DeathSound "HellKnight/BallImpact"
+	Decal "Scorch"
 	Damage (random(30,37))
 	DamageType Fire
 	Scale 0.24

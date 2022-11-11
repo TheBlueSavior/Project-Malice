@@ -414,6 +414,7 @@ ACTOR PM_WhiplashGroundSeeker
    +DONTSPLASH
    +SEEKERMISSILE
 	DeathSound "Whiplash/Ground"
+	Decal "scorch"
    States
    {
    Spawn: 

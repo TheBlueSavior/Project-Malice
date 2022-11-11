@@ -571,6 +571,7 @@ actor PM_NobleFireball : DoomImpBall
 	Speed 15
 	SeeSound "weapons/bwoosh"
 	DeathSound "HellKnight/BallImpact"
+	Decal "scorch"
 	Damage (random(20,30))
 	DamageType Fire
 	Scale 0.15

@@ -224,6 +224,7 @@ Actor PM_VoreShadowBall
     Alpha 0.90
     SeeSound "Shadow/attack"
     DeathSound "HellKnight/BallImpact"
+	Decal "scorch"
     Projectile
     +RANDOMIZE
 

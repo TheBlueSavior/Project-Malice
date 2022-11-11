@@ -207,6 +207,7 @@ Scale 0.3
 Damage (random(30,35))
 DeathSound "HectebusBall/Exp"
 SeeSound "Corpulent/Whiz"
+Decal "BigScorch"
 DamageType Fire
 RenderStyle Add
 States
@@ -237,6 +238,7 @@ ACTOR PM_CorpulentFlamer
    DamageType Fire
    Scale 0.06
    DeathSound "Fire/Unleash"
+   Decal "Scorch"
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD
