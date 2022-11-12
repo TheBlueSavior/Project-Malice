@@ -5,7 +5,7 @@ Horrorspawn/Wake1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnWake1.ogg"
 Horrorspawn/Wake2 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnWake2.ogg"
 Horrorspawn/Wake3 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnWake3.ogg"
 
-$rolloff Horrorspawn/Wake 200 1500
+$rolloff Horrorspawn/Wake 200 1300
 
 $random Horrorspawn/Step { Horrorspawn/Step1 Horrorspawn/Step2 Horrorspawn/Step3 Horrorspawn/Step4 Horrorspawn/Step5 Horrorspawn/Step6 Horrorspawn/Step7 Horrorspawn/Step8 Horrorspawn/Step9 }
 Horrorspawn/Step1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnStep1.ogg"
@@ -40,8 +40,8 @@ ZFodderActive2 "Sounds/Monsters/Fodder/Horrorspawn/ZFodderActive2.ogg"
 ZombieFodder/Pain	"Sounds/Monsters/Fodder/Horrorspawn/ZFodderPain.ogg"
 
 $random ZombieFodder/Death { ZFodderDeath1 ZFodderDeath2 }
-ZFodderDeath "Sounds/Monsters/Fodder/Horrorspawn/ZFodderDeath1.ogg"
-ZFodderDeath "Sounds/Monsters/Fodder/Horrorspawn/ZFodderDeath2.ogg"
+ZFodderDeath1 "Sounds/Monsters/Fodder/Horrorspawn/ZFodderDeath1.ogg"
+ZFodderDeath2 "Sounds/Monsters/Fodder/Horrorspawn/ZFodderDeath2.ogg"
 
 ZombieFodder/Melee DSCLAW
 ZFODDGIB ZFODDGIB
@@ -3268,6 +3268,7 @@ PM/ControllerScream2 "Sounds/Other/ControllerScream2.ogg"
 PM/ControllerScream3 "Sounds/Other/ControllerScream3.ogg"
 
 PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
+$rolloff PM/ControllerTransform 300 1600
 
 PM/ControllerFlee "Sounds/Other/ControllerFlee.ogg"
 $rolloff PM/ControllerFlee 50 1500
