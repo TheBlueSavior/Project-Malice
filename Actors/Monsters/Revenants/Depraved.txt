@@ -154,7 +154,7 @@ Actor PM_Depraved
 		{
 		A_FaceTarget(0.75,3,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomRailgun(0,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare2",random(-500,500),random(-500,500),865,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		}
 	TNT1 A 0 A_JumpIfTargetInLOS("LaserFire",95,JLOSF_DEADNOJUMP)
     TNT1 A 0 A_MonsterRefire(25,"LaserMiss")
@@ -165,33 +165,96 @@ Actor PM_Depraved
 		{
 		A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomRailgun(2,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare2",random(-50,50),random(-10,-70),765,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
 		}
-    INCA UUUUUUUUUUUUUUUUUUUUUUUU 2 Light("ShadowBall4")
+    INCA UUUUU 2 Light("ShadowBall4")
 		{
 		A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare2",0,0,765,0,1,0,"PM_DepravedArcs",22);
+        A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",0,0,765,0,1,0,"PM_DepravedArcs",22);
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
 		}
+    INCA UUU 2 Light("ShadowBall4")
+        {
+        A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        }
+    INCA UUUUU 2 Light("ShadowBall4")
+		{
+		A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",0,0,765,0,1,0,"PM_DepravedArcs",22);
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+		}
+    INCA UUU 2 Light("ShadowBall4")
+        {
+        A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        }
+    INCA UUUUU 2 Light("ShadowBall4")
+		{
+		A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",0,0,765,0,1,0,"PM_DepravedArcs",22);
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+		}
+    INCA UUU 2 Light("ShadowBall4")
+        {
+        A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        }
+    INCA UUUUU 2 Light("ShadowBall4")
+		{
+		A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",0,0,765,0,1,0,"PM_DepravedArcs",22);
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+		}
+    INCA UUU 2 Light("ShadowBall4")
+        {
+        A_FaceTarget(1,90,0,0);
+		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+        }
     TNT1 A 0 A_Quake(5,20,0,2000)
     INCA U 1 Light("ShadowBall4")
 		{
 		A_FaceTarget(1,90,0,0);
-		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
+		A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
+        A_SpawnItemEx("PM_NetherFireShrapnel",4,-5,64,random(0,6),random(-5,5),random(-1,3));
         A_PlaySound("Depraved/SuperShock1",6,1,0,0.6);
         A_PlaySound("NetherConduit/HomingExp",5,1,0,0.6);
         A_CustomRailgun(random(40,40),0,"","Red",RGF_CENTERZ|RGF_FULLBRIGHT|RGF_NOPIERCING,0,1000,"PM_PoweredRedFlare",0,0,2500,0,1,0,"PM_DepravedArcsMega",22);
-		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
+		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,0);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,0);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,0);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,0);
+        A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,0);
+        A_SpawnItemEx("PM_RedShockwave",4,-1,64,0,0,0);
+        A_SpawnItemEx("PM_RedShockwave",4,-1,64,0,0,0);
 		}
   LaserMiss:
 	TNT1 A 0 A_PlaySound("DepravedBeamEnd",1,0.7,0,0.6)
@@ -205,7 +268,7 @@ Actor PM_Depraved
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomRailgun(0,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-400,400),random(-400,400),865,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
@@ -218,7 +281,7 @@ Actor PM_Depraved
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomRailgun(0,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-400,400),random(-400,400),865,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
@@ -231,7 +294,7 @@ Actor PM_Depraved
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomRailgun(0,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-400,400),random(-400,400),865,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
@@ -244,7 +307,7 @@ Actor PM_Depraved
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomRailgun(0,0,"","",RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-400,400),random(-400,400),865,0,1,0,"PM_DepravedArcs",43);
+        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
@@ -377,7 +440,7 @@ Actor PM_RedFireEffectBig
 	}
 }
 
-Actor PM_DepravedBeam : FastProjectile
+Actor PM_DepravedBeamWarning : FastProjectile
 {
 	Projectile
 	Radius 3
@@ -385,23 +448,17 @@ Actor PM_DepravedBeam : FastProjectile
 	Scale 0.8
 	RenderStyle Add
 	//Alpha 0.70
-	Damage (1)
-	Speed 40
+	Damage 0
+	Speed 150
 	+ROLLSPRITE
 	SeeSound ""
 	States
 	{
 	Spawn:
-		TNT1 A 0 NoDelay A_SetRoll(random(0,360))
-		FIR1 RRR 2 Bright A_SetScale(0.15)
-		FIR1 RRR 2 Bright A_SetScale(0.25)
-		FIR1 RRR 2 Bright A_SetScale(0.40)
-		FIR1 RR 2 Bright A_SetScale(0.5)
-	Go:
-		FIR1 RRR 2 Bright
+        TNT1 A 2 A_Weave(random(-5,5),random(-1,-5),random(-5,5),random(-5,-5))
 		Loop
   Death:
-	TNT1 A 0 A_SpawnItemEx("PM_RedFireEffectBig",0,0,0,0,0,2)
+	TNT1 A 0 A_SpawnItemEx("PM_RedLongFlare2",0,0,0,0,0,0)
     Stop
 	}
 }
