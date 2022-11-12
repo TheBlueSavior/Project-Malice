@@ -544,6 +544,7 @@ ACTOR PM_WhiplashKnife : MageWandMissile
   radius 2
   height 4
   -RIPPER
+  -SPAWNSOUNDSOURCE
   RenderStyle Add
   Seesound "Whiplash/Blades"
   deathsound "Whiplash/KnifeStab"
