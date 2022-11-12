@@ -91,8 +91,20 @@ DepravedBeam        "Sounds/Monsters/Revenants/Depraved/DepravedBeam.ogg"
 DepravedBeamEnd     "Sounds/Monsters/Revenants/Depraved/DepravedBeamEnd.ogg"
 Depraved/Scream      "Sounds/Monsters/Revenants/Depraved/DepravedScream.ogg"
 Depraved/Spit "Sounds/Monsters/Revenants/Depraved/DepravedSpit.ogg"
+$random Depraved/SmallShock { DepSmallShock1 DepSmallShock2 DepSmallShock3 }
+DepSmallShock1 "Sounds/Monsters/Revenants/Depraved/DepravedSmallShock1.ogg"
+DepSmallShock2 "Sounds/Monsters/Revenants/Depraved/DepravedSmallShock2.ogg"
+DepSmallShock3 "Sounds/Monsters/Revenants/Depraved/DepravedSmallShock3.ogg"
 
+Depraved/SuperShock1 "Sounds/Monsters/Revenants/Depraved/DepravedSuperShock1.ogg"
+Depraved/SuperShock2 "Sounds/Monsters/Revenants/Depraved/DepravedSuperShock2.ogg"
+
+$rolloff Depraved/SuperShock1 500 2000
+$rolloff Depraved/SuperShock2 500 2000
 $volume Depraved/Spit 0.85
+$volume DepravedBeamStart 0.6
+$volume DepravedBeam 0.6
+$volume DepravedBeamEnd 0.5
 
 $random Depraved/Active { DeprayedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
 DepravedActive1 "Sounds/Monsters/Revenants/Depraved/DepravedActive1.ogg"

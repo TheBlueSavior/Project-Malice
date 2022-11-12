@@ -1016,6 +1016,84 @@ ACTOR PM_ConduitArcsBig
 	}
 }
 
+ACTOR PM_DepravedArcs
+{
+	Radius 1
+	Height 1
+	Speed 9
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+    +DONTSPLASH
+	+ROLLSPRITE
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	//+MISSILE
+	RenderStyle Add
+	Alpha 1
+	Scale 0.04
+	States
+	{
+    Spawn:
+        SPKR A 4 BRIGHT
+		Stop
+	}
+}
+
+ACTOR PM_DepravedArcsMega
+{
+	Radius 1
+	Height 1
+	Speed 9
+	Damage 0 
+    +NOBLOCKMAP
+    +NOTELEPORT
+    +DONTSPLASH
+	+ROLLSPRITE
+	+NOINTERACTION
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+NOGRAVITY
+	//+MISSILE
+	RenderStyle Add
+	Alpha 1
+	Scale 0.15
+	States
+	{
+    Spawn:
+        SPKR A 5 BRIGHT
+        {
+        A_FadeOut(0.08);
+        }
+        Loop
+	}
+}
+
+ACTOR PM_PoweredRedFlare
+{
++CLIENTSIDEONLY
++NOINTERACTION
++ALWAYSPUFF
++BLOODLESSIMPACT
++Bright
+Scale 0.3
+Alpha 0.95
+States
+{
+Spawn:
+	TNT1 A 0
+    DTPR R 2 Light("ShadowBall4")
+	TNT1 A 0 A_PlaySound("Depraved/SuperShock2",CHAN_6,1)
+    TNT1 A 0 A_Quake(3,12,0,1000)
+	TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_RedFallingSparks",0,0,0,random(-8,8),random(-8,8),random(2,15),0,SXF_NOCHECKPOSITION)
+    TNT1 AAAAA 0 A_SpawnItemEx("PM_RedShockwaveSmall",random(-1,2),random(-1,2),random(-1,2),0,0,0,0,SXF_NOCHECKPOSITION)
+    TNT1 AAA 0 A_SpawnItemEx("PM_RedShockwave",random(-1,2),random(-1,2),random(-1,2),0,0,0,0,SXF_NOCHECKPOSITION)
+    Stop
+    }
+}
+
 ACTOR RailAimDot2
 {
 	Radius 1
@@ -1564,6 +1642,64 @@ Spawn:
 	A_FadeOut(0.03);
 	}
     Loop
+    }
+}
+
+ACTOR PM_RedLongFlare1
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright
+Scale 0.22
+Alpha 0.95
+States
+{
+Spawn:
+    DTPR R 1 Bright 
+	{
+	A_FadeOut(0.01);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_RedLongFlare2
+{
++CLIENTSIDEONLY
++NOINTERACTION
++ALWAYSPUFF
++BLOODLESSIMPACT
++Bright
+Scale 0.1
+Alpha 0.95
+States
+{
+Spawn:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("Depraved/SmallShock",CHAN_6)
+	TNT1 AA 0 A_SpawnItemEx("PM_RedFallingSparks",0,0,0,random(-8,8),random(-8,8),random(2,15),0,SXF_NOCHECKPOSITION,180)
+	Go:
+	DTPR R 3 Bright Light("ShadowBall4")
+	Go2:
+    DTPR R 1 Bright
+	{
+	A_FadeOut(0.03);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_RedFallingSparks : PM_ConduitFallingSparks
+{
+    States
+    {
+    Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_SpawnParticle("B70000",SPF_FULLBRIGHT|SPF_RELATIVE,90,8,random(0,360),0,0,0,random(-1,1),random(-1,1),random(-1,0),0,0,0,1,0,-0.2)
+		Loop
+	Death:
+		TNT1 A 0
+		Stop
     }
 }
 
