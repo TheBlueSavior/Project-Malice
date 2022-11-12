@@ -3196,6 +3196,13 @@ $random Bruiser/Swing { Bruiser/Swing1 Bruiser/Swing2 }
 Bruiser/Swing1 "Sounds/Monsters/Barons/Bruiser/BruiserSwing1.ogg"
 Bruiser/Swing2 "Sounds/Monsters/Barons/Bruiser/BruiserSwing2.ogg"
 
+$random Bruiser/LeapPropel { Bruiser/LeapPropel1 Bruiser/LeapPropel2 }
+Bruiser/LeapPropel1 "Sounds/Monsters/Barons/Bruiser/BruiserLeapPropel1.ogg"
+Bruiser/LeapPropel2 "Sounds/Monsters/Barons/Bruiser/BruiserLeapPropel2.ogg"
+
+Bruiser/LeapLoop "Sounds/Monsters/Barons/Bruiser/BruiserLeapLoop.ogg"
+Bruiser/LeapCharge "Sounds/Monsters/Barons/Bruiser/BruiserLeapCharge.ogg"
+
 $volume Bruiser/Swing 0.75
 $rolloff Bruiser/Swing 400 1400
 $rolloff Bruiser/LeapPropel 400 1400
