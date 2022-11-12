@@ -941,7 +941,7 @@ AffHowl4 "Sounds/Monsters/Fodder/Afflicted/AfflictedHowl4.ogg"
 $rolloff Afflicted/Howl 300 1200
 $volume Afflicted/Howl 0.7
 
-Afflicted/Puke "Sounds/Monsters/Afflicted/AfflictedPuke.ogg"
+Afflicted/Puke "Sounds/Monsters/Fodder/Afflicted/AfflictedPuke.ogg"
 
 $random Afflicted/Spawn { AffSpawn1 AffSpawn2 AffSpawn3 AffSpawn4 AffSpawn5 }
 AffSpawn1 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn1.ogg"
