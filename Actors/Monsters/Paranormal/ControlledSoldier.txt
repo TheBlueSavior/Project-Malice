@@ -313,7 +313,7 @@ Actor PM_ExposedController : PMMonsterBase
 	}
   See:
 	TNT1 A 0
-	TNT1 A 0 A_PlaySound("PM/TerrorMusicLoop",CHAN_6,0.8,1)
+	TNT1 A 0 A_PlaySound("PM/TerrorMusicLoop",CHAN_6,1.0,1)
 	TNT1 A 0 A_PlaySound("Skulker/Hunt",CHAN_7,1.0,1)
 	TNT1 A 0 A_ChangeFlag(NOCLIP,1)
 	TNT1 A 0 A_SetSpeed(13)

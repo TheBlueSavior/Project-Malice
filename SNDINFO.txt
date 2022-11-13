@@ -3267,6 +3267,8 @@ PM/ControllerScream1 "Sounds/Other/ControllerScream1.ogg"
 PM/ControllerScream2 "Sounds/Other/ControllerScream2.ogg"
 PM/ControllerScream3 "Sounds/Other/ControllerScream3.ogg"
 
+$rolloff PM/ControllerScream 300 1500
+
 PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
 $rolloff PM/ControllerTransform 300 1600
 
@@ -3277,5 +3279,5 @@ $rolloff PM/ControllerFlee 50 1500
 PM/FreedHostLaugh "Sounds/Other/FreedHostLaugh.ogg"
 
 PM/TerrorMusicLoop "Sounds/Other/TerrorMusicLoop.ogg"
-$rolloff PM/TerrorMusicLoop 100 1470
+$rolloff PM/TerrorMusicLoop 200 1470
 $limit PM/TerrorMusicLoop 1
