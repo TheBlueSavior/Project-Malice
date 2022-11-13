@@ -2129,6 +2129,8 @@ WLashDeath4 "Sounds/Monsters/Hellknights/Whiplash/WhiplashDeath4.ogg"
 Whiplash/Flank "Sounds/Monsters/Hellknights/Whiplash/WhiplashFlank.ogg"
 Whiplash/KnifeStab "Sounds/Monsters/Hellknights/Whiplash/WhipKnifeStab.ogg"
 Whiplash/Schwing "Sounds/Monsters/Hellknights/Whiplash/WhipSchwing.ogg"
+Whiplash/SpearThrow "Sounds/Monsters/Hellknights/Whiplash/WhipSpearThrow.ogg"
+Whiplash/SpearCharge "Sounds/Monsters/Hellknights/Whiplash/WhipSpearCharge.ogg"
 
 $random Whiplash/Blades { WLashBlade1 WLashBlade2 WLashBlade3 WLashBlade4 WLashBlade5 }
 WLashBlade1 "Sounds/Monsters/Hellknights/Whiplash/WhiplashBlade1.ogg"
@@ -2137,11 +2139,14 @@ WLashBlade3 "Sounds/Monsters/Hellknights/Whiplash/WhiplashBlade3.ogg"
 WLashBlade4 "Sounds/Monsters/Hellknights/Whiplash/WhiplashBlade4.ogg"
 WLashBlade5 "Sounds/Monsters/Hellknights/Whiplash/WhiplashBlade5.ogg"
 
+Whiplash/MeleeSwing "Sounds/Monsters/Hellknights/Whiplash/WhipMeleeSwing.ogg"
 Whiplash/GroundFire "Sounds/Monsters/Hellknights/Whiplash/WhiplashGroundFire.ogg"
 Whiplash/GSpikeSummon "Sounds/Monsters/Hellknights/Whiplash/WhiplashGSpikeSummon.ogg"
 
+$pitchset Whiplash/MeleeSwing 0.8 1.5 
 $limit Whiplash/KnifeStab 10
 $limit Whiplash/Blades 6
+$limit Whiplash/MeleeSwing 15
 
 //Phase Cacodemon
 $random CACOMEL { CACOMEL1 CACOMEL2 CACOMEL3 }
