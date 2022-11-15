@@ -3647,7 +3647,6 @@ ACTOR PM_BlueFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_BlueTrailFire",0,0,random(0,360),2,random(0,160))
-		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0
@@ -4069,7 +4068,6 @@ ACTOR PM_NetherFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_NetherShrapnelTrailFire",0,0,random(0,360),2,random(0,160))
-		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0
@@ -4099,7 +4097,6 @@ ACTOR PM_NobleFireShrapnel
     Spawn:
 		TNT1 A 0
 		TNT1 A 2 A_CustomMissile("PM_NobleShrapnelTrailFire",0,0,random(0,360),2,random(0,160))
-		TNT1 A 0 A_CheckFloor("Death")
 		Loop
 	Death:
 		TNT1 A 0

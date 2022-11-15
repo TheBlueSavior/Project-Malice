@@ -636,7 +636,6 @@ ACTOR PM_WhiplashMelee : MageWandMissile
   {
   Spawn:
     TNT1 A 0
-    TNT1 A 0 A_SpawnitemEx("PurpleOrbSmall")
     BLA2 AAAAA 1 BRIGHT Light("WhipKnife")
     BLA2 AAAAAAAA 1 BRIGHT Light("WhipKnife") A_FadeOut(0.3)
     stop
