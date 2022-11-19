@@ -155,9 +155,9 @@ actor PM_Devil : PMMonsterBase
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
-	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
+	D3IM CCCCBBBBB 1 A_FaceTarget
 	TNT1 A 0 A_PlaySound("GenericChargeSmall")
-    D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
+    D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
 	A_Spawnitemex("OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -188,9 +188,9 @@ actor PM_Devil : PMMonsterBase
 	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0)
 	TNT1 A 0 ThrustThingZ(0,30,0,1)
-	D3IM CCCCCCCCBBBBBBBBB 1 A_FaceTarget
+	D3IM CCCCBBBBB 1 A_FaceTarget
 	TNT1 A 0 A_PlaySound("GenericChargeSmall")
-    D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
+    D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget;
 	A_Spawnitemex("OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -269,7 +269,7 @@ actor PM_Devil : PMMonsterBase
 	D3IM G 1 Light("Avatarfireball4") A_Aim()
     D3IM G 7 Light("Avatarfireball4") 
 	{
-	A_LeadTarget(12);
+	A_LeadTarget(15);
 	A_SpawnProjectile("PM_DevilImpBall",32,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("OrangeFireEffect",15,random(10,12),33,0,0,2);
@@ -486,11 +486,10 @@ actor PM_DevilImpBall : PM_CharredBall
 	Damage (random(18,18))
 	+NOGRAVITY
 	-LOWGRAVITY
-	//+SEEKERMISSILE
 	seesound "FIREBA1"
 	Decal "DoomImpScorch"
 	DamageType Fire
-	Speed 12
+	Speed 15
 	FastSpeed 21
 	Scale 0.93
 	states
@@ -510,9 +509,8 @@ actor PM_DevilImpBall : PM_CharredBall
 	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames")
-    AFX5 D 2 bright Light("AvatarFireball4") //A_Explode (5, 56, 1)
-    //AFX5 CCCCCCCCC 0 bright A_SpawnItemEx (PyroImpBallFire, random(1,-1), random(1,-1), random(1,-1), 6, 0, random(1,-1) , random(0,360), 0, 0)
-    AFX5 EFGH 2 Light("AvatarFireball4") bright
+    AFX5 D 2 bright Light("AvatarFireball4")
+    FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright
     stop
   }
 }

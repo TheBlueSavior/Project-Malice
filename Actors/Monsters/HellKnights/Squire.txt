@@ -48,14 +48,14 @@ ACTOR PM_Squire
 		TNT1 A 0 A_Jump(20,"See2")
 		TNT1 A 0 A_SetSpeed(5)
 		BOS6 AAAA 2 A_Chase
-		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 AA 0 A_Recoil(-0.2)
 		BOS6 BBBB 2 A_Chase
-		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 AA 0 A_Recoil(-0.4)
 		TNT1 A 0 A_PlaySound("Squire/Step")
 		BOS6 CCCC 2 A_Chase
-		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 AA 0 A_Recoil(-0.2)
 		BOS6 DDDD 2 A_Chase
-		TNT1 AA 0 A_Recoil(-0.6)
+		TNT1 AA 0 A_Recoil(-0.4)
 		TNT1 A 0 A_PlaySound("Squire/Step")
 		Loop
 		
@@ -65,12 +65,12 @@ ACTOR PM_Squire
 		TNT1 AA 0 A_Recoil(-0.8)
 		BOS6 BB 3 A_Chase
 		TNT1 A 0 A_PlaySound("Squire/Step")
-		TNT1 AA 0 A_Recoil(-0.8)
+		TNT1 AA 0 A_Recoil(-1.5)
 		BOS6 CC 3 A_Chase
 		TNT1 AA 0 A_Recoil(-0.8)
 		BOS6 DD 3 A_Chase
 		TNT1 A 0 A_PlaySound("Squire/Step")
-		TNT1 AA 0 A_Recoil(-0.8)
+		TNT1 AA 0 A_Recoil(-1.5)
 		TNT1 A 0 A_Jump(5,"See1")
 		Loop
 		
@@ -111,7 +111,7 @@ ACTOR PM_Squire
 		BOS6 STSU 3 A_FaceTarget
 		BOS6 STSU 3 A_FaceTarget
 		BOS6 RQP 2 A_FaceTarget
-		Goto See1
+		Goto See2
 	PainRoar:
 		BOS6 PQR 2 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Squire/Sight",CHAN_6)
@@ -120,7 +120,7 @@ ACTOR PM_Squire
 		BOS6 RQP 2 A_FaceTarget
 		Goto See2
 	FireBall:
-		TNT1 A 0 A_Jump(40,"Roar")
+		TNT1 A 0 A_Jump(30,"Roar")
 		BOS6 EEEEEEEEE 1 Light("Greenball4") 
 		{
 		A_FaceTarget;
@@ -362,10 +362,13 @@ actor PM_SquireFireball : DoomImpBall
 	}
 	loop
   Death:
-    NDEB D 2 bright Light("GreenFireLight")
-	TNT1 A 0 A_SpawnItemEx("GFireBallExplode")
-	TNT1 A 0 A_SpawnItemEx("PM_GreenFireballExpFlames")
-    NDEB EFGH 2 Light("GreenFireLight") bright
+	TNT1 A 0
+	TNT1 A 0 A_SetTranslation("PM_GreenFusionTint")
+	TNT1 A 0 A_SetScale(1.2)
+    NDEB D 1 bright Light("GreenFireLight")
+	TNT1 A 0 A_SpawnItemEx("GFireBallExplode",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
+	TNT1 AAA 0 A_SpawnItemEx("PM_GreenFireballExpFlames",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
+    FIR3 CDEFGHIJKLMNOP 2 Light("GreenFireLight") bright
     stop
   }
 }
