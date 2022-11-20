@@ -139,7 +139,7 @@ ACTOR PM_SlugShotgunner : Zombieman
     XDeath:
         SPS4 M 5 A_NoBlocking
         F1SH N 5 A_XScream
-        F1SH O 5 A_NoBlocking
+        F1SH O 5
         F1SH PQRST 5
         F1SH U -1
         Stop
