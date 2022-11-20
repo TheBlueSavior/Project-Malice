@@ -22,7 +22,7 @@ Actor PM_Host : DoomImp
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
 	//+NOINFIGHTING
-	//+MISSILEMORE
+	+MISSILEMORE
   states
   {
   Spawn:
@@ -311,7 +311,7 @@ Actor PM_HostDrool
 
 Actor PM_HostSprayPuke
 {
-  Damage(1)
+  Damage(2)
   Height 1
   Radius 1
   Speed 15

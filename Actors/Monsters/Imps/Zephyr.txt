@@ -556,9 +556,12 @@ actor PM_FastImpBall : PM_CharredBall
 	}
 	loop
   Death:
+	TNT1 A 0
+	TNT1 A 0 A_SetTranslation("PM_RedFireTint")
+	TNT1 A 0 A_SetScale(1)
 	TNT1 A 0 A_SpawnItemEx("RFireBallExplode")
     BFX5 D 2 bright Light("Shadowball2") //A_Explode (5, 56, 1)
-    BFX5 EFGH 2 Light("Shadowball2") bright
+    FIR3 CDEFGHIJKLMNOP 2 Light("Shadowball2") bright
     stop
   }
 }
