@@ -285,6 +285,7 @@ CharIdle9 "Sounds/Monsters/Imps/Charred/CharIdle9.mp3"
 CharIdle10 "Sounds/Monsters/Imps/Charred/CharIdle10.mp3"
 CharIdle11 "Sounds/Monsters/Imps/Charred/CharIdle11.mp3"
 
+$volume CharActive1 0.6
 $limit Charred/Idle 4
 $volume Charred/Idle 0.3
 $volume Charred/Death 0.6
