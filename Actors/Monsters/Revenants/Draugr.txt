@@ -317,6 +317,7 @@ ACTOR PM_DraugrHMissile : RevenantTracer
 		A_Explode(8,100);
 		Radius_Quake (2, 54, 0, 10, 0);
 		}
+		TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7)
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
 		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
 		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")

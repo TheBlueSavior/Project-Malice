@@ -1057,6 +1057,7 @@ ACTOR TyrantHeavyRocket : RevenantTracer
 		A_Explode(50,200);
 		Radius_Quake (2, 54, 0, 25, 0);
 		}
+		TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7)
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig")
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare")
 		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)

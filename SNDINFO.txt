@@ -2762,14 +2762,20 @@ Gore/HeadBounce3 "Sounds/Monsters/Fodder/Horrorspawn/HeadBounce3.ogg"
 ZombieRifleDistant	"Sounds/Other/ZombieRifleDistant.ogg"
 GunnerRifleDistant	"Sounds/Other/GunnerGunDistant.ogg"
 ShotgunnerGunDistant	"Sounds/Other/ShotgunnerGunDistant.ogg"
+$random BigExplosionDistant { BEDistant1 BEDistant2 BEDistant3 }
+BEDistant1 "Sounds/Other/BigExplosionDistant1.ogg"
+BEDistant2 "Sounds/Other/BigExplosionDistant2.ogg"
+BEDistant3 "Sounds/Other/BigExplosionDistant3.ogg"
 
 $limit ZombieRifleDistant 20
 $limit GunnerRifleDistant 20
 $limit ShotgunnerGunDistant 20
+$limit BigExplosionDistant 20
 
 $rolloff ZombieRifleDistant 100 3800
 $rolloff GunnerRifleDistant 200 3800
 $rolloff ShotgunnerGunDistant 300 3800
+$rolloff BigExplosionDistant 400 4000
 
 //Teleport
 
