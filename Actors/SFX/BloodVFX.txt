@@ -130,8 +130,10 @@ Actor PM_NormalBlood1
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
-	+NOTELEPORT
-	PROJECTILE
+    +NOBLOCKMAP
+    +NOTELEPORT
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	RenderStyle Normal
 	Scale 0.65
 	Height 1
@@ -192,7 +194,9 @@ Actor PM_NormalBloodMulti
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -252,7 +256,11 @@ Actor PM_GreenBloodBase
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+    +THRUACTORS
+    +THRUSPECIES
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -334,13 +342,15 @@ Actor PM_GreenBlood1 : PM_NormalBlood1
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1,2,0.5]"
-	Scale 0.65
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Height 1
 	Radius 1
 	Mass 1
+	RenderStyle Normal
+	Translation "0:255=%[0,0,0]:[1,2,0.5]"
+	Scale 0.65
 	-NOGRAVITY
 	Gravity 0.25
 	States
@@ -426,7 +436,9 @@ Actor PM_BlueBloodBase
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -509,13 +521,15 @@ Actor PM_BlueBlood1 : PM_NormalBlood1
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
-	Scale 0.65
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Height 1
 	Radius 1
 	Mass 1
+	RenderStyle Normal
+	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
+	Scale 0.65
 	-NOGRAVITY
 	Gravity 0.25
 	States
@@ -565,14 +579,16 @@ Actor PM_BlueBlood4 : PM_NormalBlood1
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
+	Height 1
+	Radius 1
+	Mass 1
 	RenderStyle Normal
 	Translation "0:255=%[0,0,0]:[0.3,1.0,2.0]"
 	+BRIGHT
 	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
 	-NOGRAVITY
 	Gravity 0.25
 	States
@@ -647,7 +663,9 @@ Actor PM_BlackBloodBase
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -729,13 +747,15 @@ Actor PM_BlackBlood1 : PM_NormalBlood1
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
-	Scale 0.65
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Height 1
 	Radius 1
 	Mass 1
+	RenderStyle Normal
+	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
+	Scale 0.65
 	-NOGRAVITY
 	Gravity 0.25
 	States
@@ -820,7 +840,9 @@ Actor PM_PestilenceBloodBase
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -907,7 +929,9 @@ Actor PM_PestilenceMeatChunkLauncher
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
@@ -933,7 +957,10 @@ Actor PM_PestilenceMaggotFall
   Scale 0.75
   +FORCEXYBILLBOARD
   Gravity 0.3
-  PROJECTILE
+  +MISSILE
+  +NOBLOCKMAP
+  -ALLOWPARTICLES
+  +PUFFGETSOWNER
   -NOGRAVITY
   +ROLLSPRITE
   States
@@ -953,13 +980,15 @@ Actor PM_PestilenceBlood1
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1,1.2,0.1]"
-	Scale 0.65
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Height 1
 	Radius 1
 	Mass 1
+	RenderStyle Normal
+	Translation "0:255=%[0,0,0]:[1,1.2,0.1]"
+	Scale 0.65
 	-NOGRAVITY
 	Gravity 0.1
 	States
@@ -1018,7 +1047,9 @@ Actor PM_PestilenceBloodMulti
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
+	+NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
 	Scale 0.65
 	Height 1
 	Radius 1
