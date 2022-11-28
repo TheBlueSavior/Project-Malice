@@ -15,6 +15,7 @@ ACTOR PM_Beholder: Cacodemon
   +DONTHARMSPECIES
   Species "Cacodemon"
   Tag "Beholder"
+  Bloodtype "PM_NormalBloodBase"
   //+NOINFIGHTING
   FloatBobStrength 0.4
   +FLOATBOB

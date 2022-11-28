@@ -25,6 +25,7 @@ ACTOR PM_FallenMarine
   Dropitem "Chaingun"
   DropItem "Lith_ClipBox"
   Species "Chaingunner"
+  Bloodtype "PM_NormalBloodBase"
   States
   {
   Spawn:

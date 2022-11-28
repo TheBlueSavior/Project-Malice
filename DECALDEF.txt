@@ -2,8 +2,8 @@
 decal BloodSplat1
 {
 	pic BSPLAT1
-	//shade "BloodDefault" //BloodDefault??
-	translucent 0.80
+	OpaqueBlood
+	//shade "BloodDefault"
 	randomflipx
 	randomflipy
 }
@@ -11,8 +11,8 @@ decal BloodSplat1
 decal BloodSplat2
 {
 	pic BSPLAT2
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -20,8 +20,8 @@ decal BloodSplat2
 decal BloodSplat3
 {
 	pic BSPLAT3
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -29,8 +29,8 @@ decal BloodSplat3
 decal BloodSplat4
 {
 	pic BSPLAT4
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -38,8 +38,8 @@ decal BloodSplat4
 decal BloodSplat5
 {
 	pic BSPLAT5
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -47,8 +47,8 @@ decal BloodSplat5
 decal BloodSplat6
 {
 	pic BSPLAT6
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -56,8 +56,8 @@ decal BloodSplat6
 decal BloodSplat7
 {
 	pic BSPLAT7
+	OpaqueBlood
 	//shade "BloodDefault"
-	translucent 0.80
 	randomflipx
 	randomflipy
 }
@@ -79,6 +79,7 @@ decalgroup Bloodsplat
 decal BloodSmear1
 {
 	pic BSMEAR1
+	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
 	randomflipy
@@ -88,6 +89,7 @@ decal BloodSmear1
 decal BloodSmear2
 {
 	pic BSMEAR2
+	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
 	randomflipy
@@ -97,6 +99,7 @@ decal BloodSmear2
 decal BloodSmear3
 {
 	Pic BSMEAR3
+	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
 	randomflipy
@@ -105,6 +108,7 @@ decal BloodSmear3
 decal BloodSmear4
 {
 	Pic BSMEAR4
+	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
 	randomflipy

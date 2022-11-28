@@ -15,6 +15,7 @@ Actor PM_Wretched : Cacodemon
   MeleeRange 185
   Species "Cacodemon"
   Tag "Wretched"
+  BloodType "PM_BlueBloodBase"
   +FLOATBOB
   +MissileMore
   //+NOINFIGHTING
@@ -94,7 +95,7 @@ Actor PM_Wretched : Cacodemon
 	TNT1 A 0 A_JumpIfCloser(70,"Bite3")
 	Goto See2
   Bite3:
-	C1C2 D 6 A_CustomMeleeAttack(10*random(1,6),"Wretched/Bite")
+	C1C2 DD 3 A_CustomMeleeAttack(10*random(1,6),"Wretched/Bite")
 	C1C2 A 10
 	Goto See2
   Missile:

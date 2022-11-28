@@ -13,6 +13,7 @@ ACTOR PM_DecayedShotgunner
 	//+NOINFIGHTING
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
+	Bloodtype "PM_PestilenceBloodBase"
 	Species "Shotgunner"
 	Tag "Decayed Shotgunner"
     OBITUARY "%o was caught in a Decayed Shotgunner's blast."

@@ -21,6 +21,7 @@ ACTOR PM_RFZombie: Zombieman
 	PainSound "Nailgunner/Pain"
 	DeathSound "Nailgunner/Death"
 	ActiveSound "Nailgunner/Active"
+	Bloodtype "PM_NormalBloodBase"
     DropItem "Clip"
     Decal Bulletchip
     states

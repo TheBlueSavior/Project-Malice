@@ -10,6 +10,7 @@ ACTOR PM_DemonTechBrute : Demon
 	MeleeRange 60
 	Scale 1.1
     MONSTER
+	BloodType "PM_GreenBloodBase"
     +FLOORCLIP
 	//+NOINFIGHTING
 	+DONTHARMSPECIES

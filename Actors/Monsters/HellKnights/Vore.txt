@@ -18,6 +18,7 @@ Actor PM_Vore
   +Donthurtspecies
   +MISSILEMORE
   +MissileEvenMore
+  Bloodtype "PM_NormalBloodBase"
   Obituary "%o did not keep %p eyes on the Vore's cursed magic." 
   SeeSound ""
   ActiveSound "Vore/Active"

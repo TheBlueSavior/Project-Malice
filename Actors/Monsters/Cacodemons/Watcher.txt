@@ -18,14 +18,12 @@ Class PM_Watcher : Actor
 	Obituary "%o underestimated a Watcher.";
 	HitObituary "%o was nibbled by a Watcher.";
     MONSTER;
+	Bloodtype "PM_BlackBloodBase";
 	BloodColor "Black";
-	//DropItem "RagePoint1";
 	 +DONTHARMSPECIES
 	Species "Cacodemon";
     +NOGRAVITY
-	//+NOINFIGHTING
 	+FLOATBOB
-	//+MissileMore
 	+SLIDESONWALLS
 	+THRUSPECIES
 	FloatBobStrength 0.4;

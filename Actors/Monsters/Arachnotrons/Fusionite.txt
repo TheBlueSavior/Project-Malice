@@ -9,14 +9,13 @@ Actor PM_Fusionite : Arachnotron
 	MaxDropOffHeight 24
 	Tag "Fusionite"
 	Obituary "%o was liquefied by a Fusionite."
-	//DropItem "RagePoint1"
 	Species "Arachnotron"
 	+DONTHARMSPECIES
 	SEESOUND ""
 	PAINSOUND "Fusionite/Pain"
 	DEATHSOUND "Fusionite/Death"
 	ACTIVESOUND "Fusionite/Active"
-	//+NOINFIGHTING
+	Bloodtype "PM_NormalBloodBase"
 	States
 {
 Spawn:

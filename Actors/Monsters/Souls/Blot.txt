@@ -68,6 +68,7 @@ Actor PM_Blot
   damagefactor "blot", 0
   Bloodcolor "Black"
   MONSTER
+  Bloodtype "PM_BlackBloodBase"
   +FLOAT
   +NOGRAVITY
   +STANDSTILL

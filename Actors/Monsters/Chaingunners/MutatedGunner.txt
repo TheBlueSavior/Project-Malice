@@ -19,6 +19,7 @@ ACTOR PM_MutatedGunner
 	Dropitem "Chaingun"
 	DropItem "Lith_ClipBox"
 	Species "Chaingunner"
+	Bloodtype "PM_NormalBloodBase"
 	Obituary "%o was riddled with holes by a Mutated Gunner."
 	States
 	{

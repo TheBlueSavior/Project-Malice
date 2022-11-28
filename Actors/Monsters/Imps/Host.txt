@@ -8,9 +8,9 @@ Actor PM_Host : DoomImp
     mass 120
     speed 8
 	Bloodcolor "DarkGreen"
+	BloodType "PM_PestilenceBloodBase"
 	Species "Imp"
     painchance 180
-	//DropItem "RagePoint1"
     seesound ""
     painsound "Host/Pain"
     deathsound "Host/Death"
@@ -21,7 +21,6 @@ Actor PM_Host : DoomImp
     +DONTHARMCLASS
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
-	//+NOINFIGHTING
 	+MISSILEMORE
   states
   {
@@ -182,12 +181,12 @@ Actor PM_Host : DoomImp
 	TNT1 AAAAAAAA 0 A_SpawnItemEx("HostSwarmFly",0,0,5)
 	TNT1 A 0 A_SpawnItemEx("ActiveSwarm",0,0,7,0,0,0,0,0,200)
 	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-	HOS1 NNNNNNNNN 50 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-1,1),random(-1,1),random(0,1),0,0)
+	HOS1 NNNNNNNNN 50 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0)
     HOS1 N -1
     stop
   XDeath:
     TNT1 A 0 A_StopSound(CHAN_6)
-	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-1,1),random(-1,1),random(0,1),0,0)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-3,3),random(-3,3),random(0,2),0,0)
     HOS1 O 5 A_RemoveChildren(1,RMVF_EVERYTHING)
     HOS1 P 5 A_XScream
     HOS1 Q 5

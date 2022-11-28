@@ -11,6 +11,7 @@ ACTOR PM_Infested
   BloodColor "Dark Red"
   +FLOORCLIP
   +DONTHARMSPECIES
+  Bloodtype "PM_PestilenceBloodBase"
   Species "Revenant"
   SeeSound ""
   PainSound "Infested/Sight"

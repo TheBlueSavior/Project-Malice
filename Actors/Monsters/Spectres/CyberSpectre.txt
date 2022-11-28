@@ -7,21 +7,18 @@ ACTOR PM_CyberSpectre
 	PainChance 100
 	Mass 400
 	+FLOORCLIP
-	//+NOINFIGHTING
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
 	+SLIDESONWALLS
 	Species "Brute"
 	Monster
-	//MaxStepHeight 40
-	//MaxDropOffHeight 40
 	MeleeDamage 5
 	MeleeThreshold 240
-	//DropItem "RagePoint1"
 	MeleeRange 80
 	MaxStepHeight 32
 	MaxDropOffHeight 32
 	Speed 13
+	Bloodtype "PM_NormalBloodBase"
 	SeeSound "CBrute/Sight"
 	DeathSound "PBrute/Death"
 	ActiveSound "CBrute/Active"

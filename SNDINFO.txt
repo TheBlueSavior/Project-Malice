@@ -890,8 +890,8 @@ Host/Sight1 "Sounds/Monsters/Imps/Host/HostSight1.ogg"
 Host/Sight2 "Sounds/Monsters/Imps/Host/HostSight2.ogg"
 
 $random Host/Pain { Host/Pain1 Host/Pain2 }
-Host/Pain1 "Sounds/Monsters/Imps/Host/HostPain1.ogg"
-Host/Pain2 "Sounds/Monsters/Imps/Host/HostPain2.ogg"
+Host/Pain1 "Sounds/Monsters/Imps/Host/HostPain1.mp3"
+Host/Pain2 "Sounds/Monsters/Imps/Host/HostPain2.mp3"
 
 Host/Attack		PLAGATK
 Host/Swing		PLAGSWIN
@@ -906,6 +906,7 @@ PoisonShot/Hit			POISHIT
 $volume Host/Death 0.6
 $volume Host/Sight 0.45
 $volume Host/Active 0.55
+$volume Host/Pain 0.6
 
 //Hunger
 $random Afflicted/Sight { AffSight1 AffSight2 }
@@ -3293,3 +3294,31 @@ PM/FreedHostLaugh "Sounds/Other/FreedHostLaugh.ogg"
 PM/TerrorMusicLoop "Sounds/Other/TerrorMusicLoop.ogg"
 $rolloff PM/TerrorMusicLoop 200 1470
 $limit PM/TerrorMusicLoop 1
+
+//Gore
+$random PM/GibSplat { PM/GibSplat1 PM/GibSplat2 PM/GibSplat3 PM/GibSplat4 PM/GibSplat5 PM/GibSplat6 }
+
+PM/GibSplat1 "Sounds/Other/PMGibSplat1.ogg"
+PM/GibSplat2 "Sounds/Other/PMGibSplat2.ogg"
+PM/GibSplat3 "Sounds/Other/PMGibSplat3.ogg"
+PM/GibSplat4 "Sounds/Other/PMGibSplat4.ogg"
+PM/GibSplat5 "Sounds/Other/PMGibSplat5.ogg"
+PM/GibSplat6 "Sounds/Other/PMGibSplat6.ogg"
+$limit PM/GibSplat 2
+
+PM/GibLand "Sounds/Other/PMGibLand.ogg"
+
+$random PM/BloodHit { PM/BloodHit1 PM/BloodHit2 PM/BloodHit3 PM/BloodHit4 PM/BloodHit5 PM/BloodHit6 PM/BloodHit7 PM/BloodHit8 PM/BloodHit9 }
+
+PM/BloodHit1 "Sounds/Other/PMBloodHit1.ogg"
+PM/BloodHit2 "Sounds/Other/PMBloodHit2.ogg"
+PM/BloodHit3 "Sounds/Other/PMBloodHit3.ogg"
+PM/BloodHit4 "Sounds/Other/PMBloodHit4.ogg"
+PM/BloodHit5 "Sounds/Other/PMBloodHit5.ogg"
+PM/BloodHit6 "Sounds/Other/PMBloodHit6.ogg"
+PM/BloodHit7 "Sounds/Other/PMBloodHit7.ogg"
+PM/BloodHit8 "Sounds/Other/PMBloodHit8.ogg"
+PM/BloodHit9 "Sounds/Other/PMBloodHit9.ogg"
+
+$limit PM/BloodHit 2
+$volume PM/BloodHit 0.45

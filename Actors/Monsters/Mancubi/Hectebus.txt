@@ -13,6 +13,7 @@ actor PM_Hectebus : fatso
  Species "Mancubus"
  MinMissileChance 220
  Tag "Hectebus"
+ Bloodtype "PM_NormalBloodBase"
  //+NOINFIGHTING
  +DONTHURTSPECIES
  +DONTHARMSPECIES

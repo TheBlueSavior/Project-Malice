@@ -22,6 +22,7 @@ Actor PM_Remnant
 	+DONTHARMSPECIES
 	Species "PukeMonster"
 	Bloodcolor Darkred
+	Bloodtype "PM_PestilenceBloodBase"
 	DropItem "ArmorBonus"
 	DropItem "Shotgun"
     States

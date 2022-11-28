@@ -19,6 +19,7 @@ ACTOR PM_PistolZombie : Zombieman
     PainSound "PistolZombie/Pain"
     DeathSound "PistolZombie/Death"
     ACTIVESOUND "PistolZombie/Active"
+	Bloodtype "PM_NormalBloodBase"
     DropItem "Clip"
     Decal Bulletchip
     states

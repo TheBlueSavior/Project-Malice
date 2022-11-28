@@ -14,11 +14,11 @@ Actor PM_HellPriest
     DeathSound "monster/acodth"
     ActiveSound "HellPriestActive"
 	Species "Chaingunner"
-	//Dropitem "Chaingun"
 	Tag "Hell Priest"
 	Bloodcolor "Black"
 	FloatBobStrength 0.4
     Monster
+	Bloodtype "PM_BlackBloodBase"
     +FloorClip
     +DontHarmClass
 	+DONTHARMSPECIES

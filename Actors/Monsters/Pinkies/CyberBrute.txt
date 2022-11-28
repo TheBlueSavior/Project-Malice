@@ -18,10 +18,10 @@ ACTOR PM_CyberBrute : Demon
 	MeleeThreshold 230
 	//MaxStepHeight 32
 	//MaxDropOffHeight 32
-//	DropItem "RagePoint1"
 	MeleeRange 80
 	Speed 13
 	Scale 1.1
+	Bloodtype "PM_NormalBloodBase"
 	SeeSound ""
 	DeathSound "Brute/Death"
 	ActiveSound "CBrute/Active"

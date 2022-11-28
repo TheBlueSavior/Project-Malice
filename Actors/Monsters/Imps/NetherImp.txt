@@ -18,6 +18,7 @@ Class PM_NetherImp : Actor
     Obituary "%o was violently cursed by a Nether Conduit.";
 	//DropItem "RagePoint1";
 	Tag "Nether Conduit";
+	Bloodtype "PM_NormalBloodBase";
     MONSTER;
     +FLOORCLIP
 	+MISSILEMORE

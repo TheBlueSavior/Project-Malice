@@ -12,8 +12,8 @@ Actor PM_Exile : Archvile
   PainSound "Exile/Pain"
   DeathSound "Exile/Death"
   ActiveSound "Exile/Active"
+  Bloodtype "PM_NormalBloodBase"
   +DONTHARMSPECIES
-  //+MissileMore
   +DONTHURTSPECIES
   +NOINFIGHTSPECIES
   States
@@ -436,7 +436,7 @@ ACTOR PM_ExileFireball
 		Loop
 	Death:
 		TNT1 A 0
-		 TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7)
+		TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7)
 		TNT1 A 0 A_Explode(35,140)
 		TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0)
 		TNT1 A 0 A_PlaySound("baron/attack",CHAN_6)

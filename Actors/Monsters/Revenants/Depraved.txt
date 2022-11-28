@@ -12,19 +12,17 @@ Actor PM_Depraved
     HitObituary "%o was beaten to death by a Depraved."
     SeeSound ""
     PainSound ""
-	//DropItem "RagePoint1"
     DeathSound ""
     ActiveSound "Depraved/Active"
     AttackSound "monster/incatk"
 	Tag "Depraved"
     MONSTER
+	Bloodtype "PM_BlackBloodBase"
     +FLOORCLIP
     +SHORTMISSILERANGE
 	+MissileMore
     +DONTHARMCLASS
 	+DONTHARMSPECIES
-	//+NOINFIGHTING
-	//+NOPAIN
   States
   {
   Spawn:

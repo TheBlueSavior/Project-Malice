@@ -17,6 +17,7 @@ Actor PM_Whiplash : PMMonster
   +DONTHARMSPECIES
   +Donthurtspecies
   +MISSILEevenMORE
+  Bloodtype "PM_NormalBloodBase"
   Obituary "%o couldn't evade the Whiplash's cursed blades!"
   SeeSound ""
   ActiveSound "Whiplash/Active"

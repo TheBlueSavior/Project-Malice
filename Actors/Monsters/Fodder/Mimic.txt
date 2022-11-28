@@ -5,10 +5,11 @@ actor Mimic
   health 400
   radius 20
   height 56
-  mass 120
+  mass 900
   speed 5
   Monster
-  painchance 100
+  Bloodtype "PM_NormalBloodBase"
+  painchance 5
   MeleeThreshold 196
   MeleeRange 112
   +DONTHURTSPECIES

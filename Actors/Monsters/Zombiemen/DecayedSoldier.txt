@@ -22,6 +22,7 @@ ACTOR PM_DecayedSoldier
     DeathSound "Decayed/Death"
     ACTIVESOUND "Decayed/Active"
     DropItem "Clip"
+	Bloodtype "PM_PestilenceBloodBase"
     Decal Bulletchip
     states
     {

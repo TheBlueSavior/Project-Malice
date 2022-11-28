@@ -55,6 +55,7 @@ Actor Horrorspawn1
 	Species "Horrorspawn"
 	Tag "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	XScale 0.84
 	YScale 0.91
@@ -299,6 +300,7 @@ Actor Horrorspawn2
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	//XScale 0.84
 	//YScale 0.91
@@ -536,6 +538,7 @@ Actor Horrorspawn3
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	//XScale 0.84
 	//YScale 0.91
@@ -773,6 +776,7 @@ Actor Horrorspawn4
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	//XScale 0.84
 	//YScale 0.91
@@ -1010,6 +1014,7 @@ Actor FreshHorrorspawn
 	Tag "Fresh Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	XScale 0.84
 	YScale 0.91
@@ -1153,6 +1158,7 @@ Actor HorrorspawnScreamer
 	Tag "Horrorspawn Screamer"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	XScale 0.84
 	YScale 0.91
@@ -1384,6 +1390,7 @@ Actor HorrorspawnDecap
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	XScale 0.84
 	YScale 0.91
     +FLOORCLIP
@@ -1789,6 +1796,7 @@ actor PM_SleepingHorrorspawn1
   +THRUACTORS
   +FLOORCLIP
   //-SOLID
+  Bloodtype "PM_NormalBloodBase"
   +Shootable
   PainChance 1
   Health 5
@@ -1829,6 +1837,7 @@ actor PM_SleepingHorrorspawn1
 Actor PM_SleepingHorrorspawn2
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP
@@ -1878,6 +1887,7 @@ Actor PM_SleepingHorrorspawn2
 Actor PM_SleepingHorrorspawn22
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP
@@ -1928,6 +1938,7 @@ Actor PM_SleepingHorrorspawn22
 Actor PM_SleepingHorrorspawn3
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP
@@ -1978,6 +1989,7 @@ Actor PM_SleepingHorrorspawn3
 Actor PM_SleepingHorrorspawn33
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP
@@ -2029,6 +2041,7 @@ Actor PM_SleepingHorrorspawn33
 Actor PM_SleepingHorrorspawn4
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP
@@ -2079,6 +2092,7 @@ Actor PM_SleepingHorrorspawn4
 Actor PM_SleepingHorrorspawn44
 { 
   Monster
+  Bloodtype "PM_NormalBloodBase"
   //+DONTHURTSPECIES
   +AMBUSH
   //+NOBLOCKMAP

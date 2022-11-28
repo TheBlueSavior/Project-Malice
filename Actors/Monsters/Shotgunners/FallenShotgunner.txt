@@ -13,6 +13,7 @@ Actor PM_FallenShotgunner
    DropItem "Shotgun"
    Species "Shotgunner"
    Tag "Fallen Shotgunner"
+   Bloodtype "PM_NormalBloodBase"
    Monster
     +FloorClip
     +NoTarget

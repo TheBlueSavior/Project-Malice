@@ -20,6 +20,7 @@ Class PM_Fleshspawn : Actor
     activesound "Fleshspawn/Active";
 	Tag "Fleshspawn";
     MONSTER;
+	Bloodtype "PM_NormalBloodBase";
     +FLOAT
     +NOGRAVITY
     +DONTHARMCLASS

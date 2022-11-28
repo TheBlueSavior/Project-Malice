@@ -8,11 +8,10 @@ ACTOR PM_Squire
 	Speed 7
 	PainChance 50
 	Monster
+	Bloodtype "PM_BlackBloodBase"
 	Bloodcolor "Black"
 	+FLOORCLIP
 	+DONTHARMSPECIES
-	//+MissileMore
-	//+NOINFIGHTING
 	Species "Nobles"
 	Tag "Squire"
 	SeeSound 	""//"Squire/Sight"
@@ -21,7 +20,6 @@ ACTOR PM_Squire
 	DeathSound 	"Squire/Death"
 	HitObituary "%o was punched out by a Squire."
 	Obituary "%o was dispersed by a Squire."
-//	DropItem "RagePoint1"
 	Scale 1.05
 	Gravity 0.83
 	WoundHealth 60

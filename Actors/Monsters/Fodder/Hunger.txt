@@ -16,6 +16,7 @@ Actor Hunger
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	XScale 0.84
 	YScale 0.91
     +FLOORCLIP
@@ -211,6 +212,7 @@ Actor PM_Hungry1
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
 	XScale 0.84
 	YScale 0.91
     +FLOORCLIP
@@ -326,6 +328,7 @@ Actor PM_HungryMarine
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES
@@ -434,6 +437,7 @@ Actor PM_HungrySci1
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES
@@ -548,6 +552,7 @@ Actor PM_HungrySci2
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES
@@ -662,6 +667,7 @@ Actor PM_HungrySoldier
 	Species "PukeMonster"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES

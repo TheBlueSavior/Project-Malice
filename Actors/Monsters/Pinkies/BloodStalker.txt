@@ -8,18 +8,14 @@ ACTOR PM_BloodStalker : Demon
 	Mass 400
 	Scale 1.15
 	+FLOORCLIP
-	//+NOINFIGHTING
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
-	//+SLIDESONWALLS
 	Species "Brute"
-	//DropItem "RagePoint1"
 	Monster
 	MeleeRange 100
 	MeleeDamage 4
-	//MaxStepHeight 32
-	//MaxDropOffHeight 32
 	BloodColor "Black"
+	Bloodtype "PM_BlackBloodBase"
 	SeeSound ""
 	DeathSound "BStalker/Death"
 	ActiveSound "BStalker/Active"

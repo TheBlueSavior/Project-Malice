@@ -16,6 +16,7 @@ actor PM_Devil : PMMonsterBase
   Obituary "%o was set on fire by a lucky Devil."
   Hitobituary "%o was clawed to death by a lucky Devil."
   MeleeRange 4
+  Bloodtype "PM_NormalBloodBase"
   +FLOORCLIP
   +MissileMore
   +DONTHURTSPECIES

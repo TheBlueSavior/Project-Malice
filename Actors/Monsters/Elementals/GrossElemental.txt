@@ -13,6 +13,7 @@ PainSound "GrossElem/Pain"
 AttackSound "GrossElem/Fire"
 Tag "Gross Elemental"
 Species "Elemental"
+Bloodtype "PM_PestilenceBloodBase"
 +DONTHARMSPECIES
 +FLOATBOB
 FloatBobStrength 0.4

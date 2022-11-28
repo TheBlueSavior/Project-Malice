@@ -17,7 +17,7 @@ ACTOR PM_Brute : Demon
 	MeleeRange 60
 	Speed 13
 	Scale 1
-	//DropItem "RagePoint1"
+	Bloodtype "PM_NormalBloodBase"
 	SeeSound ""
 	DeathSound "Brute/Death"
 	ActiveSound "Brute/Active"

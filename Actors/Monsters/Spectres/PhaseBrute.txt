@@ -8,15 +8,14 @@ ACTOR PM_PhaseBrute : Demon
 	Mass 400
 	MeleeRange 60
 	+FLOORCLIP
-	//+NOINFIGHTING
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
 	Species "Brute"
-	Bloodcolor Black
 	Monster
+	Bloodcolor "Black"
+	Bloodtype "PM_BlackBloodBase"
 	Speed 13
 	MeleeDamage 4
-	//DropItem "RagePoint1"
 	SeeSound ""
 	DeathSound "PBrute/Death"
 	ActiveSound "PBrute/Active"

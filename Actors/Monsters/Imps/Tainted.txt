@@ -11,11 +11,10 @@ ACTOR PM_Tainted : DoomImp
     -QUICKTORETALIATE
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
-	//+NOINFIGHTING
 	+MISSILEMORE
+	Bloodtype "PM_NormalBloodBase"
 	Species "Imp"
 	Tag "Tainted"
-	//DropItem "RagePoint1"
     SeeSound ""
     PainSound "Tainted/Pain"
     DeathSound "Tainted/Death"

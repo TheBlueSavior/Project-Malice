@@ -11,6 +11,7 @@ Actor PM_Fiend : PMMonsterBase
   Bloodcolor Darkred
   MeleeThreshold 60
   Gravity 0.7
+  Bloodtype "PM_NormalBloodBase"
   Species "Revenant"
   SeeSound "Fiend/Sight"
   PainSound "Fiend/Pain"

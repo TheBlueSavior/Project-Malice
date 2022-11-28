@@ -19,6 +19,7 @@ ACTOR PM_HellifiedSoldier
     PainSound "HellSoldier/Pain"
     DeathSound "HellSoldier/Death"
     ACTIVESOUND "HellSoldier/Active"
+	Bloodtype "PM_NormalBloodBase"
     DropItem Clip
     states
     {

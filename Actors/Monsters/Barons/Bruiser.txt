@@ -14,7 +14,8 @@ actor PM_Bruiser
 	Scale 1.2
     PainChance 8
     Mass 1500
-    MONSTER 
+    MONSTER
+	Bloodtype "PM_GreenBloodBase"
     +FLOORCLIP
 	+DontHurtSpecies
 	+DONTHARMSPECIES

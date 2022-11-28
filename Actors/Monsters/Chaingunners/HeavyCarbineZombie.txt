@@ -19,6 +19,7 @@ ACTOR PM_HeavyCarbineZombie
   Dropitem "Chaingun"
   DropItem "Lith_ClipBox"
   Species "Chaingunner"
+  Bloodtype "PM_NormalBloodBase"
   States
   {
   Spawn:

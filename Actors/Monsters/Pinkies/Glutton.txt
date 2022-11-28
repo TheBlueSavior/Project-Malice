@@ -11,13 +11,12 @@ ACTOR PM_Glutton : Demon
 	Monster
 	+FLOORCLIP
 	+FORCERADIUSDMG
-	//+NOINFIGHTING
 	+DONTHARMSPECIES
 	+NOTARGET
 	+LOOKALLAROUND
 	Species "Brute"
-	//DropItem "RagePoint1"
 	BloodColor "DarkRed"
+	Bloodtype "PM_NormalBloodBase"
 	SeeSound 	""
 	PainSound 	"Glutton/Pain"
 	DeathSound 	"Glutton/Death"

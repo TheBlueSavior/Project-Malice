@@ -18,6 +18,7 @@ Actor PM_Corpulent : PMMonsterBase
  Tag "Corpulent"
  BloodColor "DarkRed"
  Monster
+ Bloodtype "PM_NormalBloodBase"
  +DONTHURTSPECIES
  +DONTHARMSPECIES
  +FLOORCLIP

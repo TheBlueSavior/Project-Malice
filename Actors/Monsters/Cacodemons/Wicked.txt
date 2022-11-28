@@ -20,6 +20,7 @@ Class PM_Wicked : PMMonsterBase
 	Tag "Wicked";
     FloatBobStrength 0.5;
     Monster;
+	Bloodtype "PM_NormalBloodBase";
     +NoGravity
 	//+NOINFIGHTING
     +Float

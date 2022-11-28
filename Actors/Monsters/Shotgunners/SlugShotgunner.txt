@@ -13,6 +13,7 @@ ACTOR PM_SlugShotgunner : Zombieman
 	+SLIDESONWALLS
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
+	Bloodtype "PM_NormalBloodBase"
 	Species "Shotgunner"
 	Tag "Slug Shotgunner"
     OBITUARY "%o caught a big clump of shells from a Slug Shotgunner."

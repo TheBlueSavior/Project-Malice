@@ -17,6 +17,7 @@ Actor PM_Plasmatron : PMMonsterBase
 	+MISSILEMORE
 	+FLOORCLIP
 	+BOSSDEATH
+	Bloodtype "PM_NormalBloodBase"
 	SEESOUND ""
 	PAINSOUND "Plasmatron/Pain"
 	DEATHSOUND "Plasmatron/Death"

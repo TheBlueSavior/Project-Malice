@@ -20,6 +20,7 @@ ACTOR PM_ZombieMarine : Zombieman
 	PainSound "HelmetZombie/Pain"
 	DeathSound "HelmetZombie/Death"
 	ActiveSound "HelmetZombie/Active"
+	Bloodtype "PM_NormalBloodBase"
     DropItem "Clip"
     Decal Bulletchip
     states

@@ -16,6 +16,7 @@ Actor PM_FShotgunner
   //+NOINFIGHTING
   +DONTHURTSPECIES
   +DONTHARMSPECIES
+  Bloodtype "PM_NormalBloodBase"
   Tag "Faceless Shotgunner"
   Species "Shotgunner"
   Obituary "%o had their face blown off by a Faceless Shotgunner."

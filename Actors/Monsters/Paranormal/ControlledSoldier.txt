@@ -16,6 +16,7 @@ Actor PM_ControlledSoldier
 	Species "Nobles"
 	Tag "Afflicted"
     Monster
+	Bloodtype "PM_NormalBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES
@@ -96,7 +97,7 @@ Actor PM_ControlledSoldier2
 	Species "Nobles"
 	Tag "Afflicted"
     Monster
-	Translation "77:77=75:75"
+	Translation "77:77=#[255,0,0]"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES
@@ -290,6 +291,7 @@ Actor PM_ExposedController : PMMonsterBase
 	Species "Nobles"
 	Tag "EXPO??S?D"
     Monster
+	Bloodtype "PM_BlackBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
 	+THRUSPECIES

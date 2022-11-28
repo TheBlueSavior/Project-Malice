@@ -8,6 +8,7 @@ ACTOR PM_Prowler : PMMonster
 	Speed 10
 	painchance 160
 	Monster
+	Bloodtype "PM_BlackBloodBase"
 	+FLOORCLIP
 	+AVOIDMELEE
 	+DONTHURTSPECIES
@@ -16,7 +17,6 @@ ACTOR PM_Prowler : PMMonster
 	SeeSound 	"Prowler/Cover"
 	PainSound 	"Prowler/Pain"
 	DeathSound 	"Prowler/Death"
-	//DropItem "RagePoint1"
 	Obituary "%o was dragged into the darkness by a Prowler."
 	BloodColor "Black"
 	Species "Brute"

@@ -10,6 +10,7 @@ Actor PM_CyberFodder : Shotgunguy
   +DONTHURTSPECIES
   +DONTHARMSPECIES
   +AVOIDMELEE
+  Bloodtype "PM_NormalBloodBase"
   Tag "Cyber Fodder"
   Species "Shotgunner"
   SeeSound ""

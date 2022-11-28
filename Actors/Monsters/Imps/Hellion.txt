@@ -16,6 +16,7 @@ Class PM_Hellion : Actor
     DeathSound "Hellion/Death";
     ActiveSound "Hellion/Active";
 	Tag "Hellion";
+	Bloodtype "PM_NormalBloodBase";
 	+MISSILEMORE
 	//MinMissileChance 200;
     Monster;

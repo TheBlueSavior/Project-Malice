@@ -30,6 +30,7 @@ actor Pustule1
   painsound "blob/pain"
   activesound "blob/active"
   MONSTER
+  Bloodtype "PM_NormalBloodBase"
   +FLOORCLIP
   +LOOKALLAROUND
   -Countkill
