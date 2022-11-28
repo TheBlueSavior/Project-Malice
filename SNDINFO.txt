@@ -1368,6 +1368,7 @@ $volume Wretched/Death 0.5
 $volume Wretched/Spit 0.8
 
 $volume Wretched/ShotLoop 0.68
+$rolloff Wretched/ShotLoop 400 800
 
 Wretched/ShotLoop "Sounds/Monsters/Cacodemons/Wretched/WretchedShotLoop.ogg"
 
@@ -1700,7 +1701,7 @@ NetherConduit/HomingThunder "Sounds/Monsters/Imps/NetherConduit/NetherConduitHom
 NetherConduit/HomingLoop "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingLoop.ogg"
 NetherConduit/HomingExp "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingExp.ogg"
 
-$rolloff NetherConduit/HomingLoop 400 1500
+$rolloff NetherConduit/HomingLoop 400 800
 $rolloff NetherConduit/HomingExp 600 2200
 
 
@@ -3062,6 +3063,7 @@ FMisFly2 "Sounds/Other/FastMissileFlyby2.ogg"
 FMisFly3 "Sounds/Other/FastMissileFlyby3.ogg"
 FMisFly4 "Sounds/Other/FastMissileFlyby4.ogg"
 $limit FastMissileFlyby 4
+$rolloff FastMissileFlyBy 400 800
 
 $random Fiend/Step { Fiend/Step1 Fiend/Step2 Fiend/Step3 Fiend/Step4 Fiend/Step5 Fiend/Step6 Fiend/Step7 Fiend/Step8 Fiend/Step9 }
 Fiend/Step1 "Sounds/Monsters/SFX/FiendStep1.ogg"
@@ -3386,6 +3388,7 @@ PM/GibSplat4 "Sounds/Other/PMGibSplat4.ogg"
 PM/GibSplat5 "Sounds/Other/PMGibSplat5.ogg"
 PM/GibSplat6 "Sounds/Other/PMGibSplat6.ogg"
 $limit PM/GibSplat 2
+$volume PM/GibSplat 0.65
 
 PM/GibLand "Sounds/Other/PMGibLand.ogg"
 
@@ -3401,5 +3404,5 @@ PM/BloodHit7 "Sounds/Other/PMBloodHit7.ogg"
 PM/BloodHit8 "Sounds/Other/PMBloodHit8.ogg"
 PM/BloodHit9 "Sounds/Other/PMBloodHit9.ogg"
 
-$limit PM/BloodHit 2
+$limit PM/BloodHit 3
 $volume PM/BloodHit 0.45
