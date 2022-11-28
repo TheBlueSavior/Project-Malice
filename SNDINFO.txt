@@ -3404,5 +3404,6 @@ PM/BloodHit7 "Sounds/Other/PMBloodHit7.ogg"
 PM/BloodHit8 "Sounds/Other/PMBloodHit8.ogg"
 PM/BloodHit9 "Sounds/Other/PMBloodHit9.ogg"
 
-$limit PM/BloodHit 3
-$volume PM/BloodHit 0.45
+$limit PM/BloodHit 2
+$volume PM/BloodHit 0.65
+$rolloff PM/BloodHit 8 576

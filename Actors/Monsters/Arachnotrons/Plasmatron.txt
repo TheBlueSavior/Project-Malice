@@ -60,7 +60,7 @@ Missile:
 	TNT1 A 0 A_Jump(60,"Missile4")
 	PL01 AG 3 A_FaceTarget
 	PL01 G 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
 	PL01 H 1 Light("AvatarFireball4") A_Aim()
     PL01 H 4 Light("AvatarFireball4")
 	{
@@ -76,7 +76,7 @@ Missile:
 	A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	}
     PL01 G 2
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
 	PL01 H 1 Light("AvatarFireball4") A_Aim()
 	PL01 H 4 Light("AvatarFireball4")
 	{
@@ -92,7 +92,7 @@ Missile:
 	A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	}
     PL01 G 2
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire",CHAN_6)
+	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
 	PL01 H 1 Light("AvatarFireball4") A_Aim()
 	PL01 H 4 Light("AvatarFireball4")
 	{
