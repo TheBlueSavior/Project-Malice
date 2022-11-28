@@ -561,8 +561,23 @@ $rolloff Watcher/Roar 250 1600
 caco/melee                      dsdembit
 
 //Husk
-Husk/Sight	    "Sounds/Monsters/Revenants/Husk/HuskSight.ogg"
-Husk/Pain       "Sounds/Monsters/Revenants/Husk/HuskPain.ogg"
+$random Husk/Sight { HuskSight1 HuskSight2 HuskSight3 HuskSight4 }
+HuskSight1 "Sounds/Monsters/Revenants/Husk/HuskSight1.ogg"
+HuskSight2 "Sounds/Monsters/Revenants/Husk/HuskSight2.ogg"
+HuskSight3 "Sounds/Monsters/Revenants/Husk/HuskSight3.ogg"
+HuskSight4 "Sounds/Monsters/Revenants/Husk/HuskSight4.ogg"
+$random Husk/Pain  { HuskPain1 HuskPain2 HuskPain3 }     
+HuskPain1 "Sounds/Monsters/Revenants/Husk/HuskPain1.ogg"
+HuskPain2 "Sounds/Monsters/Revenants/Husk/HuskPain2.ogg"
+HuskPain3 "Sounds/Monsters/Revenants/Husk/HuskPain3.ogg"
+$random Husk/Active { HuskActive1 HuskActive2 }
+HuskActive1 "Sounds/Monsters/Revenants/Husk/HuskActive1.ogg"
+HuskActive2 "Sounds/Monsters/Revenants/Husk/HuskActive2.ogg"
+$random Husk/Death  { HuskDeath1 HuskDeath2 HuskDeath3 }     
+HuskDeath1 "Sounds/Monsters/Revenants/Husk/HuskDeath1.ogg"
+HuskDeath2 "Sounds/Monsters/Revenants/Husk/HuskDeath2.ogg"
+HuskDeath3 "Sounds/Monsters/Revenants/Husk/HuskDeath3.ogg"
+Husk/Rush       "Sounds/Monsters/Revenants/Husk/HuskRush.ogg"
 Husk/Melee      "Sounds/Monsters/Revenants/Husk/HuskPunch.ogg"
 Husk/MeleeSwing "Sounds/Monsters/Revenants/Husk/HuskSwing.ogg"
 Husk/Cloud		"Sounds/Monsters/Revenants/Husk/HuskCloud.ogg"
@@ -570,6 +585,11 @@ Husk/Throw      "Sounds/Monsters/Revenants/Husk/HuskThrow.ogg"
 
 GenericCometExp "Sounds/Monsters/SFX/GenericCometExplode.ogg" //formerly HUBEXP in Husk directory
 $rolloff GenericCometExp 350 1800
+
+$rolloff Husk/Sight 200 1300
+$rolloff Husk/Active 200 1250
+$rolloff Husk/Death 200 1300
+$rolloff Husk/Rush  500 900
 
 monsters/fatsofire			DSFATFIR
 
