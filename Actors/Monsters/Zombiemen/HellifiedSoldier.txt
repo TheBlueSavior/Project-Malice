@@ -129,11 +129,21 @@ ACTOR PM_HellifiedSoldierBall
    PROJECTILE
    RenderStyle Add
    +BRIGHT
+   +SEEKERMISSILE
    SeeSound "HellSoldier/Plasma"
    DeathSound "GenericPlasmaExp"
    States
    {
    Spawn:
+      DTPR R 1 Bright Light("Shadowball")
+	  {
+	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
+	  }
+    TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
+    Loop
+   Noise:
+    TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75)
+   Cont:
       DTPR R 1 Bright Light("Shadowball")
 	  {
 	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);

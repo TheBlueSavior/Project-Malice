@@ -618,11 +618,22 @@ Actor PM_CyberFodderBall : FastProjectile
   DeathSound "GenericPlasmaExp"
   +ROLLSPRITE
   +ROLLCENTER
+  +SEEKERMISSILE
   Renderstyle Add
   Scale 0.85
   States
   {
   Spawn:
+    RLSS AABB 1 Bright Light("Shadowball")
+    {
+    A_SpawnItemEx("PM_CyberFodderTrail",-14,0,0,0,0,0,0,128,0);
+    A_SetRoll(random(0,259),SPF_INTERPOLATE);
+    }
+    TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
+    Loop
+   Noise:
+    TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75)
+  Cont:
     RLSS AABB 1 Bright Light("Shadowball")
     {
     A_SpawnItemEx("PM_CyberFodderTrail",-14,0,0,0,0,0,0,128,0);

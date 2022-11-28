@@ -553,6 +553,7 @@ Actor PM_NobleBomb : Rocket
 	Loop
   XDeath:
 	TNT1 A 0 A_PlaySound("Noble/BombExp",CHAN_6)
+    TNT1 A 0 A_PlaySound("Noble/BombExpFar",CHAN_7)
 	TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
 	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",0,0,0,random(-15,15),random(-15,15),random(1,15),0,SXF_NOCHECKPOSITION)
 	TNT1 AAAAAA 0 A_SpawnItemEx("PM_NobleBombExplosionFlames",0,0,0,random(-10,10),random(-10,10),random(-10,10),0,SXF_NOCHECKPOSITION)

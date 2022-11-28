@@ -447,6 +447,14 @@ PM/BulletWhiz5 "Sounds/Other/PMBulletWhiz5.ogg"
 PM/BulletWhiz6 "Sounds/Other/PMBulletWhiz6.ogg"
 PM/BulletWhiz7 "Sounds/Other/PMBulletWhiz7.ogg"
 
+$random PM/PlasmaWhiz { PM/PlasmaWhiz1 PM/PlasmaWhiz2 PM/PlasmaWhiz3 PM/PlasmaWhiz4 PM/PlasmaWhiz5 PM/PlasmaWhiz6 }
+PM/PlasmaWhiz1 "Sounds/Other/PMPlasmaWhiz1.ogg"
+PM/PlasmaWhiz2 "Sounds/Other/PMPlasmaWhiz2.ogg"
+PM/PlasmaWhiz3 "Sounds/Other/PMPlasmaWhiz3.ogg"
+PM/PlasmaWhiz4 "Sounds/Other/PMPlasmaWhiz4.ogg"
+PM/PlasmaWhiz5 "Sounds/Other/PMPlasmaWhiz5.ogg"
+PM/PlasmaWhiz6 "Sounds/Other/PMPlasmaWhiz6.ogg"
+
 $random PM/BulletHitFlesh { PM/BulletHitFlesh1 PM/BulletHitFlesh2 PM/BulletHitFlesh3 PM/BulletHitFlesh4 PM/BulletHitFlesh5 }
 PM/BulletHitFlesh1 "Sounds/Other/PMBulletHitFlesh1.ogg"
 PM/BulletHitFlesh2 "Sounds/Other/PMBulletHitFlesh2.ogg"
@@ -457,6 +465,10 @@ PM/BulletHitFlesh5 "Sounds/Other/PMBulletHitFlesh5.ogg"
 $limit PM/BulletWhiz 3
 $volume PM/BulletWhiz 0.85
 $rolloff PM/BulletWhiz 200 450
+
+$limit PM/PlasmaWhiz 3
+$volume PM/PlasmaWhiz 0.85
+$rolloff PM/PlasmaWhiz 200 450
 
 $limit PM/BulletHit 20
 $rolloff PM/BulletHit 200 950
@@ -690,9 +702,30 @@ Blob/Pain	DSBLBPAN
 $limit Blob/Pain	0
 
 //Nightmare
-Nightmare/Sight "Sounds/Monsters/Spectres/Nightmare/NightmareSight.ogg"
-Nightmare/Pain  "Sounds/Monsters/Spectres/Nightmare/NightmarePain.flac"
-Nightmare/Death "Sounds/Monsters/Spectres/Nightmare/NightmareDeath.ogg"
+//Nightmare
+$random Nightmare/Sight { NMareSight1 NMareSight2 NMareSight3 }
+NMareSight1 "Sounds/Monsters/Spectres/Nightmare/NightmareSight1.ogg"
+NMareSight2 "Sounds/Monsters/Spectres/Nightmare/NightmareSight2.ogg"
+NMareSight3 "Sounds/Monsters/Spectres/Nightmare/NightmareSight3.ogg"
+
+$random Nightmare/Pain  { NMarePain1 NMarePain2 NMarePain3 }
+NMarePain1 "Sounds/Monsters/Spectres/Nightmare/NightmarePain1.ogg"
+NMarePain2 "Sounds/Monsters/Spectres/Nightmare/NightmarePain2.ogg"
+NMarePain3 "Sounds/Monsters/Spectres/Nightmare/NightmarePain3.ogg"
+
+$random Nightmare/Death { NMareDeath1 NMareDeath2 NMareDeath3 }
+NMareDeath1 "Sounds/Monsters/Spectres/Nightmare/NightmareDeath1.ogg"
+NMareDeath2 "Sounds/Monsters/Spectres/Nightmare/NightmareDeath2.ogg"
+NMareDeath3 "Sounds/Monsters/Spectres/Nightmare/NightmareDeath3.ogg"
+
+$random Nightmare/Active { NMareAct1 NMareAct2 NMareAct3 NMAreAct4 }
+NMareAct1 "Sounds/Monsters/Spectres/Nightmare/NightmareActive1.ogg"
+NMareAct2 "Sounds/Monsters/Spectres/Nightmare/NightmareActive2.ogg"
+NMareAct3 "Sounds/Monsters/Spectres/Nightmare/NightmareActive3.ogg"
+NMareAct4 "Sounds/Monsters/Spectres/Nightmare/NightmareActive4.ogg"
+
+Nightmare/Melee "Sounds/Monsters/Spectres/Nightmare/NightmareAttack.ogg"
+
 $random Nightmare/Active { NMareAct1 NMareAct2 NMareAct3 NMAreAct4 }
 NMareAct1 "Sounds/Monsters/Spectres/Nightmare/NightmareActive1.ogg"
 NMareAct2 "Sounds/Monsters/Spectres/Nightmare/NightmareActive2.ogg"
@@ -1093,7 +1126,11 @@ Fusionite/Death "Sounds/Monsters/Arachnotrons/Fusionite/FusioniteDeath.ogg"
 Fusionite/ScatterCharge "Sounds/Monsters/Arachnotrons/Fusionite/ScatterFusionCharge.wav"
 Fusionite/Scattershot "Sounds/Monsters/Arachnotrons/Fusionite/ScatterFusionShot.ogg"
 Fusionite/SmallCharge "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionCharge.ogg"
-Fusionite/SmallShot "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot.ogg"
+$random Fusionite/SmallShot { FusSmallShot1 FusSmallShot2 FusSmallShot3 }
+FusSmallShot1 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot1.ogg"
+FusSmallShot2 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot2.ogg"
+FusSmallShot3 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot3.ogg"
+$volume Fusionite/SmallShot 0.85
 
 ArachChassisExplode "Sounds/Monsters/Arachnotrons/Fusionite/ArachChassisExplode.ogg"
 
@@ -1508,7 +1545,12 @@ BSoul/Death3 "Sounds/Monsters/Souls/BurnedSoul/BSoulDeath3.ogg"
 
 DTech/Fire "Sounds/Monsters/Pinkies/DTechBrute/DTechFire.ogg"
 DTech/Exp "Sounds/Monsters/Pinkies/DTechBrute/DTechExp.ogg"
+$random GHeavyPlasmaExp { GHPlasmaExp1 GHPlasmaExp2 GHPlasmaExp3 }
+GHPlasmaExp1 "Sounds/Monsters/SFX/GHeavyPlasmaExp1.ogg"
+GHPlasmaExp2 "Sounds/Monsters/SFX/GHeavyPlasmaExp2.ogg"
+GHPlasmaExp3 "Sounds/Monsters/SFX/GHeavyPlasmaExp3.ogg"
 
+$limit GHeavyPlasmaExp 15
 $limit DTech/Fire 0
 $limit DTech/Exp 0
 
@@ -2405,6 +2447,11 @@ $volume Voidspawn/Active 0.9
 
 //Plasmatron
 Plasmatron/Fire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronFire.ogg"
+Plasmatron/SmallFire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSmallFire.ogg"
+Plasmatron/MortarLoop "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronMortarLoop.ogg"
+Plasmatron/MortarFire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronMortarFire.ogg"
+Plasmatron/MortarExp "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronMortarExp.ogg"
+Plasmatron/MortarCharge "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronMortarCharge.ogg"
 
 Plasmatron/See "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSee.ogg"
 Plasmatron/Pain "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronPain.ogg"
@@ -2426,6 +2473,11 @@ Plasmatron/Servos4 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronServos4.og
 Plasmatron/Servos5 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronServos5.ogg"
 
 $rolloff Plasmatron/Fire 200 2000
+$rolloff Plasmatron/SmallFire 200 2000
+$rolloff Plasmatron/MortarFire 200 2500
+$rolloff Plasmatron/MortarExp 300 2800
+$volume Plasmatron/Fire 0.85
+$pitchset Plasmatron/SmallFire 0.7 1.4
 
 //HeavyCarbineZombie
 $random CarbineZombie/Sight { CarbineZSight1 CarbineZSight2 CarbineZSight3 CarbineZSight4 CarbineZSight5 CarbineZSight6 CarbineZSight7 }
@@ -2777,6 +2829,7 @@ $rolloff ZombieRifleDistant 100 3800
 $rolloff GunnerRifleDistant 200 3800
 $rolloff ShotgunnerGunDistant 300 3800
 $rolloff BigExplosionDistant 400 4000
+$volume BigExplosionDistant 0.75
 
 //Teleport
 
@@ -3128,7 +3181,15 @@ $volume Noble/PreBomb 0.7
 Noble/PreBomb1 "sounds/Monsters/Hellknights/Noble/NoblePreBomb1.ogg"
 Noble/PreBomb2 "sounds/Monsters/Hellknights/Noble/NoblePreBomb2.ogg"
 
-Noble/BombExp "sounds/Monsters/Hellknights/Noble/NobleBombExp.ogg"
+Noble/BombExpFar "sounds/Monsters/Hellknights/Noble/NobleBombExpFar.ogg"
+$rolloff Noble/BombExpFar 300 3800
+$pitchset Noble/BombExpFar 0.8 1.5
+
+$random Noble/BombExp { Noble/BombExp1 Noble/BombExp2 Noble/BombExp3 }
+Noble/BombExp1 "sounds/Monsters/Hellknights/Noble/NobleBombExp1.ogg"
+Noble/BombExp2 "sounds/Monsters/Hellknights/Noble/NobleBombExp2.ogg"
+Noble/BombExp3 "sounds/Monsters/Hellknights/Noble/NobleBombExp3.ogg"
+$rolloff Noble/BombExp 200 2000
 
 //Blood Stalker
 

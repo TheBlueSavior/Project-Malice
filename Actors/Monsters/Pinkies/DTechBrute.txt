@@ -291,12 +291,23 @@ ACTOR PM_DTechBall
    PROJECTILE
    +FORCERADIUSDMG
    +BRIGHT
+   +SEEKERMISSILE
+   +FORCEXYBILLBOARD
    RenderStyle Add
    SeeSound "DTech/Fire"
    DeathSound "DTech/Exp"
    States
    {
    Spawn:
+      DTPR A 1 Bright Light("DTechBall1")
+	  {
+	  A_SpawnItemEx("DTechTrail",0,0,0);
+	  }
+	  TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
+	  Loop
+	Noise:
+	  TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75)
+	Cont:
       DTPR A 1 Bright Light("DTechBall1")
 	  {
 	  A_SpawnItemEx("DTechTrail",0,0,0);
@@ -319,6 +330,7 @@ Actor DTechBallExplode
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+ROLLSPRITE
+	+FORCEXYBILLBOARD
 	+Bright
 	Speed 1
 	States
@@ -355,6 +367,7 @@ ACTOR DTechTrail
 {
 +CLIENTSIDEONLY
 +NOINTERACTION
++FORCEXYBILLBOARD
 +Bright
 Scale 0.08
 Alpha 0.95
