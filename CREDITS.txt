@@ -73,6 +73,7 @@ Horror Movie Guy - Bruiser/Doom 4 Baron sprites
 Ice Sprites/Code - Project Brutality
 Light and Dark Smoke - Arcanum
 Accensus - Target leading code
+Bugsie - Revamped bullet spark code
 
 MY APOLOGIES IF I MISSED ANYONE!
 
@@ -103,11 +104,13 @@ Splatoon
 System Shock 2
 Horizon: Zero Dawn
 No More Room In Hell
+Nightmare House 2
 Risk of Rain 2
 Metroid Prime
 Monster Hunter
 Devil Daggers
 CrossCode
+Iji
 Magmacow's Trashbag (on Gamebanana)
 
 

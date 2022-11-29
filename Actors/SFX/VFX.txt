@@ -2548,6 +2548,7 @@ ACTOR PM_BulletHit
   {
   Spawn:
     TNT1 A 0
+    TNT1 A 0 A_Jump(128,"Spawn2","Spawn3")
 	NULL A 0
 	{
 	A_ScaleVelocity(0.6);
@@ -2558,6 +2559,36 @@ ACTOR PM_BulletHit
 	{
 	A_ScaleVelocity(0.965);
 	A_SetScale(ScaleX-0.01);
+	A_FadeOut(0.20);
+	}
+    Stop
+  Spawn2:
+    TNT1 A 0
+	NULL A 0
+	{
+	A_ScaleVelocity(0.6);
+	A_SetScale(0.56);
+	}
+	NULL A 3
+	NULL AAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+	A_ScaleVelocity(0.965);
+	A_SetScale(ScaleX-0.05);
+	A_FadeOut(0.20);
+	}
+	Stop
+  Spawn3:
+    TNT1 A 0
+	NULL A 0
+	{
+	A_ScaleVelocity(0.6);
+	A_SetScale(0.75);
+	}
+	NULL A 3
+	NULL AAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+	A_ScaleVelocity(0.965);
+	A_SetScale(ScaleX-0.10);
 	A_FadeOut(0.20);
 	}
 	Stop
