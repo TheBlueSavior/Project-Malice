@@ -234,7 +234,7 @@ CBruteSight1 "Sounds/Monsters/Pinkies/CyberBrute/CybruteSight1.ogg"
 CBruteSight2 "Sounds/Monsters/Pinkies/CyberBrute/CybruteSight2.ogg"
 CBruteSight3 "Sounds/Monsters/Pinkies/CyberBrute/CybruteSight3.ogg"
 
-CBrute/Hyd "Sounds/Monsters/CyberBrute/CybruteHydraulics.ogg"
+CBrute/Hyd "Sounds/Monsters/Pinkies/CyberBrute/CybruteHydraulics.ogg"
 CBrute/Jump "Sounds/Monsters/Pinkies/CyberBrute/CybruteJump.ogg"
 CBrute/Land "Sounds/Monsters/Pinkies/CyberBrute/CybruteLand.ogg"
 
