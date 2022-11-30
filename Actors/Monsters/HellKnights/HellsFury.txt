@@ -536,7 +536,7 @@ Actor PM_HellsFuryBall
 	Scale 1
 	SeeSound "HFuryProj"
     DeathSound "HFuryProjExp"
-	Decal "DoomImpScorch"
+	Decal "PM_DeathSoulScorchBig"
 	DamageType Fire
 	+SEEKERMISSILE
     Projectile
@@ -607,6 +607,7 @@ actor PM_HellsFurySpreadFire : PM_CharredBall
 	-LOWGRAVITY
 	//+SEEKERMISSILE
 	seesound "Abhor/SoulExp"
+	Decal " "
 	Alpha 1.0
 	Speed 15
 	FastSpeed 15
@@ -641,7 +642,7 @@ ACTOR PM_HFuryFirebreath
    Translation "0:255=%[0,0,0]:[0.9,0.9,2.0]"
    Scale 0.02
    DeathSound "Fire/Unleash"
-   Decal "scorch"
+   Decal "PM_DeathSoulScorchMed"
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD

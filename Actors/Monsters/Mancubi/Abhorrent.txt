@@ -206,7 +206,7 @@ Actor PM_AbhorBall : Fatshot
     Renderstyle "Add"
     seesound "Abhor/BallWhiz"
 	deathsound "Abhor/BallExp"
-	Decal "BigScorch"
+	Decal "PM_DeathSoulScorchBig"
     PROJECTILE
     +SEEKERMISSILE
   States
@@ -240,7 +240,7 @@ Actor PM_AbhorBarrageBall : Fatshot
     Renderstyle "Add"
     seesound "HPriest/VoidShot"
 	deathsound "Abhor/BallExp"
-	Decal "Scorch"
+	Decal "PM_DeathSoulScorchBig"
     PROJECTILE
     +SEEKERMISSILE
   States
@@ -287,7 +287,7 @@ Actor PM_AbhorSmallBall
     Renderstyle "Add"
     //SeeSound "harvester/scream"
     DeathSound "Abhor/SoulExp"
-	Decal "DoomImpScorch"
+	Decal "PM_DeathSoulScorchSmall"
     PROJECTILE
     +SEEKERMISSILE
   States
@@ -316,7 +316,7 @@ Actor PM_AbhorSoulVomit
     Renderstyle "Add"
     //SeeSound "harvester/scream"
     DeathSound "Abhor/SoulExp"
-	Decal "DoomImpScorch"
+	Decal "PM_DeathSoulScorchMed"
     PROJECTILE
     +SEEKERMISSILE
   States

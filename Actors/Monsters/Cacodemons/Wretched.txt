@@ -344,7 +344,7 @@ actor PM_WretchedBall
 	+FORCEXYBILLBOARD
         +ROLLSPRITE
         +ROLLCENTER
-	//+SEEKERMISSILE
+	Decal "PM_DeathSoulScorchMed"
 	MaxTargetRange 2
 	DamageType "Cacoball"
 	States

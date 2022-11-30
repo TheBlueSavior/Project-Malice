@@ -328,7 +328,7 @@ Actor PM_HeresyLordRedBall : DoomImpBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 16
-	Decal "DoomImpScorch"
+	Decal "PM_RedFireScorch"
 	states
   	{
   Spawn:
@@ -457,7 +457,7 @@ Actor PM_HeresyLordMissileDual1Real
 	height 12
 	SeeSound "HeresyLord/BarrageRedFire"
 	DeathSound "HeresyLord/BarrageRedDeath"
-	Decal DoomImpScorch
+	Decal "PM_RedFireScorch"
 	States
 	{
 	Spawn:

@@ -162,6 +162,7 @@ speed 35
 damage (random(35,45))
 scale 0.85
 RenderStyle Add
+Decal "PM_BulletHoleLarge"
 Alpha 1.0
 States
 {

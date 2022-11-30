@@ -1084,7 +1084,7 @@ ACTOR TyrantStreamRocket : RevenantTracer
 	RenderStyle Normal
 	SeeSound "Tyrant/Missile"
 	DeathSound "Tyrant/MissileExp"
-	Decal "DoomImpScorch"
+	Decal "PM_OrangeFireScorch"
 	States
 	{
 	Spawn:
@@ -1123,7 +1123,7 @@ ACTOR TyrantSmallRocket : RevenantTracer
 	RenderStyle Normal
 	SeeSound "Tyrant/RocketRiver"
 	DeathSound "Tyrant/MissileExp"
-	Decal "DoomImpScorch"
+	Decal "PM_OrangeFireScorch"
 	Scale 0.7
 	States
 	{
@@ -1259,7 +1259,7 @@ ACTOR TyrantPlasmaThrower
    DamageType Fire
    Scale 0.13
    DeathSound "Fire/Unleash"
-   Decal "scorch"
+   Decal "Scorch"
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD

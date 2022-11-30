@@ -359,6 +359,7 @@ ACTOR PM_HuskMeteor : DoomImpBall
   Alpha 0.9
   SeeSound "GenericChargeHeavy"
   DeathSound "GenericCometExp"
+  Decal "Scorch"
   States
  {
   Spawn:
