@@ -218,6 +218,7 @@ ACTOR PM_CadaverRocket : RevenantTracer
 	Projectile 
 	+RANDOMIZE
 	RenderStyle Normal
+	Decal "PM_OrangeFireScorch"
 	SeeSound ""
 	DeathSound "Cadaver/MissileExp"
 	Scale 1
@@ -268,6 +269,7 @@ ACTOR PM_CadaverHRocket : RevenantTracer
 	+THRUGHOST
 	+FORCEXYBILLBOARD
 	RenderStyle Normal
+	Decal "PM_OrangeFireScorch"
 	SeeSound "Cadaver/Missile"
 	DeathSound "Cadaver/MissileExp"
 	Scale 1

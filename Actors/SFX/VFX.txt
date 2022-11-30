@@ -2480,7 +2480,7 @@ States
 }
 
 
-ACTOR PM_HitPuff Replaces BulletPuff
+ACTOR PM_HitPuff
 {
 	renderstyle Add
 	alpha 0.3

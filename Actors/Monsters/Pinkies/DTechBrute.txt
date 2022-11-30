@@ -294,6 +294,7 @@ ACTOR PM_DTechBall
    +SEEKERMISSILE
    +FORCEXYBILLBOARD
    RenderStyle Add
+   Decal "PM_GreenFireScorch"
    SeeSound "DTech/Fire"
    DeathSound "DTech/Exp"
    States

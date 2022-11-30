@@ -30,6 +30,41 @@ decal PM_BulletHoleLarge
 	randomflipx
 }
 
+//Fireballs and plasma
+
+decal PM_OrangeFireScorch 
+{
+	pic FXPOB0
+	x-scale 0.5
+	y-scale 0.5
+	add 1.0
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal DoomImpScorch
+}
+
+decal PM_HellPlasmaScorch
+{
+	pic FXPRB0
+	x-scale 0.3
+	y-scale 0.3
+	add 1.0
+	randomflipx
+	randomflipy
+	animator GoAway
+	lowerdecal PlasmaScorchLower2
+}
+
+decal PM_GreenFireScorch
+{
+	pic FXPGB0
+	x-scale 0.5
+	y-scale 0.5
+	add 1.0
+	animator GoAway
+	lowerdecal BaronScorch
+}
 
 decal PM_PlasmatronScorchSmall
 {

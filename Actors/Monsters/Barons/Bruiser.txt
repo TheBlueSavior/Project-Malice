@@ -491,7 +491,7 @@ Actor PM_BruiserSmallFireball : DoomImpBall
 	Damage (random(19,25))
 	DamageType Fire
 	Scale 0.15
-	Decal "Scorch"
+	Decal "PM_GreenFireScorch"
 	states
   	{
   Spawn:
@@ -509,7 +509,7 @@ Actor PM_BruiserSmallFireball : DoomImpBall
     NDEB D 1 bright Light("GreenFireLight")
 	TNT1 A 0 A_SpawnItemEx("GFireBallExplode")
 	TNT1 A 0 A_SpawnItemEx("PM_GreenFireballExpFlames")
-	FIR3 CDEFGHIJKLMNOP 2 Light("GreenFireLight") bright
+	FIR3 CCDDEEFFGGHHIIJJKKLLMMNNOOPP 1 Light("GreenFireLight") bright A_FadeOut(0.05)
     stop
   }
 }

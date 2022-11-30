@@ -456,6 +456,7 @@ ACTOR PM_FiendSmallRocket : RevenantTracer
 	Projectile 
 	+RANDOMIZE
 	SeeSound "FiendRocketFire"
+	Decal "PM_OrangeFireScorch"
 	DeathSound ""
 	Scale 0.5
 	States

@@ -268,7 +268,7 @@ actor PM_CharredBall : DoomImpBall
   Scale 1.6
   Speed 10
   FastSpeed 10
-  Decal "DoomImpScorch"
+  Decal "PM_OrangeFireScorch"
   SeeSound "Charred/Fireball"
   +RANDOMIZE
   +LOWGRAVITY

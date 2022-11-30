@@ -131,6 +131,7 @@ ACTOR PM_HellifiedSoldierBall
    +BRIGHT
    +SEEKERMISSILE
    SeeSound "HellSoldier/Plasma"
+   Decal "PM_HellPlasmaScorch"
    DeathSound "GenericPlasmaExp"
    States
    {

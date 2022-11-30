@@ -322,6 +322,7 @@ ACTOR PM_HuskSmallFireball : DoomImpBall
   +SEEKERMISSILE
   DamageType Fire
   renderstyle Translucent
+  Decal "PM_OrangeFireScorch"
   Alpha 0.9
   SeeSound "GenericSmallFireball"
   States

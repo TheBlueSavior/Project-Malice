@@ -616,6 +616,7 @@ Actor PM_CyberFodderBall : FastProjectile
   Damage 2
   SeeSound "GenericPlasmaFire"
   DeathSound "GenericPlasmaExp"
+  Decal "PM_HellPlasmaScorch"
   +ROLLSPRITE
   +ROLLCENTER
   +SEEKERMISSILE

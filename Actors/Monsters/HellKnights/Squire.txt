@@ -345,7 +345,7 @@ actor PM_SquireFireball : DoomImpBall
 	Speed 15
 	SeeSound "HellKnight/Cast"
 	DeathSound "HellKnight/BallImpact"
-	Decal "Scorch"
+	Decal "PM_GreenFireScorch"
 	Damage (random(30,37))
 	DamageType Fire
 	Scale 0.24
@@ -366,7 +366,7 @@ actor PM_SquireFireball : DoomImpBall
     NDEB D 1 bright Light("GreenFireLight")
 	TNT1 A 0 A_SpawnItemEx("GFireBallExplode",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
 	TNT1 AAA 0 A_SpawnItemEx("PM_GreenFireballExpFlames",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
-    FIR3 CDEFGHIJKLMNOP 2 Light("GreenFireLight") bright
+    FIR3 CCDDEEFFGGHHIIJJKKLLMMNNOOPP 1 Light("GreenFireLight") bright A_FadeOut(0.05)
     stop
   }
 }

@@ -2003,6 +2003,7 @@ GPlasmaExp3 "Sounds/Monsters/SFX/GPlasmaExp3.ogg"
 
 GenericPlasmaFire "Sounds/Monsters/SFX/GenericPlasmaFire.ogg"
 $limit GenericPlasmaFire 0
+$limit GenericPlasmaExp 4
 $rolloff GenericPlasmaFire 350 2000
 
 GenericChargeHeavy     "Sounds/Monsters/SFX/GChargeHeavy.ogg"
