@@ -359,7 +359,7 @@ ACTOR PM_PTronBall
    +BRIGHT
    +FORCEXYBILLBOARD
    SeeSound ""
-   DeathSound "DTech/Exp"
+   DeathSound "GHeavyPlasmaExp"
    Decal "PM_PlasmatronScorchLarge"
    States
    {

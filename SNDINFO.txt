@@ -113,6 +113,7 @@ DepravedActive3 "Sounds/Monsters/Revenants/Depraved/DepravedActive3.ogg"
 DepravedActive4 "Sounds/Monsters/Revenants/Depraved/DepravedActive4.ogg"
 
 Depraved/Sight "Sounds/Monsters/Revenants/Depraved/DepravedSight.ogg"
+Depraved/Revive "Sounds/Monsters/Revenants/Depraved/DepravedRevive.ogg"
 
 $rolloff Depraved/Scream 500 1200
 

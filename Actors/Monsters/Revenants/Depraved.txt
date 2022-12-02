@@ -369,14 +369,14 @@ Actor PM_Depraved
   Raise:
 	INCA Q 0 A_GiveInventory("RaiseLimit",1)
 	INCA L 0 A_JumpIfInventory("RaiseLimit",2,"Raise2")
-	INCA Q 0 A_Playsound("Depraved/Sight")
+	INCA Q 0 A_Playsound("Depraved/Revive")
 	INCA Q 0 A_KillChildren
     INCA Q 0 A_SetHealth(150)
 	INCA QPONML 5
     Goto See2
   Raise2:
 	INCA Q 0 A_GiveInventory("RaiseLimit",1)
-	INCA Q 0 A_Playsound("Depraved/Sight")
+	INCA Q 0 A_Playsound("Depraved/Revive")
 	INCA Q 0 A_KillChildren
     INCA Q 0 A_SetHealth(75)
 	INCA QPONML 5
