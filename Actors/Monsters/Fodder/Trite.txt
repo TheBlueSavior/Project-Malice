@@ -41,6 +41,7 @@ Actor Trite
   +ROLLCENTER
   -CANUSEWALLS
   -CANPUSHWALLS
+  +CANTSEEK
   States
   {
   Spawn:
@@ -238,6 +239,7 @@ Actor Trite
 
 Actor HeadDropper
 {
+    +ISMONSTER
 	States
 	{
 	Spawn:

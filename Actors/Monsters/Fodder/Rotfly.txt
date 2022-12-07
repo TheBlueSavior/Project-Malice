@@ -154,6 +154,7 @@ ACTOR PM_RotflyMaggot
 	+FRIGHTENED
 	-CANUSEWALLS
 	-COUNTKILL
+	+CANTSEEK
 	States
 	{
 	Spawn:
@@ -248,6 +249,7 @@ ACTOR PM_RotflyYoungling
   +NOGRAVITY
   +DONTHURTSPECIES
   +NOBLOOD
+  +CANTSEEK
   Obituary "%o was no match for the Rot Fly's children."
   States
   {

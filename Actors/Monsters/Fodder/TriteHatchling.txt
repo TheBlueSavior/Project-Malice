@@ -39,6 +39,7 @@ Actor TriteHatchling
   +NOBLOCKMONST
   -CANUSEWALLS
   -CANPUSHWALLS
+  +CANTSEEK
   States
   {
   Spawn:

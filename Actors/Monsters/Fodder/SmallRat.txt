@@ -21,6 +21,7 @@ ACTOR SmallRat 9656
 	+NOBLOCKMONST
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	+CANTSEEK
 	States
 	{
 	Spawn:
@@ -75,6 +76,7 @@ ACTOR SmallRat 9656
 
 Actor RatDropper
 {
+    +ISMONSTER
 	States
 	{
 	Spawn:
