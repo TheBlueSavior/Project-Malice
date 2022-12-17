@@ -1,0 +1,574 @@
+Actor PM_HorrorspawnSpitter
+{
+    Health 20
+    GibHealth 20
+    Radius 18
+    Height 56
+    Speed 5
+    PainChance 256
+    SeeSound ""
+    PainSound "ZombieFodder/pain"
+    DeathSound "ZombieFodder/death"
+    ActiveSound "ZombieFodder/active"
+    Obituary "%o was consumed by a Horrorspawn."
+	DropItem "Clip", 100
+	Tag "Horrorspawn"
+	Species "Horrorspawn"
+    Monster
+	Bloodtype "PM_NormalBloodBase"
+	MeleeRange 70
+	//XScale 0.84
+	//YScale 0.91
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+  States
+  {
+  Spawn:
+	4FOD AB 7 A_Wander
+	4FOD AB 0 A_Look
+	4FOD CD 7 A_Wander
+    4FOD AB 0 A_Look
+	4FOD AB 7 A_Wander
+	4FOD AB 0 A_Look
+	4FOD CD 7 A_Wander
+    4FOD AB 0 A_Look
+	4FOD AB 7 A_Wander
+	4FOD AB 0 A_Look
+	4FOD CD 7 A_Wander
+    4FOD AB 0 A_Look
+	4FOD AB 7 A_Wander
+	4FOD AB 0 A_Look
+	4FOD CD 7 A_Wander
+    4FOD AB 0 A_Look
+	4FOD AB 7 A_Wander
+	4FOD AB 0 A_Look
+	4FOD CD 7 A_Wander
+    4FOD AB 0 A_Look
+	4FOD AB 7 A_Wander
+	4FOD AAAAAAAAA 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_Jump(10,"See2")
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    4FOD AABB 4 A_Chase
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CCDD 4 A_Chase
+	TNT1 A 0 A_Jump(3,"Lunge")
+	TNT1 A 0 A_Jump(10,"See2","See3","See4","See5","See6","See7","See8","Roar")
+    Loop
+  See2:
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD AB 4 A_Chase
+	4FOD B 20 A_Chase
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CD 4 A_Chase
+	4FOD D 20 A_Chase
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(15,"See","Roar")
+    Loop
+  See3:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    4FOD AA 4 A_Chase
+	TNT1 A 0 ThrustThing(angle * 256 / 360 + 64,3)
+	4FOD BB 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CC 4 A_Chase
+	TNT1 A 0 ThrustThing(angle * 256 / 360 + 192,3)
+	4FOD DD 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See4:
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    4FOD AABB 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CCDD 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See5:
+	TNT1 A 0 A_Jump(50,"See")
+	TNT1 A 0 A_SetSpeed(7)
+    4FOD C 70 A_FaceTarget
+	TNT1 A 0 A_SetSpeed(25)
+	4FOD ACACACACACACACACAC 2
+	{
+	A_Chase("_a_chase_default","_a_chase_default",CHF_NORANDOMTURN);
+	A_PlaySound("Horrorspawn/Step",CHAN_6);
+	}
+	TNT1 A 0 A_SetSpeed(7)
+	4FOD C 70 A_FaceTarget
+	TNT1 A 0 A_SetSpeed(25)
+	4FOD ACACACACACACACACAC 2
+	{
+	A_Chase("_a_chase_default","_a_chase_default",CHF_NORANDOMTURN);
+	A_PlaySound("Horrorspawn/Step",CHAN_6);
+	}
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(205,"See","Roar")
+    Loop
+  See6:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD AB 3 A_Chase
+	4FOD B 8 A_Chase
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CD 3 A_Chase
+	4FOD D 8 A_Chase
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(15,"See","Roar")
+    Loop
+  See7:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    4FOD AABB 3 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CCDD 3 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See8:
+	TNT1 A 0 A_SetSpeed(4)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    4FOD AABB 10 A_Chase
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	4FOD CCDD 10 A_Chase
+	TNT1 A 0 A_Jump(3,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  Roar:
+	4FOD C 15 A_FaceTarget
+	TNT1 A 0 A_PlaySound("ZombieFodder/Roar")
+	4FOD B 40 A_FaceTarget
+	4FOD C 4 A_FaceTarget
+	TNT1 A 0 A_Jump(25,"See2","See3","See4","See5","See6","See7","See8","Lunge")
+	Goto See
+  Lunge:
+	4FOD C 25
+	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 ThrustThingZ(0,40,0,1)
+	4FOD B 35
+	4FOD D 15
+	Goto See
+  SeeAngry:
+	TNT1 A 0 A_SetSpeed(7)
+    4FOD AB 2 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.5)
+	4FOD CD 2 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.5)
+    Loop
+  Missile:
+	TNT1 A 0 A_CheckSight("See")
+	4FOD CCCCC 5 A_FaceTarget
+	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
+	TNT1 A 0 A_PlaySound("Afflicted/Puke")
+	4FOD BBBBBBBBBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
+	4FOD B 1 A_CustomMissile("PM_HSpawnSpitterBlood",42,0,random(-10,10),CMF_AIMDIRECTION,random(-4,6))
+	4FOD BBBBBBBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-20,10))
+	4FOD BBBBBDDDDC 4
+	Goto See
+  Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
+	TNT1 A 0 A_Jump(140,"Bite")
+    4FOD EE 9 A_FaceTarget
+	4FOD F 2
+	TNT1 A 0 A_PlaySound("ZombieFodder/pain")
+	TNT1 A 0 A_Recoil(-6)
+	TNT1 A 0 ThrustThingZ(0,16,0,1)
+	4FOD G 2
+    4FOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
+	4FOD G 5
+	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  Bite:
+	4FOD BB 3 A_FaceTarget
+	4FOD B 3
+	TNT1 A 0 A_Recoil(-10)
+	TNT1 A 0 ThrustThingZ(0,6,0,1)
+	4FOD B 2
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
+    4FOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
+	4FOD C 3
+	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    4FOD EF 10 A_FaceTarget
+    4FOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
+    Goto See
+  Pain:
+    4FOD H 4
+    4FOD H 4 A_Pain
+	TNT1 A 0 A_Jump(100,"See")
+    Goto SeeAngry
+  Death:
+    4FOD I 6
+    4FOD J 5 A_Scream
+    4FOD K 6 A_NoBlocking
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+    2FOD L -1
+    Stop
+  XDeath:
+    ZFOD N 5
+    ZFOD O 5 A_XScream
+    ZFOD P 5 A_NoBlocking
+    ZFOD QR 5 
+    ZFOD S -1 
+    Stop
+  Raise:
+    2FOD L 5
+    4FOD KJI 5
+    Goto See
+  }
+}
+
+Actor PM_HSpawnSpitterBlood
+{
+Radius 3
+Height 3
+Speed 18
+Damage (8)
+Scale 0.3
+SeeSound "GenericBloodSpit"
+DeathSound "GenericBloodImpact"
+PROJECTILE
+Gravity 0.3
+Decal BloodSplat
++LOWGRAVITY
+-NOGRAVITY
+States
+{
+Spawn:
+	FGOR ABCDEF 1 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-1,1),random(-1,1),random(0,2),0,SXF_NOCHECKPOSITION)
+	Loop
+Death:
+	TNT1 AAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
+	BSHT C 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
+	BSHT D 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
+	Stop
+}
+}
+
+Actor PM_HorrorspawnChunkThrower
+{
+    Health 15
+    GibHealth 20
+    Radius 18
+    Height 56
+    Speed 5
+    PainChance 256
+    SeeSound ""
+    PainSound "ZombieFodder/Pain"
+    DeathSound "ZombieFodder/Death"
+    ActiveSound "ZombieFodder/Active"
+    Obituary "%o was consumed by a Horrorspawn."
+	DropItem "Clip", 100
+	Species "Horrorspawn"
+	Tag "Horrorspawn"
+    Monster
+	Bloodtype "PM_NormalBloodBase"
+	MeleeRange 70
+	XScale 0.84
+	YScale 0.91
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+  States
+  {
+  Spawn:
+	ZFOD AB 7 A_Wander
+	ZFOD AB 0 A_Look
+	ZFOD CD 7 A_Wander
+    ZFOD AB 0 A_Look
+	ZFOD AB 7 A_Wander
+	ZFOD AB 0 A_Look
+	ZFOD CD 7 A_Wander
+    ZFOD AB 0 A_Look
+	ZFOD AB 7 A_Wander
+	ZFOD AB 0 A_Look
+	ZFOD CD 7 A_Wander
+    ZFOD AB 0 A_Look
+	ZFOD AB 7 A_Wander
+	ZFOD AB 0 A_Look
+	ZFOD CD 7 A_Wander
+    ZFOD AB 0 A_Look
+	ZFOD AB 7 A_Wander
+	ZFOD AB 0 A_Look
+	ZFOD CD 7 A_Wander
+    ZFOD AB 0 A_Look
+	ZFOD AB 7 A_Wander
+	ZFOD AAAAAAAAA 10 A_Look
+    Loop
+  See:
+	TNT1 A 0 A_Jump(10,"See2")
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    ZFOD AABB 4 A_Chase
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD CCDD 4 A_Chase
+	TNT1 A 0 A_Jump(3,"Lunge")
+	TNT1 A 0 A_Jump(10,"See2","See3","See4","See5","See6","See7","See8","Roar")
+    Loop
+  See2:
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD AB 4 A_Chase
+	ZFOD B 20 A_Chase
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD CD 4 A_Chase
+	ZFOD D 20 A_Chase
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(15,"See","Roar")
+    Loop
+  See3:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    ZFOD AA 4 A_Chase
+	TNT1 A 0 ThrustThing(angle * 256 / 360 + 64,3)
+	ZFOD BB 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD CC 4 A_Chase
+	TNT1 A 0 ThrustThing(angle * 256 / 360 + 192,3)
+	ZFOD DD 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See4:
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    ZTOD AABB 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZTOD CCDD 4 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See5:
+	TNT1 A 0 A_Jump(50,"See")
+	TNT1 A 0 A_SetSpeed(7)
+    ZFOD C 70 A_FaceTarget
+	TNT1 A 0 A_SetSpeed(25)
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase("_a_chase_default","_a_chase_default",CHF_NORANDOMTURN);
+	A_PlaySound("Horrorspawn/Step",CHAN_6);
+	}
+	TNT1 A 0 A_SetSpeed(7)
+	ZFOD C 70 A_FaceTarget
+	TNT1 A 0 A_SetSpeed(25)
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase("_a_chase_default","_a_chase_default",CHF_NORANDOMTURN);
+	A_PlaySound("Horrorspawn/Step",CHAN_6);
+	}
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(205,"See","Roar")
+    Loop
+  See6:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD AB 3 A_Chase
+	ZFOD B 8 A_Chase
+	TNT1 A 0 A_Recoil(-3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD CD 3 A_Chase
+	ZFOD D 8 A_Chase
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(15,"See","Roar")
+    Loop
+  See7:
+	TNT1 A 0 A_SetSpeed(7)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    ZTOD AABB 3 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZTOD CCDD 3 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.3)
+	TNT1 A 0 A_Jump(4,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  See8:
+	TNT1 A 0 A_SetSpeed(4)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    ZFOD AABB 10 A_Chase
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	ZFOD CCDD 10 A_Chase
+	TNT1 A 0 A_Jump(3,"Lunge")
+	TNT1 A 0 A_Jump(10,"See","Roar")
+    Loop
+  Roar:
+	ZFOD C 15 A_FaceTarget
+	TNT1 A 0 A_PlaySound("ZombieFodder/Roar")
+	ZFOD B 40 A_FaceTarget
+	ZFOD C 4 A_FaceTarget
+	TNT1 A 0 A_Jump(25,"See2","See3","See4","See5","See6","See7","See8","Lunge")
+	Goto See
+  Lunge:
+	ZFOD C 25
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
+	TNT1 A 0 A_Recoil(-15)
+	TNT1 A 0 ThrustThingZ(0,40,0,1)
+	ZFOD B 35
+	ZFOD D 15
+	Goto See
+  SeeAngry:
+	TNT1 A 0 A_SetSpeed(7)
+    ZTOD AB 2 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.5)
+	ZTOD CD 2 A_Chase
+	TNT1 AAA 0 A_Recoil(-0.5)
+    Loop
+  Melee:
+	TNT1 A 0
+	TNT1 A 0 A_JumpIfCloser(44,"MeleeClose")
+	TNT1 A 0 A_Jump(140,"Bite")
+    ZFOD EE 9 A_FaceTarget
+	ZFOD F 2
+	TNT1 A 0 A_PlaySound("ZombieFodder/Pain")
+	TNT1 A 0 A_Recoil(-6)
+	TNT1 A 0 ThrustThingZ(0,16,0,1)
+	ZFOD G 2
+    ZFOD G 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
+	ZFOD G 5
+	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  MeleeClose:
+    ZFOD EF 10 A_FaceTarget
+    ZFOD G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
+    Goto See
+  Bite:
+	ZFOD BB 3 A_FaceTarget
+	ZFOD B 3
+	TNT1 A 0 A_Recoil(-10)
+	TNT1 A 0 ThrustThingZ(0,6,0,1)
+	ZFOD B 2
+	TNT1 A 0 A_PlaySound("ZombieFodder/Bite")
+    ZFOD C 8 A_CustomMissile("HorrorLunge",18,0,0,CMF_AIMDIRECTION)
+	ZFOD C 3
+	TNT1 A 0 A_Jump(240,"See","See2","See3","See4","See5","See6","See7","See8")
+    Goto See
+  Missile:
+    ZFOD AAA 5 A_FaceTarget
+	ZFOD H 1 A_FaceTarget
+	ZFOD H 5 A_PlaySound("ZFODDGIB")
+	ZFOD HH 1 A_SpawnItemEX("PM_NormalBloodMulti",0,0,30,random(-6,6),random(-6,6),random(-2,6),random(0,360),SXF_NOCHECKPOSITION)
+	ZFOD H 10 A_FaceTarget
+	ZFOD EEEFG 5 A_FaceTarget
+	ZFOD G 10 A_CustomMissile("PM_HSpawnThrownChunk",32,0,random(-10,10),CMF_AIMDIRECTION,random(0,70))
+	ZFOD GFFEE 5
+	Goto See
+  Pain:
+    ZFOD H 4
+    ZFOD H 4 A_Pain
+	TNT1 A 0 A_Jump(100,"See")
+    Goto SeeAngry
+  Death:
+	TNT1 A 0 A_Jump(35,"DecapDeath")
+    ZFOD I 7
+    ZFOD J 7 A_Scream
+    ZFOD K 5 A_NoBlocking
+    ZFOD L 5
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+    ZFOD M -1 
+    Stop
+   DecapDeath:
+	ZFPD I 0 A_CustomMissile("HorrorspawnHead",50,0,random(-300,300))
+	ZFOD I 0 A_SpawnItemEx("HorrorspawnDecap",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+	ZFPD I 1 A_PlaySound("MaliceHeadExp")
+	Stop
+  XDeath:
+    ZFOD N 5
+    ZFOD O 5 A_XScream
+    ZFOD P 5 A_NoBlocking
+    ZFOD QR 5 
+    ZFOD S -1 
+    Stop
+  Raise:
+    ZFOD L 5
+    ZFOD KJI 5
+    Goto See
+  }
+}
+
+Actor PM_HSpawnThrownChunk
+{
+  Radius 3
+  Height 3
+  Speed 14
+  Damage (random(8,8))
+  Projectile
+  RenderStyle Translucent
+  Alpha 0.90
+  Scale 1.25
+  +ThruGhost
+  -NOGRAVITY
+  BounceType Hexen
+   BounceFactor 0.9
+   RENDERSTYLE "Translucent"
+   SeeSound "TaintedBloodFire"
+  DeathSound "TaintedBloodExp"
+  Decal "Bloodsplat"
+  Gravity 0.67
+  BounceCount 2
+  BounceSound "Tainted/Step"
+  States
+  {
+  Spawn:
+    FBL1 A 2 A_CStaffMissileSlither
+    FBL1 A 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,0,0,0,128)
+    FBL1 B 2 A_CStaffMissileSlither
+    FBL1 B 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,0,0,0,128)
+    Loop
+  Bounce:
+	  TNT1 A 0 A_CustomMissile("RedGroundOoze",0,random(-6,6),random(-90,90))
+	  TNT1 A 0 A_CustomMissile("RedGroundOoze",0,random(-6,6),random(-90,90))
+	  Goto Spawn
+  Death:
+	 TNT1 A 0 A_CustomMissile("RedGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("RedGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("RedGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("RedGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("RedGroundOoze",1,random(-6,6),random(-90,90))
+		TNT1 A 0 A_CustomMissile("RedGroundStain",1,random(-6,6),random(-90,90))
+    FBL1 CDE 3 Bright
+    Stop
+  }
+}

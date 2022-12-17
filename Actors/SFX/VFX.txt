@@ -2070,7 +2070,7 @@ Actor MaliceBloodSplash
 	//+NOINTERACTION
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
-	PROJECTILE
+	//PROJECTILE
 	RenderStyle Translucent
 	//Translation "0:255=%[0,0,0]:[0.8,1.4,0.0]"
 	Scale 0.65
@@ -2107,10 +2107,10 @@ Actor MaliceBloodSplash
 Actor PM_LargerBloodSplash
 {
 	+CLIENTSIDEONLY
-	+NOINTERACTION
+	//+NOINTERACTION
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
-	PROJECTILE
+	//PROJECTILE
 	RenderStyle Translucent
 	//Translation "0:255=%[0,0,0]:[0.8,1.4,0.0]"
 	Scale 1.5

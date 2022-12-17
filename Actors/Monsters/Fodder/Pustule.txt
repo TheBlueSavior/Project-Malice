@@ -209,6 +209,7 @@ actor Pustule1
 	TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION)
     FLOB F 0 A_SpawnItem("PustuleDamage")
     FLOB FFFFFFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION)
+	FLOB FFFFFF 0 A_SpawnItemEX("PM_NormalMeatChunkLauncher", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION,70)
     FLOB GH 2
     stop
   }

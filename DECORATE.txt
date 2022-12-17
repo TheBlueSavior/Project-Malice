@@ -30,6 +30,7 @@
 #include "Actors/Monsters/Revenants/Infested.txt"
 #include "Actors/Monsters/Fodder/LargeMaggot.txt"
 #include "Actors/Monsters/Fodder/Trite.txt"
+#include "Actors/Monsters/Fodder/HorrorspawnVariants.txt"
 #include "Actors/Monsters/Fodder/Horrorspawn.txt"
 #include "Actors/Monsters/Chaingunners/MutatedGunner.txt"
 #include "Actors/Monsters/Revenants/Husk.txt"

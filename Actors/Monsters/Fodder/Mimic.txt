@@ -2,7 +2,7 @@ actor Mimic
 {
   obituary "%o was taken by surprise by a Mimic."
   hitobituary "%o was taken by surprise by a Mimic."
-  health 400
+  health 600
   radius 20
   height 56
   mass 900
