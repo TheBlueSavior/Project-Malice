@@ -613,7 +613,7 @@ Actor PM_HorrorspawnBurster
     Loop
   See:
 	TNT1 A 0
-	TNT1 A 0 A_PlaySound("HSpawnBurster/Loop",CHAN_5,0.6,1)
+	TNT1 A 0 A_PlaySound("HSpawnBurster/Loop",CHAN_5,0.9,1)
   See1:
 	TNT1 A 0 A_SetSpeed(5)
 	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
