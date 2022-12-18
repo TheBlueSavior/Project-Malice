@@ -3409,3 +3409,25 @@ PM/BloodHit9 "Sounds/Other/PMBloodHit9.ogg"
 $limit PM/BloodHit 2
 $volume PM/BloodHit 0.65
 $rolloff PM/BloodHit 8 576
+
+//Horrorspawn Burster
+$random HSpawnBurster/Sight { HSpawnBurster/Sight1 HSpawnBurster/Sight2 HSpawnBurster/Sight3 }
+HSpawnBurster/Sight1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterSight1.ogg"
+HSpawnBurster/Sight2 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterSight2.ogg"
+HSpawnBurster/Sight3 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterSight3.ogg"
+
+HSpawnBurster/Loop "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterLoop.ogg"
+$rolloff HSpawnBurster/Loop 200 900
+HSpawnBurster/Explode "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterExplode.ogg"
+$rolloff HSpawnBurster/Explode 1500 3000
+HSpawnBurster/Arm "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterArm.ogg"
+
+//Big Gore Splats
+$random PM/BigGoreSplat		{ PM/BigGoreSplat1 PM/BigGoreSplat2 PM/BigGoreSplat3 PM/BigGoreSplat4 PM/BigGoreSplat5 PM/BigGoreSplat6 }
+PM/BigGoreSplat1	"Sounds/Other/PMBigGoreSplat1.ogg"
+PM/BigGoreSplat2	"Sounds/Other/PMBigGoreSplat2.ogg"
+PM/BigGoreSplat3	"Sounds/Other/PMBigGoreSplat3.ogg"
+PM/BigGoreSplat4	"Sounds/Other/PMBigGoreSplat4.ogg"
+PM/BigGoreSplat5	"Sounds/Other/PMBigGoreSplat5.ogg"
+PM/BigGoreSplat6	"Sounds/Other/PMBigGoreSplat6.ogg"
+$volume PM/BigGoreSplat 0.5

@@ -62,7 +62,7 @@ Class PM_Nightmare : Actor
     TNT1 A 0 A_PlaySound("Nightmare/Sight",CHAN_5);
     goto See2;
   See2:
-    TNT1 A 0 A_SetSpeed(10);
+    TNT1 A 0 A_SetSpeed(20);
 	NMRE AA 2 Fast
     {
     A_Chase();
@@ -83,10 +83,36 @@ Class PM_Nightmare : Actor
     A_Chase();
     A_SpawnItemEx("PM_NightmareTrailD",0,0,0,random(-8,-1),0,random(-3,3));
     }
+    TNT1 A 0 A_Jump(15,"AltSee");
+	TNT1 A 0 A_Jump(60,"See3");
+	Loop;
+  See3:
+    TNT1 A 0 A_SetSpeed(10);
+	TNT1 AA 2 Fast
+    {
+    A_Chase();
+    //A_SpawnItemEx("PM_NightmareTrailA",0,0,0,random(-8,-1),0,random(-3,3));
+    }
+	TNT1 BB 2 Fast
+    {
+    A_Chase();
+    //A_SpawnItemEx("PM_NightmareTrailB",0,0,0,random(-8,-1),0,random(-3,3));
+    }
+	TNT1 CC 2 Fast
+    {
+    A_Chase();
+    //A_SpawnItemEx("PM_NightmareTrailC",0,0,0,random(-8,-1),0,random(-3,3));
+    }
+	TNT1 DD 2 Fast
+    {
+    A_Chase();
+    //A_SpawnItemEx("PM_NightmareTrailD",0,0,0,random(-8,-1),0,random(-3,3));
+    }
+	TNT1 A 0 A_Jump(20,"See2");
     TNT1 A 0 A_Jump(8,"AltSee");
 	Loop;
   AltSee:
-    TNT1 A 0 A_SetSpeed(15);
+    TNT1 A 0 A_SetSpeed(30);
     NMRE AABBCCDDAABBCCDDAABBCCDD 2 Fast  A_Wander();
     Goto See2;
   Melee:
@@ -181,18 +207,21 @@ Class PM_NightmareWindPull1 : Actor
     {
     A_SpawnParticle("0F 0F 0E",SPF_RELATIVE,95,10,0,random(-22,-15),random(-5,5),random(-5,5),-10,0,0,-5,0,0,1,0.3,-0.3);
     A_Weave(random(-4,4),random(-4,4),random(-4,4),random(-4,4));
+	A_SpawnItemEx("PM_BlackMist2",0,0,0,-10,0,0,0);
     }
     TNT1 A 0 A_JumpIfTracerCloser(100,"Seek");
     TNT1 AAAA 1
     {
     A_SpawnParticle("0F 0F 0E",SPF_RELATIVE,95,10,0,random(-22,-15),random(-5,5),random(-5,5),-10,0,0,-5,0,0,1,0.3,-0.3);
     A_Weave(random(-4,4),random(-4,4),random(-4,4),random(-4,4));
+	A_SpawnItemEx("PM_BlackMist2",0,0,0,-10,0,0,0);
     }
     TNT1 A 0 A_JumpIfTracerCloser(100,"Seek");
     TNT1 AAA 1
     {
     A_SpawnParticle("0F 0F 0E",SPF_RELATIVE,95,10,0,random(-22,-15),random(-5,5),random(-5,5),-10,0,0,-5,0,0,1,0.3,-0.3);
     A_Weave(random(-4,4),random(-4,4),random(-4,4),random(-4,4));
+	A_SpawnItemEx("PM_BlackMist2",0,0,0,-10,0,0,0);
     }
     Stop;
   Seek:
@@ -207,7 +236,7 @@ Class PM_NightmareWindPull1 : Actor
     TNT1 A 0;
     Stop;
   XDeath:
-    TNT1 A 0 A_RadiusThrust(-95,66,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
+    TNT1 A 0 A_RadiusThrust(-200,66,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
     Stop;
   }
 }

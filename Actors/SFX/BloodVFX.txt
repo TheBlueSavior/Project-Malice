@@ -15,6 +15,114 @@ ACTOR PM_Blood replaces Blood
   }
 }
 
+
+//BLOOD CLOUDS
+Actor PM_NormalBloodyCloud
+{
+	+NOINTERACTION
+	+CLIENTSIDEONLY
+	+NOTONAUTOMAP
+	+ROLLSPRITE
+	Scale 0.45
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 A_Jump(255,"T1","T2","T3","T4","T5","T6","T7","T8")
+	T1:
+		X050 G 0	
+		Goto PlayOut
+	T2:
+		X050 H 0	
+		Goto PlayOut
+	T3:
+		X050 C 0	
+		Goto PlayOut
+	T4:
+		X050 D 0	
+		Goto PlayOut
+	T5:
+		X050 E 0	
+		Goto PlayOut
+	T6:
+		X050 F 0	
+		Goto PlayOut
+	T7:
+		X050 E 0	
+		Goto PlayOut
+	T8:
+		X050 F 0	
+		Goto PlayOut
+	PlayOut:
+		"####" "#" 1 A_SetScale(scalex+0.025)
+		"####" "#" 0 A_FadeOut(0.015)
+		Loop
+	}
+}
+Actor PM_NormalBloodyCloudMedium : PM_NormalBloodyCloud
+{	Scale 0.6	}
+
+Actor PM_NormalBloodyCloudBig : PM_NormalBloodyCloud
+{	Scale 0.8	}
+
+ACTOR PM_NormalInstestinGib
+{
+    Radius 8
+    Height 12
+    Speed 10
+	Mass 1
+	BounceFactor 0.4
+	Renderstyle Translucent
+	Alpha 0.9
+	+DOOMBOUNCE
+    +NOBLOCKMAP
+	+MISSILE
+    +NOTELEPORT
+    +MOVEWITHSECTOR
+    +CLIENTSIDEONLY
+    +FORCEXYBILLBOARD
+	-EXPLODEONWATER
+	+THRUACTORS
+    DeathSound "PM/BigGoreSplat"
+	Decal BloodSplat
+	Scale 1.1
+    States
+    {
+    Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SetScale(frandom(1.0,1.8))
+        GUTS ABCD 8
+        Loop
+    Death:
+		TNT1 A 0 A_QueueCorpse
+        GUTS E 1
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water")
+	    Goto Rest
+	Rest:
+		TNT1 A 0
+		TNT1 A 0 A_Jump(255, "Rest1", "Rest2")
+	Rest1:
+		GUTS E 200
+        GUTS E 5 A_FadeOut(0.05)
+        Wait
+	Rest2:
+		GUTS F 200
+		GUTS F 5 A_FadeOut(0.05)
+        Wait
+	Water:
+		TNT1 A 0 A_Jump(128, "Water2")
+		Goto Water1
+	Water1:
+		GUTS G 10
+		GUTS H 5 A_FadeOut(0.05)
+		Wait
+	Water2:
+		GUTS I 10
+		GUTS J 5 A_FadeOut(0.05)
+		Wait
+    }
+}
+
 //NORMAL BLOOD
 
 Actor PM_NormalBloodBase
@@ -103,6 +211,52 @@ Actor PM_NormalMeatChunk
 	}
 }
 
+Actor PM_NormalMeatChunkBig
+{
+	+CLIENTSIDEONLY
+	var int user_time;
+	var int user_t;
+	+THRUACTORS
+	-NOLIFTDROP
+	+DROPOFF
+	+NOTELEPORT
+	+NOTONAUTOMAP
+	-NOGRAVITY
+	+NOBLOCKMONST
+	+BOUNCEONWALLS
+	+BOUNCEONFLOORS
+	+ROLLSPRITE
+	Radius 6
+	Height 5
+	Gravity 0.65
+	Scale 1.6
+	States
+	{
+	Spawn:
+		TNT1 A 0 NODELAY A_QueueCorpse
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti")
+		TNT1 A 0 A_PlaySound("PM/GibSplat")
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+	Play:
+		"####" "#" 4 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
+		"####" "#" 0 A_CheckFloor("md1")
+		"####" "#" 0 A_SetRoll(roll+12)
+		Loop
+		
+	// when the gib crashes:
+	md1: 
+	Death:
+		"####" "#" 0 A_SetRoll(0)
+		"####" "#" 0 A_PlaySound("PM/BigGoreSplat")
+		"####" "#" 0 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 0 A_QueueCorpse
+		"####" "#" 200 A_JumpIf(user_t != 0,1)
+		"####" "#" 1 A_FadeOut
+		Wait
+	}
+}
+
 Actor PM_NormalMeatChunkLauncher
 {
 	+CLIENTSIDEONLY
@@ -121,6 +275,28 @@ Actor PM_NormalMeatChunkLauncher
 	Spawn:
 		TNT1 A 0
 		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
+		Stop
+	}
+}
+
+Actor PM_NormalBigMeatChunkLauncher
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	+NOTELEPORT
+	PROJECTILE
+	Scale 0.65
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkBig",0,0,0,frandom(8,-8),frandom(8,-8),frandom(5,15),random(1,359))
 		Stop
 	}
 }

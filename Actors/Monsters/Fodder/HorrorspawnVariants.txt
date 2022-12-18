@@ -572,3 +572,195 @@ Actor PM_HSpawnThrownChunk
     Stop
   }
 }
+
+
+Actor PM_HorrorspawnBurster
+{
+    Health 20
+    GibHealth 20
+    Radius 18
+    Height 56
+    Speed 5
+    PainChance 256
+    SeeSound ""
+    PainSound ""
+    DeathSound ""
+    ActiveSound ""
+    Obituary "%o was detonated by a Horrorspawn Burster."
+	Tag "Horrorspawn Burster"
+	Species "Horrorspawn"
+    Monster
+	Bloodtype "PM_NormalBloodBase"
+	MeleeRange 85
+	XScale 1.2
+	YScale 1.0
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+  States
+  {
+  Spawn:
+	5FOD ABCD 10 A_Wander
+	TNT1 A 0 A_Look
+    Loop
+  See:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("HSpawnBurster/Loop",CHAN_5,0.6,1)
+  See1:
+	TNT1 A 0 A_SetSpeed(5)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    5FOD AABB 5 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	5FOD CCDD 5 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+    Loop
+  Spotted:
+	TNT1 A 0
+	TNT1 A 0 A_PlaySound("HSpawnBurster/Sight",CHAN_7)
+	Goto See2
+  See2:
+	TNT1 A 0 A_SetSpeed(11)
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+    5FOD AA 3 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-8.0,3.5))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	5FOD BB 3 A_Chase
+	TNT1 A 0 ThrustThing(random(0,360),random(1,4))
+	TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_6)
+	5FOD CCDD 3 A_Chase
+	TNT1 A 0 ThrustThing(random(0,360),random(1,4))
+	TNT1 A 0 A_Recoil(frandom(-4.0,1.5))
+	Loop
+  Melee:
+	TNT1 A 0
+	Goto Death
+  Pain:
+    5FOD A 2
+    5FOD A 2 A_Pain
+    Goto See2
+  Death:
+	TNT1 A 0
+	TNT1 A 0 A_Die
+	TNT1 A 0 A_StopSound(CHAN_7)
+	TNT1 A 0 A_StopSound(CHAN_5)
+	TNT1 A 0 A_PlaySound("HSpawnBurster/Arm",CHAN_5)
+    5FOD EEEE 1
+	{
+	//ThrustThing(90,1);
+	A_SetScale(scalex+0.01,scaley+0.005);
+	}
+	5FOD EEEE 1
+	{
+	//ThrustThing(90,-1);
+	A_SetScale(scalex-0.01,scaley-0.01);
+	}
+	5FOD EEEE 1
+	{
+	//ThrustThing(90,1);
+	A_SetScale(scalex+0.025,scaley+0.025);
+	}
+	5FOD EEEE 1
+	{
+	//ThrustThing(90,-1);
+	A_SetScale(scalex-0.025,scaley-0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD EEEE 1
+	{
+	//ThrustThing(90,1);
+	A_SetScale(scalex+0.025,scaley+0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD EEEE 1
+	{
+	ThrustThing(90,-1);
+	A_SetScale(scalex-0.012,scaley+-0.012);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD EEEE 1
+	{
+	ThrustThing(90,1);
+	A_SetScale(scalex+0.05,scaley+0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD EEEE 1
+	{
+	ThrustThing(90,-1);
+	A_SetScale(scalex-0.025,scaley-0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD FFFF 1
+	{
+	ThrustThing(90,1);
+	A_SetScale(scalex+0.025,scaley+0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD FFFF 1
+	{
+	ThrustThing(90,-1);
+	A_SetScale(scalex-0.025,scaley-0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD FFFF 1
+	{
+	ThrustThing(90,1);
+	A_SetScale(scalex+0.05,scaley+0.05);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION)
+	5FOD FFFF 1
+	{
+	ThrustThing(90,-1);
+	A_SetScale(scalex-0.025,scaley-0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION)
+	5FOD FFFF 1
+	{
+	//ThrustThing(90,1);
+	A_SetScale(scalex+0.075,scaley+0.025);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION);
+	}
+	5FOD FFFF 1
+	{
+	//ThrustThing(90,-1);
+	A_SetScale(scalex-0.05,scaley-0.05);
+	A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-5,5),random(-5,5),random(15,50),random(-6,6),random(-6,6),random(-2,7),0,SXF_NOCHECKPOSITION)
+	5FOD FFFFF 3
+	{
+	//ThrustThing(90,random(-1,1));
+	A_SetScale(scalex+0.05,scaley+0.05);
+	}
+	5FOD G 3 BRIGHT
+	TNT1 A 0 A_Explode(100,300)
+    TNT1 A 0 Radius_Quake (3, 34, 0, 13, 0)
+	TNT1 A 0 A_PlaySound("Blob/Explode",CHAN_6)
+	TNT1 A 0 A_PlaySound("GBloodSplashBig",CHAN_7)
+	TNT1 A 0 A_PlaySound("HSpawnBurster/Explode",CHAN_5)
+	//TNT1 A 0 A_PlaySound("BigExplosionDistant",CHAN_WEAPON)
+	TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEx("PM_NormalBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEX("PM_ArachExpGoreSplash", random(-10,10), random(-10,10), random(5,30),random (-18,18),random(-18,18),random(4,20),random(0,360),SXF_NOCHECKPOSITION)
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_NormalBloodyCloud",random(-100,100),random(-100,100),random(10,100),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_NormalMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-40,40),random(-40,40),random(0,45),0,SXF_NOCHECKPOSITION)
+	TNT1 AAAA 0 A_CustomMissile ("PM_NormalInstestinGib",32,0,random(-180,180),2,random(0,90))
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION)
+    5FOD H 3 BRIGHT A_NoBlocking
+	TNT1 A 0 A_SetScale(1.2,1.0)
+	ZFOD PQR 3
+	ZFOD SSSSSSSSSSSSSSSSSSSSS 2 A_SpawnItemEx("PM_TumorBurstBlood",random(-60,60),random(-60,60),0,random(-4,4),random(-4,4),random(0,5),0,SXF_NOCHECKPOSITION)
+	ZFOD S -1
+    Stop
+  }
+}

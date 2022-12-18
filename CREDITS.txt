@@ -61,7 +61,7 @@ Yurithra - MAJOR Code help
 Phobos867 - Doom 4 revenant/Fiend sprites
 Dithered Output - Awesome outmoded zombie sprites from Siren, edited into Voidspawn
 TheDoomLad - Archvile fire wall code
-Death Foretold - Blood Sprites
+Death Foretold - Blood Sprites, Gib code
 IMX - Doom 3 Imp sprites
 Reu - Extensive sound hunting. Thanks!
 The Project Malice Lounge Discord - Wouldn't have been able to make mod without your suggestions, help, critiques and ideas. Thank you!
@@ -74,6 +74,8 @@ Ice Sprites/Code - Project Brutality
 Light and Dark Smoke - Arcanum
 Accensus - Target leading code
 Bugsie - Revamped bullet spark code
+jazzmaster - Exploder zombie sprites
+Supercharge - Gore code
 
 MY APOLOGIES IF I MISSED ANYONE!
 

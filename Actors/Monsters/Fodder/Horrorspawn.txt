@@ -10,6 +10,7 @@ Actor Horrorspawn : RandomSpawner
 	DropItem "Voidspawn", 255, 1
 	DropItem "PM_HorrorspawnSpitter", 255, 1
 	DropItem "PM_HorrorspawnChunkThrower", 255, 1
+	DropItem "PM_HorrorspawnBurster", 255, 1
 }
 
 Actor PM_NormalHorrorspawn : RandomSpawner
@@ -40,6 +41,7 @@ Actor Horrorspawnmap : RandomSpawner
 	DropItem "PM_FodderSleeperDropper", 255, 7
 	DropItem "PM_HorrorspawnSpitter", 255, 1
 	DropItem "PM_HorrorspawnChunkThrower", 255, 1
+	DropItem "PM_HorrorspawnBurster", 255, 1
 }
 
 Actor Horrorspawn1
