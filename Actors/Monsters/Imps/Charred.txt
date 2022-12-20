@@ -15,6 +15,7 @@ Actor PM_Charred : PMMonsterBase
   Obituary "%o turned into a screeching inferno from a Charred."
   HitObituary "%o's skin melted off from a Charred's claws."
   Bloodcolor "DarkRed"
+  BloodType "PM_DarkRedBloodBase"
   +NOTARGET
   +FLOORCLIP
   +DONTHURTSPECIES

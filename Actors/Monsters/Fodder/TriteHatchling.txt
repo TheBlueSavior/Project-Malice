@@ -167,5 +167,11 @@ Burst:
 	TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0)
     TNT1 FAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEX("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360))
 	Stop
+Death:
+	TNT1 A 0
+	TNT1 AA 0 A_SpawnItemEx("PM_NormalBloodMist",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 AAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 AA 0 A_SpawnItemEx("PM_NormalBloodMulti",random(-2,2),random(-2,2),random(2,5),random(-2,2),random(-2,2),random(2,5),0,SXF_NOCHECKPOSITION)
+	Stop
 }
 }
