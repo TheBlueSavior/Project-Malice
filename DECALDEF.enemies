@@ -1,5 +1,11 @@
 //Set up by H3LLW4LK3R
 
+fader PM_ScorchFader
+{
+	DecayStart 4
+	DecayTime 6
+}
+
 //fshotgunner
 
 decal PM_BulletHoleSmall
@@ -40,7 +46,8 @@ decal PM_OrangeFireScorch
 	add 1.0
 	randomflipx
 	randomflipy
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 	lowerdecal DoomImpScorch
 }
 
@@ -52,7 +59,8 @@ decal PM_RedFireScorch
 	randomflipx
 	randomflipy
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 	lowerdecal DoomImpScorch
 }
 
@@ -64,7 +72,7 @@ decal PM_HellPlasmaScorch
 	randomflipx
 	randomflipy
 	fullbright
-	animator GoAway
+	animator PM_ScorchFader
 	lowerdecal PlasmaScorchLower2
 }
 
@@ -76,7 +84,8 @@ decal PM_DeathSoulScorchSmall
 	randomflipx
 	randomflipy
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 }
 
 decal PM_DeathSoulScorchMed
@@ -87,7 +96,8 @@ decal PM_DeathSoulScorchMed
 	randomflipx
 	randomflipy
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 }
 
 decal PM_DeathSoulScorchBig
@@ -98,7 +108,8 @@ decal PM_DeathSoulScorchBig
 	randomflipx
 	randomflipy
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 }
 
 decal PM_GreenFireScorch
@@ -107,7 +118,8 @@ decal PM_GreenFireScorch
 	x-scale 0.5
 	y-scale 0.5
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 	lowerdecal BaronScorch
 }
 
@@ -117,7 +129,8 @@ decal PM_PlasmatronScorchSmall
 	x-scale 0.2
 	y-scale 0.2
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 	lowerdecal PlasmaScorchLower2
 }
 
@@ -127,7 +140,8 @@ decal PM_PlasmatronScorchLarge
 	x-scale 0.4
 	y-scale 0.4
 	add 1.0
-	animator GoAway
+	fullbright
+	animator PM_ScorchFader
 	lowerdecal Scorch
 }
 

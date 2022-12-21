@@ -283,6 +283,7 @@ actor PM_FeralImpBall : PM_CharredBall
 	-LOWGRAVITY
 	seesound "FeralImp/Ball"
 	//deathsound "FeralImp/BallExp"
+	Decal "PM_OrangeFireScorch"
 	FastSpeed 23
 	DamageType Fire
 	Speed 14

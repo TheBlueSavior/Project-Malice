@@ -488,7 +488,7 @@ actor PM_DevilImpBall : PM_CharredBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	seesound "FIREBA1"
-	Decal "DoomImpScorch"
+	Decal "PM_OrangeFireScorch"
 	DamageType Fire
 	Speed 15
 	FastSpeed 21

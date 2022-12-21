@@ -540,7 +540,7 @@ actor PM_FastImpBall : PM_CharredBall
 	Damage (random(11,11))
 	Scale 0.915
 	seesound "Zephyr/Ball"
-	Decal "DoomImpScorch"
+	Decal "PM_RedFireScorch"
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 18
