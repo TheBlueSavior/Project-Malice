@@ -16,7 +16,7 @@ Actor PM_DecayedCommando
   Species "Chaingunner"
   Tag "Decayed Commando"
   Monster
-  Bloodtype "PM_PestilenceBloodBase"
+  Bloodtype "PM_PestilenceZombieBloodBase"
   +FloorClip
   +DONTHARMSPECIES
   States

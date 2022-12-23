@@ -10,7 +10,7 @@ Actor PM_Cadaver : Revenant
   ActiveSound "Cadaver/Active"
   //DropItem "RagePoint1"
   //MeleeRange 90
-  Bloodtype "PM_NormalBloodBase"
+  Bloodtype "PM_NormalCyberBloodBase"
   Obituary "%o had trouble dodging a Cadaver's missile."
   HitObituary "%o was punched by a Cadaver."
   States

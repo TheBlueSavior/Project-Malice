@@ -15,7 +15,7 @@ Actor PM_Fusionite : Arachnotron
 	PAINSOUND "Fusionite/Pain"
 	DEATHSOUND "Fusionite/Death"
 	ACTIVESOUND "Fusionite/Active"
-	Bloodtype "PM_NormalBloodBase"
+	Bloodtype "PM_NormalCyberBloodBase"
 	States
 {
 Spawn:
@@ -116,6 +116,9 @@ Death:
 	//A_NoBlocking;
 	//}
 	TNT1 A 0 A_NoBlocking
+	TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEx("PM_NormalBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 FFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360))
 	TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20)
 	TNT1 A 0 A_PlaySound("ArachExpGore",CHAN_6)

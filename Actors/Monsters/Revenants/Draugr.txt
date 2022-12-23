@@ -10,7 +10,7 @@ ACTOR PM_Draugr : Revenant
 	ActiveSound "Draugr/Active"
 	Species "Revenant"
 	Scale 1.05
-	Bloodtype "PM_NormalBloodBase"
+	Bloodtype "PM_NormalCyberBloodBase"
 	Tag "Draugr"
 	HitObituary "%o was knocked out by a Draugr."
 	Obituary "%o was blown up into ashes by a Draugr."

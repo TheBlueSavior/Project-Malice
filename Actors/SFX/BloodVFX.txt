@@ -148,6 +148,30 @@ Actor PM_NormalBloodBase
 	}
 }
 
+Actor PM_NormalCyberBloodBase
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	+NOTELEPORT
+	PROJECTILE
+	Scale 0.65
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
+		TNT1 A 0 A_SpawnItemEx("PM_NormalCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
 Actor PM_NormalBlood : RandomSpawner
 {
 	DropItem "PM_NormalBlood1", 255, 2
@@ -156,6 +180,18 @@ Actor PM_NormalBlood : RandomSpawner
 	DropItem "PM_NormalBloodMulti", 255, 2
 	DropItem "PM_NormalBloodMist", 255, 2
 	DropItem "PM_NormalMeatChunkLauncher", 255, 1
+}
+
+
+Actor PM_NormalCyberBlood : RandomSpawner
+{
+	DropItem "PM_NormalBlood1", 255, 2
+	DropItem "PM_NormalBlood2", 255, 2
+	DropItem "PM_NormalBlood3", 255, 2
+	DropItem "PM_NormalBloodMulti", 255, 2
+	DropItem "PM_NormalBloodMist", 255, 2
+	DropItem "PM_NormalMeatChunkLauncher", 255, 1
+	DropItem "PM_NormalHitSpark", 255, 4
 }
 
 Actor PM_NormalBloodEx : RandomSpawner
@@ -347,6 +383,33 @@ Actor PM_NormalBlood1
 	}
 }
 
+
+Actor PM_NormalHitSpark
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+    +NOBLOCKMAP
+    +NOTELEPORT
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
+	RenderStyle Normal
+	Scale 0.65
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.25
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100)
+	    TRCR A 0 A_PlaySound("PM/BulletHit",2)
+		Stop
+	}
+}
 
 Actor PM_NormalBlood2 : PM_NormalBlood1
 {
@@ -1054,7 +1117,7 @@ Actor PM_DarkRedBloodEx : RandomSpawner
 
 Actor PM_DarkRedMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
 	States
 	{
 	Spawn:
@@ -1095,7 +1158,7 @@ Actor PM_DarkRedMeatChunkLauncher : PM_NormalMeatChunkLauncher
 
 Actor PM_DarkRedMiniMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
 	Scale 0.3
 	Gravity 0.50
 	States
@@ -1151,7 +1214,7 @@ Actor PM_DarkRedBlood1 : PM_NormalBlood1
 	Radius 1
 	Mass 1
 	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
 	Scale 0.65
 	-NOGRAVITY
 	Gravity 0.25
@@ -1189,12 +1252,12 @@ Actor PM_DarkRedBlood1 : PM_NormalBlood1
 
 Actor PM_DarkRedBlood2 : PM_DarkRedBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.6,0.3,0.3]"
+	Translation "0:255=%[0,0,0]:[0.8,0.3,0.3]"
 }
 
 Actor PM_DarkRedBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
 }
 
 Actor PM_DarkRedBloodMulti : PM_NormalBloodMulti
@@ -1258,6 +1321,32 @@ Actor PM_PestilenceBloodBase
 }
 
 
+Actor PM_PestilenceZombieBloodBase
+{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	+NOTELEPORT
+    +NOBLOCKMAP
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
+	Scale 0.65
+	Height 1
+	Radius 1
+	Mass 1
+	-NOGRAVITY
+	Gravity 0.85
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceZombieBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		Stop
+	}
+}
+
+
 Actor PM_PestilenceBlood : RandomSpawner
 {
 	DropItem "PM_PestilenceBlood1", 255, 2
@@ -1266,6 +1355,21 @@ Actor PM_PestilenceBlood : RandomSpawner
 	DropItem "PM_PestilenceBloodMulti", 255, 2
 	DropItem "PM_PestilenceBloodMist", 255, 2
 	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1
+}
+
+Actor PM_PestilenceZombieBlood : RandomSpawner
+{
+	DropItem "PM_PestilenceBlood1", 255, 2
+	DropItem "PM_PestilenceBlood2", 255, 2
+	DropItem "PM_PestilenceBlood3", 255, 2
+	DropItem "PM_PestilenceBloodMulti", 255, 2
+	DropItem "PM_PestilenceBloodMist", 255, 2
+	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1
+	DropItem "PM_DarkRedBlood1", 255, 3
+	DropItem "PM_DarkRedBlood2", 255, 2
+	DropItem "PM_DarkRedBlood3", 255, 3
+	DropItem "PM_DarkRedBloodMulti", 255, 2
+	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1
 }
 
 Actor PM_PestilenceBloodEx : RandomSpawner
