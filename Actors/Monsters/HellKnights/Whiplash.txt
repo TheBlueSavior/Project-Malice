@@ -17,7 +17,7 @@ Actor PM_Whiplash : PMMonster
   +DONTHARMSPECIES
   +Donthurtspecies
   +MISSILEevenMORE
-  Bloodtype "PM_NormalBloodBase"
+  Bloodtype "PM_NormalCyberBloodBase"
   Obituary "%o couldn't evade the Whiplash's cursed blades!"
   SeeSound ""
   ActiveSound "Whiplash/Active"
@@ -42,6 +42,7 @@ Actor PM_Whiplash : PMMonster
     TNT1 A 0 A_PlaySound("Whiplash/Sight",CHAN_5)
   See2:
 	TNT1 A 0 A_SetSpeed(8)
+	TNT1 A 0 A_ChangeFlag(NOPAIN,False)
 	VORE A 0 A_ChangeFlag("NOPAIN",0)
     WHIP AAAAA 2 A_Chase
     WHIP BBBBB 2 A_Chase
@@ -271,6 +272,7 @@ Actor PM_Whiplash : PMMonster
 	Goto See2
   Melee:
     TNT1 A 0
+	TNT1 A 0 A_ChangeFlag(NOPAIN,True)
     TNT1 A 0 A_PlaySound("GenericChargeSmall")
 	WHIP EEEEEEEEEE 1 Light("WhipKnife")
     {

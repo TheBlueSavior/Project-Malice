@@ -22,7 +22,7 @@ Actor PM_Remnant
 	+DONTHARMSPECIES
 	Species "PukeMonster"
 	BloodColor "DarkGreen"
-	Bloodtype "PM_PestilenceBloodBase"
+	Bloodtype "PM_PestilenceZombieBloodBase"
 	DropItem "ArmorBonus"
 	DropItem "Shotgun"
     States
@@ -51,11 +51,11 @@ Actor PM_Remnant
 	  ZOM3 G 6
 	See2:
 	  TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-      TNT1 A 0 A_Jump(45,"Puke")
       ZOM3 AABB 3 A_Chase
 	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
       ZOM3 CCDD 3 A_Chase
 	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
+	  TNT1 A 0 A_Jump(45,"Puke")
 	  TNT1 A 0 A_Jump(56,"ChargeCheck")
 	  Loop
 	ChargeCheck:
@@ -79,6 +79,8 @@ Actor PM_Remnant
 	  TNT1 A 0 A_JumpIfCloser(100,"Puke")
 	  Loop
 	Puke:
+	  TNT1 A 0
+	  TNT1 A 0 A_CheckSight("See2")
 	 // TNT1 A 0 A_PlaySound("FATSPIT")
 	  ZOM3 GGGG 1
 	  TNT1 A 0 A_PlaySound("Afflicted/Puke",CHAN_6)
