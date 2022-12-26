@@ -22,6 +22,22 @@ $rolloff Horrorspawn/Step 100 370
 
 $volume Horrorspawn/Step 0.6
 
+$random Afflicted/RunStep { Aff/RStep1 Aff/RStep2 Aff/RStep3 }
+Aff/RStep1 "Sounds/Monsters/SFX/AffRunStep1.ogg"
+Aff/RStep2 "Sounds/Monsters/SFX/AffRunStep2.ogg"
+Aff/RStep3 "Sounds/Monsters/SFX/AffRunStep3.ogg"
+
+$random Afflicted/WalkStep { Aff/WStep1 Aff/WStep2 Aff/WStep3 }
+Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep1.ogg"
+Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep2.ogg"
+Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep3.ogg"
+
+$rolloff Afflicted/RunStep 100 450
+$rolloff Afflicted/WalkStep 100 370
+
+$volume Afflicted/RunStep 0.7
+$volume Afflicted/WalkStep 0.4
+
 $random ZombieFodder/Sight { ZFodderSight1 ZFodderSight2 ZFodderSight3 ZFodderSight4 ZFodderSight5 ZFodderSight6 ZFodderSight7 }
 ZFodderSight1 "Sounds/Monsters/Fodder/Horrorspawn/ZFodderSight1.ogg"
 ZFodderSight2 "Sounds/Monsters/Fodder/Horrorspawn/ZFodderSight2.ogg"
@@ -591,6 +607,8 @@ $rolloff Husk/Sight 200 1300
 $rolloff Husk/Active 200 1250
 $rolloff Husk/Death 200 1300
 $rolloff Husk/Rush  500 900
+
+$volume Husk/Rush 0.6
 
 monsters/fatsofire			DSFATFIR
 

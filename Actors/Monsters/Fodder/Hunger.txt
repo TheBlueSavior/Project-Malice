@@ -39,34 +39,22 @@ Actor Hunger
 	}
 	ZHUN AB 4 A_Wander
 	ZHUN AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	ZHUN CD 4 A_Wander
     ZHUN AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
 	Goto See
   See:
-    ZHUN AA 1
-	{
-	A_Chase;
-	//A_Recoil(-0.1);
-	}
-	ZHUN BB 1
-	{
-	A_Chase;
-	//A_Recoil(-0.1);
-	}
-	ZHUN CC 1
-	{
-	A_Chase;
-	//A_Recoil(-0.1);
-	}
-	ZHUN DD 1
-	{
-	A_Chase;
-	//A_Recoil(-0.1);
-	}
+    ZHUN AA 1 A_Chase
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+	ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	TNT1 A 0 A_Jump(3,"Puke")
 	//TNT1 A 0 A_Jump(2,"Lunge")
     Loop
@@ -231,30 +219,22 @@ Actor PM_Hungry1
   Spawn:
 	ZHUN AB 4 A_Wander
 	ZHUN AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	ZHUN CD 4 A_Wander
     ZHUN AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
 	Goto See
   See:
-    ZHUN AA 1
-	{
-	A_Chase;
-	}
-	ZHUN BB 1
-	{
-	A_Chase;
-	}
-	ZHUN CC 1
-	{
-	A_Chase;
-	}
-	ZHUN DD 1
-	{
-	A_Chase;
-	}
+    ZHUN AA 1 A_Chase
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+    ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	TNT1 A 0 A_Jump(8,"Puke","Howl")
 	//TNT1 A 0 A_Jump(4,"Howl")
 	//TNT1 A 0 A_Jump(2,"Lunge")
@@ -345,8 +325,10 @@ Actor PM_HungryMarine
   Spawn:
 	ZOM3 AB 4 A_Wander
 	ZOM3 AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	ZOM3 CD 4 A_Wander
     ZOM3 AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
@@ -361,6 +343,7 @@ Actor PM_HungryMarine
 	{
 	A_Chase;
 	}
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
 	ZOM3 CC 2
 	{
 	A_Chase;
@@ -369,6 +352,7 @@ Actor PM_HungryMarine
 	{
 	A_Chase;
 	}
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
 	TNT1 A 0 A_Jump(8,"Puke","Howl")
 	//TNT1 A 0 A_Jump(2,"Lunge")
     Loop
@@ -453,8 +437,10 @@ Actor PM_HungrySci1
   {
   Spawn:
 	SCZA AB 4 A_Wander
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	SCZA AB 0 A_Look
 	SCZA CD 4 A_Wander
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
     SCZA AB 0 A_Look
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
@@ -462,22 +448,12 @@ Actor PM_HungrySci1
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
 	Goto See
   See:
-    SCZA AA 2
-	{
-	A_Chase;
-	}
-	SCZA BB 2
-	{
-	A_Chase;
-	}
-	SCZA CC 2
-	{
-	A_Chase;
-	}
-	SCZA DD 2
-	{
-	A_Chase;
-	}
+    SCZA AA 2 A_Chase
+	SCZA BB 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
+	SCZA CC 2 A_Chase
+	SCZA DD 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
 	TNT1 A 0 A_Jump(8,"Puke","Howl")
 	//TNT1 A 0 A_Jump(2,"Lunge")
     Loop
@@ -568,8 +544,10 @@ Actor PM_HungrySci2
   {
   Spawn:
 	SCZC AB 4 A_Wander
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	SCZC AB 0 A_Look
 	SCZC CD 4 A_Wander
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
     SCZC AB 0 A_Look
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
@@ -577,22 +555,12 @@ Actor PM_HungrySci2
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
 	Goto See
   See:
-    SCZC AA 2
-	{
-	A_Chase;
-	}
-	SCZC BB 2
-	{
-	A_Chase;
-	}
-	SCZC CC 2
-	{
-	A_Chase;
-	}
-	SCZC DD 2
-	{
-	A_Chase;
-	}
+    SCZC AA 2 A_Chase
+	SCZC BB 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
+	SCZC CC 2 A_Chase
+	SCZC DD 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
 	TNT1 A 0 A_Jump(8,"Puke","Howl")
 	//TNT1 A 0 A_Jump(2,"Lunge")
     Loop
@@ -684,30 +652,22 @@ Actor PM_HungrySoldier
   Spawn:
 	ZHU1 AB 4 A_Wander
 	ZHU1 AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	ZHU1 CD 4 A_Wander
     ZHU1 AB 0 A_Look
+    TNT1 A 0 A_PlaySound("Afflicted/WalkStep",CHAN_5)
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
 	Goto See
   See:
-    ZHU1 AA 2
-	{
-	A_Chase;
-	}
-	ZHU1 BB 2
-	{
-	A_Chase;
-	}
-	ZHU1 CC 2
-	{
-	A_Chase;
-	}
-	ZHU1 DD 2
-	{
-	A_Chase;
-	}
+    ZHU1 AA 2 A_Chase
+	ZHU1 BB 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
+	ZHU1 CC 2 A_Chase
+	ZHU1 DD 2 A_Chase
+    TNT1 A 0 A_PlaySound("Afflicted/RunStep",CHAN_5)
 	TNT1 A 0 A_Jump(8,"Puke","Howl")
 	//TNT1 A 0 A_Jump(2,"Lunge")
     Loop
