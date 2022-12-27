@@ -1,4 +1,4 @@
-ACTOR PM_HellifiedSoldier
+ACTOR PM_HellifiedSoldier : PMMonsterBase
 { 
     Health 50
     Radius 20
@@ -87,6 +87,7 @@ ACTOR PM_HellifiedSoldier
     Chargeup:
         HFS1 F 8 Light("Shadowball2") A_FaceTarget
         TNT1 A 0 A_PlaySound("HellSoldier/ChargeReady")
+		TNT1 A 0 A_PlaySound("HellSoldier/ChargeReady2",CHAN_7)
         HFS1 FFFFFFFFFFFFFFFFFFFF 3 Light("ShadowBall2")
         {
         A_FaceTarget;

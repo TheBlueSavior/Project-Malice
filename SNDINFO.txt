@@ -1679,6 +1679,7 @@ $rolloff HellSoldier/Plasma 700 2200
 $limit HellSoldier/Plasma 12
 
 HellSoldier/ChargeReady "Sounds/Monsters/Zombiemen/HellifiedSoldier/HellSolBallReady.ogg"
+HellSoldier/ChargeReady2 "Sounds/Monsters/Zombiemen/HellifiedSoldier/HellSolBallReady2.ogg"
 HellSoldier/ChargeClose "Sounds/Monsters/Zombiemen/HellifiedSoldier/HellSolBallReadyClose.ogg"
 
 $random HellSoldier/ChargePlas { HellSolChargeP1 HellSolChargeP2 HellSolChargeP3 }
