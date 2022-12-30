@@ -357,7 +357,7 @@ Actor PM_NormalBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		//TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
 		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
@@ -596,7 +596,7 @@ Actor PM_GreenBlood1 : PM_NormalBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_GreenBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		//TNT1 A 0 A_SpawnItemEx("PM_GreenBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
 		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
@@ -775,7 +775,7 @@ Actor PM_BlueBlood1 : PM_NormalBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		//TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
 		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
@@ -1001,7 +1001,7 @@ Actor PM_BlackBlood1 : PM_NormalBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_BlackBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		//TNT1 A 0 A_SpawnItemEx("PM_BlackBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
 		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
@@ -1222,7 +1222,7 @@ Actor PM_DarkRedBlood1 : PM_NormalBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_DarkRedBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,125)
+		//TNT1 A 0 A_SpawnItemEx("PM_DarkRedBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,125)
 		TNT1 AAAA 0 A_SpawnItemEx("PM_DarkRedMiniMeatChunkLauncher",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(0,1),0,SXF_NOCHECKPOSITION,230)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
@@ -1497,7 +1497,7 @@ Actor PM_PestilenceBlood1
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
+		//TNT1 A 0 A_SpawnItemEx("PM_PestilenceBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,3),0,SXF_NOCHECKPOSITION,190)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
