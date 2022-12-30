@@ -38,7 +38,7 @@ Actor PM_FShotgunner
         TNT1 A 0 A_CheckSight("See")
       Goto Spotted
 	Spotted:
-	TNT1 A 0 A_Jump(256,"Roar","See2")
+	TNT1 A 0 A_Jump(256,"Roar","See2","Roar2")
 	  Goto See2
 	Roar:
 	    TNT1 A 0 A_PlaySound("FacelessZ/Sight",CHAN_5)
@@ -54,6 +54,8 @@ Actor PM_FShotgunner
 		F1SH DD 3 A_Chase
         Loop
   Missile:
+	TNT1 A 0
+	TNT1 A 0 A_Jump(35,"Roar2","Puke")
     F1SH EE 7 A_FaceTarget
 	TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_5)
 	TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
@@ -73,6 +75,23 @@ Actor PM_FShotgunner
 	F1SH AA 5 A_FaceTarget
 	F1SH BB 5 A_FaceTarget
     Goto See2
+  Roar2:
+		F1SH DD 5 A_FaceTarget
+		TNT1 A 0 A_PlaySound("FlessZSight4")
+		F1SH DGGGGGGGAAA 3 A_FaceTarget
+		Goto See2
+  Puke:
+	TNT1 A 0 A_PlaySound("GenericBloodPuke")
+	F1SH GGGGGGGGG 1
+	{
+	A_CustomMissile("HungerBloodSpray",46,0,random(20,-20),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-20,20));
+	}
+	F1SH GGG 1 A_SpawnItemEx("PM_DarkRedBlood1",0,0,46,random(2,4),random(-2,2),random(0,3))
+	F1SH GGGGGGG 1
+	{
+	}
+	POS1 G 3
+	Goto See2
   Pain:
     F1SH G 3
     F1SH G 3 A_Pain
