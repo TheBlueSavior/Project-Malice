@@ -268,11 +268,22 @@ CharSight1 "Sounds/Monsters/Imps/Charred/CharSight1.ogg"
 CharSight2 "Sounds/Monsters/Imps/Charred/CharSight2.ogg"
 CharSight3 "Sounds/Monsters/Imps/Charred/CharSight3.ogg"
 
-$random Charred/Active { CharActive1 CharActive2 CharActive3 CharActive4 }
+$random Charred/Active { CharActive1 CharActive2 CharActive3 CharActive4 CharIdle1 CharIdle2 CharIdle3 CharIdle4 CharIdle5 CharIdle6 CharIdle7 CharIdle8 CharIdle9 CharIdle10 CharIdle11 }
 CharActive1 "Sounds/Monsters/Imps/Charred/CharActive1.ogg"
 CharActive2 "Sounds/Monsters/Imps/Charred/CharActive2.ogg"
 CharActive3 "Sounds/Monsters/Imps/Charred/CharActive3.ogg"
 CharActive4 "Sounds/Monsters/Imps/Charred/CharActive4.ogg"
+CharIdle1 "Sounds/Monsters/Imps/Charred/CharIdle1.mp3"
+CharIdle2 "Sounds/Monsters/Imps/Charred/CharIdle2.mp3"
+CharIdle3 "Sounds/Monsters/Imps/Charred/CharIdle3.mp3"
+CharIdle4 "Sounds/Monsters/Imps/Charred/CharIdle4.mp3"
+CharIdle5 "Sounds/Monsters/Imps/Charred/CharIdle5.mp3"
+CharIdle6 "Sounds/Monsters/Imps/Charred/CharIdle6.mp3"
+CharIdle7 "Sounds/Monsters/Imps/Charred/CharIdle7.mp3"
+CharIdle8 "Sounds/Monsters/Imps/Charred/CharIdle8.mp3"
+CharIdle9 "Sounds/Monsters/Imps/Charred/CharIdle9.mp3"
+CharIdle10 "Sounds/Monsters/Imps/Charred/CharIdle10.mp3"
+CharIdle11 "Sounds/Monsters/Imps/Charred/CharIdle11.mp3"
 
 $random Charred/Pain { CharPain1 CharPain2 CharPain3 CharPain4 CharPain5 CharPain6 }
 CharPain1 "Sounds/Monsters/Imps/Charred/CharPain1.ogg"
