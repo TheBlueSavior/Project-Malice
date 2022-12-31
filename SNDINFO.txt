@@ -949,6 +949,9 @@ HectebusBall/Exp4 "Sounds/Monsters/Mancubis/Hectebus/HectebusBallExp4.ogg"
 HectebusBall/Exp5 "Sounds/Monsters/Mancubis/Hectebus/HectebusBallExp5.ogg"
 
 $volume HectebusBall/Exp 0.8
+$volume Hectebus/Pain 0.8
+$volume Hectebus/Active 0.8
+$volume Hectebus/Sight 0.8
 
 Hectebus/Death "Sounds/Monsters/Mancubis/Hectebus/HectebusDeath.ogg"
 Hectebus/Aim "Sounds/Monsters/Mancubis/Hectebus/HectebusAim.ogg"
@@ -3326,7 +3329,7 @@ $random Corpulent/Whiz	{ Corpulent/Whiz1 Corpulent/Whiz2 }
 Corpulent/Whiz1 "Sounds/Monsters/Mancubis/Corpulent/CorpulentWhiz1.ogg"
 Corpulent/Whiz2 "Sounds/Monsters/Mancubis/Corpulent/CorpulentWhiz2.ogg"
 
-$volume Corpulent/Sight 0.8
+$volume Corpulent/Sight 0.9
 $volume Corpulent/Pain 0.8
 $volume Corpulent/Death 0.8
 
