@@ -427,7 +427,7 @@ Actor OrangeFireEffectJet
   Spawn:
 	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
 	TNT1 A 0 A_SetScale(ScaleX-0.015)
-	FIR1 A 1 A_FadeOut(0.08)
+	F1R1 A 1 A_FadeOut(0.08)
 	Wait
 	}
 }
@@ -551,7 +551,7 @@ Actor FiendRocketTrail
 	TNT1 A 0 A_SetRoll(random(0,360))
   Go:
 	TNT1 A 0 A_SetScale(ScaleX-0.035)
-    FIR1 R 1 Bright A_FadeOut(0.22)
+    F1R1 R 1 Bright A_FadeOut(0.22)
 	Loop
 	}
 }

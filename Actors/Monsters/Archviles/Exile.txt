@@ -659,7 +659,7 @@ Actor ExileHandFire
   Spawn:
 	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
 	TNT1 A 0 A_SetScale(ScaleX-0.04)
-	FIR1 A 1 A_FadeOut(0.07)
+	F1R1 A 1 A_FadeOut(0.07)
 	Loop
 	}
 }

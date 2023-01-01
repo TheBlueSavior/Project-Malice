@@ -672,7 +672,7 @@ Actor OrangeFireEffect
   Spawn:
 	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
 	TNT1 A 0 A_SetScale(ScaleX-0.01)
-	FIR1 A 1 A_FadeOut(0.08)
+	F1R1 A 1 A_FadeOut(0.08)
 	Loop
 	}
 }
