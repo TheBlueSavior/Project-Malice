@@ -709,10 +709,10 @@ Actor PM_HungrySoldier
 	ZHU1 J -1
     Stop
   XDeath:
-    ZOM1 P 5 A_XScream
-    ZOM1 Q 5 A_NoBlocking
-    ZOM1 RSTU 5 
-    ZOM1 V -1 
+    POS1 P 5 A_XScream
+    POS1 Q 5 A_NoBlocking
+    POS1 RST 5 
+    POS1 U -1 
     Stop
   Raise:
     ZHU1 JIHG 5
