@@ -11,6 +11,7 @@ ACTOR PM_Rotfly
   MONSTER
   Species Flys
   BloodColor "Dark Green"
+  BloodType "PM_DarkGreenBloodBase"
   ActiveSound "Rotfly/Active"
   SeeSound "Rotfly/See"
   PainSound "Rotfly/Pain"

@@ -6,6 +6,7 @@ ACTOR PM_PhaseCaco: Cacodemon
   ActiveSound "PhaseCaco/Active"
   Obituary "%o was ambushed by a Phase Cacodemon."
   Bloodcolor "Purple"
+  BloodType "PM_PurpleBloodBase"
   HitObituary "%o's head was bitten off by a Phase Cacodemon."
   health 420
   speed 5

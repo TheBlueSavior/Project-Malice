@@ -10,6 +10,7 @@ Actor TriteHatchling
   Gravity 0.85
   PainChance 192
   BloodColor DarkGreen
+  BloodType "PM_DarkGreenBloodBase"
   PainSound "HTrite/Pain"
   SeeSound "HTrite/Sight"
   DeathSound "HTrite/Death"
@@ -121,6 +122,8 @@ Actor TriteHatchling
     Goto See
   Death:
     TRI2 G 5 A_Scream
+	TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBloodMist",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION)
+	TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBloodMulti",random(-2,2),random(-2,2),random(2,5),random(-2,2),random(-2,2),random(2,5),0,SXF_NOCHECKPOSITION)
     TRI2 H 0 A_PlaySoundEx("Trite/Splat", "SoundSlot7", 0)
     TRI2 H 5 A_NoBlocking
     TRI2 IJK 5    
