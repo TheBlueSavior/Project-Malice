@@ -167,8 +167,8 @@ ACTOR PM_Defiler
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget
 		Goto See2
@@ -202,7 +202,19 @@ ACTOR PM_Defiler
 		{
 		A_FaceTarget;
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		}
+		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
+		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI F 5 Light("AvatarFireball4")
+		{
+		A_FaceTarget;
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
