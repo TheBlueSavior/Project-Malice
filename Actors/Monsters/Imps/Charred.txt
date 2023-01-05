@@ -401,6 +401,26 @@ actor PyroImpBallFire2
 	CFCF A 1 bright A_PlaySound ("Fire/Idle")
 	CFCF A 1 bright A_Explode (4, 56)
 	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56)
+	 CFCF PON 2 bright 
+	CFCF A 1 bright A_PlaySound("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56)
+	CFCF A 1 bright A_PlaySound ("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode(4, 56)
+	CFCF A 1 bright A_PlaySound ("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56) 
+	 CFCF PON 2 bright 
+	CFCF A 1 bright A_PlaySound("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56)
+	CFCF A 1 bright A_PlaySound ("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode(4, 56)
+	CFCF A 1 bright A_PlaySound ("Fire/Idle")
+	CFCF A 1 bright A_Explode (4, 56)
+	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56)
 	CFCF NOP 2 bright 
     stop
   }
