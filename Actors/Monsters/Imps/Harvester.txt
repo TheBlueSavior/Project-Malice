@@ -89,7 +89,7 @@ Class PM_Harvester : Actor
 	SLHP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright Light("SoulHarvesterBall1")
 	{
 	A_Wander();
-	A_SpawnItemEx("HarvesterPhaseTrail");
+	A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 	}
 	TNT1 A 0 A_SetRenderStyle(1.0,STYLE_Normal);
 	TNT1 A 0 A_SetSpeed(6);
@@ -109,7 +109,7 @@ Class PM_Harvester : Actor
 	SLHP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright Light("SoulHarvesterBall1")
 	{
 	A_Chase(null,null);
-	A_SpawnItemEx("HarvesterPhaseTrail");
+	A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 	}
 	TNT1 A 0 A_SetRenderStyle(1.0,STYLE_Normal);
 	TNT1 A 0 A_SetSpeed(6);
@@ -251,24 +251,6 @@ Class PM_Harvester : Actor
     SLHV WVUTSRQPO 5;
     Goto See;
   }
-}
-
-Class HarvesterPhaseTrail : Actor
-{
-Default
-{
-+CLIENTSIDEONLY;
-+NOINTERACTION;
-RenderStyle "Add";
-Alpha 0.60;
-Scale 1.05;
-}
-States
-{
-Spawn:
-    SLHP A 1 A_FadeOut(0.06);
-    Loop;
-    }
 }
 
 Class OrbitSpirit : PM_SoulHarvesterBall

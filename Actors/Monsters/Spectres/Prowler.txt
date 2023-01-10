@@ -56,13 +56,13 @@ ACTOR PM_Prowler : PMMonster
 		SHDW E 0 A_PlaySound("Prowler/Swing",CHAN_AUTO,1.0,false,1.2)
 		TNT1 A 0 A_Recoil(-20)
 		TNT1 A 0 ThrustThingZ(0,16,0,1)
-		SHDW FFFFF 1 A_SpawnItemEx("ProwlerShadowF")
+		SHDW FFFFF 1 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW G 3 
 			{
 			A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
-			A_SpawnItemEx("ProwlerShadowG");
+			A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 			}
-		SHDW FFF 1 A_SpawnItemEx("ProwlerShadowF")
+		SHDW FFF 1 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		TNT1 A 0 A_Jump(200,"QuickRetreat")
 		SHDW A 4 A_FaceTarget
 		Goto HereICome
@@ -74,26 +74,26 @@ ACTOR PM_Prowler : PMMonster
 			A_SetSpeed(20);
 			}
 		TNT1 A 0 A_ChangeFlag("NOPAIN", true)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowA")
+		SHDW A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW AAA 1 A_Chase
 		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowB")
+		SHDW B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW BBB 1 A_Chase
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowC")
+		SHDW C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW CCC 1 A_Chase
 		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowD")
+		SHDW D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW DDD 1 A_Chase
 		TNT1 A 0 A_SetTranslucent(0.5)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowA")
+		SHDW A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW AAA 1 A_Chase
 		TNT1 A 0 A_PlaySound("Prowler/Foot",2)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowB")
+		SHDW B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW BBB 1 A_Chase
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowC")
+		SHDW C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW CCC 1 A_Chase
 		TNT1 A 0 A_PlaySound("Prowler/Foot",3)
-		TNT1 A 0 A_SpawnItemEx("ProwlerShadowD")
+		SHDW D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 		SHDW DDD 1 A_Chase
 		SHDW A 0 A_SetTranslucent(0.0)
 		SHDW AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase
@@ -489,39 +489,6 @@ Actor ProwlerFakeOut
 		Stop	
 	}
 }
-
-Actor ProwlerShadowA 
-{
-	+NOINTERACTION
-	Scale 1.05
-	RenderStyle Translucent
-	Alpha 0.7
-	States
-	{
-	Spawn:
-		SHDW A 0 
-		Goto Idle
-	Idle:
-		"####" "#" 2 A_FadeOut(0.1)
-		Loop
-	}
-}
-Actor ProwlerShadowB : ProwlerShadowA
-{	States	{	Spawn:	SHDW B 0 
-				Goto Idle	}}
-Actor ProwlerShadowC : ProwlerShadowA
-{	States	{	Spawn:	SHDW C 0 
-				Goto Idle	}}
-Actor ProwlerShadowD : ProwlerShadowA
-{	States	{	Spawn:	SHDW D 0 
-				Goto Idle	}}
-Actor ProwlerShadowG : ProwlerShadowA
-{	States	{	Spawn:	SHDW G 0 
-				Goto Idle	}}
-Actor ProwlerShadowF : ProwlerShadowA
-{	States	{	Spawn:	SHDW F 0 
-				Goto Idle	}}
-
 
 ACTOR Shadowtorso
 {

@@ -69,17 +69,17 @@ ACTOR PM_DemonTechBrute : Demon
        Loop 
 	Rush:
        CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
 	   TNT1 A 0 A_Jump(5,"See2")
@@ -87,74 +87,74 @@ ACTOR PM_DemonTechBrute : Demon
 	Retreat:
 	   TNT1 A 0 A_SetTranslucent(0.5)
 	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailA")
+       CRG2 A 0 A_PlaySound("DTechWalk",CHAN_7)
+	   CRG2 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 AA 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailB")
+	   CRG2 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 BB 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
        CRG2 C 0 A_PlaySound("DTechWalk",CHAN_7)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailC")
+	   CRG2 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
        CRG2 CC 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_SpawnItemEx("DTechBTrailD")
+	   CRG2 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
 	   CRG2 DD 1 A_Chase
 	   TNT1 A 0 A_Recoil(-0.8)
 	   Goto See2
@@ -204,62 +204,6 @@ ACTOR PM_DemonTechBrute : Demon
        SRG2 NMLKJI 5 
        Goto See 
     } 
-}
-
-ACTOR DTechBTrailA
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-Alpha 0.70
-Scale 1.1
-States
-{
-Spawn:
-    CRG2 A 1 A_FadeOut(0.1)
-    Loop
-    }
-}
-
-ACTOR DTechBTrailB
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-Alpha 0.70
-Scale 1.1
-States
-{
-Spawn:
-    CRG2 B 1 A_FadeOut(0.1)
-    Loop
-    }
-}
-
-ACTOR DTechBTrailC
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-Alpha 0.70
-Scale 1.1
-States
-{
-Spawn:
-    CRG2 C 1 A_FadeOut(0.1)
-    Loop
-    }
-}
-
-ACTOR DTechBTrailD
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-Alpha 0.70
-Scale 1.1
-States
-{
-Spawn:
-    CRG2 D 1 A_FadeOut(0.1)
-    Loop
-    }
 }
 
 ACTOR BloodDemonArm

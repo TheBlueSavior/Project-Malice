@@ -38,23 +38,23 @@ Class PM_Nightmare : Actor
 	NMRE AA 2 Fast
     {
     A_Chase(null,null,CHF_NOPLAYACTIVE);
-    A_SpawnItemEx("PM_NightmareTrailA",0,0,0,random(-5,-1),random(-3,3),random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,-1),random(-3,3),random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     NMRE BB 2 Fast 
     {
     A_Chase(null,null,CHF_NOPLAYACTIVE);
-    A_SpawnItemEx("PM_NightmareTrailB",0,0,0,random(-5,-1),random(-3,3),random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,-1),random(-3,3),random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
 	NMRE CC 2 Fast
     {
     A_Chase(null,null,CHF_NOPLAYACTIVE);
-    A_SpawnItemEx("PM_NightmareTrailC",0,0,0,random(-5,-1),random(-3,3),random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,-1),random(-3,3),random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     NMRE DD 2 Fast
     {
     A_Chase(null,null,CHF_NOPLAYACTIVE);
-    A_SpawnItemEx("PM_NightmareTrailD",0,0,0,random(-5,-1),random(-3,3),random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,-1),random(-3,3),random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     TNT1 A 0 A_CheckSight("See");
     goto Spotted;
@@ -66,22 +66,22 @@ Class PM_Nightmare : Actor
 	NMRE AA 2 Fast
     {
     A_Chase();
-    A_SpawnItemEx("PM_NightmareTrailA",0,0,0,random(-8,-1),0,random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-8,-1),0,random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
 	NMRE BB 2 Fast
     {
     A_Chase();
-    A_SpawnItemEx("PM_NightmareTrailB",0,0,0,random(-8,-1),0,random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-8,-1),0,random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
 	NMRE CC 2 Fast
     {
     A_Chase();
-    A_SpawnItemEx("PM_NightmareTrailC",0,0,0,random(-8,-1),0,random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-8,-1),0,random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
 	NMRE DD 2 Fast
     {
     A_Chase();
-    A_SpawnItemEx("PM_NightmareTrailD",0,0,0,random(-8,-1),0,random(-3,3));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-8,-1),0,random(-3,3),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     TNT1 A 0 A_Jump(15,"AltSee");
 	TNT1 A 0 A_Jump(60,"See3");
@@ -119,19 +119,19 @@ Class PM_Nightmare : Actor
     NMRE EEE 2
     {
     A_FaceTarget();
-    A_SpawnItemEx("PM_NightmareTrailE",0,0,0,random(-5,5),random(-5,5),random(-5,5));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,5),random(-5,5),random(-5,5),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     NMRE FF 2 
     {
     A_FaceTarget();
-    A_SpawnItemEx("PM_NightmareTrailF",0,0,0,random(-5,5),random(-5,5),random(-5,5));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,5),random(-5,5),random(-5,5),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
 	TNT1 A 0 A_PlaySound("Nightmare/Melee");
   Melee2:
     NMRE GGGGGGGGGGG 1
     {
     A_FaceTarget();
-    A_SpawnItemEx("PM_NightmareTrailG",0,0,0,random(-5,5),random(-5,5),random(-5,5));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-5,5),random(-5,5),random(-5,5),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     A_SpawnProjectile("PM_NightmareWindPull1",52,20,random(-5,5),CMF_OFFSETPITCH,random(-4,4));
     }
     NMRE G 1 A_SpawnProjectile("PM_NightmareWindPull2",52,20,random(-5,5),CMF_OFFSETPITCH,random(-4,4));
@@ -144,7 +144,7 @@ Class PM_Nightmare : Actor
     NMRE H 1 A_Pain();
     NMRE HHHHHHHHHH 1
     {
-    A_SpawnItemEx("PM_NightmareTrailH",0,0,0,random(-10,10),random(-10,10),random(-10,10));
+    A_SpawnItemEx("PM_GenericRushGhost",0,0,0,random(-10,10),random(-10,10),random(-10,10),0,SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
     TNT1 A 0 A_Jump(25,"AltSee");
     Goto See2;

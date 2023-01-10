@@ -287,9 +287,10 @@ Actor PM_HellsFury
 	HFRY A 8 A_FaceTarget
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
     TNT1 A 0 A_Recoil(-90)
-    TNT1 AAAAAA 1 
+    TNT1 AAAAAAA 1 Light("HellsFuryBall1")
     {
-    A_SpawnItemEx("PM_HFPhaseTrail");
+    A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
+    A_CustomMissile("BlueSoulFlare",32,0,0);
     }
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
     TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
@@ -480,9 +481,10 @@ Actor PM_HellsFury
 	HFRY A 8 A_FaceTarget
 	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))
     TNT1 A 0 ThrustThing(Angle*256/360+randompick(64,192),36,0,0)
-    TNT1 AAAAAA 1 
+    TNT1 AAAAAAA 1 Light("HellsFuryBall1")
     {
-    A_SpawnItemEx("PM_HFPhaseTrail");
+    A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
+    A_CustomMissile("BlueSoulFlare",32,0,0);
     }
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
     TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360))

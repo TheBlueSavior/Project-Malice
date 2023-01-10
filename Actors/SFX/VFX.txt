@@ -1,3 +1,30 @@
+Actor PM_GenericPhaseGhost
+{
++CLIENTSIDEONLY
++NOINTERACTION
+RenderStyle Add
+Alpha 0.60
+States
+{
+Spawn:
+    "----" A 1 A_FadeOut(0.06)
+    Loop
+    }
+}
+
+ACTOR PM_GenericRushGhost
+{
++CLIENTSIDEONLY
++NOINTERACTION
+Alpha 0.70
+States
+{
+Spawn:
+    "----" A 1 A_FadeOut(0.1)
+    Loop
+    }
+}
+
 Actor PM_WhiteFireballExplode
 {
 	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
@@ -14,6 +41,117 @@ Spawn:
 	FXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
 	Stop
 	}
+}
+
+Actor OrangeEmbers
+{
+  +MISSILE
+  Height 0
+  Radius 0
+  Damage 0
+  Mass 0
+  Scale 0.055
+  +CLIENTSIDEONLY
+  +DOOMBOUNCE
+  RENDERSTYLE ADD
+  BounceFactor 0.4
+  Gravity 0.5
+  +Bright
+  States
+{
+  Spawn:
+	SPKO A 3 Bright A_FadeOut(0.08)
+  Loop
+  }
+}
+
+Actor OrangeEmbersFloat
+{
+  Height 0
+  Radius 0
+  Mass 0
+  Damage 0
+  +MISSILE
+  +THRUACTORS
+  +NOTELEPORT
+  +DONTSPLASH
+  +DOOMBOUNCE
+  +NOGRAVITY
+  +CLIENTSIDEONLY
+  +NOBLOCKMAP
+  +FORCEXYBILLBOARD
+  Scale 0.055
+  BounceFactor 0.5
+  RenderStyle Add
+States
+{
+  Spawn:
+	SPKO A 3 Bright A_FadeOut(0.08)
+  Loop
+  }
+}
+
+Actor OrangeEmbersSmaller
+{
+  +CLIENTSIDEONLY
+  +DOOMBOUNCE
+  +MISSILE
+  Height 0
+  Radius 0
+  Damage 0
+  Mass 0
+  Scale 0.025
+  RENDERSTYLE ADD
+  BounceFactor 0.4
+  Gravity 0.35
+  +Bright
+  States
+  {
+  Spawn:
+	TNT1 A 1 A_Jump(50,"Spark")
+	Goto Ending
+  Spark:
+	SPKO A 3 Bright A_FadeOut(0.08)
+  Loop
+  Ending:
+	TNT1 A 0
+  Stop
+  }
+}
+
+Actor OrangeFireEffect
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +ROLLSPRITE
+  +FORCEXYBILLBOARD
+  Renderstyle Add
+  Scale 0.20
+  +Bright
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
+	TNT1 A 0 A_SetScale(ScaleX-0.01)
+	F1R1 A 1 A_FadeOut(0.08)
+	Loop
+	}
+}
+
+Actor OrangeEmbersSpawn
+{
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  States
+  {
+  Spawn:
+ TNT1 A 0 A_SpawnItemEx("OrangeEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
+ TNT1 A 0 A_SpawnItemEx("OrangeEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
+ TNT1 A 0 A_SpawnItemEx("OrangeEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
+ TNT1 A 0 A_SpawnItemEx("OrangeEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
+ TNT1 A 0 A_SpawnItemEx("OrangeEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
+  Stop
+  }
 }
 
 Actor PM_BlackMist
