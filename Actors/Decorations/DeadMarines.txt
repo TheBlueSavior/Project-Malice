@@ -12,13 +12,14 @@ ACTOR DeadMarineNew
 	//TNT1 A 0 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
 	TNT1 A 0
 	TNT1 A 0 A_Jump(256,"Marine1","Marine2","Marine3","Marine4","Marine5","Marine6","Marine7","Marine8","Marine9","Marine10","Marine11","Marine12","Marine13","Marine14","Marine15","Marine16","Marine17","Marine18","Marine19","Marine20",
-	"Marine21","Marine22","Marine23","Marine24","Marine25","Marine26","Marine27","Marine28","Marine29","Marine30","Marine31","Marine32")
+	"Marine21","Marine22","Marine23","Marine24","Marine25","Marine26","Marine27","Marine28","Marine29","Marine30","Marine31","Marine32","Marine33","Marine34","Marine35","Marine36","Marine37","Marine38","Marine39")
   BodyChoosed:
 	"####" "###" 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,220)
 	"####" "#" 0 A_SpawnItemEx("PM_SpiderSacSpawner",random(-15,15),random(-15,15),0,0,0,0,0,SXF_NOCHECKPOSITION,250)
 	"####" "####" 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,225)
 	"####" "#####" 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
 	"####" "###" 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
+	"####" "###" 1 A_SpawnItemEx("PM_ScurryRat",random(-20,20),random(-20,20),0,0,0,0,0,SXF_NOCHECKPOSITION,200)
 	"####" "###" 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,180)
 	"####" "#" 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 	"####" "#" 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
@@ -120,6 +121,27 @@ ACTOR DeadMarineNew
 	Marine32:
 	CRP3 A 1
 	Goto BodyChoosed
+	Marine33:
+	DEA5 A 1
+	Goto BodyChoosed
+	Marine34:
+	DEA5 B 1
+	Goto BodyChoosed
+	Marine35:
+	DEA5 C 1
+	Goto BodyChoosed
+	Marine36:
+	DEA5 D 1
+	Goto BodyChoosed
+	Marine37:
+	DEA5 E 1
+	Goto BodyChoosed
+	Marine38:
+	DEA5 F 1
+	Goto BodyChoosed
+	Marine39:
+	DEA5 G 1
+	Goto BodyChoosed
   }
 }
 
@@ -192,6 +214,7 @@ Actor PM_PustuleSelection
 		Stop	
 	}
 }
+
 
 Actor PM_HatchlingSelection
 {

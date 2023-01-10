@@ -1,47 +1,5 @@
-//first argument - number of rats. This ranges from 1 to 5. 
-//second argument - radius to spawn rats from centre
 
-actor RatSpawner 12381
-{
-  Radius 2
-  Height 2
-  Scale 0.85
-  +NOINTERACTION
-  States
-  {
-  Spawn:
-    TNT1 A 0
-    TNT1 A 0 A_JumpIf(Args[0] == 1, "1Rat")
-    TNT1 A 0 A_JumpIf(Args[0] == 2, "2Rats")
-    TNT1 A 0 A_JumpIf(Args[0] == 3, "3Rats")
-    TNT1 A 0 A_JumpIf(Args[0] == 4, "4Rats")
-    TNT1 A 0 A_JumpIf(Args[0] == 5, "5Rats")
-    //fall through
-  1Rat:
-    TNT1 A 1 A_SpawnItemEx ("ScurryRat", random (-Args[1], Args[1]), 0, 0, 0, 0, 0, random (0, 360), 0)
-    stop
-  2Rats:
-    TNT1 A 1
-    TNT1 AA 0 A_SpawnItemEx ("ScurryRat", random (-Args[1], Args[1]), 0, 0, 0, 0, 0, random (0, 360), 0)
-    stop
-  3Rats:
-    TNT1 A 1
-    TNT1 AAA 0 A_SpawnItemEx ("ScurryRat", random (-Args[1], Args[1]), 0, 0, 0, 0, 0, random (0, 360), 0)
-    stop
-  4Rats:
-    TNT1 A 1
-    TNT1 AAAA 0 A_SpawnItemEx ("ScurryRat", random (-Args[1], Args[1]), 0, 0, 0, 0, 0, random (0, 360), 0)
-    stop
-  5Rats:
-    TNT1 A 1
-    TNT1 AAAAA 0 A_SpawnItemEx ("ScurryRat", random (-Args[1], Args[1]), 0, 0, 0, 0, 0, random (0, 360), 0)
-    stop
-  }
-}
-
-
-
-actor ScurryRat 12380
+Actor PM_ScurryRat
 {
   radius 8
   height 8
@@ -56,14 +14,18 @@ actor ScurryRat 12380
   +FRIGHTENED
   +LOOKALLAROUND
   +NEVERRESPAWN
-  +STANDSTILL
   +AMBUSH
   +VULNERABLE
   +TOUCHY
   states
   {
   Spawn:
-    RATA A 10 A_Look 
+    RATA AAAAAAAAAAAA 10 A_Look 
+	RATA ABC 10
+	{
+	A_Wander;
+	A_Look;
+	}
     loop
   See:
     RATA A 2 A_Chase

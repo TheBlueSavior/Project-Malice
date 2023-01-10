@@ -67,7 +67,7 @@ Reu - Extensive sound hunting. Thanks!
 The Project Malice Lounge Discord - Wouldn't have been able to make mod without your suggestions, help, critiques and ideas. Thank you!
 Cutman - Ghouls World Jitterskull sounds
 JMartinez2098 - Generous fixes for errors I didn't get to
-The OSJC - awesome Possessed Zombie sprites
+The OSJC/ OSJCLATCHFORD - awesome Possessed Zombie sprites / Corpse sprites
 Phobos867/Noiser - 2016 Manc sprites edited from Hell Forged Corpulent
 Horror Movie Guy - Bruiser/Doom 4 Baron sprites
 Ice Sprites/Code - Project Brutality
@@ -76,6 +76,7 @@ Accensus - Target leading code
 Bugsie - Revamped bullet spark code
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
+
 
 MY APOLOGIES IF I MISSED ANYONE!
 

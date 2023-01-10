@@ -1810,6 +1810,7 @@ Actor PM_PestilenceMeatChunk
 	{
 	Spawn:
 		TNT1 A 0 NODELAY A_QueueCorpse
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti")
 		TNT1 A 0 A_PlaySound("PM/GibSplat")
 		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
 		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")

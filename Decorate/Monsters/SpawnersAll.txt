@@ -243,6 +243,7 @@ Actor MaliceGibSpawner : RandomSpawner replaces Gibs
 	DropItem "Head3", 255, 1
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
+	DropItem "PM_DecoMeatChunks", 255, 6
 	//DropItem "MMeat2", 255, 1
 	//DropItem "MMeat3", 255, 1
 	//DropItem "MMeat4", 255, 1
@@ -267,6 +268,7 @@ Actor MaliceColonGibsSpawner : RandomSpawner replaces ColonGibs
 	DropItem "Head3", 255, 1
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
+	DropItem "PM_DecoMeatChunks", 255, 6
 	//DropItem "MMeat2", 255, 1
 	//DropItem "MMeat3", 255, 1
 	//DropItem "MMeat4", 255, 1
@@ -291,6 +293,7 @@ Actor MaliceBrainStemSpawner : RandomSpawner replaces BrainStem
 	DropItem "Head3", 255, 1
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
+	DropItem "PM_DecoMeatChunks", 255, 6
 	//DropItem "MMeat2", 255, 1
 	//DropItem "MMeat3", 255, 1
 	//DropItem "MMeat4", 255, 1
@@ -315,6 +318,7 @@ Actor MaliceSmallBloodPoolSpawner : RandomSpawner replaces SmallBloodPool
 	DropItem "Head3", 255, 1
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
+	DropItem "PM_DecoMeatChunks", 255, 6
 	//DropItem "MMeat2", 255, 1
 	//DropItem "MMeat3", 255, 1
 	//DropItem "MMeat4", 255, 1
