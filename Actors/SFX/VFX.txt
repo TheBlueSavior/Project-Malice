@@ -784,6 +784,7 @@ Actor PM_LightningVFXBase
   +FORCEXYBILLBOARD
   +BRIGHT
   Renderstyle Add
+  Scale 0.2
 }
 
 Actor PM_BlueLightningVFX : PM_LightningVFXBase
