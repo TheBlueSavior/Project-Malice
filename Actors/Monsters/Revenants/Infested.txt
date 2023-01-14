@@ -23,6 +23,8 @@ ACTOR PM_Infested
   States
   {
   Spawn:
+   TNT1 A 0 NoDelay A_SpawnItemEx("PM_InfestedPassiveMaggotSpawner",0,0,0,0,0,0,0,SXF_SETMASTER)
+  Idle:
 		TNT1 A 0 A_Look
 		ZKEL A 10 A_wander
 		TNT1 A 0 A_Look
@@ -122,6 +124,7 @@ ACTOR PM_Infested
 	ZKEL A 5
     Goto See3
   Death:
+    TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
     ZKEL LM 7 A_SpawnItemEx("LargeWhiteMaggot")
 	TNT1 AAAAAAAAAA 0 A_CustomMissile("MaggotFall", random(35,74), 0, random(-300,300), 0)
     ZKEL N 7 A_Scream
@@ -138,6 +141,9 @@ ACTOR PM_Infested
   Raise:
     ZKEL Q 5
     ZKEL PONML 5
+    Goto RaiseSee
+  RaiseSee:
+    TNT1 A 0 A_SpawnItemEx("PM_InfestedPassiveMaggotSpawner",0,0,0,0,0,0,0,SXF_SETMASTER)
     Goto See
   }
 }

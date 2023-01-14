@@ -1013,7 +1013,7 @@ Actor PM_BlueBlood4 : PM_NormalBlood1
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
 		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6)
-		TNT1 AAA 0 A_SpawnItemEx("PM_BlueSmallShock",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,128)
+		TNT1 AAA 0 A_SpawnItemEx("PM_BlueLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,128)
 		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
@@ -1241,8 +1241,8 @@ Actor PM_PurpleBlood4 : PM_NormalBlood1
 	Spawn:
 		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
 		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6)
-		TNT1 AA 0 A_SpawnItemEx("RedShock",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,200)
-		TNT1 AA 0 A_SpawnItemEx("PM_BlueSmallShock",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,180)
+		TNT1 AA 0 A_SpawnItemEx("PM_RedLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,200)
+		TNT1 AA 0 A_SpawnItemEx("PM_PurpleLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,180)
 		TNT1 A 0 A_SpawnItemEx("PM_PurpleBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
 		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
