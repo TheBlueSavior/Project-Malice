@@ -6295,13 +6295,13 @@ Size 70
 
 Pointlight PM_ConduitLightning
 {
-Color 0.7 0.6 0.9
+Color 0.7 0.6 1.5
 Size 30
 }
 
 Pointlight PM_ConduitLightning2
 {
-Color 0.7 0.6 0.9
+Color 0.7 0.6 1.5
 Size 70
 }
 

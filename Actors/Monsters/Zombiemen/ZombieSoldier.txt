@@ -12,8 +12,11 @@ ACTOR PM_ZombieSoldier : Zombieman
     +FloorClip
 	+SLIDESONWALLS
 	//+NOINFIGHTING
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Soldier"
     OBITUARY "%o was finished off by a Zombie Soldier."

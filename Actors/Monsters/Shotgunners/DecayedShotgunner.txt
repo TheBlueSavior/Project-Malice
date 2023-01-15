@@ -11,8 +11,8 @@ ACTOR PM_DecayedShotgunner
     +FloorClip
 	+SLIDESONWALLS
 	//+NOINFIGHTING
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Bloodtype "PM_PestilenceZombieBloodBase"
 	Species "Shotgunner"
 	Tag "Decayed Shotgunner"

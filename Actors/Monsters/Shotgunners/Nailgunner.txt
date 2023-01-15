@@ -12,8 +12,8 @@ ACTOR PM_Nailgunner
   Mass 100
   MONSTER 
   +FLOORCLIP
-  +DONTHURTSPECIES
-  +DONTHARMSPECIES
+  +HARMFRIENDS
+  +DOHARMSPECIES
   Bloodtype "PM_NormalBloodBase"
   Tag "Nailgunner"
   Species "Shotgunner"

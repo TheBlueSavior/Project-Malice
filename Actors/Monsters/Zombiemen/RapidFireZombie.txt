@@ -12,8 +12,10 @@ ACTOR PM_RFZombie: Zombieman
     +FloorClip
 	//+NOINFIGHTING
 	+SLIDESONWALLS
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Rapid Fire Trooper"
     OBITUARY "%o was packed with lead by a Rapid Fire Trooper."

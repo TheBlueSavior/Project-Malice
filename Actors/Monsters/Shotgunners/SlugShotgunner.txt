@@ -11,8 +11,8 @@ ACTOR PM_SlugShotgunner : Zombieman
     +FloorClip
 	//+NOINFIGHTING
 	+SLIDESONWALLS
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Bloodtype "PM_NormalBloodBase"
 	Species "Shotgunner"
 	Tag "Slug Shotgunner"

@@ -12,8 +12,10 @@ ACTOR PM_DecayedSoldier
     +FloorClip
 	+SLIDESONWALLS
 	//+NOINFIGHTING
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Decayed Soldier"
     OBITUARY "%o was punctured by a Decayed Soldier."

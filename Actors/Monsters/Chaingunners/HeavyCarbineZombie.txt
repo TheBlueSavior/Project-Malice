@@ -9,7 +9,8 @@ ACTOR PM_HeavyCarbineZombie
   Monster
   +FLOORCLIP
   //+NOINFIGHTING
-  +DONTHARMSPECIES
+  +HARMFRIENDS
+  +DOHARMSPECIES
   SeeSound ""
   PainSound "CarbineZombie/Pain"
   DeathSound "CarbineZombie/Death"

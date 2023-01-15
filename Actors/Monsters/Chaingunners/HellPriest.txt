@@ -21,7 +21,8 @@ Actor PM_HellPriest
 	Bloodtype "PM_BlackBloodBase"
     +FloorClip
     +DontHarmClass
-	+DONTHARMSPECIES
+	+HARMFRIENDS
+    +DOHARMSPECIES
 	+LOWGRAVITY
     -NoGravity
     -Float

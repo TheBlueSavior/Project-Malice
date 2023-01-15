@@ -18,7 +18,8 @@ Actor PM_DecayedCommando
   Monster
   Bloodtype "PM_PestilenceZombieBloodBase"
   +FloorClip
-  +DONTHARMSPECIES
+  +HARMFRIENDS
+  +DOHARMSPECIES
   States
   {
   Spawn:

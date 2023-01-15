@@ -12,8 +12,10 @@ ACTOR PM_ZombieTrooper : Zombieman
     +FloorClip
 	//+NOINFIGHTING
 	+SLIDESONWALLS
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Trooper"
     OBITUARY "%o was taken down by a Zombie Trooper."

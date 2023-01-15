@@ -141,7 +141,6 @@ Actor PM_Depraved
 		A_FaceTarget;
 		A_SpawnItemEx("PM_RedFireEffectBig",-3,0,60,0,0,3);
 		}
-    TNT1 A 0 A_CheckSight("LaserMiss")
 	TNT1 A 0 A_PlaySound("DepravedBeamStart",6,1.0,0,0.6)
 	TNT1 A 0 A_PlaySound("DepravedBeam",1,0.3,1,0.6)
     Goto LaserWait

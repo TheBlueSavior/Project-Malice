@@ -7,9 +7,9 @@ Actor PM_CyberFodder : Shotgunguy
   //MaxDropOffHeight 40
   //+NOINFIGHTING
   //+MISSILEMore
-  +DONTHURTSPECIES
-  +DONTHARMSPECIES
   +AVOIDMELEE
+  +HARMFRIENDS
+  +DOHARMSPECIES
   Bloodtype "PM_NormalBloodBase"
   Tag "Cyber Fodder"
   Species "Shotgunner"

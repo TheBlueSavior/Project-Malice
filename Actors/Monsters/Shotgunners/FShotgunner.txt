@@ -14,8 +14,8 @@ Actor PM_FShotgunner
   ACTIVESOUND "FacelessZ/Active"
   +FloorClip
   //+NOINFIGHTING
-  +DONTHURTSPECIES
-  +DONTHARMSPECIES
+  +HARMFRIENDS
+  +DOHARMSPECIES
   Bloodtype "PM_NormalBloodBase"
   Tag "Faceless Shotgunner"
   Species "Shotgunner"

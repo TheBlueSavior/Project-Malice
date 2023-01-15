@@ -11,8 +11,10 @@ ACTOR PM_ZombieMarine : Zombieman
     +FloorClip
 	//+NOINFIGHTING
 	+SLIDESONWALLS
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Zombie Marine"
     OBITUARY "%o was put down by a Zombie Marine."

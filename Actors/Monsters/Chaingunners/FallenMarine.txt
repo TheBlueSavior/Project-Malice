@@ -12,10 +12,10 @@ ACTOR PM_FallenMarine
   Mass 100
   MONSTER 
   +FLOORCLIP
-  +DONTHURTSPECIES
-  +DONTHARMSPECIES
   +MISSILEMORE
   +MISSILEEVENMORE
+  +HARMFRIENDS
+  +DOHARMSPECIES
   Tag "Fallen Marine"
   SeeSound ""
   ActiveSound "FallenSoldiers/Active"

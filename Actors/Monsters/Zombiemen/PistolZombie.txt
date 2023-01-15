@@ -10,8 +10,10 @@ ACTOR PM_PistolZombie : Zombieman
     MONSTER
     +FloorClip
 	+SLIDESONWALLS
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Pistol Zombie"
     OBITUARY "%o was killed by a Zombie with a sidearm!"

@@ -18,6 +18,8 @@ Actor PM_FallenShotgunner
     +FloorClip
     +NoTarget
 	+MissileMore
+	+HARMFRIENDS
+	+DOHARMSPECIES
     +NoInfighting
   States
   {

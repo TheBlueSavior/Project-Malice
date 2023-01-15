@@ -10,8 +10,10 @@ ACTOR PM_HellifiedSoldier : PMMonsterBase
 	+MISSILEevenMORE
     +FloorClip
 	//+NOINFIGHTING
-	+DONTHURTSPECIES
-	+DONTHARMSPECIES
+	//+DONTHURTSPECIES
+	//+DONTHARMSPECIES
+	+HARMFRIENDS
+	+DOHARMSPECIES
 	Species "Zombie"
 	Tag "Hellified Soldier"
     OBITUARY "%o was blasted by a Hellified Soldier."
