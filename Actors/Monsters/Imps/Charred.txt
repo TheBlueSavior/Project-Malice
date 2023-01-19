@@ -7,7 +7,7 @@ Actor PM_Charred : PMMonsterBase
   Mass 250
   Painchance 80
   Gibhealth 20
-  SeeSound ""
+  SeeSound "Charred/Sight"
   Monster
   ActiveSound "Charred/Active"
   PainSound "Charred/Pain"
@@ -25,27 +25,26 @@ Actor PM_Charred : PMMonsterBase
   States
   {
   Spawn:
-    CH5R A 10 A_Look
+    CH5R A 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-    CH5R AAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
+    CH5R AAA 2 PM_LookingForPlayer()
 	TNT1 A 0 A_Recoil(-0.5)
-	CH5R BBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	CH5R BBB 2 PM_LookingForPlayer()
 	TNT1 A 0 A_Recoil(-0.5)
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-	CH5R CCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
+	CH5R CCC 2 PM_LookingForPlayer()
 	TNT1 A 0 A_Recoil(-0.5)
-	CH5R DDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	CH5R DDD 2 PM_LookingForPlayer()
 	TNT1 A 0 A_Recoil(-0.5)
 	TNT1 A 0 A_ChangeFlag(THRUSPECIES,0)
 	TNT1 A 0 A_Jump(1,"BarkSee")
-        TNT1 A 0 A_CheckSight("See")
-	Goto Spotted
+    Loop
   BarkSee:
 	TNT1 A 0 A_PlaySound("Charred/Idle")
-	Goto See
+	Goto Look
   Spotted:
 	TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","RoarNoAnim","SpotMissile")
     GOTO RoarNoAnim
@@ -63,10 +62,10 @@ Actor PM_Charred : PMMonsterBase
 	TNT1 A 0 A_ChangeFlag(THRUSPECIES,0)
 	Loop
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("Charred/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
 	Goto See2
   SpotMissile:
-    TNT1 A 0 A_PlaySound("Charred/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
     CH5R EE 4 A_FaceTarget
     Goto Missile
   Melee:
@@ -253,7 +252,7 @@ Actor PM_Charred : PMMonsterBase
   Raise:
     CH5R ML 8
     CH5R KJI 6
-    Goto See
+    Goto Look
 	}
 }
 

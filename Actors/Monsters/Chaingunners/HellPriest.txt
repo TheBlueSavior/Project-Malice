@@ -1,4 +1,4 @@
-Actor PM_HellPriest
+Actor PM_HellPriest : PMMonsterBase
 {
     Health 200
     PainChance 170
@@ -9,7 +9,7 @@ Actor PM_HellPriest
     Mass 150
 	Gravity 0.3
     Obituary "A Hell Priest was promoted for killing %o."
-    SeeSound ""
+    SeeSound "HellPriestSee"
     PainSound "HellPriestPain"
     DeathSound "monster/acodth"
     ActiveSound "HellPriestActive"
@@ -29,21 +29,18 @@ Actor PM_HellPriest
   States
   {
   Spawn:
-	TNT1 A 0 NoDelay
-    ACOL AB 10 A_Look
+    ACOL AB 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_Changeflag(FLOATBOB,0)
 	TNT1 A 0 A_Changeflag(NoGravity,0)
 	TNT1 A 0 A_Changeflag(Float,0)
 	TNT1 A 0 A_Changeflag(DROPOFF,0)
     TNT1 A 0 A_StopSound(CHAN_6)
-    ACOL AAAAABBBBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+    ACOL AAAAABBBBB 2 PM_LookingForPlayer()
+    Loop
   Spotted:
-  Roar:
-    TNT1 A 0 A_PlaySound("HellPriestSee",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
 	Goto See2
   See2:
 	TNT1 A 0 A_Changeflag(FLOATBOB,0)

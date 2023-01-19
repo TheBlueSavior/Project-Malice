@@ -1,8 +1,9 @@
-ACTOR PM_RFZombie: Zombieman
+ACTOR PM_RFZombie: PMMonsterBase
 { 
     Health 30
     Radius 20
     Height 56
+    Mass 100
     Speed 7
     PainChance 200
     //Damage 1
@@ -19,7 +20,7 @@ ACTOR PM_RFZombie: Zombieman
 	Species "Zombie"
 	Tag "Rapid Fire Trooper"
     OBITUARY "%o was packed with lead by a Rapid Fire Trooper."
-    SeeSound ""
+    SeeSound "Nailgunner/Sight"
 	PainSound "Nailgunner/Pain"
 	DeathSound "Nailgunner/Death"
 	ActiveSound "Nailgunner/Active"
@@ -29,30 +30,29 @@ ACTOR PM_RFZombie: Zombieman
     states
     {
     Spawn:
-		RFTR A 10 A_Look
+		RFTR A 10 PM_Look()
         Loop
-    See:
+    Look:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        RFTR AA 4 A_Chase
+        RFTR AA 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.5)
-		RFTR BB 4 A_Chase
+		RFTR BB 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.5)
-        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		RFTR CC 4 A_Chase
+		RFTR CC 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.5)
-		RFTR DD 4 A_Chase
+		RFTR DD 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.5)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Loop
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("Nailgunner/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
 	SpotMissile:
-        TNT1 A 0 A_PlaySound("Nailgunner/Sight",CHAN_5)
+        TNT1 A 0 PM_AlertSound()
 	    RFTR EEE 3 A_FaceTarget
 	    Goto Missile
 	See2:
@@ -223,7 +223,7 @@ ACTOR PM_RFZombie: Zombieman
         Stop
     Raise:
         UDM2 NMLKJIH 5
-        Goto See
+        Goto Look
     }
 }
 

@@ -1,4 +1,4 @@
-Class PM_Hellion : Actor
+Class PM_Hellion : PMMonsterBase
 {
   Default
   {
@@ -10,7 +10,7 @@ Class PM_Hellion : Actor
     Speed 11;
 	Scale 1.1;
     PainChance 44;
-    SeeSound "";
+    SeeSound "Hellion/Sight";
 	Species "Imp";
     PainSound "Hellion/Pain";
     DeathSound "Hellion/Death";
@@ -18,30 +18,27 @@ Class PM_Hellion : Actor
 	Tag "Hellion";
 	Bloodtype "PM_NormalBloodBase";
 	+MISSILEMORE
-	//MinMissileChance 200;
     Monster;
     +FloorClip
-	//+NOINFIGHTING
 	+DONTHARMSPECIES
   }
 
   States
   {
   Spawn:
-    HELN AB 10 A_Look();
+    HELN AB 10 PM_Look();
     Loop;
-  See:
+  Look:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
-    HELN AABBCC 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+    HELN AABBCC 2 PM_LookingForPlayer();
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-	HELN DDEEFF 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
-        TNT1 A 0 A_CheckSight("See");
-	Goto Spotted;
+	HELN DDEEFF 2 PM_LookingForPlayer();
+    Loop;
   Spotted:
   Roar:
-  TNT1 A 0 A_PlaySound("Hellion/Sight",CHAN_6,1.0);
+  TNT1 A 0 PM_AlertSound();
 	See2:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
@@ -448,7 +445,7 @@ Class PM_Hellion : Actor
     Stop;
   Raise:
     HELN TSRQPON 6;
-    Goto See;
+    Goto Look;
   }
 }
 

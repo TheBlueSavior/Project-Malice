@@ -7,7 +7,7 @@ Actor PM_Corpulent : PMMonsterBase
  Speed 6
  Scale 1.05
  Mass 1000
- SeeSound ""
+ SeeSound "Corpulent/Sight"
  PainSound "Corpulent/Pain"
  DeathSound "Corpulent/Death"
  ActiveSound "Corpulent/Active"
@@ -26,24 +26,21 @@ Actor PM_Corpulent : PMMonsterBase
   states
  {
   Spawn:
-	M01A A 0
-  Idle:
-    M01A A 10 A_look
+    M01A A 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_PlaySound("MancubStep")
-    M01A AAA 3 A_Chase("","",CHF_NOPLAYACTIVE)
-	M01A BBBCCC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    M01A AAA 3 PM_LookingForPlayer()
+	M01A BBBCCC 3 PM_LookingForPlayer()
 	TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	TNT1 A 0 A_PlaySound("MancubStep")
-	M01A DDD 3 A_Chase("","",CHF_NOPLAYACTIVE)
-	M01A EEEFFF 3 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+	M01A DDD 3 PM_LookingForPlayer()
+	M01A EEEFFF 3 PM_LookingForPlayer()
+    Loop
   Spotted:
     TNT1 A 0 A_Jump(256,"SpotMissile","Roar")
   Roar:
-    TNT1 A 0 A_PlaySound("Corpulent/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
     Goto See2
   See2:
 	TNT1 A 0 A_PlaySound("MancubStep")
@@ -262,7 +259,7 @@ LongMissileNoLead:
 	   Stop
   Raise:
 	M01A SRQPONMLK 6
-    Goto See
+    Goto Look
   }
 }
 

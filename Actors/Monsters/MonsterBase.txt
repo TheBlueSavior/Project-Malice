@@ -1,5 +1,11 @@
 class PMMonsterBase : Actor abstract
 {
+  default
+  {
+    Monster;
+    +FLOORCLIP;
+  }
+
 	protected action void A_Aim()
 	{
 		A_FaceTarget(0, 0);
@@ -31,4 +37,19 @@ class PMMonsterBase : Actor abstract
 	}
 
 	private Vector2 OldAim;
+    
+    void PM_Look()
+    {
+     A_LookEx(LOF_NOSEESOUND, label: "Look");
+    }
+ 
+    void PM_LookingForPlayer()
+    {
+     A_Chase(null, "Spotted", CHF_NOPLAYACTIVE);
+    }
+ 
+    void PM_AlertSound()
+    {
+     A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
+    }
 }

@@ -1,9 +1,10 @@
-ACTOR PM_DecayedSoldier
+ACTOR PM_DecayedSoldier : PMMonsterBase
 { 
 	var int user_called;
     Health 34
     Radius 20
     Height 56
+    Mass 100
     Speed 9
     PainChance 200
     Damage 1
@@ -19,7 +20,7 @@ ACTOR PM_DecayedSoldier
 	Species "Zombie"
 	Tag "Decayed Soldier"
     OBITUARY "%o was punctured by a Decayed Soldier."
-    SEESOUND ""
+    SEESOUND "Decayed/Sight"
     PainSound "Decayed/Pain"
     DeathSound "Decayed/Death"
     ACTIVESOUND "Decayed/Active"
@@ -29,26 +30,23 @@ ACTOR PM_DecayedSoldier
     states
     {
     Spawn:
-        POSK AA 10 A_Look
+        POSK AA 10 PM_Look()
         Loop
-    See:
+    Look:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		POSK AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
-		POSK BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
-        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-		POSK CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		POSK AABBCC 3 PM_LookingForPlayer()
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		POSK DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
-                TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+		POSK DD 3 PM_LookingForPlayer()
+        Loop
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
     SpotMissile:
-        TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
+        TNT1 A 0 PM_AlertSound()
         POSK EE 6 A_FaceTarget
         Goto Missile
     See2:
@@ -216,7 +214,7 @@ ACTOR PM_DecayedSoldier
         Stop
     Raise:
         POSK NMLKJIH 5
-        Goto See
+        Goto Look
     }
 }
 

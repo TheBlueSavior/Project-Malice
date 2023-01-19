@@ -1,4 +1,4 @@
-ACTOR PM_SlugShotgunner : Zombieman
+ACTOR PM_SlugShotgunner : PMMonsterBase
 { 
     Health 40
     Radius 20
@@ -6,10 +6,9 @@ ACTOR PM_SlugShotgunner : Zombieman
     Speed 8
     PainChance 200
     Damage 1
+    Mass 100
     MONSTER
-	//+MISSILEMORE
     +FloorClip
-	//+NOINFIGHTING
 	+SLIDESONWALLS
 	+HARMFRIENDS
 	+DOHARMSPECIES
@@ -17,7 +16,7 @@ ACTOR PM_SlugShotgunner : Zombieman
 	Species "Shotgunner"
 	Tag "Slug Shotgunner"
     OBITUARY "%o caught a big clump of shells from a Slug Shotgunner."
-    SeeSound ""
+    SeeSound "HelmetZombie/Sight"
 	PainSound "HelmetZombie/Pain"
 	DeathSound "HelmetZombie/Death"
 	ActiveSound "HelmetZombie/Active"
@@ -26,30 +25,30 @@ ACTOR PM_SlugShotgunner : Zombieman
     states
     {
     Spawn:
-		SPS4 A 10 A_Look
+		SPS4 A 10 PM_Look()
         Loop
-	See:
+	Look:
+        TNT1 A 0 A_Jump(15,"Spotted")
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        SPS4 AA 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+        SPS4 AA 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-		SPS4 BB 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+		SPS4 BB 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
         TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		SPS4 CC 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		SPS4 CC 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-		SPS4 DD 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		SPS4 DD 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Goto Look+1
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
 	SpotMissile:
-        TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
+        TNT1 A 0 PM_AlertSound()
 	    SPS4 EEE 3 A_FaceTarget
 	    Goto Missile
     See2:
@@ -146,7 +145,7 @@ ACTOR PM_SlugShotgunner : Zombieman
         Stop
     Raise:
         UDM2 NMLKJIH 5
-        Goto See
+        Goto Look
     }
 }
 

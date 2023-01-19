@@ -1,4 +1,4 @@
-ACTOR PM_Prowler : PMMonster
+ACTOR PM_Prowler : PMMonsterBase
 {
 	var int user_timer;
 	Health 200

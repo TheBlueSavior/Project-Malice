@@ -1,6 +1,9 @@
-Actor PM_Wretched : Cacodemon
+Actor PM_Wretched : PMMonsterBase
 {
   Speed 4
+  Radius 31
+  Height 56
+  Mass 400
   Health 400
   BloodColor "Blue"
   Obituary "%o was zapped by a Wretched."
@@ -17,42 +20,22 @@ Actor PM_Wretched : Cacodemon
   Tag "Wretched"
   BloodType "PM_BlueBloodBase"
   +FLOATBOB
+  +FLOAT
+  +NOGRAVITY
   +MissileMore
   //+NOINFIGHTING
   //MinMissileChance 450
   States
   {
   Spawn:
-	C1C2 A 0
-  Idle:
-    C1C2 A 10 A_Look
+    C1C2 A 10 PM_Look()
     Loop
- See:
+ Look:
 	TNT1 A 0 A_ChangeFlag("MissileevenMore",0)
 	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 	TNT1 A 0 A_SetSpeed(4)
-    C1C2 AAAA 2 {
-		A_Chase("","",CHF_NOPLAYACTIVE);
-		//A_Recoil(-0.012);
-		A_FaceTarget;
-		}
-	CA2B AAAA 2 {
-		A_Chase("","",CHF_NOPLAYACTIVE);
-		A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-		A_FaceTarget;
-		}
-	C1C2 AAAA 2 {
-		A_Chase("","",CHF_NOPLAYACTIVE);
-		A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-		A_FaceTarget;
-		}
-	CA2C AAAA 2 {
-		A_Chase("","",CHF_NOPLAYACTIVE);
-		//A_Recoil(-0.012);
-		A_FaceTarget;
-		}
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+    C1C2 AAAA 2 PM_LookingForPlayer()
+    Loop
   Spotted:
     TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","RoarNoAnim")
   RoarNoAnim:
@@ -63,22 +46,18 @@ Actor PM_Wretched : Cacodemon
 	TNT1 A 0 A_SetSpeed(4)
     C1C2 AAAA 2 {
 		A_Chase;
-		//A_Recoil(-0.012);
 		A_FaceTarget;
 		}
 	CA2B AAAA 2 {
 		A_Chase;
-		//A_Recoil(-0.012);
 		A_FaceTarget;
 		}
 	C1C2 AAAA 2 {
 		A_Chase;
-		//A_Recoil(-0.012);
 		A_FaceTarget;
 		}
 	CA2C AAAA 2 {
 		A_Chase;
-		//A_Recoil(-0.012);
 		A_FaceTarget;
 		}
 	TNT1 A 0 A_Jump(35,"AvoidLeft","AvoidRight","AvoidBack","AvoidForward")
@@ -236,7 +215,7 @@ Actor PM_Wretched : Cacodemon
 	C1C2 C 4 A_ScaleVelocity(0.25)
 	C1C2 B 3 A_ScaleVelocity(0)
 	TNT1 A 0 A_Jump(200,"AvoidBack")
-	Goto See	
+	Goto See2	
  TriShot:
 	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
 	TNT1 A 0 A_Recoil(-0.08)
@@ -321,7 +300,7 @@ Actor PM_Wretched : Cacodemon
   Raise:
     C1C2 L 8 A_UnSetFloorClip
     C1C2 KJIHG 8
-    Goto See
+    Goto Look
 	}
 }
 

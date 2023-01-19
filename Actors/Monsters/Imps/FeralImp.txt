@@ -1,5 +1,5 @@
 //ALL CREDITS TO DBTHANOS/Death Foretold FOR THE LEAP CODE!
-actor PM_FeralImp : DoomImp
+actor PM_FeralImp : PMMonsterBase
 {
   var int user_leapstrength;
   obituary "%o burned to a crisp by a Feral Imp's fireballs."
@@ -10,6 +10,7 @@ actor PM_FeralImp : DoomImp
   mass 120
   speed 11
   painchance 160
+  Monster
   +DONTHARMCLASS
   +DONTHARMSPECIES
   //+NOINFIGHTING
@@ -27,22 +28,21 @@ actor PM_FeralImp : DoomImp
   states
   {
   Spawn:
-    1ROO A 10 A_Look
+    1ROO A 10 PM_Look()
     loop
-  See:
+  Look:
 	TNT1 A 0 A_SetSpeed(11)
-	1ROO AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	1ROO AA 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO BBCC 3 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
+	1ROO BBCC 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
-        TNT1 A 0 A_CheckSight("See")
-	Goto Spotted
+	1ROO DD 3 PM_LookingForPlayer()
+    Loop
   Spotted:
     TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","See2","See2")
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("FeralImp/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
   See2:
 	TNT1 A 0 A_SetSpeed(11)
 	1ROO AA 3 A_Chase
@@ -250,7 +250,7 @@ actor PM_FeralImp : DoomImp
   Raise:
     D3IM ML 8
     D3IM KJI 6
-    goto See
+    goto Look
 	}
 }
 

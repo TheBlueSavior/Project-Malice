@@ -1,4 +1,4 @@
-ACTOR PM_Squire
+ACTOR PM_Squire : PMMonsterBase
 {
 	var int user_leapstrength;
 	Health 500
@@ -14,7 +14,7 @@ ACTOR PM_Squire
 	+DONTHARMSPECIES
 	Species "Nobles"
 	Tag "Squire"
-	SeeSound 	""//"Squire/Sight"
+	SeeSound 	"Squire/Sight"
 	ActiveSound "Squire/Active"
 	PainSound 	"Squire/Pain"
 	DeathSound 	"Squire/Death"
@@ -27,19 +27,15 @@ ACTOR PM_Squire
 	States
 	{
 	Spawn:
-		BOS6 AB 10 A_Look 
+		BOS6 AB 10 PM_Look()
 		Loop
-	See:
+	Look:
 		TNT1 A 0 A_SetSpeed(5)
-		BOS6 AAAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		BOS6 BBBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS6 AAAABBBB 2 PM_LookingForPlayer()
 		TNT1 A 0 A_PlaySound("Squire/Step")
-        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-		BOS6 CCCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		BOS6 DDDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		BOS6 CCCCDDDD 2 PM_LookingForPlayer()
 		TNT1 A 0 A_PlaySound("Squire/Step")
-        TNT1 A 0 A_CheckSight("See")
-		Goto Spotted
+        Loop
     Spotted:
         Goto Roar
 	See1:
@@ -105,7 +101,7 @@ ACTOR PM_Squire
 		Goto Missile+1
 	Roar:
 		BOS6 PQR 2 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Squire/Sight",CHAN_6)
+		TNT1 A 0 PM_AlertSound()
 		BOS6 STSU 3 A_FaceTarget
 		BOS6 STSU 3 A_FaceTarget
 		BOS6 RQP 2 A_FaceTarget
@@ -266,7 +262,7 @@ ACTOR PM_Squire
 	Raise:
 		BOS6 O 8
 		BOS6 NMLKJI  8
-		Goto See
+		Goto Look
 		
 	}
 }

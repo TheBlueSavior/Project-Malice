@@ -1,4 +1,4 @@
-ACTOR PM_Brute : Demon
+ACTOR PM_Brute : PMMonsterBase
 {
 	Health 150
 	Radius 30
@@ -18,7 +18,7 @@ ACTOR PM_Brute : Demon
 	Speed 13
 	Scale 1
 	Bloodtype "PM_NormalBloodBase"
-	SeeSound ""
+	SeeSound "Brute/Sight"
 	DeathSound "Brute/Death"
 	ActiveSound "Brute/Active"
 	PainSound "Brute/Pain"
@@ -28,23 +28,21 @@ ACTOR PM_Brute : Demon
 	States
 	{
 		Spawn:
-			BRUT A 10 A_Look
+			BRUT A 10 PM_Look()
 			loop
-        See:
-			BRUT AA 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
+        Look:
+			BRUT AA 2 PM_LookingForPlayer()
 			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT BB 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
-			BRUT CC 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
-            TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+			BRUT BB 2 PM_LookingForPlayer()
+			BRUT CC 2 PM_LookingForPlayer()
 			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT DD 2 A_Chase("","RoarCheck",CHF_NOPLAYACTIVE)
-			TNT1 A 0 A_CheckSight("See")
-			goto Spotted
+			BRUT DD 2 PM_LookingForPlayer()
+			Loop
 		Spotted:
 		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim")
 			Goto RoarNoAnim
 		RoarNoAnim:
-		    TNT1 A 0 A_PlaySound("Brute/Sight",CHAN_5)
+		    TNT1 A 0 PM_AlertSound()
 			Goto See2
 		See2:
 			BRUT AA 2 Fast A_Chase
@@ -94,7 +92,7 @@ ACTOR PM_Brute : Demon
 			Stop
 		Raise:
 		    BRUT NMLKJI 6
-			Goto See
+			Goto Look
 	}
 }
 

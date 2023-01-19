@@ -13,7 +13,7 @@ Actor PM_Fiend : PMMonsterBase
   Gravity 0.7
   Bloodtype "PM_NormalCyberBloodBase"
   Species "Revenant"
-  SeeSound ""
+  SeeSound "Fiend/Sight"
   PainSound "Fiend/Pain"
   DeathSound "Fiend/Death"
   ActiveSound "Fiend/Active"
@@ -27,22 +27,20 @@ Actor PM_Fiend : PMMonsterBase
   States
   {
   Spawn:
-    FIEN A 10 A_Look
+    FIEN A 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_SetSpeed(10)
-    FIEN AABBCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+    FIEN AABBCC 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Fiend/Step",5)
-	TNT1 A 0 A_JumpifTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP)
-	FIEN DDEEFF 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	FIEN DDEEFF 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Fiend/Step",5)
-    TNT1 A 0 A_CheckSight("See")
-	Goto Spotted
+    Loop
   Spotted:
     TNT1 A 0 A_Jump(56,"Roar")
     Goto RoarNoAnim
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("Fiend/Sight")
+    TNT1 A 0 PM_AlertSound()
     Goto See2
   See2:
 	TNT1 A 0 A_SetSpeed(10)
@@ -259,7 +257,7 @@ MissileLead:
   Roar:
 	FIER AA 5 A_FaceTarget
 	FIER BC 5 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Fiend/Sight")
+	TNT1 A 0 PM_AlertSound()
 	FIER EDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDED 1 A_FaceTarget
 	FIER CBA 3 A_FaceTarget
 	Goto See2
@@ -410,7 +408,7 @@ MissileLead:
 	Stop
   Raise:
     FIEN QPONM 7
-	Goto See
+	Goto Look
 	}
 }
 

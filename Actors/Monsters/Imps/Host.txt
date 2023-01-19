@@ -1,17 +1,17 @@
-Actor PM_Host : DoomImp
+Actor PM_Host : PMMonsterBase
 {
     obituary "%o was poisoned by a Host."
     hitobituary "A Host had %o for lunch."
     health 125
-   // radius 20
-    //height 56
+    radius 20
+    height 56
     mass 120
     speed 8
 	Bloodcolor "DarkGreen"
 	BloodType "PM_PestilenceBloodBase"
 	Species "Imp"
     painchance 180
-    seesound ""
+    seesound "Host/Sight"
     painsound "Host/Pain"
     deathsound "Host/Death"
     activesound "Host/Active"
@@ -25,30 +25,25 @@ Actor PM_Host : DoomImp
   states
   {
   Spawn:
-	TNT1 A 1
-	//TNT1 A 0 A_SpawnItemEx("HostSmokeSpawn",0,0,0,0,0,0,0,SXF_SETMASTER)
-	//TNT1 A 0 A_SpawnItemEx("HostFlySpawn",0,0,0,0,0,0,0,SXF_SETMASTER)
-	Idle:
-    HOS1 AB 10 A_Look
+    HOS1 AB 10 PM_Look()
     loop
-  See:
+  Look:
+    TNT1 A 0 A_Jump(20,"Spotted")
 	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 	TNT1 A 0 A_SetSpeed(8)
-    HOS1 AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    HOS1 AA 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	HOS1 BBCC 3 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+	HOS1 BBCC 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	HOS1 DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
-        TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+	HOS1 DD 3 PM_LookingForPlayer()
+    Goto Look+1
   Spotted:
     TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","SpotMissile")
 	Goto See2
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("Host/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
   SpotMissile:
-    TNT1 A 0 A_PlaySound("Host/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
     HOS1 EEE 5 A_FaceTarget
 	Goto Missile
   SeeStopped:
@@ -197,7 +192,7 @@ Actor PM_Host : DoomImp
   Raise:
     HOS1 ML 8
     HOS1 KJI 6
-    goto See
+    goto Look
   }
 }
 

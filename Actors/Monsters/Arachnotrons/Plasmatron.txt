@@ -18,32 +18,28 @@ Actor PM_Plasmatron : PMMonsterBase
 	+FLOORCLIP
 	+BOSSDEATH
 	Bloodtype "PM_NormalCyberBloodBase"
-	SEESOUND ""
+	SEESOUND "Plasmatron/Sight"
 	PAINSOUND "Plasmatron/Pain"
 	DEATHSOUND "Plasmatron/Death"
 	ACTIVESOUND "Plasmatron/Active"
 	States
 {
 Spawn:
-	PL01 A 0
-	Goto Idle
-Idle:
-    PL01 A 10 A_Look
+    PL01 A 10 PM_Look
     Loop
-See:
+Look:
     PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-    PL01 ABB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    PL01 ABB 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	PL01 CC 3 PM_LookingForPlayer()
     TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP)
     PL01 D 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-    PL01 DEE 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    PL01 DEE 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 FF 3 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+	PL01 FF 3 PM_LookingForPlayer()
+    Loop
     Spotted:
-    TNT1 A 0 A_PlaySound("Plasmatron/Sight",CHAN_5)
+    TNT1 A 0 PM_LookingForPlayer()
 See2:
     PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",False)
@@ -326,7 +322,7 @@ Death:
     Stop
 Raise:
 	PL01 ONMLKJ 6
-	Goto See
+	Goto Look
     }
 }
 

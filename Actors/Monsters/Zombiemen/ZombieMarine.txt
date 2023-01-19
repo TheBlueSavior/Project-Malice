@@ -1,9 +1,10 @@
-ACTOR PM_ZombieMarine : Zombieman
+ACTOR PM_ZombieMarine : PMMonsterBase
 { 
     Health 35
     Radius 20
     Height 56
     Speed 8
+    Mass 100
     PainChance 200
     Damage 1
     MONSTER
@@ -18,7 +19,7 @@ ACTOR PM_ZombieMarine : Zombieman
 	Species "Zombie"
 	Tag "Zombie Marine"
     OBITUARY "%o was put down by a Zombie Marine."
-    SeeSound ""
+    SeeSound "HelmetZombie/Sight"
 	PainSound "HelmetZombie/Pain"
 	DeathSound "HelmetZombie/Death"
 	ActiveSound "HelmetZombie/Active"
@@ -28,30 +29,29 @@ ACTOR PM_ZombieMarine : Zombieman
     states
     {
     Spawn:
-		UDM2 A 10 A_Look
+		UDM2 A 10 PM_Look()
         Loop
-	See:
+	Look:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        UDM2 AA 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+        UDM2 AA 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-		UDM2 BB 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+		UDM2 BB 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		UDM2 CC 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		UDM2 CC 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-		UDM2 DD 4 A_Chase("","",CHF_NOPLAYACTIVE)
+		UDM2 DD 4 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-1)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Loop
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
 	SpotMissile:
-        TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5)
+        TNT1 A 0 PM_AlertSound()
 	    UDM2 EEE 3 A_FaceTarget
 	    Goto Missile
     See2:
@@ -182,7 +182,7 @@ ACTOR PM_ZombieMarine : Zombieman
         Stop
     Raise:
         UDM2 NMLKJIH 5
-        Goto See
+        Goto Look
     }
 }
 

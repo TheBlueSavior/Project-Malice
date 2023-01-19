@@ -1,6 +1,8 @@
-Actor PM_Fusionite : Arachnotron
+Actor PM_Fusionite : PMMonsterBase
 {
 	Health 500
+	Height 64
+	Mass 600
 	PainChance 100
 	Speed 7
 	Radius 48
@@ -11,7 +13,7 @@ Actor PM_Fusionite : Arachnotron
 	Obituary "%o was liquefied by a Fusionite."
 	Species "Arachnotron"
 	+DONTHARMSPECIES
-	SEESOUND ""
+	SEESOUND "Fusionite/Sight"
 	PAINSOUND "Fusionite/Pain"
 	DEATHSOUND "Fusionite/Death"
 	ACTIVESOUND "Fusionite/Active"
@@ -19,21 +21,17 @@ Actor PM_Fusionite : Arachnotron
 	States
 {
 Spawn:
-	FSPI A 0
-	Goto Idle
-Idle:
-    FSPI A 10 A_Look
+    FSPI A 10 PM_Look()
     Loop
-See:
+Look:
     FSPI A 2 A_PlaySound("GenericArachWalk")
-    FSPI ABBCC 2 A_Chase("","Missile",CHF_NOPLAYACTIVE)
+    FSPI ABBCC 2 PM_LookingForPlayer()
     TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP)
     FSPI D 2 A_PlaySound("GenericArachWalk")
-    FSPI DEEFF 2 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+    FSPI DEEFF 2 PM_LookingForPlayer()
+    Loop
 Spotted:
-    TNT1 A 0 A_PlaySound("Fusionite/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
 See2:
     FSPI A 2 A_PlaySound("GenericArachWalk")
     FSPI ABBCC 2 A_Chase
@@ -138,7 +136,7 @@ Death:
     Stop
 Raise:
 	FSPI ONMLKJ 6
-	Goto See
+	Goto Look
     }
 }
 

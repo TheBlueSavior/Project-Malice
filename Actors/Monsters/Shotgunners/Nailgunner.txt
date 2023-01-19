@@ -2,7 +2,7 @@
 // Pulse Nailgun Zombie
 // Decorate by: zrrion the insect
 //===========================================================================
-ACTOR PM_Nailgunner
+ACTOR PM_Nailgunner : PMMonsterBase
 {
   Health 45
   Radius 20
@@ -17,7 +17,7 @@ ACTOR PM_Nailgunner
   Bloodtype "PM_NormalBloodBase"
   Tag "Nailgunner"
   Species "Shotgunner"
-  SeeSound ""
+  SeeSound "nNailgunner/Sight"
   PainSound "Nailgunner/Pain"
   DeathSound "Nailgunner/Death"
   ActiveSound "Nailgunner/Active"
@@ -27,23 +27,22 @@ ACTOR PM_Nailgunner
   States
   {
   Spawn:
-    PNGZ AA 10 A_Look
+    PNGZ AA 10 PM_Look()
     Loop
-  See:
+  Look:
+    TNT1 A 0 A_Jump(15,"Spotted")
 	TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-    PNGZ AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
+    PNGZ AA 3 PM_LookingForPlayer()
 	TNT1 AA 0 A_Recoil(-0.5)
-	PNGZ BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	PNGZ BB 3 PM_LookingForPlayer()
 	TNT1 AA 0 A_Recoil(-0.5)
-    TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-	PNGZ CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	PNGZ CC 3 PM_LookingForPlayer()
 	TNT1 AA 0 A_Recoil(-0.5)
-	PNGZ DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	PNGZ DD 3 PM_LookingForPlayer()
 	TNT1 AA 0 A_Recoil(-0.5)
-        TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+    Goto Look+1
 	Spotted:
 	TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
 	  Goto See2
@@ -338,11 +337,11 @@ ACTOR PM_Nailgunner
   Raise:
     TNT1 A 0 //A_JumpIfInventory("XDeathCheck",1,"XRaise")
     PNGZ MLKJIH 5
-    Goto See
+    Goto Look
   XRaise:
     PNGZ VUTSRQP 5
     PNGZ O 5 //A_TakeInventory("XDeathCheck",1)
-    Goto See
+    Goto Look
   }
 }
 

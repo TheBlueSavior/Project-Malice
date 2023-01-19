@@ -34,18 +34,17 @@ actor PM_HeresyLord : PMMonsterBase
     States
     {
     Spawn:
-        LOHS A 10 A_Look
+        LOHS A 10 PM_Look()
         Loop
-    See:
-        LOHS AABB 4 A_Chase
+    Look:
+        LOHS AABB 4 PM_LookingForPlayer()
 		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
 		TNT1 A 0 A_PlaySound("hoofstep",3)
-        TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-		LOHS CCDD 4 A_Chase
+        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
+		LOHS CCDD 4 PM_LookingForPlayer()
 		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
 		TNT1 A 0 A_PlaySound("hoofstep",3)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Loop
     Spotted:
         TNT1 A 0 A_PlaySound("HeresyLord/Sight",CHAN_5)
     See2:
@@ -150,7 +149,7 @@ actor PM_HeresyLord : PMMonsterBase
         Stop
 	Raise:
 	    LOHS ONMLKJI 6
-		Goto See
+		Goto Look
     }
 }
 

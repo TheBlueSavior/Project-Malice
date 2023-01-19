@@ -1,4 +1,4 @@
-Actor PM_Depraved
+Actor PM_Depraved : PMMonsterBase
 {
     Health 300
     Radius 20
@@ -10,7 +10,7 @@ Actor PM_Depraved
 	PainChance 64
     Obituary "%o was tormented by a Depraved."
     HitObituary "%o was beaten to death by a Depraved."
-    SeeSound ""
+    SeeSound "Depraved/Sight"
     PainSound ""
     DeathSound ""
     ActiveSound "Depraved/Active"
@@ -26,20 +26,18 @@ Actor PM_Depraved
   States
   {
   Spawn:
-		INCA A 1 A_Look
-        Loop
+	INCA A 1 PM_Look()
     Loop
   See:
 	TNT1 A 0 A_SetSpeed(7)
 	NULL A 0 A_PlaySound("skeleton/step",5)
-    INCA AABBCC 5 A_Chase(0,0,CHF_NOPLAYACTIVE)
+    INCA AABBCC 5 PM_LookingForPlayer()
     TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP)
 	NULL A 0 A_PlaySound("skeleton/step",5)
-	INCA DDEEFF 5 A_Chase(0,0,CHF_NOPLAYACTIVE)
-	TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+	INCA DDEEFF 5 PM_LookingForPlayer()
+	Loop
   Spotted:
-    TNT1 A 0 A_PlaySound("Depraved/Sight",6)
+    TNT1 A 0 PM_AlertSound()
   See2:
 	TNT1 A 0 A_SetSpeed(7)
 	TNT1 A 0 A_ChangeFlag(NOPAIN,False)

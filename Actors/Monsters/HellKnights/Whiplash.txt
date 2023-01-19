@@ -1,4 +1,4 @@
-Actor PM_Whiplash : PMMonster
+Actor PM_Whiplash : PMMonsterBase
 {
   Health 500
   Radius 25
@@ -19,7 +19,7 @@ Actor PM_Whiplash : PMMonster
   +MISSILEevenMORE
   Bloodtype "PM_NormalCyberBloodBase"
   Obituary "%o couldn't evade the Whiplash's cursed blades!"
-  SeeSound ""
+  SeeSound "Whiplash/Sight"
   ActiveSound "Whiplash/Active"
   PainSound "Whiplash/Pain"
   DeathSound "Whiplash/Death"
@@ -28,18 +28,16 @@ Actor PM_Whiplash : PMMonster
   States
   {
   Spawn:
-	  WHIP A 5 A_Look
+	  WHIP A 5 PM_Look()
 	  Loop
-  See:
-    WHIP AAAAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
-    WHIP BBBBB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+  Look:
+    WHIP AAAAABBBBB 2 PM_LookingForPlayer()
     TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-    WHIP CCCCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
-    WHIP DDDDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+    WHIP CCCCCDDDDD 2 PM_LookingForPlayer()
     TNT1 A 0 A_CheckSight("See")
     Goto Spotted
   Spotted:
-    TNT1 A 0 A_PlaySound("Whiplash/Sight",CHAN_5)
+    TNT1 A 0 PM_AlertSound()
   See2:
 	TNT1 A 0 A_SetSpeed(8)
 	TNT1 A 0 A_ChangeFlag(NOPAIN,False)
@@ -368,7 +366,7 @@ Actor PM_Whiplash : PMMonster
 	Stop
   Raise:
        WHIP LKJI 7
-       Goto See
+       Goto Look
   }
 }
 

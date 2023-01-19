@@ -1,4 +1,4 @@
-ACTOR PM_Glutton : Demon
+ACTOR PM_Glutton : PMMonsterBase
 {
 	Health 300
 	PainChance 64
@@ -17,7 +17,7 @@ ACTOR PM_Glutton : Demon
 	Species "Brute"
 	BloodColor "DarkRed"
 	Bloodtype "PM_NormalBloodBase"
-	SeeSound 	""
+	SeeSound 	"Glutton/Sight"
 	PainSound 	"Glutton/Pain"
 	DeathSound 	"Glutton/Death"
 	ActiveSound "Glutton/Active"

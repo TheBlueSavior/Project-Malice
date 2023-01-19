@@ -1,37 +1,42 @@
-Actor PM_Cadaver : Revenant
+Actor PM_Cadaver : PMMonsterBase
 {
   +DONTHARMSPECIES
   //+NOINFIGHTING
   Species "Revenant"
   Tag "Cadaver"
-  SeeSound ""
+  SeeSound "Cadaver/Sight"
   PainSound "Cadaver/Pain"
   DeathSound "Cadaver/Death"
   ActiveSound "Cadaver/Active"
-  //DropItem "RagePoint1"
-  //MeleeRange 90
+  Health 300
+  Speed 10
+  Radius 20
+  Height 56
+  Mass 500
+  MeleeThreshold 196
+  Monster
+  +MISSILEMORE 
+  +FLOORCLIP
   Bloodtype "PM_NormalCyberBloodBase"
   Obituary "%o had trouble dodging a Cadaver's missile."
   HitObituary "%o was punched by a Cadaver."
   States
   {
   Spawn:
-    CREV A 10 A_Look
+    CREV A 10 PM_Look()
     Loop
-  See:
-    CREV AABBCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+  Look:
+    CREV AABBCC 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Cadaver/Step",5)
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP)
-	CREV DDEEFF 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	CREV DDEEFF 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Cadaver/Step",5)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+    Loop
   Spotted:
     TNT1 A 0 A_Jump(40,"Roar")
     TNT1 A 0 A_Jump(21,"SpecialBarrage")
     Goto RoarNoAnim
   RoarNoAnim:
-    TNT1 A 0 A_PlaySound("Cadaver/Sight",CHAN_7)
+    TNT1 A 0 PM_AlertSound()
   See2:
     CREV AABBCC 2 A_Chase
 	NULL A 0 A_PlaySound("Cadaver/Step",5)
@@ -204,7 +209,7 @@ Actor PM_Cadaver : Revenant
     Stop
   Raise:
     CREV QPONML 5
-    Goto See
+    Goto Look
 	}
 }
 

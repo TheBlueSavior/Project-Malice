@@ -1,4 +1,4 @@
-ACTOR PM_Tainted : DoomImp
+ACTOR PM_Tainted : PMMonsterBase
 {
     Health 80
     Radius 20
@@ -15,7 +15,7 @@ ACTOR PM_Tainted : DoomImp
 	Bloodtype "PM_NormalBloodBase"
 	Species "Imp"
 	Tag "Tainted"
-    SeeSound ""
+    SeeSound "Tainted/Sight"
     PainSound "Tainted/Pain"
     DeathSound "Tainted/Death"
     ActiveSound "Tainted/Active"
@@ -26,16 +26,15 @@ ACTOR PM_Tainted : DoomImp
     Spawn:
         TNT1 A 0 NoDelay A_UnsetShootable
     Idle:
-        BZRD N 4 A_Look
+        BZRD N 4 PM_Look()
         Loop
-	See:
-		BZRD NN 3 A_Chase("","",CHF_NOPLAYACTIVE)
+	Look:
+        TNT1 A 0 A_Jump(20,"Spotted")
+		BZRD NN 3 PM_LookingForPlayer()
 		TNT1 A 0 A_Recoil(-0.001)
-        TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-		BZRD NN 3 A_Chase("","",CHF_NOPLAYACTIVE)
+		BZRD NN 3 PM_LookingForPlayer()
 		TNT1 A 0 A_Recoil(-0.001)
-        TNT1 A 0 A_CheckSight("See")
-		Goto Spotted
+        Goto Look+1
     Spotted:
 	    BZRD NNNN 3 A_Chase("","",CHF_NOPLAYACTIVE)
 		BZRD NOPQ 3 A_FaceTarget
@@ -44,9 +43,10 @@ ACTOR PM_Tainted : DoomImp
 	Spotted2:
 	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile")
 	Roar:
-	    TNT1 A 0 A_PlaySound("Tainted/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
 	SpotMissile:
+        TNT1 A 0 PM_AlertSound()
 	    BZRD EE 5 A_FaceTarget
 		Goto Missile
 	See2:

@@ -1,4 +1,4 @@
-ACTOR PM_CyberSpectre
+ACTOR PM_CyberSpectre : PMMonsterBase
 {
 	Health 160
 	Radius 30
@@ -28,29 +28,26 @@ ACTOR PM_CyberSpectre
 	States
 	{
 		Spawn:
-			CYSP A 4 A_Look
+			CYSP A 4 PM_Look()
 			loop
-		See:
+		Look:
 			TNT1 A 0 A_SetTranslucent(0.1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
 			TNT1 A 0 A_ChangeFlag(SLIDESONWALLS,0)
-			CYSP AA 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			CYSP AA 2 Fast PM_LookingForPlayer()
 			TNT1 A 0 A_PlaySound("DTechWalk", 3)
 			TNT1 A 0 A_Recoil(-0.5)
-			CYSP BB 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			CYSP BB 2 Fast PM_LookingForPlayer()
 			TNT1 A 0 A_Recoil(-0.5)
-            TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-			CYSP CC 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			CYSP CC 2 Fast PM_LookingForPlayer()
 			TNT1 A 0 A_PlaySound("DTechWalk", 3)
 			TNT1 A 0 A_Recoil(-0.5)
-			CYSP DD 2 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			CYSP DD 2 Fast PM_LookingForPlayer()
 			TNT1 A 0 A_Recoil(-0.5)
-			TNT1 A 0 A_CheckSight("See")
-			goto Spotted
+			Loop
 		Spotted:
-		    TNT1 A 0 A_Jump(256,"RoarNoAnim","Roar","RoarNoAnim")
 		RoarNoAnim:
-			TNT1 A 0 A_PlaySound("CBrute/Sight",CHAN_5)
+			TNT1 A 0 PM_AlertSound()
 		See2:
 			TNT1 A 0 A_SetTranslucent(0.1)
 			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
@@ -135,6 +132,6 @@ ACTOR PM_CyberSpectre
 			Stop
 		Raise:
 			CYSP NMLKJIA 3
-		Goto See
+		Goto Look
 	}
 }

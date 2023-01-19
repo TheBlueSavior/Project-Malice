@@ -5,7 +5,7 @@
 
 //=====================================================================================
 //=====================================================================================
-actor PM_Bruiser
+actor PM_Bruiser : PMMonsterBase
 {
     Health 1000
     Radius 22
@@ -21,7 +21,7 @@ actor PM_Bruiser
 	+DONTHARMSPECIES
 	+MISSILEMORE
 	Species "Nobles"
-    SeeSound ""
+    SeeSound "Bruiser/Sight"
     PainSound "Bruiser/Pain"
     DeathSound "Bruiser/Death"
     ActiveSound "Bruiser/Active"
@@ -36,25 +36,25 @@ actor PM_Bruiser
     States
     {
     Spawn:
-        I01A A 10 A_Look
+        I01A A 10 PM_Look()
         Loop
-    See:
-        I01A AABB 4 A_Chase("","",CHF_NOPLAYACTIVE)
+    Look:
+        I01A AABB 4 PM_LookingForPlayer()
 		TNT1 A 0 A_Recoil(-2)
 		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
 		TNT1 A 0 A_PlaySound("hoofstep",3)
-		I01A CCDD 4 A_Chase("","",CHF_NOPLAYACTIVE)
+        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
+		I01A CCDD 4 PM_LookingForPlayer()
 		TNT1 A 0 A_Recoil(-2)
 		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,-10,0,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
 		TNT1 A 0 A_PlaySound("hoofstep",3)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Loop
     Spotted:
         TNT1 A 0 A_Jump(256,"Roar","SpotMissile")
     Roar:
-        TNT1 A 0 A_PlaySound("Bruiser/Sight",CHAN_5)
+        TNT1 A 0 PM_AlertSound()
         Goto See2
     SpotMissile:
         I01A D 5 A_FaceTarget
@@ -396,7 +396,7 @@ actor PM_Bruiser
 		TNT1 A 0
 		TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
 		TNT1 A 0 A_StopSound(CHAN_6)
-		TNT1 A 0 A_PlaySound("vile/firecrkl",CHAN_7,1.0,1)
+		TNT1 A 0 A_PlaySound("vile/firecrkl",CHAN_7,1.0)
 		TNT1 A 0 A_PlaySound("Exile/Immolate",CHAN_5,1.0)
         I01I AAAAAA 1 Light("Greenball4") A_SpawnItemEx("PM_BruiserDeathFire",random(-30,30),random(-30,30),random(0,80),random(-1,1),random(-1,1),random(0,4))
 		TNT1 A 0 A_Scream
@@ -412,7 +412,7 @@ actor PM_Bruiser
         Stop
 	Raise:
 	    I01I WVUTSRQPONMLKJIHGFEDCBA 3
-		Goto See
+		Goto Look
 	
     }
 }

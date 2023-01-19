@@ -1,10 +1,16 @@
-ACTOR PM_Draugr : Revenant
+ACTOR PM_Draugr : PMMonsterBase
 {
 	Health 350
 	Speed 10
 	Monster
+    Speed 10
+    Radius 20
+    Height 56
+    Mass 500
+    MeleeThreshold 196
 	MeleeThreshold 10
-	SeeSound ""
+    Monster
+	SeeSound "Draugr/Sight"
 	PainSound "Draugr/Pain"
 	DeathSound "Draugr/Death"
 	ActiveSound "Draugr/Active"
@@ -20,50 +26,29 @@ ACTOR PM_Draugr : Revenant
   States
   {
 	Spawn:
-		DRGR A 6 A_Look
+		DRGR A 6 PM_Look()
 		Loop
   See:
 	    NULL A 0 A_PlaySound("Fiend/Step",5)
-		DRGR A 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR A 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR B 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR B 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR C 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR C 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		DRGR AABBCC 2 PM_LookingForPlayer()
 		NULL A 0 A_PlaySound("Fiend/Step",5)
 		TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-		DRGR D 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR D 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR E 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR E 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR F 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		DRGR F 2 A_Chase("","",CHF_NOPLAYACTIVE)
-		TNT1 A 0 A_CheckSight("See")
-		Goto Spotted
+		DRGR DDEEFF 2 PM_LookingForPlayer()
+		Loop
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("Draugr/Sight",6)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
 	SpotMissile:
-	    TNT1 A 0 A_PlaySound("Draugr/Sight",6)
+	    TNT1 A 0 PM_AlertSound()
 		Goto Missile
   See2:
 	    NULL A 0 A_PlaySound("Fiend/Step",5)
-		DRGR A 2 A_Chase
-		DRGR A 2 A_Chase
-		DRGR B 2 A_Chase
-		DRGR B 2 A_Chase
-		DRGR C 2 A_Chase
-		DRGR C 2 A_Chase
+		DRGR AABBCC 2 A_Chase
 		NULL A 0 A_PlaySound("Fiend/Step",5)
-		DRGR D 2 A_Chase
-		DRGR D 2 A_Chase
-		DRGR E 2 A_Chase
-		DRGR E 2 A_Chase
-		DRGR F 2 A_Chase
-		DRGR F 2 A_Chase
+		DRGR DDEEFF 2 A_Chase
 		Loop
 	Melee:
 		DRGR J 1 A_FaceTarget

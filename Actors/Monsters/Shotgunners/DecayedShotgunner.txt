@@ -1,4 +1,4 @@
-ACTOR PM_DecayedShotgunner
+ACTOR PM_DecayedShotgunner : PMMonsterBase
 { 
     Health 45
     Radius 20
@@ -6,6 +6,7 @@ ACTOR PM_DecayedShotgunner
     Speed 9
     PainChance 200
     Damage 1
+    Mass 100
     MONSTER
 	+MISSILEMORE
     +FloorClip
@@ -17,7 +18,7 @@ ACTOR PM_DecayedShotgunner
 	Species "Shotgunner"
 	Tag "Decayed Shotgunner"
     OBITUARY "%o was caught in a Decayed Shotgunner's blast."
-    SeeSound ""
+    SeeSound "Decayed/Sight"
     PainSound "Decayed/Pain"
     DeathSound "Decayed/Death"
     ActiveSound "Decayed/Active"
@@ -26,28 +27,27 @@ ACTOR PM_DecayedShotgunner
     states
     {
     Spawn:
-        SPO6 AA 10 A_Look
+        SPO6 AA 10 PM_Look()
         Loop
-    See:
+    Look:
+        TNT1 A 0 A_Jump(15,"Spotted")
 		TNT1 A 0 A_SetSpeed(9)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        SPO6 AA 2 A_Chase("","",CHF_NOPLAYACTIVE)
+        SPO6 AA 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
-		SPO6 BB 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		SPO6 BB 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
-        TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		SPO6 CC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		SPO6 CC 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
-		SPO6 DD 2 A_Chase("","",CHF_NOPLAYACTIVE)
+		SPO6 DD 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
-        TNT1 A 0 A_CheckSight("See")
-        Goto Spotted
+        Goto Look+1
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","See2","See2")
 		Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
     See2:
 		TNT1 A 0 A_SetSpeed(9)
@@ -245,7 +245,7 @@ ACTOR PM_DecayedShotgunner
         Stop
     Raise:
         SPO6 NMLKJIH 5
-        Goto See
+        Goto Look
     }
 }
 

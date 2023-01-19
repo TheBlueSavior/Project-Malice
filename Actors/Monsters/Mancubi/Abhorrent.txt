@@ -1,9 +1,12 @@
-actor PM_Abhorrent : fatso
+actor PM_Abhorrent : PMMonsterBase
  {
  health 600
+ Radius 48
+ Height 64
  painchance 100
  Speed 5
  Scale 1.1
+ Mass 1000
  SeeSound ""
  PainSound "Abhorrent/Pain"
  DeathSound "Abhorrent/Death"
@@ -15,26 +18,23 @@ actor PM_Abhorrent : fatso
  //DropItem "RagePoint1"
  Obituary "An Abhorrent satisfied its quench for %o's soul."
  Tag "Abhorrent"
- //+NOINFIGHTING
  +DONTHURTSPECIES
   states
  {
   Spawn:
-  Idle:
-    ABHR A 10 A_look
+    ABHR A 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_ChangeFlag(SHOOTABLE, True)
 	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
 	TNT1 A 0 A_PlaySound("MancubStep")
-    ABHR AAA 2 A_Chase("","",CHF_NOPLAYACTIVE)
-	ABHR BBBCCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+    ABHR AAA 2 PM_LookingForPlayer()
+	ABHR BBBCCC 2 PM_LookingForPlayer()
     TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 	TNT1 A 0 A_PlaySound("MancubStep")
-	ABHR DDD 2 A_Chase("","",CHF_NOPLAYACTIVE)
-	ABHR EEEFFF 2 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_CheckSight("See")
-    Goto Spotted
+	ABHR DDD 2 PM_LookingForPlayer()
+	ABHR EEEFFF 2 PM_LookingForPlayer()
+    Loop
   See2:
 	TNT1 A 0 A_ChangeFlag(SHOOTABLE, True)
 	TNT1 A 0 A_ChangeFlag(NOPAIN,0)
@@ -177,7 +177,7 @@ actor PM_Abhorrent : fatso
     Stop
   Raise:
 	ABHR SRQPONMLK 6
-    Goto See
+    Goto Look
   }
 }
 

@@ -1,4 +1,4 @@
-Class PM_NetherImp : Actor
+Class PM_NetherImp : PMMonsterBase
 {
   Default
   {
@@ -11,7 +11,7 @@ Class PM_NetherImp : Actor
     Scale 1.2;
 	MeleeRange 170;
 	Species "Imp";
-	seesound "";
+	seesound "NetherConduit/Sight";
 	painsound "NetherConduit/Pain";
 	deathsound "NetherConduit/Death";
 	activesound "NetherConduit/Active";
@@ -33,19 +33,18 @@ Class PM_NetherImp : Actor
   Spawn:
     DRKF A 0 NoDelay A_SpawnItemEx("PM_NetherConduitLightningSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
   Idle:
-    DRKF AB 10 A_Look();
+    DRKF AB 10 PM_Look();
     Loop;
-  See:
+  Look:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
-    DRKF AAABBB 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+    DRKF AAABBB 2 PM_LookingForPlayer();
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-	DRKF CCCDDD 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
-       TNT1 A 0 A_CheckSight("See");
-    goto Spotted;
+	DRKF CCCDDD 2 PM_LookingForPlayer();
+    Loop;
   Spotted:
   Roar:
-    TNT1 A 0 A_PlaySound("NetherConduit/Sight",CHAN_5);
+    TNT1 A 0 PM_AlertSound();
 	Goto See2;
    See2:
 	TNT1 A 0 A_PlaySound("Imp/Step",4);
@@ -131,7 +130,7 @@ Class PM_NetherImp : Actor
     DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("PM_ConduitLightning2")
 	{
 	A_FaceTarget(1,90);
-	A_CustomMissile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+	A_SpawnProjectile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, -30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
@@ -141,7 +140,7 @@ Class PM_NetherImp : Actor
 	DRKF EEEEEEEEEEEEEEEEEEEE 1 Light("ConduitLightning2")
 	{
 	A_FaceTarget(1,90);
-	A_CustomMissile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+	A_SpawnProjectile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_ConduitChargeFlare", 37, -30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
@@ -149,7 +148,7 @@ Class PM_NetherImp : Actor
 	}
 	DRKF FFFF 2 Light("PM_ConduitLightning2")
 	{
-	A_CustomMissile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+	A_SpawnProjectile("PM_ConduitBeamWarning",33,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 	A_FaceTarget(1,90);
 	//A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,920,"PM_BlueLongFlare",180,180,random(50,800),0,1,0,"PM_ConduitArcs");
 	}
@@ -204,7 +203,7 @@ Class PM_NetherImp : Actor
     Goto RaiseSee;
   RaiseSee:
     TNT1 A 0 A_SpawnItemEx("PM_NetherConduitLightningSpawner",0,0,0,0,0,0,0,SXF_SETMASTER);
-    Goto See;
+    Goto Look;
   }
 }
 

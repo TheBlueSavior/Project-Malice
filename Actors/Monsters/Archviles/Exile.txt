@@ -1,36 +1,45 @@
 //CREDITS TO DUSTED FOR ATTACK CODE, AND TheDoomLad for the wall fire code!
 
-Actor PM_Exile : Archvile
+Actor PM_Exile : PMMonsterBase
 {
+  Health 700
+  Radius 20
+  Height 56
+  Mass 500
+  Speed 15
+  PainChance 10
+  MaxTargetRange 896
   Species "Archvile"
   DamageFactor "Vile", 0
   PainChance "Vile", 0
   Gibhealth 40
   Obituary "%o was immolated by an Exile."
   Tag "Exile"
-  SeeSound ""
+  SeeSound "Exile/Sight"
   PainSound "Exile/Pain"
   DeathSound "Exile/Death"
   ActiveSound "Exile/Active"
   Bloodtype "PM_NormalBloodBase"
+  +NOTARGET
+  +QUICKTORETALIATE
   +DONTHARMSPECIES
   +DONTHURTSPECIES
   +NOINFIGHTSPECIES
   States
   {
   Spawn:
-    EILE A 10 A_Look
+    EILE A 10 PM_Look()
     Loop
-  See:
+  Look:
 	TNT1 A 0 A_PlaySound("Exile/Step",CHAN_5)
-	EILE AABBCC 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	EILE AABBCC 2 PM_LookingForPlayer()
 	TNT1 A 0 A_JumpifTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP)
 	TNT1 A 0 A_PlaySound("Exile/Step",CHAN_5)
-	EILE DDEEFF 2 A_Chase("","",CHF_NOPLAYACTIVE)
+	EILE DDEEFF 2 PM_LookingForPlayer()
     TNT1 A 0 A_CheckSight("See")
 	Goto Spotted
   Spotted:
-    TNT1 A 0 A_PlaySound("Exile/Sight",CHAN_6)
+    TNT1 A 0 PM_AlertSound()
   See2:
 	TNT1 A 0 A_PlaySound("Exile/Step",CHAN_5)
 	EILE AABBCC 2 A_VileChase

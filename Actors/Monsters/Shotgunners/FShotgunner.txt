@@ -1,4 +1,4 @@
-Actor PM_FShotgunner
+Actor PM_FShotgunner : PMMonsterBase
 {
   Health 30
   Radius 20
@@ -7,13 +7,12 @@ Actor PM_FShotgunner
   Speed 8
   PainChance 170
   Monster
-  SEESOUND ""
+  SEESOUND "FacelessZ/Sight"
   ATTACKSOUND "FacelessZ/Attack"
   PAINSOUND "FacelessZ/Pain"
   DEATHSOUND "FacelessZ/Death"
   ACTIVESOUND "FacelessZ/Active"
   +FloorClip
-  //+NOINFIGHTING
   +HARMFRIENDS
   +DOHARMSPECIES
   Bloodtype "PM_NormalBloodBase"
@@ -25,23 +24,22 @@ Actor PM_FShotgunner
   States
   {
   Spawn:
-    F1SH AA 10 A_Look
+    F1SH AA 10 PM_Look()
     Loop
-  See:
+  Look:
+    TNT1 A 0 A_Jump(15,"Spotted")
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-    F1SH AA 3 A_Chase("","",CHF_NOPLAYACTIVE)
-	F1SH BB 3 A_Chase("","",CHF_NOPLAYACTIVE)
-    TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
+    F1SH AA 3 PM_LookingForPlayer()
+	F1SH BB 3 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-	F1SH CC 3 A_Chase("","",CHF_NOPLAYACTIVE)
-	F1SH DD 3 A_Chase("","",CHF_NOPLAYACTIVE)
-        TNT1 A 0 A_CheckSight("See")
-      Goto Spotted
+	F1SH CC 3 PM_LookingForPlayer()
+	F1SH DD 3 PM_LookingForPlayer()
+    Goto Look+1
 	Spotted:
 	TNT1 A 0 A_Jump(256,"Roar","See2","Roar2","Puke")
 	  Goto See2
 	Roar:
-	    TNT1 A 0 A_PlaySound("FacelessZ/Sight",CHAN_5)
+	    TNT1 A 0 PM_AlertSound()
 		Goto See2
     See2:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
@@ -191,7 +189,7 @@ Actor PM_FShotgunner
   Raise:
     F1SH L 5
     F1SH KJIH 5
-    Goto See
+    Goto Look
   }
 }
 

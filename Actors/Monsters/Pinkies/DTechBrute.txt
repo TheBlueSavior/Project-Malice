@@ -1,4 +1,4 @@
-ACTOR PM_DemonTechBrute : Demon
+ACTOR PM_DemonTechBrute : PMMonsterBase
 { 
     Health 230
     Speed 10
@@ -18,7 +18,7 @@ ACTOR PM_DemonTechBrute : Demon
 	Species "Brute"
 	BloodColor "Green"
 	//DropItem "RagePoint1"
-    SeeSound ""
+    SeeSound "DTechSight"
     PainSound "DTechPain"
     DeathSound "DTechDeath"
     ActiveSound "DTechActive"
