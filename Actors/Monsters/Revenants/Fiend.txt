@@ -33,6 +33,7 @@ Actor PM_Fiend : PMMonsterBase
 	TNT1 A 0 A_SetSpeed(10)
     FIEN AABBCC 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Fiend/Step",5)
+    TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
 	FIEN DDEEFF 2 PM_LookingForPlayer()
 	NULL A 0 A_PlaySound("Fiend/Step",5)
     Loop

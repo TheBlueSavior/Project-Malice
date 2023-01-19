@@ -28,28 +28,27 @@ ACTOR PM_Glutton : PMMonsterBase
 	States
 	{
 	Spawn:
-		BPWA A 10 A_Look
+		BPWA A 10 PM_Look()
 		Loop
-	See:
+	Look:
 			TNT1 A 0 A_SetSpeed(35)
 			BPWA A 8 Fast
 			{
-			A_Chase("","",CHF_NOPLAYACTIVE);
+			PM_LookingForPlayer();
 		    A_PlaySound("demonstep", 3);
 			}
 			TNT1 A 0 A_SetSpeed(5)
-			BPWA BB 6 Fast A_Chase("","",CHF_NOPLAYACTIVE)
+			BPWA BB 6 Fast PM_LookingForPlayer()
             TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
 			TNT1 A 0 A_SetSpeed(35)
 			BPWA C 8 Fast
 			{
-			A_Chase("","",CHF_NOPLAYACTIVE);
+			PM_LookingForPlayer();
 			A_PlaySound("demonstep", 3);
 			}
 			TNT1 A 0 A_SetSpeed(5)
-			BPWA DD 6 Fast A_Chase("","",CHF_NOPLAYACTIVE)
-                        TNT1 A 0 A_CheckSight("See")
-			Goto Spotted
+			BPWA DD 6 Fast PM_LookingForPlayer()
+            Loop
 	Spotted:
 	        TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim")
 	RoarNoAnim:
@@ -147,14 +146,11 @@ ACTOR PM_Glutton : PMMonsterBase
 		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
 		BPDE F -1 
 		Stop
-	XDeath:
-		"####" "#" 0 A_BossDeath
-		Goto Death
 		
 	Raise:
 		BPDE F 5
 		BPDE EDCBA 5
-		Goto See
+		Goto Look
 	}
 }
 

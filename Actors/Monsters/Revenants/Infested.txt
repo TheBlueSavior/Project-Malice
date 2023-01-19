@@ -46,6 +46,7 @@ ACTOR PM_Infested : PMMonsterBase
 	TNT1 A 0 A_SetSpeed(7)
 	ZKEL AABBCC 4 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("skeleton/step",5)
+    TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
 	ZKEL DDEEFF 4 PM_LookingForPlayer()
 	TNT1 A 0 A_PlaySound("skeleton/step",5)
 	Loop
