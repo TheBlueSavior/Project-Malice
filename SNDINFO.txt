@@ -3483,3 +3483,47 @@ PM/BigGoreSplat4	"Sounds/Other/PMBigGoreSplat4.ogg"
 PM/BigGoreSplat5	"Sounds/Other/PMBigGoreSplat5.ogg"
 PM/BigGoreSplat6	"Sounds/Other/PMBigGoreSplat6.ogg"
 $volume PM/BigGoreSplat 0.5
+
+//Reloads
+PM/GunClick        "Sounds/Other/PMGunClick.ogg" //oh shit
+
+PM/PistolMagOut    "Sounds/Other/PMPistolMagOut.ogg"
+PM/PistolMagIn     "Sounds/Other/PMPistolMagIn.ogg"
+PM/RifleMagOut     "Sounds/Other/PMRifleMagOut.ogg"
+PM/RifleMagIn      "Sounds/Other/PMRifleMagIn.ogg"
+PM/RifleBoltSlide  "Sounds/Other/PMRifleBoltSlide.ogg"
+
+$random PM/ShellInsert { PM/ShellInsert1 PM/ShellInsert2 PM/ShellInsert3 }
+PM/ShellInsert1 "Sounds/Other/PMShellInsert1.ogg"
+PM/ShellInsert2 "Sounds/Other/PMShellInsert2.ogg"
+PM/ShellInsert3 "Sounds/Other/PMShellInsert3.ogg"
+
+$random PM/BulletBounce { PM/BulletBounce1 PM/BulletBounce2 PM/BulletBounce3 PM/BulletBounce4 }
+PM/BulletBounce1 "Sounds/Other/PMBulletBounce1.ogg"
+PM/BulletBounce2 "Sounds/Other/PMBulletBounce2.ogg"
+PM/BulletBounce3 "Sounds/Other/PMBulletBounce3.ogg"
+PM/BulletBounce4 "Sounds/Other/PMBulletBounce4.ogg"
+
+$random PM/ShellBounce { PM/ShellBounce1 PM/ShellBounce2 PM/ShellBounce3 }
+PM/ShellBounce1 "Sounds/Other/PMShellBounce1.ogg"
+PM/ShellBounce2 "Sounds/Other/PMShellBounce2.ogg"
+PM/ShellBounce3 "Sounds/Other/PMShellBounce3.ogg"
+
+$random PM/MagBounce { PM/MagBounce1 PM/MagBounce2 PM/MagBounce3 }
+PM/MagBounce1 "Sounds/Other/PMMagBounce1.ogg"
+PM/MagBounce2 "Sounds/Other/PMMagBounce2.ogg"
+PM/MagBounce3 "Sounds/Other/PMMagBounce3.ogg"
+
+$random PM/PistolMagBounce { PM/PistolMagBounce1 PM/PistolMagBounce2 PM/PistolMagBounce3 }
+PM/PistolMagBounce1 "Sounds/Other/PMPistolMagBounce1.ogg"
+PM/PistolMagBounce2 "Sounds/Other/PMPistolMagBounce2.ogg"
+PM/PistolMagBounce3 "Sounds/Other/PMPistolMagBounce3.ogg"
+
+$rolloff PM/BulletBounce 300 850
+$rolloff PM/ShellBounce 300 850
+$rolloff PM/MagBounce 300 1200
+$rolloff PM/PistolMagBounce 300 1200
+$limit PM/BulletBounce 4
+$limit PM/ShellBounce 4
+$limit PM/MagBounce 4
+$limit PM/PistolMagBounce 4

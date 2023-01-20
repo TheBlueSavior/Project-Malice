@@ -1,5 +1,6 @@
 ACTOR PM_DecayedShotgunner : PMMonsterBase
 { 
+    var int user_numbullets;
     Health 45
     Radius 20
     Height 56
@@ -27,6 +28,11 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
     states
     {
     Spawn:
+        TNT1 A 0 NoDelay
+        {
+         user_numbullets = 12;
+        }
+    Idle:
         SPO6 AA 10 PM_Look()
         Loop
     Look:
@@ -37,6 +43,7 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		TNT1 AA 0 A_Recoil(-0.6)
 		SPO6 BB 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
+        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 		SPO6 CC 2 PM_LookingForPlayer()
 		TNT1 AA 0 A_Recoil(-0.6)
@@ -76,6 +83,8 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		TNT1 A 0 A_Jump(45,"See2")
 		Loop
     Missile:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
 		TNT1 A 0 A_Jump(13,"Puke")
 		TNT1 A 0 A_Jump(20,"Missile2")
 		TNT1 A 0 A_Jump(110,"RollRight","RollLeft")
@@ -91,10 +100,12 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+        user_numbullets--;
 		}
 		SPO6 EE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("GenericShotgunPump")
 		SPO6 AA 5 A_FaceTarget
+        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION)
 		SPO6 BB 5 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"Sprint")
         Goto See2
@@ -119,7 +130,9 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+        user_numbullets--;
 		}
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
 		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
 		TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1)
 		SPO6 F 5 Bright Light("YellowMediumFlicker2")
@@ -131,7 +144,9 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+        user_numbullets--;
 		}
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
 		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7)
 		TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1)
 		SPO6 F 5 Bright Light("YellowMediumFlicker2")
@@ -143,10 +158,13 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
 		A_CustomMissile("PM_BulletTracer",31,7,random(-1, 1), CMF_OFFSETPITCH, random(-1, 1));
+        user_numbullets--;
 		}
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
 		SPO6 E 6
 		TNT1 A 0 A_PlaySound("GenericShotgunPump")
 		SPO6 AA 5 A_FaceTarget
+        TNT1 AAA 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION)
 		SPO6 BB 5 A_FaceTarget
         Goto See2
 	MaggotDrop:
@@ -167,10 +185,11 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		TNT1 A 0 A_CheckSight("RollWait")
         Goto RollMissile
 	RollWait:
+        TNT1 A 0 A_JumpIf(user_numbullets<5,"ZReload")
 	    TNT1 A 0 A_JumpIfTargetInLOS("RollWarn",70,JLOSF_DEADNOJUMP)
 		SPO6 EE 3 A_FaceTarget
-            TNT1 A 0 A_Jump(5,"See2")
-		Loop
+        TNT1 A 0 A_Jump(5,"See2")
+		Goto RollWait+1
 	RollWarn:
 	    TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5)
 		SPO6 EE 5 A_FaceTarget
@@ -188,11 +207,13 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
-		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
+		A_CustomMissile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));        user_numbullets--;
 		}
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
 		SPO6 EE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("GenericShotgunPump")
 		SPO6 AA 5 A_FaceTarget
+        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION)
 		SPO6 BB 5 A_FaceTarget
 		TNT1 A 0 A_Jump(50,"Sprint")
         Goto See2
@@ -213,6 +234,20 @@ ACTOR PM_DecayedShotgunner : PMMonsterBase
 	A_FaceTarget;
 	}
 	Goto See2
+    ZReload:
+        TNT1 A 0
+        TNT1 A 0 A_Jumpif(user_numbullets==12,"ZReload2")
+        SPO6 AA 3
+        TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5)
+        TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets+1)
+        SPO6 BB 2
+        SPO6 AAA 3
+        Loop  
+    ZReload2:
+	    TNT1 A 0 A_PlaySound("GenericShotgunPump")
+	    SPO6 AA 5 A_FaceTarget
+	    SPO6 BB 5 A_FaceTarget
+        Goto See2
     Pain:
         SPO6 G 5 A_Pain
 		TNT1 A 0 A_Jump(105,"RollRight","RollLeft")
