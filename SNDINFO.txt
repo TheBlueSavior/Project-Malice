@@ -1185,7 +1185,11 @@ FusSmallShot2 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot2.ogg"
 FusSmallShot3 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot3.ogg"
 $volume Fusionite/SmallShot 0.85
 
-ArachChassisExplode "Sounds/Monsters/Arachnotrons/Fusionite/ArachChassisExplode.ogg"
+$random ArachChassisExplode { ArachChassisExplode1 ArachChassisExplode2 ArachChassisExplode3 }
+ArachChassisExplode1 "Sounds/Monsters/SFX/ArachChassisExplode1.ogg"
+ArachChassisExplode2 "Sounds/Monsters/SFX/ArachChassisExplode2.ogg"
+ArachChassisExplode3 "Sounds/Monsters/SFX/ArachChassisExplode3.ogg"
+$rolloff ArachChassisExplode 400 3000
 
 
 $volume Fusionite/Active 0.6
