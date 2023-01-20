@@ -52,4 +52,10 @@ class PMMonsterBase : Actor abstract
     {
      A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
     }
+	
+	void PM_DeathPhase()
+    {
+     A_Wander;
+     A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+    }
 }
