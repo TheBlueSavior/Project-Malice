@@ -1,6 +1,7 @@
 version "4.2.0"
 #include "Actors/Monsters/MonsterBase.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
+#include "Actors/Monsters/Imps/Devil.txt"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Watcher.txt"
 #include "Actors/Monsters/Souls/HadesSphere.txt"

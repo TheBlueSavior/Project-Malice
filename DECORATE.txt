@@ -46,7 +46,6 @@
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
-#include "Actors/Monsters/Imps/Devil.txt"
 #include "Actors/Monsters/Revenants/Fiend.txt"
 #include "Actors/Monsters/Fodder/Mimic.txt"
 #include "Actors/Monsters/Fodder/Swarm.txt"
