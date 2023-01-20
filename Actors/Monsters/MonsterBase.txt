@@ -55,7 +55,7 @@ class PMMonsterBase : Actor abstract
 	
 	void PM_DeathPhase()
     {
-     A_Wander;
+     A_Wander();
      A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
     }
 }
