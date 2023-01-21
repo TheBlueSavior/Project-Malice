@@ -3523,10 +3523,11 @@ PM/PistolMagBounce1 "Sounds/Other/PMPistolMagBounce1.ogg"
 PM/PistolMagBounce2 "Sounds/Other/PMPistolMagBounce2.ogg"
 PM/PistolMagBounce3 "Sounds/Other/PMPistolMagBounce3.ogg"
 
-$rolloff PM/BulletBounce 300 850
-$rolloff PM/ShellBounce 300 850
-$rolloff PM/MagBounce 300 1200
-$rolloff PM/PistolMagBounce 300 1200
+$rolloff PM/BulletBounce 200 1050
+$rolloff PM/ShellBounce 200 1050
+$rolloff PM/MagBounce 200 1200
+$rolloff PM/PistolMagBounce 200 1200
+$rolloff PM/GunClick 400 1900
 $limit PM/BulletBounce 4
 $limit PM/ShellBounce 4
 $limit PM/MagBounce 4

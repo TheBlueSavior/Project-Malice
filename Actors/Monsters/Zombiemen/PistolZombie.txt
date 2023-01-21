@@ -28,7 +28,7 @@ ACTOR PM_PistolZombie : PMMonsterBase
     Spawn:
         TNT1 A 0 NoDelay
         {
-         user_numbullets = 8;
+         user_numbullets = random(0,8);
         }
     Idle:
         A02A A 10 PM_Look()
@@ -81,8 +81,18 @@ ACTOR PM_PistolZombie : PMMonsterBase
 		TNT1 A 0 A_PlaySound("PistolZombie/See1")
 		A02A DGGGGGGGAAA 5 A_FaceTarget
 		Goto See2
+	NoAmmo:
+        A02A E 7 A_FaceTarget
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+        A02A E 7 A_FaceTarget
+		TNT1 A 0 A_Jump(138,"ZReload")
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+        A02A E 7 A_FaceTarget
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+        A02A AAAA 5 A_FaceTarget
+		Goto ZReload
     RealMissile:
-        TNT1 A 0 A_JumpIf(user_numbullets==0,"ZReload")
+        TNT1 A 0 A_JumpIf(user_numbullets==0,"NoAmmo")
         A02A EEE 6 A_FaceTarget
 		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
 		TNT1 A 0 A_PlaySound("PistolZombie/Fire")
@@ -90,21 +100,21 @@ ACTOR PM_PistolZombie : PMMonsterBase
 		{
 		A_CustomMissile("PM_BulletTracer",43,5,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare",43,5,0,0);
-        A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		}
         TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets-1)
 		A02A EE 4 A_FaceTarget
 		Goto See2
     ZReload:
         TNT1 A 0 A_PlaySound("PM/GunClick")
-        A02A EEE 3 A_FaceTarget
+        A02A EEEE 3 A_FaceTarget
         TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5)
-        TNT1 A 0 A_SetUserVar(user_numbullets,8)
-        A02A AAA 8 A_FaceTarget
-        TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
         A02A AA 8 A_FaceTarget
+        TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+        A02A AAAAA 8 A_FaceTarget
         TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5)
-        A02A BB 3 A_FaceTarget
+		TNT1 A 0 A_SetUserVar(user_numbullets,8)
+        A02A BBBBB 3 A_FaceTarget
         Goto See2
     Pain:
         A02A G 5

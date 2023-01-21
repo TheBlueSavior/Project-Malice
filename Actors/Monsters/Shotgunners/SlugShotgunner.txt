@@ -29,8 +29,8 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
     Spawn:
         TNT1 A 0 NoDelay
         {
-         user_numbullets = 8;
-         user_numslugs = 3;
+         user_numbullets = random(0,8);
+         user_numslugs = random(0,3);
         }
     Idle:
 		SPS4 A 10 PM_Look()
@@ -73,7 +73,7 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
         Loop
     Missile:
 		TNT1 A 0
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ZReload")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		TNT1 A 0 A_Jump(80,"Slug")
 		SPS4 EE 7 A_FaceTarget
 		TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_5)
@@ -93,7 +93,7 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
 		SPS4 EEE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("GenericShotgunPump")
 		SPS4 AA 5 A_FaceTarget
-        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION)
+        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION)
 		SPS4 BB 5 A_FaceTarget
 		Goto See2
 	Slug:
@@ -127,11 +127,24 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
 		A_FaceTarget;
 		}
 		SPS4 AA 5 A_FaceTarget
-        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION)
+        TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION)
 		SPS4 BB 5 A_FaceTarget
 		Goto See2
+	NoAmmo:
+		SPS4 E 7 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+		SPS4 EE 10 A_FaceTarget
+		TNT1 A 0 A_Jump(100,"ZReload")
+		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+		SPS4 E 8 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+		SPS4 E 8 A_FaceTarget
+		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+		SPS4 AAAA 5 A_FaceTarget
+		Goto ZReload
     ZReload:
         TNT1 A 0
+		TNT1 A 0 A_FaceTarget
         TNT1 A 0 A_Jumpif(user_numbullets==8,"ZReload2")
         SPS4 AAA 5
         TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5)
@@ -144,7 +157,7 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
         TNT1 A 0 A_Jumpif(user_numslugs==3,"ZReload2")
         SPS4 AAA 5
         TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5)
-        TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets+1)
+        TNT1 A 0 A_SetUserVar(user_numslugs,user_numslugs+1)
         SPS4 BB 3
         SPS4 AAA 3
         Loop
