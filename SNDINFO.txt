@@ -1189,6 +1189,7 @@ $random ArachChassisExplode { ArachChassisExplode1 ArachChassisExplode2 ArachCha
 ArachChassisExplode1 "Sounds/Monsters/SFX/ArachChassisExplode1.ogg"
 ArachChassisExplode2 "Sounds/Monsters/SFX/ArachChassisExplode2.ogg"
 ArachChassisExplode3 "Sounds/Monsters/SFX/ArachChassisExplode3.ogg"
+$volume ArachChassisExplode 0.70
 $rolloff ArachChassisExplode 400 3000
 
 
