@@ -1289,35 +1289,69 @@ $volume Remnant/Sight 0.65
 $volume Remnant/Active 0.5
 $volume Remnant/Death 0.5
 
-$random Devil/Pain	{ DevilPain1 DevilPain2 DevilPain3 }
+$random Devil/Pain	{ DevilPain1 DevilPain2 DevilPain3 DevilPain4 DevilPain5 DevilPain6 DevilPain7 DevilPain8 }
 DevilPain1 "Sounds/Monsters/Imps/Devil/DevilPain1.ogg"
 DevilPain2 "Sounds/Monsters/Imps/Devil/DevilPain2.ogg"
 DevilPain3 "Sounds/Monsters/Imps/Devil/DevilPain3.ogg"
+DevilPain4 "Sounds/Monsters/Imps/Devil/DevilPain4.ogg"
+DevilPain5 "Sounds/Monsters/Imps/Devil/DevilPain5.ogg"
+DevilPain6 "Sounds/Monsters/Imps/Devil/DevilPain6.ogg"
+DevilPain7 "Sounds/Monsters/Imps/Devil/DevilPain7.ogg"
+DevilPain8 "Sounds/Monsters/Imps/Devil/DevilPain8.ogg"
 
-$random Devil/Sight	{ DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
+$random Devil/Sight	{ DevilSee1 DevilSee2 DevilSee3 DevilSee4 DevilSee5 DevilSee6 DevilSee7 DevilSee8 }
 DevilSee1 "Sounds/Monsters/Imps/Devil/DevilSee1.ogg"
 DevilSee2 "Sounds/Monsters/Imps/Devil/DevilSee2.ogg"
 DevilSee3 "Sounds/Monsters/Imps/Devil/DevilSee3.ogg"
 DevilSee4 "Sounds/Monsters/Imps/Devil/DevilSee4.ogg"
+DevilSee5 "Sounds/Monsters/Imps/Devil/DevilSee5.ogg"
+DevilSee6 "Sounds/Monsters/Imps/Devil/DevilSee6.ogg"
+DevilSee7 "Sounds/Monsters/Imps/Devil/DevilSee7.ogg"
+DevilSee8 "Sounds/Monsters/Imps/Devil/DevilSee8.ogg"
 
-$random Devil/Roar	{ DevilRoar1 DevilRoar2 DevilSee1 DevilSee2 DevilSee3 DevilSee4 }
-DevilRoar1 "Sounds/Monsters/Imps/Devil/DevilRoar1.ogg"
-DevilRoar2 "Sounds/Monsters/Imps/Devil/DevilRoar2.ogg"
-
-$random Devil/Death	{ DevilDeath1 DevilDeath2 DevilDeath3 DevilDeath4 }
+$random Devil/Death	{ DevilDeath1 DevilDeath2 DevilDeath3 DevilDeath4 DevilDeath5 DevilDeath6 }
 DevilDeath1 "Sounds/Monsters/Imps/Devil/DevilDeath1.ogg"
 DevilDeath2 "Sounds/Monsters/Imps/Devil/DevilDeath2.ogg"
 DevilDeath3 "Sounds/Monsters/Imps/Devil/DevilDeath3.ogg"
 DevilDeath4 "Sounds/Monsters/Imps/Devil/DevilDeath4.ogg"
+DevilDeath5 "Sounds/Monsters/Imps/Devil/DevilDeath5.ogg"
+DevilDeath6 "Sounds/Monsters/Imps/Devil/DevilDeath6.ogg"
 
-$random Devil/Active	{ DevilActive1 DevilActive2 DevilActive3 }
+$random Devil/Active	{ DevilActive1 DevilActive2 DevilActive3 DevilActive4 DevilActive5 DevilActive6 DevilActive7 DevilActive8 DevilActive9 DevilActive10 DevilActive11 DevilActive12 }
 DevilActive1 "Sounds/Monsters/Imps/Devil/DevilActive1.ogg"
 DevilActive2 "Sounds/Monsters/Imps/Devil/DevilActive2.ogg"
 DevilActive3 "Sounds/Monsters/Imps/Devil/DevilActive3.ogg"
+DevilActive4 "Sounds/Monsters/Imps/Devil/DevilActive4.ogg"
+DevilActive5 "Sounds/Monsters/Imps/Devil/DevilActive5.ogg"
+DevilActive6 "Sounds/Monsters/Imps/Devil/DevilActive6.ogg"
+DevilActive7 "Sounds/Monsters/Imps/Devil/DevilActive7.ogg"
+DevilActive8 "Sounds/Monsters/Imps/Devil/DevilActive8.ogg"
+DevilActive9 "Sounds/Monsters/Imps/Devil/DevilActive9.ogg"
+DevilActive10 "Sounds/Monsters/Imps/Devil/DevilActive10.ogg"
+DevilActive11 "Sounds/Monsters/Imps/Devil/DevilActive11.ogg"
+DevilActive12 "Sounds/Monsters/Imps/Devil/DevilActive12.ogg"
 
-$volume devil/sight 0.7
-$volume devil/active 0.8
-$volume devil/death 0.7
+$random Devil/Attack	{ DevilAttack1 DevilAttack2 DevilAttack3 DevilAttack4 DevilAttack5 DevilAttack6 DevilAttack7 DevilAttack8 DevilAttack9 DevilAttack10 }
+DevilAttack1 "Sounds/Monsters/Imps/Devil/DevilAttack1.ogg"
+DevilAttack2 "Sounds/Monsters/Imps/Devil/DevilAttack2.ogg"
+DevilAttack3 "Sounds/Monsters/Imps/Devil/DevilAttack3.ogg"
+DevilAttack4 "Sounds/Monsters/Imps/Devil/DevilAttack4.ogg"
+DevilAttack5 "Sounds/Monsters/Imps/Devil/DevilAttack5.ogg"
+DevilAttack6 "Sounds/Monsters/Imps/Devil/DevilAttack6.ogg"
+DevilAttack7 "Sounds/Monsters/Imps/Devil/DevilAttack7.ogg"
+DevilAttack8 "Sounds/Monsters/Imps/Devil/DevilAttack8.ogg"
+DevilAttack9 "Sounds/Monsters/Imps/Devil/DevilAttack9.ogg"
+DevilAttack10 "Sounds/Monsters/Imps/Devil/DevilAttack10.ogg"
+
+
+//$volume devil/sight 0.7
+//$volume devil/active 0.8
+//$volume devil/death 0.7
+$rolloff Devil/Sight 650 1400
+$rolloff Devil/Active 550 1200
+$rolloff Devil/Pain 550 1200
+$rolloff Devil/Death 650 1200
+$rolloff Devil/Attack 550 1200
 
 //Hellion NEW
 $random Hellion/Sight { Hile/Sight1 Hile/Sight2 Hile/Sight3 Hile/Sight4 Hile/Sight4 Hile/Sight5 Hile/Sight6 }
