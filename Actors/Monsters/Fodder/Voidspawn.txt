@@ -1,7 +1,7 @@
 Actor Voidspawn
 {
     Health 300
-    GibHealth 650
+    GibHealth 250
     Radius 20
     Height 56
     Speed 6
@@ -152,7 +152,7 @@ Actor Voidspawn
     VFOD MIKSWTVWLJMMLSVWMILJLKMJSTUMLIJKLSTWKMLKJIJMSWVMSVVM 2 ThrustThing(random(0,360),random(4,6))
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Stencil)
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-    VFOD M 500
+    VFOD M 430
     VFOD VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV 1 A_PlaySound("Voidspawn/Stutter")
 	VFOD PQRPQRPQRPQRPQRPQRPQR 1 A_FaceTarget
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal)
