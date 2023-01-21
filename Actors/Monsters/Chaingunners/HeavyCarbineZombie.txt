@@ -1,5 +1,6 @@
 ACTOR PM_HeavyCarbineZombie : PMMonsterBase
 {
+  var int user_numbullets;
   Health 70
   Radius 20
   Height 56
@@ -24,6 +25,11 @@ ACTOR PM_HeavyCarbineZombie : PMMonsterBase
   States
   {
   Spawn:
+    TNT1 A 0 NoDelay
+    {
+     user_numbullets = random(15,60);
+    }
+  Idle:
     HCPO AA 10 PM_Look()
     Loop
   Look:
@@ -47,32 +53,77 @@ ACTOR PM_HeavyCarbineZombie : PMMonsterBase
 	HCPO F 0 A_playsound("Carbine/Shot",0)
     HCPO F 2 Bright Light("Shootlight") 
 	{
+    if(user_numbullets < 0)
+      {
+       return state("NoAmmo");
+      }
 	A_PlaySound("GunnerRifleDistant", CHAN_7);
 	A_CustomMissile("PM_CarbineBullet",37,10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
 	A_CustomMissile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    user_numbullets--;
+    return state(0);
 	}
 	HCPO E 2 A_FaceTarget
 	HCPO F 0 A_playsound("Carbine/Shot",0)
     HCPO F 2 Bright Light("Shootlight")
 	{
+    if(user_numbullets < 0)
+      {
+       return state("NoAmmo");
+      }
 	A_PlaySound("GunnerRifleDistant", CHAN_7);
 	A_CustomMissile("PM_CarbineBullet",37,10,random(-5,5),CMF_OFFSETPITCH,random(-2,2));
 	A_CustomMissile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    user_numbullets--;
+    return state(0);
 	}
 	HCPO E 2 A_FaceTarget
 	HCPO F 0 A_playsound("Carbine/Shot",0)
     HCPO F 2 Bright Light("Shootlight")
 	{
+    if(user_numbullets < 0)
+      {
+       return state("NoAmmo");
+      }
 	A_PlaySound("GunnerRifleDistant", CHAN_7);
 	A_CustomMissile("PM_CarbineBullet",37,10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
 	A_CustomMissile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    user_numbullets--;
+    return state(0);
 	}
 	HCPO E 2 A_FaceTarget
 	HCPO E 1 A_MonsterRefire(68,"See2")
 	Goto Missile+5
+  NoAmmo:
+	HCPO E 7 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	HCPO EE 10 A_FaceTarget
+	TNT1 A 0 A_Jump(56,"ZReload")
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	HCPO E 8 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	HCPO E 8 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	HCPO AAAA 5 A_FaceTarget
+	Goto ZReload
+  ZReload:
+     TNT1 A 0 A_PlaySound("PM/HeavyRifleOpen",CHAN_5)
+     HCPO EEEEEE 5 A_FaceTarget
+     TNT1 A 0 A_PlaySound("PM/HeavyRifleMagOut",CHAN_5)
+     HCPO EEEEE 5 A_FaceTarget
+     TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+     HCPO CCCBBBB 6 A_FaceTarget
+     TNT1 A 0 A_PlaySound("PM/HeavyRifleMagIn",CHAN_5)
+     TNT1 A 0 A_SetUserVar(user_numbullets,50)
+     HCPO DDDBBB 3 A_FaceTarget
+     TNT1 A 0 A_PlaySound("PM/HeavyRifleClose",CHAN_5)
+     HCPO AAAABB 4 A_FaceTarget
+     TNT1 A 0 A_PlaySound("PM/HeavyRifleBoltSlide",CHAN_5)
+     HCPO CCAA 4 A_FaceTarget
+     Goto See2
 	Melee:
     HCPO D 16 A_FaceTarget
     HCPO E 8 A_custommeleeattack(6,"Carbine/Stab")

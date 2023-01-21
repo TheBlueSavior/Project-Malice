@@ -3497,6 +3497,15 @@ PM/PistolMagIn     "Sounds/Other/PMPistolMagIn.ogg"
 PM/RifleMagOut     "Sounds/Other/PMRifleMagOut.ogg"
 PM/RifleMagIn      "Sounds/Other/PMRifleMagIn.ogg"
 PM/RifleBoltSlide  "Sounds/Other/PMRifleBoltSlide.ogg"
+PM/HeavyRifleOpen  "Sounds/Other/PMHeavyRifleOpen.ogg"
+PM/HeavyRifleClose "Sounds/Other/PMHeavyRifleClose.ogg"
+PM/HeavyRifleMagOut "Sounds/Other/PMHeavyRifleMagOut.ogg"
+PM/HeavyRifleMagIn  "Sounds/Other/PMHeavyRifleMagIn.ogg"
+PM/HeavyRifleBoltSlide "Sounds/Other/PMHeavyRifleBoltSlide.ogg"
+PM/GatlingBeltAlign "Sounds/Other/PMGatlingBeltAlign.ogg"
+PM/GatlingBeltCram "Sounds/Other/PMGatlingBeltCram.ogg"
+PM/GatlingReady "Sounds/Other/PMGatlingReady.ogg"
+PM/DualGatlingReady "Sounds/Other/PMDualGatlingReady.ogg"
 
 $random PM/ShellInsert { PM/ShellInsert1 PM/ShellInsert2 PM/ShellInsert3 }
 PM/ShellInsert1 "Sounds/Other/PMShellInsert1.ogg"
@@ -3524,12 +3533,20 @@ PM/PistolMagBounce1 "Sounds/Other/PMPistolMagBounce1.ogg"
 PM/PistolMagBounce2 "Sounds/Other/PMPistolMagBounce2.ogg"
 PM/PistolMagBounce3 "Sounds/Other/PMPistolMagBounce3.ogg"
 
+$random PM/HeavyMagBounce { PM/HeavyMagBounce1 PM/HeavyMagBounce2 PM/HeavyMagBounce3 PM/HeavyMagBounce4 }
+PM/HeavyMagBounce1 "Sounds/Other/PMHeavyMagBounce1.ogg"
+PM/HeavyMagBounce2 "Sounds/Other/PMHeavyMagBounce2.ogg"
+PM/HeavyMagBounce3 "Sounds/Other/PMHeavyMagBounce3.ogg"
+PM/HeavyMagBounce4 "Sounds/Other/PMHeavyMagBounce4.ogg"
+
 $rolloff PM/BulletBounce 200 1050
 $rolloff PM/ShellBounce 200 1050
 $rolloff PM/MagBounce 200 1200
+$rolloff PM/HeavyMagBounce 200 1200
 $rolloff PM/PistolMagBounce 200 1200
 $rolloff PM/GunClick 400 1900
 $limit PM/BulletBounce 4
 $limit PM/ShellBounce 4
 $limit PM/MagBounce 4
+$limit PM/HeavyMagBounce 4
 $limit PM/PistolMagBounce 4
