@@ -454,10 +454,10 @@ MGunner/Death1 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath1.ogg"
 MGunner/Death2 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath2.ogg"
 MGunner/Death3 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath3.ogg"
 
-$volume MutatedGunner/Sight 0.4
-$volume MutatedGunner/Active 0.4
-$volume MutatedGunner/Pain 0.4
-$volume MutatedGunner/Death 0.4
+$volume MutatedGunner/Sight 0.2
+$volume MutatedGunner/Active 0.2
+$volume MutatedGunner/Pain 0.3
+$volume MutatedGunner/Death 0.25
 
 $random PM/BulletHit { PM/BulletHit1 PM/BulletHit2 PM/BulletHit3 PM/BulletHit4 PM/BulletHit5 }
 PM/BulletHit1 "Sounds/Other/PMBulletHit1.ogg"
