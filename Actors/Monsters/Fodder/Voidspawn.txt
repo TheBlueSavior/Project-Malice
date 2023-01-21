@@ -1,7 +1,7 @@
 Actor Voidspawn
 {
     Health 300
-    GibHealth 150
+    GibHealth 650
     Radius 20
     Height 56
     Speed 6
