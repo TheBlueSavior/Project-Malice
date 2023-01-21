@@ -317,38 +317,6 @@ Actor SLGFXtra
 //*************************************************
 //*************************************************
 
-Actor PM_HeresyLordRedBall : DoomImpBall
-{
-	Damage (random(30,38))
-	Scale 1.2
-	SeeSound "HeresyLord/RedFire"
-	DeathSound "HeresyLord/RedDeath"
-	DamageType Fire
-	+NOGRAVITY
-	-LOWGRAVITY
-	Speed 16
-	Decal "PM_RedFireScorch"
-	states
-  	{
-  Spawn:
-    BFX5 AABBCC 1 bright Light("Shadowball2") 
-	{
-	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
-	A_SpawnItemEx("PM_HeresyLordFlameTrails");
-	A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
-	}
-	loop
-  Death:
-	TNT1 A 0
-	TNT1 A 0 A_SetTranslation("PM_RedFireTint")
-	TNT1 A 0 A_SetScale(1.4)
-	TNT1 A 0 A_SpawnItemEx("RFireBallExplode")
-    BFX5 D 2 bright Light("Shadowball2") //A_Explode (5, 56, 1)
-    FIR3 CDEFGHIJKLMNOP 2 Light("Shadowball2") bright
-    stop
-  }
-}
-
 
 Actor PM_HLM1Trail
 {

@@ -1,4 +1,5 @@
 version "4.2.0"
+#include "Actors/Monsters/ZProjectiles.txt"
 #include "Actors/Monsters/MonsterBase.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 #include "Actors/Monsters/Imps/Devil.txt"

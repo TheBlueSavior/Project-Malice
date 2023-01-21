@@ -214,56 +214,6 @@ Actor PM_Cadaver : PMMonsterBase
 	}
 }
 
-ACTOR PM_CadaverRocket : RevenantTracer
-{
-	Radius 2
-	Height 2
-	Damage (40)
-	Speed 15
-	FastSpeed 20
-	Projectile 
-	+RANDOMIZE
-	RenderStyle Normal
-	Decal "PM_OrangeFireScorch"
-	SeeSound ""
-	DeathSound "Cadaver/MissileExp"
-	Scale 1
-	States
-	{
-	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_ScaleVelocity(0.6)
-		CMIS AAAAAAA 1 BRIGHT
-		TNT1 A 0 A_ScaleVelocity(0.6)
-		CMIS AAAAAA 1 BRIGHT
-		TNT1 A 0
-		{
-		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		}
-	TNT1 A 0 A_ScaleVelocity(3)
-	TNT1 A 0 A_PlaySound("skeleton/attack",CHAN_7)
-	Spawn2:
-		CMIS A 1 BRIGHT Light("AvatarFireball4") 
-		TNT1 A 0
-		{
-		A_SpawnItemEx("PM_CadaverRocketFlare",0,0,0);
-		A_SpawnItemEx("PM_CadaverFireGlobs2",random(-2,0),random(-3,3),random(-3,3),0,0,0,0,128,0);
-		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		}
-		Loop
-	Death:
-		TNT1 A 0 Radius_Quake (2, 54, 0, 15, 0)
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-		//TNT1 A 0 A_SpawnItemEx("OrangeShockwave")
-		TNT1 AAAA 0 A_SpawnItemEx("PM_SmallerGenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION)
-		TNT1 AAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-		TNT1 AAAA 0 A_CustomMissile("FiendBallExplode",0,0,random(0,360),2,random(0,360))
-		TNT1 A 5 BRIGHT Light("AvatarFireball4")
-		Stop
-	}
-}
-
 ACTOR PM_CadaverHRocket : RevenantTracer
 {
 	Radius 2
