@@ -151,6 +151,7 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
         TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets+1)
         SPS4 BB 3
         SPS4 AAA 3
+		TNT1 A 0 A_JumpIfCloser(250,"ZReload2")
         Loop
     ZReloadSlug:
         TNT1 A 0
@@ -160,6 +161,7 @@ ACTOR PM_SlugShotgunner : PMMonsterBase
         TNT1 A 0 A_SetUserVar(user_numslugs,user_numslugs+1)
         SPS4 BB 3
         SPS4 AAA 3
+		TNT1 A 0 A_JumpIfCloser(250,"ZReload2")
         Loop
     ZReload2:
 	    TNT1 A 0 A_PlaySound("GenericShotgunPump")

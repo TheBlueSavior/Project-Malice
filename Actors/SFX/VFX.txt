@@ -130,7 +130,7 @@ Actor PM_EmptyRifleMag : PM_BulletCasingBase
 {
  BounceSound "PM/MagBounce"
  BounceCount 2
- Scale 1.2
+ Scale 0.8
  +ROLLSPRITE
  +ROLLCENTER
  States
@@ -145,7 +145,7 @@ Actor PM_EmptyRifleMag : PM_BulletCasingBase
    TNT1 A 0 A_Jump(128,"Death2")
    TNT1 A 0 A_SetRoll(90)
    X010 A 0 A_QueueCorpse
-   X010 A 200 A_JumpIf(user_t != 0,1)
+   X010 A 400 A_JumpIf(user_t != 0,1)
    X010 A 1 A_FadeOut(0.5)
    Wait
   Death2:
@@ -153,7 +153,7 @@ Actor PM_EmptyRifleMag : PM_BulletCasingBase
    TNT1 A 0 A_SetRoll(-90)
    TNT1 A 0 A_ChangeFlag(SPRITEFLIP,1)
    X010 A 0 A_QueueCorpse
-   X010 A 200 A_JumpIf(user_t != 0,1)
+   X010 A 400 A_JumpIf(user_t != 0,1)
    X010 A 1 A_FadeOut(0.5)
    Wait
   }
@@ -163,7 +163,7 @@ Actor PM_EmptyPistolMag : PM_BulletCasingBase
 {
  BounceSound "PM/PistolMagBounce"
  BounceCount 2
- Scale 0.45
+ Scale 0.4
  +ROLLSPRITE
  +ROLLCENTER
  States
@@ -178,7 +178,7 @@ Actor PM_EmptyPistolMag : PM_BulletCasingBase
    TNT1 A 0 A_Jump(128,"Death2")
    TNT1 A 0 A_SetRoll(90)
    X011 A 0 A_QueueCorpse
-   X011 A 200 A_JumpIf(user_t != 0,1)
+   X011 A 400 A_JumpIf(user_t != 0,1)
    X011 A 1 A_FadeOut(0.5)
    Wait
   Death2:
@@ -186,7 +186,7 @@ Actor PM_EmptyPistolMag : PM_BulletCasingBase
    TNT1 A 0 A_SetRoll(-90)
    TNT1 A 0 A_ChangeFlag(SPRITEFLIP,1)
    X011 A 0 A_QueueCorpse
-   X011 A 200 A_JumpIf(user_t != 0,1)
+   X011 A 400 A_JumpIf(user_t != 0,1)
    X011 A 1 A_FadeOut(0.5)
    Wait
   }

@@ -32,7 +32,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
   Spawn:
     TNT1 A 0 NoDelay
      {
-      user_numbullets = 50;
+      user_numbullets = random(0,50);
      }
   Idle:
     ZSP2 AA 10 PM_Look()
@@ -93,6 +93,18 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	ZSP2 CCDD 2 A_Chase
 	TNT1 A 0 A_CheckSight("Creep")
 	Goto See2
+  NoAmmo:
+	ZSP2 E 7 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	ZSP2 EE 10 A_FaceTarget
+	TNT1 A 0 A_Jump(100,"ReloadRetreat")
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	ZSP2 E 8 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	ZSP2 E 8 A_FaceTarget
+	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	ZSP2 AAAA 5 A_FaceTarget
+	Goto ReloadRetreat
   ReloadRetreat:
 	TNT1 A 0 A_SetSpeed(14)
 	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
@@ -101,6 +113,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
 	ZSP2 CCDD 2 A_Chase
 	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
+	TNT1 A 0 A_Jump(20,"ZReload")
     TNT1 A 0 A_CheckSight("ZReload")
     Loop
   NormalMissile:
@@ -112,10 +125,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
     A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
 	}
-    TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+    TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	ZSP2 E 4 A_FaceTarget
 	ZSP2 F 2
 	{
@@ -123,10 +136,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
     A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
 	}
-    TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+    TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	ZSP2 E 4 A_FaceTarget
 	ZSP2 F 2
 	{
@@ -134,10 +147,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
     A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
 	}
-    TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+    TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	ZSP2 E 4 A_FaceTarget
 	ZSP2 F 2
 	{
@@ -145,10 +158,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	A_PlaySound("ZombieRifleDistant", CHAN_7);
     A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, random(2, -2));
 	A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
 	}
-    TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+    TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	ZSP2 E 5 A_FaceTarget
 	Goto See2
 	
@@ -189,7 +202,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	
 	MissileLeft:
       TNT1 A 0
-      TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+      TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	  ZSP2 E 2 A_FaceTarget
 	  TNT1 A 0 ThrustThing(angle*256/360+192, 6, 0, 0)
 	  ZSP2 E 2 A_FaceTarget
@@ -199,14 +212,14 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",35,7,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 35, 7, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileLeft")
 	  Goto See2
    MissileRight:
       TNT1 A 0
-      TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+      TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	  ZSP2 E 2 A_FaceTarget
       TNT1 A 0 ThrustThing(angle*256/360+64, 6, 0, 0)
 	  ZSP2 E 2 A_FaceTarget
@@ -216,14 +229,14 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileRight")
 	  Goto See2
 	MissileBack:
       TNT1 A 0
-      TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+      TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 	  ZSP2 E 2 A_FaceTarget
       TNT1 A 0 A_Recoil(6)
 	  ZSP2 E 2 A_FaceTarget
@@ -233,7 +246,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9,random(-7, 7), CMF_OFFSETPITCH, random(-2, 2));
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 	  }
 	  TNT1 A 0 A_Jump(150, "MissileBack")
@@ -276,7 +289,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
 	TNT1 A 0 A_Jump(20,"StandoffBarrage")
 	 StandoffMissile1:
         TNT1 A 0
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 5 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -284,7 +297,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(1, -1), CMF_OFFSETPITCH, random(1, -1));
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		user_numbullets--;
 		}
 		ZSP2 E 8 A_FaceTarget
@@ -300,10 +313,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -10);
 		A_CustomMissile("BulletFlare", 33, 9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -311,10 +324,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -8);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -322,10 +335,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -7);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -333,10 +346,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -6);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -344,10 +357,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -5);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -355,9 +368,9 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -4);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -365,10 +378,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -2);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -376,10 +389,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, -1);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -387,10 +400,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -398,10 +411,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -409,10 +422,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -420,10 +433,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -431,10 +444,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 0);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -442,10 +455,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 1);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -453,10 +466,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 2);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -464,10 +477,10 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 3);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 1 A_FaceTarget
 		ZSP2 F 2 Bright Light("YellowMediumFlicker2")
 		{
@@ -475,15 +488,15 @@ ACTOR PM_FallenMarine : PMMonsterBase
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
 		A_CustomMissile("PM_BulletTracer",33,9, random(2, -2), CMF_OFFSETPITCH, 4);
 		A_CustomMissile("BulletFlare", 33,9, 15, 0);
-        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		}
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
 		ZSP2 E 4 A_FaceTarget
 		TNT1 A 0 A_Jump(99,"GrenadeCheck")
 		Goto StandoffReloadCheck
      StandoffReloadCheck:
-        TNT1 A 0 A_JumpIf(user_numbullets<0,"ReloadRetreat")
+        TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
         Goto Standoff
  GrenadeCheck:
         TNT1 A 0
@@ -539,12 +552,14 @@ GrenadeNear:
         Goto Retreat
     ZReload:
       TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5)
-      ZSP2 EEEE 5 A_FaceTarget
+      ZSP2 EE 5 A_FaceTarget
+      TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+      ZSP2 CCCBB 5 A_FaceTarget
       TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5)
-      TNT1 A 0 A_SetUserVar(user_numbullets,31)
-      ZSP2 AABB 4 A_FaceTarget
+      TNT1 A 0 A_SetUserVar(user_numbullets,50)
+      ZSP2 EEDBBB 4 A_FaceTarget
       TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5)
-      ZSP2 BBB 4 A_FaceTarget
+      ZSP2 ABB 5 A_FaceTarget
       Goto See2
  Pain:
     ZSP2 G 4
