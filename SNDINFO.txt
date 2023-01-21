@@ -2522,6 +2522,12 @@ Voidspawn/Active2 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnActive2
 Voidspawn/Active3 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnActive3.ogg"
 Voidspawn/Active4 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnActive4.ogg"
 
+$random Voidspawn/Fatal { VoidspawnFatal1 VoidspawnFatal2 VoidspawnFatal3 }
+VoidspawnFatal1 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain1.ogg"
+VoidspawnFatal2 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain2.ogg"
+VoidspawnFatal3 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain3.ogg"
+Voidspawn/Stutter "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnStutter.ogg"
+
 $volume Voidspawn/Active 0.9
 
 
