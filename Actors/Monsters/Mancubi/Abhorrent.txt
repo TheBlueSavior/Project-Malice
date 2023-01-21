@@ -177,40 +177,6 @@ actor PM_Abhorrent : PMMonsterBase
   }
 }
 
-Actor PM_AbhorBall : Fatshot
-{
-    Radius 8
-    Height 6
-    Scale 1.
-    Speed 11
-	Damage (random(40,40))
-    Renderstyle "Add"
-    seesound "Abhor/BallWhiz"
-	deathsound "Abhor/BallExp"
-	Decal "PM_DeathSoulScorchBig"
-    PROJECTILE
-    +SEEKERMISSILE
-  States
-  {
-  Spawn:
-    ABHB AABB 1 Bright Bright Light("SoulHarvesterBall1")
-	{
-	A_Weave(1, 1, 1.5, 0);
-	A_SeekerMissile(1,1,SMF_PRECISE);
-	A_SpawnItemEx("BlueSoulFlareSmall",-12);
-	A_SpawnItemEx("BlueFireTrailEffect",0,random(-9,9),random(-9,9));
-	A_SpawnItemEx("AbhorBallTrail", 0, 0, 0, 0, 0, 0, 180, SXF_CLIENTSIDE);
-	}
-    Loop
-  Death:
-	TNT1 A 0 A_SpawnItemEx("BlueExplosionFlareSmall",0,0,0)
-	TNT1 AAA 0 A_CustomMissile("AbhorBallExplode",0,0,random(0,360),2,random(0,360))
-	TNT1 AAAAAAAA 0 A_CustomMissile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80))
-    SHBA CDEFGHIJKL 4 Bright Light("SoulHarvesterBall2")
-    Stop
-  }
-}
-
 Actor PM_AbhorBarrageBall : Fatshot
 {
     Radius 8

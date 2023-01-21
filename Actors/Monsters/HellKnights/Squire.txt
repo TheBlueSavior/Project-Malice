@@ -311,39 +311,6 @@ ACTOR HKLunge3 : HKLunge
 	Damage (1*Random(0,1))
 }
 
-actor PM_SquireFireball : DoomImpBall
-{
-	+NOGRAVITY
-	-LOWGRAVITY
-	Speed 15
-	SeeSound "HellKnight/Cast"
-	DeathSound "HellKnight/BallImpact"
-	Decal "PM_GreenFireScorch"
-	Damage (random(30,37))
-	DamageType Fire
-	Scale 0.24
-	states
-  	{
-  Spawn:
-    PBAL C 1 bright Light("GreenFireLight") 
-	{
-	A_SpawnItemEx("PM_GreenFlameTrails",0,0,0,0,0,0,0,128,0);
-	A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
-	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
-	}
-	loop
-  Death:
-	TNT1 A 0
-	TNT1 A 0 A_SetTranslation("PM_GreenFusionTint")
-	TNT1 A 0 A_SetScale(1.2)
-    NDEB D 1 bright Light("GreenFireLight")
-	TNT1 A 0 A_SpawnItemEx("GFireBallExplode",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
-	TNT1 AAA 0 A_SpawnItemEx("PM_GreenFireballExpFlames",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION)
-    FIR3 CCDDEEFFGGHHIIJJKKLLMMNNOOPP 1 Light("GreenFireLight") bright A_FadeOut(0.05)
-    stop
-  }
-}
-
 Actor GFireBallExplode
 {
 	Scale 1
