@@ -96,7 +96,8 @@ ACTOR PM_VenomMaggot : PMMonsterBase
     PainChance 150
     Speed 7
 	Tag "Venom Maggot"
-    BloodColor "PM_PestilenceBloodBase"
+    BloodType "PM_PestilenceBloodBase"
+    BloodColor "Green"
     Obituary "$o's flesh was infected by the Venom Maggot's deadly bite, Gross!"
     SeeSound "VenMaggot/Sight"
     DeathSound "VenMaggot/Die"
