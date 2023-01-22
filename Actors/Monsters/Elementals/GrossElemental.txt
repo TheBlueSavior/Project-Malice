@@ -20,6 +20,8 @@ ACTOR PM_GrossElemental : PMMonsterBase
   +DONTHARMSPECIES
   +FLOATBOB
    FloatBobStrength 0.4
+   +NOGRAVITY
+    +FLOAT 
   +MissileMore
   states
    {
