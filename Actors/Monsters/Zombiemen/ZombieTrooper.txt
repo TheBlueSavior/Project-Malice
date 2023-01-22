@@ -189,7 +189,7 @@ ACTOR PM_ZombieTrooper : PMMonsterBase
     ZReload:
       TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5)
       UTM2 EE 5 A_FaceTarget
-      TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+      TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0))
       UTM2 CCCBB 5 A_FaceTarget
       TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5)
       TNT1 A 0 A_SetUserVar(user_numbullets,31)
