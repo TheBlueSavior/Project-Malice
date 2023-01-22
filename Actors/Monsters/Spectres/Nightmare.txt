@@ -9,7 +9,7 @@ Class PM_Nightmare : PMMonsterBase
     PainChance 144;
     RenderStyle "Subtract";
 	MeleeRange 250;
-    Mass 1;
+    Mass 400;
     Alpha 0.0;
     SeeSound "";
     PainSound "Nightmare/Pain";
