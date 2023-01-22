@@ -14,7 +14,7 @@ Actor PM_HellPriest : PMMonsterBase
     DeathSound "monster/acodth"
     ActiveSound "HellPriestActive"
 	Species "Chaingunner"
-	Tag "Hell Priest"
+	Tag "Umbral Disciple"
 	Bloodcolor "Black"
 	FloatBobStrength 0.4
     Monster
