@@ -454,6 +454,12 @@ MGunner/Death1 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath1.ogg"
 MGunner/Death2 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath2.ogg"
 MGunner/Death3 "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerDeath3.ogg"
 
+MutatedGunner/PreFire "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerPreFire.ogg"
+MutatedGunner/Fire "Sounds/Monsters/Chaingunners/MutatedGunner/MutGunnerFire.ogg"
+
+$rolloff MutatedGunner/PreFire 500 2900
+$rolloff MutatedGunner/Fire 350 2200
+
 $volume MutatedGunner/Sight 0.2
 $volume MutatedGunner/Active 0.2
 $volume MutatedGunner/Pain 0.3
