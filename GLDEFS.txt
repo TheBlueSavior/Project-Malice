@@ -6630,32 +6630,32 @@ Object PaladinBall
 flickerlight FlyVomitLights1
 {
 color 0.0 1.0 0.0
-size 84
-secondarySize 96
+size 35
+secondarySize 28
 }
 
 flickerlight FlyVomitLights2
 {
 color 0.0 1.0 0.0
-size 108
-secondarySize 120
+size 25
+secondarySize 43
 }
 
 flickerlight FlyVomitLights3
 {
 color 0.0 1.0 0.0
-size 132
-secondarySize 144
+size 40
+secondarySize 52
 }
 
 flickerlight FlyVomitLights4
 {
 color 0.0 1.0 0.0
-size 156
-secondarySize 168
+size 49
+secondarySize 35
 }
 
-object PukeVenom
+object PM_GElemVenomBurst
 {
 frame VBALA { light FlyVomitLights1 }
 frame VBALB { light FlyVomitLights1 }
