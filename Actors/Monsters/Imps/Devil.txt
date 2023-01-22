@@ -130,7 +130,7 @@ Class PM_Devil : PMMonsterBase
     TNT1 A 0 ThrustThingZ(0,25,0,1);
     TNT1 A 0 A_FaceTarget();
     TNT1 A 0 A_Recoil (-12);
-	TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	TNT1 A 0 A_PlaySound("Devil/Roar",CHAN_7);
 	D3IM EF 2 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
     D3IM F 6 A_FaceTarget();
 	D3IM G 1 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
@@ -172,7 +172,7 @@ Class PM_Devil : PMMonsterBase
   FireLeft:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
@@ -206,7 +206,7 @@ Class PM_Devil : PMMonsterBase
   FireRight:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
@@ -302,7 +302,7 @@ Class PM_Devil : PMMonsterBase
 	SFireLeft:
 	D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
@@ -336,7 +336,7 @@ Class PM_Devil : PMMonsterBase
   SFireRight:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
@@ -464,16 +464,16 @@ Class PM_Devil : PMMonsterBase
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
 	Goto See2;
   Roar:
-	D3IM V 3 A_FaceTarget();
-	TNT1 A 0 PM_AlertSound();
-	D3IM VVVVVVWWWWWWWWWWW 3 A_FaceTarget();
-	D3IM AA 3 A_FaceTarget();
+	D3IM VVVVVV 3 A_FaceTarget();
+	TNT1 A 0 A_PlaySound("Devil/Roar");
+	D3IM WWWWWWWWW 3 A_FaceTarget();
+	D3IM AAAAA 3 A_FaceTarget();
 	Goto See2;
    StandoffRoar:
-	D3IM V 3 A_FaceTarget();
-	TNT1 A 0 PM_AlertSound();
-	D3IM VVVVVVWWWWWWWWWWW 3 A_FaceTarget();
-	D3IM AA 3 A_FaceTarget();
+	D3IM VVVVVV 3 A_FaceTarget();
+	TNT1 A 0 A_PlaySound("Devil/Roar");
+	D3IM WWWWWWWWW 3 A_FaceTarget();
+	D3IM AAAAA 3 A_FaceTarget();
 	Goto Standoff;
   Pain:
     D3IM H 2;
