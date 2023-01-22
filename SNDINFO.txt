@@ -2155,6 +2155,17 @@ GrossElem/Pain          BELPAIN
 GrossElem/Die           BELDTH
 GrossElem/Fire          BELSPIT
 
+$random GrossElem/Spit { GElemSpit1 GElemSpit2 GElemSpit3 }
+GElemSpit1 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemShot1.ogg"
+GElemSpit2 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemShot2.ogg"
+GElemSpit3 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemShot3.ogg"
+
+$random GrossElem/VenomWhiz { GElemVenomWhiz1 GElemVenomWhiz2 }
+GElemVenomWhiz1 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemPoisonWhiz1.ogg"
+GElemVenomWhiz2 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemPoisonWhiz2.ogg"
+
+$volume GrossElem/VenomWhiz 0.55
+
 $Random VenMaggot/Sight          { VenMagSight1 VenMagSight2 }
 VenMagSight1            MAGSIT1
 VenMagSight2            MAGSIT2
