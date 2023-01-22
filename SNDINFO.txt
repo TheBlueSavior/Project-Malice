@@ -818,7 +818,7 @@ $random Nailgunner/Death { NailZDeath1 NailZDeath2 }
 NailZDeath1 "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerDeath1.mp3"
 NailZDeath2 "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerDeath2.mp3"
 
-Nailgunner/Fire "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerFire.wav"
+Nailgunner/Fire "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerFire.ogg"
 Nailgunner/Altfire "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerAltFire.ogg"
 $random Nail/Ricochet { NailRic1 NailRic2 }
 NailRic1 "Sounds/Monsters/Nailgunner/Shotgunners/NailImpact1.ogg"
@@ -828,6 +828,16 @@ $rolloff Nailgunner/Fire 300 2200
 
 Nailgunner/Charge "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerCharge.ogg"
 Nailgunner/QuickCharge "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerQuickCharge.ogg"
+Nailgunner/SpinUp   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinUp.ogg"
+Nailgunner/SpinLoop   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinLoop.ogg"
+Nailgunner/SpinDown   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinDown.ogg"
+
+$rolloff Nailgunner/SpinUp 300 2500
+$rolloff Nailgunner/SpinLoop 300 2500
+$rolloff Nailgunner/SpinDown 300 2500
+$volume Nailgunner/SpinUp 0.65
+$volume Nailgunner/SpinLoop 0.55
+$volume Nailgunner/SpinDown 0.65
 
 $rolloff Nailgunner/Altfire 300 2200
 
@@ -1831,6 +1841,7 @@ Decay/Active4 "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedActive4.ogg"
 Decayed/ShottyCharge "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedShotgunBeep.ogg"
 
 $rolloff Decayed/Fire 700 2200
+$volume Decayed/Fire 0.55
 $volume Decayed/Roll 0.6
 $limit Decayed/ShottyCharge 10
 
@@ -3508,6 +3519,9 @@ PM/HeavyRifleClose "Sounds/Other/PMHeavyRifleClose.ogg"
 PM/HeavyRifleMagOut "Sounds/Other/PMHeavyRifleMagOut.ogg"
 PM/HeavyRifleMagIn  "Sounds/Other/PMHeavyRifleMagIn.ogg"
 PM/HeavyRifleBoltSlide "Sounds/Other/PMHeavyRifleBoltSlide.ogg"
+PM/NailgunMagOut   "Sounds/Other/PMNailgunMagOut.ogg"
+PM/NailgunMagIn    "Sounds/Other/PMNailgunMagIn.ogg"
+PM/NailgunReady    "Sounds/Other/PMNailgunReady.ogg"
 PM/GatlingBeltAlign "Sounds/Other/PMGatlingBeltAlign.ogg"
 PM/GatlingBeltCram "Sounds/Other/PMGatlingBeltCram.ogg"
 PM/GatlingReady "Sounds/Other/PMGatlingReady.ogg"

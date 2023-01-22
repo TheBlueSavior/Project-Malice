@@ -4,6 +4,7 @@
 //===========================================================================
 ACTOR PM_Nailgunner : PMMonsterBase
 {
+  var int user_numbullets;
   Health 45
   Radius 20
   Height 56
@@ -27,6 +28,11 @@ ACTOR PM_Nailgunner : PMMonsterBase
   States
   {
   Spawn:
+    TNT1 A 0 NoDelay
+    {
+     user_numbullets = random(3,35);
+    }
+  Idle:
     PNGZ AA 10 PM_Look()
     Loop
   Look:
@@ -77,37 +83,67 @@ ACTOR PM_Nailgunner : PMMonsterBase
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	PNGZ E 5 A_FaceTarget
 	Goto See2
@@ -117,9 +153,15 @@ ACTOR PM_Nailgunner : PMMonsterBase
 		TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
         PNGZ F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("NoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 		PNGZ E 6 A_FaceTarget
 		TNT1 A 0 A_Jump(10,"See2")
@@ -131,6 +173,8 @@ ACTOR PM_Nailgunner : PMMonsterBase
 		PNGZ AAABBB 5 A_FaceTarget
         TNT1 A 0 A_CheckSight("Missile3Wait1")
 		PNGZ EEEE 5 A_FaceTarget
+        TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets-8)
+        TNT1 A 0 A_Jumpif(user_numbullets < 0, "NoAmmo")
 		TNT1 A 0 A_Recoil(8)
 		TNT1 A 0 A_PlaySound("Nailgunner/Altfire",CHAN_7)
 		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_5)
@@ -171,10 +215,12 @@ ACTOR PM_Nailgunner : PMMonsterBase
 		Goto Missile3Go
 	Missile3Go:
 	       TNT1 A 0 A_TakeInventory("NailgunnerToken",1)
-	       TNT1 A 0 A_Recoil(8)
-	       TNT1 A 0 A_PlaySound("Nailgunner/Altfire",CHAN_7)
-	       TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_5)
-	       PNGZ F 2 Bright Light("YellowMediumFlicker2")
+		TNT1 A 0 A_Recoil(8)
+        TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets-8)
+        TNT1 A 0 A_Jumpif(user_numbullets < 0, "NoAmmo")
+		TNT1 A 0 A_PlaySound("Nailgunner/Altfire",CHAN_7)
+		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_5)
+		PNGZ F 2 Bright Light("YellowMediumFlicker2")
 		{
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
@@ -203,20 +249,33 @@ ACTOR PM_Nailgunner : PMMonsterBase
 		Goto See2
 	StandoffCheck:
 	TNT1 A 0 A_JumpIfCloser(400,"NormalMissile","Missile3")
+  StandoffTransition:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySound("Nailgunner/SpinUp",CHAN_6)
+    PNGZ BBBBB 3
+    {
+    A_Recoil(-2);
+    A_FaceTarget;
+    }
+    TNT1 A 0 A_PlaySound("Nailgunner/SpinLoop",CHAN_6,1,true)
   Standoff:
 	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
 	TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",True)
-	TNT1 A 0 A_Jump(10,"See2")
-	TNT1 A 0 A_JumpIfCloser(400,"See2")
+	TNT1 A 0 A_Jump(10,"StandoffExit")
+	TNT1 A 0 A_JumpIfCloser(400,"StandoffExit")
 	TNT1 A 0 A_SetSpeed(0)
 	PNGZ BBBBBBBBBBBB 3 
 	{
 	A_Chase("Missile3","StandoffMissile");
 	A_FaceTarget;
 	}
-	TNT1 A 0 A_CheckSight("See2")
+	TNT1 A 0 A_CheckSight("StandoffExit")
 	TNT1 A 0 A_Jump(120,"StandoffRepos")
 	Loop
+  StandoffExit:
+    TNT1 A 0
+    TNT1 A 0 A_PlaySound("Nailgunner/SpinDown",CHAN_6)
+    Goto See2
   StandoffRepos:
 	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
 	PNGZ A 1 A_Chase
@@ -236,73 +295,160 @@ ACTOR PM_Nailgunner : PMMonsterBase
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 	PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
 		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	PNGZ E 5 A_FaceTarget
-	TNT1 A 0 A_JumpIfCloser(350,"See2")
+	TNT1 A 0 A_JumpIfCloser(350,"StandoffExit")
 	Goto Standoff
 	 StandoffMissile2:
 		PNGZ EE 5 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 		PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("PM_NailgunnerNail",34,9,0);
+		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 		PNGZ E 7 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 		PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("PM_NailgunnerNail",34,9,0);
+		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 		PNGZ E 7 A_FaceTarget
 		TNT1 A 0 A_PlaySound("Nailgunner/Fire",CHAN_7)
 		PNGZ F 3 Bright Light("YellowMediumFlicker2")
 		{
+        if(user_numbullets < 0)
+        {
+         return state("StandoffNoAmmo");
+        }
 		A_FaceTarget;
 		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("BulletFlare", 32, 14, 15, 0);
-		A_CustomMissile("PM_NailgunnerNail",34,9,0);
+		A_CustomMissile("PM_NailgunnerNail",34,9,random(2,-2),CMF_OFFSETPITCH,random(2,-2));
+        user_numbullets--;
+        return state(0);
 		}
 	PNGZ E 7 A_FaceTarget
-	TNT1 A 0 A_JumpIfCloser(350,"See2")
+	TNT1 A 0 A_JumpIfCloser(350,"StandoffExit")
 	Goto Standoff
+    StandoffNoAmmo:
+       TNT1 A 0 A_PlaySound("Nailgunner/SpinDown",CHAN_6)
+       PNGZ E 7 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ EE 10 A_FaceTarget
+	   TNT1 A 0 A_Jump(80,"ZReload")
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ E 8 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	   PNGZ E 8 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ EEEEE 5 A_FaceTarget
+       Goto ZReload
+     NoAmmo:
+       PNGZ E 7 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ EE 10 A_FaceTarget
+	   TNT1 A 0 A_Jump(80,"ZReload")
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ E 8 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+	   PNGZ E 8 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
+       PNGZ EEEEE 5 A_FaceTarget
+    ZReload:
+       PNGZ EEE 4 
+       TNT1 A 0 A_PlaySound("PM/HeavyRifleOpen",CHAN_5)
+       PNGZ AA 5 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/NailgunMagOut",CHAN_5)
+       PNGZ AA 5 A_FaceTarget
+       TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+       PNGZ AAAAAA 8 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/NailgunMagIn",CHAN_5)
+	   TNT1 A 0 A_SetUserVar(user_numbullets,35)
+       PNGZ AABB 5 A_FaceTarget
+       TNT1 A 0 A_PlaySound("PM/HeavyRifleClose",CHAN_5)
+       PNGZ BBBB 3 A_FaceTarget
+	   TNT1 A 0 A_PlaySound("PM/NailgunReady",CHAN_5)
+       PNGZ AABB 4 A_FaceTarget
+       Goto See2
   Pain:
+    TNT1 A 0
+    TNT1 A 0 A_StopSound(CHAN_6)
     PNGZ G 3
     PNGZ G 3 A_Pain
     Goto See2
