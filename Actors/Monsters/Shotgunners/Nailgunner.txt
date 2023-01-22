@@ -436,7 +436,7 @@ ACTOR PM_Nailgunner : PMMonsterBase
        PNGZ AA 5 A_FaceTarget
        TNT1 A 0 A_PlaySound("PM/NailgunMagOut",CHAN_5)
        PNGZ AA 5 A_FaceTarget
-       TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,0,frandom(-1,1),frandom(-1,-5),random(-4,-11))
+       TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,2))
        PNGZ AAAAAA 8 A_FaceTarget
        TNT1 A 0 A_PlaySound("PM/NailgunMagIn",CHAN_5)
 	   TNT1 A 0 A_SetUserVar(user_numbullets,35)
