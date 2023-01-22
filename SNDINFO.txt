@@ -1779,6 +1779,10 @@ $volume NetherConduit/Active 0.7
 $volume NetherConduit/Pain 0.7
 $volume NetherConduit/Death 0.7
 
+PM/ShockWarning "Sounds/Other/PMShockWarning.ogg"
+
+$pitchset PM/ShockWarning 0.8 1.5
+
 NLITE NLITE
 
 //Glutton
