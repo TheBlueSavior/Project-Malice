@@ -329,3 +329,145 @@ ACTOR PM_AmbushRotfly
 		Stop
 	}
 }
+
+Actor PM_GagRotfly : PM_Rotfly
+{
+  Species "Elemental"
+  States
+  {
+  Spawn:
+	BFLY A 5 A_Look
+  Search:
+    BFLY ABABABAB 2 A_Wander
+	BFLY A 0 A_Look
+	Loop
+  See:
+	TNT1 A 0
+	TNT1 A 0 ThrustThingZ(0,6,0,1)
+  Go:
+	TNT1 A 0 A_SetSpeed(7)
+	BFLY ABABABABABABAB 1 A_Chase
+	TNT1 A 0 A_JumpIfCloser(400,"StandoffStart")
+	Loop
+  StandoffCheck:
+	TNT1 A 0 A_Jump(50, "StandoffStart")
+	Goto Go
+  StandoffStart:
+	TNT1 A 0 A_CheckSight("Go")
+	TNT1 A 0 A_SetSpeed(0)
+	TNT1 A 0 A_JumpIfCloser(100,"Backup")
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	BFLY ABABAB 2
+	{
+	A_Chase("Kamikaze","Kamikaze");
+	A_FaceTarget;
+	}
+	TNT1 A 0 A_Jump(130,"RandomDodge")
+	Loop
+  Backup:
+	TNT1 A 0 A_Recoil(8)
+	BFLY ABABABABAB 2
+	Goto StandoffStart
+  RandomDodge:
+	TNT1 A 0
+	TNT1 A 0 ThrustThing(random(0,360),10)
+	TNT1 A 0 ThrustThingZ(0,7,random(0,1),1)
+	BFLY ABABAB 2
+	{
+	A_Chase("","");
+	A_FaceTarget;
+	}
+	Goto StandoffStart
+  Kamikaze:
+    TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    TNT1 A 0 A_PlaySound("Rotfly/Attack")
+    BFLY ABABABABABABABABABA 1
+    {
+    A_FaceTarget;
+    A_SpawnItemEx("PM_PestilenceBlood1",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION,213);
+    }
+    TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION)
+    TNT1 A 0 A_CustomMissile("PM_GagRotflyKamikaze",0,0,0)
+	Stop
+   }
+}
+
+Actor PM_GagRotflyKamikaze : DoomImpBall
+{
+  Speed 30
+  Damage (10)
+  Radius 10
+  Height 10
+  Health 5
+  Scale 0.76
+  -THRUSPECIES
+  -DONTHARMSPECIES
+  -DONTHURTSPECIES
+  -THRUACTORS
+  +SHOOTABLE
+  Species "Elemental"
+  +MISSILE
+  RenderStyle Normal
+  BounceType None
+  Seesound "Rotfly/See"
+  DeathSound "Rotfly/Death"
+  States
+	{
+	Spawn:
+		BFLY AB 2 Bright
+		Loop
+	Death:
+      TNT1 AA 0 A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION)
+      TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION)
+      TNT1 A 0 A_SpawnItemEx("PM_GagRotflySmokeCloud",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION)
+      Stop
+     }
+}
+
+Actor PM_GagRotflySmokeCloud
+{
+  Radius 2
+  Height 2
+  Mass 0x7fffffff
+  +NOBLOCKMAP
+  +NOGRAVITY
+  +DROPOFF
+  +NODAMAGETHRUST
+  +DONTSPLASH
+  +NOTELEPORT
+  +SKYEXPLODE
+  +FORCEXYBILLBOARD
+  +FOILINVUL
+  +CANBLAST
+  +RIPPER
+  +THRUACTORS
+  +BLOODLESSIMPACT
+  +BLOCKEDBYSOLIDACTORS
+  +FORCERADIUSDMG
+  +DOOMBOUNCE
+  +ROLLSPRITE
+  BounceFactor 0.3
+  WallBounceFactor 0.3
+ renderstyle Translucent
+  Alpha 0.93
+  Scale 1.2
+  DeathSound "RevGhoul/cloud"
+  states
+  {
+  Spawn:
+	TNT1 A 1
+	TNT1 A 0 A_SetRoll(random(0,360))
+    GSM1 A 5 A_SetTranslucent(0.2)
+	GSM1 A 5 A_SetTranslucent(0.4)
+	GSM1 A 10 A_SetTranslucent(0.8)
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	GSM1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5
+	{
+	A_Explode(Random(1,5),35);
+	A_FadeOut(0.02);
+	}
+  Death:
+	TNT1 A 1
+	Stop
+  }
+}

@@ -41,12 +41,21 @@ ACTOR PM_GrossElemental : PMMonsterBase
    DFLY CC 3 A_Chase
    Loop
   Missile:
-   DFLY D 0 A_Jump(156,"Vomit")
+   DFLY D 0 A_Jump(56,"Vomit")
+   TNT1 A 0 A_Jump(120,"MaggotPuke")
    DFLY D 4 A_FaceTarget
    DFLY E 4 A_FaceTarget
    TNT1 A 0 A_PlaySound("Afflicted/Puke")
    TNT1 AAAAA 0 A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4))
-   DFLY F 0 A_PainAttack("PM_Rotfly",0,PAF_NOSKULLATTACK)
+   DFLY F 0 A_PainAttack("PM_GagRotfly",0,PAF_NOSKULLATTACK,8)
+   DFLY F 2 A_FaceTarget
+   Goto See2
+  MaggotPuke:
+   DFLY D 4 A_FaceTarget
+   DFLY E 4 A_FaceTarget
+   TNT1 A 0 A_PlaySound("Afflicted/Puke")
+   TNT1 AAAAA 0 A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4))
+   DFLY F 0 A_PainAttack("PM_VenomMaggot",0,PAF_NOSKULLATTACK,6)
    DFLY F 2 A_FaceTarget
    Goto See2
   Vomit:
@@ -106,7 +115,11 @@ ACTOR PM_VenomMaggot : PMMonsterBase
     ActiveSound "VenMaggot/Idle"
     PainSound "VenMaggot/Pain"
     AttackSound "VenMaggot/Melee"
+    Species "Elemental"
     +FLOORCLIP
+    +DONTHURTSPECIES
+    +DONTHARMSPECIES
+    -THRUSPECIES
     -COUNTKILL
     States
     {
@@ -122,6 +135,19 @@ ACTOR PM_VenomMaggot : PMMonsterBase
    See:
      MA1G AABBCCDD 2 Fast A_Chase
     Loop
+   Missile:
+    TNT1 A 0
+    TNT1 A 0 A_JumpIfCloser(600,"RealMissile")
+    Goto See
+   RealMissile:
+    TNT1 A 0 A_PlaySound("Rotfly/Attack")
+    MA1G EEEEEEEEEEEFFFFFFFF 1
+    {
+    A_FaceTarget;
+    A_SpawnItemEx("PM_RotflySmallSplash",0,0,15,0,0,random(-2,0),0,128,125);
+    }
+   MA1G G 8 A_CustomMissile("PM_VenomMaggotSpit",15,0,random(-5,5),CMF_OFFSETPITCH,random(10,20))
+   Goto See
    Melee:
      MA1G EF 6 Fast A_FaceTarget
      MA1G G 6 Fast A_CustomMeleeAttack(random(2, 6) * 4, "VenMaggot/Melee", "")
@@ -145,28 +171,28 @@ ACTOR PM_VenomMaggot : PMMonsterBase
   }
 }
 
-ACTOR PukeTrail
+actor PM_VenomMaggotSpit : DoomImpBall
 {
-   
-   +BRIGHT
-   +NOINTERACTION
-   RenderStyle Add
-   Gravity 0.2
-   Scale 0.40
-   States
-    {
-     Spawn:
-     Death:
-      VBAL A 2 A_SetScale(1.0)
-      VBAL B 2 A_SetScale(0.9)
-      VBAL A 2 A_SetScale(0.8)
-      VBAL B 2 A_SetScale(0.7)
-      VBAL A 2 A_SetScale(0.6)
-      VBAL B 2 A_SetScale(0.5)
-      VBAL A 2 A_SetScale(0.4)
-      VBAL B 2 A_SetScale(0.3)
-      VBAL A 2 A_SetScale(0.2)
-      VBAL B 2 A_SetScale(0.1)
-      Stop
-     }
-   }
+	Damage (5)
+	seesound ""
+	deathsound ""
+	Speed 19
+	FastSpeed 25
+	Scale 0.93
+    -NOGRAVITY
+    Gravity 0.5
+	states
+  	{
+  Spawn:
+    TNT1 A 2
+	{
+	//A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
+	A_SpawnItemEx("PM_RotflySmallSplash",0,0,0,0,0,0,0,128,0);
+	}
+	loop
+  Death:
+	TNT1 A 0
+	TNT1 AAAAAA 0 A_SpawnItemEx("PM_RotflySplash",0,0,0,random(-2,2),random(-2,2),random(0,3))
+    stop
+  }
+}

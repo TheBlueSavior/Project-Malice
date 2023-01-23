@@ -543,6 +543,7 @@ Class PM_GElemVenomBurst : CacodemonBall
     RenderStyle "Add";
     SeeSound "GrossElem/VenomWhiz";
     DeathSound "TaintedBloodExp";
+	Species "Elemental";
     Scale 0.45;
     Gravity 0.4;
     +ROLLSPRITE
