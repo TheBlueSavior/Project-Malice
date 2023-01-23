@@ -2011,3 +2011,18 @@ Gravity 0.0
 		stop
  }
 }
+
+Actor PM_PestilenceBloodyCloud : PM_NormalBloodyCloud
+{
+ Translation "0:255=%[0,0,0]:[2,1,0.3]"
+}
+
+Actor PM_PestilenceBloodyCloudMedium : PM_NormalBloodyCloudMedium
+{
+ Translation "0:255=%[0,0,0]:[2,1,0.3]"
+}
+
+Actor PM_PestilenceBloodyCloudBig : PM_NormalBloodyCloudBig
+{
+ Translation "0:255=%[0,0,0]:[2,1,0.3]"
+}
