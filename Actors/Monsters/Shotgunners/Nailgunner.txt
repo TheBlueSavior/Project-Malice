@@ -453,6 +453,7 @@ ACTOR PM_Nailgunner : PMMonsterBase
     PNGZ G 3 A_Pain
     Goto See2
   Death:
+    TNT1 A 0 A_StopSound(CHAN_6)
 	TNT1 A 0 A_Jump(35,"PossDeath")
     PNGZ H 5
     PNGZ I 5 A_Scream
@@ -463,6 +464,7 @@ ACTOR PM_Nailgunner : PMMonsterBase
     PNGZ N -1
     Stop
   PossDeath:
+    TNT1 A 0 A_StopSound(CHAN_6)
     PNGZ H 5
     PNGZ I 5 A_Scream
     PNGZ J 5 A_Fall

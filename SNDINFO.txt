@@ -2149,10 +2149,17 @@ $rolloff HTrite/Sight 25 800
 
 $rolloff HTrite/Active 25 800
 
-GrossElem/Sight         BELSIT
+$random GrossElem/Sight   { GElemSight1 GElemSight2 GElemSight3 }
+GElemSight1 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemSight1.ogg"
+GElemSight2 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemSight2.ogg"
+GElemSight3 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemSight3.ogg"
 GrossElem/Idle          BELIDLE
-GrossElem/Pain          BELPAIN
-GrossElem/Die           BELDTH
+$random GrossElem/Pain { GElemPain1 GElemPain2 GElemPain3 GElemPain4 }
+GElemPain1 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemPain1.ogg"
+GElemPain2 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemPain2.ogg"
+GElemPain3 "Sounds/Monsters/Elementals/Gross Elemental/GrossElemPain3.ogg"
+
+GrossElem/Die "Sounds/Monsters/Elementals/Gross Elemental/GrossElemDeath.ogg" 
 GrossElem/Fire          BELSPIT
 
 $random GrossElem/Spit { GElemSpit1 GElemSpit2 GElemSpit3 }

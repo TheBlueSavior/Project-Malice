@@ -4,7 +4,7 @@ ACTOR PM_GrossElemental : PMMonsterBase
   Radius 31
   Height 56
   Mass 400
-  Speed 8
+  Speed 10
   PainChance 160
   BloodColor "Green"
   DamageType "Poison"
@@ -22,7 +22,6 @@ ACTOR PM_GrossElemental : PMMonsterBase
    FloatBobStrength 0.4
    +NOGRAVITY
     +FLOAT 
-  +MissileMore
   states
    {
   Spawn:
@@ -36,12 +35,16 @@ ACTOR PM_GrossElemental : PMMonsterBase
   Spotted:
    TNT1 A 0 PM_AlertSound()
   See2:
+   TNT1 A 0 A_ChangeFlag("MISSILEEVENMORE",0)
+   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+   TNT1 A 0 A_SetSpeed(10)
    DFLY AA 3 A_Chase
    DFLY BB 3 A_FastChase
    DFLY CC 3 A_Chase
    Loop
   Missile:
    DFLY D 0 A_Jump(56,"Vomit")
+   TNT1 A 0 A_Jump(115,"Standoff")
    TNT1 A 0 A_Jump(120,"MaggotPuke")
    DFLY D 4 A_FaceTarget
    DFLY E 4 A_FaceTarget
@@ -65,7 +68,7 @@ ACTOR PM_GrossElemental : PMMonsterBase
    A_FaceTarget;
    A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
    }
-   DFLY EEEEEEEEFFFFFFFF 1
+   DFLY EEEEEEFFFFF 1
    {
    A_FaceTarget;
    A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
@@ -76,14 +79,101 @@ ACTOR PM_GrossElemental : PMMonsterBase
    DFLY F 9 A_CustomMissile("PM_GElemVenomBurst", 23, 0, random(-6,6),CMF_OFFSETPITCH,random(-2,2))
    DFLY F 2 A_FaceTarget
    Goto See2
+ Standoff:
+	TNT1 A 0
+	TNT1 A 0 ThrustThing(random(0,360),10)
+	TNT1 A 0 ThrustThingZ(0,7,random(0,1),1)
+	DFLY ABABAB 2
+	{
+	A_Chase("","");
+	A_FaceTarget;
+	}
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+	DFLY AB 4 A_FaceTarget
+  StandoffStart:
+    TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
+    TNT1 A 0 A_ChangeFlag("MissileevenMore",1)
+	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+	TNT1 A 0 A_Jump(7,"See2")
+	TNT1 A 0 A_SetSpeed(0)
+	DFLY AAAAAA 2 {
+		A_Chase("StandoffRepos","StandoffMissile");
+		A_FaceTarget;
+		}
+	DFLY BBBBBB 2 {
+		A_Chase("StandoffRepos","StandoffMissile");
+		A_FaceTarget;
+		}
+	DFLY CCCCCCC 2 {
+		A_Chase("StandoffRepos","StandoffMissile");
+		A_FaceTarget;
+		}
+	TNT1 A 0 A_CheckSight("See2")
+	TNT1 A 0 A_Jump(120,"StandoffRepos")
+	Loop
+  StandoffRepos:
+	TNT1 A 0
+	TNT1 A 0 ThrustThing(random(0,360),14)
+	TNT1 A 0 ThrustThingZ(0,7,random(0,1),2)
+	DFLY ABABAB 2
+	{
+	A_Chase("","");
+	A_FaceTarget;
+	}
+	Goto StandoffStart
+  StandoffMissile:
+   TNT1 A 0 A_Jump(67,"StandoffFlySpawn")
+   TNT1 A 0 A_Jump(76,"StandoffMaggotSpawn")
+	DFLY ABCE 4
+		{
+		A_Chase;
+		A_FaceTarget;
+		}
+    TNT1 A 0 A_PlaySound("GrossElem/Spit",CHAN_5)
+    DFLY DD 3 A_FaceTarget
+    TNT1 AAA 0 A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4))
+	DFLY E 6
+		{
+		A_Chase;
+		A_FaceTarget;
+		A_CustomMissile("PM_GElemVenomBurst", 23, 0, random(-3,3),CMF_OFFSETPITCH,random(-1,1));
+        A_CustomMissile("PM_GElemVenomBurst", 23, 0, random(-3,3),CMF_OFFSETPITCH,random(-1,1));
+        A_CustomMissile("PM_GElemVenomBurst", 23, 0, random(-3,3),CMF_OFFSETPITCH,random(-1,1));
+		}
+	DFLY ED 5
+		{
+		A_Chase;
+		A_FaceTarget;
+		}
+    TNT1 A 0 A_Jump(45,"StandoffRepos")
+	Goto StandoffStart
+  StandoffFlySpawn:
+   DFLY D 4 A_FaceTarget
+   DFLY E 4 A_FaceTarget
+   TNT1 A 0 A_PlaySound("Afflicted/Puke")
+   TNT1 AAAAA 0 A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4))
+   DFLY F 0 A_PainAttack("PM_GagRotfly",0,PAF_NOSKULLATTACK,8)
+   DFLY F 2 A_FaceTarget
+   Goto StandoffStart
+  StandoffMaggotSpawn:
+   DFLY D 4 A_FaceTarget
+   DFLY E 4 A_FaceTarget
+   TNT1 A 0 A_PlaySound("Afflicted/Puke")
+   TNT1 AAAAA 0 A_SpawnItemEx("HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4))
+   DFLY F 0 A_PainAttack("PM_VenomMaggot",0,PAF_NOSKULLATTACK,6)
+   DFLY F 2 A_FaceTarget
+   Goto StandoffStart
   Pain:
+   TNT1 A 0 A_ChangeFlag("MISSILEEVENMORE",0)
+   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
+   TNT1 A 0 A_SetSpeed(10)
    DFLY G 4 Fast
    DFLY G 0 A_Wander
    DFLY G 0 A_Wander
    DFLY G 4 Fast A_Pain
    Goto See2
   Death:
-   DFLY HI 4 A_Scream
+   DFLY HI 4 A_PlaySound("GrossElem/Die",CHAN_6)
    DFLY IJ 3 Bright
    TNT1 A 0 A_PlaySound("Blob/Explode",CHAN_6)
    TNT1 A 0 A_PlaySound("GBloodSplashBig",CHAN_7)
@@ -173,7 +263,7 @@ ACTOR PM_VenomMaggot : PMMonsterBase
 
 actor PM_VenomMaggotSpit : DoomImpBall
 {
-	Damage (5)
+	Damage (8)
 	seesound ""
 	deathsound ""
 	Speed 19

@@ -539,7 +539,7 @@ Class PM_GElemVenomBurst : CacodemonBall
     Speed 25;
     Radius 8;
     Height 7;
-    DamageFunction (5);
+    DamageFunction (20);
     RenderStyle "Add";
     SeeSound "GrossElem/VenomWhiz";
     DeathSound "TaintedBloodExp";
