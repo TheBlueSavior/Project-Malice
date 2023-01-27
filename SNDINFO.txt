@@ -3554,6 +3554,12 @@ PM/GatlingBeltAlign "Sounds/Other/PMGatlingBeltAlign.ogg"
 PM/GatlingBeltCram "Sounds/Other/PMGatlingBeltCram.ogg"
 PM/GatlingReady "Sounds/Other/PMGatlingReady.ogg"
 PM/DualGatlingReady "Sounds/Other/PMDualGatlingReady.ogg"
+PM/HeavyPlasmaCooldown "Sounds/Other/PMHeavyPlasmaCooldown.ogg"
+PM/HeavyPlasmaReload "Sounds/Other/PMHeavyPlasmaReloadLoop.ogg"
+PM/ArachnoCooldown "Sounds/Other/PMArachnotronCooldown.ogg"
+PM/ArachnoReloadStart "Sounds/Other/PMArachnoReloadStart.ogg"
+PM/ArachnoReload "Sounds/Other/PMArachnoReloadLoop.ogg"
+PM/ArachnoReloadEnd "Sounds/Other/PMArachnoReloadEnd.ogg"
 
 $random PM/ShellInsert { PM/ShellInsert1 PM/ShellInsert2 PM/ShellInsert3 }
 PM/ShellInsert1 "Sounds/Other/PMShellInsert1.ogg"
