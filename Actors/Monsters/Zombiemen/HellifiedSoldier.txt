@@ -172,45 +172,6 @@ ACTOR PM_HellifiedSoldier : PMMonsterBase
     }
 }
 
-ACTOR PM_HellifiedSoldierBall
-{
-   Height 3
-   Radius 3
-   Speed 18
-   damage (random(10,15))
-   Scale 0.07
-   PROJECTILE
-   RenderStyle Add
-   +BRIGHT
-   +SEEKERMISSILE
-   SeeSound "HellSoldier/Plasma"
-   Decal "PM_HellPlasmaScorch"
-   DeathSound "GenericPlasmaExp"
-   States
-   {
-   Spawn:
-      DTPR R 1 Bright Light("Shadowball")
-	  {
-	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
-	  }
-    TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
-    Loop
-   Noise:
-    TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75)
-   Cont:
-      DTPR R 1 Bright Light("Shadowball")
-	  {
-	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
-	  }
-      Loop
-   Death:
-	  TNT1 AAA 0 A_SpawnItemEx("HellPlasmaExp",0,0,0)
-	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0)
-	  TNT1 A 5 Light("Shadowball2")
-      Stop
-	  }
-}
-
 Actor HellPlasmaExp
 {
 	Scale 0.3
