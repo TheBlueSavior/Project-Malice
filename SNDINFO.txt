@@ -1832,6 +1832,7 @@ MarTor5 "Sounds/Other/TorturedMarine5.ogg"
 
 Decayed/Roll "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedRoll.mp3"
 Decayed/Fire "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedFire.ogg"
+$volume Decayed/Fire 0.8
 Decayed/Pain "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedPain.ogg"
 $volume Decayed/Pain 0.7
 Decayed/Death "Sounds/Monsters/Zombiemen/DecayedSoldier/DecayedDeath.ogg"
@@ -3560,6 +3561,11 @@ PM/ArachnoCooldown "Sounds/Other/PMArachnotronCooldown.ogg"
 PM/ArachnoReloadStart "Sounds/Other/PMArachnoReloadStart.ogg"
 PM/ArachnoReload "Sounds/Other/PMArachnoReloadLoop.ogg"
 PM/ArachnoReloadEnd "Sounds/Other/PMArachnoReloadEnd.ogg"
+
+$rolloff PM/ArachnoCooldown 500 1500
+$volume PM/ArachnoReloadStart 0.7
+$volume PM/ArachnoReload 0.7
+$volume PM/ArachnoReloadEnd 0.7
 
 $random PM/ShellInsert { PM/ShellInsert1 PM/ShellInsert2 PM/ShellInsert3 }
 PM/ShellInsert1 "Sounds/Other/PMShellInsert1.ogg"
