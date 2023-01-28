@@ -32,7 +32,7 @@ ACTOR PM_FallenMarine : PMMonsterBase
   Spawn:
     TNT1 A 0 NoDelay
      {
-      user_numbullets = random(0,50);
+      user_numbullets = random(2,50);
      }
   Idle:
     ZSP2 AA 10 PM_Look()

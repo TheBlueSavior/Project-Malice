@@ -26,7 +26,7 @@ Actor PM_DecayedCommando : PMMonsterBase
   Spawn:
     TNT1 A 0 NoDelay
     {
-     user_numbullets = random(50,300);
+     user_numbullets = random(20,300);
     }
   Idle:
     DCOM A 10 PM_Look()

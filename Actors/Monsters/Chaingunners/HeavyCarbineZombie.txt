@@ -27,7 +27,7 @@ ACTOR PM_HeavyCarbineZombie : PMMonsterBase
   Spawn:
     TNT1 A 0 NoDelay
     {
-     user_numbullets = random(15,60);
+     user_numbullets = random(2,60);
     }
   Idle:
     HCPO AA 10 PM_Look()

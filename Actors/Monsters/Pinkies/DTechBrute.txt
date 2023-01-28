@@ -32,7 +32,7 @@ ACTOR PM_DemonTechBrute : PMMonsterBase
     Spawn:
        TNT1 A 0 NoDelay
        {
-       user_numbullets = random(8,25);
+       user_numbullets = random(3,25);
        }
     Idle: 
        CRG2 A 10 A_Look

@@ -28,7 +28,7 @@ ACTOR PM_MutatedGunner : PMMonsterBase
 		Spawn:
             TNT1 A 0 NoDelay
             {
-             user_numbullets = random(20,150);
+             user_numbullets = random(5,150);
             }
         Idle:
 			D3C2 A 10 PM_Look()
