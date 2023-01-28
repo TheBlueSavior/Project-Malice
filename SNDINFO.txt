@@ -133,6 +133,12 @@ Depraved/Revive "Sounds/Monsters/Revenants/Depraved/DepravedRevive.ogg"
 
 $rolloff Depraved/Scream 500 1200
 
+//Umbral Heart
+
+UHeart/Sight "Sounds/Monsters/Souls/UmbralHeart/UmbralHeartForm.ogg"
+UHeart/Loop "Sounds/Monsters/Souls/UmbralHeart/UmbralHeartLoop.ogg"
+UHeart/Death "Sounds/Monsters/Souls/UmbralHeart/UmbralHeartDissipate.ogg"
+
 //Blot
 Blot/Sight		"Sounds/Monsters/Souls/Blot/BlotSight.ogg"
 Blot/Death		"Sounds/Monsters/Souls/Blot/BlotDeath.ogg"

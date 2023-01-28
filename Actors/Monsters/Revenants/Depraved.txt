@@ -361,8 +361,8 @@ Actor PM_Depraved : PMMonsterBase
 	TNT1 A 0 A_StopSound(1)
     INCX A 10 Bright
     INCX BC 5 Bright A_PlaySound("monster/hadexp")
+    TNT1 A 0 A_SpawnItem("PM_UmbralHeart",0,32)
     INCX D 5 Bright A_NoBlocking
-    INCX D 0 Bright A_SpawnItem("HS",0,32)
     INCX EFGHIJ 5 Bright
     INCX K -1
 	Stop
