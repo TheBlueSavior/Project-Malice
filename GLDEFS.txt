@@ -2075,7 +2075,7 @@ SecondarySize 70
 Interval 2.0
 }
 
-Object HS
+Object PM_UmbralHeart
 {
 Frame HADEE { Light HadesSphere_1 }
 Frame HADEF { Light HadesSphere_2 }
@@ -2123,7 +2123,7 @@ Offset 0 14 0
 Size 110
 }
 
-Object HS
+Object PM_UmbralHeart
 {
 Frame HADEM { Light HadesBoom_1 }
 Frame HADEN { Light HadesBoom_2 }
