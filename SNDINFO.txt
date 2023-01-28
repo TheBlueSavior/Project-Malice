@@ -2867,7 +2867,11 @@ Corpse/FallMed3 "Sounds/Other/CorpseFallMedium3.ogg"
 Corpse/FallMed4 "Sounds/Other/CorpseFallMedium4.ogg"
 Corpse/FallMed5 "Sounds/Other/CorpseFallMedium5.ogg"
 
-$rolloff Corpse/FallMed 400 1200
+$random Corpse/FallMetal { CorpseFallMet1 CorpseFallMet2 CorpseFallMet3 CorpseFallMet4 }
+CorpseFallMet1 "Sounds/Other/CorpseFallMetal1.ogg"
+CorpseFallMet2 "Sounds/Other/CorpseFallMetal2.ogg"
+CorpseFallMet3 "Sounds/Other/CorpseFallMetal3.ogg"
+CorpseFallMet4 "Sounds/Other/CorpseFallMetal4.ogg"
 
 $random ZTrooper/FragBounce { ZTroFragBounce1 ZTroFragBounce2 ZTroFragBounce3 ZTroFragBounce4 }
 ZTroFragBounce1 "Sounds/Monsters/Zombiemen/ZombieTrooper/ZTroFragBounce1.ogg"

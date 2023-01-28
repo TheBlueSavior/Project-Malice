@@ -446,7 +446,7 @@ ACTOR PM_DemonTechSpectre : PMMonsterBase
        SRG3 K 4 
        SRG3 L 4 A_NoBlocking
        SRG3 M 4 
-	   TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	   TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
        SRG3 N -1 
        Stop 
     Raise: 

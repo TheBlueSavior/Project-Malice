@@ -138,8 +138,8 @@ ACTOR PM_Draugr : PMMonsterBase
     DRGR NO 5
 	DRGR P 6 A_Scream
 	DRGR Q 6
+    TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
 	DRGR R 6
-	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
 	DRGR S -1
   Raise:
     DRGR Q 5

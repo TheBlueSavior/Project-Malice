@@ -168,19 +168,19 @@ ACTOR PM_MutatedGunner : PMMonsterBase
 		Goto See2
 		Death:
 			TNT1 A 0 A_Jump(35,"PossDeath")
-			D3C2 H 5
+			D3C2 H 5 
 			D3C2 I 5 A_Scream
 			D3C2 J 5 A_NoBlocking
+            TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
 			D3C2 KLM 5
-			TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
 			D3C2 N -1
 			Stop
 		PossDeath:
 			D3C2 H 5
 			D3C2 I 5 A_Scream
 			D3C2 J 5 A_NoBlocking
+            TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
 			D3C2 KLM 5
-			TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
 			D3C2 N 90
 			TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION)
 			D3C2 N -1

@@ -204,8 +204,8 @@ Actor PM_Cadaver : PMMonsterBase
     CREV LM 7
     CREV N 7 A_Scream
     CREV O 7 A_NoBlocking
+    TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
     CREV P 7
-	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
     CREV Q -1
     Stop
   Raise:
