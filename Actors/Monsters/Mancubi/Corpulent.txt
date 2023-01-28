@@ -252,7 +252,7 @@ LongMissileNoLead:
        M01A L 6 A_Scream
        M01A M 6
        M01A NOP 6
-	   TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
+	   TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
 	   M01A QR 6
        M01A S 6 A_NoBlocking
        M01A T -1
