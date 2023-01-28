@@ -1002,6 +1002,24 @@ Actor PM_SmallBlueLightningVFX : PM_LightningVFXBase
   }
 }
 
+Actor PM_SmallRedLightningVFX : PM_LightningVFXBase
+{
+  States
+  {
+  Spawn:
+	REDL A 0 NoDelay
+		{
+		A_SetRoll(random(0,360));
+        A_SetAngle(random(0,360));
+        A_SetPitch(random(0,360));
+		}
+	REDL A 4
+  Spawn2:
+    REDL AA 1 A_SetScale(ScaleX+0.1,ScaleY+0.1)
+	Stop
+  }
+}
+
 Actor PM_GreenLightningVFX : PM_LightningVFXBase
 {
   States
