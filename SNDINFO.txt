@@ -3571,6 +3571,8 @@ PM/ArachnoCooldown "Sounds/Other/PMArachnotronCooldown.ogg"
 PM/ArachnoReloadStart "Sounds/Other/PMArachnoReloadStart.ogg"
 PM/ArachnoReload "Sounds/Other/PMArachnoReloadLoop.ogg"
 PM/ArachnoReloadEnd "Sounds/Other/PMArachnoReloadEnd.ogg"
+PM/BigVentLoop "Sounds/Other/PMBigVentLoop.ogg"
+PM/BigVentEnd "Sounds/Other/PMBigVentEnd.ogg"
 
 $rolloff PM/ArachnoCooldown 500 1500
 $volume PM/ArachnoReloadStart 0.7
