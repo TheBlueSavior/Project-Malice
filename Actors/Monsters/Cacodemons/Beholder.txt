@@ -343,6 +343,7 @@ Actor PM_BeholderEye
 	SeeSound "Beholder/Spit"
    DeathSound "BeholderEyeExp"
    Decal "Bloodsplat"
+   Tag "Beholder Eye"
    States
    {
    Spawn:

@@ -44,7 +44,6 @@
 #include "Actors/Monsters/Zombiemen/ZombieMarine.txt"
 #include "Actors/Monsters/Imps/Host.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
-#include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
 #include "Actors/Monsters/Revenants/Fiend.txt"
 #include "Actors/Monsters/Fodder/Mimic.txt"
