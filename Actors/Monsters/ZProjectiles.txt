@@ -1273,7 +1273,7 @@ Class PM_HeresyLordRedBall : DoomImpBall
 	DamageType "Fire";
 	+NOGRAVITY
 	-LOWGRAVITY
-	Speed 16;
+	Speed 14;
 	Decal "PM_RedFireScorch";
     }
 	states

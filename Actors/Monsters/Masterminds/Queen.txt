@@ -27,6 +27,7 @@ actor PM_AracnorbQueen
 //  DropItem "RampageSphere"
   Obituary "%o suffered psychic trauma from an aracnorb queen's brainwaves."
   HitObituary "%o had %p skull chewed by an aracnorb queen."
+  Tag "Aracnorb Queen"
   Scale 0.85
   States
   {

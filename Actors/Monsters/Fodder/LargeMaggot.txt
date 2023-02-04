@@ -19,6 +19,7 @@ ACTOR LargeMaggot
 	-SOLID
 	-COUNTKILL
 	+CANTSEEK
+	+NEVERTARGET 
 	States
 	{
 	Spawn:
@@ -76,6 +77,7 @@ ACTOR LargeWhiteMaggot
 	-CANUSEWALLS
 	-COUNTKILL
 	+CANTSEEK
+	+NEVERTARGET
 	States
 	{
 	Spawn:
@@ -143,6 +145,7 @@ ACTOR PassiveMaggot
 	+AMBUSH
 	-COUNTKILL
 	+CANTSEEK
+	+NEVERTARGET 
 	States
 	{
 	Spawn:

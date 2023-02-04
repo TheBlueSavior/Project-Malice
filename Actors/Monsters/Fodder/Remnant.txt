@@ -25,6 +25,7 @@ Actor PM_Remnant
 	Bloodtype "PM_PestilenceZombieBloodBase"
 	DropItem "ArmorBonus"
 	DropItem "Shotgun"
+	Tag "Remnant"
     States
     {
     Spawn:
