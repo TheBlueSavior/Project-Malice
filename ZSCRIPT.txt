@@ -15,7 +15,9 @@ version "4.2.0"
 //Shotgunners
 #include "Actors/Monsters/Shotgunners/FShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/Nailgunner.txt"
+#include "Actors/Monsters/Shotgunners/CyberFodder.txt"
 #include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/DecayedShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
 
 //Imps
