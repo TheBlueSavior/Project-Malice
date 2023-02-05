@@ -136,6 +136,7 @@ ACTOR PM_Tainted : PMMonsterBase
 		TNT1 A 0 A_Jump(100,"Teleport")
         Goto See2
     Death:
+	    TNT1 A 0 A_StopSounds(0,0)
         BZRD I 12
         BZRD J 3
 		BZRD J 6 A_Scream
@@ -152,6 +153,7 @@ ACTOR PM_Tainted : PMMonsterBase
 		BZRD N -1
         Stop
 	XDeath:
+	    TNT1 A 0 A_StopSounds(0,0)
 	    TNT1 A 0 A_PlaySound("GBloodSplashBig",CHAN_6)
 		TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION)
 		TNT1 AAAAAAA 0 A_SpawnItemEx("RedGroundOoze",random(-7,7),random(-7,7),1,random(-5,5),random(-5,5),random(-0,3),0,SXF_NOCHECKPOSITION)

@@ -167,6 +167,7 @@ Class PM_Wicked : PMMonsterBase
     WIC2 M 3;
     Goto See1;
   Death:
+    TNT1 A 0 A_StopSounds(0,0);
     TNT1 A 0 {bFLOATBOB = false;}
 	TNT1 A 0;
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);

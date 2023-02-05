@@ -267,6 +267,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		}
         Goto See2;
     Death:
+	    TNT1 A 0 A_StopSounds(0,0);
 		TNT1 A 0 A_Jump(35,"PossDeath");
         POS1 H 5 A_NoBlocking;
         POS1 I 5 A_Scream;
@@ -276,6 +277,7 @@ Class PM_ZombieSoldier : PMMonsterBase
         POS1 L -1;
         Stop;
 	PossDeath:
+	    TNT1 A 0 A_StopSounds(0,0);
 		POS1 H 5 A_NoBlocking;
         POS1 I 5 A_Scream;
         POS1 J 5;
@@ -286,6 +288,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		POS1 L -1;
 		Stop;
     XDeath:
+	    TNT1 A 0 A_StopSounds(0,0);
 		POS1 M 5 A_NoBlocking;
 		POS1 N 5 A_XScream;
         POS1 O 5;

@@ -122,6 +122,7 @@ ACTOR PM_CyberBrute : PMMonsterBase
 			CBRU H 2 A_Pain
 			Goto See2
 		Death:
+		    TNT1 A 0 A_StopSounds(0,0)
 			CBRU I 6 A_Scream
 			CBRU J 6 A_NoBlocking
 			CBRU KLM 6

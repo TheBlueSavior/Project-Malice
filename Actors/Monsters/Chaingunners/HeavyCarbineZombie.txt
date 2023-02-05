@@ -134,6 +134,7 @@ ACTOR PM_HeavyCarbineZombie : PMMonsterBase
     HCPO G 3 A_Pain
     Goto See2
   Death:
+    TNT1 A 0 A_StopSounds(0,0)
 	TNT1 A 0 A_Jump(35,"PossDeath")
     HCPO H 5
     HCPO I 5 A_Scream
@@ -143,6 +144,7 @@ ACTOR PM_HeavyCarbineZombie : PMMonsterBase
     HCPO L -1
     Stop
   PossDeath:
+    TNT1 A 0 A_StopSounds(0,0)
     HCPO H 5
     HCPO I 5 A_Scream
     HCPO J 5 A_NoBlocking

@@ -9,7 +9,14 @@ version "4.2.0"
 #include "Actors/Monsters/Zombiemen/ZombieMarine.txt"
 #include "Actors/Monsters/Zombiemen/ZombieTrooper.txt"
 #include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
+#include "Actors/Monsters/Zombiemen/HellifiedSoldier.txt"
 #include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
+
+//Shotgunners
+#include "Actors/Monsters/Shotgunners/FShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/Nailgunner.txt"
+#include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
 
 //Imps
 #include "Actors/Monsters/Imps/Hellion.txt"

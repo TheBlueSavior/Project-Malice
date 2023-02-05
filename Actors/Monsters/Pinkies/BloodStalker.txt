@@ -235,6 +235,7 @@ ACTOR PM_BloodStalker : PMMonsterBase
 			TNT1 A 0 A_Jump(100, "TP")
 			Goto See2
 		Death:
+		    TNT1 A 0 A_StopSounds(0,0)
 			SAR2 I 6 A_Scream
 			SAR2 IJKLM 6 A_NoBlocking
 			TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)

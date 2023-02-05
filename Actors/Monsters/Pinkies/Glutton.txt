@@ -137,7 +137,7 @@ ACTOR PM_Glutton : PMMonsterBase
 		
 	Death:
 		BPDE A 1
-		TNT1 A 0 A_StopSound(CHAN_7)
+		TNT1 A 0 A_StopSounds(0,0)
 		BPDE A 8 A_Scream
 		BPDE B 8 
 		BPDE C 6

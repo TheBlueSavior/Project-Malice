@@ -269,6 +269,7 @@ Class PM_DecayedSoldier : PMMonsterBase
 		TNT1 A 0 A_Jump(105,"RollRight","RollLeft");
         Goto See2;
     Death:
+	    TNT1 A 0 A_StopSounds(0,0);
 		TNT1 A 0 A_Jump(35,"PossDeath");
         POSK H 5 A_NoBlocking;
         POSK I 5 A_Scream;
@@ -278,6 +279,7 @@ Class PM_DecayedSoldier : PMMonsterBase
         POSK L -1;
         Stop;
 	PossDeath:
+	    TNT1 A 0 A_StopSounds(0,0);
         POSK H 5 A_NoBlocking;
         POSK I 5 A_Scream;
         POSK J 5;
@@ -288,6 +290,7 @@ Class PM_DecayedSoldier : PMMonsterBase
         POSK L -1;
         Stop;
     XDeath:
+	    TNT1 A 0 A_StopSounds(0,0);
         POSK M 5 A_NoBlocking;
         POSK N 5 A_XScream;
         POSK O 5;

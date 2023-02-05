@@ -129,6 +129,7 @@ actor PM_Hectebus : PMMonsterBase
     Goto See2
   Death:
 	   TNT1 A 0
+	   TNT1 A 0 A_StopSounds(0,0)
 	   TNT1 A 0 A_Jump(160,"Death2")
 	   TABU K 6
        TABU L 6 A_Scream

@@ -352,6 +352,7 @@ Actor PM_Whiplash : PMMonsterBase
 	WHIP H 4 A_Pain
 	Goto See2
   Death:
+    TNT1 A 0 A_StopSounds(0,0)
 	WHIP I 12 A_Scream
 	WHIP J 8 A_NoBlocking
 	WHIP K 5
