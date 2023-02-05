@@ -22,6 +22,7 @@ version "4.2.0"
 
 //Imps
 #include "Actors/Monsters/Imps/Hellion.txt"
+#include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/Devil.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"

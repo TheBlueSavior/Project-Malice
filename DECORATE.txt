@@ -15,7 +15,6 @@
 #include "Actors/Monsters/Revenants/Depraved.txt"
 #include "Actors/Monsters/HellKnights/Vore.txt"
 #include "Actors/Monsters/Souls/Blot.txt"
-#include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Barons/HeresyLord.txt"
 #include "Actors/Monsters/HellKnights/Void.txt"
 #include "Actors/Monsters/Pinkies/Brute.txt"
