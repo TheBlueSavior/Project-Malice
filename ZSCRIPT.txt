@@ -40,4 +40,5 @@ version "4.2.0"
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 
 //Viles
+#include "Actors/Monsters/Archviles/Exile.txt"
 #include "Actors/Monsters/Archviles/FleshWizard.txt"
