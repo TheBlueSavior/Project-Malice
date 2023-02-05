@@ -21,7 +21,6 @@
 #include "Actors/Monsters/Pinkies/Brute.txt"
 #include "Actors/Monsters/Imps/Charred.txt"
 //#include "Actors/Monsters/Mancubi/Famine.txt"
-#include "Actors/Monsters/Cacodemons/Beholder.txt"
 #include "Actors/Monsters/Revenants/Infested.txt"
 #include "Actors/Monsters/Fodder/LargeMaggot.txt"
 #include "Actors/Monsters/Fodder/Trite.txt"
