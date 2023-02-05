@@ -1,33 +1,33 @@
-ACTOR PM_ZombieTrooper : PMMonsterBase
+Class PM_ZombieTrooper : PMMonsterBase
 { 
-    var int user_numbullets;
-    Health 40
-    Radius 20
-    Height 56
-    Mass 100
-    Speed 8
-    PainChance 200
-    Damage 1
-    MONSTER
+    int user_numbullets;
+	Default
+	{
+    Health 40;
+    Radius 20;
+    Height 56;
+    Mass 100;
+    Speed 8;
+    PainChance 200;
+    Damage 1;
+    MONSTER;
 	+MissileMore
 	+MISSILEevenMORE
     +FloorClip
-	//+NOINFIGHTING
 	+SLIDESONWALLS
-	//+DONTHURTSPECIES
-	//+DONTHARMSPECIES
 	+HARMFRIENDS
 	+DOHARMSPECIES
-	Species "Zombie"
-	Tag "Zombie Trooper"
-    OBITUARY "%o was taken down by a Zombie Trooper."
-    SeeSound "HelmetZombie/Sight"
-	PainSound "HelmetZombie/Pain"
-	DeathSound "HelmetZombie/Death"
-	ActiveSound "HelmetZombie/Active"
-	Bloodtype "PM_NormalBloodBase"
-    DropItem "Clip"
-    Decal Bulletchip
+	Species "Zombie";
+	Tag "Zombie Trooper";
+    OBITUARY "%o was taken down by a Zombie Trooper.";
+    SeeSound "HelmetZombie/Sight";
+	PainSound "HelmetZombie/Pain";
+	DeathSound "HelmetZombie/Death";
+	ActiveSound "HelmetZombie/Active";
+	Bloodtype "PM_NormalBloodBase";
+    DropItem "Clip";
+    Decal "Bulletchip";
+	}
     states
     {
     Spawn:
@@ -36,337 +36,365 @@ ACTOR PM_ZombieTrooper : PMMonsterBase
          user_numbullets = random(0,31);
         }
     Idle:
-		UTM2 A 10 PM_Look()
-        Loop
+		UTM2 A 10 PM_Look();
+        Loop;
 	Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        UTM2 AA 4 PM_LookingForPlayer()
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 BB 4 PM_LookingForPlayer()
-		TNT1 AA 0 A_Recoil(-1)
-		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		UTM2 CC 4 PM_LookingForPlayer()
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 DD 4 PM_LookingForPlayer()
-		TNT1 AA 0 A_Recoil(-1)
-        Loop
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+        UTM2 AA 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 BB 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		UTM2 CC 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 DD 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-1);
+        Loop;
 	Spotted:
-	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
-		Goto See2
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
+		Goto See2;
 	Roar:
-	    TNT1 A 0 PM_AlertSound()
-		Goto See2
+	    TNT1 A 0 PM_AlertSound();
+		Goto See2;
 	SpotMissile:
-        TNT1 A 0 PM_AlertSound()
-	    UTM2 EEE 2 A_FaceTarget
-	    Goto Missile
+        TNT1 A 0 PM_AlertSound();
+	    UTM2 EEE 2 A_FaceTarget();
+	    Goto Missile;
 	See2:
-	    TNT1 A 0
-	    TNT1 A 0 A_CheckSight("See3")
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        UTM2 AA 4 A_Chase
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 BB 4 A_Chase
-		TNT1 AA 0 A_Recoil(-1)
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		UTM2 CC 4 A_Chase
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 DD 4 A_Chase
-		TNT1 AA 0 A_Recoil(-1)
-        Loop
+	    TNT1 A 0;
+	    TNT1 A 0 A_CheckSight("See3");
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+        UTM2 AA 4 A_Chase();
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 BB 4 A_Chase();
+		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		UTM2 CC 4 A_Chase();
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 DD 4 A_Chase();
+		TNT1 AA 0 A_Recoil(-1);
+        Loop;
 	See3:
-	    TNT1 A 0 A_Jump(9,"WaitGrenadeCheck")
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        UTM2 AA 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 BB 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
-		TNT1 AA 0 A_Recoil(-1)
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		UTM2 CC 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
-		TNT1 AA 0 A_Recoil(-1)
-		UTM2 DD 4 A_Chase("","Missile",CHF_NOPLAYACTIVE)
-		TNT1 AA 0 A_Recoil(-1)
-		TNT1 A 0 A_CheckSight("See3")
-        Goto See2
+	    TNT1 A 0 A_Jump(9,"WaitGrenadeCheck");
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+        UTM2 AA 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 BB 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
+		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		UTM2 CC 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
+		TNT1 AA 0 A_Recoil(-1);
+		UTM2 DD 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
+		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_CheckSight("See3");
+        Goto See2;
      Missile:
-	    TNT1 A 0
-        TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-		TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"WaitGrenade2")
-        TNT1 A 0 A_Jump(63,"GrenadeCheck")
-		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight")
-		TNT1 A 0 A_Jump(40,"Missile2")
-        UTM2 EEEEE 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+	    TNT1 A 0;
+		TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"WaitGrenade2");
+        TNT1 A 0 A_Jump(63,"GrenadeCheck");
+		TNT1 A 0 A_Jump(60, "MissileLeft", "MissileRight");
+		TNT1 A 0 A_Jump(40,"Missile2");
+        UTM2 EEEEE 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire");
 		UTM2 F 1 bright Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
+		return ResolveState(null);
 	    }
-        TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-		UTM2 E 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 E 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire");
 		UTM2 F 1 bright Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-2, 2));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
+		return ResolveState(null);
 	    }
-        TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-		UTM2 E 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 E 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire");
 		UTM2 F 1 bright Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(0, 3));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
+		return ResolveState(null);
 	    }
-        TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-		UTM2 EEE 5 A_FaceTarget
-      goto see2 
+		UTM2 EEE 5 A_FaceTarget();
+      Goto See2;
 	Missile2:
-		UTM2 E 4 A_FaceTarget
-        TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+		UTM2 E 4 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+		TNT1 A 0 A_PlaySound("ZTrooper/Fire");
         UTM2 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",33,7,random(-2, 2), CMF_OFFSETPITCH, random(-2, 2));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
+		return ResolveState(null);
 	    }
-		UTM2 E 4 A_FaceTarget
-		TNT1 A 0 A_Jump(30,"See2")
-		UTM2 E 0 A_MonsterRefire(60,"See2")
-		Goto Missile2+1
+		UTM2 E 4 A_FaceTarget();
+		TNT1 A 0 A_Jump(30,"See2");
+		UTM2 E 0 A_MonsterRefire(60,"See2");
+		Goto Missile2+1;
 	MissileLeft:
-      TNT1 A 0
-      TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-	  UTM2 E 2 A_FaceTarget
-	  TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0)
-	  UTM2 E 2 A_FaceTarget
-	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-      TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+      TNT1 A 0;
+	  UTM2 E 2 A_FaceTarget();
+	  TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+	  UTM2 E 2 A_FaceTarget();
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+      TNT1 A 0 A_PlaySound("ZTrooper/Fire");
       UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
-	  {
-		A_CustomMissile("PM_BulletTracer",33,7,random(-5, 5), CMF_OFFSETPITCH, random(-4, 4));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
-	    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		{
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
+		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
-	  }
-	  TNT1 A 0 A_Jump(150, "MissileLeft")
-	  Goto See2
+		return ResolveState(null);
+	    }
+	  TNT1 A 0 A_Jump(150, "MissileLeft");
+	  Goto See2;
    MissileRight:
-      TNT1 A 0
-      TNT1 A 0 A_JumpIf(user_numbullets < 0,"NoAmmo")
-	  UTM2 E 2 A_FaceTarget
-      TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0)
-	  UTM2 E 2 A_FaceTarget
-	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-      TNT1 A 0 A_PlaySound("ZTrooper/Fire")
+      TNT1 A 0;
+	  UTM2 E 2 A_FaceTarget;
+      TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+	  UTM2 E 2 A_FaceTarget;
+	  TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+      TNT1 A 0 A_PlaySound("ZTrooper/Fire");
 	  UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
-	  {
-		A_CustomMissile("PM_BulletTracer",33,7,random(-5, 5), CMF_OFFSETPITCH, random(-4, 4));
-		A_CustomMissile("BulletFlare", 33, 7, 0, 0);
-	    A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		{
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1), CMF_OFFSETPITCH, random(-3, 0));
+		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
+		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
-	  }
-	  TNT1 A 0 A_Jump(150, "MissileRight")
-	  Goto See2
+		return ResolveState(null);
+	    }
+	  TNT1 A 0 A_Jump(150, "MissileRight");
+	  Goto See2;
 	NoAmmo:
-      UDM2 E 7 A_FaceTarget
-      TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
-	  UDM2 E 7 A_FaceTarget
-	  Goto ZReload
+      UDM2 E 7 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+	  UDM2 E 7 A_FaceTarget();
+	  Goto ZReload;
     ZReload:
-      TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5)
-      UTM2 EE 5 A_FaceTarget
-      TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0))
-      UTM2 CCCBB 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5)
-      TNT1 A 0 A_SetUserVar(user_numbullets,31)
-      UTM2 EEDBBB 4 A_FaceTarget
-      TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5)
-      UTM2 ABB 5 A_FaceTarget
-      Goto See2
+      TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5);
+      UTM2 EE 5 A_FaceTarget();
+      TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
+      UTM2 CCCBB 5 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5);
+      TNT1 A 0
+	  {
+	  user_numbullets = (user_numbullets + 31);
+	  }
+      UTM2 EEDBBB 4 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5);
+      UTM2 ABB 5 A_FaceTarget();
+      Goto See2;
     GrenadeCheck:
-	  TNT1 A 0
-	  TNT1 A 0 A_JumpIfHigherOrLower("Missile2","")
-	  TNT1 A 0 A_CheckLOF("GrenadeCheck2")
-      Goto Backup
+	  TNT1 A 0;
+	  TNT1 A 0 A_JumpIfHigherOrLower("Missile2",null);
+	  TNT1 A 0 A_CheckLOF("GrenadeCheck2");
+      Goto Backup;
 	  GrenadeCheck2:
-      TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2")
-      TNT1 A 0 A_CheckRange(600,"GrenadeFar")
-      TNT1 A 0 A_CheckRange(450,"RealGrenade")
-      TNT1 A 0 A_CheckRange(150,"GrenadeNear")
-      TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2")
-      Goto Missile
+      TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2");
+      TNT1 A 0 A_CheckRange(600,"GrenadeFar");
+      TNT1 A 0 A_CheckRange(450,"RealGrenade");
+      TNT1 A 0 A_CheckRange(150,"GrenadeNear");
+      TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2");
+      Goto Missile;
     RealGrenade:
-      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
-      UTM2 AAAA 5 A_FaceTarget
+      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AA 5 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,12);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,12);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
     GrenadeFar:
-      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
-      UTM2 AAAA 5 A_FaceTarget
+      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AA 5 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,20);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,20);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
     GrenadeNear:
-      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AA 5 A_FaceTarget
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6)
-      UTM2 AAAA 5 A_FaceTarget
+      TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AA 5 A_FaceTarget();
+      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-2);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-2);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
 	WaitGrenadeCheck:
-	  TNT1 A 0
-	  TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"See2")
-	  TNT1 A 0 A_Jump(90,"See2")
-	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See2")
-	  Goto WaitGrenade1
+	  TNT1 A 0;
+	  TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"See2");
+	  TNT1 A 0 A_Jump(90,"See2");
+	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See2");
+	  Goto WaitGrenade1;
 	WaitGrenade1:
-	  TNT1 A 0
-	  TNT1 A 0 A_GiveInventory("ZTrooperToken",1)
-	  TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_7)
-	  Goto See2
+	  TNT1 A 0;
+	  TNT1 A 0 A_GiveInventory("ZTrooperToken",1);
+	  TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_7);
+	  Goto See2;
 	WaitGrenade2:
-	  TNT1 A 0
-	  TNT1 A 0 A_JumpIfHigherOrLower("Missile2","")
-	  TNT1 A 0 A_CheckRange(600,"WaitGrenadeFar")
-	  TNT1 A 0 A_CheckRange(450,"WaitGrenade")
-	  TNT1 A 0 A_CheckRange(150,"WaitGrenadeNear")
-	  Goto WaitGrenadeFar
+	  TNT1 A 0;
+	  TNT1 A 0 A_JumpIfHigherOrLower("Missile2",null);
+	  TNT1 A 0 A_CheckRange(600,"WaitGrenadeFar");
+	  TNT1 A 0 A_CheckRange(450,"WaitGrenade");
+	  TNT1 A 0 A_CheckRange(150,"WaitGrenadeNear");
+	  Goto WaitGrenadeFar;
 	WaitGrenade:
-	  TNT1 A 0
-	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
-	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AAA 5 A_FaceTarget
+	  TNT1 A 0;
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1);
+	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,12);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,12);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
 	WaitGrenadeFar:
-	  TNT1 A 0
-	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
-	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AAA 5 A_FaceTarget
+	  TNT1 A 0;
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1);
+	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,20);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,20);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
 	WaitGrenadeNear:
-	  TNT1 A 0
-	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1)
-	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1)
-      UTM2 AAA 5 A_FaceTarget
+	  TNT1 A 0;
+	  TNT1 A 0 A_TakeInventory("ZTrooperToken",1);
+	  TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
+      UTM2 AAA 5 A_FaceTarget();
       UTM2 A 5 
       {
-       A_CustomMissile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-2);
-       A_FaceTarget;
+       A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1),CMF_OFFSETPITCH,-2);
+       A_FaceTarget();
       }
-      Goto Backup
+      Goto Backup;
 	Backup:
-		TNT1 A 0 A_CheckSight("See2")
+		TNT1 A 0 A_CheckSight("See2");
 		UTM2 DCBADCBADCBA 3
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_Recoil(2);
-		A_FaceTarget;
+		A_FaceTarget();
 		}
-	Goto See2
+	Goto See2;
     Pain:
-        UTM2 G 5
-        UTM2 G 3 A_Pain
-        Goto See2
+        UTM2 G 5;
+        UTM2 G 3 A_Pain;
+        Goto See2;
     Death:
-        TNT1 A 0 
-        TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"GrenadeDeath")
-		TNT1 A 0 A_Jump(35,"PossDeath")
-        UTM2 J 5 A_NoBlocking
-        UTM2 K 5 A_Scream
-        UTM2 L 5 
-        UTM2 M 5
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-        UTM2 N -1
-        Stop
+        TNT1 A 0;
+        TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"GrenadeDeath");
+		TNT1 A 0 A_Jump(35,"PossDeath");
+        UTM2 J 5 A_NoBlocking;
+        UTM2 K 5 A_Scream;
+        UTM2 L 5;
+        UTM2 M 5;
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+        UTM2 N -1;
+        Stop;
     GrenadeDeath:
-        TNT1 A 0 
-		TNT1 A 0
-        UTM2 J 5 A_NoBlocking
-        UTM2 K 5 A_Scream
-        UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION)
-        UTM2 M 5
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-        UTM2 N -1
-        Stop
+        TNT1 A 0;
+		TNT1 A 0;
+        UTM2 J 5 A_NoBlocking;
+        UTM2 K 5 A_Scream;
+        UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION);
+        UTM2 M 5;
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+        UTM2 N -1;
+        Stop;
 	PossDeath:
-        UTM2 J 5 A_NoBlocking
-        UTM2 K 5 A_Scream
-        UTM2 L 5 
-        UTM2 M 5
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-		UTM2 N 90
-		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION)
-        UTM2 N -1
-        Stop
+        UTM2 J 5 A_NoBlocking;
+        UTM2 K 5 A_Scream;
+        UTM2 L 5;
+        UTM2 M 5;
+		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		UTM2 N 90;
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+        UTM2 N -1;
+        Stop;
     XDeath:
-        UTM2 O 5 A_NoBlocking
-        UTM2 P 5 A_XScream
-        UTM2 Q 5 
-        UTM2 RSTU 5
-        UTM2 V -1
-        Stop
+        UTM2 O 5 A_NoBlocking;
+        UTM2 P 5 A_XScream;
+        UTM2 Q 5;
+        UTM2 RSTU 5;
+        UTM2 V -1;
+        Stop;
     Raise:
-        UTM2 NMLKJIH 5
-        Goto Look
+        UTM2 NMLKJIH 5;
+        Goto Look;
     }
 }
 
-Actor PM_ZTrooperFragGrenade : Rocket
+Class PM_ZTrooperFragGrenade : Rocket
 {
-  Bouncetype Doom
-  Speed 24
-  Scale 0.52
-  Radius 4
-  Height 10
-  Gravity 0.95
-  BounceFactor 0.65
-  WallBounceFactor 0.5
-  BounceCount 5
-  Alpha 1.0
-  Damage (3)
-  SeeSound "ZTrooper/FragThrow"
-  DeathSound ""
-  BounceSound "ZTrooper/FragBounce"
-  Decal ""
+  Default
+  {
+  Bouncetype "Doom";
+  Speed 24;
+  Scale 0.52;
+  Radius 4;
+  Height 10;
+  Gravity 0.95;
+  BounceFactor 0.65;
+  WallBounceFactor 0.5;
+  BounceCount 5;
+  Alpha 1.0;
+  DamageFunction (3);
+  SeeSound "ZTrooper/FragThrow";
+  DeathSound "";
+  BounceSound "ZTrooper/FragBounce";
+  Decal "";
   -NOGRAVITY
   -ROCKETTRAIL
   -THRUACTORS
@@ -376,11 +404,12 @@ Actor PM_ZTrooperFragGrenade : Rocket
   +BOUNCEONACTORS
   +BOUNCEONCEILINGS
   +CANBOUNCEWATER
+  }
   States
   {
   Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_SpawnItemEx("PM_ZTrooperFragTick",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+	TNT1 A 0;
+	TNT1 A 0 A_SpawnItemEx("PM_ZTrooperFragTick",0,0,0,0,0,0,0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
   Spawn2:
 	ZGRN A 1 Light("SatyrLordRedMissile9")
     {
@@ -388,30 +417,32 @@ Actor PM_ZTrooperFragGrenade : Rocket
      A_SpawnItemEx("DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
      A_SetRoll(roll+15);
     }
-	Loop
+	Loop;
   Bounce:
-	Goto Spawn2
+	Goto Spawn2;
   Death:
-	TNT1 A 0 A_SetRoll(0)
-    TNT1 A 0 A_PlaySound("ZTrooper/FragBounce")
+	TNT1 A 0 A_SetRoll(0);
+    TNT1 A 0 A_PlaySound("ZTrooper/FragBounce");
   Death2:
-	ZGRN BB 1 Light("SatyrLordRedMissile9")
-	Loop
+	ZGRN BB 1 Light("SatyrLordRedMissile9");
+	Loop;
   XDeath:
-	TNT1 A 0 A_SetRoll(0)
-	TNT1 A 0 A_PlaySound("ZTrooper/FragBounce")
+	TNT1 A 0 A_SetRoll(0);
+	TNT1 A 0 A_PlaySound("ZTrooper/FragBounce");
   XDeath2:
-    ZGRN BB 1 Light("SatyrLordRedMissile9")
-	Loop
+    ZGRN BB 1 Light("SatyrLordRedMissile9");
+	Loop;
 	}
 }
 
-ACTOR PM_ZTrooperFragTick
+Class PM_ZTrooperFragTick : Actor
 {
-	Radius 3
-	Height 3
-	Health 1000
-	Scale 0.75
+    Default
+	{
+	Radius 3;
+	Height 3;
+	Health 1000;
+	Scale 0.75;
 	-NOBLOCKMAP
 	+NOBLOOD
 	+NOICEDEATH
@@ -425,77 +456,84 @@ ACTOR PM_ZTrooperFragTick
 	+THRUSPECIES
 	+THRUACTORS
 	+DONTTHRUST
-	OBITUARY "%o was grenaded by a Zombie Trooper."
+	OBITUARY "%o was grenaded by a Zombie Trooper.";
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 AAAAAAAAAA 1
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 AAAAAAAAAA 1;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
-		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
-		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
-		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5)
-		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION)
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
-		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE)
+		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 	Death:
-		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6)
-		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7)
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY",1)
-		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION)
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION)
-		TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-		TNT1 A 0 Radius_Quake (2, 24, 0, 15, 0)
-		TNT1 A 1
-		TNT1 A 0 A_SpawnItemEx("PM_FragShrapnelSparks",0,0,1)
-		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmoke",0,0,1,random(-3,3),random(-3,3),random(0,2))
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile("PM_FragGrenadeShrapnel",random(2,20),random(-4,4),random(-180,180),CMF_OFFSETPITCH,random(5,80))
-		TNT1 A 0 A_RemoveMaster(RMVF_EVERYTHING)
-		TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(100,400)
-		TNT1 A 6 Bright Light("YellowMediumFlicker2")
-		TNT1 A 5 Bright Light("YellowMediumFlicker2")
-		Stop
+		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6);
+		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7);
+		TNT1 A 0 {bNoGravity = true;}
+		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION);
+		TNT1 AAAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+		TNT1 A 0 Radius_Quake (2, 24, 0, 15, 0);
+		TNT1 A 1;
+		TNT1 A 0 A_SpawnItemEx("PM_FragShrapnelSparks",0,0,1);
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmoke",0,0,1,random(-3,3),random(-3,3),random(0,2));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnProjectile("PM_FragGrenadeShrapnel",random(2,20),random(-4,4),random(-180,180),CMF_OFFSETPITCH,random(5,80));
+		TNT1 A 0 A_RemoveMaster(RMVF_EVERYTHING);
+		TNT1 A 8 Bright Light("YellowMediumFlicker2") A_Explode(100,400);
+		TNT1 A 6 Bright Light("YellowMediumFlicker2");
+		TNT1 A 5 Bright Light("YellowMediumFlicker2");
+		Stop;
 	}
 }
 
 
-Actor ZTrooperFragToken : Inventory 
+Class ZTrooperFragToken : Inventory 
 { 
-+Inventory.undroppable
- Inventory.maxamount 3 
+Default
+ {
++Inventory.undroppable;
+ Inventory.maxamount 3;
+ }
 }
 
-Actor ZTrooperToken : Inventory 
+Class ZTrooperToken : Inventory 
 { 
- Inventory.maxamount 1
+ Default
+ {
+ Inventory.maxamount 1;
+ }
 }

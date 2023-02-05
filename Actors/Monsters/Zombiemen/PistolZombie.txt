@@ -1,28 +1,31 @@
-ACTOR PM_PistolZombie : PMMonsterBase
+Class PM_PistolZombie : PMMonsterBase
 { 
-	var int user_numbullets;
-    Health 20
-    Radius 20
-    Height 56
-    Speed 8
-    PainChance 200
-    Mass 100
-    Damage 1
-    MONSTER
+	int user_numbullets;
+	Default
+	{
+    Health 20;
+    Radius 20;
+    Height 56;
+    Speed 8;
+    PainChance 200;
+    Mass 100;
+    Damage 1;
+    MONSTER;
     +FloorClip
 	+SLIDESONWALLS
 	+HARMFRIENDS
 	+DOHARMSPECIES
-	Species "Zombie"
-	Tag "Pistol Zombie"
-    OBITUARY "%o was killed by a Zombie with a sidearm!"
-    SEESOUND "PistolZombie/Sight"
-    PainSound "PistolZombie/Pain"
-    DeathSound "PistolZombie/Death"
-    ACTIVESOUND "PistolZombie/Active"
-	Bloodtype "PM_NormalBloodBase"
-    DropItem "Clip"
-    Decal Bulletchip
+	Species "Zombie";
+	Tag "Pistol Zombie";
+    OBITUARY "%o was killed by a Zombie with a sidearm!";
+    SEESOUND "PistolZombie/Sight";
+    PainSound "PistolZombie/Pain";
+    DeathSound "PistolZombie/Death";
+    ACTIVESOUND "PistolZombie/Active";
+	Bloodtype "PM_NormalBloodBase";
+    DropItem "Clip";
+    Decal "Bulletchip";
+	}
     states
     {
     Spawn:
@@ -31,126 +34,133 @@ ACTOR PM_PistolZombie : PMMonsterBase
          user_numbullets = random(0,8);
         }
     Idle:
-        A02A A 10 PM_Look()
-        Loop
+        A02A A 10 PM_Look();
+        Loop;
     Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-        A02A AABB 3 PM_LookingForPlayer()
-		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		A02A CCDD 3 PM_LookingForPlayer()
-        Loop
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+        A02A AABB 3 PM_LookingForPlayer();
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD 3 PM_LookingForPlayer();
+        Loop;
 	Spotted:
-	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2")
-		Goto See2
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
+		Goto See2;
 	See2:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		TNT1 A 0 A_Recoil(-1.5)
-        A02A AA 3 A_Chase
-		A02A BB 3 A_Chase
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6)
-		TNT1 A 0 A_Recoil(-1.5)
-		A02A CC 3 A_Chase
-		A02A DD 3 A_Chase
-        Loop
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_Recoil(-1.5);
+        A02A AA 3 A_Chase();
+		A02A BB 3 A_Chase();
+		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_Recoil(-1.5);
+		A02A CC 3 A_Chase();
+		A02A DD 3 A_Chase();
+        Loop;
     SpotMissile:
-        TNT1 A 0 PM_AlertSound()
-	    A02A EE 3 A_FaceTarget
-		Goto RealMissile
+        TNT1 A 0 PM_AlertSound();
+	    A02A EE 3 A_FaceTarget();
+		Goto RealMissile;
     Missile:
-		TNT1 A 0
-		TNT1 A 0 A_Jump(20,"Roar")
-		TNT1 A 0 A_JumpIfCloser(300,"RealMissile")
-		TNT1 A 0 A_Jump(195,"RealMissile")
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(20,"Roar");
+		TNT1 A 0 A_JumpIfCloser(300,"RealMissile");
+		TNT1 A 0 A_Jump(195,"RealMissile");
 	Charge:
-		A02A AABBCC 2 A_Wander
-		TNT1 A 0 A_Recoil(-4)
-		A02A GGGGGGGG 1
-		A02A AAABBBCCC 1 A_Wander
-		TNT1 A 0 A_Recoil(-4)
-		A02A GGGGGGGG 1
-		A02A AAABBBCCC 1 A_Wander
-		TNT1 A 0 A_Recoil(-4)
-		A02A GGGGGGGG 1
-		A02A AAABBBCCC 1 A_Wander
-		TNT1 A 0 A_Recoil(-4)
-		A02A GGGGGGGG 1
-		Goto See2
+		A02A AABBCC 2 A_Wander;
+		TNT1 A 0 A_Recoil(-4);
+		A02A GGGGGGGG 1;
+		A02A AAABBBCCC 1 A_Wander;
+		TNT1 A 0 A_Recoil(-4);
+		A02A GGGGGGGG 1;
+		A02A AAABBBCCC 1 A_Wander;
+		TNT1 A 0 A_Recoil(-4);
+		A02A GGGGGGGG 1;
+		A02A AAABBBCCC 1 A_Wander;
+		TNT1 A 0 A_Recoil(-4);
+		A02A GGGGGGGG 1;
+		Goto See2;
 	Roar:
-		A02A D 5 A_FaceTarget
-		TNT1 A 0 A_PlaySound("PistolZombie/See1")
-		A02A DGGGGGGGAAA 5 A_FaceTarget
-		Goto See2
+		A02A D 5 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("PistolZombie/See1");
+		A02A DGGGGGGGAAA 5 A_FaceTarget();
+		Goto See2;
 	NoAmmo:
-        A02A E 7 A_FaceTarget
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
-        A02A E 7 A_FaceTarget
-		TNT1 A 0 A_Jump(138,"ZReload")
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
-        A02A E 7 A_FaceTarget
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5)
-        A02A AAAA 5 A_FaceTarget
-		Goto ZReload
+        A02A E 7 A_FaceTarget();
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        A02A E 7 A_FaceTarget();
+		TNT1 A 0 A_Jump(138,"ZReload");
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        A02A E 7 A_FaceTarget();
+        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        A02A AAAA 5 A_FaceTarget();
+		Goto ZReload;
     RealMissile:
-        TNT1 A 0 A_JumpIf(user_numbullets==0,"NoAmmo")
-        A02A EEE 6 A_FaceTarget
-		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7)
-		TNT1 A 0 A_PlaySound("PistolZombie/Fire")
+        A02A EEE 6 A_FaceTarget;
+		TNT1 A 0 A_PlaySound("ZombieRifleDistant",CHAN_7);
+		TNT1 A 0 A_PlaySound("PistolZombie/Fire");
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		A_CustomMissile("PM_BulletTracer",43,5,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
-		A_CustomMissile("BulletFlare",43,5,0,0);
-        A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("ZReload");
 		}
-        TNT1 A 0 A_SetUserVar(user_numbullets,user_numbullets-1)
-		A02A EE 4 A_FaceTarget
-		Goto See2
+		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_SpawnProjectile("BulletFlare",43,5,0,0);
+        A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		user_numbullets--;
+		return ResolveState(Null);
+		}
+		A02A EE 4 A_FaceTarget;
+		Goto See2;
     ZReload:
-        TNT1 A 0 A_PlaySound("PM/GunClick")
-        A02A EEEE 3 A_FaceTarget
-        TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5)
-        A02A AA 8 A_FaceTarget
-        TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,20,frandom(-1,1),frandom(-5,5),random(-2,0))
-        A02A AAAAA 8 A_FaceTarget
-        TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5)
-		TNT1 A 0 A_SetUserVar(user_numbullets,8)
-        A02A BBBBB 3 A_FaceTarget
-        Goto See2
+        TNT1 A 0 A_PlaySound("PM/GunClick");
+        A02A EEEE 3 A_FaceTarget();
+        TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5);
+        A02A AA 8 A_FaceTarget();
+        TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,20,frandom(-1,1),frandom(-5,5),random(-2,0));
+        A02A AAAAA 8 A_FaceTarget();
+        TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5);
+		TNT1 A 0
+		{
+		user_numbullets = (user_numbullets + 8);
+		}
+        A02A BBBBB 3 A_FaceTarget();
+        Goto See2;
     Pain:
-        A02A G 5
-        A02A G 3 A_Pain
-        Goto See2
+        A02A G 5;
+        A02A G 3 A_Pain;
+        Goto See2;
     Death:
-		TNT1 A 0 A_Jump(35,"PossDeath")
-        A02A H 5 A_NoBlocking
-        A02A I 5 A_Scream
-        A02A J 5
-        A02A K 5
-		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-        A02A L -1
-        Stop
+		TNT1 A 0 A_Jump(35,"PossDeath");
+        A02A H 5 A_NoBlocking;
+        A02A I 5 A_Scream;
+        A02A J 5;
+        A02A K 5;
+		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+        A02A L -1;
+        Stop;
 	PossDeath:
-        A02A H 5 A_NoBlocking
-        A02A I 5 A_Scream
-        A02A J 5
-        A02A K 5
-		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-		A02A L 90
-		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION)
-        A02A L -1
-        Stop
+        A02A H 5 A_NoBlocking;
+        A02A I 5 A_Scream;
+        A02A J 5;
+        A02A K 5;
+		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		A02A L 90;
+		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+        A02A L -1;
+        Stop;
     XDeath:
-		A02A M 5 A_NoBlocking
-		A02A N 5 A_XScream
-        A02A O 5
-        A02A P 5
-        A02A Q 5 
-        A02A RST 5
-        A02A U -1
-        Stop
+		A02A M 5 A_NoBlocking;
+		A02A N 5 A_XScream;
+        A02A O 5;
+        A02A P 5;
+        A02A Q 5;
+        A02A RST 5;
+        A02A U -1;
+        Stop;
     Raise:
-        A02A LKJIH 5
-        Goto Look
+        A02A LKJIH 5;
+        Goto Look;
     }
 }
 

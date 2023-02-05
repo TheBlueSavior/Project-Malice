@@ -2,15 +2,35 @@ version "4.2.0"
 #include "Actors/Monsters/ZProjectiles.txt"
 #include "Actors/Monsters/MonsterBase.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
-#include "Actors/Monsters/Imps/Devil.txt"
-#include "Actors/Monsters/Cacodemons/Wicked.txt"
-#include "Actors/Monsters/Cacodemons/Watcher.txt"
-#include "Actors/Monsters/Arachnotrons/Fusionite.txt"
-#include "Actors/Monsters/Souls/UmbralHeart.txt"
+
+//Zombies
+#include "Actors/Monsters/Zombiemen/PistolZombie.txt"
+#include "Actors/Monsters/Zombiemen/ZombieSoldier.txt"
+#include "Actors/Monsters/Zombiemen/ZombieMarine.txt"
+#include "Actors/Monsters/Zombiemen/ZombieTrooper.txt"
+#include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
+#include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
+
+//Imps
 #include "Actors/Monsters/Imps/Hellion.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
-#include "Actors/Monsters/Spectres/Nightmare.txt"
-#include "Actors/Monsters/Archviles/FleshWizard.txt"
-#include "Actors/Monsters/Souls/Fleshspawn.txt"
+#include "Actors/Monsters/Imps/Devil.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
+
+//Spectres
+#include "Actors/Monsters/Spectres/Nightmare.txt"
+
+//Souls
+#include "Actors/Monsters/Souls/UmbralHeart.txt"
+#include "Actors/Monsters/Souls/Fleshspawn.txt"
 #include "Actors/Monsters/Souls/Rictus.txt"
+
+//Cacos
+#include "Actors/Monsters/Cacodemons/Wicked.txt"
+#include "Actors/Monsters/Cacodemons/Watcher.txt"
+
+//Arachnos
+#include "Actors/Monsters/Arachnotrons/Fusionite.txt"
+
+//Viles
+#include "Actors/Monsters/Archviles/FleshWizard.txt"
