@@ -59,7 +59,6 @@
 #include "Actors/Monsters/Fodder/TriteHatchling.txt"
 #include "Actors/Monsters/Elementals/GrossElemental.txt"
 #include "Actors/Monsters/Mancubi/Abhorrent.txt"
-#include "Actors/Monsters/Cacodemons/PhaseCaco.txt"
 #include "Actors/Monsters/HellKnights/Whiplash.txt"
 #include "Actors/Monsters/Spectres/CyberSpectre.txt"
 #include "Actors/Monsters/Imps/FeralImp.txt"
