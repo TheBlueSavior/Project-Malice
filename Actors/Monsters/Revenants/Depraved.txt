@@ -1,147 +1,150 @@
-Actor PM_Depraved : PMMonsterBase
+Class PM_Depraved : PMMonsterBase
 {
-    Health 300
-    Radius 20
-    Species "Revenant"
-	Height 56
-    Mass 500
-    Speed 7
-    BloodColor "Black"
-	PainChance 64
-    Obituary "%o was tormented by a Depraved."
-    HitObituary "%o was beaten to death by a Depraved."
-    SeeSound "Depraved/Sight"
-    PainSound ""
-    DeathSound ""
-    ActiveSound "Depraved/Active"
-    AttackSound "monster/incatk"
-	Tag "Depraved"
-    MONSTER
-	Bloodtype "PM_BlackBloodBase"
+    Default
+    {
+    Health 300;
+    Radius 20;
+    Species "Revenant";
+	Height 56;
+    Mass 500;
+    Speed 7;
+    BloodColor "Black";
+	PainChance 64;
+    Obituary "%o was tormented by a Depraved.";
+    HitObituary "%o was beaten to death by a Depraved.";
+    SeeSound "Depraved/Sight";
+    PainSound "";
+    DeathSound "";
+    ActiveSound "Depraved/Active";
+    AttackSound "monster/incatk";
+	Tag "Depraved";
+    MONSTER;
+	Bloodtype "PM_BlackBloodBase";
     +FLOORCLIP
     +SHORTMISSILERANGE
 	+MissileMore
     +DONTHARMCLASS
 	+DONTHARMSPECIES
+    }
   States
   {
   Spawn:
-	INCA A 1 PM_Look()
-    Loop
+	INCA A 1 PM_Look();
+    Loop;
   See:
-	TNT1 A 0 A_SetSpeed(7)
-	NULL A 0 A_PlaySound("skeleton/step",5)
-    INCA AABBCC 5 PM_LookingForPlayer()
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP)
-	NULL A 0 A_PlaySound("skeleton/step",5)
-	INCA DDEEFF 5 PM_LookingForPlayer()
-	Loop
+	TNT1 A 0 A_SetSpeed(7);
+	NULL A 0 A_PlaySound("skeleton/step",5);
+    INCA AABBCC 5 PM_LookingForPlayer();
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+	NULL A 0 A_PlaySound("skeleton/step",5);
+	INCA DDEEFF 5 PM_LookingForPlayer();
+	Loop;
   Spotted:
-    TNT1 A 0 PM_AlertSound()
+    TNT1 A 0 PM_AlertSound();
   See2:
-	TNT1 A 0 A_SetSpeed(7)
-	TNT1 A 0 A_ChangeFlag(NOPAIN,False)
-	NULL A 0 A_PlaySound("skeleton/step",5)
-    INCA AABBCC 5 A_Chase
-	NULL A 0 A_PlaySound("skeleton/step",5)
-	INCA DDEEFF 5 A_Chase
-	TNT1 A 0 A_Jump(50,"See3")
-    Loop
+	TNT1 A 0 A_SetSpeed(7);
+	TNT1 A 0 { bNOPAIN = false; }
+	NULL A 0 A_PlaySound("skeleton/step",5);
+    INCA AABBCC 5 A_Chase();
+	NULL A 0 A_PlaySound("skeleton/step",5);
+	INCA DDEEFF 5 A_Chase();
+	TNT1 A 0 A_Jump(50,"See3");
+    Loop;
    See3:
-	TNT1 A 0 A_SetSpeed(25)
-	TNT1 A 0 A_ChangeFlag(NOPAIN,False)
-	NULL A 0 A_PlaySound("skeleton/step",5)
-    INCA ABC 2 A_Chase
-	NULL A 0 A_PlaySound("skeleton/step",5)
-	INCA DEF 2 A_Chase
-	TNT1 A 0 A_Jump(10,"See2")
-    Loop
+	TNT1 A 0 A_SetSpeed(25);
+	TNT1 A 0 { bNOPAIN = false; }
+	NULL A 0 A_PlaySound("skeleton/step",5);
+    INCA ABC 2 A_Chase();
+	NULL A 0 A_PlaySound("skeleton/step",5);
+	INCA DEF 2 A_Chase();
+	TNT1 A 0 A_Jump(10,"See2");
+    Loop;
   Melee:
-	TNT1 A 0 A_StopSound(3)
-    INCA G 0 A_Jump(128, "Melee2")
-    INCA G 0 A_FaceTarget
-    INCA G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
-    INCA H 6 A_FaceTarget
-    INCA I 6 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit")
-	TNT1 A 0 A_Jump(50,"See3")
-    Goto See2
+	TNT1 A 0 A_StopSound(3);
+    INCA G 0 A_Jump(128, "Melee2");
+    INCA G 0 A_FaceTarget();
+    INCA G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+    INCA H 6 A_FaceTarget();
+    INCA I 6 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit");
+	TNT1 A 0 A_Jump(50,"See3");
+    Goto See2;
   Melee2:
-	TNT1 A 0 A_StopSound(3)
-    INCA R 0 A_FaceTarget
-    INCA R 5 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
-    INCA S 5 A_FaceTarget
-    INCA T 5 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit")
-    INCA G 0 A_FaceTarget
-    INCA G 5 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1)
-    INCA H 5 A_FaceTarget
-    INCA I 5 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit")
-	TNT1 A 0 A_Jump(50,"See3")
-    Goto See2
+	TNT1 A 0 A_StopSound(3);
+    INCA R 0 A_FaceTarget();
+    INCA R 5 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+    INCA S 5 A_FaceTarget();
+    INCA T 5 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit");
+    INCA G 0 A_FaceTarget();
+    INCA G 5 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+    INCA H 5 A_FaceTarget();
+    INCA I 5 A_CustomMeleeAttack(7*random(1,8), "Doom4/Other/MeleeHit");
+	TNT1 A 0 A_Jump(50,"See3");
+    Goto See2;
  Twitcher:
-		INCA JJJUUUK 5 A_Facetarget
-		TNT1 A 0 A_SetSpeed(100)
-		TNT1 A 0 A_PlaySound("Depraved/Sprint",3)
-		INCA ABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEF 2 A_chase
-		TNT1 A 0 A_SetSpeed(1)
-		TNT1 A 0 A_StopSound(3)
-	goto See2
+		INCA JJJUUUK 5 A_Facetarget();
+		TNT1 A 0 A_SetSpeed(100);
+		TNT1 A 0 A_PlaySound("Depraved/Sprint",3);
+		INCA ABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEFABCDEF 2 A_Chase();
+		TNT1 A 0 A_SetSpeed(1);
+		TNT1 A 0 A_StopSound(3);
+	goto See2;
  Missile:
-	TNT1 A 0 A_JumpIfCloser(300,"ScreamCheck")
-	TNT1 A 0 A_Jump(90,"Twitcher")
-	TNT1 A 0 A_Jump(90,"Laser")
-	INCA J 0 A_FaceTarget
-    TNT1 A 0 A_PlaySound("Afflicted/Puke",3)
+	TNT1 A 0 A_JumpIfCloser(300,"ScreamCheck");
+	TNT1 A 0 A_Jump(90,"Twitcher");
+	TNT1 A 0 A_Jump(90,"Laser");
+	INCA J 0 A_FaceTarget();
+    TNT1 A 0 A_PlaySound("Afflicted/Puke",3);
     INCA JJJJJJJJJJJJ 1 
     {
-    A_FaceTarget;
-    A_CustomMissile("PM_DepravedSpitBlood",60,-10,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
+    A_FaceTarget();
+    A_SpawnProjectile("PM_DepravedSpitBlood",60,-10,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
     }
     INCA U 3 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
     A_PlaySound("Depraved/Spit");
-	A_CustomMissile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
-    A_CustomMissile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
-    A_CustomMissile("PM_DepravedSpit",60,-10,random(-7,7),CMF_OFFSETPITCH,random(-3,3));
-    A_CustomMissile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
-    A_CustomMissile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
-    A_CustomMissile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
+	A_SpawnProjectile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
+    A_SpawnProjectile("PM_DepravedSpit",60,-10,random(-6,6),CMF_OFFSETPITCH,random(-3,3));
+    A_SpawnProjectile("PM_DepravedSpit",60,-10,random(-7,7),CMF_OFFSETPITCH,random(-3,3));
+    A_SpawnProjectile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
+    A_SpawnProjectile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
+    A_SpawnProjectile("PM_DepravedSpitGravity",60,-10,random(-6,7),CMF_OFFSETPITCH,random(-5,15));
 	}
-    INCA K 9 A_FaceTarget
-    TNT1 A 0 A_MonsterRefire(40,"See2")
-	TNT1 A 0 A_Jump(57,"See3")
-    Goto Missile+8
+    INCA K 9 A_FaceTarget();
+    TNT1 A 0 A_MonsterRefire(40,"See2");
+	TNT1 A 0 A_Jump(57,"See3");
+    Goto Missile+8;
   ScreamCheck:
-	TNT1 A 0 A_Jump(30,"Scream")
-	Goto Missile+4
+	TNT1 A 0 A_Jump(30,"Scream");
+	Goto Missile+4;
   Scream:
-    INCA J 10 A_FaceTarget
-	INCA K 10 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Depraved/Scream",3)
+    INCA J 10 A_FaceTarget();
+	INCA K 10 A_FaceTarget();
+	TNT1 A 0 A_PlaySound("Depraved/Scream",3);
 	INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 2
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Quake(6,8,0,500,0);
 	//A_Explode(5,500,0,0,500,0,0,0,"DepScream");
 	A_Explode(2,500,XF_NOTMISSILE );
 	}
-	INCA J 10 A_FaceTarget
-	Goto See3
+	INCA J 10 A_FaceTarget();
+	Goto See3;
     Laser:
-	TNT1 A 0 A_ChangeFlag(NOPAIN,True)
-    INCA J 10 A_FaceTarget
+	TNT1 A 0 { bNOPAIN = true; }
+    INCA J 10 A_FaceTarget();
 	TNT1 A 0 
 		{
 		A_PlaySound("DepravedBeamStart",7,1.0,0,0.6);
 		}
 	INCA LLLLLLLLLLLLLLLLL 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",-3,0,60,0,0,3);
 		}
-	TNT1 A 0 A_PlaySound("DepravedBeamStart",6,1.0,0,0.6)
-	TNT1 A 0 A_PlaySound("DepravedBeam",1,0.3,1,0.6)
-    Goto LaserWait
+	TNT1 A 0 A_PlaySound("DepravedBeamStart",6,1.0,0,0.6);
+	TNT1 A 0 A_PlaySound("DepravedBeam",1,0.3,1,0.6);
+    Goto LaserWait;
   LaserWait:
     INCA UUUUUUUUU 1 Bright Light("ShadowBall4")
 		{
@@ -152,18 +155,18 @@ Actor PM_Depraved : PMMonsterBase
 		{
 		A_FaceTarget(0.75,3,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		}
-	TNT1 A 0 A_JumpIfTargetInLOS("LaserFire",95,JLOSF_DEADNOJUMP)
-    TNT1 A 0 A_MonsterRefire(25,"LaserMiss")
-    Goto LaserWait+1
+	TNT1 A 0 A_JumpIfTargetInLOS("LaserFire",95,JLOSF_DEADNOJUMP);
+    TNT1 A 0 A_MonsterRefire(25,"LaserMiss");
+    Goto LaserWait+1;
   LaserFire:
-    TNT1 A 0 A_PlaySound("DepravedBeam",1,1.0,1,0.6)
+    TNT1 A 0 A_PlaySound("DepravedBeam",1,1.0,1,0.6);
     INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUU 2 Light("ShadowBall4")
 		{
 		A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
 		}
     INCA UUUUU 2 Light("ShadowBall4")
@@ -178,7 +181,7 @@ Actor PM_Depraved : PMMonsterBase
         {
         A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         }
@@ -194,7 +197,7 @@ Actor PM_Depraved : PMMonsterBase
         {
         A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         }
@@ -210,7 +213,7 @@ Actor PM_Depraved : PMMonsterBase
         {
         A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         }
@@ -226,11 +229,11 @@ Actor PM_Depraved : PMMonsterBase
         {
         A_FaceTarget(1,90,0,0);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,random(0,2),random(-1,1),random(-1,3));
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-50,50),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-5,-20));
 		A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         A_SpawnItemEx("RedFlareEffect",4,-1,64,0,0,3);
         }
-    TNT1 A 0 A_Quake(5,20,0,2000)
+    TNT1 A 0 A_Quake(5,20,0,2000);
     INCA U 1 Light("ShadowBall4")
 		{
 		A_FaceTarget(1,90,0,0);
@@ -255,226 +258,241 @@ Actor PM_Depraved : PMMonsterBase
         A_SpawnItemEx("PM_RedShockwave",4,-1,64,0,0,0);
 		}
   LaserMiss:
-	TNT1 A 0 A_PlaySound("DepravedBeamEnd",1,0.7,0,0.6)
+	TNT1 A 0 A_PlaySound("DepravedBeamEnd",1,0.7,0,0.6);
 	INCA UUUU 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
     INCA UUU 1 Light("ShadowBall3")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
     INCA UUU 1 Light("ShadowBall3")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
     INCA UUU 1 Light("ShadowBall3")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
     INCA UUU 1 Light("ShadowBall3")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
-        A_CustomMissile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
+        A_SpawnProjectile("PM_DepravedBeamWarning",43,0,random(-10,10),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-1,-15));
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
 	INCA UUUU 1 Light("ShadowBall4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-5,64,0,0,3);
 		A_SpawnItemEx("PM_RedFireEffectBig",4,-1,64,0,0,3);
 		}
-	INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 1 A_FaceTarget
-	TNT1 A 0 A_Jump(60,"See3")
-	Goto See2
+	INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU 1 A_FaceTarget();
+	TNT1 A 0 A_Jump(60,"See3");
+	Goto See2;
   Pain:
-	TNT1 A 0 A_StopSound(1)
-	TNT1 A 0 A_StopSound(3)
-    INCA L 5
-    INCA L 5 A_Pain
-    Goto See2
+	TNT1 A 0 A_StopSound(1);
+	TNT1 A 0 A_StopSound(3);
+    INCA L 5;
+    INCA L 5 A_Pain;
+    Goto See2;
   Death:
-	TNT1 A 0 A_StopSound(1)
-    INCA L 0 A_JumpIfInventory("RaiseLimit",2,"XDeath")
-	INCA L 0 A_JumpIfInventory("RaiseLimit",1,"Death50")
-	INCA L 0 A_Jump(80, "Death2")
-    INCA LM 7
-    INCA N 7 A_Scream
-    INCA O 7 A_NoBlocking
-    INCA P 7
-	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
-	INCA Q 115
-    INCA Q -1
-    Stop
+	TNT1 A 0 A_StopSound(1);
+    INCA L 0 A_JumpIfInventory("RaiseLimit",2,"XDeath");
+	INCA L 0 A_JumpIfInventory("RaiseLimit",1,"Death50");
+	INCA L 0 A_Jump(80, "Death2");
+    INCA LM 7;
+    INCA N 7 A_Scream;
+    INCA O 7 A_NoBlocking;
+    INCA P 7;
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6);
+	INCA Q 115;
+    INCA Q -1;
+    Stop;
   Death50:
-	TNT1 A 0 A_StopSound(1)
-	INCA L 0 A_Jump(128, "Death2")
-    INCA LM 7
-    INCA N 7 A_Scream
-    INCA O 7 A_NoBlocking
-    INCA P 7
-	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
-	INCA Q 115
-    INCA Q -1
-    Stop
+	TNT1 A 0 A_StopSound(1);
+	INCA L 0 A_Jump(128, "Death2");
+    INCA LM 7;
+    INCA N 7 A_Scream;
+    INCA O 7 A_NoBlocking;
+    INCA P 7;
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6);
+	INCA Q 115;
+    INCA Q -1;
+    Stop;
   Death2:
-	TNT1 A 0 A_StopSound(1)
-	INCA LM 7
-    INCA N 7 A_Scream
-    INCA O 7 A_NoBlocking
-    INCA P 7
-	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
-    INCA Q 115
-    INCA Q -1 Thing_Raise(0)
-    Stop
+	TNT1 A 0 A_StopSound(1);
+	INCA LM 7;
+    INCA N 7 A_Scream;
+    INCA O 7 A_NoBlocking;
+    INCA P 7;
+	TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6);
+    INCA Q 115;
+    INCA Q -1 Thing_Raise(0);
+    Stop;
   XDeath:
-	TNT1 A 0 A_StopSound(1)
-    INCX A 10 Bright
-    INCX BC 5 Bright A_PlaySound("monster/hadexp")
-    TNT1 A 0 A_SpawnItem("PM_UmbralHeart",0,32)
-    INCX D 5 Bright A_NoBlocking
-    INCX EFGHIJ 5 Bright
-    INCX K -1
-	Stop
+	TNT1 A 0 A_StopSound(1);
+    INCX A 10 Bright;
+    INCX BC 5 Bright A_PlaySound("monster/hadexp");
+    TNT1 A 0 A_SpawnItem("PM_UmbralHeart",0,32);
+    INCX D 5 Bright A_NoBlocking;
+    INCX EFGHIJ 5 Bright;
+    INCX K -1;
+	Stop;
   Raise:
-	INCA Q 0 A_GiveInventory("RaiseLimit",1)
-	INCA L 0 A_JumpIfInventory("RaiseLimit",2,"Raise2")
-	INCA Q 0 A_Playsound("Depraved/Revive")
-	INCA Q 0 A_KillChildren
-    INCA Q 0 A_SetHealth(150)
-	INCA QPONML 5
-    Goto See2
+	INCA Q 0 A_GiveInventory("RaiseLimit",1);
+	INCA L 0 A_JumpIfInventory("RaiseLimit",2,"Raise2");
+	INCA Q 0 A_Playsound("Depraved/Revive");
+	INCA Q 0 A_KillChildren;
+    INCA Q 0 A_SetHealth(150);
+	INCA QPONML 5;
+    Goto See2;
   Raise2:
-	INCA Q 0 A_GiveInventory("RaiseLimit",1)
-	INCA Q 0 A_Playsound("Depraved/Revive")
-	INCA Q 0 A_KillChildren
-    INCA Q 0 A_SetHealth(75)
-	INCA QPONML 5
-    Goto See2
+	INCA Q 0 A_GiveInventory("RaiseLimit",1);
+	INCA Q 0 A_Playsound("Depraved/Revive");
+	INCA Q 0 A_KillChildren;
+    INCA Q 0 A_SetHealth(75);
+	INCA QPONML 5;
+    Goto See2;
   }
 }
 
-Actor PM_RedFireEffect
+Class PM_RedFireEffect : Actor
 {
+  Default
+  {
   +NOINTERACTION
   +CLIENTSIDEONLY
   +ROLLSPRITE
-  Renderstyle Add
-  Scale 0.1
+  Renderstyle "Add";
+  Scale 0.1;
   +Bright
+  }
   States
   {
   Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
-	TNT1 A 0 A_SetScale(ScaleX-0.015)
-	FIR1 R 1 A_FadeOut(0.08)
-	Wait
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+	TNT1 A 0 A_SetScale(Scale.X-0.015);
+	FIR1 R 1 A_FadeOut(0.08);
+	Wait;
 	}
 }
 
-Actor RedFlareEffect
+Class RedFlareEffect : Actor
 {
+  Default
+  {
   +NOINTERACTION
   +CLIENTSIDEONLY
   +ROLLSPRITE
   +BRIGHT
   +FORCEXYBILLBOARD
-  Renderstyle Add
-  Scale 0.03
+  Renderstyle "Add";
+  Scale 0.03;
   +Bright
+  }
   States
   {
   Spawn:
-	LENR A 1 A_FadeOut(0.1)
-	Wait
+	LENR A 1 A_FadeOut(0.1);
+	Wait;
 	}
 }
 
-Actor PM_RedFireEffectBig
+Class PM_RedFireEffectBig : Actor
 {
+  Default
+  {
   +NOINTERACTION
   +CLIENTSIDEONLY
   +ROLLSPRITE
-  Renderstyle Add
-  Scale 0.3
+  Renderstyle "Add";
+  Scale 0.3;
   +Bright
+  }
   States
   {
   Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
-	TNT1 A 0 A_SetScale(ScaleX-0.015)
-	FIR1 R 1 A_FadeOut(0.08)
-	Wait
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+	TNT1 A 0 A_SetScale(Scale.X-0.015);
+	FIR1 R 1 A_FadeOut(0.08);
+	Wait;
 	}
 }
 
-Actor PM_DepravedBeamWarning : FastProjectile
+Class PM_DepravedBeamWarning : FastProjectile
 {
-	Projectile
-	Radius 3
-	Height 3
-	Scale 0.8
-	RenderStyle Add
+    Default
+    {
+	Projectile;
+	Radius 3;
+	Height 3;
+	Scale 0.8;
+	RenderStyle "Add";
 	//Alpha 0.70
-	Damage 0
-	Speed 150
+	Damage 0;
+	Speed 150;
 	+ROLLSPRITE
-	SeeSound ""
+	SeeSound "";
+    }
 	States
 	{
 	Spawn:
-        TNT1 A 2 A_Weave(random(-5,5),random(-1,-5),random(-5,5),random(-5,-5))
-		Loop
+        TNT1 A 2 A_Weave(random(-5,5),random(-1,-5),random(-5,5),random(-5,-5));
+		Loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("PM_RedLongFlare2",0,0,0,0,0,0)
-    Stop
+	TNT1 A 0 A_SpawnItemEx("PM_RedLongFlare2",0,0,0,0,0,0);
+    Stop;
 	}
 }
 
-ACTOR PM_DepravedSpit
+Class PM_DepravedSpit : Actor
 {
-	Radius 6
-	Height 8
-	Speed 18
-	FastSpeed 22
-	Damage (random(8,8))
-	Scale 0.8
-	Projectile
+    Default
+    {
+	Radius 6;
+	Height 8;
+	Speed 18;
+	FastSpeed 22;
+	DamageFunction (random(8,8));
+	Scale 0.8;
+	Projectile;
 	+Strifedamage
 	+RANDOMIZE
-	Alpha 1
-	SeeSound ""
-	DeathSound "TaintedBloodExp"
+	Alpha 1;
+	SeeSound "";
+	DeathSound "TaintedBloodExp";
+    }
 	States
 	{
 	Spawn:
@@ -488,96 +506,110 @@ ACTOR PM_DepravedSpit
 		A_SpawnItemEx("PM_BlackBloodTrail",0,0,0,0,0,0,0,128);
 		//A_SpawnItemEx("IMPMTrail",0,0,0,0,0,0,0,128);
 		}
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",0,random(-6,6),random(-90,90))
-		Loop
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",0,random(-6,6),random(-90,90));
+		Loop;
 	Death:
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90))
-		TNT1 A 0 A_CustomMissile("PM_BlackGroundStain",1,random(-6,6),random(-90,90))
-		BZRB CDE 6
-		Stop
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90));
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90));
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90));
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90));
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundOoze",1,random(-6,6),random(-90,90));
+		TNT1 A 0 A_SpawnProjectile("PM_BlackGroundStain",1,random(-6,6),random(-90,90));
+		BZRB CDE 6;
+		Stop;
 	}
 }
 
-ACTOR PM_DepravedSpitGravity : PM_DepravedSpit
+Class PM_DepravedSpitGravity : PM_DepravedSpit
 {
- -NOGRAVITY
- Gravity 0.3
+  Default
+  {
+  -NOGRAVITY
+  Gravity 0.3;
+  }
 }
 
 
-Actor PM_BlackGroundOoze
+Class PM_BlackGroundOoze : Actor
 {
-	Projectile
+    Default
+    {
+	Projectile;
 	-NOGRAVITY
-	Gravity 0.5
+	Gravity 0.5;
 	+NOCLIP
-	Renderstyle Translucent
-	Damage 0
-	Alpha 0.8
-	Scale 0.15
+	Renderstyle "Translucent";
+	Damage 0;
+	Alpha 0.8;
+	Scale 0.15;
+    }
 	States
 	{
 	Spawn:
-		TNT1 A 1
-		TNT1 A 0 ThrustThing(random(-90,90),4)
-		TNT1 A 0 ThrustThingZ(0,random(4,20),0,1)
-		FBLB ABCDA 3
-		FBLB A 1 A_FadeOut(0.1)
-		Wait
+		TNT1 A 1;
+		TNT1 A 0 ThrustThing(random(-90,90),4);
+		TNT1 A 0 ThrustThingZ(0,random(4,20),0,1);
+		FBLB ABCDA 3;
+		FBLB A 1 A_FadeOut(0.1);
+		Wait;
 	}
 }
 
-Actor PM_BlackGroundStain
+Class PM_BlackGroundStain : Actor
 {
-	Projectile
+    Default
+    {
+	Projectile;
 	-NOGRAVITY
-	Gravity 0.4
+	Gravity 0.4;
 	+NOCLIP
-	Renderstyle Translucent
-	Damage 0
-	Alpha 0.8
-	Scale 0.5
+	Renderstyle "Translucent";
+	Damage 0;
+	Alpha 0.8;
+	Scale 0.5;
+    }
 	States
 	{
 	Spawn:
-		TNT1 A 1
-		TNT1 A 0 ThrustThingZ(0,random(4,8),0,1)
-		FBLB ABCDA 3
-		FBLB A 1 A_FadeOut(0.2)
-		Wait
+		TNT1 A 1;
+		TNT1 A 0 ThrustThingZ(0,random(4,8),0,1);
+		FBLB ABCDA 3;
+		FBLB A 1 A_FadeOut(0.2);
+		Wait;
 	}
 }
 
-ACTOR PM_BlackBloodTrail
+Class PM_BlackBloodTrail : Actor
 {
-Scale 0.80
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
+  Default
+  {
+  Scale 0.80;
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +NOBLOCKMAP
+  +THRUACTORS
+  +DONTSPLASH
+  +NOCLIP
+  }
 States
 {
 Spawn:
-	TNT1 A 2
+	TNT1 A 2;
 	Go:
     BZRB AB 1
 	{
-	A_SetScale(ScaleX-0.07);
+	A_SetScale(Scale.X-0.07);
 	A_FadeOut(0.17);
 	}
-    Loop
+    Loop;
     }
 }
 
 
-actor RaiseLimit : Inventory   
+Class RaiseLimit : Inventory   
 {
- Inventory.Maxamount 2
- -invbar
+  Default
+  {
+   Inventory.Maxamount 2;
+  }
 }
