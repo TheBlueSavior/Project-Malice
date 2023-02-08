@@ -222,6 +222,7 @@ actor PM_Bruiser : PMMonsterBase
 			
 			LeapEnd:
 				TNT1 A 0 A_PlaySound("Doom4/Monsters/BaronFloorPound",7,1.0,false,0.9)
+				TNT1 A 0 A_PlaySound("BigExplosionDistant",5,0.7)
 				TNT1 A 0 A_Quake(4,20,0,512,"")
 				TNT1 A 0 Light("GreenBall4")
                 {
@@ -246,7 +247,9 @@ actor PM_Bruiser : PMMonsterBase
                  A_CustomMissile("PM_BruiserFlamer",18,0,0,CMF_AIMDIRECTION,random(0,3));
                  }
 				 I01A I 1 A_Explode(48,193,XF_NOTMISSILE,0,0)
-                TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",random(12,15),random(7,-7),0,random(1,12),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION)
+            	TNT1 AAAA 0 A_SpawnItemEx("PM_BruiserGenericExplosionFlames",0,0,0,random(-5,5),random(-5,5),random(-2,5),0,SXF_NOCHECKPOSITION)
+	            TNT1 AAAAAAAA 0 A_CustomMissile("PM_DarkExpSmokeFast",7,0,random(0,360),2,random(0,360))
+                TNT1 AAAAAAAAAAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",random(-20,20),random(-20,20),0,random(-5,5),random(-7,7),random(10,30),0,SXF_NOCHECKPOSITION)
 				Goto ResumeLeapEnd
 			ResumeLeapEnd:
 				I01A J 1 A_Stop
