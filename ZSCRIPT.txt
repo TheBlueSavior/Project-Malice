@@ -20,6 +20,13 @@ version "4.2.0"
 #include "Actors/Monsters/Shotgunners/DecayedShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
 
+//Chaingunners
+#include "Actors/Monsters/Chaingunners/HeavyCarbineZombie.txt"
+#include "Actors/Monsters/Chaingunners/MutatedGunner.txt"
+#include "Actors/Monsters/Chaingunners/FallenMarine.txt"
+#include "Actors/Monsters/Chaingunners/DecayedCommando.txt"
+#include "Actors/Monsters/Chaingunners/HellPriest.txt"
+
 //Imps
 #include "Actors/Monsters/Imps/Hellion.txt"
 #include "Actors/Monsters/Imps/Tainted.txt"
