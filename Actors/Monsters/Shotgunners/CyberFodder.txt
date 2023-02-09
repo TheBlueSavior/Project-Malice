@@ -75,6 +75,7 @@ Class PM_CyberFodder : PMMonsterBase
 	Loop;
   Missile:
 	TNT1 A 0 A_JumpIfCloser(330,"Flamer");
+    TNT1 A 0 A_PlaySound("CyberZ/Prefire");
 	CFOD EE 5 A_FaceTarget();
 	CFOD FFFFFF 3 Light("Shadowball")
 	{
@@ -112,7 +113,7 @@ Class PM_CyberFodder : PMMonsterBase
 	TNT1 A 0 A_Jump(230,"Flamer1","Flamer2","Flamer3","Flamer4");
   Flamer1:
 	CFOD EE 2 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Fire/Unleash");
+	TNT1 A 0 A_PlaySound("PM/FlamerReady");
 	CFOD FFFFFFFFFFFFFFF 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -131,7 +132,7 @@ Class PM_CyberFodder : PMMonsterBase
 	Goto Sprint;
  Flamer2:
 	CFOD EE 2 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Fire/Unleash");
+	TNT1 A 0 A_PlaySound("PM/FlamerReady");
 	CFOD FFFFFFFFFFFFFFF 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -233,7 +234,7 @@ Class PM_CyberFodder : PMMonsterBase
 	Goto Sprint;
   Flamer3:
 	CFOD EE 2 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Fire/Unleash");
+	TNT1 A 0 A_PlaySound("PM/FlamerReady");
 	CFOD FFFFFFFFFFFFFFF 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -402,7 +403,7 @@ Class PM_CyberFodder : PMMonsterBase
 	Goto Sprint;
   Flamer4:
 	CFOD EE 2 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Fire/Unleash");
+	TNT1 A 0 A_PlaySound("PM/FlamerReady");
 	CFOD FFFFFFFFFFFFFFF 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -568,11 +569,6 @@ Class PM_CyberFodder : PMMonsterBase
 	}
 	TNT1 A 0 A_StopSound(CHAN_5);
 	CFOD F 4;
-	//TNT1 A 0 A_PlaySound("GenericSteam")
-	//CFOD FFFFFFFFFFFFFFFFFEEEEEEEEE 1
-	//{
-	//A_SpawnItemEx("CSmoke",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-	//}
 	Goto Sprint;
   Pain:
 	TNT1 A 0 A_StopSound(CHAN_5);
@@ -611,7 +607,7 @@ Class PM_CyberFodderBall : FastProjectile
   Height 6;
   Speed 17;
   Damage 2;
-  SeeSound "GenericPlasmaFire";
+  SeeSound "CyberZ/Fire";
   DeathSound "GenericPlasmaExp";
   Decal "PM_HellPlasmaScorch";
   +ROLLSPRITE

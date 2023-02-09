@@ -860,6 +860,7 @@ $rolloff GenericShotgunFire 600 2200
 
 GenericShotgunPump "Sounds/Monsters/SFX/GenericShotgunPump.ogg"
 
+PM/FlamerReady "Sounds/Other/PMFlamerReady.ogg"
 
 RatSpawn/Sight RATSPAWN
 RatHit/Pain RATHIT
@@ -926,6 +927,11 @@ $random CyberZ/Death { CyberZDeath1 CyberZDeath2 }
 CyberZDeath1 "Sounds/Monsters/Shotgunners/CyberFodder/CyberZDeath1.ogg"
 CyberZDeath2 "Sounds/Monsters/Shotgunners/CyberFodder/CyberZDeath2.ogg"
 
+CyberZ/Prefire "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderPrefire.ogg"
+CyberZ/Fire "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderFire.ogg"
+
+$rolloff CyberZ/Prefire 350 2000
+$limit CyberZ/Fire 4
 $volume CyberZ/Death 0.65
 $volume CyberZ/Sight 0.4
 $volume CyberZ/Active 0.4
