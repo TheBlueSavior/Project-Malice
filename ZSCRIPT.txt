@@ -51,10 +51,11 @@ version "4.2.0"
 #include "Actors/Monsters/Souls/Rictus.txt"
 
 //Cacos
-#include "Actors/Monsters/Cacodemons/Wicked.txt"
-#include "Actors/Monsters/Cacodemons/Watcher.txt"
 #include "Actors/Monsters/Cacodemons/Beholder.txt"
 #include "Actors/Monsters/Cacodemons/PhaseCaco.txt"
+#include "Actors/Monsters/Cacodemons/Watcher.txt"
+#include "Actors/Monsters/Cacodemons/Wicked.txt"
+#include "Actors/Monsters/Cacodemons/Wretched.txt"
 
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
