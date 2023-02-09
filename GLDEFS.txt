@@ -4297,16 +4297,6 @@ Color 0.4 0.0 0.0
 Size 32
 }
 
-
-Object WizardBall
-{
-Frame LMBWA { Light FleshWizardBall1 }
-Frame LMBWB { Light FleshWizardBall1 }
-Frame LMBWC { Light FleshWizardBall2 }
-Frame LMBWD { Light FleshWizardBall3 }
-Frame LMBWE { Light FleshWizardBall4 }
-}
-
 Flickerlight2 FireShot1
 {
 Color 1.0 0.8 0.0
