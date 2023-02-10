@@ -3484,7 +3484,14 @@ PM/ControllerScream1 "Sounds/Other/ControllerScream1.ogg"
 PM/ControllerScream2 "Sounds/Other/ControllerScream2.ogg"
 PM/ControllerScream3 "Sounds/Other/ControllerScream3.ogg"
 
+PM/ControllerPain "Sounds/Other/ControllerPain.ogg"
+PM/ControllerHunt "Sounds/Other/ControllerHunt.ogg"
+PM/ControllerDrag "Sounds/Other/ControllerDrag.ogg"
+PM/ControllerHostCry "Sounds/Other/ControllerHostCry.ogg"
+
 $rolloff PM/ControllerScream 300 1500
+$rolloff PM/ControllerPain 300 1600
+$rolloff PM/ControllerDrag 300 2200
 
 PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
 $rolloff PM/ControllerTransform 300 1600
