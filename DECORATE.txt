@@ -55,7 +55,6 @@
 #include "Actors/Monsters/Imps/FeralImp.txt"
 #include "Actors/Monsters/CyberDemons/Tyrant.txt"
 #include "Actors/Monsters/Fodder/Voidspawn.txt"
-#include "Actors/Monsters/Arachnotrons/Plasmatron.txt"
 #include "Actors/Monsters/Spectres/Skulker.txt"
 #include "Actors/Monsters/Hellknights/HellsFury.txt"
 #include "Actors/Monsters/Fodder/Rotfly.txt"

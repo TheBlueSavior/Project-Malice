@@ -59,6 +59,7 @@ version "4.2.0"
 
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
+#include "Actors/Monsters/Arachnotrons/Plasmatron.txt"
 
 //Viles
 #include "Actors/Monsters/Archviles/Exile.txt"

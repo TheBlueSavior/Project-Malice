@@ -1,757 +1,794 @@
-Actor PM_Plasmatron : PMMonsterBase
-{
-    var int user_numbullets;
-	Tag "Plasmatron"
-	Health 520
-	Mass 600
-	PainChance 100
-	Speed 8
-	Height 64
-	Radius 48
-	Scale 1.1
-	MaxStepHeight 24
-	MaxDropOffHeight 24
-	Obituary "%o was cremated by a Plasmatron."
-	Species "Arachnotron"
-	Monster
-	+DONTHARMSPECIES
-	+MISSILEMORE
-	+FLOORCLIP
-	+BOSSDEATH
-	Bloodtype "PM_NormalCyberBloodBase"
-	SEESOUND "Plasmatron/Sight"
-	PAINSOUND "Plasmatron/Pain"
-	DEATHSOUND "Plasmatron/Death"
-	ACTIVESOUND "Plasmatron/Active"
+Class PM_Plasmatron : PMMonsterBase
+{	
+	int user_numbullets;
+	Default
+	{
+		Tag "Plasmatron";
+		Health 520;
+		Mass 600;
+		PainChance 100;
+		Speed 8;
+		Height 64;
+		Radius 48;
+		Scale 1.1;
+		MaxStepHeight 24;
+		MaxDropOffHeight 24;
+		Obituary "%o was cremated by a Plasmatron.";
+		Species "Arachnotron";
+		Monster;
+		+DONTHARMSPECIES
+		+MISSILEMORE
+		+FLOORCLIP
+		+BOSSDEATH
+		Bloodtype "PM_NormalCyberBloodBase";
+		SeeSound "Plasmatron/Sight";
+		PainSound "Plasmatron/Pain";
+		DeathSound "Plasmatron/Death";
+		ActiveSound "Plasmatron/Active";
+	}
+	
 	States
-{
-Spawn:
-    TNT1 A 0 NoDelay
-    {
-    user_numbullets = random(5,50);
-    }
-Idle:
-    PL01 A 10 PM_Look
-    Loop
-Look:
-    PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-    PL01 ABB 3 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 CC 3 PM_LookingForPlayer()
-    TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP)
-    PL01 D 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-    PL01 DEE 3 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 FF 3 PM_LookingForPlayer()
-    Loop
-    Spotted:
-    TNT1 A 0 PM_LookingForPlayer()
-See2:
-    PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-	TNT1 A 0 A_ChangeFlag("NOPAIN",False)
-    PL01 ABB 3 A_Chase
-	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 CC 3 A_Chase
-    PL01 D 3 A_PlaySound("Plasmatron/Step",CHAN_6)
-    PL01 DEE 3 A_Chase
-	TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7)
-	PL01 FF 3 A_Chase
-    Loop
-Missile:
-	TNT1 A 0 A_Jump(70,"Missile2","Missile3")
-	TNT1 A 0 A_Jump(60,"Missile4")
-	PL01 AG 3 A_FaceTarget
-	PL01 G 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
-	PL01 H 1 Light("AvatarFireball4") A_Aim()
-    PL01 H 4 Light("AvatarFireball4")
 	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_LeadTarget(23);
-	A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-    user_numbullets--;
-    return state(0);
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+				user_numbullets = random(5,50);
+			}
+		Idle:
+			PL01 A 10 PM_Look();
+			Loop;
+		Look:
+			PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6);
+			PL01 ABB 3 PM_LookingForPlayer();
+			TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7);
+			PL01 CC 3 PM_LookingForPlayer();
+			TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP);
+			PL01 D 3 A_PlaySound("Plasmatron/Step",CHAN_6);
+			PL01 DEE 3 PM_LookingForPlayer();
+			TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7);
+			PL01 FF 3 PM_LookingForPlayer();
+			Loop;
+		Spotted:
+			TNT1 A 0 PM_LookingForPlayer();
+		See2:
+			PL01 A 3 A_PlaySound("Plasmatron/Step",CHAN_6);
+			TNT1 A 0 {bNOPAIN = False;}
+			PL01 ABB 3 A_Chase();
+			TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7);
+			PL01 CC 3 A_Chase();
+			PL01 D 3 A_PlaySound("Plasmatron/Step",CHAN_6);
+			PL01 DEE 3 A_Chase();
+			TNT1 A 0 A_PlaySound("Plasmatron/Servos",CHAN_7,0.7);
+			PL01 FF 3 A_Chase();
+			Loop;
+		Missile:
+			TNT1 A 0 A_Jump(70,"Missile2","Missile3");
+			TNT1 A 0 A_Jump(60,"Missile4");
+			PL01 AG 3 A_FaceTarget();
+			PL01 G 3 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/SmallFire");
+			PL01 H 1 Light("AvatarFireball4") A_Aim();
+			PL01 H 4 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_LeadTarget(23);
+				A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2;
+			TNT1 A 0 A_PlaySound("Plasmatron/SmallFire");
+			PL01 H 1 Light("AvatarFireball4") A_Aim();
+			PL01 H 4 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_LeadTarget(23);
+				A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2;
+			TNT1 A 0 A_PlaySound("Plasmatron/SmallFire");
+			PL01 H 1 Light("AvatarFireball4") A_Aim();
+			PL01 H 4 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_LeadTarget(23);
+				A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				A_LeadTarget(23);
+				A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 4 A_FaceTarget();
+			Goto See2;
+		Missile3:
+			PL01 AG 5 A_FaceTarget();
+			TNT1 A 0 {bNOPAIN = True;}
+			PL01 G 5 A_FaceTarget();
+			PL01 H 7 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_MonsterRefire(10,"See2");
+			TNT1 A 0 A_Jump(10,"See2");
+			Goto Missile3+4;
+		Missile2:
+			PL01 AGGG 5 A_FaceTarget();
+			TNT1 A 0 {bNOPAIN = True;}
+			PL01 G 5 A_FaceTarget();
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_FaceTarget();
+			TNT1 A 0 A_PlaySound("Plasmatron/Fire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_PlaySound("Plasmatron/Fire");
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 G 2 A_MonsterRefire(10,"See2");
+			TNT1 A 0 A_Jump(5,"See2");
+			Goto Missile2+6;
+		Missile4:
+			PL01 AGGG 3 A_FaceTarget();
+			TNT1 A 0 {bNOPAIN = True;}
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarCharge");
+			PL01 GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHG 1 Light("AvatarFireball2")
+			{
+				A_FaceTarget();
+				A_SpawnItemEx("OrangeEmbersFloat",3,0,20,frandom(1,3),frandom(-1,1),frandom(-1,1));
+			}
+			TNT1 A 0 A_JumpIf(user_numbullets < 0,"MortarNoAmmo");
+			PL01 G 8 A_FaceTarget();
+			TNT1 A 0 A_CheckRange(150,"MortarLmao");
+			TNT1 A 0 A_CheckRange(300,"MortarLow");
+			TNT1 A 0 A_CheckRange(600,"MortarMed");
+			TNT1 A 0 A_CheckRange(1000,"MortarHi");
+			Goto MortarHi;
+		MortarLmao:
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarFire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(15,20));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 GGA 5 A_FaceTarget();
+			Goto See2;
+		MortarLow:
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarFire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(30,33));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 GGA 5 A_FaceTarget();
+			Goto See2;
+		MortarMed:
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarFire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(41,44));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 GGA 5 A_FaceTarget();
+			Goto See2;
+		MortarHi:
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarFire");
+			PL01 H 6 Light("AvatarFireball4")
+			{
+				If(user_numbullets < 0)
+				{
+					Return ResolveState("NoAmmo");
+				}
+				A_SpawnProjectile("PlasmatronFlare",22,0);
+				A_SpawnProjectile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(50,55));
+				user_numbullets--;
+				Return ResolveState(null);
+			}
+			PL01 GGA 5 A_FaceTarget();
+			Goto See2;
+		MortarNoAmmo:
+			TNT1 A 0 A_PlaySound("Fusionite/ScattershotDry");
+			PL01 H 3 Light("AvatarFireball4")
+			{
+				A_FaceTarget();
+				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+			}
+			PL01 G 3 A_FaceTarget();
+			Goto NoAmmo;
+		NoAmmo:
+			TNT1 A 0 A_PlaySound("PM/ArachnoCooldown");
+			TNT1 A 0 {bNOPAIN = True;}
+			PL01 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 3 Light("AvatarFireball3") A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+		ZReload:
+			TNT1 A 0 A_PlaySound("PM/ArachnoReloadStart",CHAN_5);
+			PL01 G 25 Light("AvatarFireball2") A_FaceTarget();
+			TNT1 A 0 A_PlaySound("PM/ArachnoReload",CHAN_5,1,true);
+			PL01 GHGHGHGHGH 2 Light("AvatarFireball2")
+			{
+				If(user_numbullets > 50)
+				{
+					Return ResolveState("ZReload2");
+				}
+				A_FaceTarget();
+				user_numbullets++;
+				Return ResolveState(null);
+			}
+			Goto ZReload+3;
+		ZReload2:
+			TNT1 A 0;
+			TNT1 A 0 {bNOPAIN = False;}
+			TNT1 A 0 A_PlaySound("PM/ArachnoReloadEnd",CHAN_5);
+			PL01 GGG 5 Light("AvatarFireball3") A_FaceTarget();
+			TNT1 A 0 A_Jump(56,"Missile");
+			Goto See2;
+		Pain:
+			TNT1 A 0;
+			PL01 I 12 A_Pain();
+			Goto See2;
+		Death:
+			TNT1 A 0 A_StopSounds(0,0);
+			PL01 J 15 A_Scream();
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30);
+			PL01 K 4 Light("AvatarFireball4") A_SpawnItemEx("OrangeEmbersSpawn",0,0,30);
+			TNT1 A 0 A_PlaySound("ArachChassisExplode",CHAN_5);
+			TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,30);
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30);
+			TNT1 AAAAA 0 A_SpawnItemEx("PM_ArachnotronGenericExplosionFlames",0,0,35,random(-7,7),random(-7,7),random(0,7));
+			TNT1 A 0 A_NoBlocking();
+			TNT1 A 0 A_SpawnItemEx("PM_NormalBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAA 0 A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 FFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360));
+			TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20);
+			TNT1 A 0 A_PlaySound("ArachExpGore",CHAN_6);
+			PL01 L 6 Light("TyrantMExp");
+			TNT1 AAAAAA 0 A_SpawnProjectile("SmokePuff",random(24,40),0,random(0,360),2,random(0,360));
+			PL01 MN 6 Light("TyrantMExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
+			TNT1 A 0 A_PlaySound("ArachCrash",CHAN_7);
+			PL01 O 6 Light("AvatarFireball4") A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
+			PL01 PPPPPPP 3
+			{
+				A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
+				A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
+			}
+			PL01 P 1 A_KillMaster();
+			PL01 P -1;
+			Stop;
+		Raise:
+			PL01 ONMLKJ 6;
+			Goto Look;
 	}
-    PL01 G 2
-	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
-	PL01 H 1 Light("AvatarFireball4") A_Aim()
-	PL01 H 4 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_LeadTarget(23);
-	A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 G 2
-	TNT1 A 0 A_PlaySound("Plasmatron/SmallFire")
-	PL01 H 1 Light("AvatarFireball4") A_Aim()
-	PL01 H 4 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_LeadTarget(23);
-	A_SpawnProjectile("PlasmatronFlare",22,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronSmallBallTrail",20,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",15,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,-8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-	A_LeadTarget(23);
-	A_SpawnProjectile("PM_PTronBallSmall",30,8,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 G 4 A_FaceTarget
-	Goto See2
-Missile3:
-    PL01 AG 5 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NOPAIN",True)
-	PL01 G 5 A_FaceTarget
-    PL01 H 7 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 G 2 A_MonsterRefire(10,"See2")
-	TNT1 A 0 A_Jump(10,"See2")
-    Goto Missile3+4
-Missile2:
-    PL01 AGGG 5 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NOPAIN",True)
-	PL01 G 5 A_FaceTarget
-    PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-	PL01 G 2 A_FaceTarget
-	TNT1 A 0 A_PlaySound("Plasmatron/Fire")
-	PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-    A_PlaySound("Plasmatron/Fire");
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 G 2 A_MonsterRefire(10,"See2")
-	TNT1 A 0 A_Jump(5,"See2")
-    Goto Missile2+6
- Missile4:
-    PL01 AGGG 3 A_FaceTarget
-    TNT1 A 0 A_ChangeFlag("NOPAIN",True)
-    TNT1 A 0 A_PlaySound("Plasmatron/MortarCharge")
-    PL01 GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHG 1 Light("AvatarFireball2")
-    {
-    A_FaceTarget;
-    A_SpawnItemEx("OrangeEmbersFloat",3,0,20,frandom(1,3),frandom(-1,1),frandom(-1,1));
-    }
-    TNT1 A 0 A_JumpIf(user_numbullets < 0,"MortarNoAmmo")
-	PL01 G 8 A_FaceTarget
-    TNT1 A 0 A_CheckRange(150,"MortarLmao")
-    TNT1 A 0 A_CheckRange(300,"MortarLow")
-    TNT1 A 0 A_CheckRange(600,"MortarMed")
-    TNT1 A 0 A_CheckRange(1000,"MortarHi")
-    Goto MortarHi
-MortarLmao:
-	TNT1 A 0 A_PlaySound("Plasmatron/MortarFire")
-    PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(15,20));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 GGA 5 A_FaceTarget
-    Goto See2
-MortarLow:
-	TNT1 A 0 A_PlaySound("Plasmatron/MortarFire")
-    PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(30,33));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 GGA 5 A_FaceTarget
-    Goto See2
-MortarMed:
-	TNT1 A 0 A_PlaySound("Plasmatron/MortarFire")
-    PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(41,44));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 GGA 5 A_FaceTarget
-    Goto See2
-MortarHi:
-	TNT1 A 0 A_PlaySound("Plasmatron/MortarFire")
-    PL01 H 6 Light("AvatarFireball4")
-	{
-    if(user_numbullets < 0)
-    {
-     return state("NoAmmo");
-    }
-	A_CustomMissile("PlasmatronFlare",22,0);
-	A_CustomMissile("PM_PTronMortarBall",22,0,random(-5,5),CMF_OFFSETPITCH,random(50,55));
-    user_numbullets--;
-    return state(0);
-	}
-    PL01 GGA 5 A_FaceTarget
-    Goto See2
-MortarNoAmmo:
-	TNT1 A 0 A_PlaySound("Fusionite/ScattershotDry")
-    PL01 H 3 Light("AvatarFireball4")
-	{
-	A_FaceTarget;
-	A_CustomMissile("PM_GreenFusioniteFireFlare",22,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-    }
-	PL01 G 3 A_FaceTarget
-    Goto NoAmmo
-NoAmmo:
-	TNT1 A 0 A_PlaySound("PM/ArachnoCooldown")
-	TNT1 A 0 A_ChangeFlag("NOPAIN",True)
-	PL01 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 3 Light("AvatarFireball3") A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-ZReload:
-    TNT1 A 0 A_PlaySound("PM/ArachnoReloadStart",CHAN_5)
-    PL01 G 25 Light("AvatarFireball2") A_FaceTarget
-    TNT1 A 0 A_PlaySound("PM/ArachnoReload",CHAN_5,1,true)
-    PL01 GHGHGHGHGH 2 Light("AvatarFireball2")
-    {
-    if(user_numbullets > 50)
-    {
-    return state("ZReload2");
-    }
-    A_FaceTarget;
-    user_numbullets++;
-    return state(0);
-    }
-    Goto ZReload+3
-ZReload2:
-    TNT1 A 0
-	TNT1 A 0 A_ChangeFlag("NOPAIN",False)
-    TNT1 A 0 A_PlaySound("PM/ArachnoReloadEnd",CHAN_5)
-    PL01 GGG 5 Light("AvatarFireball3") A_FaceTarget
-    TNT1 A 0 A_Jump(56,"Missile")
-    Goto See2
-Pain:
-	TNT1 A 0
-    PL01 I 12 A_Pain
-    Goto See2
-Death:
-    TNT1 A 0 A_StopSounds(0,0)
-	PL01 J 15 A_Scream
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30)
-    PL01 K 4 Light("AvatarFireball4") A_SpawnItemEx("OrangeEmbersSpawn",0,0,30)
-	TNT1 A 0 A_PlaySound("ArachChassisExplode",CHAN_5)
-	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,30)
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30)
-	TNT1 AAAAA 0 A_SpawnItemEx("PM_ArachnotronGenericExplosionFlames",0,0,35,random(-7,7),random(-7,7),random(0,7))
-	TNT1 A 0 A_NoBlocking
-	TNT1 A 0 A_SpawnItemEx("PM_NormalBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 AAAAA 0 A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION)
-	TNT1 FFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360))
-	TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20)
-	TNT1 A 0 A_PlaySound("ArachExpGore",CHAN_6)
-	PL01 L 6 Light("TyrantMExp")
-	TNT1 AAAAAA 0 A_CustomMissile("SmokePuff",random(24,40),0,random(0,360),2,random(0,360))
-    PL01 MN 6 Light("TyrantMExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15))
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10))
-	TNT1 A 0 A_PlaySound("ArachCrash",CHAN_7)
-    PL01 O 6 Light("AvatarFireball4") A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2)
-	PL01 PPPPPPP 3
-	{
-	A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
-	A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
-	}
-	PL01 P 1 A_KillMaster
-    PL01 P -1
-    Stop
-Raise:
-	PL01 ONMLKJ 6
-	Goto Look
-    }
 }
 
-ACTOR PlasmatronFlare
+Class PlasmatronFlare : Actor
 {
-+CLIENTSIDEONLY
-+NOINTERACTION
-+MISSILE
-RenderStyle Add
-Speed 20
-Scale 0.45
-Alpha 0.98
-States
-{
-Spawn:
-    DTPR OOOOOOOO 1 Bright
+	Default
 	{
-	A_FadeOut(0.08);
+		+CLIENTSIDEONLY
+		+NOINTERACTION
+		+MISSILE
+		RenderStyle "Add";
+		Speed 20;
+		Scale 0.45;
+		Alpha 0.98;
 	}
-    Stop
-    }
-}
 
-ACTOR PM_PTronBall
-{
-   Height 7
-   Radius 7
-   Speed 11
-   Damage 3
-   Scale 0.19
-   PROJECTILE
-   RenderStyle Add
-   +BRIGHT
-   +FORCEXYBILLBOARD
-   SeeSound ""
-   DeathSound "GHeavyPlasmaExp"
-   Decal "PM_PlasmatronScorchLarge"
-   States
-   {
-   Spawn:
-      DTPR O 1 Bright Light("AvatarFireball2")
-	  {
-	  A_SpawnItemEx("PTronBallTrail",0,0,0,0,0,0,0,128,0);
-	  }
-      Loop
-   Death:
-	  TNT1 A 0 A_Explode(30,100)
-	  TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0)
-	  TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-	  //TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
-	  TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-	  TNT1 A 0 A_SpawnItemEx("ZombieDropFire",0,0,0,0,0,0,0,0,100)
-	  TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig")
-	  TNT1 A 10 Light("AvatarFireball4")
-      Stop
-	  }
-}
-
-ACTOR PM_PTronBallSmall
-{
-   Height 5
-   Radius 5
-   Speed 23
-   Damage (8)
-   Scale 0.12
-   PROJECTILE
-   RenderStyle Add
-   +BRIGHT
-   +SEEKERMISSILE
-   +FORCEXYBILLBOARD
-   SeeSound ""
-   DeathSound "GenericPlasmaExp"
-   Decal "PM_PlasmatronScorchSmall"
-   States
-   {
-   Spawn:
-      DTPR O 1 Bright Light("AvatarFireball1")
-      TNT1 A 0 A_JumpIfTracerCloser(250,"Noise")
-      Loop
-   Noise:
-      TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75)
-   Cont:
-      DTPR O 1 Bright Light("AvatarFireball1")
-      Loop
-   Death:
-	  TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-	  TNT1 A 10 Light("AvatarFireball4")
-      Stop
-	  }
-}
-
-ACTOR PTronBallTrail
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-+FORCEXYBILLBOARD
-RenderStyle Add
-+Bright
-Scale 0.16
-Alpha 0.95
-States
-{
-Spawn:
-	TNT1 A 2
-Go:
-    DTPR O 1 Bright 
+	States
 	{
-	A_SetScale(ScaleX-0.035);
-	A_FadeOut(0.21);
+		Spawn:
+			DTPR OOOOOOOO 1 Bright
+			{
+				A_FadeOut(0.08);
+			}
+			Stop;
 	}
-    Loop
-    }
 }
 
-ACTOR PM_PTronSmallBallTrail
+Class PM_PTronBall : Actor
 {
-RenderStyle Add
-+Bright
-Height 5
-Radius 5
-Speed 23
-Scale 0.10
-Alpha 0.55
-PROJECTILE
-+RIPPER
-Damage 0
-States
-{
-Spawn:
-	TNT1 A 2
-Go:
-    TNT1 A 1 Bright A_SpawnItemEx("PM_PTronBallTrailSmall2")
-    Loop
-    }
-}
-
-ACTOR PM_PTronBallTrailSmall2
-{
-+CLIENTSIDEONLY
-+NOINTERACTION
-RenderStyle Add
-+Bright
-Scale 0.4
-Alpha 0.35
-States
-{
-Spawn:
-	TNT1 A 2
-Go:
-    DTPR O 1 Bright 
+	Default
 	{
-	A_SetScale(ScaleX-0.05);
-	A_FadeOut(0.15);
+		Height 7;
+		Radius 7;
+		Speed 11;
+		Damage 3;
+		Scale 0.19;
+		PROJECTILE;
+		RenderStyle "Add";
+		+BRIGHT
+		+FORCEXYBILLBOARD
+		SeeSound "";
+		DeathSound "GHeavyPlasmaExp";
+		Decal "PM_PlasmatronScorchLarge";
 	}
-    Loop
-    }
+
+	States
+	{
+		Spawn:
+			DTPR O 1 Bright Light("AvatarFireball2")
+			{
+				A_SpawnItemEx("PTronBallTrail",0,0,0,0,0,0,0,128,0);
+			}
+			Loop;
+		Death:
+			TNT1 A 0 A_Explode(30,100);
+			TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0);
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+			//TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
+			TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+			TNT1 A 0 A_SpawnItemEx("ZombieDropFire",0,0,0,0,0,0,0,0,100);
+			TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig");
+			TNT1 A 10 Light("AvatarFireball4");
+			Stop;
+	}
 }
-ACTOR PM_PTronMortarBall
+
+Class PM_PTronBallSmall : Actor
 {
-   Height 7
-   Radius 7
-   Speed 11
-   Damage 3
-   Scale 0.25
-   Gravity 0.15
-   PROJECTILE
-   RenderStyle Add
-   +BRIGHT
-   -NOGRAVITY
-   +FORCEXYBILLBOARD
-   SeeSound ""
-   DeathSound "Plasmatron/MortarExp"
-   Decal "PM_PlasmatronScorchLarge"
-   States
-   {
-   Spawn:
-      TNT1 A 0
-      TNT1 A 0 A_PlaySound("Plasmatron/MortarLoop",6,1,true)
-   Spawn2:
-      DTPR O 1 Bright Light("AvatarFireball3")
-	  {
-	  A_SpawnItemEx("PTronBallTrail",0,0,0,0,0,0,0,128,0);
-      A_SpawnItemEx("PTronMortarBallTrail",-5,0,0,0,0,0,0,128,0);
-	  }
-      Loop
-   Death:
-      TNT1 A 0 A_StopSound(6)
-      TNT1 A 0 A_PlaySound("BigExplosionDistant",6)
-	  TNT1 A 0 A_Explode(50,100)
-	  TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0)
-	  TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-	  //TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
-	  TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-      TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-      TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION)      TNT1 AAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-	  TNT1 AA 0 A_SpawnItemEx("OrangeShockwaveBig")
-	  TNT1 A 10 Light("AvatarFireball4")
-      Stop
+	Default
+	{
+		Height 5;
+		Radius 5;
+		Speed 23;
+		Damage 8;
+		Scale 0.12;
+		PROJECTILE;
+		RenderStyle "Add";
+		+BRIGHT
+		+SEEKERMISSILE
+		+FORCEXYBILLBOARD
+		SeeSound "";
+		DeathSound "GenericPlasmaExp";
+		Decal "PM_PlasmatronScorchSmall";
+	}
+
+	States
+	{
+		Spawn:
+			DTPR O 1 Bright Light("AvatarFireball1");
+			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
+			Loop;
+		Noise:
+			TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0,0.75);
+		Cont:
+			DTPR O 1 Bright Light("AvatarFireball1");
+			Loop;
+		Death:
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+			TNT1 A 10 Light("AvatarFireball4");
+			Stop;
 	  }
 }
 
-ACTOR PTronMortarBallTrail
+Class PTronBallTrail : Actor
 {
-+CLIENTSIDEONLY
-+NOINTERACTION
-+FORCEXYBILLBOARD
-RenderStyle Add
-+Bright
-Scale 0.23
-Alpha 0.95
-States
-{
-Spawn:
-	TNT1 A 2
-Go:
-    DTPR O 1 Bright 
+	Default
 	{
-	A_SetScale(ScaleX-0.015);
-	A_FadeOut(0.10);
+		+CLIENTSIDEONLY
+		+NOINTERACTION
+		+FORCEXYBILLBOARD
+		RenderStyle "Add";
+		+Bright
+		Scale 0.16;
+		Alpha 0.95;
 	}
-    Loop
-    }
+
+	States
+	{
+		Spawn:
+			TNT1 A 2;
+		Go:
+			DTPR O 1 Bright
+			{
+				A_SetScale(Scale.X-0.035);
+				A_FadeOut(0.21);
+			}
+			Loop;
+	}
+}
+
+Class PM_PTronSmallBallTrail : Actor
+{
+	Default
+	{
+		RenderStyle "Add";
+		+Bright
+		Height 5;
+		Radius 5;
+		Speed 23;
+		Scale 0.10;
+		Alpha 0.55;
+		PROJECTILE;
+		+RIPPER
+		Damage 0;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 2;
+		Go:
+			TNT1 A 1 Bright A_SpawnItemEx("PM_PTronBallTrailSmall2");
+			Loop;
+	}
+}
+
+Class PM_PTronBallTrailSmall2 : Actor
+{
+	Default
+	{
+		+CLIENTSIDEONLY
+		+NOINTERACTION
+		RenderStyle "Add";
+		+Bright
+		Scale 0.4;
+		Alpha 0.35;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 2;
+		Go:
+			DTPR O 1 Bright 
+			{
+				A_SetScale(Scale.X-0.05);
+				A_FadeOut(0.15);
+			}
+			Loop;
+	}
+}
+Class PM_PTronMortarBall : Actor
+{
+	Default
+	{
+		Height 7;
+		Radius 7;
+		Speed 11;
+		Damage 3;
+		Scale 0.25;
+		Gravity 0.15;
+		PROJECTILE;
+		RenderStyle "Add";
+		+BRIGHT
+		-NOGRAVITY
+		+FORCEXYBILLBOARD
+		SeeSound "";
+		DeathSound "Plasmatron/MortarExp";
+		Decal "PM_PlasmatronScorchLarge";
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 A_PlaySound("Plasmatron/MortarLoop",6,1,true);
+		Spawn2:
+			DTPR O 1 Bright Light("AvatarFireball3")
+			{
+				A_SpawnItemEx("PTronBallTrail",0,0,0,0,0,0,0,128,0);
+				A_SpawnItemEx("PTronMortarBallTrail",-5,0,0,0,0,0,0,128,0);
+			}
+			Loop;
+		Death:
+			TNT1 A 0 A_StopSound(6);
+			TNT1 A 0 A_PlaySound("BigExplosionDistant",6);
+			TNT1 A 0 A_Explode(50,100);
+			TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0);
+			TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+			//TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
+			TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+			TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);      
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+			TNT1 AA 0 A_SpawnItemEx("OrangeShockwaveBig");
+			TNT1 A 10 Light("AvatarFireball4");
+			Stop;
+	}
+}
+
+Class PTronMortarBallTrail : Actor
+{
+	Default
+	{
+		+CLIENTSIDEONLY
+		+NOINTERACTION
+		+FORCEXYBILLBOARD
+		RenderStyle "Add";
+		+Bright
+		Scale 0.23;
+		Alpha 0.95;
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 2;
+		Go:
+			DTPR O 1 Bright 
+			{
+				A_SetScale(Scale.X-0.015);
+				A_FadeOut(0.10);
+			}
+			Loop;
+	}
 }

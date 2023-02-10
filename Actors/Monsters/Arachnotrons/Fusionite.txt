@@ -141,10 +141,7 @@ Class PM_Fusionite : PMMonsterBase
 			Goto Rapid+4;
 		NoAmmo:
 			TNT1 A 0 A_PlaySound("PM/ArachnoCooldown");
-			TNT1 A 0 
-			{
-				bNOPAIN = True;
-			}
+			TNT1 A 0 {bNOPAIN = True;}
 			TNT1 AAAAAAAAAAAA 0 A_SpawnParticle("ffaa21",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),32,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
 			FSPI GGGGGGGGGGGGGGGGGGGG 1 Light("Avatarfireball4")
 			{
@@ -333,7 +330,7 @@ Class PM_Fusionite : PMMonsterBase
 		ZReload:
 			TNT1 A 0 A_PlaySound("PM/ArachnoReloadStart",CHAN_5);
 			FSPI G 25 A_FaceTarget();
-			TNT1 A 0 A_PlaySound("PM/ArachnoReload",CHAN_5,1,true);
+			TNT1 A 0 A_PlaySound("PM/ArachnoReload",CHAN_5,1,True);
 			FSPI GHGHGHGHGH 2 Light("GreenBall2")
 			{
 				if(user_numbullets > 75)
@@ -370,10 +367,7 @@ Class PM_Fusionite : PMMonsterBase
 			}
 			Goto ZReload+3;
 		ZReload2:
-			TNT1 A 0
-			{
-				bNOPAIN = False;
-			}
+			TNT1 A 0 {bNOPAIN = False;}
 			TNT1 A 0 A_PlaySound("PM/ArachnoReloadEnd",CHAN_5);
 			FSPI GGG 5 Light("GreenBall3") A_FaceTarget();
 			TNT1 A 0 A_Jump(56,"Missile");
