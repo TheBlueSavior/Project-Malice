@@ -456,7 +456,7 @@ Class PM_FallenMarine : PMMonsterBase
 		 }		
 		A_PlaySound("FallenSoldiers/MGun", CHAN_WEAPON);
 		A_PlaySound("ZombieRifleDistant", CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2), CMF_OFFSETPITCH, 1
+		A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2), CMF_OFFSETPITCH, 1);
 		A_SpawnProjectile("BulletFlare", 35, 7, 15, 0);
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
