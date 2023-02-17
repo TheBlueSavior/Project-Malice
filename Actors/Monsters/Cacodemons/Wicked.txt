@@ -25,6 +25,7 @@ Class PM_Wicked : PMMonsterBase
 		//+NOINFIGHTING
 		+Float
 		+FloatBob
+		PMMonsterBase.RealHeight 86;
 	}
 
 	States

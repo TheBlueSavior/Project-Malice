@@ -72,7 +72,7 @@ Phobos867/Noiser - 2016 Manc sprites edited from Hell Forged Corpulent
 Horror Movie Guy - Bruiser/Doom 4 Baron sprites
 Ice Sprites/Code - Project Brutality
 Light and Dark Smoke - Arcanum
-Accensus - Target leading code
+Accensus - Target leading code, Venting sounds, Hitbox code
 Bugsie - Revamped bullet spark code
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
