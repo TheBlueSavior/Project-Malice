@@ -99,7 +99,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		A_FaceTarget();
 		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
 		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
+		//A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
@@ -134,7 +134,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		A_FaceTarget();
 		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
 		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
+		//A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
@@ -152,7 +152,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		A_FaceTarget();
 		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
 		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
+		//A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
@@ -170,7 +170,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		A_FaceTarget();
 		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
 		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
+		//A_SpawnProjectile("BulletFlare", 32, 11, 15, 0);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5, 5), CMF_OFFSETPITCH, random(-3, 3));

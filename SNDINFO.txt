@@ -343,6 +343,7 @@ Beholder/Cry1 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry1.ogg"
 Beholder/Cry2 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry2.ogg"
 Beholder/Cry3 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
+$volume Beholder/Cry 0.8
 
 Beholder/Spit "Sounds/Monsters/Cacodemons/Beholder/BeholderSpit.ogg"
 $limit Beholder/Spit 10
@@ -844,9 +845,9 @@ Nailgunner/SpinUp   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinUp.ogg"
 Nailgunner/SpinLoop   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinLoop.ogg"
 Nailgunner/SpinDown   "Sounds/Monsters/Shotgunners/Nailgunner/NGunnerSpinDown.ogg"
 
-$rolloff Nailgunner/SpinUp 300 2500
-$rolloff Nailgunner/SpinLoop 300 2500
-$rolloff Nailgunner/SpinDown 300 2500
+$rolloff Nailgunner/SpinUp 300 1500
+$rolloff Nailgunner/SpinLoop 300 1500
+$rolloff Nailgunner/SpinDown 300 1500
 $volume Nailgunner/SpinUp 0.65
 $volume Nailgunner/SpinLoop 0.55
 $volume Nailgunner/SpinDown 0.65
@@ -2884,6 +2885,7 @@ CorpseFallMet1 "Sounds/Other/CorpseFallMetal1.ogg"
 CorpseFallMet2 "Sounds/Other/CorpseFallMetal2.ogg"
 CorpseFallMet3 "Sounds/Other/CorpseFallMetal3.ogg"
 CorpseFallMet4 "Sounds/Other/CorpseFallMetal4.ogg"
+$volume Corpse/FallMetal 0.7
 
 $random ZTrooper/FragBounce { ZTroFragBounce1 ZTroFragBounce2 ZTroFragBounce3 ZTroFragBounce4 }
 ZTroFragBounce1 "Sounds/Monsters/Zombiemen/ZombieTrooper/ZTroFragBounce1.ogg"
