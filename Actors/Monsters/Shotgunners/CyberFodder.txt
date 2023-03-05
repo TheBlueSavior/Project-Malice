@@ -125,7 +125,7 @@ Class PM_CyberFodder : PMMonsterBase
 	{
 	A_FaceTarget(0.8,3,0,0);
 	A_SpawnItemEx("CFireFlare",20,4,36);
-	A_SpawnProjectile("ZombieFire",36,4,random(-1,1),CMF_AIMDIRECTION,pitch*-1);
+	A_SpawnProjectile("ZombieFire",36,4,random(-1,1),CMF_AIMDIRECTION,pitch*1);
 	}
 	TNT1 A 0 A_StopSound(CHAN_5);
 	CFOD F 4;

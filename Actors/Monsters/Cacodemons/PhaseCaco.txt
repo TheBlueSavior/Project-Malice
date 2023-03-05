@@ -256,7 +256,7 @@ Class PM_PhaseCacoBall : Actor
 		Speed 15;
 		FastSpeed 27;
 		Scale 0.4;
-		Damage 34;
+		DamageFunction (34);
 		Projectile;
 		+RANDOMIZE
 		RenderStyle "Add";
@@ -349,7 +349,7 @@ Class PM_PhaseCacoBall2 : Actor
 {
 	Default
 	{
-	    Damage 14;
+	    DamageFunction (14);
 		Speed 12;
 		Radius 3;
 		Height 5;

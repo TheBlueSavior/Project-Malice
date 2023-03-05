@@ -343,7 +343,7 @@ Beholder/Cry1 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry1.ogg"
 Beholder/Cry2 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry2.ogg"
 Beholder/Cry3 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
-$volume Beholder/Cry 0.8
+$volume Beholder/Cry 0.5
 
 Beholder/Spit "Sounds/Monsters/Cacodemons/Beholder/BeholderSpit.ogg"
 $limit Beholder/Spit 10
@@ -1197,8 +1197,9 @@ ArachCrash "Sounds/Monsters/Arachnotrons/Fusionite/ArachCrash.ogg"
 ArachExpGore "Sounds/Monsters/Arachnotrons/Fusionite/ArachExpGore.ogg"
 GenericArachWalk "Sounds/Monsters/SFX/GenericArachWalk.ogg"
 
-$rolloff ArachCrash 700 1800
-$rolloff ArachExpGore 700 1800
+$rolloff ArachCrash 300 1800
+$volume ArachCrash 0.7
+$rolloff ArachExpGore 600 1800
 
 Fusionite/Sight "Sounds/Monsters/Arachnotrons/Fusionite/FusioniteSight.ogg"
 Fusionite/Active "Sounds/Monsters/Arachnotrons/Fusionite/FusioniteActive.ogg"
@@ -1218,8 +1219,8 @@ $random ArachChassisExplode { ArachChassisExplode1 ArachChassisExplode2 ArachCha
 ArachChassisExplode1 "Sounds/Monsters/SFX/ArachChassisExplode1.ogg"
 ArachChassisExplode2 "Sounds/Monsters/SFX/ArachChassisExplode2.ogg"
 ArachChassisExplode3 "Sounds/Monsters/SFX/ArachChassisExplode3.ogg"
-$volume ArachChassisExplode 0.70
-$rolloff ArachChassisExplode 400 3000
+$volume ArachChassisExplode 0.55
+$rolloff ArachChassisExplode 600 2500
 
 
 $volume Fusionite/Active 0.6
@@ -1229,7 +1230,6 @@ $volume Fusionite/Death 0.8
 $rolloff Fusionite/Scattershot 500 2000
 $rolloff Fusionite/SmallShot 500 2000
 $limit Fusionite/SmallShot 0
-$rolloff ArachChassisExplode 1500 2500
 
 $random wizard/tele 		{ wizard/tele1 wizard/tele2 wizard/tele3 wizard/tele4 }
 wizard/tele1                   dsdamnd1

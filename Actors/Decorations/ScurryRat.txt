@@ -40,6 +40,7 @@ Actor PM_ScurryRat
 	RATA A 0 A_CheckSight ("Vanish")
 	RATA C 2 A_Chase
 	RATA A 0 A_CheckSight ("Vanish")
+	TNT1 A 0 A_Jump(10,"Vanish")
     loop
   Vanish:
     TNT1 A 1

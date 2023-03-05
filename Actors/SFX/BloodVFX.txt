@@ -1766,11 +1766,11 @@ Actor PM_PestilenceBlood : RandomSpawner
 
 Actor PM_PestilenceZombieBlood : RandomSpawner
 {
-	DropItem "PM_PestilenceBlood1", 255, 2
-	DropItem "PM_PestilenceBlood2", 255, 2
-	DropItem "PM_PestilenceBlood3", 255, 2
-	DropItem "PM_PestilenceBloodMulti", 255, 2
-	DropItem "PM_PestilenceBloodMist", 255, 2
+	DropItem "PM_PestilenceBlood1", 255, 1
+	DropItem "PM_PestilenceBlood2", 255, 1
+	DropItem "PM_PestilenceBlood3", 255, 1
+	DropItem "PM_PestilenceBloodMulti", 255, 1
+	DropItem "PM_PestilenceBloodMist", 255, 1
 	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1
 	DropItem "PM_DarkRedBlood1", 255, 3
 	DropItem "PM_DarkRedBlood2", 255, 2

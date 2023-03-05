@@ -609,7 +609,7 @@ Class PM_PTronBallSmall : Actor
 		Height 5;
 		Radius 5;
 		Speed 23;
-		Damage 8;
+		DamageFunction (12);
 		Scale 0.12;
 		PROJECTILE;
 		RenderStyle "Add";
