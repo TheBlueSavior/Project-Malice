@@ -85,7 +85,7 @@ Class PM_Draugr : PMMonsterBase
 	A_FaceTarget();
 	}
     DRGR H 6 Bright Light("AvatarFireball4");
-	TNT1 A 0 A_Playsound("Draugr/RocketWhoosh", CHAN_5);
+	TNT1 A 0 A_Playsound("Draugr/Fire", CHAN_6);
     DRGR I 8 Light("AvatarFireball4")  
 	{
 	A_SpawnProjectile("PM_DraugrFastBall",66,-15,0,0);

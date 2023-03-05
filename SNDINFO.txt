@@ -2538,6 +2538,15 @@ Draugr/RocketWhoosh "Sounds/Monsters/Revenants/Draugr/DraugrRocket.ogg"
 Draugr/RocketLaunch "Sounds/Monsters/Revenants/Draugr/DraugrRocketLaunch.ogg"
 Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
 
+$random Draugr/Fire { DraugFire1 DraugFire2 DraugFire3 DraugFire4 }
+DraugFire1 "Sounds/Monsters/Revenants/Draugr/DraugrFire1.ogg"
+DraugFire2 "Sounds/Monsters/Revenants/Draugr/DraugrFire2.ogg"
+DraugFire3 "Sounds/Monsters/Revenants/Draugr/DraugrFire3.ogg"
+DraugFire4 "Sounds/Monsters/Revenants/Draugr/DraugrFire4.ogg"
+
+$rolloff Draugr/Fire 400 3000
+$volume Draugr/Proj 0.65
+
 $random Draugr/Proj { DraugProj1 DraugProj2 DraugProj3 DraugProj4 }
 DraugProj1 "Sounds/Monsters/Revenants/Draugr/DraugrProj1.ogg"
 DraugProj2 "Sounds/Monsters/Revenants/Draugr/DraugrProj2.ogg"
