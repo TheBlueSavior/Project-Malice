@@ -324,6 +324,10 @@ Class PM_PhaseCaco : PMMonsterBase
 
 Class PM_PhaseCacoBall : Actor
 {
+	int user_phspeed;
+	int user_pvspeed;
+	int user_phdist;
+	int user_pvdist;
 	Default
 	{
 		Radius 5;
@@ -349,6 +353,13 @@ Class PM_PhaseCacoBall : Actor
 	States
 	{
 		Spawn:
+			TNT1 A 0 NoDelay
+			{
+			user_phspeed = random(-3,3);
+			user_pvspeed = random(-3,3);
+			user_phdist = random(0,3);
+			user_pvdist = random(0,2);
+			}
 			TNT1 AAAA 0
 			{
 			A_SpawnParticleEx
@@ -397,7 +408,6 @@ Class PM_PhaseCacoBall : Actor
 			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(1,120),
 			size: frandom(0.2,20),
-			angle: 0,
 			xoff: random(-10,5),
 			yoff: random(-10,10),
 			zoff: random(-10,10),
@@ -407,11 +417,9 @@ Class PM_PhaseCacoBall : Actor
 			startalphaf: 1.0,
 			fadestepf: -0.5,
 			sizestep: -0.4,
-			startroll: random(-180,180),
-			rollvel: 0,
-			rollacc: 0
+			startroll: random(-180,180)
 			);
-			A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			A_ChangeVelocity(0,random(-1,1),random(-1,1));
 			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
 			}
@@ -439,7 +447,6 @@ Class PM_PhaseCacoBall : Actor
 			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(1,120),
 			size: frandom(0.2,20),
-			angle: 0,
 			xoff: random(-10,5),
 			yoff: random(-10,10),
 			zoff: random(-10,10),
@@ -449,11 +456,9 @@ Class PM_PhaseCacoBall : Actor
 			startalphaf: 1.0,
 			fadestepf: -0.5,
 			sizestep: -0.4,
-			startroll: random(-180,180),
-			rollvel: 0,
-			rollacc: 0
+			startroll: random(-180,180)
 			);
-			A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			A_SeekerMissile(1,1,SMF_PRECISE);
 			A_ChangeVelocity(0,random(-1,1),random(-1,1));
 			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
@@ -482,7 +487,6 @@ Class PM_PhaseCacoBall : Actor
 			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(1,120),
 			size: frandom(0.2,20),
-			angle: 0,
 			xoff: random(-10,5),
 			yoff: random(-10,10),
 			zoff: random(-10,10),
@@ -492,11 +496,9 @@ Class PM_PhaseCacoBall : Actor
 			startalphaf: 1.0,
 			fadestepf: -0.5,
 			sizestep: -0.4,
-			startroll: random(-180,180),
-			rollvel: 0,
-			rollacc: 0
+			startroll: random(-180,180)
 			);
-			A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
 			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
 			}
@@ -524,7 +526,6 @@ Class PM_PhaseCacoBall : Actor
 			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(1,120),
 			size: frandom(0.2,20),
-			angle: 0,
 			xoff: random(-10,5),
 			yoff: random(-10,10),
 			zoff: random(-10,10),
@@ -534,14 +535,335 @@ Class PM_PhaseCacoBall : Actor
 			startalphaf: 1.0,
 			fadestepf: -0.5,
 			sizestep: -0.4,
-			startroll: random(-180,180),
-			rollvel: 0,
-			rollacc: 0
+			startroll: random(-180,180)
 			);
-			A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			A_SeekerMissile(1,1,SMF_PRECISE);
 			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
 			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 AAA 1 Bright Light("PhaseCacBall")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,5),
+			size: random(1,100),
+			velx: random(-1,1),
+			vely: random(-1,1),
+			velz: random(-1,1),
+			startalphaf: 0.9,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 BBB 1 Bright Light("PhaseCacBall2")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 CCC 1 Bright Light("PhaseCacBall")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 DDD 1 Bright Light("PhaseCacBall2")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 AAA 1 Bright Light("PhaseCacBall")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,5),
+			size: random(1,100),
+			velx: random(-1,1),
+			vely: random(-1,1),
+			velz: random(-1,1),
+			startalphaf: 0.9,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 BBB 1 Bright Light("PhaseCacBall2")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 CCC 1 Bright Light("PhaseCacBall")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			CAB4 DDD 1 Bright Light("PhaseCacBall2")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,4),
+			size: random(10,35),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(-6,6),
+			startalphaf: 0.7,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKPA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			}
+			TNT1 A 0
+			{
+			user_phspeed = random(-3,3);
+			user_pvspeed = random(-3,3);
+			user_phdist = random(0,3);
+			user_pvdist = random(0,2);
 			}
 			Loop;
 		Death:
