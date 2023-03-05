@@ -79,8 +79,9 @@ Class PM_Draugr : PMMonsterBase
 		Goto See2;	
   Missile:
 	TNT1 A 0 A_Jump(80,"HomingAttack","HeavyRocket");
-	DRG2 C 3 A_FaceTarget();
-    DRGR GGGGGGGGGGGG 1
+	TNT1 A 0 A_Playsound("Draugr/RocketAim");
+	DRG2 ABC 5 A_FaceTarget();
+    DRGR GGGGGGGG 1
 	{
 	A_FaceTarget();
 	}
@@ -252,7 +253,7 @@ Class PM_DraugrFastBall : RevenantTracer
     {
 	Radius 2;
 	Height 2;
-	DamageFunction (25);
+	DamageFunction (40);
 	Speed 33;
 	Projectile;
 	+RANDOMIZE
@@ -266,6 +267,77 @@ Class PM_DraugrFastBall : RevenantTracer
 	States
 	{
 	Spawn:
+		TNT1 A 0;
+		TNT1 A 0
+		{
+		A_SpawnParticleEx
+			(
+			"#d2d2d2",
+			TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(10,250),
+			size: frandom(30,80),
+			angle: 0,
+			xoff: -25,
+			yoff: 0,
+			zoff: 0,
+			velx: frandom(0,2),
+			vely: frandom(-0.4,0.4),
+			velz: frandom(-0.4,0.7),
+			accelx: 0,
+			accely: 0,
+			accelz: 0,
+			startalphaf: frandom(0.3,0.5),
+			fadestepf: -0.5,
+			sizestep: frandom(0.0,1.4),
+			startroll: random(-180,180),
+			rollvel: frandom(-1,1)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("LEYSO0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+			lifetime: random(6,9),
+			size: frandom(230,350),
+			xoff: -20,
+			startalphaf: 1.0,
+			fadestepf: -0.002,
+			sizestep: frandom(0.0,3),
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("LEYSO0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+			lifetime: random(7,15),
+			size: frandom(150,250),
+			xoff: -20,
+			startalphaf: 1.0,
+			fadestepf: -0.002,
+			sizestep: frandom(0.0,3),
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("LEYSO0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+			lifetime: random(6,10),
+			size: frandom(260,450),
+			xoff: -20,
+			startalphaf: 1.0,
+			fadestepf: -0.002,
+			sizestep: frandom(0.0,3),
+			startroll: random(-180,180)
+			);
+		}
+	Go:
 		PRJ3 AABB 1 BRIGHT Light("AvatarFireball4") 
 		{
 		A_SpawnParticleEx
