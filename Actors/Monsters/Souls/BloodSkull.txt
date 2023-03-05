@@ -117,7 +117,7 @@ TeleCharge:
 	SWBS B 2 A_SetRoll(6,SPF_INTERPOLATE)
 	TNT1 A 0 A_FaceTarget
 	TNT1 A 1 A_Wander
-	TNT1 AAAAAA 1 A_Chase("Melee",0)
+	TNT1 AAAAAA 1 A_Chase("Charge",0)
 	TNT1 A 0 A_Jump(20,"See2")
 	Loop
 Charge:
