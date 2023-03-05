@@ -2519,6 +2519,18 @@ $rolloff DComm/GunLoop 400 2200
 $rolloff DComm/WindUp 400 2200
 
 //Draugr
+
+$random Draugr/Servos { DraugrServos1 DraugrServos2 DraugrServos3 }
+DraugrServos1 "Sounds/Monsters/SFX/DraugrServos1.ogg"
+DraugrServos2 "Sounds/Monsters/SFX/DraugrServos2.ogg"
+DraugrServos3 "Sounds/Monsters/SFX/DraugrServos3.ogg"
+
+$random Draugr/Step { DraugrStep1 DraugrStep2 DraugrStep3 DraugrStep4 }
+DraugrStep1 "Sounds/Monsters/SFX/DraugrStep1.ogg"
+DraugrStep2 "Sounds/Monsters/SFX/DraugrStep2.ogg"
+DraugrStep3 "Sounds/Monsters/SFX/DraugrStep3.ogg"
+DraugrStep4 "Sounds/Monsters/SFX/DraugrStep4.ogg"
+
 Draugr/RocketWhoosh "Sounds/Monsters/Revenants/Draugr/DraugrRocket.ogg"
 Draugr/RocketLaunch "Sounds/Monsters/Revenants/Draugr/DraugrRocketLaunch.ogg"
 Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
