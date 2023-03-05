@@ -1434,6 +1434,7 @@ $volume Wretched/Pain 0.3
 $volume Wretched/Death 0.4
 $volume Wretched/Spit 0.5
 $volume Wretched/Charge 0.65
+$rolloff Wretched/Charge 200 1400
 
 $volume Wretched/ShotLoop 0.68
 $rolloff Wretched/ShotLoop 400 800
@@ -1447,7 +1448,7 @@ Wretched/Fire2 "Sounds/Monsters/Cacodemons/Wretched/WretchedFire2.ogg"
 Wretched/Fire3 "Sounds/Monsters/Cacodemons/Wretched/WretchedFire3.ogg"
 Wretched/Fire4 "Sounds/Monsters/Cacodemons/Wretched/WretchedFire4.ogg"
 
-$rolloff Wretched/Fire 550 1700
+$rolloff Wretched/Fire 350 1700
 
 $random caco/attack		{ caco/attack1 caco/attack2 caco/attack3 caco/attack4 }
 caco/attack1                     fire_01
@@ -2106,7 +2107,7 @@ $random BSkull/See { BSkullSight1 BSkullSight2 }
 BSkullSight1 "Sounds/Monsters/Souls/BloodSkull/BSkullSight1.ogg"
 BSkullSight2 "Sounds/Monsters/Souls/BloodSkull/BSkullSight2.ogg"
 
-$rolloff BSkull/See 350 1400
+$rolloff BSkull/See 200 1200
 
 $random BSkull/Pain { BSkullPain1 BSkullPain2 }
 BSkullPain1		"Sounds/Monsters/Souls/BloodSkull/BSkullPain1.ogg"
@@ -2114,7 +2115,7 @@ BSkullPain2		"Sounds/Monsters/Souls/BloodSkull/BSkullPain2.ogg"
 GenericBloodSpit		"Sounds/Monsters/SFX/GenericBloodSpit.ogg"
 GenericBloodImpact	    "Sounds/Monsters/SFX/GenericBloodImpact.ogg"
 
-$rolloff BSkull/Pain 500 1400
+$rolloff BSkull/Pain 200 1200
 $volume BSkull/Pain 0.8
 
 $random BloodSkull/Croak { BloodSkull/Croak1 BloodSkull/Croak2 BloodSkull/Croak3 BloodSkull/Croak4 }
@@ -2127,9 +2128,12 @@ $random BSkull/Active { BSkullActive1 BSkullActive2 }
 BSkullActive1 "Sounds/Monsters/Souls/BloodSkull/BSkullActive1.ogg"
 BSkullActive2 "Sounds/Monsters/Souls/BloodSkull/BSkullActive2.ogg"
 
+$volume BSkull/Active 0.7
+$volume BSkull/See 0.5
+
 BSkull/Death "Sounds/Monsters/Souls/BloodSkull/BSkullDeath.ogg"
 
-$rolloff BSkull/Death 600 1500
+$rolloff BSkull/Death 200 1300
 $volume BSkull/Death 0.8
 
 $limit GenericBloodSpit 0
@@ -2471,7 +2475,8 @@ $limit Tyrant/Death 1 32000
 Tyrant/Rocket "Sounds/Monsters/Bosses/Tyrant/TyrRocket.ogg"
 Tyrant/RocketExp "Sounds/Monsters/Bosses/Tyrant/TyrRocketExp.ogg"
 $rolloff Tyrant/Rocket 300 2200
-$rolloff Tyrant/RocketExp 450 1500
+$rolloff Tyrant/RocketExp 250 1500
+$volume Tyrant/RocketExp 0.8
 
 $random Tyrant/Missile { TyrMissile1 TyrMissile2 TyrMissile3 }
 TyrMissile1 "Sounds/Monsters/Bosses/Tyrant/TyrMissile1.ogg"
@@ -2548,7 +2553,7 @@ DraugFire4 "Sounds/Monsters/Revenants/Draugr/DraugrFire4.ogg"
 
 $rolloff Draugr/Fire 400 3000
 $rolloff Draugr/RocketAim 300 2400
-$rolloff Draugr/GunAim 300 2400
+$rolloff Draugr/GunAim 350 2400
 $volume Draugr/Proj 0.65
 
 $random Draugr/Proj { DraugProj1 DraugProj2 DraugProj3 DraugProj4 }
@@ -2994,6 +2999,7 @@ $random BigExplosionDistant { BEDistant1 BEDistant2 BEDistant3 }
 BEDistant1 "Sounds/Other/BigExplosionDistant1.ogg"
 BEDistant2 "Sounds/Other/BigExplosionDistant2.ogg"
 BEDistant3 "Sounds/Other/BigExplosionDistant3.ogg"
+$volume BigExplosionDistant 0.8
 
 $limit ZombieRifleDistant 20
 $limit GunnerRifleDistant 20
@@ -3003,7 +3009,7 @@ $limit BigExplosionDistant 20
 $rolloff ZombieRifleDistant 100 3800
 $rolloff GunnerRifleDistant 200 3800
 $rolloff ShotgunnerGunDistant 300 3800
-$rolloff BigExplosionDistant 400 4000
+$rolloff BigExplosionDistant 200 4000
 $volume BigExplosionDistant 0.75
 
 //Teleport
@@ -3483,7 +3489,8 @@ BigBloodS2 "Sounds/Monsters/SFX/GenericBloodSplashBig2.ogg"
 BigBloodS3 "Sounds/Monsters/SFX/GenericBloodSplashBig3.ogg"
 BigBloodS4 "Sounds/Monsters/SFX/GenericBloodSplashBig4.ogg"
 
-$rolloff GBloodSplashBig 450 1250
+$rolloff GBloodSplashBig 250 1250
+$volume GBloodSplashBig 0.8
 
 GenericBloodPuke "Sounds/Monsters/SFX/GenericBloodPuke.ogg"
 

@@ -3,7 +3,7 @@ Actor PM_BurntSoul : PMMonsterBase
   Health 80
   Scale 0.76
   PainChance 255
-  Speed 11
+  Speed 5
   Radius 16
   Height 56
   Mass 50
@@ -30,6 +30,7 @@ Actor PM_BurntSoul : PMMonsterBase
   +FORCEXYBILLBOARD
   +DONTHURTSPECIES
   +DONTHARMSPECIES
+  +ROLLSPRITE
   States
   {
   Spawn:
@@ -50,8 +51,10 @@ Actor PM_BurntSoul : PMMonsterBase
     Loop
   Spotted:
     TNT1 A 0 PM_AlertSound()
+  See:
   See2:
 	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
+	TNT1 A 0 A_SetRoll(0)
     BSOU AA 2 Bright Light("BurntSoulLight")
 	{
 	A_Chase("","");
@@ -63,6 +66,8 @@ Actor PM_BurntSoul : PMMonsterBase
 	A_Chase;
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
 	}
+	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3))
+	TNT1 A 0 A_Recoil(-0.3)
 	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
 	TNT1 A 0 A_JumpIfCloser(170,"Backup")
     Loop
