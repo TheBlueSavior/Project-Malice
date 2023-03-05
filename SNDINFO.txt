@@ -2531,6 +2531,9 @@ DraugrStep2 "Sounds/Monsters/SFX/DraugrStep2.ogg"
 DraugrStep3 "Sounds/Monsters/SFX/DraugrStep3.ogg"
 DraugrStep4 "Sounds/Monsters/SFX/DraugrStep4.ogg"
 
+$volume Draugr/Servos 0.75
+$volume Draugr/Step 0.85
+
 Draugr/RocketWhoosh "Sounds/Monsters/Revenants/Draugr/DraugrRocket.ogg"
 Draugr/RocketLaunch "Sounds/Monsters/Revenants/Draugr/DraugrRocketLaunch.ogg"
 Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
@@ -2563,10 +2566,10 @@ Draugr/Death1 "Sounds/Monsters/Revenants/Draugr/DraugrDeath1.ogg"
 Draugr/Death2 "Sounds/Monsters/Revenants/Draugr/DraugrDeath2.ogg"
 Draugr/Death3 "Sounds/Monsters/Revenants/Draugr/DraugrDeath3.ogg"
 
-$rolloff Draugr/Sight 800 1650
-$rolloff Draugr/Active 550 1250
-$rolloff Draugr/Pain 550 1250
-$rolloff Draugr/Death 550 1250
+$rolloff Draugr/Sight 300 1550
+$rolloff Draugr/Active 300 1250
+$rolloff Draugr/Pain 300 1250
+$rolloff Draugr/Death 300 1250
 
 
 FIREBA1 FIREBA1
