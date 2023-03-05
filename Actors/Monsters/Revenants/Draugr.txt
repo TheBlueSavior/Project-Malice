@@ -346,11 +346,11 @@ Class PM_DraugrFastBall : RevenantTracer
 		 TexMan.CheckForTexture("GNSML0"),
 		 style: STYLE_Add,
 		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		 lifetime: 35,
-		 size: 50.0,
-		 xoff: random(-3,-8),
+		 lifetime: random(25,85),
+		 size: random(40,70),
+		 xoff: random(-3,-18),
 		 velx: frandom(0,1),
-		 startalphaf: 0.7,
+		 startalphaf: 0.9,
 		 fadestepf: -1,
 		 sizestep: -1,
 		 startroll: random(-180,180)
@@ -362,26 +362,12 @@ Class PM_DraugrFastBall : RevenantTracer
 		style: STYLE_None,
 		flags: SPF_ROLL|SPF_RELATIVE,
 		lifetime: random(200,600),
-		size: 50.0,
-		xoff: random(-5,-15),
-		startalphaf: 0.4,
-		fadestepf: -1,
-		sizestep: 0.5,
-		startroll: random(-180,180)
-	);
-	A_SpawnParticleEx
-	(
-		"",
-		TexMan.CheckForTexture("GNSML0"),
-		style: STYLE_None,
-		flags: SPF_ROLL|SPF_RELATIVE,
-		lifetime: random(90,400),
-		size: 50.0,
+		size: random(40,68),
 		xoff: random(-1,-25),
 		velx: frandom(0,1),
 		startalphaf: 0.4,
 		fadestepf: -1,
-		sizestep: 1.5,
+		sizestep: 0.5,
 		startroll: random(-180,180)
 	);
        A_SpawnParticleEx
@@ -390,7 +376,7 @@ Class PM_DraugrFastBall : RevenantTracer
 		TexMan.CheckForTexture("LENRA0"),
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: random(40,80),
+		lifetime: random(20,80),
 		size: 45.0,
 		xoff: random(-2,-25),
 		velx: frandom(0,1),
@@ -431,7 +417,7 @@ Class PM_DraugrFastBall : RevenantTracer
 		TexMan.CheckForTexture("SPKOA0"),
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(5,300),
+		lifetime: random(2,250),
 		size: frandom(0.2,10),
 		xoff: random(-10,5),
 		yoff: random(-5,5),
