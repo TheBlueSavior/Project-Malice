@@ -2362,8 +2362,10 @@ PCacoSight5 "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSight5.ogg"
 PCacoSight6 "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSight6.ogg"
 PCacoSight7 "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSight7.ogg"
 PCacoSight8 "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSight8.ogg"
+$rolloff PhaseCaco/Sight 350 1350
 
-PhaseCaco/Phase "Sounds/Monsters/PhaseCaco/PCacoPhase.ogg"
+PhaseCaco/Phase "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoPhase.ogg"
+$rolloff PhaseCaco/Phase 200 1350
 
 PhaseCaco/Small                 "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSBall.ogg"
 PhaseCaco/SmallExp              "Sounds/Monsters/Cacodemons/PhaseCaco/PCacoSBallExp.ogg"
