@@ -79,6 +79,7 @@ decalgroup Bloodsplat
 decal BloodSmear1
 {
 	pic BSMEAR1
+	OpaqueBlood
 	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
@@ -89,6 +90,7 @@ decal BloodSmear1
 decal BloodSmear2
 {
 	pic BSMEAR2
+	OpaqueBlood
 	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
@@ -99,6 +101,7 @@ decal BloodSmear2
 decal BloodSmear3
 {
 	Pic BSMEAR3
+	OpaqueBlood
 	shade "BloodDefault"
 	translucent 0.85
 	randomflipx
@@ -108,6 +111,7 @@ decal BloodSmear3
 decal BloodSmear4
 {
 	Pic BSMEAR4
+	OpaqueBlood
 	shade "BloodDefault"
 	translucent 0.85
 	randomflipx

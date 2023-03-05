@@ -19,6 +19,7 @@ Class PM_PhaseCaco : PMMonsterBase
 		FloatBobStrength 0.4;
 		+DONTHARMSPECIES
 		Tag "Phase Cacodemon";
+		BloodColor "Purple";
 		Species "Cacodemon";
 		+FLOATBOB
 		+FLOAT
@@ -98,7 +99,8 @@ Class PM_PhaseCaco : PMMonsterBase
 			Goto See2;
 		Missile:
 			TNT1 A 0 A_Jump(22,"Retreat","Reposition");
-			TNT1 A 0 A_Jump(200,"Missile1");
+			TNT1 A 0 A_Jump(45,"TriShot");
+			TNT1 A 0 A_Jump(180,"Missile1");
 			CAC4 BC 7
 			{
 				A_FaceTarget();
@@ -139,6 +141,79 @@ Class PM_PhaseCaco : PMMonsterBase
 			{
 				A_FaceTarget();
 			}
+			Goto See2;
+		TriShot:
+			CAC4 ABC 6 A_FaceTarget();
+			TNT1 A 0 A_StartSound("Wretched/Charge");
+			CAC4 DDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("PhaseCacBall3")
+			{
+			A_FaceTarget();
+			A_SpawnParticleEx
+			(
+			"8F00FF",
+			TexMan.CheckForTexture("DTPRB0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: random(70,130),
+			xoff: 20,
+			zoff: 22,
+			startalphaf: 0.6,
+			fadestepf: 0.1,
+			sizestep: 0,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("PURLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,10),
+			size: random(1,120),
+			xoff: 20,
+			zoff: 22,
+			velx: random(-3,3),
+			vely: random(-3,3),
+			velz: random(-3,3),
+			startalphaf: 1.0,
+			startroll: random(-180,180)
+			);
+			}
+			CAC4 CBA 2 A_FaceTarget();
+			CAC4 BC 2
+			{
+				A_FaceTarget();
+			}
+			CAC4 D 4
+			{
+				A_FaceTarget();
+				A_SpawnProjectile("PM_PhaseCacoBall",22,0,random(-5,5));
+				A_FaceTarget();
+			}
+			CAC4 CBA 3 A_FaceTarget();
+			CAC4 BC 2
+			{
+				A_FaceTarget();
+			}
+			CAC4 D 4
+			{
+				A_FaceTarget();
+				A_SpawnProjectile("PM_PhaseCacoBall",22,0,random(-5,5));
+				A_FaceTarget();
+			}
+			CAC4 CBA 3 A_FaceTarget();
+			CAC4 BC 2
+			{
+				A_FaceTarget();
+			}
+			CAC4 D 4
+			{
+				A_FaceTarget();
+				A_SpawnProjectile("PM_PhaseCacoBall",22,0,random(-5,5));
+				A_FaceTarget();
+			}
+			CAC4 CBA 3 A_FaceTarget();
 			Goto See2;
 		Retreat:
 			TNT1 A 0 A_PlaySound("PhaseCaco/Phase",CHAN_5);
@@ -471,6 +546,7 @@ Class PM_PhaseCacoBall : Actor
 			Loop;
 		Death:
 			TNT1 A 0 A_StopSound(CHAN_5);
+			TNT1 A 1 Bright A_RadiusThrust(5000,90);
 			TNT1 AAA 0
 			{
 			A_SpawnParticleEx
