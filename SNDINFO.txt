@@ -1428,11 +1428,12 @@ $random Wretched/Death { WretDeath1 WretDeath2 }
 WretDeath1 "Sounds/Monsters/Cacodemons/Wretched/WretchedDeath1.ogg"
 WretDeath2 "Sounds/Monsters/Cacodemons/Wretched/WretchedDeath2.ogg"
 
-$volume Wretched/Active 0.5
+$volume Wretched/Active 0.3
 $volume Wretched/Sight 0.65
-$volume Wretched/Pain 0.4
-$volume Wretched/Death 0.5
-$volume Wretched/Spit 0.8
+$volume Wretched/Pain 0.3
+$volume Wretched/Death 0.4
+$volume Wretched/Spit 0.5
+$volume Wretched/Charge 0.65
 
 $volume Wretched/ShotLoop 0.68
 $rolloff Wretched/ShotLoop 400 800
@@ -2890,7 +2891,8 @@ Defiler/Shoot2 "Sounds/Monsters/Elementals/Defiler/DefilerShoot2.ogg"
 Defiler/Shoot3 "Sounds/Monsters/Elementals/Defiler/DefilerShoot3.ogg"
 Defiler/Shoot4 "Sounds/Monsters/Elementals/Defiler/DefilerShoot4.ogg"
 
-Wretched/Rush "Sounds/Monsters/Wretched/WretchedRush.ogg"
+Wretched/Rush "Sounds/Monsters/Cacodemons/Wretched/WretchedRush.ogg"
+$volume Wretched/Rush 0.85
 
 $random Corpse/Fall { Corpse/Fall1 Corpse/Fall2 Corpse/Fall3 Corpse/Fall4 Corpse/Fall5 Corpse/Fall6 Corpse/Fall7 Corpse/Fall8 }
 Corpse/Fall1 "Sounds/Other/CorpseFall1.ogg"
@@ -3018,6 +3020,8 @@ Wretched/Bite1 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite1.ogg"
 Wretched/Bite2 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite2.ogg"
 Wretched/Bite3 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite3.ogg"
 Wretched/Bite4 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite4.ogg"
+
+$volume Wretched/Bite 0.65
 
 //Skulker
 
