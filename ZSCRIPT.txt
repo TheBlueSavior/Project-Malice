@@ -57,6 +57,9 @@ version "4.2.0"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
 
+//Barons
+#include "Actors/Monsters/Barons/Bruiser.txt"
+
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Arachnotrons/Plasmatron.txt"

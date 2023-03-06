@@ -665,7 +665,7 @@ Class PM_ScatterFusionShot : Actor
 		Height 8;
 		Speed 26;
 		FastSpeed 28;
-		Damage (22);
+		DamageFunction (22);
 		Scale 0.20;
 		RENDERSTYLE "ADD";
 		+SEEKERMISSILE
@@ -858,7 +858,7 @@ Class PM_SmallFusionShot : Actor
 		Height 8;
 		Speed 27;
 		FastSpeed 26;
-		Damage (15);
+		DamageFunction (15);
 		Scale 0.6;
 		RENDERSTYLE "ADD";
 		SeeSound "Fusionite/SmallShot"; 

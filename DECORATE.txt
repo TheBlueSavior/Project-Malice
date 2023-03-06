@@ -61,6 +61,5 @@
 #include "Actors/Monsters/Spectres/DTechSpectre.txt"
 #include "Actors/Monsters/Hellknights/Noble.txt"
 #include "Actors/Monsters/Mancubi/Corpulent.txt"
-#include "Actors/Monsters/Barons/Bruiser.txt"
 
 #include "Actors/Monsters/Paranormal/ControlledSoldier.txt"
