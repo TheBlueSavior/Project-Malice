@@ -57,12 +57,19 @@ version "4.2.0"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
 
-//Barons
-#include "Actors/Monsters/Barons/Bruiser.txt"
-
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Arachnotrons/Plasmatron.txt"
+
+//Knights
+#include "Actors/Monsters/Hellknights/Squire.txt"
+#include "Actors/Monsters/Hellknights/Noble.txt"
+#include "Actors/Monsters/HellKnights/Vore.txt"
+#include "Actors/Monsters/HellKnights/Whiplash.txt"
+#include "Actors/Monsters/Hellknights/HellsFury.txt"
+
+//Barons
+#include "Actors/Monsters/Barons/Bruiser.txt"
 
 //Viles
 #include "Actors/Monsters/Archviles/Exile.txt"
