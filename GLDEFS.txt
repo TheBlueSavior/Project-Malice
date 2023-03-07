@@ -1385,7 +1385,7 @@ Color 0.2 0.4 0.0
 Size 16
 }
 
-Object PyroImpBallFire2
+Object PM_HuskMeteorFire
 {
 Frame CFCFA { Light PyroImpBallFireA }
 Frame CFCFB { Light PyroImpBallFireA }
