@@ -32,6 +32,7 @@ version "4.2.0"
 #include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/Devil.txt"
+#include "Actors/Monsters/Imps/Charred.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
 
 //Revenants
@@ -56,6 +57,10 @@ version "4.2.0"
 #include "Actors/Monsters/Cacodemons/Watcher.txt"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
+
+//Mancubi
+#include "Actors/Monsters/Mancubi/Abhorrent.txt"
+#include "Actors/Monsters/Mancubi/Corpulent.txt"
 
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"

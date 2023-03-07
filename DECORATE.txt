@@ -16,7 +16,6 @@
 #include "Actors/Monsters/Barons/HeresyLord.txt"
 #include "Actors/Monsters/HellKnights/Void.txt"
 #include "Actors/Monsters/Pinkies/Brute.txt"
-#include "Actors/Monsters/Imps/Charred.txt"
 //#include "Actors/Monsters/Mancubi/Famine.txt"
 #include "Actors/Monsters/Fodder/LargeMaggot.txt"
 #include "Actors/Monsters/Fodder/Trite.txt"
@@ -47,7 +46,6 @@
 #include "Actors/Monsters/Souls/BloodSkull.txt"
 #include "Actors/Monsters/Fodder/TriteHatchling.txt"
 #include "Actors/Monsters/Elementals/GrossElemental.txt"
-#include "Actors/Monsters/Mancubi/Abhorrent.txt"
 #include "Actors/Monsters/Spectres/CyberSpectre.txt"
 #include "Actors/Monsters/Imps/FeralImp.txt"
 #include "Actors/Monsters/CyberDemons/Tyrant.txt"
@@ -55,6 +53,5 @@
 #include "Actors/Monsters/Spectres/Skulker.txt"
 #include "Actors/Monsters/Fodder/Rotfly.txt"
 #include "Actors/Monsters/Spectres/DTechSpectre.txt"
-#include "Actors/Monsters/Mancubi/Corpulent.txt"
 
 #include "Actors/Monsters/Paranormal/ControlledSoldier.txt"
