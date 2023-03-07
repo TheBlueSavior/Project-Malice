@@ -72,16 +72,16 @@ Class PM_ZombieSoldier : PMMonsterBase
 		POS1 DD 4 A_Chase();
         Loop;
      NoAmmo:
-        POS1 E 7;
+        POS1 E 7 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POS1 EE 10;
+        POS1 EE 10 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_Jump(80,"SeeNoAmmo");
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POS1 E 8;
+        POS1 E 8 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-		POS1 E 8;
+		POS1 E 8 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POS1 EEEEE 5;
+        POS1 EEEEE 5 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("ZombieSoldier/Attack");
       SeeNoAmmo:
 		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
@@ -119,17 +119,17 @@ Class PM_ZombieSoldier : PMMonsterBase
 	    Goto SeeNoAmmo;
 	ZReload:
 		TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5);
-		POS1 EEEEEEEE 5;
+		POS1 EEEEEEEE 5 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
-		POS1 EEEBBBBBBB 5;
+		POS1 EEEBBBBBBB 5 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5);
 		TNT1 A 0
 		{
 		user_numbullets = (user_numbullets + random(8,31));
 		}
-		POS1 EEEBBBBBBBB 4;
+		POS1 EEEBBBBBBBB 4 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5);
-		POS1 AAABBBBBB 4;
+		POS1 AAABBBBBB 4 A_FaceTarget(10,20,0,0);
 		Goto See2;
     Missile:
         TNT1 A 0;

@@ -117,17 +117,17 @@ Class PM_PistolZombie : PMMonsterBase
 		A02A EE 4 A_FaceTarget(15,20,0,0);
 		Goto See2;
     ZReload:
-        A02A EEEE 3;
+        A02A EEEE 3 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5);
-        A02A AA 8;
+        A02A AA 8 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,20,frandom(-1,1),frandom(-5,5),random(-2,0));
-        A02A AAAAA 8;
+        A02A AAAAA 8 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5);
 		TNT1 A 0
 		{
 		user_numbullets = (user_numbullets + 8);
 		}
-        A02A BBBBB 3;
+        A02A BBBBB 3 A_FaceTarget(10,20,0,0);
         Goto See2;
     Pain:
         A02A G 5;
