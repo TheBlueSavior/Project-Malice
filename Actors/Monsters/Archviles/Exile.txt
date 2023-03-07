@@ -378,7 +378,7 @@ Class PM_ExileGroundFlames : Actor
 		Radius 12;
 		Height 64;
 		Speed 18;
-	    Damage (15);
+	    DamageFunction (15);
 	    XScale 1.7;
 	    YScale 1.9;
 	    ExplosionDamage 8;
