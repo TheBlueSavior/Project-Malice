@@ -149,7 +149,7 @@ Class PM_MutatedGunner : PMMonsterBase
          TNT1 A 0 A_PlaySound("PM/GatlingBeltAlign",CHAN_5);
          D3C2 CCCBBBBB 6 A_FaceTarget();
          TNT1 A 0 A_PlaySound("PM/HeavyRifleClose",CHAN_5);
-         TNT1 A 0 { user_numbullets = (user_numbullets + 150); }
+         TNT1 A 0 { user_numbullets = (user_numbullets + random(80,150)); }
          D3C2 DDDDDBBBBB 3 A_FaceTarget();
          TNT1 A 0 A_PlaySound("PM/GatlingReady",CHAN_5);
          D3C2 AAAABB 4 A_FaceTarget();

@@ -468,7 +468,7 @@ Class PM_Nailgunner : PMMonsterBase
        TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,2));
        PNGZ AAAAAA 8 A_FaceTarget();
        TNT1 A 0 A_PlaySound("PM/NailgunMagIn",CHAN_5);
-	   TNT1 A 0 { user_numbullets = (user_numbullets + 35); }
+	   TNT1 A 0 { user_numbullets = (user_numbullets + random(12,35)); }
        PNGZ AABB 5 A_FaceTarget();
        TNT1 A 0 A_PlaySound("PM/HeavyRifleClose",CHAN_5);
        PNGZ BBBB 3 A_FaceTarget();

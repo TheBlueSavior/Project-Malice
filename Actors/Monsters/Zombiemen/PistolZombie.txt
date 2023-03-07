@@ -95,7 +95,12 @@ Class PM_PistolZombie : PMMonsterBase
         A02A AAAA 8 A_FaceTarget();
 		Goto ZReload;
     RealMissile:
-        A02A EEE 6 A_FaceTarget;
+        A02A EEE 6
+	    {
+	    A_FaceTarget(360,180,0,0);
+	    A_SetAngle(angle+random(-10,10));
+	    A_SetPitch(pitch+random(-15,15));
+	    }
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -104,25 +109,25 @@ Class PM_PistolZombie : PMMonsterBase
 		}
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
 		A_PlaySound("PistolZombie/Fire");
-		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3), CMF_OFFSETPITCH, random(-2, 2));
+		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
         A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		user_numbullets--;
 		return ResolveState(null);
 		}
-		A02A EE 4 A_FaceTarget;
+		A02A EE 4 A_FaceTarget(15,20,0,0);
 		Goto See2;
     ZReload:
-        A02A EEEE 3 A_FaceTarget();
+        A02A EEEE 3;
         TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5);
-        A02A AA 8 A_FaceTarget();
+        A02A AA 8;
         TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,20,frandom(-1,1),frandom(-5,5),random(-2,0));
-        A02A AAAAA 8 A_FaceTarget();
+        A02A AAAAA 8;
         TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5);
 		TNT1 A 0
 		{
 		user_numbullets = (user_numbullets + 8);
 		}
-        A02A BBBBB 3 A_FaceTarget();
+        A02A BBBBB 3;
         Goto See2;
     Pain:
         A02A G 5;

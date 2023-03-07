@@ -85,7 +85,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		TNT1 A 0 A_Jump(13,"Puke");
 		TNT1 A 0 A_Jump(30,"Missile2");
 		TNT1 A 0 A_Jump(125,"RollRight","RollLeft");
-        POSK E 6 A_FaceTarget();
+        POSK E 6
+		{
+		A_FaceTarget(360,180,0,0);
+		A_SetAngle(angle+random(-10,10));
+		A_SetPitch(pitch+random(-15,15));
+		}
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		if(user_numbullets < 0)
@@ -94,12 +99,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 2 A_FaceTarget();
+		POSK E 2 A_FaceTarget(40,40,0,0);
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -108,12 +113,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 2 A_FaceTarget();
+		POSK E 2 A_FaceTarget(40,40,0,0);
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -122,16 +127,21 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+random(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 8 A_FaceTarget();
+		POSK E 8 A_FaceTarget(40,40,0,0);
 		TNT1 A 0 A_Jump(50,"See2");
         Goto See2;
 	Missile2:
-		POSK E 5 A_FaceTarget();
+		POSK E 5
+		{
+		A_FaceTarget(360,180,0,0);
+		A_SetAngle(angle+random(-10,10));
+		A_SetPitch(pitch+random(-15,15));
+		}
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -140,12 +150,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 2 A_FaceTarget();
+		POSK E 2 A_FaceTarget(30,35,0,0);
 		TNT1 A 0 A_Jump(30,"See2");
 		POSK E 0 A_MonsterRefire(60,"See2");
 		Goto Missile2+1;
@@ -169,7 +179,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 	RollMissile:
         TNT1 A 0;
 		TNT1 A 0 A_Jump(30,"Missile2");
-        POSK E 6 A_FaceTarget();
+        POSK E 6
+		{
+		A_FaceTarget(360,180,0,0);
+		A_SetAngle(angle+random(-10,10));
+		A_SetPitch(pitch+random(-15,15));
+		}
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
 		if(user_numbullets < 0)
@@ -178,12 +193,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 2 A_FaceTarget();
+		POSK E 2 A_FaceTarget(40,40,0,0);
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -192,12 +207,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 2 A_FaceTarget();
+		POSK E 2 A_FaceTarget(40,40,0,0);
         POSK F 2 Light("YellowMediumFlicker2")
 		{
 		if(user_numbullets < 0)
@@ -206,12 +221,12 @@ Class PM_DecayedSoldier : PMMonsterBase
 		}
 		A_PlaySound("Decayed/Fire");
 		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4), CMF_OFFSETPITCH, random(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		return ResolveState(null);
 	    }
-		POSK E 8 A_FaceTarget();
+		POSK E 8 A_FaceTarget(40,40,0,0);
 		TNT1 A 0 A_Jump(50,"See2");
         Goto See2;
 	Backup:
@@ -232,30 +247,30 @@ Class PM_DecayedSoldier : PMMonsterBase
 		POSK G 3;
 		Goto See2;
 	NoAmmo:
-        POSK E 7 A_FaceTarget();
+        POSK E 7;
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POSK EE 10 A_FaceTarget();
+        POSK EE 10;
 		TNT1 A 0 A_Jump(100,"ZReload");
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POSK E 8 A_FaceTarget();
+        POSK E 8;
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-		POSK E 8 A_FaceTarget();
+		POSK E 8;
         TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
-        POSK AAAA 5 A_FaceTarget();
+        POSK AAAA 5;
 		Goto ZReload;
     ZReload:
 		TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5);
-		POSK EEE 5 A_FaceTarget();
+		POSK EEE 5;
 		TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
-		POSK CCCCCBBB 5 A_FaceTarget();
+		POSK CCCCCBBB 5;
 		TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5);
 		TNT1 A 0
 		{
-		user_numbullets = (user_numbullets + 31);
+		user_numbullets = (user_numbullets + random(25,31));
 		}
-		POSK DDDDBBB 4 A_FaceTarget();
+		POSK DDDDBBB 4;
 		TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5);
-		POSK AAABB 4 A_FaceTarget();
+		POSK AAABB 4;
 		Goto See2;
     Pain:
         POSK G 5 A_Pain;
