@@ -282,10 +282,6 @@ Actor Horrorspawn1
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    ZFOD L 5
-    ZFOD KJI 5
-    Goto See
   }
 }
 
@@ -520,10 +516,6 @@ Actor Horrorspawn2
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    2FOD L 5
-    2FOD KJI 5
-    Goto See
   }
 }
 
@@ -758,10 +750,6 @@ Actor Horrorspawn3
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    2FOD L 5
-    3FOD KJI 5
-    Goto See
   }
 }
 
@@ -996,10 +984,6 @@ Actor Horrorspawn4
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    2FOD L 5
-    4FOD KJI 5
-    Goto See
   }
 }
 
@@ -1139,10 +1123,6 @@ Actor FreshHorrorspawn
     ZFO1 QR 5 
     ZFO1 S -1 
     Stop
-  Raise:
-    ZFO1 L 5
-    ZFO1 KJI 5
-    Goto See
   }
 }
 
@@ -1370,10 +1350,6 @@ Actor HorrorspawnScreamer
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    ZFOD L 5
-    ZFOD KJI 5
-    Goto See
   }
 }
 
@@ -1458,10 +1434,6 @@ Actor HorrorspawnDecap
     ZFOB QR 5
     ZFOB S -1
     Stop
-  Raise:
-    ZFOB L 5
-    ZFOB KJI 5
-    Goto See2
   }
 }
 

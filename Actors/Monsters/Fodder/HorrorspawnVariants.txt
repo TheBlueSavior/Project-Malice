@@ -239,10 +239,6 @@ Actor PM_HorrorspawnSpitter
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    2FOD L 5
-    4FOD KJI 5
-    Goto See
   }
 }
 
@@ -521,10 +517,6 @@ Actor PM_HorrorspawnChunkThrower
     ZFOD QR 5 
     ZFOD S -1 
     Stop
-  Raise:
-    ZFOD L 5
-    ZFOD KJI 5
-    Goto See
   }
 }
 

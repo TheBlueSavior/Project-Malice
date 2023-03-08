@@ -167,10 +167,6 @@ Actor Hunger
     ZHUN QR 5 
     ZHUN S -1 
     Stop
-  Raise:
-    ZHUN L 5
-    ZHUN KJI 5
-    Goto See
   }
 }
 
@@ -284,10 +280,6 @@ Actor PM_Hungry1
     ZHUN QR 5 
     ZHUN S -1 
     Stop
-  Raise:
-    ZHUN L 5
-    ZHUN KJI 5
-    Goto See
   }
 }
 
@@ -397,10 +389,6 @@ Actor PM_HungryMarine
 	ZOD4 F 4
 	ZOD4 G -1
     Stop
-  Raise:
-    ZOD4 G 5
-    ZOD4 FEDCBA 5
-    Goto See
   }
 }
 
@@ -504,10 +492,6 @@ Actor PM_HungrySci1
     SCZA RSTUV 5 
     SCZA W -1 
     Stop
-  Raise:
-    SCZA L 5
-    SCZA KJI 5
-    Goto See
   }
 }
 
@@ -611,10 +595,6 @@ Actor PM_HungrySci2
     SCZC RSTUV 5 
     SCZC W -1 
     Stop
-  Raise:
-    SCZC L 5
-    SCZC KJI 5
-    Goto See
   }
 }
 
@@ -714,10 +694,6 @@ Actor PM_HungrySoldier
     POS1 RST 5 
     POS1 U -1 
     Stop
-  Raise:
-    ZHU1 JIHG 5
-    ZHU1 F 5
-    Goto See
   }
 }
 
