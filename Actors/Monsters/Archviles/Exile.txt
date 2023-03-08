@@ -199,7 +199,7 @@ Class PM_Exile : PMMonsterBase
 	
 		Heal:
 			TNT1 A 0 A_PlaySound("Exile/Resurrect",CHAN_6);
-			EILR XX 5 Bright Light("SatyrLordRedMissile3") A_SpawnItem("DefilerFire", 55);
+			EILR XX 5 Bright Light("SatyrLordRedMissile3") A_SpawnItem("PM_ExileRessurectFire", 55);
 			EILR XX 5 Bright Light("SatyrLordRedMissile5");
 			EILR XX 5 Bright Light("SatyrLordRedMissile4");
 			Goto See2;
@@ -223,6 +223,29 @@ Class PM_Exile : PMMonsterBase
 			Stop;
 	}
 }
+
+Class PM_ExileRessurectFire : Actor
+{
+    Default
+	{
+	+NOBLOCKMAP 
+	+NOGRAVITY
+	RenderStyle "Add";
+	Alpha 1;
+	}
+	States
+	{
+	Spawn:
+		REFR A 2 BRIGHT  A_StartFire;
+		REFR BAB 2 BRIGHT  A_Fire;
+		REFR C 2 BRIGHT  A_FireCrackle;
+		REFR BCBCDCDCDEDED 2 BRIGHT  A_Fire;
+		REFR E 2 BRIGHT  A_FireCrackle;
+		REFR FEFEFGHGHGH 2 BRIGHT  A_Fire;
+		Stop;
+	}
+}
+
 
 Class PM_ExileWallSpawner : Actor
 {

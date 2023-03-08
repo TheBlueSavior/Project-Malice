@@ -58,9 +58,13 @@ version "4.2.0"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
 
+//Elementals
+#include "Actors/Monsters/Elementals/Defiler.txt"
+
 //Mancubi
-#include "Actors/Monsters/Mancubi/Abhorrent.txt"
+#include "Actors/Monsters/Mancubi/Hectebus.txt"
 #include "Actors/Monsters/Mancubi/Corpulent.txt"
+#include "Actors/Monsters/Mancubi/Abhorrent.txt"
 
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"

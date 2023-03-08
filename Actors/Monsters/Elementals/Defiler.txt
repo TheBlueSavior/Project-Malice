@@ -1,400 +1,363 @@
-ACTOR PM_Defiler : PMMonsterBase
+Class PM_Defiler : PMMonsterBase
 {
-	Health 480
-	Radius 31
-	Height 56
-	Mass 500
-	Speed 6
-	PainChance 15
-	Monster 
+    Default
+	{
+	Health 480;
+	Radius 31;
+	Height 56;
+	Mass 500;
+	Speed 6;
+	PainChance 15;
+	Monster;
 	+NOGRAVITY
     +FLOAT 
 	+DROPOFF
 	+MISSILEevenMORE
 	+FLOATBOB
 	+DONTHARMSPECIES
-	+DONTHURTSPECIES
+	+DONTHARMCLASS
 	+THRUSPECIES
 	+SLIDESONWALLS
-	FloatBobStrength 0.4
-	Tag "Defiler"
-	Species "Elemental"
-	PainSound "HeresyLord/Pain"
-	DeathSound "Defiler/Death"
-	ActiveSound "Defiler/Active"
-	Obituary "%o was thoroughly cleansed by a Defiler's flames."
+	FloatBobStrength 0.4;
+	Tag "Defiler";
+	Species "Elemental";
+	PainSound "HeresyLord/Pain";
+	DeathSound "Defiler/Death";
+	ActiveSound "Defiler/Active";
+	Obituary "%o was thoroughly cleansed by a Defiler's flames.";
+	}
 	States
 	{
 	Spawn:
-		DEFI AB 10 PM_Look()
-		Loop
+		DEFI AB 10 PM_Look();
+		Loop;
     Look:
 		DEFI AAAABBBBCCCC 2
 		{
 		A_Recoil(-0.013);
 		PM_LookingForPlayer();
 		}
-		Loop
+		Loop;
 	Spotted:
-		TNT1 A 0
-		Goto Roar
+		TNT1 A 0;
+		Goto Roar;
 	See2:
 		DEFI AAAABBBBCCCC 2
 		{
 		A_Recoil(-0.013);
-		A_Chase;
+		A_Chase();
 		}
-		TNT1 A 0 A_Jump(100,"AvoidLeft","AvoidRight","AvoidForward","AvoidBack")
-		Loop
+		TNT1 A 0 A_Jump(100,"AvoidLeft","AvoidRight","AvoidForward","AvoidBack");
+		Loop;
 	Missile:
-		TNT1 A 0 A_JumpIfCloser(300,"FireBreath")
-		DEFI D 0 A_Jump(90, "DefilerBalls","FastSkull")
-		DEFI D 0 A_Jump(237, "SkullGag","SkullNoGag","SkullGagBig","BarrageStart")
-		DEFI D 0 A_Jump(255, "Roar")
-		Goto See2
+		TNT1 A 0 A_JumpIfCloser(300,"FireBreath");
+		DEFI D 0 A_Jump(90, "DefilerBalls","FastSkull");
+		DEFI D 0 A_Jump(237, "SkullGag","SkullNoGag","SkullGagBig","BarrageStart");
+		DEFI D 0 A_Jump(255, "Roar");
+		Goto See2;
 	FastSkull:
-		DEFI AA 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DDEE 4 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI AA 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DDEE 4 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
-		A_CustomMissile("PM_ShootSoulAttack",15,0,0);
+		A_FaceTarget();
+		A_SpawnProjectile("PM_ShootSoulAttack",15,0,0);
 		}
-		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
-		Goto See2
+		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget();
+		Goto See2;
 	BarrageStart:
-	   TNT1 A 0 A_JumpIfCloser(200,"Missile")
-	   DEFI DD 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+128, 18, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	   TNT1 A 0 A_JumpIfCloser(300,"Missile")
+	   TNT1 A 0 A_JumpIfCloser(200,"Missile");
+	   DEFI DD 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+128, 18, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	   TNT1 A 0 A_JumpIfCloser(300,"Missile");
 	Barrage:
-		TNT1 A 0 A_CheckSight("See2")
-		TNT1 A 0 A_JumpIfCloser(300,"AvoidBack")
-		DEFI A 2 A_FaceTarget
-		TNT1 A 0 A_Jump(240,"BarrageLeft","BarrageRight","BarrageShoot")
-		Goto AvoidForward
+		TNT1 A 0 A_CheckSight("See2");
+		TNT1 A 0 A_JumpIfCloser(300,"AvoidBack");
+		DEFI A 2 A_FaceTarget();
+		TNT1 A 0 A_Jump(240,"BarrageLeft","BarrageRight","BarrageShoot");
+		Goto AvoidForward;
 	BarrageLeft:
-	   DEFI DD 2 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+192, 10, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 4 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+64, 10, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	   Goto BarrageShoot
+	   DEFI DD 2 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+192, 10, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+64, 10, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	   Goto BarrageShoot;
 	BarrageRight:
-	   DEFI DD 2 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+64, 10, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 4 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+192, 10, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	   Goto BarrageShoot
+	   DEFI DD 2 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+64, 10, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+192, 10, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	   Goto BarrageShoot;
 	BarrageShoot:
-		TNT1 A 0 A_CheckSight("See2")
-		TNT1 A 0 A_Jump(255,"BFastSkull","BSoulSpit","BarrageBalls")
-		Goto See2
+		TNT1 A 0 A_CheckSight("See2");
+		TNT1 A 0 A_Jump(255,"BFastSkull","BSoulSpit","BarrageBalls");
+		Goto See2;
 	BarrageBalls:
-		DEFI D 5 Light("AvatarFireball2") A_FaceTarget 
-		DEFI E 5 Light("AvatarFireball3") A_FaceTarget
-		DEFI F 0 A_PlaySound("Defiler/Fire")
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
-		DEFI FED 4 A_FaceTarget
-		Goto Barrage
+		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
+		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
+		DEFI F 0 A_PlaySound("Defiler/Fire");
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8));
+		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8));
+		DEFI F 5 Light("AvatarFireball4") A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8));
+		DEFI FED 4 A_FaceTarget();
+		Goto Barrage;
 	BFastSkull:
-		DEFI AA 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI AA 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
-		A_CustomMissile("PM_ShootSoulAttack",15,0,0);
+		A_FaceTarget();
+		A_SpawnProjectile("PM_ShootSoulAttack",15,0,0);
 		}
-		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
-		Goto Barrage
+		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget();
+		Goto Barrage;
 	BSoulSpit:
-		DEFI D 0 A_Jump(60,"SkullNoGag")
-		DEFI AA 1 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI D 0 A_Jump(60,"SkullNoGag");
+		DEFI AA 1 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget
-		Goto Barrage
+		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget();
+		Goto Barrage;
 	SkullGag:
-		DEFI D 0 A_Jump(60,"SkullNoGag")
-		TNT1 A 0 A_PlaySound("Defiler/Ack",CHAN_5)
-		DEFI DD 5 Light("AvatarFireball2") A_FaceTarget
+		DEFI D 0 A_Jump(60,"SkullNoGag");
+		TNT1 A 0 A_PlaySound("Defiler/Ack",CHAN_5);
+		DEFI DD 5 Light("AvatarFireball2") A_FaceTarget();
 		DEFI EEEEEEEEEEE 1 Light("AvatarFireball3")
 		{
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		A_FaceTarget;
+		A_FaceTarget();
 		}
-		DEFI DAAA 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI DAAA 4 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 8 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget
-		Goto See2
+		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget();
+		Goto See2;
 	SkullGagBig:
-		DEFI D 0 A_Jump(60,"SkullNoGag")
-		TNT1 A 0 A_PlaySound("Defiler/Ack",CHAN_5)
-		DEFI DDD 5 Light("AvatarFireball2") A_FaceTarget
+		DEFI D 0 A_Jump(60,"SkullNoGag");
+		TNT1 A 0 A_PlaySound("Defiler/Ack",CHAN_5);
+		DEFI DDD 5 Light("AvatarFireball2") A_FaceTarget();
 		DEFI EEEEEEEEEEEEEEEEE 1 Light("AvatarFireball3")
 		{
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		A_FaceTarget;
+		A_FaceTarget();
 		}
-		DEFI DGGGGG 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI ADEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI DGGGGG 4 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI ADEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget
-		Goto See2
+		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
+		Goto See2;
 	SkullNoGag:
-		DEFI AA 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6)
-		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
+		DEFI AA 4 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Gag",CHAN_6);
+		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 8 Light("AvatarFireball4")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
-		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget
-		Goto See2
+		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget();
+		Goto See2;
 	DefilerBalls:
-		DEFI D 5 Light("AvatarFireball2") A_FaceTarget 
-		DEFI E 5 Light("AvatarFireball3") A_FaceTarget
-		DEFI F 0 A_PlaySound("Defiler/Fire")
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1))
-		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 0 A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8))
-		DEFI F 5 Light("AvatarFireball4") A_CustomMissile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8))
-		DEFI FED 4 A_FaceTarget
-		Goto See2
+		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
+		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
+		DEFI F 0 A_PlaySound("Defiler/Fire");
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8));
+		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8));
+		DEFI F 5 Light("AvatarFireball4") A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8));
+		DEFI FED 4 A_FaceTarget();
+		Goto See2;
     Roar:
-		DEFI A 4 A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Roar", CHAN_VOICE)
+		DEFI A 4 A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Roar", CHAN_VOICE);
 		DEFI DEFFFFFFFFFFFFFEDD 3 Light("AvatarFireball2")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
 		}
-		DEFI A 4 A_FaceTarget
-	   Goto See2
+		DEFI A 4 A_FaceTarget();
+	   Goto See2;
 	FireBreath:
 		DEFI DDDDDDDDD 2 Light("AvatarFireball2")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,3),random(-3,3),random(-3,3));
 		}
-		DEFI E 5 Light("AvatarFireball3") A_FaceTarget
-		TNT1 A 0 A_PlaySound("Defiler/Breath",CHAN_5,1,1)
+		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
+		TNT1 A 0 A_PlaySound("Defiler/Breath",CHAN_5,1,1);
 		DEFI FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 Light("AvatarFireball4")
 		{
 		A_SpawnItemEx("DefilerBFlare",20,4,15);
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
-		A_CustomMissile("DefilerBreath",random(12,18),random(-20,20),random(-2,2));
-		A_FaceTarget;
+		A_SpawnProjectile("DefilerBreath",random(12,18),random(-20,20),random(-2,2));
+		A_FaceTarget();
 		}
-		TNT1 A 0 A_StopSound(CHAN_5)
-		DEFI FED 5 A_FaceTarget
-		TNT1 A 0 A_Jump(200,"AvoidBack")
-		Goto See2
+		TNT1 A 0 A_StopSound(CHAN_5);
+		DEFI FED 5 A_FaceTarget();
+		TNT1 A 0 A_Jump(200,"AvoidBack");
+		Goto See2;
 	AvoidLeft:
-	   DEFI DD 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+192, 9, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+64, 9, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-       Goto See2
+	   DEFI DD 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+192, 9, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+64, 9, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+       Goto See2;
   AvoidRight:
-	   DEFI DD 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+64, 9, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+192, 9, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-       Goto See2
+	   DEFI DD 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+64, 9, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+192, 9, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+       Goto See2;
   AvoidBack:
-	   DEFI DD 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+128, 9, 0, 0)
-       TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-       Goto See2
+	   DEFI DD 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+128, 9, 0, 0);
+       TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+       Goto See2;
   AvoidForward:
-	   DEFI EE 4 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0)
-	   TNT1 A 0 ThrustThingZ(0,4,1,0)
-       DEFI GGG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThingZ(0,8,0,0)
-	   DEFI GG 5 A_FaceTarget
-	   TNT1 A 0 ThrustThing(angle*256/360+128, 9, 0, 0)
-	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-       Goto See2
-	Heal:
-		DEFI N 10 BRIGHT A_SpawnItem("DefilerFire", 55)
-		DEFI OP 10 BRIGHT
-		Goto See2
+	   DEFI EE 4 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360, 9, 0, 0);
+	   TNT1 A 0 ThrustThingZ(0,4,1,0);
+       DEFI GGG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThingZ(0,8,0,0);
+	   DEFI GG 5 A_FaceTarget();
+	   TNT1 A 0 ThrustThing(angle*256/360+128, 9, 0, 0);
+	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+       Goto See2;
 	Pain:
-		TNT1 A 0 A_StopSound(CHAN_5)
-		DEFI G 5   
-		DEFI G 5 A_Pain
-		Goto See2
+		TNT1 A 0 A_StopSound(CHAN_5);
+		DEFI G 5;
+		DEFI G 5 A_Pain;
+		Goto See2;
 	Death:
-		TNT1 A 0 A_PlaySound("Defiler/Death",CHAN_6)
-		TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION)
-		DEFI H 3 Light("AvatarFireball4")
+		TNT1 A 0 A_PlaySound("Defiler/Death",CHAN_6);
+		TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
+		DEFI H 3 Light("AvatarFireball4");
 		//TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION)
-		DEFI I 3 Light("AvatarFireball4") A_Scream
+		DEFI I 3 Light("AvatarFireball4") A_Scream;
 		//TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION)
-		DEFI J 3 BRIGHT Light("AvatarFireball4") A_NoBlocking
+		DEFI J 3 BRIGHT Light("AvatarFireball4") A_NoBlocking;
 		//TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION)
-		DEFI KL 3 BRIGHT Light("AvatarFireball4")
-	    TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0)
-		TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7)
-	    TNT1 AAAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION)
-		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION)
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("ExileFireHit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_PlaySound("Tyrant/RocketExp",CHAN_6)
-		TNT1 A 0 A_PlaySound("Noble/BombExp",CHAN_5)
-		//TNT1 AAAAAAAA 0 A_CustomMissile("PM_BigFireGlobs",10,0,random(0,360),2,random(0,360))
-		//TNT1 AAAAAAAA 0 A_SpawnItemEx("MancuBallExplode",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 0)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 45)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 90)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 135)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 180)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 225)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 270)
-		//DEFI M 0 A_PlaySound("Defiler/Attack")
-		//DEFI M 0 A_CustomMissile("DefilerBall", 20, 0, 315)
-		//DEFI M 7 Light("AvatarFireball4") BRIGHT
-		TNT1 A 0 BRIGHT A_PainDie("PM_BurntSoul")
-		Stop
+		DEFI KL 3 BRIGHT Light("AvatarFireball4");
+	    TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0);
+		TNT1 A 0 A_PlaySound("BigExplosionDistant", CHAN_7);
+	    TNT1 AAAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+		TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("ExileFireHit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_PlaySound("Tyrant/RocketExp",CHAN_6);
+		TNT1 A 0 A_PlaySound("Noble/BombExp",CHAN_5);
+		TNT1 A 0 BRIGHT A_PainDie("PM_BurntSoul");
+		Stop;
 	}
 }
 
-ACTOR DefilerFire
+Class PM_DefilerSoulSlow : Actor
 {
-	+NOBLOCKMAP 
-	+NOGRAVITY
-	RenderStyle Add
-	Alpha 1
-	States
+    Default
 	{
-	Spawn:
-		REFR A 2 BRIGHT  A_StartFire
-		REFR BAB 2 BRIGHT  A_Fire
-		REFR C 2 BRIGHT  A_FireCrackle
-		REFR BCBCDCDCDEDED 2 BRIGHT  A_Fire
-		REFR E 2 BRIGHT  A_FireCrackle
-		REFR FEFEFGHGHGH 2 BRIGHT  A_Fire
-		Stop
-	}
-}
-
-ACTOR PM_DefilerSoulSlow
-{
-    Radius 10
-    Height 12
-    Scale 0.5
-    Speed 6
-    Damage 2
-	Health 5
-	Alpha 1
-	DeathSound "imp/shotx"
-	BloodType None
-	Renderstyle ADD
-	DamageType Fire
+    Radius 10;
+    Height 12;
+    Scale 0.5;
+    Speed 6;
+    DamageFunction (20);
+	Health 5;
+	Alpha 1;
+	DeathSound "imp/shotx";
+	BloodType "None";
+	Renderstyle "Add";
+	DamageType "Fire";
 	+SEEKERMISSILE
 	+MISSILE
 	+SHOOTABLE
@@ -405,8 +368,9 @@ ACTOR PM_DefilerSoulSlow
 	+DROPOFF
 	+NOTELEPORT
 	+DONTHARMSPECIES
-	Species "Elemental"
-	Decal "DoomImpScorch"
+	Species "Elemental";
+	Decal "DoomImpScorch";
+	}
     States
     {
     Spawn:
@@ -425,7 +389,7 @@ ACTOR PM_DefilerSoulSlow
 		A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
 		//A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
 		}
-        Loop
+        Loop;
 	Failure:
 		BSOU D 2 Bright Light("BurntSoulLight") 
 		{
@@ -440,354 +404,320 @@ ACTOR PM_DefilerSoulSlow
 		A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
 		A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
 		}
-        Loop
+        Loop;
     Death:
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-		TNT1 A 0 A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-        BSOU FGHIJ 2 Bright Light("AvatarFireball3")
-        Stop
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
+        BSOU FGHIJ 2 Bright Light("AvatarFireball3");
+        Stop;
     }
 }
 
-ACTOR DefilerShot
+Class DefilerBFlare : Actor
 {
-	Scale 1.5
-    Radius 12
-    Height 16
-    Speed 16
-    Damage 6
-    PROJECTILE
-	DamageType Fire
-	RENDERSTYLE ADD
-	ALPHA 0.9
-    SeeSound "caco/attack"
-	DeathSound "caco/shotx"
-	Decal "scorch"
-    States
-    {
-    Spawn:
-       BFX5 ABC 2 bright Light("ShadowBall2") A_SpawnItemEx("DefilerShotTrail",0,0,0,0,0,0,0,128,0)
-	loop
-	Death:
-		BFX5 D 2 bright Light("Shadowball2") A_Explode (5, 56, 1)
-		BFX5 EFGH 2 Light("Shadowball2") bright
-    stop
-    }
-}
-
-ACTOR DefilerShotTrail
-{
-Scale 1.2
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
-RenderStyle Add
-States
-{
-Spawn:
-	TNT1 A 0 A_CheckSight("Disappear")
-    AFX5 ABC 2 A_FadeOut(0.25)
-    Goto Spawn
-	Disappear:
-	TNT1 A 0
-	Stop
-    }
-}
-
-Actor DefilerBFlare
-{
-+NOINTERACTION
-+NOGRAVITY
-+CLIENTSIDEONLY
-Renderstyle Add
-Radius 1
-Height 1
-Alpha 0.8
-Scale 0.8
+   Default
+   {
+   +NOINTERACTION
+   +NOGRAVITY
+   +CLIENTSIDEONLY
+   Renderstyle "Add";
+   Radius 1;
+   Height 1;
+   Alpha 0.8;
+   Scale 0.8;
+   }
 states
 	{
 	Spawn:
-		LEYS O 2 bright
-		stop
+		LEYS O 2 bright;
+		stop;
 	}
 }
 
 
-ACTOR DefilerBreath
+Class DefilerBreath : Actor
 {
-   Radius 7
-   Height 7
-   Speed 13
-   Damage (random(1,2))
-   PROJECTILE
-   RENDERSTYLE ADD
-   DamageType Fire
-   Scale 0.08
-   DeathSound "Fire/Unleash"
+   Default
+   {
+   Radius 7;
+   Height 7;
+   Speed 13;
+   DamageFunction (random(1,2));
+   Projectile;
+   Renderstyle "Add";
+   DamageType "Fire";
+   Scale 0.08;
+   DeathSound "Fire/Unleash";
    +THRUGHOST
    +ROLLSPRITE
    +FORCEXYBILLBOARD
-   Decal "scorch"
+   Decal "scorch";
+   }
    States
    {
    Spawn:
-	  TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-      NULL A 1 Bright
-	  TNT1 A 0 A_Jump(255,"Go","Go2")
+	  TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+      NULL A 1 Bright;
+	  TNT1 A 0 A_Jump(255,"Go","Go2");
 	  Go:
-	  TNT1 A 0 A_SetRoll(random(0,360))
+	  TNT1 A 0 A_SetRoll(random(0,360));
       FLMF ABCDEFEDCBA 2 Bright Light("AvatarFireball2")
 	  {
 	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
-	  A_SetScale(ScaleX+0.06);
+	  A_SetScale(Scale.X+0.06);
 	  }
-	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
-	  FLMF ABCDEF 2 Bright Light("AvatarFireball2")
-	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF ABCDEF 2 Bright Light("AvatarFireball2");
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF EDCBABC 2 Bright Light("AvatarFireball2")
 	  {
-	  A_SetScale(ScaleX+0.07);
+	  A_SetScale(Scale.X+0.07);
 	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
 	  A_Fadeout(0.1);
 	  }
-	  Stop
+	  Stop;
 	  Go2:
-	  TNT1 A 0 A_SetRoll(random(0,360))
+	  TNT1 A 0 A_SetRoll(random(0,360));
 	  FLMF FEDCBABCDEF 2 Bright
 	  {
 	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
-	  A_SetScale(ScaleX+0.05);
+	  A_SetScale(Scale.X+0.05);
 	  }
-	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
-	  FLMF EDCBA 2 Bright
-	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE)
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF EDCBA 2 Bright;
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF BCDEFED 2 Bright
 	  {
-	  A_SetScale(ScaleX+0.07);
+	  A_SetScale(Scale.X+0.07);
 	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
 	  A_Fadeout(0.1);
 	  }
-      stop
+      stop;
    Death:
-      FRFX HIJ 2 Bright
-      FRFX J 0 A_CustomMissile ("ZombieDropFire",0,0,0,4)
-      FRFX KLM 2 Bright
-      FRFX NO 2 Bright
-      stop
+      FRFX HIJ 2 Bright;
+      FRFX J 0 A_SpawnProjectile ("ZombieDropFire",0,0,0,4);
+      FRFX KLM 2 Bright;
+      FRFX NO 2 Bright;
+      Stop;
    }
 }
 
-Actor PM_GagSoul
+Class PM_GagSoul : Actor
 {
-   Radius 25
-   Height 25
-   Speed 7
-   Health 50
-   Monster
+   Default
+   {
+   Radius 25;
+   Height 25;
+   Speed 7;
+   Health 50;
+   Monster;
    +NOGRAVITY
    //+THRUACTORS
    +THRUSPECIES
-   +DONTHURTSPECIES
+   +DONTHARMCLASS
    +DONTHARMSPECIES
    +LOOKALLAROUND
    +SHOOTABLE
    -CountKill
    +NOBLOOD
    +MISSILEMORE
-   Species "Elemental"
-   Damage 1
-   Scale 0.76
-   Tag "Gag Soul"
-   BounceType Hexen
+   Species "Elemental";
+   Damage 1;
+   Scale 0.76;
+   Tag "Gag Soul";
+   BounceType "Hexen";
    +BRIGHT
-   BounceFactor 1
-   RENDERSTYLE "Add"
-	SeeSound "BurntSoul/Active"
-   DeathSound "BurntSoul/Death"
+   BounceFactor 1;
+   RENDERSTYLE "Add";
+   SeeSound "BurntSoul/Active";
+   DeathSound "BurntSoul/Death";
+   }
    States
    {
    Spawn:
-	Goto See
+	Goto See;
 	See:
-	  TNT1 A 0 A_FaceTarget
-	  TNT1 A 0 A_PlaySound("Forgotten/Active",CHAN_6)
-	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1))
-	  TNT1 A 0 A_SetRenderStyle(0.2,STYLE_Add)
-	  TNT1 AAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2))
-	   TNT1 A 0 A_SetRenderStyle(0.7,STYLE_Add)
-      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	   TNT1 A 0 A_SetRenderStyle(1,STYLE_Add)
-      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1))
-      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal)
-	  TNT1 A 0 A_FaceTarget
-      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2))
-      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_Jump(100,"Pursue")
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	  TNT1 A 0 A_FaceTarget
-	  Goto Go
+	  TNT1 A 0 A_FaceTarget();
+	  TNT1 A 0 A_PlaySound("Forgotten/Active",CHAN_6);
+	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1));
+	  TNT1 A 0 A_SetRenderStyle(0.2,STYLE_Add);
+	  TNT1 AAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+	   TNT1 A 0 A_SetRenderStyle(0.7,STYLE_Add);
+      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	   TNT1 A 0 A_SetRenderStyle(1,STYLE_Add);
+      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1));
+      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
+	  TNT1 A 0 A_FaceTarget();
+      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+      BSOU BB 2  Light("BurntSoulLight") A_SpawnItemEx("ExileHandFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+      BSOU AA 2  Light("BurntSoulLight") A_SpawnItemEx("DraugrFastFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_Jump(100,"Pursue");
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  TNT1 A 0 A_FaceTarget();
+	  Goto Go;
    Go:
-	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	  TNT1 A 0 A_Jump(22,"Charge")
-	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU A 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-      BSOU B 3  Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	  TNT1 A 0 A_Jump(22,"Charge")
-      loop
+	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  TNT1 A 0 A_Jump(22,"Charge");
+	  TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU A 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+      BSOU B 3  Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  TNT1 A 0 A_Jump(22,"Charge");
+      loop;
    Pursue:
-	  TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	  TNT1 A 0 A_ChangeFlag(FLOAT, true)
+	  TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	  TNT1 A 0 { bFLOAT = true; }
    Pursue1:
 	  BSOU AABB 2 Light("BurntSoulLight")
 	  {
-	  A_Chase;
-	  A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  A_Chase();
+	  A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
 	  }
 	  BSOU AABB 2 Light("BurntSoulLight")
 	  {
-	  A_Chase(0,0);
-	  A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+	  A_Chase(null,null);
+	  A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
 	  }
-	  TNT1 A 0 A_Jump(5,"Charge")
-	  Loop
+	  TNT1 A 0 A_Jump(5,"Charge");
+	  Loop;
    Missile:
    Charge:
-	  TNT1 A 0 A_CheckSight("Pursue")
+	  TNT1 A 0 A_CheckSight("Pursue");
 	  BSOU ABABABABABBABABAB 1 Light("BurntSoulLight")
 	  {
-	  A_FaceTarget;
-	  A_CustomMissile("PM_BurntSoulAttackFire",random(10,15),random(-4,4),random(0,360),2,random(0,160));
+	  A_FaceTarget();
+	  A_SpawnProjectile("PM_BurntSoulAttackFire",random(10,15),random(-4,4),random(0,360),2,random(0,160));
 	  }
-	  BEYE A 0 A_CustomMissile("PM_GagSoulAttack",0,0,0,CMF_TRACKOWNER)
-	  Stop
+	  BEYE A 0 A_SpawnProjectile("PM_GagSoulAttack",0,0,0,CMF_TRACKOWNER);
+	  Stop;
    Bounce:
-	  TNT1 A 0 A_SpawnItemEx("BurntSoulFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  TNT1 A 0 A_SpawnItemEx("BurntSoulFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40))
-	  Goto Spawn
+	  TNT1 A 0 A_SpawnItemEx("BurntSoulFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  TNT1 A 0 A_SpawnItemEx("BurntSoulFire",random(-8,0),frandom(-6,6),random(7,19),-1,0,frandom(2,4),random(-40,40));
+	  Goto Spawn;
    Death:
-	TNT1 A 0 A_Jump(150,"Death2")
-	TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING)
-    BSOU F 4 Bright Light("BurntSoulLight") A_Scream
-	TNT1 A 0 A_PlaySound("imp/shotx",CHAN_6)
-	TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360))
-	TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360))
-	TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10)
-	TNT1 AAAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-    BSOU G 4 Bright Light("BurntSoulLight") A_NoBlocking
-	TNT1 AAA 0 A_CustomMissile ("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160))
-    BSOU H 4 Bright Light("BurntSoulLight")
-	TNT1 AAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-	TNT1 AAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-	TNT1 AA 0 A_CustomMissile ("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160))
-    TNT1 A 0 A_CustomMissile ("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160))
-    BSOU IJK 4 Bright A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-    Stop
+	TNT1 A 0 A_Jump(150,"Death2");
+	TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
+    BSOU F 4 Bright Light("BurntSoulLight") A_Scream;
+	TNT1 A 0 A_PlaySound("imp/shotx",CHAN_6);
+	TNT1 AAA 0 A_SpawnProjectile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+	TNT1 AAA 0 A_SpawnProjectile ("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10);
+	TNT1 AAAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+    BSOU G 4 Bright Light("BurntSoulLight") A_NoBlocking;
+	TNT1 AAA 0 A_SpawnProjectile ("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160));
+    BSOU H 4 Bright Light("BurntSoulLight");
+	TNT1 AAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	TNT1 AAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	TNT1 AA 0 A_SpawnProjectile ("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160));
+    TNT1 A 0 A_SpawnProjectile ("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160));
+    BSOU IJK 4 Bright A_SetRenderstyle(alpha-0.1,STYLE_ADD);
+    Stop;
   Death2:
-	TNT1 AA 0 A_CustomMissile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360))
-	TNT1 AAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-	TNT1 A 0 A_Scream
-	TNT1 A 0 A_CustomMissile ("PM_BurntSoulFall",0,0,random(0,360),2,random(40,90))
-	Stop
+	TNT1 AA 0 A_SpawnProjectile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+	TNT1 AAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_Scream;
+	TNT1 A 0 A_SpawnProjectile ("PM_BurntSoulFall",0,0,random(0,360),2,random(40,90));
+	Stop;
    }
 }
 
 
-ACTOR PM_GagSoulAttack : DoomImpBall
+Class PM_GagSoulAttack : DoomImpBall
 {
-  Speed 21
-  Damage (30)
-  Radius 10
-  Height 10
-  Health 5
-  Scale 0.76
+  Default
+  {
+  Speed 21;
+  DamageFunction (30);
+  Radius 10;
+  Height 10;
+  Health 5;
+  Scale 0.76;
   -THRUSPECIES
-  //-Clientsideonly
   -DONTHARMSPECIES
-  -DONTHURTSPECIES
+  -DONTHARMCLASS
   -THRUACTORS
   +SHOOTABLE
   +BRIGHT
   +MISSILE
-  RenderStyle Normal
-  BounceType None
-  DamageType Fire
-  PROJECTILE
-  Seesound "BurntSoul/Attack"
-  DeathSound "imp/shotx"
-  Decal "Scorch"
+  RenderStyle "Normal";
+  BounceType "None";
+  DamageType "Fire";
+  PROJECTILE;
+  Seesound "BurntSoul/Attack";
+  DeathSound "imp/shotx";
+  Decal "Scorch";
+  }
   States
 	{
 	Spawn:
 		BSOU DC 2 Bright Light("BurntSoulLight")
 		{
-		A_CustomMissile("PM_BurntSoulAttackFire",random(10,15),random(-4,4),random(0,360),2,random(0,160));
+		A_SpawnProjectile("PM_BurntSoulAttackFire",random(10,15),random(-4,4),random(0,360),2,random(0,160));
 		}
-		Loop
+		Loop;
 	Death:
-		BSOU F 4 Light("BurntSoulLight")
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-		TNT1 A 0 A_SpawnItemEx("OrangeShockwave")
-		TNT1 A 0 A_SpawnItemEx("ZombieDropFire")
-		TNT1 AAAA 0 A_CustomMissile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360))
-		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU G 4 Light("AvatarFireball4") A_Scream
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU H 4 Light("AvatarFireball4") A_NoBlocking
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-      Stop
+		BSOU F 4 Light("BurntSoulLight");
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
+		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
+		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU G 4 Light("AvatarFireball4") A_Scream;
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU H 4 Light("AvatarFireball4") A_NoBlocking;
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
+        Stop;
 	}
 }
 
-ACTOR PM_ShootSoulAttack : DoomImpBall
+Class PM_ShootSoulAttack : DoomImpBall
 {
-  Speed 30
-  Damage 3
-  Radius 10
-  Height 10
-  Scale 0.76
+  Default
+  {
+  Speed 30;
+  DamageFunction (20);
+  Radius 10;
+  Height 10;
+  Scale 0.76;
   -THRUSPECIES
   -Clientsideonly
   -DONTHARMSPECIES
-  -DONTHURTSPECIES
-  DamageType Fire
+  -DONTHARMCLASS
+  DamageType "Fire";
   -THRUACTORS
   +BRIGHT
-  RenderStyle Normal
-  BounceType None
-  PROJECTILE
-  Obituary "o% bathed in unholy fire by a Defiler's soul."
-  Seesound "Defiler/Shoot"
-  DeathSound "imp/shotx"
-  Decal "Scorch"
+  RenderStyle "Normal";
+  BounceType "None";
+  PROJECTILE;
+  Obituary "o% bathed in unholy fire by a Defiler's soul.";
+  Seesound "Defiler/Shoot";
+  DeathSound "imp/shotx";
+  Decal "Scorch";
+  }
   States
 	{
 	Spawn:
@@ -795,22 +725,22 @@ ACTOR PM_ShootSoulAttack : DoomImpBall
 		{
 		A_SpawnItemEx("DraugrFastFire",random(-10,-2),frandom(-6,6),random(5,19));
 		}
-		Loop
+		Loop;
 	Death:
-		BSOU F 4 Light("BurntSoulLight")
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall")
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-		TNT1 A 0 A_SpawnItemEx("OrangeShockwave")
-		TNT1 A 0 A_SpawnItemEx("ZombieDropFire")
-		TNT1 AAAA 0 A_CustomMissile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360))
-		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8))
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU G 4 Light("AvatarFireball4") A_Scream
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU H 4 Light("AvatarFireball4") A_NoBlocking
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10))
-		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-      Stop
+		BSOU F 4 Light("BurntSoulLight");
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
+		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
+		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU G 4 Light("AvatarFireball4") A_Scream;
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU H 4 Light("AvatarFireball4") A_NoBlocking;
+		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
+      Stop;
 	}
 }

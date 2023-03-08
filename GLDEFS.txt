@@ -5674,15 +5674,6 @@ Color 0.4 0.0 0.0
 Size 36
 }
 
-Object DefilerShot
-{
-Frame DFSHA { Light DefilerShot }
-Frame DFSHB { Light DefilerShot }
-Frame DFSHC { Light DefilerShot2 }
-Frame DFSHD { Light DefilerShot3 }
-Frame DFSHE { Light DefilerShot4 }
-}
-
 Pointlight DefilerBall
 {
 Color 1.0 0.4 0.0
@@ -5773,7 +5764,7 @@ Color 0.5 0.0 0.0
 Size 30
 }
 
-Object DefilerFire
+Object PM_ExileRessurectFire
 {
 Frame REFRA { Light DefilerFire1 }
 Frame REFRB { Light DefilerFire2 }
