@@ -671,6 +671,11 @@ $Random FallenSoldiers/Death { FallenS/Death1 FallenS/Death2 }
 FallenS/Death1 "Sounds/Monsters/Chaingunners/FallenMarine/FallenDeath1.ogg"
 FallenS/Death2 "Sounds/Monsters/Chaingunners/FallenMarine/FallenDeath2.ogg"
 
+$volume FallenSoldiers/Sight 0.7
+$volume FallenSoldiers/Active 0.7
+$volume FallenSoldiers/Pain 0.7
+$volume FallenSoldiers/Death 0.7
+
 $Limit FallenSoldiers/MGun	0
 $rolloff FallenSoldiers/MGun 400 3000
 $volume FallenSoldiers/MGun 0.8
