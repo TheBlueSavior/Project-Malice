@@ -13,6 +13,7 @@ ACTOR Fly 9662
   -COUNTKILL
   +NOGRAVITY
   +CANTSEEK
+  +NEVERTARGET
   States
   {
   Spawn:

@@ -169,6 +169,7 @@ Actor MaliceGoreFlies
 +NOTONAUTOMAP
 -SHOOTABLE
 +NOBLOOD
++NEVERTARGET
 radius 1
 height 1
 States
