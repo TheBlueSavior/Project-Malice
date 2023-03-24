@@ -531,7 +531,7 @@ Watcher/Sight1 "Sounds/Monsters/Cacodemons/Watcher/WatcherSight1.ogg"
 Watcher/Sight2 "Sounds/Monsters/Cacodemons/Watcher/WatcherSight2.ogg"
 Watcher/Sight3 "Sounds/Monsters/Cacodemons/Watcher/WatcherSight3.ogg"
 
-$volume Watcher/Sight 0.4
+$volume Watcher/Sight 0.25
 
 
 $random Watcher/Active { Watcher/Active1 Watcher/Active2 Watcher/Active3 Watcher/Active4 Watcher/Active5 Watcher/Active6 }
@@ -542,7 +542,7 @@ Watcher/Active4 "Sounds/Monsters/Cacodemons/Watcher/WatcherActive4.ogg"
 Watcher/Active5 "Sounds/Monsters/Cacodemons/Watcher/WatcherActive5.ogg"
 Watcher/Active6 "Sounds/Monsters/Cacodemons/Watcher/WatcherActive6.ogg"
 
-$volume Watcher/Active 0.4
+$volume Watcher/Active 0.25
 
 $random Watcher/Pain { Watcher/Pain1 Watcher/Pain2 Watcher/Pain3 Watcher/Pain4 }
 Watcher/Pain1 "Sounds/Monsters/Cacodemons/Watcher/WatcherPain1.ogg"
@@ -550,14 +550,14 @@ Watcher/Pain2 "Sounds/Monsters/Cacodemons/Watcher/WatcherPain2.ogg"
 Watcher/Pain3 "Sounds/Monsters/Cacodemons/Watcher/WatcherPain3.ogg"
 Watcher/Pain4 "Sounds/Monsters/Cacodemons/Watcher/WatcherPain4.ogg"
 
-$volume Watcher/Pain 0.5
+$volume Watcher/Pain 0.45
 
 $random Watcher/Death { Watcher/Death1 Watcher/Death2 Watcher/Death3 }
 Watcher/Death1 "Sounds/Monsters/Cacodemons/Watcher/WatcherDeath1.ogg"
 Watcher/Death2 "Sounds/Monsters/Cacodemons/Watcher/WatcherDeath2.ogg"
 Watcher/Death3 "Sounds/Monsters/Cacodemons/Watcher/WatcherDeath3.ogg"
 
-$volume Watcher/Death 0.5
+$volume Watcher/Death 0.45
 
 $random Watcher/IShard { WatchIShard1 WatchIShard2 WatchIShard3 }
 WatchIShard1 "Sounds/Monsters/Cacodemons/Watcher/WatcherIShard1.ogg"
@@ -596,7 +596,7 @@ Watcher/Roar2 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar2.ogg"
 Watcher/Roar3 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar3.ogg"
 Watcher/Roar4 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar4.ogg"
 
-$volume Watcher/Roar 0.6
+$volume Watcher/Roar 0.3
 $rolloff Watcher/Roar 250 1600
 
 caco/melee                      dsdembit
