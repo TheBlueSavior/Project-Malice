@@ -2866,7 +2866,7 @@ Defiler/Active4 "Sounds/Monsters/Elementals/Defiler/DefilerActive4.ogg"
 Defiler/Active5 "Sounds/Monsters/Elementals/Defiler/DefilerActive5.ogg"
 Defiler/Active6 "Sounds/Monsters/Elementals/Defiler/DefilerActive6.ogg"
 
-$volume Defiler/Active 0.7
+$volume Defiler/Active 0.3
 
 Defiler/Death "Sounds/Monsters/Elementals/Defiler/DefilerDeath.ogg"
 
@@ -2881,7 +2881,9 @@ Defiler/Roar5 "Sounds/Monsters/Elementals/Defiler/DefilerRoar5.ogg"
 Defiler/Roar6 "Sounds/Monsters/Elementals/Defiler/DefilerRoar6.ogg"
 Defiler/Roar7 "Sounds/Monsters/Elementals/Defiler/DefilerRoar7.ogg"
 
-//$rolloff Defiler/Roar 450 1300
+$volume Defiler/Roar 0.3
+
+$rolloff Defiler/Roar 200 1400
 
 $random Defiler/Gag { Defiler/Gag1 Defiler/Gag2 Defiler/Gag3 Defiler/Gag4 }
 Defiler/Gag1 "Sounds/Monsters/Elementals/Defiler/DefilerGag1.ogg"
@@ -2889,17 +2891,20 @@ Defiler/Gag2 "Sounds/Monsters/Elementals/Defiler/DefilerGag2.ogg"
 Defiler/Gag3 "Sounds/Monsters/Elementals/Defiler/DefilerGag3.ogg"
 Defiler/Gag4 "Sounds/Monsters/Elementals/Defiler/DefilerGag4.ogg"
 
-$rolloff Defiler/Gag 500 1400
+$rolloff Defiler/Gag 200 1400
+$volume Defiler/Gag 0.6
 
 Defiler/Ack "Sounds/Monsters/Elementals/Defiler/DefilerAck.ogg"
 
-$rolloff Defiler/Ack 500 1400
+$rolloff Defiler/Ack 200 1400
+$volume Defiler/Ack 0.6
 
 $random Defiler/Shoot { Defiler/Shoot1 Defiler/Shoot2 Defiler/Shoot3 Defiler/Shoot4 }
 Defiler/Shoot1 "Sounds/Monsters/Elementals/Defiler/DefilerShoot1.ogg"
 Defiler/Shoot2 "Sounds/Monsters/Elementals/Defiler/DefilerShoot2.ogg"
 Defiler/Shoot3 "Sounds/Monsters/Elementals/Defiler/DefilerShoot3.ogg"
 Defiler/Shoot4 "Sounds/Monsters/Elementals/Defiler/DefilerShoot4.ogg"
+$volume Defiler/Shoot 0.5
 
 Wretched/Rush "Sounds/Monsters/Cacodemons/Wretched/WretchedRush.ogg"
 $volume Wretched/Rush 0.85
