@@ -1,6 +1,6 @@
 Class PM_Draugr : PMMonsterBase
 {
-		void DraugrAimLaser(Vector2 off = (0, -25))
+		void DraugrAimLaser(Vector2 off = (0, -18))
 		{
 			double sa = sin(Angle);
 			double ca = cos(Angle);
