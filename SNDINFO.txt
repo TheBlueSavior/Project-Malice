@@ -3034,12 +3034,13 @@ $volume BigExplosionDistant 0.75
 //Teleport
 
 TeleportVoices	"Sounds/Other/TeleportVoices.ogg"
-$volume TeleportVoices 0.6
+$volume TeleportVoices 0.5
+$pitchset TeleportVoices 0.5 1.1 
 
 TeleportSound	"Sounds/Other/TeleportSound.ogg"
 
 $rolloff TeleportSound 350 1600
-$rolloff TeleportVoices 200 3200
+$rolloff TeleportVoices 100 3200
 
 $random Wretched/Bite { Wretched/Bite1 Wretched/Bite2 Wretched/Bite3 Wretched/Bite4 }
 Wretched/Bite1 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite1.ogg"
