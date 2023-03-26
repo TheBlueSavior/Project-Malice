@@ -121,10 +121,10 @@ Class PM_Wicked : PMMonsterBase
 			WIC2 J 5 Light("AvatarFireball3") A_FaceTarget();
 			TNT1 AAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
 			TNT1 A 0 A_SpawnProjectile("BulletFlare",60,0);
-			WIC2 K 1 Light("AvatarFireball4") A_Aim();
+			WIC2 K 1 Light("AvatarFireball4");
 			WIC2 K 7 Light("AvatarFireball4") 
 			{
-				A_LeadTarget(18);
+				PM_LeadTarget(18);
 				A_SpawnProjectile("WickedRevolveShot1",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 				A_SpawnProjectile("WickedRevolveShot2",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 			}

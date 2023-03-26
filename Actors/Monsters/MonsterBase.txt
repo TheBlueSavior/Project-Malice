@@ -1,5 +1,129 @@
 class PMMonsterBase : Actor abstract
 {
+	enum BeamAttackFlags
+	{
+		BAF_EXPLICITANGLE = 1,
+		BAF_ABSOLUTEANGLE = 2
+	}
+
+	enum ChargeParticlesFlags
+	{
+		CPF_NOACTORPITCH = 1
+	}
+
+	enum SpawnBoltFlags
+	{
+		SBF_NOADD = 1,
+		SBF_ALLOWREPLACE = 2,
+		SBF_NOSCALEDENSITY = 4
+	}
+
+	static clearscope Vector2 GetLeadAngles(Actor caller, Actor target, double projVel)
+	{
+		double ticsToTarget = caller.Distance2D(target) / projVel;
+		Vector3 destVector = Level.Vec3Offset(caller.Vec3To(target), target.Vel * ticsToTarget);
+
+		return (VectorAngle(destVector.X, destVector.Y), -VectorAngle(destVector.XY.Length(), destVector.Z));
+	}
+
+	// [Ace] If origin is the same as offset, there will be no angle compensation. This is useful for firing the weapon from the side but having the same hit point as if it were fired from the center.
+	static void PM_BeamAttack(Actor shooter, int dmg, class<PM_BeamSegment> segmentClass, class<PM_BeamPuff> puffClass, int flags = 0, Vector2 spread = (0, 0), Vector3 origin = (0, 0, 0), Vector3 offset = (0, 0, 0), double range = 1024 * 8, double sparsity = 10.0)
+	{
+		FLineTraceData data;
+		
+		Vector2 shootAngles = (shooter.Angle, shooter.Pitch);
+
+		if (flags & BAF_EXPLICITANGLE)
+		{
+			shootAngles += spread;
+		}
+		else if (flags & BAF_ABSOLUTEANGLE)
+		{
+			shootAngles = spread;
+		}
+		else
+		{
+			shootAngles += spread * frandom(-1.0, 1.0);
+		}
+
+		// [Ace] Do a test trace to get the delta angle/pitch between the tracer fired from the origin and the tracer fired from the real offset.
+		shooter.LineTrace(shootAngles.X, range, shootAngles.Y, TRF_THRUACTORS, offset.Z, offset.X, offset.Y, data);
+		Vector3 diff = Level.Vec3Diff(shooter.Vec3Offset(origin.X * cos(shooter.Angle), origin.Y * sin(shooter.Angle), origin.Z), data.HitLocation);
+		shootAngles -= (DeltaAngle(shooter.Angle, VectorAngle(diff.X, diff.Y)), DeltaAngle(shooter.Pitch, -VectorAngle(diff.XY.Length(), diff.Z)));
+
+		bool hit = shooter.LineTrace(shootAngles.X, range, shootAngles.Y, TRF_SOLIDACTORS, offset.Z, offset.X, offset.Y, data);
+		if (hit)
+		{
+			for (double i = 0; i < data.Distance - sparsity; i += sparsity)
+			{
+				Actor a = Spawn(segmentClass, Level.Vec3Offset(data.HitLocation, data.HitDir * -i));
+				a.Angle = shootAngles.X;
+				a.Pitch = shootAngles.Y;
+				a.Target = shooter;
+			}
+
+			PM_BeamPuff puff = null;
+			if (puffClass)
+			{
+				let def = GetDefaultByType(puffClass);
+				if (def.bALWAYSPUFF && !data.HitActor || data.HitActor && def.bPUFFONACTORS)
+				{
+					puff = PM_BeamPuff(Spawn(puffClass, data.HitLocation));
+					if (puff.bPUFFGETSOWNER)
+					{
+						puff.Target = shooter;
+					}
+					puff.Angle = shootAngles.X;
+					puff.Pitch = shootAngles.Y;
+					puff.A_SprayDecal(puff.Decal, 10, offset: -data.HitDir);
+					puff.Tracer = data.HitActor; // [Ace] Do not fuck with Crash states and all that shit. Leave it up to the modder to decide what to do.
+				}
+			}
+
+			if (data.HitActor)
+			{
+				data.HitActor.DamageMobj(puff ? Actor(puff) : shooter, shooter, dmg, puff ? puff.DamageType : 'None');
+			}
+		}
+	}
+
+	static void PM_ChargeParticles(Actor caller, int count, double dist, Vector3 offset, TextureID tex, Color col = 0xDFFF66, int flags = 0)
+	{
+		double p = flags & CPF_NOACTORPITCH ? 0 : caller.Pitch;
+		for (int i = 0; i < count; ++i)
+		{
+			double cp = cos(p + frandom(-15, 15));
+			double sp = -sin(p + frandom(-15, 15));
+			caller.A_SpawnParticleEx(col, tex, STYLE_Add, SPF_RELPOS | SPF_RELVEL | SPF_RELACCEL | SPF_FULLBRIGHT | SPF_NOTIMEFREEZE, 30, frandom(4, 8), caller.Angle + frandom(-20, 20), offset.X + dist * cp, offset.Y, offset.Z + dist * sp, 0, 0, 0, -0.10 * cp, 0, -0.10 * sp);
+		}
+	}
+
+	// [Ace] maxDiff reaches its peak roughly around 16, I think.
+	static void PM_SpawnBolt(Actor spawner, Vector3 endPos, Color col, TextureID tex, double maxDiff = 16.0, double scale = 1.0, Vector3 offset = (0, 0, 0), int flags = 0, int baseTime = 35, int fadeTime = 20)
+	{
+		Vector3 diff = Level.Vec3Diff(spawner.Vec3Offset(offset.X * cos(spawner.Angle), offset.Y * sin(spawner.Angle), offset.Z), endPos);
+		Vector3 unit = diff.Unit();
+
+		Vector3 partDiff = (0, 0, 0);
+		double dist = diff.Length();
+		for (double i = 0; i < dist; i += 6 * (flags & SBF_NOSCALEDENSITY ? 1 : min(scale, 1.0)))
+		{
+			if (i % (6 * 2) ~== 0)
+			{
+				int rnd = random();
+				partDiff.X = clamp(partDiff.X + ((rnd & 4) ? 1 : -1) * scale, -maxDiff, maxDiff);
+				partDiff.Y = clamp(partDiff.Y + ((rnd & 8) ? 1 : -1) * scale, -maxDiff, maxDiff);
+				partDiff.Z = clamp(partDiff.Z + ((rnd & 16) ? 1 : -1) * scale, -maxDiff, maxDiff);
+			}
+
+			int lifetime = int(ceil(baseTime + fadeTime * (i / dist)));
+			spawner.A_SpawnParticleEx(col, tex, (flags & SBF_NOADD ? STYLE_Normal : STYLE_Add), SPF_FULLBRIGHT | SPF_NOTIMEFREEZE | (flags & SBF_ALLOWREPLACE ? SPF_REPLACE : 0), lifetime, 10 * scale, 0,
+				offset.X + i * unit.X + partDiff.X,
+				offset.Y + i * unit.Y + partDiff.Y,
+				offset.Z + i * unit.Z + partDiff.Z);
+		}
+	}
+
 	override void Tick()
 	{
 		if (Height != RealHeight && RealHeight > 0)
@@ -17,62 +141,120 @@ class PMMonsterBase : Actor abstract
 	protected meta int RealHeight;
 	property RealHeight: RealHeight;
 
-  default
-  {
-    Monster;
-    +FLOORCLIP;
-  }
-
-	protected action void A_Aim()
+	Default
 	{
-		A_FaceTarget(0, 0);
-		invoker.OldAim = (Angle, Pitch);
+		Monster;
+		+FLOORCLIP;
 	}
 
-	protected action void A_LeadTarget(double projSpeed)
+	void PM_LeadTarget(double projSpeed)
 	{
 		if (!Target)
 		{
 			return;
 		}
 
-		A_FaceTarget(0, 0);
-		double ticsToTarget = Distance3D(Target) / projSpeed;
-
-		vector2 newAim = (DeltaAngle(invoker.OldAim.x, Angle), DeltaAngle(invoker.OldAim.y, Pitch));
-
-		// [Ace] The target's position changed abruptly, such as teleporting behind the enemy.
-		if (abs(newAim.x) > 45)
-		{
-			return;
-		}
-
-		newAim *= ticsToTarget;
-
-		Angle = invoker.OldAim.x + newAim.x;
-		Pitch = invoker.OldAim.y + newAim.y;
+		Vector2 aimAngles = GetLeadAngles(self, Target, projSpeed);
+		Angle = aimAngles.X;
+		Pitch = aimAngles.Y;
+	}
+		
+	void PM_Look()
+	{
+		A_LookEx(LOF_NOSEESOUND, label: "Look");
 	}
 
-	private Vector2 OldAim;
-    
-    void PM_Look()
-    {
-     A_LookEx(LOF_NOSEESOUND, label: "Look");
-    }
- 
-    void PM_LookingForPlayer()
-    {
-     A_Chase(null, "Spotted", CHF_NOPLAYACTIVE);
-    }
- 
-    void PM_AlertSound()
-    {
-     A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
-    }
-	
+	void PM_LookingForPlayer()
+	{
+		A_Chase(null, "Spotted", CHF_NOPLAYACTIVE);
+	}
+
+	void PM_AlertSound()
+	{
+		A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
+	}
+
 	void PM_DeathPhase()
-    {
-     A_Wander();
-     A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-    }
+	{
+		A_Wander();
+		A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	}
+}
+
+class PM_BeamSegment : Actor abstract
+{
+	protected virtual void SpawnRayParticles()
+	{
+		for (int i = 0; i < 1; ++i)
+		{
+			A_SpawnParticleEx(fillcolor, Tex, STYLE_Add, SPF_RELATIVE | SPF_FULLBRIGHT | SPF_NOTIMEFREEZE, random(100, 200), frandom(1.5, 3.0), 0,random(-10, 10), 0, 0,
+				frandom(-0.10, 0.10), frandom(-0.10, 0.10), frandom(-0.10, 0.10),
+				frandom(-0.005, 0.005), frandom(-0.005, 0.005), frandom(-0.005, 0.005));
+		}
+	}
+
+	override void PostBeginPlay()
+	{
+		if (Target)
+		{
+			double dist = Distance3D(Target);
+			alpha += FadeSpeed * dist;
+		}
+		SpawnRayParticles();
+
+		Super.PostBeginPlay();
+	}
+
+	protected TextureID Tex; // [Ace] Set this in PostBeginPlay, not SpawnRayParticles or Tick. Constantly setting something that's only ever used once just eats VM time for no reason.
+	protected meta double FadeSpeed;
+	property FadeSpeed: FadeSpeed;
+
+	Default
+	{
+		PM_BeamSegment.FadeSpeed 0.002;
+		RenderStyle "Add";
+		StencilColor "FFFFFF"; // [Ace] Used for the particles.
+		+NOINTERACTION
+		+NOBLOCKMAP
+		+BRIGHT
+		+NOTIMEFREEZE
+		Alpha 1.0;
+	}
+}
+
+class PM_BeamPuff : Actor abstract
+{
+	meta string Decal;
+	property Decal: Decal;
+
+	Default
+	{
+		Height 1;
+		+NOINTERACTION
+		+ROLLSPRITE
+		+ROLLCENTER
+		+PUFFGETSOWNER
+		+HITTRACER
+		+NODAMAGETHRUST
+		+FORCERADIUSDMG
+		+BLOODSPLATTER
+		+FORCEDECAL
+		+NOTIMEFREEZE
+		Scale 0.4;
+	}
+}
+
+//[Ace] Example only. Put these where they belong.
+class TyrantBeamSegment : PM_BeamSegment
+{
+	Default
+	{
+		StencilColor "FF3333";
+	}
+	States
+	{
+		Spawn:
+			TYRB A 1 A_FadeOut(0.05);
+			Loop;
+	}
 }

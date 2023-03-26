@@ -496,45 +496,45 @@ Actor PM_ExposedController : PMMonsterBase
 	TNT1 A 0 A_Jump(256,"VoidMissile","Succ","Homing")
   VoidMissile:
 	0DEM A 5 Light("PM_HorrorBlackflash") A_FaceTarget
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash") 
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash")
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash")
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash")
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash")
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}
-	0DEM A 1 Light("PM_HorrorBlackflash") A_Aim()
+	0DEM A 1 Light("PM_HorrorBlackflash")
 	0DEM A 10 Light("PM_HorrorBlackflash")
 	{
-	A_LeadTarget(26);
+	PM_LeadTarget(26);
 	A_SpawnProjectile("PM_ControllerVoidBall",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1+2);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,100);
 	}

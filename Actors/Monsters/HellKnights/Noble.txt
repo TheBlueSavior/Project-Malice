@@ -186,10 +186,10 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
-		NOIS G 1 A_Aim();
+		NOIS G 1;
 		NO1S G 5 Light("Greenball3")
 		{
-		A_LeadTarget(15);
+		PM_LeadTarget(15);
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		}
@@ -203,10 +203,10 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),45,0,0,2);
 		}
-		NOIS G 1 A_Aim();
+		NOIS G 1;
 		NO2S G 7 Light("Greenball3")
 		{
-		A_LeadTarget(15);
+		PM_LeadTarget(15);
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		}
@@ -230,10 +230,10 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),45,0,0,2);
 		}
-		NOIS G 1 A_Aim();
+		NOIS G 1;
 		NO2S G 5 Light("Greenball3")
 		{
-		A_LeadTarget(15);
+		PM_LeadTarget(15);
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		}
@@ -247,10 +247,10 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
-		NOIS G 1 A_Aim();
+		NOIS G 1;
 		NO1S G 7 Light("Greenball3")
 		{
-		A_LeadTarget(15);
+		PM_LeadTarget(15);
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		}
@@ -289,10 +289,10 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
-		NOIS G 1 Light("Greenball3") A_Aim();
+		NOIS G 1 Light("Greenball3");
 		NO1S G 7 Light("Greenball3")
 		{
-		A_LeadTarget(15);
+		PM_LeadTarget(15);
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_PlaySound("HellKnight/Cast",CHAN_7);
 		}

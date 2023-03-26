@@ -105,10 +105,10 @@ Class PM_HellifiedSoldier : PMMonsterBase
         A_SpawnItemEx("HellPlasmaChargeFlare",20,14,29,0,0,0,0,SXF_NOCHECKPOSITION);
         }
         TNT1 AAAA 0 A_SpawnItemEx("CFodFlare",20,5,29);
-        HFS1 F 1 Light("ShadowBall2") A_Aim();
+        HFS1 F 1 Light("ShadowBall2");
         HFS1 G 8 Light("ShadowBall3")
         {
-        A_LeadTarget(18);
+        PM_LeadTarget(18);
         A_SpawnProjectile("PM_HellifiedSoldierChargeBall",31,7,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
         }
         TNT1 A 0 A_PlaySound("HellSoldier/ChargeClose",CHAN_5);
@@ -119,10 +119,10 @@ Class PM_HellifiedSoldier : PMMonsterBase
         A_SpawnItemEx("HellPlasmaChargeFlare",20,14,29,0,0,0,0,SXF_NOCHECKPOSITION);
         }
         TNT1 AAAA 0 A_SpawnItemEx("CFodFlare",20,5,29);
-        HFS1 F 1 Light("ShadowBall2") A_Aim();
+        HFS1 F 1 Light("ShadowBall2");
         HFS1 G 8 Light("ShadowBall3")
         {
-        A_LeadTarget(18);
+        PM_LeadTarget(18);
         A_SpawnProjectile("PM_HellifiedSoldierChargeBall",31,7,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
         }
         TNT1 A 0 A_PlaySound("HellSoldier/ChargeClose",CHAN_5);
@@ -133,10 +133,10 @@ Class PM_HellifiedSoldier : PMMonsterBase
         A_SpawnItemEx("HellPlasmaChargeFlare",20,14,29,0,0,0,0,SXF_NOCHECKPOSITION);
         }
         TNT1 AAAA 0 A_SpawnItemEx("CFodFlare",20,5,29);
-        HFS1 F 1 Light("ShadowBall2") A_Aim();
+        HFS1 F 1 Light("ShadowBall2");
         HFS1 G 8 Light("ShadowBall3")
         {
-        A_LeadTarget(18);
+        PM_LeadTarget(18);
         A_SpawnProjectile("PM_HellifiedSoldierChargeBall",31,7,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
         }
         HFS1 HHHHHHFFFF 1 A_FaceTarget();
