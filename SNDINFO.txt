@@ -2554,7 +2554,10 @@ $volume Draugr/Step 0.85
 Draugr/RocketWhoosh "Sounds/Monsters/Revenants/Draugr/DraugrRocket.ogg"
 Draugr/RocketLaunch "Sounds/Monsters/Revenants/Draugr/DraugrRocketLaunch.ogg"
 Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
+Draugr/RocketLock "Sounds/Monsters/Revenants/Draugr/DraugrRocketLock.ogg"
 Draugr/GunAim "Sounds/Monsters/Revenants/Draugr/DraugrGunAim.ogg"
+
+$rolloff Draugr/RocketLock 500 2200
 
 $random Draugr/Fire { DraugFire1 DraugFire2 DraugFire3 DraugFire4 }
 DraugFire1 "Sounds/Monsters/Revenants/Draugr/DraugrFire1.ogg"
