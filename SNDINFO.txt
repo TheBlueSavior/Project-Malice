@@ -1812,15 +1812,20 @@ $pitchset PM/ShockWarning 0.8 1.5
 NLITE NLITE
 
 //Glutton
-$random Glutton/Sight { GluttonSight1 GluttonSight2 }
+$random Glutton/Sight { GluttonSight1 }
 GluttonSight1 "Sounds/Monsters/Pinkies/Glutton/GluttonSight1.ogg"
 GluttonSight2 "Sounds/Monsters/Pinkies/Glutton/GluttonSight2.ogg"
+
+$volume GluttonSight1 0.3
+$volume GluttonSight2 0.7
 
 $random Glutton/Active { GluttonActive1 GluttonActive2 GluttonActive3 GluttonActive4 }
 GluttonActive1 "Sounds/Monsters/Pinkies/Glutton/GluttonActive1.ogg"
 GluttonActive2 "Sounds/Monsters/Pinkies/Glutton/GluttonActive2.ogg"
 GluttonActive3 "Sounds/Monsters/Pinkies/Glutton/GluttonActive3.ogg"
 GluttonActive4 "Sounds/Monsters/Pinkies/Glutton/GluttonActive4.ogg"
+
+$volume Glutton/Active 0.6
 
 $random Glutton/Spit { GluttonSpit1 GluttonSpit2 }
 
@@ -1832,9 +1837,10 @@ $random Glutton/Attack { GluttonAttack1 GluttonAttack2 }
 GluttonAttack1 "Sounds/Monsters/Pinkies/Glutton/GluttonAttack1.ogg"
 GluttonAttack2 "Sounds/Monsters/Pinkies/Glutton/GluttonAttack2.ogg"
 
-$volume Glutton/Attack 0.9
+$volume Glutton/Attack 0.8
 
 Glutton/Pain "Sounds/Monsters/Pinkies/Glutton/GluttonPain.ogg"
+$volume Glutton/Pain 0.6
 Glutton/Death "Sounds/Monsters/Pinkies/Glutton/GluttonDeath.ogg"
 $volume Glutton/Death 0.6
 
@@ -2556,9 +2562,9 @@ DraugFire2 "Sounds/Monsters/Revenants/Draugr/DraugrFire2.ogg"
 DraugFire3 "Sounds/Monsters/Revenants/Draugr/DraugrFire3.ogg"
 DraugFire4 "Sounds/Monsters/Revenants/Draugr/DraugrFire4.ogg"
 
-$rolloff Draugr/Fire 400 3000
+$rolloff Draugr/Fire 800 3000
 $rolloff Draugr/RocketAim 300 2400
-$rolloff Draugr/GunAim 350 2400
+$rolloff Draugr/GunAim 500 2400
 $volume Draugr/Proj 0.65
 
 $random Draugr/Proj { DraugProj1 DraugProj2 DraugProj3 DraugProj4 }
@@ -3025,11 +3031,12 @@ $volume BigExplosionDistant 0.75
 //Teleport
 
 TeleportVoices	"Sounds/Other/TeleportVoices.ogg"
+$volume TeleportVoices 0.6
 
 TeleportSound	"Sounds/Other/TeleportSound.ogg"
 
 $rolloff TeleportSound 350 1600
-$rolloff TeleportVoices 600 3200
+$rolloff TeleportVoices 200 3200
 
 $random Wretched/Bite { Wretched/Bite1 Wretched/Bite2 Wretched/Bite3 Wretched/Bite4 }
 Wretched/Bite1 "Sounds/Monsters/Cacodemons/Wretched/WretchedBite1.ogg"

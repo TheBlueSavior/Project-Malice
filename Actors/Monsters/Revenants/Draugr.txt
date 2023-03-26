@@ -1,5 +1,12 @@
 Class PM_Draugr : PMMonsterBase
 {
+		void DraugrAimLaser(Vector2 off = (0, -25))
+		{
+			double sa = sin(Angle);
+			double ca = cos(Angle);
+			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
+			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+		}
     Default
     {
 	Health 400;
@@ -82,9 +89,9 @@ Class PM_Draugr : PMMonsterBase
 	TNT1 A 0 A_Playsound("Draugr/GunAim");
 	DRG2 ABC 5 A_FaceTarget();
     DRGR GGGGGGGG 1
-	{
-	A_FaceTarget();
-	}
+    {
+    	A_FaceTarget();
+    }
     DRGR H 6 Bright Light("AvatarFireball4");
 	TNT1 A 0 A_Playsound("Draugr/Fire", CHAN_6);
     DRGR I 8 Light("AvatarFireball4")  
@@ -103,7 +110,9 @@ Class PM_Draugr : PMMonsterBase
     DRGR GGGGGGGGGGGGGG 1
 	{
 	A_FaceTarget();
-	A_CustomRailgun(0,-15,"","Red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "",35);
+	A_SpawnProjectile("DHomingFlare",62,-15);
+	DraugrAimLaser();
+	//A_CustomRailgun(0,-15,"","Red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "",35);
 	}
     DRGR H 6 Bright Light("AvatarFireball4");
 	TNT1 A 0 A_Playsound("Draugr/RocketWhoosh", CHAN_5);
@@ -124,8 +133,7 @@ Class PM_Draugr : PMMonsterBase
 	TNT1 A 0 A_PlaySound("Draugr/Arm",CHAN_6);
 	DRG2 DDDEEEFFFGGGHHHGGGFFFEEGGHGGFFEE 1 Light("ShadowBall3")
 	{
-	A_FaceTarget();
-	A_CustomRailgun(0,-15,"","Red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "",35);
+	DraugrAimLaser();
 	A_SpawnProjectile("DHomingFlare",62,-15);
 	}
 	DRGR H 3 Bright;

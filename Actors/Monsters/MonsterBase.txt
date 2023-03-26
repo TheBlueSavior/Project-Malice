@@ -101,7 +101,7 @@ class PMMonsterBase : Actor abstract
 	// [Ace] maxDiff reaches its peak roughly around 16, I think.
 	static void PM_SpawnBolt(Actor spawner, Vector3 endPos, Color col, TextureID tex, double maxDiff = 16.0, double scale = 1.0, Vector3 offset = (0, 0, 0), int flags = 0, int baseTime = 35, int fadeTime = 20)
 	{
-		Vector3 diff = Level.Vec3Diff(spawner.Vec3Offset(offset.X * cos(spawner.Angle), offset.Y * sin(spawner.Angle), offset.Z), endPos);
+		Vector3 diff = Level.Vec3Diff(spawner.Vec3Offset(offset.X, offset.Y, offset.Z), endPos);
 		Vector3 unit = diff.Unit();
 
 		Vector3 partDiff = (0, 0, 0);
