@@ -46,7 +46,6 @@
 #include "Actors/Monsters/Elementals/GrossElemental.txt"
 #include "Actors/Monsters/Spectres/CyberSpectre.txt"
 #include "Actors/Monsters/Imps/FeralImp.txt"
-#include "Actors/Monsters/CyberDemons/Tyrant.txt"
 #include "Actors/Monsters/Fodder/Voidspawn.txt"
 #include "Actors/Monsters/Spectres/Skulker.txt"
 #include "Actors/Monsters/Fodder/Rotfly.txt"
