@@ -2854,7 +2854,7 @@ Actor PM_ArachExpMist : PM_TumorBloodMist
 	Scale 4
 }
 
-ACTOR PM_TeleportFog Replaces TeleportFog
+ACTOR PM_TeleportFog
 {
 Alpha 1
 XScale 1.3
