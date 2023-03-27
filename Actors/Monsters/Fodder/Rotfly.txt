@@ -18,6 +18,8 @@ ACTOR PM_Rotfly
   DeathSound "Rotfly/Death"
   Tag "Rotfly"
   Obituary "o% was somehow killed by a Rotfly."
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+  TeleFogDestType "PM_SmallDemonicTeleportFog"
   +FLOAT
   +NOGRAVITY
   -COUNTKILL

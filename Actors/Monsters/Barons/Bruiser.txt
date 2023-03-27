@@ -29,6 +29,8 @@ Class PM_Bruiser : PMMonsterBase
     MeleeDamage 8;
 	MeleeRange 150;
 	MeleeThreshold 196;
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
    }
 	
     States

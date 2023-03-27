@@ -36,6 +36,8 @@ Actor Voidspawn
 	+NOCLIP
 	+NOPAIN
 	+BRIGHT
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:

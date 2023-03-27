@@ -25,6 +25,8 @@ Class PM_Plasmatron : PMMonsterBase
 		PainSound "Plasmatron/Pain";
 		DeathSound "Plasmatron/Death";
 		ActiveSound "Plasmatron/Active";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 	
 	States

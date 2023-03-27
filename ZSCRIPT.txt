@@ -1,6 +1,7 @@
 version "4.2.0"
 #include "Actors/Monsters/ZProjectiles.txt"
 #include "Actors/Monsters/MonsterBase.txt"
+#include "Actors/SFX/ZFX.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
 //Zombies

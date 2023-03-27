@@ -26,6 +26,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
     ActiveSound "Decayed/Active";
 	DropItem "Lith_Shell";
     DropItem "Shotgun";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
 	}
     states
     {

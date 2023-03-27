@@ -25,6 +25,8 @@ ACTOR PM_Brute : PMMonsterBase
 	AttackSound "GenericPinkyBite"
 	Obituary "%o was mauled by a hungry Brute."
 	Tag "Brute"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 		Spawn:

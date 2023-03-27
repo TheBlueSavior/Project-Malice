@@ -25,8 +25,8 @@ Class PM_Wretched : PMMonsterBase
 		+FLOAT
 		+NOGRAVITY
 		+MissileMore
-		//+NOINFIGHTING
-		//MinMissileChance 450;
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 
 	States

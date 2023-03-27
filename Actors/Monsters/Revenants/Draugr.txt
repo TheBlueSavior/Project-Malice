@@ -31,6 +31,8 @@ Class PM_Draugr : PMMonsterBase
 	+DONTHARMSPECIES
 	+MISSILEMORE
 	+MISSILEevenMORE
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
     }
   States
   {

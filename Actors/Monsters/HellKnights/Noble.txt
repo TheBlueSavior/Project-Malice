@@ -24,6 +24,8 @@ Class PM_Noble : PMMonsterBase
 	Scale 1.05;
 	Gravity 0.83;
 	Damage 3;
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
    }
 	States
 	{

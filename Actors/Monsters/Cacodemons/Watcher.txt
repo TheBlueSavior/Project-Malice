@@ -29,6 +29,8 @@ Class PM_Watcher : PMMonsterBase
 		FloatBobStrength 0.4;
 		Tag "Watcher";
 		+FLOAT
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 
 	States

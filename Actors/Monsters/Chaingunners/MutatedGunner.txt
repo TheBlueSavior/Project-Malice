@@ -23,6 +23,8 @@ Class PM_MutatedGunner : PMMonsterBase
 	Species "Chaingunner";
 	Bloodtype "PM_NormalBloodBase";
 	Obituary "%o was riddled with holes by a Mutated Gunner.";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+    TeleFogDestType "PM_PossessedTeleportFog";
 	}
 	States
 	{

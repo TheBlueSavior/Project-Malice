@@ -22,6 +22,8 @@ Actor PM_Host : PMMonsterBase
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
 	+MISSILEMORE
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
   states
   {
   Spawn:

@@ -27,6 +27,8 @@ Class PM_Vore : PMMonsterBase
   DeathSound "Vore/Death";
   Species "Nobles";
   Tag "Vore";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

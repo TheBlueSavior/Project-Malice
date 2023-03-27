@@ -21,6 +21,8 @@ Class PM_HellPriest : PMMonsterBase
 	FloatBobStrength 0.4;
     Monster;
 	Bloodtype "PM_BlackBloodBase";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+    TeleFogDestType "PM_PossessedTeleportFog";
     +FloorClip
     +DontHarmClass
 	+HARMFRIENDS

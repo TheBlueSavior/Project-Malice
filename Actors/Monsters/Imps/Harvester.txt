@@ -22,6 +22,8 @@ Class PM_Harvester : PMMonsterBase
 	+MissileMore
 	+MissileEvenMore
 	+DONTHARMSPECIES
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
 
   States

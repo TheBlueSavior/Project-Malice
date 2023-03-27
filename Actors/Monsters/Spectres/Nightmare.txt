@@ -27,6 +27,8 @@ Class PM_Nightmare : PMMonsterBase
 	+NOBLOCKMONST
 	+DONTHARMSPECIES
 	+NOSPRITESHADOW
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
 
    States

@@ -25,6 +25,8 @@ ACTOR PM_Glutton : PMMonsterBase
 	Obituary "%o was digested alive by a Glutton's acid slurry."
 	HitObituary "%o became part of the Glutton's feeding cycle."
 	Tag "Glutton"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 	Spawn:

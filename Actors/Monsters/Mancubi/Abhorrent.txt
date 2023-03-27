@@ -21,6 +21,8 @@ Class PM_Abhorrent : PMMonsterBase
  Obituary "An Abhorrent satisfied its quench for %o's soul.";
  Tag "Abhorrent";
  +DONTHARMCLASS
+ TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ TeleFogDestType "PM_DemonicTeleportFog";
  }
   states
  {

@@ -23,6 +23,8 @@ Class PM_CyberFodder : PMMonsterBase
   DeathSound "CyberZ/Death";
   DropItem "Shell";
   Obituary "%o was seared by a Cyber Fodder.";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
   }
   States
   {

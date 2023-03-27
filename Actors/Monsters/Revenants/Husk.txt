@@ -28,6 +28,8 @@ Class PM_Husk : PMMonsterBase
   DamageFactor "GhoulCloud",0;
   Tag "Husk";
   PoisonDamage 128;
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

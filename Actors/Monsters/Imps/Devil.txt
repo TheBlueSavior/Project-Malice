@@ -24,6 +24,8 @@ Class PM_Devil : PMMonsterBase
   +DONTHARMCLASS
   +DONTHARMSPECIES
   +AVOIDMELEE
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

@@ -25,6 +25,8 @@ Class PM_ZombieMarine : PMMonsterBase
 	Bloodtype "PM_NormalBloodBase";
     DropItem "Clip";
     Decal "Bulletchip";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
 	}
     states
     {

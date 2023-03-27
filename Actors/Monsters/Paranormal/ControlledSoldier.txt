@@ -25,6 +25,8 @@ Actor PM_ControlledSoldier
 	+NOBLOCKMONST
 	-Countkill
 	-ACTIVATEMCROSS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
   States
   {
   Spawn:

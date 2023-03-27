@@ -3698,3 +3698,8 @@ $limit PM/ShellBounce 4
 $limit PM/MagBounce 4
 $limit PM/HeavyMagBounce 4
 $limit PM/PistolMagBounce 4
+
+PM/NormalTeleport	"Sounds/Other/PMNormalTele.ogg"
+$pitchset PM/NormalTeleport 0.8 1.2
+$rolloff PM/NormalTeleport 100 1300
+PM/DemonTeleFire	"Sounds/Other/PMDemonTeleFire.ogg"

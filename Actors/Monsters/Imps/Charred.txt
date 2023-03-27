@@ -24,6 +24,8 @@ Class PM_Charred : PMMonsterBase
   +DONTHARMSPECIES
   Tag "Charred";
   Species "Imp";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

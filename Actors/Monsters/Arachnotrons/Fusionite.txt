@@ -21,6 +21,8 @@ Class PM_Fusionite : PMMonsterBase
 		DEATHSOUND "Fusionite/Death";
 		ACTIVESOUND "Fusionite/Active";
 		Bloodtype "PM_NormalCyberBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 
 	States

@@ -25,6 +25,8 @@ actor PM_FeralImp : PMMonsterBase
   activesound "FeralImp/Active"
   MeleeRange 155
   +FLOORCLIP
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+  TeleFogDestType "PM_DemonicTeleportFog"
   states
   {
   Spawn:

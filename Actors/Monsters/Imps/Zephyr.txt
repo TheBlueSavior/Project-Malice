@@ -25,6 +25,8 @@ actor PM_Zephyr : PMMonsterBase
   +MISSILEevenMORE
   +SLIDESONWALLS
   +AVOIDMELEE
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+  TeleFogDestType "PM_DemonicTeleportFog"
   states
   {
   Spawn:

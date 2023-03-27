@@ -25,6 +25,8 @@ DeathSound ""
 ActiveSound "BSkull/Active"
 Obituary "%o got spat on by a blood skull."
 Tag "Blood Skull"
+TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
 States
 {
 Spawn:

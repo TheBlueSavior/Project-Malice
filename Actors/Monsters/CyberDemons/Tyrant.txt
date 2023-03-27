@@ -19,6 +19,8 @@ Actor PM_Tyrant : Cyberdemon
   PainSound "Tyrant/Pain"
   DeathSound "Tyrant/Death"
   ActiveSound "Tyrant/Active"
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+  TeleFogDestType "PM_DemonicTeleportFog"
   States
   {
   Spawn:

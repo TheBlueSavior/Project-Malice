@@ -30,6 +30,8 @@ Actor Hunger
 	-CANUSEWALLS
 	-CANPUSHWALLS
 	-COUNTKILL
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -210,6 +212,8 @@ Actor PM_Hungry1
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -312,6 +316,8 @@ Actor PM_HungryMarine
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -421,6 +427,8 @@ Actor PM_HungrySci1
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -524,6 +532,8 @@ Actor PM_HungrySci2
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -627,6 +637,8 @@ Actor PM_HungrySoldier
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -707,6 +719,7 @@ Actor HungrySeekSpawn
 	MaxStepHeight 64
 	MaxDropOffHeight 64
 	-COUNTKILL
+	+NOTELEPORT
 	States
 	{
 	Spawn:

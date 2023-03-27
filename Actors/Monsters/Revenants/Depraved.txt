@@ -25,6 +25,8 @@ Class PM_Depraved : PMMonsterBase
 	+MissileMore
     +DONTHARMCLASS
 	+DONTHARMSPECIES
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
     }
   States
   {

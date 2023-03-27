@@ -24,6 +24,8 @@ ACTOR PM_DemonTechSpectre : PMMonsterBase
 	AttackSound "DTechSpectre/Ready"
     Obituary "%o was blasted where %g least expected by a Demon Tech Spectre." 
 	Tag "Demon Tech Spectre"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
     States 
     { 
     Spawn:

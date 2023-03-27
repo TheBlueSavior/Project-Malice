@@ -43,6 +43,8 @@ Actor Trite
   -CANUSEWALLS
   -CANPUSHWALLS
   +CANTSEEK
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+  TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:

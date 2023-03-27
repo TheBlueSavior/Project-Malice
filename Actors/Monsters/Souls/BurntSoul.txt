@@ -31,6 +31,8 @@ Actor PM_BurntSoul : PMMonsterBase
   +DONTHURTSPECIES
   +DONTHARMSPECIES
   +ROLLSPRITE
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:

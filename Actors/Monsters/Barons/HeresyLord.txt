@@ -31,6 +31,8 @@ actor PM_HeresyLord : PMMonsterBase
 	Tag "Heresy Lord"
     Obituary "%o fell before the unholy might of a Heresy Lord."
     MeleeDamage 8
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
     States
     {
     Spawn:

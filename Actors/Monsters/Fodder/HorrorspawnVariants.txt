@@ -30,6 +30,8 @@ Actor PM_HorrorspawnSpitter
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -301,6 +303,8 @@ Actor PM_HorrorspawnChunkThrower
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -597,6 +601,8 @@ Actor PM_HorrorspawnBurster
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:

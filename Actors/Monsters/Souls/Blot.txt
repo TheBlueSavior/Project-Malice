@@ -78,6 +78,8 @@ Actor PM_Blot : PMMonsterBase
   +BLOODLESSIMPACT
   +LOWGRAVITY
   Renderstyle "Add"
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   states
   {
   Spawn:

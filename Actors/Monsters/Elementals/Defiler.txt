@@ -25,6 +25,8 @@ Class PM_Defiler : PMMonsterBase
 	DeathSound "Defiler/Death";
 	ActiveSound "Defiler/Active";
 	Obituary "%o was thoroughly cleansed by a Defiler's flames.";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
 	}
 	States
 	{

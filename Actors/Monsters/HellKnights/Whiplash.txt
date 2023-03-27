@@ -25,6 +25,8 @@ Class PM_Whiplash : PMMonsterBase
   DeathSound "Whiplash/Death";
   Tag "Whiplash";
   Species "Nobles";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

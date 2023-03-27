@@ -26,6 +26,8 @@ Actor PM_Skulker
 	+DONTHURTSPECIES
 	+DONTHARMSPECIES
 	-SHOOTABLE
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
   States
   {
   Spawn:

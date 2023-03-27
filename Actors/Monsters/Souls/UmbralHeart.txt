@@ -23,6 +23,8 @@ Class PM_UmbralHeart : Actor
     +NOBLOOD
     +BRIGHT
     +DONTFALL
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
 
   States

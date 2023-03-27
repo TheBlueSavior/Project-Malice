@@ -22,6 +22,8 @@ Class PM_HellsFury : PMMonsterBase
     +FLOORCLIP
 	+MissileMore
 	+DONTHARMCLASS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
 	}
   States
   {

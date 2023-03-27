@@ -26,6 +26,8 @@ Class PM_DecayedSoldier : PMMonsterBase
     DropItem "Clip";
 	Bloodtype "PM_PestilenceZombieBloodBase";
     Decal "Bulletchip";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
 	}
     states
     {

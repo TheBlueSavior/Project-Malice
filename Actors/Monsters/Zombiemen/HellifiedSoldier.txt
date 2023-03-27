@@ -22,6 +22,8 @@ Class PM_HellifiedSoldier : PMMonsterBase
     ACTIVESOUND "HellSoldier/Active";
 	Bloodtype "PM_NormalBloodBase";
     DropItem "Clip";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
 	}
     states
     {

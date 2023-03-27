@@ -23,6 +23,8 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
   DropItem "Lith_ClipBox";
   Species "Chaingunner";
   Bloodtype "PM_NormalBloodBase";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
   }
   States
   {

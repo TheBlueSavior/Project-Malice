@@ -24,6 +24,8 @@ Class PM_Corpulent : PMMonsterBase
    +DONTHARMCLASS
    +DONTHARMSPECIES
    +FLOORCLIP
+   TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
    }
    states
  {

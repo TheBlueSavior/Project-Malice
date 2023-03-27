@@ -26,6 +26,8 @@ Actor PM_Remnant
 	DropItem "ArmorBonus"
 	DropItem "Shotgun"
 	Tag "Remnant"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
     States
     {
     Spawn:

@@ -25,6 +25,8 @@ ACTOR PM_Prowler : PMMonsterBase
 	Scale 1.14
 	Tag "Prowler"
 	MeleeRange 120
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 	Spawn:

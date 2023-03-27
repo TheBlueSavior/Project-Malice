@@ -23,6 +23,8 @@ ACTOR PM_PhaseBrute : PMMonsterBase
 	AttackSound "GenericPinkyBite"
 	Tag "Phase Brute"
 	Obituary "%o didn't notice a hungry Phase Brute."
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 		Spawn:

@@ -24,6 +24,8 @@ Class PM_FShotgunner : PMMonsterBase
   Obituary "%o had their face blown off by a Faceless Shotgunner.";
   DropItem "Lith_Shell";
   DropItem "Shotgun";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
   }
   States
   {

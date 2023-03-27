@@ -22,6 +22,8 @@ ACTOR SmallRat 9656
 	-CANUSEWALLS
 	-CANPUSHWALLS
 	+CANTSEEK
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
 	States
 	{
 	Spawn:

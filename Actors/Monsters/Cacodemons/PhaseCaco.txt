@@ -27,6 +27,8 @@ Class PM_PhaseCaco : PMMonsterBase
 		+SLIDESONWALLS
 		+MISSILEMORE
 		+DONTHARMCLASS
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
   
 	States

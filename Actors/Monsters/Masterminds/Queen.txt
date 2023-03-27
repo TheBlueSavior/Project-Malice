@@ -29,6 +29,8 @@ actor PM_AracnorbQueen
   HitObituary "%o had %p skull chewed by an aracnorb queen."
   Tag "Aracnorb Queen"
   Scale 0.85
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
   States
   {
   Spawn:

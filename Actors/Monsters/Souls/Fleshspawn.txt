@@ -28,6 +28,8 @@ Class PM_Fleshspawn : PMMonsterBase
     //+NOINFIGHTING
     +NOTARGET
 	+Thruspecies
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
 
   States

@@ -27,6 +27,8 @@ Class PM_Exile : PMMonsterBase
 		+DONTHARMSPECIES
 		+DONTHARMCLASS
 		+NOINFIGHTSPECIES
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 
 	States

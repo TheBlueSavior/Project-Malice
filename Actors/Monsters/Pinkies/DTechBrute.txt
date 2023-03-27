@@ -27,6 +27,8 @@ ACTOR PM_DemonTechBrute : PMMonsterBase
     Obituary "%o became a successful target practice participant for the Demon Tech Brute."
 	HItObituary "%o was seared by a Demon Tech Brute."
 	Tag "Demon Tech Brute"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
     States 
     { 
     Spawn:

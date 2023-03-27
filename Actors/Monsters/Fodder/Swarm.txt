@@ -18,6 +18,8 @@ ACTOR MaliceSwarm
 	Obituary "o% was pestered to death by a Fly Swarm."
 	DeathSound "SwarmFlyDeath"
 	RenderStyle None
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
 	States
 	{
 	Spawn:

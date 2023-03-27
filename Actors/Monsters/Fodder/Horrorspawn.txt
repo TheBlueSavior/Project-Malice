@@ -76,6 +76,8 @@ Actor Horrorspawn1
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -317,6 +319,8 @@ Actor Horrorspawn2
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -551,6 +555,8 @@ Actor Horrorspawn3
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -785,6 +791,8 @@ Actor Horrorspawn4
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -1019,6 +1027,8 @@ Actor FreshHorrorspawn
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -1157,6 +1167,8 @@ Actor HorrorspawnScreamer
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -1383,6 +1395,8 @@ Actor HorrorspawnDecap
 	-ACTIVATEMCROSS
 	-CANUSEWALLS
 	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -1591,6 +1605,7 @@ Actor HorrorSeekSpawn
 	MaxStepHeight 64
 	MaxDropOffHeight 64
 	-COUNTKILL
+	+NOTELEPORT
 	States
 	{
 	Spawn:
@@ -1639,6 +1654,7 @@ Actor HorrorPassiveSpawn
     //MaxStepHeight 64
 	//MaxDropOffHeight 64
 	-COUNTKILL
+	+NOTELEPORT
 	States
 	{
 	Spawn:
@@ -1680,6 +1696,7 @@ Actor PM_HorrorSleeperSpawn
     //MaxStepHeight 64
 	//MaxDropOffHeight 64
 	-COUNTKILL
+	+NOTELEPORT
 	States
 	{
 	Spawn:
@@ -1783,6 +1800,8 @@ actor PM_SleepingHorrorspawn1
   Mass 50
   XScale 0.84
   YScale 0.91
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   states
   {
   Spawn:
@@ -1830,6 +1849,8 @@ Actor PM_SleepingHorrorspawn2
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states
@@ -1881,6 +1902,8 @@ Actor PM_SleepingHorrorspawn22
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states
@@ -1931,6 +1954,8 @@ Actor PM_SleepingHorrorspawn3
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states
@@ -1983,6 +2008,8 @@ Actor PM_SleepingHorrorspawn33
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states
@@ -2034,6 +2061,8 @@ Actor PM_SleepingHorrorspawn4
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states
@@ -2086,6 +2115,8 @@ Actor PM_SleepingHorrorspawn44
   Radius 15
   Height 35
   Mass 50
+  TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_SmallDemonicTeleportFog"
   //XScale 0.84
   //YScale 0.91
   states

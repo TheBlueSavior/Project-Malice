@@ -25,6 +25,8 @@ ACTOR PM_CyberSpectre : PMMonsterBase
 	PainSound "Brute/Pain"
 	Tag "Cyber Spectre"
 	Obituary "%o was torn to pieces by a starving Cyber Spectre."
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 		Spawn:

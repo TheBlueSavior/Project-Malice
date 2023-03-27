@@ -1643,6 +1643,38 @@ flickerlight YellowMediumFlicker2
     chance 0.4
 }
 
+flickerlight PM_GTeleMediumFlicker1
+{
+    color 0.4 1.0 0.3
+    size 50
+    secondarySize 65
+    chance 0.4
+}
+
+flickerlight PM_GTeleMediumFlicker2
+{
+    color 0.4 1.0 0.3
+    size 60
+    secondarySize 65
+    chance 0.4
+}
+
+flickerlight PM_RTeleMediumFlicker1
+{
+    color 1.0 0.4 0.3
+    size 50
+    secondarySize 65
+    chance 0.4
+}
+
+flickerlight PM_RTeleMediumFlicker2
+{
+    color 1.0 0.4 0.3
+    size 60
+    secondarySize 65
+    chance 0.4
+}
+
 //Watcher=====
 
 Flickerlight2 WatcherE

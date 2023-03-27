@@ -25,6 +25,8 @@ Class PM_NetherImp : PMMonsterBase
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
 	//+NOINFIGHTING
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
 	
   }
 

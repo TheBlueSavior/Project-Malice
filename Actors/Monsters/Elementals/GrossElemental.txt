@@ -22,6 +22,8 @@ ACTOR PM_GrossElemental : PMMonsterBase
    FloatBobStrength 0.4
    +NOGRAVITY
     +FLOAT 
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
   states
    {
   Spawn:

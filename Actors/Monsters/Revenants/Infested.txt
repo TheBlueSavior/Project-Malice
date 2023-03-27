@@ -22,6 +22,8 @@ Class PM_Infested : PMMonsterBase
   MeleeSound "skeleton/melee";
   Tag "Infested";
   HitObituary "%o fell victim to an Infested.";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

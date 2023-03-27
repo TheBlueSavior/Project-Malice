@@ -22,6 +22,8 @@ Class PM_Cadaver : PMMonsterBase
   Bloodtype "PM_NormalCyberBloodBase";
   Obituary "%o had trouble dodging a Cadaver's missile.";
   HitObituary "%o was punched by a Cadaver.";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
   States
   {

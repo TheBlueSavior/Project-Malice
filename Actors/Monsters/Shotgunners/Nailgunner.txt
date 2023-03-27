@@ -27,6 +27,8 @@ Class PM_Nailgunner : PMMonsterBase
   Obituary "%o got spiked by a Nailgunner.";
   DropItem "Lith_Shell";
   DropItem "Shotgun";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
   }
   States
   {

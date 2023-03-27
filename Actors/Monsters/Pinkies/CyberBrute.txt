@@ -27,6 +27,8 @@ ACTOR PM_CyberBrute : PMMonsterBase
 	PainSound "Brute/Pain"
 	Obituary "%o was torn to pieces by a starving Cyber Brute."
 	Tag "Cyber Brute"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 		Spawn:

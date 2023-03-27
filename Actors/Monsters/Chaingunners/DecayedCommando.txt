@@ -20,6 +20,8 @@ Class PM_DecayedCommando : PMMonsterBase
   Tag "Decayed Commando";
   Monster;
   Bloodtype "PM_PestilenceZombieBloodBase";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
   +FloorClip
   +HARMFRIENDS
   +DOHARMSPECIES

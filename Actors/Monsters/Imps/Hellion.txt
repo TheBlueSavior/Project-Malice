@@ -21,6 +21,8 @@ Class PM_Hellion : PMMonsterBase
     Monster;
     +FloorClip
 	+DONTHARMSPECIES
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
   }
 
   States

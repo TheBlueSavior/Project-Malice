@@ -20,6 +20,8 @@ Class PM_Hectebus : PMMonsterBase
     Bloodtype "PM_NormalBloodBase";
     +DONTHARMCLASS
     +DONTHARMSPECIES
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
 	}
   states
  {

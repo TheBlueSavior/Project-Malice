@@ -27,6 +27,8 @@ Class PM_SlugShotgunner : PMMonsterBase
 	DropItem "Lith_Shell";
     DropItem "Shotgun";
     Decal "Bulletchip";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
 	}
     states
     {

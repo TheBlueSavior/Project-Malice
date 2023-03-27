@@ -17,6 +17,7 @@ Actor PM_ScurryRat
   +AMBUSH
   +VULNERABLE
   +TOUCHY
+  +NOTELEPORT
   states
   {
   Spawn:

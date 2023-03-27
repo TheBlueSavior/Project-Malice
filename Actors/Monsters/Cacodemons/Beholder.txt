@@ -26,6 +26,8 @@ Class PM_Beholder : PMMonsterBase
 		+FLOATBOB
 		+FLOAT
 		+NOGRAVITY
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
 	}
 
 	States

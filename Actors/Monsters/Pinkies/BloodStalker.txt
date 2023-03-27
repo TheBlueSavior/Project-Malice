@@ -23,6 +23,8 @@ ACTOR PM_BloodStalker : PMMonsterBase
 	Tag "Blood Stalker"
     StencilColor "Black"
 	Obituary "%o was torn apart before %g could react by a Blood Stalker."
+	TeleFogSourceType "PM_SmallDemonicTeleportFog"
+	TeleFogDestType "PM_DemonicTeleportFog"
 	States
 	{
 		Spawn:
