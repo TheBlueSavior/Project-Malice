@@ -3040,6 +3040,7 @@ $pitchset TeleportVoices 0.5 1.1
 TeleportSound	"Sounds/Other/TeleportSound.ogg"
 
 $rolloff TeleportSound 350 1600
+$limit TeleportSound 7
 $rolloff TeleportVoices 100 3200
 
 $random Wretched/Bite { Wretched/Bite1 Wretched/Bite2 Wretched/Bite3 Wretched/Bite4 }
@@ -3702,4 +3703,6 @@ $limit PM/PistolMagBounce 4
 PM/NormalTeleport	"Sounds/Other/PMNormalTele.ogg"
 $pitchset PM/NormalTeleport 0.8 1.2
 $rolloff PM/NormalTeleport 100 1300
+$limit PM/NormalTeleport 7
 PM/DemonTeleFire	"Sounds/Other/PMDemonTeleFire.ogg"
+$limit PM/DemonTeleFire 7
