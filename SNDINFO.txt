@@ -2664,6 +2664,7 @@ $rolloff Plasmatron/Fire 200 2000
 $rolloff Plasmatron/SmallFire 200 2000
 $rolloff Plasmatron/MortarFire 200 2500
 $rolloff Plasmatron/MortarExp 300 2800
+$rolloff Plasmatron/MortarCharge 300 2800
 $volume Plasmatron/Fire 0.85
 $pitchset Plasmatron/SmallFire 0.7 1.4
 
