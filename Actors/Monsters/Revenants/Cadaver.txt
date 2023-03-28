@@ -1,5 +1,21 @@
 Class PM_Cadaver : PMMonsterBase
 {
+       void CadAimLaser3(Vector2 off = (0, 10))
+		{
+			double sa = sin(Angle);
+			double ca = cos(Angle);
+			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
+			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+		}
+		
+		void CadAimLaser4(Vector2 off = (0, -17))
+		{
+			double sa = sin(Angle);
+			double ca = cos(Angle);
+			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
+			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+		}
+
   Default
   {
   +DONTHARMSPECIES
@@ -169,7 +185,7 @@ Class PM_Cadaver : PMMonsterBase
   Missile3:
 	CREV JJJJJJJJJJ 1 Light("Shadowball2")
 		{
-		A_CustomRailgun(0, 10, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
+		CadAimLaser3();
 		A_SpawnProjectile("HomingFlare",58,10);
 		A_FaceTarget();
 		}
@@ -186,7 +202,7 @@ Class PM_Cadaver : PMMonsterBase
 		{
 		A_FaceTarget();
 		A_SpawnProjectile("HomingFlare",58,-17);
-		A_CustomRailgun(0, -17, "", "Red", RGF_SILENT || RGF_NOPIERCING || RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "", 25);
+		CadAimLaser4();
 		}
 	CREV J 8 Bright Light("AvatarFireball5")
 		{
