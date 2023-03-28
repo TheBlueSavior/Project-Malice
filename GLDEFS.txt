@@ -865,17 +865,6 @@ Frame PSMML { Light SatyrLordMissile210 }
 Frame PSMMM { Light SatyrLordMissile211 }
 }
 
-Pointlight SLGroundFire
-{
-Color 0.3 0.0 0.0
-Size 40
-}
-
-Object SLGroundFire
-{
-Frame FX03 { Light SLGroundFire }
-}
-
 Pointlight SatyrLordWhiteMissile1
 {
 Color 1.0 1.0 1.0

@@ -79,6 +79,7 @@ version "4.2.0"
 #include "Actors/Monsters/Hellknights/HellsFury.txt"
 
 //Barons
+#include "Actors/Monsters/Barons/HeresyLord.txt"
 #include "Actors/Monsters/Barons/Bruiser.txt"
 
 //Viles

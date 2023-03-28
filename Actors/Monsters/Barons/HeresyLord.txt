@@ -1,163 +1,160 @@
 
-//=====================================================================================
-//=====================================================================================
-
-
-//=====================================================================================
-//=====================================================================================
-actor PM_HeresyLord : PMMonsterBase
+Class PM_HeresyLord : PMMonsterBase
 {
-    Health 1000
-    Radius 22
-    Height 64
-    Speed 9
-	Scale 1.2
-    PainChance 20
-    Mass 1500
-    MONSTER 
-	Bloodtype "PM_NormalBloodBase"
+    Default
+	{
+    Health 1000;
+    Radius 22;
+    Height 64;
+    Speed 9;
+	Scale 1.2;
+    PainChance 20;
+    Mass 1500;
+    MONSTER;
+	Bloodtype "PM_NormalBloodBase";
     +FLOORCLIP
 	//+NOINFIGHTING
-	+DontHurtSpecies
+	+DONTHARMCLASS
 	+DONTHARMSPECIES
 	+MISSILEMORE
-	Species "Nobles"
+	Species "Nobles";
 	//DropItem "RagePoint1"
-    SeeSound ""
-    PainSound "HeresyLord/Pain"
-    DeathSound "HeresyLord/Death"
-    ActiveSound "HeresyLord/Active"
-    MeleeSound "baron/melee"
-	Tag "Heresy Lord"
-    Obituary "%o fell before the unholy might of a Heresy Lord."
-    MeleeDamage 8
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_DemonicTeleportFog"
+    SeeSound "";
+    PainSound "HeresyLord/Pain";
+    DeathSound "HeresyLord/Death";
+    ActiveSound "HeresyLord/Active";
+    MeleeSound "baron/melee";
+	Tag "Heresy Lord";
+    Obituary "%o fell before the unholy might of a Heresy Lord.";
+    MeleeDamage 8;
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
+	}
     States
     {
     Spawn:
-        LOHS A 10 PM_Look()
-        Loop
+        LOHS A 10 PM_Look();
+        Loop;
     Look:
-        LOHS AABB 4 PM_LookingForPlayer()
-		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
-		TNT1 A 0 A_PlaySound("hoofstep",3)
-        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
-		LOHS CCDD 4 PM_LookingForPlayer()
-		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
-		TNT1 A 0 A_PlaySound("hoofstep",3)
-        Loop
+        LOHS AABB 4 PM_LookingForPlayer();
+		TNT1 A 0 A_Quake(1, 4, 0, 312);
+		TNT1 A 0 A_PlaySound("hoofstep",3);
+        TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+		LOHS CCDD 4 PM_LookingForPlayer();
+		TNT1 A 0 A_Quake(1, 4, 0, 312);
+		TNT1 A 0 A_PlaySound("hoofstep",3);
+        Loop;
     Spotted:
-        TNT1 A 0 A_PlaySound("HeresyLord/Sight",CHAN_5)
+        TNT1 A 0 A_PlaySound("HeresyLord/Sight",CHAN_5);
     See2:
-	    TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
-        LOHS AABB 4 A_Chase
-		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
-		TNT1 A 0 A_PlaySound("hoofstep",3)
-		LOHS CCDD 4 A_Chase
-		TNT1 A 0 A_Quake(1, 4, 0, 312, "")
-		TNT1 A 0 A_PlaySound("hoofstep",3)
-        Loop
+	    TNT1 A 0 { bSPRITEFLIP = false; }
+        LOHS AABB 4 A_Chase();
+		TNT1 A 0 A_Quake(1, 4, 0, 312);
+		TNT1 A 0 A_PlaySound("hoofstep",3);
+		LOHS CCDD 4 A_Chase();
+		TNT1 A 0 A_Quake(1, 4, 0, 312);
+		TNT1 A 0 A_PlaySound("hoofstep",3);
+        Loop;
     Missile:
-	  TNT1 A 0 A_Jump(64,"MDoubleSerie")
-	  TNT1 A 0 A_Jump(128,"MRightHand")
+	  TNT1 A 0 A_Jump(64,"MDoubleSerie");
+	  TNT1 A 0 A_Jump(128,"MRightHand");
     MLeftHand:
-	  TNT1 A 0 A_PlaySound("GenericChargeHeavy",CHAN_6)
-	  LOHS D 7 Light("AzazelSoul") A_FaceTarget
+	  TNT1 A 0 A_PlaySound("GenericChargeHeavy",CHAN_6);
+	  LOHS D 7 Light("AzazelSoul") A_FaceTarget();
 	  LOHS EEEEEEEEEEEEEE 1 Light("AzazelSoul")
 	  {
        A_SpawnItemEX("WhiteFireEffect",7,random(40,35),65,0,0,2);
-	   A_FaceTarget;
+	   A_FaceTarget();
 	  }
-	  LOHS F 7 Light("AzazelSoul") A_FaceTarget
-	  TNT1 A 0 A_PlaySound("baron/attack")
-	  LOHS G 1 Light("AzazelSoul")
+	  LOHS F 7 Light("AzazelSoul") A_FaceTarget();
+	  TNT1 A 0 A_PlaySound("baron/attack");
+	  LOHS G 1 Light("AzazelSoul");
 	  LOHS G 7 Light("AzazelSoul")
 	  {
 	  PM_LeadTarget(22);
 	  A_SpawnProjectile("PM_HeresyLordWhiteSoul",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	  }
-	  TNT1 A 0 A_StopSound(CHAN_6)
-	  Goto see2
+	  TNT1 A 0 A_StopSound(CHAN_6);
+	  Goto See2;
 	MRightHand:
-	TNT1 A 0 A_ChangeFlag("SPRITEFLIP",1)
-	TNT1 A 0 A_PlaySound("GenericChargeHeavy",CHAN_6)
+	TNT1 A 0 { bSPRITEFLIP = true; }
+	TNT1 A 0 A_PlaySound("GenericChargeHeavy",CHAN_6);
     LOHS EEEEEEEEEE 1 Light("ShadowBall2")
 	{
 	A_SpawnItemEX("AzazelFire",7,random(-40,-35),65,0,0,2);
-	A_FaceTarget;
+	A_FaceTarget();
 	}
-	LOHS EEEE 1 A_SpawnItemEX("AzazelFire",7,random(-40,-35),65,0,0,2)
-	LOHS F 8 Light("ShadowBall2") A_FaceTarget
+	LOHS EEEE 1 A_SpawnItemEX("AzazelFire",7,random(-40,-35),65,0,0,2);
+	LOHS F 8 Light("ShadowBall2") A_FaceTarget();
     LOHS G 6
 		{
       A_SpawnProjectile("PM_HeresyLordRedBall", 38, 0,  8);
       A_SpawnProjectile("PM_HeresyLordRedBall", 38, 0,  0);
       A_SpawnProjectile("PM_HeresyLordRedBall", 38, 0, -8);
 		}
-	TNT1 A 0 A_StopSound(CHAN_6)
-    Goto See2
+	TNT1 A 0 A_StopSound(CHAN_6);
+    Goto See2;
     MDoubleSerie:
-	  TNT1 A 0 A_ChangeFlag("SPRITEFLIP",1)
-	  TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageRCharge","SoundSlot5")
-	  TNT1 A 0 A_FaceTarget
-	  LOHS F 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,-20,60,0,0,0,32)
-	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,-9,46,0,0,0,32)
-	  LOHS E 6 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,4,28,0,0,0,32)
-	  TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageWCharge","SoundSlot6")
-	  TNT1 A 0 A_FaceTarget
-	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,20,60,0,0,0,32)
-	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,9,46,0,0,0,32)
-	  LOHS E 6 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,-4,28,0,0,0,32)
-	  TNT1 A 0 A_PlaySound("baron/attack")
-	  TNT1 A 0 A_FaceTarget
-	  LOHS EE 4 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual1Real",60,-20,random(-2,3),CMF_OFFSETPITCH,random(-2,2))
-	  LOHS EF 4 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual1Real",46,-9,random(-2,2),CMF_OFFSETPITCH,random(-2,2))
-	  LOHS F 6 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual1Real",28,4,random(-2,2),CMF_OFFSETPITCH,random(-2,2))
-	  TNT1 A 0 A_PlaySound("baron/attack")
-	  TNT1 A 0 A_FaceTarget
-	  TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
-	  LOHS EE 4 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual2Real",60,20,random(-2,2),CMF_OFFSETPITCH,random(-2,2))
-	  LOHS FF 4 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual2Real",46,9,random(-2,2),CMF_OFFSETPITCH,random(-2,2))
-	  LOHS G 6 Light("ShadowBall2") A_CustomMissile("PM_HeresyLordMissileDual2Real",28,-4,random(-2,2),CMF_OFFSETPITCH,random(-2,2))
-	  Goto see2 
+	  TNT1 A 0 { bSPRITEFLIP = true; }
+	  TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageRCharge","SoundSlot5");
+	  TNT1 A 0 A_FaceTarget();
+	  LOHS F 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,-20,60,0,0,0,32);
+	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,-9,46,0,0,0,32);
+	  LOHS E 6 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual1Fake",10,4,28,0,0,0,32);
+	  TNT1 A 0 A_PlaySoundEx("HeresyLord/BarrageWCharge","SoundSlot6");
+	  TNT1 A 0 A_FaceTarget();
+	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,20,60,0,0,0,32);
+	  LOHS E 5 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,9,46,0,0,0,32);
+	  LOHS E 6 Light("ShadowBall2") A_SpawnItemEx("PM_HeresyLordMissileDual2Fake",10,-4,28,0,0,0,32);
+	  TNT1 A 0 A_PlaySound("baron/attack");
+	  TNT1 A 0 A_FaceTarget();
+	  LOHS EE 4 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual1Real",60,-20,random(-2,3),CMF_OFFSETPITCH,random(-2,2));
+	  LOHS EF 4 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual1Real",46,-9,random(-2,2),CMF_OFFSETPITCH,random(-2,2));
+	  LOHS F 6 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual1Real",28,4,random(-2,2),CMF_OFFSETPITCH,random(-2,2));
+	  TNT1 A 0 A_PlaySound("baron/attack");
+	  TNT1 A 0 A_FaceTarget();
+	  TNT1 A 0 { bSPRITEFLIP = false; }
+	  LOHS EE 4 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual2Real",60,20,random(-2,2),CMF_OFFSETPITCH,random(-2,2));
+	  LOHS FF 4 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual2Real",46,9,random(-2,2),CMF_OFFSETPITCH,random(-2,2));
+	  LOHS G 6 Light("ShadowBall2") A_SpawnProjectile("PM_HeresyLordMissileDual2Real",28,-4,random(-2,2),CMF_OFFSETPITCH,random(-2,2));
+	  Goto see2;
     Melee:
-	  TNT1 A 0 A_Jump(128,"Melee2")
-	  TNT1 A 0 A_PlaySound("baron/attack")
-        LOHS EF 7 A_FaceTarget
-        LOHS G 7 A_MeleeAttack
-	  Goto See2
+	  TNT1 A 0 A_Jump(128,"Melee2");
+	  TNT1 A 0 A_PlaySound("baron/attack");
+      LOHS EF 7 A_FaceTarget();
+      LOHS G 7 A_CustomMeleeAttack();
+	  Goto See2;
     Melee2:
-	  TNT1 A 0 A_ChangeFlag("SPRITEFLIP",1)
-	  TNT1 A 0 A_PlaySound("baron/attack")
-        LOHS EF 7 A_FaceTarget
-        LOHS G 7 A_MeleeAttack
-        Goto See2
+	  TNT1 A 0 { bSPRITEFLIP = true; }
+	  TNT1 A 0 A_PlaySound("baron/attack");
+        LOHS EF 7 A_FaceTarget();
+        LOHS G 7 A_CustomMeleeAttack();
+        Goto See2;
     Pain:
-	    TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
-		TNT1 A 0 A_StopSound(CHAN_6)
-        LOHS H 5
-		LOHS H 5 A_Pain
-        Goto See2
+	    TNT1 A 0 { bSPRITEFLIP = false; }
+		TNT1 A 0 A_StopSound(CHAN_6);
+        LOHS H 5;
+		LOHS H 5 A_Pain;
+        Goto See2;
     Death:
-	    TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
-		TNT1 A 0 A_StopSounds(0,0)
-        LOHS I 8
-		LOHS J 8 A_Scream
-		LOHS K 8 A_Fall
-		LOHS LMN 8
-		TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6)
-		LOHS O -1
-        Stop
+	    TNT1 A 0 { bSPRITEFLIP = false; }
+		TNT1 A 0 A_StopSounds(0,0);
+        LOHS I 8;
+		LOHS J 8 A_Scream;
+		LOHS K 8 A_Fall;
+		LOHS LMN 8;
+		TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6);
+		LOHS O -1;
+        Stop;
 	Raise:
-	    LOHS ONMLKJI 6
-		Goto Look
+	    LOHS ONMLKJI 6;
+		Goto Look;
     }
 }
 
-Actor AzazelFire : PM_RedFireEffect
+Class AzazelFire : PM_RedFireEffect
   {
-  Scale 0.3
+  Default { Scale 0.3; }
   States
   {
   Spawn:
@@ -165,15 +162,15 @@ Actor AzazelFire : PM_RedFireEffect
 	{
 	A_FadeOut(0.05);
 	A_SetRoll(random(0,360));
-	A_SetScale(ScaleX-0.015);
+	A_SetScale(Scale.X-0.015);
 	}
-	Loop
+	Loop;
 	}
 }
 
-Actor WhiteFireEffect : PM_RedFireEffect
+Class WhiteFireEffect : PM_RedFireEffect
   {
-  Scale 0.4
+  Default { Scale 0.4; }
   States
   {
   Spawn:
@@ -181,163 +178,55 @@ Actor WhiteFireEffect : PM_RedFireEffect
 	{
 	A_FadeOut(0.05);
 	A_SetRoll(random(0,360));
-	A_SetScale(ScaleX-0.015);
+	A_SetScale(Scale.X-0.015);
 	}
-	Loop
+	Loop;
 	}
 }
 
-Actor WhiteFireTrail : PM_RedFireEffect
+Class WhiteFireTrail : PM_RedFireEffect
   {
-  Scale 0.4
+  Default { Scale 0.4; }
   States
   {
   Spawn:
-  TNT1 A 2
+  TNT1 A 2;
   Go:
 	FIR1 W 1
 	{
 	A_FadeOut(0.05);
 	A_SetRoll(random(0,360));
-	A_SetScale(ScaleX-0.015);
+	A_SetScale(Scale.X-0.015);
 	}
-	Loop
+	Loop;
 	}
 }
 
 //*************************************************
 //*************************************************
-actor SLGroundFire
+
+
+Class PM_HLM1Trail : Actor
 {
-	Projectile
-	Speed 16
-	Damage 3
-	+RIPPER
-	Scale 0.4
-	+FLOORHUGGER
-	SeeSound "groundfirestart"
-	RenderStyle Add
-	Alpha 0.9
-	Decal Scorch
-	States
+    Default
 	{
-	Spawn:
-		FX03 B 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 C 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 D 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 E 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 F 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 G 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 H 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 I 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 J 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 K 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 L 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 M 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 N 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 O 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 P 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 Q 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 R 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 S 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 T 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 U 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 V 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 W 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 X 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		FX03 Y 1 A_SpawnItemEx("SLGFXtraSpawner",0,0,0,0,0,0,0)
-		TNT1 A 0 A_Explode(64,64,0)
-		Loop
-	Death:
-		TNT1 A 1
-		Stop
-	}
-}
-
-Actor SLGFXtraSpawner
-{
-	+NOCLIP
-	RenderStyle None
-	States
-	{
-	Spawn:
-		TNT1 A 0
-		PLAY AAA 0 A_SpawnItemEx("SLGFXtra",0,0,0,random(3,-3),random(3,-3),random(3,-3),0)
-		Stop
-	}
-}
-
-Actor SLGFXtra
-{
-	Projectile
-	Damage 0
-	+NOCLIP
-	Speed 0
-	Radius 1
-	+DONTBLAST
-	Height 1
-	Scale 0.09
-	RenderStyle Add
-	States
-	{
-	Spawn:
-		STAR P 3 Bright
-		STAR P 0 A_Jump(128,1)
-		Loop
-		STAR P 3 Bright
-		STAR P 1 Bright A_FadeOut
-		Wait
-	Death:
-		NULL A 1
-		Stop
-	}
-}
-
-//*************************************************
-//*************************************************
-
-
-Actor PM_HLM1Trail
-{
-	Projectile
+	Projectile;
 	-NOGRAVITY
-	Gravity 0.4
+	Gravity 0.4;
 	+NOCLIP
-	Damage 0
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.5
+	Damage 0;
+	RenderStyle "Add";
+	Alpha 0.8;
+	Scale 0.5;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 1
-		TNT1 A 0 ThrustThingZ(0,random(-3,8),0,1)
-		SHER ABCDDE 3 Bright
-		SHER F 1 Bright A_FadeOut(0.1)
-		Wait
+		TNT1 A 1;
+		TNT1 A 0 ThrustThingZ(0,random(-3,8),0,1);
+		SHER ABCDDE 3 Bright;
+		SHER F 1 Bright A_FadeOut(0.1);
+		Wait;
 	}
 }
 
@@ -346,204 +235,227 @@ Actor PM_HLM1Trail
 
 //*************************************************
 //*************************************************
-Actor PM_HeresyLordWhiteSoul
+Class PM_HeresyLordWhiteSoul : Actor
 {
-	Speed 22
-	damage 6
-	scale 1.3
-	radius 6
-	height 12
-	RENDERSTYLE ADD
-	Alpha 0.75
-	PROJECTILE
-	seesound "HeresyLord/WhiteFire"
-	deathsound "HeresyLord/WhiteDeath"
-	Decal "BigScorch"
+    Default
+	{
+	Speed 22;
+	damage 6;
+	scale 1.3;
+	radius 6;
+	height 12;
+	Renderstyle "Add";
+	Alpha 0.75;
+	Projectile;
+	seesound "HeresyLord/WhiteFire";
+	deathsound "HeresyLord/WhiteDeath";
+	Decal "BigScorch";
+	}
 	states
 	{
 	Spawn:
 		PSMM DDEEFF 1 Bright Light("AzazelSoul")
 		{
 		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
-		A_CustomMissile("PM_HeresyLordSoulTrails",0,0,0);
+		A_SpawnProjectile("PM_HeresyLordSoulTrails",0,0,0);
 		}
-		Loop
+		Loop;
 	Death:
-		PSMM GGHHIIJJKKLLMM 3 Bright A_FadeOut(0.05)
-		stop
+		PSMM GGHHIIJJKKLLMM 3 Bright A_FadeOut(0.05);
+		stop;
 	}
 }
 
-
-Actor PM_HLM2Trail
+Class PM_HLM2Trail : Actor
 {
-	Projectile
+    Default
+	{
 	+NOCLIP
-	Damage 0
-	RenderStyle Add
-	Alpha 0.45
-	Scale 0.9
+	Damage 0;
+	RenderStyle "Add";
+	Projectile;
+	Alpha 0.45;
+	Scale 0.9;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 2
-		PUF2 BDFHJLNPRTVXZ 1
-		PUF3 B 1 A_FadeOut(0.2)
-		Wait
+		TNT1 A 2;
+		PUF2 BDFHJLNPRTVXZ 1;
+		PUF3 B 1 A_FadeOut(0.2);
+		Wait;
 	}
 }
 
 //*************************************************
 //*************************************************
-Actor PM_HeresyLordMissileDual1Fake
+Class PM_HeresyLordMissileDual1Fake : Actor
 {
-	Projectile
-	Speed 0
-	Scale 0.7
-	RenderStyle Add
-	SeeSound "HeresyLord/BarrageSummon"
+    Default
+	{
+	Projectile;
+	Speed 0;
+	Scale 0.7;
+	RenderStyle "Add";
+	SeeSound "HeresyLord/BarrageSummon";
+	}
 	States
 	{
 	Spawn:
-		MSP2 ABCD 2
-		MSP2 ABCD 2
-		MSP2 ABCD 2
-		MSP2 ABCD 2
-		Stop
+		MSP2 ABCD 2;
+		MSP2 ABCD 2;
+		MSP2 ABCD 2;
+		MSP2 ABCD 2;
+		Stop;
 	Death:
-		TNT1 A 1
-		Stop
+		TNT1 A 1;
+		Stop;
 	}
 }
-Actor PM_HeresyLordMissileDual1Real
+Class PM_HeresyLordMissileDual1Real : Actor
 {
-	Projectile
-	Speed 16
-	Scale 0.8
-	RenderStyle Add
-	Damage 4
-	Radius 6
-	height 12
-	SeeSound "HeresyLord/BarrageRedFire"
-	DeathSound "HeresyLord/BarrageRedDeath"
-	Decal "PM_RedFireScorch"
+    Default
+	{
+	Projectile;
+	Speed 16;
+	Scale 0.8;
+	RenderStyle "Add";
+	Damage 4;
+	Radius 6;
+	height 12;
+	SeeSound "HeresyLord/BarrageRedFire";
+	DeathSound "HeresyLord/BarrageRedDeath";
+	Decal "PM_RedFireScorch";
+	}
 	States
 	{
 	Spawn:
-		MSP2 A 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 A 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 B 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 B 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 C 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 C 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 D 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		MSP2 D 1 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		TNT1 AA 0 A_CustomMissile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0)
-		Loop
+		MSP2 A 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 A 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 B 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 B 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 C 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 C 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 D 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		MSP2 D 1 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		TNT1 AA 0 A_SpawnProjectile("PM_HLMD1RTrail",random(-5,5),random(8,-8),0);
+		Loop;
 	Death:
-		MSP1 GHIJKLMNO 2
-		Stop
+		MSP1 GHIJKLMNO 2;
+		Stop;
 	}
 }
 
-Actor PM_HLMD1RTrail
+Class PM_HLMD1RTrail : Actor
 {
-	Projectile
+    Default
+	{
+	Projectile;
 	-NOGRAVITY
-	Gravity 0.4
+	Gravity 0.4;
 	+NOCLIP
-	Damage 0
-	RenderStyle Add
-	Alpha 0.8
-	Scale 0.3
+	Damage 0;
+	RenderStyle "Add";
+	Alpha 0.8;
+	Scale 0.3;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 1
-		TNT1 A 0 ThrustThingZ(0,random(-3,5),0,1)
-		SHER ABCDDE 3 Bright
-		SHER F 1 Bright A_FadeOut(0.1)
-		Wait
+		TNT1 A 1;
+		TNT1 A 0 ThrustThingZ(0,random(-3,5),0,1);
+		SHER ABCDDE 3 Bright;
+		SHER F 1 Bright A_FadeOut(0.1);
+		Wait;
 	}
 }
 //*************************************************
 
-Actor PM_HeresyLordMissileDual2Fake
+Class PM_HeresyLordMissileDual2Fake : Actor
 {
-	Projectile
-	Speed 0
-	Scale 1.5
-	RenderStyle Add
-	Alpha 0.75
-	SeeSound "HeresyLord/BarrageSummon"
-	Translation "112:127=80:111"
+    Default
+	{
+	Projectile;
+	Speed 0;
+	Scale 1.5;
+	RenderStyle "Add";
+	Alpha 0.75;
+	SeeSound "HeresyLord/BarrageSummon";
+	Translation "112:127=80:111";
+	}
 	States
 	{
 	Spawn:
-		CSSF DEDE 2 Bright
-		CSSF DEDE 2 Bright
-		CSSF DEDE 2 Bright
-		CSSF DEDE 2 Bright
-		Stop
+		CSSF DEDE 2 Bright;
+		CSSF DEDE 2 Bright;
+		CSSF DEDE 2 Bright;
+		CSSF DEDE 2 Bright;
+		Stop;
 	Death:
-		TNT1 A 1
-		Stop
+		TNT1 A 1;
+		Stop;
 	}
 }
-Actor PM_HeresyLordMissileDual2Real
+Class PM_HeresyLordMissileDual2Real : Actor
 {
-	Projectile
-	Speed 18
-	Radius 6
-	Damage 4
-	Scale 1
-	RenderStyle Add
-	Alpha 0.75
-	Translation "112:127=80:111"
-	SeeSound "HeresyLord/BarrageWhiteFire"
-	DeathSound "HeresyLord/BarrageWhiteDeath"
-	height 12
-	Decal PlasmaScorchLower
+    Default
+	{
+	Projectile;
+	Speed 18;
+	Radius 6;
+	Damage 4;
+	Scale 1;
+	RenderStyle "Add";
+	Alpha 0.75;
+	Translation "112:127=80:111";
+	SeeSound "HeresyLord/BarrageWhiteFire";
+	DeathSound "HeresyLord/BarrageWhiteDeath";
+	Height 12;
+	Decal "PlasmaScorchLower";
+	}
 	States
 	{
 	Spawn:
-		CSSF D 1 Bright
-		TNT1 AAA 0 A_CustomMissile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0)
-		CSSF D 1 Bright 
-		TNT1 AAA 0 A_CustomMissile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0)
-		CSSF E 1 Bright 
-		TNT1 AAA 0 A_CustomMissile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0)
-		CSSF E 1 Bright 
-		TNT1 AAA 0 A_CustomMissile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0)
-		Loop
+		CSSF D 1 Bright;
+		TNT1 AAA 0 A_SpawnProjectile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0);
+		CSSF D 1 Bright; 
+		TNT1 AAA 0 A_SpawnProjectile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0);
+		CSSF E 1 Bright; 
+		TNT1 AAA 0 A_SpawnProjectile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0);
+		CSSF E 1 Bright; 
+		TNT1 AAA 0 A_SpawnProjectile("PM_HLMD2RTrail",random(5,-5),random(5,-5),0);
+		Loop;
 	Death:
-		CSSF GHI 4 Bright 
-		CSSF I 1 Bright A_FadeOut
-		Wait
+		CSSF GHI 4 Bright; 
+		CSSF I 1 Bright A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_HLMD2RTrail
+Class PM_HLMD2RTrail : Actor
 {
-	Projectile
-	Speed 0
-	Damage 0
+    Default
+	{
+	Projectile;
+	Speed 0;
+	Damage 0;
 	+NOCLIP
-	RenderStyle Add
-	Alpha 0.5
-	Scale 0.25
+	RenderStyle "Add";
+	Alpha 0.5;
+	Scale 0.25;
+	}
 	States
 	{
 	Spawn:
-		PUF2 BCDEFGHIJKL 1 
-		PUF2 L 1 A_FadeOut(0.2)
-		Wait
+		PUF2 BCDEFGHIJKL 1;
+		PUF2 L 1 A_FadeOut(0.2);
+		Wait;
 	}
 }

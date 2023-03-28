@@ -13,7 +13,6 @@
 #include "Actors/Decorations/OGGibs.txt"
 
 #include "Actors/Monsters/Souls/Blot.txt"
-#include "Actors/Monsters/Barons/HeresyLord.txt"
 #include "Actors/Monsters/HellKnights/Void.txt"
 #include "Actors/Monsters/Pinkies/Brute.txt"
 //#include "Actors/Monsters/Mancubi/Famine.txt"
