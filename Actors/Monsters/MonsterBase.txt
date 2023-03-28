@@ -1,5 +1,7 @@
 class PMMonsterBase : Actor abstract
 {
+    int pm_attackloop;
+    
 	enum BeamAttackFlags
 	{
 		BAF_EXPLICITANGLE = 1,

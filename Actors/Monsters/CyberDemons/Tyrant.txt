@@ -1,22 +1,29 @@
-Class PM_Tyrant : Cyberdemon
+Class PM_Tyrant : PMMonsterBase
 {
   Default
   {
+  Health 4000;
+  Radius 40;
+  Height 110;
+  Speed 18;
+  PainChance 3;
+  Scale 1.2;
+  MeleeRange 130;
+  MinMissileChance 160;
   Species "Cyberdemon";
   +DONTHARMSPECIES
   +DONTHARMCLASS
   +DONTRIP
   +BOSS
   +BOSSDEATH
+  +FLOORCLIP
   +NOFEAR
   +NORADIUSDMG
+  +DONTMORPH
+  +MISSILEMORE
   +MISSILEevenMORE
   Obituary "%o was annihilated by a Tyrant.";
   Tag "Tyrant";
-  Speed 18;
-  PainChance 3;
-  Scale 1.2;
-  MeleeRange 130;
   SeeSound "Tyrant/Sight";
   PainSound "Tyrant/Pain";
   DeathSound "Tyrant/Death";
@@ -177,8 +184,10 @@ Class PM_Tyrant : Cyberdemon
 	Goto See;
   BackMissiles:
 	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 { pm_attackloop = 0; }
 	TNT1 A 0 A_PlaySound("Tyrant/Attack",CHAN_6);
 	DUKE AAA 5 A_FaceTarget();
+  BMissileLoop:
 	DUKE D 10 Light("TyrantFire")
 	{
 	A_FaceTarget();
@@ -186,39 +195,15 @@ Class PM_Tyrant : Cyberdemon
 	}
 	DUKE D 10 Light("TyrantFire")
 	{
+	if(pm_attackloop > 3)
+	{ return ResolveState("BMissileEnd"); }
 	A_FaceTarget();
 	A_SpawnProjectile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,-60);
+	pm_attackloop++;
+	return ResolveState(null);
 	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,-60);
-	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,-60);
-	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,-60);
-	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,-60);
-	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,25,-90,CMF_OFFSETPITCH,-60);
-	}
-	DUKE D 10 Light("TyrantFire")
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("PM_TyrantBackMissile",78,-25,90,CMF_OFFSETPITCH,-60);
-	}
+	Loop;
+   BMissileEnd:
 	DUKE A 5 A_FaceTarget();
 	Goto See;
   DodgeLeft:
@@ -266,220 +251,51 @@ Class PM_Tyrant : Cyberdemon
 	TNT1 A 0 A_StopSound(CHAN_7);
 	DUKE ED 4 A_FaceTarget();
 	Goto See;
-  Missile0:
+  Missile0: //13 rockets
 	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 { pm_attackloop = 0; }
 	DUKE EEE 3 A_FaceTarget();
+  Mis0Loop:
 	DUKE F 2 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
 		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
 		A_FaceTarget();
 		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
+	DUKE E 2 
+	    {
+		if(pm_attackloop > 13)
+		{ return ResolveState("Mis0End"); }
+	    A_FaceTarget();
+		pm_attackloop++;
+		return ResolveState(null);
 		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
-	DUKE E 2 A_FaceTarget();
-	DUKE F 2 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
-		A_FaceTarget();
-		}
+	Loop;
+	Mis0End:
 	DUKE ED 2 A_FaceTarget();
 	Goto See;
-  Missile1:
+  Missile1: //13 rockets
 	TNT1 A 0 A_PlaySound("Tyrant/Attack",CHAN_6);
 	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 { pm_attackloop = 0; }
 	DUKE EEE 6 A_FaceTarget();
+  Mis1Loop:
 	DUKE F 12 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
 		A_SpawnProjectile("TyrantHeavyRocket",68,-25,0);
 		A_FaceTarget();
 		}
-	DUKE E 12 A_FaceTarget();
-	DUKE F 12 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 12 A_FaceTarget();
-	DUKE F 12 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE ED 8 A_FaceTarget();
-	Goto See;
-  Missile2:
-	TNT1 A 0 { bNOPAIN = true; }
-	DUKE EEE 6 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 5 A_FaceTarget();
-	DUKE F 5 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,0);
-		A_FaceTarget();
-		}
+	DUKE E 12 
+	    {
+	    if(pm_attackloop > 13)
+	    { return ResolveState("Mis1End"); }
+	    A_FaceTarget();
+		pm_attackloop++;
+		return ResolveState(null);
+	    }
+	Loop;
+  Mis1End:
 	DUKE ED 8 A_FaceTarget();
 	Goto See;
   Missile3:
@@ -742,66 +558,34 @@ Class PM_Tyrant : Cyberdemon
 		}
 	DUKE ED 8 A_FaceTarget();
 	Goto See;
-  Missile7:
-	TNT1 A 0 { bNOPAIN = true; }
-	DUKE EEEE 3 A_FaceTarget();
-	DUKE F 12 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,0);
-		A_FaceTarget();
-		}
+  Mis6End:
 	DUKE EED 8 A_FaceTarget();
 	Goto See;
-	
-	Missile8:
+  Missile8: //6 rockets
 	TNT1 A 0 A_PlaySound("Tyrant/Attack",CHAN_6);
 	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 { pm_attackloop = 0; }
 	DUKE EEEEEE 6 A_FaceTarget();
+  Mis8Loop:
 	DUKE F 7 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
 		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
 		A_FaceTarget();
 		}
-	DUKE E 7 A_FaceTarget();
-	DUKE F 7 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
+	DUKE E 7 
+	    {
+		if(pm_attackloop > 6)
+		{ return ResolveState("Mis8End"); }
 		A_FaceTarget();
+		pm_attackloop++;
+		return ResolveState(null);
 		}
-	DUKE E 7 A_FaceTarget();
-	DUKE F 7 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
-		A_FaceTarget();
-		}
-	DUKE E 7 A_FaceTarget();
-	DUKE F 7 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
-		A_FaceTarget();
-		}
-	DUKE E 7 A_FaceTarget();
-	DUKE F 7 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
-		A_FaceTarget();
-		}
-	DUKE E 7 A_FaceTarget();
-	DUKE F 7 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,random(-4,4),CMF_OFFSETPITCH,random(-2,2));
-		A_FaceTarget();
-		}
+	Loop;
+  Mis8End:
 	DUKE EEDD 4 A_FaceTarget();
 	Goto See;
-	Missile9:
+  Missile9:
 	TNT1 A 0 { bNOPAIN = true; }
 	DUKE EEE 6 A_FaceTarget();
 	DUKE F 3 Light("TyrantFire")
