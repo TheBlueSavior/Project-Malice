@@ -1,212 +1,239 @@
-ACTOR PM_Blood replaces Blood
+Class PM_Blood : Actor replaces Blood
 {
-  Mass 5
+  Default
+  {
+  Mass 5;
   +NOBLOCKMAP
   +NOTELEPORT
   +ALLOWPARTICLES
+  }
   States
   {
   Spawn:
   Spray:
-    SPRY G 0
-    SPRY G 0 A_FaceTarget
-	BLOD C 0 A_SpawnItemEx ("PM_NormalBlood3", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_CLIENTSIDE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERPOINTERS, 0)
-    Stop
+    SPRY G 0;
+    SPRY G 0 A_FaceTarget();
+	BLOD C 0 A_SpawnItemEx ("PM_NormalBlood3", 0,0,0, 0,0,0, 0, SXF_NOCHECKPOSITION|SXF_CLIENTSIDE|SXF_TRANSFERTRANSLATION|SXF_TRANSFERPOINTERS, 0);
+    Stop;
   }
 }
 
 
 //BLOOD CLOUDS
-Actor PM_NormalBloodyCloud
+Class PM_NormalBloodyCloud : Actor
 {
+    Default
+	{
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	+NOTONAUTOMAP
 	+ROLLSPRITE
-	Scale 0.45
+	Scale 0.45;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_Jump(255,"T1","T2","T3","T4","T5","T6","T7","T8")
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_Jump(255,"T1","T2","T3","T4","T5","T6","T7","T8");
 	T1:
-		X050 G 0	
-		Goto PlayOut
+		X050 G 0;	
+		Goto PlayOut;
 	T2:
-		X050 H 0	
-		Goto PlayOut
+		X050 H 0;	
+		Goto PlayOut;
 	T3:
-		X050 C 0	
-		Goto PlayOut
+		X050 C 0;	
+		Goto PlayOut;
 	T4:
-		X050 D 0	
-		Goto PlayOut
+		X050 D 0;	
+		Goto PlayOut;
 	T5:
-		X050 E 0	
-		Goto PlayOut
+		X050 E 0;	
+		Goto PlayOut;
 	T6:
-		X050 F 0	
-		Goto PlayOut
+		X050 F 0;	
+		Goto PlayOut;
 	T7:
-		X050 E 0	
-		Goto PlayOut
+		X050 E 0;	
+		Goto PlayOut;
 	T8:
-		X050 F 0	
-		Goto PlayOut
+		X050 F 0;	
+		Goto PlayOut;
 	PlayOut:
-		"####" "#" 1 A_SetScale(scalex+0.025)
-		"####" "#" 0 A_FadeOut(0.015)
-		Loop
+		"####" "#" 1 A_SetScale(scale.x+0.025);
+		"####" "#" 0 A_FadeOut(0.015);
+		Loop;
 	}
 }
-Actor PM_NormalBloodyCloudMedium : PM_NormalBloodyCloud
-{	Scale 0.6	}
+Class PM_NormalBloodyCloudMedium : PM_NormalBloodyCloud
+{	Default { Scale 0.6; }	}
 
-Actor PM_NormalBloodyCloudBig : PM_NormalBloodyCloud
-{	Scale 0.8	}
+Class PM_NormalBloodyCloudBig : PM_NormalBloodyCloud
+{	Default { Scale 0.8; }	}
 
-ACTOR PM_NormalInstestinGib
+Class PM_NormalInstestinGib : Actor
 {
-    Radius 8
-    Height 12
-    Speed 10
-	Mass 1
-	BounceFactor 0.4
-	Renderstyle Translucent
-	Alpha 0.9
+    Default
+	{
+    Radius 8;
+    Height 12;
+    Speed 10;
+	Mass 1;
+	BounceFactor 0.4;
+	Renderstyle "Translucent";
+	Alpha 0.9;
+	+MISSILE
 	+DOOMBOUNCE
     +NOBLOCKMAP
-	+MISSILE
     +NOTELEPORT
     +MOVEWITHSECTOR
     +CLIENTSIDEONLY
     +FORCEXYBILLBOARD
 	-EXPLODEONWATER
 	+THRUACTORS
-    DeathSound "PM/BigGoreSplat"
-	Decal BloodSplat
-	Scale 1.1
+    DeathSound "PM/BigGoreSplat";
+	Decal "BloodSplat";
+	Scale 1.1;
+	}
     States
     {
     Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SetScale(frandom(1.0,1.8))
-        GUTS ABCD 8
-        Loop
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(frandom(1.0,1.8));
+        GUTS ABCD 8;
+        Loop;
     Death:
-		TNT1 A 0 A_QueueCorpse
-        GUTS E 1
-		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water")
-	    Goto Rest
+		TNT1 A 0 A_QueueCorpse;
+        GUTS E 1;
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water");
+	    Goto Rest;
 	Rest:
-		TNT1 A 0
-		TNT1 A 0 A_Jump(255, "Rest1", "Rest2")
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(255, "Rest1", "Rest2");
 	Rest1:
-		GUTS E 200
-        GUTS E 5 A_FadeOut(0.05)
-        Wait
+		GUTS E 200;
+        GUTS E 5 A_FadeOut(0.05);
+        Wait;
 	Rest2:
-		GUTS F 200
-		GUTS F 5 A_FadeOut(0.05)
-        Wait
+		GUTS F 200;
+		GUTS F 5 A_FadeOut(0.05);
+        Wait;
 	Water:
-		TNT1 A 0 A_Jump(128, "Water2")
-		Goto Water1
+		TNT1 A 0 A_Jump(128, "Water2");
+		Goto Water1;
 	Water1:
-		GUTS G 10
-		GUTS H 5 A_FadeOut(0.05)
-		Wait
+		GUTS G 10;
+		GUTS H 5 A_FadeOut(0.05);
+		Wait;
 	Water2:
-		GUTS I 10
-		GUTS J 5 A_FadeOut(0.05)
-		Wait
+		GUTS I 10;
+		GUTS J 5 A_FadeOut(0.05);
+		Wait;
     }
 }
 
 //NORMAL BLOOD
 
-Actor PM_NormalBloodBase
+Class PM_NormalBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	PROJECTILE;
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_NormalCyberBloodBase
+Class PM_NormalCyberBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	PROJECTILE;
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_NormalCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_NormalCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
 
-Actor PM_NormalBlood : RandomSpawner
+Class PM_NormalBlood : RandomSpawner
 {
-	DropItem "PM_NormalBlood1", 255, 2
-	DropItem "PM_NormalBlood2", 255, 2
-	DropItem "PM_NormalBlood3", 255, 2
-	DropItem "PM_NormalBloodMulti", 255, 2
-	DropItem "PM_NormalBloodMist", 255, 2
-	DropItem "PM_NormalMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_NormalBlood1", 255, 2;
+	DropItem "PM_NormalBlood2", 255, 2;
+	DropItem "PM_NormalBlood3", 255, 2;
+	DropItem "PM_NormalBloodMulti", 255, 2;
+	DropItem "PM_NormalBloodMist", 255, 2;
+	DropItem "PM_NormalMeatChunkLauncher", 255, 1;
+	}
 }
 
 
-Actor PM_NormalCyberBlood : RandomSpawner
+Class PM_NormalCyberBlood : RandomSpawner
 {
-	DropItem "PM_NormalBlood1", 255, 2
-	DropItem "PM_NormalBlood2", 255, 2
-	DropItem "PM_NormalBlood3", 255, 2
-	DropItem "PM_NormalBloodMulti", 255, 2
-	DropItem "PM_NormalBloodMist", 255, 2
-	DropItem "PM_NormalMeatChunkLauncher", 255, 1
-	DropItem "PM_NormalHitSpark", 255, 4
+    Default
+	{
+	DropItem "PM_NormalBlood1", 255, 2;
+	DropItem "PM_NormalBlood2", 255, 2;
+	DropItem "PM_NormalBlood3", 255, 2;
+	DropItem "PM_NormalBloodMulti", 255, 2;
+	DropItem "PM_NormalBloodMist", 255, 2;
+	DropItem "PM_NormalMeatChunkLauncher", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 4;
+	}
 }
 
-Actor PM_NormalBloodEx : RandomSpawner
+Class PM_NormalBloodEx : RandomSpawner
 {
-	DropItem "PM_NormalBlood1", 255, 2
-	DropItem "PM_NormalBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_NormalBlood1", 255, 2;
+	DropItem "PM_NormalBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_NormalMeatChunk
+Class PM_NormalMeatChunk : Actor
 {
+	int user_time;
+	int user_t;
+
+	Default
+	{
 	+CLIENTSIDEONLY
-	var int user_time;
-	var int user_t;
 	+THRUACTORS
 	-NOLIFTDROP
 	+DROPOFF
@@ -217,41 +244,45 @@ Actor PM_NormalMeatChunk
 	+BOUNCEONWALLS
 	+BOUNCEONFLOORS
 	+ROLLSPRITE
-	Radius 6
-	Height 5
-	Gravity 0.65
+	Radius 6;
+	Height 5;
+	Gravity 0.65;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_NormalMeatChunkBig
+Class PM_NormalMeatChunkBig : Actor
 {
+	int user_time;
+	int user_t;
+
+	Default
+	{
 	+CLIENTSIDEONLY
-	var int user_time;
-	var int user_t;
 	+THRUACTORS
 	-NOLIFTDROP
 	+DROPOFF
@@ -262,83 +293,92 @@ Actor PM_NormalMeatChunkBig
 	+BOUNCEONWALLS
 	+BOUNCEONFLOORS
 	+ROLLSPRITE
-	Radius 6
-	Height 5
-	Gravity 0.65
-	Scale 1.6
+	Radius 6;
+	Height 5;
+	Gravity 0.65;
+	Scale 1.6;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/BigGoreSplat")
-		"####" "#" 0 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/BigGoreSplat");
+		"####" "#" 0 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_NormalMeatChunkLauncher
+Class PM_NormalMeatChunkLauncher : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	+PUFFGETSOWNER
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_NormalBigMeatChunkLauncher
+Class PM_NormalBigMeatChunkLauncher : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
 	+NOTELEPORT
-	PROJECTILE
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	+PUFFGETSOWNER
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkBig",0,0,0,frandom(8,-8),frandom(8,-8),frandom(5,15),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_NormalMeatChunkBig",0,0,0,frandom(8,-8),frandom(8,-8),frandom(5,15),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_NormalBlood1
+Class PM_NormalBlood1 : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -346,46 +386,49 @@ Actor PM_NormalBlood1
     +NOTELEPORT
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	RenderStyle Normal
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	RenderStyle "Normal";
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.25
+	Gravity 0.25;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_NormalHitSpark
+Class PM_NormalHitSpark : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -393,42 +436,46 @@ Actor PM_NormalHitSpark
     +NOTELEPORT
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	RenderStyle Normal
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	RenderStyle "Normal";
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.25
+	Gravity 0.25;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100)
-	    TRCR A 0 A_PlaySound("PM/BulletHit",2)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100);
+	    TRCR A 0 A_PlaySound("PM/BulletHit",2);
+		Stop;
 	}
 }
 
-Actor PM_NormalBlood2 : PM_NormalBlood1
+Class PM_NormalBlood2 : PM_NormalBlood1
 {
 }
 
-Actor PM_NormalBlood3 : PM_NormalBlood1
+Class PM_NormalBlood3 : PM_NormalBlood1
 {
-	Scale 0.8
+    Default
+	{ Scale 0.8; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		BL0D ABBBBBCCCCCC 1 A_Fadeout(0.06)
-		Stop
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		BL0D ABBBBBCCCCCC 1 A_Fadeout(0.06);
+		Stop;
 	}
 }
 
-Actor PM_NormalBloodMulti
+Class PM_NormalBloodMulti : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -436,240 +483,222 @@ Actor PM_NormalBloodMulti
 	+NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_NormalBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_NormalBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_NormalBloodMist
+Class PM_NormalBloodMist : Actor
 {
-Decal BloodSplat
-game Doom
-Alpha 0.93
-+FORCEXYBILLBOARD
-+GHOST
-+NOBLOCKMAP
-+ROLLSPRITE
-+NOINTERACTION
- +DontSplash
--EXPLODEONWATER
-+CLIENTSIDEONLY
-+THRUACTORS
-+NOTELEPORT
-Scale 2.0
-Gravity 0.0
+    Default
+	{
+    Decal "BloodSplat";
+    Alpha 0.93;
+    +FORCEXYBILLBOARD
+    +GHOST
+    +NOBLOCKMAP
+    +ROLLSPRITE
+    +NOINTERACTION
+    +DontSplash
+    -EXPLODEONWATER
+    +CLIENTSIDEONLY
+    +THRUACTORS
+    +NOTELEPORT
+    Scale 2.0;
+    Gravity 0.0;
+	}
  states
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_NormalBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_NormalBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		stop
+		stop;
 	}
 }
 
 
 
 //GREEN BLOOD
-Actor PM_GreenBloodBase
+Class PM_GreenBloodBase : PM_NormalBloodBase
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +THRUACTORS
-    +THRUSPECIES
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
-	-NOGRAVITY
-	Gravity 0.85
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_GreenBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_GreenBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_GreenBlood : RandomSpawner
+Class PM_GreenBlood : RandomSpawner
 {
-	DropItem "PM_GreenBlood1", 255, 2
-	DropItem "PM_GreenBlood2", 255, 2
-	DropItem "PM_GreenBlood3", 255, 2
-	DropItem "PM_GreenBloodMulti", 255, 2
-	DropItem "PM_GreenBloodMist", 255, 2
-	DropItem "PM_GreenMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_GreenBlood1", 255, 2;
+	DropItem "PM_GreenBlood2", 255, 2;
+	DropItem "PM_GreenBlood3", 255, 2;
+	DropItem "PM_GreenBloodMulti", 255, 2;
+	DropItem "PM_GreenBloodMist", 255, 2;
+	DropItem "PM_GreenMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_GreenBloodEx : RandomSpawner
+Class PM_GreenBloodEx : RandomSpawner
 {
-	DropItem "PM_GreenBlood1", 255, 2
-	DropItem "PM_GreenBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_GreenBlood1", 255, 2;
+	DropItem "PM_GreenBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_GreenMeatChunk : PM_NormalMeatChunk
+Class PM_GreenMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[0.6,2,0.5]"
+ Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_GreenBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_GreenBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_GreenMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_GreenMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_GreenMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_GreenMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_GreenBlood1 : PM_NormalBlood1
+Class PM_GreenBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.6,2,0.5]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_GreenBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2;//A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_GreenBlood2 : PM_GreenBlood1
+Class PM_GreenBlood2 : PM_GreenBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.6,2,0.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
 }
 
-Actor PM_GreenBlood3 : PM_NormalBlood3
+Class PM_GreenBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[0.6,2,0.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
 }
 
-Actor PM_GreenBloodMulti : PM_NormalBloodMulti
+Class PM_GreenBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_GreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_GreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_GreenBloodMist : PM_NormalBloodMist
+Class PM_GreenBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[0.6,2,0.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_GreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_GreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 
 //DARK GREEN BLOOD
-Actor PM_DarkGreenBloodBase
+Class PM_DarkGreenBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -679,176 +708,171 @@ Actor PM_DarkGreenBloodBase
 	+NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_DarkGreenBlood : RandomSpawner
+Class PM_DarkGreenBlood : RandomSpawner
 {
-	DropItem "PM_DarkGreenBlood1", 255, 2
-	DropItem "PM_DarkGreenBlood2", 255, 2
-	DropItem "PM_DarkGreenBlood3", 255, 2
-	DropItem "PM_DarkGreenBloodMulti", 255, 2
-	DropItem "PM_DarkGreenBloodMist", 255, 2
-	DropItem "PM_DarkGreenMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_DarkGreenBlood1", 255, 2;
+	DropItem "PM_DarkGreenBlood2", 255, 2;
+	DropItem "PM_DarkGreenBlood3", 255, 2;
+	DropItem "PM_DarkGreenBloodMulti", 255, 2;
+	DropItem "PM_DarkGreenBloodMist", 255, 2;
+	DropItem "PM_DarkGreenMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_DarkGreenBloodEx : RandomSpawner
+Class PM_DarkGreenBloodEx : RandomSpawner
 {
-	DropItem "PM_DarkGreenBlood1", 255, 2
-	DropItem "PM_DarkGreenBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_DarkGreenBlood1", 255, 2;
+	DropItem "PM_DarkGreenBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_DarkGreenMeatChunk : PM_NormalMeatChunk
+Class PM_DarkGreenMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"
+  Default { Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_DarkGreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_DarkGreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_DarkGreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_DarkGreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_DarkGreenMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_DarkGreenMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_DarkGreenBlood1 : PM_NormalBlood1
+Class PM_DarkGreenBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	Default { Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_GreenBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_DarkGreenBlood2 : PM_DarkGreenBlood1
+Class PM_DarkGreenBlood2 : PM_DarkGreenBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.8,0.0]"
+	Default { Translation "0:255=%[0,0,0]:[0.0,0.8,0.0]"; }
 }
 
-Actor PM_DarkGreenBlood3 : PM_NormalBlood3
+Class PM_DarkGreenBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"
+	Default { Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"; }
 }
 
-Actor PM_DarkGreenBloodMulti : PM_NormalBloodMulti
+Class PM_DarkGreenBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_DarkGreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_DarkGreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_DarkGreenBloodMist : PM_NormalBloodMist
+Class PM_DarkGreenBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"
+	Default { Translation "0:255=%[0,0,0]:[0.0,0.6,0.0]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_DarkGreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_DarkGreenBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 
 //BLUE BLOOD
-Actor PM_BlueBloodBase
+Class PM_BlueBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -856,227 +880,211 @@ Actor PM_BlueBloodBase
     +NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_BlueBlood : RandomSpawner
+Class PM_BlueBlood : RandomSpawner
 {
-	DropItem "PM_BlueBlood1", 255, 2
-	DropItem "PM_BlueBlood2", 255, 2
-	DropItem "PM_BlueBlood3", 255, 2
-	DropItem "PM_BlueBlood4", 255, 1
-	DropItem "PM_BlueBloodMulti", 255, 2
-	DropItem "PM_BlueBloodMist", 255, 2
-	DropItem "PM_BlueMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_BlueBlood1", 255, 2;
+	DropItem "PM_BlueBlood2", 255, 2;
+	DropItem "PM_BlueBlood3", 255, 2;
+	DropItem "PM_BlueBlood4", 255, 1;
+	DropItem "PM_BlueBloodMulti", 255, 2;
+	DropItem "PM_BlueBloodMist", 255, 2;
+	DropItem "PM_BlueMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_BlueBloodEx : RandomSpawner
+Class PM_BlueBloodEx : RandomSpawner
 {
-	DropItem "PM_BlueBlood1", 255, 2
-	DropItem "PM_BlueBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_BlueBlood1", 255, 2;
+	DropItem "PM_BlueBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_BlueMeatChunk : PM_NormalMeatChunk
+Class PM_BlueMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_BlueBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_BlueBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_BlueBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_BlueBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_BlueBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_BlueBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_BlueMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_BlueMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_BlueMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_BlueMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_BlueBlood1 : PM_NormalBlood1
+Class PM_BlueBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	Default { Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_BlueBlood2 : PM_BlueBlood1
+Class PM_BlueBlood2 : PM_BlueBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"; }
 }
 
-Actor PM_BlueBlood3 : PM_NormalBlood3
+Class PM_BlueBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"; }
 }
 
-Actor PM_BlueBlood4 : PM_NormalBlood1
+Class PM_BlueBlood4 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.3,1.0,2.0]"
+    Default
+	{
+	Translation "0:255=%[0,0,0]:[0.3,1.0,2.0]";
 	+BRIGHT
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6)
-		TNT1 AAA 0 A_SpawnItemEx("PM_BlueLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,128)
-		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.45,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6);
+		TNT1 AAA 0 A_SpawnItemEx("PM_BlueLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,128);
+		TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.45,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
-Actor PM_BlueBloodMulti : PM_NormalBloodMulti
+Class PM_BlueBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BlueBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BlueBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_BlueBloodMist : PM_NormalBloodMist
+Class PM_BlueBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"
+ Default { Translation "0:255=%[0,0,0]:[0.1,0.2,1.5]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_BlueBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_BlueBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 
 //PURPLE BLOOD
-Actor PM_PurpleBloodBase
+Class PM_PurpleBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -1084,227 +1092,211 @@ Actor PM_PurpleBloodBase
     +NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_PurpleBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_PurpleBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_PurpleBlood : RandomSpawner
+Class PM_PurpleBlood : RandomSpawner
 {
-	DropItem "PM_PurpleBlood1", 255, 2
-	DropItem "PM_PurpleBlood2", 255, 2
-	DropItem "PM_PurpleBlood3", 255, 2
-	DropItem "PM_PurpleBlood4", 255, 1
-	DropItem "PM_PurpleBloodMulti", 255, 2
-	DropItem "PM_PurpleBloodMist", 255, 2
-	DropItem "PM_PurpleMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_PurpleBlood1", 255, 2;
+	DropItem "PM_PurpleBlood2", 255, 2;
+	DropItem "PM_PurpleBlood3", 255, 2;
+	DropItem "PM_PurpleBlood4", 255, 1;
+	DropItem "PM_PurpleBloodMulti", 255, 2;
+	DropItem "PM_PurpleBloodMist", 255, 2;
+	DropItem "PM_PurpleMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_PurpleBloodEx : RandomSpawner
+Class PM_PurpleBloodEx : RandomSpawner
 {
-	DropItem "PM_PurpleBlood1", 255, 2
-	DropItem "PM_PurpleBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_PurpleBlood1", 255, 2;
+	DropItem "PM_PurpleBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_PurpleMeatChunk : PM_NormalMeatChunk
+Class PM_PurpleMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_PurpleBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_PurpleBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_PurpleBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_PurpleBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_PurpleBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_PurpleBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_PurpleMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_PurpleMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_PurpleMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_PurpleMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_PurpleBlood1 : PM_NormalBlood1
+Class PM_PurpleBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_BlueBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_PurpleBlood2 : PM_PurpleBlood1
+Class PM_PurpleBlood2 : PM_PurpleBlood1
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"; }
 }
 
-Actor PM_PurpleBlood3 : PM_NormalBlood3
+Class PM_PurpleBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"; }
 }
 
-Actor PM_PurpleBlood4 : PM_NormalBlood1
+Class PM_PurpleBlood4 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[2.0,1.0,2.0]"
+    Default
+	{
+	Translation "0:255=%[0,0,0]:[2.0,1.0,2.0]";
 	+BRIGHT
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6)
-		TNT1 AA 0 A_SpawnItemEx("PM_RedLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,200)
-		TNT1 AA 0 A_SpawnItemEx("PM_PurpleLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,180)
-		TNT1 A 0 A_SpawnItemEx("PM_PurpleBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.45,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_PlaySound("NetherConduit/SmallZap",CHAN_6);
+		TNT1 AA 0 A_SpawnItemEx("PM_RedLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,200);
+		TNT1 AA 0 A_SpawnItemEx("PM_PurpleLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,180);
+		TNT1 A 0 A_SpawnItemEx("PM_PurpleBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.45,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
-Actor PM_PurpleBloodMulti : PM_NormalBloodMulti
+Class PM_PurpleBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_PurpleBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_PurpleBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_PurpleBloodMist : PM_NormalBloodMist
+Class PM_PurpleBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.2,1.5]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_PurpleBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_PurpleBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 //BLACK BLOOD
-Actor PM_BlackBloodBase
+Class PM_BlackBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -1312,175 +1304,171 @@ Actor PM_BlackBloodBase
 	+NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_BlackBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_BlackBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_BlackBlood : RandomSpawner
+Class PM_BlackBlood : RandomSpawner
 {
-	DropItem "PM_BlackBlood1", 255, 2
-	DropItem "PM_BlackBlood2", 255, 2
-	DropItem "PM_BlackBlood3", 255, 2
-	DropItem "PM_BlackBloodMulti", 255, 2
-	DropItem "PM_BlackBloodMist", 255, 2
-	DropItem "PM_BlackMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_BlackBlood1", 255, 2;
+	DropItem "PM_BlackBlood2", 255, 2;
+	DropItem "PM_BlackBlood3", 255, 2;
+	DropItem "PM_BlackBloodMulti", 255, 2;
+	DropItem "PM_BlackBloodMist", 255, 2;
+	DropItem "PM_BlackMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_BlackBloodEx : RandomSpawner
+Class PM_BlackBloodEx : RandomSpawner
 {
-	DropItem "PM_BlackBlood1", 255, 2
-	DropItem "PM_BlackBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_BlackBlood1", 255, 2;
+	DropItem "PM_BlackBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_BlackMeatChunk : PM_NormalMeatChunk
+Class PM_BlackMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_BlackBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_BlackBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_BlackMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_BlackMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_BlackMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_BlackMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_BlackBlood1 : PM_NormalBlood1
+Class PM_BlackBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+    Default
+	{ Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_BlackBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_BlackBlood2 : PM_BlackBlood1
+Class PM_BlackBlood2 : PM_BlackBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
 }
 
-Actor PM_BlackBlood3 : PM_NormalBlood3
+Class PM_BlackBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
 }
 
-Actor PM_BlackBloodMulti : PM_NormalBloodMulti
+Class PM_BlackBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BlackBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BlackBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_BlackBloodMist : PM_NormalBloodMist
+Class PM_BlackBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_BlackBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_BlackBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 //DARK RED BLOOD
-Actor PM_DarkRedBloodBase
+Class PM_DarkRedBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -1488,222 +1476,219 @@ Actor PM_DarkRedBloodBase
 	+NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_DarkRedBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_DarkRedBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
-Actor PM_DarkRedBlood : RandomSpawner
+Class PM_DarkRedBlood : RandomSpawner
 {
-	DropItem "PM_DarkRedBlood1", 255, 3
-	DropItem "PM_DarkRedBlood2", 255, 2
-	DropItem "PM_DarkRedBlood3", 255, 3
-	DropItem "PM_DarkRedBloodMulti", 255, 2
-	//DropItem "PM_DarkRedBloodMist", 255, 2
-	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_DarkRedBlood1", 255, 3;
+	DropItem "PM_DarkRedBlood2", 255, 2;
+	DropItem "PM_DarkRedBlood3", 255, 3;
+	DropItem "PM_DarkRedBloodMulti", 255, 2;
+	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_DarkRedBloodEx : RandomSpawner
+Class PM_DarkRedBloodEx : RandomSpawner
 {
-	DropItem "PM_DarkRedBlood1", 255, 2
-	DropItem "PM_DarkRedBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_DarkRedBlood1", 255, 2;
+	DropItem "PM_DarkRedBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_DarkRedMeatChunk : PM_NormalMeatChunk
+Class PM_DarkRedMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_DarkRedBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_DarkRedBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_DarkRedMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_DarkRedMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_DarkRedMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_DarkRedMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_DarkRedMiniMeatChunk : PM_NormalMeatChunk
+Class PM_DarkRedMiniMeatChunk : PM_NormalMeatChunk
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
-	Scale 0.3
-	Gravity 0.50
+    Default
+	{
+	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]";
+	Scale 0.3;
+	Gravity 0.50;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SetScale(frandom(0.20,0.48))
-		TNT1 A 0 //A_SpawnItemEx("PM_DarkRedBloodMulti")
-		TNT1 A 0 //A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SetScale(frandom(0.20,0.48));
+		TNT1 A 0; //A_SpawnItemEx("PM_DarkRedBloodMulti")
+		TNT1 A 0; //A_PlaySound("PM/GibSplat")
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 //A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+random(6,64))
-		Loop
+		"####" "#" 4; //A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+random(6,64));
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 //A_PlaySound("PM/GibLand")
-		"####" "#" 0 //A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 1 A_JumpIf(user_t != 0,1)
-		"####" "#" 1
-		Stop
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0; //A_PlaySound("PM/GibLand")
+		"####" "#" 0; //A_SpawnItemEx("PM_DarkRedBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 1 A_JumpIf(user_t != 0,1);
+		"####" "#" 1;
+		Stop;
 	}
 }
 
-Actor PM_DarkRedMiniMeatChunkLauncher : PM_NormalMeatChunkLauncher
+Class PM_DarkRedMiniMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
-	+THRUACTORS
+	Default { +THRUACTORS }
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_DarkRedMiniMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(0,6),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_DarkRedMiniMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(0,6),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_DarkRedBlood1 : PM_NormalBlood1
+Class PM_DarkRedBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.25
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_DarkRedBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,125)
-		TNT1 AAAA 0 A_SpawnItemEx("PM_DarkRedMiniMeatChunkLauncher",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(0,1),0,SXF_NOCHECKPOSITION,230)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 AAAA 0 A_SpawnItemEx("PM_DarkRedMiniMeatChunkLauncher",random(-2,2),random(-2,2),random(-2,2),random(-1,1),random(-1,1),random(0,1),0,SXF_NOCHECKPOSITION,230);
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_DarkRedBlood2 : PM_DarkRedBlood1
+Class PM_DarkRedBlood2 : PM_DarkRedBlood1
 {
-	Translation "0:255=%[0,0,0]:[0.8,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[0.8,0.3,0.3]"; }
 }
 
-Actor PM_DarkRedBlood3 : PM_NormalBlood3
+Class PM_DarkRedBlood3 : PM_NormalBlood3
 {
-	Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[1.5,0.3,0.3]"; }
 }
 
-Actor PM_DarkRedBloodMulti : PM_NormalBloodMulti
+Class PM_DarkRedBloodMulti : PM_NormalBloodMulti
 {
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_DarkRedBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_DarkRedBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_DarkRedBloodMist : PM_NormalBloodMist
+Class PM_DarkRedBloodMist : PM_NormalBloodMist
 {
-	Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[1.0,0.3,0.3]"; }
  States
  {
   Spawn:
 		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_DarkRedBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_DarkRedBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		Stop
+		Stop;
 	}
 }
 
 
 //PESTILENCE BLOOD
 
-Actor PM_PestilenceBloodBase
+Class PM_PestilenceBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -1711,25 +1696,28 @@ Actor PM_PestilenceBloodBase
     +NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
 
-Actor PM_PestilenceZombieBloodBase
+Class PM_PestilenceZombieBloodBase : Actor
 {
+    Default
+	{
 	+CLIENTSIDEONLY
 	+FORCEXYBILLBOARD
 	+ROLLSPRITE
@@ -1737,292 +1725,250 @@ Actor PM_PestilenceZombieBloodBase
     +NOBLOCKMAP
     -ALLOWPARTICLES
     +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85
+	Gravity 0.85;
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("PM_PestilenceZombieBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceZombieBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
 	}
 }
 
 
-Actor PM_PestilenceBlood : RandomSpawner
+Class PM_PestilenceBlood : RandomSpawner
 {
-	DropItem "PM_PestilenceBlood1", 255, 2
-	DropItem "PM_PestilenceBlood2", 255, 2
-	DropItem "PM_PestilenceBlood3", 255, 2
-	DropItem "PM_PestilenceBloodMulti", 255, 2
-	DropItem "PM_PestilenceBloodMist", 255, 2
-	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_PestilenceBlood1", 255, 2;
+	DropItem "PM_PestilenceBlood2", 255, 2;
+	DropItem "PM_PestilenceBlood3", 255, 2;
+	DropItem "PM_PestilenceBloodMulti", 255, 2;
+	DropItem "PM_PestilenceBloodMist", 255, 2;
+	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_PestilenceZombieBlood : RandomSpawner
+Class PM_PestilenceZombieBlood : RandomSpawner
 {
-	DropItem "PM_PestilenceBlood1", 255, 1
-	DropItem "PM_PestilenceBlood2", 255, 1
-	DropItem "PM_PestilenceBlood3", 255, 1
-	DropItem "PM_PestilenceBloodMulti", 255, 1
-	DropItem "PM_PestilenceBloodMist", 255, 1
-	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1
-	DropItem "PM_DarkRedBlood1", 255, 3
-	DropItem "PM_DarkRedBlood2", 255, 2
-	DropItem "PM_DarkRedBlood3", 255, 3
-	DropItem "PM_DarkRedBloodMulti", 255, 2
-	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1
+    Default
+	{
+	DropItem "PM_PestilenceBlood1", 255, 1;
+	DropItem "PM_PestilenceBlood2", 255, 1;
+	DropItem "PM_PestilenceBlood3", 255, 1;
+	DropItem "PM_PestilenceBloodMulti", 255, 1;
+	DropItem "PM_PestilenceBloodMist", 255, 1;
+	DropItem "PM_PestilenceMeatChunkLauncher", 255, 1;
+	DropItem "PM_DarkRedBlood1", 255, 3;
+	DropItem "PM_DarkRedBlood2", 255, 2;
+	DropItem "PM_DarkRedBlood3", 255, 3;
+	DropItem "PM_DarkRedBloodMulti", 255, 2;
+	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1;
+	}
 }
 
-Actor PM_PestilenceBloodEx : RandomSpawner
+Class PM_PestilenceBloodEx : RandomSpawner
 {
-	DropItem "PM_PestilenceBlood1", 255, 2
-	DropItem "PM_PestilenceBlood2", 255, 2
+    Default
+	{
+	DropItem "PM_PestilenceBlood1", 255, 2;
+	DropItem "PM_PestilenceBlood2", 255, 2;
+	}
 }
 
 //CODE FROM DEATH FORETOLD
 
-Actor PM_PestilenceMeatChunk
+Class PM_PestilenceMeatChunk : PM_NormalMeatChunk
 {
-	+CLIENTSIDEONLY
-	var int user_time;
-	var int user_t;
-	+THRUACTORS
-	-NOLIFTDROP
-	+DROPOFF
-	+NOTELEPORT
-	+NOTONAUTOMAP
-	-NOGRAVITY
-	+NOBLOCKMONST
-	+BOUNCEONWALLS
-	+BOUNCEONFLOORS
-	+ROLLSPRITE
-	Translation "0:255=%[0,0,0]:[2,1,0.3]"
-	Radius 6
-	Height 5
-	Gravity 0.65
+	Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_QueueCorpse
-		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti")
-		TNT1 A 0 A_PlaySound("PM/GibSplat")
-		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play")
+		TNT1 A 0 NODELAY A_QueueCorpse;
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti");
+		TNT1 A 0 A_PlaySound("PM/GibSplat");
+		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
+		MEAT ABCDEFGHIJLKMNOPQRST 0 A_JumpIf(1 == 1,"Play");
 	Play:
-		"####" "#" 4 A_SpawnItemEx("PM_PestilenceBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100)
-		"####" "#" 0 A_CheckFloor("md1")
-		"####" "#" 0 A_SetRoll(roll+12)
-		Loop
+		"####" "#" 4 A_SpawnItemEx("PM_PestilenceBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		"####" "#" 0 A_CheckFloor("md1");
+		"####" "#" 0 A_SetRoll(roll+12);
+		Loop;
 		
 	// when the gib crashes:
 	md1: 
 	Death:
-		"####" "#" 0 A_SetRoll(0)
-		"####" "#" 0 A_PlaySound("PM/GibLand")
-		"####" "#" 0 A_SpawnItemEx("PM_PestilenceBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION)
-		"####" "#" 0 A_QueueCorpse
-		"####" "#" 200 A_JumpIf(user_t != 0,1)
-		"####" "#" 1 A_FadeOut
-		Wait
+		"####" "#" 0 A_SetRoll(0);
+		"####" "#" 0 A_PlaySound("PM/GibLand");
+		"####" "#" 0 A_SpawnItemEx("PM_PestilenceBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		"####" "#" 0 A_QueueCorpse;
+		"####" "#" 200 A_JumpIf(user_t != 0,1);
+		"####" "#" 1 A_FadeOut;
+		Wait;
 	}
 }
 
-Actor PM_PestilenceMeatChunkLauncher
+Class PM_PestilenceMeatChunkLauncher : PM_NormalMeatChunkLauncher
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
-	-NOGRAVITY
-	Gravity 0.85
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359))
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunk",0,0,0,frandom(4,-4),frandom(4,-4),frandom(3,10),random(1,359));
+		Stop;
 	}
 }
 
-Actor PM_PestilenceMaggotFall
+Class PM_PestilenceMaggotFall : Actor
 {
-  Damage 0
-  Height 1
-  Radius 1
-  Speed 3
-  Mass 1
-  Scale 0.75
+  Default
+  {
+  Damage 0;
+  Height 1;
+  Radius 1;
+  Speed 3;
+  Mass 1;
+  Scale 0.75;
   +FORCEXYBILLBOARD
-  Gravity 0.3
+  Gravity 0.3;
   +MISSILE
   +NOBLOCKMAP
   -ALLOWPARTICLES
   +PUFFGETSOWNER
   -NOGRAVITY
   +ROLLSPRITE
+  }
   States
   {
   Spawn:
-	TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-	MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4
+	TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+	MRMG EFGHIJKLKJIHGFEFGHIJKLKJIHGF 4;
   Death:
-	TNT1 A 0
-    Stop
+	TNT1 A 0;
+    Stop;
   }
 }
 
-Actor PM_PestilenceBlood1
+Class PM_PestilenceBlood1 : PM_NormalBlood1
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Height 1
-	Radius 1
-	Mass 1
-	RenderStyle Normal
-	Translation "0:255=%[0,0,0]:[1,1.2,0.1]"
-	Scale 0.65
-	-NOGRAVITY
-	Gravity 0.1
+   Default { Translation "0:255=%[0,0,0]:[1,1.2,0.1]"; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
 		//TNT1 A 0 A_SpawnItemEx("PM_PestilenceBlood3",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,3),0,SXF_NOCHECKPOSITION,190)
-		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE)
-		TNT1 A 0 A_SetGravity(frandom(0.00,0.60))
-		TNT1 A 0 A_SetScale(frandom(0.15,1.20))
-		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3")
+		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,3),0,SXF_NOCHECKPOSITION,190);
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X057 ABCDEF 2 //A_FadeOut(0.05)
-		X057 GHIJK 1 //A_FadeOut(0.05)
-		X057 LMNOPQRS 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X057 ABCDEF 2; //A_FadeOut(0.05)
+		X057 GHIJK 1; //A_FadeOut(0.05)
+		X057 LMNOPQRS 1; //A_FadeOut(0.03)
+		Stop;
 	Splash2:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X058 ABCDEF 2 //A_FadeOut(0.05)
-		X058 GHIJK 1 //A_FadeOut(0.05)
-		X058 LMNOPQR 1 //A_FadeOut(0.03)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X058 ABCDEF 2; //A_FadeOut(0.05)
+		X058 GHIJK 1; //A_FadeOut(0.05)
+		X058 LMNOPQR 1; //A_FadeOut(0.03)
+		Stop;
 	Splash3:
-		TNT1 A 0 A_SetRoll(random(0,360))
-		X059 ABCD 2 //A_FadeOut(0.03)
-		X059 EFGHIJ 1 //A_FadeOut(0.04)
-		X059 KLM 1 //A_FadeOut(0.05)
-		Stop
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X059 ABCD 2; //A_FadeOut(0.03)
+		X059 EFGHIJ 1; //A_FadeOut(0.04)
+		X059 KLM 1; //A_FadeOut(0.05)
+		Stop;
 	}
 }
 
 
-Actor PM_PestilenceBlood2 : PM_PestilenceBlood1
+Class PM_PestilenceBlood2 : PM_PestilenceBlood1
 {
-	Translation "0:255=%[0,0,0]:[2,1,0.3]"
+	Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 }
 
-Actor PM_PestilenceBlood3 : PM_PestilenceBlood1
+Class PM_PestilenceBlood3 : PM_PestilenceBlood1
 {
-	Scale 0.8
+	Default { Scale 0.8; }
 	States
 	{
 	Spawn:
-		TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,3),0,SXF_NOCHECKPOSITION,220)
-		BL0D ABBBBBCCCCCC 1 A_Fadeout(0.06)
-		Stop
+		TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,3),0,SXF_NOCHECKPOSITION,220);
+		BL0D ABBBBBCCCCCC 1 A_Fadeout(0.06);
+		Stop;
 	}
 }
 
-Actor PM_PestilenceBloodMulti
+Class PM_PestilenceBloodMulti : PM_NormalBloodMulti
 {
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65
-	Height 1
-	Radius 1
-	Mass 1
-	-NOGRAVITY
-	Gravity 0.85
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_PlaySound("PM/GibLand")
-		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		Stop
+		TNT1 A 0;
+		TNT1 A 0 A_PlaySound("PM/GibLand");
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		Stop;
 	}
 }
 
-actor PM_PestilenceBloodMist
+Class PM_PestilenceBloodMist : Actor
 {
-Decal BloodSplat
-game Doom
-Alpha 0.93
-+FORCEXYBILLBOARD
-+GHOST
-+NOBLOCKMAP
-+ROLLSPRITE
-+NOINTERACTION
- +DontSplash
--EXPLODEONWATER
-+CLIENTSIDEONLY
-+THRUACTORS
-+NOTELEPORT
-Translation "0:255=%[0,0,0]:[2,1,0.3]"
-Scale 2.0
-Gravity 0.0
+      Default
+	  {
+      Decal "BloodSplat";
+      Alpha 0.93;
+      +FORCEXYBILLBOARD
+      +GHOST
+      +NOBLOCKMAP
+      +ROLLSPRITE
+      +NOINTERACTION
+      +DontSplash
+      -EXPLODEONWATER
+      +CLIENTSIDEONLY
+      +THRUACTORS
+      +NOTELEPORT
+      Translation "0:255=%[0,0,0]:[2,1,0.3]";
+      Scale 2.0;
+      Gravity 0.0;
+	  }
  states
  {
   Spawn:
-		
-        TNT1 A 0 NODELAY A_SetRoll(random(0,360))
-		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,5),0,SXF_NOCHECKPOSITION,100)
-		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30)
-		TNT1 A 0 A_SetScale(frandom(0.1,0.8))
+        TNT1 A 0 NODELAY A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceMaggotFall",0,0,0,random(-3,3),random(-3,3),random(0,5),0,SXF_NOCHECKPOSITION,100);
+		TNT1 AAA 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_SetScale(frandom(0.1,0.8));
         BLER GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
 		{
 		A_FadeOut(0.03);
-		A_SetScale(ScaleX+0.02);
+		A_SetScale(Scale.X+0.02);
 		}
-		stop
+		stop;
  }
 }
 
-Actor PM_PestilenceBloodyCloud : PM_NormalBloodyCloud
+Class PM_PestilenceBloodyCloud : PM_NormalBloodyCloud
 {
- Translation "0:255=%[0,0,0]:[2,1,0.3]"
+  Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 }
 
-Actor PM_PestilenceBloodyCloudMedium : PM_NormalBloodyCloudMedium
+Class PM_PestilenceBloodyCloudMedium : PM_NormalBloodyCloudMedium
 {
- Translation "0:255=%[0,0,0]:[2,1,0.3]"
+ Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 }
 
-Actor PM_PestilenceBloodyCloudBig : PM_NormalBloodyCloudBig
+Class PM_PestilenceBloodyCloudBig : PM_NormalBloodyCloudBig
 {
- Translation "0:255=%[0,0,0]:[2,1,0.3]"
+ Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 }

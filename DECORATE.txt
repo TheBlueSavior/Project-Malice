@@ -1,7 +1,6 @@
 #include "Decorate/Monsters/SpawnersAll.txt"
 
 #include "Actors/SFX/VFX.txt"
-#include "Actors/SFX/BloodVFX.txt"
 
 #include "Actors/Decorations/WallDecals.txt"
 #include "Actors/Decorations/CorpsePile.txt"
