@@ -190,8 +190,8 @@ Class PM_Nailgunner : PMMonsterBase
 		PNGZ EEEE 5
 		{
 	    A_FaceTarget(360,180);
-	    A_SetAngle(angle+random(-10,10));
-	    A_SetPitch(pitch+random(-15,15));
+	   // A_SetAngle(angle+random(-10,10));
+	   // A_SetPitch(pitch+random(-15,15));
 	    }
         TNT1 A 0 { user_numbullets = (user_numbullets - 8); }
         TNT1 A 0
