@@ -157,7 +157,8 @@ Default
 	    );
 	}
 	TNT1 A 0 A_Jump(2,"Scare1","Scare2","Scare3","Scare4","Scare5","Scare6");
-	TNT1 A 0 A_Jump(3,"Forward","Left","Right","Back","RandomDodge");
+	TNT1 A 0 A_Jump(10,"RandomDodge");
+	TNT1 A 0 A_Jump(7,"Forward","Forward","Left","Right","Back","RandomDodge");
     loop;
   Scare1:
 	TNT1 A 0 A_FaceTarget();
@@ -353,8 +354,8 @@ Default
 	Goto See2;
   RandomDodge:
 	TNT1 A 0;
-	TNT1 A 0 ThrustThing(random(0,360),10);
-	TNT1 A 0 ThrustThingZ(0,7,random(0,1),1);
+	TNT1 A 0 ThrustThing(random(0,360),frandom(3,15));
+	TNT1 A 0 ThrustThingZ(0,frandom(3,8),random(0,1),1);
 	Goto See2;
   Forward:
 	TNT1 A 0 A_Recoil(-20);
