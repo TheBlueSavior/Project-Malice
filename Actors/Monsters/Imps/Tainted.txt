@@ -24,7 +24,7 @@ Class PM_Tainted : PMMonsterBase
     HitObituary "%o was overwhelmed by a Tainted!";
     Obituary "A Tainted's remains ate through %o's flesh!";
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_DemonicTeleportFog";
+	TeleFogDestType "PM_GluttonyTeleportFog";
 	}
     States
     {

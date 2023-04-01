@@ -26,7 +26,7 @@ ACTOR PM_Glutton : PMMonsterBase
 	HitObituary "%o became part of the Glutton's feeding cycle."
 	Tag "Glutton"
 	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_DemonicTeleportFog"
+	TeleFogDestType "PM_GluttonyTeleportFog"
 	States
 	{
 	Spawn:

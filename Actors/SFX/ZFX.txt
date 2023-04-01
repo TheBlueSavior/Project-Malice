@@ -717,7 +717,7 @@ States
 	}
  TNT1 A 0 A_PlaySound("TeleportSound",CHAN_5,0.9);
   TNT1 A 0 A_PlaySound("PM/DemonTeleFire",CHAN_7,0.5);
- TNT1 A 0 A_SpawnItemEx("TeleSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
+ TNT1 A 0 A_SpawnItemEx("PM_TeleSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
 	A_SpawnParticleEx
@@ -1214,6 +1214,341 @@ States
 		startroll: random(-180,180)
 		);
 	}
+ Stop;
+ }
+}
+
+//Gluttony Fog
+class PM_GluttonyTeleportFog : Actor
+{
+Default
+{
+Alpha 1;
+XScale 1.3;
+YScale 1.1;
+Translation "0:255=%[0,0,0]:[2.0,0.2,0.1]";
++NOBLOCKMAP
++NOGRAVITY
++NOTELEPORT
++ZDOOMTRANS
+RenderStyle "Add";
+}
+States
+ {
+ Spawn:
+ TNT1 A 0;
+ TNT1 A 0
+ {
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRR0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 6,
+		size: 300,
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 20,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: 20,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRR0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 6,
+		size: 500,
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 10,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: 20,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+		);
+		A_SpawnParticleEx
+		(
+		"FF1C1C",
+		TexMan.CheckForTexture("DTPRR0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 6,
+		size: 500,
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 0,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: 20,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+		);
+	}
+ TNT1 A 0 A_PlaySound("TeleportSound",CHAN_5,0.6);
+  TNT1 A 0 A_PlaySound("PM/GluttonyTeleSplat",CHAN_7,0.32);
+ TNT1 A 0 A_SpawnItemEx("PM_GluttonyTeleCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
+ TNT1 AAAAAAAAAAAAAAAAAAA 0
+	{
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		zoff: 0,
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+	}
+ DB26 ABCDEFGHIJK 1 BRIGHT Light("PM_GluttonyTeleFlicker2")
+ {
+	A_SpawnParticleEx
+	    (
+		"FF1212",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(50,90),
+		size: frandom(15,50),
+		xoff: random(-10,10),
+		yoff: random(-10,10),
+		zoff: frandom(30,65),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: frandom(-1,1),
+		startalphaf: frandom(0.05,0.7),
+		fadestepf: -1,
+		sizestep: frandom(0.2,6),
+		startroll: random(-180,180),
+		rollvel: frandom(-0.1,0.1)
+		);
+	A_SpawnParticleEx
+	    (
+		"760000",
+		TexMan.CheckForTexture("FIR1W0"),
+		style: STYLE_Translucent,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(80,160),
+		size: frandom(90,180),
+		xoff: random(-15,15),
+		yoff: random(-15,15),
+		zoff: frandom(0,5),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: frandom(3,10),
+		startalphaf: frandom(0.6,1),
+		fadestepf: 0.03,
+		sizestep: frandom(-4,-8),
+		startroll: random(-180,180),
+		rollvel: frandom(-0.3,0.3)
+		);
+	A_SpawnParticleEx
+	    (
+		"FF1212",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(50,300),
+		size: frandom(15,50),
+		xoff: random(-10,10),
+		yoff: random(-10,10),
+		zoff: frandom(0,15),
+		velx: frandom(-2,2),
+		vely: frandom(-2,2),
+		velz: 0,
+		startalphaf: frandom(0.1,0.4),
+		fadestepf: -1,
+		sizestep: 3,
+		startroll: random(-180,180),
+		rollvel: frandom(-0.1,0.1)
+		);
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		zoff: 0,
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRR0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: frandom(200,530),
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 10,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.5,0.8),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: random(-180,180)
+		);
+	}
+TNT1 AAA 0
+{
+A_SpawnParticleEx
+	    (
+		"9e1f15",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Translucent,
+		flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(50,4000),
+		size: frandom(15,120),
+		xoff: random(-10,10),
+		yoff: random(-10,10),
+		zoff: frandom(0,45),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: 0,
+		startalphaf: frandom(0.05,0.4),
+		fadestepf: -1,
+		sizestep: 2,
+		startroll: random(-180,180),
+		rollvel: frandom(-0.1,0.1)
+		);
+}
+ DB26 LMMNOPQRSTUV 2 BRIGHT Light("PM_GluttonyTeleFlicker1")
+{
+	A_SpawnParticleEx
+	    (
+		"760000",
+		TexMan.CheckForTexture("FIR1W0"),
+		style: STYLE_Translucent,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(80,160),
+		size: frandom(90,180),
+		xoff: random(-15,15),
+		yoff: random(-15,15),
+		zoff: frandom(0,5),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: frandom(3,10),
+		startalphaf: frandom(0.6,1),
+		fadestepf: 0.03,
+		sizestep: frandom(-4,-8),
+		startroll: random(-180,180),
+		rollvel: frandom(-0.3,0.3)
+		);
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		zoff: 0,
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+	A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRO0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: frandom(50,230),
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 10,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.4,0.8),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: random(-180,180)
+		);
+	}
+ TNT1 A 0 A_PlaySound("PM/GluttonyTeleVoice",CHAN_6,0.35);
  Stop;
  }
 }

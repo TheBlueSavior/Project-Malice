@@ -2916,7 +2916,37 @@ ACTOR PM_DemonTeleportFire
 	}
 }
 
-ACTOR TeleSummonCircle
+ACTOR PM_TeleSummonCircle
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright
++FLATSPRITE
+Radius 20
+Height 1
++NOBLOCKMAP
+Scale 0.7
+Alpha 1
+Translation "0:255=%[0,0,0]:[2.0,0.4,0.1]"
+States
+{
+Spawn:
+    C1TE AAAAAAAAAAAAAAAAAAAAA 1 Bright
+	{
+	A_SpawnItemEx("PM_DemonTeleportFire",random(-40,40),random(-40,40),0,0,0,random(3,6));
+	}
+Spawned:
+	C1TE A 100 Bright
+Fade:
+	C1TE A 5 Bright
+	{
+	A_FadeOut(0.1);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_GluttonyTeleCircle
 {
 +CLIENTSIDEONLY
 +NOINTERACTION
@@ -2924,19 +2954,21 @@ ACTOR TeleSummonCircle
 Radius 20
 Height 1
 +NOBLOCKMAP
-Scale 1.3
-Alpha 0.95
++FLATSPRITE
+Scale 0.7
+Alpha 1
+Translation "0:255=%[0,0,0]:[2.0,0.1,0.1]"
 States
 {
 Spawn:
-    TSU3 AAAAAAAAAAAAAAAAA 1 Bright
+    C1TE AAAAAAAAAAAAAAAAAAAAA 1 Bright
 	{
-	A_SpawnItemEx("PM_DemonTeleportFire",random(-40,40),random(-40,40),0,0,0,random(3,6));
+	A_SpawnItemEx("PM_TaintedDeathSplash",random(-40,40),random(-40,40),0,0,0,random(3,6));
 	}
 Spawned:
-	TSU3 A 50 Bright
+	C1TE A 100 Bright
 Fade:
-	HSU3 A 5 Bright
+	C1TE A 5 Bright
 	{
 	A_FadeOut(0.1);
 	}

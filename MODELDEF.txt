@@ -108,16 +108,6 @@ Model HSummonCircle
    FrameIndex HSU2 A 0 0         
 }
 
-Model TeleSummonCircle    
-{
-   Path "Models"    
-   Model 0 "telemdlcircle.md3"    
-   Skin 0 "malicetelecircle.png"     
-   Scale 26.0 26.0 26.0           
-   ZOffset 1.0
-   FrameIndex TSU3 A 0 0         
-}
-
 Model PM_NailgunnerNail
 { 
 Path "Models"
