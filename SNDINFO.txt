@@ -2891,7 +2891,7 @@ Defiler/Roar5 "Sounds/Monsters/Elementals/Defiler/DefilerRoar5.ogg"
 Defiler/Roar6 "Sounds/Monsters/Elementals/Defiler/DefilerRoar6.ogg"
 Defiler/Roar7 "Sounds/Monsters/Elementals/Defiler/DefilerRoar7.ogg"
 
-$volume Defiler/Roar 0.3
+$volume Defiler/Roar 0.4
 
 $rolloff Defiler/Roar 200 1400
 

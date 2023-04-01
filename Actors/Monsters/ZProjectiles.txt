@@ -789,6 +789,55 @@ Class PM_HeresyLordRedBall : DoomImpBall
 	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
 	A_SpawnItemEx("PM_HeresyLordFlameTrails");
 	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("LENRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: frandom(80,120.0),
+		angle: 0,
+		xoff: -5,
+		yoff: 0,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.3,0.6),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: 0,
+		rollvel: 0,
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,90),
+		size: frandom(0.2,10),
+		angle: 0,
+		xoff: random(-10,5),
+		yoff: random(-5,5),
+		zoff: random(-5,5),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,0.6),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180),
+		rollvel: 0,
+		rollacc: 0
+		);
+	A_SpawnParticleEx
 	    (   
 		 "",
 		 TexMan.CheckForTexture("GNSML0"),
@@ -895,9 +944,10 @@ Class PM_BruiserMeteor : DoomImpBall
   Height 8;
   Projectile;
   +RANDOMIZE
-  renderstyle "Translucent";
+  +ROLLSPRITE
+  renderstyle "Normal";
   DamageType "Fire";
-  Alpha 0.9;
+  Alpha 1;
   SeeSound "GenericChargeHeavy";
   DeathSound "GenericCometExp";
   Decal "PM_BruiserBiggestScorch";
@@ -907,17 +957,67 @@ Class PM_BruiserMeteor : DoomImpBall
   Spawn:
     I01X AAABBBCCC 1 BRIGHT Light("GreenBall4")
 	{
-	A_SpawnItemEx("PM_BruiserTrailFireGlobs",0,random(-10,10),random(-10,10),0,0,0,0,128,0);
+	A_SpawnItemEx("PM_BruiserTrailFireGlobs",-11,random(-10,10),random(-10,10),0,0,0,0,128,0);
+	A_SetRoll(roll+3);
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("PBALc0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: frandom(180,200.0),
+		angle: 0,
+		xoff: -5,
+		yoff: 0,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.2,0.4),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: 0,
+		rollvel: 0,
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKOG0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(30,180),
+		size: frandom(0.3,14),
+		angle: 0,
+		xoff: random(-10,5),
+		yoff: random(-20,20),
+		zoff: random(-20,20),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,0.6),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180),
+		rollvel: 0,
+		rollacc: 0
+		);
 	A_SpawnParticleEx
 	    (   
 		 "",
 		 TexMan.CheckForTexture("GNSML0"),
 		 style: STYLE_None,
 		 flags: SPF_ROLL|SPF_RELATIVE,
-		 lifetime: 55,
-		 size: 75.0,
+		 lifetime: frandom(90,200),
+		 size: frandom(85.0,120),
 		 angle: 0,
-		 xoff: frandom(-10.5,12.5),
+		 xoff: frandom(-10.5,-12.5),
 		 yoff: 0,
 		 velx: frandom(-0.8,0.8),
 		 vely: frandom(-0.5,0.5),
@@ -925,7 +1025,7 @@ Class PM_BruiserMeteor : DoomImpBall
 		 accelx: 0,
 		 accely: 0,
 		 accelz: 0,
-		 startalphaf: 0.5,
+		 startalphaf: frandom(0.3,0.6),
 		 fadestepf: -1,
 		 sizestep: 0,
 		 startroll: random(-180,180),

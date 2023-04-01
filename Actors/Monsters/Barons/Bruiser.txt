@@ -31,6 +31,7 @@ Class PM_Bruiser : PMMonsterBase
 	MeleeThreshold 196;
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
+	PMMonsterBase.RealHeight 78;
    }
 	
     States
