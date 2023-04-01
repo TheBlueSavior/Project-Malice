@@ -1015,26 +1015,6 @@ Color 0.2 0.0 0.0
 Size 15
 }
 
-Object AgauresBall
-{
-Frame BLVBA { Light AgauresBall }
-Frame BLVBB { Light AgauresBall }
-Frame BLVBC { Light AgauresBall2 }
-Frame BLVBD { Light AgauresBall3 }
-Frame BLVBE { Light AgauresBall4 }
-Frame BLVBF { Light AgauresBall5 }
-}
-
-Object SpeedyAgauresBall
-{
-Frame BLVBA { Light AgauresBall }
-Frame BLVBB { Light AgauresBall }
-Frame BLVBC { Light AgauresBall2 }
-Frame BLVBD { Light AgauresBall3 }
-Frame BLVBE { Light AgauresBall4 }
-Frame BLVBF { Light AgauresBall5 }
-}
-
 
 BrightMap Sprite AGURE1
 {
