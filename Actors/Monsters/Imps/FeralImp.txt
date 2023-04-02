@@ -1,325 +1,495 @@
 //ALL CREDITS TO DBTHANOS/Death Foretold FOR THE LEAP CODE!
-actor PM_FeralImp : PMMonsterBase
+Class PM_FeralImp : PMWrathMonsterBase
 {
-  var int user_leapstrength;
-  obituary "%o burned to a crisp by a Feral Imp's fireballs."
-  hitobituary "%o was cut down by a Feral Imp."
-  health 75
-  radius 20
-  height 56
-  mass 120
-  speed 11
-  painchance 160
-  Monster
+
+  int user_leapstrength;
+  
+  Default
+  {
+  Obituary "%o burned to a crisp by a Feral Imp's fireballs.";
+  HitObituary "%o was cut down by a Feral Imp.";
+  health 75;
+  radius 20;
+  height 56;
+  mass 120;
+  speed 11;
+  painchance 160;
+  Monster;
   +DONTHARMCLASS
   +DONTHARMSPECIES
   //+NOINFIGHTING
   +NOTARGET
   +MISSILEMORE
-  Tag "Feral Imp"
-  Species "Imp"
+  Tag "Feral Imp";
+  Species "Imp";
   //DropItem "RagePoint1"
-  seesound ""
-  painsound "FeralImp/Pain"
-  deathsound "FeralImp/Death"
-  activesound "FeralImp/Active"
-  MeleeRange 155
+  seesound "FeralImp/Sight";
+  painsound "FeralImp/Pain";
+  deathsound "FeralImp/Death";
+  activesound "FeralImp/Active";
+  MeleeRange 155;
   +FLOORCLIP
-  TeleFogSourceType "PM_SmallDemonicTeleportFog"
-  TeleFogDestType "PM_DemonicTeleportFog"
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
+  }
+  
   states
   {
   Spawn:
-    1ROO A 10 PM_Look()
-    loop
+    TNT1 A 0 NoDelay { pm_irecount = random(2,5); }
+  Idle:
+    1ROO A 10 PM_Look();
+    loop;
   Look:
-	TNT1 A 0 A_SetSpeed(11)
-	1ROO AA 3 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
-	1ROO BBCC 3 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO DD 3 PM_LookingForPlayer()
-    Loop
+	TNT1 A 0 A_SetSpeed(11);
+	1ROO AA 3 PM_LookingForPlayer();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+	1ROO BBCC 3 PM_LookingForPlayer();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	1ROO DD 3 PM_LookingForPlayer();
+    Loop;
   Spotted:
-    TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","See2","See2")
+    TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","See2","See2");
   RoarNoAnim:
-    TNT1 A 0 PM_AlertSound()
+    TNT1 A 0 PM_AlertSound();
   See2:
-	TNT1 A 0 A_SetSpeed(11)
-	1ROO AA 3 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO BBCC 3 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO DD 3 A_Chase
-	TNT1 A 0 A_Jump(46,"Rush")
-	Loop
+    TNT1 A 0
+	{
+	 if(ire == true) //if it's already pissed off..
+	  { A_Jump(256,1); } //then this basically does nothing and moves onto the next state
+	 else if(pm_irecount < 0) //if it isn't..
+	  { SetStateLabel("IreRoar"); } //then IT WILL BE NOW BITCH
+	}
+	TNT1 A 0 A_SetSpeed(11);
+	1ROO AA 3 
+	{
+	A_Chase();
+	if(ire == true)
+	 A_SetTics(2);
+	 A_Recoil(-0.5);
+	}
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	1ROO BBCC 3
+	{
+	 A_Chase();
+     if(ire == true)
+	 A_SetTics(2);
+	 A_Recoil(-0.5);
+	}
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	1ROO DD 3
+	{
+	 A_Chase();
+     if(ire == true)
+	 A_SetTics(2);
+	 A_Recoil(-0.5);
+	}
+	TNT1 A 0 A_Jump(46,"Rush");
+	Loop;
   Rush:
-	TNT1 A 0 A_SetSpeed(16)
-	1ROO AA 2 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO BBCC 2 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	1ROO DD 2 A_Chase
-	TNT1 A 0 A_Jump(26,"See")
-	Loop
+	TNT1 A 0 A_SetSpeed(16);
+	1ROO AA 2 
+	{
+	A_Chase();
+	if(ire == true)
+	A_Recoil(-0.85);
+	}
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	1ROO BBCC 2 
+	{
+	A_Chase();
+	if(ire == true)
+	A_Recoil(-0.85);
+	}
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	1ROO DD 2
+	{
+	A_Chase();
+	if(ire == true)
+	A_Recoil(-0.85);
+	}
+	TNT1 A 0 A_Jump(26,"See");
+	Loop;
   Rip:
-	1ROO EEEEE 1 A_FaceTarget
-	TNT1 A 0 ThrustThingZ(0,14,0,1)
-	TNT1 A 0 A_Recoil(-9)
-	TNT1 A 0 A_PlaySound("FeralImp/Swing")
-	1ROO FFF 1 A_FaceTarget
-	1ROO G 8 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
-	1ROO IIIII 1 A_FaceTarget
-	TNT1 A 0 ThrustThingZ(0,14,0,1)
-	TNT1 A 0 A_Recoil(-9)
-	TNT1 A 0 A_PlaySound("FeralImp/Swing")
-	1ROA H 8 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
-	1ROO A 10
-	Goto See2
+	1ROO EEEEE 1 A_FaceTarget();
+	TNT1 A 0 ThrustThingZ(0,14,0,1);
+	TNT1 A 0 A_Recoil(-9);
+	TNT1 A 0 A_PlaySound("FeralImp/Swing");
+	1ROO FFF 1 A_FaceTarget();
+	1ROO G 8 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROO IIIII 1 A_FaceTarget();
+	TNT1 A 0 ThrustThingZ(0,14,0,1);
+	TNT1 A 0 A_Recoil(-9);
+	TNT1 A 0 A_PlaySound("FeralImp/Swing");
+	1ROA H 8 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROO A 10;
+	Goto See2;
   Melee:
-	TNT1 A 0 A_JumpIfCloser(120, "Rip")
-	TNT1 A 0 A_Jump(100,"FireSpit")
-	1ROO E 1 A_FaceTarget
-	1ROT CD 4 
-    TNT1 A 0 ThrustThingZ(0,25,0,1)
-    TNT1 A 0 A_FaceTarget
-    TNT1 A 0 A_Recoil (-20)
-	TNT1 A 0 A_PlaySound("FeralImp/Attack",CHAN_7)
-	1ROT EF 2 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
-    1ROT F 6 A_FaceTarget
-	1ROT G 1 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
-	1ROT GG 2 A_CustomMissile("FeralLunge",18,0,0,CMF_AIMDIRECTION)
-	1ROT GHHH 2
-	Goto See2
+	TNT1 A 0 A_JumpIfCloser(120, "Rip");
+	TNT1 A 0 A_Jump(100,"FireSpit");
+	1ROO E 1 A_FaceTarget();
+	1ROT CD 4;
+    TNT1 A 0 ThrustThingZ(0,25,0,1);
+    TNT1 A 0 A_FaceTarget();
+    TNT1 A 0 A_Recoil (-20);
+	TNT1 A 0 A_PlaySound("FeralImp/Attack",CHAN_7);
+	1ROT EF 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+    1ROT F 6 A_FaceTarget();
+	1ROT G 1 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROT GG 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROT GHHH 2;
+	Goto See2;
   Missile:
-	TNT1 A 0 A_Jump(170,"Fireballs")
-	TNT1 A 0 A_JumpIfHigherOrLower("Fireballs","")
-	1ROO E 0 A_PlaySound("FeralImp/Leap")
-	1ROZ AAAA 4 A_FaceTarget
-	1ROT EEEECD 4 A_FaceTarget
-        TNT1 A 0 A_CheckSight("LeapWait")
-	TNT1 A 0 A_JumpIfCloser(384,"Prep384")
-	TNT1 A 0 A_JumpIfCloser(448,"Prep448")
-	TNT1 A 0 A_JumpIfCloser(512,"Prep512")
-	TNT1 A 0 A_JumpIfCloser(576,"Prep576")
-	TNT1 A 0 A_JumpIfCloser(640,"Prep640")
-	TNT1 A 0 A_JumpIfCloser(704,"Prep704")
-	Goto Prep768 
-	Prep384:	TNT1 A 0 A_SetUserVar(user_leapstrength,30)	goto ContinueLeap
-	Prep448:	TNT1 A 0 A_SetUserVar(user_leapstrength,33)	goto ContinueLeap
-	Prep512:	TNT1 A 0 A_SetUserVar(user_leapstrength,35)	goto ContinueLeap
-	Prep576:	TNT1 A 0 A_SetUserVar(user_leapstrength,37)	goto ContinueLeap
-	Prep640:	TNT1 A 0 A_SetUserVar(user_leapstrength,39)	goto ContinueLeap
-	Prep704:	TNT1 A 0 A_SetUserVar(user_leapstrength,41)	goto ContinueLeap
-	Prep768:	TNT1 A 0 A_SetUserVar(user_leapstrength,43)	goto ContinueLeap	
+	TNT1 A 0 A_Jump(170,"Fireballs");
+	TNT1 A 0 A_JumpIfHigherOrLower("Fireballs",null);
+	1ROO E 0 A_PlaySound("FeralImp/Leap");
+	1ROZ AAAA 4 A_FaceTarget();
+	1ROT EEEECD 4 A_FaceTarget();
+    TNT1 A 0 A_CheckSight("LeapWait");
+	TNT1 A 0 A_JumpIfCloser(384,"Prep384");
+    TNT1 A 0 A_JumpIfCloser(448,"Prep448");
+	TNT1 A 0 A_JumpIfCloser(512,"Prep512");
+	TNT1 A 0 A_JumpIfCloser(576,"Prep576");
+	TNT1 A 0 A_JumpIfCloser(640,"Prep640");
+	TNT1 A 0 A_JumpIfCloser(704,"Prep704");
+	Goto Prep768;
+	Prep384: TNT1 A 0 { user_leapstrength = 30; }	Goto ContinueLeap;
+	Prep448: TNT1 A 0 { user_leapstrength = 33; }	Goto ContinueLeap;
+	Prep512: TNT1 A 0 { user_leapstrength = 35; }	Goto ContinueLeap;
+	Prep576: TNT1 A 0 { user_leapstrength = 37; }	Goto ContinueLeap;
+	Prep640: TNT1 A 0 { user_leapstrength = 39; }	Goto ContinueLeap;
+	Prep704: TNT1 A 0 { user_leapstrength = 41; }	Goto ContinueLeap;
+	Prep768: TNT1 A 0 { user_leapstrength = 43; }   Goto ContinueLeap;
   ContinueLeap:
-	1ROT A 0 A_PlaySound("FeralImp/Attack",CHAN_7)
-	1ROT A 0 A_Recoil(-(user_leapstrength/1.2))
-	1ROO F 1 ThrustThingZ(0,user_leapstrength,0,0)
-	Goto LeapLoop
+	1ROT A 0 A_PlaySound("FeralImp/Attack",CHAN_7);
+	1ROT A 0 A_Recoil(-(user_leapstrength/1.2));
+	1ROO F 1 ThrustThingZ(0,user_leapstrength,0,0);
+	Goto LeapLoop;
   LeapLoop:
-	1ROT G 0 A_CheckFloor("LeapEnd")
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee")
-	1ROT G 0 A_CheckFloor("LeapEnd")
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee")
-	1ROT G 0 A_CheckFloor("LeapEnd")
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee")
-	Loop
-		
+	1ROT G 0 A_CheckFloor("LeapEnd");
+	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
+	1ROT G 0 A_CheckFloor("LeapEnd");
+	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
+	1ROT G 0 A_CheckFloor("LeapEnd");
+	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
+	Loop;
    LeapMelee:
-	1ROT G 1 A_Explode(8*random(1,5),50,XF_NOTMISSILE,0,50)
-	1ROT G 1 A_CheckFloor("LeapEnd")
-	Wait
-			
+	1ROT G 1 A_Explode(8*random(1,5),50,XF_NOTMISSILE,0,50);
+	1ROT G 1 A_CheckFloor("LeapEnd");
+	Wait;
   LeapEnd:
-	1ROT A 0 A_PlaySound("fiend/land",CHAN_AUTO,1.0,false,1.15)
-	1ROT A 0 A_ChangeFlag("NOPAIN",0)
-	1ROT G 4 A_Stop
-	1ROT H 8
-	Goto See2
+	1ROT A 0 A_PlaySound("fiend/land",CHAN_AUTO,1.0,false,1.15);
+	1ROT A 0 
+	{
+	if(ire == true)
+	 A_Jump(256,1);
+	else
+	 bNOPAIN = false;
+	}
+	1ROT G 4 A_Stop;
+	1ROT H 8 { pm_irecount--; }
+	Goto See2;
   LeapWait:
-    1ROT DD 2 A_FaceTarget
-	TNT1 A 0 A_JumpIfTargetInLOS("LeapWaitSee",360,JLOSF_DEADNOJUMP)
-	TNT1 A 0 A_Jump(4,"See2")
-	Loop
+    1ROT DD 2 A_FaceTarget();
+	TNT1 A 0 A_JumpIfTargetInLOS("LeapWaitSee",360,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_Jump(4,"See2");
+	Loop;
   LeapWaitSee:
-    1ROT DDD 2 A_FaceTarget
-	Goto LeapWaitCheck
+    1ROT DDD 2 A_FaceTarget();
+	Goto LeapWaitCheck;
   LeapWaitCheck:
-	TNT1 A 0 A_JumpIfCloser(384,"Prep384")
-	TNT1 A 0 A_JumpIfCloser(448,"Prep448")
-	TNT1 A 0 A_JumpIfCloser(512,"Prep512")
-	TNT1 A 0 A_JumpIfCloser(576,"Prep576")
-	TNT1 A 0 A_JumpIfCloser(640,"Prep640")
-	TNT1 A 0 A_JumpIfCloser(704,"Prep704")
-	Goto Prep768 
+	TNT1 A 0 A_JumpIfCloser(384,"Prep384");
+	TNT1 A 0 A_JumpIfCloser(448,"Prep448");
+	TNT1 A 0 A_JumpIfCloser(512,"Prep512");
+	TNT1 A 0 A_JumpIfCloser(576,"Prep576");
+	TNT1 A 0 A_JumpIfCloser(640,"Prep640");
+	TNT1 A 0 A_JumpIfCloser(704,"Prep704");
+	Goto Prep768;
   Fireballs:
-	TNT1 A 0 A_Jump(30,"Roar")
-	TNT1 A 0 A_Jump(90,"FireSpit")
-	TNT1 A 0 A_PlaySound("GenericChargeSmall")
+	TNT1 A 0 A_Jump(30,"Roar");
+	TNT1 A 0 
+	{
+	 if(ire == true && random(1,3) == 1) //a_jump won't work with if checks so we use this
+	 { SetStateLabel("FireSpit"); }      //LIFE IS PAIN. I HATE
+	}
+	TNT1 A 0 A_PlaySound("GenericChargeSmall");
     1ROO EEEEEEE 1 Light("Avatarfireball4") 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Spawnitemex("FeralFireEffect",2,random(18,24),30,0,0,2);
 	}
-	//TNT1 A 0 A_Recoil(-2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
 	1ROO FF 3 Light("Avatarfireball4") 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
 	}
 	//TNT1 A 0 A_Recoil(-2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(10,12),33,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2)
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(10,12),33,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
     1ROO G 8 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
-	A_CustomMissile("PM_FeralImpBall");
+	A_SpawnProjectile("PM_FeralImpBall");
+	if(ire == true)
+	 {
+	  for(int a = 0;a<2;a++)
+	  A_SpawnProjectile("PM_HellionBall2",32,0,frandom(-3.5,3.5),CMF_OFFSETPITCH,frandom(-3.5,3.5));
+	 }
 	}
-	//TNT1 A 0 A_Recoil(-2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2)
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
 	1ROO III 3 Light("Avatarfireball4") 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
 	}
-	//TNT1 A 0 A_Recoil(-2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(-10,-12),33,0,0,2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2)
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(-10,-12),33,0,0,2);
+	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
     1ROA H 8 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
 	A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
-	A_CustomMissile("PM_FeralImpBall");
+	A_SpawnProjectile("PM_FeralImpBall");
+	if(ire == true)
+	 {
+	  for(int a = 0;a<2;a++)
+	  A_SpawnProjectile("PM_HellionBall2",32,0,frandom(-3.5,3.5),CMF_OFFSETPITCH,frandom(-3.5,3.5));
+	 }
 	}
-    1ROO B 2 Light("Avatarfireball4") A_FaceTarget
-	
-	TNT1 A 0 A_Jump(30,"See2")
-    goto See2
+    1ROO B 2 Light("Avatarfireball4") A_FaceTarget();
+	TNT1 A 0 { pm_irecount--; }
+    goto See2;
   Roar:
-	1ROT AAAAA 3 A_FaceTarget
-	TNT1 A 0 A_PlaySound("FeralImp/Sight",CHAN_7)
+	1ROT AAAAA 3 A_FaceTarget();
+	TNT1 A 0 A_PlaySound("FeralImp/Sight",CHAN_7);
 	1ROT BBCCCCCCCCCCCCCC 3 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
+	if(ire == true)
+	A_SetTics(2);
 	}
-	1ROO AAA 3 A_FaceTarget
-	Goto See2
-  FireSpit:
-	1ROT HH 5 A_FaceTarget
-	1ROT CCCCC 7 Light("Avatarfireball4")
+	1ROO AAA 3 A_FaceTarget();
+	Goto See2;
+  IreRoar:
+    TNT1 A 0 A_PlaySound("GenericChargeSmall",CHAN_5);
+	1ROT AAAAA 3 A_FaceTarget();
+	TNT1 A 0 
+	{ 
+    ire = true;
+	bNOINFIGHTING = true;
+	bNOPAIN = true;
+	bNOFEAR = true;
+	}
+	TNT1 A 0 A_PlaySound("FeralImp/Sight",CHAN_7);
+	TNT1 A 0 A_PlaySound("PM/DemonTeleFire",CHAN_5,0.4);
+	1ROT BBCCCCCCCCCCCCCC 2 
 	{
-	A_FaceTarget;
+	A_FaceTarget();
+	A_SpawnParticleEx
+	(
+	"ff9d1c",
+	TexMan.CheckForTexture("DTPRR0"),
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: 6,
+	size: 300,
+	zoff: 10,
+	startalphaf: 1,
+	fadestepf: -1,
+	sizestep: 20,
+	startroll: random(-180,180),
+	rollvel: frandom(-5,5)
+	);
+	A_SpawnParticleEx
+	(
+	 "",
+	 TexMan.CheckForTexture("SPKOA0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(10,100),
+	 size: frandom(1,25),
+	 xoff: random(-30,30),
+	 yoff: random(-30,30),
+	 velx: frandom(-0.2,0.2),
+	 vely: frandom(-0.2,0.2),
+	 velz: frandom(0.5,3),
+	 accelx: frandom(-0.02,0.02),
+	 accely: frandom(-0.02,0.02),
+	 accelz: frandom(-0.02,0.02),
+	 startalphaf: 1.0,
+	 fadestepf: -1,
+	 sizestep: -0.5,
+	 startroll: random(-180,180),
+	 rollvel: frandom(-10,10),
+	 rollacc: frandom(-1,1)
+	 );
+	A_SpawnParticleEx
+	(
+     "",
+	 TexMan.CheckForTexture("F1R1A0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(70,120),
+	 size: frandom(60,90),
+	 xoff: random(-20,20),
+	 yoff: random(-20,20),
+	 zoff: frandom(0,5),
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(1,4),
+	 startalphaf: frandom(0.4,0.7),
+	 fadestepf: -0.02,
+	 sizestep: frandom(-2,-4),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
+	 );
+	A_SpawnParticleEx
+	(
+	 "ff4d12",
+	 TexMan.CheckForTexture("GNSMK0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(50,300),
+	 size: frandom(15,50),
+	 xoff: random(-10,10),
+	 yoff: random(-10,10),
+	 zoff: frandom(0,15),
+	 velx: frandom(-2,2),
+	 vely: frandom(-2,2),
+	 startalphaf: frandom(0.1,0.4),
+	 fadestepf: -1,
+	 sizestep: 3,
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.1,0.1)
+	 );
+	}
+	1ROO AAA 3 A_FaceTarget();
+	Goto See2;
+  FireSpit:
+	1ROT HH 5 A_FaceTarget();
+	1ROT CCCCC 5 Light("Avatarfireball4")
+	{
+	A_FaceTarget();
 	A_SpawnItemEx("CFireFlare",3,0,45);
 	A_SpawnItemEx("CFireFlare",3,0,45);
 	A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
-	A_CustomMissile("PM_FeralImpSpitFireball",45,0,random(-3,3),CMF_OFFSETPITCH,random(-3,3));
+	A_SpawnProjectile("PM_FeralImpSpitFireball",45,0,random(-3,3),CMF_OFFSETPITCH,random(-3,3));
 	}
-	1ROS A 5 A_FaceTarget
-	Goto See2
+	1ROS A 5 A_FaceTarget();
+	TNT1 A 0;
+	Goto See2;
   Pain:
-    1ROO H 2
-    1ROO H 2 A_Pain
-    goto See2
+    1ROO H 2;
+    1ROO H 2 A_Pain;
+	TNT1 A 0 { pm_irecount--; }
+    goto See2;
   Death:
-    TNT1 A 0 A_StopSounds(0,0)
-    2ROH K 1
-    2ROH K 8 A_Scream
-    2ROH L 8
-    2ROH M 6
-    2ROH N 6 A_NoBlocking
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-    2ROH O -1
-    stop
+    TNT1 A 0 A_StopSounds(0,0);
+    2ROH K 1;
+    2ROH K 8 A_Scream;
+    2ROH L 8;
+    2ROH M 6;
+    2ROH N 6 A_NoBlocking;
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+    2ROH O -1;
+    stop;
   XDeath:
-    TNT1 A 0 A_StopSounds(0,0)
-    2RO4 A 5
-    2RO4 B 5 A_XScream
-    2RO4 C 5
-    2RO4 D 5 A_NoBlocking
-    2RO4 E -1
-    stop
+    TNT1 A 0 A_StopSounds(0,0);
+    2RO4 A 5;
+    2RO4 B 5 A_XScream;
+    2RO4 C 5;
+    2RO4 D 5 A_NoBlocking;
+    2RO4 E -1;
+    stop;
   Raise:
-    D3IM ML 8
-    D3IM KJI 6
-    goto Look
+    D3IM ML 8;
+    D3IM KJI 6;
+    goto Look;
 	}
 }
 
-Actor FeralFireEffect
+Class FeralFireEffect : Actor
 {
+  Default
+  {
   +NOINTERACTION
   +CLIENTSIDEONLY
   +ROLLSPRITE
   +FORCEXYBILLBOARD
-  Renderstyle Add
-  Scale 0.2
-  Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]"
+  Renderstyle "Add";
+  Scale 0.2;
+  Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]";
   +Bright
+  }
   States
   {
   Spawn:
-	TNT1 A 0
-	TNT1 A 0 A_SetRoll(random(0,360))
+	TNT1 A 0;
+	TNT1 A 0 A_SetRoll(random(0,360));
 	Go:
-	TNT1 A 0 A_SetScale(ScaleX-0.01)
-	FIG1 A 1 A_FadeOut(0.08)
-	Loop
+	TNT1 A 0 A_SetScale(Scale.X-0.01);
+	FIG1 A 1 A_FadeOut(0.08);
+	Loop;
 	}
 }
 
-ACTOR FeralBallTrail
+Class FeralBallTrail : Actor
 {
-Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]"
-Scale 0.75
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
-RenderStyle Add
+  Default
+  {
+  Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]";
+  Scale 0.75;
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +NOBLOCKMAP
+  +THRUACTORS
+  +DONTSPLASH
+  +NOCLIP
+  RenderStyle "Add";
+  }
 States
 {
 Spawn:
-	TNT1 A 2
+	TNT1 A 2;
 	Start:
-	TNT1 A 0 A_CheckSight("Disappear")
+	TNT1 A 0 A_CheckSight("Disappear");
     NDEB ABC 1
 	{
-	A_SetScale(ScaleX-0.07);
+	A_SetScale(Scale.X-0.07);
 	A_FadeOut(0.25);
 	}
-    Goto Start
+    Goto Start;
 	Disappear:
-	TNT1 A 0
-	Stop
+	TNT1 A 0;
+	Stop;
     }
 }
 
-actor PM_FeralImpSpitFireball : PM_CharredBall
+Class PM_FeralImpSpitFireball : PM_CharredBall
 {
-	Damage (random(10,10))
+    Default
+	{
+	DamageFunction (10);
 	+NOGRAVITY
 	-LOWGRAVITY
 	//+SEEKERMISSILE
-	DamageType Fire
-	seesound "GenericSmallFireball"
-	Speed 15
-	FastSpeed 20
-	Scale 0.93
+	DamageType "Fire";
+	seesound "GenericSmallFireball";
+	Speed 15;
+	FastSpeed 20;
+	Scale 0.93;
+	}
 	states
   	{
   Spawn:
@@ -328,95 +498,33 @@ actor PM_FeralImpSpitFireball : PM_CharredBall
 	//A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
 	A_SpawnItemEx("PM_FeralSpitFlameTrails",0,0,0,0,0,0,0,128,0);
 	}
-	loop
+	loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn")
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode")
-	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames")
-    AFX5 D 2 bright Light("AvatarFireball4")
-    AFX5 EFGH 2 Light("AvatarFireball4") bright
-    stop
+	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
+    AFX5 D 2 bright Light("AvatarFireball4");
+    AFX5 EFGH 2 Light("AvatarFireball4") bright;
+    stop;
   }
 }
 
-ACTOR FeralLunge
+Class FeralLunge : Actor
 {
-Height 15
-Radius 24
-Speed 15
-Damage (6)
-DeathSound ""
-SeeSound ""  
-PROJECTILE
+  Default
+  {
+  Height 15;
+  Radius 24;
+  Speed 15;
+  DamageFunction (10);
+  DeathSound "";
+  SeeSound "";
+  PROJECTILE;
+  }
 States
 {
 Spawn:
-	TNT1 A 2
-    Stop
+	TNT1 A 2;
+    Stop;
     }
-}
-
-Actor GreenEmbers
-{
-  +MISSILE
-  Height 0
-  Radius 0
-  Damage 0
-  Mass 0
-  Scale 0.055
-  +CLIENTSIDEONLY
-  +DOOMBOUNCE
-  RENDERSTYLE ADD
-  BounceFactor 0.4
-  Gravity 0.5
-  +Bright
-  States
-{
-  Spawn:
-	SPKO G 3 Bright A_FadeOut(0.08)
-  Loop
-  }
-}
-
-Actor GreenEmbersFloat
-{
-  Height 0
-  Radius 0
-  Mass 0
-  Damage 0
-  +MISSILE
-  +THRUACTORS
-  +NOTELEPORT
-  +DONTSPLASH
-  +DOOMBOUNCE
-  +NOGRAVITY
-  +CLIENTSIDEONLY
-  +NOBLOCKMAP
-  +FORCEXYBILLBOARD
-  Scale 0.04
-  Alpha 0.7
-  BounceFactor 0.5
-  RenderStyle Add
-States
-{
-  Spawn:
-	SPKO G 2 Bright A_FadeOut(0.05)
-  Loop
-  }
-}
-
-Actor GreenEmbersSpawn
-{
-  +CLIENTSIDEONLY
-  +NOINTERACTION
-  States
-  {
-  Spawn:
- TNT1 A 0 A_SpawnItemEx("GreenEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
- TNT1 A 0 A_SpawnItemEx("GreenEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
- TNT1 A 0 A_SpawnItemEx("GreenEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
- TNT1 A 0 A_SpawnItemEx("GreenEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
- TNT1 A 0 A_SpawnItemEx("GreenEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0)
-  Stop
-  }
 }

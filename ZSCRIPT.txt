@@ -34,7 +34,9 @@ version "4.2.0"
 #include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/Devil.txt"
+#include "Actors/Monsters/Imps/Zephyr.txt"
 #include "Actors/Monsters/Imps/Charred.txt"
+#include "Actors/Monsters/Imps/FeralImp.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
 
 //Revenants

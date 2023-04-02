@@ -1,126 +1,126 @@
-actor PM_Zephyr : PMMonsterBase
+Class PM_Zephyr : PMMonsterBase
 {
-  obituary "%o was outpaced by a Zephyr."
-  hitobituary "%o was ripped in half by a Zephyr."
-  health 50
-  Radius 20
-  Height 56
-  Mass 100
-  speed 16
-  painchance 160
-  Gravity 0.8
-  Species "Imp"
-  Tag "Zephyr"
-  seesound "Zephyr/Sight"
-  painsound "Zephyr/Pain"
-  deathsound "Zephyr/Death"
-  activesound "Zephyr/Active"
-  Bloodtype "PM_NormalBloodBase"
-  Monster
+  Default
+  {
+  Obituary "%o was outpaced by a Zephyr.";
+  HitObituary "%o was ripped in half by a Zephyr.";
+  Health 50;
+  Radius 20;
+  Height 56;
+  Mass 100;
+  speed 16;
+  painchance 160;
+  Gravity 0.8;
+  Species "Imp";
+  Tag "Zephyr";
+  seesound "Zephyr/Sight";
+  painsound "Zephyr/Pain";
+  deathsound "Zephyr/Death";
+  activesound "Zephyr/Active";
+  Bloodtype "PM_NormalBloodBase";
+  Monster;
   +FLOORCLIP
   +ROLLSPRITE
   +ROLLCENTER
-  +DONTHURTSPECIES
+  +DONTHARMCLASS
   +DONTHARMSPECIES
   +MISSILEevenMORE
   +SLIDESONWALLS
   +AVOIDMELEE
-  TeleFogSourceType "PM_SmallDemonicTeleportFog"
-  TeleFogDestType "PM_DemonicTeleportFog"
-  states
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
+  }
+  States
   {
   Spawn:
-    BELA A 10 PM_Look()
-    loop
+    BELA A 10 PM_Look();
+    loop;
   Look:
-	TNT1 A 0 A_ChangeFlag("MISSILEMORE",False)
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-	TNT1 A 0 A_SetSpeed(16)
-    BELA EEBB 2 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP)
-	BELA CCDD 2 PM_LookingForPlayer()
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-    Loop
+	TNT1 A 0 { bMISSILEMORE = false; }
+	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	TNT1 A 0 A_SetSpeed(16);
+    BELA EEBB 2 PM_LookingForPlayer();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+	BELA CCDD 2 PM_LookingForPlayer();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+    Loop;
   Spotted:
-    BELA AAA 1 A_FaceTarget
-    TNT1 A 0 A_Jump(256,"RoarNoAnim","RoarNoAnim","Jump","CeilingJump","Fight","Roar")
+    BELA AAA 1 A_FaceTarget();
+    TNT1 A 0 A_Jump(256,"RoarNoAnim","RoarNoAnim","Jump","CeilingJump","Fight","Roar");
   RoarNoAnim:
-    TNT1 A 0 PM_AlertSound()
+    TNT1 A 0 PM_AlertSound();
   See2:
-	TNT1 A 0 A_ChangeFlag("MISSILEMORE",False)
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-	TNT1 A 0 A_SetSpeed(16)
-    BELA BB 2 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	BELA CC 2 A_Chase
-	BELA DD 2 A_Chase
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	BELA EE 2 A_Chase
-	TNT1 A 0 A_JumpIfCloser(120,"FearCheck")
-	TNT1 A 0 A_Jump(25,"Fight")
-	//TNT1 A 0 A_Jump(10,"See")
-	TNT1 A 0 A_Jump(20,"Jump")
-	TNT1 A 0 A_Jump(30,"CrouchSee")
-	TNT1 A 0 A_Jump(40,"CeilingJump")
-	Loop
+	TNT1 A 0 { bMISSILEMORE = false; }
+	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	TNT1 A 0 A_SetSpeed(16);
+    BELA BB 2 A_Chase();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	BELA CC 2 A_Chase();
+	BELA DD 2 A_Chase();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	BELA EE 2 A_Chase();
+	TNT1 A 0 A_JumpIfCloser(120,"FearCheck");
+	TNT1 A 0 A_Jump(25,"Fight");
+	TNT1 A 0 A_Jump(20,"Jump");
+	TNT1 A 0 A_Jump(30,"CrouchSee");
+	TNT1 A 0 A_Jump(40,"CeilingJump");
+	Loop;
    CrouchSee:
-	TNT1 A 0 A_SetSpeed(26)
-	CBEL DDCCBBAACCBBAACCBBAADDCCBBAA 2 A_Chase(0,0)
-	TNT1 A 0 A_SetSpeed(18)
-	TNT1 A 0 A_Jump(50,"Missile")
-	Goto See2
+	TNT1 A 0 A_SetSpeed(26);
+	CBEL DDCCBBAACCBBAACCBBAADDCCBBAA 2 A_Stop;
+	TNT1 A 0 A_SetSpeed(18);
+	TNT1 A 0 A_Jump(50,"Missile");
+	Goto See2;
 	
 	CeilingJump:
-	TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2)
-	TNT1 AAA 0
-	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See2")
-    CBEL BBAA 4
-	TNT1 A 0 ThrustThingZ(0,65,0,1) 
+	TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2);
+	TNT1 AAA 0;
+	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See2");
+    CBEL BBAA 4;
+	TNT1 A 0 ThrustThingZ(0,25,0,1);
 	//TNT1 A 0 A_PlaySound("MAMAMIA")	//I will always remember you. F
-	CBEL EEEE 2 A_CheckCeiling("CeilingLatch")
-	TNT1 A 0 ThrustThingZ(0,55,0,1)
-	TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE)
-	CBEL EEE 2 A_CheckCeiling("CeilingLatch")
-	TNT1 A 0 ThrustThingZ(0,55,0,1)
-	CBEL EEEE 3 A_CheckCeiling("CeilingLatch")
-	CBEL EEEEEEE 3 A_CheckFloor("See2")
-	TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE)
-	Goto See2
+	CBEL EEEE 2 A_CheckCeiling("CeilingLatch");
+	TNT1 A 0 ThrustThingZ(0,45,0,1);
+	TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+	CBEL EEE 2 A_CheckCeiling("CeilingLatch");
+	TNT1 A 0 ThrustThingZ(0,55,0,1);
+	CBEL EEEE 3 A_CheckCeiling("CeilingLatch");
+	CBEL EEEEEEE 3 A_CheckFloor("See2");
+	TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+	Goto See2;
 	
 	CeilingLatch:
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY", 1)
-	TNT1 A 0 A_ChangeFlag("THRUSPECIES", 1)
-	//TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 1)
-	TNT1 A 0 A_ChangeFlag("NOVERTICALMELEERANGE", 1)
-	TNT1 A 0 A_GiveInventory ("IsOnCeiling", 1)
-	CBEL DDDDD 3 ThrustThingZ(0,500,0,1) //1
-	Goto CeilingCrawl
-	
+	TNT1 A 0
+	{
+	bNOGRAVITY = true;
+	bTHRUSPECIES = true;
+	bNOVERTICALMELEERANGE = true;
+	}
+	TNT1 A 0 A_GiveInventory ("IsOnCeiling", 1);
+	CBEL DDDDD 3 ThrustThingZ(0,55,0,1); //1
+	Goto CeilingCrawl;
 	CeilingCrawl:
-		TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-		TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE)
-		TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce")
-		TNT1 A 0 A_JumpIf(velz > 250,"CeilingPounce")
-		TNT1 A 0 A_CheckFloor("CeilingDrop")
-		TNT1 A 0 ThrustThingZ(0,500,0,1)
-		1BEL BBAACCBBAA 3 A_Chase("","CeilingMissile")
+		TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+		TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce");
+		TNT1 A 0 A_CheckFloor("CeilingDrop");
+		TNT1 A 0 ThrustThingZ(0,15,0,1);
+		1BEL BBAACCBBAA 3 A_Chase(null,"CeilingMissile");
 		//TNT1 A 0 A_Recoil(-1)
-		TNT1 A 0 ThrustThingZ(0,500,0,1)
-		TNT1 A 0 A_JumpIf(velz > 250, "CeilingPounce")
-		TNT1 A 0 A_CheckFloor("CeilingDrop")
-		TNT1 A 0 ThrustThingZ(0,500,0,1)
-		TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce")
-		TNT1 A 0 A_JumpIf(velz > 250, "CeilingPounce")
-		TNT1 A 0 A_CheckFloor("CeilingDrop")
+		TNT1 A 0 ThrustThingZ(0,15,0,1);
+		TNT1 A 0 A_CheckFloor("CeilingDrop");
+		TNT1 A 0 ThrustThingZ(0,15,0,1);
+		TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce");
+		TNT1 A 0 A_CheckFloor("CeilingDrop");
 		//TNT1 A 0 A_JumpIfCloser(50, "CeilingPounce")
-		TNT1 A 0 A_Jump(22,"CeilingDrop")
-		Loop
-	
+		TNT1 A 0 A_Jump(22,"CeilingDrop");
+		Loop;
 	CeilingMissile:
+	    TNT1 A 0 A_JumpIfCloser(600,"CeilingPounce");
 		BELA AAAAFFFFFFF 1 Light("Shadowball2")
 		{
-		A_FaceTarget;
+		A_FaceTarget();
 		A_Spawnitemex("BelphFire",7,random(-12,-14),5,0,0,2);
 		A_Spawnitemex("BelphFire",7,random(12,14),5,0,0,2);
 		}
@@ -130,421 +130,385 @@ actor PM_Zephyr : PMMonsterBase
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),5,0,2);
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(-18,-26),5,0,2);
 		A_Spawnitemex("BelphFire",7,random(-5,5),random(-18,-26),5,0,2);
-		A_CustomMissile("PM_FastImpBall",5,5,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_SpawnProjectile("PM_FastImpBall",5,5,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
 		}
-		goto CeilingCrawl
-	
+		Goto CeilingCrawl;
 	CeilingDrop:
+		TNT1 A 0;
+		TNT1 A 0 A_TakeInventory("IsOnCeiling");
 		TNT1 A 0
-		TNT1 A 0 A_TakeInventory ("IsOnCeiling")
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
-		1BEL C 2 A_FaceTarget
-		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
+		{
+		bNOGRAVITY = false;
+		bCEILINGHUGGER = false;
+		}
+		1BEL C 2 A_FaceTarget();
+		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
 	CeilingDropping:
-		CBEL EE 1 A_JumpIf (momz == 0, "CeilingLanding")
-		loop
+		CBEL EE 1 A_JumpIf (vel.z == 0, "CeilingLanding");
+		TNT1 A 0 ThrustThing(random(0,360)*256/360,2,0,0); //tries to prevent getting stuck
+		loop;
 	CeilingLanding:
-		TNT1 A 0 A_PlaySound("Imp/Step",4)
-		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-		CBEL BB 2 A_FaceTarget
-		Goto See2
+		TNT1 A 0 A_PlaySound("Imp/Step",4);
+		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+		CBEL BB 2 A_FaceTarget();
+		Goto See2;
 		
 	CeilingPounce: 
-		TNT1 AAA 0
-		TNT1 A 0 A_TakeInventory ("IsOnCeiling")
-		TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
-		TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 0)
-		TNT1 A 0 A_ChangeFlag("THRUSPECIES", 0)
-		//TNT1 A 0 A_PlaySound("Trite/Attack")
-		TNT1 A 0 A_Recoil (-18)
-		TNT1 A 0 A_FaceTarget
-		CBEL AAAA 2
-		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-		CBEL EEEE 2
-		Goto CeilingDropping		
-	
-  Missile:
-	TNT1 A 0 A_Jump(10,"Jump")
-	TNT1 A 0 A_Jump(30,"Recoil")
-	TNT1 A 0 A_Jump(10,"Roar")
-	TNT1 A 0 A_Jump(180,"StandoffCheck")
-	TNT1 A 0 A_Jump(230,"FireLeft","FireRight")
-	BELA AAAAFFFFFFF 1 Light("Shadowball2")
-	{
-	A_FaceTarget;
-	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
-	}
-    BELA G 6 Light("Shadowball2")
-	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
-	}
-    goto See2
-  StandoffCheck:
-	TNT1 A 0 A_JumpIfCloser(200,"FearCheck")
-	TNT1 A 0 A_JumpIfCloser(300,"StandoffMissile")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-  Standoff:
-	TNT1 A 0 A_ChangeFlag("MISSILEMORE",True)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_Jump(12,"See2")
-	TNT1 A 0 A_JumpIfCloser(150,"FearCheck")
-	TNT1 A 0 A_SetSpeed(0)
-	BELA AAAAAAAAAAAA 2
-	{
-	A_Chase("Recoil","StandoffMissile");
-	A_FaceTarget;
-	A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
-	}
-	TNT1 A 0 A_CheckSight("See2")
-	TNT1 A 0 A_Jump(150,"StandoffRepos")
-	TNT1 A 0 A_Jump(50,"StandoffDodgeLeft","StandoffDodgeRight")
-	Loop
+		TNT1 AAA 0;
+		TNT1 A 0 A_TakeInventory ("IsOnCeiling");
+		TNT1 A 0
+		{
+		bNOGRAVITY = false;
+		bCEILINGHUGGER = false;
+		bTHRUSPECIES = false;
+		}
+		TNT1 A 0 A_Recoil(-18);
+		TNT1 A 0 A_FaceTarget();
+		CBEL AAAA 2;
+		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+		CBEL EEEE 2;
+		Goto CeilingDropping;	
+      Missile:
+	    TNT1 A 0 A_Jump(10,"Jump");
+	    TNT1 A 0 A_Jump(30,"Recoil");
+	    TNT1 A 0 A_Jump(10,"Roar");
+	    TNT1 A 0 A_Jump(180,"StandoffCheck");
+	    TNT1 A 0 A_Jump(230,"FireDodge");
+	    BELA AAAAFFFFFFF 1 Light("Shadowball2")
+	    {
+	    A_FaceTarget();
+	    A_SpawnitemEx("BelphFire",7,random(12,14),22,0,0,2);
+	    A_SpawnitemEx("BelphFire",7,random(-12,-14),22,0,0,2);
+	    }
+        BELA G 6 Light("Shadowball2")
+	    {
+	    A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	    A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	    A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	    A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	    A_SpawnProjectile("PM_FastImpBall",35,5);
+	    }
+        Goto See2;
+      StandoffCheck:
+	    TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
+	    TNT1 A 0 A_JumpIfCloser(300,"StandoffMissile");
+	    TNT1 A 0 A_Jump(128,"Standoff2");
+      Standoff:
+	    TNT1 A 0
+		{
+		bMISSILEMORE = true;
+		bFRIGHTENED = false;
+		}
+	    TNT1 A 0 A_Jump(12,"See2");
+	    TNT1 A 0 A_JumpIfCloser(150,"FearCheck");
+	    TNT1 A 0 A_SetSpeed(0);
+	    BELA AAAAAAAAAAAA 2
+	    {
+	    A_Chase("Recoil","StandoffMissile");
+	    A_FaceTarget();
+	    return A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
+	    }
+	    TNT1 A 0 A_CheckSight("See2");
+	    TNT1 A 0 A_Jump(150,"StandoffRepos");
+	    TNT1 A 0 A_Jump(50,"StandoffDodge");
+	    Loop;
   Standoff2:
-	TNT1 A 0 A_ChangeFlag("MISSILEMORE",True)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_Jump(12,"See2")
-	TNT1 A 0 A_JumpIfCloser(150,"FearCheck")
-	TNT1 A 0 A_SetSpeed(0)
+   TNT1 A 0
+	{
+	bMISSILEMORE = true;
+	bFRIGHTENED = false;
+	}
+	TNT1 A 0 A_Jump(12,"See2");
+	TNT1 A 0 A_JumpIfCloser(150,"FearCheck");
+	TNT1 A 0 A_SetSpeed(0);
 	CBEL DDDDDDDDDDDD 2 
 	{
 	A_Chase("Recoil","StandoffMissile");
-	A_FaceTarget;
-	A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
+	A_FaceTarget();
+	return A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
 	}
-	TNT1 A 0 A_CheckSight("See2")
-	TNT1 A 0 A_Jump(150,"StandoffRepos")
-	TNT1 A 0 A_Jump(50,"StandoffDodgeLeft","StandoffDodgeRight")
-	Loop
-	
+	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_Jump(150,"StandoffRepos");
+	TNT1 A 0 A_Jump(50,"StandoffDodge");
+	Loop;
   AimingAtMe:
-	TNT1 A 0
-	TNT1 A 0 A_Jump(40,"Fear")
-	TNT1 A 0 A_Jump(80,"StandoffMissile")
-	Goto StandoffRepos
-
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(35,"Fear");
+	TNT1 A 0 A_Jump(40,"StandoffMissile");
+	Goto StandoffRepos;
   StandoffRepos:
-	TNT1 A 0 A_SetSpeed(26)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
+	TNT1 A 0 A_SetSpeed(26);
+	TNT1 A 0 { bFRIGHTENED = true; }
 	CBEL DDCCBBAACCBB 2
 	{
-	A_Chase;
-	A_JumpIfCloser(100,"Recoil");
+	A_Chase();
+	return A_JumpIfCloser(100,"Recoil");
 	}
   StandoffReposLoop:
-	TNT1 A 0 A_SetSpeed(22)
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-    BELA DDEE 2 A_Wander
-	TNT1 A 0 A_PlaySound("Imp/Step",4)
-	BELA BBCC 2 A_Wander
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_Jump(150,"Standoff","Standoff2")
-	TNT1 A 0 A_Jump(120,"ReposJump")
-	Loop
+	TNT1 A 0 A_SetSpeed(22);
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+    BELA DDEE 2 A_Wander();
+	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	BELA BBCC 2 A_Wander();
+	TNT1 A 0 { bFRIGHTENED = true; }
+	TNT1 A 0 A_Jump(150,"Standoff","Standoff2");
+	TNT1 A 0 A_Jump(120,"ReposJump");
+	Loop;
   ReposJump:
-	TNT1 A 0 A_Recoil(-20)
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThingZ(0,40,0,1)
-	CBEL E 28 A_FaceTarget
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	Goto StandoffReposLoop
-	
+	TNT1 A 0 A_Recoil(-20);
+	TNT1 A 0 { bNODROPOFF = true; }
+	TNT1 A 0 ThrustThingZ(0,40,0,1);
+	CBEL E 28 A_FaceTarget();
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	Goto StandoffReposLoop;
   StandoffMissile:
-	TNT1 A 0 A_Jump(20,"StandoffRoar")
-	TNT1 A 0 A_Jump(140,"StandoffFireLeft","StandoffFireRight")
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
+	TNT1 A 0 A_Jump(20,"StandoffRoar");
+	TNT1 A 0 A_Jump(140,"StandoffFireDodge");
+	TNT1 A 0 { bNODROPOFF = true; }
+	TNT1 A 0 ThrustThingZ(0,35,0,1);
 	BELA AAAAFFFFFFF 1 Light("Shadowball2")
 	{
-	A_FaceTarget;
-	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
+	A_FaceTarget();
+	A_SpawnitemEx("BelphFire",7,random(12,14),22,0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-12,-14),22,0,0,2);
 	}
     BELA G 6 Light("Shadowball2")
 	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnProjectile("PM_FastImpBall",35,5);
 	}
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_JumpIfCloser(400,"StandoffBackup")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-  Goto Standoff
-  
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_JumpIfCloser(400,"StandoffBackup");
+	TNT1 A 0 A_Jump(128,"Standoff2");
+    Goto Standoff;
   StandoffBackup:
-	TNT1 A 0 A_SetSpeed(26)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
+	TNT1 A 0 A_SetSpeed(26);
+	TNT1 A 0 { bFRIGHTENED = true; }
 	CBEL DDCCBBAACCBB 2
 	{
-	A_Chase;
+	A_Chase();
 	A_JumpIfCloser(100,"Recoil");
 	}
-	TNT1 A 0 A_Jump(110,"Fear")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-  Goto Standoff
-  
-   StandoffDodgeLeft:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 25, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,5,0,1)
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(50,"StandoffMissile")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-	Goto Standoff
-  StandoffDodgeRight:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 25, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,5,0,1)
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(50,"StandoffMissile")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-	Goto Standoff
-  
+	TNT1 A 0 A_Jump(110,"Fear");
+	TNT1 A 0 A_Jump(128,"Standoff2");
+    Goto Standoff;
+   StandoffDodge:
+	TNT1 A 0
+	{
+	bNODROPOFF = true;
+	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThingZ(0,30,0,1);
+	}
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_Jump(50,"StandoffMissile");
+	TNT1 A 0 A_Jump(128,"Standoff2");
+	Goto Standoff;
   StandoffRoar:
-	BELA BBBFFF 3 A_FaceTarget
-	TNT1 A 0 PM_AlertSound()
-	BELA AAAAAAAAA 3 A_FaceTarget
-	///BELA BBBB 3 A_FaceTarget
-	TNT1 A 0 A_JumpIfCloser(300,"StandoffBackup")
-	Goto Standoff
-  
-  StandoffFireLeft:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
+	BELA BBBFFF 3 A_FaceTarget();
+	TNT1 A 0 PM_AlertSound();
+	BELA AAAAAAAAA 3 A_FaceTarget();
+	TNT1 A 0 A_JumpIfCloser(300,"StandoffBackup");
+	Goto Standoff;
+  StandoffFireDodge:
+	TNT1 A 0
+	{
+	bNODROPOFF = true;
+	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThingZ(0,30,0,1);
+	}
 	BELA AAAAFFFFFFF 1 Light("Shadowball2")
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
 	}
     BELA G 6 Light("Shadowball2")
 	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnProjectile("PM_FastImpBall",35,5);
 	}
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_JumpIfCloser(400,"StandoffBackup")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-  Goto Standoff
-  StandoffFireRight:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_JumpIfCloser(400,"StandoffBackup");
+	TNT1 A 0 A_Jump(128,"Standoff2");
+    Goto Standoff;
+  FireDodge:
+	TNT1 A 0
+	{
+	bNODROPOFF = true;
+	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThingZ(0,30,0,1);
+	}
 	BELA AAAAFFFFFFF 1 Light("Shadowball2")
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
 	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
 	}
     BELA G 6 Light("Shadowball2")
 	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
+	A_SpawnProjectile("PM_FastImpBall",35,5);
 	}
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_JumpIfCloser(400,"StandoffBackup")
-	TNT1 A 0 A_Jump(128,"Standoff2")
-  Goto Standoff
-	
-  FireLeft:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
-	BELA AAAAFFFFFFF 1 Light("Shadowball2")
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+    Goto See2;
+   Melee:
+   Recoil:
+	TNT1 A 0 { bNODROPOFF = true; }
+	TNT1 A 0 A_Jump(160,"Dodge");
+	TNT1 A 0 ThrustThingZ(0,35,0,1);
+	TNT1 A 0 A_Recoil(25);
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_Jump(50,"Missile");
+	Goto See2;
+  Dodge:
+	TNT1 A 0
 	{
-	A_FaceTarget;
-	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
+	bNODROPOFF = true;
+	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThingZ(0,30,0,1);
 	}
-    BELA G 6 Light("Shadowball2")
-	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
-	}
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-  Goto See2
-  FireRight:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
-	BELA AAAAFFFFFFF 1 Light("Shadowball2")
-	{
-	A_FaceTarget;
-	A_Spawnitemex("BelphFire",7,random(12,14),22,0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-12,-14),22,0,0,2);
-	}
-    BELA G 6 Light("Shadowball2")
-	{
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_Spawnitemex("BelphFire",7,random(-5,5),random(18,26),0,0,2);
-	A_CustomMissile("PM_FastImpBall",35,5);
-	}
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-  Goto See2
-  Melee:
-  Recoil:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 A_Jump(160,"DodgeLeft","DodgeRight")
-	TNT1 A 0 ThrustThingZ(0,35,0,1)
-	TNT1 A 0 A_Recoil(25)
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(50,"Missile")
-	Goto See2
-  DodgeLeft:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 25, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,5,0,1)
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(50,"Missile")
-	Goto See2
-  DodgeRight:
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 25, 0, 0)
-	TNT1 A 0 ThrustThingZ(0,5,0,1)
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(50,"Missile")
-	Goto See2
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_Jump(50,"Missile");
+	Goto See2;
   Jump:
-	TNT1 A 0 A_Recoil(-20)
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",true)
-	TNT1 A 0 ThrustThingZ(0,40,0,1)
-	CBEL E 28 A_FaceTarget
-	CBEL B 10 A_FaceTarget
-	TNT1 A 0 A_ChangeFlag("NODROPOFF",false)
-	TNT1 A 0 A_Jump(45,"CrouchSee")
-	Goto See2
+	TNT1 A 0
+	{
+	bNODROPOFF = true;
+	A_Recoil(-20);
+	ThrustThingZ(0,40,0,1);
+	}
+	CBEL E 28 A_FaceTarget();
+	CBEL B 10 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	TNT1 A 0 A_Jump(45,"CrouchSee");
+	Goto See2;
   FearCheck:
-	TNT1 A 0 A_JumpIfCloser(90,"FearTwo")
-	TNT1 A 0 A_Jump(80,"Fear")
-	Goto See2
+	TNT1 A 0 A_JumpIfCloser(90,"FearTwo");
+	TNT1 A 0 A_Jump(80,"Fear");
+	Goto See2;
   FearTwo:
-	TNT1 A 0 A_Jump(128,"Recoil")
+	TNT1 A 0 A_Jump(128,"Recoil");
   Fear:
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	Goto See2
+	TNT1 A 0 { bFRIGHTENED = true; }
+	Goto See2;
   Fight:
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	Goto See2
+	TNT1 A 0 { bFRIGHTENED = false; }
+	Goto See2;
   Roar:
-	BELA BBBFFF 3 A_FaceTarget
-	TNT1 A 0 PM_AlertSound()
-	BELA AAAAAAAAA 3 A_FaceTarget
-	BELA BBBB 3 A_FaceTarget
-	Goto See2
+	BELA BBBFFF 3 A_FaceTarget();
+	TNT1 A 0 PM_AlertSound();
+	BELA AAAAAAAAA 3 A_FaceTarget();
+	BELA BBBB 3 A_FaceTarget();
+	Goto See2;
   Pain:
-	TNT1 A 0
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY",False)
-    BELA H 2
-    BELA H 8 A_Pain
-	TNT1 A 0 A_Jump(90,"Recoil")
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-    goto See2
+	TNT1 A 0;
+	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	TNT1 A 0 { bNOGRAVITY = false; }
+    BELA H 2;
+    BELA H 8 A_Pain;
+	TNT1 A 0 A_Jump(90,"Recoil");
+	TNT1 A 0 { bFRIGHTENED = true; }
+    goto See2;
   Death:
-	TNT1 A 0
-	TNT1 A 0 A_StopSounds(0,0)
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY",False)
-    BELA I 8
-    BELA J 8 A_Scream
-    BELA K 6
-    BELA L 6 A_NoBlocking
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-    BELA M -1
-    stop
+	TNT1 A 0;
+	TNT1 A 0 A_StopSounds(0,0);
+	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	TNT1 A 0 { bNOGRAVITY = false; }
+    BELA I 8;
+    BELA J 8 A_Scream;
+    BELA K 6;
+    BELA L 6 A_NoBlocking;
+	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+    BELA M -1;
+    stop;
   XDeath:
-	TNT1 A 0
-	TNT1 A 0 A_StopSounds(0,0)
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-	TNT1 A 0 A_ChangeFlag("NOGRAVITY",False)
-    BELA N 5
-    BELA O 5 A_XScream
-    BELA P 5
-    BELA Q 5 A_NoBlocking
-    BELA RS 5
-    BELA T -1
-    stop
+	TNT1 A 0;
+	TNT1 A 0 A_StopSounds(0,0);
+	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	TNT1 A 0 { bNOGRAVITY = false; }
+    BELA N 5;
+    BELA O 5 A_XScream;
+    BELA P 5;
+    BELA Q 5 A_NoBlocking;
+    BELA RS 5;
+    BELA T -1;
+    stop;
   Raise:
-    BELA ML 8
-    BELA KJI 6
-    goto Look
+    BELA ML 8;
+    BELA KJI 6;
+    goto Look;
 	}
 }
 
-Actor RFireBallExplode
+Class RFireBallExplode : Actor
 {
-	Scale 0.65
-	Alpha 0.84
-	Renderstyle Add
+    Default
+	{
+	Scale 0.65;
+	Alpha 0.84;
+	Renderstyle "Add";
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+Bright
-	Speed 1
+	Speed 1;
+	}
 	States
 {
 Spawn:
-	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
-	Stop
+	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06);
+	Stop;
 	}
 }
 
-Actor InfernoBallExplode
+Class InfernoBallExplode : Actor
 {
-	Scale 1.2
-	Alpha 0.84
-	Renderstyle Add
+    Default
+	{
+	Scale 1.2;
+	Alpha 0.84;
+	Renderstyle "Add";
 	+CLIENTSIDEONLY
 	+NOINTERACTION
 	+Bright
-	Speed 1
+	Speed 1;
+	}
 	States
-{
-Spawn:
-	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06)
-	Stop
+    {
+   Spawn:
+	FXPR AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06);
+	Stop;
 	}
 }
 
-actor PM_FastImpBall : PM_CharredBall
+Class PM_FastImpBall : PM_CharredBall
 {
-	Damage (random(11,11))
-	Scale 0.915
-	seesound "Zephyr/Ball"
-	Decal "PM_RedFireScorch"
+    Default
+	{
+	DamageFunction (11);
+	Scale 0.915;
+	seesound "Zephyr/Ball";
+	Decal "PM_RedFireScorch";
 	+NOGRAVITY
 	-LOWGRAVITY
-	Speed 18
-	FastSpeed 21
+	Speed 18;
+	FastSpeed 21;
+	}
 	states
   	{
   Spawn:
@@ -555,78 +519,33 @@ actor PM_FastImpBall : PM_CharredBall
 	//A_SpawnItemEx("BelphFastFire",random(-3,3),random(-3,3),random(-3,3),0,0,0,0,128,0);
 	A_SpawnItemEx("PM_BelphFlameTrails",0,0,0,0,0,0,0,128,0);
 	}
-	loop
+	Loop;
   Death:
-	TNT1 A 0
-	TNT1 A 0 A_SetTranslation("PM_RedFireTint")
-	TNT1 A 0 A_SetScale(1)
-	TNT1 A 0 A_SpawnItemEx("RFireBallExplode")
-    BFX5 D 2 bright Light("Shadowball2") //A_Explode (5, 56, 1)
-    FIR3 CDEFGHIJKLMNOP 2 Light("Shadowball2") bright
-    stop
+	TNT1 A 0;
+	TNT1 A 0 A_SetTranslation("PM_RedFireTint");
+	TNT1 A 0 A_SetScale(1);
+	TNT1 A 0 A_SpawnItemEx("RFireBallExplode");
+    BFX5 D 2 Bright Light("Shadowball2");
+    FIR3 CDEFGHIJKLMNOP 2 Bright Light("Shadowball2");
+    stop;
   }
 }
 
-ACTOR FastImpBallTrail
-{
-Scale 0.70
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
-RenderStyle Add
-States
-{
-Spawn:
-	TNT1 A 2
-	Start:
-	TNT1 A 0 A_CheckSight("Disappear")
-    AFX5 ABC 2
-	{
-	A_SetScale(ScaleX-0.04);
-	A_FadeOut(0.27);
-	}
-    Goto Start
-	Disappear:
-	TNT1 A 0
-	Stop
-    }
-}
-
-Actor BelphFire: AzazelFire
+Class BelphFire : AzazelFire
   {
-  Scale 0.2
+  Default
+  { Scale 0.2; }
   States
   {
   Spawn:
-	TNT1 A 0
+	TNT1 A 0;
 	Go:
 	FIR1 R 1
 	{
 	A_FadeOut(0.1);
 	A_SetRoll(random(0,360));
-	A_SetScale(ScaleX-0.01);
+	A_SetScale(Scale.X-0.01);
 	}
-	Loop
-	}
-}
-
-Actor BelphFastFire: AzazelFire
-  {
-  Scale 0.2
-  States
-  {
-  Spawn:
-	TNT1 A 0
-	Go:
-	FIR1 R 1
-	{
-	A_FadeOut(0.1);
-	A_SetRoll(random(0,360));
-	A_SetScale(ScaleX-0.006);
-	}
-	Loop
+	Loop;
 	}
 }

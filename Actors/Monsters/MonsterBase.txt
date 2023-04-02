@@ -1,6 +1,7 @@
 class PMMonsterBase : Actor abstract
 {
     int pm_attackloop;
+	int pm_projangle;
     
 	enum BeamAttackFlags
 	{
@@ -260,3 +261,45 @@ class TyrantBeamSegment : PM_BeamSegment
 			Loop;
 	}
 }
+
+Class PMMonsterDummy : PMMonsterBase
+{
+ Default
+ {
+  Health 15;
+  GibHealth 20;
+  Radius 18;
+  Height 56;
+  Speed 0;
+  PainChance 256;
+  SeeSound "";
+  PainSound "ZombieFodder/Pain";
+  DeathSound "ZombieFodder/Death";
+  Obituary "how the fuck did you die to this guy";
+  Species "Horrorspawn";
+  Tag "ULTRA MEGA GOD HORRORSPAWN +1";
+  Monster;
+  Bloodtype "PM_NormalBloodBase";
+  MeleeRange 70;
+  XScale 0.84;
+  YScale 0.91;
+  +INVULNERABLE
+ }
+ States
+ {
+  Spawn:
+	ZFOD AAAAAAAAA 10 A_Look;
+    Loop;
+  See:
+    ZFOD AABB 4 A_Chase();
+	ZFOD CCDD 4 A_Chase();
+    Loop;
+ }
+}
+
+Class PMWrathMonsterBase : PMMonsterBase
+{
+  int pm_irecount;
+  bool ire;
+}
+

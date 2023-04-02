@@ -153,6 +153,113 @@ Class PM_HeresyLord : PMMonsterBase
     }
 }
 
+Class PM_HeresyLordRedBall : DoomImpBall
+{
+    Default
+    {
+	DamageFunction (random(30,38));
+	Scale 1.2;
+	SeeSound "HeresyLord/RedFire";
+	DeathSound "HeresyLord/RedDeath";
+	DamageType "Fire";
+	+NOGRAVITY
+	-LOWGRAVITY
+	Speed 14;
+	Decal "PM_RedFireScorch";
+    }
+	states
+  	{
+  Spawn:
+    BFX5 AABBCC 1 bright Light("Shadowball2") 
+	{
+	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+	A_SpawnItemEx("PM_HeresyLordFlameTrails");
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("LENRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: frandom(80,120.0),
+		angle: 0,
+		xoff: -5,
+		yoff: 0,
+		velx: 0,
+		vely: 0,
+		velz: 0,
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.3,0.6),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: 0,
+		rollvel: 0,
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,90),
+		size: frandom(0.2,10),
+		angle: 0,
+		xoff: random(-10,5),
+		yoff: random(-5,5),
+		zoff: random(-5,5),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,0.6),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180),
+		rollvel: 0,
+		rollacc: 0
+		);
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("GNSML0"),
+		 style: STYLE_None,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: 56,
+		 size: 30.0,
+		 angle: 0,
+		 xoff: -10,
+		 yoff: 0,
+		 velx: 0,
+		 vely: 0,
+		 velz: 0,
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 0.4,
+		 fadestepf: -1,
+		 sizestep: 0,
+		 startroll: random(-180,180),
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
+	loop;
+  Death:
+	TNT1 A 0;
+	TNT1 A 0 A_SetTranslation("PM_RedFireTint");
+	TNT1 A 0 A_SetScale(1.4);
+	TNT1 A 0 A_SpawnItemEx("RFireBallExplode");
+    BFX5 D 2 bright Light("Shadowball2");
+    FIR3 CDEFGHIJKLMNOP 2 Light("Shadowball2") bright;
+    stop;
+  }
+}
+
 Class AzazelFire : PM_RedFireEffect
   {
   Default { Scale 0.3; }
