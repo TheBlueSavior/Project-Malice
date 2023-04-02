@@ -127,7 +127,6 @@ Class PM_FeralImp : PMWrathMonsterBase
 	Goto See2;
   Melee:
 	TNT1 A 0 A_JumpIfCloser(120, "Rip");
-	TNT1 A 0 A_Jump(100,"FireSpit");
 	1ROO E 1 A_FaceTarget();
 	1ROT CD 4;
     TNT1 A 0 ThrustThingZ(0,25,0,1);
