@@ -2872,7 +2872,7 @@ States
  Spawn:
  TNT1 A 1
  TNT1 A 0 A_PlaySound("TeleportSound",CHAN_5,0.9)
- TNT1 A 0 A_SpawnItemEx("TeleSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION)
+ TNT1 A 0 A_SpawnItemEx("PM_TeleSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION)
  TNT1 A 0 A_SpawnItemEx("TeleFogSkull",0,0,35,0,0,0,0,SXF_NOCHECKPOSITION)
  TNT1 A 0 A_SpawnItemEx("TeleFogRift",0,0,36,0,0,0,0,SXF_NOCHECKPOSITION)
  TNT1 A 0 A_SpawnitemEx("TeleportHellFog",random(-45,45),random(-45,45),random(10,55),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,100)
