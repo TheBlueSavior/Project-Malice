@@ -6,12 +6,14 @@ Class PM_UmbralHeart : Actor
     Radius 25;
     Height 20;
     Mass 3000;
+	MeleeRange 230;
     Speed 4;
     Scale 0.5;
     RenderStyle "Add";
     Obituary "%o had %p soul split into a thousand pieces by an Umbral Heart.";
     SeeSound "UHeart/Sight";
     DeathSound "UHeart/Death";
+	AttackSound "NetherConduit/HomingThunder";
     Tag "Umbral Heart";
     Monster;
     +LOOKALLAROUND
@@ -53,6 +55,17 @@ Class PM_UmbralHeart : Actor
 		 fadestepf: -1,
 		 sizestep: 2,
 		 startroll: random(-180,180)
+	    );
+	 A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("LENRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: frandom(80,120.0),
+		xoff: -5,
+		startalphaf: frandom(0.3,0.6)
 	    );
        } 
     TNT1 AAAAAA 0 A_SpawnItemEx("PM_RedLightningVFX",random(-5,5),random(-5,5),random(-5,5),random(-1,1),random(-1,1),random(-1,1));
@@ -125,10 +138,21 @@ Class PM_UmbralHeart : Actor
 		 sizestep: frandom(1,4.4),
 		 startroll: random(-180,180)
 	    );
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("LENRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: frandom(80,120.0),
+		xoff: -5,
+		startalphaf: frandom(0.3,0.6)
+	    );
     }
 	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
 	TNT1 A 0 A_Jump(10,"RandomDodge");
-	TNT1 A 0 A_Jump(7,"Forward","Forward","LeftorRight","Back","RandomDodge");
+	TNT1 A 0 A_Jump(7,"Forward","LeftorRight","Back","RandomDodge");
     Loop;
   RandomDodge:
 	TNT1 A 0;
@@ -144,6 +168,59 @@ Class PM_UmbralHeart : Actor
   Back:
 	TNT1 A 0 A_Recoil(8);
 	Goto SeeLoop;
+  Melee:
+    TNT1 A 0 A_StartSound("NetherConduit/HomingLoop",6,CHANF_LOOPING,volume:1.5,pitch:frandom(1,2));
+  MeleeLoop:
+    EYES AAA 5 Light("Shadowball3")
+	{
+	if(Distance3D(target) > 230)
+	SetStateLabel("MeleeEnd");
+	A_FaceTarget(5,90);
+	A_CustomRailgun(2,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_RedLongFlare2",50,30,random(200,325),0,3.2,0,"PM_DepravedArcs",frandom(-2,2));
+	A_CustomRailgun(2,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_RedLongFlare2",30,20,random(200,325),0,3.2,0,"PM_DepravedArcs",frandom(-2,2));
+    A_SpawnParticleEx
+	(   
+     "ae1717",
+     TexMan.CheckForTexture("GNSMK0"),
+	 style: STYLE_Add,
+     flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	 lifetime: frandom(1,65),
+	 size: frandom(24,75),
+     xoff: frandom(-8,8),
+     yoff: frandom(-8,8),
+	 zoff: frandom(0,16),
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(-1,1),
+	 startalphaf: 0.9,
+	 fadestepf: -1,
+	 sizestep: frandom(1,4.4),
+	 startroll: random(-180,180)
+	 );
+	A_SpawnParticleEx
+	 (
+     "",
+	 TexMan.CheckForTexture("SPKRA0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(1,240),
+	 size: frandom(0.2,10),
+	 xoff: random(-10,5),
+	 yoff: random(-5,5),
+	 zoff: random(-5,5),
+	 velx: frandom(-2,2),
+	 vely: frandom(-2,2),
+	 velz: frandom(-2,2),
+	 startalphaf: 1.0,
+	 fadestepf: -0.5,
+	 sizestep: -0.2,
+	 startroll: random(-180,180)
+	 );
+	}
+	Loop;
+  MeleeEnd:
+   TNT1 A 0 A_StopSound(6);
+   Goto SeeLoop;
   Missile:
    TNT1 A 0 A_Jump(75,"Missile2");
    TNT1 A 0 A_StartSound("PM/ShockWarning",6,CHANF_DEFAULT);
@@ -208,7 +285,49 @@ Class PM_UmbralHeart : Actor
     TNT1 A 0 A_NoBlocking();
     TNT1 A 0 A_SetTranslucent(0.9, 1);
     TNT1 A 0 A_Scream();
-    HADE M 4 Bright A_Explode(112, 112, XF_NOTMISSILE);
+	TNT1 AAAAAAAAAAAAAAAAAAA 0
+	{
+	  A_SpawnParticleEx
+	  (   
+	  "ae1717",
+	  TexMan.CheckForTexture("GNSMK0"),
+	  style: STYLE_Add,
+	  flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	  lifetime: random(67,100),
+	  size: 50.0,
+	  xoff: frandom(-10,10),
+	  yoff: frandom(-10,10),
+	  zoff: frandom(-16,16),
+	  velx: frandom(-2,2),
+	  vely: frandom(-2,2),
+	  velz: frandom(-2,2),
+	  startalphaf: 0.9,
+	  fadestepf: -1,
+	  sizestep: 2,
+	  startroll: random(-180,180)
+	  );
+	A_SpawnParticleEx
+	 (
+     "",
+	 TexMan.CheckForTexture("SPKRA0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(1,240),
+	 size: frandom(0.2,10),
+	 xoff: random(-10,10),
+	 yoff: random(-10,10),
+	 zoff: random(-10,10),
+	 velx: frandom(-3,3),
+	 vely: frandom(-3,3),
+	 velz: frandom(-3,3),
+	 startalphaf: 1.0,
+	 fadestepf: -0.5,
+	 sizestep: -0.2,
+	 startroll: random(-180,180)
+	 );
+	}
+	TNT1 AAA 0 A_SpawnItemEx("RFireBallExplode",frandom(-1,1),frandom(-1,1),frandom(-1,1),frandom(-2,2),frandom(-2,2),frandom(-2,2));
+    HADE M 4 Bright;
     HADE NOPQ 5 Bright;
     Stop;
   }
