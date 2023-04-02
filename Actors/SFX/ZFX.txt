@@ -1315,8 +1315,8 @@ States
 		rollacc: 0
 		);
 	}
- TNT1 A 0 A_PlaySound("TeleportSound",CHAN_5,0.6);
-  TNT1 A 0 A_PlaySound("PM/GluttonyTeleSplat",CHAN_7,0.32);
+ TNT1 A 0 A_PlaySound("TeleportSound",CHAN_5,0.8);
+  TNT1 A 0 A_PlaySound("PM/GluttonyTeleSplat",CHAN_7,0.5);
  TNT1 A 0 A_SpawnItemEx("PM_GluttonyTeleCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
@@ -1548,7 +1548,7 @@ A_SpawnParticleEx
 		startroll: random(-180,180)
 		);
 	}
- TNT1 A 0 A_PlaySound("PM/GluttonyTeleVoice",CHAN_6,0.35);
+ TNT1 A 0 A_PlaySound("PM/GluttonyTeleVoice",CHAN_6,0.4);
  Stop;
  }
 }
