@@ -1652,8 +1652,8 @@ States
 		rollacc: 0
 		);
 	}
- TNT1 A 0 A_PlaySound("PM/LustTele",CHAN_5,0.6);
-  TNT1 A 0 A_PlaySound("PM/DemonTeleFire",CHAN_7,0.5);
+ TNT1 A 0 A_PlaySound("PM/LustTele",CHAN_5,0.8);
+  TNT1 A 0 A_PlaySound("PM/DemonTeleFire",CHAN_7,0.25);
  TNT1 A 0 A_SpawnItemEx("PM_LustTeleCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
