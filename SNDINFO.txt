@@ -122,7 +122,7 @@ $volume DepravedBeamStart 0.6
 $volume DepravedBeam 0.6
 $volume DepravedBeamEnd 0.5
 
-$random Depraved/Active { DeprayedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
+$random Depraved/Active { DepravedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
 DepravedActive1 "Sounds/Monsters/Revenants/Depraved/DepravedActive1.ogg"
 DepravedActive2 "Sounds/Monsters/Revenants/Depraved/DepravedActive2.ogg"
 DepravedActive3 "Sounds/Monsters/Revenants/Depraved/DepravedActive3.ogg"
