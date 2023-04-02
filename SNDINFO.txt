@@ -3715,3 +3715,19 @@ $pitchset PM/GluttonyTeleVoice 0.2 0.75
 $rolloff PM/GluttonyTeleVoice 100 3200
 PM/GluttonyTeleSplat "Sounds/Other/PMGibSplat6.ogg"
 $pitchset PM/GluttonyTeleSplat 0.25 0.45
+
+PM/LustTele	"Sounds/Other/PMLustTele.ogg"
+$pitchset PM/LustTele 0.8 1.1
+$limit PM/LustTele 4
+$rolloff PM/LustTele 400 1800
+
+$random PM/LustTeleVoice { PM/LustTeleVoice1 PM/LustTeleVoice2 PM/LustTeleVoice3 PM/LustTeleVoice4 PM/LustTeleVoice5 }
+PM/LustTeleVoice1 "Sounds/Other/PMLustTeleVoice1.ogg"
+PM/LustTeleVoice2 "Sounds/Other/PMLustTeleVoice2.ogg"
+PM/LustTeleVoice3 "Sounds/Other/PMLustTeleVoice3.ogg"
+PM/LustTeleVoice4 "Sounds/Other/PMLustTeleVoice4.ogg"
+PM/LustTeleVoice5 "Sounds/Other/PMLustTeleVoice5.ogg"
+$volume PM/LustTeleVoice 0.23
+$limit PM/LustTeleVoice 4
+$pitchset PM/LustTeleVoice 0.7 1
+$rolloff PM/LustTeleVoice 100 3200

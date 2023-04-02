@@ -1660,6 +1660,22 @@ flickerlight PM_GluttonyTeleFlicker2
     chance 0.4
 }
 
+flickerlight PM_LustTeleFlicker1
+{
+    color 0.8 0.2 2.0
+    size 50
+    secondarySize 65
+    chance 0.4
+}
+
+flickerlight PM_LustTeleFlicker2
+{
+    color 0.8 0.2 2.0
+    size 60
+    secondarySize 65
+    chance 0.4
+}
+
 //Watcher=====
 
 Flickerlight2 WatcherE

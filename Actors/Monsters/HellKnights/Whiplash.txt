@@ -26,7 +26,7 @@ Class PM_Whiplash : PMMonsterBase
   Tag "Whiplash";
   Species "Nobles";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_DemonicTeleportFog";
+  TeleFogDestType "PM_LustTeleportFog";
   }
   States
   {

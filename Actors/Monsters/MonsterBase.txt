@@ -96,7 +96,7 @@ class PMMonsterBase : Actor abstract
 		{
 			double cp = cos(p + frandom(-15, 15));
 			double sp = -sin(p + frandom(-15, 15));
-			caller.A_SpawnParticleEx(col, tex, STYLE_Add, SPF_RELPOS | SPF_RELVEL | SPF_RELACCEL | SPF_FULLBRIGHT | SPF_NOTIMEFREEZE, 30, frandom(4, 8), caller.Angle + frandom(-20, 20), offset.X + dist * cp, offset.Y, offset.Z + dist * sp, 0, 0, 0, -0.10 * cp, 0, -0.10 * sp);
+			caller.A_SpawnParticleEx(col, tex, STYLE_Add, SPF_RELPOS | SPF_RELVEL | SPF_RELACCEL | SPF_FULLBRIGHT | SPF_NOTIMEFREEZE, 30, frandom(4, 8), caller.Angle + frandom(-180, 180), offset.X + dist * cp, offset.Y, offset.Z + dist * sp, 0, 0, 0, -0.10 * cp, 0, -0.10 * sp);
 		}
 	}
 
