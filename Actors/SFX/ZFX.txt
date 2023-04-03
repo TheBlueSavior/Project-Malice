@@ -715,8 +715,8 @@ States
 		rollacc: 0
 		);
 	}
- TNT1 A 0 A_StartSound("TeleportSound",CHAN_5,0.9);
-  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,0.5);
+ TNT1 A 0 A_StartSound("TeleportSound",CHAN_5,CHANF_DEFAULT,0.9);
+  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,CHANF_DEFAULT,0.5);
  TNT1 A 0 A_SpawnItemEx("PM_TeleSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
@@ -945,7 +945,7 @@ A_SpawnParticleEx
 		startroll: random(-180,180)
 		);
 	}
- TNT1 A 0 A_StartSound("TeleportVoices",CHAN_6,0.35);
+ TNT1 A 0 A_StartSound("TeleportVoices",CHAN_6,CHANF_DEFAULT,0.35);
  Stop;
  }
 }
@@ -1023,7 +1023,7 @@ States
 		rollacc: 0
 		);
 	}
-  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,0.4);
+  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,CHANF_DEFAULT,0.4);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
 	A_SpawnParticleEx
@@ -1315,8 +1315,8 @@ States
 		rollacc: 0
 		);
 	}
- TNT1 A 0 A_StartSound("TeleportSound",CHAN_5,0.8);
-  TNT1 A 0 A_StartSound("PM/GluttonyTeleSplat",CHAN_7,0.5);
+ TNT1 A 0 A_StartSound("TeleportSound",CHAN_5,CHANF_DEFAULT,0.8);
+  TNT1 A 0 A_StartSound("PM/GluttonyTeleSplat",CHAN_7,CHANF_DEFAULT,0.5);
  TNT1 A 0 A_SpawnItemEx("PM_GluttonyTeleCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
@@ -1548,7 +1548,7 @@ A_SpawnParticleEx
 		startroll: random(-180,180)
 		);
 	}
- TNT1 A 0 A_StartSound("PM/GluttonyTeleVoice",CHAN_6,0.4);
+ TNT1 A 0 A_StartSound("PM/GluttonyTeleVoice",CHAN_6,CHANF_DEFAULT,0.4);
  Stop;
  }
 }
@@ -1652,8 +1652,8 @@ States
 		rollacc: 0
 		);
 	}
- TNT1 A 0 A_StartSound("PM/LustTele",CHAN_5,0.8);
-  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,0.25);
+ TNT1 A 0 A_StartSound("PM/LustTele",CHAN_5,CHANF_DEFAULT,0.8);
+  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,CHANF_DEFAULT,0.25);
  TNT1 A 0 A_SpawnItemEx("PM_LustTeleCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAAAAAAAAAAAAAAAAAA 0
 	{
@@ -1971,7 +1971,7 @@ A_SpawnParticleEx
 		);
 	}
  TNT1 A 50;
- TNT1 A 0 A_StartSound("PM/LustTeleVoice",CHAN_6,0.80);
+ TNT1 A 0 A_StartSound("PM/LustTeleVoice",CHAN_6,CHANF_DEFAULT,0.80);
  Stop;
  }
 }
