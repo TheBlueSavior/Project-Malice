@@ -95,7 +95,7 @@ Class PM_SlugShotgunner : PMMonsterBase
 		A_SetPitch(pitch+random(-5,5));
 		}
 		TNT1 A 0 A_StartSound("GenericShotgunFire",CHAN_5);
-		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7,CHANF_OVERLAP);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{
 			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -133,7 +133,7 @@ Class PM_SlugShotgunner : PMMonsterBase
 		SPS4 BB 5 A_FaceTarget(5,5);
 		SPS4 EEE 5 A_FaceTarget(5,5);
 		TNT1 A 0 A_StartSound("SlugShotgunner/Fire",CHAN_5);
-		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7,CHANF_OVERLAP);
 		TNT1 A 0 A_Recoil(6);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{

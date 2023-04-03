@@ -109,7 +109,7 @@ Class PM_PistolZombie : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("PistolZombie/Fire");
 		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
         A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);

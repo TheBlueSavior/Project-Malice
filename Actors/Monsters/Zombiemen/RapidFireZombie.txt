@@ -115,7 +115,7 @@ Class PM_RFZombie: PMMonsterBase
 		  {
 		  return ResolveState("NoAmmo");
 		  }
-		  A_StartSound("ZombieRifleDistant",CHAN_7);
+		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("RFZ/Fire");
 		  A_SpawnProjectile("PM_BulletTracer",35,7,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2,2));
           A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -218,7 +218,7 @@ Class PM_RFZombie: PMMonsterBase
        {
         return ResolveState("NoAmmo");
        }
-	   A_StartSound("ZombieRifleDistant",CHAN_7);
+	   A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 	   A_StartSound("RFZ/Fire");
 	   A_SpawnProjectile("PM_BulletTracer",35,7,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -243,7 +243,7 @@ Class PM_RFZombie: PMMonsterBase
        {
         return ResolveState("NoAmmo");
        }
-	   A_StartSound("ZombieRifleDistant",CHAN_7);
+	   A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 	   A_StartSound("RFZ/Fire");
 	   A_SpawnProjectile("PM_BulletTracer",35,7,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
        A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);

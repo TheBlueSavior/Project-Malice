@@ -103,7 +103,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -141,7 +141,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -157,7 +157,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -173,7 +173,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));

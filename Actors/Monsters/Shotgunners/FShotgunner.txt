@@ -79,7 +79,7 @@ Class PM_FShotgunner : PMMonsterBase
 		 return ResolveState("NoAmmo");
 		}
 	    A_StartSound("GenericShotgunFire",CHAN_5);
-	    A_StartSound("ShotgunnerGunDistant", CHAN_7);
+	    A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6), CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6), CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6), CMF_AIMDIRECTION,pitch+frandom(-3,3));

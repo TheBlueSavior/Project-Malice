@@ -2043,17 +2043,17 @@ Class PM_WrathIreEffect : Actor
     TexMan.CheckForTexture("SPKOA0"),
 	style: STYLE_Add,
 	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-	lifetime: random(1,70),
+	lifetime: random(1,80),
 	size: frandom(0.2,15),
 	xoff: frandom(-10,10),
 	yoff: frandom(-7,7),
-	zoff: frandom(-10,16),
+	zoff: frandom(-15,55),
 	velx: frandom(-0.6,0.6),
 	vely: frandom(-0.6,0.6),
 	velz: frandom(-0.6,0.6),
 	startalphaf: 1.0,
-	fadestepf: -0.5,
-	sizestep: -0.2,
+	fadestepf: -0.50,
+	sizestep: -0.20,
 	startroll: random(-180,180)
 	);
 	A_SpawnParticleEx

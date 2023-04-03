@@ -54,58 +54,46 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
   Missile:
     HCPO E 1 A_StartSound("Carbine/Bolt");
     HCPO EEEE 5
-	{
-	A_FaceTarget(360,180);
-	A_SetAngle(angle+random(-10,10));
-	A_SetPitch(pitch+random(-15,15));
-	}
-	HCPO F 0 A_StartSound("Carbine/Shot");
+  {
+  A_FaceTarget(360,180);
+  A_SetAngle(angle+random(-10,10));
+  A_SetPitch(pitch+random(-15,15));
+  }
     HCPO F 2 Bright Light("Shootlight") 
-	{
+  {
     if(user_numbullets < 0)
-      {
-       return ResolveState("NoAmmo");
-      }
-	A_StartSound("GunnerRifleDistant", CHAN_7);
-	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	//A_SpawnProjectile("CFodFlare",37,10);
+    SetStateLabel("NoAmmo");
+  A_StartSound("Carbine/Shot",CHAN_5,CHANF_OVERLAP);
+  A_StartSound("GunnerRifleDistant",CHAN_7,CHANF_OVERLAP);
+  A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
-    return ResolveState(null);
-	}
-	HCPO E 2 A_FaceTarget(5,5,0,0);
-	HCPO F 0 A_StartSound("Carbine/Shot");
-    HCPO F 2 Bright Light("Shootlight")
-	{
+  }
+  HCPO E 2 A_FaceTarget(5,5,0,0);
+    HCPO F 2 Bright Light("Shootlight") 
+  {
     if(user_numbullets < 0)
-      {
-       return ResolveState("NoAmmo");
-      }
-	A_StartSound("GunnerRifleDistant", CHAN_7);
-	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	//A_SpawnProjectile("CFodFlare",37,10);
+    SetStateLabel("NoAmmo");
+  A_StartSound("Carbine/Shot",CHAN_5,CHANF_OVERLAP);
+  A_StartSound("GunnerRifleDistant",CHAN_7,CHANF_OVERLAP);
+  A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
-    return ResolveState(null);
-	}
-	HCPO E 2 A_FaceTarget(5,5,0,0);
-	HCPO F 0 A_StartSound("Carbine/Shot");
-    HCPO F 2 Bright Light("Shootlight")
-	{
+  }
+  HCPO E 2 A_FaceTarget(5,5,0,0);
+    HCPO F 2 Bright Light("Shootlight") 
+  {
     if(user_numbullets < 0)
-      {
-       return ResolveState("NoAmmo");
-      }
-	A_StartSound("GunnerRifleDistant", CHAN_7);
-	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	//A_SpawnProjectile("CFodFlare",37,10);
+    SetStateLabel("NoAmmo");
+  A_StartSound("Carbine/Shot",CHAN_5,CHANF_OVERLAP);
+  A_StartSound("GunnerRifleDistant",CHAN_7,CHANF_OVERLAP);
+  A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
     user_numbullets--;
-    return ResolveState(null);
-	}
-	HCPO E 2 A_FaceTarget(5,5,0,0);
-	HCPO E 1 A_MonsterRefire(68,"See2");
-	Goto Missile+5;
+  }
+  HCPO E 2 A_FaceTarget(5,5,0,0);
+  HCPO E 1 A_MonsterRefire(68,"See2");
+  Goto Missile+5;
   NoAmmo:
 	HCPO E 7 A_FaceTarget();
 	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);

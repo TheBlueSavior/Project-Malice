@@ -150,7 +150,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
@@ -165,7 +165,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
@@ -180,7 +180,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
@@ -196,7 +196,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
@@ -214,7 +214,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
@@ -238,7 +238,7 @@ Class PM_ZombieSoldier : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,9,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		//A_SpawnProjectile("BulletFlare", 33, 9, 0, 0);
