@@ -123,7 +123,7 @@ Class PM_Fiend : PMMonsterBase
 	FIEN JJ 0 Bright Light("AvatarFireball4") A_SpawnProjectile("BulletFlare",62,10);
 	FIEN J 5 Bright Light("AvatarFireball4")
 	{
-	A_SpawnProjectile("PM_FiendSmallRocket",62,10,random(-3,3),CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	A_SpawnProjectile("PM_FiendSmallRocket",62,10,frandom(-3,3),CMF_OFFSETPITCH,frandom(pitch*1+2,pitch*1-2));
 	}
 	FIEN J 1 A_FaceTarget();
 	FIEN JJ 0 Bright Light("AvatarFireball4") A_SpawnProjectile("BulletFlare",62,-18);
@@ -215,7 +215,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,62,0,0); 
-	ThrustThing(angle*256/360, 15, 0, 0);
+	ThrustThing(192,15,0,0);
 	}
   JumpAttackLoop:
 	FIEN K 1 Light("YellowMediumFlicker2") A_CheckFloor("JumpAttackLanding");
@@ -242,7 +242,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle*256/360 +128, 12, 0, 0);
+	ThrustThing(64,12,0,0);
 	}
 	Goto StrafeAttackLoop;
    StrafeAttackRight:
@@ -253,7 +253,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle*256/360 +64, 12, 0, 0);
+	ThrustThing(0,12, 0, 0);
 	}
 	Goto StrafeAttackLoop;
   StrafeAttackLeft:
@@ -264,7 +264,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle*256/360 +192, 12, 0, 0);
+	ThrustThing(128,12,0,0);
 	}
 	Goto StrafeAttackLoop;
   StrafeAttackLoop:

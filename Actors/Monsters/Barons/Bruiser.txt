@@ -557,7 +557,7 @@ Class PM_BruiserMeteor : DoomImpBall
 		 TexMan.CheckForTexture("GNSML0"),
 		 style: STYLE_None,
 		 flags: SPF_ROLL|SPF_RELATIVE,
-		 lifetime: frandom(90,200),
+		 lifetime: random(90,200),
 		 size: frandom(85.0,120),
 		 angle: 0,
 		 xoff: frandom(-10.5,-12.5),

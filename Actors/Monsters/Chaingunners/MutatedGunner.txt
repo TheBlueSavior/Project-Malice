@@ -107,7 +107,7 @@ Class PM_MutatedGunner : PMMonsterBase
                return ResolveState("NoAmmo");
               }
 			A_StartSound("GunnerRifleDistant", CHAN_7,CHANF_OVERLAP);
-			A_SpawnProjectile("PM_BulletTracer",32,10,frandom(-6, 6),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(pitch*1-2,pitch*1+2));
+			      A_SpawnProjectile("PM_BulletTracer",32,10,frandom(-6, 6),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(pitch*1-2,pitch*1+2));
             A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
             user_numbullets--;
             return ResolveState(null);

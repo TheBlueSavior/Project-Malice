@@ -173,10 +173,12 @@ Class PM_Devil : PMMonsterBase
 	
   FireLeft:
     D3IM A 1 A_FaceTarget();
-	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
-	TNT1 A 0 ThrustThingZ(0,30,0,1);
+	TNT1 A 0
+	{ 
+	bNODROPOFF = True;
+	ThrustThing(128,6,0,0);
+	ThrustThingZ(0,30,0,1);
+	}
 	D3IM CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
@@ -206,11 +208,13 @@ Class PM_Devil : PMMonsterBase
 	TNT1 A 0 { bNODROPOFF=False; }
    Goto See2;
   FireRight:
-    D3IM A 1 A_FaceTarget();
-	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
-	TNT1 A 0 ThrustThingZ(0,30,0,1);
+  D3IM A 1 A_FaceTarget();
+	TNT1 A 0
+	{ 
+	bNODROPOFF = True;
+	ThrustThing(0,6,0,0);
+	ThrustThingZ(0,30,0,1);
+	}
 	D3IM CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
@@ -303,10 +307,12 @@ Class PM_Devil : PMMonsterBase
 	
 	SFireLeft:
 	D3IM A 1 A_FaceTarget();
-	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
-	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
-	TNT1 A 0 ThrustThingZ(0,30,0,1);
+	TNT1 A 0
+	{ 
+	bNODROPOFF = True;
+	ThrustThing(128,6,0,0);
+	ThrustThingZ(0,30,0,1);
+	}
 	D3IM CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
@@ -336,11 +342,13 @@ Class PM_Devil : PMMonsterBase
 	TNT1 A 0 { bNODROPOFF=False; }
    Goto See2;
   SFireRight:
-    D3IM A 1 A_FaceTarget();
-	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
-	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
-	TNT1 A 0 ThrustThingZ(0,30,0,1);
+  D3IM A 1 A_FaceTarget();
+	TNT1 A 0
+	{ 
+	bNODROPOFF = True;
+	ThrustThing(0,6,0,0);
+	ThrustThingZ(0,30,0,1);
+	}
 	D3IM CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 

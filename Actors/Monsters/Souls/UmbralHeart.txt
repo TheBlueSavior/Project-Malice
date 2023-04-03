@@ -125,7 +125,7 @@ Class PM_UmbralHeart : Actor
 		 TexMan.CheckForTexture("GNSMK0"),
 		 style: STYLE_Add,
 		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		 lifetime: frandom(1,65),
+		 lifetime: random(1,65),
 		 size: frandom(24,75),
 		 xoff: frandom(-8,8),
 		 yoff: frandom(-8,8),
@@ -156,14 +156,14 @@ Class PM_UmbralHeart : Actor
     Loop;
   RandomDodge:
 	TNT1 A 0;
-	TNT1 A 0 ThrustThing(random(0,360),frandom(3,15));
-	TNT1 A 0 ThrustThingZ(0,frandom(3,8),random(0,1),1);
+	TNT1 A 0 ThrustThing(random(0,360),random(3,15));
+	TNT1 A 0 ThrustThingZ(0,random(3,8),random(0,1),1);
 	Goto SeeLoop;
   Forward:
 	TNT1 A 0 A_Recoil(-20);
 	Goto SeeLoop;
   LeftorRight:
-	TNT1 A 0 ThrustThing(angle * 256 / 360+randompick(64,192),6);
+	TNT1 A 0 ThrustThing(randompick(0,128),6);
 	Goto SeeLoop;
   Back:
 	TNT1 A 0 A_Recoil(8);
@@ -184,7 +184,7 @@ Class PM_UmbralHeart : Actor
      TexMan.CheckForTexture("GNSMK0"),
 	 style: STYLE_Add,
      flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-	 lifetime: frandom(1,65),
+	 lifetime: random(1,65),
 	 size: frandom(24,75),
      xoff: frandom(-8,8),
      yoff: frandom(-8,8),
@@ -236,7 +236,7 @@ Class PM_UmbralHeart : Actor
 		 TexMan.CheckForTexture("GNSMK0"),
 		 style: STYLE_Add,
 		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		 lifetime: frandom(1,65),
+		 lifetime: random(1,65),
 		 size: frandom(24,75),
 		 xoff: frandom(-8,8),
 		 yoff: frandom(-8,8),
@@ -264,7 +264,7 @@ Class PM_UmbralHeart : Actor
 		 TexMan.CheckForTexture("GNSMK0"),
 		 style: STYLE_Add,
 		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		 lifetime: frandom(1,65),
+		 lifetime: random(1,65),
 		 size: frandom(24,75),
 		 xoff: frandom(-8,8),
 		 yoff: frandom(-8,8),

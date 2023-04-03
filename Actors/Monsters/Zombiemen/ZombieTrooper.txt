@@ -182,7 +182,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 	  A_SetAngle(angle+random(-10,10));
 	  A_SetPitch(pitch+random(-15,15));
 	  }
-	  TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+	  TNT1 A 0 ThrustThing(128,4,0,0);
 	  UTM2 E 2 A_FaceTarget(10,20,0,0);
       UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
 		{
@@ -199,7 +199,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		return ResolveState(null);
 	    }
 	  TNT1 A 0 A_Jump(150, "MissileLeft");
-	  Goto See2;
+	  Goto MissileLeft+2;
    MissileRight:
       TNT1 A 0;
 	  UTM2 E 2
@@ -208,7 +208,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 	  A_SetAngle(angle+random(-10,10));
 	  A_SetPitch(pitch+random(-15,15));
 	  }
-      TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+      TNT1 A 0 ThrustThing(0,4, 0, 0);
 	  UTM2 E 2 A_FaceTarget(10,20,0,0);
 	  UTM2 F 4 BRIGHT Light("YellowMediumFlicker2")
 		{
@@ -225,7 +225,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		return ResolveState(null);
 	    }
 	  TNT1 A 0 A_Jump(150, "MissileRight");
-	  Goto See2;
+	  Goto MissileRight+2;
 	NoAmmo:
       UDM2 E 7 A_FaceTarget(10,20,0,0);
       TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);

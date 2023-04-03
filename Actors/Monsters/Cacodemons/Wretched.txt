@@ -118,9 +118,8 @@ Class PM_Wretched : PMMonsterBase
 		StandoffCheck:
 			TNT1 A 0 A_JumpIfCloser(250,"Missile");
 			C1C2 EE 4 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+128, 8, 0, 0);
+			TNT1 A 0 ThrustThing(randompick(0,128),8, 0, 0);
 			C1C2 BBBBB 5 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360, 8, 0, 0);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			C1C2 EE 4 A_FaceTarget();
 		Standoff:
@@ -308,33 +307,29 @@ Class PM_Wretched : PMMonsterBase
 			Goto See2;
 		AvoidLeft:
 			C1C2 EE 4 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+192, 8, 0, 0);
+			TNT1 A 0 ThrustThing(128,8,0,0);
 			C1C2 BBBBB 5 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+64, 8, 0, 0);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			C1C2 EE 4 A_FaceTarget();
 			Goto See2;
 		AvoidRight:
 			C1C2 EE 4 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+64, 8, 0, 0);
+			TNT1 A 0 ThrustThing(0, 8, 0, 0);
 			C1C2 BBBBB 5 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+192, 8, 0, 0);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			C1C2 EE 4 A_FaceTarget();
 			Goto See2;
 		AvoidBack:
 			C1C2 EE 4 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+128, 8, 0, 0);
+			TNT1 A 0 ThrustThing(64, 8, 0, 0);
 			C1C2 BBBBB 5 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360, 8, 0, 0);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			C1C2 EE 4 A_FaceTarget();
 			Goto See2;
 		AvoidForward:
 			C1C2 EE 4 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360, 8, 0, 0);
+			TNT1 A 0 ThrustThing(192, 8, 0, 0);
 			C1C2 BBBBB 5 A_FaceTarget();
-			TNT1 A 0 ThrustThing(angle*256/360+128, 8, 0, 0);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			C1C2 EE 4 A_FaceTarget();
 			Goto See2;

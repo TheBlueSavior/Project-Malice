@@ -81,7 +81,7 @@ Class PM_Watcher : PMMonsterBase
 			TNT1 A 0 A_CheckSight("SeeSight");
 			Goto See2;
 		DodgeLeft:
-			TNT1 A 0 ThrustThing(angle*256/360 +192, 10, 0, 0);
+			TNT1 A 0 ThrustThing(128, 10, 0, 0);
 			TNT1 A 0 ThrustThingZ(0,2,0,1);
 			WATC AAAAA 5
 			{
@@ -90,7 +90,7 @@ Class PM_Watcher : PMMonsterBase
 			}
 			Goto SeeGood;
 		DodgeRight:
-			TNT1 A 0 ThrustThing(angle*256/360 +64, 10, 0, 0);
+			TNT1 A 0 ThrustThing(0, 10, 0, 0);
 			TNT1 A 0 ThrustThingZ(0,2,0,1);
 			WATC AAAAA 5
 			{
@@ -131,11 +131,9 @@ Class PM_Watcher : PMMonsterBase
 				TexMan.CheckForTexture("GNSMK0"),
 				style: STYLE_Add,
 				flags: SPF_ROLL|SPF_RELATIVE,
-				lifetime: frandom(60,400),
+				lifetime: random(60,400),
 				size: frandom(14,25),
-				angle: 0,
 				xoff: 10,
-				yoff: 0,
 				zoff: 5,
 				velx: frandom(0,4),
 				vely: frandom(0.06,-0.06),
@@ -242,24 +240,20 @@ Class PM_Watcher : PMMonsterBase
 				TexMan.CheckForTexture("GNSMK0"),
 				style: STYLE_Add,
 				flags: SPF_ROLL|SPF_RELATIVE,
-				lifetime: frandom(60,400),
+				lifetime: random(60,400),
 				size: frandom(14,45),
-				angle: 0,
 				xoff: frandom(-30,30),
 				yoff: frandom(-30,30),
 				zoff: frandom(-30,30),
 				velx: frandom(0,4),
 				vely: frandom(0.06,-0.06),
 				velz: frandom(0.02,-0.2),
-				accelx: 0,
-				accely: 0,
 				accelz: frandom(-0.01,0),
 				startalphaf: frandom(0.05,0.4),
 				fadestepf: -0.01,
 				sizestep: frandom(-2,3),
 				startroll: random(-180,180),
-				rollvel: frandom(-2,2),
-				rollacc: 0
+				rollvel: frandom(-2,2)
 				);
 				A_SpawnParticleEx
 				(
@@ -267,24 +261,20 @@ Class PM_Watcher : PMMonsterBase
 				TexMan.CheckForTexture("GNSMK0"),
 				style: STYLE_Add,
 				flags: SPF_ROLL|SPF_RELATIVE,
-				lifetime: frandom(60,400),
+				lifetime: random(60,400),
 				size: frandom(14,45),
-				angle: 0,
 				xoff: frandom(-30,30),
 				yoff: frandom(-30,30),
 				zoff: frandom(-30,30),
 				velx: frandom(0,4),
 				vely: frandom(0.06,-0.06),
 				velz: frandom(0.02,-0.2),
-				accelx: 0,
-				accely: 0,
 				accelz: frandom(-0.01,0),
 				startalphaf: frandom(0.05,0.4),
 				fadestepf: -0.01,
 				sizestep: frandom(-2,3),
 				startroll: random(-180,180),
-				rollvel: frandom(-2,2),
-				rollacc: 0
+				rollvel: frandom(-2,2)
 				);
 				A_SpawnParticleEx
 				(
@@ -294,21 +284,9 @@ Class PM_Watcher : PMMonsterBase
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 				lifetime: 1,
 				size: frandom(90,330),
-				angle: 0,
 				xoff: 10,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: frandom(0.1,0.5),
-				fadestepf: 0,
-				sizestep: 0,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 			}
 			TNT1 A 0
@@ -405,7 +383,7 @@ Class PM_WatcherShot : Actor
 				TexMan.CheckForTexture("GNSMK0"),
 				style: STYLE_Add,
 				flags: SPF_ROLL|SPF_RELATIVE,
-				lifetime: frandom(30,200),
+				lifetime: random(30,200),
 				size: 25.0,
 				angle: 0,
 				xoff: -10,
