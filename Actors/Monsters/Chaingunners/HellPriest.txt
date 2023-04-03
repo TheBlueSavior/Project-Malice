@@ -104,7 +104,7 @@ Class PM_HellPriest : PMMonsterBase
     Loop;
   Missile:
 	TNT1 A 0 A_Jump(100,"Missile2","VoidMissile");
-	TNT1 A 0 A_PlaySound("Abhor/BallWhiz");
+	TNT1 A 0 A_StartSound("Abhor/BallWhiz");
     ACOL D 8 Bright Light("AcolyteFire1") A_FaceTarget();
     ACOL E 5 Bright Light("AcolyteFire2") A_FaceTarget();
     ACOL FFFFFF 3 Bright Light("AcolyteFire3")
@@ -115,10 +115,10 @@ Class PM_HellPriest : PMMonsterBase
 	ACOL D 5 Bright Light("AcolyteFire1") A_FaceTarget();
     Goto See2;
   Missile2:
-    TNT1 A 0 A_PlaySound("HeresyLord/WhiteFire",CHAN_7);
+    TNT1 A 0 A_StartSound("HeresyLord/WhiteFire",CHAN_7);
     ACOL D 4 Bright Light("AcolyteFire1") A_FaceTarget();
     ACOL E 20 Bright Light("AcolyteFire2") A_FaceTarget();
-	TNT1 A 0 A_PlaySound("HPriest/SoulLoop",CHAN_6,1,true);
+	TNT1 A 0 A_StartSound("HPriest/SoulLoop",CHAN_6,1,true);
 	ACOL F 4 Bright Light("AcolyteFire3")
     {
       A_FaceTarget();
@@ -128,14 +128,14 @@ Class PM_HellPriest : PMMonsterBase
 	Goto Missile2+4;
   Missile2End:
     TNT1 A 0 A_StopSound(CHAN_6);
-    TNT1 A 0 A_PlaySound("HeresyLord/WhiteDeath",CHAN_7);
+    TNT1 A 0 A_StartSound("HeresyLord/WhiteDeath",CHAN_7);
     ACOL F 4 Bright Light("AcolyteFire3") A_FaceTarget();
     ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget();
 	ACOL D 4 Bright Light("AcolyteFire1");
     Goto See2;
   VoidMissile:
 	ACOL DD 5 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("HeresyLord/BarrageRCharge",CHAN_6);
+	TNT1 A 0 A_StartSound("HeresyLord/BarrageRCharge",CHAN_6);
 	ACOL EEEEEEEEEEEEEEE 1 Light("SmallBlacklight")
 	{
 	A_FaceTarget();
@@ -194,7 +194,7 @@ Class PM_HellPriest : PMMonsterBase
 	Goto See2;
 	MissileFly:
 	TNT1 A 0 A_Jump(100,"Missile2Fly","VoidMissileFly");
-	TNT1 A 0 A_PlaySound("Abhor/BallWhiz");
+	TNT1 A 0 A_StartSound("Abhor/BallWhiz");
     ACOL D 8 Bright Light("AcolyteFire1") A_FaceTarget();
     ACOL E 5 Bright Light("AcolyteFire2") A_FaceTarget();
     ACOL FFFFFF 3 Bright Light("AcolyteFire3")
@@ -205,10 +205,10 @@ Class PM_HellPriest : PMMonsterBase
 	ACOL D 5 Bright Light("AcolyteFire1") A_FaceTarget();
     Goto See2Fly;
   Missile2Fly:
-    TNT1 A 0 A_PlaySound("HeresyLord/WhiteFire",CHAN_7);
+    TNT1 A 0 A_StartSound("HeresyLord/WhiteFire",CHAN_7);
     ACOL D 4 Bright Light("AcolyteFire1") A_FaceTarget();
     ACOL E 20 Bright Light("AcolyteFire2") A_FaceTarget();
-	TNT1 A 0 A_PlaySound("HPriest/SoulLoop",CHAN_6,1,true);
+	TNT1 A 0 A_StartSound("HPriest/SoulLoop",CHAN_6,1,true);
 	ACOL F 4 Bright Light("AcolyteFire3")
     {
       A_FaceTarget();
@@ -218,14 +218,14 @@ Class PM_HellPriest : PMMonsterBase
 	Goto Missile2+4;
   Missile2EndFly:
     TNT1 A 0 A_StopSound(CHAN_6);
-    TNT1 A 0 A_PlaySound("HeresyLord/WhiteDeath",CHAN_7);
+    TNT1 A 0 A_StartSound("HeresyLord/WhiteDeath",CHAN_7);
     ACOL F 4 Bright Light("AcolyteFire3") A_FaceTarget();
     ACOL E 15 Bright Light("AcolyteFire2") A_FaceTarget();
 	ACOL D 4 Bright Light("AcolyteFire1");
     Goto See2Fly;
   VoidMissileFly:
 	ACOL DD 5 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("HeresyLord/BarrageRCharge",CHAN_6);
+	TNT1 A 0 A_StartSound("HeresyLord/BarrageRCharge",CHAN_6);
 	ACOL EEEEEEEEEEEEEEE 1 Light("SmallBlacklight")
 	{
 	A_FaceTarget();
@@ -304,7 +304,7 @@ Class PM_HellPriest : PMMonsterBase
 	TNT1 AAAAAA 0 A_SpawnItemEx("PM_PossessingDemonSprite",0,0,5,random(2,-2),random(2,-2),random(2,-1),0,SXF_NOCHECKPOSITION);
 	TNT1 A 0 A_SpawnProjectile("PM_BlotFleeNoSound",10,0,random(-180,180),CMF_OFFSETPITCH,random(-10,90));
 	TNT1 A 0 A_SpawnProjectile("PM_BlotFleeNoSound",10,0,random(-180,180),CMF_OFFSETPITCH,random(-10,90));
-	TNT1 A 0 A_PlaySound("Ice/Freeze",CHAN_7);
+	TNT1 A 0 A_StartSound("Ice/Freeze",CHAN_7);
     ACOL KLM 5 Light("WatcherShotB") Bright
 	{
 	A_SpawnItemEx("PM_WatcherFrostCloud",0,0,1,random(-2,2),random(-2,2),random(-1,1),0,SXF_NOCHECKPOSITION);

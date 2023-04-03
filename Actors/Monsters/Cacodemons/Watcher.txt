@@ -121,7 +121,7 @@ Class PM_Watcher : PMMonsterBase
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			TNT1 A 0 A_Jump(10,"Roar");
 			TNT1 A 0 A_Jump(112,"Missile2");
-			TNT1 A 0 A_PlaySound("GenericChargeSmall");
+			TNT1 A 0 A_StartSound("GenericChargeSmall");
 			WATC EEEEEEEFFFFFFFFFFFFFEEEEEEEAAA 1
 			{
 			A_FaceTarget();

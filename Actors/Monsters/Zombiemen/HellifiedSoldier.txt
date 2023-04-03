@@ -31,27 +31,27 @@ Class PM_HellifiedSoldier : PMMonsterBase
         HFS1 AA 10 PM_Look();
         Loop;
     Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		HFS1 AABB 3 PM_LookingForPlayer();
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		HFS1 CCDD 3 PM_LookingForPlayer();
         Loop;
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
 		Goto See2;
 	Roar:
-	    TNT1 A 0 A_PlaySound("HellSoldier/Sight",CHAN_5);
+	    TNT1 A 0 A_StartSound("HellSoldier/Sight",CHAN_5);
 		Goto See2;
 	See2:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         HFS1 AA 3 A_Chase();
 		HFS1 BB 3 A_Chase();
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		HFS1 CC 3 A_Chase();
 		HFS1 DD 3 A_Chase();
         Loop;
     SpotMissile:
-        TNT1 A 0 A_PlaySound("HellSoldier/Sight",CHAN_5);
+        TNT1 A 0 A_StartSound("HellSoldier/Sight",CHAN_5);
 	    HFS1 FF 3 A_FaceTarget();
 		Goto Missile;
     Missile:
@@ -91,15 +91,15 @@ Class PM_HellifiedSoldier : PMMonsterBase
 		Goto Missile2+1;
     Chargeup:
         HFS1 F 8 Light("Shadowball2") A_FaceTarget();
-        TNT1 A 0 A_PlaySound("HellSoldier/ChargeReady");
-		TNT1 A 0 A_PlaySound("HellSoldier/ChargeReady2",CHAN_7);
+        TNT1 A 0 A_StartSound("HellSoldier/ChargeReady");
+		TNT1 A 0 A_StartSound("HellSoldier/ChargeReady2",CHAN_7);
         HFS1 FFFFFFFFFFFFFF 3 Light("ShadowBall2")
         {
         A_FaceTarget();
         A_SpawnItemEx("HellPlasmaTrail",20,14,29,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
         }
-        TNT1 A 0 A_PlaySound("HellSoldier/ChargeClose",CHAN_5);
-        TNT1 A 0 A_PlaySound("NetherConduit/HomingLoop",CHAN_6,1,true);
+        TNT1 A 0 A_StartSound("HellSoldier/ChargeClose",CHAN_5);
+        TNT1 A 0 A_StartSound("NetherConduit/HomingLoop",CHAN_6,1,true);
         HFS1 FFFFFFFFFFFFFFF 2 Light("ShadowBall2")
         {
         A_FaceTarget();
@@ -113,7 +113,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         PM_LeadTarget(18);
         A_SpawnProjectile("PM_HellifiedSoldierChargeBall",31,7,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
         }
-        TNT1 A 0 A_PlaySound("HellSoldier/ChargeClose",CHAN_5);
+        TNT1 A 0 A_StartSound("HellSoldier/ChargeClose",CHAN_5);
         HFS1 HHHHHHFFFFFFFFFF 2 Light("ShadowBall2")
         {
         A_FaceTarget();
@@ -127,7 +127,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         PM_LeadTarget(18);
         A_SpawnProjectile("PM_HellifiedSoldierChargeBall",31,7,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
         }
-        TNT1 A 0 A_PlaySound("HellSoldier/ChargeClose",CHAN_5);
+        TNT1 A 0 A_StartSound("HellSoldier/ChargeClose",CHAN_5);
         HFS1 HHHHHHFFFFFFFFFFF 2 Light("ShadowBall2")
         {
         A_FaceTarget();
@@ -154,7 +154,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         HFS1 J 7 A_Scream;
         HFS1 K 7;
         HFS1 L 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         HFS1 M -1;
         Stop;
 	PossDeath:
@@ -163,7 +163,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         HFS1 J 7 A_Scream;
         HFS1 K 7;
         HFS1 L 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         HFS1 M 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
 		HFS1 M -1;
@@ -544,7 +544,7 @@ Class PM_HellifiedSoldierChargeBall : Actor
       A_SpawnItemEx("HellPlasmaChargeTrail2",0,0,0,random(3,-3),random(3,-3),random(3,-3),0,SXF_NOCHECKPOSITION);
 	  }
    Death:
-      TNT1 A 0 A_PlaySound("HellSoldier/ChargeExp");
+      TNT1 A 0 A_StartSound("HellSoldier/ChargeExp");
       TNT1 A 0 A_Explode(16,165);
 	  TNT1 AAAA 0 A_SpawnItemEx("HellPlasmaExp",0,0,0);
 	  TNT1 AAAAAAA 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0);

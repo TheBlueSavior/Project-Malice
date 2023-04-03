@@ -39,21 +39,21 @@ Class PM_PistolZombie : PMMonsterBase
         A02A A 10 PM_Look();
         Loop;
     Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         A02A AABB 3 PM_LookingForPlayer();
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		A02A CCDD 3 PM_LookingForPlayer();
         Loop;
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
 		Goto See2;
 	See2:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		TNT1 A 0 A_Recoil(-1.5);
         A02A AA 3 A_Chase();
 		A02A BB 3 A_Chase();
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		TNT1 A 0 A_Recoil(-1.5);
 		A02A CC 3 A_Chase();
 		A02A DD 3 A_Chase();
@@ -83,17 +83,17 @@ Class PM_PistolZombie : PMMonsterBase
 		Goto See2;
 	Roar:
 		A02A D 5 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PistolZombie/See1");
+		TNT1 A 0 A_StartSound("PistolZombie/See1");
 		A02A DGGGGGGGAAA 5 A_FaceTarget();
 		Goto See2;
 	NoAmmo:
         A02A E 7 A_FaceTarget();
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         A02A E 15 A_FaceTarget();
 		TNT1 A 0 A_Jump(138,"ZReload");
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         A02A E 10 A_FaceTarget();
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         A02A AAAA 8 A_FaceTarget();
 		Goto ZReload;
     RealMissile:
@@ -109,8 +109,8 @@ Class PM_PistolZombie : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("PistolZombie/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("PistolZombie/Fire");
 		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
         A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		user_numbullets--;
@@ -120,11 +120,11 @@ Class PM_PistolZombie : PMMonsterBase
 		Goto See2;
     ZReload:
         A02A EEEE 3 A_FaceTarget(10,20,0,0);
-        TNT1 A 0 A_PlaySound("PM/PistolMagOut",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/PistolMagOut",CHAN_5);
         A02A AA 8 A_FaceTarget(10,20,0,0);
         TNT1 A 0 A_SpawnItemEx("PM_EmptyPistolMag",0,0,20,frandom(-1,1),frandom(-5,5),random(-2,0));
         A02A AAAAA 8 A_FaceTarget(10,20,0,0);
-        TNT1 A 0 A_PlaySound("PM/PistolMagIn",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/PistolMagIn",CHAN_5);
 		TNT1 A 0
 		{
 		user_numbullets = (user_numbullets + 8);
@@ -142,7 +142,7 @@ Class PM_PistolZombie : PMMonsterBase
         A02A I 5 A_Scream;
         A02A J 5;
         A02A K 5;
-		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		A02A A 0 A_StartSound("Corpse/Fall",CHAN_6);
         A02A L -1;
         Stop;
 	PossDeath:
@@ -151,7 +151,7 @@ Class PM_PistolZombie : PMMonsterBase
         A02A I 5 A_Scream;
         A02A J 5;
         A02A K 5;
-		A02A A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		A02A A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		A02A L 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
         A02A L -1;

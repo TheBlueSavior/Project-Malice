@@ -36,25 +36,25 @@ Class PM_Fusionite : PMMonsterBase
 			FSPI A 10 PM_Look();
 			Loop;
 		Look:
-			FSPI A 2 A_PlaySound("GenericArachWalk");
+			FSPI A 2 A_StartSound("GenericArachWalk");
 			FSPI ABBCC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP);
-			FSPI D 2 A_PlaySound("GenericArachWalk");
+			FSPI D 2 A_StartSound("GenericArachWalk");
 			FSPI DEEFF 2 PM_LookingForPlayer();
 			Loop;
 		Spotted:
 			TNT1 A 0 PM_AlertSound();
 		See2:
-			FSPI A 2 A_PlaySound("GenericArachWalk");
+			FSPI A 2 A_StartSound("GenericArachWalk");
 			FSPI ABBCC 2 A_Chase();
-			FSPI D 2 A_PlaySound("GenericArachWalk");
+			FSPI D 2 A_StartSound("GenericArachWalk");
 			FSPI DEEFF 2 A_Chase();
 			Loop;
 		Missile:
 			TNT1 A 0 A_Jump(100,"Shotgun","Rapid");
 			FSPI G 12 A_FaceTarget();
 			FSPI G 3 A_FaceTarget();
-			TNT1 A 0 A_PlaySound("GenericPlasmaFire");
+			TNT1 A 0 A_StartSound("GenericPlasmaFire");
 			FSPI H 3 Light("GreenBall3")
 			{
 				if(user_numbullets < 0)
@@ -73,16 +73,16 @@ Class PM_Fusionite : PMMonsterBase
 			Goto Missile+2;
 		Shotgun:
 			FSPI A 9 A_FaceTarget();
-			TNT1 A 0 A_PlaySound("Fusionite/ScatterCharge");
+			TNT1 A 0 A_StartSound("Fusionite/ScatterCharge");
 			FSPI GGGGGG 5 Light("GreenBall2") A_FaceTarget();
-			TNT1 A 0 A_PlaySound("HellSoldier/ChargeReady2",CHAN_7);
+			TNT1 A 0 A_StartSound("HellSoldier/ChargeReady2",CHAN_7);
 			FSPI GGGGG 5 Light("GreenBall2") A_FaceTarget();
 			TNT1 A 0 
 			{
 				user_numbullets = (user_numbullets - 7);
 			}
 			TNT1 A 0 A_JumpIf(user_numbullets < 0, "ShotgunNoAmmo");
-			TNT1 A 0 A_PlaySound("Fusionite/Scattershot");
+			TNT1 A 0 A_StartSound("Fusionite/Scattershot");
 			FSPI H 3 Light("GreenBall3")
 			{
 				A_FaceTarget();
@@ -101,11 +101,11 @@ Class PM_Fusionite : PMMonsterBase
 				A_SpawnProjectile("PM_ScatterFusionShot",22,0,random(-7,7),CMF_OFFSETPITCH,random(-6,4));
 			}
 			FSPI G 3 A_FaceTarget();
-			TNT1 A 0 A_PlaySound("GenericSteam");
+			TNT1 A 0 A_StartSound("GenericSteam");
 			FSPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1;
 			Goto See2;
 		ShotgunNoAmmo:
-			TNT1 A 0 A_PlaySound("Fusionite/ScattershotDry");
+			TNT1 A 0 A_StartSound("Fusionite/ScattershotDry");
 			FSPI H 3 Light("GreenBall3")
 			{
 				A_FaceTarget();
@@ -124,7 +124,7 @@ Class PM_Fusionite : PMMonsterBase
 			FSPI A 8 
 			{
 				A_FaceTarget();
-				A_PlaySound("Fusionite/SmallCharge");
+				A_StartSound("Fusionite/SmallCharge");
 			}
 			FSPI GGG 5 A_FaceTarget();
 			FSPI G 1 A_FaceTarget();
@@ -142,7 +142,7 @@ Class PM_Fusionite : PMMonsterBase
 			FSPI G 1 A_MonsterRefire(10,"See2");
 			Goto Rapid+4;
 		NoAmmo:
-			TNT1 A 0 A_PlaySound("PM/ArachnoCooldown");
+			TNT1 A 0 A_StartSound("PM/ArachnoCooldown");
 			TNT1 A 0 {bNOPAIN = True;}
 			TNT1 AAAAAAAAAAAA 0 A_SpawnParticle("ffaa21",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),32,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
 			FSPI GGGGGGGGGGGGGGGGGGGG 1 Light("Avatarfireball4")
@@ -223,7 +223,7 @@ Class PM_Fusionite : PMMonsterBase
 			rollacc: 0
 			);
 			}
-			TNT1 A 0 A_PlaySound("PM/BigVentLoop",CHAN_7,1.0,True);
+			TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,1.0,True);
 			FSPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("Avatarfireball4")
 			{
 			A_SpawnParticleEx
@@ -328,11 +328,11 @@ Class PM_Fusionite : PMMonsterBase
 			);
 			}
 			TNT1 A 0 A_StopSound(CHAN_7);
-			TNT1 A 0 A_PlaySound("PM/BigVentEnd",CHAN_7);
+			TNT1 A 0 A_StartSound("PM/BigVentEnd",CHAN_7);
 		ZReload:
-			TNT1 A 0 A_PlaySound("PM/ArachnoReloadStart",CHAN_5);
+			TNT1 A 0 A_StartSound("PM/ArachnoReloadStart",CHAN_5);
 			FSPI G 25 A_FaceTarget();
-			TNT1 A 0 A_PlaySound("PM/ArachnoReload",CHAN_5,1,True);
+			TNT1 A 0 A_StartSound("PM/ArachnoReload",CHAN_5,1,True);
 			FSPI GHGHGHGHGH 2 Light("GreenBall2")
 			{
 				if(user_numbullets > 75)
@@ -370,7 +370,7 @@ Class PM_Fusionite : PMMonsterBase
 			Goto ZReload+3;
 		ZReload2:
 			TNT1 A 0 {bNOPAIN = False;}
-			TNT1 A 0 A_PlaySound("PM/ArachnoReloadEnd",CHAN_5);
+			TNT1 A 0 A_StartSound("PM/ArachnoReloadEnd",CHAN_5);
 			FSPI GGG 5 Light("GreenBall3") A_FaceTarget();
 			TNT1 A 0 A_Jump(56,"Missile");
 			Goto See2;
@@ -385,7 +385,7 @@ Class PM_Fusionite : PMMonsterBase
 			FSPI J 15 A_Scream();
 			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
 			FSPI K 4 Light("AvatarFireball4") A_SpawnItemEx("OrangeEmbersSpawn",0,0,30);
-			TNT1 A 0 A_PlaySound("ArachChassisExplode",CHAN_5);
+			TNT1 A 0 A_StartSound("ArachChassisExplode",CHAN_5);
 			TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,25);
 			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30);
 			TNT1 AAAAA 0 A_SpawnItemEx("PM_ArachnotronGenericExplosionFlames",0,0,35,random(-7,7),random(-7,7),random(0,7));
@@ -395,12 +395,12 @@ Class PM_Fusionite : PMMonsterBase
 			TNT1 AAAAA 0 A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
 			TNT1 FFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360));
 			TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20);
-			TNT1 A 0 A_PlaySound("ArachExpGore",CHAN_6);
+			TNT1 A 0 A_StartSound("ArachExpGore",CHAN_6);
 			FSPI L 6 Light("TyrantMExp");
 			TNT1 AAAAAA 0 A_SpawnProjectile("SmokePuff",random(24,40),0,random(0,360),2,random(0,360));
 			FSPI MN 6 Light("TyrantMExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
 			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
-			TNT1 A 0 A_PlaySound("ArachCrash",CHAN_7);
+			TNT1 A 0 A_StartSound("ArachCrash",CHAN_7);
 			FSPI O 6 Light("AvatarFireball4") A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
 			FSPI PPPPPPP 3
 			{
@@ -568,7 +568,7 @@ Class PM_FusionShot : Actor
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
 		Cont:
 			APPL AAABBB 1 Bright Light("GreenBall4")
 			{
@@ -760,7 +760,7 @@ Class PM_ScatterFusionShot : Actor
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
 		Cont:
 			DTPR A 1 Bright Light("GreenBall3")
 			{
@@ -878,7 +878,7 @@ Class PM_SmallFusionShot : Actor
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_PlaySound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
 		Cont:
 			FS03 AB 1 Bright Light("GreenBall5") A_SpawnParticle("80FF50",SPF_FULLBRIGHT|SPF_RELATIVE,14,16,0,random(-22,-5),random(-5,5),random(-5,5),0,0,0,0,0,0,1,-1,-2);
 			Loop;

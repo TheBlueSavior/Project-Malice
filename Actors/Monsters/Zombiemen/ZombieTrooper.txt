@@ -41,13 +41,13 @@ Class PM_ZombieTrooper : PMMonsterBase
 		UTM2 A 10 PM_Look();
         Loop;
 	Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UTM2 AA 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 BB 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		UTM2 CC 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 DD 4 PM_LookingForPlayer();
@@ -66,12 +66,12 @@ Class PM_ZombieTrooper : PMMonsterBase
 	See2:
 	    TNT1 A 0;
 	    TNT1 A 0 A_CheckSight("See3");
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UTM2 AA 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 BB 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		UTM2 CC 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 DD 4 A_Chase();
@@ -79,12 +79,12 @@ Class PM_ZombieTrooper : PMMonsterBase
         Loop;
 	See3:
 	    TNT1 A 0 A_Jump(9,"WaitGrenadeCheck");
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UTM2 AA 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 BB 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
 		TNT1 AA 0 A_Recoil(-1);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		UTM2 CC 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
 		TNT1 AA 0 A_Recoil(-1);
 		UTM2 DD 4 A_Chase(null,"Missile",CHF_NOPLAYACTIVE);
@@ -109,8 +109,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -124,8 +124,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -139,8 +139,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -162,8 +162,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -190,8 +190,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -216,8 +216,8 @@ Class PM_ZombieTrooper : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZTrooper/Fire");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZTrooper/Fire");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -228,21 +228,21 @@ Class PM_ZombieTrooper : PMMonsterBase
 	  Goto See2;
 	NoAmmo:
       UDM2 E 7 A_FaceTarget(10,20,0,0);
-      TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	  UDM2 E 7 A_FaceTarget(10,20,0,0);
 	  Goto ZReload;
     ZReload:
-      TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleMagOut",CHAN_5);
       UTM2 EE 5 A_FaceTarget(10,20,0,0);
       TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
       UTM2 CCCBB 5 A_FaceTarget(10,20,0,0);
-      TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleMagIn",CHAN_5);
       TNT1 A 0
 	  {
 	  user_numbullets = (user_numbullets + random(10,31));
 	  }
       UTM2 EEDBBB 4 A_FaceTarget(10,20,0,0);
-      TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleBoltSlide",CHAN_5);
       UTM2 ABB 5 A_FaceTarget(10,20,0,0);
       Goto See2;
     GrenadeCheck:
@@ -260,7 +260,7 @@ Class PM_ZombieTrooper : PMMonsterBase
     RealGrenade:
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
       UTM2 AA 5 A_FaceTarget();
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      TNT1 A 0 A_StartSound("ZTrooper/FragArm",CHAN_6);
       UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
@@ -271,7 +271,7 @@ Class PM_ZombieTrooper : PMMonsterBase
     GrenadeFar:
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
       UTM2 AA 5 A_FaceTarget();
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      TNT1 A 0 A_StartSound("ZTrooper/FragArm",CHAN_6);
       UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
@@ -282,7 +282,7 @@ Class PM_ZombieTrooper : PMMonsterBase
     GrenadeNear:
       TNT1 A 0 A_GiveInventory("ZTrooperFragToken",1);
       UTM2 AA 5 A_FaceTarget();
-      TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_6);
+      TNT1 A 0 A_StartSound("ZTrooper/FragArm",CHAN_6);
       UTM2 AAAA 5 A_FaceTarget();
       UTM2 A 5 
       {
@@ -299,7 +299,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 	WaitGrenade1:
 	  TNT1 A 0;
 	  TNT1 A 0 A_GiveInventory("ZTrooperToken",1);
-	  TNT1 A 0 A_PlaySound("ZTrooper/FragArm",CHAN_7);
+	  TNT1 A 0 A_StartSound("ZTrooper/FragArm",CHAN_7);
 	  Goto See2;
 	WaitGrenade2:
 	  TNT1 A 0;
@@ -363,7 +363,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 K 5 A_Scream;
         UTM2 L 5;
         UTM2 M 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         UTM2 N -1;
         Stop;
     GrenadeDeath:
@@ -372,7 +372,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 K 5 A_Scream;
         UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION);
         UTM2 M 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         UTM2 N -1;
         Stop;
 	PossDeath:
@@ -381,7 +381,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 K 5 A_Scream;
         UTM2 L 5;
         UTM2 M 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		UTM2 N 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
         UTM2 N -1;
@@ -446,13 +446,13 @@ Class PM_ZTrooperFragGrenade : Rocket
 	Goto Spawn2;
   Death:
 	TNT1 A 0 A_SetRoll(0);
-    TNT1 A 0 A_PlaySound("ZTrooper/FragBounce");
+    TNT1 A 0 A_StartSound("ZTrooper/FragBounce");
   Death2:
 	ZGRN BB 1 Light("SatyrLordRedMissile9");
 	Loop;
   XDeath:
 	TNT1 A 0 A_SetRoll(0);
-	TNT1 A 0 A_PlaySound("ZTrooper/FragBounce");
+	TNT1 A 0 A_StartSound("ZTrooper/FragBounce");
   XDeath2:
     ZGRN BB 1 Light("SatyrLordRedMissile9");
 	Loop;
@@ -486,38 +486,38 @@ Class PM_ZTrooperFragTick : Actor
 	{
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 AAAAAAAAAA 1;
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
 		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
 		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
 			A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 			}
 		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragTick",CHAN_5);
+		TNT1 A 0 A_StartSound("ZTrooper/FragTick",CHAN_5);
 		TNT1 A 0 A_SpawnItemEx("PM_FragGrenadePing",0,0,0, 0,0,0, 0,SXF_SETMASTER|SXF_ORIGINATOR|SXF_NOCHECKPOSITION);
 		TNT1 AAAA 1 Light("SatyrLordRedMissile4")
 			{
@@ -525,8 +525,8 @@ Class PM_ZTrooperFragTick : Actor
 			}
 		TNT1 AAAAAAAAA 1 A_Warp(AAPTR_Target,0,0,5,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
 	Death:
-		TNT1 A 0 A_PlaySound("ZTrooper/FragExp",CHAN_6);
-		TNT1 A 0 A_PlaySound("ZTrooper/FragDebris",CHAN_7);
+		TNT1 A 0 A_StartSound("ZTrooper/FragExp",CHAN_6);
+		TNT1 A 0 A_StartSound("ZTrooper/FragDebris",CHAN_7);
 		TNT1 A 0 {bNoGravity = true;}
 		TNT1 AAAA 0 A_SpawnItemEx("PM_GrenadeGenericExplosionFlames",0,0,0,random(-2,2),random(-2,2),random(-1,2),0,SXF_NOCHECKPOSITION);
 		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-6,6),random(-6,6),random(-1,4),0,SXF_NOCHECKPOSITION);

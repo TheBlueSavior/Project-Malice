@@ -38,10 +38,10 @@ Class PM_NetherImp : PMMonsterBase
     DRKF AB 10 PM_Look();
     Loop;
   Look:
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     DRKF AAABBB 2 PM_LookingForPlayer();
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	DRKF CCCDDD 2 PM_LookingForPlayer();
     Loop;
   Spotted:
@@ -49,9 +49,9 @@ Class PM_NetherImp : PMMonsterBase
     TNT1 A 0 PM_AlertSound();
 	Goto See2;
    See2:
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     DRKF AAABBB 2 A_Chase();
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	DRKF CCCDDD 2 A_Chase();
     loop;
   Melee:
@@ -103,7 +103,7 @@ Class PM_NetherImp : PMMonsterBase
   Attack1:
 	TNT1 A 0;
 	TNT1 A 0 A_Jump(128,"Attack2");
-	TNT1 A 0 A_PlaySound("NetherConduit/HomingCharge");
+	TNT1 A 0 A_StartSound("NetherConduit/HomingCharge");
     DRKF EEEEEEEEEEEEEEEEEEEEEEE 1 Light("PM_ConduitLightning")
 	{
 	A_FaceTarget();
@@ -122,7 +122,7 @@ Class PM_NetherImp : PMMonsterBase
     Goto See2;
   Attack2:
 	TNT1 A 0;
-	TNT1 A 0 A_PlaySound("NetherConduit/Sight",CHAN_7);
+	TNT1 A 0 A_StartSound("NetherConduit/Sight",CHAN_7);
 	DRKF EEEEEEEEEEEEEEEEEEEEE 1 Light("PM_ConduitLightning")
 	{
 	A_FaceTarget();
@@ -138,7 +138,7 @@ Class PM_NetherImp : PMMonsterBase
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, 30, random (0, 140), 2, random (0, 360));
 	A_SpawnProjectile ("PM_BlueSmallShock", 37, -30, random (0, 140), 2, random (0, 360));
 	}
-	TNT1 A 0 A_PlaySound("NetherConduit/StreamCharge",CHAN_6);
+	TNT1 A 0 A_StartSound("NetherConduit/StreamCharge",CHAN_6);
 	DRKF EEEEEEEEEEEEEEEEEEEE 1 Light("ConduitLightning2")
 	{
 	A_FaceTarget(1,90);
@@ -183,7 +183,7 @@ Class PM_NetherImp : PMMonsterBase
     DRKF M 8 A_Scream();
     DRKF N 5;
     DRKF O 5 A_Fall();
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 	TNT1 AAAAA 0 A_SpawnProjectile("PM_BlueLightningVFX",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 	DRKF PPPPPPP 10 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,3,0,"PM_ConduitArcs");
 	DRKF PPPPPPPPP 20 A_CustomRailgun(5,0,"","White",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_BlueLongFlare2",180,180,random(50,800),0,3,0,"PM_ConduitArcs");
@@ -326,7 +326,7 @@ Class PM_NetherLightning : Actor
   States
   {
   Spawn:
-    TNT1 A 0 A_PlaySound("NetherConduit/HomingLoop",CHAN_6,1,true);
+    TNT1 A 0 A_StartSound("NetherConduit/HomingLoop",CHAN_6,1,true);
     NLIT AA 1 Bright Light("PM_ConduitLightning")
 	{
 	A_SeekerMissile(1,1,SMF_PRECISE);

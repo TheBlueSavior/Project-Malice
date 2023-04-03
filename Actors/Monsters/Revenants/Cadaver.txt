@@ -40,10 +40,10 @@ Class PM_Cadaver : PMMonsterBase
     Loop;
   Look:
     CREV AABBCC 2 PM_LookingForPlayer();
-	NULL A 0 A_PlaySound("Cadaver/Step",5);
+	NULL A 0 A_StartSound("Cadaver/Step",5);
     TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 	CREV DDEEFF 2 PM_LookingForPlayer();
-	NULL A 0 A_PlaySound("Cadaver/Step",5);
+	NULL A 0 A_StartSound("Cadaver/Step",5);
     Loop;
   Spotted:
     TNT1 A 0 A_Jump(40,"Roar");
@@ -53,13 +53,13 @@ Class PM_Cadaver : PMMonsterBase
     TNT1 A 0 PM_AlertSound();
   See2:
     CREV AABBCC 2 A_Chase();
-	NULL A 0 A_PlaySound("Cadaver/Step",5);
+	NULL A 0 A_StartSound("Cadaver/Step",5);
 	CREV DDEEFF 2 A_Chase();
-	NULL A 0 A_PlaySound("Cadaver/Step",5);
+	NULL A 0 A_StartSound("Cadaver/Step",5);
     Loop;
   Melee:
     CREV G 0 A_FaceTarget();
-    CREV G 6 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+    CREV G 6 A_StartSound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
     CREV H 6 A_FaceTarget();
     CREV I 6 A_CustomMeleeAttack(30,"Doom4/Other/MeleeHit");
     Goto See2;
@@ -73,7 +73,7 @@ Class PM_Cadaver : PMMonsterBase
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 5 Light("AvatarFireball1")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,10);
@@ -86,7 +86,7 @@ Class PM_Cadaver : PMMonsterBase
   Roar:
 	CKLA A 6 A_FaceTarget();
 	CKLA B 6 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Sight",CHAN_7);
+	TNT1 A 0 A_StartSound("Cadaver/Sight",CHAN_7);
 	CKLA C 6 A_FaceTarget();
 	CKLA D 6 A_FaceTarget();
 	CKLA E 6 A_FaceTarget();
@@ -96,7 +96,7 @@ Class PM_Cadaver : PMMonsterBase
 	Goto See2;
   SpecialBarrage:
 	CKLA A 4 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Sight",CHAN_7);
+	TNT1 A 0 A_StartSound("Cadaver/Sight",CHAN_7);
 	CKLA B 4 A_FaceTarget();
 	CKLA C 4 A_FaceTarget();
 	CKLA D 4 A_FaceTarget();
@@ -115,7 +115,7 @@ Class PM_Cadaver : PMMonsterBase
 	A_SpawnItemEx("BurntSoulFire",6,-17,56,0,0,random(0,3));
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,-17);
@@ -124,7 +124,7 @@ Class PM_Cadaver : PMMonsterBase
 		}
 	CREV K 8 A_FaceTarget();
 	CREV B 6 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,10);
@@ -133,7 +133,7 @@ Class PM_Cadaver : PMMonsterBase
 		}
 	CREV K 8 A_FaceTarget();
 	CREV B 6 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,-17);
@@ -142,7 +142,7 @@ Class PM_Cadaver : PMMonsterBase
 		}
 	CREV K 8 A_FaceTarget();
 	CREV B 6 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 6 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,10);
@@ -154,7 +154,7 @@ Class PM_Cadaver : PMMonsterBase
 	
   Missile1:
 	CREV BBB 3 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,-17);
@@ -165,7 +165,7 @@ Class PM_Cadaver : PMMonsterBase
 	Goto See2;
   Missile2:
 	CREV BBB 3 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Cadaver/Missile",CHAN_6);
+	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
 	CREV J 8 Bright Light("AvatarFireball4")
 		{
 		A_SpawnProjectile("PM_CadaverFireFlare",56,10);
@@ -213,7 +213,7 @@ Class PM_Cadaver : PMMonsterBase
     CREV LM 7;
     CREV N 7 A_Scream;
     CREV O 7 A_NoBlocking;
-    TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6);
+    TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
     CREV P 7;
     CREV Q -1;
     Stop;
@@ -276,7 +276,7 @@ Class PM_CadaverRocket : RevenantTracer
 	    );
 		}
 	TNT1 A 0 A_ScaleVelocity(3);
-	TNT1 A 0 A_PlaySound("skeleton/attack",CHAN_7);
+	TNT1 A 0 A_StartSound("skeleton/attack",CHAN_7);
 	Spawn2:
 		CMIS A 1 BRIGHT Light("AvatarFireball4");
 		TNT1 A 0
@@ -377,8 +377,8 @@ Class PM_CadaverHRocket : RevenantTracer
 		A_SpawnItemEx("HomingFlare",0,0,0);
 		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
-		TNT1 A 0 A_PlaySound("Cadaver/Homing",CHAN_5,1,false);
-		TNT1 A 0 A_PlaySound("Cadaver/HomingLoop",CHAN_6,0.8,true);
+		TNT1 A 0 A_StartSound("Cadaver/Homing",CHAN_5,1,false);
+		TNT1 A 0 A_StartSound("Cadaver/HomingLoop",CHAN_6,0.8,true);
 		TNT1 A 0 A_ScaleVelocity(3);
 	Go:
 		CMHO A 1 BRIGHT Light("AvatarFireball4") 

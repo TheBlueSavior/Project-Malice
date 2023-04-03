@@ -39,13 +39,13 @@ Class PM_ZombieMarine : PMMonsterBase
 		UDM2 A 10 PM_Look();
         Loop;
 	Look:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UDM2 AA 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		UDM2 BB 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		UDM2 CC 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		UDM2 DD 4 PM_LookingForPlayer();
@@ -62,12 +62,12 @@ Class PM_ZombieMarine : PMMonsterBase
 	    UDM2 EEE 3 A_FaceTarget();
 	    Goto Missile;
     See2:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UDM2 AA 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		UDM2 BB 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		UDM2 CC 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		UDM2 DD 4 A_Chase();
@@ -75,14 +75,14 @@ Class PM_ZombieMarine : PMMonsterBase
         Loop;
 	 NoAmmo:
         UDM2 E 7 A_FaceTarget(10,20,0,0);
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         UDM2 EE 10 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_Jump(100,"ZReload");
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         UDM2 E 8 A_FaceTarget(10,20,0,0);
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		UDM2 E 8 A_FaceTarget(10,20,0,0);
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         UDM2 AAAA 5 A_FaceTarget(10,20,0,0);
 		Goto ZReload;
     Missile:
@@ -102,8 +102,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -116,8 +116,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -130,8 +130,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -144,8 +144,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -158,8 +158,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -181,8 +181,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -208,8 +208,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -233,8 +233,8 @@ Class PM_ZombieMarine : PMMonsterBase
 		{
 		return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ZombieRifleDistant",CHAN_7);
-		A_PlaySound("ZombieSoldier/Rifle");
+		A_StartSound("ZombieRifleDistant",CHAN_7);
+		A_StartSound("ZombieSoldier/Rifle");
 		A_SpawnProjectile("PM_BulletTracer",33,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -243,17 +243,17 @@ Class PM_ZombieMarine : PMMonsterBase
 	  TNT1 A 0 A_Jump(150, "MissileRight");
 	  Goto See2;
     ZReload:
-      TNT1 A 0 A_PlaySound("PM/RifleMagOut",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleMagOut",CHAN_5);
       UDM2 EEE 5 A_FaceTarget(10,20,0,0);
       TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
       UDM2 CCCBBB 5 A_FaceTarget(10,20,0,0);
-      TNT1 A 0 A_PlaySound("PM/RifleMagIn",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleMagIn",CHAN_5);
       TNT1 A 0
 	  {
 	  user_numbullets = (user_numbullets + random(9,31));
 	  }
       UDM2 DDDBBB 4 A_FaceTarget(10,20,0,0);
-      TNT1 A 0 A_PlaySound("PM/RifleBoltSlide",CHAN_5);
+      TNT1 A 0 A_StartSound("PM/RifleBoltSlide",CHAN_5);
       UDM2 AABB 4 A_FaceTarget(10,20,0,0);
       Goto See2;
     Pain:
@@ -267,7 +267,7 @@ Class PM_ZombieMarine : PMMonsterBase
         UDM2 K 5 A_Scream;
         UDM2 L 5;
         UDM2 M 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         UDM2 N -1;
         Stop;
 	 PossDeath:
@@ -276,7 +276,7 @@ Class PM_ZombieMarine : PMMonsterBase
         UDM2 K 5 A_Scream;
         UDM2 L 5;
         UDM2 M 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		UDM2 N 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
         UDM2 N -1;

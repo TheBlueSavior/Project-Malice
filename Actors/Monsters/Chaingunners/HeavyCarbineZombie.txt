@@ -37,22 +37,22 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     HCPO AA 10 PM_Look();
     Loop;
   Look:
-	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
     HCPO AABB 3 PM_LookingForPlayer();
     TNT1 A 0 A_JumpIfTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP);
-	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 	HCPO CCDD 3 PM_LookingForPlayer();
     Goto Look+1;
   Spotted:
     TNT1 A 0 PM_AlertSound();
   See2:
-	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
     HCPO AABB 3 A_Chase();
-	TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 	HCPO CCDD 3 A_Chase();
 	Loop;
   Missile:
-    HCPO E 1 A_PlaySound("Carbine/Bolt");
+    HCPO E 1 A_StartSound("Carbine/Bolt");
     HCPO EEEE 5
 	{
 	A_FaceTarget(360,180);
@@ -66,7 +66,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
       {
        return ResolveState("NoAmmo");
       }
-	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_StartSound("GunnerRifleDistant", CHAN_7);
 	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 	//A_SpawnProjectile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -81,7 +81,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
       {
        return ResolveState("NoAmmo");
       }
-	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_StartSound("GunnerRifleDistant", CHAN_7);
 	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 	//A_SpawnProjectile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -96,7 +96,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
       {
        return ResolveState("NoAmmo");
       }
-	A_PlaySound("GunnerRifleDistant", CHAN_7);
+	A_StartSound("GunnerRifleDistant", CHAN_7);
 	A_SpawnProjectile("PM_CarbineBullet",37,10,random(-6,6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 	//A_SpawnProjectile("CFodFlare",37,10);
     A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -108,29 +108,29 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
 	Goto Missile+5;
   NoAmmo:
 	HCPO E 7 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	HCPO EE 10 A_FaceTarget();
 	TNT1 A 0 A_Jump(56,"ZReload");
-	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	HCPO E 8 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	HCPO E 8 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	HCPO AAAA 5 A_FaceTarget();
 	Goto ZReload;
   ZReload:
-     TNT1 A 0 A_PlaySound("PM/HeavyRifleOpen",CHAN_5);
+     TNT1 A 0 A_StartSound("PM/HeavyRifleOpen",CHAN_5);
      HCPO EEEEEE 5;
-     TNT1 A 0 A_PlaySound("PM/HeavyRifleMagOut",CHAN_5);
+     TNT1 A 0 A_StartSound("PM/HeavyRifleMagOut",CHAN_5);
      HCPO EEEEE 5;
      TNT1 A 0 A_SpawnItemEx("PM_EmptyHeavyMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-4,0));
      HCPO CCCBBBB 6;
-     TNT1 A 0 A_PlaySound("PM/HeavyRifleMagIn",CHAN_5);
+     TNT1 A 0 A_StartSound("PM/HeavyRifleMagIn",CHAN_5);
      TNT1 A 0 { user_numbullets = (user_numbullets + random(45,60)); }
      HCPO DDDBBB 3;
-     TNT1 A 0 A_PlaySound("PM/HeavyRifleClose",CHAN_5);
+     TNT1 A 0 A_StartSound("PM/HeavyRifleClose",CHAN_5);
      HCPO AAAABB 4;
-     TNT1 A 0 A_PlaySound("PM/HeavyRifleBoltSlide",CHAN_5);
+     TNT1 A 0 A_StartSound("PM/HeavyRifleBoltSlide",CHAN_5);
      HCPO CCAA 4;
      Goto See2;
 	Melee:
@@ -149,7 +149,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     HCPO I 5 A_Scream;
     HCPO J 5 A_NoBlocking;
     HCPO K 5;
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     HCPO L -1;
     Stop;
   PossDeath:
@@ -158,7 +158,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     HCPO I 5 A_Scream;
     HCPO J 5 A_NoBlocking;
     HCPO K 5;
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 	HCPO L 90;
 	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
     HCPO L -1;
@@ -258,30 +258,30 @@ States
         TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
         Loop;
     Noise:
-        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50);
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,0.50);
     Cont:
         TRCR B 1 BRIGHT A_Quake(2,4,0,100,0);
         Loop;
 	Death:
 		TNT1 A 0 A_Jump(256,"Death1","Death2");
   Death1:
-	TRCR B 1 A_PlaySound("PM/BulletHit",2);
+	TRCR B 1 A_StartSound("PM/BulletHit",2);
 	TNT1 A 0 A_SpawnItemEx("PM_HitPuff");
 	TNT1 A 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170);
     stop;
   Death2:
 	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-	TRCR A 0 A_PlaySound("PM/BulletHit",2);
+	TRCR A 0 A_StartSound("PM/BulletHit",2);
     TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletShrapnel",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,170);
 	TNT1 A 0 A_SpawnItemEx("PM_BulletHitFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160);
     stop;
   XDeath:
      TNT1 A 0;
-     TRCR A 0 A_PlaySound("PM/BulletHitFlesh",2);
+     TRCR A 0 A_StartSound("PM/BulletHitFlesh",2);
      stop;
   Crash:
     TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-    TRCR A 0 A_PlaySound("PM_BulletHit",2);
+    TRCR A 0 A_StartSound("PM_BulletHit",2);
     Stop;
    }
 }

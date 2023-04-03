@@ -43,13 +43,13 @@ Class PM_SlugShotgunner : PMMonsterBase
         Loop;
 	Look:
         TNT1 A 0 A_Jump(15,"Spotted");
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPS4 AA 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		SPS4 BB 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
         TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		SPS4 CC 4 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-1);
 		SPS4 DD 4 PM_LookingForPlayer();
@@ -66,12 +66,12 @@ Class PM_SlugShotgunner : PMMonsterBase
 	    SPS4 EEE 3 A_FaceTarget();
 	    Goto Missile;
     See2:
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPS4 AA 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		SPS4 BB 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		SPS4 CC 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
 		SPS4 DD 4 A_Chase();
@@ -94,8 +94,8 @@ Class PM_SlugShotgunner : PMMonsterBase
 		A_SetAngle(angle+random(-5,5));
 		A_SetPitch(pitch+random(-5,5));
 		}
-		TNT1 A 0 A_PlaySound("GenericShotgunFire",CHAN_5);
-		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7);
+		TNT1 A 0 A_StartSound("GenericShotgunFire",CHAN_5);
+		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{
 			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -106,7 +106,7 @@ Class PM_SlugShotgunner : PMMonsterBase
             user_numbullets--;
 			}
 		SPS4 EEE 5 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("GenericShotgunPump");
+		TNT1 A 0 A_StartSound("GenericShotgunPump");
 		SPS4 AA 5 A_FaceTarget();
         TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		SPS4 BB 5 A_FaceTarget();
@@ -121,19 +121,19 @@ Class PM_SlugShotgunner : PMMonsterBase
 		 }
 	    return ResolveState(null);
 		}
-		TNT1 A 0 A_PlaySound("HelmetZombie/Sight",CHAN_5);
+		TNT1 A 0 A_StartSound("HelmetZombie/Sight",CHAN_5);
 		SPS4 AAA 5
 		{
 		A_FaceTarget(360,180);
 		A_SetAngle(angle+random(-5,5));
 		A_SetPitch(pitch+random(-5,5));
 		}
-		TNT1 A 0 A_PlaySound("GenericShotgunPump");
+		TNT1 A 0 A_StartSound("GenericShotgunPump");
 		SPS4 AA 5 A_FaceTarget(5,5);
 		SPS4 BB 5 A_FaceTarget(5,5);
 		SPS4 EEE 5 A_FaceTarget(5,5);
-		TNT1 A 0 A_PlaySound("SlugShotgunner/Fire",CHAN_5);
-		TNT1 A 0 A_PlaySound("ShotgunnerGunDistant", CHAN_7);
+		TNT1 A 0 A_StartSound("SlugShotgunner/Fire",CHAN_5);
+		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7);
 		TNT1 A 0 A_Recoil(6);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{
@@ -158,26 +158,26 @@ Class PM_SlugShotgunner : PMMonsterBase
 		Goto See2;
 	NoAmmo:
 		SPS4 E 7 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 EE 10 A_FaceTarget();
 		TNT1 A 0 A_Jump(100,"ZReload");
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 E 8 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 E 8 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 AAAA 5 A_FaceTarget();
 		Goto ZReload;
 	NoAmmoSlug:
 		SPS4 E 7 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 EE 10 A_FaceTarget();
 		TNT1 A 0 A_Jump(100,"ZReloadSlug");
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 E 8 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 E 8 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 		SPS4 AAAA 5 A_FaceTarget();
 		Goto ZReloadSlug;
     ZReload:
@@ -192,7 +192,7 @@ Class PM_SlugShotgunner : PMMonsterBase
 		return ResolveState(null);
 		}
         SPS4 AAA 5;
-        TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
         TNT1 A 0 { user_numbullets = (user_numbullets + 1); }
         SPS4 BB 3;
         SPS4 AAA 3;
@@ -209,14 +209,14 @@ Class PM_SlugShotgunner : PMMonsterBase
 		return ResolveState(null);
 		}
         SPS4 AAA 5;
-        TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
         TNT1 A 0 { user_numslugs = (user_numslugs + 1); }
         SPS4 BB 3;
         SPS4 AAA 3;
 		TNT1 A 0 A_JumpIfCloser(250,"ZReload2");
         Loop;
     ZReload2:
-	    TNT1 A 0 A_PlaySound("GenericShotgunPump");
+	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPS4 AA 5 A_FaceTarget();
 	    SPS4 BB 5 A_FaceTarget();
         Goto See2;
@@ -231,7 +231,7 @@ Class PM_SlugShotgunner : PMMonsterBase
         SPS4 I 5 A_Scream;
         SPS4 J 5;
         F1SH K 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         F1SH L -1;
         Stop;
 	 PossDeath:
@@ -240,7 +240,7 @@ Class PM_SlugShotgunner : PMMonsterBase
         SPS4 I 5 A_Scream;
         SPS4 J 5;
         F1SH K 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		F1SH L 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
         F1SH L -1;
@@ -284,13 +284,13 @@ States
         TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
         Loop;
     Noise:
-        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50);
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,0.50);
     Cont:
         TRCR A 1 BRIGHT Light("AvatarFireball2") A_Quake(1,4,0,100,0);
         Loop;
 	Death:
 	TNT1 AAAAA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
-	TRCR A 0 A_PlaySound("PM/LargeBulletHit",2);
+	TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
 	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
 	TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
 	TNT1 AAA 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170);
@@ -301,7 +301,7 @@ States
   XDeath:
 	 TNT1 A 1 Bright A_RadiusThrust(5000,90);
      TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-     TRCR A 0 A_PlaySound("PM/LargeBulletHit",2);
+     TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
      stop;
 	}
 }

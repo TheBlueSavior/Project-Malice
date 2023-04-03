@@ -36,9 +36,9 @@ Class PM_Squire : PMMonsterBase
 	Look:
 		TNT1 A 0 A_SetSpeed(5);
 		BOS6 AAAABBBB 2 PM_LookingForPlayer();
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 CCCCDDDD 2 PM_LookingForPlayer();
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
         Loop;
     Spotted:
         Goto Roar;
@@ -48,44 +48,44 @@ Class PM_Squire : PMMonsterBase
 		BOS6 AAAA 2 A_Chase();
 		BOS6 BBBB 2 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.4);
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 CCCC 2 A_Chase();
 		BOS6 DDDD 2 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.4);
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		Loop;
 	See2:
 		TNT1 A 0 A_SetSpeed(12);
 		BOS6 AA 3 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.8);
 		BOS6 BB 3 A_Chase();
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		TNT1 AA 0 A_Recoil(-1.5);
 		BOS6 CC 3 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.8);
 		BOS6 DD 3 A_Chase();
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		TNT1 AA 0 A_Recoil(-1.5);
 		TNT1 A 0 A_Jump(5,"See1");
 		Loop;
 	SeeNoMissile:		
 		BOS6 G 20;
 		BOS6 AAAABBBB 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 CCCCDDDD 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 AAAABBBB 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 CCCCDDDD 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 AAAABBBB 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		BOS6 CCCCDDDD 2 A_Chase("Melee","FireBall");
-		TNT1 A 0 A_PlaySound("Squire/Step");
+		TNT1 A 0 A_StartSound("Squire/Step");
 		Goto See1;	
 	Melee:
 		BOS6 E 6 A_FaceTarget();
-		BOS6 E 0 A_PlaySound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+		BOS6 E 0 A_StartSound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
 		BOS6 E 6 A_FaceTarget();
 		BOS6 G 6 A_CustomMeleeAttack(random(10,30),"Doom4/Other/MeleeHit");
 		BOS6 F 2 A_Recoil(2);
@@ -107,7 +107,7 @@ Class PM_Squire : PMMonsterBase
 		Goto See2;
 	PainRoar:
 		BOS6 PQR 2 A_FaceTarget();
-		TNT1 A 0 A_PlaySound("Squire/Sight",CHAN_6);
+		TNT1 A 0 A_StartSound("Squire/Sight",CHAN_6);
 		BOS6 STSU 3 A_FaceTarget();
 		BOS6 STSU 3 A_FaceTarget();
 		BOS6 RQP 2 A_FaceTarget();
@@ -132,7 +132,7 @@ Class PM_Squire : PMMonsterBase
 		BOS6 G 6 Light("Greenball3")
 		{
 		A_FaceTarget();
-		A_PlaySound("HellKnight/Cast",CHAN_7);
+		A_StartSound("HellKnight/Cast",CHAN_7);
 		A_SpawnProjectile("PM_SquireFireball",40);
 		}
 		BOS6 G 5 Light("Greenball3")
@@ -185,7 +185,7 @@ Class PM_Squire : PMMonsterBase
 			Goto DropFast+1;
 			
 			LeapEnd:
-				TNT1 A 0 A_PlaySound("Doom4/Monsters/BaronFloorPound",7,1.0,false,0.9);
+				TNT1 A 0 A_StartSound("Doom4/Monsters/BaronFloorPound",7,1.0,false,0.9);
 				TNT1 A 0 A_Quake(4,20,0,512);
 				TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",random(-5,5),random(-5,5),0,random(-3,3),random(-5,5),random(5,20),0,SXF_NOCHECKPOSITION);
                 TNT1 AAAAA 0 A_SpawnItemEx("PM_BruiserExplosionFlareEffectLong",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
@@ -203,7 +203,7 @@ Class PM_Squire : PMMonsterBase
 	ChargeAttack: 
 	   TNT1 A 0 A_Jump(60,"Roar");
 	   TNT1 A 0 { bNOTARGETSWITCH = true; }
-	   TNT1 A 0 A_PlaySound("Doom4/Monsters/HellKnight/Charge",5,1.0,false,0.9);
+	   TNT1 A 0 A_StartSound("Doom4/Monsters/HellKnight/Charge",5,1.0,false,0.9);
 	   BOS6 EFF 4 A_FaceTarget();
 	   TNT1 A 0 ThrustThingZ(0,1,0,1);
 	   BOS6 A 1 A_Recoil(-4);	TNT1 A 0 A_SpawnProjectile("HKLunge3",18,0,0,CMF_AIMDIRECTION);
@@ -225,7 +225,7 @@ Class PM_Squire : PMMonsterBase
 	   BOS6 D 1 A_Recoil(-4);	TNT1 A 0 A_SpawnProjectile("HKLunge3",18,0,0,CMF_AIMDIRECTION);
 	   BOS6 D 1 A_Recoil(-4);	TNT1 A 0 A_SpawnProjectile("HKLunge3",18,0,0,CMF_AIMDIRECTION);
     ChargeAttackMelee:
-	   TNT1 A 0 A_PlaySound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.15);
+	   TNT1 A 0 A_StartSound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.15);
 	   TNT1 A 0 { bSLIDESONWALLS = true; }
 	   TNT1 A 0 ThrustThingZ(0,20,0,1);
 	   TNT1 A 0 A_Recoil(-1);
@@ -248,7 +248,7 @@ Class PM_Squire : PMMonsterBase
 		BOS6 J 8 A_Scream;
 		BOS6 K 8;
 		BOS6 L 8 A_NoBlocking;
-		TNT1 A 0 A_PlaySound("Corpse/FallMed",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
 		BOS6 MN 8;
 		BOS6 O -1;
 		Stop;

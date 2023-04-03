@@ -34,10 +34,10 @@ Class PM_Devil : PMMonsterBase
     Loop;
   Look:
 	TNT1 A 0 { bMISSILEevenMore=False; }
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM AAABBB 2 PM_LookingForPlayer();
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCCDDD 2 PM_LookingForPlayer();
 	TNT1 A 0 A_SetSpeed(6);
     Loop;
@@ -49,9 +49,9 @@ Class PM_Devil : PMMonsterBase
   See2:
 	TNT1 A 0 { bMISSILEevenMore=False; }
 	TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM AAABBB 2 A_Chase();
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCCDDD 2 A_Chase();
 	TNT1 A 0 A_SetSpeed(6);
 	TNT1 A 0 A_Jump(19,"AltSee","Fight");
@@ -59,10 +59,10 @@ Class PM_Devil : PMMonsterBase
   AltSee:
 	TNT1 A 0;
 	TNT1 A 0 A_SetSpeed(12);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AABB 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCDD 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
@@ -79,42 +79,42 @@ Class PM_Devil : PMMonsterBase
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CB 3
 	{
 	A_FaceTarget();
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM AD 3
 	{
 	A_FaceTarget();
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CB 3
 	{
 	A_FaceTarget();
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM AD 3
 	{
 	A_FaceTarget();
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CB 3
 	{
 	A_FaceTarget();
 	A_Recoil(2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM A 3
 	{
 	A_FaceTarget();
@@ -132,7 +132,7 @@ Class PM_Devil : PMMonsterBase
     TNT1 A 0 ThrustThingZ(0,25,0,1);
     TNT1 A 0 A_FaceTarget();
     TNT1 A 0 A_Recoil (-12);
-	TNT1 A 0 A_PlaySound("Devil/Roar",CHAN_7);
+	TNT1 A 0 A_StartSound("Devil/Roar",CHAN_7);
 	D3IM EF 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
     D3IM F 6 A_FaceTarget();
 	D3IM G 1 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
@@ -143,7 +143,7 @@ Class PM_Devil : PMMonsterBase
 	TNT1 A 0 A_Jump(140,"StandoffCheck");
 	TNT1 A 0 A_Jump(60,"FireLeft","FireRight");
 	TNT1 A 0 A_Jump(30,"Roar");
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -174,11 +174,11 @@ Class PM_Devil : PMMonsterBase
   FireLeft:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
@@ -208,11 +208,11 @@ Class PM_Devil : PMMonsterBase
   FireRight:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
@@ -261,9 +261,9 @@ Class PM_Devil : PMMonsterBase
 	D3IM A 1 A_Chase();
   StandoffReposLoop:
 	TNT1 A 0 A_SetSpeed(10);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AABB 2 A_Wander();
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCDD 2 A_Wander();
 	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_Jump(95,"Standoff");
@@ -271,7 +271,7 @@ Class PM_Devil : PMMonsterBase
   StandoffMissile:
 	TNT1 A 0 A_Jump(60,"SFireLeft","SFireRight");
 	TNT1 A 0 A_Jump(50,"StandoffRoar");
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -304,11 +304,11 @@ Class PM_Devil : PMMonsterBase
 	SFireLeft:
 	D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +64, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -338,11 +338,11 @@ Class PM_Devil : PMMonsterBase
   SFireRight:
     D3IM A 1 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=True; }
-	//TNT1 A 0 A_PlaySound("Devil/Attack",CHAN_7);
+	//TNT1 A 0 A_StartSound("Devil/Attack",CHAN_7);
 	TNT1 A 0 ThrustThing(angle*256/360 +192, 6, 0, 0);
 	TNT1 A 0 ThrustThingZ(0,30,0,1);
 	D3IM CCBBB 1 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
@@ -380,7 +380,7 @@ Class PM_Devil : PMMonsterBase
 	A_Chase();
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM CC 2
 	{
 	A_Chase();
@@ -391,7 +391,7 @@ Class PM_Devil : PMMonsterBase
 	A_Chase();
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AA 2
 	{
 	A_Chase();
@@ -402,7 +402,7 @@ Class PM_Devil : PMMonsterBase
   DespMissile:
 	TNT1 A 0 ThrustThingZ(0,24,0,1);
 	//TNT1 A 0 A_Recoil(5)
-	TNT1 A 0 A_PlaySound("GenericChargeSmall");
+	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
@@ -437,28 +437,28 @@ Class PM_Devil : PMMonsterBase
 	TNT1 A 0 { bFRIGHTENED=True; }
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",1)
 	TNT1 A 0 A_SetSpeed(12);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_PlaySound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
   Fight:
@@ -467,13 +467,13 @@ Class PM_Devil : PMMonsterBase
 	Goto See2;
   Roar:
 	D3IM VVVVVV 3 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Devil/Roar");
+	TNT1 A 0 A_StartSound("Devil/Roar");
 	D3IM WWWWWWWWW 3 A_FaceTarget();
 	D3IM AAAAA 3 A_FaceTarget();
 	Goto See2;
    StandoffRoar:
 	D3IM VVVVVV 3 A_FaceTarget();
-	TNT1 A 0 A_PlaySound("Devil/Roar");
+	TNT1 A 0 A_StartSound("Devil/Roar");
 	D3IM WWWWWWWWW 3 A_FaceTarget();
 	D3IM AAAAA 3 A_FaceTarget();
 	Goto Standoff;
@@ -490,7 +490,7 @@ Class PM_Devil : PMMonsterBase
     D3IM J 8 A_Scream();
     D3IM K 6;
     D3IM L 6 A_NoBlocking();
-	TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     D3IM M -1;
     stop;
   XDeath:

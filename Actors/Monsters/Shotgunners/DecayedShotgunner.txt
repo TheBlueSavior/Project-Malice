@@ -42,13 +42,13 @@ Class PM_DecayedShotgunner : PMMonsterBase
     Look:
         TNT1 A 0 A_Jump(15,"Spotted");
 		TNT1 A 0 A_SetSpeed(9);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPO6 AA 2 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-0.6);
 		SPO6 BB 2 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-0.6);
         TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		SPO6 CC 2 PM_LookingForPlayer();
 		TNT1 AA 0 A_Recoil(-0.6);
 		SPO6 DD 2 PM_LookingForPlayer();
@@ -62,12 +62,12 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		Goto See2;
     See2:
 		TNT1 A 0 A_SetSpeed(9);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPO6 AA 2 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.6);
 		SPO6 BB 2 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.6);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		SPO6 CC 2 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.6);
 		SPO6 DD 2 A_Chase();
@@ -78,10 +78,10 @@ Class PM_DecayedShotgunner : PMMonsterBase
         Loop;
 	Sprint:
 		TNT1 A 0 A_SetSpeed(7);
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPO6 AA 3 A_Chase();
 		SPO6 BB 3 A_Chase();
-		TNT1 A 0 A_PlaySound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		SPO6 CC 3 A_Chase();
 		SPO6 DD 3 A_Chase();
 		TNT1 A 0 A_Jump(45,"See2");
@@ -103,8 +103,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
-		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -114,7 +114,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		return ResolveState(null);
 		}
 		SPO6 EE 5 A_FaceTarget(5,5);
-		TNT1 A 0 A_PlaySound("GenericShotgunPump");
+		TNT1 A 0 A_StartSound("GenericShotgunPump");
 		SPO6 AA 5 A_FaceTarget(5,5);
         TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		SPO6 BB 5 A_FaceTarget(5,5);
@@ -127,7 +127,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		A_SpawnProjectile("CFodFlare",32,15,15,0);
 		A_SpawnProjectile("CFodFlare",32,15,15,0);
 		A_FaceTarget();
-		A_PlaySound("Decayed/ShottyCharge");
+		A_StartSound("Decayed/ShottyCharge");
 		}
         SPO6 E 5 
 		{
@@ -141,8 +141,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
-		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -157,8 +157,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
-		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -173,8 +173,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		{
 		 return ResolveState("NoAmmo");
 		}
-		A_PlaySound("ShotgunnerGunDistant", CHAN_7);
-		A_PlaySound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_StartSound("ShotgunnerGunDistant", CHAN_7);
+		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
@@ -184,7 +184,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		return ResolveState(null);
 		}
 		SPO6 E 6;
-		TNT1 A 0 A_PlaySound("GenericShotgunPump");
+		TNT1 A 0 A_StartSound("GenericShotgunPump");
 		SPO6 AA 5 A_FaceTarget(5,5);
         TNT1 AAA 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		SPO6 BB 5 A_FaceTarget(5,5);
@@ -193,14 +193,14 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		TNT1 A 0 A_SpawnProjectile("WMaggotSpawn", 45, random(-4,4), 0, 0, 0);
 		Goto See2;
 	RollRight:
-		TNT1 A 0 A_PlaySound("Decayed/Roll");
+		TNT1 A 0 A_StartSound("Decayed/Roll");
 		ZRO3 A 2 A_FaceTarget();
 		TNT1 A 0 ThrustThing(Angle*256/360+64,16,0,0);
 		ZRO3 ABCDE 3 A_FaceTarget();
 		TNT1 A 0 A_CheckSight("RollWait");
         Goto Missile+4;
 	RollLeft:
-		TNT1 A 0 A_PlaySound("Decayed/Roll");
+		TNT1 A 0 A_StartSound("Decayed/Roll");
 		ZRO3 A 2 A_FaceTarget();
 		TNT1 A 0 ThrustThing(Angle*256/360+192,16,0,0);
 		ZRO3 EDCBA 3 A_FaceTarget();
@@ -220,11 +220,11 @@ Class PM_DecayedShotgunner : PMMonsterBase
         TNT1 A 0 A_Jump(5,"See2");
 		Goto RollWait+1;
 	RollWarn:
-	    TNT1 A 0 A_PlaySound("Decayed/Sight",CHAN_5);
+	    TNT1 A 0 A_StartSound("Decayed/Sight",CHAN_5);
 		SPO6 EE 5 A_FaceTarget();
 		Goto Missile+4;
 	Puke:
-		TNT1 A 0 A_PlaySound("GenericBloodPuke");
+		TNT1 A 0 A_StartSound("GenericBloodPuke");
 		SPO6 GGGGGGGGGGGGGGGGGG 1
 		{
 		A_FaceTarget();
@@ -242,14 +242,14 @@ Class PM_DecayedShotgunner : PMMonsterBase
 	Goto See2;
 	NoAmmo:
         SPO6 E 7 A_FaceTarget();
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         SPO6 EE 10 A_FaceTarget();
 	    TNT1 A 0 A_Jump(100,"ZReload");
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         SPO6 E 8 A_FaceTarget();
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
 	    SPO6 E 8 A_FaceTarget();
-        TNT1 A 0 A_PlaySound("PM/GunClick",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         SPO6 AAAA 5 A_FaceTarget();
 	    Goto ZReload;
     ZReload:
@@ -264,19 +264,19 @@ Class PM_DecayedShotgunner : PMMonsterBase
 		return ResolveState(null);
 		}
         SPO6 AA 3;
-        TNT1 A 0 A_PlaySound("PM/ShellInsert",CHAN_5);
+        TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
         TNT1 A 0 { user_numbullets = (user_numbullets + 1); }
         SPO6 BB 2;
         SPO6 AAA 3;
 		TNT1 A 0 A_JumpIfCloser(250,"ZReload3");
         Loop;
     ZReload2:
-	    TNT1 A 0 A_PlaySound("GenericShotgunPump");
+	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPO6 AA 5 A_FaceTarget();
 	    SPO6 BB 5 A_FaceTarget();
         Goto See2;
 	ZReload3:
-	    TNT1 A 0 A_PlaySound("GenericShotgunPump");
+	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPO6 AA 5 A_FaceTarget();
 	    SPO6 BB 5 A_FaceTarget();
 		TNT1 A 0 A_Jump(256,"RollRight","RollLeft");
@@ -292,7 +292,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
         SPO6 I 5 A_Scream;
         SPO6 J 5;
         SPO6 K 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         SPO6 L -1;
         Stop;
 	PossDeath:
@@ -301,7 +301,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
         SPO6 I 5 A_Scream;
         SPO6 J 5;
         SPO6 K 5;
-		TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6);
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		SP06 L 90;
 		TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
         SPO6 L -1;
