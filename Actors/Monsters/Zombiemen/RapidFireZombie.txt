@@ -226,7 +226,7 @@ Class PM_RFZombie: PMMonsterBase
        user_numbullets--;
 	   return ResolveState(null);
       }
-	  TNT1 A 0 A_Jump(150, "MissileLeft");
+	  TNT1 A 0 A_Jump(64, "See2");
 	  Goto MissileLeft+2;
    MissileRight:
       TNT1 A 0;
@@ -251,7 +251,7 @@ Class PM_RFZombie: PMMonsterBase
        user_numbullets--;
 	   return ResolveState(null);
 	  }
-	  TNT1 A 0 A_Jump(150, "MissileRight");
+	  TNT1 A 0 A_Jump(64, "See2");
 	  Goto MissileRight+2;
 	 NoAmmo:
         RFTR E 7 A_FaceTarget(10,20,0,0);

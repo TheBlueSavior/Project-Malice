@@ -129,7 +129,7 @@ Class PM_Fiend : PMMonsterBase
 	FIEN JJ 0 Bright Light("AvatarFireball4") A_SpawnProjectile("BulletFlare",62,-18);
 	FIEN J 5 Bright Light("AvatarFireball4")
 	{
-	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,random(-3,3),CMF_OFFSETPITCH,random(pitch*1+2,pitch*1-2));
+	A_SpawnProjectile("PM_FiendSmallRocket",62,-18,frandom(-3,3),CMF_OFFSETPITCH,frandom(pitch*1+2,pitch*1-2));
 	pm_attackloop--;
 	}
 	FIEN J 1 A_FaceTarget();

@@ -345,7 +345,7 @@ Class PM_Zephyr : PMMonsterBase
 	TNT1 A 0
 	{
 	bNODROPOFF = true;
-	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThing(random(0,128),random(12,16), 0, 0);
 	ThrustThingZ(0,30,0,1);
 	}
 	BELA AAAAFFFFFFF 1 Light("Shadowball2")
@@ -379,7 +379,7 @@ Class PM_Zephyr : PMMonsterBase
 	TNT1 A 0
 	{
 	bNODROPOFF = true;
-	ThrustThing(angle*256/360+randompick(64,192),random(12,16), 0, 0);
+	ThrustThing(randompick(0,128),random(12,16), 0, 0);
 	ThrustThingZ(0,30,0,1);
 	}
 	CBEL B 10 A_FaceTarget();
