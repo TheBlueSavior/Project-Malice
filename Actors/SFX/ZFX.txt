@@ -1975,3 +1975,136 @@ A_SpawnParticleEx
  Stop;
  }
 }
+
+//Sin-Specific Actors
+Class PM_WrathIreActivate : Actor
+{
+  States
+  {
+  Spawn:
+  TNT1 A 0 NoDelay
+  {
+   for(int a=0;a<16;a++)
+    A_SpawnParticleEx
+	(
+     "",
+	 TexMan.CheckForTexture("F1R1A0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(70,120),
+	 size: frandom(60,90),
+	 xoff: random(-20,20),
+	 yoff: random(-20,20),
+	 zoff: frandom(0,5),
+	 velx: frandom(-3,3),
+	 vely: frandom(-3,3),
+	 velz: frandom(1,4),
+	 startalphaf: frandom(0.4,0.7),
+	 fadestepf: -0.02,
+	 sizestep: frandom(-2,-4),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
+	 );
+	A_SpawnParticleEx
+	(
+	 "ff4d12",
+	 TexMan.CheckForTexture("GNSMK0"),
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(50,150),
+	 size: frandom(15,50),
+	 xoff: random(-10,10),
+	 yoff: random(-10,10),
+	 zoff: frandom(0,15),
+	 velx: frandom(-2,2),
+	 vely: frandom(-2,2),
+	 startalphaf: frandom(0.1,0.4),
+	 fadestepf: -1,
+	 sizestep: 3,
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.1,0.1)
+	 );
+	 
+  }
+  Stop;
+  }
+}
+
+Class PM_WrathIreEffect : Actor
+{
+  States
+  {
+  Spawn:
+  TNT1 AAAA 2 Light("AvatarFireball3")
+  {
+	A_SpawnParticleEx
+    (
+	"",
+    TexMan.CheckForTexture("SPKOA0"),
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(1,70),
+	size: frandom(0.2,15),
+	xoff: frandom(-10,10),
+	yoff: frandom(-7,7),
+	zoff: frandom(-10,16),
+	velx: frandom(-0.6,0.6),
+	vely: frandom(-0.6,0.6),
+	velz: frandom(-0.6,0.6),
+	startalphaf: 1.0,
+	fadestepf: -0.5,
+	sizestep: -0.2,
+	startroll: random(-180,180)
+	);
+	A_SpawnParticleEx
+	(
+	 "",
+	 TexMan.CheckForTexture("GNSML0"),
+	 style: STYLE_None,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: frandom(45,95),
+     size: frandom(30,76),
+	 xoff: frandom(-10,10),
+	 yoff: frandom(-7,7),
+     zoff: frandom(-10,16),
+	 velx: frandom(-0.6,0.6),
+	 vely: frandom(-0.6,0.6),
+	 velz: frandom(1,3),
+	 startalphaf: 0.4,
+	 fadestepf: -1,
+	 startroll: random(-180,180)
+	 );
+	A_SpawnParticleEx
+	(
+	 "ff9a31",
+	 TexMan.CheckForTexture("GNSML0"),
+	 style: STYLE_Add,
+	 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	 lifetime: frandom(45,95),
+     size: frandom(30,76),
+	 xoff: frandom(-10,10),
+	 yoff: frandom(-7,7),
+     zoff: frandom(-10,16),
+	 velx: frandom(-0.6,0.6),
+	 vely: frandom(-0.6,0.6),
+	 velz: frandom(1,3),
+	 startalphaf: 0.4,
+	 fadestepf: -1,
+	 startroll: random(-180,180)
+	 );
+    }
+    Goto Spawn+1;
+	}
+
+  override void PostBeginPlay()
+  {
+  A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_INTERPOLATE);
+  }
+
+  override void Tick()
+  {
+  Super.Tick(); 
+  A_Warp(AAPTR_MASTER,0,0,0,0,WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE); 
+  }
+
+}

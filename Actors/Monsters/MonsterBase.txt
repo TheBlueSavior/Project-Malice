@@ -301,5 +301,11 @@ Class PMWrathMonsterBase : PMMonsterBase
 {
   int pm_irecount;
   bool ire;
+
+   void PM_IreStartSound()
+   {
+    A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));
+	A_StartSound("Wrath/IreLoop",21,CHANF_LOOPING,0.55,ATTN_NORM);
+   }
 }
 

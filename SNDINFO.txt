@@ -3701,6 +3701,15 @@ $limit PM/MagBounce 4
 $limit PM/HeavyMagBounce 4
 $limit PM/PistolMagBounce 4
 
+//Sin-Specific Stuff
+
+$random Wrath/Ire { WrathIre1 WrathIre2 WrathIre3 }
+WrathIre1 "Sounds/Monsters/SFX/WrathIre1.ogg"
+WrathIre2 "Sounds/Monsters/SFX/WrathIre2.ogg"
+WrathIre3 "Sounds/Monsters/SFX/WrathIre3.ogg"
+
+Wrath/IreLoop "Sounds/Monsters/SFX/WrathIreLoop.ogg"
+
 PM/NormalTeleport	"Sounds/Other/PMNormalTele.ogg"
 $pitchset PM/NormalTeleport 0.8 1.2
 $rolloff PM/NormalTeleport 400 1800
