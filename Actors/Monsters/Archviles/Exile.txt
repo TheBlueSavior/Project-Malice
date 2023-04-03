@@ -783,7 +783,7 @@ Class ExileDropFire : Actor
    Spawn:
 	  TNT1 A 0 NoDelay A_SetScale(frandom(0.4,1.7));
 	  FRTF ABC 4 Bright;
-	  FRTF A 0 Bright A_Playsound("Fire/Idle",CHAN_5,CHANF_LOOPING,1);
+	  FRTF A 0 Bright A_StartSound("Fire/Idle",CHAN_5,CHANF_LOOPING,1);
 	  Go:
       FRTF A 0 Bright A_Explode(1,16,0);
       FRTF CDEFGEF 4 Bright A_Explode(1,16,0);

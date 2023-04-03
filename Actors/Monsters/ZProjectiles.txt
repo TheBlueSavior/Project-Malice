@@ -81,7 +81,7 @@ States
         TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
         Loop;
     Noise:
-        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50);
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,CHANF_DEFAULT,0.50);
     Cont:
         TRCR A 1 BRIGHT A_Quake(1,4,0,100,0);
         Loop;
@@ -223,7 +223,7 @@ States
         TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
         Loop;
     Noise:
-        TNT1 A 0 A_PlaySound("PM/BulletWhiz",3,0.50);
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,CHANF_DEFAULT,0.50);
     Cont:
         TRCR A 1 BRIGHT A_Quake(1,4,0,100,0);
         Loop;
