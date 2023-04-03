@@ -59,7 +59,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
 	A_SetAngle(angle+random(-10,10));
 	A_SetPitch(pitch+random(-15,15));
 	}
-	HCPO F 0 A_playsound("Carbine/Shot",0);
+	HCPO F 0 A_StartSound("Carbine/Shot");
     HCPO F 2 Bright Light("Shootlight") 
 	{
     if(user_numbullets < 0)
@@ -74,7 +74,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     return ResolveState(null);
 	}
 	HCPO E 2 A_FaceTarget(5,5,0,0);
-	HCPO F 0 A_playsound("Carbine/Shot",0);
+	HCPO F 0 A_StartSound("Carbine/Shot");
     HCPO F 2 Bright Light("Shootlight")
 	{
     if(user_numbullets < 0)
@@ -89,7 +89,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     return ResolveState(null);
 	}
 	HCPO E 2 A_FaceTarget(5,5,0,0);
-	HCPO F 0 A_playsound("Carbine/Shot",0);
+	HCPO F 0 A_StartSound("Carbine/Shot");
     HCPO F 2 Bright Light("Shootlight")
 	{
     if(user_numbullets < 0)

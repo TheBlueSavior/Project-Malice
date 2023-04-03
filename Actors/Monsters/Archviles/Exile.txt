@@ -426,7 +426,7 @@ Class PM_ExileGroundFlames : Actor
 	{
 		Spawn: 
 			TNT1 A 1;
-			TNT1 A 0 A_StartSound("Exile/GroundLoop",CHAN_7,0.7,1);
+			TNT1 A 0 A_StartSound("Exile/GroundLoop",CHAN_7,CHANF_LOOPING,0.7);
 		Go:
 			FLME ABCDEFGHIJKLM 1 Bright Light("HectebusBallLight") 
 			{
@@ -783,7 +783,7 @@ Class ExileDropFire : Actor
    Spawn:
 	  TNT1 A 0 NoDelay A_SetScale(frandom(0.4,1.7));
 	  FRTF ABC 4 Bright;
-	  FRTF A 0 Bright A_Playsound("Fire/Idle",CHAN_5,1,true,2);
+	  FRTF A 0 Bright A_Playsound("Fire/Idle",CHAN_5,CHANF_LOOPING,1);
 	  Go:
       FRTF A 0 Bright A_Explode(1,16,0);
       FRTF CDEFGEF 4 Bright A_Explode(1,16,0);

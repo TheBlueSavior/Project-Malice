@@ -459,6 +459,100 @@ Class PM_FeralImpSpitFireball : PM_CharredBall
   }
 }
 
+Class PM_FeralImpBall : DoomImpBall
+{
+    Default
+    {
+	DamageFunction (random(17,17));
+	+NOGRAVITY
+	-LOWGRAVITY
+	seesound "FeralImp/Ball";
+	Decal "PM_OrangeFireScorch";
+	FastSpeed 23;
+	DamageType "Fire";
+	Speed 14;
+	Scale 0.95;
+	Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]";
+    }
+	states
+  	{
+  Spawn:
+    NDEB AABBCC 1 bright Light("AvatarFireball3")
+	{
+	A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
+	A_SpawnParticleEx
+	(
+		"",
+		TexMan.CheckForTexture("GNSML0"),
+		style: STYLE_None,
+		flags: SPF_ROLL|SPF_RELATIVE,
+		lifetime: 95,
+		size: 30.0,
+		xoff: -10,
+		startalphaf: 0.4,
+		fadestepf: -1,
+		startroll: random(-180,180)
+	);
+	A_SpawnParticleEx
+	    (
+		"",
+		TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,70),
+		size: frandom(0.2,10),
+		xoff: random(-10,5),
+		yoff: random(-5,5),
+		zoff: random(-5,5),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,0.6),
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("LENRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: 80.0,
+		angle: 0,
+		xoff: -5,
+		startalphaf: 0.6
+	    );
+	}
+	loop;
+  Death:
+	TNT1 AAAAAAAAAAAAAAA 0
+    {
+    	A_SpawnParticleEx
+	(
+		"",
+		TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(5,20),
+		size: random(15,20),
+		xoff: -7,
+		velx: frandom(-5,5),
+		vely: frandom(-5,5),
+		velz: frandom(-5,5),
+		startalphaf: 0.8,
+		fadestepf: -1,
+		startroll: random(-180,180)
+	);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
+    NDEB D 2 bright Light("AvatarFireball4");
+    FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright;
+    stop;
+  }
+}
+
 Class FeralLunge : Actor
 {
   Default

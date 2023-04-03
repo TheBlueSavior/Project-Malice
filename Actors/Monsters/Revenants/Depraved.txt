@@ -137,15 +137,15 @@ Class PM_Depraved : PMMonsterBase
     INCA J 10 A_FaceTarget();
 	TNT1 A 0 
 		{
-		A_StartSound("DepravedBeamStart",7,1.0,0,0.6);
+		A_StartSound("DepravedBeamStart",CHAN_7);
 		}
 	INCA LLLLLLLLLLLLLLLLL 1 Light("ShadowBall4")
 		{
 		A_FaceTarget();
 		A_SpawnItemEx("PM_RedFireEffectBig",-3,0,60,0,0,3);
 		}
-	TNT1 A 0 A_StartSound("DepravedBeamStart",6,1.0,0,0.6);
-	TNT1 A 0 A_StartSound("DepravedBeam",1,0.3,1,0.6);
+	TNT1 A 0 A_StartSound("DepravedBeamStart",CHAN_6,CHANF_DEFAULT,1.0);
+	TNT1 A 0 A_StartSound("DepravedBeam",CHAN_1,CHANF_LOOPING,0.3);
     Goto LaserWait;
   LaserWait:
     INCA UUUUUUUUU 1 Bright Light("ShadowBall4")
@@ -163,7 +163,7 @@ Class PM_Depraved : PMMonsterBase
     TNT1 A 0 A_MonsterRefire(25,"LaserMiss");
     Goto LaserWait+1;
   LaserFire:
-    TNT1 A 0 A_StartSound("DepravedBeam",1,1.0,1,0.6);
+    TNT1 A 0 A_StartSound("DepravedBeam",CHAN_1,CHANF_LOOPING,0.6);
     INCA UUUUUUUUUUUUUUUUUUUUUUUUUUUU 2 Light("ShadowBall4")
 		{
 		A_FaceTarget(1,90,0,0);
@@ -260,7 +260,7 @@ Class PM_Depraved : PMMonsterBase
         A_SpawnItemEx("PM_RedShockwave",4,-1,64,0,0,0);
 		}
   LaserMiss:
-	TNT1 A 0 A_StartSound("DepravedBeamEnd",1,0.7,0,0.6);
+	TNT1 A 0 A_StartSound("DepravedBeamEnd",CHAN_1,CHANF_DEFAULT,0.6);
 	INCA UUUU 1 Light("ShadowBall4")
 		{
 		A_FaceTarget();

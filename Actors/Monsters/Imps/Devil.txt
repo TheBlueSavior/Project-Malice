@@ -509,35 +509,61 @@ Class PM_Devil : PMMonsterBase
 	}
 }
 
-class DevilBallTrail : Actor
+Class PM_DevilImpBall : DoomImpBall
 {
-Default
-{
-Scale 0.80;
-+NOINTERACTION
-+CLIENTSIDEONLY
-+NOBLOCKMAP
-+THRUACTORS
-+DONTSPLASH
-+NOCLIP
-RenderStyle "Add";
-}
-States
-{
-Spawn:
-	TNT1 A 2;
-	Start:
-	TNT1 A 0 A_CheckSight("Disappear");
-    AFX5 ABC 1
+	Default
 	{
-	A_SetScale(Scale.X-0.16);
-	A_FadeOut(0.25);
+	DamageFunction (random(18,18));
+	+NOGRAVITY
+	-LOWGRAVITY
+	seesound "FIREBA1";
+	Decal "PM_OrangeFireScorch";
+	DamageType "Fire";
+	Speed 15;
+	FastSpeed 21;
+	Scale 0.93;
 	}
-    Goto Start;
-	Disappear:
-	TNT1 A 0;
-	Stop;
-    }
+	states
+  	{
+  Spawn:
+    AFX5 AABBCC 1 bright Light("AvatarFireball3") 
+	{
+	A_SpawnParticleEx
+	(
+		"",
+		TexMan.CheckForTexture("GNSML0"),
+		style: STYLE_None,
+		flags: SPF_ROLL|SPF_RELATIVE,
+		lifetime: 95,
+		size: 30.0,
+		xoff: -10,
+		startalphaf: 0.4,
+		fadestepf: -1,
+		startroll: random(-180,180)
+	);
+	A_SpawnParticleEx
+	(
+		"",
+		TexMan.CheckForTexture("LENYA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 1,
+		size: 80.0,
+		xoff: -10,
+		startalphaf: 0.6
+	);
+	A_SpawnItemEx("PM_DevilFlameTrails",0,0,0,0,0,0,0,128,0);
+	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+	}
+	loop;
+  Death:
+	TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
+    AFX5 D 2 bright Light("AvatarFireball4");
+    FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright;
+    stop;
+  }
 }
 
 Class OFireBallExplode : Actor

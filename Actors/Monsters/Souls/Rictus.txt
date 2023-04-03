@@ -30,15 +30,15 @@ Class Rictus : Actor
   Spawn:
     RICT A 1 A_Look();
     RICT A 0 RictusFlames();
-    RICT A 0 A_PlaySound("Rictus/Active", CHAN_7, 1.0, true);
+    RICT A 0 A_StartSound("Rictus/Active",CHAN_7);
     loop;
   See:
     RICT A 1 A_Chase();
     RICT A 0 RictusFlames();
-    RICT A 0 A_PlaySound("Rictus/Active", CHAN_7, 1.0, true);
+    RICT A 0 A_StartSound("Rictus/Active",CHAN_7);
     loop;
   Missile:
-    RICT A 0 A_PlaySound("Rictus/Active", CHAN_7, 1.0, true);
+    RICT A 0 A_PlaySound("Rictus/Active",CHAN_7);
     RICT A 0 A_JumpIfHealthLower(25, "Kamikaze");
     RICT A 1 A_FaceTarget();
     RICT A 0 RictusFlames();

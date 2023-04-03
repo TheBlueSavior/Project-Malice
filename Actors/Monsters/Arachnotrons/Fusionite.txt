@@ -499,21 +499,10 @@ Class PM_FusionShot : Actor
 				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 				lifetime: 4,
 				size: 50.0,
-				angle: 0,
 				xoff: random(-8,-12),
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.9,
 				fadestepf: -1,
-				sizestep: -6,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				sizestep: -6
 				);
 				A_SpawnParticleEx
 				(
@@ -523,22 +512,16 @@ Class PM_FusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 				lifetime: random(1,30),
 				size: frandom(0.2,10),
-				angle: 0,
 				xoff: random(-10,5),
 				yoff: random(-5,5),
 				zoff: random(-5,5),
 				velx: frandom(-0.6,0.6),
 				vely: frandom(-0.6,0.6),
 				velz: frandom(-0.6,0.6),
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 1.0,
 				fadestepf: -0.5,
 				sizestep: -0.5,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 				A_SpawnParticleEx
 				(
@@ -548,27 +531,14 @@ Class PM_FusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT,
 				lifetime: 1,
 				size: 95.0,
-				angle: 0,
 				xoff: -10,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
-				startalphaf: 0.15,
-				fadestepf: 0,
-				sizestep: 0,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				startalphaf: 0.15
 				);
 			}
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
 		Cont:
 			APPL AAABBB 1 Bright Light("GreenBall4")
 			{
@@ -581,21 +551,10 @@ Class PM_FusionShot : Actor
 				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 				lifetime: 4,
 				size: 50.0,
-				angle: 0,
 				xoff: -10,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.9,
 				fadestepf: -1,
-				sizestep: -6,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				sizestep: -6
 				);
 				A_SpawnParticleEx
 				(
@@ -605,22 +564,16 @@ Class PM_FusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 				lifetime: random(1,30),
 				size: frandom(0.2,10),
-				angle: 0,
 				xoff: random(-10,5),
 				yoff: random(-5,5),
 				zoff: random(-5,5),
 				velx: frandom(-0.6,0.6),
 				vely: frandom(-0.6,0.6),
 				velz: frandom(-0.6,0.6),
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 1.0,
 				fadestepf: -0.5,
 				sizestep: -0.5,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 				A_SpawnParticleEx
 				(
@@ -630,21 +583,8 @@ Class PM_FusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT,
 				lifetime: 1,
 				size: 95.0,
-				angle: 0,
 				xoff: -10,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
-				startalphaf: 0.15,
-				fadestepf: 0,
-				sizestep: 0,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				startalphaf: 0.15
 				);
 			}
 			Loop;
@@ -691,21 +631,10 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 				lifetime: 6,
 				size: 50.0,
-				angle: 0,
 				xoff: -5,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.9,
 				fadestepf: -1,
-				sizestep: -1,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				sizestep: -1
 				);
 				A_SpawnParticleEx
 				(
@@ -715,21 +644,11 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_RELATIVE,
 				lifetime: random(60,120),
 				size: 40.0,
-				angle: 0,
 				xoff: -5,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.3,
 				fadestepf: -1,
 				sizestep: 3,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 				A_SpawnParticleEx
 				(
@@ -739,28 +658,22 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 				lifetime: random(1,120),
 				size: frandom(0.2,20),
-				angle: 0,
 				xoff: random(-10,5),
 				yoff: random(-5,5),
 				zoff: random(-5,5),
 				velx: frandom(-0.6,0.6),
 				vely: frandom(-0.6,0.6),
 				velz: frandom(-0.6,0.6),
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 1.0,
 				fadestepf: -0.5,
 				sizestep: -0.5,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 			}
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
 		Cont:
 			DTPR A 1 Bright Light("GreenBall3")
 			{
@@ -772,21 +685,10 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 				lifetime: 6,
 				size: 50.0,
-				angle: 0,
 				xoff: -5,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.9,
 				fadestepf: -1,
-				sizestep: -1,
-				startroll: 0,
-				rollvel: 0,
-				rollacc: 0
+				sizestep: -1
 				);
 				A_SpawnParticleEx
 				(
@@ -796,21 +698,11 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_RELATIVE,
 				lifetime: random(60,120),
 				size: 40.0,
-				angle: 0,
 				xoff: -5,
-				yoff: 0,
-				velx: 0,
-				vely: 0,
-				velz: 0,
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 0.3,
 				fadestepf: -1,
 				sizestep: 3,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 				A_SpawnParticleEx
 				(
@@ -820,22 +712,16 @@ Class PM_ScatterFusionShot : Actor
 				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 				lifetime: random(1,120),
 				size: frandom(0.2,20),
-				angle: 0,
 				xoff: random(-10,5),
 				yoff: random(-5,5),
 				zoff: random(-5,5),
 				velx: frandom(-0.6,0.6),
 				vely: frandom(-0.6,0.6),
 				velz: frandom(-0.6,0.6),
-				accelx: 0,
-				accely: 0,
-				accelz: 0,
 				startalphaf: 1.0,
 				fadestepf: -0.5,
 				sizestep: -0.5,
-				startroll: random(-180,180),
-				rollvel: 0,
-				rollacc: 0
+				startroll: random(-180,180)
 				);
 			}
 			Loop;
@@ -878,7 +764,7 @@ Class PM_SmallFusionShot : Actor
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
 			Loop;
 		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0.75);
+			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
 		Cont:
 			FS03 AB 1 Bright Light("GreenBall5") A_SpawnParticle("80FF50",SPF_FULLBRIGHT|SPF_RELATIVE,14,16,0,random(-22,-5),random(-5,5),random(-5,5),0,0,0,0,0,0,1,-1,-2);
 			Loop;

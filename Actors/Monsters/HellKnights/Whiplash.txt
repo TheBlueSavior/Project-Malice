@@ -409,7 +409,7 @@ Class PM_WhiplashGroundSeeker : Actor
    {
    Spawn: 
 	TNT1 A 1;
-	TNT1 A 0 A_StartSound("Whiplash/GroundLoop",CHAN_7,0.7,1);
+	TNT1 A 0 A_StartSound("Whiplash/GroundLoop",CHAN_7,CHANF_LOOPING,0.7);
 	Go:
 		FLME ABCDEFGHIJKLM 1 Bright Light("WhipKnife") 
 		{

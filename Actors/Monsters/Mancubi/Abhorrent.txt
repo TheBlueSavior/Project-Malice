@@ -289,7 +289,7 @@ Class PM_AbhorBarrageBall : Fatshot
     TNT1 A 0 A_JumpIfTracerCloser(450,"Noise");
     Loop;
   Noise:
-    TNT1 A 0 A_StartSound("Abhor/BarrageWhiz",3,0.60);
+    TNT1 A 0 A_StartSound("Abhor/BarrageWhiz",3,CHANF_DEFAULT,0.60);
     TNT1 A 0 A_ScaleVelocity(3);
 	TNT1 AA 0 A_SpawnProjectile("AbhorBallExplode",0,0,random(0,360),2,random(0,360));
   Seek:

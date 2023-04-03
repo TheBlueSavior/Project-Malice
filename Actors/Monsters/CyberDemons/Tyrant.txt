@@ -823,7 +823,7 @@ Class TyrantStreamRocket : RevenantTracer
         TNT1 A 0 A_JumpIfTracerCloser(330,"Noise");
 		Loop;
     Noise:
-        TNT1 A 0 A_StartSound("FastMissileFlyby",3,0.90);
+        TNT1 A 0 A_StartSound("FastMissileFlyby",3,CHANF_DEFAULT,0.90);
     Cont:
         TYM2 A 1 BRIGHT Light("AvatarFireball3") A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		Loop;
@@ -941,7 +941,7 @@ Class TyrantSmallRocket : RevenantTracer
         TNT1 A 0 A_JumpIfTracerCloser(330,"Noise");
         Loop;
     Noise:
-        TNT1 A 0 A_StartSound("FastMissileFlyby",3,0.90);
+        TNT1 A 0 A_StartSound("FastMissileFlyby",3,CHANF_DEFAULT,0.90);
     Cont:
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{

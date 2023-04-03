@@ -573,17 +573,17 @@ Class PM_FiendSmallRocket : RevenantTracer
         TNT1 A 0 A_JumpIfTracerCloser(300,"Noise3");
         Loop;
     Noise:
-        TNT1 A 0 A_StartSound("FastMissileFlyby",3,0.90);
+        TNT1 A 0 A_StartSound("FastMissileFlyby",3,CHANF_DEFAULT,0.90);
     Cont:
 		PRJ3 A 1 BRIGHT Light("AvatarFireball1") A_Weave(2, 2, 2.0, 1.0);
 		Loop;
     Noise2:
-        TNT1 A 0 A_StartSound("FastMissileFlyby",3,0.90);
+        TNT1 A 0 A_StartSound("FastMissileFlyby",3,CHANF_DEFAULT,0.90);
     Cont2:
 		PRJ3 A 1 BRIGHT Light("AvatarFireball1") A_Weave(-2, -2, -2.0, -1.0);
 		Loop;
     Noise3:
-        TNT1 A 0 A_StartSound("FastMissileFlyby",3,0.90);
+        TNT1 A 0 A_StartSound("FastMissileFlyby",3,CHANF_DEFAULT,0.90);
     Cont3:
 		PRJ3 A 1 BRIGHT Light("AvatarFireball1") A_Weave(3, 3, 2.0, 1.0);
 		Loop;
