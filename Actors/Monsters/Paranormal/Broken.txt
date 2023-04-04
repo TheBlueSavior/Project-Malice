@@ -277,7 +277,7 @@ class PM_Broken : Actor
 		//TNT1 A 0 A_Jumpif((Distance3d(target) <= 125),"Shotgun");
 		TNT1 A 0 A_Jump(128,"Shotgun");
 	Isshooting:
-		VDGY F 1 {
+		VDGY F 3 {
 					ThrustThing(random(-360,360),1,0,0); 
 					//A_SetScale(frandom(.75,1.20),frandom(.80,1.20));
 					A_SetScale(1,1);

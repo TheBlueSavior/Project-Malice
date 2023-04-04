@@ -536,37 +536,6 @@ Class PM_NormalBloodMist : Actor
 	}
 }
 
-Class PM_XDeathSpawner : Actor 
-{
-    Default 
-	{
-       Gravity 0.0;
-       +NOGRAVITY;
-       +NOBLOCKMAP;
-       +THRUACTORS;
-       +DONTSPLASH;
-       +NOINTERACTION;
-       Height 1;
-       Radius 1;
-    }
-    override void PostBeginPlay() {
-        Super.PostBeginPlay();
-        for(int i=0; i<2; i++){
-            A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
-            for(int gib=0; gib<5; gib++){A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
-            A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
-        }
-        A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
-        A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
-    }
-    States {
-        Spawn:
-            TNT1 A 2;
-            Stop;
-    }
-}
-
-
 //GREEN BLOOD
 Class PM_GreenBloodBase : PM_NormalBloodBase
 {
