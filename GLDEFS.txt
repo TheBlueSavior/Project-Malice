@@ -6819,3 +6819,13 @@ SecondarySize 40
 Chance 0.05
 Offset 0 100 0 
 }
+
+Flickerlight PM_FastHorrorBlackflash
+{
+Color 2.0 2.0 2.0
+Subtractive 1
+Size 90
+SecondarySize 10
+Chance 0.5
+Offset 0 100 0 
+}

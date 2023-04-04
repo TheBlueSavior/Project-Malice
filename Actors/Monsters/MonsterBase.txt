@@ -167,9 +167,15 @@ class PMMonsterBase : Actor abstract
 		A_LookEx(LOF_NOSEESOUND, label: "Look");
 	}
 
-	void PM_Gib()
+	virtual void PM_Gib()
 	{
-	   A_SpawnItemEx("PM_XDeathSpawner",0,0,0,vel.x,vel.y,vel.z,0,SXF_USEBLOODCOLOR|SXF_ABSOLUTEVELOCITY);
+	 for(int i=0; i<2; i++){
+     A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+     for(int gib=0; gib<5; gib++){A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
+     A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+      }
+      A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
+      A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
 	}
 
 	void PM_LookingForPlayer()
