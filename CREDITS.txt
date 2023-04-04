@@ -76,7 +76,7 @@ Accensus - Target leading code, Venting sounds, Hitbox code
 Bugsie - Revamped bullet spark code
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
-
+H3LLW4LK3R - VoidElder, Broken sprites and code
 
 MY APOLOGIES IF I MISSED ANYONE!
 
@@ -118,7 +118,7 @@ Magmacow's Trashbag (on Gamebanana)
 Darkest Dungeon
 Nuclear Throne
 Arknights
-
+madness combat
 
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY

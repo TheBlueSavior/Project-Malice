@@ -1602,6 +1602,43 @@ beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4.ogg"
 
 $volume MancubStep 0.7
 
+//Voidelder
+
+ENTITY/GIGS	"Sounds/Monsters/Bosses/Voidelder/ENTITY-GIGS"
+
+ENTITY/AMB/SCREAM/LOOP1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-AMB-SCREAM-LOOP-1"
+ENTITY/AMB/SCREAM/LOOP2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-AMB-SCREAM-LOOP-2"
+$random ENTITY/AMB/SCREAM/LOOP {ENTITY/AMB/SCREAM/LOOP1 ENTITY/AMB/SCREAM/LOOP2}
+
+ENTITY/SCREAM/LOOP	"Sounds/Monsters/Bosses/Voidelder/ENTITY-SCREAM-LOOP-1"
+
+ENTITY/SLAM	"Sounds/Monsters/Bosses/Voidelder/ENTITY-SLAM"
+
+ENTITY/ROAR	"Sounds/Monsters/Bosses/Voidelder/ENTITY-ROAR-1"
+
+ENTITY/FOOTSTEP	"Sounds/Monsters/Bosses/Voidelder/ENTITY-FOOTSTEP"
+
+ENTITY/LAUGH	"Sounds/Monsters/Bosses/Voidelder/ENTITY-LAUGH-1"
+
+ENTITY/MELEE/YELL1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-1"
+ENTITY/MELEE/YELL2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-2"
+ENTITY/MELEE/YELL3	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-3"
+ENTITY/MELEE/YELL4	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-4"
+ENTITY/MELEE/YELL5	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-5"
+ENTITY/MELEE/YELL6	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-6"
+$random ENTITY/MELEE/YELL {ENTITY/MELEE/YELL1 ENTITY/MELEE/YELL2 ENTITY/MELEE/YELL3 ENTITY/MELEE/YELL4 ENTITY/MELEE/YELL5 ENTITY/MELEE/YELL6}
+
+ENTITY/HIT/SUCC1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-1"
+ENTITY/HIT/SUCC2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-2"
+ENTITY/HIT/SUCC3	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-3"
+ENTITY/HIT/SUCC4	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-4"
+ENTITY/HIT/SUCC5	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-5"
+ENTITY/HIT/SUCC6	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-6"
+ENTITY/HIT/SUCC7	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-7"
+ENTITY/HIT/SUCC8	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-8"
+$random ENTITY/HIT/SUCC {ENTITY/HIT/SUCC1 ENTITY/HIT/SUCC2 ENTITY/HIT/SUCC3 ENTITY/HIT/SUCC4 ENTITY/HIT/SUCC5 ENTITY/HIT/SUCC6 ENTITY/HIT/SUCC7 ENTITY/HIT/SUCC8}
+
+//Queen
 
 queen/sight quesit
 queen/pain quepain

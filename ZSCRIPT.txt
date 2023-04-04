@@ -92,5 +92,7 @@ version "4.10.0"
 //Bosses
 #include "Actors/Monsters/CyberDemons/Tyrant.txt"
 
+#include "Actors/Monsters/Masterminds/VoidElder.txt"
+
 //Paranormal
 #include "Actors/Monsters/Paranormal/Broken.txt"
