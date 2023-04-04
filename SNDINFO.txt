@@ -3429,6 +3429,16 @@ $volume BloodStalker/Roar 0.6
 BStalker/Death "Sounds/Monsters/Pinkies/BloodStalker/BStalkerDeath.ogg"
 BStalker/Warp "Sounds/Monsters/Pinkies/BloodStalker/BStalkerWarp.ogg"
 
+//Broken
+
+Broken/Pain/1	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_1"
+Broken/Pain/2	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_2"
+Broken/Pain/3	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_3"
+Broken/Pain/4	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_4"
+$random Broken/Pain/Light {Broken/Pain/1 Broken/Pain/2}
+$random Broken/Pain/Heavy {Broken/Pain/3 Broken/Pain/4}
+
+Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/Broken_LOOP"
 
 //Corpulent
 $random Corpulent/Sight	{ Corpulent/Sight1 Corpulent/Sight2 }
