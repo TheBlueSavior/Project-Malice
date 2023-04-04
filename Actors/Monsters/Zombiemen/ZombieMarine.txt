@@ -283,9 +283,9 @@ Class PM_ZombieMarine : PMMonsterBase
         Stop;
     XDeath:
 	    TNT1 A 0 A_StopSounds(0,0);
-        UDM2 O 5 A_NoBlocking;
+        UDM2 O 5 PM_Gib();
         UDM2 P 5 A_XScream;
-        UDM2 Q 5;
+        UDM2 Q 5 A_NoBlocking;
         UDM2 RSTU 5;
         UDM2 V -1;
         Stop;

@@ -364,7 +364,7 @@ Class PM_FeralImp : PMWrathMonsterBase
 	  A_StopSounds(0,0);
     A_RemoveChildren(1,RMVF_EVERYTHING);
     }
-    2RO4 A 5;
+    2RO4 A 5 PM_Gib();
     2RO4 B 5 A_XScream;
     2RO4 C 5;
     2RO4 D 5 A_NoBlocking;

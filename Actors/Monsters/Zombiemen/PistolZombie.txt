@@ -158,9 +158,9 @@ Class PM_PistolZombie : PMMonsterBase
         Stop;
     XDeath:
 	    TNT1 A 0 A_StopSounds(0,0);
-		A02A M 5 A_NoBlocking;
+		A02A M 5 PM_Gib();
 		A02A N 5 A_XScream;
-        A02A O 5;
+        A02A O 5 A_NoBlocking;
         A02A P 5;
         A02A Q 5;
         A02A RST 5;

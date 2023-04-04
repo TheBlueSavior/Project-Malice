@@ -307,9 +307,9 @@ Class PM_RFZombie: PMMonsterBase
         Stop;
     XDeath:
 	    TNT1 A 0 A_StopSounds(0,0);
-        RFTR MNO 5 A_NoBlocking;
+        RFTR MNO 5 PM_Gib();
         RFTR P 5 A_XScream;
-        RFTR Q 5; 
+        RFTR Q 5 A_NoBlocking; 
         RFTR RST 5;
         RFTR U -1;
         Stop;

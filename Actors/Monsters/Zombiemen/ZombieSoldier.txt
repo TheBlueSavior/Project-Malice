@@ -301,9 +301,9 @@ Class PM_ZombieSoldier : PMMonsterBase
 		Stop;
     XDeath:
 	    TNT1 A 0 A_StopSounds(0,0);
-		POS1 M 5 A_NoBlocking;
+		POS1 M 5 PM_Gib();
 		POS1 N 5 A_XScream;
-        POS1 O 5;
+        POS1 O 5 A_NoBlocking;
         POS1 P 5;
         POS1 Q 5;
         POS1 RST 5;

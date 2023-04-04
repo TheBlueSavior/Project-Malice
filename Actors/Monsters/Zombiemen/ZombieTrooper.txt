@@ -370,7 +370,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 	    TNT1 A 0 A_StopSounds(0,0);
         UTM2 J 5 A_NoBlocking;
         UTM2 K 5 A_Scream;
-        UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,-5,0,0,0,0,SXF_NOCHECKPOSITION);
+        UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION);
         UTM2 M 5;
 		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
         UTM2 N -1;
@@ -388,9 +388,9 @@ Class PM_ZombieTrooper : PMMonsterBase
         Stop;
     XDeath:
 	    TNT1 A 0 A_StopSounds(0,0);
-        UTM2 O 5 A_NoBlocking;
+        UTM2 O 5 PM_Gib();
         UTM2 P 5 A_XScream;
-        UTM2 Q 5;
+        UTM2 Q 5 A_NoBlocking;
         UTM2 RSTU 5;
         UTM2 V -1;
         Stop;

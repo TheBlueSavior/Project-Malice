@@ -152,7 +152,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
     HCPO L -1;
     Stop;
   XDeath:
-    HCPO M 5;
+    HCPO M 5 PM_Gib();
     HCPO N 5 A_XScream;
     HCPO O 5 A_NoBlocking;
     HCPO PQR 5;

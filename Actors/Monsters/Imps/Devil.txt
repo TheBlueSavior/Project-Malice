@@ -503,7 +503,7 @@ Class PM_Devil : PMMonsterBase
     stop;
   XDeath:
     TNT1 A 0 A_StopSounds(0,0);
-    D3IM N 5;
+    D3IM N 5 PM_Gib();
     D3IM O 5 A_XScream();
     D3IM P 5;
     D3IM Q 5 A_NoBlocking();

@@ -167,6 +167,11 @@ class PMMonsterBase : Actor abstract
 		A_LookEx(LOF_NOSEESOUND, label: "Look");
 	}
 
+	void PM_Gib()
+	{
+	   A_SpawnItemEx("PM_XDeathSpawner",0,0,0,vel.x,vel.y,vel.z,0,SXF_USEBLOODCOLOR|SXF_ABSOLUTEVELOCITY);
+	}
+
 	void PM_LookingForPlayer()
 	{
 		A_Chase(null, "Spotted", CHF_NOPLAYACTIVE);

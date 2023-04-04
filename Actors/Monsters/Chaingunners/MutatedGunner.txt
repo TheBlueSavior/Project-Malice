@@ -193,7 +193,7 @@ Class PM_MutatedGunner : PMMonsterBase
 			D3C2 N -1;
 			Stop;
 		XDeath:
-			D3C2 O 5;
+			D3C2 O 5 PM_Gib();
 			D3C2 P 5 A_XScream;
 			D3C2 Q 5 A_NoBlocking;
 			D3C2 RST 5;
