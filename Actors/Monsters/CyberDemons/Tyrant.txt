@@ -306,10 +306,10 @@ Class PM_Tyrant : PMMonsterBase
   PlasmaThrower:
 	TNT1 A 0 A_Jump(180,"Missile1","Missile2","Missile3","Missile4","Missile6","Missile7","Missile8","Missile9");
 	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 A_StartSound("Tyrant/Flamer",CHAN_7,CHANF_LOOPING,1);
 	DUKE EEE 3 A_FaceTarget();
 	DUKE FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 Light("TyrantRail")
 		{
-		A_StartSound("Tyrant/Flamer",CHAN_7,1.0,True);
 		A_SpawnProjectile("RedChargeFlare",68,-22);
 		A_SpawnProjectile("TyrantPlasmaThrower",68,-25,random(-3,3),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*+1+2);
 		A_SpawnProjectile("TyrantPlasmaThrower",68,-25,random(-3,3),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*+1+2);
