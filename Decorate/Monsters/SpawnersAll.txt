@@ -153,6 +153,12 @@ Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 	DropItem "PM_Tyrant", 255, 1
 }
 
+Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS
+{
+	DropItem "Voidspawn",100, 20
+	DropItem "PM_ControlledSoldier",100, 5
+	DropItem "PM_Broken",100, 2
+}
 
 //Decoration
 
