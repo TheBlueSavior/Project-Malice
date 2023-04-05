@@ -3361,11 +3361,34 @@ $volume HPriest/SoulLoop 0.4
 //Void Floater
 
 Floater/Sight "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
+$rolloff Floater/Sight 200 2500
+$volume Floater/Sight 0.5
+Floater/Wail "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail.ogg"
+$rolloff Floater/Wail 100 2500
+$volume Floater/Wail 0.4
+$pitchset Floater/Wail 0.8 1.1
 Floater/Active "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
 Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
 $rolloff Floater/Roar 300 2500
 Floater/Pain "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPain.ogg"
+$volume Floater/Pain 0.4
+$pitchset Floater/Pain 0.9 1.5
 Floater/Phase "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPhase.ogg"
+
+$random Floater/Fire { FloaterFire1 FloaterFire2 FloaterFire3 FloaterFire4 FloaterFire5 FloaterFire6 FloaterFire7 FloaterFire8 FloaterFire9 FloaterFire10 }
+FloaterFire1 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain1.ogg"
+FloaterFire2 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain2.ogg"
+FloaterFire3 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSeriousPain3.ogg"
+FloaterFire4 "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnDeath.ogg"
+FloaterFire5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell1.ogg"
+FloaterFire6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell2.ogg"
+FloaterFire7	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell3.ogg"
+FloaterFire8	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
+FloaterFire9	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
+FloaterFire10	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
+
+$volume Floater/Fire 0.8
+$pitchset Floater/Fire 0.1 2.0
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
