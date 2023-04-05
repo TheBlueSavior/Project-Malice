@@ -810,6 +810,14 @@ NMarePull4 "Sounds/Monsters/Spectres/Nightmare/NightmarePull4.ogg"
 $limit Nightmare/WindPull 5
 $volume Nightmare/Sight 0.5
 
+$random Avatar/WindPull { AvaWPull1 AvaWPull2 AvaWPull3 AvaWPull4 }
+AvaWPull1 "Sounds/Monsters/Spectres/Nightmare/NightmarePull1.ogg"
+AvaWPull2 "Sounds/Monsters/Spectres/Nightmare/NightmarePull2.ogg"
+AvaWPull3 "Sounds/Monsters/Spectres/Nightmare/NightmarePull3.ogg"
+AvaWPull4 "Sounds/Monsters/Spectres/Nightmare/NightmarePull4.ogg"
+
+$limit Avatar/WindPull 3
+
 //Nailgunner
 $random Nailgunner/Sight { NailZSight1 NailZSight2 NailZSight3 NailZSight4 }
 NailZSight1 "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerSight1.ogg"
@@ -3474,14 +3482,6 @@ Broken/Pain/3	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_3"
 Broken/Pain/4	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_4"
 $random Broken/Pain/Light {Broken/Pain/1 Broken/Pain/2}
 $random Broken/Pain/Heavy {Broken/Pain/3 Broken/Pain/4}
-$random Broken/TP { Broken/TP1 Broken/TP2 Broken/TP3 }
-Broken/TP1 "Sounds/Monsters/Paranormal/Broken/BrokenTP1.ogg"
-Broken/TP2 "Sounds/Monsters/Paranormal/Broken/BrokenTP2.ogg"
-Broken/TP3 "Sounds/Monsters/Paranormal/Broken/BrokenTP3.ogg"
-
-$limit Broken/TP 12
-$attenuation Broken/TP 0.4
-$rolloff Broken/TP 750 1300
 
 Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/Broken_LOOP"
 
@@ -3612,6 +3612,10 @@ PM/ControllerHostCry "Sounds/Other/ControllerHostCry.ogg"
 $rolloff PM/ControllerScream 300 1500
 $rolloff PM/ControllerPain 300 1600
 $rolloff PM/ControllerDrag 300 2200
+
+PM/AvatarBreathe "Sounds/Other/ControllerDrag.ogg"
+$rolloff PM/AvatarBreathe 2000 4200
+$limit PM/AvatarBreathe 8 
 
 PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
 $rolloff PM/ControllerTransform 300 1600
