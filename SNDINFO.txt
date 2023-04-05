@@ -1612,7 +1612,13 @@ $volume MancubStep 0.7
 
 //Entropic Avatar
 
+PM/AvatarBreathe	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarBreath.ogg"
+$rolloff PM/AvatarBreathe 2000 4200
+$limit PM/AvatarBreathe 8 
+
 EntAva/Footstep "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarFootstep.ogg"
+$rolloff EntAva/Footstep 500 10000
+
 EntAva/MulchLoop "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarMulchLoop.ogg"
 $rolloff EntAva/MulchLoop 1000 3500
 EntAva/Giggle	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarGiggles.wav"
@@ -3634,10 +3640,6 @@ PM/ControllerHostCry "Sounds/Other/ControllerHostCry.ogg"
 $rolloff PM/ControllerScream 300 1500
 $rolloff PM/ControllerPain 300 1600
 $rolloff PM/ControllerDrag 300 2200
-
-PM/AvatarBreathe "Sounds/Other/ControllerDrag.ogg"
-$rolloff PM/AvatarBreathe 2000 4200
-$limit PM/AvatarBreathe 8 
 
 PM/ControllerTransform "Sounds/Other/ControllerTransform.ogg"
 $rolloff PM/ControllerTransform 300 1600
