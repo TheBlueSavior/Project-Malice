@@ -5,7 +5,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 
 	Default
 	{
-		Health 2000;
+		Health 3000;
 		Radius 28;//26;
 		Height 90;//89;
 		Mass 999999;
