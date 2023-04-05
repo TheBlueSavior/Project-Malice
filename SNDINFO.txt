@@ -3505,7 +3505,17 @@ Broken/TP2 "Sounds/Monsters/Paranormal/Broken/BrokenTP2.ogg"
 Broken/TP3 "Sounds/Monsters/Paranormal/Broken/BrokenTP3.ogg"
 
 Broken/Plasma "Sounds/Monsters/Paranormal/Broken/BrokenPlasma.ogg"
+Broken/VFGCharge "Sounds/Monsters/Paranormal/Broken/BrokenBFGCharge.ogg"
+Broken/VFGFire "Sounds/Monsters/Paranormal/Broken/BrokenBFGFire.ogg"
+Broken/VFG "Sounds/Monsters/Paranormal/Broken/BrokenBFGProj.ogg"
+Broken/VFGLoop "Sounds/Monsters/Paranormal/Broken/BrokenBFGLoop.ogg"
+Broken/VFGScream "Sounds/Monsters/Paranormal/Broken/BrokenBFGScream.ogg"
+Broken/VFGExp "Sounds/Monsters/Paranormal/Broken/BrokenBFGExplode.ogg"
 $volume Broken/Plasma 0.75
+$rolloff Broken/VFGCharge 200 2500
+$rolloff Broken/VFGFire 400 2400
+$rolloff Broken/VFGScream 500 2500
+$rolloff Broken/VFGExp 400 2500
 
 $limit Broken/TP 12
 $attenuation Broken/TP 0.4
