@@ -3474,6 +3474,14 @@ Broken/Pain/3	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_3"
 Broken/Pain/4	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_4"
 $random Broken/Pain/Light {Broken/Pain/1 Broken/Pain/2}
 $random Broken/Pain/Heavy {Broken/Pain/3 Broken/Pain/4}
+$random Broken/TP { Broken/TP1 Broken/TP2 Broken/TP3 }
+Broken/TP1 "Sounds/Monsters/Paranormal/Broken/BrokenTP1.ogg"
+Broken/TP2 "Sounds/Monsters/Paranormal/Broken/BrokenTP2.ogg"
+Broken/TP3 "Sounds/Monsters/Paranormal/Broken/BrokenTP3.ogg"
+
+$limit Broken/TP 12
+$attenuation Broken/TP 0.4
+$rolloff Broken/TP 750 1300
 
 Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/Broken_LOOP"
 

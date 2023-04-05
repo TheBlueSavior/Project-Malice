@@ -145,7 +145,7 @@ Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 
 Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 {
-	DropItem "PM_AracnorbQueen", 255, 10
+	DropItem "PM_AracnorbQueen", 255, 35
 	DropItem "PM_VoidElder", 255, 1
 }
 
