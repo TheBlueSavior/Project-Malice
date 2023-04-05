@@ -470,6 +470,7 @@ Class PM_BrokenPelletTracer : PM_PelletTracer
 {
  Default
  {
+ RenderStyle "Normal";
  Alpha 1.5;
  }
  States
