@@ -3352,6 +3352,14 @@ HPriest/SoulLoop "Sounds/Monsters/Chaingunners/HellPriest/HPriestSoulLoop.ogg"
 $rolloff HPriest/SoulLoop 300 3000
 $volume HPriest/SoulLoop 0.4
 
+//Void Floater
+
+Floater/Sight "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
+Floater/Active "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
+Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
+Floater/Pain "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPain.ogg"
+Floater/Phase "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPhase.ogg"
+
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
 RotflySee1          "sounds/Monsters/Fodder/Rotfly/RotflySee1.ogg"

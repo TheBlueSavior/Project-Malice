@@ -73,7 +73,7 @@ Horror Movie Guy - Bruiser/Doom 4 Baron sprites
 Ice Sprites/Code - Project Brutality
 Light and Dark Smoke - Arcanum
 Accensus - Target leading code, Venting sounds, Hitbox code
-Bugsie - Revamped bullet spark code
+Bugsie - Revamped bullet spark code, Void Floater sprites and code
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
 H3LLW4LK3R - VoidElder, Broken sprites and code
@@ -118,6 +118,7 @@ Magmacow's Trashbag (on Gamebanana)
 Darkest Dungeon
 Nuclear Throne
 Arknights
+Actfancer
 madness combat
 
 

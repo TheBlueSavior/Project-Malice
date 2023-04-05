@@ -62,6 +62,7 @@ version "4.10.0"
 #include "Actors/Monsters/Cacodemons/Watcher.txt"
 #include "Actors/Monsters/Cacodemons/Wicked.txt"
 #include "Actors/Monsters/Cacodemons/Wretched.txt"
+#include "Actors/Monsters/Cacodemons/VoidFloater.txt"
 
 //Elementals
 #include "Actors/Monsters/Elementals/Defiler.txt"

@@ -1,0 +1,626 @@
+Class PM_VoidFloater : PMMonsterBase
+{
+	Default
+	{
+		Obituary "%o is gone.";
+		HitObituary "%o doesn't want to do this anymore.";
+		Tag "V?ID F??AT?R";
+		Health 1000;
+		GibHealth 400;
+		Radius 31;
+		Height 56;
+		Mass 400;
+		Speed 1;
+		Meleerange 44;
+		Meleethreshold 66;
+		Species "Cacodemon";
+		+QUICKTORETALIATE
+		+NOBLOOD
+		+THRUSPECIES
+		+NONSHOOTABLE
+		+SLIDESONWALLS
+		+DONTHARMCLASS
+		+NOGRAVITY
+		-FLOORCLIP
+		+DONTHARMSPECIES
+		+DONTFALL
+		+NOICEDEATH
+		+NOBLOCKMONST
+		+LOOKALLAROUND
+		+NOINFIGHTING
+		+NOPAIN
+		+BRIGHT
+		+DONTMORPH
+		BloodType "PM_BlueBloodBase";
+		SeeSound "Floater/Sight";
+		ActiveSound "Floater/Idle";
+		PainSound "Floater/Pain";
+		DeathSound "Floater/Death";
+	}
+	
+	int noclipatfirstsight;
+	bool waddling;
+	int oldhealth;
+	bool morphed;
+	
+	override void PostBeginPlay()
+	{
+		noclipatfirstsight = random(0, 1);
+		oldhealth = health;
+	}
+	
+	void FloaterStalk()
+	{
+		if (getAge() % 200) waddling = random(0, 1);
+		if (waddling) for (int i = 30; i > 0; i--) A_Wander();
+		A_Recoil(-1);
+		oldhealth = health;
+		
+		switch (random(0, 50))
+		{
+			case 10: SetStateLabel("Chase"); break;
+			case 20: SetStateLabel("Phase"); break;
+			case 50: SetStateLabel("Mimic");
+			bNOCLIP = false;
+			bNOPAIN = false;
+			bFLOATBOB = true;
+			bNOBLOOD = false;
+			bNONSHOOTABLE = false;
+			damagefactor = 0.2;
+			activesound = "Wretched/Active";
+			health = 400;
+			morphed = true;
+			SetTag("Wretched");
+			break;
+		}
+	}
+	
+	void FloaterState()
+	{
+		bNOCLIP = true;
+		bNOPAIN = true;
+		bNOBLOOD = true;
+		bFLOATBOB = false;
+		bNONSHOOTABLE = false;
+		morphed = false;
+		health = oldhealth;
+		damagefactor = 1.0;
+		activesound = "Floater/Idle";
+		SetTag("V?ID F??AT?R");
+		A_Stop();
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 10 { for (int i = 100; i > 0; i--) A_Wander(); PM_Look(); }
+		Loop;
+	Look:
+		TNT1 A 10 { bNOCLIP = noclipatfirstsight; for (int i = 100; i > 0; i--) A_Wander(); PM_LookingForPlayer(); }
+		Loop;
+	Spotted:
+		TNT1 A 100;
+		Goto Roar;
+	Roar:
+		VIFL A 10 Light("PM_HorrorBlackflash")
+		{
+			FloaterState();
+			bNONSHOOTABLE = false;
+			A_FaceTarget();
+			A_StartSound("Skulker/Port", CHAN_7, attenuation: ATTN_NONE);
+			bNOCLIP = true;
+		}
+		VIFL B 10 Light("PM_HorrorBlackflash") A_StartSound(SeeSound, CHAN_VOICE, attenuation: 0.75);
+		VIFL CDDDDDDDDDDDDDDD 5 Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget();
+			A_QuakeEx(3, 3, 0, 20, 0, 4000);
+		}
+		Goto Dissapear;
+	Dissapear:
+		TNT1 A 1 A_StartSound("Skulker/Port", CHAN_7);
+		TNT1 A 1 FloaterStalk();
+		Goto Dissapear+1;
+	Phase:
+		TNT1 A 0 { A_StartSound("Floater/Phase", CHAN_6, attenuation: ATTN_IDLE); A_Stop(); Vel3DFromAngle(10, random(0, 360), frandom(-90, 90)); }
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+		{
+			A_FaceTarget();
+			actor trail = actor(spawn("PM_FloaterTrail", pos));
+			if (trail) trail.angle = angle;
+			
+			if (!random(0, 20) && (target && Distance3D(target) < 400))
+			{
+				A_StartSound("Floater/Roar", CHAN_VOICE);
+				A_StopSound(CHAN_6);
+				SetStateLabel("Lunge");
+			}
+		}
+		TNT1 A 0 A_StopSound(CHAN_6);
+		Goto Dissapear;
+	Lunge:
+		VIFL ABC 5 Light("PM_HorrorBlackflash")
+		{
+			A_SpawnItemEx("PM_ControllerChargeMist",random(10,10),random(-20,20),random(0,45),0,0,0,0,0);
+			A_FaceTarget();
+		}
+		VIFL DDDDDDDDDDD 3 Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget(0.5, 0.5);
+			A_Recoil(-2.35);
+			
+			A_SpawnParticleEx
+			(   
+			 "000000",
+			 TexMan.CheckForTexture("GNSMK0"),
+			 style: STYLE_Normal,
+			 flags: SPF_ROLL|SPF_RELATIVE,
+			 lifetime: 50,
+			 size: frandom(152,195),
+			 xoff: frandom(-30,30),
+			 yoff: frandom(-30,30),
+			 zoff: frandom(0,45),
+			 velx: frandom(-1.4,1.4),
+			 vely: frandom(-1.4,1.4),
+			 velz: frandom(-1.4,1.4),
+			 startalphaf: frandom(0.1,0.35),
+			 fadestepf: -0.5,
+			 sizestep: frandom(3,6.4),
+			 startroll: random(-180,180),
+			 rollvel: 0,
+			 rollacc: 0
+			);
+		
+			A_SpawnProjectile("CBruteJump", 32, flags: CMF_AIMDIRECTION);
+		}
+		TNT1 A 0 A_Stop();
+		Goto Dissapear;
+	Chase:
+		VIFL A 4 Light("PM_HorrorBlackflash")
+		{
+			A_Recoil(-0.2);
+			A_Chase();
+			A_FaceTarget();
+			
+			if (!random(0, 20))
+			{
+				A_StartSound("Broken/TP", CHAN_BODY);
+				for (int i = random(6, 13); i > 0; i--)
+				{
+					A_SpawnParticleEx
+					(   
+					 0x000000,
+					 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+					 style: STYLE_Normal,
+					 flags: SPF_RELATIVE,
+					 lifetime: 3,
+					 size: frandom(20,70),
+					 xoff: frandom(-40,40),
+					 yoff: frandom(-40,40),
+					 zoff: frandom(-40,40),
+					 fadestepf: 0,
+					 sizestep: 0
+					);
+				}
+				for (int i = random(10, 1000); i > 0; i--) A_Chase(null, null, CHF_NOPLAYACTIVE);
+				for (int i = random(6, 13); i > 0; i--)
+				{
+					A_SpawnParticleEx
+					(   
+					 0x000000,
+					 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+					 style: STYLE_Normal,
+					 flags: SPF_RELATIVE,
+					 lifetime: 3,
+					 size: frandom(20,70),
+					 xoff: frandom(-40,40),
+					 yoff: frandom(-40,40),
+					 zoff: frandom(-40,40),
+					 fadestepf: 0,
+					 sizestep: 0
+					);
+				}
+			}
+		}
+		Loop;
+	Missile:
+		VIFL B 0 A_Jump(10, "Laser");
+		VIFL B 0
+		{
+			vel.x /= 5;
+			vel.y /= 5;
+			vel.z /= 5;
+			A_StartSound(PainSound, CHAN_VOICE);
+		}
+		VIFL BCD 5 Light("PM_HorrorBlackflash") A_FaceTarget();
+		VIFL DDDDDDDDDDD random(1, 10) Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget();
+			A_StartSound("EntAva/Yell", CHAN_WEAPON, volume: 0.75, pitch: frandom(1.2, 2.4), startTime: 0.8);
+			A_SpawnProjectile("PM_FloaterBall", 30, 0, frandom(-7, 7), CMF_OFFSETPITCH, frandom(-7, 7));
+		}
+		VIFL D 0 Light("PM_HorrorBlackflash")
+		{
+			if (!random(0, 2) && (target && distance3D(target) < 400)) SetStateLabel("Lunge");
+			switch (random(0, 4))
+			{
+				case 2: SetStateLabel("Phase"); break;
+				case 4: SetStateLabel("Dissapear"); break;
+			}
+		}
+		Goto Chase;
+	Laser:
+		TNT1 A 40 A_Stop();
+		VIFL B 0 A_StartSound(SeeSound, CHAN_VOICE);
+		VIFL BCDDDDDDDDDDDD 3 Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget();
+			for (int i = random(6, 1); i > 0; i--)
+			{
+				A_SpawnParticleEx
+				(   
+				 0x000000,
+				 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+				 style: STYLE_Normal,
+				 flags: SPF_RELATIVE,
+				 lifetime: 3,
+				 size: frandom(20,70),
+				 xoff: frandom(-40,40),
+				 yoff: frandom(-40,40),
+				 zoff: frandom(-40,40),
+				 fadestepf: 0,
+				 sizestep: 0
+				);
+			}
+		}
+		VIFL DDDDDDDDDDD random(1, 10) Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget(0.5, 0.5);
+			A_StartSound("EntAva/Yell", CHAN_WEAPON, CHANF_OVERLAP, volume: 0.75, pitch: frandom(10.2, 4.4), startTime: 0.8);
+			A_SpawnProjectile("PM_FloaterLaser", 30, 0, 0, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		VIFL D 0 Light("PM_HorrorBlackflash")
+		{
+			if (!random(0, 1) && (target && distance3D(target) < 400)) SetStateLabel("Lunge");
+			switch (random(0, 2))
+			{
+				case 1: SetStateLabel("Phase"); break;
+				case 2: SetStateLabel("Dissapear"); break;
+			}
+		}
+		Goto Chase;
+	Pain:
+		VIFL E 4
+		{
+			if (morphed) SetStateLabel("WPain");
+		}
+		VIFL F 4 A_Pain;
+		VIFL A 0 A_Jump(128, "Dissapear");
+		Goto Chase;
+	WPain:
+		C1C2 E 3
+		{
+			if (random(0, 5))
+			{
+				FloaterState();
+				SetStateLabel("Pain");
+			}
+		}
+		C1C2 E 3 A_StartSound("Wretched/Pain", CHAN_VOICE);
+		Goto Mimic;
+	Death:
+		VIFL F 30
+		{
+			bNOBLOOD = true;
+			bFLOATBOB = false;
+			A_FaceTarget(); A_Pain();
+		}
+		VIFL ABCD 10 A_FaceTarget();
+		VIFL C 0 A_SpawnProjectile("PM_FloaterFlee", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(0, 360));
+		Stop;
+	Mimic:
+		TNT1 A 0 A_SetSpeed(4);
+		C1C2 AAAA 2 
+		{
+			if (!random(0, 2) && (target && distance3D(target) < 200))
+			{
+				FloaterState();
+				SetStateLabel("Roar");
+			}
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		CA2B AAAA 2 
+		{
+			if (!random(0, 2) && (target && distance3D(target) < 200))
+			{
+				FloaterState();
+				SetStateLabel("Roar");
+			}
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		C1C2 AAAA 2 
+		{
+			if (!random(0, 2) && (target && distance3D(target) < 200))
+			{
+				FloaterState();
+				SetStateLabel("Roar");
+			}
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		CA2C AAAA 2 
+		{
+			if (!random(0, 2) && (target && distance3D(target) < 200))
+			{
+				FloaterState();
+				SetStateLabel("Roar");
+			}
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		Loop;
+	MimicMissile:
+		TNT1 A 0 A_Jump(15,"WRoar");
+		TNT1 A 0 A_Jump(10,"WTriShot");
+		TNT1 A 0 A_Recoil(-0.3);
+		C1C2 ABC 5
+		{
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		C1C2 D 6 Light("Wretchball2")
+		{
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+			A_StartSound("Wretched/Spit",CHAN_7);
+			A_SpawnProjectile("PM_WretchedBall",25);
+		}
+		C1C2 CBA 5 Light("Wretchball4")
+		{
+			A_Chase("MimicMelee", "MimicMissile");
+			A_FaceTarget();
+		}
+		Goto Mimic;
+	WRoar:
+		TNT1 A 0 A_Recoil(-0.6);
+		C1C2 AB 3 A_FaceTarget();
+		TNT1 A 0 A_StartSound("Wretched/Sight");
+		C1C2 CCDCCDCCC 6 A_FaceTarget();
+		C1C2 BA 3 A_FaceTarget();
+		Goto Mimic;
+	MimicMelee:
+		TNT1 A 0 A_Jump(150,1);
+		Goto Missile;
+		TNT1 A 0 A_JumpIfCloser(70,"Roar");
+		TNT1 A 0 A_ScaleVelocity(0);
+		TNT1 A 0 A_StartSound("");	
+		C1C2 AB 4 A_FaceTarget();
+		TNT1 A 0 A_StartSound("Wretched/Bite");
+		C1C2 DDDDDDDD 1
+		{
+			A_Recoil(-3);
+			A_SpawnProjectile("BruteJump",-8,0,0,2,0);
+		}
+		C1C2 DD 2 A_SpawnProjectile("BruteJump",-8,0,0,2);
+		C1C2 D 3 A_ScaleVelocity(0.5);
+		C1C2 C 4 A_ScaleVelocity(0.25);
+		C1C2 B 3 A_ScaleVelocity(0);
+		Goto Mimic;
+	WTriShot:
+		TNT1 A 0 A_Recoil(-0.08);
+		TNT1 A 0 A_StartSound("Wretched/Charge");
+		CA22 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Wretchball2")
+		{
+			A_FaceTarget();
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("DTPRB0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: random(70,130),
+			xoff: 20,
+			zoff: 18,
+			startalphaf: 0.3,
+			fadestepf: 0.1,
+			sizestep: 0,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("BLULA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,10),
+			size: random(1,100),
+			xoff: 20,
+			zoff: 18,
+			velx: random(-3,3),
+			vely: random(-3,3),
+			velz: random(-3,3),
+			startalphaf: frandom(0,1),
+			startroll: random(-180,180)
+			);
+		}
+		C1C2 ABC 2 A_FaceTarget();
+		C1C2 DDDDD 5 Light("Wretchball2")
+		{
+			A_FaceTarget();
+			A_StartSound("Wretched/Spit",CHAN_7);
+			A_SpawnProjectile("PM_WretchedBall",25,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
+		}
+		C1C2 DDCBA 7 Bright A_FaceTarget();
+		Goto Mimic;
+	}
+}
+
+Class PM_FloaterFlee : Actor
+{
+  Default
+  {
+  +NOINTERACTION;
+  +NOGRAVITY
+  +THRUACTORS;
+  +MISSILE;
+  +BRIGHT;
+  Speed 30;
+  }
+  
+  States
+  {
+  Spawn:
+	VIFL A 100 BRIGHT;
+	Stop;
+	}
+}
+
+Class PM_FloaterBall : CacodemonBall
+{
+  Default
+  {
+	Damage 8;
+	Radius 5;
+	Height 10;
+	+SEEKERMISSILE
+	Seesound "";
+	DeathSound "";
+	DamageType "Ice";
+	Speed 15;
+	FastSpeed 20;
+  }
+  
+	states
+  	{
+  Spawn:
+    TNT1 A 1 Light("SmallBlacklight")
+	{
+		for (int i = random(1, 3); i > 0; i--)
+		{
+			A_SpawnParticleEx
+			(   
+			 0x000000,
+			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+			 style: STYLE_Normal,
+			 flags: SPF_RELATIVE,
+			 lifetime: 10,
+			 size: frandom(1,20),
+			 xoff: frandom(-10,10),
+			 yoff: frandom(-10,10),
+			 zoff: frandom(-10,10),
+			 fadestepf: 0,
+			 sizestep: 0
+			);
+		}
+		
+		if (!random(0, 2))
+		{
+		A_Tracer2(2);
+		}
+		else
+		{
+		vel.x += frandom(-2, 2);
+		vel.y += frandom(-2, 2);
+		vel.z += frandom(-2, 2);
+		}
+	}
+	loop;
+  Death:
+	TNT1 A 0 A_StartSound("ENTITY/MELEE/YELL", CHAN_BODY, volume: 0.5, pitch: frandom(1.2, 2.4) + frandom(0, 2), startTime: frandom(0.8, 0.9));
+    TNT1 AAAAAAAAA 2 Light("SmallBlacklight")
+	{
+		for (int i = random(6, 13); i > 0; i--)
+		{
+			A_SpawnParticleEx
+			(   
+			 0x000000,
+			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+			 style: STYLE_Normal,
+			 flags: SPF_RELATIVE,
+			 lifetime: 3,
+			 size: frandom(20,70),
+			 xoff: frandom(-40,40),
+			 yoff: frandom(-40,40),
+			 zoff: frandom(-40,40),
+			 fadestepf: 0,
+			 sizestep: 0
+			);
+		}
+	}
+    stop;
+  }
+}
+
+Class PM_FloaterLaser : FastProjectile
+{
+  Default
+  {
+  +RIPPER
+  Damage 5;
+  Radius 15;
+  Height 30;
+  Speed 150;
+  DamageType "Ice";
+  }
+  
+  override void Effect()
+  {
+	super.Effect();
+	
+	for (int i = random(6, 13); i > 0; i--)
+	{
+		A_SpawnParticleEx
+		(   
+		 0x000000,
+		 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+		 style: STYLE_Normal,
+		 flags: SPF_RELATIVE,
+		 lifetime: 3,
+		 size: frandom(20,70),
+		 xoff: frandom(-40,40),
+		 yoff: frandom(-40,40),
+		 zoff: frandom(-40,40),
+		 fadestepf: 0,
+		 sizestep: 0
+		);
+	}
+  }
+  
+  States
+  {
+  Spawn:
+	TNT1 A 1
+	{
+		if (!random(0, 1))
+			A_SpawnProjectile("PM_ControllerHomingSoul",0,0,random(0, 360),CMF_OFFSETPITCH,random(-90, 90));
+	}
+	Loop;
+  Death:
+	TNT1 A 0;
+	Stop;
+  }
+}
+  
+Class PM_FloaterTrail : Actor
+{
+  Default
+  {
+  +BRIGHT
+  +NOGRAVITY
+  -SOLID
+  +NOINTERACTION
+  RenderStyle "Stencil";
+  StencilColor "Black";
+  Alpha 0.1;
+  }
+  
+  States
+  {
+  Spawn:
+	VIFL A 10;
+	Stop;
+  }
+}

@@ -594,7 +594,7 @@ Class PM_BrokenPlasmaShot : Actor
 		 size: frandom(20,40),
 		 xoff: frandom(-8,8),
 		 yoff: frandom(-8,8),
-		 zoff: frandom(0,5),
+		 zoff: frandom(-1,1),
 		 velx: frandom(-1,1),
 		 vely: frandom(-1,1),
 		 velz: frandom(-1,1),
