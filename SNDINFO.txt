@@ -1612,6 +1612,9 @@ $volume MancubStep 0.7
 
 //Entropic Avatar
 
+EntAva/Footstep "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarFootstep.ogg"
+EntAva/MulchLoop "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarMulchLoop.ogg"
+$rolloff EntAva/MulchLoop 1000 3500
 EntAva/Giggle	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarGiggles.wav"
 
 EntAva/ScreamLoop1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop1.wav"
@@ -1622,8 +1625,9 @@ EntAva/IdleScreaming	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop.
 
 EntAva/Slam	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSlam.ogg"
 EntAva/ChargeRoar "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarChargeRoar.ogg"
+$rolloff EntAva/ChargeRoar 500 2500
 EntAva/Roar	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarRoar.ogg"
-EntAva/Footstep	"Sounds/Monsters/Bosses/Voidelder/EntAvatarFootstep.ogg"
+$rolloff EntAva/Roar 500 3500
 EntAva/Laugh	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarLaugh.ogg"
 
 EntAvaYell1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell1.ogg"
