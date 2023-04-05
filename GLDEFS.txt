@@ -6829,3 +6829,30 @@ SecondarySize 10
 Chance 0.5
 Offset 0 100 0 
 }
+
+Flickerlight PM_HugeFastHorrorBlackflash
+{
+Color 2.0 2.0 2.0
+Subtractive 1
+Size 250
+SecondarySize 100
+Chance 0.2
+Offset 0 100 0 
+}
+
+FlickerLight2 ENTITYAurora
+{
+Color 1.0 1.0 1.0
+Subtractive 1
+Size 100
+SecondarySize 80
+Offset 0 100 0
+}
+
+FlickerLight2 ENTITYParticleAurora
+{
+Color 0.4 0.4 0.4
+Subtractive 1
+Size 40
+SecondarySize 30
+}

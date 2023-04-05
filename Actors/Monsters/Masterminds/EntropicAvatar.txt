@@ -1,4 +1,4 @@
-Class PM_VoidElder : ACTOR
+Class PM_EntropicAvatar : ACTOR
 {
 
 	int MeleeSwings;
@@ -40,6 +40,7 @@ Class PM_VoidElder : ACTOR
 		+NOBLOCKMONST;
 		+NOPAIN;
 		+BRIGHT;
+		
 		
 		BloodType "ENTITYGLITCHLONG";
 		
@@ -89,6 +90,7 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_StopSound(CHAN_ITEM);
 		TNT1 A 0 A_StopSound(CHAN_VOICE);
 		TNT1 A 0 {bFLOATBOB = false;} //A_ChangeFlag("FLOATBOB",false);
+		TNT1 A 0 A_RemoveLight("ENTITY-Aurora");
 		
 		TNT1 A 0 A_StartSound("ENTITY/SLAM",CHAN_VOICE,0,1);
 		TNT1 A 0 A_QuakeEx(2,2,2,10,0,750,"*");
@@ -147,146 +149,146 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_QuakeEx(2,2,2,30,0,1000,"*");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR H 1;
+		RUNR H 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR H 1;
+		RUNR H 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.95,1.05),frandom(.98,1.02));
 		TNT1 AA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR E 1;
+		RUNR E 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR F 1;
+		RUNR F 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNR G 1;
-		
+		RUNR G 1 Light("PM_HugeFastHorrorBlackflash");
+		TNT1 A 0 A_AttachLightDef("ENTITY-Aurora","ENTITYAurora");
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNR D 1;
@@ -310,6 +312,7 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_StartSound("ENTITY/SCREAM/LOOP",CHAN_ITEM,CHANF_LOOP,1);
 		TNT1 A 0 A_StartSound("ENTITY/GIGS",CHAN_VOICE,CHANF_LOOP);
 	NewWalkCycle:
+		TNT1 A 0 A_AttachLightDef("ENTITY-Aurora","ENTITYAurora");
 		TNT1 A 0 A_jump(256,"WalkForward","WalkRight","WalkLeft");
 		
 //////////////////////////////////////////////////////////////WALK STRAIGHT
@@ -409,6 +412,108 @@ Class PM_VoidElder : ACTOR
 		TNT1 AAA 0 A_Chase;
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("ENTITY/FOOTSTEP",CHAN_7,0,1);
+		Goto NewWalkCycle;
+		
+//////////////////////////////////////////////////////////////PHASE WALK
+
+	PhaseWalk:
+		TNT1 A 0 A_RemoveLight("ENTITY-Aurora");
+		TNT1 AAAAAAAAAAAAAAAA 1 A_Chase(null,null);
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 A 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 A 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 A 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 A 1;
+		
+		TNT1 AAA 0 A_Chase(null,null);
+		
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 B 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 B 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 B 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 B 1;
+		
+		TNT1 AAA 0 A_Chase;
+		
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 C 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 C 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 C 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 C 1;
+		
+		TNT1 AAA 0 A_Chase(null,null);
+		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
+		TNT1 A 0 A_StartSound("ENTITY/FOOTSTEP",CHAN_7,0,1);
+		TNT1 AAAAAAAAAAAAAAAA 1 A_Chase(null,null);
+		
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 D 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 D 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 D 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 D 1;
+		
+		TNT1 AAA 0 A_Chase;
+		
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 E 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 E 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 E 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 E 1;
+		
+		TNT1 AAA 0 A_Chase(null,null);
+		
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 F 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 F 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 F 1;
+		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUW2 F 1;
+		
+		TNT1 AAA 0 A_Chase;
+		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
+		TNT1 A 0 A_StartSound("ENTITY/FOOTSTEP",CHAN_7,0,1);
+		TNT1 A 0 A_Jump(180,"PhaseWalk");
 		Goto NewWalkCycle;
 		
 //////////////////////////////////////////////////////////////WALK RIGHT
@@ -685,12 +790,94 @@ Class PM_VoidElder : ACTOR
 //////////////////////////////////////////////////////////////GLIDE
 		
 	Missile:
-		TNT1 A 0 A_jump(128,"spaz");
+		TNT1 A 0 A_jump(168,"spaz","NewWalkCycle","PhaseWalk");
+		TNT1 A 0 A_jump(120,"NewWalkCycle");
 	
 		TNT1 A 0 A_FaceTarget;
 		TNT1 A 0 A_StartSound("ENTITY/ROAR",CHAN_ITEM,0,1);
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
+		
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
+		
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
+		
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
+		
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
+		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
+		RUNC A 1;
+		
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
 		TNT1 A 0 A_Recoil(-14);
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
@@ -709,8 +896,9 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -728,8 +916,9 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -747,8 +936,9 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
+		TNT1 A 0 A_Recoil(-12);
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -766,83 +956,8 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
-		
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
-		
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
-		
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
-		TNT1 A 0 A_Recoil(-14);
-		
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
-		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
-		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -860,7 +975,8 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC B 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
 		
 		TNT1 A 0 A_SetScale(frandom(.91,1.09),frandom(.96,1.04));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -878,35 +994,36 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCHLONG",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC B 1;
 		
-		TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		//TNT1 A 0 A_CustomMeleeAttack(10,"ENTITY/HIT/SUCC","","Melee");
+		TNT1 A 0 A_JumpIfCloser(200,"Melee");
 		Goto StartMoving;
 		
 //////////////////////////////////////////////////////////////MELEE
 		
 	Melee:
-		//TNT1 A 0 A_jump(64,"MULCH");
+		TNT1 A 0 A_jump(64,"MULCHSTART");
 		
 		TNT1 A 0 A_FaceTarget;
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
+		RUNC A 2;
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
+		RUNC A 2;
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
+		RUNC A 2;
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
+		RUNC A 2;
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
-		RUNC A 1;
+		RUNC A 2;
 		
 		TNT1 A 0 A_FaceTarget;
 		TNT1 A 0 A_StartSound("ENTITY/MELEE/YELL",CHAN_ITEM,0,1);
-		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 A_Recoil(-6);
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -947,7 +1064,7 @@ Class PM_VoidElder : ACTOR
 		
 		TNT1 A 0 A_FaceTarget;
 		TNT1 A 0 A_StartSound("ENTITY/MELEE/YELL",CHAN_ITEM,0,1);
-		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 A_Recoil(-6);
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 A 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -968,14 +1085,15 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_CustomMeleeAttack(35,"ENTITY/HIT/SUCC","","Melee");
 		
+		TNT1 A 0 A_jump(168,"spaz");
 		Goto StartMoving;
 		
 //////////////////////////////////////////////////////////////FAST MELEE
 		
-		/*
+	MULCHSTART:
+		RUNC AAAA 5 A_FaceTarget;
 	MULCH:
-		TNT1 A 0 A_FaceTarget;
-		
+		RUNC A 1; //A_FaceTarget;
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
@@ -983,9 +1101,8 @@ Class PM_VoidElder : ACTOR
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC A 1;
 		
-		TNT1 A 0 A_FaceTarget;
 		TNT1 A 0 A_StartSound("ENTITY/MELEE/YELL",CHAN_ITEM,0,1);
-		TNT1 A 0 A_Recoil(-5);
+		TNT1 A 0 A_Recoil(-4);
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -997,7 +1114,6 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_CustomMeleeAttack(35,"ENTITY/HIT/SUCC","","Melee");
 		
-		TNT1 A 0 A_FaceTarget;
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -1006,9 +1122,8 @@ Class PM_VoidElder : ACTOR
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
 		RUNC C 1;
 		
-		TNT1 A 0 A_FaceTarget;
 		TNT1 A 0 A_StartSound("ENTITY/MELEE/YELL",CHAN_ITEM,0,1);
-		TNT1 A 0 A_Recoil(-5);
+		TNT1 A 0 A_Recoil(-4);
 		
 		TNT1 A 0 A_SetScale(frandom(.93,1.07),frandom(.97,1.03));
 		TNT1 AAA 0 A_SpawnItemEx("ENTITYGLITCH",FRandom(invoker.Radius,-invoker.Radius),0,FRandom(0,invoker.Height));
@@ -1020,9 +1135,8 @@ Class PM_VoidElder : ACTOR
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_CustomMeleeAttack(35,"ENTITY/HIT/SUCC","","Melee");
 		
-		TNT1 A 0 A_jump(192,"MULCH");
-		Goto StartMoving;
-		*/
+		TNT1 A 0 A_jump(220,"MULCH");
+		Goto spaz;
 		
 //////////////////////////////////////////////////////////////DEATHYELL
 		
