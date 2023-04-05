@@ -3357,6 +3357,7 @@ $volume HPriest/SoulLoop 0.4
 Floater/Sight "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
 Floater/Active "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
 Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
+$rolloff Floater/Roar 300 2500
 Floater/Pain "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPain.ogg"
 Floater/Phase "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPhase.ogg"
 
