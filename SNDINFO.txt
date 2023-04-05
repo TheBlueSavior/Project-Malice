@@ -1610,41 +1610,39 @@ beefy/step4 		"Sounds/Monsters/SFX/MancubusStep4.ogg"
 
 $volume MancubStep 0.7
 
-//Voidelder
+//Entropic Avatar
 
-ENTITY/GIGS	"Sounds/Monsters/Bosses/Voidelder/ENTITY-GIGS"
+EntAva/Giggle	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarGiggles.wav"
 
-ENTITY/AMB/SCREAM/LOOP1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-AMB-SCREAM-LOOP-1"
-ENTITY/AMB/SCREAM/LOOP2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-AMB-SCREAM-LOOP-2"
-$random ENTITY/AMB/SCREAM/LOOP {ENTITY/AMB/SCREAM/LOOP1 ENTITY/AMB/SCREAM/LOOP2}
+EntAva/ScreamLoop1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop1.wav"
+EntAva/ScreamLoop2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop2.wav"
+$random EntAva/ScreamLoop { EntAva/ScreamLoop1 EntAva/ScreamLoop2 }
 
-ENTITY/SCREAM/LOOP	"Sounds/Monsters/Bosses/Voidelder/ENTITY-SCREAM-LOOP-1"
+EntAva/IdleScreaming	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop.ogg"
 
-ENTITY/SLAM	"Sounds/Monsters/Bosses/Voidelder/ENTITY-SLAM"
+EntAva/Slam	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSlam.ogg"
+EntAva/ChargeRoar "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarChargeRoar.ogg"
+EntAva/Roar	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarRoar.ogg"
+EntAva/Footstep	"Sounds/Monsters/Bosses/Voidelder/EntAvatarFootstep.ogg"
+EntAva/Laugh	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarLaugh.ogg"
 
-ENTITY/ROAR	"Sounds/Monsters/Bosses/Voidelder/ENTITY-ROAR-1"
+EntAvaYell1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell1.ogg"
+EntAvaYell2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell2.ogg"
+EntAvaYell3	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell3.ogg"
+EntAvaYell4	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
+EntAvaYell5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
+EntAvaYell6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
+$random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell4 EntAvaYell5 EntAvaYell6 }
 
-ENTITY/FOOTSTEP	"Sounds/Monsters/Bosses/Voidelder/ENTITY-FOOTSTEP"
-
-ENTITY/LAUGH	"Sounds/Monsters/Bosses/Voidelder/ENTITY-LAUGH-1"
-
-ENTITY/MELEE/YELL1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-1"
-ENTITY/MELEE/YELL2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-2"
-ENTITY/MELEE/YELL3	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-3"
-ENTITY/MELEE/YELL4	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-4"
-ENTITY/MELEE/YELL5	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-5"
-ENTITY/MELEE/YELL6	"Sounds/Monsters/Bosses/Voidelder/ENTITY-MELEE-YELL-6"
-$random ENTITY/MELEE/YELL {ENTITY/MELEE/YELL1 ENTITY/MELEE/YELL2 ENTITY/MELEE/YELL3 ENTITY/MELEE/YELL4 ENTITY/MELEE/YELL5 ENTITY/MELEE/YELL6}
-
-ENTITY/HIT/SUCC1	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-1"
-ENTITY/HIT/SUCC2	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-2"
-ENTITY/HIT/SUCC3	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-3"
-ENTITY/HIT/SUCC4	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-4"
-ENTITY/HIT/SUCC5	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-5"
-ENTITY/HIT/SUCC6	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-6"
-ENTITY/HIT/SUCC7	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-7"
-ENTITY/HIT/SUCC8	"Sounds/Monsters/Bosses/Voidelder/ENTITY-HIT-SUCC-8"
-$random ENTITY/HIT/SUCC {ENTITY/HIT/SUCC1 ENTITY/HIT/SUCC2 ENTITY/HIT/SUCC3 ENTITY/HIT/SUCC4 ENTITY/HIT/SUCC5 ENTITY/HIT/SUCC6 ENTITY/HIT/SUCC7 ENTITY/HIT/SUCC8}
+EntAvaDrag1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag1.ogg"
+EntAvaDrag2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag2.ogg"
+EntAvaDrag3	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag3.ogg"
+EntAvaDrag4	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag4.ogg"
+EntAvaDrag5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag5.ogg"
+EntAvaDrag6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag6.ogg"
+EntAvaDrag7	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag7.ogg"
+EntAvaDrag8	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag8.ogg"
+$random EntAva/Drag { EntAvaDrag1 EntAvaDrag2 EntAvaDrag3 EntAvaDrag4 EntAvaDrag5 EntAvaDrag6 EntAvaDrag7 EntAvaDrag8 }
 
 //Queen
 
@@ -3482,6 +3480,17 @@ Broken/Pain/3	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_3"
 Broken/Pain/4	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_4"
 $random Broken/Pain/Light {Broken/Pain/1 Broken/Pain/2}
 $random Broken/Pain/Heavy {Broken/Pain/3 Broken/Pain/4}
+$random Broken/TP { Broken/TP1 Broken/TP2 Broken/TP3 }
+Broken/TP1 "Sounds/Monsters/Paranormal/Broken/BrokenTP1.ogg"
+Broken/TP2 "Sounds/Monsters/Paranormal/Broken/BrokenTP2.ogg"
+Broken/TP3 "Sounds/Monsters/Paranormal/Broken/BrokenTP3.ogg"
+
+Broken/Plasma "Sounds/Monsters/Paranormal/Broken/BrokenPlasma.ogg"
+$volume Broken/Plasma 0.75
+
+$limit Broken/TP 12
+$attenuation Broken/TP 0.4
+$rolloff Broken/TP 750 1300
 
 Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/Broken_LOOP"
 

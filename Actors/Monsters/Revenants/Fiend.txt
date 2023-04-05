@@ -391,6 +391,8 @@ Class PM_FiendSmallRocket : RevenantTracer
     {
        Super.Tick();
        {
+    	      if(!IsFrozen())
+	    {
        		A_SpawnParticleEx
 	   (
 		"",
@@ -399,21 +401,12 @@ Class PM_FiendSmallRocket : RevenantTracer
 		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: random(3,6),
 		size: 20.0,
-		angle: 0,
 		xoff: frandom(-0.8,0.8),
 		yoff: frandom(-0.8,0.8),
-		velx: 0,
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
 		startalphaf: 0.9,
 		fadestepf: -2,
 		sizestep: -1,
-		startroll: random(-180,180),
-		rollvel: 0,
-		rollacc: 0
+		startroll: random(-180,180)
 	    );
 		A_SpawnParticleEx
 	   (
@@ -423,21 +416,13 @@ Class PM_FiendSmallRocket : RevenantTracer
 		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: random(10,14),
 		size: 20.0,
-		angle: 0,
 		xoff: frandom(-0.8,0.8),
 		yoff: frandom(-0.8,0.8),
 		velx: frandom(-0.5,0.5),
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
 		startalphaf: 0.9,
 		fadestepf: -2,
 		sizestep: -1,
-		startroll: random(-180,180),
-		rollvel: 0,
-		rollacc: 0
+		startroll: random(-180,180)
 	    );
 		A_SpawnParticleEx
 	   (
@@ -447,23 +432,12 @@ Class PM_FiendSmallRocket : RevenantTracer
 		flags: SPF_ROLL|SPF_RELATIVE,
 		lifetime: random(1,2),
 		size: 50.0,
-		angle: 0,
-		xoff: 0,
-		yoff: 0,
-        zoff: 0,
-		velx: 0,
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
 		startalphaf: 0.9,
 		fadestepf: -2,
 		sizestep: -1,
-		startroll: random(-180,180),
-		rollvel: 0,
-		rollacc: 0
+		startroll: random(-180,180)
 	    );
+	    }
         }
     }
 	States

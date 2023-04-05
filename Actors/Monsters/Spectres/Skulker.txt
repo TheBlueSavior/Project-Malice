@@ -12,7 +12,7 @@ Actor PM_Skulker
     DeathSound ""
     ActiveSound ""
     Obituary "%o can't."
-	Tag "SKULKER"
+	Tag "SKULK?R"
 	Species "Brute"
 	StencilColor Black
 	XScale 0.92
