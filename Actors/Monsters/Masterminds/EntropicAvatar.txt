@@ -18,7 +18,7 @@ Class PM_EntropicAvatar : ACTOR
 		MaxDropOffHeight 80;
 		Species "VoidElder";
 		
-		Tag "V?ID?LD?R";
+		Tag "EN?ROP?C AV??AR";
 		
 		+NOCLIP;
 		+NORADIUSDMG;
