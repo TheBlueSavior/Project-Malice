@@ -44,7 +44,7 @@ Actor Horrorspawnmap : RandomSpawner
 	DropItem "PM_HorrorspawnBurster", 255, 1
 }
 
-Actor Horrorspawn1
+Actor Horrorspawn1 : PMFodderMonsterBase
 {
     Health 15
     GibHealth 20
@@ -61,6 +61,7 @@ Actor Horrorspawn1
 	Species "Horrorspawn"
 	Tag "Horrorspawn"
     Monster
+	BloodColor "DarkRed"
 	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	XScale 0.84
@@ -278,7 +279,7 @@ Actor Horrorspawn1
 	ZFPD I 1 A_PlaySound("MaliceHeadExp")
 	Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -287,40 +288,8 @@ Actor Horrorspawn1
   }
 }
 
-Actor Horrorspawn2
+Actor Horrorspawn2 : Horrorspawn1
 {
-    Health 15
-    GibHealth 20
-    Radius 18
-    Height 56
-    Speed 5
-    PainChance 256
-    SeeSound ""
-    PainSound "ZombieFodder/pain"
-    DeathSound "ZombieFodder/death"
-    ActiveSound "ZombieFodder/active"
-    Obituary "%o was consumed by a Horrorspawn."
-	DropItem "Clip", 100
-	Tag "Horrorspawn"
-	Species "Horrorspawn"
-    Monster
-	Bloodtype "PM_NormalBloodBase"
-	MeleeRange 70
-	//XScale 0.84
-	//YScale 0.91
-    +FLOORCLIP
-	+NOINFIGHTING
-	-Countkill
-	+THRUSPECIES
-	+SLIDESONWALLS
-	+DONTHARMCLASS
-	+DONTHARMSPECIES
-	+NOBLOCKMONST
-	-ACTIVATEMCROSS
-	-CANUSEWALLS
-	-CANPUSHWALLS
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -514,7 +483,7 @@ Actor Horrorspawn2
     2FOD L -1
     Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -523,40 +492,8 @@ Actor Horrorspawn2
   }
 }
 
-Actor Horrorspawn3
+Actor Horrorspawn3 : Horrorspawn1
 {
-    Health 15
-    GibHealth 20
-    Radius 18
-    Height 56
-    Speed 5
-    PainChance 256
-    SeeSound ""
-    PainSound "ZombieFodder/pain"
-    DeathSound "ZombieFodder/death"
-    ActiveSound "ZombieFodder/active"
-    Obituary "%o was consumed by a Horrorspawn."
-	DropItem "Clip", 100
-	Tag "Horrorspawn"
-	Species "Horrorspawn"
-    Monster
-	Bloodtype "PM_NormalBloodBase"
-	MeleeRange 70
-	//XScale 0.84
-	//YScale 0.91
-    +FLOORCLIP
-	+NOINFIGHTING
-	-Countkill
-	+THRUSPECIES
-	+SLIDESONWALLS
-	+DONTHARMCLASS
-	+DONTHARMSPECIES
-	+NOBLOCKMONST
-	-ACTIVATEMCROSS
-	-CANUSEWALLS
-	-CANPUSHWALLS
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -750,7 +687,7 @@ Actor Horrorspawn3
     2FOD L -1
     Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -759,40 +696,8 @@ Actor Horrorspawn3
   }
 }
 
-Actor Horrorspawn4
+Actor Horrorspawn4 : Horrorspawn1
 {
-    Health 15
-    GibHealth 20
-    Radius 18
-    Height 56
-    Speed 5
-    PainChance 256
-    SeeSound ""
-    PainSound "ZombieFodder/pain"
-    DeathSound "ZombieFodder/death"
-    ActiveSound "ZombieFodder/active"
-    Obituary "%o was consumed by a Horrorspawn."
-	DropItem "Clip", 100
-	Tag "Horrorspawn"
-	Species "Horrorspawn"
-    Monster
-	Bloodtype "PM_NormalBloodBase"
-	MeleeRange 70
-	//XScale 0.84
-	//YScale 0.91
-    +FLOORCLIP
-	+NOINFIGHTING
-	-Countkill
-	+THRUSPECIES
-	+SLIDESONWALLS
-	+DONTHARMCLASS
-	+DONTHARMSPECIES
-	+NOBLOCKMONST
-	-ACTIVATEMCROSS
-	-CANUSEWALLS
-	-CANPUSHWALLS
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
   States
   {
   Spawn:
@@ -986,7 +891,7 @@ Actor Horrorspawn4
     2FOD L -1
     Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -995,7 +900,7 @@ Actor Horrorspawn4
   }
 }
 
-Actor FreshHorrorspawn
+Actor FreshHorrorspawn : PMFodderMonsterBase
 {
     Health 15
     GibHealth 20
@@ -1127,7 +1032,7 @@ Actor FreshHorrorspawn
 	TNT1 A 0 A_SpawnItemEx("PM_SleepingHorrorspawn1")
     Stop
   XDeath:
-    ZFO1 N 5
+    ZFO1 N 5 PM_Gib()
     ZFO1 O 5 A_XScream
     ZFO1 P 5 A_NoBlocking
     ZFO1 QR 5 
@@ -1136,7 +1041,7 @@ Actor FreshHorrorspawn
   }
 }
 
-Actor HorrorspawnScreamer
+Actor HorrorspawnScreamer : PMFodderMonsterBase
 {
 	var int user_called;
     Health 15
@@ -1356,7 +1261,7 @@ Actor HorrorspawnScreamer
 	ZFPD I 1 A_PlaySound("MaliceHeadExp")
 	Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -1365,7 +1270,7 @@ Actor HorrorspawnScreamer
   }
 }
 
-Actor HorrorspawnDecap
+Actor HorrorspawnDecap : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -1384,6 +1289,7 @@ Actor HorrorspawnDecap
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+	BloodColor "DarkRed"
 	Bloodtype "PM_NormalBloodBase"
 	XScale 0.84
 	YScale 0.91
@@ -1442,7 +1348,7 @@ Actor HorrorspawnDecap
     ZFOB M -1
     Stop
   XDeath:
-    ZFOB N 5
+    ZFOB N 5 PM_Gib()
     ZFOB O 5 A_XScream
     ZFOB P 5 A_NoBlocking
     ZFOB QR 5

@@ -308,6 +308,24 @@ Class PMMonsterDummy : PMMonsterBase
  }
 }
 
+Class PMFodderMonsterBase : PMMonsterBase
+{
+ Default
+ {
+ -COUNTKILL
+ }
+ 
+ override void PM_Gib()
+ {
+  for(int gib=0;gib<5;gib++)
+ { A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY); }
+  for(int a=0;a<3;a++)
+ { A_SpawnItemEx("PM_NormalBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY); }
+ A_SpawnItemEx("PM_NormalBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+ }
+}
+
 Class PMWrathMonsterBase : PMMonsterBase
 {
   int pm_irecount;

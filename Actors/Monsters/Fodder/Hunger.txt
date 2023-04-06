@@ -1,4 +1,4 @@
-Actor Hunger
+Actor Hunger : PMFodderMonsterBase
 {
 	var int user_called;
     Health 20
@@ -163,7 +163,7 @@ Actor Hunger
     ZHUN M -1 
     Stop
   XDeath:
-    ZHUN N 5
+    ZHUN N 5 PM_Gib()
     ZHUN O 5 A_XScream
     ZHUN P 5 A_NoBlocking
     ZHUN QR 5 
@@ -181,7 +181,7 @@ Actor Hungry : RandomSpawner
 	DropItem "PM_HungrySoldier", 255 , 5
 }
 
-Actor PM_Hungry1
+Actor PM_Hungry1 : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -278,7 +278,7 @@ Actor PM_Hungry1
     ZHUN M -1 
     Stop
   XDeath:
-    ZHUN N 5
+    ZHUN N 5 PM_Gib()
     ZHUN O 5 A_XScream
     ZHUN P 5 A_NoBlocking
     ZHUN QR 5 
@@ -287,7 +287,7 @@ Actor PM_Hungry1
   }
 }
 
-Actor PM_HungryMarine
+Actor PM_HungryMarine : PMFodderMonsterBase
 {
     Health 30
     GibHealth 20
@@ -386,7 +386,7 @@ Actor PM_HungryMarine
   XDeath:
   Death:
 	TNT1 A 0
-    ZOD4 A 7
+    ZOD4 A 7 PM_Gib()
     ZOD4 B 7 A_Scream
     ZOD4 C 5 A_NoBlocking
     ZOD4 D 5
@@ -398,7 +398,7 @@ Actor PM_HungryMarine
   }
 }
 
-Actor PM_HungrySci1
+Actor PM_HungrySci1 : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -494,7 +494,7 @@ Actor PM_HungrySci1
 	SCZA N -1
     Stop
   XDeath:
-    SCZA O 5
+    SCZA O 5 PM_Gib()
     SCZA P 5 A_XScream
     SCZA Q 5 A_NoBlocking
     SCZA RSTUV 5 
@@ -503,7 +503,7 @@ Actor PM_HungrySci1
   }
 }
 
-Actor PM_HungrySci2
+Actor PM_HungrySci2 : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -599,7 +599,7 @@ Actor PM_HungrySci2
 	SCZC N -1
     Stop
   XDeath:
-    SCZC O 5
+    SCZC O 5 PM_Gib()
     SCZC P 5 A_XScream
     SCZC Q 5 A_NoBlocking
     SCZC RSTUV 5 
@@ -608,7 +608,7 @@ Actor PM_HungrySci2
   }
 }
 
-Actor PM_HungrySoldier
+Actor PM_HungrySoldier : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -701,6 +701,7 @@ Actor PM_HungrySoldier
 	ZHU1 J -1
     Stop
   XDeath:
+    TNT1 A 0 PM_Gib()
     POS1 P 5 A_XScream
     POS1 Q 5 A_NoBlocking
     POS1 RST 5 

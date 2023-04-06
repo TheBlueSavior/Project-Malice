@@ -220,7 +220,7 @@ Class PM_Bruiser : PMMonsterBase
             }
 			Goto DropFast+1;	
 			LeapEnd:
-				TNT1 A 0 A_StartSound("Doom4/Monsters/BaronFloorPound",7,1.0,false,0.9);
+				TNT1 A 0 A_StartSound("Doom4/Monsters/BaronFloorPound",CHAN_7,CHANF_OVERLAP);
                 TNT1 A 0 A_StartSound("BigExplosionDistant",5,CHANF_DEFAULT,0.7);
 				TNT1 A 0 A_Quake(4,20,0,512);
 				TNT1 A 0 Light("GreenBall4")

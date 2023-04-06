@@ -1,4 +1,4 @@
-Actor PM_HorrorspawnSpitter
+Actor PM_HorrorspawnSpitter : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
@@ -15,6 +15,7 @@ Actor PM_HorrorspawnSpitter
 	Tag "Horrorspawn"
 	Species "Horrorspawn"
     Monster
+    BloodColor "DarkRed"
 	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	//XScale 0.84
@@ -235,7 +236,7 @@ Actor PM_HorrorspawnSpitter
     2FOD L -1
     Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -271,7 +272,7 @@ Death:
 }
 }
 
-Actor PM_HorrorspawnChunkThrower
+Actor PM_HorrorspawnChunkThrower : PMFodderMonsterBase
 {
     Health 15
     GibHealth 20
@@ -288,6 +289,7 @@ Actor PM_HorrorspawnChunkThrower
 	Species "Horrorspawn"
 	Tag "Horrorspawn"
     Monster
+	BloodColor "DarkRed"
 	Bloodtype "PM_NormalBloodBase"
 	MeleeRange 70
 	XScale 0.84
@@ -515,7 +517,7 @@ Actor PM_HorrorspawnChunkThrower
 	ZFPD I 1 A_PlaySound("MaliceHeadExp")
 	Stop
   XDeath:
-    ZFOD N 5
+    ZFOD N 5 PM_Gib()
     ZFOD O 5 A_XScream
     ZFOD P 5 A_NoBlocking
     ZFOD QR 5 
@@ -570,7 +572,7 @@ Actor PM_HSpawnThrownChunk
 }
 
 
-Actor PM_HorrorspawnBurster
+Actor PM_HorrorspawnBurster : PMFodderMonsterBase
 {
     Health 20
     GibHealth 20
