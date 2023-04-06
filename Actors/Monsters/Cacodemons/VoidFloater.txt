@@ -112,7 +112,7 @@ Class PM_VoidFloater : PMMonsterBase
 		{
 			FloaterEffects();
 			FloaterState();
-			bNONSHOOTABLE = false;
+			bNODAMAGE = true;
 			A_FaceTarget();
 			A_StartSound("Skulker/Port", CHAN_7, attenuation: ATTN_NONE);
 			bNOCLIP = true;
@@ -121,9 +121,12 @@ Class PM_VoidFloater : PMMonsterBase
 		VIFL CDDDDDDDDDDDDDDDDDDDDDDDDDDDD 5 Light("PM_HorrorBlackflash")
 		{
 			A_FaceTarget();
+			bNODAMAGE = true;
 			FloaterEffects();
 			A_QuakeEx(3, 3, 0, 20, 0, 1000);
 		}
+		TNT1 A 0 { bNODAMAGE = false; }
+		TNT1 A 0 FloaterState();
 		Goto Dissapear;
 	Wail:
 		VIFL A 10 Light("PM_HorrorBlackflash")

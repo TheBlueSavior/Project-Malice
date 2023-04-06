@@ -3392,8 +3392,8 @@ FloaterFire8	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
 FloaterFire9	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
 FloaterFire10	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
 
-$volume Floater/Fire 0.8
-$pitchset Floater/Fire 0.1 2.0
+$volume Floater/Fire 0.5
+$pitchset Floater/Fire 0.0001 2
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
