@@ -1,12 +1,6 @@
 Class PM_Draugr : PMMonsterBase
 {
-		void DraugrAimLaser(Vector2 off = (0, -18))
-		{
-			double sa = sin(Angle);
-			double ca = cos(Angle);
-			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
-			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
-		}
+	int buffgrenade;
     Default
     {
 	Health 400;
@@ -34,9 +28,19 @@ Class PM_Draugr : PMMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
     }
+
+	void DraugrAimLaser(Vector2 off = (0, -18))
+	{
+		double sa = sin(Angle);
+		double ca = cos(Angle);
+		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
+		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+	}
   States
   {
 	Spawn:
+	    TNT1 A 0 NoDelay { buffgrenade = random(1,3); }
+	Idle:
 		DRGR A 6 PM_Look();
 		Loop;
   See:
@@ -87,7 +91,8 @@ Class PM_Draugr : PMMonsterBase
 		DRGR L 6;
 		Goto See2;	
   Missile:
-	TNT1 A 0 A_Jump(80,"HomingAttack","HeavyRocket");
+	TNT1 A 0 A_Jump(80,"HeavyRocket");
+	TNT1 A 0 A_Jump(55,"BuffGrenadeCheck");
 	TNT1 A 0 A_StartSound("Draugr/GunAim");
 	DRG2 ABC 5 A_FaceTarget();
     DRGR GGGGGGGG 1
@@ -129,35 +134,29 @@ Class PM_Draugr : PMMonsterBase
 	TNT1 A 0 { bNOTARGET = false; }
 	TNT1 A 0 A_StopSound(2);
     Goto See2;
-  HomingAttack:
+  BuffGrenadeCheck:
+    TNT1 A 0 A_CheckProximity("BuffGrenade","PMMonsterBase",600,4,CPXF_ANCESTOR|CPXF_CHECKSIGHT);
+	Goto See2;
+  BuffGrenade:
+    TNT1 A 0;
+    TNT1 A 0 
+	{ 
+	 if(buffgrenade == 0) 
+	 SetStateLabel("HeavyRocket"); 
+	}
 	TNT1 A 0 A_StartSound("Draugr/Sight3",CHAN_7);
 	DRG2 ABC 6 A_FaceTarget();
-	TNT1 A 0 A_StartSound("Draugr/Arm",CHAN_6);
-	DRG2 DDDEEEFFFGGGHHHGGGFFFEEGGHGGFFEE 1 Light("ShadowBall3")
-	{
-	DraugrAimLaser();
-	A_SpawnProjectile("DHomingFlare",62,-15);
-	}
+	DRG2 DDDEEEFFFGGGHHHGGGFFFEEGGHGGFFEE 1 Light("ShadowBall3") A_SpawnProjectile("DHomingFlare",62,-15);
 	DRGR H 3 Bright;
-	TNT1 A 0 A_StartSound("Tyrant/Missile");
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	DRGR I 6 A_SpawnProjectile("PM_DraugrHMissile",62,-15,-30,0);
-	DRGR G 6 A_FaceTarget();
-	TNT1 A 0 A_CheckSight("See2");
-	DRGR H 6 Bright;
-	TNT1 A 0 A_StartSound("Tyrant/Missile");
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	DRGR I 6 A_SpawnProjectile("PM_DraugrHMissile",62,-15,30,0);
-	DRGR G 6 A_FaceTarget();
-    TNT1 A 0 A_CheckSight("See2");
-	DRGR H 6 Bright;
-	TNT1 A 0 A_StartSound("Tyrant/Missile");
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	TNT1 A 0 A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
-	DRGR I 6 A_SpawnProjectile("PM_DraugrHMissile",62,-15,0,0);
-	DRGR G 6 A_FaceTarget();
+	TNT1 A 0 A_StartSound("GrenadeLaunch");
+	DRGR I 6 
+	{
+	for(int a=0;a<2;a++)
+	{ A_SpawnProjectile("PM_CadaverFireFlare",66,-15); }
+	A_SpawnProjectile("PM_DraugrBuffGrenade",62,-15,0,CMF_AIMDIRECTION,-15);
+	buffgrenade--;
+	}
+	DRGR G 6;
 	Goto See2;
   Pain:
     DRGR M 5;
@@ -478,69 +477,6 @@ Class PM_DraugrFastBall : RevenantTracer
 	}
 }
 
-Class PM_DraugrHMissile : RevenantTracer
-{
-    Default
-    {
-	Radius 3;
-	Height 3;
-	DamageFunction (35);
-	Speed 15;
-	Projectile;
-	+RANDOMIZE
-	+THRUGHOST
-	+SEEKERMISSILE
-	+FORCEXYBILLBOARD
-	Decal "Scorch";
-	RenderStyle "Normal";
-	SeeSound "";
-	DeathSound "Tyrant/MissileExp";
-	Scale 0.9;
-    }
-	States
-	{
-	Spawn:
-		TNT1 A 0 A_StartSound("Tyrant/Missile",CHAN_5,CHANF_DEFAULT,1);
-		TNT1 A 0 A_StartSound("Cadaver/HomingLoop",CHAN_6,CHANF_LOOPING,0.8);
-	Go:
-		TYM2 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 BRIGHT Light("AvatarFireball4") 
-		{
-		A_ChangeVelocity(0,random(-2,2),random(-2,2));
-		A_SpawnItemEx("HomingFlare",0,0,0);
-		A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
-		A_SpawnItemEx("PM_CadaverHomingFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		//A_SpawnItemEx("CadaverHFire",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		A_SeekerMissile(1,2,SMF_PRECISE);
-		}
-	Norm:
-		TNT1 A 0 A_SeekerMissile(4,6,SMF_PRECISE);
-	NormLoop:
-		TYM2 A 1 BRIGHT Light("AvatarFireball3")
-		{
-		//A_ChangeVelocity(0,random(-1,1),random(-1,1));
-		A_SetSpeed(20);
-		A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
-		A_SpawnItemEx("PM_CadaverFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		//A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		}
-		Loop;
-	Death:
-		TNT1 A 0 
-		{
-		A_Explode(8,100);
-		Radius_Quake (2, 54, 0, 10, 0);
-		}
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
-		TNT1 AAAA 0 A_SpawnItemEx("PM_SmallerGenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
-		TNT1 AAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
-		TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
-		TNT1 A 15 BRIGHT Light("AvatarFireball5");
-		Stop;
-	}
-}
-
 Class PM_DraugrHeavyRocket : RevenantTracer
 {
     Default
@@ -620,3 +556,250 @@ Class PM_DraugrHeavyRocket : RevenantTracer
 	}
 }
 
+Class PM_DraugrBuffGrenade : Rocket
+{
+  int grenadetime;
+  int bufftime;
+  Default
+  {
+  Speed 16;
+  Scale 0.66;
+  Radius 4;
+  Height 10;
+  Gravity 0.8;
+  Bouncetype "Hexen";
+  BounceFactor 0.44;
+  WallBounceFactor 0.66;
+  BounceCount 2;
+  SeeSound "";
+  DeathSound "";
+  BounceSound "ZTrooper/FragBounce";
+  Decal "";
+  -NOGRAVITY
+  -ROCKETTRAIL
+  +THRUACTORS
+  +ROLLSPRITE
+  +CANBOUNCEWATER
+  +BOUNCEONCEILINGS
+  }
+  States
+  {
+  Spawn:
+	GRNP A 1 Light("DefilerFire1")
+    {
+		A_SpawnParticleEx
+		(
+		"#d12e2e",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(25,50),
+		size: frandom(15,25),
+		xoff: frandom(-1,1),
+		yoff: frandom(-1,1),
+		zoff: frandom(-2,2),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(-0.2,0.2),
+		startalphaf: frandom(0.90,1),
+		fadestepf: -1
+		);
+    }
+	Loop;
+  Death:
+    TNT1 A 0 A_StartSound("Draugr/BuffNade",CHAN_7);
+  Death2:
+	GRNP AA 6 Light("DefilerFire1")
+		{
+		if(grenadetime >= 14)
+		SetStateLabel("BuffStart");
+		if(grenadetime > 12)
+		A_SetTics(1);
+		if(grenadetime > 3)
+		A_SetTics(5);
+		if(grenadetime > 8)
+		A_SetTics(3);
+		A_SpawnItemEx("PM_RedShockwave");
+		grenadetime++;
+		}
+	Loop;
+  BuffStart:
+	TNT1 A 0 
+	{
+	A_StartSound("Draugr/BuffStart",CHAN_7);
+	A_StartSound("Draugr/BuffLoop",CHAN_6,CHANF_LOOP,0.85);
+	}
+	TNT1 AAA 0 A_SpawnItemEx("PM_RedShockwave");
+	GRNP AA 1 Light("ShadowBall");
+	GRNP AA 1 Light("ShadowBall2");
+	GRNP AA 1 Light("ShadowBall3");
+	GRNP AA 1 Light("ShadowBall4");
+  Buff:
+    GRNP AA 2 Light("ShadowBall4")
+	{
+		if (bufftime >= 250)
+		SetStateLabel("XDeath");
+		A_SpawnParticle("Red",SPF_FULLBRIGHT|SPF_RELATIVE,random(50,100),frandom(1,3),frandom(-80,80),frandom(-80,80),frandom(0,56));
+		A_SpawnItemEx("PM_DraugrBuffOrbs",frandom(-150,150),frandom(-150,150),frandom(0,56),0,0,0,0,SXF_NOCHECKPOSITION,128);
+		A_SpawnParticleEx
+		(
+		"#d12e2e",
+		TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(50,150),
+		size: frandom(15,25),
+		xoff: frandom(-100,100),
+		yoff: frandom(-100,100),
+		zoff: frandom(0,60),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(-0.2,0.2),
+		startalphaf: frandom(0.90,1),
+		fadestepf: -1
+		);
+		A_SpawnParticleEx
+		(
+		"#d12e2e",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(50,150),
+		size: frandom(65,105),
+		xoff: frandom(-100,100),
+		yoff: frandom(-100,100),
+		zoff: frandom(0,60),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(-0.2,0.2),
+		startalphaf: frandom(0.10,0.30),
+		fadestepf: -1,
+		startroll: random(-180,180)
+		);
+		bufftime++;
+    }
+	Loop;
+   XDeath:
+    TNT1 A 0 A_StartSound("Draugr/BuffEnd",CHAN_6,CHANF_DEFAULT,0.85);
+    GRNP A -1;
+    Stop;
+	}
+}
+
+Class PM_DraugrBuffOrbs : Actor
+{
+ int bufforbtime;
+ Default
+ {
+ +NOBLOCKMAP
+ +NOGRAVITY
+ +FORCEXYBILLBOARD
+ RenderStyle "Add";
+ Alpha 0.0;
+ }
+ States
+ {
+ Spawn:
+  TNT1 A 0;
+  TNT1 A 0
+  {
+   A_SetRoll(random(0,360));
+   A_SetScale(frandom(0.05,0.15));
+  }
+  DTPR RRRRR 2 Light("ShadowBall") A_SetRenderStyle(0.1,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall2") A_SetRenderStyle(0.3,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall3") A_SetRenderStyle(0.5,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall4") A_SetRenderStyle(0.6,STYLE_Add);
+ BuffTime:
+  DTPR RR 2 Light("ShadowBall4")
+  {
+   if(bufforbtime >= 30)
+   SetStateLabel("BuffOver");
+   A_RadiusGive("PM_DraugrPrideBuffGiver",50,RGF_MONSTERS|RGF_NOSIGHT);
+   bufforbtime++;
+  }
+  Loop;
+ BuffOver:
+  DTPR RRRRR 2 Light("ShadowBall") A_SetRenderStyle(0.6,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall2") A_SetRenderStyle(0.5,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall3") A_SetRenderStyle(0.4,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall5") A_SetRenderStyle(0.3,STYLE_Add);
+  DTPR RRRRR 2 Light("ShadowBall") A_SetRenderStyle(0.1,STYLE_Add);
+  Stop;
+ }
+}
+
+Class PM_DraugrPrideBuffGiver : Inventory
+{
+ Default
+ {
+ +INVENTORY.AUTOACTIVATE;
+ +INVENTORY.ALWAYSPICKUP;
+ }
+ 
+ Override bool Use(bool pickup)
+  {
+   if(!owner)
+  return false;
+   if(Owner is "PMMonsterBase")
+     {
+	 if(owner.bBOSS == false && !(owner is "PM_Draugr"))
+	  owner.GiveInventory("PM_DraugrPrideBuff",1);
+	 }
+  return true;
+  }
+}
+   
+Class PM_DraugrPrideBuff : Powerup
+{
+  Default
+  {
+   +INVENTORY.AUTOACTIVATE;
+   +INVENTORY.ALWAYSPICKUP;
+   Powerup.Duration -5;
+  } 
+  
+  Override Void PostBeginPlay()
+  {
+  if(owner && owner.health > 0)
+   {
+    owner.A_AttachLightDef("PrideBuff","ShadowBall4");
+    owner.A_StartSound("Draugr/BuffMonGet",CHAN_6,CHANF_OVERLAP,0.55);
+    owner.A_StartSound("Draugr/BuffMonLoop",CHAN_7,CHANF_OVERLAP|CHANF_LOOP,0.25);
+    for(int a=0;a<15;a++)
+    owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,64);
+    for(int a=0;a<5;a++)
+    owner.A_SpawnItemEx("PM_NetherFireShrapnel",random(-35,35),random(-35,35),random(0,35),random(0,6),random(-5,5),random(-1,3),0,SXF_NOCHECKPOSITION);
+   }
+  }
+  
+  Override void DoEffect()
+  {
+  Super.DoEffect();
+  if(owner.health > 0 && !IsFrozen()) //[NERU] particle code by Dusted, i just changed the color tbh
+   owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),0,0,0,0,SXF_NOCHECKPOSITION,128);
+   owner.A_SpawnParticle("#d12e2e",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,5),0,random(4,8),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
+   owner.A_SetTics(int(owner.tics/1.5));
+   owner.bNOINFIGHTING = true;
+  }
+  
+  Override Void DetachFromOwner()
+  { 
+  if(owner && owner.health > 0)
+   {
+    owner.A_StopSounds(0,0);
+    owner.A_StartSound("Draugr/BuffMonEnd",CHAN_7,CHANF_DEFAULT,0.35);
+    owner.A_RemoveLight("PrideBuff");
+    for(int a=0;a<15;a++)
+    owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,64);
+   }
+  }
+   
+ 
+  Override Void OwnerDied()
+  {
+   owner.A_StopSounds(0,0);
+   owner.A_RemoveLight("PrideBuff");
+   Destroy();
+  }
+}

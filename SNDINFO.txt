@@ -2615,6 +2615,14 @@ Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
 Draugr/RocketLock "Sounds/Monsters/Revenants/Draugr/DraugrRocketLock.ogg"
 Draugr/GunAim "Sounds/Monsters/Revenants/Draugr/DraugrGunAim.ogg"
 
+Draugr/BuffNade "Sounds/Monsters/Revenants/Draugr/DraugrBuffNade.ogg"
+Draugr/BuffStart "Sounds/Monsters/Revenants/Draugr/DraugrBuffStart.ogg"
+Draugr/BuffLoop "Sounds/Monsters/Revenants/Draugr/DraugrBuffLoop.ogg"
+Draugr/BuffEnd "Sounds/Monsters/Revenants/Draugr/DraugrBuffEnd.ogg"
+Draugr/BuffMonGet "Sounds/Monsters/Revenants/Draugr/DraugrBuffMonGet.ogg"
+Draugr/BuffMonLoop "Sounds/Monsters/Revenants/Draugr/DraugrBuffMonLoop.ogg"
+Draugr/BuffMonEnd "Sounds/Monsters/Revenants/Draugr/DraugrBuffMonEnd.ogg"
+
 $rolloff Draugr/RocketLock 500 2200
 
 $random Draugr/Fire { DraugFire1 DraugFire2 DraugFire3 DraugFire4 }
