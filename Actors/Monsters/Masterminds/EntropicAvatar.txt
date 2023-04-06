@@ -102,7 +102,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_StartSound("EntAva/Roar",CHAN_ITEM,0,1);
 		
 		TNT1 A 0 A_QuakeEx(2,2,2,30,0,1000,"*");
-		RUNR EHEGGEHHEHEGGFFEEEFFFFEEFGGEFFFEGEGEFEGGGGGEFGGEEEHHEEGHGHEEHFFHEGHGHFHEGHFEHEHFHHHEG 1 Light("PM_HugeFastHorrorBlackflash")
+		RUNR EHEGGEHHEHEGGFFEEEFFFFEEFGGEFFFEGEGEFEGGGGGEFGGEEEHHEEGHGHEEH 1 Light("PM_HugeFastHorrorBlackflash")
 		{
 		 A_SpawnItemEx("PM_EntAvatarGlitch",FRandom(radius,-radius),0,FRandom(0,height));
 		 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));

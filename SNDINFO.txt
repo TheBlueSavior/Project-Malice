@@ -1613,11 +1613,13 @@ $volume MancubStep 0.7
 //Entropic Avatar
 
 PM/AvatarBreathe	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarBreath.ogg"
-$rolloff PM/AvatarBreathe 2000 4200
-$limit PM/AvatarBreathe 8 
+$rolloff PM/AvatarBreathe 600 4200
+$pitchset PM/AvatarBreathe 0.8 1.0
+$limit PM/AvatarBreathe 8
+$volume PM/AvatarBreathe 0.7
 
 EntAva/Footstep "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarFootstep.ogg"
-$rolloff EntAva/Footstep 500 10000
+$rolloff EntAva/Footstep 350 1500
 
 EntAva/MulchLoop "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarMulchLoop.ogg"
 $rolloff EntAva/MulchLoop 1000 3500
@@ -1628,12 +1630,14 @@ EntAva/ScreamLoop2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop2.w
 $random EntAva/ScreamLoop { EntAva/ScreamLoop1 EntAva/ScreamLoop2 }
 
 EntAva/IdleScreaming	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop.ogg"
-
+$rolloff EntAva/IdleScreaming 400 1800
 EntAva/Slam	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSlam.ogg"
+$rolloff EntAva/Slam 400 2200
 EntAva/ChargeRoar "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarChargeRoar.ogg"
 $rolloff EntAva/ChargeRoar 500 2500
-EntAva/Roar	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarRoar.ogg"
+EntAva/Roar	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarRoarOld.ogg"
 $rolloff EntAva/Roar 500 3500
+$volume EntAva/Roar 0.7
 EntAva/Laugh	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarLaugh.ogg"
 
 EntAvaYell1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell1.ogg"
@@ -1643,7 +1647,8 @@ EntAvaYell4	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
 EntAvaYell5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
 EntAvaYell6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
 $random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell4 EntAvaYell5 EntAvaYell6 }
-
+$volume EntAva/Yell 0.7
+$pitchset EntAva/Yell 0.6 1.0
 EntAvaDrag1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag1.ogg"
 EntAvaDrag2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag2.ogg"
 EntAvaDrag3	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag3.ogg"
