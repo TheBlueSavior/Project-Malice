@@ -91,8 +91,9 @@ Class PM_Draugr : PMMonsterBase
 		DRGR L 6;
 		Goto See2;	
   Missile:
-	TNT1 A 0 A_Jump(80,"HeavyRocket");
-	TNT1 A 0 A_Jump(55,"BuffGrenadeCheck");
+	TNT1 A 0 A_Jump(75,"BuffGrenadeCheck");
+	TNT1 A 0 A_Jump(55,"HeavyRocket");
+  FireCannon:
 	TNT1 A 0 A_StartSound("Draugr/GunAim");
 	DRG2 ABC 5 A_FaceTarget();
     DRGR GGGGGGGG 1
@@ -142,7 +143,7 @@ Class PM_Draugr : PMMonsterBase
     TNT1 A 0 
 	{ 
 	 if(buffgrenade == 0) 
-	 SetStateLabel("HeavyRocket"); 
+	 SetStateLabel("FireCannon"); 
 	}
 	TNT1 A 0 A_StartSound("Draugr/Sight3",CHAN_7);
 	DRG2 ABC 6 A_FaceTarget();
@@ -179,6 +180,40 @@ Class PM_Draugr : PMMonsterBase
     Goto See;
   }
 }
+
+class PM_DraugrBuffCircle: Actor
+{
+Default
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright;
+Radius 20;
+Height 1;
++NOBLOCKMAP
++FLATSPRITE
+Scale 2;
+Alpha 1;
+Translation "0:255=%[0,0,0]:[2.0,0.1,0.1]";
+}
+States
+{
+Spawn:
+    C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 Bright
+	{
+	A_Setangle(8+Angle);
+	}
+Fade:
+	C1TE A 5 Bright
+	{
+	A_Setangle(8+Angle);
+	A_FadeOut(0.1);
+	}
+    Loop;
+    }
+}
+
+
 
 Class DraugrFastFire : Actor
 {
@@ -630,6 +665,7 @@ Class PM_DraugrBuffGrenade : Rocket
 	A_StartSound("Draugr/BuffLoop",CHAN_6,CHANF_LOOP,0.85);
 	}
 	TNT1 AAA 0 A_SpawnItemEx("PM_RedShockwave");
+	TNT1 A 0 A_SpawnItemEx("PM_DraugrBuffCircle");
 	GRNP AA 1 Light("ShadowBall");
 	GRNP AA 1 Light("ShadowBall2");
 	GRNP AA 1 Light("ShadowBall3");
@@ -756,13 +792,14 @@ Class PM_DraugrPrideBuff : Powerup
   {
    +INVENTORY.AUTOACTIVATE;
    +INVENTORY.ALWAYSPICKUP;
-   Powerup.Duration -5;
+   Powerup.Duration -15;
   } 
   
   Override Void PostBeginPlay()
   {
   if(owner && owner.health > 0)
    {
+	//owner.A_ClearTarget();
     owner.A_AttachLightDef("PrideBuff","ShadowBall4");
     owner.A_StartSound("Draugr/BuffMonGet",CHAN_6,CHANF_OVERLAP,0.55);
     owner.A_StartSound("Draugr/BuffMonLoop",CHAN_7,CHANF_OVERLAP|CHANF_LOOP,0.25);
@@ -781,6 +818,8 @@ Class PM_DraugrPrideBuff : Powerup
    owner.A_SpawnParticle("#d12e2e",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,5),0,random(4,8),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
    owner.A_SetTics(int(owner.tics/1.5));
    owner.bNOINFIGHTING = true;
+   owner.bNOTARGET = true;
+   //owner.bLOOKALLAROUND = true;
   }
   
   Override Void DetachFromOwner()

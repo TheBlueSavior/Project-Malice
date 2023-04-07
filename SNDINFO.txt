@@ -2618,6 +2618,8 @@ Draugr/GunAim "Sounds/Monsters/Revenants/Draugr/DraugrGunAim.ogg"
 Draugr/BuffNade "Sounds/Monsters/Revenants/Draugr/DraugrBuffNade.ogg"
 Draugr/BuffStart "Sounds/Monsters/Revenants/Draugr/DraugrBuffStart.ogg"
 Draugr/BuffLoop "Sounds/Monsters/Revenants/Draugr/DraugrBuffLoop.ogg"
+$rolloff Draugr/BuffLoop 500 1500
+$rolloff Draugr/BuffStart 500 1500
 Draugr/BuffEnd "Sounds/Monsters/Revenants/Draugr/DraugrBuffEnd.ogg"
 Draugr/BuffMonGet "Sounds/Monsters/Revenants/Draugr/DraugrBuffMonGet.ogg"
 Draugr/BuffMonLoop "Sounds/Monsters/Revenants/Draugr/DraugrBuffMonLoop.ogg"
