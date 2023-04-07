@@ -692,6 +692,7 @@ Class PM_DraugrBuffGrenade : Rocket
 	{
 	A_StartSound("Draugr/BuffStart",CHAN_7);
 	A_StartSound("Draugr/BuffLoop",CHAN_6,CHANF_LOOP,0.85);
+	A_RadiusGive("PM_DraugrPrideBuffGiver",250,RGF_MONSTERS|RGF_NOSIGHT);
 	A_SpawnParticleEx
 		(
 		"",
