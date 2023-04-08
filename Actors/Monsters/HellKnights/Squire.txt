@@ -37,6 +37,7 @@ Class PM_Squire : PMMonsterBase
 		TNT1 A 0 A_SetSpeed(5);
 		BOS6 AAAABBBB 2 PM_LookingForPlayer();
 		TNT1 A 0 A_StartSound("Squire/Step");
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",180,JLOSF_DEADNOJUMP);
 		BOS6 CCCCDDDD 2 PM_LookingForPlayer();
 		TNT1 A 0 A_StartSound("Squire/Step");
         Loop;
