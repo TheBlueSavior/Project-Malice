@@ -909,8 +909,8 @@ Class PM_DraugrPrideBuff : Powerup
    {
 	//owner.A_ClearTarget();
     owner.A_AttachLightDef("PrideBuff","ShadowBall4");
-    owner.A_StartSound("Draugr/BuffMonGet",CHAN_6,CHANF_OVERLAP,0.55);
-    owner.A_StartSound("Draugr/BuffMonLoop",CHAN_7,CHANF_OVERLAP|CHANF_LOOP,0.25);
+    owner.A_StartSound("Draugr/BuffMonGet",CHAN_6,CHANF_OVERLAP,0.85);
+    owner.A_StartSound("Draugr/BuffMonLoop",CHAN_7,CHANF_OVERLAP|CHANF_LOOP,0.65);
     for(int a=0;a<15;a++)
     owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,64);
     for(int a=0;a<5;a++)
