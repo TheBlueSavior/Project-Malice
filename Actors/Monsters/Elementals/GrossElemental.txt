@@ -33,6 +33,7 @@ ACTOR PM_GrossElemental : PMMonsterBase
    DFLY AA 3 PM_LookingForPlayer()
    DFLY BB 3 PM_LookingForPlayer()
    DFLY CC 3 PM_LookingForPlayer()
+   TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
    Loop
   Spotted:
    TNT1 A 0 PM_AlertSound()
