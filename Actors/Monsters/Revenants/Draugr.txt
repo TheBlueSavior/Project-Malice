@@ -652,13 +652,13 @@ Class PM_DraugrBuffGrenade : Rocket
 		{
 		A_RadiusThrust(-800,450,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
 		if(grenadetime >= 14)
-		SetStateLabel("BuffStart");
+		{ SetStateLabel("BuffStart"); }
 		if(grenadetime > 12)
-		A_SetTics(1);
+		 { A_SetTics(1); }
 		if(grenadetime > 3)
-		A_SetTics(5);
+		{ A_SetTics(5); }
 		if(grenadetime > 8)
-		A_SetTics(3);
+		{ A_SetTics(3); }
 		A_SpawnParticleEx
 		(
 		"",

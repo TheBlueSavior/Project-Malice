@@ -524,7 +524,7 @@ Class PM_FloaterBall : CacodemonBall
 {
   Default
   {
-	Damage 8;
+	DamageFunction (35);
 	Radius 5;
 	Height 10;
 	+SEEKERMISSILE
@@ -633,7 +633,7 @@ Class PM_FloaterLaser : FastProjectile
   Default
   {
   +RIPPER
-  Damage 5;
+  DamageFunction (15);
   Radius 15;
   Height 30;
   Speed 150;

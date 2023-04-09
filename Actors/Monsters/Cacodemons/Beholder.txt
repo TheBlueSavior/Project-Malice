@@ -208,7 +208,7 @@ Class PM_BeholderGoreShot : Actor
 		Height 10;
 		Speed 12;
 		FastSpeed 23;
-		DamageFunction (25);
+		DamageFunction (20);
 		PROJECTILE;
 		RENDERSTYLE "Translucent";
 		Alpha 0.85;

@@ -428,7 +428,7 @@ Class PM_HeresyLordMissileDual1Real : Actor
 	Speed 16;
 	Scale 0.8;
 	RenderStyle "Add";
-	Damage 4;
+	DamageFunction (35);
 	Radius 6;
 	height 12;
 	SeeSound "HeresyLord/BarrageRedFire";
@@ -559,7 +559,7 @@ Class PM_HeresyLordMissileDual2Real : Actor
 	Projectile;
 	Speed 18;
 	Radius 6;
-	Damage 4;
+	DamageFunction (35);
 	Scale 1;
 	RenderStyle "Add";
 	Alpha 0.75;
