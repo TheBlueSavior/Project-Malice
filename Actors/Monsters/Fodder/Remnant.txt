@@ -1,4 +1,4 @@
-Actor PM_Remnant
+Actor PM_Remnant : PMFodderMonsterBase
 {
     Health 200
     Radius 20
@@ -20,7 +20,7 @@ Actor PM_Remnant
 	+DONTHURTSPECIES
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
-	Species "PukeMonster"
+	Species "Fodder"
 	BloodColor "DarkRed"
 	Bloodtype "PM_PestilenceZombieBloodBase"
 	DropItem "ArmorBonus"

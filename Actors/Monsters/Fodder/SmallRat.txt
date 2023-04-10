@@ -1,4 +1,4 @@
-ACTOR SmallRat 9656
+ACTOR SmallRat : PMFodderMonsterBase
 {
 	Health 5
 	Radius 8
@@ -11,7 +11,8 @@ ACTOR SmallRat 9656
 	Scale 0.8
 	SeeSound "RatSpawn/Sight"
 	Obituary "%o was nibbled by a Small Rat."
-	MONSTER
+	Species "Fodder"
+	Monster
 	Tag "Rat"
 	+DONTHURTSPECIES
     +NOINFIGHTING

@@ -1,4 +1,4 @@
-actor Mimic
+actor Mimic : PMFodderMonsterBase
 {
   obituary "%o was taken by surprise by a Mimic."
   hitobituary "%o was taken by surprise by a Mimic."
@@ -8,6 +8,7 @@ actor Mimic
   mass 900
   speed 5
   Monster
+  Species "Fodder"
   Bloodtype "PM_NormalBloodBase"
   painchance 5
   MeleeThreshold 196

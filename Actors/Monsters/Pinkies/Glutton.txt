@@ -1,4 +1,4 @@
-ACTOR PM_Glutton : PMMonsterBase
+ACTOR PM_Glutton : PMGluttonyMonsterBase
 {
 	Health 300
 	PainChance 64
@@ -25,8 +25,6 @@ ACTOR PM_Glutton : PMMonsterBase
 	Obituary "%o was digested alive by a Glutton's acid slurry."
 	HitObituary "%o became part of the Glutton's feeding cycle."
 	Tag "Glutton"
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_GluttonyTeleportFog"
 	States
 	{
 	Spawn:

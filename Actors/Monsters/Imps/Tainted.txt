@@ -1,4 +1,4 @@
-Class PM_Tainted : PMMonsterBase
+Class PM_Tainted : PMGluttonyMonsterBase
 {
     Default
 	{
@@ -23,8 +23,6 @@ Class PM_Tainted : PMMonsterBase
     ActiveSound "Tainted/Active";
     HitObituary "%o was overwhelmed by a Tainted!";
     Obituary "A Tainted's remains ate through %o's flesh!";
-	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_GluttonyTeleportFog";
 	}
     States
     {

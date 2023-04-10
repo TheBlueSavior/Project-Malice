@@ -1,4 +1,4 @@
-Actor TriteHatchling
+Actor TriteHatchling : PMFodderMonsterBase
 {
   HitObituary "%o was nipped by a Head"
   Health 2
@@ -24,7 +24,7 @@ Actor TriteHatchling
   MaxDropOffHeight 50
   Damage(1)
   Monster
-  Species "PukeMonster"
+  Species "Fodder"
   +DONTHARMCLASS
   +DONTHARMSPECIES
   +FloorClip

@@ -1,4 +1,4 @@
-ACTOR LargeMaggot
+ACTOR LargeMaggot : PMFodderMonsterBase
 {
 	Health 1
 	Radius 4
@@ -9,6 +9,7 @@ ACTOR LargeMaggot
 	MeleeRange 10
 	GibHealth 100
 	Obituary "%o was nibbled by a Maggot."
+	Species "Fodder"
 	MONSTER
     DamageFactor "Caco", 0
 	+NOBLOOD

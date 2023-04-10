@@ -1,4 +1,4 @@
-Actor Voidspawn
+Actor Voidspawn : PMFodderMonsterBase
 {
     Health 300
     GibHealth 250
@@ -15,6 +15,7 @@ Actor Voidspawn
 	DropItem "Clip", 100
 	Tag "V??IDSP?WN"
     Monster
+	Species "Horrorspawn"
 	MeleeRange 50
 	//XScale 0.84
 	YScale 1.05
@@ -30,7 +31,6 @@ Actor Voidspawn
 	+NOBLOOD
 	+DROPOFF
 	+NOBLOCKMONST
-	//+NOTARGETSWITCH
 	+LOOKALLAROUND
 	+NOINFIGHTING
 	+NOCLIP

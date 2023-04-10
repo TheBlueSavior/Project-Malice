@@ -13,7 +13,7 @@ Actor Hunger : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"
@@ -195,7 +195,7 @@ Actor PM_Hungry1 : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"
@@ -301,7 +301,7 @@ Actor PM_HungryMarine : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was consumed by a Horrorspawn."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"
@@ -412,7 +412,7 @@ Actor PM_HungrySci1 : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"
@@ -517,7 +517,7 @@ Actor PM_HungrySci2 : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"
@@ -622,7 +622,7 @@ Actor PM_HungrySoldier : PMFodderMonsterBase
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
-	Species "PukeMonster"
+	Species "Fodder"
 	Tag "Afflicted"
     Monster
 	Bloodtype "PM_NormalBloodBase"

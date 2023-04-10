@@ -1,4 +1,4 @@
-Class PM_Whiplash : PMMonsterBase
+Class PM_Whiplash : PMLustMonsterBase
 {
   Default
   {
@@ -25,8 +25,6 @@ Class PM_Whiplash : PMMonsterBase
   DeathSound "Whiplash/Death";
   Tag "Whiplash";
   Species "Nobles";
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_LustTeleportFog";
   }
   States
   {
@@ -35,7 +33,7 @@ Class PM_Whiplash : PMMonsterBase
 	  Loop;
   Look:
     WHIP AAAAABBBBB 2 PM_LookingForPlayer();
-    TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+    TNT1 A 0 A_JumpifTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
     WHIP CCCCCDDDDD 2 PM_LookingForPlayer();
     TNT1 A 0 A_CheckSight("See");
     Goto Spotted;

@@ -1,4 +1,4 @@
-Actor Trite
+Actor Trite : PMFodderMonsterBase
 {
   HitObituary "%o was nipped by a Trite"
   Health 12
@@ -25,7 +25,7 @@ Actor Trite
   MinMissileChance 10
   Damage 1
   Monster
-  Species "PukeMonster"
+  Species "Fodder"
   +FloorClip
   +DontHurtSpecies
   +NoTarget

@@ -1,4 +1,4 @@
-ACTOR PM_Rotfly
+ACTOR PM_Rotfly : PMFodderMonsterBase
 {
   Health 20
   Radius 14
@@ -9,7 +9,7 @@ ACTOR PM_Rotfly
   YScale 0.95
   PainChance 256
   MONSTER
-  Species Flys
+  Species "Fodder"
   BloodColor "Dark Green"
   BloodType "PM_DarkGreenBloodBase"
   ActiveSound "Rotfly/Active"
@@ -130,7 +130,7 @@ ACTOR PM_Rotfly
   }
 }
 
-ACTOR PM_RotflyMaggot
+ACTOR PM_RotflyMaggot : PMFodderMonsterBase
 {
 	Health 1
 	Radius 2
@@ -141,7 +141,7 @@ ACTOR PM_RotflyMaggot
 	PainChance 64
 	MeleeRange 12
 	GibHealth 100
-	Species Flys
+	Species "Fodder"
 	Obituary "%o was nibbled by a Maggot."
 	MONSTER
     DamageFactor "Caco", 0
@@ -228,7 +228,7 @@ actor PM_RotflySpit : DoomImpBall
   }
 }
 
-ACTOR PM_RotflyYoungling
+ACTOR PM_RotflyYoungling : PMFodderMonsterBase
 
 {
   Health 1
@@ -239,7 +239,7 @@ ACTOR PM_RotflyYoungling
   //Radius 6
   //Height 6
   MeleeRange 30
-  Species Flys
+  Species "Fodder"
   ActiveSound "Flying/Fly"
   Tag "Rotfly Youngling"
   -CANUSEWALLS
@@ -287,7 +287,7 @@ ACTOR PM_RotflyYoungling
   }
 }
 
-ACTOR PM_AmbushRotfly
+ACTOR PM_AmbushRotfly 
 {
 	MONSTER
 	+FLOAT

@@ -14,7 +14,7 @@ actor Pustule : RandomSpawner 14000
 	DropItem "Pustule7"
 }
 
-actor Pustule1
+actor Pustule1 : PMFodderMonsterBase
 {
   obituary "%o was popped by a Pustule."
   health 65
@@ -26,10 +26,11 @@ actor Pustule1
   PainChance 256
   Meleerange 58
   Tag "Pustule"
+  Species "Fodder"
   seesound "blob/sight"
   painsound "blob/pain"
   activesound "blob/active"
-  MONSTER
+  Monster
   Bloodtype "PM_NormalBloodBase"
   +FLOORCLIP
   +LOOKALLAROUND
