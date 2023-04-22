@@ -113,7 +113,7 @@ Class PM_Tyrant : PMMonsterBase
 	TNT1 A 0 A_StartSound("Tyrant/Attack",CHAN_6);
 	DUKE E 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (128,20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 192,20,0,0);
 	DUKE DDDDDDDDDDDDDDDDDDDD 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -131,7 +131,7 @@ Class PM_Tyrant : PMMonsterBase
 	DUKE EE 3 A_FaceTarget();
 	DUKE E 1 A_FaceTarget();
     TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (0,20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 64,20,0,0);
 	DUKE DDDDDDDDDDDDDDDDDDDD 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -156,7 +156,7 @@ Class PM_Tyrant : PMMonsterBase
 	DUKE EE 3 A_FaceTarget();
 	DUKE E 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (128, 20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 192, 20,0,0);
 	DUKE DDDDDDDDDDDDDDDDDDDD 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -181,7 +181,7 @@ Class PM_Tyrant : PMMonsterBase
 	DUKE EE 3 A_FaceTarget();
 	DUKE E 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (0, 20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 64, 20,0,0);
 	DUKE DDDDDDDDDDDDDDDDDDDD 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -264,7 +264,7 @@ Class PM_Tyrant : PMMonsterBase
 	TNT1 A 0 { bNODROPOFF = true; }
 	DUKE E 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (128, 20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 192, 20,0,0);
 	DUKE EEEEEEEEEEEEEEEEEE 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -286,7 +286,7 @@ Class PM_Tyrant : PMMonsterBase
     TNT1 A 0 { bNODROPOFF = true; }
 	DUKE E 1 A_FaceTarget();
     TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (0, 20,0,0);
+	DUKE E 0 ThrustThing (angle * 256 / 360 + 64, 20,0,0);
 	DUKE EEEEEEEEEEEEEEEEEE 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
