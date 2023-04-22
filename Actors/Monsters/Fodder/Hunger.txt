@@ -49,7 +49,7 @@ Actor Hunger : PMFodderMonsterBase
     Loop
   Grumble:
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
-	Goto See
+	Goto Spawn
   See:
     ZHUN AA 1 A_Chase
 	ZHUN BB 1 A_Chase
@@ -174,7 +174,7 @@ Actor Hunger : PMFodderMonsterBase
 
 Actor Hungry : RandomSpawner
 {
-	DropItem "PM_Hungry1", 255, 12
+	DropItem "PM_Hungry1", 255, 15
 	DropItem "PM_HungryMarine", 255, 1
 	DropItem "PM_HungrySci1", 255, 2
 	DropItem "PM_HungrySci2", 255, 2
@@ -217,19 +217,29 @@ Actor PM_Hungry1 : PMFodderMonsterBase
   States
   {
   Spawn:
-	ZHUN AB 4 A_Wander
-	ZHUN AB 0 A_Look
+	ZHUN AB random(4,10) A_Wander
+	ZHUN AB 0 A_LookEx(LOF_NOSEESOUND,0,0,0,0,"Look")
     TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
-	ZHUN CD 4 A_Wander
-    ZHUN AB 0 A_Look
+	ZHUN CD random(4,10) A_Wander
+    ZHUN AB 0 A_LookEx(LOF_NOSEESOUND,0,0,0,0,"Look")
     TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
 	TNT1 A 0 A_PlaySound("Afflicted/Idle")
-	Goto See
+	Goto Spawn
   See:
-	TNT1 A 0 A_SetSpeed(random(4,8))
+	TNT1 A 0 A_SetSpeed(random(4,6))
+    ZHUN AA random(1,5) A_Chase("", "Spotted", CHF_NOPLAYACTIVE)
+	ZHUN BB random(1,5) A_Chase("", "Spotted", CHF_NOPLAYACTIVE)
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
+	ZHUN CC random(1,5) A_Chase("", "Spotted", CHF_NOPLAYACTIVE)
+    ZHUN DD random(1,5) A_Chase("", "Spotted", CHF_NOPLAYACTIVE)
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+    Loop
+  See2:
+	TNT1 A 0 A_SetSpeed(random(4,10))
     ZHUN AA random(1,2) A_Chase
 	TNT1 A 0 A_Recoil(frandom(0.2,-2))
 	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
@@ -240,17 +250,124 @@ Actor PM_Hungry1 : PMFodderMonsterBase
 	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
     ZHUN DD random(1,2) A_Chase
     TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_Jump(14,"See3")
 	TNT1 A 0 A_Jump(8,"Puke","Howl","Lunge")
     Loop
+   See3:
+	TNT1 A 0 A_SetSpeed(random(4,12))
+    ZHUN AA random(1,2) A_Wander
+	TNT1 A 0 A_Recoil(frandom(0.2,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	ZHUN BB random(1,2) A_Wander
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC random(1,2) A_Wander
+	TNT1 A 0 A_Recoil(frandom(0.2,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+    ZHUN DD random(1,2) A_Wander
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_JumpIfCloser(95,"See2")
+	TNT1 A 0 A_Jump(20,"See2")
+    Loop
+  Spotted:
+	TNT1 A 0 A_FaceTarget
+	TNT1 A 0 A_Jump(256,"Howl","Puke","Lunge","AngryRoar","AngryCharge")
+    GOTO RoarNoAnim
+  AngryRoar:
+	ZHUN C 5 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 0 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 0 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
+	ZHUN B 20 A_FaceTarget
+	ZHUN A 10 A_FaceTarget
+	TNT1 A 0 A_Jump(128,"Lunge")
+	Goto See2
+  AngryCharge:
+	ZHUN C 10 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 0 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 0 A_FaceTarget
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 192,3,0,0)
+	ZHUN C 2 ThrustThing(angle * 256 / 360 + 64,3,0,0)
+	TNT1 A 0 A_PlaySound("Afflicted/Howl")
+	TNT1 A 0 A_SetSpeed(random(7,11))
+    ZHUN AA 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+    ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_SetSpeed(random(7,11))
+    ZHUN AA 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+    ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_SetSpeed(random(7,11))
+    ZHUN AA 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+    ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	TNT1 A 0 A_SetSpeed(random(7,11))
+    ZHUN AA 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+	ZHUN BB 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	ZHUN CC 1 A_Chase
+	TNT1 A 0 A_Recoil(frandom(-1,-2))
+	TNT1 A 0 ThrustThing(random(0,360),random(1,2))
+    ZHUN DD 1 A_Chase
+    TNT1 A 0 A_PlaySound("Horrorspawn/Step",CHAN_5,0.3)
+	Goto See2
+  RoarNoAnim:
+	TNT1 A 0 A_PlaySound("Afflicted/Sight",CHAN_6)
+	Goto See2
   Lunge:
 	ZHUN C 15
+	TNT1 A 0 A_PlaySound("Afflicted/Sight",CHAN_6)
 	TNT1 A 0 A_Recoil(-14)
 	TNT1 A 0 ThrustThingZ(0,40,0,1)
 	ZHUN B 25
 	ZHUN D 10
-	Goto See
+	Goto See2
   Puke:
-	TNT1 A 0 A_CheckSight("See")
+	TNT1 A 0 A_CheckSight("See2")
 	ZHUN H 6
 	TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
 	TNT1 A 0 A_PlaySound("Afflicted/Puke")
@@ -258,22 +375,22 @@ Actor PM_Hungry1 : PMFodderMonsterBase
 	ZHUN B 1 A_CustomMissile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4))
 	ZHUN BBBBBBBBBB 1 A_CustomMissile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20))
 	ZHUN HC 4
-	Goto See
+	Goto See2
   Howl:
-	TNT1 A 0 A_CheckSight("See")
+	TNT1 A 0 A_CheckSight("See2")
 	ZHUN C 10 A_FaceTarget
 	TNT1 A 0 A_PlaySound("Afflicted/Howl")
 	ZHUN B 20 A_FaceTarget
 	ZHUN A 10 A_FaceTarget
-	Goto See
+	Goto See2
   Melee:
     ZHUN EF 10 A_FaceTarget
     ZHUN G 8 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee")
-    Goto See
+    Goto See2
   Pain:
     ZHUN H 4
     ZHUN H 4 A_Pain
-	Goto See
+	Goto See2
   Death:
 	TNT1 A 0
     ZHUN I 7
@@ -295,7 +412,7 @@ Actor PM_Hungry1 : PMFodderMonsterBase
 
 Actor PM_HungryMarine : PMFodderMonsterBase
 {
-    Health 30
+    Health 40
     GibHealth 20
     Radius 18
     Height 56
@@ -406,7 +523,7 @@ Actor PM_HungryMarine : PMFodderMonsterBase
 
 Actor PM_HungrySci1 : PMFodderMonsterBase
 {
-    Health 20
+    Health 30
     GibHealth 20
     Radius 18
     Height 56
@@ -511,7 +628,7 @@ Actor PM_HungrySci1 : PMFodderMonsterBase
 
 Actor PM_HungrySci2 : PMFodderMonsterBase
 {
-    Health 20
+    Health 30
     GibHealth 20
     Radius 18
     Height 56
@@ -616,7 +733,7 @@ Actor PM_HungrySci2 : PMFodderMonsterBase
 
 Actor PM_HungrySoldier : PMFodderMonsterBase
 {
-    Health 20
+    Health 30
     GibHealth 20
     Radius 18
     Height 56
@@ -752,7 +869,7 @@ Actor HungrySeekSpawn
 		TNT1 A 0 A_CheckSight ("Create")
 		TNT1 A 5 A_Wander
 		TNT1 A 0 A_CheckSight ("Create")
-		TNT1 A 0 A_Jump(30,"Die")
+		TNT1 A 0 A_Jump(50,"Die")
 		Loop
 	Create:
 		TNT1 A 0 A_SpawnItemEx("Hungry")
