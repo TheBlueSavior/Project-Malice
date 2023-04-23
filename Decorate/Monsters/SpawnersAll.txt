@@ -93,7 +93,7 @@ Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 
 Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
 {
-	DropItem "PM_Wretched", 255, 34
+	DropItem "PM_Wretched", 255, 48
 	DropItem "PM_PhaseCaco", 255, 26
 	DropItem "PM_Beholder", 225, 10
 	DropItem "PM_Wicked", 255, 10
