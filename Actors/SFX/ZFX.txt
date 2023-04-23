@@ -1,3 +1,286 @@
+//Possessing Demons
+class PM_FleeingDarkSpiritOrb: Actor
+{
+Default
+{
+   Radius 1;
+   Height 1;
+   Speed 0;
+   +NOGRAVITY
+   +THRUACTORS
+   +DONTHARMSPECIES
+   +NOINTERACTION
+   -SHOOTABLE
+   -COUNTKILL
+	}
+   States
+   {
+   Spawn:
+   TNT1 A random(0,50);
+   TNT1 A 0
+   {
+   A_SpawnParticleEx
+	    (   
+		 "000000",
+		 TexMan.CheckForTexture("APPLC0"),
+		 style: STYLE_Normal,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: random(10,60),
+		 size: frandom(3.0,6.0),
+		 zoff: 5,
+		 velx: frandom(-1.0,1.0),
+		 vely: frandom(-1.0,1.0),
+		 velz: frandom(0.0,1.0),
+		 accelx: frandom(-0.5,0.5),
+		 accely: frandom(-0.5,0.5),
+		 accelz: frandom(-0.2,0.5),
+		 startalphaf: frandom(0.8,1),
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: random(-180,180)
+	    );
+	}
+   Stop;
+   }
+}
+
+class PM_PossSpriteFlee: Actor
+{
+Default
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  +MISSILE
+  SeeSound "DemonicSprite/Flee";
+  Speed 12;
+  }
+   void PossSpriteSmoke()
+	{
+		A_SpawnParticleEx
+	    (   
+		 "000000",
+		 TexMan.CheckForTexture("GNSMK0"),
+		 style: STYLE_Normal,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: random(1,10),
+		 size: frandom(6,15),
+		 zoff: 2,
+		 velx: frandom(-0.2,0.2),
+		 vely: frandom(-0.2,0.2),
+		 velz: frandom(-0.2,0.2),
+		 startalphaf: frandom(0.8,1),
+		 fadestepf: -1,
+		 sizestep: frandom(0.2,1.5),
+		 startroll: random(-180,180)
+	    );
+  }
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+	PossSpriteSmoke();
+	}
+	Stop;
+	}
+}
+
+class PM_PossessingDemonSprite: Actor
+{
+Default
+{
+   Radius 4;
+   Height 4;
+   Speed 3;
+   Monster;
+   +NOGRAVITY
+   +THRUACTORS
+   +DONTHARMSPECIES
+   -SHOOTABLE
+   -COUNTKILL
+   DamageFunction (1);
+   BounceType "Hexen";
+   BounceFactor 1;
+   RENDERSTYLE "Translucent";
+   }
+   void PossSpriteSmoke()
+	{
+		A_SpawnParticleEx
+	    (   
+		 "000000",
+		 TexMan.CheckForTexture("GNSMK0"),
+		 style: STYLE_Normal,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: random(1,10),
+		 size: frandom(6,15),
+		 zoff: 2,
+		 velx: frandom(-0.2,0.2),
+		 vely: frandom(-0.2,0.2),
+		 velz: frandom(-0.2,0.2),
+		 startalphaf: frandom(0.8,1),
+		 fadestepf: -1,
+		 sizestep: frandom(0.2,1.5),
+		 startroll: random(-180,180)
+	    );
+	}
+   States
+   {
+   Spawn:
+	  TNT1 A 1;
+	  TNT1 A 0 A_Jump(168,"Flee");
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+   Go:
+	  TNT1 AAAAAAAAAAAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 AAAAAAAAAAAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 AAAAAAAAAAAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-2,2),random(-2,2),random(-2,2));
+	  TNT1 AAAAAAAAAAAA 1
+	  {
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_Jump(55,"Charge");
+	  TNT1 A 0 A_Jump(128,"Go");
+	  TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	  TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+      loop;
+   Charge:
+	  TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	  TNT1 A 0 A_Jump(110,"Flee");
+	  TNT1 AAAAAAA 1
+	  {
+	  A_FaceTarget();
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_StartSound("DemonicSprite/Warn",CHAN_7);
+	  TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	  {
+	  A_FaceTarget();
+	  PossSpriteSmoke();
+	  }
+	  TNT1 A 0 A_SpawnProjectile("PM_PossSpriteAttack",0,0,0,CMF_TRACKOWNER);
+	  Stop;
+   Bounce:
+	  TNT1 A 0
+	  {
+	  PossSpriteSmoke();
+	  }
+	  Goto Spawn;
+   Flee:
+	  TNT1 A 0;
+	  TNT1 A 0 A_SpawnProjectile("PM_PossSpriteFlee",2,0,random(-180,180),CMF_OFFSETPITCH,random(-90,20));
+	  Stop;
+   Death:
+	  TNT1 A 1;
+      Stop;
+   }
+}
+
+class PM_PossSpriteAttack : Actor
+{
+Default
+{
+  Speed 16;
+  FastSpeed 20;
+  DamageFunction (random(1,1));
+  Radius 5;
+  Height 5;
+  SeeSound "";
+  DeathSound "";
+  -THRUSPECIES
+  -Clientsideonly
+  -DONTHARMSPECIES
+  -THRUACTORS
+  RenderStyle "Normal";
+  BounceType "None";
+  PROJECTILE;
+   }
+   void PossSpriteSmoke()
+	{
+		A_SpawnParticleEx
+	    (   
+		 "000000",
+		 TexMan.CheckForTexture("GNSMK0"),
+		 style: STYLE_Normal,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: random(1,10),
+		 size: frandom(6,15),
+		 zoff: 2,
+		 velx: frandom(-0.2,0.2),
+		 vely: frandom(-0.2,0.2),
+		 velz: frandom(-0.2,0.2),
+		 startalphaf: frandom(0.8,1),
+		 fadestepf: -1,
+		 sizestep: frandom(0.2,1.5),
+		 startroll: random(-180,180)
+	    );
+  }
+  States
+	{
+	Spawn:
+		TNT1 AAA 1
+	    {
+	    PossSpriteSmoke();
+	    }
+		Loop;
+	Death:
+		TNT1 A 1;
+		Stop;
+	}
+}
+
+
+
+
 //Teleport Fogs
 
 class PM_NormalTeleportFog : Actor replaces TeleportFog
