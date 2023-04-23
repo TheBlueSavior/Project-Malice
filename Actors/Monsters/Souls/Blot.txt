@@ -62,7 +62,7 @@ Default
   mass 50;
   speed 3;
   Scale 0.45;
-  PainChance 200;
+  PainChance 256;
   Species "Soul";
   Tag "D??RK SPRI?E";
   activesound "Blot/Active";
@@ -126,6 +126,7 @@ Default
     Loop;
   Spotted:
     TNT1 A 0 PM_AlertSound();
+	TNT1 A 0 A_Jump(150,"Scare1","Scare2","Scare3","Scare4","Scare5","Scare6");
   See2:
     EYES AAAAAA 1 Light("SmallBlacklight")
 	{
@@ -156,13 +157,38 @@ Default
 		 rollacc: 0
 	    );
 	}
-	TNT1 A 0 A_Jump(2,"Scare1","Scare2","Scare3","Scare4","Scare5","Scare6");
-	TNT1 A 0 A_Jump(10,"RandomDodge");
+	TNT1 A 0 A_Jump(12,"Scare1","Scare2","Scare3","Scare4","Scare5","Scare6");
+	TNT1 A 0 A_Jump(8,"RandomDodge");
 	TNT1 A 0 A_Jump(7,"Forward","Forward","Left","Right","Back","RandomDodge");
     loop;
   Scare1:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 A 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1A0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	 EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -192,7 +218,32 @@ Default
 	Goto See2;
   Scare2:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 C 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1C0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -218,7 +269,32 @@ Default
 	Goto See2;
   Scare3:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 D 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1D0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -244,7 +320,32 @@ Default
 	Goto See2;
   Scare4:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 E 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1E0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -270,7 +371,32 @@ Default
 	Goto See2;
   Scare5:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 F 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1F0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -302,7 +428,32 @@ Default
 	Goto See2;
   Scare6:
 	TNT1 A 0 A_FaceTarget();
-	SCA1 G 2 bright Light("SmallBlacklight") A_Chase();
+	TNT1 A 2 bright Light("SmallBlacklight")
+	{
+	A_Chase();
+	A_SpawnParticleEx
+	    (   
+		 "",
+		 TexMan.CheckForTexture("SCA1G0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 2,
+		 size: frandom(20,75),
+		 angle: 0,
+		 xoff: random(1,15),
+		 yoff: 0,
+		 zoff: random(4,9),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: 1,
+		 fadestepf: 0,
+		 sizestep: 0,
+		 startroll: 180,
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
 	EYES AAAAA 0
 	 {
 	 A_SpawnParticleEx
@@ -380,7 +531,7 @@ Default
 	Goto see2;
   Pain:
 	TNT1 A 1;
-	TNT1 A 0 A_Jump(238,"Forward","Left","Right","Back","RandomDodge");
+	TNT1 A 0 A_Jump(248,"Forward","Left","Right","Back","RandomDodge");
 	Goto See2;
   Death:
     TNT1 A 1 A_Stop();
