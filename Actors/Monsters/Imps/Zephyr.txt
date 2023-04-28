@@ -64,18 +64,17 @@ Class PM_Zephyr : PMMonsterBase
 	TNT1 A 0 A_Jump(25,"Fight");
 	TNT1 A 0 A_Jump(20,"Jump");
 	TNT1 A 0 A_Jump(30,"CrouchSee");
-	TNT1 A 0 A_Jump(40,"CeilingJump");
+	TNT1 A 0 A_Jump(20,"CeilingJump");
 	Loop;
    CrouchSee:
 	TNT1 A 0 A_SetSpeed(26);
-	CBEL DDCCBBAACCBBAACCBBAADDCCBBAA 2 A_Stop;
+	CBEL DDCCBBAACCBBAACCBBAADDCCBBAA 2 A_Chase();
 	TNT1 A 0 A_SetSpeed(18);
 	TNT1 A 0 A_Jump(50,"Missile");
 	Goto See2;
 	
 	CeilingJump:
 	TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2);
-	TNT1 AAA 0;
 	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See2");
     CBEL BBAA 4;
 	TNT1 A 0 ThrustThingZ(0,25,0,1);
@@ -237,6 +236,7 @@ Class PM_Zephyr : PMMonsterBase
 	TNT1 A 0 A_Jump(40,"StandoffMissile");
 	Goto StandoffRepos;
   StandoffRepos:
+	TNT1 A 0;
 	TNT1 A 0 A_SetSpeed(26);
 	TNT1 A 0 { bFRIGHTENED = true; }
 	CBEL DDCCBBAACCBB 2
