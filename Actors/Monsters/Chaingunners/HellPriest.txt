@@ -29,6 +29,7 @@ Class PM_HellPriest : PMMonsterBase
     +DOHARMSPECIES
 	+LOWGRAVITY
     -NoGravity
+	+SLIDESONWALLS
     -Float
 	}
   States
