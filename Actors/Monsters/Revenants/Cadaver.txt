@@ -2,6 +2,10 @@ Class PM_Cadaver : PMMonsterBase
 {
        void CadAimLaser(Vector2 off = (0, 10))
 		{
+		  if (!Target)
+			 {
+				return;
+			 }
 			double sa = sin(Angle);
 			double ca = cos(Angle);
 			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);

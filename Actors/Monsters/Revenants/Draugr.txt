@@ -31,6 +31,10 @@ Class PM_Draugr : PMMonsterBase
 
 	void DraugrAimLaser(Vector2 off = (0, -18))
 	{
+		  if (!Target)
+			 {
+				return;
+			 }
 		double sa = sin(Angle);
 		double ca = cos(Angle);
 		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
@@ -652,20 +656,20 @@ Class PM_DraugrBuffGrenade : Rocket
 		{
 		A_RadiusThrust(-800,450,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
 		if(grenadetime >= 14)
-		{ SetStateLabel("BuffStart"); }
+		SetStateLabel("BuffStart");
 		if(grenadetime > 12)
-		 { A_SetTics(1); }
+		A_SetTics(1);
 		if(grenadetime > 3)
-		{ A_SetTics(5); }
+		A_SetTics(5);
 		if(grenadetime > 8)
-		{ A_SetTics(3); }
+		A_SetTics(3);
 		A_SpawnParticleEx
 		(
 		"",
 		TexMan.CheckForTexture("SPKRA0"),
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(4,10),
+		lifetime: frandom(4,10),
 		size: frandom(60,450),
 		angle: 0,
 		xoff: 0,
@@ -752,7 +756,7 @@ Class PM_DraugrBuffGrenade : Rocket
 		TexMan.CheckForTexture("SPKRA0"),
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(10,50),
+		lifetime: frandom(10,50),
 		size: frandom(60,450),
 		angle: 0,
 		xoff: frandom(-100,100),
