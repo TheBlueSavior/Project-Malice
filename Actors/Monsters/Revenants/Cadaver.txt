@@ -28,6 +28,7 @@ Class PM_Cadaver : PMMonsterBase
   Height 56;
   Mass 500;
   MeleeThreshold 196;
+  PainChance 100;
   Monster;
   +MISSILEMORE 
   +FLOORCLIP
