@@ -223,7 +223,7 @@ Class PM_Fusionite : PMMonsterBase
 			rollacc: 0
 			);
 			}
-			TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,1.0,True);
+			TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,CHANF_LOOP);
 			FSPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("Avatarfireball4")
 			{
 			A_SpawnParticleEx
