@@ -1863,7 +1863,12 @@ $volume NetherConduit/Active 0.7
 $volume NetherConduit/Pain 0.7
 $volume NetherConduit/Death 0.7
 
-PM/ShockWarning "Sounds/Other/PMShockWarning.ogg"
+$random PM/ShockWarning { PMShockWarning1 PMShockWarning2 PMShockWarning3 PMShockWarning4 PMShockWarning5  }
+PMShockWarning1 "Sounds/Other/PMShockWarning1.ogg"
+PMShockWarning2 "Sounds/Other/PMShockWarning2.ogg"
+PMShockWarning3 "Sounds/Other/PMShockWarning3.ogg"
+PMShockWarning4 "Sounds/Other/PMShockWarning4.ogg"
+PMShockWarning5 "Sounds/Other/PMShockWarning5.ogg"
 
 $pitchset PM/ShockWarning 0.8 1.5
 
@@ -3838,8 +3843,12 @@ $random Wrath/Ire { WrathIre1 WrathIre2 WrathIre3 }
 WrathIre1 "Sounds/Monsters/SFX/WrathIre1.ogg"
 WrathIre2 "Sounds/Monsters/SFX/WrathIre2.ogg"
 WrathIre3 "Sounds/Monsters/SFX/WrathIre3.ogg"
+$limit Wrath/Ire 5
+$rolloff Wrath/Ire 800 2600
 
 Wrath/IreLoop "Sounds/Monsters/SFX/WrathIreLoop.ogg"
+$limit Wrath/IreLoop 5
+$rolloff Wrath/IreLoop 300 1600
 
 PM/NormalTeleport	"Sounds/Other/PMNormalTele.ogg"
 $pitchset PM/NormalTeleport 0.8 1.2

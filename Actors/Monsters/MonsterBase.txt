@@ -148,8 +148,6 @@ class PMMonsterBase : Actor abstract
 	{
 		Monster;
 		+FLOORCLIP;
-	    TeleFogDestType "PM_DemonicTeleportFog";
-		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	}
 
 	void PM_LeadTarget(double projSpeed)
@@ -314,9 +312,7 @@ Class PMFodderMonsterBase : PMMonsterBase
 {
  Default
  {
-  -COUNTKILL
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_SmallDemonicTeleportFog";
+ -COUNTKILL
  }
  
  override void PM_Gib()
@@ -330,24 +326,6 @@ Class PMFodderMonsterBase : PMMonsterBase
  }
 }
 
-Class PMLustMonsterBase : PMMonsterBase
-{
- Default
- {
-  TeleFogDestType "PM_LustTeleportFog";
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
- }
-}
-
-Class PMGluttonyMonsterBase : PMMonsterBase
-{
- Default
- {
-  TeleFogDestType "PM_GluttonyTeleportFog";
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
- }
-}
-
 Class PMWrathMonsterBase : PMMonsterBase
 {
   int pm_irecount;
@@ -356,7 +334,7 @@ Class PMWrathMonsterBase : PMMonsterBase
    void PM_IreStartSound()
    {
     A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));
-	A_StartSound("Wrath/IreLoop",21,CHANF_LOOPING,1,ATTN_NORM);
+	A_StartSound("Wrath/IreLoop",19,CHANF_LOOP);
    }
 }
 
