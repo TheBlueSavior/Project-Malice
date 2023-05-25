@@ -148,6 +148,8 @@ class PMMonsterBase : Actor abstract
 	{
 		Monster;
 		+FLOORCLIP;
+	    TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	}
 
 	void PM_LeadTarget(double projSpeed)
@@ -313,6 +315,8 @@ Class PMFodderMonsterBase : PMMonsterBase
  Default
  {
  -COUNTKILL
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_SmallDemonicTeleportFog";
  }
  
  override void PM_Gib()
@@ -338,3 +342,20 @@ Class PMWrathMonsterBase : PMMonsterBase
    }
 }
 
+Class PMLustMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  TeleFogDestType "PM_LustTeleportFog";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ }
+}
+
+Class PMGluttonyMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  TeleFogDestType "PM_GluttonyTeleportFog";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ }
+}
