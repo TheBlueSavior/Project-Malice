@@ -945,7 +945,9 @@ CyberZ/Prefire "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderPrefire.ogg"
 CyberZ/Fire "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderFire.ogg"
 
 $rolloff CyberZ/Prefire 350 2000
-$limit CyberZ/Fire 4
+$rolloff CyberZ/Fire 400 2200
+$limit CyberZ/Fire 6
+$volume CyberZ/Fire 0.70
 $volume CyberZ/Death 0.65
 $volume CyberZ/Sight 0.4
 $volume CyberZ/Active 0.4
@@ -3748,6 +3750,30 @@ $rolloff HSpawnBurster/Loop 200 900
 HSpawnBurster/Explode "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterExplode.ogg"
 $rolloff HSpawnBurster/Explode 1500 3000
 HSpawnBurster/Arm "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterArm.ogg"
+
+//Infernal
+
+PMInfernal/Roar "Sounds/Monsters/Cacodemons/Infernal/InfernalRoar.ogg"
+$rolloff PMInfernal/Roar 250 1500
+$random PMInfernal/Sight { PMInfernal/Sight1 PMInfernal/Sight2 PMInfernal/Sight3 }
+PMInfernal/Sight1 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight1.ogg"
+PMInfernal/Sight2 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight2.ogg"
+PMInfernal/Sight3 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight3.ogg"
+$rolloff PMInfernal/Sight 250 1500
+$random PMInfernal/Active { PMInfernal/Active1 PMInfernal/Active2 PMInfernal/Active3 PMInfernal/Active4 }
+PMInfernal/Active1 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive1.ogg"
+PMInfernal/Active2 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive2.ogg"
+PMInfernal/Active3 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive3.ogg"
+PMInfernal/Active4 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive4.ogg"
+PMInfernal/Ire "Sounds/Monsters/Cacodemons/Infernal/InfernalIre.ogg"
+$rolloff PMInfernal/Ire 1000 2200
+PMInfernal/Death "Sounds/Monsters/Cacodemons/Infernal/InfernalDeath.ogg"
+PMInfernal/Laugh "Sounds/Monsters/Cacodemons/Infernal/InfernalLaugh.ogg"
+$rolloff PMInfernal/Laugh 350 1500
+$random PMInfernal/Pain { PMInfernal/Pain1 PMInfernal/Pain2 PMInfernal/Pain3 }
+PMInfernal/Pain1 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain1.ogg"
+PMInfernal/Pain2 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain2.ogg"
+PMInfernal/Pain3 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain3.ogg"
 
 //Big Gore Splats
 $random PM/BigGoreSplat		{ PM/BigGoreSplat1 PM/BigGoreSplat2 PM/BigGoreSplat3 PM/BigGoreSplat4 PM/BigGoreSplat5 PM/BigGoreSplat6 }
