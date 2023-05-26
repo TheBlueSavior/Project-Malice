@@ -939,7 +939,7 @@ Class PM_DraugrPrideBuff : Powerup
   if(owner && owner.health > 0)
    {
     owner.A_StopSounds(0,0);
-    owner.A_StartSound("Draugr/BuffMonEnd",CHAN_7,CHANF_DEFAULT,0.35);
+    owner.A_StartSound("Draugr/BuffMonEnd",CHAN_7,CHANF_OVERLAP,0.35);
     owner.A_RemoveLight("PrideBuff");
     for(int a=0;a<15;a++)
     owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION,64);
