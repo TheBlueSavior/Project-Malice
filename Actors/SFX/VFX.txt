@@ -3378,6 +3378,12 @@ Actor PM_HuskRushFire : PM_BurntSoulFire
 	Alpha 1
 }
 
+Actor PM_InfernalRushFire : PM_BurntSoulFire
+{
+	Scale 0.85
+	Alpha 1
+}
+
 Actor PM_BruiserDeathFire : PM_HuskRushFire
 {
 	Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]"

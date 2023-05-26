@@ -2315,6 +2315,10 @@ Class PM_WrathIreActivate : Actor
 
 Class PM_WrathIreEffect : Actor
 {
+Default
+{
++NOGRAVITY
+}
   States
   {
   Spawn:
