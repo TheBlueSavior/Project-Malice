@@ -6267,16 +6267,6 @@ Color 0.8 0.0 0.0
 Size 16
 }
 
-
-Object PM_InfernoBall
-{
-Frame IBALA { Light InfernoBall }
-Frame IBALB { Light InfernoBall }
-Frame IBALC { Light InfernoBall2 }
-Frame IBALD { Light InfernoBall3 }
-Frame IBALE { Light InfernoBall4 }
-}
-
 Object PM_InfernoBallTrail
 {
 Frame ITRLA { Light InfernoBall }

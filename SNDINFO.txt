@@ -1852,13 +1852,24 @@ NetherConduitSmallZap3 "Sounds/Monsters/Imps/NetherConduit/NetherConduitSmallZap
 NetherConduit/StreamCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitStreamCharge.ogg"
 $rolloff NetherConduit/StreamCharge 800 2000
 
+$random NetherConduit/ChaserCharge { NC/CCharge1 NC/CCharge2 NC/CCharge3 }
+NC/CCharge1 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge1.ogg"
+NC/CCharge2 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge2.ogg"
+NC/CCharge3 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge2.ogg"
+
+$random NetherConduit/ChaserFire { NC/CFire1 NC/CFire2 NC/CFire3 }
+NC/CFire1 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire1.ogg"
+NC/CFire2 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire2.ogg"
+NC/CFire3 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire3.ogg"
+
 NetherConduit/HomingCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingCharge.ogg"
-NetherConduit/HomingThunder "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingThunder.ogg"
+NetherConduit/ThunderCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderCharge.ogg"
+NetherConduit/ThunderOrb "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderOrb.ogg"
 NetherConduit/HomingLoop "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingLoop.ogg"
 NetherConduit/HomingExp "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingExp.ogg"
 
 $rolloff NetherConduit/HomingLoop 400 800
-$rolloff NetherConduit/HomingExp 600 2200
+$rolloff NetherConduit/HomingExp 200 2200
 
 
 $rolloff NetherConduit/ZapExp 800 2000
@@ -1867,12 +1878,14 @@ $volume NetherConduit/Active 0.7
 $volume NetherConduit/Pain 0.7
 $volume NetherConduit/Death 0.7
 
-$random PM/ShockWarning { PMShockWarning1 PMShockWarning2 PMShockWarning3 PMShockWarning4 PMShockWarning5  }
+/*$random PM/ShockWarning { PMShockWarning1 PMShockWarning2 PMShockWarning3 PMShockWarning4 PMShockWarning5  }
 PMShockWarning1 "Sounds/Other/PMShockWarning1.ogg"
 PMShockWarning2 "Sounds/Other/PMShockWarning2.ogg"
 PMShockWarning3 "Sounds/Other/PMShockWarning3.ogg"
 PMShockWarning4 "Sounds/Other/PMShockWarning4.ogg"
-PMShockWarning5 "Sounds/Other/PMShockWarning5.ogg"
+PMShockWarning5 "Sounds/Other/PMShockWarning5.ogg"*/
+
+PM/ShockWarning "Sounds/Other/PMShockWarning.ogg"
 
 $pitchset PM/ShockWarning 0.8 1.5
 

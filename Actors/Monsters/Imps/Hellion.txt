@@ -1049,7 +1049,7 @@ Class PM_HellionMendingOrb : Actor
 	   TexMan.CheckForTexture("SPKOG0"),
 	   style: STYLE_Add,
 	   flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-	   lifetime: 100.5,
+	   lifetime: 100.0,
 	   size: 30.0,
 	   startalphaf: 1.0,
 	   fadestepf: -0.2,
