@@ -1862,6 +1862,8 @@ NC/CFire1 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire1.ogg"
 NC/CFire2 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire2.ogg"
 NC/CFire3 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire3.ogg"
 
+$rolloff NetherConduit/ChaserFire 200 1900
+
 NetherConduit/HomingCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingCharge.ogg"
 NetherConduit/ThunderCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderCharge.ogg"
 NetherConduit/ThunderOrb "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderOrb.ogg"
@@ -1890,6 +1892,8 @@ PM/ShockWarning "Sounds/Other/PMShockWarning.ogg"
 $pitchset PM/ShockWarning 0.8 1.5
 
 NLITE NLITE
+$volume NLITE 0.7
+$pitchset PM/ShockWarning 0.8 1.5
 
 //Glutton
 $random Glutton/Sight { GluttonSight1 }
