@@ -988,6 +988,13 @@ Class TyrantMFireEffect : Actor
 
 Class TyrantPlasmaThrower : Actor
 {
+
+  override void BeginPlay()
+   {
+   special2 |= 1;
+   Super.BeginPlay();
+   }
+  
    Default
    {
    Radius 14;
