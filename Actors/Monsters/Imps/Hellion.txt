@@ -25,7 +25,14 @@ Class PM_Hellion : PMMonsterBase
 	TeleFogDestType "PM_DemonicTeleportFog";
   }
   bool shield;
+  int pm_bufftimer;
   
+  override void PM_LookingForPlayer()
+  {
+   super.PM_LookingForPlayer();
+   pm_bufftimer++;
+  }
+   
   void PM_HellionChase()
   {
    	{
@@ -39,6 +46,7 @@ Class PM_Hellion : PMMonsterBase
 	 if(shield == false)
 	 A_SetSpeed(11);*/
 	A_Chase();
+	pm_bufftimer++;
 	 }
   }
 
@@ -51,9 +59,11 @@ Class PM_Hellion : PMMonsterBase
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
     HELN AABBCC 2 PM_LookingForPlayer();
-	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_Jump(35,"LookBuffCheck");
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",180,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	HELN DDEEFF 2 PM_LookingForPlayer();
+	TNT1 A 0 A_Jump(35,"LookBuffCheck");
     Loop;
   Spotted:
   Roar:
@@ -62,23 +72,66 @@ Class PM_Hellion : PMMonsterBase
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
     HELN AABBCC 2 PM_HellionChase();
+	TNT1 A 0 A_Jump(35,"BuffCheck");
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	HELN DDEEFF 2 PM_HellionChase();
+	TNT1 A 0 A_Jump(35,"BuffCheck");
     Loop;
-	See2Alt:
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN AABBCC 2 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN DDEEFF 2 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN AABBCC 2 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN DDEEFF 2 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN AABBCC 2 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN DDEEFF 2 A_Chase(null,null);
+  BuffCheck: 
+    TNT1 A 0 
+	{
+	if(pm_bufftimer < 25)
+	 SetStateLabel("See2");
+	}
+	TNT1 A 0 A_CheckProximity("BuffingTime","PMMonsterBase",100,1,CPXF_ANCESTOR|CPXF_CHECKSIGHT);
 	Goto See2;
+  LookBuffCheck:
+    TNT1 A 0 
+	{
+	if(pm_bufftimer < 25)
+	 SetStateLabel("Look");
+	 pm_bufftimer++;
+	}
+    TNT1 A 0 A_CheckProximity("LookBuffingTime","PMMonsterBase",100,1,CPXF_ANCESTOR|CPXF_CHECKSIGHT);
+	Goto Look;
+  BuffingTime:
+	TNT1 A 0;
+	TNT1 A 0 { pm_bufftimer = 0; }
+	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
+	2ELN A 1 Light("Greenball3");
+	TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6);
+	TNT1 A 0 A_StartSound("Hellion/BuffGive",CHAN_7);
+	TNT1 A 0 A_RadiusGive("PM_HellionMendingBuffGiver",100,RGF_MONSTERS,1,limit:1);
+	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
+	{
+	A_SpawnItemEx("PM_HellionHandFire",5,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	A_SpawnItemEx("PM_HellionHandFire",5,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	}
+	2ELN AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
+	{
+	A_SpawnItemEx("PM_HellionHandFire",0,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	A_SpawnItemEx("PM_HellionHandFire",0,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	}
+	Goto See2;
+  LookBuffingTime:
+	TNT1 A 0;
+	TNT1 A 0 { pm_bufftimer = 0; }
+	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
+	2ELN A 1 Light("Greenball3");
+	TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6);
+	TNT1 A 0 A_StartSound("Hellion/BuffGive",CHAN_7);
+	TNT1 A 0 A_RadiusGive("PM_HellionMendingBuffGiver",100,RGF_MONSTERS,1,limit:1);
+	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
+	{
+	A_SpawnItemEx("PM_HellionHandFire",5,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	A_SpawnItemEx("PM_HellionHandFire",5,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	}
+	2ELN AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
+	{
+	A_SpawnItemEx("PM_HellionHandFire",0,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	A_SpawnItemEx("PM_HellionHandFire",0,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
+	}
+	Goto Look;
   ShieldSummon:
     TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6,1.0);
     HELN G 0 A_VileStart();
@@ -114,7 +167,7 @@ Class PM_Hellion : PMMonsterBase
 	A_SpawnProjectile("PM_HellionBall",32,0,random(-15,15),CMF_OFFSETPITCH,random(-8,8));
 	}
     HELN L 2;
-    Goto See2Alt;
+    Goto See2;
   BulletHell1:
     HELN G 0 A_VileStart();
     HELN GHIJK 5 Bright A_FaceTarget();
@@ -441,24 +494,7 @@ Class PM_Hellion : PMMonsterBase
 	Goto Missile2+20;
   BarrageEnd:
     HELN L 14;
-    Goto See2Alt;
-  Heal:
-	TNT1 A 0;
-	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
-	2ELN A 1 Light("Greenball3");
-	TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6);
-	TNT1 A 0 A_StartSound("EXIRES",CHAN_7);
-	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
-	{
-	A_SpawnItemEx("PM_HellionHandFire",5,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
-	A_SpawnItemEx("PM_HellionHandFire",5,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
-	}
-	2ELN AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
-	{
-	A_SpawnItemEx("PM_HellionHandFire",0,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
-	A_SpawnItemEx("PM_HellionHandFire",0,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
-	}
-	Goto See2Alt;
+    Goto See2;
   Pain:
     HELN M 2;
     HELN M 2 A_Pain();
@@ -871,4 +907,272 @@ Class PM_HellionShieldToken : Inventory
  {
  Inventory.MaxAmount 1;
  }
+}
+
+Class PM_HellionMendingBuffGiver : Inventory
+{
+ Default
+ {
+ +INVENTORY.AUTOACTIVATE;
+ +INVENTORY.ALWAYSPICKUP;
+ }
+ 
+ Override bool Use(bool pickup)
+  {
+   if(!owner)
+  return false;
+   if(Owner is "PMMonsterBase")
+     {
+	 if(owner.bBOSS == false && !(owner is "PM_Hellion"))
+	  owner.GiveInventory("PM_HellionMendingBuff",1);
+	 }
+  return true;
+  }
+}
+   
+Class PM_HellionMendingBuff : Powerup
+{
+  Default
+  {
+   +INVENTORY.AUTOACTIVATE;
+   +INVENTORY.ALWAYSPICKUP;
+   Powerup.Duration -0x7FFFFFFF;
+  } 
+  
+  Override Void PostBeginPlay()
+  {
+  if(owner && owner.health > 0)
+   {
+    owner.A_AttachLightDef("MendingBuff","GreenBall2");
+   }
+  }
+  
+  Override void DoEffect()
+  {
+  Super.DoEffect();
+  if(owner.health > 0 && !IsFrozen())
+   owner.A_SpawnParticle("#89fd56",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,5),0,random(4,8),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
+  }
+  
+  Override Void OwnerDied()
+  {
+   owner.A_RemoveLight("MendingBuff");
+   owner.A_SpawnProjectile("PM_HellionMendingOrb",flags:CMF_AIMDIRECTION);
+   Destroy();
+  }
+}
+
+Class PM_HellionMendingOrb : Actor
+{
+ int timer;
+ Default
+ {
+  Projectile;
+  DamageFunction 20;
+  SeeSound "Hellion/BuffRelease";
+  Decal "PM_GreenFireScorch";
+  Speed 15;
+  Alpha 0.9;
+  +THRUACTORS
+ }
+ Override Void Tick()
+ {
+  if(level.IsFrozen()) return;
+  Super.Tick();
+  
+  if((level.maptime % 2) == 0)
+  {
+    A_SpawnParticleEx
+	(   
+    "67fc26",
+	TexMan.CheckForTexture("GNSMK0"),
+	style: STYLE_Add,
+	flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(45,67),
+	size: 35.0,
+	xoff: frandom(-1.5,1.5),
+	yoff: frandom(-1.5,1.5),
+	velx: frandom(-1.0,1.0),
+	vely: frandom(-1.0,1.0),
+	velz: frandom(-1.0,1.0),
+	startalphaf: 0.9,
+	fadestepf: -1,
+	sizestep: 2,
+	startroll: random(-180,180)
+	);
+  }
+ }
+ States
+ {
+ Spawn:
+    TNT1 A 0;
+    TNT1 A 0 A_ScaleVelocity(0.0);
+    TNT1 A 0 A_ChangeVelocity(0,0,3,CVF_REPLACE);
+    TNT1 AAA 5;
+    TNT1 A 0 A_ChangeVelocity(0,0,2,CVF_REPLACE);
+    TNT1 AA 5;
+    TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+ OrbWait:
+    TNT1 A 2
+    {
+     if(timer > 25)
+	  SetStateLabel("Go");
+     A_SpawnParticleEx
+	 (   
+      "67fc26",
+	  TexMan.CheckForTexture("GNSMK0"),
+	  style: STYLE_Add,
+	  flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	  lifetime: random(45,67),
+	  size: 35.0,
+	  xoff: frandom(-1.5,1.5),
+	  yoff: frandom(-1.5,1.5),
+	  velx: frandom(-2.8,2.8),
+	  vely: frandom(-2.8,2.8),
+	  velz: frandom(-2.8,2.8),
+	  startalphaf: 0.9,
+	  fadestepf: -1,
+	  sizestep: 2,
+	  startroll: random(-180,180)
+	 );
+	 timer++;
+    }
+    Loop;
+  Go:
+    TNT1 A 70
+     {
+      A_StartSound("Hellion/BuffMonNova");
+      A_RadiusGive("PM_HellionMendingBuffGiver2",500,RGF_MONSTERS);
+      A_SpawnParticleEx
+       (
+	   "",
+	   TexMan.CheckForTexture("SPKOG0"),
+	   style: STYLE_Add,
+	   flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	   lifetime: 100.5,
+	   size: 30.0,
+	   startalphaf: 1.0,
+	   fadestepf: -0.2,
+	   sizestep: 13,
+	   startroll: random(-180,180),
+	   rollvel: frandom(-8,8),
+	   rollacc: 0
+       );
+	  }
+    //TNT1 A 0 A_SpawnProjectile("PM_HellionMendingOrb2",ptr:AAPTR_TRACER);
+    TNT1 A 1;
+    Stop;
+  }
+}
+
+Class PM_HellionMendingOrb2 : Actor
+{
+ Default
+ {
+  Projectile;
+  DamageFunction 20;
+  SeeSound "HeresyLord/WhiteFire";
+  DeathSound "HeresyLord/WhiteDeath";
+  Decal "PM_GreenFireScorch";
+  Speed 15;
+  Alpha 0.9;
+ }
+
+ Override Void Tick()
+ {
+  if(level.IsFrozen()) return;
+  Super.Tick();
+  
+  if((level.maptime % 2) == 0)
+  {
+    A_SpawnParticleEx
+	(   
+    "67fc26",
+	TexMan.CheckForTexture("GNSMK0"),
+	style: STYLE_Add,
+	flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(45,67),
+	size: 35.0,
+	xoff: frandom(-1.5,1.5),
+	yoff: frandom(-1.5,1.5),
+	velx: frandom(-1.0,1.0),
+	vely: frandom(-1.0,1.0),
+	velz: frandom(-1.0,1.0),
+	startalphaf: 0.9,
+	fadestepf: -1,
+	sizestep: 2,
+	startroll: random(-180,180)
+	);
+  }
+ }
+ 
+ States
+ {
+  Spawn:
+    TNT1 A 2;
+    Loop;
+  Death:
+    NDEB D 1 bright Light("GreenFireLight");
+	TNT1 A 0 A_SpawnItemEx("GFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_GreenFireballExpFlames");
+	Stop;
+ }
+}
+
+Class PM_HellionMendingBuffGiver2 : Inventory
+{
+ Default
+ {
+ +INVENTORY.AUTOACTIVATE;
+ +INVENTORY.ALWAYSPICKUP;
+ }
+ 
+ Override bool Use(bool pickup)
+  {
+   if(!owner)
+  return false;
+   if(Owner is "PMMonsterBase")
+     {
+	 if(owner.bBOSS == false && !(owner is "PM_Hellion"))
+	  owner.GiveInventory("PM_HellionMendingBuff2",1);
+	 }
+  return true;
+  }
+}
+   
+Class PM_HellionMendingBuff2 : PowerRegeneration
+{
+  Default
+  {
+   +INVENTORY.AUTOACTIVATE;
+   +INVENTORY.ALWAYSPICKUP;
+   Powerup.Duration -15;
+   Powerup.Strength 20;
+  } 
+  
+  Override Void PostBeginPlay()
+  {
+  if(owner && owner.health > 0)
+   {
+    owner.A_AttachLightDef("MendingBuff","GreenBall2");
+   }
+  }
+  
+  Override void DoEffect()
+  {
+  Super.DoEffect();
+  if(owner.health > 0 && !IsFrozen())
+   owner.A_SpawnParticle("#89fd56",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,5),0,random(4,8),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
+  }
+  
+  Override Void DetachFromOwner()
+  {
+   owner.A_RemoveLight("MendingBuff");
+  }
+ 
+  Override Void OwnerDied()
+  {
+   owner.A_RemoveLight("MendingBuff");
+   Destroy();
+  }
 }

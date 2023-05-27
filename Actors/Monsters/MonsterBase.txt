@@ -180,7 +180,7 @@ class PMMonsterBase : Actor abstract
       A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
 	}
 
-	void PM_LookingForPlayer()
+	virtual void PM_LookingForPlayer()
 	{
 		A_Chase(null, "Spotted", CHF_NOPLAYACTIVE);
 	}

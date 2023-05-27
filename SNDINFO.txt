@@ -1391,7 +1391,9 @@ Hile/Death4 "Sounds/Monsters/Imps/Hellion/HellionDeath4.ogg"
 
 HellionProj "Sounds/Monsters/Imps/Hellion/HellionProj.ogg" //formerly DSHLNATK
 HellionProjExp "Sounds/Monsters/Imps/Hellion/HellionProjExp.ogg" //formerly DSHLNEXP 
-
+Hellion/BuffMonNova "Sounds/Monsters/Imps/Hellion/HellionHealNova.ogg"
+Hellion/BuffGive "Sounds/Monsters/Imps/Hellion/HellionBuffGive.ogg"
+Hellion/BuffRelease "Sounds/Monsters/Imps/Hellion/HellionBuffRelease.ogg"
 $limit HellionProj 12
 
 $Limit Roach/Fire 0
