@@ -94,8 +94,13 @@ ACTOR PM_CyberSpectre : PMMonsterBase
 			}
 			Goto JumpLoop
 		JumpLoop:
-			TNT1 A 0 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
-			CYSP F 2 A_CheckFloor("JumpLand")
+			CYSP FFF 2 A_CheckFloor("JumpLand")
+			TNT1 A 0 A_JumpIfCloser(200,"JumpBite")
+			Loop
+		JumpBite:
+		    CYSP GG 2 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
+		JumpLoop2:
+		    CYSP GGG 2 A_CheckFloor("JumpLand")
 			Loop
 		JumpLand:
 			TNT1 A 0 A_ChangeFlag("NOPAIN", false)
