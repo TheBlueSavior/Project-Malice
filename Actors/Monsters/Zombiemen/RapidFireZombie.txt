@@ -147,7 +147,7 @@ Class PM_RFZombie: PMMonsterBase
            }
 		  A_StartSound("ZombieRifleDistant",CHAN_7);
 		  A_StartSound("RFZ/RapidFire");
-		  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-1, 1),CMF_OFFSETPITCH,frandom(pitch*1-2,pitch*1+2));
+		  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
           A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		  A_FaceTarget(1.2,3,0,0);
           user_numbullets--;
