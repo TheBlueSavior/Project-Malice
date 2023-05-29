@@ -30,13 +30,14 @@ version "4.10.0"
 #include "Actors/Monsters/Chaingunners/HellPriest.txt"
 
 //Imps
-#include "Actors/Monsters/Imps/Hellion.txt"
-#include "Actors/Monsters/Imps/Tainted.txt"
-#include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/Devil.txt"
 #include "Actors/Monsters/Imps/Zephyr.txt"
 #include "Actors/Monsters/Imps/Charred.txt"
+#include "Actors/Monsters/Imps/Hellion.txt"
+#include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Imps/FeralImp.txt"
+#include "Actors/Monsters/Imps/Host.txt"
+#include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
 
 //Revenants

@@ -22,7 +22,6 @@
 #include "Actors/Monsters/Fodder/SmallRat.txt"
 #include "Actors/Monsters/Fodder/Hunger.txt"
 #include "Actors/Monsters/Fodder/Fly.txt"
-#include "Actors/Monsters/Imps/Host.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
 #include "Actors/Monsters/Fodder/Mimic.txt"
 #include "Actors/Monsters/Fodder/Swarm.txt"
