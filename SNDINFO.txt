@@ -22,6 +22,9 @@ $rolloff Horrorspawn/Step 100 370
 
 $volume Horrorspawn/Step 0.6
 
+PM/BigElectricCharge "Sounds/Monsters/SFX/BigElectricCharge.ogg"
+$rolloff Afflicted/RunStep 250 1450
+
 $random Afflicted/RunStep { Aff/RStep1 Aff/RStep2 Aff/RStep3 }
 Aff/RStep1 "Sounds/Monsters/SFX/AffRunStep1.ogg"
 Aff/RStep2 "Sounds/Monsters/SFX/AffRunStep2.ogg"
