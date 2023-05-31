@@ -1,5 +1,6 @@
 Actor Voidspawn : PMFodderMonsterBase
 {
+	  var int user_deathtimer;
     Health 300
     GibHealth 250
     Radius 20
@@ -151,10 +152,15 @@ Actor Voidspawn : PMFodderMonsterBase
     VFOD VUTSUSTUVSSUSUTUWVSUTSVWW 1
     VFOD M 1 A_PlaySound("Voidspawn/Fatal")
     VFOD I 1 A_NoBlocking
-    VFOD MIKSWTVWLJMMLSVWMILJLKMJSTUMLIJKLSTWKMLKJIJMSWVMSVVM 2 ThrustThing(random(0,360),random(4,6))
+    VFOD MIKSWTVWLJMMLSVWMILJLKMJSTUMLIJKLSTWKMLKJIJMSWVMSVVM 2 ThrustThing(random(0,360),random(3,5))
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Stencil)
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-    VFOD M 430
+	TNT1 A 0 { user_deathtimer = random(50,300); }
+  XDeath2:
+    VFOD M 2 A_JumpIf(user_deathtimer < 0, "XDeath3")
+	TNT1 A 0 { user_deathtimer--; }
+	Loop
+  XDeath3:
     VFOD VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV 1 A_PlaySound("Voidspawn/Stutter")
 	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal)
 	VFOD PQRPQRPQRPQRPQRPQRPQR 1 A_FaceTarget
