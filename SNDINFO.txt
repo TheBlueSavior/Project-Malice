@@ -3412,6 +3412,7 @@ $rolloff Floater/Wail 100 2500
 $volume Floater/Wail 0.4
 $pitchset Floater/Wail 0.8 1.1
 Floater/Active "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
+$rolloff Floater/Active 400 2500
 Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
 $rolloff Floater/Roar 300 2500
 Floater/Pain "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPain.ogg"

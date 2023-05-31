@@ -34,7 +34,7 @@ Class PM_VoidFloater : PMMonsterBase
 		+DONTMORPH
 		BloodType "PM_BlueBloodBase";
 		SeeSound "Floater/Sight";
-		ActiveSound "Floater/Idle";
+		ActiveSound "Floater/Active";
 		PainSound "Floater/Pain";
 		DeathSound "Floater/Death";
 	}
@@ -86,7 +86,7 @@ Class PM_VoidFloater : PMMonsterBase
 		morphed = false;
 		health = oldhealth;
 		damagefactor = 1.0;
-		activesound = "Floater/Idle";
+		activesound = "Floater/Active";
 		SetTag("V?ID F??AT?R");
 		A_Stop();
 	}
