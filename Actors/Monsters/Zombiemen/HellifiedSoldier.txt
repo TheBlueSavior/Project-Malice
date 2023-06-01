@@ -148,7 +148,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         HFS1 H 3 A_Pain;
         Goto See2;
     Death:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
 		TNT1 A 0 A_Jump(35,"PossDeath");
         HFS1 I 7 A_NoBlocking;
         HFS1 J 7 A_Scream;
@@ -158,7 +158,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
         HFS1 M -1;
         Stop;
 	PossDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
         HFS1 I 7 A_NoBlocking;
         HFS1 J 7 A_Scream;
         HFS1 K 7;
@@ -169,7 +169,6 @@ Class PM_HellifiedSoldier : PMMonsterBase
 		HFS1 M -1;
         Stop;
     XDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
         HFS1 N 5 PM_Gib();
         HFS1 O 5 A_XScream;
         HFS1 P 5 A_NoBlocking;

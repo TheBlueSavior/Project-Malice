@@ -356,7 +356,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         Goto See2;
     Death:
         TNT1 A 0;
-		TNT1 A 0 A_StopSounds(0,0);
+		TNT1 A 0 A_StopSound(0);
         TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"GrenadeDeath");
 		TNT1 A 0 A_Jump(35,"PossDeath");
         UTM2 J 5 A_NoBlocking;
@@ -367,7 +367,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 N -1;
         Stop;
     GrenadeDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
         UTM2 J 5 A_NoBlocking;
         UTM2 K 5 A_Scream;
         UTM2 L 5 A_SpawnItemEx("PM_ZTrooperFragGrenade",0,0,5,0,0,0,0,SXF_NOCHECKPOSITION);
@@ -376,7 +376,7 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 N -1;
         Stop;
 	PossDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
         UTM2 J 5 A_NoBlocking;
         UTM2 K 5 A_Scream;
         UTM2 L 5;
@@ -387,7 +387,6 @@ Class PM_ZombieTrooper : PMMonsterBase
         UTM2 N -1;
         Stop;
     XDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
         UTM2 O 5 PM_Gib();
         UTM2 P 5 A_XScream;
         UTM2 Q 5 A_NoBlocking;

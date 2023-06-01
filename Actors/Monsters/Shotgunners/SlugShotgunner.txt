@@ -225,7 +225,7 @@ Class PM_SlugShotgunner : PMMonsterBase
         SPS4 G 3 A_Pain;
         Goto See2;
     Death:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
 		TNT1 A 0 A_Jump(35,"PossDeath");
         SPS4 H 5 A_NoBlocking;
         SPS4 I 5 A_Scream;
@@ -235,7 +235,7 @@ Class PM_SlugShotgunner : PMMonsterBase
         F1SH L -1;
         Stop;
 	 PossDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
         SPS4 H 5 A_NoBlocking;
         SPS4 I 5 A_Scream;
         SPS4 J 5;
@@ -246,7 +246,6 @@ Class PM_SlugShotgunner : PMMonsterBase
         F1SH L -1;
         Stop;
     XDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
         SPS4 M 5 PM_Gib();
         F1SH N 5 A_XScream;
         F1SH O 5 A_NoBlocking;

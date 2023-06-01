@@ -136,7 +136,7 @@ Class PM_PistolZombie : PMMonsterBase
         A02A G 3 A_Pain;
         Goto See2;
     Death:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
 		TNT1 A 0 A_Jump(35,"PossDeath");
         A02A H 5 A_NoBlocking;
         A02A I 5 A_Scream;
@@ -146,7 +146,7 @@ Class PM_PistolZombie : PMMonsterBase
         A02A L -1;
         Stop;
 	PossDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
+	    TNT1 A 0 A_StopSound(0);
         A02A H 5 A_NoBlocking;
         A02A I 5 A_Scream;
         A02A J 5;
@@ -157,7 +157,6 @@ Class PM_PistolZombie : PMMonsterBase
         A02A L -1;
         Stop;
     XDeath:
-	    TNT1 A 0 A_StopSounds(0,0);
 		A02A M 5 PM_Gib();
 		A02A N 5 A_XScream;
         A02A O 5 A_NoBlocking;

@@ -428,12 +428,12 @@ Class PM_Nailgunner : PMMonsterBase
        Goto See2;
   Pain:
     TNT1 A 0;
-    TNT1 A 0 A_StopSounds(0,0);
+    TNT1 A 0 A_StopSound(CHAN_6);
     PNGZ G 3;
     PNGZ G 3 A_Pain;
     Goto See2;
   Death:
-    TNT1 A 0 A_StopSounds(0,0);
+    TNT1 A 0 A_StopSound(0);
 	TNT1 A 0 A_Jump(35,"PossDeath");
     PNGZ H 5;
     PNGZ I 5 A_Scream;
@@ -444,7 +444,7 @@ Class PM_Nailgunner : PMMonsterBase
     PNGZ N -1;
     Stop;
   PossDeath:
-    TNT1 A 0 A_StopSounds(0,0);
+    TNT1 A 0 A_StopSound(0);
     PNGZ H 5;
     PNGZ I 5 A_Scream;
     PNGZ J 5 A_Fall;
@@ -456,7 +456,6 @@ Class PM_Nailgunner : PMMonsterBase
     PNGZ N -1;
     Stop;
   XDeath:
-    TNT1 A 0 A_StopSounds(0,0);
     PNGZ O 5 PM_Gib();
     PNGZ P 5 A_XScream;
     PNGZ Q 5 A_Fall;
