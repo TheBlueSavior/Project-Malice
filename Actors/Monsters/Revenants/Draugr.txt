@@ -927,7 +927,7 @@ Class PM_DraugrPrideBuff : Powerup
   Super.DoEffect();
   if(owner.health > 0 && !IsFrozen()) //[NERU] particle code by Dusted, i just changed the color tbh
    owner.A_SpawnItemEx("PM_SmallRedLightningVFX",random(-45,45),random(-35,35),random(0,35),0,0,0,0,SXF_NOCHECKPOSITION,128);
-   owner.A_SpawnParticle("#d12e2e",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,5),0,random(4,8),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
+   owner.A_SpawnParticle("#d12e2e",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,radius),0,random(4,height),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
    owner.A_SetTics(int(owner.tics/1.5));
    owner.bNOINFIGHTING = true;
    owner.bNOTARGET = true;
