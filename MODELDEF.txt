@@ -139,6 +139,16 @@ PITCHFROMMOMENTUM
 FrameIndex BLA4 A 0 0
 }
 
+Model PM_FOCTracer
+{ 
+Path "Models"
+Skin 0 "malicebrokensgtracer.png"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}
+
 Model PM_BrokenBulletTracer
 { 
 Path "Models"

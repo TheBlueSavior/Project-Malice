@@ -2729,6 +2729,22 @@ Voidspawn/Stutter "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnStutter
 
 $volume Voidspawn/Active 0.9
 
+//Fragment Of Cain
+$random FOC/Sight { FOC/Sight1 FOC/Sight2 }
+FOC/Sight1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCSight1.ogg"
+FOC/Sight2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCSight2.ogg"
+
+$random FOC/Active { FOC/Active1 FOC/Active2 FOC/Active3 }
+FOC/Active1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive1.ogg"
+FOC/Active2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive2.ogg"
+FOC/Active3 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive3.ogg"
+
+$random FOC/Pain { FOC/Pain1 FOC/Pain2 }
+FOC/Pain1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCPain1.ogg"
+FOC/Pain2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCPain2.ogg"
+
+FOC/Attack "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCAttack.ogg"
+$pitchset FOC/Attack 0.55 0.75
 
 //Plasmatron
 Plasmatron/Fire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronFire.ogg"

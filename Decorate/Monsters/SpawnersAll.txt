@@ -1,28 +1,28 @@
 Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 {
-	DropItem "PM_CyberFodder", 255, 1
-	DropItem "HeadDropper", 255, 1
-	//DropItem "FallenMarine", 255, 3
-	DropItem "PM_DecayedSoldier", 255, 4
-	DropItem "RatDropper", 255, 1
 	DropItem "PM_ZombieSoldier", 255, 58
 	DropItem "PM_PistolZombie", 255, 55
 	DropItem "PM_ZombieMarine", 255, 16
-	DropItem "PM_ZombieTrooper", 255, 6
+	DropItem "PM_ZombieTrooper", 255, 9
 	DropItem "PM_HellifiedSoldier", 255, 8
-	DropItem "PM_RFZombie", 255, 4
+	DropItem "PM_RFZombie", 255, 5
+	DropItem "PM_DecayedSoldier", 255, 5
+	DropItem "PM_CyberFodder", 255, 3
+	DropItem "HeadDropper", 255, 2
+	DropItem "RatDropper", 255, 2
+	DropItem "PM_FOCRifle", 255, 1
 }
 
 
 Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
-	DropItem "PM_CyberFodder", 255, 10
-	DropItem "PM_Nailgunner", 255, 8
-	DropItem "PM_SlugShotgunner", 255, 14
 	DropItem "PM_FShotgunner", 255, 56
-	DropItem "PM_Remnant", 255, 1
-	DropItem "PM_DecayedShotgunner", 255, 4
-	DropItem "PM_FallenShotgunner", 255, 3
+	DropItem "PM_SlugShotgunner", 255, 14
+	DropItem "PM_CyberFodder", 255, 10
+	DropItem "PM_Nailgunner", 255, 9
+	DropItem "PM_DecayedShotgunner", 255, 5
+	DropItem "PM_FallenShotgunner", 255, 4
+	DropItem "PM_FOCRifle", 255, 1
 }
 
 
