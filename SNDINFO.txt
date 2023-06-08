@@ -2733,11 +2733,13 @@ $volume Voidspawn/Active 0.9
 $random FOC/Sight { FOC/Sight1 FOC/Sight2 }
 FOC/Sight1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCSight1.ogg"
 FOC/Sight2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCSight2.ogg"
+$rolloff FOC/Sight 200 1800
 
 $random FOC/Active { FOC/Active1 FOC/Active2 FOC/Active3 }
 FOC/Active1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive1.ogg"
 FOC/Active2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive2.ogg"
 FOC/Active3 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCActive3.ogg"
+$rolloff FOC/Sight 300 1500
 
 $random FOC/Pain { FOC/Pain1 FOC/Pain2 }
 FOC/Pain1 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCPain1.ogg"

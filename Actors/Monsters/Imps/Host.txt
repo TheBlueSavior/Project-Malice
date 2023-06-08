@@ -709,7 +709,7 @@ Class PM_HostSmokeCloud2 : Actor
 	{
 	A_Explode(Random(3,5),48);
 	A_FadeOut(0.02);
-	A_SetScale(scalex+0.1);
+	A_SetScale(scale.x+0.1);
 	}
   Death:
 	TNT1 A 1;
