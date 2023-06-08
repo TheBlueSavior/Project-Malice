@@ -3509,7 +3509,9 @@ PistolZombie/Death2 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombieDeath2.o
 PistolZombie/Death3 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombieDeath3.ogg"
 
 PistolZombie/Fire "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombieFire.ogg"
-$rolloff PistolZombie/Fire 300 2200
+$rolloff PistolZombie/Fire 200 1200
+PistolZombie/FireDistant "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombieFireDistant.ogg"
+$rolloff PistolZombie/FireDistant 100 3800
 
 //Noble
 

@@ -439,7 +439,7 @@ Class PM_ExileGroundFlames : Actor
 			Loop;
 		Death:
 			TNT1 A 0 A_StopSound(CHAN_7);
-			TNT1 A 1 Bright A_RadiusThrust(6000,90);
+			TNT1 A 1 Bright A_RadiusThrust(1000,90);
 			TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 			TNT1 A 0 A_SpawnItemEx("OrangeShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 			TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_FireGlobs",10,0,random(0,40),random(-4,4),random(-4,4),random(-2,7));

@@ -870,7 +870,7 @@ Class PM_PhaseCacoBall : Actor
 			Loop;
 		Death:
 			TNT1 A 0 A_StopSound(CHAN_5);
-			TNT1 A 1 Bright A_RadiusThrust(5000,90);
+			TNT1 A 1 Bright A_RadiusThrust(1000,90);
 			TNT1 AAA 0
 			{
 			A_SpawnParticleEx

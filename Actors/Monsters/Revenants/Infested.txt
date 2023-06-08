@@ -150,8 +150,8 @@ Class PM_InfestedThrownMaggots : Actor
   Default
   {
   Damage 1;
-  Height 1;
-  Radius 1;
+  Height 3;
+  Radius 3;
   Speed 30;
   Mass 1;
   Scale 2.5;
