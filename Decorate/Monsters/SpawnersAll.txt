@@ -22,7 +22,7 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 	DropItem "PM_Nailgunner", 255, 9
 	DropItem "PM_DecayedShotgunner", 255, 5
 	DropItem "PM_FallenShotgunner", 255, 4
-	DropItem "PM_FOCRifle", 255, 1
+	DropItem "PM_FOCShotgun", 255, 1
 }
 
 
@@ -157,6 +157,7 @@ Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS
 {
 	DropItem "PM_FOCRifle", 255, 20
+	DropItem "PM_FOCShotgun", 255, 20
 	DropItem "Voidspawn",100, 20
 	DropItem "PM_VoidFloater", 100, 5
 	DropItem "PM_Skulker", 100, 5

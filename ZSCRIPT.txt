@@ -22,6 +22,7 @@ version "4.10.0"
 #include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/DecayedShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/FragmentofCainShotgun.txt"
 
 //Chaingunners
 #include "Actors/Monsters/Chaingunners/HeavyCarbineZombie.txt"

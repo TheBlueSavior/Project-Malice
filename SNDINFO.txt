@@ -2748,6 +2748,10 @@ FOC/Pain2 "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCPain2.ogg"
 FOC/Attack "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCAttack.ogg"
 $pitchset FOC/Attack 0.55 0.75
 
+FOC/Distort "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCDistort.ogg"
+FOCShotgun/Sight "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCShotgunSight.ogg"
+FOCShotgun/Charge "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCShotgunCharge.ogg"
+
 //Plasmatron
 Plasmatron/Fire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronFire.ogg"
 Plasmatron/SmallFire "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSmallFire.ogg"
