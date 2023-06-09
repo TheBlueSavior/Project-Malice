@@ -1,0 +1,66 @@
+# Aggressive defense system
+    //[NERU] Had to do this due to the way projectiles with whiz sounds are coded
+	PM_BulletTracer  !projCanBeDestroyed;
+	PM_PelletTracer  !projCanBeDestroyed;
+	PM_CarbineTracer !projCanBeDestroyed;
+	PM_SlugTracer    !projCanBeDestroyed;
+	PM_BrokenBulletTracer !projCanBeDestroyed;
+	PM_BrokenPelletTracer !projCanBeDestroyed;
+	PM_FOCTracer !projCanBeDestroyed;
+	PM_HellifiedSoldierBall !projCanBeDestroyed;
+	PM_HellifiedSoldierChargeBall !projCanBeDestroyed;
+	PM_CyberFodderBall !projCanBeDestroyed;
+	PM_FusionShot !projCanBeDestroyed;
+	PM_ScatterFusionShot !projCanBeDestroyed;
+	PM_SmallFusionShot !projCanBeDestroyed;
+	PM_PTronBallSmall !projCanBeDestroyed;
+	PM_PTronScatterBall !projCanBeDestroyed;
+	
+	//[NERU] the ACTUAL seeker projectiles
+	PM_PhaseCacoBall !projCanBeDestroyed;
+	PM_HuskSmallFireball !projCanBeDestroyed;
+	PM_FiendSmallRocket projCanBeDestroyed $1.5;
+	PM_FloaterBall projCanBeDestroyed $1.5;
+	
+
+# Ballistic protection
+	PM_BulletTracer       damageIsBallistic_Source $0.5;
+	PM_PelletTracer       damageIsBallistic_Source $0.3;
+	PM_CarbineTracer      damageIsBallistic_Source $0.5;
+	PM_SlugTracer         damageIsBallistic_Source $0.3;
+	PM_BrokenBulletTracer damageIsBallistic_Source $0.3;
+	PM_BrokenPelletTracer damageIsBallistic_Source $0.3;
+
+# Energy shield
+
+# Environmental resistance
+   PM_HostSmokeCloud  damageIsEnvironmental_Source $0.65;
+   PM_HostSmokeCloud2 damageIsEnvironmental_Source $0.65;
+
+
+# Cloak / Radar transparency
+    //[NERU] Robots in Deus Ex normally have this attribute, I believe
+	PM_CyberFodder isFooledByRadarTransparency;
+	PM_CyberFodder !isFooledByCloak;
+	PM_Plasmatron  isFooledByRadarTransparency;
+	PM_Plasmatron  !isFooledByCloak;
+	PM_Fusionite   isFooledByRadarTransparency;
+	PM_Fusionite   !isFooledByCloak;
+	
+	//[NERU] voids just dont give a shit though
+	Voidspawn !isFooledByCloak;
+	PM_FOCRifle !isFooledByCloak;
+	PM_FOCShotgun !isFooledByCloak;
+	PM_Skulker !isFooledByCloak;
+	PM_VoidFloater !isFooledByCloak;
+	PM_ControlledSoldier !isFooledByCloak;
+	PM_Broken !isFooledByCloak;
+	PM_EntropicAvatar !isFooledByCloak;
+	
+# Vision enhancement
+   
+   //[NERU] Mostly bc of working lore purposes
+   PM_FOCRifle   !displayedSonar;
+   PM_FOCShotgun !displayedSonar;
+	
+	
