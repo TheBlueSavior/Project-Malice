@@ -1,5 +1,5 @@
 # Aggressive defense system
-    //[NERU] Had to do this due to the way projectiles with whiz sounds are coded
+    # [NERU] Had to do this due to the way projectiles with whiz sounds are coded
 	PM_BulletTracer  !projCanBeDestroyed;
 	PM_PelletTracer  !projCanBeDestroyed;
 	PM_CarbineTracer !projCanBeDestroyed;
@@ -16,7 +16,7 @@
 	PM_PTronBallSmall !projCanBeDestroyed;
 	PM_PTronScatterBall !projCanBeDestroyed;
 	
-	//[NERU] the ACTUAL seeker projectiles
+	# [NERU] the ACTUAL seeker projectiles
 	PM_PhaseCacoBall !projCanBeDestroyed;
 	PM_HuskSmallFireball !projCanBeDestroyed;
 	PM_FiendSmallRocket projCanBeDestroyed $1.5;
@@ -39,7 +39,7 @@
 
 
 # Cloak / Radar transparency
-    //[NERU] Robots in Deus Ex normally have this attribute, I believe
+    # [NERU] Robots in Deus Ex normally have this attribute, I believe
 	PM_CyberFodder isFooledByRadarTransparency;
 	PM_CyberFodder !isFooledByCloak;
 	PM_Plasmatron  isFooledByRadarTransparency;
@@ -47,7 +47,7 @@
 	PM_Fusionite   isFooledByRadarTransparency;
 	PM_Fusionite   !isFooledByCloak;
 	
-	//[NERU] voids just dont give a shit though
+	# [NERU] voids just dont give a shit though
 	Voidspawn !isFooledByCloak;
 	PM_FOCRifle !isFooledByCloak;
 	PM_FOCShotgun !isFooledByCloak;
@@ -59,7 +59,7 @@
 	
 # Vision enhancement
    
-   //[NERU] Mostly bc of working lore purposes
+   # [NERU] Mostly bc of working lore purposes
    PM_FOCRifle   !displayedSonar;
    PM_FOCShotgun !displayedSonar;
 	
