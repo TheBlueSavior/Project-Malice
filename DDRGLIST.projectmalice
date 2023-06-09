@@ -2,8 +2,8 @@
     # [NERU] Had to do this due to the way projectiles with whiz sounds are coded
 	PM_BulletTracer  !projCanBeDestroyed;
 	PM_PelletTracer  !projCanBeDestroyed;
-	PM_CarbineTracer !projCanBeDestroyed;
-	PM_SlugTracer    !projCanBeDestroyed;
+	PM_CarbineBullet !projCanBeDestroyed;
+	PM_SlugBullet    !projCanBeDestroyed;
 	PM_BrokenBulletTracer !projCanBeDestroyed;
 	PM_BrokenPelletTracer !projCanBeDestroyed;
 	PM_FOCTracer !projCanBeDestroyed;
@@ -17,7 +17,12 @@
 	PM_PTronScatterBall !projCanBeDestroyed;
 	
 	# [NERU] the ACTUAL seeker projectiles
+	PM_NetherConduitChaser !projCanBeDestroyed;
+	PM_BrokenVFGBall !projCanBeDestroyed;
+	PM_NightmareWindPull1 !projCanBeDestroyed;
+	PM_NightmareWindPull2 !projCanBeDestroyed;
 	PM_PhaseCacoBall !projCanBeDestroyed;
+	PM_AbhorSmallBall !projCanBeDestroyed;
 	PM_HuskSmallFireball !projCanBeDestroyed;
 	PM_FiendSmallRocket projCanBeDestroyed $1.5;
 	PM_FloaterBall projCanBeDestroyed $1.5;
@@ -26,8 +31,8 @@
 # Ballistic protection
 	PM_BulletTracer       damageIsBallistic_Source $0.5;
 	PM_PelletTracer       damageIsBallistic_Source $0.3;
-	PM_CarbineTracer      damageIsBallistic_Source $0.5;
-	PM_SlugTracer         damageIsBallistic_Source $0.3;
+	PM_CarbineBullet      damageIsBallistic_Source $0.5;
+	PM_SlugBullet         damageIsBallistic_Source $0.3;
 	PM_BrokenBulletTracer damageIsBallistic_Source $0.3;
 	PM_BrokenPelletTracer damageIsBallistic_Source $0.3;
 
