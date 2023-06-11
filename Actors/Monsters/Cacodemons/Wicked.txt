@@ -9,18 +9,19 @@ Class PM_Wicked : PMMonsterBase
 		Speed 10;
 		Scale 1;
 		PainChance 112;
-		//BloodColor "Black";
 		Obituary "%o was scragged by a Wicked.";
 		SeeSound "WickSight";
 		PainSound "WickPain";
 		DeathSound "WickDeath";
 		ActiveSound "WickActive";
+		StencilColor "DarkGreen";
 		+DONTHARMSPECIES;
 		Species "Cacodemon";
 		Tag "Wicked";
 		FloatBobStrength 0.5;
 		Monster;
-		Bloodtype "PM_NormalBloodBase";
+		Bloodtype "PM_GreenBloodBase";
+		BloodColor "DarkGreen";
 		+NoGravity
 		//+NOINFIGHTING
 		+Float
@@ -28,6 +29,69 @@ Class PM_Wicked : PMMonsterBase
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
 		PMMonsterBase.RealHeight 86;
+	}
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+	bool sigil;
+	
+	void PM_WickedWretchCopyCharge()
+	{
+		A_SpawnParticleEx
+		(
+		"",
+	    tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: random(180,200),
+		xoff: 45,
+		zoff: 55,
+		startalphaf: 0.3,
+		fadestepf: 0.1,
+		sizestep: 0,
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,10),
+		size: random(1,100),
+		xoff: 45,
+		zoff: 55,
+		velx: random(-3,3),
+		vely: random(-3,3),
+		velz: random(-3,3),
+		startalphaf: frandom(0,1),
+		startroll: random(-180,180)
+		);
+	}
+	
+	void PM_WickedCharge()
+	{
+		A_SpawnParticleEx
+		(
+		"",
+	    tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: random(75,80),
+		xoff: 10,
+		zoff: 55,
+		startalphaf: 0.75,
+		fadestepf: 0.1,
+		sizestep: 0,
+		startroll: random(-180,180)
+		);
 	}
 
 	States
@@ -64,7 +128,7 @@ Class PM_Wicked : PMMonsterBase
 		See2:
 			//TNT1 A 0  A_UnSetShootable();
 			TNT1 A 0 {bNOPAIN = True;}//A_ChangeFlag("NOPAIN",1);
-			TNT1 A 0 A_SetRenderStyle(1,STYLE_Stencil);
+			TNT1 A 0 A_SetRenderStyle(0.1,STYLE_AddStencil);
 			TNT1 A 0 A_StartSound("WickRush");
 		Go:
 			TNT1 A 0 A_SetSpeed(14);
@@ -77,34 +141,48 @@ Class PM_Wicked : PMMonsterBase
 			//WIC2 E 0 A_Jump(2, "See");
 			Loop;
 		Missile:
-			TNT1 A 0 A_Jump(128,"Missile12","Missile2","Charge");
+		    TNT1 A 0 A_Jump(128,"Missile12","Missile2");
+			TNT1 A 0 A_Jump(96,"CopyWretched","CopyBeholder","CopyPhase");
 			TNT1 A 0  A_SetShootable();
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			WIC2 I 1 A_StartSound("WickAttack");
 			TNT1 A 0  A_SetShootable();
-			WIC2 I 4 A_FaceTarget();
-			WIC2 J 5 BRIGHT A_FaceTarget();
-			TNT1 AAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
-			TNT1 A 0 A_SpawnProjectile("BulletFlare",60,10);
+			WIC2 IIII 1
+			{
+			PM_WickedCharge();
+			A_FaceTarget();
+			}
+			WIC2 JJJJJ 1 BRIGHT 
+			{
+			PM_WickedCharge();
+			A_FaceTarget();
+			}
+			TNT1 AAAAAAA 0 PM_WickedCharge();
 			WIC2 K 8 BRIGHT A_SpawnProjectile("WickedShot",60,0,0);
-			WIC2 K 0 BRIGHT A_SpawnProjectile("WickedShot",60,0,15);
-			WIC2 K 0 BRIGHT A_SpawnProjectile("WickedShot",60,0,-15);
 			WIC2 L 5;
 			Goto See1;
 		Missile12:
 			TNT1 A 0  A_SetShootable();
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-			WIC2 I 1 A_StartSound("WickAttack");
+			WIC2 I 1 A_StartSound("GenericChargeSmall");
 			TNT1 A 0  A_SetShootable();
-			WIC2 I 4 A_FaceTarget();
-			WIC2 J 5 BRIGHT A_FaceTarget();
-			TNT1 AAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
-			TNT1 A 0 A_SpawnProjectile("BulletFlare",60,10);
-			WIC2 K 8 BRIGHT A_SpawnProjectile("WickedShot",60,0,15);
+			WIC2 IIIIIIIIIIIII 1
+			{
+			PM_WickedCharge();
+			A_FaceTarget();
+			}
+			WIC2 I 1 A_StartSound("WickAttack");
+			WIC2 JJJJJ 1 BRIGHT 
+			{
+			PM_WickedCharge();
+			A_FaceTarget();
+			}
+			TNT1 AAAAAAA 0 PM_WickedCharge();
+			WIC2 K 8 BRIGHT A_SpawnProjectile("WickedShot",60,0,30);
 			WIC2 K 8 BRIGHT A_SpawnProjectile("WickedShot",60,0,0);
-			WIC2 K 0 BRIGHT A_SpawnProjectile("WickedShot",60,0,-15);
+			WIC2 K 0 BRIGHT A_SpawnProjectile("WickedShot",60,0,-30);
 			WIC2 L 5;
 			Goto See1;
 		Missile2:
@@ -113,18 +191,16 @@ Class PM_Wicked : PMMonsterBase
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			WIC2 I 1 A_StartSound("GenericChargeSmall");
 			TNT1 A 0  A_SetShootable();
-			WIC2 IIIIIIIIIIIIIIJJJJ 1 Light("AvatarFireball2")
+			WIC2 IIIIIIIIIIIIIIJJJJ 1 Light("Greenball2")
 			{
 				A_FaceTarget();
-				A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
-				A_SpawnProjectile("BulletFlare",60,0);
+				PM_WickedCharge();
 			}
 			TNT1 A 0 A_StartSound("WickAttack");
-			WIC2 J 5 Light("AvatarFireball3") A_FaceTarget();
-			TNT1 AAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
-			TNT1 A 0 A_SpawnProjectile("BulletFlare",60,0);
-			WIC2 K 1 Light("AvatarFireball4");
-			WIC2 K 7 Light("AvatarFireball4") 
+			WIC2 J 5 Light("Greenball3") A_FaceTarget();
+			TNT1 AAAAAAA 0 PM_WickedCharge();
+			WIC2 K 1 Light("Greenball3");
+			WIC2 K 7 Light("Greenball3") 
 			{
 				PM_LeadTarget(18);
 				A_SpawnProjectile("WickedRevolveShot1",60,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
@@ -132,45 +208,157 @@ Class PM_Wicked : PMMonsterBase
 			}
 			WIC2 L 5;
 			Goto See1;
-		Charge:
+		CopyWretched:
 			TNT1 A 0  A_SetShootable();
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-			WIC2 I 1 A_StartSound("GenericChargeHeavy");
-			WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("AvatarFireball2")
+			TNT1 A 0 A_StartSound("GenericChargeHeavy",15);
+			WIC2 IIIIIIIIIIIIIIIIIIIIIII 1 Light("Greenball1") 
 			{
-				A_FaceTarget();
-				A_SpawnProjectile("BulletFlare",60,0);
-				A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
+			 A_FaceTarget();
+			 PM_WickedWretchCopyCharge();
 			}
-			WIC2 JJJJJJJJJJJJJJJJJJJJJJ 1 Light("AvatarFireball3")
+			WIC2 I 1 A_StartSound("Wretched/Charge",15,volume:0.20,pitch:0.7);
+			TNT1 A 0
+	        {
+	         let envysigil = Spawn("PM_EnvySigil",pos);
+	         envysigil.master = self;
+			 sigil = true;
+	        }
+			WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("Greenball2")
 			{
 				A_FaceTarget();
-				A_SpawnProjectile("BulletFlare",60,0);
-				A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-				A_SpawnItemEx("OrangeEmbersFloat",0,random(-1,1),60,random(1,4),random(-1,1),random(-1,1));
+				PM_WickedWretchCopyCharge();
+			}
+			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
+			{
+				A_FaceTarget();
+			    PM_WickedWretchCopyCharge();
 			}
 			WIC2 KKKKKK 5 
 			{
-				A_StartSound("WickAttack");
-				A_SpawnProjectile("WickedShot",60,0,random(-10,10),CMF_OFFSETPITCH,random(-5,5));
+				A_StartSound("Wretched/Spit",pitch:0.7);
+				A_SpawnProjectile("PM_WickedCopyBall",60,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
 				A_FaceTarget();
 			}
+			TNT1 A 0 
+			{
+			A_GiveInventory("PM_EnvySigilGoAway");
+			sigil = false;
+			}
+			WIC2 K 4 A_FaceTarget();
+			WIC2 K 5 BRIGHT A_FaceTarget();
+			WIC2 K 8 BRIGHT A_FaceTarget();
+			WIC2 L 5;
+			Goto See1;
+		CopyPhase:
 			TNT1 A 0  A_SetShootable();
+			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 A 0 A_StartSound("GenericChargeHeavy",15);
+			WIC2 IIIIIIIIIIIIIIIIIIIIIII 1 Light("Greenball1") 
+			{
+			 A_FaceTarget();
+			 PM_WickedWretchCopyCharge();
+			}
+			WIC2 I 1 A_StartSound("Wretched/Charge",15,volume:0.60,pitch:0.8);
+			TNT1 A 0
+	        {
+	         let envysigil = Spawn("PM_EnvySigil",pos);
+	         envysigil.master = self;
+			 sigil = true;
+	        }
+			WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("Greenball2")
+			{
+				A_FaceTarget();
+				PM_WickedWretchCopyCharge();
+			}
+			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
+			{
+				A_FaceTarget();
+			    PM_WickedWretchCopyCharge();
+			}
+			WIC2 KKK 18 
+			{
+				A_SpawnProjectile("PM_WickedCopyPBall",60,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
+				A_FaceTarget();
+			}
+			TNT1 A 0 
+			{
+			A_GiveInventory("PM_EnvySigilGoAway");
+			sigil = false;
+			}
+			WIC2 K 4 A_FaceTarget();
+			WIC2 K 5 BRIGHT A_FaceTarget();
+			WIC2 K 8 BRIGHT A_FaceTarget();
+			WIC2 L 5;
+			Goto See1;
+		CopyBeholder:
+			TNT1 A 0  A_SetShootable();
+			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 A 0 A_StartSound("Afflicted/Puke",15);
+			WIC2 IIIIIIIIIIIIIII 3 Light("Greenball1") 
+			{
+			 A_FaceTarget();
+			 A_SpawnItemEx("PM_GreenBloodEx",xofs:45,zofs:65);
+			}
+			WIC2 I 1 A_StartSound("Beholder/Cry",15,volume:0.65,pitch:0.5);
+			TNT1 A 0
+	        {
+	         let envysigil = Spawn("PM_EnvySigil",pos);
+	         envysigil.master = self;
+			 sigil = true;
+	        }
+			WIC2 IIIIIIIIIIIIIJJJJJJJ 3 Light("Greenball2")
+			{
+				A_FaceTarget();
+				A_SpawnItemEx("PM_GreenBloodEx",xofs:45,zofs:65);
+			}
+			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
+			{
+				A_FaceTarget();
+			    A_SpawnItemEx("PM_GreenBloodEx",xofs:45,zofs:65);
+			}
+			WIC2 K 20 
+			{
+				A_StartSound("Beholder/Spit",pitch:0.7);
+				for(int a=0;a<8;a++)
+				A_SpawnItemEx("PM_WickedCopyEye",45,0,65,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+				A_FaceTarget();
+			}
+			TNT1 A 0 
+			{
+			A_GiveInventory("PM_EnvySigilGoAway");
+			sigil = false;
+			}
 			WIC2 K 4 A_FaceTarget();
 			WIC2 K 5 BRIGHT A_FaceTarget();
 			WIC2 K 8 BRIGHT A_FaceTarget();
 			WIC2 L 5;
 			Goto See1;
 		Pain:
+		    TNT1 A 0 
+			{ 
+			 if(sigil)
+			 A_GiveInventory("PM_EnvySigilGoAway");
+			 sigil = false;
+			}
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 			TNT1 A 0  A_SetShootable();
 			WIC2 M 3;
 			WIC2 M 3 A_Pain();
 			WIC2 M 3;
 			Goto See1;
+		XDeath:
 		Death:
-			TNT1 A 0 A_StopSounds(0,0);
+		    TNT1 A 0 
+			{ 
+			 if(sigil)
+			 A_GiveInventory("PM_EnvySigilGoAway");
+			 sigil = false;
+			}
+			TNT1 A 0 A_StopSound(0);
 			TNT1 A 0 {bFLOATBOB = False;}
 			TNT1 A 0;
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
@@ -205,8 +393,8 @@ Class WickedShot : Actor
 	{
 		Radius 8;
 		Height 8;
-		Speed 10;
-		Damage 5;
+		Speed 18;
+		DamageFunction 25;
 		RenderStyle "Add";
 		DamageType "Fire";
 		Alpha 0.67;
@@ -219,44 +407,136 @@ Class WickedShot : Actor
 		+ForceXYBillboard
 	}
 
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
+	int timer;
+	int velocity;
+
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_ScaleVelocity(0.25);
-			WIBL ABCDABCDABCDABCD 1 A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-			TNT1 A 0 A_ScaleVelocity(0.20);
-			WIBL ABCDABCDABCD 1 A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-			TNT1 A 0 A_ScaleVelocity(0.15);
-			WIBL ABCDABCD 1 A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-			TNT1 A 0 A_ScaleVelocity(0.1);
-			WIBL ABCD 1 A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-			TNT1 A 0 A_ScaleVelocity(0.1);
-			WIBL ABCDABCDABCDABCDABCD 1 
+		    TNT1 A 0;
+			TNT1 A 0 A_ScaleVelocity(0.45);
+			WIBL ABCDABCDABCDABCD 1 Bright 
 			{
-				A_SpawnItemEx("WickedFX", 0,0,0, random(-2,2),random(-2,2),random(-2,2), 0, SXF_CLIENTSIDE, 0);
+			if(timer > 56)
+			  {
+			   SetStateLabel("Go");
+			  }
+			A_SeekerMissile(1,90,SMF_CURSPEED|SMF_PRECISE);
+			A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+			A_SpawnParticleEx
+	         (
+		     "",
+		     tex[0],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: 1,
+		     size: 140.0,
+		     xoff: -10,
+		     startalphaf: 0.35
+	         );
+			 timer++;
 			}
-			TNT1 A 0 A_StartSound("WickChargeThrow");
-			TNT1 A 0 A_SeekerMissile(90,90,SMF_PRECISE);
+			Wait;
+        Go:
+		    TNT1 A 0 A_StartSound("WickChargeThrow",volume:0.85,pitch:frandom(0.9,1.0));
 			WIBL A 5 A_ScaleVelocity(2);
 			WIBL ABCD 1 Bright 
 			{
-				A_SpawnParticle("FF9838",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+			A_SeekerMissile(1,1);
+			A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+			A_SpawnParticleEx
+	         (
+		     "",
+		     tex[0],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: 1,
+		     size: 140.0,
+		     xoff: -10,
+		     startalphaf: 0.35
+	         );
+		     A_SpawnParticleEx
+		     (
+		     "",
+		     tex[1],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: 1,
+		     size: 50.0,
+		     startalphaf: 0.8
+		     );
 			}
 			Wait;
 		Death:
-			WIBL JKLMN 3 Bright;
+		   TNT1 AAAAAAAAAAAAAAA 0
+		   {
+		    A_SpawnParticleEx
+	        (
+		    "",
+		    tex[1],
+		    style: STYLE_Add,
+		    flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(20,30),
+		    size: random(1,20),
+		    velx: random(-4,4),
+		    vely: random(-4,4),
+		    velz: random(-4,4),
+		    startalphaf: 0.9,
+		    startroll: random(-180,180)
+	        );
+		   }
+		   TNT1 AAAAA 0
+		   {
+	        A_SpawnParticleEx
+		    (
+		    "80FF38",
+		    tex[2],
+		    style: STYLE_Add,
+		    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		    lifetime: random(20,45),
+		    size: random(34,46),
+		    xoff: -10,
+		    startalphaf: 0.75,
+		    fadestepf: -0.65,
+		    sizestep: -0.25,
+		    startroll: random(-180,180)
+		    );
+		   }
+		   TNT1 AA 0 
+		    {
+		     A_SpawnParticleEx
+		     (
+		     "",
+		     tex[1],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: random(5,10),
+		     size: 130.0,
+		     startalphaf: 0.8,
+		     sizestep: 0.75
+		     );
+	        }
+			WIBL JKLMN 1 Bright A_FadeOut(0.5);
 			Stop;
 	}
 }
 
-Class WickedRevolveShot1 : Actor
+Class WickedRevolveShot1 : WickedShot
 {
 	Default
 	{
 		Radius 8;
 		Height 8;
 		Speed 18;
-		Damage (5);
+		DamageFunction (20);
 		RenderStyle "Add";
 		DamageType "Fire";
 		Alpha 0.67;
@@ -264,8 +544,7 @@ Class WickedRevolveShot1 : Actor
 		DeathSound "WickFireExp";
 		Decal "DoomImpScorch";
 		Projectile;
-		+ThruGhost
-		+ForceXYBillboard
+		-SEEKERMISSILE
 	}
 
 	States
@@ -273,26 +552,97 @@ Class WickedRevolveShot1 : Actor
 		Spawn:
 			WIBL ABCDABCDABCDABCDABCDABCDABCD 1 Bright 
 			{
-				A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-				A_SpawnParticle("FF9838",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
-				A_SpawnParticle("FF9838",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+				A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+				A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
 				A_Weave(2,0,2.7,0);
+				A_SpawnParticleEx
+	         (
+		     "",
+		     tex[0],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: 1,
+		     size: 85.0,
+		     angle: 0,
+		     xoff: -10,
+		     yoff: 0,
+		     velx: 0,
+		     vely: 0,
+		     velz: 0,
+		     accelx: 0,
+		     accely: 0,
+		     accelz: 0,
+		     startalphaf: 0.8,
+		     fadestepf: 0,
+		     sizestep: 0,
+		     startroll: 0,
+		     rollvel: 0,
+		     rollacc: 0
+	         );
 			}
 			Loop;
 		Death:
-			WIBL JKLMN 3 Bright;
+		   TNT1 AAAAAAAAAAAAAAA 0
+		   {
+		    A_SpawnParticleEx
+	        (
+		    "",
+		    tex[1],
+		    style: STYLE_Add,
+		    flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(20,30),
+		    size: random(1,20),
+		    velx: random(-4,4),
+		    vely: random(-4,4),
+		    velz: random(-4,4),
+		    startalphaf: 0.9,
+		    startroll: random(-180,180)
+	        );
+		   }
+		   TNT1 AAAAA 0
+		   {
+	        A_SpawnParticleEx
+		    (
+		    "80FF38",
+		    tex[2],
+		    style: STYLE_Add,
+		    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		    lifetime: random(20,45),
+		    size: random(34,46),
+		    xoff: -10,
+		    startalphaf: 0.75,
+		    fadestepf: -0.65,
+		    sizestep: -0.25,
+		    startroll: random(-180,180)
+		    );
+		   }
+		   TNT1 AA 0 
+		    {
+		     A_SpawnParticleEx
+		     (
+		     "",
+		     tex[1],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: random(5,10),
+		     size: 130.0,
+		     startalphaf: 0.8,
+		     sizestep: 0.75
+		     );
+	        }
+			WIBL JKLMN 1 Bright A_FadeOut(0.5);
 			Stop;
 	}
 }
 
-Class WickedRevolveShot2 : Actor
+Class WickedRevolveShot2 : WickedShot
 {
 	Default
 	{
 		Radius 8;
 		Height 8;
 		Speed 18;
-		Damage (5);
+		DamageFunction (20);
 		RenderStyle "Add";
 		DamageType "Fire";
 		Alpha 0.67;
@@ -300,8 +650,7 @@ Class WickedRevolveShot2 : Actor
 		DeathSound "WickFireExp";
 		Decal "DoomImpScorch";
 		Projectile;
-		+ThruGhost
-		+ForceXYBillboard
+		-SEEKERMISSILE
 	}
 
 	States
@@ -309,14 +658,85 @@ Class WickedRevolveShot2 : Actor
 		Spawn:
 			WIBL ABCDABCDABCDABCDABCDABCDABCD 1 Bright 
 			{
-				A_SpawnItemEx("PM_YellowProjectileFlare",0,0,0);
-				A_SpawnParticle("FF9838",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
-				A_SpawnParticle("FF9838",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+				A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
+				A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,27,0,random(-22,-15),random(-5,5),random(-5,5),1,0,0,0,0,0,1,-1,-0.8);
 				A_Weave(-2,0,2.7,0);
+				A_SpawnParticleEx
+	         (
+		     "",
+		     tex[0],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: 1,
+		     size: 85.0,
+		     angle: 0,
+		     xoff: -10,
+		     yoff: 0,
+		     velx: 0,
+		     vely: 0,
+		     velz: 0,
+		     accelx: 0,
+		     accely: 0,
+		     accelz: 0,
+		     startalphaf: 0.8,
+		     fadestepf: 0,
+		     sizestep: 0,
+		     startroll: 0,
+		     rollvel: 0,
+		     rollacc: 0
+	         );
 			}
 			Loop;
 		Death:
-			WIBL JKLMN 3 Bright;
+		   TNT1 AAAAAAAAAAAAAAA 0
+		   {
+		    A_SpawnParticleEx
+	        (
+		    "",
+		    tex[1],
+		    style: STYLE_Add,
+		    flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(20,30),
+		    size: random(1,20),
+		    velx: random(-4,4),
+		    vely: random(-4,4),
+		    velz: random(-4,4),
+		    startalphaf: 0.9,
+		    startroll: random(-180,180)
+	        );
+		   }
+		   TNT1 AAAAA 0
+		   {
+	        A_SpawnParticleEx
+		    (
+		    "80FF38",
+		    tex[2],
+		    style: STYLE_Add,
+		    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		    lifetime: random(20,45),
+		    size: random(34,46),
+		    xoff: -10,
+		    startalphaf: 0.75,
+		    fadestepf: -0.65,
+		    sizestep: -0.25,
+		    startroll: random(-180,180)
+		    );
+		   }
+		   TNT1 AA 0 
+		    {
+		     A_SpawnParticleEx
+		     (
+		     "",
+		     tex[1],
+		     style: STYLE_Add,
+		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     lifetime: random(5,10),
+		     size: 130.0,
+		     startalphaf: 0.8,
+		     sizestep: 0.75
+		     );
+	        }
+			WIBL JKLMN 1 Bright A_FadeOut(0.5);
 			Stop;
 	}
 }
@@ -329,8 +749,9 @@ Class WickedFX2 : Actor
 		Height 2;
 		Speed 0;
 		Scale 0.95;
-		RenderStyle "Subtract";
-		Alpha 0.80;
+		RenderStyle "Stencil";
+		StencilColor "DarkGreen";
+		Alpha 0.55;
 		Projectile;
 		+ClientSideOnly
 	}
@@ -338,9 +759,14 @@ Class WickedFX2 : Actor
 	States
 	{
 		Spawn:
-			TNT1 A 1;
-			WIC2 F 5 A_FadeOut(0.25);
-			Goto Spawn+1;
+			TNT1 A 0;
+			TNT1 A 0 A_Jump(35,"Nope");
+		Go:
+			WIC2 F 5 A_FadeOut(0.3);
+			Loop;
+		Nope:
+		    TNT1 A 0;
+			Stop;
 	}
 }
 
@@ -415,3 +841,583 @@ Class WickedTorsoRes : Actor
 	}
 }
 
+
+
+Class PM_WickedCopyBall : PM_WretchedBall
+{
+    Default
+    {
+	SeeSound "";
+    Decal "PM_GreenFireScorch";
+	Translation "0:255=%[0,0,0]:[0.0,0.5,0.0]";
+    }
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[4];
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[0],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: 145.0,
+			xoff: -10,
+			startalphaf: 0.98,
+			fadestepf: 0.1,
+			startroll: random(-180,180)
+			);
+			}
+		TNT1 A 0 A_StartSound("Wretched/Fire",pitch:0.75);
+		TNT1 A 0 A_StartSound("Wretched/ShotLoop",CHAN_7,CHANF_LOOPING,pitch:0.75);
+	Go:
+		DKB1 A 1 Bright Light("Greenball1") A_SetRoll(roll+15);
+		//TNT1 A 0 A_SpawnItemEx("WretchedBallTrail",0,0,0);
+		 TNT1 A 0  
+       {
+	   A_SpawnParticleEx
+		(
+		"109A0A",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 4,
+		size: 34.0,
+		xoff: -10,
+		startalphaf: 1.0,
+		fadestepf: -2.5,
+		sizestep: -7,
+		startroll: random(-180,180)
+		);
+        A_SpawnParticleEx
+	    (
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: 90.0,
+		xoff: -10,
+		startalphaf: 0.2,
+		startroll: random(-180,180)
+	    );
+		A_SpawnParticleEx
+	    (
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,4),
+		size: random(1,70),
+		velx: frandom(-2,2),
+		vely: frandom(-2,2),
+		velz: frandom(-2,2),
+		startalphaf: frandom(0.0,0.9),
+		startroll: random(-180,180),
+		rollvel: frandom(-30,30)
+	    );
+		}
+		DKB1 B 1 Bright Light("Greenball1") A_SetRoll(roll+15);
+		//TNT1 A 0 A_SpawnItemEx("WretchedBallTrail",0,0,0);
+        TNT1 A 0  
+       {
+		 A_SpawnParticleEx
+		(
+		"80FF38",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 4,
+		size: 34.0,
+		xoff: -10,
+		startalphaf: 1.0,
+		fadestepf: -2.5,
+		sizestep: -7,
+		startroll: random(-180,180)
+		);
+        A_SpawnParticleEx
+	    (
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: 90.0,
+		xoff: -10,
+		startalphaf: 0.2,
+		startroll: random(-180,180)
+	    );
+       }
+		loop;
+	Death:
+        TNT1 A 0 A_SetRoll(0);
+		TNT1 A 0 A_StopSound(CHAN_7);
+		TNT1 AAAAAAAAAAAAAAAAAA 0
+		{
+		A_SpawnParticleEx
+	    (
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,10),
+		size: random(60,195),
+		velx: random(-6,6),
+		vely: random(-6,6),
+		velz: random(-6,6),
+		startalphaf: 0.9,
+		startroll: random(-180,180)
+	    );
+		}
+		TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 A 0 
+		{
+		A_SpawnParticleEx
+		(
+		"",
+		tex[3],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(5,10),
+		size: 150.0,
+		startalphaf: 0.8,
+		sizestep: 0.75
+		);
+	    }
+	    DKB1 CDE 3 Bright Light("Greenball2");
+		stop;
+	}
+}
+
+Class PM_WickedCopyPBall : PM_PhaseCacoBall
+{
+    Default
+    {
+	Scale 1.10;
+	SeeSound "";
+	DeathSound "";
+	+ROLLSPRITE
+	+ROLLCENTER
+    }
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	}
+	 TextureID tex[4];
+	 
+	 void PM_WickedPBallParticles()
+	 {
+	  			A_SpawnParticleEx
+			(
+			"",
+			tex[1],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,5),
+			size: random(1,100),
+			velx: random(-1,1),
+			vely: random(-1,1),
+			velz: random(-1,1),
+			startalphaf: 0.9,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			tex[2],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,120),
+			size: frandom(0.2,20),
+			xoff: random(-10,5),
+			yoff: random(-10,10),
+			zoff: random(-10,10),
+			velx: frandom(-0.6,0.6),
+			vely: frandom(-0.6,0.6),
+			velz: frandom(-0.6,0.6),
+			startalphaf: 1.0,
+			fadestepf: -0.5,
+			sizestep: -0.4,
+			startroll: random(-180,180)
+			);
+	  }
+	  
+
+	States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay
+			{
+			user_phspeed = random(-3,3);
+			user_pvspeed = random(-3,3);
+			user_phdist = random(0,3);
+			user_pvdist = random(0,2);
+			}
+			TNT1 A 0 A_StartSound("PhaseCaco/Fire",pitch:0.65);
+			TNT1 AAAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[0],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: 195.0,
+			xoff: -10,
+			startalphaf: 0.9,
+			fadestepf: 0.1,
+			sizestep: 0,
+			startroll: random(-180,180)
+			);
+			}
+			SPKO GGG 1 Bright Light("Greenball3")
+			{
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+		Sound:
+			TNT1 A 0 A_StartSound("PhaseCaco/BallLoop",CHAN_5,CHANF_LOOPING,0.45,pitch:0.55);
+		Go:
+			SPKO GGG 1 Bright Light("Greenball3")
+			{
+			PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(0,random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			SPKO GGG 1 Bright Light("Greenball2")
+			{
+            PM_WickedPBallParticles();
+			A_SetScale(frandom(0.55,0.65));
+			A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
+			A_SeekerMissile(1,1,SMF_PRECISE);
+			A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
+			A_SpawnItemEx("PM_WickedCopyPBallTrail",0,0,0);
+			}
+			TNT1 A 0
+			{
+			user_phspeed = random(-3,3);
+			user_pvspeed = random(-3,3);
+			user_phdist = random(0,3);
+			user_pvdist = random(0,2);
+			}
+			Loop;
+		Death:
+			TNT1 A 0 A_StopSound(CHAN_5);
+			TNT1 A 0 A_StartSound("PhaseCaco/BallExp",pitch:0.65);
+			TNT1 A 1 Bright A_RadiusThrust(5000,90);
+			TNT1 AAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[0],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: 195.0,
+			xoff: -10,
+			startalphaf: 0.9,
+			fadestepf: 0.1,
+			sizestep: 0,
+			startroll: random(-180,180)
+			);
+			}
+			TNT1 AAAAAAAAAAAAAAAAAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[1],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(2,10),
+			size: random(60,295),
+			velx: random(-3,3),
+			vely: random(-3,3),
+			velz: random(-3,3),
+			startalphaf: 1.0,
+			startroll: random(-180,180)
+			);
+			}
+			TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+			TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+			TNT1 A 0
+			{
+			 A_SpawnParticleEx
+			 (
+			 "10F400",
+			 tex[3],
+			 style: STYLE_Add,
+			 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			 lifetime: 10,
+			 size: 180.0,
+			 startalphaf: 0.85,
+			 fadestepf: -1,
+			 sizestep: 3
+			 );
+			}
+			SPKO GGGGGG 6 Bright Light("Greenball3")
+			{
+			A_FadeOut(0.65);
+			A_SetScale(Scale.X+0.85);
+			}
+			Stop;
+	}
+}
+
+Class PM_WickedCopyPBallTrail : PhaseCacoBallTrail
+{
+  Default
+  {
+   +ROLLSPRITE
+   +ROLLCENTER
+  }
+  States
+ {
+  Spawn:
+	TNT1 A 2;
+  Flying:
+	SPKO GGGGGGG 1 BRIGHT
+	   {
+		A_FadeOut(0.15);
+		A_SetRoll(random(0,259),SPF_INTERPOLATE);
+		A_SetScale(Scale.X-0.095);
+	   }
+	Goto Flying;
+ }
+}
+ 
+
+Class PM_WickedCopyEye : PM_BeholderEye
+{
+	Default
+	{
+	 BloodColor "DarkGreen";
+	 Tag "Wicked Eye";
+	 Translation "0:255=%[0,0,0]:[0.0,0.4,0.2]";
+	}
+    
+	override void PostBeginPlay() //[NERU] i don't know lol
+	{
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[1];
+
+	States
+	{
+		Spawn:
+			TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+			BEYE A 5;
+			BEYE B 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE C 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE D 5;
+			BEYE E 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE F 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE A 5;
+			BEYE B 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE C 5;
+			TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+			BEYE D 5;
+			BEYE E 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE F 5;
+			TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+			BEYE A 5;
+			BEYE B 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE C 5;
+			TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+			BEYE D 5;
+			BEYE E 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			Goto Go;
+		Go:	
+			TNT1 A 0 A_ChangeVelocity(0,random(-2,2),random(-2,2));
+			BEYE A 5;
+			BEYE B 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE C 5;
+			TNT1 A 0 A_Jump(22,"Charge");
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE D 5;
+			BEYE E 5;
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			BEYE F 5;
+			TNT1 A 0 A_Jump(22,"Charge");
+			Loop;
+		Charge:
+			BEYE AAAAAAAAAAAAAA 2 Light("Greenball3") 
+			{
+			 A_FaceTarget();
+			 A_SpawnParticleEx
+			 (
+			 "",
+			 tex[0],
+			 style: STYLE_Add,
+			 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			 lifetime: 5,
+			 size: 145.0,
+			 startalphaf: 0.35,
+			 fadestepf: 0.1,
+			 startroll: random(-180,180)
+			 );
+			}
+			BEYE A 0 A_SpawnProjectile("PM_WickedEyeAttack",0,0,0,CMF_TRACKOWNER);
+			Stop;
+		Bounce:
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			TNT1 A 0 A_SpawnItemEx("PM_GreenBloodEx");
+			Goto Spawn;
+		Death:
+			TNT1 AA 0 A_SpawnItemEx("PM_GreenBloodMulti");
+			FGOR ABC 4;
+			Stop;
+	}
+}
+
+Class PM_WickedEyeAttack : PM_BeholderEyeAttack
+{
+	Default
+	{
+	    BloodColor "DarkGreen";
+	    Translation "0:255=%[0,0,0]:[0.0,0.4,0.2]";
+	}
+
+	States
+	{
+		Spawn:
+			BEYE ABCDEF 2 Bright Light("Greenball3")
+			{
+				A_SpawnItemEx("PM_GreenBloodEx");
+				A_SpawnItemEx("PM_GreenBloodEx");
+			}
+			Loop;
+		Death:
+			TNT1 AA 0 A_SpawnItemEx("PM_GreenBloodMulti");
+			BEYX ABC 5 Bright Light("Greenball3");
+			Stop;
+	}
+}

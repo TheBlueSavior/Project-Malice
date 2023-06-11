@@ -2395,3 +2395,73 @@ Default
   }
 
 }
+
+Class PM_EnvySigil : Actor
+{
+  Default
+  {
+  RenderStyle "AddStencil";
+  StencilColor "Green";
+  Scale 1.20;
+  Alpha 0.55;
+  +FLATSPRITE
+  +NOINTERACTION
+  +BRIGHT
+  }
+
+  override void PostBeginPlay()
+	{
+	if(master)
+		{
+		master.A_StartSound("Draugr/BuffStart",10,volume:0.35,pitch:0.65);
+		master.A_StartSound("Envy/SigilSummon",11,volume:1,pitch:0.55);
+		for(int a=0;a<20;a++)
+		A_SpawnParticle
+		(
+		"80FF38",
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(20,40),
+		size: random(75,80),
+		xoff: random(-20,20),
+		yoff: random(-40,40),
+		zoff: random(20,50),
+		velx: random(-10,10),
+		vely: random(-10,10),
+		velz: random(-10,10)
+		);
+		}
+	Super.PostBeginPlay();
+	pitch = 270;
+	}
+	
+  override void Tick()
+  {
+	Super.Tick();
+	A_Warp(AAPTR_MASTER, 45, 0, 55, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	if( master.CountInv("PM_EnvySigilGoAway") == 1)
+	 SetStateLabel("Death");
+	else if(!master)
+	 SetStateLabel("Death");
+  }
+	
+  States
+  {
+  Spawn:
+   C1TE AAA 5 A_FadeIn(0.55,0);
+   C1TE A 1;
+   Wait;
+  Death:
+   TNT1 A 0 
+   {
+   if(master)
+    master.A_TakeInventory("PM_EnvySigilGoAway");
+   }
+   C1TE A 5 A_FadeOut(0.35);
+   Wait;
+  }
+}
+
+Class PM_EnvySigilGoAway : Inventory
+{
+ Default { Inventory.MaxAmount 1; }
+}

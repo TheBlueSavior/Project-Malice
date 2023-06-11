@@ -386,6 +386,7 @@ Class PM_BeholderEye : Actor
 		Speed 3;
 		Health 15;
 		Monster;
+		-COUNTKILL
 		+NOGRAVITY
 		+THRUACTORS
 		+DONTHARMSPECIES

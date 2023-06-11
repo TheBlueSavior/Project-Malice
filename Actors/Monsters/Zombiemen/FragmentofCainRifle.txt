@@ -11,6 +11,7 @@ Class PM_FOCRifle : PMMonsterBase
     PainChance 35;
     Damage 1;
     MONSTER;
+    -COUNTKILL
     +FloorClip
 	+SLIDESONWALLS
 	+DONTHARMCLASS

@@ -3923,6 +3923,9 @@ Wrath/IreLoop "Sounds/Monsters/SFX/WrathIreLoop.ogg"
 $limit Wrath/IreLoop 5
 $rolloff Wrath/IreLoop 300 1600
 
+Envy/SigilSummon "Sounds/Other/PMEnvySigil.ogg"
+$rolloff Envy/SigilSummon 400 1800
+
 PM/NormalTeleport	"Sounds/Other/PMNormalTele.ogg"
 $pitchset PM/NormalTeleport 0.8 1.2
 $rolloff PM/NormalTeleport 400 1800

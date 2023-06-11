@@ -11,6 +11,7 @@ Class PM_FOCShotgun : PMMonsterBase
     PainChance 35;
     Damage 1;
     MONSTER;
+    -COUNTKILL
     +FloorClip
 	+SLIDESONWALLS
 	+DONTHARMCLASS
