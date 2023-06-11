@@ -227,16 +227,58 @@ Class PM_Wicked : PMMonsterBase
 	        }
 			WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("Greenball2")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CA22A0"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 110,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 				PM_WickedWretchCopyCharge();
 			}
 			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CA22A0"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 110,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 			    PM_WickedWretchCopyCharge();
 			}
 			WIC2 KKKKKK 5 
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("C1C2D1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 110,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_StartSound("Wretched/Spit",pitch:0.7);
 				A_SpawnProjectile("PM_WickedCopyBall",60,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
 				A_FaceTarget();
@@ -270,16 +312,58 @@ Class PM_Wicked : PMMonsterBase
 	        }
 			WIC2 IIIIIIIIIIIIIIIIIIIIIIIJJJJJJJ 1 Light("Greenball2")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAC4A1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 				PM_WickedWretchCopyCharge();
 			}
 			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAC4B1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 			    PM_WickedWretchCopyCharge();
 			}
 			WIC2 KKK 18 
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAC4D1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 60,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.02,
+				startroll: 180
+				);
 				A_SpawnProjectile("PM_WickedCopyPBall",60,0,random(-6,6),CMF_OFFSETPITCH,random(-2,2));
 				A_FaceTarget();
 			}
@@ -312,16 +396,58 @@ Class PM_Wicked : PMMonsterBase
 	        }
 			WIC2 IIIIIIIIIIIIIJJJJJJJ 3 Light("Greenball2")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAB1D1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 				A_SpawnItemEx("PM_GreenBloodEx",xofs:45,zofs:65);
 			}
 			WIC2 JJJJJJJJJJJJ 1 Light("Greenball3")
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAB1C1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_FaceTarget();
 			    A_SpawnItemEx("PM_GreenBloodEx",xofs:45,zofs:65);
 			}
 			WIC2 K 20 
 			{
+				A_SpawnParticleEx
+				(
+				"4EFF33",
+				TexMan.CheckForTexture("CAB1D1"),
+				style: STYLE_ADD,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 30,
+				size: 120,
+				xoff: 20,
+				zoff: 60,
+				startalphaf: 1,
+				fadestepf: 0.1,
+				startroll: 180
+				);
 				A_StartSound("Beholder/Spit",pitch:0.7);
 				for(int a=0;a<8;a++)
 				A_SpawnItemEx("PM_WickedCopyEye",45,0,65,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
@@ -751,7 +877,7 @@ Class WickedFX2 : Actor
 		Scale 0.95;
 		RenderStyle "Stencil";
 		StencilColor "DarkGreen";
-		Alpha 0.55;
+		Alpha 0.85;
 		Projectile;
 		+ClientSideOnly
 	}

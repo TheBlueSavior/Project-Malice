@@ -2400,13 +2400,14 @@ Class PM_EnvySigil : Actor
 {
   Default
   {
-  RenderStyle "AddStencil";
+  //RenderStyle "AddStencil";
   StencilColor "Green";
-  Scale 1.20;
+  Scale 1.1;
   Alpha 0.55;
   +FLATSPRITE
   +NOINTERACTION
   +BRIGHT
+  Translation "0:255=%[0,0,0]:[0.3,2.0,0.1]";
   }
 
   override void PostBeginPlay()
