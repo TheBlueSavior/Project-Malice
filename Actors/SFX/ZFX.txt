@@ -2400,13 +2400,12 @@ Class PM_EnvySigil : Actor
 {
   Default
   {
-  //RenderStyle "AddStencil";
   StencilColor "Green";
   Scale 1.1;
   Alpha 0.55;
   +FLATSPRITE
   +NOINTERACTION
-  +BRIGHT
+  +BRIGHT;
   Translation "0:255=%[0,0,0]:[0.3,2.0,0.1]";
   }
 
@@ -2415,7 +2414,7 @@ Class PM_EnvySigil : Actor
 	if(master)
 		{
 		master.A_StartSound("Draugr/BuffStart",10,volume:0.35,pitch:0.65);
-		master.A_StartSound("Envy/SigilSummon",11,volume:0.5,pitch:random(0.7,1.2));
+		master.A_StartSound("Envy/SigilSummon",11,volume:0.5,pitch:frandom(0.7,1.2));
 		for(int a=0;a<20;a++)
 		A_SpawnParticle
 		(
