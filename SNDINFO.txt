@@ -2518,6 +2518,14 @@ $volume FeralImp/Attack 0.5
 FeralImp/Ball "Sounds/Monsters/Imps/FeralImp/FeralBallShot.ogg"
 FeralImp/BallExp "Sounds/Monsters/Imps/FeralImp/FeralBallExp.ogg"
 
+$random FeralImp/Ireball { FerImpIreball1 FerImpIreball2 FerImpIreball3 FerImpIreball4 }
+FerImpIreball1 "Sounds/Monsters/Imps/FeralImp/FeralIreball1.ogg"
+FerImpIreball2 "Sounds/Monsters/Imps/FeralImp/FeralIreball2.ogg"
+FerImpIreball3 "Sounds/Monsters/Imps/FeralImp/FeralIreball3.ogg"
+FerImpIreball4 "Sounds/Monsters/Imps/FeralImp/FeralIreball4.ogg"
+
+$rolloff FeralImp/Ireball 400 1900
+
 CyberFodder/Flamer "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderFlamer.ogg"
 $rolloff CyberFodder/Flamer 500 1500
 

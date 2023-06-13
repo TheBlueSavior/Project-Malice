@@ -71,6 +71,7 @@ Class PM_Husk : PMWrathMonsterBase
     GHUL GGG 5 A_FaceTarget;
     Goto Missile;
   See2:
+    TNT1 A 0 { bSPRITEFLIP = false; }
 	TNT1 A 0 A_Jump(40,"Sprint");
 	TNT1 A 0 A_StopSound(6);
 	TNT1 A 0 
@@ -100,14 +101,14 @@ Class PM_Husk : PMWrathMonsterBase
 	 if(ire == true && random(1,6) == 1)
 	  A_SpawnProjectile("PM_HuskFirebomb",random(20,40),random(-3,3),random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-12,12));
 	}
-	TNT1 A 0 { pm_irecount -= 2; }
+	TNT1 A 0 { pm_irecount -= random(2,3); }
 	TNT1 A 0 A_SpawnItemEx("PM_HuskWalkFire",0,-5,0,1,0,0,0,128);
 	NULL A 0 A_StartSound("skeleton/step",5);
     Loop;
   Ire:
-  TNT1 A 0 A_StartSound("GenericChargeSmall",8);
+    TNT1 A 0 A_StartSound("GenericChargeSmall",8);
 	GHUL AAAAA 4 A_FaceTarget();
-  GHUL L 5 PM_AlertSound();
+    GHUL L 5 PM_AlertSound();
 	TNT1 A 0 
 	{ 
     ire = true;
@@ -164,25 +165,26 @@ Class PM_Husk : PMWrathMonsterBase
 	A_Recoil(-1);
 	A_FaceTarget();
 	A_SpawnProjectile("PM_HuskSmallFireball",45,0,0,CMF_OFFSETPITCH,0);
-    if(ire == true)
-	A_SpawnProjectile("PM_HuskIreball",45,0,frandom(-3.4,3.4),CMF_OFFSETPITCH,frandom(-3.5,3.5));
-	if(ire == true && random(1,6) == 1)
-    A_SpawnProjectile("PM_HuskFirebomb",random(20,40),random(-3,3),random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-12,12)); 
+    if(ire)
+	 A_SpawnProjectile("PM_HuskIreball",45,0,frandom(-3.4,3.4),CMF_OFFSETPITCH,frandom(-3.5,3.5));
+	if(ire && random(1,6) == 1)
+     A_SpawnProjectile("PM_HuskFirebomb",random(20,40),random(-3,3),random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-12,12)); 
 	pm_irecount--;
 	}
 	GHUL IHA 2 A_Recoil(-1);
     Goto SprintLoop;
   Melee:
-  TNT1 A 0 A_StopSound(6);
-	TNT1 A 0 A_Jump(56,"Missile");
-  GHUL G 6 A_FaceTarget();
-	TNT1 A 0 A_Recoil(-13);
-  GHUL G 6 A_StartSound("Husk/MeleeSwing");
-  GHUL H 6 A_FaceTarget();
-  GHUL I 6 A_CustomBulletAttack(0,0,1,random(8,8),"PM_HuskMeleeHit",65);
-  Goto See2;
+    TNT1 A 0 A_StopSound(6);
+    TNT1 A 0 A_Jump(56,"Missile");
+    GHUL G 6 A_FaceTarget();
+    TNT1 A 0 A_Recoil(-13);
+    GHUL G 6 A_StartSound("Husk/MeleeSwing");
+    GHUL H 6 A_FaceTarget();
+    GHUL I 6 A_CustomBulletAttack(0,0,1,random(8,8),"PM_HuskMeleeHit",65);
+	TNT1 A 0 { pm_irecount -= random(2,3); }
+    Goto See2;
   Missile:
-	TNT1 A 0 A_Jump(210,"Missile2");
+	TNT1 A 0 A_Jump(95,"Missile2");
 	TNT1 A 0 A_StartSound("GenericChargeHeavy",CHAN_6);
     GHUL GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("AvatarFireball3") 
 	{
@@ -194,79 +196,114 @@ Class PM_Husk : PMWrathMonsterBase
 	{
 	A_StartSound("Husk/Throw");
 	A_SpawnProjectile("PM_HuskMeteor",43,10,0);
-	if(ire == true)
-	 { 
-	  for(int a = 0;a<5;a++)
-	  A_SpawnProjectile("PM_HuskIreball",45,0,frandom(-5.5,5.5),CMF_OFFSETPITCH,frandom(-5.5,5.5));
-	 }
 	A_FaceTarget();
-	pm_irecount -= 5;
+	pm_irecount -= random(8,9);
 	}
 	TNT1 A 0 A_StopSound(CHAN_6);
     GHUL I 5 A_FaceTarget();
+	TNT1 A 0
+	{
+	 if(ire)
+	 { SetStateLabel("IreMeteor"); }
+	}
     Goto See2;
+  IreMeteor:
+    TNT1 A 0 { bSPRITEFLIP = true; }
+    GHUL GGGGGGGGGGGG 1 Light("AvatarFireball3") 
+	{
+	A_FaceTarget();
+	A_Spawnitemex("PM_HuskFireGlobs",random(-3,3),random(-21,-27),30,random(-1,1),random(-1,1),random(0,3));
+	}
+    GHUL H 5 Light("AvatarFireball3") PM_LeadTarget(22);
+	GHUL I 10 Light("AvatarFireball4")
+	{
+	A_StartSound("Husk/Throw");
+	A_SpawnProjectile("PM_HuskMeteorIre",43,10,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
+	}
+	TNT1 A 0 { bSPRITEFLIP = false; }
+    GHUL I 5 A_FaceTarget();
+	Goto See2;
   Missile2:
     TNT1 A 0 A_StopSound(6);
+	TNT1 A 0 
+	{ 
+	 if(ire)
+	  pm_attackloop = random(20,30);
+	 else 
+	  pm_attackloop = random(10,20);
+	}
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-	GHUL GGGGGGGGGGG 1 Light("AvatarFireball3")
+	GHUL GGGGGGGGGGGGGGGGGGGGG 1 Light("AvatarFireball3")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("OrangeFireEffect",random(-3,3),random(21,27),30,random(-1,1),random(-1,1),random(0,3));
 	}
-	GHUL H 3 Light("AvatarFireball3")
+   Missile2Loop:
+	GHUL GHHI 3 Light("AvatarFireball3")
 	{
+	if(pm_attackloop < 0)
+	{ SetStateLabel("Missile2End"); }
 	A_FaceTarget();
-	if(ire == true)
-	A_SpawnProjectile("PM_HuskIreball",40,10,-30,CMF_OFFSETPITCH,0);
+	if(ire)
+	 A_SpawnProjectile("PM_HuskIreball",random(40,45),random(-10,10),frandom(-15,15),CMF_OFFSETPITCH,random(-3,3));
 	else
-	A_SpawnProjectile("PM_HuskSmallFireball",52,10,-40,CMF_OFFSETPITCH,-50);
+	 A_SpawnProjectile("PM_HuskSmallFireball",random(40,45),random(-10,10),random(-30,30),CMF_OFFSETPITCH,random(-5,5));
+	 pm_attackloop--;
 	}
-	GHUL H 3 Light("AvatarFireball3")
+	GHUL II 4 Light("AvatarFireball2")
 	{
+	if(ire)
+	A_SetTics(2);
 	A_FaceTarget();
-	if(ire == true)
-	A_SpawnProjectile("PM_HuskIreball",40,10,-18,CMF_OFFSETPITCH,0);
-	else
-	A_SpawnProjectile("PM_HuskSmallFireball",48,10,-18,CMF_OFFSETPITCH,-28);
 	}
-	GHUL I 3 Light("AvatarFireball3")
+	GHUL I 4 Light("AvatarFireball2")
 	{
-	A_FaceTarget();
-	if(ire == true)
-	A_SpawnProjectile("PM_HuskIreball",40,10,0,CMF_OFFSETPITCH,0);
-	else
-	A_SpawnProjectile("PM_HuskSmallFireball",45,10,0,CMF_OFFSETPITCH,0);
-	}
-	GHUL I 3 Light("AvatarFireball3")
-	{
-	A_FaceTarget();
-	if(ire == true)
-	A_SpawnProjectile("PM_HuskIreball",40,10,25,CMF_OFFSETPITCH,0);
-	else
-	A_SpawnProjectile("PM_HuskSmallFireball",40,10,25,CMF_OFFSETPITCH,0);
-	pm_irecount -= 5;
-	}
-	GHUL II 5 Light("AvatarFireball4") A_FaceTarget();
-	GHUL HG 4 A_FaceTarget();
-	GHUL A 4
-	{
-	   if(ire == true && random(1,3) == 1)
+	   if(ire && random(1,3) == 1)
 	 { A_SpawnProjectile("PM_HuskFirebomb",random(20,40),random(-3,3),random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(-12,12)); }
 	}
+	TNT1 A 0 { bSPRITEFLIP = true; }
+	GHUL GHHI 3 Light("AvatarFireball3")
+	{
+	if(pm_attackloop < 0)
+	{ SetStateLabel("See2"); }
+	A_FaceTarget();
+	if(ire)
+	 A_SpawnProjectile("PM_HuskIreball",random(40,45),random(-10,10),frandom(-15,15),CMF_OFFSETPITCH,random(-3,3));
+	else
+	 A_SpawnProjectile("PM_HuskSmallFireball",random(40,45),random(-10,10),random(-30,30),CMF_OFFSETPITCH,random(-15,15));
+	 pm_attackloop--;
+	}
+	GHUL II 4 Light("AvatarFireball2")
+	{
+	if(ire)
+	A_SetTics(2);
+	A_FaceTarget();
+	}
+	GHUL I 4 Light("AvatarFireball2")
+	{
+	   if(ire && random(1,3) == 1)
+	 { A_SpawnProjectile("PM_HuskFirebomb",random(20,40),random(-3,3),random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(10,15)); }
+	}
+	TNT1 A 0 { bSPRITEFLIP = false; }
+	Loop;
+  Missile2End:
+    GHUL I 4 A_FaceTarget;
 	Goto See2;
   Pain:
 	TNT1 A 0 A_StopSound(CHAN_6);
+	TNT1 A 0 { bSPRITEFLIP = false; }
     GHUL L 5;
     GHUL L 5 A_Pain;
-	TNT1 A 0 { pm_irecount -= 10; }
+	TNT1 A 0 { pm_irecount -= random(6,8); }
     Goto See2;
   Death:
 	TNT1 A 0 
 	{
-	A_StopSound(19);
-	A_StopSound(20);
-   A_RemoveChildren(1,RMVF_EVERYTHING);
-  }
+	 A_StopSound(19);
+	 A_StopSound(20);
+     A_RemoveChildren(1,RMVF_EVERYTHING);
+	 bSPRITEFLIP = false;
+    }
     GHUL LM 7 Light("AvatarFireball4");
     GHUL N 7 Light("AvatarFireball4") A_Scream;
 	TNT1 AAAAAAA 0
@@ -292,6 +329,7 @@ Class PM_Husk : PMWrathMonsterBase
     GHUL Q -1;
     Stop;
   Raise:
+    TNT1 A 0 { pm_irecount = random(70,144); }
     GHUL Q 5;
     GHUL PONML 5;
     Goto Look;
@@ -401,7 +439,7 @@ Class PM_HuskSmallFireball : DoomImpBall
 {
   Default
   {
-  Speed 8;
+  Speed 12;
   DamageFunction (12);
   Scale 0.8;
   Projectile;
@@ -539,6 +577,7 @@ Class PM_HuskMeteor : DoomImpBall
   SeeSound "GenericChargeHeavy";
   DeathSound "GenericCometExp";
   Decal "Scorch";
+  +ROLLSPRITE
   }
   States
  {
@@ -546,6 +585,7 @@ Class PM_HuskMeteor : DoomImpBall
     HUBL AABBCCDD 1 BRIGHT Light("AvatarFireball4")
 	{
 	A_SeekerMissile(1,1);
+	A_SetRoll(roll+3);
 	A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-2,2),random(-2,2),random(-2,2),0,0,0,0,128,0);
 	A_SpawnParticleEx
 	    (   
@@ -555,21 +595,10 @@ Class PM_HuskMeteor : DoomImpBall
 		 flags: SPF_ROLL|SPF_RELATIVE,
 		 lifetime: 56,
 		 size: 30.0,
-		 angle: 0,
 		 xoff: -10,
-		 yoff: 0,
-		 velx: 0,
-		 vely: 0,
-		 velz: 0,
-		 accelx: 0,
-		 accely: 0,
-		 accelz: 0,
 		 startalphaf: 0.4,
 		 fadestepf: -1,
-		 sizestep: 0,
-		 startroll: random(-180,180),
-		 rollvel: 0,
-		 rollacc: 0
+		 startroll: random(-180,180)
 	    );
 	    A_SpawnParticleEx
 	   (
@@ -579,21 +608,8 @@ Class PM_HuskMeteor : DoomImpBall
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: 2,
 		size: 80.0,
-		angle: 0,
 		xoff: -10,
-		yoff: 0,
-		velx: 0,
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
-		startalphaf: 0.6,
-		fadestepf: 0,
-		sizestep: 0,
-		startroll: 0,
-		rollvel: 0,
-		rollacc: 0
+		startalphaf: 0.6
 	    );
 	}
 	Loop;
@@ -611,6 +627,30 @@ Class PM_HuskMeteor : DoomImpBall
 	TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
 	Stop;
 	}
+}
+
+Class PM_HuskMeteorIre : PM_HuskMeteor
+{
+ Default
+ {
+ Speed 22;
+ -SEEKERMISSILE
+ }
+ States
+ {
+    Death:
+	TNT1 A 0 Radius_Quake (2, 54, 0, 15, 0);
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0);
+	TNT1 AAAA 0 A_SpawnProjectile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0);
+    HUBL EFGHI 1 BRIGHT Light("AvatarFireball4");
+	TNT1 A 0 A_SpawnProjectile("PM_HuskMeteorFire", 0, 0, 0, 0);
+	TNT1 AAAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+	TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+	Stop;
+ }
 }
 
 Class PM_HuskMeteorFire : Actor
