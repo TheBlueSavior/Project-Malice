@@ -8,7 +8,7 @@ Class PM_FOCShotgun : PMMonsterBase
     Height 56;
     Speed 10;
     Mass 100;
-    PainChance 35;
+    PainChance 65;
     Damage 1;
     MONSTER;
     -COUNTKILL
@@ -19,6 +19,7 @@ Class PM_FOCShotgun : PMMonsterBase
 	+NOICEDEATH
 	+NOBLOOD
 	+NOBLOCKMONST
+	+MISSILEEVENMORE
 	Species "Zombie";
 	Tag "FRAGMENT OF CAIN";
     Obituary "%o lost against a fragment of a betrayer.";
@@ -187,8 +188,17 @@ Class PM_FOCShotgun : PMMonsterBase
     Pain:
 	    TNT1 A 0 { bFRIGHTENED = false; }
 	    TNT1 AAAAAAAAAA 0 A_FadeIn(0.1,0);
-        SPS4 G 5;
-        SPS4 G 3 A_Pain;
+        SPS4 G 1 A_FaceTarget();
+        SPS4 G 2
+		{
+		A_Pain();
+		ThrustThing(random(0,128),random(8,25), 0, 0);
+	    ThrustThingZ(0,5,0,1);
+		}
+		SPS4 GGGGGGGG 1
+		{
+		A_SpawnItemEx("PM_FOCPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
+		}
         Goto See2;
 	XDeath:
     Death:
