@@ -302,7 +302,7 @@ Class PM_FeralImp : PMWrathMonsterBase
 	A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
 	if(ire)
 	{
-	A_StartSound("FeralImp/Ireball",flags:CHANF_OVERLAP);
+	A_StartSound("FeralImp/Ireball",11,flags:CHANF_OVERLAP);
     A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
 	}
 	else
