@@ -239,13 +239,13 @@ Class KnightLeapTrail : Actor
 	+NOINTERACTION
 	+CLIENTSIDEONLY
 	Renderstyle "Translucent";
-	Alpha 0.5;
+	Alpha 0.25;
     Scale 1.05;
    }
 	States
 	{
 	Spawn:
-		BOZ2 F 2 A_FadeOut(0.05);
+		BOS6 F 2 A_FadeOut(0.05);
 		Wait;
 	}
 }
