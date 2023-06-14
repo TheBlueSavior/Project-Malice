@@ -21,6 +21,32 @@ class PMMonsterBase : Actor abstract
 		SBF_NOSCALEDENSITY = 4
 	}
 
+	// This code was initially written by MajorCooke
+	state PM_LeapTo(Actor to, int maxdist = 200, StateLabel fallback = "See") {
+		StateLabel next = null;
+		if (target && Distance3D(target) <= maxdist)
+		{
+			if (A_JumpIfHigherOrLower("Null",null)) //Target is below
+			{
+				A_FaceTarget(0,0,0,0,FAF_TOP,-4);
+			}
+			else if (A_JumpIfHigherOrLower(null,"Null")) //Target is above
+			{
+				A_FaceTarget(0,0,0,0,FAF_TOP,10 + Distance3D(target)/5.0);
+			}
+			else //Target's on (near) equal z
+			{
+				A_FaceTarget(0,0,0,0,FAF_TOP,Distance3D(target)/5.0);
+			}
+			if(Distance3D(target) > maxdist) {
+				return ResolveState(fallback);
+			}
+			A_ChangeVelocity(cos(pitch)*(Distance3D(to)/25) ,0, -sin(pitch)*(Distance3D(to)/11)  ,CVF_RELATIVE|CVF_REPLACE);
+		}
+		else next = fallback;
+		return ResolveState(next);
+	}
+
 	static clearscope Vector2 GetLeadAngles(Actor caller, Actor target, double projVel)
 	{
 		double ticsToTarget = caller.Distance2D(target) / projVel;
