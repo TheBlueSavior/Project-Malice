@@ -5,6 +5,9 @@ version "4.10.0"
 #include "Actors/SFX/BloodVFX.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
+//Fodder
+#include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
+
 //Zombies
 #include "Actors/Monsters/Zombiemen/PistolZombie.txt"
 #include "Actors/Monsters/Zombiemen/ZombieSoldier.txt"

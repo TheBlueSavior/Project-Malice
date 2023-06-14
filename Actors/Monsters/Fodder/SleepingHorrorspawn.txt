@@ -1,0 +1,146 @@
+Class PM_SleepingHorrorspawn1 : Actor
+{ 
+  Default
+  {
+  Monster;
+  +AMBUSH
+  -Countkill
+  +MOVEWITHSECTOR
+  +FLOORCLIP
+  Bloodtype "PM_NormalBloodBase";
+  +Shootable
+  PainChance 1;
+  Health 5;
+  Radius 15;
+  Height 16;
+  Mass 50;
+  XScale 0.84;
+  YScale 0.91;
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_SmallDemonicTeleportFog";
+  }
+  
+  override bool CanCollideWith(Actor other, bool passive)
+  {
+   return !other.bISMONSTER && !other.player && Super.CanCollideWith(other,passive);
+  }
+
+  States
+  {
+  Spawn:
+    ZFOD T 25 A_LookEx(LOF_NOSOUNDCHECK,0,856,0,360);
+  Idle:
+	ZFOD T 1 A_Facetarget;
+	ZFOD T 25 A_LookEx(LOF_NOSOUNDCHECK,0,856,0,360);
+	Loop;
+  See:
+    ZFOD T 10 A_FaceTarget;
+	TNT1 A 0 A_Jump(10,"Getup");
+	Loop;
+  Getup:
+	TNT1 A 0;
+	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+	ZFOD LKJI 4;
+    ZFOD A 0 A_SpawnItemEx("Horrorspawn1",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
+  Pain:
+	ZFOD T 1;
+	Goto See;
+  Death:
+	ZFO1 L 5;
+    ZFO1 M -1;
+	Stop;
+  }
+}
+
+Class PM_SleepingHorrorspawn2 : PM_SleepingHorrorspawn1
+{ 
+  Default
+  {
+    XScale 1;
+    YScale 1;
+  }
+  States
+  {
+  Spawn:
+    2FOD L 25 A_LookEx(LOF_NOSOUNDCHECK,0,856,0,360);
+  Idle:
+	2FOD L 1 A_Facetarget;
+	2FOD L 25 A_LookEx(LOF_NOSOUNDCHECK,0,856,0,360);
+	loop;
+  See:
+    2FOD L 10 A_FaceTarget;
+	TNT1 A 0 A_Jump(10,"Getup");
+	Loop;
+  Getup:
+	TNT1 A 0;
+	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+	2FOD LKJJI 10;
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+    2FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
+  Pain:
+	2FOD L 1;
+	Goto See;
+  Death:
+	2FOD L 5;
+    2FOD L -1;
+	Stop;
+  }
+}
+
+Class PM_SleepingHorrorspawn22 : PM_SleepingHorrorspawn2
+{
+ Default
+ {
+  +SPRITEFLIP
+ }
+}
+
+Class PM_SleepingHorrorspawn3 : PM_SleepingHorrorspawn2
+{ 
+  States
+  {
+  Getup:
+	TNT1 A 0;
+	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+	3FOD LKJJI 10;
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+    3FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
+  }
+}
+
+Class PM_SleepingHorrorspawn33 : PM_SleepingHorrorspawn3
+{
+ Default
+ {
+  +SPRITEFLIP
+ }
+}
+
+Class PM_SleepingHorrorspawn4 : PM_SleepingHorrorspawn2
+{ 
+  States
+  {
+  Getup:
+	TNT1 A 0;
+	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+	4FOD LKJJI 10;
+	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
+    4FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
+  }
+}
+
+Class PM_SleepingHorrorspawn44 : PM_SleepingHorrorspawn4
+{
+ Default
+ {
+  +SPRITEFLIP
+ }
+}
