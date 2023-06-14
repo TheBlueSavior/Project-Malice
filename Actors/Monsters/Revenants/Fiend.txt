@@ -219,11 +219,12 @@ MissileLead:
 	}
   JumpAttackLoop:
 	FIEN K 1 Light("YellowMediumFlicker2") A_CheckFloor("JumpAttackLanding");
-	FIEN K 1 Light("YellowMediumFlicker2")
+	FIEN KKKKKKKKKKKKKKKKKKKK 1 Light("YellowMediumFlicker2")
 	{ 
 	A_SpawnItemEx("PM_FiendBoosterGlobs",-12,random(-8,8),50,0,0,-2); 
 	A_CheckFloor("JumpAttackLanding"); 
 	}
+	TNT1 A 0 ThrustThing(random(0,360)*256/360,2,0,0);
 	loop;
   JumpAttackLanding:
 	FIEN I 0 A_Quake (2,8,0,500,0);

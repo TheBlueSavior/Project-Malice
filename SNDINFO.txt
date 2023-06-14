@@ -2965,6 +2965,18 @@ Squire/Pain7 "Sounds/Monsters/Hellknights/Squire/SquirePain7.ogg"
 Squire/Pain8 "Sounds/Monsters/Hellknights/Squire/SquirePain8.ogg"
 Squire/Pain9 "Sounds/Monsters/Hellknights/Squire/SquirePain9.ogg"
 
+$random Squire/Charge { SquireCharge1 SquireCharge2 SquireCharge3 SquireCharge4 }
+SquireCharge1 "Sounds/Monsters/Hellknights/Squire/SquireCharge1.ogg"
+SquireCharge2 "Sounds/Monsters/Hellknights/Squire/SquireCharge2.ogg"
+SquireCharge3 "Sounds/Monsters/Hellknights/Squire/SquireCharge3.ogg"
+SquireCharge4 "Sounds/Monsters/Hellknights/Squire/SquireCharge4.ogg"
+
+Squire/LeapReady "Sounds/Monsters/Hellknights/Squire/SquireLeapReady.ogg"
+$random Squire/Leap { SquireLeap1 SquireLeap2 SquireLeap3 }
+SquireLeap1 "Sounds/Monsters/Hellknights/Squire/SquireLeap1.ogg"
+SquireLeap2 "Sounds/Monsters/Hellknights/Squire/SquireLeap2.ogg"
+SquireLeap3 "Sounds/Monsters/Hellknights/Squire/SquireLeap3.ogg"
+
 $volume Squire/Death 0.6
 $volume Squire/Pain 0.6
 $volume Squire/Active 0.6

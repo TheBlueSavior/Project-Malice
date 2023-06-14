@@ -192,16 +192,19 @@ Class PM_FeralImp : PMWrathMonsterBase
 	1ROO F 1 PM_LeapTo(target,768,"See2");
 	Goto LeapLoop;
   LeapLoop:
+	1ROT FFFF 1 
+	{
+	if(random(1,15) == 1)
+	   ThrustThing(random(0,360)*256/360,2,0,0);
+	 if(target && Distance3D(target) <= 60)
+	 { SetStateLabel("LeapMelee"); }
+	}
 	1ROT G 0 A_CheckFloor("LeapEnd");
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
-	1ROT G 0 A_CheckFloor("LeapEnd");
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
-	1ROT G 0 A_CheckFloor("LeapEnd");
-	1ROT F 1 A_JumpIfCloser(60,"LeapMelee");
 	Loop;
    LeapMelee:
 	1ROT G 1 A_Explode(8*random(1,5),50,XF_NOTMISSILE,0,50);
-	1ROT G 1 A_CheckFloor("LeapEnd");
+	1ROT GGGG 3 A_CheckFloor("LeapEnd");
+	TNT1 A 0 ThrustThing(random(0,360)*256/360,2,0,0);
 	Wait;
   LeapEnd:
 	1ROT A 0 A_StartSound("fiend/land",CHAN_AUTO,CHANF_DEFAULT,1,2);
