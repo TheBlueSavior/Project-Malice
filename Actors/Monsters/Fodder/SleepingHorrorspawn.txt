@@ -48,8 +48,10 @@ Class PM_SleepingHorrorspawn1 : Actor
 	ZFOD T 1;
 	Goto See;
   Death:
-	ZFO1 L 5;
-    ZFO1 M -1;
+	TNT1 A 0;
+	TNT1 AAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION,80);
+	TNT1 AA 0 A_SpawnItemEx("PM_NormalBloodMulti",random(-2,2),random(-2,2),random(2,5),random(-2,2),random(-2,2),random(2,5),0,SXF_NOCHECKPOSITION,80);
+    ZFOD U -1;
 	Stop;
   }
 }
@@ -85,8 +87,10 @@ Class PM_SleepingHorrorspawn2 : PM_SleepingHorrorspawn1
 	2FOD L 1;
 	Goto See;
   Death:
-	2FOD L 5;
-    2FOD L -1;
+	TNT1 A 0;
+	TNT1 AAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION,80);
+	TNT1 AA 0 A_SpawnItemEx("PM_NormalBloodMulti",random(-2,2),random(-2,2),random(2,5),random(-2,2),random(-2,2),random(2,5),0,SXF_NOCHECKPOSITION,80);
+    2FOD M -1;
 	Stop;
   }
 }
@@ -107,7 +111,8 @@ Class PM_SleepingHorrorspawn3 : PM_SleepingHorrorspawn2
 	TNT1 A 0;
 	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
 	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
-	3FOD LKJJI 10;
+	2FOD L 10;
+	3FOD KJJI 10;
 	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
     3FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
     Stop;
@@ -130,7 +135,8 @@ Class PM_SleepingHorrorspawn4 : PM_SleepingHorrorspawn2
 	TNT1 A 0;
 	TNT1 A 0 A_StartSound("Horrorspawn/Wake",CHAN_7);
 	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
-	4FOD LKJJI 10;
+	2FOD L 10;
+	4FOD KJJI 10;
 	TNT1 A 0 A_StartSound("Horrorspawn/Step",CHAN_6,1.0,0,0.5);
     4FOD A 0 A_SpawnItemEx("Horrorspawn2",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
     Stop;
