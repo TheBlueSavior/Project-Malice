@@ -1,133 +1,138 @@
-ACTOR PM_Brute : PMMonsterBase
+Class PM_Brute : PMMonsterBase
 {
-	Health 150
-	Radius 30
-	Height 56
-	Speed 10
-	PainChance 180
-	Mass 400
+    Default
+	{
+	Health 150;
+	Radius 30;
+	Height 56;
+	Speed 10;
+	PainChance 180;
+	Mass 400;
 	+FLOORCLIP
 	//+NOINFIGHTING
-	+DONTHURTSPECIES
 	+DONTHARMSPECIES
+	+DONTHARMCLASS
 	+SLIDESONWALLS
-	Species "Brute"
-	Monster
-	MeleeDamage 4
-	MeleeRange 60
-	Speed 13
-	Scale 1
-	Bloodtype "PM_NormalBloodBase"
-	SeeSound "Brute/Sight"
-	DeathSound "Brute/Death"
-	ActiveSound "Brute/Active"
-	PainSound "Brute/Pain"
-	AttackSound "GenericPinkyBite"
-	Obituary "%o was mauled by a hungry Brute."
-	Tag "Brute"
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_DemonicTeleportFog"
+	Species "Brute";
+	Monster;
+	MeleeDamage 4;
+	MeleeRange 60;
+	Speed 13;
+	Scale 1;
+	Bloodtype "PM_NormalBloodBase";
+	SeeSound "Brute/Sight";
+	DeathSound "Brute/Death";
+	ActiveSound "Brute/Active";
+	PainSound "Brute/Pain";
+	AttackSound "GenericPinkyBite";
+	Obituary "%o was mauled by a hungry Brute.";
+	Tag "Brute";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
+	}
+	
 	States
 	{
 		Spawn:
-			BRUT A 10 PM_Look()
-			loop
+			BRUT A 10 PM_Look();
+			Loop;
         Look:
-			BRUT AA 2 PM_LookingForPlayer()
-			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT BB 2 PM_LookingForPlayer()
-            TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP)
-			BRUT CC 2 PM_LookingForPlayer()
-			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT DD 2 PM_LookingForPlayer()
-			Loop
+			BRUT AA 2 PM_LookingForPlayer();
+			TNT1 A 0 A_StartSound("demonstep", 3);
+			BRUT BB 2 PM_LookingForPlayer();
+            TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
+			BRUT CC 2 PM_LookingForPlayer();
+			TNT1 A 0 A_StartSound("demonstep", 3);
+			BRUT DD 2 PM_LookingForPlayer();
+			Loop;
 		Spotted:
-		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim")
-			Goto RoarNoAnim
+		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim");
+			Goto RoarNoAnim;
 		RoarNoAnim:
-		    TNT1 A 0 PM_AlertSound()
-			Goto See2
+		    TNT1 A 0 PM_AlertSound();
+			Goto See2;
 		See2:
-			BRUT AA 2 Fast A_Chase
-			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT BB 2 Fast A_Chase
-			BRUT CC 2 Fast A_Chase
-			TNT1 A 0 A_PlaySound("demonstep", 3)
-			BRUT DD 2 Fast A_Chase
-			TNT1 A 0 Fast A_Jump(7,"RoarCheck")
-			loop
+			BRUT AA 2 Fast A_Chase();
+			TNT1 A 0 A_StartSound("demonstep", 3);
+			BRUT BB 2 Fast A_Chase();
+			BRUT CC 2 Fast A_Chase();
+			TNT1 A 0 A_StartSound("demonstep", 3);
+			BRUT DD 2 Fast A_Chase();
+			TNT1 A 0 Fast A_Jump(7,"RoarCheck");
+			Loop;
 		RoarCheck:
-			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000)
-			Goto See2
+			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000);
+			Goto See2;
 		Roar:
-			BRUT A 3 A_FaceTarget
-			BRUT E 1 A_PlaySound("Brute/Sight")
-			BRUT EFFFFFFFFE 4 A_FaceTarget
-			Goto See2
+			BRUT A 3 A_FaceTarget;
+			BRUT E 1 A_StartSound("Brute/Sight");
+			BRUT EFFFFFFFFE 4 A_FaceTarget;
+			Goto See2;
 		Melee:
-			//TNT1 A 0 A_Jump(256,"Bite")
-			TNT1 A 0 A_JumpIfCloser(52,"Bite")
-			TNT1 A 0 //A_PlaySound("demon/melee", 4)
-			BRUT A 7 A_FaceTarget
-			BRUT E 4 A_FaceTarget
-			TNT1 A 0 ThrustThingZ(0,20,0,1)
-			TNT1 A 0 A_Recoil(-4)
-			BRUT FFBBB 1 
-			BRUT GGG 4 A_CustomMissile("BruteJump",40,0,0,2)
-			TNT1 A 0 A_CustomMissile("BruteJump",5,0,0,2)
-			Goto See2
+			TNT1 A 0 A_JumpIfCloser(52,"Bite");
+			BRUT A 7 A_FaceTarget;
+			BRUT E 4 A_FaceTarget;
+			TNT1 A 0 ThrustThingZ(0,20,0,1);
+			TNT1 A 0 A_Recoil(-4);
+			BRUT FFBBB 1;
+			BRUT GGG 4 A_SpawnProjectile("BruteJump",40,0,0,2);
+			TNT1 A 0 A_SpawnProjectile("BruteJump",5,0,0,2);
+			Goto See2;
 		Bite:
-			BRUT E 10 A_FaceTarget
-			BRUT F 8 A_FaceTarget
-			BRUT G 8 A_MeleeAttack
-			Goto See2
+		    TNT1 A 0 A_CustomMeleeAttack(meleesound:"GenericPinkyBite",misssound:"GenericPinkyBite");
+			BRUT E 10 A_FaceTarget;
+			BRUT F 8 A_FaceTarget;
+			BRUT G 8 A_SpawnProjectile("BruteJump",5,0,0,2);
+			Goto See2;
 		Pain:
-			BRUT H 3 A_Pain
-			//TNT1 A 0 A_Jump(100, "Teleport")
-			Goto See2
+			BRUT H 3 A_Pain;
+			//TNT1 A 0 A_Jump(100, "Teleport") [NERU] terrifying
+			Goto See2;
 		Death:
-		    TNT1 A 0 A_StopSounds(0,0)
-			BRUT I 6 A_Scream
-			BRUT I 6 A_NoBlocking
-			BRUT JKL 6
-			TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-			BRUT M 6
-			BRUT N -1
-			Stop
+		    TNT1 A 0 A_StopSounds(0,0);
+			BRUT I 6 A_Scream;
+			BRUT I 6 A_NoBlocking;
+			BRUT JKL 6;
+			TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+			BRUT M 6;
+			BRUT N -1;
+			Stop;
 		Raise:
-		    BRUT NMLKJI 6
-			Goto Look
+		    BRUT NMLKJI 6;
+			Goto Look;
 	}
 }
 
-ACTOR BruteJump: BaronBall
+Class BruteJump : BaronBall
 {
-	Radius 12
-	Height 48
-	Projectile 
-    Speed 13
-	FastSpeed 13
-    Damage (random(4,4))
+    Default
+	{
+	Radius 12;
+	Height 48;
+	Projectile; 
+    Speed 13;
+	FastSpeed 13;
+    DamageFunction 4;
 	+RANDOMIZE
     +RIPPER
 	+FORCEXYBILLBOARD
 	+THRUGHOST
 	+NODAMAGETHRUST
-	RenderStyle Add
-	Alpha 0.6
-	SeeSound ""
-	DeathSound ""
-	Decal ""
+    DamageType "Melee";
+	SeeSound "";
+	DeathSound "";
+	Decal "";
+	}
+	
 	States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 1
-		Stop
-	
+		TNT1 A 0;
+		TNT1 A 1;
+		Stop;
 	Death:
-		TNT1 A 0 BRIGHT
-		TNT1 A 10
-		Stop
+		TNT1 A 0 BRIGHT;
+		TNT1 A 10;
+		Stop;
 	}
 }

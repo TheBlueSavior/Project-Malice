@@ -45,6 +45,13 @@ version "4.10.0"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
 
+//Pinkies
+#include "Actors/Monsters/Pinkies/Brute.txt"
+#include "Actors/Monsters/Pinkies/CyberBrute.txt"
+#include "Actors/Monsters/Pinkies/Glutton.txt"
+#include "Actors/Monsters/Pinkies/DTechBrute.txt"
+#include "Actors/Monsters/Pinkies/BloodStalker.txt"
+
 //Revenants
 #include "Actors/Monsters/Revenants/Cadaver.txt"
 #include "Actors/Monsters/Revenants/Fiend.txt"
