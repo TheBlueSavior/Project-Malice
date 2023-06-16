@@ -8,8 +8,8 @@ Actor Hunger : PMFodderMonsterBase
     Speed 6
     PainChance 200
     SeeSound "Afflicted/Sight"
-    PainSound "Afflicted/Pain"
-    DeathSound "Afflicted/Death"
+    PainSound "Afflicted2/Pain"
+    DeathSound "Afflicted2/Death"
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
@@ -48,7 +48,7 @@ Actor Hunger : PMFodderMonsterBase
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
-	TNT1 A 0 A_PlaySound("Afflicted/Idle")
+	TNT1 A 0 A_PlaySound("Afflicted2/Idle")
 	Goto Spawn
   See:
     ZHUN AA 1 A_Chase
@@ -190,8 +190,8 @@ Actor PM_Hungry1 : PMFodderMonsterBase
     Speed 6
     PainChance 200
     SeeSound "Afflicted/Sight"
-    PainSound "Afflicted/Pain"
-    DeathSound "Afflicted/Death"
+    PainSound "Afflicted2/Pain"
+    DeathSound "Afflicted2/Death"
     ActiveSound "Afflicted/Active"
     Obituary "%o was eaten alive by an Afflicted."
 	DropItem "Clip"
@@ -226,7 +226,7 @@ Actor PM_Hungry1 : PMFodderMonsterBase
 	TNT1 A 0 A_Jump(5,"Grumble")
     Loop
   Grumble:
-	TNT1 A 0 A_PlaySound("Afflicted/Idle")
+	TNT1 A 0 A_PlaySound("Afflicted2/Idle")
 	Goto Spawn
   See:
 	TNT1 A 0 A_SetSpeed(random(4,6))

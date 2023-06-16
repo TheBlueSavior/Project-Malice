@@ -1080,6 +1080,25 @@ AffIdle3 "Sounds/Monsters/Fodder/Afflicted/AfflictedIdle3.ogg"
 
 $volume Afflicted/Idle 0.3
 
+$random Afflicted2/Idle { Aff2Idle1 Aff2Idle2 Aff2Idle3 Aff2Idle4 }
+Aff2Idle1 "Sounds/Monsters/Fodder/Afflicted/Aff2Idle1.ogg"
+Aff2Idle2 "Sounds/Monsters/Fodder/Afflicted/Aff2Idle2.ogg"
+Aff2Idle3 "Sounds/Monsters/Fodder/Afflicted/Aff2Idle3.ogg"
+Aff2Idle4 "Sounds/Monsters/Fodder/Afflicted/Aff2Idle4.ogg"
+
+$volume Afflicted2/Idle 0.3
+
+$random Afflicted2/Pain { Aff2Pain1 Aff2Pain2 Aff2Pain3 }
+Aff2Pain1 "Sounds/Monsters/Fodder/Afflicted/Aff2Pain1.ogg"
+Aff2Pain2 "Sounds/Monsters/Fodder/Afflicted/Aff2Pain2.ogg"
+Aff2Pain3 "Sounds/Monsters/Fodder/Afflicted/Aff2Pain3.ogg"
+
+$random Afflicted2/Death { Aff2Death1 Aff2Death2 Aff2Death3 Aff2Death4 }
+Aff2Death1 "Sounds/Monsters/Fodder/Afflicted/Aff2Death1.ogg"
+Aff2Death2 "Sounds/Monsters/Fodder/Afflicted/Aff2Death2.ogg"
+Aff2Death3 "Sounds/Monsters/Fodder/Afflicted/Aff2Death3.ogg"
+Aff2Death4 "Sounds/Monsters/Fodder/Afflicted/Aff2Death4.ogg"
+
 $random Afflicted/Howl { AffHowl1 AffHowl2 AffHowl3 AffHowl4 }
 AffHowl1 "Sounds/Monsters/Fodder/Afflicted/AfflictedHowl1.ogg"
 AffHowl2 "Sounds/Monsters/Fodder/Afflicted/AfflictedHowl2.ogg"
