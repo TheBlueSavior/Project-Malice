@@ -5,9 +5,6 @@ version "4.10.0"
 #include "Actors/SFX/BloodVFX.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
-//Fodder
-#include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
-
 //Zombies
 #include "Actors/Monsters/Zombiemen/PistolZombie.txt"
 #include "Actors/Monsters/Zombiemen/ZombieSoldier.txt"
@@ -44,13 +41,6 @@ version "4.10.0"
 #include "Actors/Monsters/Imps/Host.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
-
-//Pinkies
-#include "Actors/Monsters/Pinkies/Brute.txt"
-#include "Actors/Monsters/Pinkies/CyberBrute.txt"
-#include "Actors/Monsters/Pinkies/Glutton.txt"
-#include "Actors/Monsters/Pinkies/DTechBrute.txt"
-#include "Actors/Monsters/Pinkies/BloodStalker.txt"
 
 //Revenants
 #include "Actors/Monsters/Revenants/Cadaver.txt"
@@ -111,3 +101,6 @@ version "4.10.0"
 
 //Paranormal
 #include "Actors/Monsters/Paranormal/Broken.txt"
+
+//Fodder
+#include "Actors/Monsters/Fodder/Pustule.txt"
