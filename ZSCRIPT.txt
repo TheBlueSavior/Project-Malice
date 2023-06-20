@@ -13,6 +13,24 @@ version "4.10.0"
 #include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
 #include "Actors/Monsters/Zombiemen/HellifiedSoldier.txt"
 #include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
+version "4.10.0"
+#include "Actors/Monsters/ZProjectiles.txt"
+#include "Actors/Monsters/MonsterBase.txt"
+#include "Actors/SFX/ZFX.txt"
+#include "Actors/SFX/BloodVFX.txt"
+#include "Decorate/Monsters/AmbientSpawns.txt"
+
+//Fodder
+#include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
+
+//Zombies
+#include "Actors/Monsters/Zombiemen/PistolZombie.txt"
+#include "Actors/Monsters/Zombiemen/ZombieSoldier.txt"
+#include "Actors/Monsters/Zombiemen/ZombieMarine.txt"
+#include "Actors/Monsters/Zombiemen/ZombieTrooper.txt"
+#include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
+#include "Actors/Monsters/Zombiemen/HellifiedSoldier.txt"
+#include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
 #include "Actors/Monsters/Zombiemen/FragmentofCainRifle.txt"
 
 //Shotgunners
@@ -41,6 +59,13 @@ version "4.10.0"
 #include "Actors/Monsters/Imps/Host.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
+
+//Pinkies
+#include "Actors/Monsters/Pinkies/Brute.txt"
+#include "Actors/Monsters/Pinkies/CyberBrute.txt"
+#include "Actors/Monsters/Pinkies/Glutton.txt"
+#include "Actors/Monsters/Pinkies/DTechBrute.txt"
+#include "Actors/Monsters/Pinkies/BloodStalker.txt"
 
 //Revenants
 #include "Actors/Monsters/Revenants/Cadaver.txt"
