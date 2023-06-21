@@ -1,549 +1,644 @@
-ACTOR PM_DemonTechSpectre : PMMonsterBase
+Class PM_DemonTechSpectre : PMMonsterBase
 { 
-    var int user_numbullets;
-    Health 230
-    Speed 10
-    Height 56
-    Radius 30
-    Mass 400
-    PainChance 160
-	MeleeThreshold 300
-	MeleeRange 230
-	Scale 1.1
-    MONSTER
+    int user_numbullets;
+	Default
+	{
+    Health 230;
+    Speed 10;
+    Height 56;
+    Radius 30;
+    Mass 400;
+    PainChance 160;
+	MeleeThreshold 300;
+	MeleeRange 230;
+	Scale 1.1;
+    Monster;
     +FLOORCLIP
 	+DONTHARMSPECIES
-	+DONTHURTSPECIES
-	Species "Brute"
-	BloodColor "Dark Red"
-	Bloodtype "PM_NormalBloodBase"
-    SeeSound "DTechSpectre/Sight"
-    PainSound "DTechPain"
-    DeathSound "DTechSpectre/Death"
-    ActiveSound "DTechSpectre/Active"
-	AttackSound "DTechSpectre/Ready"
-    Obituary "%o was blasted where %g least expected by a Demon Tech Spectre." 
-	Tag "Demon Tech Spectre"
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_DemonicTeleportFog"
+	+DONTHARMCLASS
+	Species "Brute";
+	BloodColor "Dark Red";
+	Bloodtype "PM_NormalBloodBase";
+    SeeSound "DTechSpectre/Sight";
+    PainSound "DTechPain";
+    DeathSound "DTechSpectre/Death";
+    ActiveSound "DTechSpectre/Active";
+    Obituary "%o was blasted where %g least expected by a Demon Tech Spectre.";
+	Tag "Demon Tech Spectre";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
+	}
     States 
     { 
     Spawn:
        TNT1 A 0 NoDelay
        {
-       user_numbullets = random(1,10);
+       user_numbullets = 1;
        }
     Idle: 
-       CRG3 AB 10 PM_Look()
-       Loop 
+       CRG3 AB 10 PM_Look();
+       Loop;
     Look: 
-	   TNT1 A 0 A_SetTranslucent(0)
-	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-       TNT1 A 0 A_ChangeFlag("AVOIDMELEE",0)
-       CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 2 PM_LookingForPlayer()
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 BB 2 PM_LookingForPlayer()
-	   TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP)
-	   TNT1 A 0 A_Recoil(-0.5)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 2 PM_LookingForPlayer()
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 DD 2 PM_LookingForPlayer()
-	   TNT1 A 0 A_Recoil(-0.5)
-	   Loop
+	   TNT1 A 0 A_SetTranslucent(0);
+	   TNT1 A 0 
+	   {
+	   bFRIGHTENED = true;
+       bAVOIDMELEE = true;
+	   }
+       CRG2 A 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+       CRG2 AA 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 BB 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+	   TNT1 A 0 A_Recoil(-0.5);
+       CRG2 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+       CRG2 CC 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 DD 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   Loop;
 	Spotted:
-	   TNT1 A 0 A_Jump(65,"Roar")
-	   Goto See2
+	   TNT1 A 0 A_Jump(65,"Roar");
+	   Goto See2;
 	 Roar:
-	   TNT1 A 0 PM_AlertSound()
+	   TNT1 A 0 PM_AlertSound();
     See2: 
-	   TNT1 A 0 A_SetTranslucent(0)
-	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-           TNT1 A 0 A_ChangeFlag("AVOIDMELEE",0)
-       CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 AA 2 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 BB 2 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-       CRG2 CC 2 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 DD 2 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   TNT1 A 0 A_Jump(30,"Rush")
-	   TNT1 A 0 A_Jump(30,"Hide")
-       Loop 
+	   TNT1 A 0 A_SetTranslucent(0);
+	   TNT1 A 0 
+	   {
+	   bFRIGHTENED = false;
+       bAVOIDMELEE = false;
+	   }
+       CRG2 A 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+       CRG2 AA 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 BB 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+       CRG2 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+       CRG2 CC 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 DD 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   TNT1 A 0 A_Jump(30,"Rush");
+	   TNT1 A 0 A_Jump(30,"Hide");
+       Loop;
 	Rush:
-       TNT1 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-	   CRG3 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
-       CRG3 AA 1 A_Chase
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
-	   CRG3 BB 1 A_Chase
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7)
-	   CRG3 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
-       CRG3 CC 1 A_Chase
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE)
-	   CRG3 DD 1 A_Chase
-	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_Jump(5,"See")
-       Loop 
+       TNT1 A 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+	   CRG3 A 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+       CRG3 AA 1 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.8);
+	   CRG3 B 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	   CRG3 BB 1 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7);
+	   CRG3 C 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+       CRG3 CC 1 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.8);
+	   CRG3 D 0 A_SpawnItemEx("PM_GenericRushGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	   CRG3 DD 1 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.8);
+	   TNT1 A 0 A_Jump(5,"See");
+       Loop;
 	Hide:
-	   TNT1 A 0 A_SetTranslucent(0.0)
-	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	   CRG3 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG3 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG3 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG3 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 AA 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 BB 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 CC 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   CRG2 DD 1 A_Chase("","",CHF_NOPLAYACTIVE)
-	   TNT1 A 0 A_Recoil(-0.8)
-	   TNT1 A 0 A_Jump(55,"Hide")
-	   Goto HideSeek
+	   TNT1 A 0 A_SetTranslucent(0.0);
+	   TNT1 A 0 
+	   { 
+	   bFRIGHTENED = true; 
+	   pm_attackloop = random(5,6);
+	   }
+	   TNT1 A 0 {
+	   if(pm_attackloop < 0)
+	   SetStateLabel("HideSeek");
+	   }
+	   CRG3 A 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
+       CRG3 AA 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   CRG3 BB 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
+       CRG3 CC 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   CRG3 DD 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   TNT1 A 0 { pm_attackloop--; }
+	   Goto Hide+2;
 	HideSeek:
-	   TNT1 A 0 A_SetTranslucent(0)
-	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-       CRG2 A 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 AA 4 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 BB 4 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-       CRG2 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
-       CRG2 CC 4 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   CRG2 DD 4 A_Chase
-	   TNT1 A 0 A_Recoil(-0.5)
-	   Loop
-    Melee: 
-	   TNT1 A 0 A_SetTranslucent(0.3)
-	   TNT1 A 0 A_JumpIfCloser(190,"Melee2")
-	   TNT1 A 0 A_SetTranslucent(0.5)
-	   CRG3 H 20 A_FaceTarget
-	   TNT1 A 0 A_SetTranslucent(1)
-	   CRG3 EE 3 A_FaceTarget
-       TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
-	   TNT1 AAAAAA 0 A_SpawnItemEx("CFodFlare",29,0,35)
-	   TNT1 A 0 A_PlaySound("DTechSpectre/Fire",CHAN_6)
-       TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("PM_DTechSpectreShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-10,pitch*-1+10))
-	   TNT1 A 0
-	   {
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-       user_numbullets--;
+	   TNT1 A 0 A_SetTranslucent(0);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+       CRG2 A 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
+       CRG2 AA 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 BB 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+       CRG2 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
+       CRG2 CC 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 DD 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   Loop;
+    Melee:
+	   TNT1 A 0 { 
+	   bNOPAIN = true;
+	   pm_attackloop = 1;
 	   }
-	   CRG3 F 5 Light("ShadowBall")
-       {
-       A_SpawnItemEx("CFodFlare",29,0,35);
-       }
-	   CRG3 E 7
-       TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
-	   TNT1 AAAAAA 0 A_SpawnItemEx("CFodFlare",29,0,35)
-	   TNT1 A 0 A_PlaySound("DTechSpectre/Fire",CHAN_6)
-       TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("PM_DTechSpectreShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-10,pitch*-1+10))
-	   TNT1 A 0
-	   {
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-       user_numbullets--;
+	   TNT1 A 0 A_StartSound("DTechAttack");
+	   TNT1 A 0 A_SetTranslucent(0.3);
+	   TNT1 A 0 A_SetTranslucent(0.5);
+	   CRG3 H 20 A_FaceTarget;
+	   TNT1 A 0 A_SetTranslucent(1);
+	   CRG3 EE 3 A_FaceTarget;
+	MeleeLoop:
+	   TNT1 A 0 A_StartSound("DTechSpectre/Fire",CHAN_6);
+       TNT1 AAAAAAA 0 A_SpawnProjectile("PM_DTechSpectreShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-10,pitch*-1+10));
+	   CRG3 F 5 Light("ShadowBall");
+	   CRG3 E 7 {
+	   if(pm_attackloop < 0)
+	   SetStateLabel("MeleeEnd");
+	   pm_attackloop--;
 	   }
-	   CRG3 F 5 Light("ShadowBall")
-       {
-       A_SpawnItemEx("CFodFlare",29,0,35);
-       }
-	   CRG3 E 7
-       TNT1 A 0 A_JumpIf(user_numbullets<0,"NoAmmo")
-	   TNT1 AAAAAA 0 A_SpawnItemEx("CFodFlare",29,0,35)
-	   TNT1 A 0 A_PlaySound("DTechSpectre/Fire",CHAN_6)
-       TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("PM_DTechSpectreShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(pitch*-1-10,pitch*-1+10))
-	   TNT1 A 0
-	   {
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-       user_numbullets--;
-	   }
-	   CRG3 F 5 Light("ShadowBall")
-       {
-       A_SpawnItemEx("CFodFlare",29,0,35);
-       }
-	   CRG3 E 3
-	   TNT1 A 0 A_SetTranslucent(0.4)
-	   TNT1 A 0 A_PlaySound("GenericSteam")
+	   Loop;
+	MeleeEnd:
+	   CRG3 E 3 { bNOPAIN = false; }
+	   TNT1 A 0 A_SetTranslucent(0.4);
+	   TNT1 A 0 A_StartSound("GenericSteam");
 	   CRG3 HHHHHHHHHHHHHH 1
 	   {
-	    A_FaceTarget;
+	    A_FaceTarget();
 	    A_SpawnItemEx("PM_VentSmoke",0,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
 	   }
-       CRG3 H 5 A_FaceTarget
-	   TNT1 A 0 A_Jump(128,"See")
-	   Goto Hide
-	Melee2:
-		TNT1 A 0 A_SetTranslucent(0.5)
-		CRG3 H 5 A_FaceTarget
-		CRG3 H 3
-		TNT1 A 0 A_PlaySound("DTechSpectre/Sight")
-		CRG3 H 3
-		TNT1 A 0 A_SetTranslucent(1)
-		TNT1 A 0 A_Recoil(-12)
-		TNT1 A 0 ThrustThingZ(0,5,0,1)
-		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
-		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
-		TNT1 A 0 A_SetTranslucent(0.5)
-		CRG3 A 8
-		Goto See2
-    NoAmmo:
-	   CRG3 E 1
-	   TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-       TNT1 AA 0 A_SpawnItemEx("CFodFlare",29,0,35)
-       TNT1 A 0 A_PlaySound("Fusionite/ScattershotDry",CHAN_6)
+       CRG3 H 5 A_FaceTarget;
+	   TNT1 A 0 A_Jump(128,"See");
+	   Goto Hide;
+	Missile:
+	   TNT1 A 0 A_StartSound("DTechSpectre/Ready");
+	   TNT1 A 0 A_Stop;
+	   TNT1 A 0 A_SetTranslucent(0.3);
+	   TNT1 A 0 A_SetTranslucent(0.5);
+	   /*TNT1 A 0
+	   {
+	    A_SpawnParticleEx
+		(
+		 "",
+		 TexMan.CheckForTexture("SPKRA0"),
+		 style: STYLE_Add,
+		 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 lifetime: 85,
+		 size: 100.0,
+		 xoff: 22,
+		 zoff: 20,
+		 startalphaf: 0.75,
+		 startroll: random(-180,180),
+		 rollvel: 15,
+		 rollacc: 5
+		);
+	   }*/
+	   CRG3 H 25 Light("Shadowball") PM_LeadTarget(40);
+	   TNT1 A 0 A_SetTranslucent(1);
+	   CRG3 EE 3 Light("Shadowball2") PM_LeadTarget(40);
+	   TNT1 AAAAAA 0 A_SpawnItemEx("CFodFlare",29,0,35);
+	   TNT1 A 0 
+	   {
+	   if(user_numbullets < 0)
+	   SetStateLabel("NoAmmo");
+	   user_numbullets--;
+	   }
+       TNT1 A 0 A_SpawnProjectile("PM_DTechSpectreSniperTracer",35,0,random(-2,2),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
 	   TNT1 A 0
 	   {
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
-	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+	   for(int a=0;a<11;a++)
 	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
 	   }
-       TNT1 A 0 A_PlaySound("PM/HeavyPlasmaCooldown")
-       CRG3 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1  A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-       TNT1 A 0 A_PlaySound("PM/HeavyPlasmaReload",CHAN_6,1,true)
-       Goto RetreatNoAmmo
+	   CRG3 F 5 Light("ShadowBall") A_SpawnItemEx("CFodFlare",29,0,35);
+	   CRG3 E 7;
+	   Goto See2;
+    NoAmmo:
+	   CRG3 E 1;
+	   TNT1 A 0 { bNOPAIN = true; }
+       TNT1 AA 0 A_SpawnItemEx("CFodFlare",29,0,35);
+       TNT1 A 0 A_StartSound("Fusionite/ScattershotDry",CHAN_6);
+	   TNT1 A 0
+	   {
+	   for(int a=0;a<11;a++)
+	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+	   }
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaCooldown");
+       CRG3 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1  A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaReload",CHAN_6,CHANF_LOOPING);
+       Goto RetreatNoAmmo;
     SeeNoAmmo: 
-	   TNT1 A 0 A_SetTranslucent(0.1)
-       TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_SetTranslucent(0.1);
+       TNT1 A 0 { bFRIGHTENED = false; }
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 AA 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 BB 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 CC 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 DD 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 AA 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 BB 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 CC 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 DD 2
        {
-       if(user_numbullets > 10)
-       {
-       return state("ZReload");
-       }
+       if(user_numbullets >= 2)
+       SetStateLabel("ZReload");
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        user_numbullets++;
-       return state(0);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       Loop
+	   TNT1 A 0 A_Recoil(-0.8);
+       Loop;
     RetreatNoAmmo: 
-	   TNT1 A 0 A_SetTranslucent(0.0)
-	   TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-       TNT1 A 0 A_ChangeFlag("NOPAIN",1)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_SetTranslucent(0.0);
+	   TNT1 A 0 {
+	   bFRIGHTENED = true;
+	   bNOPAIN = true;
+	   }
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 AA 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 BB 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 CC 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 DD 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 AA 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 BB 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       CRG3 C 0 A_PlaySound("DTechSpectre/Walk",CHAN_7,0.4)
+	   TNT1 A 0 A_Recoil(-0.8);
+       CRG3 C 0 A_StartSound("DTechSpectre/Walk",CHAN_7,volume:0.4);
        CRG3 CC 2
        {
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
+	   TNT1 A 0 A_Recoil(-0.8);
 	   CRG3 DD 2
        {
-       if(user_numbullets > 10)
-       {
-       return state("ZReload");
-       }
+       if(user_numbullets >= 2)
+       SetStateLabel("ZReload");
        A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-       A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       A_Chase("MeleeNoAmmo",null);
        user_numbullets++;
-       return state(0);
        }
-	   TNT1 A 0 A_Recoil(-0.8)
-       TNT1 A 0 A_Jump(15,"SeeNoAmmo")
-       Loop
-    MissileNoAmmo:
-       TNT1 A 0
-       TNT1 A 0 A_JumpIfCloser(250,"MeleeNoAmmo")
-       Goto SeeNoAmmo
+	   TNT1 A 0 A_Recoil(-0.8);
+       TNT1 A 0 A_Jump(15,"SeeNoAmmo");
+       Loop;
 	MeleeNoAmmo:
-		TNT1 A 0 A_SetTranslucent(0.5)
-		CRG3 H 5 A_FaceTarget
-		CRG3 H 3
-		TNT1 A 0 A_PlaySound("DTechSpectre/Sight")
-		CRG3 H 3
-		TNT1 A 0 A_SetTranslucent(1)
-		TNT1 A 0 A_Recoil(-12)
-		TNT1 A 0 ThrustThingZ(0,5,0,1)
-		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
-		CRG3 E 6 A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION)
-		TNT1 A 0 A_SetTranslucent(0.5)
-		CRG3 A 8
-        Goto SeeNoAmmo
+		TNT1 A 0 A_SetTranslucent(0.5);
+		CRG3 H 5 A_FaceTarget;
+		CRG3 H 3;
+		TNT1 A 0 A_StartSound("DTechSpectre/Sight");
+		CRG3 H 3;
+		TNT1 A 0 A_SetTranslucent(1);
+		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 ThrustThingZ(0,5,0,1);
+		CRG3 E 6 A_SpawnProjectile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
+		CRG3 E 6 A_SpawnProjectile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
+		TNT1 A 0 A_SetTranslucent(0.5);
+		CRG3 A 8;
+        Goto SeeNoAmmo;
     ZReload:
-       TNT1 A 0
-       CRG3 HHHHHHHHHHHHHHH 1 A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0)
-       TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-       TNT1 A 0 A_PlaySound("DTechSpectre/Sight",CHAN_6)
-       Goto See2
+       TNT1 A 0;
+       CRG3 HHHHHHHHHHHHHHH 1 A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       TNT1 A 0 { bNOPAIN = false; }
+       TNT1 A 0 A_StartSound("DTechSpectre/Sight",CHAN_6);
+       Goto See2;
 	Pain: 
-	   TNT1 A 0 A_SetTranslucent(1)
-       CRG3 H 2
-       CRG3 H 2 A_Pain
-	   TNT1 A 0 A_Jump(100,"Rush")
-       Goto See2
+	   TNT1 A 0 A_SetTranslucent(1);
+       CRG3 H 2;
+       CRG3 H 2 A_Pain;
+	   TNT1 A 0 A_Jump(100,"Rush");
+       Goto See2;
     Death:
-	   TNT1 A 0 A_StopSounds(0,0)
-	   TNT1 A 0 A_SetTranslucent(1)
-       SRG3 I 8 
-       SRG3 I 0 A_FaceTarget
-       SRG3 J 0 A_SpawnItemEx("PM_DTechSpectreArm", 10, 0, 32, 0, 8, 0, 0, 128)
-       SRG3 J 8 A_Scream
-       SRG3 K 4 
-       SRG3 L 4 A_NoBlocking
-       SRG3 M 4 
-	   TNT1 A 0 A_PlaySound("Corpse/FallMetal",CHAN_6)
-       SRG3 N -1 
-       Stop 
+	   TNT1 A 0 A_StopSounds(0,0);
+	   TNT1 A 0 A_SetTranslucent(1);
+       SRG3 I 8;
+       SRG3 I 0 A_FaceTarget;
+       SRG3 J 0 A_SpawnItemEx("PM_DTechSpectreArm", 10, 0, 32, 0, 8, 0, 0, 128);
+       SRG3 J 8 A_Scream;
+       SRG3 K 4;
+       SRG3 L 4 A_NoBlocking;
+       SRG3 M 4;
+	   TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+       SRG3 N -1 ;
+       Stop;
     Raise: 
-       SRG3 NMLKJI 5 
-       Goto Look 
+       SRG3 NMLKJI 5;
+	   TNT1 A 0 { bNOPAIN = false; }
+       Goto Look;
     } 
 }
 
-Actor PM_DTechSpectreShot
+Class PM_DTechSpectreShot : Actor
 {
-Projectile
-+BLOODSPLATTER 
-+THRUGHOST
-height 2
-radius 2
-speed 36
-damage (random(2,2))
-Decal "PM_HellPlasmaScorch"
-DeathSound "GenericPlasmaExp"
-scale 0.45
-RenderStyle Add
-Alpha 0.5
-States
-{
+   Default
+   {
+   Projectile;
+   +BLOODSPLATTER 
+   +THRUGHOST
+   Height 2;
+   Radius 2;
+   Speed 36;
+   DamageFunction 3;
+   Decal "PM_HellPlasmaScorch";
+   DeathSound "GenericPlasmaExp";
+   Scale 0.45;
+   RenderStyle "Add";
+   Alpha 0.5;
+   }
+   
+   override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[3];
+
+   States
+   {
 	Spawn:
-		TRCR BBBBBBBBB 1 BRIGHT A_Quake(2,4,0,100,0)
-        Stop
+	    TNT1 A 0;
+		TNT1 AA 0
+		{
+		 A_SpawnParticleEx
+		 (
+		  "",
+		  tex[2],
+		  style: STYLE_Add,
+		  flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		  lifetime: 5,
+		  size: 75.0,
+		  startalphaf: 0.75,
+		  startroll: random(-180,180)
+		 );
+		}
+	    TNT1 AAA 0
+		{
+		 A_SpawnParticleEx
+		 (
+		 "FF4444",
+		 tex[0],
+		 style: STYLE_Add,
+		 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		 lifetime: random(15,65),
+		 size: random(30,56),
+		 xoff: random(-3,3),
+		 yoff: random(-3,3),
+		 zoff: random(-3,3),
+		 velx: frandom(2,4),
+		 vely: frandom(-3,3),
+		 velz: frandom(-3,3),
+		 startalphaf: 0.65,
+		 startroll: random(-180,180)
+		 );
+	    }
+		TNT1 AA 0
+		{
+		 A_SpawnParticleEx
+		 (
+		 "",
+		 tex[1],
+		 style: STYLE_Add,
+		 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		 lifetime: random(20,50),
+		 size: random(1,10),
+		 xoff: random(-3,3),
+		 yoff: random(-3,3),
+		 zoff: random(-3,3),
+		 velx: frandom(2,4),
+		 vely: frandom(-5,5),
+		 velz: frandom(-5,5),
+		 startalphaf: 0.85,
+		 startroll: random(-180,180)
+		 );
+		}
+	Go:
+		TRCR BBBBBBBBB 1 BRIGHT A_Quake(2,4,0,100,0);
+        Stop;
     Crash:
 	Death:
-	 TNT1 A 0
-	 TNT1 A 0 A_SetScale(0.5)
+	 TNT1 A 0;
+	 TNT1 A 0 A_SetScale(0.5);
 	 DTPR RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR 1
 	 {
-	 A_SetScale(ScaleX-0.010);
+	 A_SetScale(Scale.X-0.010);
 	 A_FadeOut(0.020);
 	 }
-    stop
+    Stop;
   XDeath:
-     TNT1 A 0
-     TRCR A 0 A_PlaySound("PM/BulletHitFlesh",2)
-     stop
-  Crash:
-    TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION)
-    TRCR A 0 A_PlaySound("PM_BulletHit",2)
-    Stop
-}
+     TNT1 A 0;
+     TRCR A 0 A_StartSound("PM/BulletHitFlesh",2);
+     Stop;
+    }
 }
 
-ACTOR PM_DTechSpectreArm
+Class PM_DTechSpectreArm : Actor
 {
-	Radius 8
-	Height 8
-	Speed 8
+    Default
+	{
+	Radius 8;
+	Height 8;
+	Speed 8;
 	+DOOMBOUNCE
 	+DROPOFF
 	+Missile
-      States
-	{
+	}
+   States
+   {
 	Spawn:
-         SG3A ABCDEFGH 2
-         Loop
+         SG3A ABCDEFGH 2;
+         Loop;
 	Death:
-	 SG3A I -1
-	 Loop
+	 SG3A I -1;
+	 Loop;
 	}
 }
 
-ACTOR PM_DTechSBall
+Class PM_DTechSpectreSniperTracer : Actor
 {
-   Height 4
-   Radius 4
-   Speed 15
-   Damage 3
-   Scale 0.12
-   PROJECTILE
+   Default
+   {
+   Height 4;
+   Radius 4;
+   Speed 40;
+   DamageFunction 30;
+   Scale 0.65;
+   Projectile;
    +FORCERADIUSDMG
-   RenderStyle Add
+   RenderStyle "Add";
    +BRIGHT
-   SeeSound "Fusionite/Scattershot"
-   DeathSound "DTech/Exp"
+   +SEEKERMISSILE
+   SeeSound "DTechSpectre/Sniper";
+   DeathSound "DTech/Exp";
+   }
+   
+   override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[2];
+
    States
    {
    Spawn:
-      DTPR R 1 Bright Light("Shadowball")
+      TNT1 AAAAAAA 0
 	  {
-	  A_SpawnItemEx("HellPlasmaTrail",0,0,0);
+	   A_SpawnParticleEx
+	   (
+	    "",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(45,65),
+		size: random(5,30),
+		xoff: random(-3,3),
+		yoff: random(-3,3),
+		zoff: random(-3,3),
+		velx: frandom(5,7),
+		vely: frandom(-5,5),
+		velz: frandom(-5,5),
+		sizestep: -1,
+		startroll: random(-180,180),
+		rollvel: random(-10,10)
+	   );
 	  }
-      Loop
+   Go:
+      TRCR B 1 Bright Light("Shadowball2")
+	  {
+	   A_SpawnParticle
+	   (
+	   "E10000",
+	   flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	   lifetime: random(15,35),
+	   size: random(5,8),
+	   xoff: random(-3,3),
+	   yoff: random(-3,3),
+	   zoff: random(-3,3),
+	   velx: random(-2,2),
+	   startalphaf: 0.85
+	   );
+	   A_SpawnParticle
+	   (
+	   "FF2525",
+	   flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	   lifetime: random(15,35),
+	   size: random(5,8),
+	   xoff: random(-5,5),
+	   yoff: random(-5,5),
+	   zoff: random(-5,5),
+	   velx: random(-6,6),
+	   startalphaf: 0.95
+	   );
+	  }
+	  Loop;
    Death:
-	  TNT1 AAA 0 A_CustomMissile("RFireBallExplode",0,0,random(0,360),2,random(0,360))
-	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0)
-      Stop
+      TNT1 AAAA 0
+	  {
+	   A_SpawnParticleEx
+	   (
+	    "",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: 25,
+		size: random(80,120),
+		startalphaf: 0.85,
+		startroll: random(-180,180)
+	   );
+	  }
+	  TNT1 AAAAAAAA 0
+	  {
+	   A_SpawnParticleEx
+	   (
+	    "",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(67,87),
+		size: random(5,45),
+		xoff: random(-5,5),
+		yoff: random(-5,5),
+		zoff: random(-5,5),
+		velx: frandom(-5,5),
+		vely: frandom(-5,5),
+		velz: frandom(-5,5),
+		sizestep: -1,
+		startroll: random(-180,180),
+		rollvel: random(-10,10)
+	   );
+	  }
+	  TNT1 AAA 0 A_SpawnProjectile("RFireBallExplode",0,0,random(0,360),2,random(0,360));
+	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0);
+      Stop;
 	  }
 }

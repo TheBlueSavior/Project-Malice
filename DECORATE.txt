@@ -36,6 +36,5 @@
 #include "Actors/Monsters/Fodder/Voidspawn.txt"
 #include "Actors/Monsters/Spectres/Skulker.txt"
 #include "Actors/Monsters/Fodder/Rotfly.txt"
-#include "Actors/Monsters/Spectres/DTechSpectre.txt"
 
 #include "Actors/Monsters/Paranormal/ControlledSoldier.txt"
