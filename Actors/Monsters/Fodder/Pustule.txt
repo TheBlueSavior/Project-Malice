@@ -40,6 +40,7 @@ Class Pustule : PMFodderMonsterBase {
   override void PostBeginPlay() {
     scale.x = frandompick(0.8, 1, 0.7, 0.6, 0.4, 0.5, 0.45);
     scale.y = scale.x;
+	super.PostBeginPlay();
   }
 
   states {
