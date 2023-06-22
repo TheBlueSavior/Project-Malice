@@ -258,12 +258,12 @@ Class PM_POTS : PMMonsterBase
 	"####" A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2);
 	"####" A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See2");
     "####" BBAA 4;
-	"####" A 0 ThrustThingZ(0,25,0,1);
-	"####" EEEE 2 A_CheckCeiling("CeilingLatch");
 	"####" A 0 ThrustThingZ(0,45,0,1);
+	"####" EEEE 2 A_CheckCeiling("CeilingLatch");
+	"####" A 0 ThrustThingZ(0,65,0,1);
 	"####" A 0 A_SetRoll(180,SPF_INTERPOLATE);
 	"####" EEE 2 A_CheckCeiling("CeilingLatch");
-	"####" A 0 ThrustThingZ(0,55,0,1);
+	"####" A 0 ThrustThingZ(0,75,0,1);
 	"####" EEEE 3 A_CheckCeiling("CeilingLatch");
 	"####" EEEEEEE 3 A_CheckFloor("See2");
 	"####" A 0 A_SetRoll(180,SPF_INTERPOLATE);
