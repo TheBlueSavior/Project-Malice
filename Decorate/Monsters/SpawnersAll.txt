@@ -159,9 +159,11 @@ Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS
 	DropItem "PM_FOCRifle", 255, 20
 	DropItem "PM_FOCShotgun", 255, 20
 	DropItem "Voidspawn",100, 20
+	DropItem "PM_PotsGroup",100, 15
 	DropItem "PM_VoidFloater", 100, 5
 	DropItem "PM_Skulker", 100, 5
 	DropItem "PM_ControlledSoldier",100, 2
+	DropItem "PM_PotsScreamer",100, 2
 	DropItem "PM_Broken",100, 2
 	DropItem "PM_EntropicAvatar" 50, 1
 }

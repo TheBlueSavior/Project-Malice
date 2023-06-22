@@ -7,6 +7,8 @@ version "4.10.0"
 
 //Fodder
 #include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
+#include "Actors/Monsters/Fodder/PawnsoftheShadow.txt"
+
 
 //Zombies
 #include "Actors/Monsters/Zombiemen/PistolZombie.txt"
