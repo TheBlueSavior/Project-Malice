@@ -223,6 +223,11 @@ Class PM_FeralImp : PMWrathMonsterBase
 	TNT1 A 0 A_JumpIfTargetInLOS("LeapWaitSee",360,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_Jump(4,"See2");
 	Loop;
+  LeapWaitSee:
+    1ROO DDD 2 A_FaceTarget;
+	TNT1 A 0 A_StartSound("FeralImp/Attack",CHAN_7);
+    1ROO F 1 PM_LeapTo(target,768,"See2");
+	Goto LeapLoop;
   Fireballs:
 	TNT1 A 0 A_Jump(30,"Roar");
 	TNT1 A 0 
