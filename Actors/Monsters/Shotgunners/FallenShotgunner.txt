@@ -33,7 +33,7 @@ Class PM_FallenShotgunner : PMMonsterBase
   Spawn:
     TNT1 A 0 NoDelay
     {
-     user_numbullets = random(0,8);
+     user_numbullets = random(5,8);
     }
   Idle:
     ZSP1 AB 8 PM_Look();
@@ -135,11 +135,16 @@ Class PM_FallenShotgunner : PMMonsterBase
     Goto RealMissile2+1;
   SmokeShieldCheck:
     TNT1 A 0 A_JumpIfInventory("FallenSGunnerSmokeToken",1,"RealMissile");
-    Goto SmokeShield;
+	TNT1 A 0 A_CheckProximity("RealMissile","PM_FallenSGunnerSmokeGrenade",800);
+	TNT1 A 0 A_CheckProximity("RealMissile","PM_FallenShotgunSmoke",800);
+    TNT1 A 0 A_CheckProximity("SmokeShield","PMMonsterBase",600,4,CPXF_ANCESTOR|CPXF_CHECKSIGHT);
+	Goto RealMissile;
   SmokeShield:
 	TNT1 A 0;
 	TNT1 A 0 A_Jump(130,"RealMissile");
     ZSP1 EEE 4 A_FaceTarget();
+	TNT1 A 0 A_CheckProximity("RealMissile","PM_FallenSGunnerSmokeGrenade",800);
+	TNT1 A 0 A_CheckProximity("RealMissile","PM_FallenShotgunSmoke",800);
 	TNT1 A 0 A_GiveInventory("FallenSGunnerSmokeToken",1);
     ZSP1 F 2 Bright Light("YellowMediumFlicker2")
     {
