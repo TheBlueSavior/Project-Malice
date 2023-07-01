@@ -156,6 +156,10 @@ Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 
 Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS
 {
+	DropItem "PM_WolfSS_MP40", 255, 1
+}
+/*
+{
 	DropItem "PM_FOCRifle", 255, 20
 	DropItem "PM_FOCShotgun", 255, 20
 	DropItem "Voidspawn",100, 20
@@ -167,6 +171,7 @@ Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS
 	DropItem "PM_Broken",100, 2
 	DropItem "PM_EntropicAvatar" 50, 1
 }
+*/
 
 //Decoration
 

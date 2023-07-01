@@ -4019,3 +4019,62 @@ $volume PM/LustTeleVoice 0.23
 $limit PM/LustTeleVoice 4
 $pitchset PM/LustTeleVoice 0.7 1
 $rolloff PM/LustTeleVoice 100 3200
+
+//Nazi Zombie Sounds
+Nazi/Attack/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_1.wav"
+Nazi/Attack/2	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_2.wav"
+Nazi/Attack/3	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_3.wav"
+Nazi/Attack/4	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_4.wav"
+Nazi/Attack/5	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_5.wav"
+Nazi/Attack/6	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_6.wav"
+Nazi/Attack/7	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_7.wav"
+Nazi/Attack/8	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_8.wav"
+Nazi/Attack/9	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_9.wav"
+$random Nazi/Attack {Nazi/Attack/1 Nazi/Attack/2 Nazi/Attack/3 Nazi/Attack/4 Nazi/Attack/5 Nazi/Attack/6 Nazi/Attack/7 Nazi/Attack/8 Nazi/Attack/9}
+
+Nazi/Death/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_1.wav"
+Nazi/Death/2	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_2.wav"
+Nazi/Death/3	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_3.wav"
+Nazi/Death/4	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_4.wav"
+Nazi/Death/5	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_5.wav"
+Nazi/Death/6	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_6.wav"
+Nazi/Death/7	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_7.wav"
+Nazi/Death/8	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_8.wav"
+Nazi/Death/9	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_9.wav"
+Nazi/Death/10	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Death_10.wav"
+$random Nazi/Death {Nazi/Death/1 Nazi/Death/2 Nazi/Death/3 Nazi/Death/4 Nazi/Death/5 Nazi/Death/6 Nazi/Death/7 Nazi/Death/8 Nazi/Death/9 Nazi/Death/10}
+
+Nazi/Grenade/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_1.wav"
+Nazi/Grenade/2	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_2.wav"
+Nazi/Grenade/3	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_3.wav"
+Nazi/Grenade/4	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_4.wav"
+Nazi/Grenade/5	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_5.wav"
+Nazi/Grenade/6	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_6.wav"
+Nazi/Grenade/7	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Grenade_7.wav"
+$random Nazi/Grenade {Nazi/Grenade/1 Nazi/Grenade/2 Nazi/Grenade/3 Nazi/Grenade/4 Nazi/Grenade/5 Nazi/Grenade/6 Nazi/Grenade/7}
+
+Nazi/Behind/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Behind_1.wav"
+Nazi/Behind/2	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Behind_2.wav"
+Nazi/Behind/3	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Behind_3.wav"
+Nazi/Behind/4	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Behind_4.wav"
+Nazi/Behind/5	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Behind_5.wav"
+$random Nazi/Behind {Nazi/Behind/1 Nazi/Behind/2 Nazi/Behind/3 Nazi/Behind/4 Nazi/Behind/5}
+
+Nazi/Crawl/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_1.wav"
+Nazi/Crawl/2	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_2.wav"
+Nazi/Crawl/3	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_3.wav"
+Nazi/Crawl/4	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_4.wav"
+Nazi/Crawl/5	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_5.wav"
+Nazi/Crawl/6	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Crawl_6.wav"
+$random Nazi/Crawl {Nazi/Crawl/1 Nazi/Crawl/2 Nazi/Crawl/3 Nazi/Crawl/4 Nazi/Crawl/5 Nazi/Crawl/6}
+
+Nazi/Fast/1		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_1.wav"
+Nazi/Fast/2		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_2.wav"
+Nazi/Fast/3		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_3.wav"
+Nazi/Fast/4		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_4.wav"
+Nazi/Fast/6		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_5.wav"
+Nazi/Fast/7		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_6.wav"
+Nazi/Fast/8		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_7.wav"
+Nazi/Fast/9		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_8.wav"
+Nazi/Fast/10	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_9.wav"
+$random Nazi/Fast {Nazi/Fast/1 Nazi/Fast/2 Nazi/Fast/3 Nazi/Fast/4 Nazi/Fast/5 Nazi/Fast/6 Nazi/Fast/7 Nazi/Fast/8 Nazi/Fast/9 Nazi/Fast/10}

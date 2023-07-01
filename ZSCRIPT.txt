@@ -19,6 +19,7 @@ version "4.10.0"
 #include "Actors/Monsters/Zombiemen/HellifiedSoldier.txt"
 #include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
 #include "Actors/Monsters/Zombiemen/FragmentofCainRifle.txt"
+#include "Actors/Monsters/Zombiemen/WolfSS_MP40.txt"
 
 //Shotgunners
 #include "Actors/Monsters/Shotgunners/FShotgunner.txt"
