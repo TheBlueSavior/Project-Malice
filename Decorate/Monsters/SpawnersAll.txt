@@ -119,10 +119,12 @@ Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight
 
 Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 {
-	DropItem "PM_HeresyLord",255, 68
+	DropItem "PM_HeresyLord",255, 72
 	DropItem "PM_Bruiser",255, 34
 	DropItem "PM_ControlledSoldier",255, 2
 	DropItem "PM_Broken",255, 2
+	DropItem "PM_PotsGroup",100, 2
+	DropItem "PM_PotsScreamer",100, 1
 }
 
 Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso 
