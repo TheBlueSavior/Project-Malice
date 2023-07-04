@@ -250,7 +250,7 @@ Class PM_CorpulentFlamer : Actor
    Radius 7;
    Height 7;
    Speed 15;
-   DamageFunction (random(1,1));
+   DamageFunction 3;
    PROJECTILE;
    RENDERSTYLE "Add";
    DamageType "Fire";
