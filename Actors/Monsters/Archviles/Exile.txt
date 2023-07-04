@@ -215,12 +215,27 @@ Class PM_Exile : PMMonsterBase
 		Death:
 			TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
 			TNT1 A 0 A_KillChildren("NewArchvileFire");
-			EILE Q 7;
-			EILE R 7 A_Scream();
-			EILE S 7 A_NoBlocking();
-			EILE TUVW 7;
+			EILE Q 7
+			{
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			}
+			EILE R 7
+			{
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_Scream();
+			}
+			EILE S 7
+			{
+			A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_NoBlocking();
+			}
+			EILE TUVW 7 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
 			TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-			EILE XY 7;
+			EILE XY 7 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION);
 			EILE Z -1;
 			Stop;
 	}

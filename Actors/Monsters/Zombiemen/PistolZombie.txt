@@ -49,6 +49,9 @@ Class PM_PistolZombie : PMMonsterBase
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
 		Goto See2;
 	See2:
+		TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 { bMISSILEEVENMORE = false; }
+		TNT1 A 0 A_SetSpeed(8);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		TNT1 A 0 A_Recoil(-1.5);
         A02A AA 3 A_Chase();
@@ -65,6 +68,7 @@ Class PM_PistolZombie : PMMonsterBase
     Missile:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(20,"Roar");
+		TNT1 A 0 A_Jump(100,"StandoffCheck");
 		TNT1 A 0 A_JumpIfCloser(300,"RealMissile");
 		TNT1 A 0 A_Jump(195,"RealMissile");
 	Charge:
@@ -81,6 +85,108 @@ Class PM_PistolZombie : PMMonsterBase
 		TNT1 A 0 A_Recoil(-4);
 		A02A GGGGGGGG 1;
 		Goto See2;
+		
+   Retreat:
+		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 { bFRIGHTENED = true; }
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		Goto See2;
+		
+		CloseMissile:
+		TNT1 A 0 A_Jump(256,"Missile","Retreat");
+		Goto See2;
+		
+	StandoffCheck:
+		TNT1 A 0 A_JumpIfCloser(500,"CloseMissile");
+		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 { bFRIGHTENED = true; }
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB random(1,2) A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD random(1,2) A_Chase();
+	Standoff:
+		TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 { bMISSILEEVENMORE = true; }
+		TNT1 A 0 A_Jump(10,"See2");
+		TNT1 A 0 A_JumpIfCloser(500,"Retreat");
+		TNT1 A 0 A_SetSpeed(0);
+		A02A BBBBBBBBBBBB 3 
+		{
+		A_Chase("StandoffMissile","StandoffMissile");
+		A_FaceTarget();
+		}
+		TNT1 A 0 A_CheckSight("See2");
+		TNT1 A 0 A_Jump(120,"StandoffRepos");
+		Loop;
+	StandoffRepos:
+		TNT1 A 0 { bFRIGHTENED = true; }
+		A02A A 1 A_Chase();
+	StandoffReposLoop:
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4);
+		A02A AABB 2 A_Wander();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4);
+		A02A CCDD 2 A_Wander();
+		TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 A_Jump(80,"Standoff");
+		Loop;
+	StandoffMissile:
+        TNT1 A 0 { pm_attackloop = random(1,2); }
+        A02A EEE 6
+	    {
+	    A_FaceTarget(360,180,0,0);
+	    A_SetAngle(angle+random(-10,10));
+	    A_SetPitch(pitch+random(-15,15));
+	    }
+	StandoffMissile2:
+        A02A F 2 BRIGHT Light("YellowMediumFlicker2")
+		{
+		if(user_numbullets < 0) { SetStateLabel("NoAmmo"); }
+		A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP);
+		A_StartSound("PistolZombie/Fire");
+		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
+        A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		user_numbullets--;
+		pm_attackloop--;
+		}
+		A02A EE random(8,15) A_FaceTarget(15,20,0,0);
+		TNT1 A 0 { if(pm_attackloop <= 0) { SetStateLabel("Standoff"); } }
+		Loop;
 	Roar:
 		A02A D 5 A_FaceTarget();
 		TNT1 A 0 A_StartSound("PistolZombie/See1");
@@ -95,7 +201,18 @@ Class PM_PistolZombie : PMMonsterBase
         A02A E 10 A_FaceTarget();
         TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
         A02A AAAA 8 A_FaceTarget();
-		Goto ZReload;
+		Goto ReloadRetreat;
+	ReloadRetreat:
+		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 { bFRIGHTENED = true; }
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A AABB 2 A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		A02A CCDD 2 A_Chase();
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		TNT1 A 0 A_Jump(25,"ZReload");
+		TNT1 A 0 A_CheckSight("ZReload");
+		Loop;
     RealMissile:
         TNT1 A 0 { pm_attackloop = random(1,2); }
         A02A EEE 6

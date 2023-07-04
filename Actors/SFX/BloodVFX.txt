@@ -77,7 +77,7 @@ Class PM_NormalInstestinGib : Actor
 	{
     Radius 8;
     Height 12;
-    Speed 10;
+    Speed 7;
 	Mass 1;
 	BounceFactor 0.4;
 	Renderstyle "Translucent";
@@ -100,11 +100,93 @@ Class PM_NormalInstestinGib : Actor
     Spawn:
 		TNT1 A 0;
 		TNT1 A 0 A_SetScale(frandom(1.0,1.8));
-        GUTS ABCD 8;
+        GUTS ABCD 8 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
         Loop;
     Death:
 		TNT1 A 0 A_QueueCorpse;
-        GUTS E 1;
+        GUTS E 1 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water");
+	    Goto Rest;
+	Rest:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(255, "Rest1", "Rest2");
+	Rest1:
+		GUTS E 200;
+        GUTS E 5 A_FadeOut(0.05);
+        Wait;
+	Rest2:
+		GUTS F 200;
+		GUTS F 5 A_FadeOut(0.05);
+        Wait;
+	Water:
+		TNT1 A 0 A_Jump(128, "Water2");
+		Goto Water1;
+	Water1:
+		GUTS G 10;
+		GUTS H 5 A_FadeOut(0.05);
+		Wait;
+	Water2:
+		GUTS I 10;
+		GUTS J 5 A_FadeOut(0.05);
+		Wait;
+    }
+}
+
+
+Class PM_BlackInstestinGib : PM_NormalInstestinGib
+{
+    Default { Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]"; }
+    States
+    {
+    Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(frandom(1.0,1.8));
+        GUTS ABCD 8 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+        Loop;
+    Death:
+		TNT1 A 0 A_QueueCorpse;
+        GUTS E 1 A_SpawnItemEx("PM_BlackBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water");
+	    Goto Rest;
+	Rest:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(255, "Rest1", "Rest2");
+	Rest1:
+		GUTS E 200;
+        GUTS E 5 A_FadeOut(0.05);
+        Wait;
+	Rest2:
+		GUTS F 200;
+		GUTS F 5 A_FadeOut(0.05);
+        Wait;
+	Water:
+		TNT1 A 0 A_Jump(128, "Water2");
+		Goto Water1;
+	Water1:
+		GUTS G 10;
+		GUTS H 5 A_FadeOut(0.05);
+		Wait;
+	Water2:
+		GUTS I 10;
+		GUTS J 5 A_FadeOut(0.05);
+		Wait;
+    }
+}
+
+
+Class PM_GreenInstestinGib : PM_NormalInstestinGib
+{
+    Default { Translation "0:255=%[0,0,0]:[0.6,2,0.5]"; }
+    States
+    {
+    Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SetScale(frandom(1.0,1.8));
+        GUTS ABCD 8 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
+        Loop;
+    Death:
+		TNT1 A 0 A_QueueCorpse;
+        GUTS E 1 A_SpawnItemEx("PM_GreenBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
 		TNT1 A 0 A_JumpIf(waterlevel > 1, "Water");
 	    Goto Rest;
 	Rest:
@@ -187,6 +269,33 @@ Class PM_NormalCyberBloodBase : Actor
 }
 
 
+Class PM_NormalTyrantBloodBase : Actor
+{
+    Default
+	{
+	+CLIENTSIDEONLY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	+NOTELEPORT
+	PROJECTILE;
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
+	-NOGRAVITY
+	Gravity 0.85;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_NormalTyrantBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+
 Class PM_NormalBlood : RandomSpawner
 {
     Default
@@ -212,6 +321,17 @@ Class PM_NormalCyberBlood : RandomSpawner
 	DropItem "PM_NormalBloodMist", 255, 2;
 	DropItem "PM_NormalMeatChunkLauncher", 255, 1;
 	DropItem "PM_NormalHitSpark", 255, 4;
+	}
+}
+
+Class PM_NormalTyrantBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_NormalBlood1", 255, 1;
+	DropItem "PM_NormalBlood2", 255, 1;
+	DropItem "PM_NormalBlood3", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 10;
 	}
 }
 

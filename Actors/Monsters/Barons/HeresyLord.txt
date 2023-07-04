@@ -140,10 +140,31 @@ Class PM_HeresyLord : PMMonsterBase
     Death:
 	    TNT1 A 0 { bSPRITEFLIP = false; }
 		TNT1 A 0 A_StopSounds(0,0);
-        LOHS I 8;
-		LOHS J 8 A_Scream;
-		LOHS K 8 A_Fall;
-		LOHS LMN 8;
+        LOHS I 8
+		{
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+		}
+		LOHS J 8
+		{
+		A_Scream();
+		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,40),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,40),0,0,0,0,SXF_NOCHECKPOSITION);
+		}
+		LOHS K 8
+		{
+		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(15,30),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_Fall();
+		}
+		LOHS LMN 8
+		{
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,20),0,0,0,0,SXF_NOCHECKPOSITION);
+		}
 		TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
 		LOHS O -1;
         Stop;

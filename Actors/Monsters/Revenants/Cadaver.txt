@@ -69,9 +69,10 @@ Class PM_Cadaver : PMMonsterBase
     CREV I 6 A_CustomMeleeAttack(30,"Doom4/Other/MeleeHit");
     Goto See2;
   Missile:
-	TNT1 A 0 A_Jump(14,"Roar");
-	TNT1 A 0 A_Jump(45,"SpecialBarrage");
-	TNT1 A 0 A_Jump(235,"Missile1","Missile2","Missile3","Missile4");
+	TNT1 A 0 A_Jump(20,"Roar");
+	TNT1 A 0 A_Jump(30,"SpecialBarrage");
+	TNT1 A 0 A_Jump(185,"Missile1","Missile2");
+	TNT1 A 0 A_Jump(140,"Missile3","Missile4");
 	CREV JJJJJJJJJJJJJJJJJJJJ 1 Light("AvatarFireball2")
 	{
 	A_SpawnItemEx("BurntSoulFire",6,10,56,0,0,random(0,3));

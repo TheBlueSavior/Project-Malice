@@ -28,6 +28,7 @@ Class PM_Tyrant : PMMonsterBase
   +DONTMORPH
   +MISSILEevenMORE
   Obituary "%o was annihilated by a Tyrant.";
+  BloodType "PM_NormalTyrantBloodBase";
   Tag "Tyrant";
   SeeSound "Tyrant/Sight";
   PainSound "Tyrant/Pain";
