@@ -27,6 +27,7 @@ Class PM_PhaseCaco : PMMonsterBase
 		+SLIDESONWALLS
 		+MISSILEMORE
 		+DONTHARMCLASS
+		PainChance 112;
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
 	}

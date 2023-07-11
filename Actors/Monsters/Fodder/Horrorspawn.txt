@@ -23,25 +23,28 @@ Actor PM_NormalHorrorspawn : RandomSpawner
 
 Actor Horrorspawnmap : RandomSpawner
 {
-	DropItem "Horrorspawn1", 255, 15
-	DropItem "Horrorspawn2", 255, 15
-	DropItem "Horrorspawn3", 255, 15
-	DropItem "Horrorspawn4", 255, 15
-	DropItem "HorrorspawnScreamer", 255, 3
+	DropItem "Horrorspawn1", 255, 20
+	DropItem "Horrorspawn2", 255, 20
+	DropItem "Horrorspawn3", 255, 20
+	DropItem "Horrorspawn4", 255, 20
+	DropItem "HorrorspawnScreamer", 255, 2
 	DropItem "FreshHorrorspawn", 255, 4
 	DropItem "HungryGroup", 255, 2
+	DropItem "Hungry", 255, 5
 	DropItem "Hunger", 255, 1
-	DropItem "FodderDropper", 255, 8
-	DropItem "PM_SleepingHorrorspawn1", 255, 9
-	DropItem "PM_SleepingHorrorspawn2", 255, 9
-	DropItem "PM_SleepingHorrorspawn3", 255, 9
-	DropItem "PM_SleepingHorrorspawn4", 255, 9
+	DropItem "FodderDropper", 255, 5
+	DropItem "PM_SleepingHorrorspawn1", 255, 4
+	DropItem "PM_SleepingHorrorspawn2", 255, 4
+	DropItem "PM_SleepingHorrorspawn3", 255, 4
+	DropItem "PM_SleepingHorrorspawn4", 255, 4
 	DropItem "Voidspawn", 255, 1
 	DropItem "Pustule", 255, 3
-	DropItem "PM_FodderSleeperDropper", 255, 7
-	DropItem "PM_HorrorspawnSpitter", 255, 1
-	DropItem "PM_HorrorspawnChunkThrower", 255, 1
-	DropItem "PM_HorrorspawnBurster", 255, 1
+	DropItem "PM_FodderSleeperDropper", 255, 3
+	DropItem "PM_HorrorspawnSpitter", 255, 3
+	DropItem "PM_HorrorspawnChunkThrower", 255, 3
+	DropItem "PM_HorrorspawnBurster", 255, 2
+	DropItem "HeadDropper", 255, 2
+	DropItem "RatDropper", 255, 2
 }
 
 Actor Horrorspawn1 : PMFodderMonsterBase
@@ -1399,7 +1402,7 @@ Actor FodderDropper
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("HorrorPassiveSpawn2",0,0,0,0,0,0,random(0,360),0,20)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("HorrorPassiveSpawn2",0,0,0,0,0,0,random(0,360),0,20)
 		Stop
 
 	}
@@ -1410,7 +1413,7 @@ Actor PM_FodderSleeperDropper
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_HorrorSleeperSpawn",0,0,0,0,0,0,random(0,360),0,20)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_HorrorSleeperSpawn",0,0,0,0,0,0,random(0,360),0,20)
 		Stop
 
 	}

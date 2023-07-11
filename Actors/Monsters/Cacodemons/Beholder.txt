@@ -23,6 +23,7 @@ Class PM_Beholder : PMGluttonyMonsterBase
 		Bloodtype "PM_NormalBloodBase";
 		//+NOINFIGHTING
 		FloatBobStrength 0.4;
+		PainChance 112;
 		+FLOATBOB
 		+FLOAT
 		+NOGRAVITY
