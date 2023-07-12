@@ -25,6 +25,7 @@ Class PM_Wretched : PMMonsterBase
 		+FLOAT
 		+NOGRAVITY
 		+MissileMore
+		PainChance 120;
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
 	}
