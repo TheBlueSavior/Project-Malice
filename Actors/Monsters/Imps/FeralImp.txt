@@ -27,6 +27,7 @@ Class PM_FeralImp : PMWrathMonsterBase
   painsound "FeralImp/Pain";
   deathsound "FeralImp/Death";
   activesound "FeralImp/Active";
+  Bloodtype "PM_LavaBloodBase";
   MeleeRange 155;
   +FLOORCLIP
   TeleFogSourceType "PM_SmallDemonicTeleportFog";

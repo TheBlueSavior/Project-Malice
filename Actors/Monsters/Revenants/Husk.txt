@@ -29,6 +29,7 @@ Class PM_Husk : PMWrathMonsterBase
   DamageFactor "GhoulCloud",0;
   Tag "Husk";
   PoisonDamage 128;
+  Bloodtype "PM_LavaBloodBase";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_DemonicTeleportFog";
   }

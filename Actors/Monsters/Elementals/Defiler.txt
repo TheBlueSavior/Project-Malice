@@ -7,7 +7,7 @@ Class PM_Defiler : PMMonsterBase
 	Height 56;
 	Mass 500;
 	Speed 6;
-	PainChance 15;
+	PainChance 120;
 	Monster;
 	+NOGRAVITY
     +FLOAT 
@@ -27,6 +27,7 @@ Class PM_Defiler : PMMonsterBase
 	Obituary "%o was thoroughly cleansed by a Defiler's flames.";
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
+	Bloodtype "PM_LavaBloodBase";
 	}
 	States
 	{
