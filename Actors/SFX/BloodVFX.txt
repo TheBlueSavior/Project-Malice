@@ -239,22 +239,8 @@ Class PM_NormalBloodBase : Actor
 	}
 }
 
-Class PM_NormalCyberBloodBase : Actor
+Class PM_NormalCyberBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	PROJECTILE;
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -266,22 +252,8 @@ Class PM_NormalCyberBloodBase : Actor
 }
 
 
-Class PM_NormalTyrantBloodBase : Actor
+Class PM_NormalTyrantBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	PROJECTILE;
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
