@@ -226,9 +226,6 @@ Class PM_NormalBloodBase : Actor
 	+NOTELEPORT
 	PROJECTILE;
 	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
 	-NOGRAVITY
 	Gravity 0.85;
 	}
@@ -813,26 +810,8 @@ Class PM_GreenBloodMist : PM_NormalBloodMist
 
 
 //DARK GREEN BLOOD
-Class PM_DarkGreenBloodBase : Actor
+Class PM_DarkGreenBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +THRUACTORS
-    +THRUSPECIES
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -987,24 +966,8 @@ Class PM_DarkGreenBloodMist : PM_NormalBloodMist
 
 
 //BLUE BLOOD
-Class PM_BlueBloodBase : Actor
+Class PM_BlueBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -1199,24 +1162,8 @@ Class PM_BlueBloodMist : PM_NormalBloodMist
 
 
 //PURPLE BLOOD
-Class PM_PurpleBloodBase : Actor
+Class PM_PurpleBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -1411,24 +1358,8 @@ Class PM_PurpleBloodMist : PM_NormalBloodMist
 
 
 //BLACK BLOOD
-Class PM_BlackBloodBase : Actor
+Class PM_BlackBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -1583,24 +1514,8 @@ Class PM_BlackBloodMist : PM_NormalBloodMist
 
 
 //DARK RED BLOOD
-Class PM_DarkRedBloodBase : Actor
+Class PM_DarkRedBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	+NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -1803,24 +1718,8 @@ Class PM_DarkRedBloodMist : PM_NormalBloodMist
 
 //PESTILENCE BLOOD
 
-Class PM_PestilenceBloodBase : Actor
+Class PM_PestilenceBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-    +NOBLOCKMAP
-    -ALLOWPARTICLES
-    +PUFFGETSOWNER
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -2091,25 +1990,10 @@ Class PM_PestilenceBloodyCloudBig : PM_NormalBloodyCloudBig
  Default { Translation "0:255=%[0,0,0]:[2,1,0.3]"; }
 }
 
-
 //Wrath Lava Blood
 
-Class PM_LavaBloodBase : Actor
+Class PM_LavaBloodBase : PM_NormalBloodBase
 {
-    Default
-	{
-	+CLIENTSIDEONLY
-	+FORCEXYBILLBOARD
-	+ROLLSPRITE
-	+NOTELEPORT
-	PROJECTILE;
-	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
-	-NOGRAVITY
-	Gravity 0.85;
-	}
 	States
 	{
 	Spawn:
@@ -2421,5 +2305,5 @@ Class PM_LavaBloodMist : PM_NormalBloodMist
 			);
 		}
 		Stop;
-	}
+ }
 }
