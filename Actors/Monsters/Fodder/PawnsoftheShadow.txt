@@ -52,7 +52,7 @@ Class PM_POTS : PMMonsterBase
          user_pawnkicker = random(-4,0);
 		 user_pawntick = random(1,13);
         }
-		TNT1 A 0 A_SetHealth(random(1,200));
+		TNT1 A 0 A_SetHealth(random(1,150));
 		TNT1 A 0 A_SetSpeed(random(4,12));
 		TNT1 A 0 A_FadeOut(frandom(0.0,0.85));
 		TNT1 A 0 A_SetScale(frandom(0.8,1.2),frandom(0.8,1.2));
@@ -426,12 +426,12 @@ Class PM_POTSScreamer : PMMonsterBase
 { 
 	Default
 	{
-    Health 350;
+    Health 450;
     Radius 20;
     Height 56;
     Speed 10;
     Mass 200;
-    PainChance 25;
+    PainChance 1;
     Damage 1;
     MONSTER;
     -COUNTKILL
@@ -446,7 +446,7 @@ Class PM_POTSScreamer : PMMonsterBase
 	+ROLLSPRITE
     +ROLLCENTER
 	+SLIDESONWALLS
-	+MISSILEMORE
+	+MISSILEevenMORE
 	Species "Fodder";
 	Tag "DARK WATCHMAN";
     Obituary "%o gazed into the shadow, and saw themself.";
@@ -520,21 +520,26 @@ Class PM_POTSScreamer : PMMonsterBase
 		}
         Loop;
 	Missile:
-		VFOD NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1
-		{
-		A_FaceTarget();
-		POSEffects();
-		}
-		VFOD PQRPQRPQRPQRPQRPQRPQRPQRPQRPQR 1
-		{
-		A_FaceTarget();
-		POSEffects();
-		}
-		VFOD J 6 Light("PM_HorrorSolidBig");
-		TNT1 A 0 A_StartSound("Skulker/Port");
-		TNT1 A 0 A_StartSound("POTS/Horde",13,CHANF_DEFAULT,1,ATTN_NONE);
-		TNT1 A 0 A_SpawnItemEx("PM_PotsHorde",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		Stop;
+        VFOD NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN 1
+        {
+        A_FaceTarget();
+        POSEffects();
+        bNOPAIN = true;
+        }
+        VFOD PQRPQRPQRPQRPQRPQRPQRPQRPQRPQR 1
+        {
+        A_FaceTarget();
+        POSEffects();
+        }
+        VFOD J 6 Light("PM_HorrorSolidBig");
+        VFOD J 0
+        {
+            if (target && (target is "PlayerPawn")) target.A_SetBlend("000000", 999, 15, "000000");
+        }
+        TNT1 A 0 A_StartSound("Skulker/Port");
+        TNT1 A 0 A_StartSound("POTS/Horde",13,CHANF_DEFAULT,1,ATTN_NONE);
+        TNT1 A 0 A_SpawnItemEx("PM_PotsHorde",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        Stop;
     Pain:
 		VFOD A 1
 		{
@@ -681,7 +686,7 @@ class PM_PotsSeekSpawn: Actor
 	Spawn:
 		TNT1 A 0 { bFRIGHTENED=True; }
 		TNT1 AAA 1 A_Chase;
-		TNT1 A 0 A_Jump(15,"SpawnLoop");
+		TNT1 A 0 A_Jump(45,"SpawnLoop");
 		Loop;
 		SpawnLoop:
 		TNT1 A 0 { bFRIGHTENED = false; }
@@ -701,7 +706,7 @@ class PM_PotsSeekSpawn: Actor
 		TNT1 A 0 A_CheckSight ("Create");
 		TNT1 A 5 A_Wander;
 		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 0 A_Jump(50,"Die");
+		TNT1 A 0 A_Jump(90,"Create");
 		Loop;
 	Create:
 		TNT1 A 0 A_SpawnItemEx("PM_POTS");
