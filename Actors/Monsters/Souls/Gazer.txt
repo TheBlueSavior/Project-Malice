@@ -391,7 +391,7 @@ Class PM_Gazer : PMMonsterBase
 	TNT1 A 0 
 			{ 
 			 if(sigil)
-			 A_GiveInventory("PM_EnvySigilGoAway");
+			 A_GiveInventory("PM_GazerSigilGoAway");
 			 sigil = false;
 			}
 	PRID A 0 A_Jump(30, "PhaseOut");
@@ -399,6 +399,12 @@ Class PM_Gazer : PMMonsterBase
 	PRID A 4 { alpha = 1; A_Pain(); }
 	Goto See2;
   Death:
+	 TNT1 A 0 
+			{ 
+			 if(sigil)
+			 A_GiveInventory("PM_GazerSigilGoAway");
+			 sigil = false;
+			}
 	PRID A 0 { gazer = false; A_Scream(); alpha = 1; }
 	PRID AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
 	{
