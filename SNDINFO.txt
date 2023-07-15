@@ -3885,6 +3885,27 @@ $rolloff POTS/Laugh1 500 2000
 
 POTS/Horde "Sounds/Monsters/Fodder/PawnsoftheShadow/PawnHorde.ogg"
 
+//Gazer
+PMGazer/Sight "Sounds/Monsters/Souls/Gazer/GazerSight.ogg" 
+
+$pitchset PMGazer/Sight 0.3 1.3
+
+$random PMGazer/Hover { PMGazer/Hover1 PMGazer/Hover2 }
+PMGazer/Hover1 "Sounds/Monsters/Souls/Gazer/GazerHover1.ogg" 
+PMGazer/Hover2 "Sounds/Monsters/Souls/Gazer/GazerHover2.ogg"
+
+$random PMGazer/Active { PMGazer/Idle1 PMGazer/Idle2 PMGazer/Idle3 }
+PMGazer/Idle1 "Sounds/Monsters/Souls/Gazer/GazerIdle1.ogg" 
+PMGazer/Idle2 "Sounds/Monsters/Souls/Gazer/GazerIdle2.ogg" 
+PMGazer/Idle3 "Sounds/Monsters/Souls/Gazer/GazerIdle3.ogg" 
+
+$random PMGazer/Death { PMGazer/Death1 PMGazer/Death2 PMGazer/Death3 PMGazer/Death4 PMGazer/Death5 }
+PMGazer/Death1 "Sounds/Monsters/Souls/Gazer/GazerDeath1.ogg" 
+PMGazer/Death2 "Sounds/Monsters/Souls/Gazer/GazerDeath2.ogg" 
+PMGazer/Death3 "Sounds/Monsters/Souls/Gazer/GazerDeath3.ogg" 
+PMGazer/Death4 "Sounds/Monsters/Souls/Gazer/GazerDeath4.ogg" 
+PMGazer/Death5 "Sounds/Monsters/Souls/Gazer/GazerDeath5.ogg" 
+
 //Big Gore Splats
 $random PM/BigGoreSplat		{ PM/BigGoreSplat1 PM/BigGoreSplat2 PM/BigGoreSplat3 PM/BigGoreSplat4 PM/BigGoreSplat5 PM/BigGoreSplat6 }
 PM/BigGoreSplat1	"Sounds/Other/PMBigGoreSplat1.ogg"
@@ -3894,6 +3915,19 @@ PM/BigGoreSplat4	"Sounds/Other/PMBigGoreSplat4.ogg"
 PM/BigGoreSplat5	"Sounds/Other/PMBigGoreSplat5.ogg"
 PM/BigGoreSplat6	"Sounds/Other/PMBigGoreSplat6.ogg"
 $volume PM/BigGoreSplat 0.5
+
+//Magic Stuff
+PM/BulletHellSpawn "Sounds/Monsters/SFX/BulletHellFire.ogg"
+PM/SigilSpawn "Sounds/Monsters/SFX/MagicSigilSpawn.ogg"
+PM/RuneFill "Sounds/Monsters/SFX/MagicRuneFill.ogg"
+PM/MagicFireFire "Sounds/Monsters/SFX/MagicFireFire.ogg"
+PM/MagicFireExplode "Sounds/Monsters/SFX/MagicFireExplode.ogg"
+
+$volume PM/BulletHellSpawn 0.7
+$limit PM/BulletHellSpawn 10
+$rolloff PM/SigilSpawn 200 1600
+$rolloff PM/RuneFill 200 1600
+$limit PM/RuneFill 10
 
 //Reloads
 PM/GunClick        "Sounds/Other/PMGunClick.ogg" //oh shit

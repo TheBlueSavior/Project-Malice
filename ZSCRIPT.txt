@@ -72,6 +72,7 @@ version "4.10.0"
 #include "Actors/Monsters/Souls/Fleshspawn.txt"
 #include "Actors/Monsters/Souls/Rictus.txt"
 #include "Actors/Monsters/Souls/Blot.txt"
+#include "Actors/Monsters/Souls/Gazer.txt"
 
 //Cacos
 #include "Actors/Monsters/Cacodemons/Beholder.txt"

@@ -76,6 +76,7 @@ Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 	DropItem "PM_BurntSoul", 255, 16
 	DropItem "PM_FleshspawnDropper", 255, 2
 	DropItem "PM_BloodSkull", 255, 1
+	DropItem "PM_Gazer", 255, 1
 }
 
 
