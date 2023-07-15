@@ -270,25 +270,25 @@ Class PM_Gazer : PMMonsterBase
 	{
 	PM_GazerGlow();
 	A_FaceTarget();
-	A_SpawnProjectile("PM_GazerBall",60,0);
+	A_SpawnProjectile("PM_GazerBall",60,0,0,CMF_OFFSETPITCH,5);
 	}
 	PRID A 7
 	{
 	PM_GazerGlow();
 	A_FaceTarget();
-	A_SpawnProjectile("PM_GazerBall",30,30);
+	A_SpawnProjectile("PM_GazerBall",30,30,5,CMF_OFFSETPITCH,0);
 	}
 	PRID A 7
 	{
 	PM_GazerGlow();
 	A_FaceTarget();
-	A_SpawnProjectile("PM_GazerBall",2,0);
+	A_SpawnProjectile("PM_GazerBall",2,0,0,CMF_OFFSETPITCH,-5);
 	}
 	PRID A 7
 	{
 	PM_GazerGlow();
 	A_FaceTarget();
-	A_SpawnProjectile("PM_GazerBall",30,-30);
+	A_SpawnProjectile("PM_GazerBall",30,-30,-5,CMF_OFFSETPITCH,0);
 	}
 	TNT1 A 0 A_Jump(80,"BulletHell2End");
 	PRID A 0 A_CheckLOF("BulletHell2Loop");
@@ -489,19 +489,22 @@ Class PM_GazerBall : Actor
    Radius 3;
    Speed 12;
    Damagefunction 10;
-   Scale 0.1;
+   Scale 1;
+   Alpha 0.9;
    PROJECTILE;
    RenderStyle "Add";
    +BRIGHT
    SeeSound "PM/BulletHellSpawn";
    DeathSound "GenericPlasmaExp";
    +FORCEXYBILLBOARD 
+   +ROLLSPRITE
+   +ROLLCENTER
    }
    States
    {
    Spawn:
 	  TNT1 A 0;
-	  TNT1 A 0
+	  TNT1 AA 0
 	  {
 	  A_SpawnParticleEx
 		(
@@ -509,20 +512,20 @@ Class PM_GazerBall : Actor
 		TexMan.CheckForTexture("DTPRR0"),
 		style: STYLE_Add,
 		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
-		lifetime: random(2,5),
-		size: random(70,130),
+		lifetime: random(3,8),
+		size: random(80,130),
 		angle: 0,
 		xoff: 0,
 		yoff: 0,
 		zoff: 0,
-		startalphaf: 0.95,
+		startalphaf: 1,
 		fadestepf: -1,
 		sizestep: -15,
 		startroll: random(-180,180)
 		);
 	}
    Go:
-      DTPR R 5 Bright;
+      BH_B A 1 Bright A_SetRoll(roll+25);
     Loop;
    Death:
 		TNT1 AA 0

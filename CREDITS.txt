@@ -77,6 +77,7 @@ Bugsie - Revamped bullet spark code, Void Floater sprites and code
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
 H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, sprites and code
+Touhou - Projectile Sprites
 
 MY APOLOGIES IF I MISSED ANYONE!
 
