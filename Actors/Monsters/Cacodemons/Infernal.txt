@@ -21,20 +21,34 @@ Class PM_Infernal : PMWrathMonsterBase
 		Tag "Infernal";
 		Species "Cacodemon";
 		BloodColor "ff 50 00";
-		MeleeThreshold 90;
+		MeleeThreshold 100;
+		MeleeRange 85;
+		DamageFactor "PM_InfernalMelee", 0;
 		+FLOATBOB
 		+FLOAT
 		+NOGRAVITY
 		+SLIDESONWALLS
-		+MISSILEMORE
 		+DONTHARMSPECIES
 		+DONTHARMCLASS
 		+NOTARGET
-		+MISSILEMORE
 		Bloodtype "PM_LavaBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
 	}
+	
+	override void PostBeginPlay()
+	{
+	 pm_irecount = random(70,164);
+	 tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("BLHDA0",TexMan.Type_Sprite);
+	 tex[5] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	 tex[6] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[7];
 	
 	override void Tick()
 	{
@@ -46,7 +60,7 @@ Class PM_Infernal : PMWrathMonsterBase
 		A_SpawnParticleEx
 		(
 		"",
-		TexMan.CheckForTexture("GNSML0"),
+		tex[0],
 		style: STYLE_None,
 		flags: SPF_ROLL|SPF_RELATIVE,
 		lifetime: random(50,160),
@@ -66,7 +80,7 @@ Class PM_Infernal : PMWrathMonsterBase
 		A_SpawnParticleEx
 	    (
 		"",
-		TexMan.CheckForTexture("SPKOA0"),
+		tex[1],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(20,90),
@@ -88,7 +102,7 @@ Class PM_Infernal : PMWrathMonsterBase
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay { pm_irecount = random(70,164); }
+			INFR A 0;
 		Idle:
 			INFR ABCD 2 PM_Look();
 			Loop;
@@ -125,6 +139,7 @@ Class PM_Infernal : PMWrathMonsterBase
 			TNT1 A 0 { pm_irecount -= 2; }
 			Loop;
 		Rush:
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			TNT1 A 0
 			{
 			A_SetSpeed(11);
@@ -138,18 +153,18 @@ Class PM_Infernal : PMWrathMonsterBase
 			A_SpawnParticleEx
 			(
 			"",
-			TexMan.CheckForTexture("GNSML0"),
+			tex[0],
 			style: STYLE_None,
 			flags: SPF_ROLL|SPF_RELATIVE,
-			lifetime: random(70,140),
-			size: frandom(40,115),
+			lifetime: random(50,140),
+			size: frandom(20,115),
 			xoff: frandom(-20,20),
 			yoff: frandom(-20,20),
 			zoff: frandom(0,60),
 			velx: frandom(-1,4),
 			vely: frandom(-1,1),
 			velz: frandom(-1,1),
-			startalphaf: frandom(0.4,0.75),
+			startalphaf: frandom(0.1,0.70),
 			fadestepf: -1,
 			sizestep: frandom(0.0,0.8),
 			startroll: random(-180,180),
@@ -158,7 +173,7 @@ Class PM_Infernal : PMWrathMonsterBase
 			A_SpawnParticleEx
 			(
 			"",
-			TexMan.CheckForTexture("SPKOA0"),
+			tex[1],
 			style: STYLE_Add,
 			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(40,120),
@@ -199,13 +214,137 @@ Class PM_Infernal : PMWrathMonsterBase
 			}
 			Goto See2;
 		Melee:
-			INFR EFG 5
+			TNT1 A 0 {bNOPAIN = True;}
+			TNT1 A 0 A_StartSound("PMInfernal/MeleeCharge",22);
+			INFR KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 1 Light("HectebusBallLight")
 			{
-				A_Recoil(-4);
-				A_FaceTarget();
+			A_Recoil(-0.1);
+			A_SpawnParticleEx
+			(
+			"",
+			tex[2],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(50,80),
+			size: frandom(1,400),
+			angle: 0,
+			xoff: random(-30,30),
+			yoff: random(-30,30),
+			zoff: random(-10,70),
+			startalphaf: frandom(0.3,0.7),
+			startroll: random(-180,180)
+			);
+			Radius_Quake (1, 2, 0, 7, 0);
+			A_FaceTarget();
 			}
-			INFR G 5 A_CustomMeleeAttack(4*Random(1,8), "caco/melee");
-			INFR G 0 A_Stop();
+			TNT1 A 0 A_StartSound("PMInfernal/MeleeBlast",23);
+			TNT1 A 0 Radius_Quake (8, 24, 0, 10, 0);
+			TNT1 A 0 A_RadiusThrust(6000,300);
+			TNT1 A 0 A_Explode(80,310,XF_NOTMISSILE,0,50,0,0,"BulletPuff","PM_InfernalMelee");
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 A 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[3],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 8,
+			size: 360,
+			angle: 0,
+			zoff: 40,
+			startalphaf: 1,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(   
+			"",
+			tex[4],
+			style: STYLE_Add,
+			flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 20,
+			size: 800,
+			xoff: 0,
+			yoff: 0,
+			zoff: 50,
+			startalphaf: 1,
+			fadestepf: -1,
+			sizestep: -25,
+			startroll: random(-180,180)
+			);
+			}
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"727272",
+			tex[5],
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70),
+			size: frandom(2,35),
+			angle: 0,
+			xoff: 0,
+			yoff: 0,
+			zoff: random(10,60),
+			velx: frandom(-8,8),
+			vely: frandom(-8,8),
+			velz: frandom(-8,12),
+			accelx: 0,
+			accely: 0,
+			accelz: frandom(-0.1,-0.5),
+			startalphaf: 1.0,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-4,4),
+			rollacc: 0
+			);
+			A_SpawnParticleEx
+			(
+			"6C6C6C",
+			tex[6],
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(30,60),
+			size: frandom(80,220),
+			zoff: random(10,60),
+			velx: random(-9,9),
+			vely: random(-9,9),
+			velz: random(-9,9),
+			startalphaf: frandom(0.4,0.75),
+			fadestepf: -1,
+			sizestep: 12,
+			startroll: random(-180,180),
+			rollvel: random(-2,2)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			tex[1],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(80,120),
+			size: frandom(1,35),
+			zoff: random(10,60),
+			velx: random(-8,8),
+			vely: random(-8,8),
+			velz: random(-8,8),
+			accelz: frandom(-0.1,-0.3),
+			startalphaf: 1,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-2,2)
+			);
+			}
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,40,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+			TNT1 AA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			TNT1 AAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",-10,0,40,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+			INFR JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJIIIIIIHHHHH 1 Light("TyrantMExp") A_FaceTarget();
+			TNT1 A 0 {bNOPAIN = False;}
 			Goto See2;
 		Missile:
 			INFR A 0
@@ -218,18 +357,18 @@ Class PM_Infernal : PMWrathMonsterBase
 		Fireball:
 			INFR A 4 A_FaceTarget();
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-			INFR A 0 A_Pain();
-			INFR HHHIIIIIIIHHH 2 Light("AvatarFireball2")
+			INFR A 0 A_StartSound("PMInfernal/Charge",20);
+			INFR HHIIIIHH 2 Light("AvatarFireball2")
 			{
 			A_FaceTarget();
 			A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
 			}
-			INFR A 10 A_FaceTarget();
+			INFR A 2 A_FaceTarget();
 			INFR HI 5 A_FaceTarget();
 			INFR J 6
 			{
 				if (ire) SetStateLabel("Moer"); else pm_irecount -= 5;
-				A_SpawnProjectile("PM_InfernalFireball", 26);
+				A_SpawnProjectile("PM_InfernalFireball",26,0,frandom(-5,5),CMF_OFFSETPITCH,frandom(-5,5));
 			}
 			INFR IHAAA 5 A_FaceTarget();
 			TNT1 A 0
@@ -247,11 +386,11 @@ Class PM_Infernal : PMWrathMonsterBase
 			Goto See2;
 		SmallBalls:
 			INFR HI 5 A_FaceTarget();
-			INFR JJJJJJJJ 3
+			INFR JJJJ random(5,10)
 			{
 				if (ire) SetStateLabel("Cum"); else pm_irecount--;
 				A_FaceTarget();
-				A_SpawnProjectile("PM_HellionBall2", 26, 0, frandom(-15, 15), CMF_OFFSETPITCH, frandom(-5, 5));
+				A_SpawnProjectile("PM_InfernalLavaBall", 26, 0, frandom(-17, 17), CMF_OFFSETPITCH, frandom(-15, 15));
 			}
 			INFR IHAAAA 5 A_FaceTarget();
 			TNT1 A 0
@@ -262,10 +401,12 @@ Class PM_Infernal : PMWrathMonsterBase
 			}
 			Goto See2;
 		Cum:
-			INFR JJJJJJJJJJJJJJJJJ 2
+			INFR JJJ random(6, 17)
 			{
 				A_FaceTarget();
-				A_SpawnProjectile("PM_HellionBall", 26, 0, frandom(-1, 1), CMF_OFFSETPITCH, frandom(-1, 1));
+				A_SpawnProjectile("PM_InfernalLavaBall", 26, 0, frandom(-12, 12), CMF_OFFSETPITCH, frandom(-5, 5));
+				A_SpawnProjectile("PM_InfernalLavaBall", 26, 0, frandom(-12, 12), CMF_OFFSETPITCH, frandom(-5, 5));
+				A_SpawnProjectile("PM_InfernalLavaBall", 26, 0, frandom(-12, 12), CMF_OFFSETPITCH, frandom(-5, 5));
 			}
 			INFR IHAAAAAAA 5 A_FaceTarget();
 			TNT1 A 0
@@ -291,7 +432,7 @@ Class PM_Infernal : PMWrathMonsterBase
 			Goto See2;
 		Ire:
 			INFR A 4 A_FaceTarget();
-			INFR A 0 A_StartSound("PMInfernal/Roar", CHAN_VOICE, CHANF_OVERLAP);
+			INFR A 0 A_StartSound("PMInfernal/Ire", 23);
 			INFR YY 2 Light("AvatarFireball2")
 			{
 			A_FaceTarget();
@@ -321,10 +462,10 @@ Class PM_Infernal : PMWrathMonsterBase
 			Goto See2;
 		Pain:
 			TNT1 A 0 A_StopSound(CHAN_6);
-			INFR K 5;
-			INFR K 5 A_Pain;
+			INFR K 2 A_Pain;
 			TNT1 A 0 { pm_irecount -= 10; }
-			TNT1 A 0 A_Jump(100,"Rush");
+			TNT1 A 0 A_Jump(120,"Rush");
+			INFR FGF 5;
 			Goto See2;
 		Death:
 			TNT1 A 0
@@ -333,14 +474,81 @@ Class PM_Infernal : PMWrathMonsterBase
 			A_StopSound(20);
 			}
 			INFR K 5 A_RemoveChildren(1,RMVF_EVERYTHING);
-			INFR L 6 A_ScreamAndUnblock();
-			INFR LLMNOP 3 Light("AvatarFireball4") A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
-			TNT1 A 0 Radius_Quake (4, 24, 0, 5, 0);
-			INFR Q 3
+			INFR L 6 A_Scream();
+			INFR LLLLLL 3 Light("AvatarFireball4")
 			{
-				A_StartSound("BigExplosionDistant", CHAN_7);
-				A_StartSound("Tyrant/RocketExp",CHAN_6);
-				A_StartSound("Noble/BombExp",CHAN_5);
+			A_SpawnParticleEx
+			(
+			"",
+			tex[3],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(3,6),
+			size: frandom(280.0,450.0),
+			angle: 0,
+			xoff: 5,
+			startalphaf: frandom(0.8,1),
+			startroll: random(-180,180)
+			);
+			A_SpawnItemEx("PM_BigFireGlobs",random(-20,20),random(-20,20),random(-20,20),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
+			}
+			INFR MNOP 1 Light("AvatarFireball4")
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[3],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(3,6),
+			size: frandom(380.0,750.0),
+			angle: 0,
+			xoff: 5,
+			startalphaf: 1,
+			startroll: random(-180,180)
+			);
+			A_SpawnItemEx("PM_BigFireGlobs",random(-20,20),random(-20,20),random(-20,20),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
+			}
+			TNT1 A 0 Radius_Quake (4, 24, 0, 5, 0);
+			TNT1 A 0 A_NoBlocking();
+			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"727272",
+			tex[5],
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70),
+			size: frandom(2,35),
+			angle: 0,
+			xoff: 0,
+			yoff: 0,
+			zoff: random(10,60),
+			velx: frandom(-8,8),
+			vely: frandom(-8,8),
+			velz: frandom(-8,12),
+			accelx: 0,
+			accely: 0,
+			accelz: frandom(-0.1,-0.5),
+			startalphaf: 1.0,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-4,4),
+			rollacc: 0
+			);
+			}
+			TNT1 A 0 A_Explode(60,200,XF_NOTMISSILE,0,15,0,0,"BulletPuff","Fire");
+			TNT1 AAAAAAAAA 0
+			{
+			A_SpawnItemEx("PM_LavaMeatChunkLauncher",random(-8,8),random(-8,8),random(5,16),random(-8,8),random(-8,8),random(0,8),0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("PM_InfernalLavaSplashBig",random(-8,8),random(-8,8),random(-2,8),random(-8,8),random(-8,8),random(-2,8),0,SXF_NOCHECKPOSITION);
+			}
+			INFR Q 1
+			{
+				A_StartSound("Noble/BombExpFar", CHAN_6);
+				A_StartSound("PMInfernal/Explode", CHAN_7);
 				
 				for (int i=5;i>0;i--) A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
 				for (int i=25;i>0;i--) A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
@@ -374,17 +582,27 @@ Class PM_InfernalFireball : DoomImpBall
   WeaveIndexZ 16;
   WeaveIndexXY 64;
   }
+  
+  override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
+	
   States
  {
   Spawn:
 	TNT1 A 0;
-	TNT1 A 0 A_StartSound("FIre/Unleash",CHAN_7);
+	TNT1 A 0 A_StartSound("PMInfernal/Fire",CHAN_7);
 	TNT1 A 0
 	{
 	A_SpawnParticleEx
 	   (
 		"",
-		TexMan.CheckForTexture("LENRA0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,3),
@@ -402,7 +620,7 @@ Class PM_InfernalFireball : DoomImpBall
 	A_SpawnParticleEx
 	(
 		"",
-		TexMan.CheckForTexture("GNSML0"),
+		tex[1],
 		style: STYLE_None,
 		flags: SPF_ROLL|SPF_RELATIVE,
 		lifetime: random(70,160),
@@ -416,7 +634,7 @@ Class PM_InfernalFireball : DoomImpBall
 	A_SpawnParticleEx
 	    (
 		"",
-		TexMan.CheckForTexture("SPKOA0"),
+		tex[2],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,90),
@@ -435,7 +653,7 @@ Class PM_InfernalFireball : DoomImpBall
 	A_SpawnParticleEx
 	    (
 		"",
-		TexMan.CheckForTexture("SPKOA0"),
+		tex[2],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,90),
@@ -454,7 +672,7 @@ Class PM_InfernalFireball : DoomImpBall
 	A_SpawnParticleEx
 	   (
 		"",
-		TexMan.CheckForTexture("LENRA0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: 1,
@@ -467,7 +685,7 @@ Class PM_InfernalFireball : DoomImpBall
 	A_SpawnParticleEx
 	   (
 		"",
-		TexMan.CheckForTexture("LENRA0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,2),
@@ -495,5 +713,205 @@ Class PM_InfernalFireball : DoomImpBall
 	TNT1 A 6 Bright Light("YellowMediumFlicker2");
 	TNT1 A 5 Bright Light("YellowMediumFlicker2");
 	Stop;
+	}
+}
+
+Class PM_InfernalLavaBall : CacodemonBall
+{
+  Default
+  {
+	Scale 0.3;
+    Damage 2;
+    Speed 15;
+    Alpha 0.80;
+    DamageType "Fire";
+    SeeSound "HellKnight/Cast";
+	DeathSound "HellKnight/BallImpact";
+	Decal "PM_OrangeFireScorch";
+    +ThruGhost
+    +ForceXYBillboard
+  }
+
+  states
+  {
+  Spawn:
+    BLHD A 1 Bright Light("AvatarFireball2")
+	{
+		A_SpawnParticleEx
+		(   
+		"",
+		TexMan.CheckForTexture("F1R1A0"),
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(40,70),
+		size: frandom(30,80),
+		xoff: random(-1,-10),
+		yoff: frandom(-5,5),
+		zoff: frandom(-5,5),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(-0.5,0.5),
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: random(-8,-14),
+		startroll: random(-180,180)
+		);
+	}
+	BLHD B 1 Bright Light("AvatarFireball2")
+	{
+	A_SpawnItemEx("PM_InfernalLavaTrail",random(0,-5),random(-10,10),random(-10,10),0,random(-3,3),random(-3,4),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+	A_SpawnParticleEx
+		(   
+		"",
+		TexMan.CheckForTexture("F1R1A0"),
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(40,70),
+		size: frandom(30,80),
+		xoff: random(-1,-10),
+		yoff: frandom(-5,5),
+		zoff: frandom(-5,5),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(-0.5,0.5),
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: random(-8,-14),
+		startroll: random(-180,180)
+		);
+	}
+    Loop;
+  Death:
+    TNT1 A 0;
+	TNT1 AAA 0 A_SpawnItemEx("PM_InfernalLavaSplash",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAA 0
+	{
+	A_SpawnItemEx("PM_InfernalLavaTrail",random(0,-5),random(-10,10),random(-10,10),0,random(-3,3),random(-3,4),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION);
+	}
+    TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+    TNT1 AAAAAA 2 Light("AvatarFireball4") Bright;
+    Stop;
+  }
+}
+
+class PM_InfernalLavaTrail : Actor
+{
+	Default
+	{
+	+CLIENTSIDEONLY
+	//+NOINTERACTION
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	PROJECTILE;
+	RenderStyle "Add";
+	Scale 1.05;
+	Height 1;
+	Radius 1;
+	Mass 1;
+	+BRIGHT
+	-NOGRAVITY
+	Gravity 0.75;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_7 ABCDEF 1 A_FadeOut(0.05);
+		X0_7 GHIJK 1 A_FadeOut(0.05);
+		X0_7 LMNOPQRS 1 A_FadeOut(0.03);
+		Wait;
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_8 ABCDEF 1 A_FadeOut(0.05);
+		X0_8 GHIJK 1 A_FadeOut(0.05);
+		X0_8 LMNOPQR 1 A_FadeOut(0.03);
+		Wait;
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_9 ABCD 1 A_FadeOut(0.03);
+		X0_9 EFGHIJ 1 A_FadeOut(0.04);
+		X0_9 KLM 1 A_FadeOut(0.05);
+		Wait;
+	}
+}
+	
+class PM_InfernalLavaSplash : Actor
+{
+	Default
+	{
+	RenderStyle "Translucent";
+	Scale 2.5;
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+ROLLSPRITE
+	+BRIGHT
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_7 ABCDEF 1 Bright;
+		X0_7 GHIJK 1 Bright;
+		X0_7 LMNOPQRS 1 Bright A_FadeOut(0.03);
+		Stop;
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_8 ABCDEF 1 Bright;
+		X0_8 GHIJK 1 Bright;
+		X0_8 LMNOPQR 1 Bright A_FadeOut(0.03);
+		Stop;
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_9 ABCD 1 Bright;
+		X0_9 EFGHIJ 1 Bright;
+		X0_9 KLM 1 Bright A_FadeOut(0.05);
+		Stop;
+	}
+}
+
+class PM_InfernalLavaSplashBig : Actor
+{
+	Default
+	{
+	RenderStyle "Translucent";
+	Scale 4.5;
+	+CLIENTSIDEONLY
+	+NOINTERACTION
+	+ROLLSPRITE
+	+BRIGHT
+	-NOGRAVITY
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_7 ABCDEF random(1,2) Bright;
+		X0_7 GHIJK random(1,2) Bright;
+		X0_7 LMNOPQRS random(1,2) Bright A_FadeOut(0.03);
+		Stop;
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_8 ABCDEF random(1,2) Bright;
+		X0_8 GHIJK random(1,2) Bright;
+		X0_8 LMNOPQR random(1,2) Bright A_FadeOut(0.03);
+		Stop;
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_9 ABCD random(1,2) Bright;
+		X0_9 EFGHIJ random(1,2) Bright;
+		X0_9 KLM random(1,2) Bright A_FadeOut(0.05);
+		Stop;
 	}
 }

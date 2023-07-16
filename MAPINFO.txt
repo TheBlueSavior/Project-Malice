@@ -9,3 +9,9 @@ DamageType PM_BulletHellDamage
    Factor = 1.0
    ReplaceFactor
 }
+
+DamageType PM_InfernalMelee
+{
+   Factor = 1.0
+   ReplaceFactor
+}

@@ -3843,12 +3843,25 @@ HSpawnBurster/Arm "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnB
 
 //Infernal
 
+PMInfernal/Fire "Sounds/Monsters/Cacodemons/Infernal/InfernalFire.ogg"
+$pitchset PMInfernal/Fire 0.9 1.1
 PMInfernal/Roar "Sounds/Monsters/Cacodemons/Infernal/InfernalRoar.ogg"
 $rolloff PMInfernal/Roar 250 1500
+PMInfernal/Explode "Sounds/Monsters/Cacodemons/Infernal/InfernalExplode.ogg"
+$rolloff PMInfernal/Explode 600 2000
+PMInfernal/MeleeCharge "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeCharge.ogg"
+$rolloff PMInfernal/MeleeCharge 600 1700
+$pitchset PMInfernal/MeleeCharge 0.95 1.05
+PMInfernal/MeleeBlast "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeBlast.ogg"
+$rolloff PMInfernal/MeleeCharge 600 2000
 $random PMInfernal/Sight { PMInfernal/Sight1 PMInfernal/Sight2 PMInfernal/Sight3 }
 PMInfernal/Sight1 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight1.ogg"
 PMInfernal/Sight2 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight2.ogg"
 PMInfernal/Sight3 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight3.ogg"
+$random PMInfernal/Charge { PMInfernal/Charge1 PMInfernal/Charge2}
+PMInfernal/Charge1 "Sounds/Monsters/Cacodemons/Infernal/InfernalCharge1.ogg"
+PMInfernal/Charge2 "Sounds/Monsters/Cacodemons/Infernal/InfernalCharge2.ogg"
+$pitchset PMInfernal/Charge 0.9 1.1
 $rolloff PMInfernal/Sight 250 1500
 $random PMInfernal/Active { PMInfernal/Active1 PMInfernal/Active2 PMInfernal/Active3 PMInfernal/Active4 }
 PMInfernal/Active1 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive1.ogg"

@@ -73,7 +73,7 @@ Horror Movie Guy - Bruiser/Doom 4 Baron sprites
 Ice Sprites/Code - Project Brutality
 Light and Dark Smoke - Arcanum
 Accensus - Target leading code, Venting/Sigil sounds, Hitbox code
-Bugsie - Revamped bullet spark code, Void Floater sprites and code, Gazer code and sprites, Blasphemer code base and sprite edits
+Bugsie - Revamped bullet spark code, Void Floater sprites and code, Gazer code and sprites, Blasphemer code base and sprite edits, Infernal code base, sounds and sprite edits
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
 H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, sprites and code
@@ -123,6 +123,7 @@ Actfancer
 Madness Combat
 Bookworm Adventures
 Turok 2
+Deep Rock Galactic
 
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY
