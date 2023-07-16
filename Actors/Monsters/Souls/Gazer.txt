@@ -494,6 +494,7 @@ Class PM_GazerBall : Actor
    PROJECTILE;
    RenderStyle "Add";
    +BRIGHT
+   DamageType "PM_BulletHellDamage";
    SeeSound "PM/BulletHellSpawn";
    DeathSound "GenericPlasmaExp";
    +FORCEXYBILLBOARD 

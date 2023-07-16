@@ -1715,11 +1715,7 @@ Class PM_PestilenceZombieBloodBase : Actor
     -ALLOWPARTICLES
     +PUFFGETSOWNER
 	Scale 0.65;
-	Height 1;
-	Radius 1;
-	Mass 1;
 	-NOGRAVITY
-	Gravity 0.85;
 	}
 	States
 	{

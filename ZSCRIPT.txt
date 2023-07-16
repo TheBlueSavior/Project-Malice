@@ -36,6 +36,7 @@ version "4.10.0"
 #include "Actors/Monsters/Chaingunners/FallenMarine.txt"
 #include "Actors/Monsters/Chaingunners/DecayedCommando.txt"
 #include "Actors/Monsters/Chaingunners/HellPriest.txt"
+#include "Actors/Monsters/Chaingunners/Blasphemer.txt"
 
 //Imps
 #include "Actors/Monsters/Imps/Devil.txt"

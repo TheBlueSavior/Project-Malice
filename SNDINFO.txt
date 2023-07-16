@@ -3865,6 +3865,28 @@ PMInfernal/Pain1 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain1.ogg"
 PMInfernal/Pain2 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain2.ogg"
 PMInfernal/Pain3 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain3.ogg"
 
+//Blasphemer
+$random PMBlasphemer/Death { PMBlasphemer/Death1 PMBlasphemer/Death2 PMBlasphemer/Death3 }
+PMBlasphemer/Death3 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerDeath3.ogg"
+PMBlasphemer/Death2 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerDeath2.ogg"
+PMBlasphemer/Death1 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerDeath1.ogg"
+$random PMBlasphemer/Active { PMBlasphemer/Active1 PMBlasphemer/Active2 PMBlasphemer/Active3 PMBlasphemer/Active4 }
+PMBlasphemer/Active4 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerActive4.ogg"
+PMBlasphemer/Active3 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerActive3.ogg"
+PMBlasphemer/Active2 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerActive2.ogg"
+PMBlasphemer/Active1 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerActive1.ogg"
+$random PMBlasphemer/Pain { PMBlasphemer/Pain1 PMBlasphemer/Pain2 PMBlasphemer/Pain3 }
+PMBlasphemer/Pain3 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerPain3.ogg"
+PMBlasphemer/Pain2 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerPain2.ogg"
+PMBlasphemer/Pain1 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerPain1.ogg"
+$random PMBlasphemer/Sight { PMBlasphemer/Sight1 PMBlasphemer/Sight2 PMBlasphemer/Sight3 PMBlasphemer/Sight4 }
+PMBlasphemer/Sight4 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerSight4.ogg"
+PMBlasphemer/Sight3 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerSight3.ogg"
+PMBlasphemer/Sight2 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerSight2.ogg"
+PMBlasphemer/Sight1 "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerSight1.ogg"
+$volume PMBlasphemer/Sight 0.7
+PMBlasphemer/Yell "Sounds/Monsters/Chaingunners/Blasphemer/BlasphemerYell.ogg"
+
 //Pawns of the Shadow
 $random POTS/Sight { POTS/Sight1 POTS/Sight2 POTS/Sight3 POTS/Sight4 }
 POTS/Sight1 "Sounds/Monsters/Fodder/PawnsoftheShadow/PawnSight1.ogg"
@@ -3923,11 +3945,14 @@ PM/RuneFill "Sounds/Monsters/SFX/MagicRuneFill.ogg"
 PM/MagicFireFire "Sounds/Monsters/SFX/MagicFireFire.ogg"
 PM/MagicFireExplode "Sounds/Monsters/SFX/MagicFireExplode.ogg"
 
-$volume PM/BulletHellSpawn 0.7
-$limit PM/BulletHellSpawn 10
-$rolloff PM/SigilSpawn 200 1600
+$volume PM/BulletHellSpawn 0.3
+$limit PM/BulletHellSpawn 20
+$rolloff PM/SigilSpawn 400 1600
 $rolloff PM/RuneFill 200 1600
+$volume PM/RuneFill 0.65
 $limit PM/RuneFill 10
+$rolloff PM/MagicFireFire 400 1600
+$rolloff PM/MagicFireExplode 400 1600
 
 //Reloads
 PM/GunClick        "Sounds/Other/PMGunClick.ogg" //oh shit

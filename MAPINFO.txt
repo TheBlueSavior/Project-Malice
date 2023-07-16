@@ -3,3 +3,9 @@ gameInfo
 	addEventHandlers = "PM_InitialAmbientSpawner"
 	addEventHandlers = "MonsterDropper"
 }
+
+DamageType PM_BulletHellDamage
+{
+   Factor = 1.0
+   ReplaceFactor
+}
