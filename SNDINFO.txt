@@ -3853,7 +3853,7 @@ PMInfernal/MeleeCharge "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeCharge.
 $rolloff PMInfernal/MeleeCharge 600 1700
 $pitchset PMInfernal/MeleeCharge 0.95 1.05
 PMInfernal/MeleeBlast "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeBlast.ogg"
-$rolloff PMInfernal/MeleeCharge 600 2000
+$rolloff PMInfernal/MeleeBlast 600 2000
 $random PMInfernal/Sight { PMInfernal/Sight1 PMInfernal/Sight2 PMInfernal/Sight3 }
 PMInfernal/Sight1 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight1.ogg"
 PMInfernal/Sight2 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight2.ogg"
