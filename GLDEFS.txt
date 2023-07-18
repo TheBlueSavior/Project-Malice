@@ -3397,6 +3397,24 @@ Color 0.0 0.0 0.4
 Size 32
 }
 
+Pointlight HellsFurySoul1
+{
+Color 0.3 0.3 0.8
+Size 20
+}
+
+Pointlight HellsFurySoul2
+{
+Color 0.3 0.3 1.0
+Size 14
+}
+
+Pointlight HellsFurySoul3
+{
+Color 0.3 0.3 1.0
+Size 10
+}
+
 
 //Brightmaps
 
