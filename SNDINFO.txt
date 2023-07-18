@@ -3395,6 +3395,10 @@ HFurySoul4 "Sounds/Monsters/Hellknights/HellsFury/HellsFurySoul4.ogg"
 
 $volume HFury/SoulScreech 0.65
 
+$random HFury/SoulPrefire { HFurySoulPre1 HFurySoulPre2 }
+HFurySoulPre1 "Sounds/Monsters/Hellknights/HellsFury/HFurySoulPrefire1.ogg"
+HFurySoulPre2 "Sounds/Monsters/Hellknights/HellsFury/HFurySoulPrefire2.ogg"
+
 HFuryRushAdd         "Sounds/Monsters/Hellknights/HellsFury/HellsFuryRushAdd.ogg"
 HFuryProj            "sounds/Monsters/Hellknights/HellsFury/HellsFuryProj.ogg"
 HFuryRoar            "sounds/Monsters/Hellknights/HellsFury/HellsFuryRoar.ogg"

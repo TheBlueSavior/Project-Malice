@@ -593,6 +593,7 @@ Class PM_ExileSeekingFireball : Actor
 
 Class PM_ExileFireShrapnel : Actor
 {
+    int timer;
 	Default
 	{
 		Radius 4;
@@ -601,7 +602,7 @@ Class PM_ExileFireShrapnel : Actor
 		Mass 3;
 		BounceFactor 0.6;
 		WallBounceFactor 0.6;
-		+DOOMBOUNCE
+		+HEXENBOUNCE
 		+NOBLOCKMAP
 		+MISSILE
 		+NOTELEPORT
@@ -614,8 +615,15 @@ Class PM_ExileFireShrapnel : Actor
     States
 	{
 		Spawn:
-			TNT1 A 0;
-			TNT1 A 2 A_SpawnProjectile("PM_BurntSoulFire",0,0,random(0,360),2,random(0,160));
+			TNT1 A 0 NoDelay { timer = random(20,75); }
+		Go:
+			TNT1 A 2 
+			{
+			if(timer < 0)
+			SetStateLabel("Death");
+			A_SpawnProjectile("PM_BurntSoulFire",0,0,random(0,360),2,random(0,160));
+			timer--;
+			}
 			Loop;
 		Death:
 			TNT1 A 0;
