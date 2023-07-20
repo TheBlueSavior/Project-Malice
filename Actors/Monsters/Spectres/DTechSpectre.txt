@@ -33,7 +33,7 @@ Class PM_DemonTechSpectre : PMMonsterBase
     Spawn:
        TNT1 A 0 NoDelay
        {
-       user_numbullets = 1;
+       user_numbullets = 2;
        }
     Idle: 
        CRG3 AB 10 PM_Look();
