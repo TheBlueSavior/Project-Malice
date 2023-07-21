@@ -14,8 +14,10 @@ Class PM_Harvester : PMMonsterBase
     ActiveSound "Harvester/Active";
 	//DropItem "RagePoint1";
     Obituary "%o's soul belongs to a Harvester now.";
-	 Species "Imp";
-	 Tag "Harvester";
+	Species "Imp";
+	Tag "Harvester";
+    BloodType "PM_DeathBloodBase";
+    BloodColor "Black";
     MONSTER;
     +FLOORCLIP
 	//+NOINFIGHTING
@@ -245,9 +247,6 @@ Class PM_Harvester : PMMonsterBase
 	}
     SLHW A -1;
     Stop;
-  Raise:
-    SLHV WVUTSRQPO 5;
-    Goto Look;
   }
 }
 
