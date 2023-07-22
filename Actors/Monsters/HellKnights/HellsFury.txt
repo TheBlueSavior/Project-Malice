@@ -433,10 +433,7 @@ Class PM_HellsFurySoul : Actor
    {
 	DamageFunction 8;
 	Projectile;
-	BounceType "Hexen";
 	+SEEKERMISSILE
-	+BOUNCEONFLOORS
-	-BOUNCEONWALLS
 	DeathSound "Abhor/SoulExp";
 	Decal " ";
 	RenderStyle "Add";
