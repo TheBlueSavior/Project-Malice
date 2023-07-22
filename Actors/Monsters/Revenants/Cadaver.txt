@@ -9,7 +9,7 @@ Class PM_Cadaver : PMMonsterBase
 			double sa = sin(Angle);
 			double ca = cos(Angle);
 			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
-			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-22),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.1, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
 		}
 
   Default
@@ -71,8 +71,7 @@ Class PM_Cadaver : PMMonsterBase
   Missile:
 	TNT1 A 0 A_Jump(20,"Roar");
 	TNT1 A 0 A_Jump(30,"SpecialBarrage");
-	TNT1 A 0 A_Jump(185,"Missile1","Missile2");
-	TNT1 A 0 A_Jump(140,"Missile3","Missile4");
+	TNT1 A 0 A_Jump(240,"Missile1","Missile2","Missile3","Missile4");
 	CREV JJJJJJJJJJJJJJJJJJJJ 1 Light("AvatarFireball2")
 	{
 	A_SpawnItemEx("BurntSoulFire",6,10,56,0,0,random(0,3));

@@ -277,8 +277,53 @@ Class PM_HellsFuryBall : Actor
     PSMM DDEEFF 1 Bright Light("HellsFuryBall1")
     {
 	A_SpawnItemEx("PM_HFuryFlameTrails",0,0,0,0,0,0,0,128,0);
-	A_SpawnItemEx("PM_BlueLightningVFX",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,128,160);
 	A_SeekerMissile(1,1);
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("DTPRB0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,2),
+		size: frandom(40.0,200.0),
+		angle: 0,
+		xoff: -8,
+		startalphaf: frandom(0.2,0.95),
+		startroll: random(-180,180)
+	    );
+	A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("BLULA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,5),
+			size: random(1,120),
+			velx: random(-15,1),
+			vely: random(-1,1),
+			velz: random(-1,1),
+			startalphaf: frandom(0,1),
+			startroll: random(-180,180)
+			);
+	A_SpawnParticleEx
+	    (
+		"61A9FF",
+		TexMan.CheckForTexture("SPKOS0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,70),
+		size: frandom(0.2,15),
+		xoff: random(-7,0),
+		yoff: random(-5,5),
+		zoff: random(-5,5),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,1),
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
 	A_SpawnParticleEx
 	(
 		"",
@@ -318,7 +363,7 @@ Class PM_HFuryThrowFire : PM_RedFireEffect
   Default
   {
   Scale 0.3;
-  Translation "0:255=%[0,0,0]:[0.7,0.7,2.0]";
+  Translation "0:255=%[0,0,0]:[0.4,0.7,2.0]";
   }
   States
 {
@@ -375,7 +420,7 @@ Class HellsFurySkull : Actor
 Class PM_BlueDropFire : ZombieDropFire
 {
  Default
- { Translation "0:255=%[0,0,0]:[0.9,0.9,2.0]"; }
+ { Translation "0:255=%[0,0,0]:[0.6,0.9,2.0]"; }
 }
 
 Class PM_HellsFurySoul : Actor
@@ -427,13 +472,13 @@ Class PM_HellsFurySoul : Actor
 	A_ScaleVelocity(frandom(0.85,1));
 	}
   Go:
-    SHBA AAABBB 1 Light("HellsFuryBall1")
+    SHBA AAABBB 1 BRIGHT//Light("HellsFuryBall1")
 	{
 	 if(random(1,20) == 1)
 	 SetStateLabel("WeaveReset");
 	 A_SpawnParticleEx
 	 (
-	 "0b5394",
+	 "0B3D94",
 	 tex[0],
 	 style: STYLE_Add,
 	 flags: SPF_ROLL|SPF_RELATIVE,
@@ -446,7 +491,7 @@ Class PM_HellsFurySoul : Actor
 	 );
 	 A_SpawnParticleEx
 	 (
-	 "144776",
+	 "143B76",
 	 tex[0],
 	 style: STYLE_Add,
 	 flags: SPF_ROLL|SPF_RELATIVE,
@@ -521,7 +566,7 @@ Class PM_HFuryFirebreath : Actor
    PROJECTILE;
    RENDERSTYLE "Add";
    DamageType "Fire";
-   Translation "0:255=%[0,0,0]:[0.9,0.9,2.0]";
+   Translation "0:255=%[0,0,0]:[0.6,0.9,2.0]";
    Scale 0.02;
    DeathSound "Fire/Unleash";
    Decal "PM_DeathSoulScorchMed";

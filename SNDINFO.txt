@@ -3393,7 +3393,7 @@ HFurySoul2 "Sounds/Monsters/Hellknights/HellsFury/HellsFurySoul2.ogg"
 HFurySoul3 "Sounds/Monsters/Hellknights/HellsFury/HellsFurySoul3.ogg"
 HFurySoul4 "Sounds/Monsters/Hellknights/HellsFury/HellsFurySoul4.ogg"
 
-$volume HFury/SoulScreech 0.65
+$volume HFury/SoulScreech 0.38
 
 $random HFury/SoulPrefire { HFurySoulPre1 HFurySoulPre2 }
 HFurySoulPre1 "Sounds/Monsters/Hellknights/HellsFury/HFurySoulPrefire1.ogg"
@@ -3862,10 +3862,10 @@ $rolloff PMInfernal/Roar 250 1500
 PMInfernal/Explode "Sounds/Monsters/Cacodemons/Infernal/InfernalExplode.ogg"
 $rolloff PMInfernal/Explode 600 2000
 PMInfernal/MeleeCharge "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeCharge.ogg"
-$rolloff PMInfernal/MeleeCharge 600 1700
+$rolloff PMInfernal/MeleeCharge 600 2000
 $pitchset PMInfernal/MeleeCharge 0.95 1.05
 PMInfernal/MeleeBlast "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeBlast.ogg"
-$rolloff PMInfernal/MeleeBlast 600 2000
+$rolloff PMInfernal/MeleeBlast 600 2500
 $random PMInfernal/Sight { PMInfernal/Sight1 PMInfernal/Sight2 PMInfernal/Sight3 }
 PMInfernal/Sight1 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight1.ogg"
 PMInfernal/Sight2 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight2.ogg"
