@@ -26,7 +26,62 @@ Class PM_Abhorrent : PMMonsterBase
  TeleFogSourceType "PM_SmallDemonicTeleportFog";
  TeleFogDestType "PM_DemonicTeleportFog";
  }
-  states
+ 
+ 	override void PostBeginPlay()
+	{
+	 deathwither = random(15,45);
+	 tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+
+    void PM_AbhorrentWither()
+	{
+	 A_SpawnItemEx("HuskSmoke",xofs:random(-25,25),yofs:random(-36,36),zofs:random(1,30),zvel:frandom(0.2,2));
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[0],
+	 style: STYLE_Normal,
+	 flags: SPF_RELATIVE|SPF_ROLL,
+	 lifetime: random(20,120),
+	 size: frandom(1,15),
+	 xoff: random(-35,35),
+	 yoff: random(-56,56),
+	 zoff: 5,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(1,4),
+	 startalphaf: 1.0,
+	 fadestepf: -0.3,
+	 sizestep: -0.4,
+	 startroll: random(-180,180),
+	 rollvel: random(0,4)
+	 );
+	 A_SpawnParticleEx
+	 (
+	  "#d2d2d2",
+	  tex[1],
+	  style: STYLE_Normal,
+	  flags: SPF_RELATIVE|SPF_ROLL,
+	  lifetime: random(20,80),
+	  size: frandom(35,60),
+	  xoff: random(-47,47),
+	  yoff: random(-58,58),
+	  zoff: random(1,5),
+	  velx: frandom(-0.5,0.5),
+	  vely: frandom(-0.5,0.5),
+	  velz: frandom(0.55,1),
+	  startalphaf: frandom(0.65,0.85),
+	  fadestepf: -0.2,
+	  sizestep: -0.5,
+	  startroll: random(-180,180),
+	  rollvel: random(0,4)
+	 );
+	}
+
+  States
  {
   Spawn:
     ABHR A 10 PM_Look();
@@ -152,58 +207,58 @@ Class PM_Abhorrent : PMMonsterBase
 	   ABHR KKKKK 1 
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
        ABHR L 1 A_Scream;
 	   ABHR LLLLLL 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,33),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
        ABHR MMMMMM 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,33),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
        ABHR N 1 A_SpawnProjectile("PM_AbhorSmallBall",10,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	   ABHR NNNNN 1
 	   {
 	   A_SpawnItemEx("PM_DeathBloodSoul",xofs:random(-10,10),yofs:random(-15,15),zofs:random(1,20),flags:SXF_NOCHECKPOSITION,failchance:75);
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,33),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
 	   ABHR O 1 A_SpawnProjectile("PM_AbhorSmallBall",10,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	   ABHR OOOOOO 1
 	   {
 	   A_SpawnItemEx("PM_DeathBloodSoul",xofs:random(-10,10),yofs:random(-15,15),zofs:random(1,20),flags:SXF_NOCHECKPOSITION,failchance:75);
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
 	   ABHR P 1 A_SpawnProjectile("PM_AbhorSmallBall",10,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	   ABHR PPPPP 1
 	   {
 	   A_SpawnItemEx("PM_DeathBloodSoul",xofs:random(-10,10),yofs:random(-15,15),zofs:random(1,20),flags:SXF_NOCHECKPOSITION,failchance:75);
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
 	   //TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
 	   ABHR Q 1 A_SpawnProjectile("PM_AbhorSmallBall",10,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	   ABHR QQQQQ 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
 	   ABHR R 1 A_SpawnProjectile("PM_AbhorSmallBall",10,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	   ABHR RRRRR 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
        ABHR S 1 A_NoBlocking;
 	   ABHR SSSSS 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   }
   DeathLoop:
        ABHR T 1
@@ -211,7 +266,7 @@ Class PM_Abhorrent : PMMonsterBase
 	   if(deathwither < 0)
 	   SetStateLabel("DeathEnd");
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   deathwither--;
 	   }
        Loop;
@@ -219,7 +274,7 @@ Class PM_Abhorrent : PMMonsterBase
        ABHR TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1
 	   {
 	   for(int i=random(1,3);i>0;i--)
-	   A_SpawnItemEx("HuskSmoke",xofs:random(-20,20),yofs:random(-33,33),zofs:random(1,30),zvel:frandom(0.2,2));
+	   PM_AbhorrentWither();
 	   A_FadeOut(0.015);
 	   }
 	   Stop;

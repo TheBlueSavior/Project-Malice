@@ -362,6 +362,16 @@ Class PMWrathMonsterBase : PMMonsterBase
   int pm_irecount;
   bool ire;
 
+ override void PM_Gib()
+ {
+  for(int i=random(4,5);i>0;i--)
+  A_SpawnItemEx("PM_LavaMeatChunkLauncher",0,random(-20,20),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+  for(int i=random(3,5);i>0;i--)
+  A_SpawnItemEx("PM_LavaBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+ A_SpawnItemEx("PM_LavaBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+ }
+
    void PM_IreStartSound()
    {
     A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));

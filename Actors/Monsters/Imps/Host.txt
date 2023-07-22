@@ -26,6 +26,17 @@ Class PM_Host : PMMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
 	}
+
+ override void PM_Gib()
+ {
+  for(int i=random(4,5);i>0;i--)
+  A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,random(-20,20),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+  for(int i=random(3,5);i>0;i--)
+  A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+ A_SpawnItemEx("PM_PestilenceBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+ }
+ 
   States
   {
   Spawn:
@@ -206,7 +217,8 @@ Class PM_Host : PMMonsterBase
     Stop;
   XDeath:
     TNT1 A 0 A_StopSound(0);
-	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-3,3),random(-3,3),random(0,2),0,0);
+	TNT1 AAA 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-3,3),random(-3,3),random(0,2),0,0);
+	TNT1 A 0 PM_Gib();
     HOS1 O 5 A_RemoveChildren(1,RMVF_EVERYTHING);
     HOS1 P 5 A_XScream;
     HOS1 Q 5;
