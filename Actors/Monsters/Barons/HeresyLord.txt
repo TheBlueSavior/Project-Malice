@@ -188,7 +188,17 @@ Class PM_HeresyLordRedBall : DoomImpBall
 	Speed 14;
 	Decal "PM_RedFireScorch";
     }
-	states
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
+
+	States
   	{
   Spawn:
     BFX5 AABBCC 1 bright Light("Shadowball2") 
@@ -198,75 +208,45 @@ Class PM_HeresyLordRedBall : DoomImpBall
 	A_SpawnParticleEx
 	   (
 		"",
-		TexMan.CheckForTexture("LENRA0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: 1,
 		size: frandom(80,120.0),
-		angle: 0,
 		xoff: -5,
-		yoff: 0,
-		velx: 0,
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
-		startalphaf: frandom(0.3,0.6),
-		fadestepf: 0,
-		sizestep: 0,
-		startroll: 0,
-		rollvel: 0,
-		rollacc: 0
+		startalphaf: frandom(0.3,0.6)
 	    );
 	A_SpawnParticleEx
 	    (
 		"",
-		TexMan.CheckForTexture("SPKRA0"),
+		tex[1],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,90),
 		size: frandom(0.2,10),
-		angle: 0,
 		xoff: random(-10,5),
 		yoff: random(-5,5),
 		zoff: random(-5,5),
 		velx: frandom(-0.6,0.6),
 		vely: frandom(-0.6,0.6),
 		velz: frandom(-0.6,0.6),
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
 		startalphaf: 1.0,
 		fadestepf: -0.5,
 		sizestep: -0.2,
-		startroll: random(-180,180),
-		rollvel: 0,
-		rollacc: 0
+		startroll: random(-180,180)
 		);
 	A_SpawnParticleEx
 	    (   
 		 "",
-		 TexMan.CheckForTexture("GNSML0"),
+		 tex[2],
 		 style: STYLE_None,
 		 flags: SPF_ROLL|SPF_RELATIVE,
 		 lifetime: 56,
 		 size: 30.0,
-		 angle: 0,
 		 xoff: -10,
-		 yoff: 0,
-		 velx: 0,
-		 vely: 0,
-		 velz: 0,
-		 accelx: 0,
-		 accely: 0,
-		 accelz: 0,
 		 startalphaf: 0.4,
 		 fadestepf: -1,
-		 sizestep: 0,
-		 startroll: random(-180,180),
-		 rollvel: 0,
-		 rollacc: 0
+		 startroll: random(-180,180)
 	    );
 	}
 	loop;
@@ -456,6 +436,17 @@ Class PM_HeresyLordMissileDual1Real : Actor
 	DeathSound "HeresyLord/BarrageRedDeath";
 	Decal "PM_RedFireScorch";
 	}
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[4];
+
 	States
 	{
 	Spawn:
@@ -464,7 +455,7 @@ Class PM_HeresyLordMissileDual1Real : Actor
 		A_SpawnParticleEx
 		(
 		"",
-		TexMan.CheckForTexture("LENRA0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 		lifetime: 1,
@@ -476,31 +467,21 @@ Class PM_HeresyLordMissileDual1Real : Actor
 		A_SpawnParticleEx
 		(
 		"#890000",
-		TexMan.CheckForTexture("GNSMK0"),
+		tex[1],
 		style: STYLE_Normal,
 		flags: SPF_RELATIVE,
 		lifetime: random(60,70),
 		size: 25.0,
-		angle: 0,
 		xoff: -5,
-		yoff: 0,
-		velx: 0,
-		vely: 0,
-		velz: 0,
-		accelx: 0,
-		accely: 0,
-		accelz: 0,
 		startalphaf: 0.25,
 		fadestepf: -1,
 		sizestep: -0.08,
-		startroll: random(-180,180),
-		rollvel: 0,
-		rollacc: 0
+		startroll: random(-180,180)
 		);
 		A_SpawnParticleEx
 		(
 		"ff2424",
-		TexMan.CheckForTexture("SPKOA0"),
+		tex[2],
 		style: STYLE_Add,
 		flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 		lifetime: random(1,50),
@@ -518,7 +499,67 @@ Class PM_HeresyLordMissileDual1Real : Actor
 		}
 		Loop;
 	Death:
-		MSP1 GHIJKLMNO 2;
+		TNT1 A 0
+		{
+		 for(int i=random(6,12);i>0;i--)
+		 A_SpawnParticleEx
+		 (
+		 "#fc2121",
+		 tex[1],
+		 style: STYLE_Add,
+		 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 lifetime: random(25,70),
+		 size: frandom(45,75),
+		 xoff: -5,
+		 velx: frandom(-2,2),
+		 vely: frandom(-2,2),
+		 velz: frandom(-2,2),
+		 startalphaf: frandom(0.25,0.55),
+		 fadestepf: -1,
+		 sizestep: -0.08,
+		 startroll: random(-180,180)
+		 );
+		 for(int i=2;i>0;i--)
+		 A_SpawnParticleEx
+		 (
+		 "",
+		 tex[3],
+		 style: STYLE_Add,
+		 flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		 lifetime: 35,
+		 size: 120.0,
+		 startalphaf: frandom(0.65,0.95),
+		 startroll: random(-180,180)
+		 );
+		 for(int i=random(7,15);i>0;i--)
+		A_SpawnParticleEx
+		(
+		"ff2424",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE,
+		lifetime: random(1,50),
+		size: random(10,15),
+		xoff: frandom(-2.5,2.5),
+		yoff: frandom(-2.5,2.5),
+		zoff: frandom(-2.5,2.5),
+		velx: frandom(-3,3),
+		vely: frandom(-3,3),
+		velz: frandom(-0.5,0.5),
+		accelz: frandom(-0.3,-0.7),
+		startalphaf: 1.20,
+		fadestepf: -0.5,
+		sizestep: -0.65
+		);
+		 A_SpawnItemEx
+		 (
+		 "RFireballExplode",
+		 xvel: frandom(-1,1),
+		 yvel: frandom(-1,1),
+		 zvel: frandom(-1,1),
+		 flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY
+		 );
+		}
 		Stop;
 	}
 }
@@ -590,6 +631,15 @@ Class PM_HeresyLordMissileDual2Real : Actor
 	Height 12;
 	Decal "PlasmaScorchLower";
 	}
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("FIR1W0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+
 	States
 	{
 	Spawn:
@@ -598,7 +648,7 @@ Class PM_HeresyLordMissileDual2Real : Actor
 		A_SpawnParticleEx
 		(
 		"",
-		TexMan.CheckForTexture("FIR1W0"),
+		tex[0],
 		style: STYLE_Add,
 		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(10,25),
@@ -613,7 +663,7 @@ Class PM_HeresyLordMissileDual2Real : Actor
 		A_SpawnParticleEx
 		(
 		"",
-		TexMan.CheckForTexture("GNSMK0"),
+	    tex[1],
 		style: STYLE_Add,
 		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(1,45),
@@ -631,6 +681,49 @@ Class PM_HeresyLordMissileDual2Real : Actor
 		}
 		Loop;
 	Death:
+	    TNT1 A 0
+		{
+		for(int i=random(5,8);i>0;i--)
+		A_SpawnParticleEx
+	    (   
+		 "555555",
+		 tex[1],
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: random(25,55),
+		 size: frandom(1,15),
+		 xoff: frandom(-3.5,3.5),
+		 yoff: frandom(-3.5,3.5),
+		 zoff: frandom(-3.5,3.5),
+		 velx: frandom(-0.3,0.3),
+		 vely: frandom(-0.3,0.3),
+		 velz: frandom(-0.3,0.3),
+		 startalphaf: 1,
+		 fadestepf: -0.65,
+		 sizestep: 2,
+		 startroll: random(-180,180)
+	    );
+		for(int i=random(4,14);i>0;i--)
+		A_SpawnParticleEx
+	    (   
+		 "",
+		 tex[0],
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: random(25,55),
+		 size: frandom(1,10),
+		 xoff: frandom(-3.5,3.5),
+		 yoff: frandom(-3.5,3.5),
+		 zoff: frandom(-3.5,3.5),
+		 velx: frandom(-0.5,0.5),
+		 vely: frandom(-0.5,0.5),
+		 velz: frandom(-0.5,0.5),
+		 startalphaf: 1,
+		 fadestepf: -0.35,
+		 sizestep: 2,
+		 startroll: random(-180,180)
+	    );
+		}
 		CSSF GHI 4 Bright; 
 		CSSF I 1 Bright A_FadeOut;
 		Wait;

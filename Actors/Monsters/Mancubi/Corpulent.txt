@@ -78,8 +78,6 @@ Class PM_Corpulent : PMMonsterBase
 	}
 	TNT1 A 0 A_Jump(128,"LMissileLoopNoLead");
    LMissileLoop:
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20,-34,10);
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,-30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
 	 M01A H 1 Light("AvatarFireBall2");
 	 M01A H 5 Light("AvatarFireBall2")
 		{
@@ -88,8 +86,6 @@ Class PM_Corpulent : PMMonsterBase
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		}
 	 M01A IG 4;
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20, 34,-10);
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
      M01A H 1 Light("AvatarFireBall2");
 	 M01A H 5 Light("AvatarFireBall2")
 		{
@@ -104,8 +100,6 @@ LMissileEnd:
 	M01A IG 6 A_FaceTarget();
 	Goto See2;
 LMissileLoopNoLead:
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20,-34,10);
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,-30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
 	 M01A H 1 Light("AvatarFireBall2");
 	 M01A H 5 Light("AvatarFireBall2")
 		{
@@ -114,8 +108,6 @@ LMissileLoopNoLead:
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		}
 	 M01A IG 4;
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20, 34,-10);
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
      M01A H 1 Light("AvatarFireBall2");
 	 M01A H 5 Light("AvatarFireBall2")
 		{
@@ -128,16 +120,12 @@ LMissileLoopNoLead:
 	Loop;
   QuickMissile:
 	 M01A GGG 5 A_FaceTarget();
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20, 34,-10);
 	 M01A H 1 Light("AvatarFireBall2");
 	 M01A H 5 Light("AvatarFireBall2")
 		{
 		A_SpawnProjectile("PM_CorpulentBall",22,34,0);
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		}
-	 TNT1 AAAAA 0 A_SpawnProjectile("MancuOrangeEmbers",30,-30,random(-90,90),CMF_OFFSETPITCH,random(-90,90));
-	 TNT1 A 0 A_SpawnProjectile("PM_HectebusShotFlare", 20,-34,10);
 	 M01A H 1 Light("AvatarFireBall2");
      M01A H 5 Light("AvatarFireBall2")
 		{
@@ -227,12 +215,75 @@ Class PM_CorpulentBall : Fatshot
    DamageType "Fire";
    RenderStyle "Add";
   }
-States
-{
-Spawn:
+  
+  override void PostBeginPlay()
+  {
+   tex[0] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+   tex[1] = TexMan.CheckForTexture("DTPRO0",TexMan.Type_Sprite);
+   tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+  }
+  
+  TextureID tex[3];
+ 
+  States
+  {
+    Spawn:
+	  TNT1 A 0 NoDelay
+	  {
+		A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,5),
+		size: frandom(130,200),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,7),
+		size: frandom(90,155),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		for(int i=random(5,8);i>0;i--)
+		A_SpawnParticleEx
+		(
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,100),
+		size: frandom(1,12),
+		xoff: frandom(-2,2),
+		yoff: frandom(-2,2),
+		zoff: frandom(-2,2),
+		velx: frandom(1,10),
+		vely: frandom(-3,3),
+		velz: frandom(-0.6,3),
+		accelx: frandom(-0.005,0.005),
+		accely: frandom(-0.005,0.005),
+		accelz: frandom(-0.0,-0.8),
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
+	  }
+    Go:
       BLHD AB 1 Bright Light("HectebusBallLight") A_SpawnItem("PM_CorpulentBallTrail");
       Loop;
-Death:
+    Death:
 	  TNT1 A 0 A_SpawnItemEx("OrangeShockwave",0,0,0,0,0,0,0,128,0);
 	  TNT1 AAA 0 A_SpawnProjectile("PM_BigFireGlobs",10,0,random(0,360),2,random(0,360));
 	  TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0);
