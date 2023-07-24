@@ -124,8 +124,8 @@ Class PM_Abhorrent : PMMonsterBase
 	TNT1 A 0 A_StartSound("GenericMancShot");
     ABHR H 6 Light("SoulHarvesterBall2") 
 	{
-	A_SpawnProjectile("PM_AbhorBall", 20,-34,22);
-	A_SpawnProjectile("PM_AbhorBall", 20, 34,-22);
+	A_SpawnProjectile("PM_AbhorBall", 28,-34,22);
+	A_SpawnProjectile("PM_AbhorBall", 28, 34,-22);
 	}
 	TNT1 A 0 { bNOPAIN = false; }
 	ABHR IG 12 A_FaceTarget();
@@ -151,7 +151,7 @@ Class PM_Abhorrent : PMMonsterBase
     ABHR H 6 Light("SoulHarvesterBall2") 
     {
     A_StartSound("GenericMancShot");
-    A_SpawnProjectile("PM_AbhorBarrageBall", 20, 34,0);
+    A_SpawnProjectile("PM_AbhorBarrageBall", 28, 34,0);
     }
     ABHR IG 6 A_FaceTarget();
     TNT1 A 0 { bNOPAIN = false; }
@@ -160,7 +160,7 @@ Class PM_Abhorrent : PMMonsterBase
   if(pm_attackloop < 0)
   SetStateLabel("Mis3End");
     A_StartSound("GenericMancShot");
-    A_SpawnProjectile("PM_AbhorBarrageBall", 20, -34,0);
+    A_SpawnProjectile("PM_AbhorBarrageBall", 28, -34,0);
     pm_attackloop--;
     }
     ABHR IG 6 A_FaceTarget();
