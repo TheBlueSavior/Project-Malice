@@ -32,7 +32,7 @@ Actor Horrorspawnmap : RandomSpawner
 	DropItem "HungryGroup", 255, 2
 	DropItem "Hungry", 255, 5
 	DropItem "Hunger", 255, 1
-	DropItem "FodderDropper", 255, 4
+	DropItem "FodderDropper", 255, 3
 	DropItem "PM_SleepingHorrorspawn1", 255, 4
 	DropItem "PM_SleepingHorrorspawn2", 255, 4
 	DropItem "PM_SleepingHorrorspawn3", 255, 4
@@ -1402,7 +1402,7 @@ Actor FodderDropper
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("HorrorPassiveSpawn2",0,0,0,0,0,0,random(0,360),0,20)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("HorrorPassiveSpawn2",0,0,0,0,0,0,random(0,360),0,80)
 		Stop
 
 	}
@@ -1413,7 +1413,7 @@ Actor PM_FodderSleeperDropper
 	States
 	{
 	Spawn:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_HorrorSleeperSpawn",0,0,0,0,0,0,random(0,360),0,20)
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_HorrorSleeperSpawn",0,0,0,0,0,0,random(0,360),0,80)
 		Stop
 
 	}

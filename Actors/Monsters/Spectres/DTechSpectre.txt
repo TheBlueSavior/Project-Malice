@@ -378,6 +378,7 @@ Class PM_DemonTechSpectre : PMMonsterBase
 	   TNT1 A 0 A_SetTranslucent(1);
        SRG3 I 8;
        SRG3 I 0 A_FaceTarget;
+	   TNT1 AAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",10,0,32);
        SRG3 J 0 A_SpawnItemEx("PM_DTechSpectreArm", 10, 0, 32, 0, 8, 0, 0, 128);
        SRG3 J 8 A_Scream;
        SRG3 K 4;
@@ -509,11 +510,12 @@ Class PM_DTechSpectreArm : Actor
 	+DOOMBOUNCE
 	+DROPOFF
 	+Missile
+	DeathSound "PM/BigGoreSplat";
 	}
    States
    {
 	Spawn:
-         SG3A ABCDEFGH 2;
+         SG3A ABCDEFGH 2 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,30);
          Loop;
 	Death:
 	 SG3A I -1;
@@ -574,6 +576,38 @@ Class PM_DTechSpectreSniperTracer : Actor
 	  }
    Go:
       TRCR B 1 Bright Light("Shadowball2")
+	  {
+	   A_SpawnParticle
+	   (
+	   "E10000",
+	   flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	   lifetime: random(15,35),
+	   size: random(5,8),
+	   xoff: random(-3,3),
+	   yoff: random(-3,3),
+	   zoff: random(-3,3),
+	   velx: random(-2,2),
+	   startalphaf: 0.85
+	   );
+	   A_SpawnParticle
+	   (
+	   "FF2525",
+	   flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	   lifetime: random(15,35),
+	   size: random(5,8),
+	   xoff: random(-5,5),
+	   yoff: random(-5,5),
+	   zoff: random(-5,5),
+	   velx: random(-6,6),
+	   startalphaf: 0.95
+	   );
+	  }
+	  TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
+        Loop;
+    Noise:
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,CHANF_DEFAULT,0.50);
+    Cont:
+	    TRCR B 1 Bright Light("Shadowball2")
 	  {
 	   A_SpawnParticle
 	   (
