@@ -510,10 +510,10 @@ Class PM_WatcherShot : Actor
 			A_SpawnItemEx("PM_SmallWhiteExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
 			 A_SpawnParticleEx
 				(
-				"",
+				"FFFFFF",
 				TexMan.CheckForTexture("GNSMK0"),
-				style: STYLE_Add,
-				flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+				style: STYLE_Translucent,
+				flags: SPF_ROLL|SPF_RELATIVE,
 				lifetime: random(10,300),
 				size: 30.0,
 				angle: 0,
@@ -526,7 +526,7 @@ Class PM_WatcherShot : Actor
 				accelx: 0,
 				accely: 0,
 				accelz: frandom(-0.001,-0.2),
-				startalphaf: frandom(0.07,0.3),
+				startalphaf: frandom(0.07,0.7),
 				fadestepf: -0.5,
 				sizestep: 5,
 				startroll: random(-180,180),
@@ -535,10 +535,10 @@ Class PM_WatcherShot : Actor
 				);
 				A_SpawnParticleEx
 				(
-				"",
+				"FFFFFF",
 				TexMan.CheckForTexture("GNSMK0"),
-				style: STYLE_Add,
-				flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+				style: STYLE_Translucent,
+				flags: SPF_ROLL|SPF_RELATIVE,
 				lifetime: random(60,500),
 				size: 20.0,
 				angle: 0,
@@ -551,7 +551,7 @@ Class PM_WatcherShot : Actor
 				accelx: frandom(-0.05,0.05),
 				accely: frandom(-0.05,0.05),
 				accelz: 0,
-				startalphaf: frandom(0.1,0.3),
+				startalphaf: frandom(0.1,0.7),
 				fadestepf: -0.5,
 				sizestep: 5,
 				startroll: random(-180,180),

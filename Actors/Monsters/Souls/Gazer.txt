@@ -4,7 +4,7 @@ Class PM_Gazer : PMMonsterBase
   
   Default
   {
-	Health 100;
+	Health 230;
 	Radius 20;
 	Height 56;
 	Mass 300;

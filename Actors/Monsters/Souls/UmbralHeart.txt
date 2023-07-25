@@ -7,7 +7,7 @@ Class PM_UmbralHeart : Actor
     Height 20;
     Mass 3000;
 	MeleeRange 230;
-    Speed 4;
+    Speed 5;
     Scale 0.5;
     RenderStyle "Add";
     Obituary "%o had %p soul split into a thousand pieces by an Umbral Heart.";
@@ -25,6 +25,7 @@ Class PM_UmbralHeart : Actor
     +NOBLOOD
     +BRIGHT
     +DONTFALL
+	+NOCLIP
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
@@ -116,9 +117,27 @@ Class PM_UmbralHeart : Actor
   SeeLoop:
     EYES AAAAAAA 2 Light("Shadowball2")
     {
+		A_Recoil(-0.1);
 	    A_Chase();
 		A_SpawnItemEx("PM_RedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_NOCHECKPOSITION,158);
 	    A_SpawnItemEx("PM_SmallRedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(1,1),0,SXF_NOCHECKPOSITION,35);
+		A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("REDLA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(1,5),
+			size: random(1,150),
+			xoff: frandom(-8,8),
+		    yoff: frandom(-8,8),
+		    zoff: frandom(0,16),
+			velx: random(-1,1),
+			vely: random(-1,1),
+			velz: random(-1,1),
+			startalphaf: frandom(0,0.9),
+			startroll: random(-180,180)
+			);
       	A_SpawnParticleEx
 	    (   
 		 "ae1717",
@@ -156,7 +175,7 @@ Class PM_UmbralHeart : Actor
     Loop;
   RandomDodge:
 	TNT1 A 0;
-	TNT1 A 0 ThrustThing(random(0,360),random(3,15));
+	TNT1 A 0 ThrustThing(random(0,360),random(3,10));
 	TNT1 A 0 ThrustThingZ(0,random(3,8),random(0,1),1);
 	Goto SeeLoop;
   Forward:

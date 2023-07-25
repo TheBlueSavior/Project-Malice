@@ -148,7 +148,7 @@ Class PM_Blasphemer : PMMonsterBase
 		TNT1 A 0 A_CheckSight("Realign");
 		Goto Realign;
 	MissileProceed:
-		DISC E 0 A_Jump(220,"RealMissile","Teleportation","Weaver","Taunt","BulletHell","Fireball");
+		DISC E 0 A_Jump(220,"RealMissile","Teleportation","Weaver","BulletHell","Fireball");
 		DISC E 0 A_Jump(120,"BulletHell");
 	RealMissile:
 		DISC E 5
