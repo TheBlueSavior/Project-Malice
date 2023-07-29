@@ -95,8 +95,8 @@ Class PM_DecayedShotgunner : PMMonsterBase
         SPO6 EE 3 
 		{
 		A_FaceTarget(360,180);
-		A_SetAngle(angle+random(-5,5));
-		A_SetPitch(pitch+random(-5,5));
+		A_SetAngle(angle+random(-4,4));
+		A_SetPitch(pitch+random(-4,4));
 		}
         SPO6 F 3 Bright Light("YellowMediumFlicker2")
 		{

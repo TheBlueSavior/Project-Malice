@@ -69,8 +69,8 @@ Class PM_FShotgunner : PMMonsterBase
     F1SH EE 7
 		{
 		A_FaceTarget(360,180);
-		A_SetAngle(angle+random(-5,5));
-		A_SetPitch(pitch+random(-5,5));
+		A_SetAngle(angle+random(-3,3));
+		A_SetPitch(pitch+random(-3,3));
 		}
     F1SH F 5 Light("YellowMediumFlicker2")
 		{
