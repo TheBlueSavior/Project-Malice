@@ -2701,6 +2701,7 @@ DraugProj3 "Sounds/Monsters/Revenants/Draugr/DraugrProj3.ogg"
 DraugProj4 "Sounds/Monsters/Revenants/Draugr/DraugrProj4.ogg"
 
 Draugr/Arm "Sounds/Monsters/Revenants/Draugr/DraugrArm.ogg"
+$rolloff Draugr/Arm 400 1800
 
 $random Draugr/Sight { Draugr/Sight1 Draugr/Sight2 Draugr/Sight3 }
 $random Draugr/Active { Draugr/Active1 Draugr/Active2 Draugr/Active3 }
@@ -3448,6 +3449,12 @@ FiendPain2 "Sounds/Monsters/Revenants/Fiend/FiendPain2.ogg"
 $random Fiend/Sight { FiendSight1 FiendSight2 }
 FiendSight1 "Sounds/Monsters/Revenants/Fiend/FiendSight1.ogg"
 FiendSight2 "Sounds/Monsters/Revenants/Fiend/FiendSight2.ogg"
+
+Fiend/HomingYell "Sounds/Monsters/Revenants/Fiend/FiendHomingYell.ogg"
+$rolloff Fiend/HomingYell 200 1600
+
+Fiend/Lockon "Sounds/Monsters/Revenants/Fiend/FiendLockon.ogg"
+$rolloff Fiend/Lockon 300 1800
 
 $random Fiend/Jump { FiendJump1 FiendJump2 }
 FiendJump1 "Sounds/Monsters/Revenants/Fiend/FiendJump1.ogg"
