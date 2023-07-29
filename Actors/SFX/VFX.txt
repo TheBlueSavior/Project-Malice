@@ -3435,7 +3435,7 @@ ACTOR PM_FireGlobs
 Actor PM_HectebusBallTrail : PM_FireGlobs
 {
 	Speed 1
-	Scale 0.84
+	Scale 0.76
 	States
 	{
 	Spawn:

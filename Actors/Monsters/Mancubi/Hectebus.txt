@@ -52,7 +52,7 @@ Class PM_Hectebus : PMMonsterBase
 	TABU EEEFFF 3 A_Chase();
     Loop;
   Missile:
-	TNT1 A 0 A_Jump(180,"QuickMissile");
+	TNT1 A 0 A_Jump(100,"QuickMissile");
 	TNT1 A 0 { pm_attackloop = 1; }
 	TNT1 A 0 A_StartSound("Hectebus/Aim",CHAN_5);
 	TABU G 1 A_StartSound("Hectebus/Attack");
@@ -153,7 +153,7 @@ Class PM_HectebusBall : Fatshot
  Alpha 1;
  Radius 6;
  Height 8;
- Scale 0.35;
+ Scale 0.28;
  DamageFunction 30;
  DeathSound "HectebusBall/Exp";
  SeeSound "monsters/fatsofire";
