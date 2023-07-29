@@ -222,7 +222,7 @@ Class PM_VoreShadowBall : Actor
     Radius 6;
     Height 8;
     Speed 28;
-    Damage 4;
+    DamageFunction 32;
     RenderStyle "Add";
 	Scale 1.4;
     Alpha 0.90;

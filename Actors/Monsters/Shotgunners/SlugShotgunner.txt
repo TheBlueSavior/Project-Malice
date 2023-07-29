@@ -98,11 +98,10 @@ Class PM_SlugShotgunner : PMMonsterBase
 		TNT1 A 0 A_StartSound("ShotgunnerGunDistant", CHAN_7,CHANF_OVERLAP);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{
-			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-            A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-			A_SpawnProjectile("PM_PelletTracer",35,7,random(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
+            A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
+			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
+			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
             user_numbullets--;
 			}
 		SPS4 EEE 5 A_FaceTarget();

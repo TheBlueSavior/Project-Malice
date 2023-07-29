@@ -365,7 +365,7 @@ Class PM_WretchedBall : Actor
 	Speed 14;
 	FastSpeed 23;
 	Scale 1.22;
-	DamageFunction (30);
+	DamageFunction 20;
 	Projectile;
 	+RANDOMIZE
 	RenderStyle "Add";

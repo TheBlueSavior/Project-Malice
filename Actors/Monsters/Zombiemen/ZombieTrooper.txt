@@ -111,7 +111,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -126,7 +126,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -141,7 +141,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -164,7 +164,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -192,7 +192,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-5, 5),CMF_AIMDIRECTION,pitch+frandom(-5,5));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
@@ -218,7 +218,7 @@ Class PM_ZombieTrooper : PMMonsterBase
 		}
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("ZTrooper/Fire");
-		A_SpawnProjectile("PM_BulletTracer",33,7,random(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-5, 5),CMF_AIMDIRECTION,pitch+frandom(-5,5));
 		A_SpawnProjectile("BulletFlare", 33, 7, 0, 0);
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;

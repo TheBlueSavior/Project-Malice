@@ -104,7 +104,7 @@ Class PM_DecayedSoldier : PMMonsterBase
 		SetStateLabel("MissileEnd");
 		A_StartSound("Decayed/Fire");
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,frandom(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		pm_attackloop--;
@@ -131,7 +131,7 @@ Class PM_DecayedSoldier : PMMonsterBase
 		SetStateLabel("MissileEnd");
 		A_StartSound("Decayed/Fire");
 		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
-		A_SpawnProjectile("PM_BulletTracer",30,7,random(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",30,7,frandom(-6, 6),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
 		A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(-5,-15),frandom(5,8),0,SXF_NOCHECKPOSITION);
         user_numbullets--;
 		pm_attackloop--;

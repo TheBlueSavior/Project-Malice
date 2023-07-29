@@ -520,7 +520,7 @@ Class PM_NobleFireball : DoomImpBall
 	SeeSound "weapons/bwoosh";
 	DeathSound "HellKnight/BallImpact";
 	Decal "PM_GreenFireScorch";
-	DamageFunction (random(20,30));
+	DamageFunction 32;
 	DamageType "Fire";
 	Scale 0.15;
     }

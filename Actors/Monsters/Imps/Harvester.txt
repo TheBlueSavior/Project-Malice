@@ -370,7 +370,7 @@ Class PM_SoulHarvesterBall : Actor
     Height 5;
     Scale 0.63;
     Speed 13;
-    Damage 2;
+    DamageFunction 15;
     Renderstyle "Add";
     SeeSound "Harvester/Scream";
     DeathSound "Abhor/SoulExp";
@@ -495,7 +495,7 @@ Class PM_SmallSoulHarvesterBall : Actor
     Height 5;
     Scale 0.4;
     Speed 14;
-    Damage 1;
+    DamageFunction 8;
     Renderstyle "Add";
     SeeSound "GenericSmallFireball";
 	Decal "PM_DeathSoulScorchSmall";

@@ -290,7 +290,7 @@ Class PM_TaintedBall : Actor
 	Height 8;
 	Speed 15;
 	FastSpeed 20;
-	DamageFunction (random(16,16));
+	DamageFunction 14;
 	Scale 0.8;
 	Projectile;
 	+Strifedamage

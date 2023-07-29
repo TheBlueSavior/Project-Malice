@@ -300,7 +300,7 @@ Class PM_SquireFireball : DoomImpBall
 	SeeSound "HellKnight/Cast";
 	DeathSound "HellKnight/BallImpact";
 	Decal "PM_GreenFireScorch";
-	DamageFunction (random(30,37));
+	DamageFunction 32;
 	DamageType "Fire";
 	Scale 0.24;
     }

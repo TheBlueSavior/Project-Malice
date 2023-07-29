@@ -466,7 +466,7 @@ Class PM_NailgunnerNail : FastProjectile
 {
   Default
   {
-  DamageFunction (random(8,15));
+  DamageFunction 12;
   Scale 1;
   Speed 26;
   radius 2;

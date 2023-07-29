@@ -12,7 +12,7 @@ decal "PM_BulletHoleMedium";
 height 2;
 radius 2;
 speed 36;
-DamageFunction (random(5,15));
+DamageFunction 9;
 scale 0.85;
 RenderStyle "Add";
 Alpha 1.0;
@@ -121,7 +121,7 @@ Default
  height 2;
  radius 2;
  speed 36;
- DamageFunction (random(1,15));
+ DamageFunction 7;
  scale 0.85;
  RenderStyle "Add";
  Alpha 1.0;

@@ -520,13 +520,13 @@ Class PM_DevilImpBall : DoomImpBall
 {
 	Default
 	{
-	DamageFunction (random(18,18));
+	DamageFunction 12;
 	+NOGRAVITY
 	-LOWGRAVITY
 	seesound "FIREBA1";
 	Decal "PM_OrangeFireScorch";
 	DamageType "Fire";
-	Speed 15;
+	Speed 13;
 	FastSpeed 21;
 	Scale 0.93;
 	}

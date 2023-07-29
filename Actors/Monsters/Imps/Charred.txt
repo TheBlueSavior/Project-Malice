@@ -265,7 +265,7 @@ Class PM_CharredBall : DoomImpBall
   {
   Renderstyle "Add";
   DamageType "Fire";
-  DamageFunction (random(18,18));
+  DamageFunction 14;
   Scale 1.6;
   Speed 10;
   FastSpeed 10;

@@ -92,9 +92,9 @@ Class PM_FallenShotgunner : PMMonsterBase
     {
 	  A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
       A_StartSound("FSGunner/Fire", CHAN_WEAPON);
-	  A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	  A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	  A_SPawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SPawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
       user_numbullets--;
     }
     ZSP1 EEE 5 A_FaceTarget(5,5);
@@ -119,9 +119,9 @@ Class PM_FallenShotgunner : PMMonsterBase
 	  }
 	  A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
       A_StartSound("FSGunner/Fire", CHAN_WEAPON);
-	  A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	  A_SpawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-	  A_SPawnProjectile("PM_BulletTracer",35,7,random(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SpawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+	  A_SPawnProjectile("PM_BulletTracer",35,7,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
       user_numbullets--;
 	  return ResolveState(null);
     }
