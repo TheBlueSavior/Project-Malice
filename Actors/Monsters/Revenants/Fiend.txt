@@ -503,14 +503,12 @@ Class PM_FiendHomingMissile : RevenantTracer
 	Go:
 		CMHO A 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("PM_CadaverFireGlobs2",random(-2,0),random(-3,3),random(-3,3),0,0,0,0,128,0);
-		//A_SpawnItemEx("PM_FiendHFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_FiendHFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
 		}
 		CMHO A 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("PM_CadaverFireGlobs2",random(-2,0),random(-3,3),random(-3,3),0,0,0,0,128,0);
-		//A_SpawnItemEx("PM_FiendHFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_FiendHFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		A_SeekerMissile(1,2,SMF_PRECISE);
 		A_SpawnParticleEx
 		(
