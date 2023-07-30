@@ -532,10 +532,6 @@ Class PM_FiendHomingMissile : RevenantTracer
 		startroll: random(-180,180)
 		);
 		}
-		TNT1 A 0
-		{
-		A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-		}
 		TNT1 A 0 A_StartSound("FastMissileFlyby",24,CHANF_DEFAULT,0.90,ATTN_NORM,frandom(0.7,0.9));
 		TNT1 A 0 A_StartSound("Cadaver/HomingLoop",CHAN_6,CHANF_LOOPING,0.8);
 		TNT1 A 0 A_ScaleVelocity(3);
