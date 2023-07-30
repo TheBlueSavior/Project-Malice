@@ -34,6 +34,7 @@ Class PM_Gazer : PMMonsterBase
 	+FLOATBOB
 	+FORCEXYBILLBOARD
 	+Thruspecies
+	+MissileMore
 	FloatBobStrength 0.1;
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_SmallDemonicTeleportFog";

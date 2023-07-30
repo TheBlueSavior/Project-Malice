@@ -3414,6 +3414,7 @@ Fiend/HomingFire           "sounds/Monsters/Revenants/Fiend/FiendHomingFire.ogg"
 $limit FiendRocketFire 8
 $limit Fiend/HomingFire 8
 $rolloff Fiend/HomingFire 400 2200
+$rolloff FiendRocketFire 200 1800
 $random SmallMissileExplosion { SmallMissileExp1 SmallMissileExp2 SmallMissileExp3 SmallMissileExp4 }
 SmallMissileExp1            "sounds/Monsters/Revenants/Fiend/SmallMissileExp1.ogg"
 SmallMissileExp2            "sounds/Monsters/Revenants/Fiend/SmallMissileExp2.ogg"
@@ -3449,12 +3450,26 @@ FiendActive3 "Sounds/Monsters/Revenants/Fiend/FiendActive3.ogg"
 $random Fiend/Pain { FiendPain1 FiendPain2 }
 FiendPain1 "Sounds/Monsters/Revenants/Fiend/FiendPain1.ogg"
 FiendPain2 "Sounds/Monsters/Revenants/Fiend/FiendPain2.ogg"
-$random Fiend/Sight { FiendSight1 FiendSight2 }
+$random Fiend/Sight { FiendSight1 FiendSight2 FiendSight3 }
 FiendSight1 "Sounds/Monsters/Revenants/Fiend/FiendSight1.ogg"
 FiendSight2 "Sounds/Monsters/Revenants/Fiend/FiendSight2.ogg"
+FiendSight3 "Sounds/Monsters/Revenants/Fiend/FiendSight3.ogg"
+
+$random Fiend/Attack { Fiend/Attack1 Fiend/Attack2 Fiend/Attack3 Fiend/Attack4 Fiend/Attack5 }
+Fiend/Attack1 "Sounds/Monsters/Revenants/Fiend/FiendAttack1.ogg"
+Fiend/Attack2 "Sounds/Monsters/Revenants/Fiend/FiendAttack2.ogg"
+Fiend/Attack3 "Sounds/Monsters/Revenants/Fiend/FiendAttack3.ogg"
+Fiend/Attack4 "Sounds/Monsters/Revenants/Fiend/FiendAttack4.ogg"
+Fiend/Attack5 "Sounds/Monsters/Revenants/Fiend/FiendAttack5.ogg"
+
+$volume Fiend/Sight 0.85
+$volume Fiend/Pain 0.85
+$volume Fiend/Death 0.6
 
 Fiend/HomingYell "Sounds/Monsters/Revenants/Fiend/FiendHomingYell.ogg"
 $rolloff Fiend/HomingYell 200 1600
+
+Fiend/Charge "Sounds/Monsters/Revenants/Fiend/FiendCharge.ogg"
 
 Fiend/Lockon "Sounds/Monsters/Revenants/Fiend/FiendLockon.ogg"
 $rolloff Fiend/Lockon 300 1800
