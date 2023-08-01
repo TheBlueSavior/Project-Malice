@@ -415,7 +415,7 @@ Class PM_POTS : PMMonsterBase
 		 rollacc: 0
 	    );
 		}
-		TNT1 A -1;
+		TNT1 A 1;
         Stop;
     }
 }

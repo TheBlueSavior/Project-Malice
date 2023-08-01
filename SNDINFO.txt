@@ -1672,7 +1672,7 @@ EntAvaYell3	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell3.ogg"
 EntAvaYell4	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
 EntAvaYell5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
 EntAvaYell6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
-$random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell4 EntAvaYell5 EntAvaYell6 }
+$random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell6 }
 $volume EntAva/Yell 0.7
 $pitchset EntAva/Yell 0.6 1.0
 EntAvaDrag1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag1.ogg"
@@ -2740,6 +2740,7 @@ SHAACT SHAACT
 //Voidspawn
 Voidspawn/Search "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSearch.ogg"
 $rolloff Voidspawn/Search 200 1100
+VoidSpawn/Sight "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSight.ogg"
 Voidspawn/Death "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnDeath.ogg"
 Voidspawn/Scream "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnScream.ogg"
 
