@@ -18,6 +18,7 @@ DamageType PM_InfernalMelee
 
 DoomEdNums
 {	
+	//Zombiemen
 	23001 = "PM_DecayedSoldier"
 	23002 = "PM_FOCRifle"
 	23003 = "PM_HellifiedSoldier"
@@ -27,12 +28,14 @@ DoomEdNums
 	23007 = "PM_ZombieMarine"
 	23008 = "PM_ZombieSoldier"
 	23009 = "PM_ZombieTrooper"
+	//Spectres
 	23010 = "PM_CyberSpectre"
 	23011 = "PM_DemonTechSpectre"
 	23012 = "PM_Nightmare"
 	23013 = "PM_PhaseBrute"
 	23014 = "PM_Prowler"
 	23015 = "PM_Skulker"
+	//Souls
 	23016 = "PM_BloodSkull"
 	23017 = "PM_Blot"
 	23018 = "PM_BurntSoul"
@@ -40,6 +43,7 @@ DoomEdNums
 	23020 = "PM_Gazer"
 	23022 = "Rictus"
 	23023 = "PM_UmbralHeart"
+	//Shotgunners
 	23024 = "PM_CyberFodder"
 	23025 = "PM_DecayedShotgunner"
 	23026 = "PM_FallenShotgunner"
@@ -47,24 +51,30 @@ DoomEdNums
 	23028 = "PM_FShotgunner"
 	23029 = "PM_Nailgunner"
 	23030 = "PM_SlugShotgunner"
+	//Revenants
 	23031 = "PM_Cadaver"
 	23032 = "PM_Depraved"
 	23033 = "PM_Draugr"
 	23034 = "PM_Fiend" 
 	23035 = "PM_Husk"
 	23036 = "PM_Infested"
+	//Pinkies
 	23037 = "PM_BloodStalker"
 	23038 = "PM_Brute"
 	23039 = "PM_CyberBrute"
 	23040 = "PM_DemonTechBrute"
 	23041 = "PM_Glutton"
+	//Paranormal
 	23042 = "PM_Broken"
 	23043 = "PM_ControlledSoldier"
+	//Masterminds
 	23044 = "PM_EntropicAvatar"
 	23045 = "PM_AracnorbQueen"
+	//Mancubi
 	23046 = "PM_Abhorrent"
 	23047 = "PM_Corpulent"
 	23048 = "PM_Hectebus"
+	//Imps
 	23049 = "PM_Charred"
 	23050 = "PM_Devil"
 	23051 = "PM_FeralImp"
@@ -74,6 +84,7 @@ DoomEdNums
 	23055 = "PM_NetherImp"
 	23056 = "PM_Tainted"
 	23057 = "PM_Zephyr"
+	//HellKnights
 	23058 = "PM_HellsFury"
 	23059 = "PM_Noble"
 	23060 = "Paladin"
@@ -81,6 +92,7 @@ DoomEdNums
 	23062 = "Void"
 	23063 = "PM_Vore"
 	23064 = "PM_Whiplash"
+	//Fodder
 	23065 = "PM_NormalHorrorspawn"
 	23066 = "FreshHorrorspawn"
 	23067 = "PM_HorrorspawnSpitter"
@@ -92,10 +104,6 @@ DoomEdNums
 	23073 = "Fly"
 	23074 = "LargeMaggot"
 	23075 = "LargeWhiteMaggot"
-	23076 = "PassiveMaggot"
-	23077 = "Mimic"
-	23078 = "Mimicspawn"
-	23079 = "PM_POTS"
 	23080 = "PM_POTSScreamer"
 	23081 = "PM_PotsHorde"
 	23082 = "PM_PotsGroup"
@@ -112,16 +120,24 @@ DoomEdNums
 	23093 = "TriteHatchling"
 	23094 = "FleshPod"
 	23095 = "Voidspawn"
+	23076 = "PassiveMaggot"
+	23077 = "Mimic"
+	23078 = "Mimicspawn"
+	23079 = "PM_POTS"
+	//Elementals
 	23096 = "PM_Defiler"
 	23097 = "PM_GrossElemental"
+	//CyberDemons
 	23098 = "PyroDemon"
 	23099 = "PM_Tyrant"
+	//Chaingunners
 	23100 = "PM_Blasphemer"
 	23101 = "PM_DecayedCommando"
 	23102 = "PM_FallenMarine"
 	23103 = "PM_HeavyCarbineZombie"
 	23104 = "PM_HellPriest"
 	23105 = "PM_MutatedGunner"
+	//Cacodemons
 	23106 = "PM_Beholder"
 	23107 = "PM_Infernal"
 	23108 = "PM_PhaseCaco"
@@ -129,9 +145,12 @@ DoomEdNums
 	23110 = "PM_Watcher"
 	23111 = "PM_Wicked"
 	23112 = "PM_Wretched"
+	//Barons
 	23113 = "PM_Bruiser"
 	23114 = "PM_HeresyLord"
+	//Archviles
 	23115 = "PM_Exile"
+	//Arachnotrons
 	23116 = "PM_Fusionite"
 	23117 = "PM_Plasmatron"
 }

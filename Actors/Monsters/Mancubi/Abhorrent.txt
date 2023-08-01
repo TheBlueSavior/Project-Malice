@@ -338,7 +338,7 @@ Class PM_AbhorBall : Fatshot
 	  );
 	}
   Go:
-    ABHB AABB 1 Bright Bright Light("SoulHarvesterBall1")
+    ABHB AABB 1 Bright Light("SoulHarvesterBall1")
 	{
 	//A_Weave(1,1,1,0);
 	A_SeekerMissile(1,1,SMF_PRECISE);
