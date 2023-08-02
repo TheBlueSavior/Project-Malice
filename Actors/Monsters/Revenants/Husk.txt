@@ -2,6 +2,7 @@ Class PM_Husk : PMWrathMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Revenants"
   Health 300;
   Radius 20;
   Height 56;

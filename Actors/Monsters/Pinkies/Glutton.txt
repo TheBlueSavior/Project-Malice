@@ -2,6 +2,7 @@ Class PM_Glutton : PMGluttonyMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Pinkies"
 	Health 300;
 	PainChance 64;
 	Speed 35;

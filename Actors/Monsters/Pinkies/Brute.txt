@@ -2,6 +2,7 @@ Class PM_Brute : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Pinkies"
 	Health 150;
 	Radius 30;
 	Height 56;

@@ -3,6 +3,7 @@ Class PM_ZombieMarine : PMMonsterBase
     int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 35;
     Radius 20;
     Height 56;

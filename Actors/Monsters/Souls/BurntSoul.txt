@@ -1,5 +1,6 @@
 Actor PM_BurntSoul : PMMonsterBase
 {
+  //$Category "PM_Monsters/Souls"
   Health 80
   Scale 0.76
   PainChance 255

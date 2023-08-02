@@ -1,5 +1,6 @@
 ACTOR Paladin
 {
+	//$Category "PM_Monsters/HellKnights"
 	Health 775
 	Scale 1.15
 	Radius 32

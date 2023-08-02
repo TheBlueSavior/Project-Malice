@@ -3,6 +3,7 @@ Class PM_HellsFury : PMMonsterBase
     int deathwither;
     Default
 	{
+	//$Category "PM_Monsters/HellKnights"
 	Translation "174:191=193:207", "32:47=240:247";
     Health 500;
     Radius 24;

@@ -3,6 +3,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
   int user_numbullets;
   Default
   {
+  //$Category "PM_Monsters/Chaingunners"
   Health 70;
   Radius 20;
   Height 56;

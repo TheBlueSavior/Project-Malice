@@ -2,6 +2,7 @@ Class PM_Harvester : PMMonsterBase
 {
   Default
   {
+    //$Category "PM_Monsters/Imps"
     Health 100;
     Radius 20;
     Height 56;

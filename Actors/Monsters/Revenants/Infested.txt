@@ -2,6 +2,7 @@ Class PM_Infested : PMMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Revenants"
   Health 320;
   Radius 20;
   Height 56;

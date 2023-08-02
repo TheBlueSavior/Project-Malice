@@ -2,6 +2,7 @@ Class PM_UmbralHeart : Actor
 {
   Default
   {
+	//$Category "PM_Monsters/Souls"
     Health 200;
     Radius 25;
     Height 20;

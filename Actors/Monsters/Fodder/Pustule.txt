@@ -7,6 +7,7 @@ Class IsOnCeiling : Inventory {
 Class Pustule : PMFodderMonsterBase {
   bool isOnCeiling;
   default {
+	//$Category "PM_Monsters/Fodder"
     Obituary "%o was popped by a Pustule.";
     Health 65;
     Radius 20;

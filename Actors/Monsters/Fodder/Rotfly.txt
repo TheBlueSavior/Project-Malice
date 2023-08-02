@@ -1,5 +1,6 @@
 ACTOR PM_Rotfly : PMFodderMonsterBase
 {
+  //$Category "PM_Monsters/Fodder/Crickets"
   Health 20
   Radius 14
   Height 13
@@ -132,6 +133,7 @@ ACTOR PM_Rotfly : PMFodderMonsterBase
 
 ACTOR PM_RotflyMaggot : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	Health 1
 	Radius 2
 	Height 2
@@ -229,8 +231,8 @@ actor PM_RotflySpit : DoomImpBall
 }
 
 ACTOR PM_RotflyYoungling : PMFodderMonsterBase
-
 {
+  //$Category "PM_Monsters/Fodder/Crickets"
   Health 1
   Speed 3
   Mass 10
@@ -289,6 +291,7 @@ ACTOR PM_RotflyYoungling : PMFodderMonsterBase
 
 ACTOR PM_AmbushRotfly 
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	MONSTER
 	+FLOAT
 	+NOGRAVITY
@@ -334,6 +337,7 @@ ACTOR PM_AmbushRotfly
 
 Actor PM_GagRotfly : PM_Rotfly
 {
+  //$Category "PM_Monsters/Fodder/Crickets"
   Species "Elemental"
   States
   {

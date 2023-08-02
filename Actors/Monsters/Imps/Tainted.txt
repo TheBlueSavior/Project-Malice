@@ -2,6 +2,7 @@ Class PM_Tainted : PMGluttonyMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Imps"
     Health 80;
     Radius 20;
     Height 56;

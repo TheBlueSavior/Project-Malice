@@ -2,6 +2,7 @@ Class PM_CyberFodder : PMMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Shotgunners"
   Health 75;
   Speed 4;
   Painchance 40;

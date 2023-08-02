@@ -2,6 +2,7 @@ Class PM_HellPriest : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Chaingunners"
     Health 250;
     PainChance 150;
     Speed 8;

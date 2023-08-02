@@ -5,6 +5,7 @@ Class PM_Plasmatron : PMMonsterBase
 	int user_numbullets;
 	Default
 	{
+		//$Category "PM_Monsters/Arachnotrons"
 		Tag "Plasmatron";
 		Health 520;
 		Mass 600;

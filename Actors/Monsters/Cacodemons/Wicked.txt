@@ -2,6 +2,7 @@ Class PM_Wicked : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		Health 350;
 		Radius 31;
 		Height 56;

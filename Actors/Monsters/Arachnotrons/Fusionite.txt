@@ -3,6 +3,7 @@ Class PM_Fusionite : PMMonsterBase
 	int user_numbullets;
 	Default
 	{
+		//$Category "PM_Monsters/Arachnotrons"
 		Health 500;
 		Height 64;
 		Mass 600;

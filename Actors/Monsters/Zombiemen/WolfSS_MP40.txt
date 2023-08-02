@@ -4,6 +4,7 @@ class PM_WolfSS_MP40 : PMMonsterBase
 
 	Default
 	{
+		//$Category "PM_Monsters/Zombiemen"
 		Health 50;
 		Radius 20;
 		Height 56;

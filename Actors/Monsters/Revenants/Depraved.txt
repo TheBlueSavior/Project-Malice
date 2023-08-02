@@ -2,6 +2,7 @@ Class PM_Depraved : PMMonsterBase
 {
     Default
     {
+	//$Category "PM_Monsters/Revenants"
     Health 300;
     Radius 20;
     Species "Revenant";

@@ -2,6 +2,7 @@ Class PM_Hellion : PMMonsterBase
 {
   Default
   {
+	//$Category "PM_Monsters/Imps"
     Obituary "A Hellion burned %o to a crisp.";
     Health 140;
     Radius 20;

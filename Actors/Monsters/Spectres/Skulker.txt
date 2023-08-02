@@ -1,5 +1,6 @@
 Actor PM_Skulker
 {
+	//$Category "PM_Monsters/Spectres"
     Health 650
     GibHealth 20
     Radius 20

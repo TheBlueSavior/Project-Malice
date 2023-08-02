@@ -2,6 +2,7 @@ Class PM_Blasphemer : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Chaingunners"
 		Obituary "The Blasphemer stands tall before %o.";
 		Health 250;
 		Radius 20;

@@ -3,6 +3,7 @@ Class PM_FOCRifle : PMMonsterBase
     int cainphase;
 	Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 250;
     Radius 20;
     Height 56;

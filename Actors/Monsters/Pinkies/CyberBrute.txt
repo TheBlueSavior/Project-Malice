@@ -2,6 +2,7 @@ Class PM_CyberBrute : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Pinkies"
 	Health 200;
 	Radius 30;
 	Height 56;

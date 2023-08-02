@@ -5,6 +5,7 @@ Class Rictus : Actor
   Default
   {
     obituary "%o was charred by a rictus.";
+	//$Category "PM_Monsters/Souls"
     health 100;
     radius 16;
     height 56;

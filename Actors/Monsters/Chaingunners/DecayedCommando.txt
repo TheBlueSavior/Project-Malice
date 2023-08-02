@@ -3,6 +3,7 @@ Class PM_DecayedCommando : PMMonsterBase
   int user_numbullets;
   Default
   {
+  //$Category "PM_Monsters/Chaingunners"
   Obituary "%o was reduced to a bloody mist by a Decayed Commando.";
   Health 70;
   Radius 20;

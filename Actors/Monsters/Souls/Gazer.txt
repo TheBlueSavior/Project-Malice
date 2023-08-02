@@ -4,6 +4,7 @@ Class PM_Gazer : PMMonsterBase
   
   Default
   {
+	//$Category "PM_Monsters/Souls"
 	Health 230;
 	Radius 20;
 	Height 56;

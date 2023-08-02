@@ -2,6 +2,7 @@ Class PM_Nightmare : PMMonsterBase
 {
   Default
   {
+	//$Category "PM_Monsters/Spectres"
     Health 150;
     Radius 20;
     Height 56;

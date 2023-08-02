@@ -1,5 +1,6 @@
 Actor PM_Remnant : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder"
     Health 200
     Radius 20
     Height 54

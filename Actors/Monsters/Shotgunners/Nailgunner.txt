@@ -7,6 +7,7 @@ Class PM_Nailgunner : PMMonsterBase
   int user_numbullets;
   Default
   {
+  //$Category "PM_Monsters/Shotgunners"
   Health 45;
   Radius 20;
   Height 56;

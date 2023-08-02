@@ -15,6 +15,7 @@ Actor Horrorspawn : RandomSpawner
 
 Actor PM_NormalHorrorspawn : RandomSpawner
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	DropItem "Horrorspawn1", 255, 1
 	DropItem "Horrorspawn2", 255, 1
 	DropItem "Horrorspawn3", 255, 1
@@ -941,6 +942,7 @@ Actor Horrorspawn4 : Horrorspawn1
 
 Actor FreshHorrorspawn : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
     Health 15
     GibHealth 20
     Radius 20
@@ -1675,6 +1677,7 @@ Actor PM_HorrorSleeperSpawn
 
 Actor PM_SleepingHorrorspawn : RandomSpawner
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	DropItem "PM_SleepingHorrorspawn1", 255, 2
 	DropItem "PM_SleepingHorrorspawn2", 255, 1
 	DropItem "PM_SleepingHorrorspawn3", 255, 1

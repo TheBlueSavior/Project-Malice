@@ -1,5 +1,6 @@
 ACTOR PM_Prowler : PMMonsterBase
 {
+	//$Category "PM_Monsters/Spectres"
 	var int user_timer;
 	Health 200
 	Radius 20

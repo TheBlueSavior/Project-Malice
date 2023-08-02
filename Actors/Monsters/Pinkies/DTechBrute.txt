@@ -3,6 +3,7 @@ Class PM_DemonTechBrute : PMMonsterBase
     int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Pinkies"
     Health 230;
     Speed 10;
     Height 56;

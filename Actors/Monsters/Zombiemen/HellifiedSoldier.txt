@@ -2,6 +2,7 @@ Class PM_HellifiedSoldier : PMMonsterBase
 { 
     Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 50;
     Radius 20;
     Height 56;

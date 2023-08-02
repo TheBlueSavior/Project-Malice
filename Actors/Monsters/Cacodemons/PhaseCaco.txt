@@ -2,6 +2,7 @@ Class PM_PhaseCaco : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		SeeSound "PhaseCaco/Sight";
 		PainSound "PhaseCaco/Pain";
 		DeathSound "PhaseCaco/Death";

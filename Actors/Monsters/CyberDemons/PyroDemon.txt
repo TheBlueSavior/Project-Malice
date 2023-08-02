@@ -1,5 +1,6 @@
-Actor PyroDemon 30105
+Actor PyroDemon
 {
+  //$Category "PM_Monsters/CyberDemons"
   Health 4000
   Radius 24
   Height 64

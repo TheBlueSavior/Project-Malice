@@ -1,4 +1,4 @@
-ACTOR SmokeMonster 32767
+ACTOR SmokeMonster
 {
 Health 3000
 Radius 20

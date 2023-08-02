@@ -4,6 +4,7 @@ Class PM_POTS : PMMonsterBase
 	int user_pawntick;
 	Default
 	{
+	//$Category "PM_Monsters/Fodder/POTS"
     Health 100;
     Radius 20;
     Height 56;
@@ -426,6 +427,7 @@ Class PM_POTSScreamer : PMMonsterBase
 { 
 	Default
 	{
+	//$Category "PM_Monsters/Fodder/POTS"
     Health 450;
     Radius 20;
     Height 56;
@@ -721,6 +723,7 @@ class PM_PotsHorde: Actor
 {
 	Default
 	{
+	//$Category "PM_Monsters/Fodder/POTS"
 	}
 	States
 	{
@@ -735,6 +738,7 @@ class PM_PotsGroup: Actor
 {
 	Default
 	{
+	//$Category "PM_Monsters/Fodder/POTS"
 	}
 	States
 	{

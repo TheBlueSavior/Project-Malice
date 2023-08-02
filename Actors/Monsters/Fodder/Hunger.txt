@@ -1,5 +1,6 @@
 Actor Hunger : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	var int user_called;
     Health 20
     GibHealth 20
@@ -174,6 +175,7 @@ Actor Hunger : PMFodderMonsterBase
 
 Actor Hungry : RandomSpawner
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	DropItem "PM_Hungry1", 255, 15
 	DropItem "PM_HungryMarine", 255, 1
 	DropItem "PM_HungrySci1", 255, 2

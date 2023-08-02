@@ -2,6 +2,7 @@ Class PM_Infernal : PMWrathMonsterBase
 {
   Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		SeeSound "PMInfernal/Sight";
 		PainSound "PMInfernal/Pain";
 		DeathSound "PMInfernal/Death";

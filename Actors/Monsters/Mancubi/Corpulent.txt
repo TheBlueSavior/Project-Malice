@@ -2,6 +2,7 @@ Class PM_Corpulent : PMMonsterBase
  {
   Default
   {
+   //$Category "PM_Monsters/Mancubi"
    Health 600;
    Radius 48;
    Height 64;

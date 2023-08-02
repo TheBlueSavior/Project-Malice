@@ -3,6 +3,7 @@ Class PM_Abhorrent : PMMonsterBase
  int deathwither;
  Default
  {
+ //$Category "PM_Monsters/Mancubi"
  health 600;
  Radius 48;
  Height 64;

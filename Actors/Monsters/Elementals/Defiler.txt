@@ -2,6 +2,7 @@ Class PM_Defiler : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Elementals"
 	Health 480;
 	Radius 31;
 	Height 56;

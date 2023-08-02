@@ -1,5 +1,6 @@
 ACTOR MaliceSwarm : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	MONSTER
 	+FLOAT
 	+NOGRAVITY

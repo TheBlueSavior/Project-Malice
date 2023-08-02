@@ -1,5 +1,6 @@
 Actor Trite : PMFodderMonsterBase
 {
+  //$Category "PM_Monsters/Fodder/Trite"
   HitObituary "%o was nipped by a Trite"
   Health 12
   Radius 16

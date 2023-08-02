@@ -6,6 +6,7 @@ Class PM_FeralImp : PMWrathMonsterBase
   
   Default
   {
+  //$Category "PM_Monsters/Imps"
   Obituary "%o burned to a crisp by a Feral Imp's fireballs.";
   HitObituary "%o was cut down by a Feral Imp.";
   health 75;

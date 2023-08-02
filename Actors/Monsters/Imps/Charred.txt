@@ -2,6 +2,7 @@ Class PM_Charred : PMMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Imps"
   Health 65;
   Radius 20;
   Height 56;

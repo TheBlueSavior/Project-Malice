@@ -1,5 +1,6 @@
 ACTOR Void
 {
+  //$Category "PM_Monsters/HellKnights"
   Health 800
   Radius 16
   Height 96

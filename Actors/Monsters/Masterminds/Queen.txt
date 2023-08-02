@@ -1,6 +1,6 @@
 actor PM_AracnorbQueen
 {
-  //$Category Monsters
+  //$Category "PM_Monsters/Masterminds"
   //$Title "Aracnorb Queen"
   MONSTER
   //+NOGRAVITY

@@ -2,6 +2,7 @@ Class PM_Devil : PMMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Imps"
   Health 60;
   Radius 20;
   Height 56;

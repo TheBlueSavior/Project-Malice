@@ -1,5 +1,6 @@
 Actor TriteHatchling : PMFodderMonsterBase
 {
+  //$Category "PM_Monsters/Fodder/Trite"
   HitObituary "%o was nipped by a Head"
   Health 2
   Radius 10
@@ -135,6 +136,7 @@ Actor TriteHatchling : PMFodderMonsterBase
 
 Actor FleshPod
 {
+//$Category "PM_Monsters/Fodder/Trite"
 MONSTER
 Radius 10
 Height 10

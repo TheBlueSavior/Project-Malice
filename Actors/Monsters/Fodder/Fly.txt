@@ -1,6 +1,6 @@
-ACTOR Fly 9662
-
+ACTOR Fly
 {
+  //$Category "PM_Monsters/Fodder/Crickets"
   Radius 3
   Height 3
   Speed 3

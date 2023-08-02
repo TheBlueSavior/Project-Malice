@@ -2,6 +2,7 @@ Class PM_Zephyr : PMMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/Imps"
   Obituary "%o was outpaced by a Zephyr.";
   HitObituary "%o was ripped in half by a Zephyr.";
   Health 50;

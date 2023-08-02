@@ -1,5 +1,6 @@
 ACTOR PM_PhaseBrute : PMMonsterBase
 {
+	//$Category "PM_Monsters/Spectres"
 	Health 150
 	Radius 30
 	Height 56

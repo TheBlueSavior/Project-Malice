@@ -2,6 +2,7 @@ Class PM_Host : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Imps"
     Obituary "%o was poisoned by a Host.";
     HitObituary "A Host had %o for lunch.";
     Health 125;

@@ -2,6 +2,7 @@ Class PM_Fleshspawn : PMMonsterBase
 {
   Default
   {
+	//$Category "PM_Monsters/Souls"
     Obituary "%o was burned by a FleshSpawn." ;
     HitObituary "%o was devoured by a FleshSpawn.";
     health 16;

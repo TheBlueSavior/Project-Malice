@@ -4,6 +4,7 @@ Class PM_SlugShotgunner : PMMonsterBase
     int user_numslugs;
 	Default
 	{
+	//$Category "PM_Monsters/Shotgunners"
     Health 40;
     Radius 20;
     Height 56;

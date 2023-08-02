@@ -3,6 +3,7 @@ Class PM_Squire : PMMonsterBase
 	int user_leapstrength;
 	Default
 	{
+	//$Category "PM_Monsters/HellKnights"
 	Health 500;
 	Radius 24;
 	Height 64;

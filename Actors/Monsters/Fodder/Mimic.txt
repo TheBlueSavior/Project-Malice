@@ -1,5 +1,6 @@
 actor Mimic : PMFodderMonsterBase
 {
+  //$Category "PM_Monsters/Fodder/Mimic"
   obituary "%o was taken by surprise by a Mimic."
   hitobituary "%o was taken by surprise by a Mimic."
   health 600
@@ -62,6 +63,7 @@ actor Mimic : PMFodderMonsterBase
 
 actor Mimicspawn
 { 
+	//$Category "PM_Monsters/Fodder/Mimic"
   +DONTHURTSPECIES
   +AMBUSH
   +NOBLOCKMAP

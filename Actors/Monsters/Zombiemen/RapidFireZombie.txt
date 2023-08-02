@@ -14,6 +14,7 @@ Class PM_RFZombie: PMMonsterBase
     int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 30;
     Radius 20;
     Height 56;

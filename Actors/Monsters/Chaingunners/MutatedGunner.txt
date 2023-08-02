@@ -3,6 +3,7 @@ Class PM_MutatedGunner : PMMonsterBase
     int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Chaingunners"
 	Health 80;
 	Radius 20;
 	Height 56;

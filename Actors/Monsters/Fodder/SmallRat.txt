@@ -1,5 +1,6 @@
 ACTOR SmallRat : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	Health 5
 	Radius 8
 	Height 28

@@ -3,6 +3,7 @@ Class PM_FallenShotgunner : PMMonsterBase
    int user_numbullets;
    Default
    {
+   //$Category "PM_Monsters/Shotgunners"
    Health 120;
    Height 56;
    Radius 20;

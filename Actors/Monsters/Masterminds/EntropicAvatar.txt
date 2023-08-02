@@ -5,6 +5,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 
 	Default
 	{
+		//$Category "PM_Monsters/Masterminds"
 		Health 3000;
 		Radius 28;
 		Height 90;

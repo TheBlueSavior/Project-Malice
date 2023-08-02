@@ -4,6 +4,7 @@ Class PM_Exile : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Archviles"
 		Health 700;
 		Radius 20;
 		Height 56;

@@ -3,6 +3,7 @@ Class PM_ZombieTrooper : PMMonsterBase
     int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 40;
     Radius 20;
     Height 56;

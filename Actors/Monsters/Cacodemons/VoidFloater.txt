@@ -2,6 +2,7 @@ Class PM_VoidFloater : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		Obituary "%o is gone.";
 		HitObituary "%o doesn't want to do this anymore.";
 		Tag "V?ID F??AT?R";

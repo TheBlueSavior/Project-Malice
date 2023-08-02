@@ -1,5 +1,6 @@
 Actor Voidspawn : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	  var int user_deathtimer;
     Health 300
     GibHealth 250

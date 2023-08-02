@@ -2,6 +2,7 @@ Class PM_Beholder : PMGluttonyMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		SeeSound "Beholder/Sight";
 		PainSound "Beholder/Pain";
 		DeathSound "Beholder/Death";

@@ -1,5 +1,6 @@
 ACTOR PM_GrossElemental : PMMonsterBase
 {
+  //$Category "PM_Monsters/Elementals"
   Health 500
   Radius 31
   Height 56

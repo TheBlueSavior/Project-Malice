@@ -55,6 +55,7 @@ class PM_Blot : PMMonsterBase
 {
 Default
 {
+  //$Category "PM_Monsters/Souls"
   obituary "%o was engulfed by a Dark Sprite.";
   health 100;
   radius 20;

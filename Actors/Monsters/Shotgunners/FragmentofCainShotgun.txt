@@ -3,6 +3,7 @@ Class PM_FOCShotgun : PMMonsterBase
     int cainphase;
 	Default
 	{
+	//$Category "PM_Monsters/Shotgunners"
     Health 250;
     Radius 20;
     Height 56;

@@ -2,6 +2,7 @@ Class PM_BloodStalker : PMMonsterBase
 {
     Default
 	{
+	//$Category "PM_Monsters/Pinkies"
 	Health 300;
 	Radius 30;
 	Height 56;

@@ -1,5 +1,6 @@
 Actor PM_HorrorspawnSpitter : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
     Health 20
     GibHealth 20
     Radius 18
@@ -274,6 +275,7 @@ Death:
 
 Actor PM_HorrorspawnChunkThrower : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
     Health 15
     GibHealth 20
     Radius 18
@@ -574,6 +576,7 @@ Actor PM_HSpawnThrownChunk
 
 Actor PM_HorrorspawnBurster : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Horrorspawn"
     Health 20
     GibHealth 20
     Radius 18

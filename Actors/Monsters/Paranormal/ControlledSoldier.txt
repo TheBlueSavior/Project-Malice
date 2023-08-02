@@ -1,5 +1,6 @@
 Actor PM_ControlledSoldier
 {
+	//$Category "PM_Monsters/Paranormal"
     Health 200
     Radius 18
     Height 56

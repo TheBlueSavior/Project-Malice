@@ -2,6 +2,7 @@ Class PM_Whiplash : PMLustMonsterBase
 {
   Default
   {
+  //$Category "PM_Monsters/HellKnights"
   Health 500;
   Radius 25;
   Height 64;

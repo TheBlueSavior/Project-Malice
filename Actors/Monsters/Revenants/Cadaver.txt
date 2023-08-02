@@ -14,6 +14,7 @@ Class PM_Cadaver : PMMonsterBase
 
   Default
   {
+  //$Category "PM_Monsters/Revenants"
   +DONTHARMSPECIES
   //+NOINFIGHTING
   Species "Revenant";

@@ -1,5 +1,6 @@
 ACTOR LargeMaggot : PMFodderMonsterBase
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	Health 1
 	Radius 4
 	Height 5
@@ -52,6 +53,7 @@ ACTOR LargeMaggot : PMFodderMonsterBase
 
 ACTOR LargeWhiteMaggot
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	Health 1
 	Radius 2
 	Height 2
@@ -124,6 +126,7 @@ ACTOR LargeWhiteMaggot
 
 ACTOR PassiveMaggot
 {
+	//$Category "PM_Monsters/Fodder/Crickets"
 	Health 1
 	Radius 2
 	Height 2

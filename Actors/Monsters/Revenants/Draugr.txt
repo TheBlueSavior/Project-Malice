@@ -3,6 +3,7 @@ Class PM_Draugr : PMMonsterBase
 	int buffgrenade;
     Default
     {
+	//$Category "PM_Monsters/Revenants"
 	Health 400;
 	Speed 12;
 	Monster;

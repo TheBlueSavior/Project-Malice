@@ -1,5 +1,6 @@
 ACTOR PM_CyberSpectre : PMMonsterBase
 {
+	//$Category "PM_Monsters/Spectres"
 	Health 160
 	Radius 30
 	Height 56

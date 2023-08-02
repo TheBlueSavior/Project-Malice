@@ -2,6 +2,7 @@ Class PM_Wretched : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		Speed 4;
 		Radius 31;
 		Height 56;

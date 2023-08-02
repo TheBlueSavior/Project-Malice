@@ -3,6 +3,7 @@ Class PM_DecayedSoldier : PMMonsterBase
 	int user_numbullets;
 	Default
 	{
+	//$Category "PM_Monsters/Zombiemen"
     Health 34;
     Radius 20;
     Height 56;

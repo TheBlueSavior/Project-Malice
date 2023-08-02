@@ -3,6 +3,7 @@ Class PM_Watcher : PMMonsterBase
 {
 	Default
 	{
+		//$Category "PM_Monsters/Cacodemons"
 		Health 200;
 		Radius 24;
 		Height 40;
