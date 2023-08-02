@@ -5,7 +5,7 @@ class PM_Broken : PMMonsterBase
 
 	Default
 	{
-		//$Category "PM_Monsters/Paranomal"
+		//$Category "PM_Monsters/Paranormal"
 		Health 450;
 		Radius 20;
 		Height 56;
