@@ -3670,6 +3670,13 @@ Broken/Pain/1	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_1"
 Broken/Pain/2	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_2"
 Broken/Pain/3	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_3"
 Broken/Pain/4	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_4"
+$random Broken/Flinch { BrokenFlinch1 BrokenFlinch2 BrokenFlinch3 } 
+BrokenFlinch1   "Sounds/Monsters/Paranormal/Broken/BrokenFlinch1.ogg"
+BrokenFlinch2   "Sounds/Monsters/Paranormal/Broken/BrokenFlinch2.ogg"
+BrokenFlinch3   "Sounds/Monsters/Paranormal/Broken/BrokenFlinch3.ogg"
+$random Broken/Die { BrokenDie1 BrokenDie2 }
+BrokenDie1 "Sounds/Monsters/Paranormal/Broken/BrokenDie1.ogg"
+BrokenDie2 "Sounds/Monsters/Paranormal/Broken/BrokenDie2.ogg"
 $random Broken/Pain/Light {Broken/Pain/1 Broken/Pain/2}
 $random Broken/Pain/Heavy {Broken/Pain/3 Broken/Pain/4}
 $random Broken/TP { Broken/TP1 Broken/TP2 Broken/TP3 }
@@ -3677,6 +3684,7 @@ Broken/TP1 "Sounds/Monsters/Paranormal/Broken/BrokenTP1.ogg"
 Broken/TP2 "Sounds/Monsters/Paranormal/Broken/BrokenTP2.ogg"
 Broken/TP3 "Sounds/Monsters/Paranormal/Broken/BrokenTP3.ogg"
 
+Broken/Railgun "Sounds/Monsters/Paranormal/Broken/BrokenRailgun.ogg"
 Broken/Plasma "Sounds/Monsters/Paranormal/Broken/BrokenPlasma.ogg"
 Broken/VFGCharge "Sounds/Monsters/Paranormal/Broken/BrokenBFGCharge.ogg"
 Broken/VFGFire "Sounds/Monsters/Paranormal/Broken/BrokenBFGFire.ogg"
@@ -3684,7 +3692,9 @@ Broken/VFG "Sounds/Monsters/Paranormal/Broken/BrokenBFGProj.ogg"
 Broken/VFGLoop "Sounds/Monsters/Paranormal/Broken/BrokenBFGLoop.ogg"
 Broken/VFGScream "Sounds/Monsters/Paranormal/Broken/BrokenBFGScream.ogg"
 Broken/VFGExp "Sounds/Monsters/Paranormal/Broken/BrokenBFGExplode.ogg"
+$volume Broken/Railgun 0.75
 $volume Broken/Plasma 0.75
+$rolloff Broken/Railgun 400 2400
 $rolloff Broken/VFGCharge 200 2500
 $rolloff Broken/VFGFire 400 2400
 $rolloff Broken/VFGScream 500 2500
@@ -3694,7 +3704,9 @@ $limit Broken/TP 12
 $attenuation Broken/TP 0.4
 $rolloff Broken/TP 750 1300
 
-Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/Broken_LOOP"
+Broken/LOOP		"Sounds/Monsters/Paranormal/Broken/BrokenLoop1.ogg"
+Broken/LOOP2    "Sounds/Monsters/Paranormal/Broken/BrokenLoop2.ogg"
+Broken/LOOP3	"Sounds/Monsters/Paranormal/Broken/BrokenLoop3.wav"
 
 //Corpulent
 $random Corpulent/Sight	{ Corpulent/Sight1 Corpulent/Sight2 }

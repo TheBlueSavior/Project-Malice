@@ -179,6 +179,15 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
 
+Model PM_BrokenRailSlug
+{ 
+Path "Models"
+Skin 0 "malicetracer2.tga"
+Model 0 "Tracer.md3"
+Scale 2.0 2.0 2.0
+PITCHFROMMOMENTUM
+FrameIndex TRCR B 0 0
+
 Model PM_BulletHit
 {
   Path "Models"
