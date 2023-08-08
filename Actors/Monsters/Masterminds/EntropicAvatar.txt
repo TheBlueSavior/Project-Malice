@@ -44,9 +44,25 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TeleFogDestType "PM_SmallDemonicTeleportFog";
 	}
 	
-	void EAvatarEffects()
+	protected TextureId tex[8];
+	
+	static const string TagNames[] =
 	{
-		A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+		"RUN", "RUN", "Run.", "RUN!!", "!", "@", "#", "$", "???", "?", "%*$()", "@#$(", "$@(#)%*", "^", "*", "??????????????????????", "EN?ROP?C AV??AR", "VOIDVOIDVOID", "RUNRUNRUNRUNRUNRUNRUNRUN", "You will be beautiful.", "youwillbebeautifulyouwillbebeautifulyouwillbebeautiful",
+		"RNU", "HELP", "void", "($#%#@*%)(#@*$()*@#()%*&@#(&)%!&%*_&!%)*(@)$*", "^)%__+_#", "!_@#+!_", "Unknown", "", " ", "suffer", "CUT THE FLESH", "PEEL THE SKIN", "BREAK THE BONE", "THE VOICES",
+		"RRUUNN", "DEPR?V??Y ?F HUM??I?Y", "YOU ARE SEEING IT, AND IT IS BEAUTIFUL", "FACILIS DECENSUS AVERNO", "AVERNO", "HELL", "?!@?!@?!?#!?@#?@!??_)______________________________"
+	};
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("RUNGA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("RUNGB0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("RUNGC0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("RUNGD0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("RUNGE0",TexMan.Type_Sprite);
+	 tex[5] = TexMan.CheckForTexture("RUNGF0",TexMan.Type_Sprite);
+	 tex[6] = TexMan.CheckForTexture("RUNGG0",TexMan.Type_Sprite);
+	 tex[7] = TexMan.CheckForTexture("RUNGH0",TexMan.Type_Sprite);
 	}
 	
 	override void Tick()
@@ -56,56 +72,35 @@ Class PM_EntropicAvatar : PMMonsterBase
 		
 		if ((level.maptime % 2) == 0)
 		{
-		A_SpawnParticleEx
-	    (   
-		 "000000",
-		 TexMan.CheckForTexture("GNSMK0"),
-		 style: STYLE_Normal,
-		 flags: SPF_ROLL|SPF_RELATIVE,
-		 lifetime: random(3,80),
-		 size: frandom(30,100),
-		 angle: 0,
-		 xoff: frandom(-20,20),
-		 yoff: frandom(-20,20),
-		 zoff: frandom(0,115),
-		 velx: frandom(-1,1),
-		 vely: frandom(-1,1),
-		 velz: frandom(-1,1),
-		 accelx: 0,
-		 accely: 0,
-		 accelz: 0,
-		 startalphaf: frandom(0.5,1),
-		 fadestepf: -1,
-		 sizestep: frandom(0.2,5),
-		 startroll: random(-180,180),
-		 rollvel: frandom(-0.5,0.5),
-		 rollacc: 0
-	    );
-		A_SpawnParticleEx
-	    (   
-		 "000000",
-		 TexMan.CheckForTexture("GNSMK0"),
-		 style: STYLE_Normal,
-		 flags: SPF_ROLL|SPF_RELATIVE,
-		 lifetime: random(3,80),
-		 size: frandom(30,100),
-		 angle: 0,
-		 xoff: frandom(-20,20),
-		 yoff: frandom(-20,20),
-		 zoff: frandom(0,115),
-		 velx: frandom(-1,1),
-		 vely: frandom(-1,1),
-		 velz: frandom(-1,1),
-		 accelx: 0,
-		 accely: 0,
-		 accelz: 0,
-		 startalphaf: frandom(0.5,1),
-		 fadestepf: -1,
-		 sizestep: frandom(0.2,5),
-		 startroll: random(-180,180),
-		 rollvel: frandom(-0.5,0.5),
-		 rollacc: 0
-	    );
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnParticleEx
+			(   
+			 "000000",
+			 TexMan.CheckForTexture("GNSMK0"),
+			 style: STYLE_Normal,
+			 flags: SPF_ROLL|SPF_RELATIVE,
+			 lifetime: random(3,80),
+			 size: frandom(30,200),
+			 angle: 0,
+			 xoff: frandom(-20,20),
+			 yoff: frandom(-20,20),
+			 zoff: frandom(0,115),
+			 velx: frandom(-1,1),
+			 vely: frandom(-1,1),
+			 velz: frandom(-1,1),
+			 accelx: 0,
+			 accely: 0,
+			 accelz: 0,
+			 startalphaf: frandom(0.1,0.6),
+			 fadestepf: -0.35,
+			 sizestep: frandom(0.2,5),
+			 startroll: random(-180,180),
+			 rollvel: frandom(-0.5,0.5),
+			 rollacc: 0
+			);
+		}
+
 		A_SpawnParticleEx
 		(
 		"000000",
@@ -120,14 +115,52 @@ Class PM_EntropicAvatar : PMMonsterBase
 		velx: random(-1,1),
 		vely: random(-1,1),
 		velz: random(-1,1),
-		startalphaf: 1,
+		startalphaf:frandom(0.1, 0.5),
 		sizestep: frandom(-5,5),
 		startroll: random(-180,180),
 		rollvel: frandom(-2,2)
 		);
-		EAvatarEffects();
 		}
+		EAvatarEffects();
+		
+		if (run)
+		{
+			if (!(GetAge() % 2))
+			{
+				A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+				A_AvatarGlitch();
+			}
+		}
+		
+		A_AvatarGlitch();
+		
+		//Tag
+		SetTag(TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]);
 	}
+	
+	void A_AvatarGlitch(vector3 pvel = (0, 0, 0))
+	{
+		A_SpawnParticleEx
+		(
+		"000000",
+		tex[random(0, 7)],
+		style: STYLE_Normal,
+		flags: SPF_RELATIVE,
+		lifetime: random(2, 5),
+		size: 50,
+		xoff: frandom(-radius,radius),
+		yoff: frandom(-radius,radius),
+		zoff: frandom(0,height * 1.65),
+		velx: pvel.x,
+		vely: pvel.y,
+		velz: pvel.z,
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0
+		);
+	}
+	
+	bool run;
 	
 	States
 	{
@@ -150,12 +183,14 @@ Class PM_EntropicAvatar : PMMonsterBase
 		
 	See:
 		TNT1 A 0 A_StartSound("EntAva/Giggle",CHAN_VOICE,CHANF_LOOP);
-		TNT1 A 0 A_StartSound("EntAva/ScreamLoop1",CHAN_ITEM,CHANF_LOOP,0.8);
+		TNT1 A 0 A_StartSound(random(0, 1) ? "EntAva/ScreamLoop2" : "EntAva/ScreamLoop1",CHAN_ITEM,CHANF_LOOP,0.8);
 		TNT1 A 0 A_AttachLightDef("ENTITY-Aurora","ENTITYAurora");
 	SeeWatch:
 		RUNR AAAAAA 1
 			{
+			A_AvatarGlitch();
 			A_FaceTarget();
+			A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 			{bFLOATBOB = true;}
 			}
 		TNT1 A 0 A_Chase(null,null);
@@ -163,13 +198,15 @@ Class PM_EntropicAvatar : PMMonsterBase
 	FloatyLooky:
 		TNT1 A 0;
 		TNT1 A 0 {bNOCLIP = true;}
-		RUNR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+		RUNR A 1
 			{
+			A_AvatarGlitch();
 			A_FaceTarget();
+			A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 			{bFLOATBOB = true;}
-			A_JumpIfCloser(300,"ROAR");
+			if (target && distance3D(target) < 300) SetStateLabel("ROAR");
 			}
-		Goto ROAR;
+		Goto FloatyLooky+2;
 		
 //////////////////////////////////////////////////////////////YELL AT YOU
 		
@@ -187,10 +224,13 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_QuakeEx(2,2,2,30,0,1000,"*");
 		RUNR EHEGGEHHEHEGGFFEEEFFFFEEFGGEFFFEGEGEFEGGGGGEFGGEEEHHEEGHGHEEH 1 Light("PM_HugeFastHorrorBlackflash")
 		{
+		 run = true;
+		 for (int i = 3; i > 0; i--) A_AvatarGlitch((frandom(-2, 2), frandom(-2, 2), frandom(0, 3)));
+		 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		 A_FaceTarget();
 		}
 		RUNR D 5 A_FaceTarget();
-		TNT1 A 0 {bNOPAIN = false;}
+		TNT1 A 0 {bNOPAIN = false; if (!random(0, 2)) SetStateLabel("NewWalkCycle"); }
 		Goto StartingCharge;
 	StartingCharge:
 		TNT1 A 0 A_StopSound(CHAN_7);
@@ -210,14 +250,16 @@ Class PM_EntropicAvatar : PMMonsterBase
 	WalkForward:
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 AABBCC random(0,5)
+		RUW2 AABBCC random(0,4)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 DDEEFF random(0,5)
+		RUW2 DDEEFF random(0,4)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		Goto NewWalkCycle;
@@ -226,26 +268,30 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 {bNOPAIN = true;}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 AABBCC random(2,10)
+		RUW2 AABBCC random(2, 10)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 DDEEFF random(2,10)
+		RUW2 DDEEFF random(2, 10)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 AABBCC random(2,10)
+		RUW2 AABBCC random(2, 10)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
-		RUW2 DDEEFF random(2,10)
+		RUW2 DDEEFF random(2, 10)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 {bNOPAIN = false;}
@@ -364,12 +410,14 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
 		RUW3 AABBCC random(0,5)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
 		RUW3 DDEEFF random(0,5)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		Goto NewWalkCycle;
@@ -380,12 +428,14 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
 		RUW1 AABBCC random(0,5)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
 		TNT1 A 0 A_StartSound("EntAva/Footstep",CHAN_7,0,1);
 		RUW1 DDEEFF random(0,5)
 		{
+		A_AvatarGlitch();
 		A_Chase();
 		}
 		Goto NewWalkCycle;
@@ -395,7 +445,8 @@ Class PM_EntropicAvatar : PMMonsterBase
 	    TNT1 A 0 A_StopSound(CHAN_6);
 		TNT1 A 0 A_StopSound(CHAN_5);
 		RUNR D 20;
-		TNT1 A 0 A_SetSpeed(100);
+		TNT1 A 0 A_SetSpeed(random(100, 150));
+		TNT1 A 0 A_StopSound(25);
 		TNT1 A 0 A_StartSound("EntAva/Laugh",CHAN_ITEM,0,1);
 		RUW2 ABCDABCDABCD random(1,4) A_Wander();
 		TNT1 A 0 A_SetSpeed(20);
@@ -412,7 +463,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 	Charging:
 		TNT1 A 0 {bNOPAIN = true;}
 		TNT1 A 0 A_FaceTarget();
-		TNT1 A 0 A_StartSound("EntAva/ChargeRoar",CHAN_ITEM,0,1);
+		TNT1 A 0 A_StartSound((random(0, 1)) ? "EntAva/Roar" : "EntAva/ChargeRoar",CHAN_ITEM,0,1);
 		TNT1 A 0 A_JumpIfCloser(150,"Melee");
 		TNT1 A 0 A_Recoil(-14);
 		RUNC AAAA 1;
@@ -514,7 +565,8 @@ Class PM_EntropicAvatar : PMMonsterBase
 		{ SetStateLabel("StartMoving"); }
 		}
 		RUW1 FFF 4 A_FaceTarget();
-		RUNR EEEEEE random(0,1)
+		TNT1 A 0 A_StartSound("EntAva/Sing",50,CHANF_OVERLAP);
+		RUNR EFHGEF random(0,1)
 			{
 			A_FaceTarget();
 			A_CheckSight("StartMoving");
@@ -591,8 +643,8 @@ Class PM_EntropicAvatar : PMMonsterBase
 		RUNC C 5 A_FaceTarget();
 		RUNC D 5 A_SpawnProjectile("PM_EAvatarBall",80);
 		Goto StartMoving;
-	
 	Melee:
+		TNT1 A 0 A_StopSound(CHAN_ITEM);
 		TNT1 A 0 A_jump(64,"MULCHSTART");
 		
 		TNT1 A 0 A_FaceTarget;
@@ -607,7 +659,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_FaceTarget;
 		RUNC C 5;
 		TNT1 A 0 A_FaceTarget;
-		TNT1 A 0 A_StartSound("EntAva/Yell",26,0,1);
+		TNT1 A 0 A_StartSound("EntAva/Yell",25,0,1);
 		TNT1 A 0 A_Recoil(-3);
 		RUNC D 5;
 		TNT1 A 0 A_QuakeEx(2,2,2,5,0,500,"*");
@@ -650,7 +702,7 @@ Class PM_EntropicAvatar : PMMonsterBase
 		TNT1 A 0 A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 		RUNR D 30;
 		
-		TNT1 A 0 A_SetSpeed(90);
+		TNT1 A 0 A_SetSpeed(200);
 		
 		//TNT1 A 0 A_StartSound("ENTITY/LAUGH",CHAN_ITEM,0,1);
 		
@@ -769,12 +821,30 @@ Default
   -THRUACTORS
   RenderStyle "Normal";
   BounceType "None";
-  Seesound "HPriest/VoidShot";
-  DeathSound "Abhor/BallExp";
+  DeathSound "EntAva/VoidBall";
+  SeeSound "HPriest/VoidShot";
   PROJECTILE;
    }
    void AvatarBallSpriteSmoke()
 	{
+		for (int i = random(6, 13); i > 0; i--)
+		{
+			A_SpawnParticleEx
+			(   
+			 0x000000,
+			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
+			 style: STYLE_Normal,
+			 flags: SPF_RELATIVE,
+			 lifetime: random(2, 4),
+			 size: frandom(30,70),
+			 xoff: frandom(-10,10),
+			 yoff: frandom(-10,10),
+			 zoff: frandom(-10,10),
+			 fadestepf: 0,
+			 sizestep: 0
+			);
+		}
+		
 		A_SpawnParticleEx
 	    (   
 		 "000000",
@@ -788,7 +858,7 @@ Default
 		 velx: frandom(-0.2,0.2),
 		 vely: frandom(-0.2,0.2),
 		 velz: frandom(-0.2,0.2),
-		 startalphaf: 1,
+		 startalphaf: 0.5,
 		 fadestepf: -1,
 		 sizestep: frandom(-0.1,-1.5),
 		 startroll: random(-180,180)
@@ -806,7 +876,7 @@ Default
 		 velx: frandom(-0.2,0.2),
 		 vely: frandom(-0.2,0.2),
 		 velz: frandom(-0.2,0.2),
-		 startalphaf: 1,
+		 startalphaf: 0.5,
 		 fadestepf: -1,
 		 sizestep: frandom(-0.1,-1.5),
 		 startroll: random(-180,180)
@@ -894,7 +964,7 @@ Class PM_EAvatarSoulVomit : Actor
 	 {
 	  A_ScaleVelocity(frandom(0.6,2.3));
 	 }
-	 TNT1 A 0 A_StartSound("HFury/SoulScreech",pitch:frandom(0.3,1.3));
+	 TNT1 A 0 A_StartSound("EntAva/Soul",28,pitch:frandom(0.8,1.2));
      TNT1 A 0
 	 {
 	  for(int i=random(2,4);i>0;i--)
@@ -1013,6 +1083,21 @@ Class PM_EAvatarVoidSeeker : Actor
    +SEEKERMISSILE
 	DeathSound "Abhor/SoulExp";
    }
+   
+   protected TextureId tex[8];
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("RUNGA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("RUNGB0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("RUNGC0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("RUNGD0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("RUNGE0",TexMan.Type_Sprite);
+	 tex[5] = TexMan.CheckForTexture("RUNGF0",TexMan.Type_Sprite);
+	 tex[6] = TexMan.CheckForTexture("RUNGG0",TexMan.Type_Sprite);
+	 tex[7] = TexMan.CheckForTexture("RUNGH0",TexMan.Type_Sprite);
+	}
+	
    States
    {
    Spawn: 
@@ -1022,6 +1107,22 @@ Class PM_EAvatarVoidSeeker : Actor
 	Go:
 		VFOD AABBCCDD 1
 		{
+		A_SetScale(frandom(1.15, 1.25), frandom(1.15, 1.25));
+		A_SpawnParticleEx
+		(
+		"000000",
+		tex[random(0, 7)],
+		style: STYLE_Normal,
+		flags: SPF_RELATIVE,
+		lifetime: random(2, 5),
+		size: 50,
+		xoff: frandom(-radius,radius),
+		yoff: frandom(-radius,radius),
+		zoff: frandom(0,height),
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0
+		);
 		A_SpawnParticleEx
 	    (   
 		 "000000",
@@ -1037,7 +1138,7 @@ Class PM_EAvatarVoidSeeker : Actor
 		 velx: frandom(-2,2),
 		 vely: frandom(-2,2),
 		 velz: frandom(-2,2),
-		 startalphaf: frandom(0.1,0.7),
+		 startalphaf: frandom(0.1,0.3),
 		 fadestepf: -1,
 		 sizestep: frandom(-1,-5),
 		 startroll: random(-180,180),
@@ -1051,7 +1152,11 @@ Class PM_EAvatarVoidSeeker : Actor
 	TNT1 A 0 A_StopSound(20);
 	Stop;
    Death:
-	TNT1 A 0 A_StopSound(20);
+	TNT1 A 0
+	{
+		A_StopSound(20);
+		if (random(0, 1)) SetStateLabel("AltDeath");
+	}
 	TNT1 AAAAAA 0
 		{
 		A_SpawnParticleEx
@@ -1078,5 +1183,34 @@ Class PM_EAvatarVoidSeeker : Actor
 	    );
 		}
       stop;
+   AltDeath:
+	VFOD M 0 A_StartSound("Voidspawn/Death",20);
+	VFOD MIKJKLMLJM 2;
+	TNT1 AAAAAA 0
+		{
+		A_SpawnParticleEx
+	    (   
+		 "000000",
+		 TexMan.CheckForTexture("GNSMK0"),
+		 style: STYLE_Normal,
+		 flags: SPF_ROLL|SPF_RELATIVE,
+		 lifetime: random(30,80),
+		 size: frandom(15,95),
+		 angle: 0,
+		 xoff: frandom(-8,8),
+		 yoff: frandom(-8,8),
+		 zoff: frandom(10,50),
+		 velx: frandom(-3,3),
+		 vely: frandom(-3,3),
+		 velz: frandom(-3,3),
+		 startalphaf: frandom(0.1,0.9),
+		 fadestepf: -1,
+		 sizestep: frandom(1,4.5),
+		 startroll: random(-180,180),
+		 rollvel: frandom(-2,2),
+		 rollacc: 0
+	    );
+		}
+	Stop;
    }
 }

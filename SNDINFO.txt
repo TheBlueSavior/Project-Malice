@@ -1672,7 +1672,7 @@ EntAvaYell3	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell3.ogg"
 EntAvaYell4	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
 EntAvaYell5	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
 EntAvaYell6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
-$random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell6 }
+$random EntAva/Yell { EntAvaYell1 EntAvaYell2 EntAvaYell3 EntAvaYell4 EntAvaYell5 EntAvaYell6 }
 $volume EntAva/Yell 0.7
 $pitchset EntAva/Yell 0.6 1.0
 EntAvaDrag1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag1.ogg"
@@ -1684,6 +1684,24 @@ EntAvaDrag6	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag6.ogg"
 EntAvaDrag7	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag7.ogg"
 EntAvaDrag8	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarDrag8.ogg"
 $random EntAva/Drag { EntAvaDrag1 EntAvaDrag2 EntAvaDrag3 EntAvaDrag4 EntAvaDrag5 EntAvaDrag6 EntAvaDrag7 EntAvaDrag8 }
+
+EntAva/VoidBall "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarBall.ogg"
+$random EntAva/Sing { EntAva/Sing1 EntAva/Sing2 EntAva/Sing3 EntAva/Sing4 }
+EntAva/Sing1 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSing1.ogg"
+EntAva/Sing2 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSing2.ogg"
+EntAva/Sing3 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSing3.ogg"
+EntAva/Sing4 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSing4.ogg"
+$random EntAva/Soul { EntAva/Soul1 EntAva/Soul2 EntAva/Soul3 EntAva/Soul4 EntAva/Soul5 EntAva/Soul6 EntAva/Soul7 EntAva/Soul8 EntAva/Soul9 EntAva/Soul10 }
+EntAva/Soul1 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul1.ogg"
+EntAva/Soul2 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul2.ogg"
+EntAva/Soul3 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul3.ogg"
+EntAva/Soul4 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul4.ogg"
+EntAva/Soul5 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul5.ogg"
+EntAva/Soul6 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul6.ogg"
+EntAva/Soul7 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul7.ogg"
+EntAva/Soul8 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul8.ogg"
+EntAva/Soul9 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul9.ogg"
+EntAva/Soul10 "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarSoul10.ogg"
 
 //Queen
 
