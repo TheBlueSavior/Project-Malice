@@ -16,7 +16,7 @@ Class PM_FallenShotgunner : PMMonsterBase
    DeathSound "FallenSoldiers/Death";
    Obituary "%o's innards were revealed by a Fallen Shotgunner.";
    DropItem "Shotgun";
-   DropItem "Lith_Shell";
+   //DropItem "Lith_Shell";
    Species "Shotgunner";
    Tag "Fallen Shotgunner";
    Bloodtype "PM_NormalBloodBase";

@@ -20,7 +20,7 @@ Class PM_MutatedGunner : PMMonsterBase
 	ActiveSound "MutatedGunner/Active";
 	Tag "Mutated Gunner";
 	Dropitem "Chaingun";
-	DropItem "Lith_ClipBox";
+	//DropItem "Lith_ClipBox";
 	Species "Chaingunner";
 	Bloodtype "PM_NormalBloodBase";
 	Obituary "%o was riddled with holes by a Mutated Gunner.";

@@ -16,7 +16,7 @@ Class PM_DecayedCommando : PMMonsterBase
   Deathsound "Decayed/Death";
   Activesound "Decayed/Active";
   Dropitem "Chaingun";
-  DropItem "Lith_ClipBox";
+  //DropItem "Lith_ClipBox";
   Species "Chaingunner";
   Tag "Decayed Commando";
   Monster;

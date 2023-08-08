@@ -26,7 +26,7 @@ Class PM_DecayedShotgunner : PMMonsterBase
     PainSound "Decayed/Pain";
     DeathSound "Decayed/Death";
     ActiveSound "Decayed/Active";
-	DropItem "Lith_Shell";
+	//DropItem "Lith_Shell";
     DropItem "Shotgun";
 	TeleFogSourceType "PM_PossessedTeleportFog";
 	TeleFogDestType "PM_PossessedTeleportFog";

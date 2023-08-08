@@ -154,7 +154,8 @@ Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 
 Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 {
-	DropItem "PM_Tyrant", 255, 1
+	DropItem "PM_Tyrant", 255, 50
+	DropItem "PM_EntropicAvatar", 255, 1
 }
 
 Actor WolfensteinSS_Spawner : RandomSpawner replaces WolfensteinSS

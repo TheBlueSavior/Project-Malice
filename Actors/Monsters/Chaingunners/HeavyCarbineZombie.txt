@@ -21,7 +21,7 @@ Class PM_HeavyCarbineZombie : PMMonsterBase
   Tag "Heavy Carbine Zombie";
   Obituary "%o was shot to pieces by a Heavy Carbine Zombie.";
   Dropitem "Chaingun";
-  DropItem "Lith_ClipBox";
+  //DropItem "Lith_ClipBox";
   Species "Chaingunner";
   Bloodtype "PM_NormalBloodBase";
   TeleFogSourceType "PM_PossessedTeleportFog";

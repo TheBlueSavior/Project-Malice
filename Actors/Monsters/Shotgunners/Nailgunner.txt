@@ -26,7 +26,7 @@ Class PM_Nailgunner : PMMonsterBase
   DeathSound "Nailgunner/Death";
   ActiveSound "Nailgunner/Active";
   Obituary "%o got spiked by a Nailgunner.";
-  DropItem "Lith_Shell";
+  //DropItem "Lith_Shell";
   DropItem "Shotgun";
   TeleFogSourceType "PM_PossessedTeleportFog";
   TeleFogDestType "PM_PossessedTeleportFog";
