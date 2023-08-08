@@ -48,7 +48,41 @@ class PM_Broken : PMMonsterBase
 			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
 			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-22),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.06, offset: (relOff.X, relOff.Y, 35),baseTime: 1,fadeTime: 0);
 		}
+	
+	static const string TagNames[] =
+	{
+		"AAAAAAAAAAUUUUUUUUUUUGGGGGGGGGGHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!!!!!", "HELP", "HELP ME!!!!!!!!!!", "U*(#&@(*$REU*(QWUJ*(EU!J(@", "!", "@", "#", "$", "???", "?", "%*$()", "@#$(", "$@(#)%*", "^", "*", "??????????????????????", "BR?K?N", "VOID", "THEVOICESTHEVOICESTHEVOICESTHEVOICESTHEVOICES", "NOOOOOOO AAAAAAAAAHHHHHH OH GOD HELP ME",
+		"FORGIVE ME!!!", "WHY?!?!?!", "EWJ*(IRJ@(*!*JU*(!@U*($UJ@*(RUM<*()<*Q*(EMHuX(", "you", "%o?", "PLEASE", "STOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPITSTOPIT", "SUFFERSUFFER", "HE*WFMHUH!MUIEHMICW", "DISOMIUONUIDJ",
+		"DISORDER", "(@_!)$*)!_@*($()*(~!@&%(*@Y*#&%^@*&!#%^T&R*@Y*&Y", "01010011 01000001 01010110 01000101", "01001000 01000101 01001100 01010000", "OHGODWHATDIDIEVEERDOTODESERVETHIS", "GETOUTOFMYHEADGETOUTOFMYHEADGETOUTOFMYHEADGETOUTOFMYHEAD",
+		"GETOUTOFMYFUCKINGHEAD", "noNONonoNoNoNoNOnOnONONONONONONONONONO", "DIEDIEDIE", "I AM BEAUTIFUL", "IT'S ALL YOUR FAULT", "MAKE US WHOLE", "MAKE US W_H_O_L_E", "OH GOD WHY", "WHhYHWYHWYhwyhYWyWHYWHYhWYhwYHywHYWHYhwhyhwyHWYHWYwYHywHYWHYWHYWHYWHY"
+		"KILL ME", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "YOU", "GET OUT!!!!!!!!!!!!!!!", "GETOUTGETOUTGETOUTGETOUT", "OH GOD HELP ME AHHHHHHHH AAAAAAAHHHHHHHHHHHHHHH", "THE SINS HAVE ARRIVED"
+	};
+	
+	static const string TagNames1[] =
+	{
+		"St&RA*nd", "STRANDED", "St&*#ND*UA", "stda_RNA", "run", "STRANDED", "stranded", "Stranded", "ST_RAN_DED", "ST??ND?D", "who are you"
+	};
+	
+	static const string TagNames2[] =
+	{
+		"MR*#INE", "MARINE", "M????E", "Ma0r-RI#N#E", "run", "why are you here"
+	};
+	
+	override void PostBeginPlay()
+	{
+		super.PostBeginPlay();
+		SetTag("Stranded Marine");
+	}
+	
+	override void Tick()
+	{
+		super.tick();
+		if (LOOKINGAT > 1 && LOOKINGAT < 10)
+			if (getAge() % 2) SetTag(TagNames1[random(0, TagNames1.size() - 1)].." "..TagNames2[random(0, TagNames2.size() - 1)]);
 		
+		if (LOOKINGAT >= 10) SetTag(TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]);
+	}
+	
 	States
 	{
 	
