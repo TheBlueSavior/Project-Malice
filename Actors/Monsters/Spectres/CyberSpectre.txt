@@ -1,4 +1,4 @@
-ACTOR PM_CyberSpectre : PMMonsterBase
+ACTOR PM_CyberSpectre : PMUnaffMonsterBase
 {
 	//$Category "PM_Monsters/Spectres"
 	Health 160

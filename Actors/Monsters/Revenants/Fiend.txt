@@ -1,4 +1,4 @@
-Class PM_Fiend : PMMonsterBase
+Class PM_Fiend : PMUnaffMonsterBase
 {
 	void FiendAimLaser(Vector2 off = (0, 10))
 		{

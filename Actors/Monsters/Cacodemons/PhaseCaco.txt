@@ -1,4 +1,4 @@
-Class PM_PhaseCaco : PMMonsterBase
+Class PM_PhaseCaco : PMUnaffMonsterBase
 {
 	Default
 	{

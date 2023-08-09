@@ -1,4 +1,4 @@
-Class PM_HellifiedSoldier : PMMonsterBase
+Class PM_HellifiedSoldier : PMUnaffMonsterBase
 { 
     Default
 	{

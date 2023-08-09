@@ -1,4 +1,4 @@
-Class PM_SlugShotgunner : PMMonsterBase
+Class PM_SlugShotgunner : PMUnaffMonsterBase
 { 
     int user_numbullets;
     int user_numslugs;

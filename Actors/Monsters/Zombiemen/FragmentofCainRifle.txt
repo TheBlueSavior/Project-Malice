@@ -1,4 +1,4 @@
-Class PM_FOCRifle : PMMonsterBase
+Class PM_FOCRifle : PMVoidMonsterBase
 { 
     int cainphase;
 	Default

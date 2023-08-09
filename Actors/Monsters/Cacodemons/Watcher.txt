@@ -1,5 +1,5 @@
 //Watcher
-Class PM_Watcher : PMMonsterBase
+Class PM_Watcher : PMUmbralMonsterBase
 {
 	Default
 	{

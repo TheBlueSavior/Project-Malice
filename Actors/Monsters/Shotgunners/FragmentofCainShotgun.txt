@@ -1,4 +1,4 @@
-Class PM_FOCShotgun : PMMonsterBase
+Class PM_FOCShotgun : PMVoidMonsterBase
 { 
     int cainphase;
 	Default

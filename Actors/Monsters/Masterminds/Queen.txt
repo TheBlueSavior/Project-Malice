@@ -1,4 +1,4 @@
-actor PM_AracnorbQueen
+actor PM_AracnorbQueen : PMUnaffMonsterBase
 {
   //$Category "PM_Monsters/Masterminds"
   //$Title "Aracnorb Queen"

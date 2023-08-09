@@ -1,6 +1,6 @@
 //CREDITS TO DUSTED FOR ATTACK CODE, AND TheDoomLad for the wall fire code!
 
-Class PM_Exile : PMMonsterBase
+Class PM_Exile : PMUnaffMonsterBase
 {
 	Default
 	{

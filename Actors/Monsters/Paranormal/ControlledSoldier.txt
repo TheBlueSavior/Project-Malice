@@ -1,4 +1,4 @@
-Actor PM_ControlledSoldier
+Actor PM_ControlledSoldier : PMVoidMonsterBase
 {
 	//$Category "PM_Monsters/Paranormal"
     Health 200

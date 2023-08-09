@@ -2,6 +2,15 @@ class PMMonsterBase : Actor abstract
 {
     int pm_attackloop;
 	int pm_projangle;
+    protected meta Name HealthMultCVar;
+    property HealthMultCVar: HealthMultCVar;
+
+    override void PostBeginPlay()
+    {
+	 super.PostBeginPlay();
+	 Health = StartHealth = int(ceil(Default.Health * 
+	 CVar.GetCVar(HealthMultCVar).GetFloat()));
+    }
     
 	enum BeamAttackFlags
 	{
@@ -342,6 +351,7 @@ Class PMFodderMonsterBase : PMMonsterBase
  Default
  {
  -COUNTKILL
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_fodder';
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_SmallDemonicTeleportFog";
  }
@@ -357,10 +367,52 @@ Class PMFodderMonsterBase : PMMonsterBase
  }
 }
 
+Class PMUnaffMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_unaffiliated';
+ }
+}
+
+//TIERS OF SIN
+Class PMLustMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_lust';
+  TeleFogDestType "PM_LustTeleportFog";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ }
+}
+
+Class PMGluttonyMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_gluttony';
+  TeleFogDestType "PM_GluttonyTeleportFog";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ }
+}
+
+Class PMGreedMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_greed';
+ }
+}
+
 Class PMWrathMonsterBase : PMMonsterBase
 {
   int pm_irecount;
   bool ire;
+  
+  Default
+  {
+   PMMonsterBase.HealthMultCVar 'pm_healthfactor_wrath';
+  }
 
  override void PM_Gib()
  {
@@ -379,20 +431,78 @@ Class PMWrathMonsterBase : PMMonsterBase
    }
 }
 
-Class PMLustMonsterBase : PMMonsterBase
+Class PMSlothMonsterBase : PMMonsterBase
 {
  Default
  {
-  TeleFogDestType "PM_LustTeleportFog";
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_sloth';
  }
 }
 
-Class PMGluttonyMonsterBase : PMMonsterBase
+Class PMEnvyMonsterBase : PMMonsterBase
 {
  Default
  {
-  TeleFogDestType "PM_GluttonyTeleportFog";
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_envy';
+ }
+}
+
+Class PMPrideMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_pride';
+ }
+}
+
+//TIERS OF THE APOCALYPSE
+Class PMPestilenceMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_pestilence';
+ }
+}
+
+Class PMFamineMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_famine';
+ }
+}
+
+Class PMWarMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_war';
+ }
+}
+
+Class PMDeathMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_death';
+ }
+}
+
+//ENDGAME
+Class PMUmbralMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_umbral';
+ }
+}
+
+Class PMVoidMonsterBase : PMMonsterBase
+{
+ Default
+ {
+  -COUNTKILL
+  +NOCLIP
+  PMMonsterBase.HealthMultCVar 'pm_healthfactor_void';
  }
 }

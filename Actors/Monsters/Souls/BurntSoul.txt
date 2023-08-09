@@ -1,4 +1,4 @@
-Actor PM_BurntSoul : PMMonsterBase
+Actor PM_BurntSoul : PMUnaffMonsterBase
 {
   //$Category "PM_Monsters/Souls"
   Health 80

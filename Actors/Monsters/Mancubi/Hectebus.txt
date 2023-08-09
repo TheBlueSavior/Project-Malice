@@ -1,4 +1,4 @@
-Class PM_Hectebus : PMMonsterBase
+Class PM_Hectebus : PMUnaffMonsterBase
  {
    Default
    {

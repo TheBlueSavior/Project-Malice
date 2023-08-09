@@ -1,4 +1,4 @@
-Actor PM_BloodSkull : PMMonsterBase
+Actor PM_BloodSkull : PMGluttonyMonsterBase
 {
 //$Category "PM_Monsters/Souls"
 Health 100

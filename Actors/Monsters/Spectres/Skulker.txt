@@ -1,4 +1,4 @@
-Actor PM_Skulker
+Actor PM_Skulker : PMVoidMonsterBase
 {
 	//$Category "PM_Monsters/Spectres"
     Health 650

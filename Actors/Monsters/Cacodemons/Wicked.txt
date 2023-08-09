@@ -1,4 +1,4 @@
-Class PM_Wicked : PMMonsterBase
+Class PM_Wicked : PMEnvyMonsterBase
 {
 	Default
 	{

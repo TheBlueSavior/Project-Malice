@@ -1,1 +1,20 @@
 Server Float projectmalice_fodderdivider = 0.25;
+
+//HP Slider
+Server Float pm_healthfactor_fodder = 1;
+Server Float pm_healthfactor_unaffiliated = 1;
+Server Float pm_healthfactor_lust = 1;
+Server Float pm_healthfactor_gluttony = 1;
+Server Float pm_healthfactor_greed = 1;
+Server Float pm_healthfactor_wrath = 1;
+Server Float pm_healthfactor_sloth = 1;
+Server Float pm_healthfactor_envy = 1;
+Server Float pm_healthfactor_pride = 1;
+
+Server Float pm_healthfactor_pestilence = 1;
+Server Float pm_healthfactor_famine = 1;
+Server Float pm_healthfactor_war = 1;
+Server Float pm_healthfactor_death = 1;
+
+Server Float pm_healthfactor_umbral = 1;
+Server Float pm_healthfactor_void = 1;

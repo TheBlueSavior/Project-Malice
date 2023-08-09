@@ -1,4 +1,4 @@
-Class PM_Host : PMMonsterBase
+Class PM_Host : PMPestilenceMonsterBase
 {
     Default
 	{

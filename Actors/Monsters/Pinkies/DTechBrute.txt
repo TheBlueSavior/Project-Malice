@@ -1,4 +1,4 @@
-Class PM_DemonTechBrute : PMMonsterBase
+Class PM_DemonTechBrute : PMWarMonsterBase
 { 
     int user_numbullets;
 	Default

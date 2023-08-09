@@ -1,4 +1,4 @@
-Class PM_EntropicAvatar : PMMonsterBase
+Class PM_EntropicAvatar : PMVoidMonsterBase
 {
 
 	int MeleeSwings;

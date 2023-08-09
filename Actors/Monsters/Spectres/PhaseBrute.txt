@@ -1,4 +1,4 @@
-ACTOR PM_PhaseBrute : PMMonsterBase
+ACTOR PM_PhaseBrute : PMUnaffMonsterBase
 {
 	//$Category "PM_Monsters/Spectres"
 	Health 150

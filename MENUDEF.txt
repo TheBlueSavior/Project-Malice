@@ -13,4 +13,53 @@ OptionMenu "projectmalice_options"
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
 	StaticText " "
+	StaticText " "
+	StaticText "Health Multipliers (WIP)", white
+	StaticText "Change health multipliers of each tier-specific demon by the numbers below."
+	StaticText " "
+	StaticText "Fodder - Extremely common and usually lacks ranged attacks."
+	Slider "Health Multiplier:", "pm_healthfactor_fodder", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Unaffiliated - Common and mostly acts the same as their vanilla counterparts."
+	Slider "Health Multiplier:", "pm_healthfactor_unaffiliated", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Lust - Comes in pink/purple. Enemies fly, are fast, and love phasing attacks.", purple
+	Slider "Health Multiplier:", "pm_healthfactor_lust", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Gluttony - Comes in fleshy red. Usually made out of blood or meat. Attacks using gore or bile.", darkred
+	Slider "Health Multiplier:", "pm_healthfactor_gluttony", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Greed (WIP) - Comes in gold yellow. Seems to be made out of stone until you break open the outer layer.", gold
+	Slider "Health Multiplier:", "pm_healthfactor_greed", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Wrath - Comes in fiery orange. Attacks are usually slow until you leave them to their own devices.", orange
+	Slider "Health Multiplier:", "pm_healthfactor_wrath", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Sloth (WIP) - Comes in teal. Attacks slow or generally restrict player movement.", cyan
+	Slider "Health Multiplier:", "pm_healthfactor_sloth", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Envy - Comes in green. Has the ability to inherit each attack of every sin beneath it.", darkgreen
+	Slider "Health Multiplier:", "pm_healthfactor_envy", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Pride - Comes in royal red. Attacks are powerful, but their biggest flaw is their ego.", red
+	Slider "Health Multiplier:", "pm_healthfactor_pride", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Pestilence - Comes in vomit green. Attacks with decay and rot. Dying enemies may leave behind 'parting gifts'.", darkbrown
+	Slider "Health Multiplier:", "pm_healthfactor_pestilence", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Famine (WIP) - Comes in pale gray. Very quick to turn on each other, letting them infight isn't recommended.", gray
+	Slider "Health Multiplier:", "pm_healthfactor_famine", 0, 10, 1, 2
+	StaticText " "
+	StaticText "War - Comes in pure metal. Gunmetal, hellfire and poison dominates the battlefield.", darkgray
+	Slider "Health Multiplier:", "pm_healthfactor_war", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Death - Comes in deep blue. Can swap between existential planes to avoid your attacks.", sapphire
+	Slider "Health Multiplier:", "pm_healthfactor_death", 0, 10, 1, 2
+	StaticText " "
+	StaticText "Umbral - Comes in pure black like its sister tier. Attacks using lightning and ice. Highly dangerous.", darkgray
+	Slider "Health Multiplier:", "pm_healthfactor_umbral", 0, 10, 1, 2
+	StaticText " "
+	StaticText "VOID - Comes in pure black like its sister tier. Leans into pure horror. They can't die-- only be warded off.", darkgray
+	Slider "Health Multiplier:", "pm_healthfactor_void", 0, 10, 1, 2
+	StaticText " "
 }

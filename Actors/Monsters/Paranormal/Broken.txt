@@ -1,4 +1,4 @@
-class PM_Broken : PMMonsterBase
+class PM_Broken : PMVoidMonsterBase
 {
 
 	int screems,WaitTillSHoot,Glide,Shooting,NADES,LOOKINGAT,vfgcharge;

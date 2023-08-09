@@ -1,4 +1,4 @@
-Class PM_VoidFloater : PMMonsterBase
+Class PM_VoidFloater : PMVoidMonsterBase
 {
 	Default
 	{

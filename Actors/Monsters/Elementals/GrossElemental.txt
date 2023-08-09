@@ -1,4 +1,4 @@
-ACTOR PM_GrossElemental : PMMonsterBase
+ACTOR PM_GrossElemental : PMPestilenceMonsterBase
 {
   //$Category "PM_Monsters/Elementals"
   Health 500

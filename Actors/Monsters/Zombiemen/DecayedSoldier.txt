@@ -1,4 +1,4 @@
-Class PM_DecayedSoldier : PMMonsterBase
+Class PM_DecayedSoldier : PMPestilenceMonsterBase
 { 
 	int user_numbullets;
 	Default

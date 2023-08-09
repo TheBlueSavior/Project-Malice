@@ -1,4 +1,4 @@
-Class PM_Brute : PMMonsterBase
+Class PM_Brute : PMUnaffMonsterBase
 {
     Default
 	{

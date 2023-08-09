@@ -1,4 +1,4 @@
-Class PM_Abhorrent : PMMonsterBase
+Class PM_Abhorrent : PMDeathMonsterBase
 {
  int deathwither;
  Default

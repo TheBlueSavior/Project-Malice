@@ -1,4 +1,4 @@
-Class PM_Zephyr : PMMonsterBase
+Class PM_Zephyr : PMUnaffMonsterBase
 {
   Default
   {

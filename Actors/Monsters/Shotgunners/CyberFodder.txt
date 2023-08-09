@@ -1,4 +1,4 @@
-Class PM_CyberFodder : PMMonsterBase
+Class PM_CyberFodder : PMWarMonsterBase
 {
   Default
   {

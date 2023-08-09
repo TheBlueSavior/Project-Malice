@@ -1,4 +1,4 @@
-Class PM_HellPriest : PMMonsterBase
+Class PM_HellPriest : PMUmbralMonsterBase
 {
     Default
 	{

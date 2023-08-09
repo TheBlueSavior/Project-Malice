@@ -1,4 +1,4 @@
-Class PM_Fleshspawn : PMMonsterBase
+Class PM_Fleshspawn : PMFamineMonsterBase
 {
   Default
   {

@@ -1,4 +1,4 @@
-Class PM_Depraved : PMMonsterBase
+Class PM_Depraved : PMUmbralMonsterBase
 {
     Default
     {

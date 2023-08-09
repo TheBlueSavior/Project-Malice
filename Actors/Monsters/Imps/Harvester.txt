@@ -1,4 +1,4 @@
-Class PM_Harvester : PMMonsterBase
+Class PM_Harvester : PMDeathMonsterBase
 {
   Default
   {

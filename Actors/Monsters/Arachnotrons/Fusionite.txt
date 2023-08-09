@@ -1,4 +1,4 @@
-Class PM_Fusionite : PMMonsterBase
+Class PM_Fusionite : PMUnaffMonsterBase
 {
 	int user_numbullets;
 	Default

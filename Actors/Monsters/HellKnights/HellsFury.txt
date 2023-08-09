@@ -1,4 +1,4 @@
-Class PM_HellsFury : PMMonsterBase
+Class PM_HellsFury : PMDeathMonsterBase
 {
     int deathwither;
     Default

@@ -1,4 +1,4 @@
-Class PM_Devil : PMMonsterBase
+Class PM_Devil : PMUnaffMonsterBase
 {
   Default
   {

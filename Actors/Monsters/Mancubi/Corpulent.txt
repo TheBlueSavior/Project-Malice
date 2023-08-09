@@ -1,4 +1,4 @@
-Class PM_Corpulent : PMMonsterBase
+Class PM_Corpulent : PMUnaffMonsterBase
  {
   Default
   {

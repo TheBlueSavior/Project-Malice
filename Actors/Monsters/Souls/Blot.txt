@@ -51,7 +51,7 @@ Default
   }
 }
 
-class PM_Blot : PMMonsterBase
+class PM_Blot : PMUmbralMonsterBase
 {
 Default
 {

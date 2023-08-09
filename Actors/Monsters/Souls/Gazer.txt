@@ -1,4 +1,4 @@
-Class PM_Gazer : PMMonsterBase
+Class PM_Gazer : PMPrideMonsterBase
 {
   bool gazer;
   

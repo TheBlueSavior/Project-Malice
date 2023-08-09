@@ -1,4 +1,4 @@
-Class PM_BloodStalker : PMMonsterBase
+Class PM_BloodStalker : PMUmbralMonsterBase
 {
     Default
 	{

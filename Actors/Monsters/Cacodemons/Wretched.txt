@@ -1,4 +1,4 @@
-Class PM_Wretched : PMMonsterBase
+Class PM_Wretched : PMUnaffMonsterBase
 {
 	Default
 	{

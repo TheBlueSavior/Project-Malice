@@ -1,5 +1,5 @@
 
-Class PM_HeresyLord : PMMonsterBase
+Class PM_HeresyLord : PMUnaffMonsterBase
 {
     Default
 	{

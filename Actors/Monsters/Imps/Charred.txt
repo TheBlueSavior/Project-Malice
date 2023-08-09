@@ -1,4 +1,4 @@
-Class PM_Charred : PMMonsterBase
+Class PM_Charred : PMUnaffMonsterBase
 {
   Default
   {

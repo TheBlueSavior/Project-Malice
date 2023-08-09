@@ -1,4 +1,4 @@
-Class PM_MutatedGunner : PMMonsterBase
+Class PM_MutatedGunner : PMGluttonyMonsterBase
 {
     int user_numbullets;
 	Default

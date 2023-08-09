@@ -1,4 +1,4 @@
-Class PM_FallenShotgunner : PMMonsterBase
+Class PM_FallenShotgunner : PMUnaffMonsterBase
 {
    int user_numbullets;
    Default

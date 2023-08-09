@@ -1,4 +1,4 @@
-Class PM_Vore : PMMonsterBase
+Class PM_Vore : PMEnvyMonsterBase
 {
   Default
   {

@@ -1,4 +1,4 @@
-Class PM_NetherImp : PMMonsterBase
+Class PM_NetherImp : PMUmbralMonsterBase
 {
   Default
   {

@@ -1,4 +1,4 @@
-Class PM_FShotgunner : PMMonsterBase
+Class PM_FShotgunner : PMUnaffMonsterBase
 {
   int user_numbullets;
   Default

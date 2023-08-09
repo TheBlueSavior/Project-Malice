@@ -1,4 +1,4 @@
-Class PM_Hellion : PMMonsterBase
+Class PM_Hellion : PMUnaffMonsterBase
 {
   Default
   {

@@ -1,4 +1,4 @@
-Class PM_Cadaver : PMMonsterBase
+Class PM_Cadaver : PMUnaffMonsterBase
 {
        void CadAimLaser(Vector2 off = (0, 10))
 		{

@@ -1,4 +1,4 @@
-Class PM_HeavyCarbineZombie : PMMonsterBase
+Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
 {
   int user_numbullets;
   Default

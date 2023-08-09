@@ -1,4 +1,4 @@
-Class PM_Draugr : PMMonsterBase
+Class PM_Draugr : PMPrideMonsterBase
 {
 	int buffgrenade;
     Default

@@ -1,4 +1,4 @@
-Class PM_Tyrant : PMMonsterBase
+Class PM_Tyrant : PMUnaffMonsterBase
 {
   static const int SweepAngles[] = { -30, -25, -20, -15, -10, -5, -3, 0, 3, 5, 10, 15, 20, 25, 30 };
   static const int SweepAngles2[] = { 30, 25, 20, 15, 10, 5, 3, 0, -3, -5, -10, -15, -20, -25, -30 };

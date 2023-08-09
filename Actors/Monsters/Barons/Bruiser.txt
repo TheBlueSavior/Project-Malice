@@ -1,5 +1,5 @@
 
-Class PM_Bruiser : PMMonsterBase
+Class PM_Bruiser : PMUnaffMonsterBase
 {
   int user_leapstrength;
   Default

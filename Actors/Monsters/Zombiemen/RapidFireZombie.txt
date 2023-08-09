@@ -1,4 +1,4 @@
-Class PM_RFZombie: PMMonsterBase
+Class PM_RFZombie: PMUnaffMonsterBase
 { 
 	void RFAimLaser(Vector2 off = (0, 5))
 		{

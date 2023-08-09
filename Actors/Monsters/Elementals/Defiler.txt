@@ -1,4 +1,4 @@
-Class PM_Defiler : PMMonsterBase
+Class PM_Defiler : PMUnaffMonsterBase
 {
     Default
 	{

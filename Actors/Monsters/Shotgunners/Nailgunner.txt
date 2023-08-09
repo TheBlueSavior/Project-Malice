@@ -2,7 +2,7 @@
 // Pulse Nailgun Zombie
 // Decorate by: zrrion the insect
 //===========================================================================
-Class PM_Nailgunner : PMMonsterBase
+Class PM_Nailgunner : PMUnaffMonsterBase
 {
   int user_numbullets;
   Default

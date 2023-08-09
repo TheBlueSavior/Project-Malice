@@ -1,4 +1,4 @@
-Class PM_Infested : PMMonsterBase
+Class PM_Infested : PMPestilenceMonsterBase
 {
   Default
   {

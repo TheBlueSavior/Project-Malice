@@ -1,4 +1,4 @@
-Class PM_Blasphemer : PMMonsterBase
+Class PM_Blasphemer : PMPrideMonsterBase
 {
 	Default
 	{

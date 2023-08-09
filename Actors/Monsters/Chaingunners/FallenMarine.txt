@@ -1,5 +1,5 @@
 
-Class PM_FallenMarine : PMMonsterBase
+Class PM_FallenMarine : PMUnaffMonsterBase
 {
   int user_numbullets;
   Default

@@ -1,4 +1,4 @@
-Class PM_ZombieMarine : PMMonsterBase
+Class PM_ZombieMarine : PMUnaffMonsterBase
 { 
     int user_numbullets;
 	Default
