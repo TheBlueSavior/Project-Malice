@@ -1,4 +1,4 @@
-Class PM_Nightmare : PMMonsterBase
+Class PM_Nightmare : PMUnaffMonsterBase
 {
   Default
   {

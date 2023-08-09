@@ -4,12 +4,15 @@ class PMMonsterBase : Actor abstract
 	int pm_projangle;
     protected meta Name HealthMultCVar;
     property HealthMultCVar: HealthMultCVar;
+	protected meta Name HealthALLMultCVar;
+	property HealthALLMultCVar: HealthALLMultCVar;
 
     override void PostBeginPlay()
     {
 	 super.PostBeginPlay();
-	 Health = StartHealth = int(ceil(Default.Health * 
-	 CVar.GetCVar(HealthMultCVar).GetFloat()));
+	 if(HealthMultCVar && HealthALLMultCVar) Health = StartHealth = int(ceil(Default.Health * 
+	 CVar.GetCVar(HealthMultCVar).GetFloat() * CVar.GetCVar(HealthALLMultCVar).GetFloat()));
+	 
     }
     
 	enum BeamAttackFlags
@@ -186,6 +189,7 @@ class PMMonsterBase : Actor abstract
 		DamageFactor "PM_BulletHellDamage", 0;
 	    TeleFogDestType "PM_DemonicTeleportFog";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		PMMonsterBase.HealthALLMultCVar 'pm_healthfactor';
 	}
 
 	void PM_LeadTarget(double projSpeed)

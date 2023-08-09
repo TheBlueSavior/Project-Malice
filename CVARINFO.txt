@@ -1,6 +1,7 @@
 Server Float projectmalice_fodderdivider = 0.25;
 
 //HP Slider
+Server Float pm_healthfactor = 1;
 Server Float pm_healthfactor_fodder = 1;
 Server Float pm_healthfactor_unaffiliated = 1;
 Server Float pm_healthfactor_lust = 1;

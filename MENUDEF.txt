@@ -13,8 +13,12 @@ OptionMenu "projectmalice_options"
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
 	StaticText " "
+	StaticText "Health Multiplier"
+	StaticText "Change health multipliers of every enemy. Save the hassle."
+	Slider "Health Multiplier:", "pm_healthfactor", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Health Multipliers (WIP)", white
+	StaticText " "
+	StaticText "Specific Health Multipliers (WIP)", white
 	StaticText "Change health multipliers of each tier-specific demon by the numbers below."
 	StaticText " "
 	StaticText "Fodder - Extremely common and usually lacks ranged attacks."
