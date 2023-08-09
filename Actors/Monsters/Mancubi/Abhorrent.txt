@@ -33,6 +33,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
 	 deathwither = random(35,75);
 	 tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
 	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 Super.PostBeginPlay();
 	}
 	
 	TextureID tex[2];

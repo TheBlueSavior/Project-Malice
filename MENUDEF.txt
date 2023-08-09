@@ -18,56 +18,57 @@ OptionMenu "projectmalice_options"
 	StaticText " "
 	StaticText "Health Multiplier"
 	StaticText "Change health multipliers of every enemy. Save the hassle."
-	Slider "Health Multiplier:", "pm_healthfactor", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
+	//Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
 	StaticText " "
 	StaticText " "
-	StaticText "Specific Health Multipliers (WIP)", white
+	StaticText "Specific Health Multipliers", white
 	StaticText "Change health multipliers of each tier-specific demon by the numbers below."
 	StaticText " "
 	StaticText "Fodder"
-	Slider "Health Multiplier:", "pm_healthfactor_fodder", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_fodder", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Unaffiliated"
-	Slider "Health Multiplier:", "pm_healthfactor_unaffiliated", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_unaffiliated", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Lust", purple
-	Slider "Health Multiplier:", "pm_healthfactor_lust", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_lust", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Gluttony", darkred
-	Slider "Health Multiplier:", "pm_healthfactor_gluttony", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_gluttony", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Greed (WIP)", gold
-	Slider "Health Multiplier:", "pm_healthfactor_greed", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_greed", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Wrath", orange
-	Slider "Health Multiplier:", "pm_healthfactor_wrath", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_wrath", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Sloth (WIP)", cyan
-	Slider "Health Multiplier:", "pm_healthfactor_sloth", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_sloth", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Envy", darkgreen
-	Slider "Health Multiplier:", "pm_healthfactor_envy", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_envy", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Pride", red
-	Slider "Health Multiplier:", "pm_healthfactor_pride", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_pride", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Pestilence", darkbrown
-	Slider "Health Multiplier:", "pm_healthfactor_pestilence", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_pestilence", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Famine (WIP)", gray
-	Slider "Health Multiplier:", "pm_healthfactor_famine", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_famine", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "War", darkgray
-	Slider "Health Multiplier:", "pm_healthfactor_war", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_war", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Death", sapphire
-	Slider "Health Multiplier:", "pm_healthfactor_death", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_death", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Umbral", darkgray
-	Slider "Health Multiplier:", "pm_healthfactor_umbral", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_umbral", 1, 10, 0.05, 2
 	StaticText " "
 	StaticText "Void", darkgray
-	Slider "Health Multiplier:", "pm_healthfactor_void", 0, 10, 1, 2
+	Slider "Health Multiplier:", "pm_healthfactor_void", 1, 10, 0.05, 2
 	StaticText " "
 }
 
@@ -98,7 +99,7 @@ OptionMenu "projectmalice_sincodex"
 	StaticText "and love phasing attacks. They usually have disturbing sounds."
 	StaticText " "
 	StaticText "Gluttony", darkred
-	StaticText "Comes in fleshy red. Some are made out of blood."
+	StaticText "Comes in fleshy red. Some enemies of this tier are made out of blood."
 	StaticText "Attacks using gore or bile."
 	StaticText " "
 	StaticText "Greed (WIP)", gold
@@ -108,7 +109,8 @@ OptionMenu "projectmalice_sincodex"
 	StaticText " "
 	StaticText "Wrath", orange
 	StaticText "Comes in fiery orange. Attacks are usually as potent as Unaffiliated"
-	StaticText "until you leave them to their own devices, in which case they'll turn enraged."
+	StaticText "until you leave them to their own devices, in which case they'll turn enraged,"
+	StaticText "increasing their speed and damage."
 	StaticText " "
 	StaticText "Sloth (WIP)", cyan
 	StaticText "Comes in teal. Attacks slow or generally restrict player movement."
@@ -129,7 +131,7 @@ OptionMenu "projectmalice_sincodex"
 	StaticText "Tiers of the Apocalypse"
 	StaticText " "
 	StaticText "Pestilence", brown
-	StaticText "Comes in vomit green or decaying brown. Attacks with decay and rot."
+	StaticText "Comes in vomit green or fecal brown. Attacks with decay and rot."
 	StaticText "Dying enemies may leave behind 'parting gifts'. Plague and insect themed."
 	StaticText " "
 	StaticText "Famine (WIP)", gray
@@ -137,7 +139,7 @@ OptionMenu "projectmalice_sincodex"
 	StaticText "letting them infight isn't recommended. More ravenous than Gluttony."
 	StaticText " "
 	StaticText "War", darkgray
-	StaticText "Comes in pure metal. The purest form of human conquest."
+	StaticText "Comes in forged metal. The rawest form of human conquest."
 	StaticText "Gunmetal, hellfire and poison dominates the battlefield."
 	StaticText " "
 	StaticText "Death", sapphire
@@ -150,11 +152,11 @@ OptionMenu "projectmalice_sincodex"
 	StaticText "Endgame Tiers"
 	StaticText " "
 	StaticText "Umbral", darkgray
-	StaticText "Comes in pure black like its sister tier. Attacks using lightning and ice."
-	StaticText "Attacks are extremely dangerous."
+	StaticText "Comes in pure black like its sibling tier. Most enemies of this tier"
+	StaticText "Attacks using lightning and ice. Compared to Void, they're all still affected by all things physical."
 	StaticText " "
 	StaticText "Void", darkgray
-	StaticText "Comes in pure black like its sister tier. They can't die-- only be warded off."
+	StaticText "Comes in pure black like its sibling tier. They can't die-- only be warded off."
 	StaticText "All physical barriers mean nothing in the face of entropic nightmares."
 	StaticText "Beware.", red
 }

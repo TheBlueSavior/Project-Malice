@@ -34,12 +34,15 @@ Class PM_HellsFury : PMDeathMonsterBase
 	{
 	 deathwither = random(20,35);
 	 tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 Super.PostBeginPlay();
 	}
 	
-	TextureID tex[1];
+	TextureID tex[2];
 
     void PM_HellsFuryWither()
 	{
+	 for(int i=random(1,3);i>0;i--)
 	 A_SpawnParticleEx
 	 (
 	 "545454",
@@ -59,6 +62,26 @@ Class PM_HellsFury : PMDeathMonsterBase
 	 sizestep: -0.4,
 	 startroll: random(-180,180),
 	 rollvel: random(0,4)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[1],
+	 style: STYLE_None,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(50,140),
+	 size: frandom(30,80),
+	 xoff: frandom(-40,40),
+	 yoff: frandom(-40,40),
+	 zoff: 0,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0,2),
+	 startalphaf: frandom(0.2,0.95),
+	 fadestepf: -1,
+	 sizestep: frandom(-0.8,0.8),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
 	 );
 	}
   States
@@ -438,6 +461,16 @@ Class HellsFurySkull : Actor
     +DoomBounce
     +Missile
 	}
+
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 Super.PostBeginPlay();
+	}
+	
+	TextureID tex[2];
+	
   States
   {
   Spawn:
@@ -447,8 +480,46 @@ Class HellsFurySkull : Actor
 	{
 	 if(timer < 0)
 	 SetStateLabel("Death");
-	 if(random(1,5) == 1)
-	 A_SpawnItemEx("HuskSmoke",xofs:random(-5,5),yofs:random(-5,5),zofs:random(1,2),zvel:frandom(0.2,2));
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[1],
+	 style: STYLE_None,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(35,70),
+	 size: frandom(28,56),
+	 xoff: frandom(-10,10),
+	 yoff: frandom(-10,10),
+	 zoff: 0,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0,2),
+	 startalphaf: frandom(0.2,0.95),
+	 fadestepf: -1,
+	 sizestep: frandom(-0.8,0.8),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[0],
+	 style: STYLE_Normal,
+	 flags: SPF_RELATIVE|SPF_ROLL,
+	 lifetime: random(20,120),
+	 size: frandom(1,15),
+	 xoff: random(-10,10),
+	 yoff: random(-15,15),
+	 zoff: 5,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(1,4),
+	 startalphaf: 1.0,
+	 fadestepf: -0.3,
+	 sizestep: -0.4,
+	 startroll: random(-180,180),
+	 rollvel: random(0,4)
+	 );
 	 timer--;
 	}
     Loop;
@@ -456,7 +527,46 @@ Class HellsFurySkull : Actor
     FSKL L 1
 	{
 	 A_FadeOut(0.015);
-	 A_SpawnItemEx("HuskSmoke",xofs:random(-5,5),yofs:random(-5,5),zofs:random(1,2),zvel:frandom(0.2,2));
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[1],
+	 style: STYLE_None,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(35,70),
+	 size: frandom(28,56),
+	 xoff: frandom(-10,10),
+	 yoff: frandom(-10,10),
+	 zoff: 0,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0,2),
+	 startalphaf: frandom(0.2,0.95),
+	 fadestepf: -1,
+	 sizestep: frandom(-0.8,0.8),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[0],
+	 style: STYLE_Normal,
+	 flags: SPF_RELATIVE|SPF_ROLL,
+	 lifetime: random(20,120),
+	 size: frandom(1,15),
+	 xoff: random(-10,10),
+	 yoff: random(-15,15),
+	 zoff: 5,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(1,4),
+	 startalphaf: 1.0,
+	 fadestepf: -0.3,
+	 sizestep: -0.4,
+	 startroll: random(-180,180),
+	 rollvel: random(0,4)
+	 );
 	}
     Loop;
   }
