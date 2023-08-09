@@ -9,6 +9,9 @@ AddOptionMenu "OptionsMenu"
 OptionMenu "projectmalice_options"
 {
 	Title "Project Malice Options"
+	StaticText ""
+	Submenu "Sin Codex (Read first!)", "projectmalice_sincodex"
+	StaticText ""
 	StaticText "Project Malice Options", white
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
@@ -21,49 +24,137 @@ OptionMenu "projectmalice_options"
 	StaticText "Specific Health Multipliers (WIP)", white
 	StaticText "Change health multipliers of each tier-specific demon by the numbers below."
 	StaticText " "
-	StaticText "Fodder - Extremely common and usually lacks ranged attacks."
+	StaticText "Fodder"
 	Slider "Health Multiplier:", "pm_healthfactor_fodder", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Unaffiliated - Common and mostly acts the same as their vanilla counterparts."
+	StaticText "Unaffiliated"
 	Slider "Health Multiplier:", "pm_healthfactor_unaffiliated", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Lust - Comes in pink/purple. Enemies fly, are fast, and love phasing attacks.", purple
+	StaticText "Lust", purple
 	Slider "Health Multiplier:", "pm_healthfactor_lust", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Gluttony - Comes in fleshy red. Usually made out of blood or meat. Attacks using gore or bile.", darkred
+	StaticText "Gluttony", darkred
 	Slider "Health Multiplier:", "pm_healthfactor_gluttony", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Greed (WIP) - Comes in gold yellow. Seems to be made out of stone until you break open the outer layer.", gold
+	StaticText "Greed (WIP)", gold
 	Slider "Health Multiplier:", "pm_healthfactor_greed", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Wrath - Comes in fiery orange. Attacks are usually slow until you leave them to their own devices.", orange
+	StaticText "Wrath", orange
 	Slider "Health Multiplier:", "pm_healthfactor_wrath", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Sloth (WIP) - Comes in teal. Attacks slow or generally restrict player movement.", cyan
+	StaticText "Sloth (WIP)", cyan
 	Slider "Health Multiplier:", "pm_healthfactor_sloth", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Envy - Comes in green. Has the ability to inherit each attack of every sin beneath it.", darkgreen
+	StaticText "Envy", darkgreen
 	Slider "Health Multiplier:", "pm_healthfactor_envy", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Pride - Comes in royal red. Attacks are powerful, but their biggest flaw is their ego.", red
+	StaticText "Pride", red
 	Slider "Health Multiplier:", "pm_healthfactor_pride", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Pestilence - Comes in vomit green. Attacks with decay and rot. Dying enemies may leave behind 'parting gifts'.", darkbrown
+	StaticText "Pestilence", darkbrown
 	Slider "Health Multiplier:", "pm_healthfactor_pestilence", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Famine (WIP) - Comes in pale gray. Very quick to turn on each other, letting them infight isn't recommended.", gray
+	StaticText "Famine (WIP)", gray
 	Slider "Health Multiplier:", "pm_healthfactor_famine", 0, 10, 1, 2
 	StaticText " "
-	StaticText "War - Comes in pure metal. Gunmetal, hellfire and poison dominates the battlefield.", darkgray
+	StaticText "War", darkgray
 	Slider "Health Multiplier:", "pm_healthfactor_war", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Death - Comes in deep blue. Can swap between existential planes to avoid your attacks.", sapphire
+	StaticText "Death", sapphire
 	Slider "Health Multiplier:", "pm_healthfactor_death", 0, 10, 1, 2
 	StaticText " "
-	StaticText "Umbral - Comes in pure black like its sister tier. Attacks using lightning and ice. Highly dangerous.", darkgray
+	StaticText "Umbral", darkgray
 	Slider "Health Multiplier:", "pm_healthfactor_umbral", 0, 10, 1, 2
 	StaticText " "
-	StaticText "VOID - Comes in pure black like its sister tier. Leans into pure horror. They can't die-- only be warded off.", darkgray
+	StaticText "Void", darkgray
 	Slider "Health Multiplier:", "pm_healthfactor_void", 0, 10, 1, 2
 	StaticText " "
+}
+
+OptionMenu "projectmalice_sincodex"
+{
+    Title "Sin Codex"
+	StaticText " "
+	StaticText "This menu will list down all the tiers in Project Malice"
+	StaticText "that you will encounter. Keep in mind all of these tiers are"
+	StaticText "unfinished as of right now, and details may change as the mod progresses."
+	StaticText " "
+	StaticText " "
+	StaticText "Fodder"
+	StaticText "Extremely common and usually lacks ranged attacks. They usually"
+	StaticText "spawn around already placed enemies within the map."
+	StaticText " "
+	StaticText "Unaffiliated"
+	StaticText "Common and mostly acts the same as their vanilla counterparts."
+	StaticText "They're usually the darker take on the typical vanilla Doom enemy,"
+	StaticText "so their behavior is mostly the same."
+	StaticText " "
+	StaticText " "
+	StaticText " "
+	StaticText "Tiers of Sin"
+	StaticText " "
+	StaticText "Lust", purple
+	StaticText "Comes in pink/purple. Enemies of this tier fly, are fast," 
+	StaticText "and love phasing attacks. They usually have disturbing sounds."
+	StaticText " "
+	StaticText "Gluttony", darkred
+	StaticText "Comes in fleshy red. Some are made out of blood."
+	StaticText "Attacks using gore or bile."
+	StaticText " "
+	StaticText "Greed (WIP)", gold
+	StaticText "Comes in gold yellow. Seems to be made out of stone until you" 
+	StaticText "break open the outer layer. None of the enemies belong to the sin"
+	StaticText "as of right now."
+	StaticText " "
+	StaticText "Wrath", orange
+	StaticText "Comes in fiery orange. Attacks are usually as potent as Unaffiliated"
+	StaticText "until you leave them to their own devices, in which case they'll turn enraged."
+	StaticText " "
+	StaticText "Sloth (WIP)", cyan
+	StaticText "Comes in teal. Attacks slow or generally restrict player movement."
+	StaticText "Uses teal projectiles with black cores, or pull the player forward with chains."
+	StaticText "None of the enemies belong to the sin as of right now."
+	StaticText " "
+	StaticText "Envy", darkgreen
+	StaticText "Comes in green. Has the ability to inherit each attack of every sin beneath it."
+	StaticText "The second most powerful sin. Eldritch and underhanded, but pathetic and cowardly."
+	StaticText " "
+	StaticText "Pride", red
+	StaticText "Comes in royal red. The most powerful sin. Attacks are intimidating,"
+	StaticText "but their biggest flaw is their ego. Thus, some attacks can seem more deadly than"
+	StaticText "they look."
+	StaticText " "
+	StaticText " "
+	StaticText " "
+	StaticText "Tiers of the Apocalypse"
+	StaticText " "
+	StaticText "Pestilence", brown
+	StaticText "Comes in vomit green or decaying brown. Attacks with decay and rot."
+	StaticText "Dying enemies may leave behind 'parting gifts'. Plague and insect themed."
+	StaticText " "
+	StaticText "Famine (WIP)", gray
+	StaticText "Comes in pale gray. Very quick to turn on each other, however"
+	StaticText "letting them infight isn't recommended. More ravenous than Gluttony."
+	StaticText " "
+	StaticText "War", darkgray
+	StaticText "Comes in pure metal. The purest form of human conquest."
+	StaticText "Gunmetal, hellfire and poison dominates the battlefield."
+	StaticText " "
+	StaticText "Death", sapphire
+	StaticText "Comes in deep blue. The final resting place of man."
+	StaticText "Spectral demons can phase in-between existential planes to dodge"
+	StaticText "your attacks. Attacks with screeching souls."
+	StaticText " "
+	StaticText " "
+	StaticText " "
+	StaticText "Endgame Tiers"
+	StaticText " "
+	StaticText "Umbral", darkgray
+	StaticText "Comes in pure black like its sister tier. Attacks using lightning and ice."
+	StaticText "Attacks are extremely dangerous."
+	StaticText " "
+	StaticText "Void", darkgray
+	StaticText "Comes in pure black like its sister tier. They can't die-- only be warded off."
+	StaticText "All physical barriers mean nothing in the face of entropic nightmares."
+	StaticText "Beware.", red
 }

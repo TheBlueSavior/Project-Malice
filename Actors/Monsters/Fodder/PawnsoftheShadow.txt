@@ -1,4 +1,4 @@
-Class PM_POTS : PMFodderMonsterBase
+Class PM_POTS : PMVoidMonsterBase
 { 
 	int user_pawnkicker;
 	int user_pawntick;
@@ -423,7 +423,7 @@ Class PM_POTS : PMFodderMonsterBase
 
 
 
-Class PM_POTSScreamer : PMFodderMonsterBase
+Class PM_POTSScreamer : PMVoidMonsterBase
 { 
 	Default
 	{

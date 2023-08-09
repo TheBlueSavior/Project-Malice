@@ -1,4 +1,4 @@
-Actor Voidspawn : PMFodderMonsterBase
+Actor Voidspawn : PMVoidMonsterBase
 {
 	//$Category "PM_Monsters/Fodder/Horrorspawn"
 	var int user_deathtimer;
