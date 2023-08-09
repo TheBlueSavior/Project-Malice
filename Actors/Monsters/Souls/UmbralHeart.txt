@@ -35,8 +35,37 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
   {
   Spawn:
     TNT1 A 1 Bright A_Look();
+	TNT1 A 0
+	{
+	A_SpawnParticleEx
+	    (   
+		 "ae1717",
+		 TexMan.CheckForTexture("GNSMK0"),
+		 style: STYLE_Add,
+		 flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: random(3,20),
+		 size: frandom(12,35),
+		 angle: 0,
+		 xoff: frandom(-3,3),
+		 yoff: frandom(-3,3),
+		 zoff: frandom(0,6),
+		 velx: frandom(-1.4,1.4),
+		 vely: frandom(-1.4,1.4),
+		 velz: frandom(-1.4,1.4),
+		 accelx: 0,
+		 accely: 0,
+		 accelz: 0,
+		 startalphaf: frandom(0.1,0.35),
+		 fadestepf: -1,
+		 sizestep: frandom(3,6.4),
+		 startroll: random(-180,180),
+		 rollvel: 0,
+		 rollacc: 0
+	    );
+	}
     Loop;
   See:
+    TNT1 A 0 A_SpawnItemEx("PM_UmbralHeartAppear",flags:SXF_SETMASTER); 
     EYES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 Light("Shadowball3") 
     {
     A_SpawnItemEx("PM_SmallRedLightningVFX",random(-8,8),random(-8,8),random(-8,8),random(-1,1),random(-1,1),random(-1,1));
@@ -113,7 +142,8 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
 		 sizestep: 2,
 		 startroll: random(-180,180)
 	    );
-       } 
+       }
+	TNT1 A 0 A_SpawnItemEx("PM_UmbralHeartSouls",flags:SXF_SETMASTER); 
     TNT1 A 0 A_StartSound("UHeart/Loop",5,CHANF_LOOPING);
   SeeLoop:
     EYES AAAAAAA 2 Light("Shadowball2")
@@ -170,7 +200,7 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
 		startalphaf: frandom(0.3,0.6)
 	    );
     }
-	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
+	TNT1 A 0 A_ChangeVelocity(frandom(-0.65,0.65),frandom(-0.65,0.65),frandom(-0.35,0.35));
 	TNT1 A 0 A_Jump(10,"RandomDodge");
 	TNT1 A 0 A_Jump(7,"Forward","LeftorRight","Back","RandomDodge");
     Loop;
@@ -301,6 +331,7 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
    TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
    Goto SeeLoop;
   Death:
+    TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
     TNT1 A 0 A_StopSound(5);
     TNT1 A 0 A_NoBlocking();
     TNT1 A 0 A_SetTranslucent(0.9, 1);
@@ -398,4 +429,68 @@ Class PM_UmbralHeartShock : Actor
 	TNT1 AAAAA 0 A_SpawnProjectile("RedShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
     Stop;
   }
+}
+
+Class PM_UmbralHeartAppear : Actor
+{
+ Default
+ {
+  Alpha 0.35;
+  RenderStyle "Add";
+  XScale 0.40;
+  YScale 0.30;
+  +FORCEXYBILLBOARD
+  +BRIGHT
+  +FLOAT
+ }
+ 
+ override void Tick()
+ {
+  Super.Tick();
+  A_Warp(AAPTR_MASTER,zofs:-8,flags:WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+ }
+ 
+ States
+ {
+ Spawn:
+  VDG1 AAABBBCCCDDDEEEFFFGGGHHHIII 3 A_FadeIn(0.990);
+ Death:
+  TNT1 A 0;
+  Stop;
+ }
+}
+
+Class PM_UmbralHeartSouls : Actor
+{
+ Default
+ {
+  Alpha 0.85;
+  RenderStyle "Add";
+  XScale 0.40;
+  YScale 0.30;
+  +FORCEXYBILLBOARD
+  +BRIGHT
+  +FLOAT
+ }
+ 
+ override void Tick()
+ {
+  Super.Tick();
+  A_Warp(AAPTR_MASTER,zofs:-8,flags:WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+ }
+ 
+ States
+ {
+ Spawn:
+  VDG1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 5;
+  VDG2 ABCD 5;
+  Loop;
+ Death:
+  VDG1 AAAAAAAAAAAAA 3
+  {
+   A_FadeOut(0.025);
+   A_SetScale(Scale.X+0.15);
+  }
+  Stop;
+ }
 }
