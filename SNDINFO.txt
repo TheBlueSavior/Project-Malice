@@ -1,4 +1,4 @@
-//Horrorspawn
+1//Horrorspawn
 
 $random Horrorspawn/Wake { Horrorspawn/Wake1 Horrorspawn/Wake2 Horrorspawn/Wake3 }
 Horrorspawn/Wake1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnWake1.ogg"
@@ -2380,6 +2380,16 @@ Abhor/Death3 "Sounds/Monsters/Mancubis/Abhorrent/AbhorrentDeath3.ogg"
 
 PLAGCHA PLAGCHA
 
+$random Abhor/BarrageCharge { AbhorBarrageCharge1 AbhorBarrageCharge2 }
+AbhorBarrageCharge1 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageCharge1.ogg"
+AbhorBarrageCharge2 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageCharge2.ogg"
+
+$random Abhor/BarrageLaunch { AbhorBarrageLaunch1 AbhorBarrageLaunch2 AbhorBarrageLaunch3 AbhorBarrageLaunch4 }
+AbhorBarrageLaunch1 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageLaunch1.ogg"
+AbhorBarrageLaunch2 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageLaunch2.ogg"
+AbhorBarrageLaunch3 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageLaunch3.ogg"
+AbhorBarrageLaunch4 "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageLaunch4.ogg"
+
 Abhor/Phase "Sounds/Monsters/Mancubis/Abhorrent/AbhorPhase.ogg"
 Abhor/BarrageWhiz "Sounds/Monsters/Mancubis/Abhorrent/AbhorBarrageWhiz.ogg"
 
@@ -2396,7 +2406,11 @@ AbhorSoulExp1 "Sounds/Monsters/Mancubis/Abhorrent/AbhorSoulExp1.ogg"
 AbhorSoulExp2 "Sounds/Monsters/Mancubis/Abhorrent/AbhorSoulExp2.ogg"
 AbhorSoulExp3 "Sounds/Monsters/Mancubis/Abhorrent/AbhorSoulExp3.ogg"
 
+$limit Abhor/BarrageLaunch 8
+$volume Abhor/BarrageLaunch 0.55
 $rolloff Abhor/BallWhiz 600 3000
+$rolloff Abhor/BarrageCharge 500 2000
+$rolloff Abhor/BarrageLaunch 400 2000
 $rolloff Abhor/BarrageWhiz 500 2200
 $rolloff Abhor/BallExp 650 2200
 $rolloff Abhor/SoulExp 650 1000
