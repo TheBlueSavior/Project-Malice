@@ -726,8 +726,8 @@ Class PM_InfernalLavaBall : CacodemonBall
     Speed 15;
     Alpha 0.80;
     DamageType "Fire";
-    SeeSound "HellKnight/Cast";
-	DeathSound "HellKnight/BallImpact";
+    SeeSound "PMInfernal/Lavaball";
+	DeathSound "PMInfernal/LavaballExp";
 	Decal "PM_OrangeFireScorch";
     +ThruGhost
     +ForceXYBillboard
@@ -736,6 +736,8 @@ Class PM_InfernalLavaBall : CacodemonBall
   states
   {
   Spawn:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("PMInfernal/LavaballLoop",15,CHANF_LOOPING,volume:0.35);
     BLHD A 1 Bright Light("AvatarFireball2")
 	{
 		A_SpawnParticleEx

@@ -2840,8 +2840,18 @@ Plasmatron/Servos3 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronServos3.og
 Plasmatron/Servos4 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronServos4.ogg"
 Plasmatron/Servos5 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronServos5.ogg"
 
+$random Plasmatron/SmallFire { Plasmatron/SmallFire1 Plasmatron/SmallFire2 Plasmatron/SmallFire3 }
+Plasmatron/SmallFire1 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSmallFire1.ogg"
+Plasmatron/SmallFire2 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSmallFire2.ogg"
+Plasmatron/SmallFire3 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronSmallFire3.ogg"
+
+$random Plasmatron/ReadySmall { Plasmatron/ReadySmall1 Plasmatron/ReadySmall2 }
+Plasmatron/ReadySmall1 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronReadySmall1.ogg"
+Plasmatron/ReadySmall2 "Sounds/Monsters/Arachnotrons/Plasmatron/PlasmatronReadySmall2.ogg"
+
 $rolloff Plasmatron/Fire 200 2000
-$rolloff Plasmatron/SmallFire 200 2000
+$rolloff Plasmatron/SmallFire 400 2200
+$rolloff Plasmatron/ReadySmall 200 2000
 $rolloff Plasmatron/MortarFire 200 2500
 $rolloff Plasmatron/MortarExp 300 2800
 $rolloff Plasmatron/MortarCharge 300 2800
@@ -3926,16 +3936,15 @@ HSpawnBurster/Arm "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnB
 //Infernal
 
 PMInfernal/Fire "Sounds/Monsters/Cacodemons/Infernal/InfernalFire.ogg"
-$pitchset PMInfernal/Fire 0.9 1.1
 PMInfernal/Roar "Sounds/Monsters/Cacodemons/Infernal/InfernalRoar.ogg"
-$rolloff PMInfernal/Roar 250 1500
 PMInfernal/Explode "Sounds/Monsters/Cacodemons/Infernal/InfernalExplode.ogg"
-$rolloff PMInfernal/Explode 600 2000
 PMInfernal/MeleeCharge "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeCharge.ogg"
-$rolloff PMInfernal/MeleeCharge 600 2000
-$pitchset PMInfernal/MeleeCharge 0.95 1.05
 PMInfernal/MeleeBlast "Sounds/Monsters/Cacodemons/Infernal/InfernalMeleeBlast.ogg"
-$rolloff PMInfernal/MeleeBlast 600 2500
+PMInfernal/Ire "Sounds/Monsters/Cacodemons/Infernal/InfernalIre.ogg"
+PMInfernal/Death "Sounds/Monsters/Cacodemons/Infernal/InfernalDeath.ogg"
+PMInfernal/Laugh "Sounds/Monsters/Cacodemons/Infernal/InfernalLaugh.ogg"
+PMInfernal/LavaballLoop "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaballLoop.ogg"
+
 $random PMInfernal/Sight { PMInfernal/Sight1 PMInfernal/Sight2 PMInfernal/Sight3 }
 PMInfernal/Sight1 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight1.ogg"
 PMInfernal/Sight2 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight2.ogg"
@@ -3943,22 +3952,35 @@ PMInfernal/Sight3 "Sounds/Monsters/Cacodemons/Infernal/InfernalSight3.ogg"
 $random PMInfernal/Charge { PMInfernal/Charge1 PMInfernal/Charge2}
 PMInfernal/Charge1 "Sounds/Monsters/Cacodemons/Infernal/InfernalCharge1.ogg"
 PMInfernal/Charge2 "Sounds/Monsters/Cacodemons/Infernal/InfernalCharge2.ogg"
-$pitchset PMInfernal/Charge 0.9 1.1
-$rolloff PMInfernal/Sight 250 1500
 $random PMInfernal/Active { PMInfernal/Active1 PMInfernal/Active2 PMInfernal/Active3 PMInfernal/Active4 }
 PMInfernal/Active1 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive1.ogg"
 PMInfernal/Active2 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive2.ogg"
 PMInfernal/Active3 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive3.ogg"
 PMInfernal/Active4 "Sounds/Monsters/Cacodemons/Infernal/InfernalActive4.ogg"
-PMInfernal/Ire "Sounds/Monsters/Cacodemons/Infernal/InfernalIre.ogg"
-$rolloff PMInfernal/Ire 1000 2200
-PMInfernal/Death "Sounds/Monsters/Cacodemons/Infernal/InfernalDeath.ogg"
-PMInfernal/Laugh "Sounds/Monsters/Cacodemons/Infernal/InfernalLaugh.ogg"
-$rolloff PMInfernal/Laugh 350 1500
 $random PMInfernal/Pain { PMInfernal/Pain1 PMInfernal/Pain2 PMInfernal/Pain3 }
 PMInfernal/Pain1 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain1.ogg"
 PMInfernal/Pain2 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain2.ogg"
 PMInfernal/Pain3 "Sounds/Monsters/Cacodemons/Infernal/InfernalPain3.ogg"
+$random PMInfernal/Lavaball { InfernalLBall1 InfernalLBall2 InfernalLBall3 InfernalLBall4 }
+InfernalLBall1 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaball1.ogg"
+InfernalLBall2 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaball2.ogg"
+InfernalLBall3 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaball3.ogg"
+InfernalLBall4 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaball4.ogg"
+$random PMInfernal/LavaballExp { InfernalBallExp1 InfernalBallExp2 InfernalBallExp3 }
+InfernalBallExp1 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaballExp1.ogg"
+InfernalBallExp2 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaballExp2.ogg"
+InfernalBallExp3 "Sounds/Monsters/Cacodemons/Infernal/InfernalLavaballExp3.ogg"
+
+$pitchset PMInfernal/Charge 0.9 1.1
+$pitchset PMInfernal/Fire 0.9 1.1
+$pitchset PMInfernal/MeleeCharge 0.95 1.05
+$rolloff PMInfernal/Sight 250 1500
+$rolloff PMInfernal/Roar 250 1500
+$rolloff PMInfernal/Laugh 350 1500
+$rolloff PMInfernal/Explode 600 2000
+$rolloff PMInfernal/Ire 1000 2200
+$rolloff PMInfernal/MeleeBlast 600 2500
+$rolloff PMInfernal/MeleeCharge 600 2000
 
 //Blasphemer
 $random PMBlasphemer/Death { PMBlasphemer/Death1 PMBlasphemer/Death2 PMBlasphemer/Death3 }

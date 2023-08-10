@@ -181,12 +181,12 @@ Class PM_Noble : PMMonsterBase
 		}
 		NO1S EEE 1 Light("Greenball4")
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),57,0,0,2);
 		}
 		NO1S FFFFF 1 Light("Greenball3") 
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
 		NOIS G 1;
@@ -198,12 +198,12 @@ Class PM_Noble : PMMonsterBase
 		}
 		NO2S EEE 1 Light("Greenball4")
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),57,0,0,2);
 		}
 		NO2S FFFFF 1 Light("Greenball3") 
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),45,0,0,2);
 		}
 		NOIS G 1;
@@ -225,12 +225,12 @@ Class PM_Noble : PMMonsterBase
 		}
 		NO2S EEE 1 Light("Greenball4")
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),57,0,0,2);
 		}
 		NO2S FFFFF 1 Light("Greenball3") 
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(-40,-35),45,0,0,2);
 		}
 		NOIS G 1;
@@ -242,12 +242,12 @@ Class PM_Noble : PMMonsterBase
 		}
 		NO1S EEE 1 Light("Greenball4")
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),57,0,0,2);
 		}
 		NO1S FFFFF 1 Light("Greenball3") 
 		{
-		A_FaceTarget();
+		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
 		NOIS G 1;
