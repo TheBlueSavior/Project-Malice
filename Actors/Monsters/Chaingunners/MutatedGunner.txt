@@ -115,7 +115,7 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
 			}
 			TNT1 A 0 A_Jump(3,"CoolDown");
 			TNT1 A 0 A_CheckSight("SuppressionStart");
-			Goto Missile+3;
+			Goto Missile+4;
 		Spit:
 			TNT1 A 0 A_StartSound("Afflicted/Puke");
 			D3C2 G 20 A_FaceTarget();

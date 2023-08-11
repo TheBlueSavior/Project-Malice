@@ -204,19 +204,21 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
     TNT1 A 0 
 	{
 	if(user_numbullets == 8)
-	 {
-	 return ResolveState("ZReload2");
-	 }
-	return ResolveState(null);
+	SetStateLabel("ZReload2");
 	}
     ZSP1 AA 3;
     TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
-    TNT1 A 0 { user_numbullets = (user_numbullets + 1); }
+    TNT1 A 0 { user_numbullets += 1; }
     ZSP1 BB 2;
     ZSP1 AAA 3;
-	TNT1 A 0 A_JumpIfCloser(250,"ZReload2");
+	TNT1 A 0
+	{
+	 if(target && CheckSight(Target) && Distance3D(target) < 250)
+	 SetStateLabel("ZReload2");
+	}
     Loop;
   ZReload2:
+     TNT1 A 0;
 	 TNT1 A 0 A_StartSound("GenericShotgunPump");
 	 ZSP1 AA 5 A_FaceTarget();
 	 ZSP1 BB 5 A_FaceTarget();

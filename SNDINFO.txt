@@ -725,9 +725,16 @@ $Random Harvester/Pain { Harvester/Pain1 Harvester/Pain2 }
 Harvester/Pain1 "Sounds/Monsters/Imps/Harvester/HarvesterPain1.ogg"
 Harvester/Pain2 "Sounds/Monsters/Imps/Harvester/HarvesterPain2.ogg"
 
-harvester/scream "Sounds/Monsters/Imps/Harvester/HarvesterScream.flac" //shfbscrm
+$random Harvester/PhaseLoop { Harvester/PhaseLoop1 Harvester/PhaseLoop2 }
+Harvester/PhaseLoop1 "Sounds/Monsters/Imps/Harvester/HarvesterPhaseLoop1.ogg"
+Harvester/PhaseLoop2 "Sounds/Monsters/Imps/Harvester/HarvesterPhaseLoop2.ogg"
 
+Harvester/PhaseStart "Sounds/Monsters/Imps/Harvester/HarvesterPhaseStart.ogg"
+Harvester/PhaseEnd "Sounds/Monsters/Imps/Harvester/HarvesterPhaseEnd.ogg"
+harvester/scream "Sounds/Monsters/Imps/Harvester/HarvesterScream.flac" //shfbscrm
 harvester/ghost "Sounds/Monsters/Imps/Harvester/HarvesterGhost.flac" //shghscrm
+
+$rolloff Harvester/PhaseLoop 100 1100
 
 //monster/dissit dsdissit (what?)
 

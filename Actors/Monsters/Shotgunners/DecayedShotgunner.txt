@@ -256,29 +256,29 @@ Class PM_DecayedShotgunner : PMPestilenceMonsterBase
         TNT1 A 0
 		{
 		if(user_numbullets == 12)
-		{
-		 return ResolveState("ZReload2");
-		}
-		return ResolveState(null);
+		SetStateLabel("ZReload2");
 		}
         SPO6 AA 3;
         TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
-        TNT1 A 0 { user_numbullets = (user_numbullets + 1); }
+        TNT1 A 0 { user_numbullets += 1; }
         SPO6 BB 2;
         SPO6 AAA 3;
-		TNT1 A 0 A_JumpIfCloser(250,"ZReload3");
+		TNT1 A 0
+	    {
+	     if(target && CheckSight(Target) && Distance3D(target) < 250)
+	     SetStateLabel("ZReload2");
+	    }
         Loop;
     ZReload2:
+	    TNT1 A 0;
 	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPO6 AA 5 A_FaceTarget();
 	    SPO6 BB 5 A_FaceTarget();
+		TNT1 A 0 A_JumpIfCloser(250,"RollCheck");
         Goto See2;
-	ZReload3:
-	    TNT1 A 0 A_StartSound("GenericShotgunPump");
-	    SPO6 AA 5 A_FaceTarget();
-	    SPO6 BB 5 A_FaceTarget();
-		TNT1 A 0 A_Jump(256,"RollRight","RollLeft");
-        Goto Missile;
+	RollCheck:
+	    TNT1 A 0 A_Jump(256,"RollRight","RollLeft");
+		Goto See2;
     Pain:
         SPO6 G 5 A_Pain;
 		TNT1 A 0 A_Jump(105,"RollRight","RollLeft");

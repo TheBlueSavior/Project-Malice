@@ -193,22 +193,21 @@ Class PM_FShotgunner : PMUnaffMonsterBase
     TNT1 A 0
 	{
 	if(user_numbullets == 8)
-	{
-	return ResolveState("ZReload2");
-	}
-	return ResolveState(null);
+	SetStateLabel("ZReload2");
 	}
     F1SH AAA 5;
     TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
-    TNT1 A 0
-	{
-	 user_numbullets = (user_numbullets + 1);
-	}
+    TNT1 A 0 { user_numbullets += 1; }
     F1SH BB 4;
     F1SH AAA 4;
-	TNT1 A 0 A_JumpIfCloser(250,"ZReload2");
+	TNT1 A 0
+	{
+	 if(target && CheckSight(Target) && Distance3D(target) < 250)
+	 SetStateLabel("ZReload2");
+	}
     Loop;
   ZReload2:
+    TNT1 A 0;
 	TNT1 A 0 A_StartSound("GenericShotgunPump");
 	F1SH AA 5 A_FaceTarget();
 	F1SH BB 5 A_FaceTarget();

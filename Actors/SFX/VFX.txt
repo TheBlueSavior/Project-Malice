@@ -2,13 +2,13 @@ Actor PM_GenericPhaseGhost
 {
 +CLIENTSIDEONLY
 +NOINTERACTION
-RenderStyle Add
+RenderStyle AddStencil
 Alpha 0.60
 States
 {
 Spawn:
-    "----" A 1 A_FadeOut(0.06)
-    Loop
+    TNT1 A 3
+    "----" A 1 A_FadeOut(0.003)
     }
 }
 
