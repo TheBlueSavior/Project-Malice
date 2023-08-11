@@ -118,7 +118,9 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			PL01 G 4;
 			Goto See2;
 		Missile2: //it's sweepin' time
-			PL01 AGGG 5 A_FaceTarget();
+		    TNT1 A 0;
+		    TNT1 A 0 A_StartSound("Fusionite/SmallCharge",18,volume:1,pitch:0.65);
+			PL01 AGG 5 A_FaceTarget();
 			TNT1 A 0 {bNOPAIN = True;}
 			TNT1 A 0 { sweepindex = 0; }
 			PL01 G 5 A_FaceTarget();
@@ -128,7 +130,6 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				if(user_numbullets < 0)
 				 SetStateLabel("NoAmmo");
 				A_StartSound("Plasmatron/Fire");
-				A_SpawnProjectile("PlasmatronFlare",22,0);
 				A_SpawnProjectile("PM_PTronBall",22,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,0);
 				user_numbullets--;
 			}
@@ -143,7 +144,6 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				if(user_numbullets < 0)
 				SetStateLabel("NoAmmo");
 				A_StartSound("Plasmatron/Fire");
-				A_SpawnProjectile("PlasmatronFlare",22,0);
 				A_SpawnProjectile("PM_PTronBall",22,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,0);
 				user_numbullets--;
 			}
@@ -156,24 +156,22 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			TNT1 A 0 A_Jump(5,"See2");
 			Goto Missile2;
 		Missile3:
-			PL01 AG 5 A_FaceTarget();
+		    TNT1 A 0;
+		    TNT1 A 0 A_StartSound("Fusionite/SmallCharge",18,volume:1,pitch:0.65);
+			PL01 AGG 5 A_FaceTarget();
 			TNT1 A 0 {bNOPAIN = True;}
 			PL01 G 5 A_FaceTarget();
 			PL01 H 7 Light("AvatarFireball4")
 			{
-				If(user_numbullets < 0)
-				{
-					Return ResolveState("NoAmmo");
-				}
+				if(user_numbullets < 0)
+				SetStateLabel("NoAmmo");
 				A_StartSound("Plasmatron/Fire");
-				A_SpawnProjectile("PlasmatronFlare",22,0);
 				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
 				user_numbullets--;
-				Return ResolveState(null);
 			}
 			PL01 G 2 A_MonsterRefire(10,"See2");
 			TNT1 A 0 A_Jump(10,"See2");
-			Goto Missile3+4;
+			Goto Missile3+7;
 		Missile4:
 			PL01 AGGG 3 A_FaceTarget();
 			TNT1 A 0 {bNOPAIN = True;}
@@ -330,15 +328,48 @@ Class PM_PTronBall : Actor
 	 Super.PostBeginPlay();
 	 tex[0] = TexMan.CheckForTexture("FLARB0",TexMan.Type_Sprite);
 	 tex[1] = TexMan.CheckForTexture("LENYB0",TexMan.Type_Sprite);
-	 tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
-	 tex[3] = TexMan.CheckForTexture("F1R1A0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("F1R1A0",TexMan.Type_Sprite);
+     tex[3] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+     tex[4] = TexMan.CheckForTexture("DTPRO0",TexMan.Type_Sprite);
 	}
 	
-	TextureID tex[4];
+	TextureID tex[5];
 
 	States
 	{
 		Spawn:
+		    TNT1 A 0;
+			TNT1 A 0
+			{
+			A_ScaleVelocity(frandom(1,1.35));
+		    A_SpawnParticleEx
+		    (
+		    "",
+		    tex[3],
+		    style: STYLE_Add,
+		    flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		    lifetime: random(1,5),
+		    size: frandom(130,200),
+		    startalphaf: 1.0,
+		    fadestepf: 0,
+		    sizestep: frandom(0.0,3),
+		    startroll: random(-180,180)
+		    );
+		    A_SpawnParticleEx
+		    (
+		    "",
+		    tex[4],
+		    style: STYLE_Add,
+		    flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		    lifetime: random(1,7),
+		    size: frandom(90,130),
+		    startalphaf: 1.0,
+		    fadestepf: 0,
+		    sizestep: frandom(0.0,3),
+		    startroll: random(-180,180)
+		    );
+			}
+		Go:
 			DTPR O 1 Bright Light("AvatarFireball2")
 			{
 		     A_SpawnParticleEx
@@ -364,36 +395,14 @@ Class PM_PTronBall : Actor
 			 size: 75.0,
 			 startalphaf: 0.55
 			 );
-			 A_SpawnParticleEx
+		     A_SpawnParticleEx
 			 (
 			 "",
 			 tex[2],
 			 style: STYLE_Add,
 			 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
-			 lifetime: random(1,50),
-			 size: random(1,15),
-			 xoff: frandom(-3,3),
-			 yoff: random(-3,3),
-			 zoff: random(-3,3),
-			 velx: frandom(-0.1,0.1),
-			 vely: frandom(-0.1,0.1),
-			 velz: frandom(-0.1,0.1),
-			 accelx: frandom(-0.1,0.1),
-			 accely: frandom(-0.1,0.1),
-			 accelz: frandom(-0.1,0.1),
-			 startalphaf: 1.0,
-			 fadestepf: -1,
-			 sizestep: -0.2,
-			 rollvel: random(-10,10)
-			 );
-		     A_SpawnParticleEx
-			 (
-			 "",
-			 tex[3],
-			 style: STYLE_Add,
-			 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
 			 lifetime: random(1,10),
-			 size: random(35,95),
+			 size: random(35,65),
 			 xoff: frandom(-3.5,3.5),
 			 yoff: frandom(-3.5,3.5),
 			 zoff: frandom(-3.5,3.5),
@@ -628,6 +637,17 @@ Class PM_PTronScatterBall : Actor
 		Decal "PM_PlasmatronScorchLarge";
 	}
 
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("FLARB0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("LENYB0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("F1R1A0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[4];
+
 	States
 	{
 		Spawn:
@@ -639,14 +659,51 @@ Class PM_PTronScatterBall : Actor
 			 A_SpawnParticleEx
 			 (
 			 "",
-			 TexMan.CheckForTexture("LENYB0"),
+			 tex[1],
 			 style: STYLE_Add,
 			 flags: SPF_FULLBRIGHT|SPF_RELATIVE,
 			 lifetime: 1,
 			 size: 75.0,
 			 startalphaf: 0.9
 			 );
-				A_SpawnItemEx("PTronMortarBallTrail",-5,0,0,0,0,0,0,128,0);
+			 A_SpawnParticleEx
+			 (
+			 "",
+			 tex[2],
+			 style: STYLE_Add,
+			 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+			 lifetime: random(1,100),
+			 size: random(1,15),
+			 xoff: frandom(-3,3),
+			 yoff: random(-3,3),
+			 zoff: random(-3,3),
+			 velx: frandom(-0.1,0.1),
+			 vely: frandom(-0.1,0.1),
+			 velz: frandom(-0.1,0.1),
+			 accelx: frandom(-0.1,0.1),
+			 accely: frandom(-0.1,0.1),
+			 accelz: frandom(-0.1,0.1),
+			 startalphaf: 1.0,
+			 fadestepf: -1,
+			 sizestep: -0.2,
+			 rollvel: random(-10,10)
+			 );
+		     A_SpawnParticleEx
+			 (
+			 "",
+			 tex[3],
+			 style: STYLE_Add,
+			 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+			 lifetime: random(1,20),
+			 size: random(35,135),
+			 xoff: frandom(-5.5,5.5),
+			 yoff: frandom(-5.5,5.5),
+			 zoff: frandom(-5.5,5.5),
+			 startalphaf: frandom(0.85,1),
+			 fadestepf: -1,
+			 sizestep: -2,
+			 startroll: random(-180,180)
+			 );
 			}
 			TNT1 A 0 A_JumpIfTracerCloser(250,"Burst");
 			Loop;
@@ -691,69 +748,45 @@ Class PM_PTronScatterBomb : Actor
 		DeathSound "GHeavyPlasmaExp";
 		Decal "PM_PlasmatronScorchLarge";
 	}
-	
+
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("F1R1A0",TexMan.Type_Sprite);
+	}
+    TextureID tex[2];
+
 	Override Void Tick()
 	{
 	 Super.Tick();
 	 {
+	  if(!IsFrozen())
+	  {
 	  A_SpawnParticleEx
 	  (
 	  "",
-	  TexMan.CheckForTexture("FLARB0"),
-	  style: STYLE_Add,
-	  flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-	  lifetime: 15,
-	  size: 35.0,
-	  xoff: frandom(-5.5,6.5),
-	  startalphaf: 0.5,
-	  fadestepf: 0.2,
-	  sizestep: -5
-	   );
-	  A_SpawnParticleEx
-	  (
-	  "",
-	  TexMan.CheckForTexture("LENYB0"),
-	  style: STYLE_Add,
-	  flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-	  lifetime: 1,
-	  size: 50.0,
-	  startalphaf: 0.9
-	  );
-	  A_SpawnParticleEx
-	  (
-	  "",
-	  TexMan.CheckForTexture("SPKOA0"),
+	  tex[1],
 	  style: STYLE_Add,
 	  flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
-	  lifetime: random(1,50),
-	  size: random(1,15),
-	  xoff: frandom(-15,15),
-	  yoff: random(-5,5),
-	  zoff: random(-5,5),
-	  velx: frandom(-0.5,0.5),
-	  vely: frandom(-0.5,0.5),
-	  velz: frandom(-0.5,0.5),
-	  startalphaf: 1.0,
+	  lifetime: random(1,20),
+	  size: random(15,35),
+	  xoff: frandom(-2.5,2.5),
+	  yoff: frandom(-2.5,2.5),
+	  zoff: frandom(-2.5,2.5),
+	  startalphaf: frandom(0.55,1),
 	  fadestepf: -1,
-	  sizestep: -0.2,
-	  rollvel: random(-10,10)
+	  sizestep: -2,
+	  startroll: random(-180,180)
 	  );
+	  }
 	 }
    }
     States
 	{
 		Spawn:
 		   TNT1 A 0;
-		   TNT1 A 0 A_Jump(256,"Set1","Set2","Set3");
-		Set1:
-		   TNT1 A 0 A_ScaleVelocity(frandom(0.15,0.30));
-		   Goto Go;
-		Set2:
-		   TNT1 A 0 A_ScaleVelocity(frandom(0.35,0.65));
-		   Goto Go;
-		Set3:
-		   TNT1 A 0 A_ScaleVelocity(frandom(0.70,0.95));
-		   Goto Go;
+		   TNT1 A 0 A_ScaleVelocity(frandom(0.15,0.97));
 		  Go:
 		   DTPR O 1 Bright Light("AvatarFireball2");
 		   Loop;
