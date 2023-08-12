@@ -313,6 +313,7 @@ Class PM_Harvester : PMDeathMonsterBase
 	}
     Wait;
   XDeath:
+    TNT1 A 0 { if(phase) PM_HarvesterPhaseStop(); }
     SLHV X 6 A_Xscream();
     SLHV Y 6 A_SpawnItemEx("SoulHarvesterGhost", 0,0,32, 0,0,0, 0, SXF_CLIENTSIDE);
     SLHV Z 6 A_RemoveChildren;
