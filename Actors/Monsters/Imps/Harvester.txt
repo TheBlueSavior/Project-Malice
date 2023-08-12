@@ -109,6 +109,7 @@ Class PM_Harvester : PMDeathMonsterBase
 	 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
 	 A_SetRenderStyle(1.0,STYLE_Normal);
 	 A_StopSound(11);
+	 A_SetSpeed(6);
 	 A_StartSound("Harvester/PhaseEnd",12);
 	}
 	
@@ -392,8 +393,8 @@ Class PM_SoulHarvesterBall : Actor
     Speed 13;
     DamageFunction 15;
     Renderstyle "Add";
-    SeeSound "Harvester/Scream";
-    DeathSound "Abhor/SoulExp";
+    SeeSound "Harvester/SoulLaunch";
+    DeathSound "Harvester/SoulExp";
 	Decal "PM_DeathSoulScorchMed";
     PROJECTILE;
     +SEEKERMISSILE
@@ -411,6 +412,9 @@ Class PM_SoulHarvesterBall : Actor
   States
   {
   Spawn:
+    TNT1 A 0;
+	  TNT1 A 0 A_StartSound("Harvester/SoulLoop",11,CHANF_LOOPING);
+	Go:
     SHBA AABB 1 Bright
 	{
 	A_SpawnParticleEx

@@ -729,6 +729,16 @@ $random Harvester/PhaseLoop { Harvester/PhaseLoop1 Harvester/PhaseLoop2 }
 Harvester/PhaseLoop1 "Sounds/Monsters/Imps/Harvester/HarvesterPhaseLoop1.ogg"
 Harvester/PhaseLoop2 "Sounds/Monsters/Imps/Harvester/HarvesterPhaseLoop2.ogg"
 
+$random Harvester/SoulLaunch { HarvSoulLaunch1 HarvSoulLaunch2 }
+HarvSoulLaunch1 "Sounds/Monsters/Imps/Harvester/HarvesterSoulLaunch1.ogg"
+HarvSoulLaunch2 "Sounds/Monsters/Imps/Harvester/HarvesterSoulLaunch2.ogg"
+
+$random Harvester/SoulExp { HarvSoulExp1 HarvSoulExp2 HarvSoulExp3 }
+HarvSoulExp1 "Sounds/Monsters/Imps/Harvester/HarvesterSoulExp1.ogg"
+HarvSoulExp2 "Sounds/Monsters/Imps/Harvester/HarvesterSoulExp2.ogg"
+HarvSoulExp3 "Sounds/Monsters/Imps/Harvester/HarvesterSoulExp3.ogg"
+
+Harvester/SoulLoop "Sounds/Monsters/Imps/Harvester/HarvesterSoulLoop.ogg"
 Harvester/PhaseStart "Sounds/Monsters/Imps/Harvester/HarvesterPhaseStart.ogg"
 Harvester/PhaseEnd "Sounds/Monsters/Imps/Harvester/HarvesterPhaseEnd.ogg"
 harvester/scream "Sounds/Monsters/Imps/Harvester/HarvesterScream.flac" //shfbscrm
