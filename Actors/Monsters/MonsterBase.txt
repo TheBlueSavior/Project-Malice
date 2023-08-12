@@ -502,6 +502,8 @@ Class PMVoidMonsterBase : PMMonsterBase
  {
   -COUNTKILL
   +NOCLIP
+  +NOBLOODDECALS
+  +NOICEDEATH
   PMMonsterBase.HealthMultCVar 'pm_healthfactor_void';
  }
 }

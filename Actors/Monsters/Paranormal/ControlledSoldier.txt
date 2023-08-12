@@ -1,4 +1,4 @@
-Actor PM_ControlledSoldier : PMVoidMonsterBase
+Actor PM_ControlledSoldier : PMFodderMonsterBase
 {
 	//$Category "PM_Monsters/Paranormal"
     Health 200
@@ -99,7 +99,7 @@ Actor PM_ControlledSoldier : PMVoidMonsterBase
   }
 }
 
-Actor PM_ControlledSoldier2
+Actor PM_ControlledSoldier2 : PMFodderMonsterBase
 {
     Health 400
     GibHealth 20
@@ -361,7 +361,7 @@ XDeath:
   }
 }
 
-Actor PM_ExposedController : PMMonsterBase
+Actor PM_ExposedController : PMVoidMonsterBase
 {
     Health 1500
     Radius 18
@@ -378,6 +378,7 @@ Actor PM_ExposedController : PMMonsterBase
 	Species "Nobles"
 	Tag "EXPOSED CONTROLLER"
     Monster
+	BloodColor "Black"
 	Bloodtype "PM_BlackBloodBase"
     +FLOORCLIP
 	+NOINFIGHTING
@@ -387,6 +388,7 @@ Actor PM_ExposedController : PMMonsterBase
 	+DONTHARMSPECIES
 	+NOBLOCKMONST
 	-Countkill
+	-NOBLOODDECALS
 	-ACTIVATEMCROSS
 	+NOCLIP
 	+LOOKALLAROUND
