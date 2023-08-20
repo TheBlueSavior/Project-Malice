@@ -103,10 +103,12 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		TNT1 A 10 { for (int i = 100; i > 0; i--) A_Wander(); PM_Look(); }
 		Loop;
 	Look:
+		TNT1 A 0 A_Jump(128, "Mimic");
 		TNT1 A 10 { bNOCLIP = noclipatfirstsight; for (int i = 100; i > 0; i--) A_Wander(); PM_LookingForPlayer(); }
-		Loop;
+		Goto Look+1;
 	Spotted:
 		TNT1 A 100;
+		TNT1 A 0 A_Jump(128, "Roar2");
 		Goto Roar;
 	Roar:
 		VIFL A 10 Light("PM_HorrorBlackflash")
@@ -129,6 +131,32 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		TNT1 A 0 { bNODAMAGE = false; }
 		TNT1 A 0 FloaterState();
 		Goto Dissapear;
+	Roar2:
+		VIFL A 10 Light("PM_HorrorBlackflash")
+		{
+			FloaterEffects();
+			FloaterState();
+			bNODAMAGE = true;
+			A_FaceTarget();
+			A_StartSound("Skulker/Port", CHAN_7, attenuation: ATTN_NONE);
+			bNOCLIP = true;
+		}
+		VIFL B 10 Light("PM_HorrorBlackflash") A_StartSound("Floater/Grumble", CHAN_VOICE, attenuation: 0.75);
+		VIFL EEEFFFEEEFFF 5 Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget();
+			bNODAMAGE = true;
+			FloaterEffects();
+		}
+		VIFL CDDDDDDDDDD 5 Light("PM_HorrorBlackflash")
+		{
+			A_FaceTarget();
+			FloaterEffects();
+			A_QuakeEx(3, 3, 0, 20, 0, 700);
+		}
+		TNT1 A 0 { bNODAMAGE = false; }
+		TNT1 A 0 FloaterState();
+		Goto Dissapear;
 	Wail:
 		VIFL A 10 Light("PM_HorrorBlackflash")
 		{
@@ -138,6 +166,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			A_FaceTarget();
 			A_StartSound("Skulker/Port", CHAN_7, attenuation: ATTN_NONE);
 			bNOCLIP = true;
+			if (target && (target is "PlayerPawn")) target.A_SetBlend("000000", 999, 15, "000000");
 		}
 		VIFL B 10 Light("PM_HorrorBlackflash") A_StartSound("Floater/Wail", CHAN_VOICE, attenuation: 0.75);
 		VIFL CDDDDDDDDDDDDDDDDD 5 Light("PM_HorrorBlackflash")
@@ -162,7 +191,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			
 			if (!random(0, 20) && (target && Distance3D(target) < 400))
 			{
-				A_StartSound("Floater/Roar", CHAN_VOICE);
+				A_StartSound("Floater/Bellow", CHAN_VOICE);
 				A_StopSound(CHAN_6);
 				SetStateLabel("Lunge");
 			}
@@ -287,7 +316,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		Goto Chase;
 	Laser:
 		TNT1 A 40 A_Stop();
-		VIFL B 0 A_StartSound(SeeSound, CHAN_VOICE);
+		VIFL B 0 A_StartSound("Floater/LaserCharge", CHAN_VOICE);
 		VIFL BCDDDDDDDDDDDD 3 Light("PM_HorrorBlackflash")
 		{
 			FloaterEffects();
@@ -334,6 +363,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		}
 		VIFL F 4 A_Pain;
 		VIFL A 0 A_Jump(128, "Dissapear");
+		VIFL A 0 A_Jump(55, "Roar", "Roar2", "MimicGone");
 		Goto Chase;
 	WPain:
 		C1C2 E 3
@@ -345,8 +375,22 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			}
 		}
 		C1C2 E 3 A_StartSound("Wretched/Pain", CHAN_VOICE);
-		TNT1 A 0 A_Jump(128,"Roar");
+		TNT1 A 0 A_Jump(128,"MimicGone");
 		Goto Mimic;
+	MimicGone:
+		VIFL F 20
+		{
+			A_StartSound("Floater/Flinch", CHAN_VOICE);
+			FloaterEffects();
+			FloaterState();
+			bNONSHOOTABLE = false;
+			A_FaceTarget();
+			A_StartSound("Skulker/Port", CHAN_7, attenuation: ATTN_NONE);
+			bNOCLIP = true;
+		}
+		VIFL ABCD 10 A_FaceTarget();
+		VIFL D 0 A_StartSound("Floater/Aggro", CHAN_VOICE);
+		Goto Dissapear;
 	Death:
 		VIFL F 30
 		{

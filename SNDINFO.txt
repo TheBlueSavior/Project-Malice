@@ -3097,6 +3097,13 @@ Defiler/Active6 "Sounds/Monsters/Elementals/Defiler/DefilerActive6.ogg"
 
 $volume Defiler/Active 0.3
 
+$random Defiler/Pain { Defiler/Pain1 Defiler/Pain2 Defiler/Pain3 Defiler/Pain4 }
+Defiler/Pain1 "Sounds/Monsters/Elementals/Defiler/DefilerPain1.ogg"
+Defiler/Pain2 "Sounds/Monsters/Elementals/Defiler/DefilerPain2.ogg"
+Defiler/Pain3 "Sounds/Monsters/Elementals/Defiler/DefilerPain3.ogg"
+Defiler/Pain4 "Sounds/Monsters/Elementals/Defiler/DefilerPain4.ogg"
+$volume Defiler/Pain 0.45
+
 Defiler/Death "Sounds/Monsters/Elementals/Defiler/DefilerDeath.ogg"
 
 Defiler/Breath "Sounds/Monsters/Elementals/Defiler/DefilerBreath.ogg"
@@ -3566,15 +3573,45 @@ $volume HPriest/SoulLoop 0.4
 
 //Void Floater
 
-Floater/Sight "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
+$random Floater/Sight { Floater/Sight1 Floater/Sight2 }
+Floater/Sight1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
+Floater/Sight2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight2.ogg"
 $rolloff Floater/Sight 200 2500
 $volume Floater/Sight 0.5
-Floater/Wail "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail.ogg"
+$random Floater/Wail { Floater/Wail1 Floater/Wail2 Floater/Wail3 Floater/Wail4 }
+Floater/Wail1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail.ogg"
+Floater/Wail2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail2.ogg"
+Floater/Wail3 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail3.ogg"
+Floater/Wail4 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail4.ogg"
 $rolloff Floater/Wail 100 2500
 $volume Floater/Wail 0.4
 $pitchset Floater/Wail 0.8 1.1
-Floater/Active "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
+$random Floater/Active { Floater/Active1 Floater/Active2 Floater/Active3 Floater/Active4 Floater/Active5 }
+Floater/Active1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle.ogg"
+Floater/Active2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle2.ogg"
+Floater/Active3 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle3.ogg"
+Floater/Active4 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle4.ogg"
+Floater/Active5 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle5.ogg"
 $rolloff Floater/Active 400 2500
+$random Floater/Aggro { Floater/Aggro1 Floater/Aggro2 Floater/Aggro3 }
+Floater/Aggro1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro.ogg"
+Floater/Aggro2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro2.ogg"
+Floater/Aggro3 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro3.ogg"
+$rolloff Floater/Aggro 200 2500
+$random Floater/Grumble { Floater/Grumble1 Floater/Grumble2 }
+Floater/Grumble1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGrumble1.ogg"
+Floater/Grumble2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGrumble2.ogg"
+$rolloff Floater/Grumble 200 2500
+$random Floater/LaserCharge { Floater/LaserCharge1 Floater/LaserCharge2 }
+Floater/LaserCharge1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterLaserCharge.ogg"
+Floater/LaserCharge2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterLaserCharge2.ogg"
+$rolloff Floater/LaserCharge 200 2500
+Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
+$rolloff Floater/Roar 300 2500
+Floater/Bellow "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterBellow.ogg"
+$rolloff Floater/Bellow 300 2500
+Floater/Flinch "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterFlinch.ogg"
+$rolloff Floater/Flinch 300 2500
 Floater/Roar "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterRoar.ogg"
 $rolloff Floater/Roar 300 2500
 Floater/Pain "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterPain.ogg"

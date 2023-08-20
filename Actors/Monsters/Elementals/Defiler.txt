@@ -22,7 +22,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	FloatBobStrength 0.4;
 	Tag "Defiler";
 	Species "Elemental";
-	PainSound "HeresyLord/Pain";
+	PainSound "Defiler/Pain";
 	DeathSound "Defiler/Death";
 	ActiveSound "Defiler/Active";
 	Obituary "%o was thoroughly cleansed by a Defiler's flames.";
