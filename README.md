@@ -5,7 +5,6 @@ This is the development GitHub for Project Malice
 
 Changes made here are always meant to be considered experimental and WIP. Bugs will be present.
 
-The Dropbox will still be used for stable pre-releases or releases.
 
 Project Malice Discord: <a href="https://discord.gg/56TVU7K" title="Click here to join.">Invite Link</a>
 
