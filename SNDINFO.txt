@@ -3599,6 +3599,7 @@ $random Floater/Aggro { Floater/Aggro1 Floater/Aggro2 Floater/Aggro3 }
 Floater/Aggro1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro.ogg"
 Floater/Aggro2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro2.ogg"
 Floater/Aggro3 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro3.ogg"
+$volume Floater/Aggro 0.6
 $rolloff Floater/Aggro 200 2500
 $random Floater/Grumble { Floater/Grumble1 Floater/Grumble2 }
 Floater/Grumble1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGrumble1.ogg"
