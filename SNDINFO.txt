@@ -3593,6 +3593,8 @@ Floater/Active3 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle3.ogg"
 Floater/Active4 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle4.ogg"
 Floater/Active5 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterIdle5.ogg"
 $rolloff Floater/Active 400 2500
+Floater/Groan "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGroan.ogg"
+$rolloff Floater/Groan 400 2500
 $random Floater/Aggro { Floater/Aggro1 Floater/Aggro2 Floater/Aggro3 }
 Floater/Aggro1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro.ogg"
 Floater/Aggro2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterAggro2.ogg"
