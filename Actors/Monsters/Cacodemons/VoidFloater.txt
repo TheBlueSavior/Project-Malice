@@ -61,7 +61,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 	{
 		if (getAge() % 200) waddling = random(0, 1);
 		if (waddling) for (int i = 30; i > 0; i--) A_Wander();
-		//A_Recoil(-1);
+		//A_Recoil(-0.5);
 		oldhealth = health;
 		
 		switch (random(0, 50))
@@ -69,7 +69,6 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			case 10: SetStateLabel("Chase"); break;
 			case 20: SetStateLabel("Phase"); break;
 			case 40: SetStateLabel("CreepChaseStart"); break;
-			case 50: SetStateLabel("Mimic");
 			bNOCLIP = false;
 			bNOPAIN = false;
 			bFLOATBOB = true;
@@ -130,11 +129,33 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		tex[1],
 		style: STYLE_Normal,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(20,90),
-		size: frandom(0.2,20),
-		xoff: random(-800,800),
-		yoff: random(-800,800),
-		zoff: random(-400,400),
+		lifetime: random(200,500),
+		size: frandom(0.8,30),
+		xoff: random(-2000,2000),
+		yoff: random(-2000,2000),
+		zoff: random(-300,300),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: frandom(-1,1),
+		accelx: frandom(-0.1,0.1),
+		accely: frandom(-0.1,0.1),
+		accelz: frandom(-0.1,0.1),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+	    (
+		"000000",
+		tex[1],
+		style: STYLE_Normal,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(200,500),
+		size: frandom(0.8,30),
+		xoff: random(-2000,2000),
+		yoff: random(-2000,2000),
+		zoff: random(-300,300),
 		velx: frandom(-1,1),
 		vely: frandom(-1,1),
 		velz: frandom(-1,1),
@@ -176,10 +197,10 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		style: STYLE_Normal,
 		flags: SPF_RELATIVE,
 		lifetime: 3,
-		size: frandom(20,70),
+		size: frandom(20,110),
 		xoff: frandom(-40,40),
 		yoff: frandom(-40,40),
-		zoff: frandom(-40,40),
+		zoff: frandom(-20,70),
 		fadestepf: 0,
 		sizestep: 0
 		);
@@ -192,14 +213,31 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		TNT1 A 10 PM_Look();
 		Loop;
 	Look:
-		TNT1 A 0 A_Jump(128, "Mimic");
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128, "MimicLooked","DissapearLooked");
 		TNT1 A 0 { bNOCLIP = true; }
 		TNT1 A 0 A_SetSpeed(30);
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
 	Look1:
 		TNT1 A 0 A_SetSpeed(12);
-		TNT1 A 3 PM_LookingForPlayer();
+		TNT1 A 2 PM_LookingForPlayer();
 		Loop;
+	MimicLooked:
+		TNT1 A 0
+		{
+		FloaterState();
+		bNODAMAGE = false;
+		bNOCLIP = true;
+		}
+		Goto Mimic;
+	DissapearLooked:
+		TNT1 A 0
+		{
+		FloaterState();
+		bNODAMAGE = false;
+		bNOCLIP = true;
+		}
+		Goto Dissapear;
 	Spotted:
 		TNT1 A 100;
 		TNT1 A 0 A_Jump(128, "Roar2");
@@ -297,6 +335,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 	Lunge:
 		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 		TNT1 A 0 A_StartSound("Floater/Bellow",24,CHANF_DEFAULT,1,ATTN_NORM,frandom(0.9,1.1));
+		TNT1 A 0 A_Recoil(-7);
 		VIFL ABC 4 Light("PM_HorrorBlackflash")
 		{
 			A_Recoil(-1);
@@ -340,14 +379,16 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		Goto Dissapear;
 	Chase:
 		TNT1 A 0 {bNOPAIN = true;}
+		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
 		VIFL A 2 Light("PM_HorrorBlackflash")
 		{
 			FloaterEffects();
-			//A_Recoil(-0.2);
+			//A_Recoil(-0.1);
 			A_Chase();
 			A_FaceTarget();
 			
-			if (!random(0, 75))
+			if (!random(0, 125))
 			{
 				A_StartSound("Broken/TP", CHAN_BODY);
 				for (int i = random(6, 13); i > 0; i--)
@@ -403,6 +444,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		}
 		Loop;
 	Missile:
+		//TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 		VIFL B 0 A_Jump(50, "Laser");
 		VIFL B 0
 		{
@@ -422,7 +464,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		VIFL D 0 Light("PM_HorrorBlackflash")
 		{
 			if (!random(0, 2) && (target && distance3D(target) < 400)) SetStateLabel("Lunge");
-			switch (random(0, 4))
+			switch (random(0, 12))
 			{
 				case 2: SetStateLabel("Phase"); break;
 				case 4: SetStateLabel("Dissapear"); break;
@@ -699,7 +741,7 @@ Class PM_FloaterBall : CacodemonBall
   	{
   Spawn:
 	TNT1 A 0;
-	TNT1 A 0 A_StartSound("Floater/Fire", CHAN_7);
+	TNT1 A 0 A_StartSound("Floater/Fire",CHAN_7,CHANF_DEFAULT,frandom(0.1,0.5),ATTN_NORM,frandom(0.01,7),frandom(0,1));
 	Go:
     TNT1 A 1 Light("SmallBlacklight")
 	{

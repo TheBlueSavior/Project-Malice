@@ -3577,7 +3577,7 @@ $random Floater/Sight { Floater/Sight1 Floater/Sight2 }
 Floater/Sight1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight.ogg"
 Floater/Sight2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterSight2.ogg"
 $rolloff Floater/Sight 200 2500
-$volume Floater/Sight 0.5
+$volume Floater/Sight 0.4
 $random Floater/Wail { Floater/Wail1 Floater/Wail2 Floater/Wail3 Floater/Wail4 }
 Floater/Wail1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail.ogg"
 Floater/Wail2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterWail2.ogg"
@@ -3605,6 +3605,7 @@ $random Floater/Grumble { Floater/Grumble1 Floater/Grumble2 }
 Floater/Grumble1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGrumble1.ogg"
 Floater/Grumble2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterGrumble2.ogg"
 $rolloff Floater/Grumble 200 2500
+$volume Floater/Grumble 0.4
 $random Floater/LaserCharge { Floater/LaserCharge1 Floater/LaserCharge2 }
 Floater/LaserCharge1 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterLaserCharge.ogg"
 Floater/LaserCharge2 "Sounds/Monsters/Cacodemons/VoidFloater/VoidFloaterLaserCharge2.ogg"
@@ -3633,9 +3634,6 @@ FloaterFire7	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell3.ogg"
 FloaterFire8	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell4.ogg"
 FloaterFire9	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell5.ogg"
 FloaterFire10	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarYell6.ogg"
-
-$volume Floater/Fire 0.5
-$pitchset Floater/Fire 0.0001 2
 
 //RotFly
 $random Rotfly/See { RotflySee1 RotflySee2 }
