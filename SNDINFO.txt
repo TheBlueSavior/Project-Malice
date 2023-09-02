@@ -1,4 +1,4 @@
-1//Horrorspawn
+//Horrorspawn
 
 $random Horrorspawn/Wake { Horrorspawn/Wake1 Horrorspawn/Wake2 Horrorspawn/Wake3 }
 Horrorspawn/Wake1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnWake1.ogg"
@@ -2645,6 +2645,27 @@ $volume Tyrant/Sight 0.5
 $volume Tyrant/Death 0.6
 $limit Tyrant/Sight 1 32000
 $limit Tyrant/Death 1 32000
+
+Tyrant/ShellLoad     "Sounds/Monsters/Bosses/Tyrant/TyrantShellLoad.ogg"
+Tyrant/ShellLoadReady "Sounds/Monsters/Bosses/Tyrant/TyrantShellLoadReady.ogg"
+Tyrant/ShellFire     "Sounds/Monsters/Bosses/Tyrant/TyrantShellFire.ogg"
+Tyrant/ShellExplode     "Sounds/Monsters/Bosses/Tyrant/TyrantShellExplode.ogg"
+Tyrant/ShellFireAdd  "Sounds/Monsters/Bosses/Tyrant/TyrantShellFireAdd.ogg"
+Tyrant/ShellFireAdd2 "Sounds/Monsters/Bosses/Tyrant/TyrantShellFireAdd2.ogg"
+$random Tyrant/ShellOpen { Tyr/ShellOpen1 Tyr/ShellOpen2 Tyr/ShellOpen3 }
+Tyr/ShellOpen1 "Sounds/Monsters/Bosses/Tyrant/TyrantShellOpen1.ogg"
+Tyr/ShellOpen2 "Sounds/Monsters/Bosses/Tyrant/TyrantShellOpen1.ogg"
+Tyr/ShellOpen3 "Sounds/Monsters/Bosses/Tyrant/TyrantShellOpen1.ogg"
+Tyrant/ShellFall "Sounds/Monsters/Bosses/Tyrant/TyrantShellFall.ogg"
+
+$rolloff Tyrant/ShellLoad 500 4000
+$rolloff Tyrant/ShellLoadReady 500 4000
+$rolloff Tyrant/ShellFire 600 4000
+$rolloff Tyrant/ShellExplode 600 4000
+$rolloff Tyrant/ShellFireAdd 550 4000
+$rolloff Tyrant/ShellFireAdd2 500 4000
+$rolloff Tyrant/ShellOpen 400 3000
+$rolloff Tyrant/ShellFall 400 3000
 
 Tyrant/Rocket "Sounds/Monsters/Bosses/Tyrant/TyrRocket.ogg"
 Tyrant/RocketExp "Sounds/Monsters/Bosses/Tyrant/TyrRocketExp.ogg"

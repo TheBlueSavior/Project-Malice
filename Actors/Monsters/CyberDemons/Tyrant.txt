@@ -254,12 +254,12 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	Goto See;
   RageTransition1:
     DUKE EEE 2 A_FaceTarget();
-    TNT1 A 0 A_Jump(256,"Missile0","Missile4","Missile3","Missile6","Missile9"); //stream barrages (occasionally sweeping),
-	                                                                             //seeking barrage and single railgun
+    TNT1 A 0 A_Jump(256,"Missile0","Missile4","Missile3","Missile1","Missile9"); //stream barrages (occasionally sweeping),
+	                                                                             //sabot rounds and single railgun
 	Goto See;
   RageTransition2:
     DUKE EEE 2 A_FaceTarget();
-    TNT1 A 0 A_Jump(256,"Missile6","Missile9","Missile5","Missile4","Missile3","Missile8"); //sweeping stream barrages, triple/single railgun, 
+    TNT1 A 0 A_Jump(256,"Missile1","Missile6","Missile9","Missile5","Missile4","Missile3","Missile8"); //sabot rounds, sweeping stream barrages, triple/single railgun, 
 	TNT1 A 0 A_JumpIfCloser(500,"Plasmathrower","StrafeRockets");                           //seeking barrage and short heavy rocket barrage
 	Goto See;                                                                               //get close and die instantly
   DodgeLeft:
@@ -358,35 +358,70 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	}
 	DUKE ED 2 A_FaceTarget();
 	Goto See;
-  Missile1: //3 rockets my mistake
+ Missile1: //shell loading start
 	TNT1 A 0 A_StartSound("Tyrant/Attack",CHAN_6);
-	TNT1 A 0 { bNOPAIN = true; }
-	TNT1 A 0 
-	{ 
-	if(rage == 2)
-	pm_attackloop = -3; //6 if PISSED
-	else if(rage == 1)  
-	pm_attackloop = -1; //4 if annoyed
-	else
+	TNT1 A 0 { 
+	bNOPAIN = true;
 	pm_attackloop = 0;
 	}
-	DUKE EEE 6 A_FaceTarget();
-  Mis1Loop:
-	DUKE F 12 Light("TyrantFire")
-		{
-		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantHeavyRocket",68,-25,0);
-		A_FaceTarget();
-		}
-	DUKE E 12 
-	    {
-	    if(pm_attackloop > 1)
-	    { return ResolveState("Mis1End"); }
-	    A_FaceTarget();
-		pm_attackloop++;
-		return ResolveState(null);
-	    }
+	DUKE EEEEEEEE 1 A_FaceTarget();
+  Mis1Loop1: //loading shells
+    TNT1 A 0 A_StartSound("Tyrant/ShellLoad");
+	DUKE EEEEEEEEEEEEEEEEEEEEEEE 1
+    {
+	 A_FaceTarget();
+	 A_SpawnProjectile("RedChargeFlare",68,-22);
+	 A_CustomRailgun(0,-35,"","Red",RGF_SILENT|RGF_FULLBRIGHT,range:500,duration:1,spawnofs_z:15);
+	}
+	DUKE EEEEEEEEEEEEEEEE 1
+    {
+	 A_FaceTarget();
+	 A_SpawnProjectile("RedChargeFlare",68,-22);
+	 A_CustomRailgun(0,-35,"","Red",RGF_SILENT|RGF_FULLBRIGHT,range:500,duration:1,spawnofs_z:15);
+	}
+	TNT1 A 0 {
+	if(pm_attackloop == 2)
+	SetStateLabel("Mis1Loop1Ready");
+	if(random(1,4) == 1)
+	SetStateLabel("Mis1Loop1Ready");
+    }
+	TNT1 A 0 { pm_attackloop += 1; }
 	Loop;
+ Mis1Loop1Ready:
+    TNT1 A 0 A_StartSound("Tyrant/ShellLoadReady");
+	DUKE EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+    {
+	 A_FaceTarget();
+	 A_SpawnProjectile("RedChargeFlare",68,-22);
+	 A_CustomRailgun(0,-35,"","Red",RGF_SILENT|RGF_FULLBRIGHT,range:500,duration:1,spawnofs_z:15);
+	}  
+ Mis1Loop2: //FIRE
+    DUKE F 15 Light("TyrantFire")
+	{
+	 A_StartSound("Tyrant/ShellFire",CHANF_OVERLAP);
+	 A_SpawnProjectile("PM_TyrantTankShell",68,-25,frandom(-0.5,0.5),CMF_OFFSETPITCH,frandom(-1.5,1.5));
+	 A_FaceTarget();
+	}
+	TNT1 A 0 A_StartSound("Tyrant/ShellOpen",CHAN_6);
+	DUKE EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+	{
+	A_FaceTarget();
+	A_SpawnProjectile("RedChargeFlare",68,-22);
+	A_CustomRailgun(0,-35,"","Red",RGF_SILENT|RGF_FULLBRIGHT,range:500,duration:1,spawnofs_z:15);
+	}
+	TNT1 A 0 A_StartSound("Tyrant/ShellFall",CHAN_7,pitch:frandom(0.75,1.25));
+	DUKE EEEEEEEEEEEEEEEEEEEEE 1 
+	{
+	A_FaceTarget();
+	A_SpawnProjectile("RedChargeFlare",68,-22);
+	A_CustomRailgun(0,-35,"","Red",RGF_SILENT|RGF_FULLBRIGHT,range:500,duration:1,spawnofs_z:15);
+	}
+	TNT1 A 0 {
+	if(pm_attackloop > 0)
+	SetStateLabel("Mis1Loop2");
+	pm_attackloop--;
+	}
+	Goto Mis1End;
   Mis1End:
 	TNT1 A 0
 	{
@@ -752,6 +787,183 @@ Class PM_TyrantBackMissile : Actor
 		TNT1 AAAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
 		TNT1 AAA 0 A_SpawnProjectile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360));
 		TABE CDE 3 Bright Light("YellowMediumFlicker2");
+		Stop;
+	}
+}
+
+Class PM_TyrantTankShell : RevenantTracer
+{
+    Default
+	{
+	Radius 13;
+	Height 13;
+	Scale 1.25;
+	DamageFunction (50);
+	Speed 45;
+	Projectile;
+	+RANDOMIZE
+	SeeSound "";
+	DeathSound "";
+	RenderStyle "Add";
+	Decal "BigScorch";
+	}
+
+  override void PostBeginPlay()
+  {
+   Super.PostBeginPlay();
+   tex[0] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+   tex[1] = TexMan.CheckForTexture("DTPRO0",TexMan.Type_Sprite);
+   tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+   tex[3] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+   tex[4] = TexMan.CheckForTexture("BLHDA0",TexMan.Type_Sprite);
+   tex[5] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+   tex[6] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+  }
+  
+  TextureID tex[7];
+  
+	States
+	{
+	Spawn:
+	    TNT1 A 0;
+		TNT1 A 0
+		{
+		A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,30),
+		size: frandom(350,600),
+		startalphaf: 1.0,
+		fadestepf: 1.25,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,15),
+		size: frandom(280,300),
+		startalphaf: 1.0,
+		fadestepf: 1.45,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		for(int i=random(7,12);i>0;i--)
+		A_SpawnParticleEx
+		(
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,150),
+		size: frandom(1,12),
+		xoff: frandom(-2,2),
+		yoff: frandom(-2,2),
+		zoff: frandom(-2,2),
+		velx: frandom(1,10),
+		vely: frandom(-3,3),
+		velz: frandom(-0.6,3),
+		accelx: frandom(-0.005,0.005),
+		accely: frandom(-0.005,0.005),
+		accelz: frandom(-0.0,-0.8),
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
+		}
+	Go:
+		TRCR AAAA 1 BRIGHT Light("AvatarFireball4") Radius_Quake(3,30,0,25,0);
+		Loop;
+	Death:
+		TNT1 A 0 
+		{
+		A_Explode(45,175);
+		Radius_Quake (5, 54, 0, 25, 0);
+		}
+		TNT1 A 0 A_StartSound("BigExplosionDistant", CHAN_7);
+		TNT1 A 0 A_StartSound("Tyrant/ShellExplode", CHAN_6);
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig");
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare");
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+		 A_SpawnParticleEx
+		 (
+		 "",
+		 tex[3],
+		 style: STYLE_Add,
+		 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 lifetime: 8,
+		 size: 360,
+		 zoff: 40,
+		 startalphaf: 1,
+		 startroll: random(-180,180)
+		 );
+		 A_SpawnParticleEx
+		 (   
+		 "",
+		 tex[4],
+		 style: STYLE_Add,
+         flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		 lifetime: 20,
+		 size: 800,
+		 zoff: 50,
+		 startalphaf: 1,
+		 fadestepf: -1,
+		 sizestep: -25,
+		 startroll: random(-180,180)
+		 );
+		for(int i=random(12,20);i>0;i--)
+		{
+		A_SpawnParticleEx
+		 (
+		 "727272",
+		 tex[5],
+		 style: STYLE_Normal,
+		 flags: SPF_RELATIVE|SPF_ROLL,
+		 lifetime: random(40,70),
+		 size: frandom(2,35),
+		 zoff: random(10,60),
+		 velx: frandom(-8,8),
+		 vely: frandom(-8,8),
+		 velz: frandom(-8,12),
+		 accelz: frandom(-0.1,-0.5),
+		 startalphaf: 1.0,
+		 sizestep: -0.2,
+		 startroll: random(-180,180),
+		 rollvel: random(-4,4)
+		 );
+		A_SpawnParticleEx
+		 (
+		 "6C6C6C",
+		 tex[6],
+		 style: STYLE_Normal,
+		 flags: SPF_RELATIVE|SPF_ROLL,
+		 lifetime: random(30,60),
+		 size: frandom(80,220),
+		 zoff: random(10,60),
+		 velx: random(-9,9),
+		 vely: random(-9,9),
+		 velz: random(-9,9),
+		 startalphaf: frandom(0.4,0.75),
+		 fadestepf: -1,
+		 sizestep: 12,
+		 startroll: random(-180,180),
+		 rollvel: random(-2,2)
+		 );
+		 }
+		}
+		TNT1 AAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmokeBig",0,0,1,random(-8,8),random(-8,8),random(0,3),0,0,70);
+		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_HectebusBallExplode",0,0,0,random(-5,5),random(-5,5),random(-5,5),random(0,360));
+		TNT1 A 18 BRIGHT Light("TyrantMExp");
 		Stop;
 	}
 }
