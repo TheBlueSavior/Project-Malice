@@ -53,8 +53,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			Loop;
 		Missile:
 			TNT1 A 0 A_Jump(100,"Shotgun","Rapid");
-			FSPI G 12 A_FaceTarget();
-			FSPI G 3 A_FaceTarget();
+			FSPI G 25
+			{
+			A_StartSound("Fusionite/Charge");
+			A_FaceTarget();
+			}
+			FSPI G 3 A_FaceTarget(8,8);
 			TNT1 A 0 A_StartSound("GenericPlasmaFire");
 			FSPI H 3 Light("GreenBall3")
 			{
@@ -62,14 +66,14 @@ Class PM_Fusionite : PMUnaffMonsterBase
 				{
 					return ResolveState("NoAmmo");
 				}
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnProjectile("PM_FusionShot",22,0);
+				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+				A_SpawnProjectile("PM_FusionShot",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
 				user_numbullets--;
 				return ResolveState(null);
 			}
-			FSPI G 1 A_MonsterRefire(10,"See2"); //A_SpidRefire
+			FSPI G 1 A_CheckSight("See2"); //A_SpidRefire
 			TNT1 A 0 A_Jump(10,"See2");
 			Goto Missile+2;
 		Shotgun:
@@ -123,10 +127,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			FSPI A 8 
 			{
 				A_FaceTarget();
+				A_SetAngle(angle+random(-40,40));
+				A_SetPitch(pitch+random(-15,50));
 				A_StartSound("Fusionite/SmallCharge");
 			}
 			FSPI GGG 5 A_FaceTarget();
-			FSPI G 1 A_FaceTarget();
+			FSPI G 1 A_FaceTarget(3,3);
 			FSPI H 1 Light("GreenBall4")
 			{
 				if(user_numbullets < 0)
@@ -134,11 +140,11 @@ Class PM_Fusionite : PMUnaffMonsterBase
 					return ResolveState("NoAmmo");
 				}
 				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnProjectile("PM_SmallFusionShot",22,0,random(-4,4),CMF_OFFSETPITCH,random(-3,3));
+				A_SpawnProjectile("PM_SmallFusionShot",22,0,frandom(-4,4),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3));
 				user_numbullets--;
 				return ResolveState(null);
 			}
-			FSPI G 1 A_MonsterRefire(10,"See2");
+			FSPI G 1 A_CheckSight("See2");
 			Goto Rapid+4;
 		NoAmmo:
 			TNT1 A 0 A_StartSound("PM/ArachnoCooldown");
@@ -331,7 +337,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 		ZReload:
 			TNT1 A 0 A_StartSound("PM/ArachnoReloadStart",CHAN_5);
 			FSPI G 25 A_FaceTarget();
-			TNT1 A 0 A_StartSound("PM/ArachnoReload",CHAN_5,1,True);
+			TNT1 A 0 A_StartSound("PM/ArachnoReload",CHAN_5,CHANF_LOOPING);
 			FSPI GHGHGHGHGH 2 Light("GreenBall2")
 			{
 				if(user_numbullets > 75)

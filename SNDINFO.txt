@@ -1261,8 +1261,12 @@ Fusionite/Pain "Sounds/Monsters/Arachnotrons/Fusionite/FusionitePain.ogg"
 Fusionite/Death "Sounds/Monsters/Arachnotrons/Fusionite/FusioniteDeath.ogg"
 
 Fusionite/ScatterCharge "Sounds/Monsters/Arachnotrons/Fusionite/ScatterFusionCharge.wav"
+Fusionite/Charge "Sounds/Monsters/Arachnotrons/Fusionite/FusioniteCharge.ogg"
+$rolloff Fusionite/Charge 300 1800
+
 Fusionite/Scattershot "Sounds/Monsters/Arachnotrons/Fusionite/ScatterFusionShot.ogg"
 Fusionite/SmallCharge "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionCharge.ogg"
+$rolloff Fusionite/SmallCharge 600 1800
 $random Fusionite/SmallShot { FusSmallShot1 FusSmallShot2 FusSmallShot3 }
 FusSmallShot1 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot1.ogg"
 FusSmallShot2 "Sounds/Monsters/Arachnotrons/Fusionite/SmallFusionShot2.ogg"
