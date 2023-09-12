@@ -1,5 +1,6 @@
 Class PM_Vore : PMEnvyMonsterBase
 {
+  bool sigil;
   Default
   {
   //$Category "PM_Monsters/HellKnights"
@@ -31,6 +32,26 @@ Class PM_Vore : PMEnvyMonsterBase
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_DemonicTeleportFog";
   }
+  
+  void PM_EnvyRuneGlow()
+  {
+	A_SpawnParticleEx
+		(   
+		"47ae1a",
+		TexMan.CheckForTexture("DTPRA0"),
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(2,10),
+		size: frandom(80,300),
+		xoff: 5,
+		yoff: 0,
+	    zoff: 40,
+	    startalphaf: 0.5,
+		fadestepf: -1,
+		startroll: random(-180,180)
+		);
+  }
+  
   States
   {
   Spawn:
@@ -68,10 +89,22 @@ Class PM_Vore : PMEnvyMonsterBase
 	Loop;
   Melee:
   Missile:
-	TNT1 A 0 A_Jump(130,"StandoffCheck");
-	TNT1 A 0 A_jump(150,"Missile2");
-    //TNT1 A 0 A_jump(80,"Shield")
-    VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
+	TNT1 A 0 A_Jump(65,"StandoffCheck");
+	TNT1 A 0 A_Jump(78,"RowDagger","HomingOrb");
+  NormalMissile:
+    VORE G 0 Bright A_FaceTarget();
+	VORE GGGGGHHHHH 1 Bright Light("Greenball") 
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	VORE I 4 Bright Light("Greenball2") A_FaceTarget();
+	TNT1 A 0 A_StartSound("Vore/Throw");
+	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreDagger", 32, 0, 0);
+    VORE J 4 Bright Light("Greenball2") A_FaceTarget();
+	Goto See2;
+   /*OldMissile2:
+     VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
 	VORE GGGGHHHHHHHHHHHHHHHH 1 Bright Light("Greenball") 
 	{
 	A_FaceTarget();
@@ -87,18 +120,138 @@ Class PM_Vore : PMEnvyMonsterBase
 	TNT1 A 0 A_StartSound("Vore/Throw");
 	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreShadowBall", 32, 0, 0);
 	VORE JJ 4 Bright Light("Greenball2") A_facetarget();
-	Goto See2;
-  Missile2:
-    VORE G 0 Bright A_FaceTarget();
-	VORE GGGGGHHHHH 1 Bright Light("Greenball") 
+	Goto See2;*/
+  RowDagger:
+    TNT1 A 0 A_JumpIfHigherorLower("NormalMissile","NormalMissile");
+    VORE G 0 
+	{
+	A_StartSound("Vore/Attack",CHAN_BODY);
+	bNOPAIN = true;
+	}
+	VORE IIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("Greenball") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
-	VORE I 4 Bright Light("Greenball2") A_FaceTarget();
-	TNT1 A 0 A_StartSound("Vore/Throw");
-	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreShadowBall", 32, 0, 0);
-    VORE J 4 Bright Light("Greenball2") A_FaceTarget();
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,-30,40,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",20,0,45,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,30,40,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_StartSound("PM/RuneFill",21);
+	TNT1 AA 0 {
+	       A_SpawnParticleEx
+				(
+				"",
+				TexMan.CheckForTexture("DTPRA0"),
+				style: STYLE_Add,
+				flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+				lifetime: 10,
+				size: 190,
+				angle: 0,
+				xoff: 40,
+				yoff: 35,
+				zoff: 58,
+				startalphaf: 1,
+				fadestepf: -1,
+				sizestep: -15,
+				startroll: random(-180,180)
+				);
+	}
+	VORE IIIIIIIIIIIIIII 1 Bright Light("Greenball2") 
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	VORE J 6 Bright Light("Greenball3")
+	{
+	 A_FaceTarget();
+	 A_GiveToChildren("PM_VoreReleaseToken",1);
+	 bNOPAIN = false;
+	}
+    VORE JJ 4 Bright Light("Greenball2") A_FaceTarget();
+	Goto See2;
+  HomingOrb:
+    VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
+	VORE GGGGHHHHHHHHHH 1 A_FaceTarget();
+	VORE II 4 A_FaceTarget();
+	VORE J 5 Light("GreenBall3") 
+	{
+		let castsigil = Spawn("PM_EnvyCastSigil",pos);
+	    castsigil.master = self;
+		sigil = true;
+		A_FaceTarget();
+	}
+	VORE JJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	VORE J 0 A_StartSound("PM/RuneFill",21);
+	VORE JJJ 0
+	{
+			A_SpawnParticleEx
+				(
+				"",
+				TexMan.CheckForTexture("DTPRA0"),
+				style: STYLE_Add,
+				flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+				lifetime: 10,
+				size: 190,
+				angle: 0,
+				xoff: 40,
+				yoff: 0,
+				zoff: 40,
+				startalphaf: 1,
+				fadestepf: -1,
+				sizestep: -15,
+				startroll: random(-180,180)
+				);
+	}
+	VORE JJJJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+  HomingOrbGo:
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40,0,-20);
+	VORE JJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40,0,20);
+	VORE JJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40);
+	VORE JJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 
+	{ 
+	 if(sigil)
+	 A_GiveInventory("PM_EnvySigilGoAway");
+	 sigil = false;
+	}
+	VORE JJJJJJ 1 A_FaceTarget;
 	Goto See2;
   StandoffCheck:
 	TNT1 A 0 A_JumpIfCloser(150,"Missile2");
@@ -157,6 +310,8 @@ Class PM_Vore : PMEnvyMonsterBase
 	TNT1 A 0 A_Jump(150,"Standoff");
 	Loop;
   StandoffMissile:
+    TNT1 A 0 A_Jump(65,"StandoffHomingOrb","StandoffRDagger");
+  StandoffNMissile:
     VORE G 0 Bright A_FaceTarget();
 	VORE GGGGGHHHHH 1 Bright Light("Greenball") 
 	{
@@ -165,10 +320,142 @@ Class PM_Vore : PMEnvyMonsterBase
 	}
 	VORE I 4 Bright Light("Greenball2") A_FaceTarget();
 	TNT1 A 0 A_StartSound("Vore/Throw");
-	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreShadowBall", 32, 0, 0);
+	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreDagger", 32, 0, 0);
     VORE J 4 Bright Light("Greenball2") A_FaceTarget();
 	TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck");
 	Goto Standoff;
+  StandoffHomingOrb:
+    VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
+	VORE GGGGHHHHHHHHHH 1 A_FaceTarget();
+	VORE II 4 A_FaceTarget();
+	VORE J 5 Light("GreenBall3") 
+	{
+		let castsigil = Spawn("PM_EnvyCastSigil",pos);
+	    castsigil.master = self;
+		sigil = true;
+		A_FaceTarget();
+	}
+	VORE JJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	VORE J 0 A_StartSound("PM/RuneFill",21);
+	VORE JJJ 0
+	{
+			A_SpawnParticleEx
+				(
+				"",
+				TexMan.CheckForTexture("DTPRA0"),
+				style: STYLE_Add,
+				flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+				lifetime: 10,
+				size: 190,
+				angle: 0,
+				xoff: 40,
+				yoff: 0,
+				zoff: 40,
+				startalphaf: 1,
+				fadestepf: -1,
+				sizestep: -15,
+				startroll: random(-180,180)
+				);
+	}
+	VORE JJJJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+  StHomingOrbGo:
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40,0,-20);
+	VORE JJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40,0,20);
+	VORE JJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 A_SpawnProjectile("PM_VoreHomingOrb",40);
+	VORE JJJJ 1 Bright Light("Greenball3") 
+	{
+	 A_FaceTarget();
+	 PM_EnvyRuneGlow();
+	}
+	TNT1 A 0 
+	{ 
+	 if(sigil)
+	 A_GiveInventory("PM_EnvySigilGoAway");
+	 sigil = false;
+	}
+	VORE JJJJJJ 1 A_FaceTarget;
+	Goto Standoff;
+  StandoffRDagger:
+    TNT1 A 0 A_JumpIfHigherorLower("StandoffNMissile","StandoffNMissile");
+    VORE G 0 
+	{
+	A_StartSound("Vore/Attack",CHAN_BODY);
+	bNOPAIN = true;
+	}
+	VORE IIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("Greenball") 
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,-30,40,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",20,0,45,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,30,40,flags:SXF_SETMASTER);
+	VORE IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	TNT1 A 0 A_StartSound("PM/RuneFill",21);
+	TNT1 AA 0 {
+	       A_SpawnParticleEx
+				(
+				"",
+				TexMan.CheckForTexture("DTPRA0"),
+				style: STYLE_Add,
+				flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+				lifetime: 10,
+				size: 190,
+				angle: 0,
+				xoff: 40,
+				yoff: 35,
+				zoff: 58,
+				startalphaf: 1,
+				fadestepf: -1,
+				sizestep: -15,
+				startroll: random(-180,180)
+				);
+	}
+	VORE IIIIIIIIIIIIIII 1 Bright Light("Greenball2") 
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	VORE J 6 Bright Light("Greenball3")
+	{
+	 A_FaceTarget();
+	 A_GiveToChildren("PM_VoreReleaseToken",1);
+	 bNOPAIN = false;
+	}
+    VORE JJ 4 Bright Light("Greenball2") A_FaceTarget();
+	Goto See2;
   StandoffRepos:
 	TNT1 A 0 A_SetSpeed(10);
 	TNT1 A 0 { bFRIGHTENED = true; }
@@ -196,11 +483,24 @@ Class PM_Vore : PMEnvyMonsterBase
 	TNT1 A 0 A_Jump(100,"Standoff");
 	Loop;
   Pain:
+    TNT1 A 0 
+	{ 
+	 if(sigil)
+	 A_GiveInventory("PM_EnvySigilGoAway");
+	 sigil = false;
+	}
 	VORE K 4;
 	VORE K 4 A_Pain;
 	TNT1 A 0 A_Jump(150,"RetreatCheck");
 	Goto See2;
   Death:
+	TNT1 A 0 
+	{
+	 A_RemoveChildren(1,RMVF_EVERYTHING);
+	 if(sigil)
+	 A_GiveInventory("PM_EnvySigilGoAway");
+	 sigil = false;
+	}
     TNT1 A 0 A_StopSounds(0,0);
 	VORE L 12 A_Scream;
 	VORE M 8;
@@ -216,16 +516,16 @@ Class PM_Vore : PMEnvyMonsterBase
   }
 }
 
-Class PM_VoreShadowBall : Actor
+Class PM_VoreDagger : Actor
 {
    Default
    {
-    Radius 6;
-    Height 8;
+    Radius 4;
+    Height 5;
     Speed 28;
     DamageFunction 32;
     RenderStyle "Add";
-	Scale 1.4;
+	Scale 0.85;
     Alpha 0.90;
     SeeSound "Shadow/attack";
     DeathSound "HellKnight/BallImpact";
@@ -233,28 +533,342 @@ Class PM_VoreShadowBall : Actor
     Projectile;
     +RANDOMIZE
    }
+
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
+
   States
   {
   Spawn:
-    SBAL A 1 BRIGHT Light("GreenBall5")
+    TRCR AA 1 BRIGHT Light("GreenBall5")
 	{
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	}
-	SBAL B 1 BRIGHT Light("GreenBall5")
-	{
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	}
-	SBAL C 1 BRIGHT Light("GreenBall5")
-	{
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,15,0,random(-22,-15),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,8,0,random(20,-20),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,8,0,random(20,-20),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
+	A_SpawnParticleEx
+	(
+	"",
+	tex[1],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(20,30),
+	size: random(1,15),
+	xoff: random(-10,10),
+	yoff: random(-5,5),
+	zoff: random(-5,5),
+	velx: random(-1,-2),
+	vely: random(-1,1),
+	velz: random(-1,1),
+	startalphaf: frandom(0.65,0.95),
+	startroll: random(-180,180)
+	);
 	}
     Loop;
   Death:
-    SBAL C 5 Bright Light("GreenBall2");
-    SBAL DEFGH 4 BRIGHT;
+    SBAL C 5 Bright Light("GreenBall2")
+	{
+	A_SetScale(1.1);
+	for(int i=random(7,10);i>0;i--)
+	A_SpawnParticleEx
+	(
+    "",
+	tex[1],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(20,30),
+	size: random(1,20),
+	velx: random(-4,4),
+    vely: random(-4,4),
+	velz: random(-4,4),
+	startalphaf: 0.9,
+	startroll: random(-180,180)
+	);
+	for(int i=5;i>0;i--)
+	A_SpawnParticleEx
+    (
+	"80FF38",
+	tex[2],
+	style: STYLE_Add,
+	flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(20,45),
+	size: random(34,46),
+	xoff: -10,
+	startalphaf: 0.75,
+	fadestepf: -0.65,
+	sizestep: -0.25,
+	startroll: random(-180,180)
+	);
+	for(int i=2;i>0;i--)
+	A_SpawnParticleEx
+	(
+	"",
+	tex[1],
+	style: STYLE_Add,
+    flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(5,10),
+	size: 130.0,
+	startalphaf: 0.8,
+	sizestep: 0.75
+    );
+	}
+    SBAL DEFGH 4 BRIGHT A_FadeOut(0.5);
     Stop;
+  }
+}
+
+
+Class PM_VoreHomingOrb : Actor
+{
+   Default
+   {
+    Radius 6;
+    Height 8;
+    Speed 20;
+    DamageFunction 35;
+    RenderStyle "Add";
+	Scale 0.45;
+    Alpha 0.90;
+	SeeSound "PM/MagicFireFire";
+    DeathSound "HellKnight/BallImpact";
+	Decal "PM_GreenFireScorch";
+    Projectile;
+    +RANDOMIZE
+	+SEEKERMISSILE
+   }
+
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
+    void PM_VoreOrbParticles()
+	{
+	A_SpawnParticleEx
+	(
+	"",
+	tex[1],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(15,20),
+	size: random(1,5),
+	xoff: random(-10,10),
+	yoff: random(-5,5),
+	zoff: random(-5,5),
+	velx: random(-1,-2),
+	vely: random(-1,1),
+	velz: random(-1,1),
+	startalphaf: frandom(0.65,0.95),
+	startroll: random(-180,180)
+	);
+	A_SpawnParticleEx
+	(
+	"7fe752",
+	tex[2],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: 35,
+	size: 55,
+	xoff: random(-3,3),
+	yoff: random(-3,3),
+	zoff: random(-3,3),
+	velx: frandom(-0.1,0.1),
+	vely: frandom(-0.1,0.1),
+	velz: frandom(-0.1,0.1),
+	startalphaf: frandom(0.45,0.75),
+	sizestep: -0.75,
+	startroll: random(-180,180)
+	);
+	}
+	
+  States
+  {
+  Spawn:
+    TNT1 AA 0
+	{
+	A_SpawnParticleEx
+	(
+	"",
+	tex[1],
+	style: STYLE_Add,
+    flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(5,10),
+	size: 250.0,
+	startalphaf: 0.8,
+	sizestep: 0.75,
+	rollvel: random(-10,10)
+    );
+	}
+  Go:
+    PBAL CCCCCCCC 1 Bright Light("GreenBall5") PM_VoreOrbParticles();
+  Go:
+    PBAL CC 1 BRIGHT Light("GreenBall5")
+	{
+	A_SeekerMissile(1,1,SMF_LOOK|SMF_PRECISE);
+    PM_VoreOrbParticles();
+	}
+    Loop;
+  Death:
+    SBAL C 5 Bright Light("GreenBall2")
+	{
+	for(int i=random(9,18);i>0;i--)
+	A_SpawnParticleEx
+	(
+    "",
+	tex[1],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(20,30),
+	size: random(1,20),
+	velx: random(-4,4),
+    vely: random(-4,4),
+	velz: random(-4,4),
+	startalphaf: 0.9,
+	startroll: random(-180,180)
+	);
+	for(int i=5;i>0;i--)
+	A_SpawnParticleEx
+    (
+	"80FF38",
+	tex[2],
+	style: STYLE_Add,
+	flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(20,45),
+	size: random(34,75),
+	xoff: -10,
+	startalphaf: 0.75,
+	fadestepf: -0.65,
+	sizestep: -0.25,
+	startroll: random(-180,180)
+	);
+	for(int i=2;i>0;i--)
+	A_SpawnParticleEx
+	(
+	"",
+	tex[1],
+	style: STYLE_Add,
+    flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(5,10),
+	size: 235.0,
+	startalphaf: 0.8,
+	sizestep: 0.75
+    );
+	}
+    Stop;
+  }
+}
+
+Class PM_VoreOrbSummon : Actor
+{
+  Default
+  {
+  Scale 0.25;
+  Alpha 0.15;
+  RenderStyle "Add";
+  Species "Nobles";
+  +MISSILE
+  +SEEKERMISSILE
+  +ACTIVATEPCROSS
+  +NOTELEPORT
+  +NOGRAVITY
+  +NOBLOCKMAP
+  +THRUSPECIES
+  +MTHRUSPECIES
+  +DONTSPLASH
+  +BRIGHT
+  }
+  States
+  {
+  Spawn:
+   TNT1 A 0 NoDelay A_StartSound("PM/RuneFill",pitch:0.65);
+  Death:
+   SPKO GGGGGGGGG 2 A_FadeIn(0.25);
+  DeathLoop:
+   SPKO GGGG 2 Light("GreenBall5")
+   {
+    if(CountInv("PM_VoreReleaseToken")) SetStateLabel("Release");
+	A_FaceTracer();
+    A_SpawnItemEx("PM_NobleFlameTrails",0,0,0,0,0,0,0,128,0);
+   }
+  Loop;
+  Release:
+   TNT1 A 1 
+   {
+    A_FaceTracer();
+    A_StartSound("Vore/Throw");
+	A_SpawnProjectile("PM_VoreDagger",0,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+	for(int i=2;i>0;i--)
+	A_SpawnParticleEx
+	(
+	"",
+	TexMan.CheckForTexture("SPKOG0"),
+	style: STYLE_Add,
+    flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(5,10),
+	size: 120.0,
+	startalphaf: 0.8,
+	sizestep: 0.75
+    );
+   }
+  Stop;
+  }
+}
+
+Class PM_VoreReleaseToken : Inventory { Default { Inventory.MaxAmount 1; } }
+
+Class PM_EnvyCastSigil : Actor
+{
+  Default
+  {
+  StencilColor "Green";
+  Scale 0.60;
+  Alpha 0.75;
+  +FLATSPRITE
+  +NOINTERACTION
+  +BRIGHT;
+  Translation "0:255=%[0,0,0]:[0.3,2.0,0.1]";
+  }
+  override void PostBeginPlay()
+	{
+	if(master)
+		{
+		master.A_StartSound("PM/SigilSpawn",20);
+		}
+	Super.PostBeginPlay();
+	pitch = 270;
+	}
+  override void Tick()
+  {
+	Super.Tick();
+	A_Warp(AAPTR_MASTER, 45, 0, 40, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	if( master.CountInv("PM_EnvySigilGoAway") == 1)
+	 SetStateLabel("Death");
+	else if(!master)
+	 SetStateLabel("Death");
+  }
+  States
+  {
+  Spawn:
+   TNT1 A 0;
+   C1TE AAA 5 A_FadeIn(0.55,0);
+   C1TE A 1;
+   Wait;
+  Death:
+    TNT1 A 0 
+   {
+   if(master)
+    master.A_TakeInventory("PM_EnvySigilGoAway");
+   }
+   C1TE A 2 A_FadeOut(0.35);
+   Wait;
   }
 }
