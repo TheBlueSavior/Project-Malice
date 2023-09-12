@@ -134,19 +134,24 @@ Class PM_Vore : PMEnvyMonsterBase
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,-30,40,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",20,0,45,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,30,40,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	VORE IIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -162,16 +167,16 @@ Class PM_Vore : PMEnvyMonsterBase
 				lifetime: 10,
 				size: 190,
 				angle: 0,
-				xoff: 40,
-				yoff: 35,
-				zoff: 58,
+				xoff: 25,
+				yoff: 13,
+				zoff: 59,
 				startalphaf: 1,
 				fadestepf: -1,
 				sizestep: -15,
 				startroll: random(-180,180)
 				);
 	}
-	VORE IIIIIIIIIIIIIII 1 Bright Light("Greenball2") 
+	VORE IIIIIIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -195,7 +200,7 @@ Class PM_Vore : PMEnvyMonsterBase
 		sigil = true;
 		A_FaceTarget();
 	}
-	VORE JJJJJJJJJJ 1 Bright Light("Greenball3") 
+	VORE JJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
 	{
 	 A_FaceTarget();
 	 PM_EnvyRuneGlow();
@@ -221,7 +226,7 @@ Class PM_Vore : PMEnvyMonsterBase
 				startroll: random(-180,180)
 				);
 	}
-	VORE JJJJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	VORE JJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
 	{
 	 A_FaceTarget();
 	 PM_EnvyRuneGlow();
@@ -335,7 +340,7 @@ Class PM_Vore : PMEnvyMonsterBase
 		sigil = true;
 		A_FaceTarget();
 	}
-	VORE JJJJJJJJJJ 1 Bright Light("Greenball3") 
+	VORE JJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
 	{
 	 A_FaceTarget();
 	 PM_EnvyRuneGlow();
@@ -361,7 +366,7 @@ Class PM_Vore : PMEnvyMonsterBase
 				startroll: random(-180,180)
 				);
 	}
-	VORE JJJJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
+	VORE JJJJJJJJJJJJJJJJ 1 Bright Light("Greenball3") 
 	{
 	 A_FaceTarget();
 	 PM_EnvyRuneGlow();
@@ -406,19 +411,24 @@ Class PM_Vore : PMEnvyMonsterBase
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,-30,40,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",20,0,45,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_VoreOrbSummon",45,30,40,flags:SXF_SETMASTER);
-	VORE IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE IIIIIIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	{
+	A_FaceTarget();
+	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
+	}
+	VORE IIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -434,16 +444,16 @@ Class PM_Vore : PMEnvyMonsterBase
 				lifetime: 10,
 				size: 190,
 				angle: 0,
-				xoff: 40,
-				yoff: 35,
-				zoff: 58,
+				xoff: 25,
+				yoff: 13,
+				zoff: 59,
 				startalphaf: 1,
 				fadestepf: -1,
 				sizestep: -15,
 				startroll: random(-180,180)
 				);
 	}
-	VORE IIIIIIIIIIIIIII 1 Bright Light("Greenball2") 
+	VORE IIIIIIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -455,7 +465,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	 bNOPAIN = false;
 	}
     VORE JJ 4 Bright Light("Greenball2") A_FaceTarget();
-	Goto See2;
+	Goto Standoff;
   StandoffRepos:
 	TNT1 A 0 A_SetSpeed(10);
 	TNT1 A 0 { bFRIGHTENED = true; }
@@ -656,17 +666,28 @@ Class PM_VoreHomingOrb : Actor
 	A_SpawnParticleEx
 	(
 	"",
+	tex[0],
+	style: STYLE_Add,
+	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(1,5),
+	size: random(100,130),
+	startalphaf: frandom(0.15,0.45),
+	startroll: random(-180,180)
+	);
+	A_SpawnParticleEx
+	(
+	"",
 	tex[1],
 	style: STYLE_Add,
 	flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-	lifetime: random(15,20),
-	size: random(1,5),
+	lifetime: random(1,80),
+	size: random(1,8),
 	xoff: random(-10,10),
 	yoff: random(-5,5),
 	zoff: random(-5,5),
-	velx: random(-1,-2),
-	vely: random(-1,1),
-	velz: random(-1,1),
+	velx: frandom(-0.1,0.1),
+	vely: frandom(-0.1,0.1),
+	velz: frandom(-0.1,0.1),
 	startalphaf: frandom(0.65,0.95),
 	startroll: random(-180,180)
 	);
@@ -684,7 +705,7 @@ Class PM_VoreHomingOrb : Actor
 	velx: frandom(-0.1,0.1),
 	vely: frandom(-0.1,0.1),
 	velz: frandom(-0.1,0.1),
-	startalphaf: frandom(0.45,0.75),
+	startalphaf: frandom(0.15,0.45),
 	sizestep: -0.75,
 	startroll: random(-180,180)
 	);
