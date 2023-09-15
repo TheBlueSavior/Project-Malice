@@ -422,7 +422,7 @@ Class PM_WhiplashGroundSeeker : Actor
 	  TNT1 A 0 A_StopSound(CHAN_7);
 	  FLME ABCD 1 Bright Light("WhipKnife") ;
 	  TNT1 A 0 A_SpawnItemEx("PurpleShockwave",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-	  TNT1 A 0 A_StartSound("WHIPHIT",CHAN_5);
+	  TNT1 A 0 A_StartSound("Whiplash/KnifeStab",CHAN_5);
 	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION);
 	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION);
 	  TNT1 A 0 A_SpawnItemEx("PM_WhipFloorSpike",random(-50,30),random(-50,30),0,0,0,0,0,SXF_NOCHECKPOSITION);

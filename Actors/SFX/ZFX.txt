@@ -2465,3 +2465,22 @@ Class PM_EnvySigilGoAway : Inventory
 {
  Default { Inventory.MaxAmount 1; }
 }
+
+Class PM_EnvyMorphGhost : Actor
+{
+ Default
+ {
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  RenderStyle "Stencil";
+  StencilColor "Green";
+  Alpha 0.60;
+ }
+States
+{
+Spawn:
+    TNT1 A 3;
+    "----" A 1 A_FadeOut(0.045);
+	Wait;
+    }
+}
