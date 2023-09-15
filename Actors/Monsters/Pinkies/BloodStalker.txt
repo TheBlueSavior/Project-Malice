@@ -84,7 +84,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 	
 	void PM_BStalkerWarp()
 	{
-        A_Wander();
+        A_Chase(null,null);
 		A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 		for(int i=random(1,2);i>0;i--)
 		A_SpawnParticleEx
@@ -163,7 +163,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		A_SetSpeed(3);
 		}
 		SAR2 H 0 A_StartSound("PM/BigElectricCharge",2);
-		SAR2 AAAAAAAAAA 1 Bright Light("Shadowball3")
+		SAR2 AAAAAA 1 Bright Light("Shadowball3")
 		{
 		PM_BStalkerWarpParticles();
 		A_Chase(null,null);
@@ -179,7 +179,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		);
         }
 		TNT1 A 0 A_StartSound("demonstep",10);
-		SAR2 BBBBBBBBBBB 1 Bright Light("Shadowball3")
+		SAR2 BBBBBBB 1 Bright Light("Shadowball3")
 		{
 		PM_BStalkerWarpParticles();
 		A_Chase(null,null);
@@ -194,7 +194,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		 startalphaf: frandom(0.15,0.35)
 		);
         }
-		SAR2 CCCCCCCCCCCC 1 
+		SAR2 CCCCCCCC 1 
 		{
 		PM_BStalkerWarpParticles();
 		A_Chase(null,null);
@@ -210,7 +210,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		);
         }
 		TNT1 A 0 A_StartSound("demonstep",10);
-		SAR2 DDDDDDDDDDDD 1 Bright Light("Shadowball3")
+		SAR2 DDDDDDDDD 1 Bright Light("Shadowball3")
 		{
 		PM_BStalkerWarpParticles();
 		A_Chase(null,null);
