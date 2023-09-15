@@ -8,8 +8,8 @@ States
 {
 Spawn:
     TNT1 A 3
-    "----" A 1 A_FadeOut(0.003)
-    Wait
+    "----" A 1 A_FadeOut(0.085)
+  Wait
     }
 }
 
