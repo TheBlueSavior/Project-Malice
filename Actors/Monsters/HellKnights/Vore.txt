@@ -95,7 +95,7 @@ Class PM_Vore : PMEnvyMonsterBase
     VORE G 0 Bright A_FaceTarget();
 	VORE GGGGGHHHHH 1 Bright Light("Greenball") 
 	{
-	if(target && CheckSight(target) && Distance3D(target) < 350)
+	if(random(1,15) == 1 && target && CheckSight(target) && Distance3D(target) < 350)
 	SetStateLabel("CopyAttack");
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -114,7 +114,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	}
 	VORE GGGGGHHHHHHHHH 1 Bright Light("GreenBall")
 	{
-	if(target && CheckSight(target) && Distance3D(target) < 350)
+	if(random(1,15) == 1 && target && CheckSight(target) && Distance3D(target) < 350)
 	SetStateLabel("CopyAttack");
 	A_FaceTarget();
 	A_Spawnitemex("GreenFireEffect",10,random(12,8),70,0,0,2);
@@ -157,7 +157,6 @@ Class PM_Vore : PMEnvyMonsterBase
 				flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
 				lifetime: 10,
 				size: 190,
-				angle: 0,
 				xoff: 25,
 				yoff: 13,
 				zoff: 59,
@@ -184,7 +183,7 @@ Class PM_Vore : PMEnvyMonsterBase
     VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
 	VORE GGGGHHHHHHHHHH 1 
 	{
-	if(target && CheckSight(target) && Distance3D(target) < 350)
+	if(random(1,15) == 1 && target && CheckSight(target) && Distance3D(target) < 350)
 	SetStateLabel("CopyAttack");
 	A_FaceTarget();
 	}
