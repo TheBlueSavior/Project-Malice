@@ -1,181 +1,188 @@
-Actor PM_BurntSoul : PMUnaffMonsterBase
+Class PM_BurntSoul : PMUnaffMonsterBase
 {
-  //$Category "PM_Monsters/Souls"
-  Health 80
-  Scale 0.76
-  PainChance 255
-  Speed 5
-  Radius 16
-  Height 56
-  Mass 50
-  Monster
-  SeeSound  "BurntSoul/Sight"
-  PainSound "BurntSoul/Pain"
-  DeathSound "BurntSoul/Death"
-  ActiveSound "BurntSoul/Active"
-  AttackSound "BurntSoul/Attack"
+  Default
+  {
+  Health 80;
+  Scale 0.76;
+  PainChance 255;
+  Speed 5;
+  Radius 16;
+  Height 56;
+  Mass 50;
+  Monster;
+  SeeSound  "BurntSoul/Sight";
+  PainSound "BurntSoul/Pain";
+  DeathSound "BurntSoul/Death";
+  ActiveSound "BurntSoul/Active";
+  AttackSound "BurntSoul/Attack";
   +BRIGHT
-  Renderstyle Normal
-  Damage (random(15,15))
-  DeathHeight 4
-  Obituary "%o's will was shattered by a Burnt Soul."
-  Tag "Burnt Soul"
-  Species "Soul"
+  Renderstyle "Normal";
+  DamageFunction 15;
+  DeathHeight 4;
+  Obituary "%o's will was shattered by a Burnt Soul.";
+  Tag "Burnt Soul";
+  Species "Soul";
   //+NOINFIGHTING
   +FLOATBOB
-  FloatBobStrength 0.3
+  FloatBobStrength 0.3;
   +NOICEDEATH
   +NOGRAVITY
   +DONTFALL
   +NOBLOOD
   +FORCEXYBILLBOARD
-  +DONTHURTSPECIES
+  +DONTHARMCLASS
   +DONTHARMSPECIES
   +ROLLSPRITE
-  TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_SmallDemonicTeleportFog";
+  }
+
+   override void Tick()
+   {
+    if(level.IsFrozen()) return;
+    Super.Tick();
+	if ((level.maptime % 9) == 0 && health > 0)
+	A_SpawnProjectile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160));
+   }
+   
   States
   {
   Spawn:
-	BSOU AABB 2 BRIGHT PM_Look()
-	Loop
+	BSOU AABB 2 BRIGHT PM_Look();
+	Loop;
   Look:
     BSOU AA 2 Bright Light("BurntSoulLight")
 	{
 	PM_LookingForPlayer();
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
 	}
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
 	BSOU BB 2 Bright Light("BurntSoulLight")
 	{
 	PM_LookingForPlayer();
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
 	}
-    Loop
+    Loop;
   Spotted:
-    TNT1 A 0 PM_AlertSound()
+    TNT1 A 0 PM_AlertSound();
   See:
   See2:
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	TNT1 A 0 A_SetRoll(0)
+	TNT1 A 0 A_SetRoll(0);
     BSOU AA 2 Bright Light("BurntSoulLight")
 	{
-	A_Chase("","");
+	A_Chase(null,null);
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
 	}
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
 	BSOU BB 2 Bright Light("BurntSoulLight")
 	{
-	A_Chase;
+	A_Chase();
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
 	}
-	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3))
-	TNT1 A 0 A_Recoil(-0.3)
-	TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-	TNT1 A 0 A_JumpIfCloser(170,"Backup")
-    Loop
+	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
+	TNT1 A 0 A_Recoil(-0.3);
+	TNT1 A 0 { bNOPAIN = false; }
+	TNT1 A 0 A_JumpIfCloser(170,"Backup");
+    Loop;
    Missile:
-	TNT1 A 0 A_ChangeFlag(NOPAIN,1)
-	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16)
+	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16);
 	BSOU ABAB 3 Bright Light("BurntSoulLight")
 	{
-	A_Facetarget;
-	A_CustomMissile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
+	A_FaceTarget();
+	A_SpawnProjectile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
 	}
 	BSOU C 2 Bright Light("BurntSoulLight")
 	{
-	A_SkullAttack;
-	A_CustomMissile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
+	A_SkullAttack();
+	A_SpawnProjectile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
 	}
-	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16)
+	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16);
     BSOU DC 2 Bright Light("BurntSoulLight")
 	{
 	A_SpawnItem("PM_BurntSoulFlare",0,16);
-	A_CustomMissile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
+	A_SpawnProjectile("PM_BurntSoulAttackFire",random(7,15),random(-4,4),random(0,360),2,random(0,160));
 	}
-    Goto Missile+7
+    Goto Missile+7;
   Backup:
-	BSOU A 1 A_FaceTarget
-	TNT1 A 0 A_Recoil(4)
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	BSOU AA 2 Bright Light("BurntSoulLight")
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	BSOU BB 2 Bright Light("BurntSoulLight")
-	TNT1 A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	BSOU AA 2 Bright Light("BurntSoulLight")
-    Goto See2
+	BSOU A 1 A_FaceTarget;
+	TNT1 A 0 A_Recoil(4);
+	BSOU AA 2 Bright Light("BurntSoulLight");
+	BSOU BB 2 Bright Light("BurntSoulLight");
+	BSOU AA 2 Bright Light("BurntSoulLight");
+    Goto See2;
   Pain:
-	BSOU E 3 Bright Light("BurntSoulLight")
-	TNT1 A 0 A_Jump(60,"Avoid")
-	BSOU E 1 Bright Light("BurntSoulLight") A_Pain
-	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16)
-	Goto See2
+	BSOU E 3 Bright Light("BurntSoulLight");
+	TNT1 A 0 A_Jump(60,"Avoid");
+	BSOU E 1 Bright Light("BurntSoulLight") A_Pain;
+	TNT1 A 0 A_SpawnItem("PM_BurntSoulFlare",0,16);
+	Goto See2;
   Avoid:
-    NULL A 0 A_FaceTarget
-    BSOU A 4 BRIGHT Light("BurntSoulLight") A_FastChase
-	BSOU A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16)
-    NULL A 0 A_FaceTarget
-    BSOU B 4 BRIGHT Light("BurntSoulLight") A_FastChase
-	BSOU A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16)
-    NULL A 0 A_FaceTarget
-    BSOU A 4 BRIGHT Light("BurntSoulLight") A_FastChase
-	BSOU A 0 A_CustomMissile("PM_BurntSoulFire",16,0,random(0,360),2,random(0,160))
-	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16)
-	Goto Backup
+    NULL A 0 A_FaceTarget;
+    BSOU A 4 BRIGHT Light("BurntSoulLight") A_FastChase();
+	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16);
+    NULL A 0 A_FaceTarget;
+    BSOU B 4 BRIGHT Light("BurntSoulLight") A_FastChase();
+	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16);
+    NULL A 0 A_FaceTarget;
+    BSOU A 4 BRIGHT Light("BurntSoulLight") A_FastChase();
+	TNT1 A 0 BRIGHT A_SpawnItem("PM_BurntSoulFlare",0,16);
+	Goto Backup;
   Death:
-	TNT1 A 0 A_Jump(150,"Death2")
-    BSOU F 4 Bright Light("BurntSoulLight") A_Scream
-	TNT1 A 0 A_PlaySound("imp/shotx",CHAN_6)
-	TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360))
-	TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360))
-	TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10)
-	TNT1 AAAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-    BSOU G 4 Bright Light("BurntSoulLight") A_NoBlocking
-	TNT1 AAA 0 A_CustomMissile ("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160))
-    BSOU H 4 Bright Light("BurntSoulLight")
-	TNT1 AAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-	TNT1 AAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-	TNT1 AA 0 A_CustomMissile ("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160))
-    TNT1 A 0 A_CustomMissile ("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160))
-    BSOU IJK 4 Bright A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-    Stop
+	TNT1 A 0 A_Jump(150,"Death2");
+    BSOU F 4 Bright Light("BurntSoulLight") A_Scream;
+	TNT1 A 0 A_StartSound("imp/shotx",6);
+	TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+	TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10);
+	TNT1 AAAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+    BSOU G 4 Bright Light("BurntSoulLight") A_NoBlocking;
+	TNT1 AAA 0 A_SpawnProjectile("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160));
+    BSOU H 4 Bright Light("BurntSoulLight");
+	TNT1 AAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	TNT1 AAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	TNT1 AA 0 A_SpawnProjectile("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160));
+    TNT1 A 0 A_SpawnProjectile("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160));
+    BSOU IJK 4 Bright A_SetRenderstyle(Alpha-0.1,STYLE_ADD);
+    Stop;
   Death2:
-	TNT1 AA 0 A_CustomMissile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360))
-	TNT1 AAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-	TNT1 A 0 A_Scream
-	TNT1 A 0 A_CustomMissile ("PM_BurntSoulFall",0,0,random(0,360),2,random(40,90))
-	Stop
+	TNT1 AA 0 A_SpawnProjectile("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+	TNT1 AAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_Scream;
+	TNT1 A 0 A_SpawnProjectile ("PM_BurntSoulFall",0,0,random(0,360),2,random(40,90));
+	Stop;
   }
 }
 
-Actor BurntSoulFire
+Class BurntSoulFire : Actor
 {
+  Default
+  {
   +NOINTERACTION
   +CLIENTSIDEONLY
   +ROLLSPRITE
   +FORCEXYBILLBOARD
-  Renderstyle Add
-  Scale 0.19
+  Renderstyle "Add";
+  Scale 0.19;
   +Bright
+  }
   States
   {
   Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360))
-	TNT1 A 0 A_SetScale(ScaleX-0.015)
-	F1R1 A 1 A_FadeOut(0.07)
-	Loop
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+	TNT1 A 0 A_SetScale(Scale.X-0.015);
+	F1R1 A 1 A_FadeOut(0.07);
+	Loop;
 	}
 }
 
-ACTOR PM_BurntSoulFall
+Class PM_BurntSoulFall : Actor
 {
-    Radius 7
-    Height 23
-    Speed 9
-	Mass 3
-	BounceFactor 0.4
+    Default
+	{
+    Radius 7;
+    Height 23;
+    Speed 9;
+	Mass 3;
+	BounceFactor 0.4;
 	+DOOMBOUNCE
     +NOBLOCKMAP
 	+MISSILE
@@ -183,40 +190,41 @@ ACTOR PM_BurntSoulFall
     +DONTSPLASH
     +MOVEWITHSECTOR
 	+ROLLSPRITE
-    Scale 0.76
+    Scale 0.76;
+	}
     States
     {
     Spawn:
-		TNT1 A 0
-		BSOU K 2 Bright Light("BurntSoulLight") A_CustomMissile("PM_BurntSoulFire",4,0,random(0,360),2,random(0,160))
-		TNT1 A 0 A_SetRoll(roll+15)
-		Loop
+		TNT1 A 0;
+		BSOU K 2 Bright Light("BurntSoulLight") A_SpawnProjectile("PM_BurntSoulFire",4,0,random(0,360),2,random(0,160));
+		TNT1 A 0 A_SetRoll(roll+15);
+		Loop;
 	Death:
-		BSOU F 2 Bright Light("BurntSoulLight")
-		TNT1 A 0 A_PlaySound("imp/shotx",CHAN_6)
-		TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360))
-		TNT1 AAA 0 A_CustomMissile ("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360))
-		TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10)
-		TNT1 AAAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-		BSOU G 3 Bright Light("BurntSoulLight") A_Scream
-		TNT1 AAA 0 A_CustomMissile ("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160))
-		BSOU H 3 Bright Light("BurntSoulLight") A_NoBlocking
-		TNT1 AAA 0 A_CustomMissile("PM_FireGlobs",10,0,random(0,360),2,random(0,360))
-		TNT1 AAAA 0 A_CustomMissile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360))
-		TNT1 AA 0 A_CustomMissile ("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160))
-		TNT1 A 0 A_CustomMissile ("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160))
-		BSOU IJK 3 Bright A_SetRenderstyle(alpha-0.1,STYLE_ADD)
-		Stop
+	    TNT1 A 0 A_StartSound("imp/shotx",6);
+	    TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+	    TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360));
+	    TNT1 A 0 A_SpawnItem("OrangeShockwaveSmall",0,10);
+	    TNT1 AAAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	    TNT1 AAA 0 A_SpawnProjectile("PM_BurntSoulPart1",12,0,random(0,360),2,random(0,160));
+        BSOU H 4 Bright Light("BurntSoulLight");
+	    TNT1 AAA 0 A_SpawnProjectile("PM_FireGlobs",10,0,random(0,360),2,random(0,360));
+	    TNT1 AAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	    TNT1 AA 0 A_SpawnProjectile("PM_BurntSoulPart2",7,0,random(0,360),2,random(0,160));
+        TNT1 A 0 A_SpawnProjectile("PM_BurntSoulPart3",7,0,random(0,360),2,random(0,160));
+        BSOU IJK 4 Bright A_SetRenderstyle(Alpha-0.1,STYLE_ADD);
+		Stop;
     }
 }
 
-ACTOR PM_BurntSoulPart1
+Class PM_BurntSoulPart1 : Actor
 {
-    Radius 2
-    Height 2
-    Speed 10
-	Mass 3
-	BounceFactor 0.4
+    Default
+	{
+    Radius 2;
+    Height 2;
+    Speed 10;
+	Mass 3;
+	BounceFactor 0.4;
 	+DOOMBOUNCE
     +NOBLOCKMAP
 	+MISSILE
@@ -225,109 +233,92 @@ ACTOR PM_BurntSoulPart1
     +MOVEWITHSECTOR
     +CLIENTSIDEONLY
 	+THRUACTORS
-    Scale 0.6
+    Scale 0.6;
+	}
     States
     {
     Spawn:
-		TNT1 A 0
-		
-		TNT1 A 0 Thing_ChangeTID(0,394)
-		TNT1 A 0 A_Jump(128,9)
-		LGI1 ABCDEFGH 2
-		wait
-		LGI1 HGFEDCBA 2
-		wait
+		TNT1 A 0;
+		TNT1 A 0 Thing_ChangeTID(0,394);
+		TNT1 A 0 A_Jump(128,9);
+		LGI1 ABCDEFGH 2;
+		wait;
+		LGI1 HGFEDCBA 2;
+		wait;
 	Death:
-		TNT1 A 0
-		TNT1 A 0 A_QueueCorpse
-		TNT1 A 0 A_Jump(128,2)
-		LGI1 A 100
-		stop
-		LGI1 E 100
-        Stop
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 A_Jump(128,2);
+		LGI1 A 100;
+		stop;
+		LGI1 E 100;
+        Stop;
     }
 }
 
 
 
 
-Actor PM_BurntSoulPart2 : PM_BurntSoulPart1
+Class PM_BurntSoulPart2 : PM_BurntSoulPart1
 {
 States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 Thing_ChangeTID(0,394)
-		TNT1 A 0 A_Jump(128,9)
-		LGI2 ABCDEFGH 2
-		wait
-		LGI2 HGFEDCBA 2
-		wait
+		TNT1 A 0;
+		TNT1 A 0 Thing_ChangeTID(0,394);
+		TNT1 A 0 A_Jump(128,9);
+		LGI2 ABCDEFGH 2;
+		wait;
+		LGI2 HGFEDCBA 2;
+		wait;
 	Death:
-		TNT1 A 0
-		TNT1 A 0 A_QueueCorpse
-		TNT1 A 0 A_Jump(128,2)
-		LGI2 A 100
-		stop
-		LGI2 E 100
-        Stop
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 A_Jump(128,2);
+		LGI2 A 100;
+		stop;
+		LGI2 E 100;
+        Stop;
 	}
 }
 
-Actor PM_BurntSoulPart3 : PM_BurntSoulPart1
+Class PM_BurntSoulPart3 : PM_BurntSoulPart1
 {
 States
 	{
 	Spawn:
-		TNT1 A 0
-		TNT1 A 0 A_QueueCorpse
-		TNT1 A 0 Thing_ChangeTID(0,394)
-		TNT1 A 0 A_Jump(128,9)
-		LGI3 ABCDEFGH 2
-		wait
-		LGI3 HGFEDCBA 2
-		wait
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 Thing_ChangeTID(0,394);
+		TNT1 A 0 A_Jump(128,9);
+		LGI3 ABCDEFGH 2;
+		wait;
+		LGI3 HGFEDCBA 2;
+		wait;
 	Death:
-		TNT1 A 0
-		TNT1 A 0 A_QueueCorpse
-		TNT1 A 0 A_Jump(128,2)
-		LGI3 A 100
-		stop
-		LGI3 E 100
-        Stop
+		TNT1 A 0;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 A_Jump(128,2);
+		LGI3 A 100;
+		stop;
+		LGI3 E 100;
+        Stop;
 	}
 }
 
-Actor PM_SmallBurntSoulPart1: PM_BurntSoulPart1
-{
-Scale 0.3
-Speed 10
-}
+Class PM_SmallBurntSoulPart1: PM_BurntSoulPart1
+{ Default { Scale 0.3; Speed 10; } }
 
 
-actor PM_SmallBurntSoulPart3: PM_BurntSoulPart1
-{
-Scale 0.3
-Speed 12
-}
+Class PM_SmallBurntSoulPart3: PM_BurntSoulPart1
+{ Default { Scale 0.3; Speed 12; } }
+
+Class PM_BigBurntSoulPart1: PM_BurntSoulPart1
+{ Default { Scale 1.0; Speed 10; } }
 
 
+Class PM_BigBurntSoulPart3: PM_BurntSoulPart1
+{ Default { Scale 1.0; Speed 12; } }
 
-Actor PM_BigBurntSoulPart1: PM_BurntSoulPart1
-{
-Scale 1.0
-Speed 10
-}
-
-
-Actor PM_BigBurntSoulPart3: PM_BurntSoulPart1
-{
-Scale 1.0
-Speed 12
-}
-
-Actor PM_BigLSPart2: PM_BurntSoulPart1
-{
-Scale 1.0
-Speed 12
-}
+Class PM_BigLSPart2: PM_BurntSoulPart1
+{ Default { Scale 1.0; Speed 12; } }

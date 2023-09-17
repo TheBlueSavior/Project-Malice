@@ -1,3 +1,16 @@
+Model PM_BulletHit
+{
+  Path "Models"
+  SKIN 0 "malicesparktracer.png"
+  MODEL 0 "tracer.md3"
+  Scale 0.25 2.0 2.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 20.0
+  FrameIndex NULL A 0 0
+}
+
 Model PM_BulletTracer
 { 
 Path "Models"
@@ -213,15 +226,4 @@ Model 0 "Tracer.md3"
 Scale 2.0 2.0 2.0
 PITCHFROMMOMENTUM
 FrameIndex TRCR B 0 0
-}
-
-Model PM_BulletHit
-{
-  Path "Models"
-  SKIN 0 "malicesparktracer.png"
-  MODEL 0 "tracer.md3"
-  Scale 0.25 2.0 2.0
-  PITCHFROMMOMENTUM
-  USEACTORROLL
-  FrameIndex NULL A 0 0
 }

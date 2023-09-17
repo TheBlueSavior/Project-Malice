@@ -6,6 +6,7 @@ version "4.10.0"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
 //Fodder
+#include "Actors/Monsters/Fodder/Hunger.txt"
 #include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
 #include "Actors/Monsters/Fodder/PawnsoftheShadow.txt"
 
@@ -65,14 +66,20 @@ version "4.10.0"
 #include "Actors/Monsters/Revenants/Depraved.txt"
 
 //Spectres
-#include "Actors/Monsters/Spectres/Nightmare.txt"
+#include "Actors/Monsters/Spectres/PhaseBrute.txt"
+#include "Actors/Monsters/Spectres/CyberSpectre.txt"
 #include "Actors/Monsters/Spectres/DTechSpectre.txt"
+#include "Actors/Monsters/Spectres/Nightmare.txt"
+#include "Actors/Monsters/Spectres/Prowler.txt"
+#include "Actors/Monsters/Spectres/Skulker.txt"
 
 //Souls
-#include "Actors/Monsters/Souls/UmbralHeart.txt"
-#include "Actors/Monsters/Souls/Fleshspawn.txt"
 #include "Actors/Monsters/Souls/Rictus.txt"
+#include "Actors/Monsters/Souls/BurntSoul.txt"
+#include "Actors/Monsters/Souls/BloodSkull.txt"
+#include "Actors/Monsters/Souls/Fleshspawn.txt"
 #include "Actors/Monsters/Souls/Blot.txt"
+#include "Actors/Monsters/Souls/UmbralHeart.txt"
 #include "Actors/Monsters/Souls/Gazer.txt"
 
 //Cacos
@@ -86,6 +93,7 @@ version "4.10.0"
 
 //Elementals
 #include "Actors/Monsters/Elementals/Defiler.txt"
+#include "Actors/Monsters/Elementals/GrossElemental.txt"
 
 //Mancubi
 #include "Actors/Monsters/Mancubi/Hectebus.txt"

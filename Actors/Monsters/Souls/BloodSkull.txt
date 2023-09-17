@@ -1,137 +1,146 @@
-Actor PM_BloodSkull : PMGluttonyMonsterBase
+Class PM_BloodSkull : PMGluttonyMonsterBase
 {
-//$Category "PM_Monsters/Souls"
-Health 100
-Radius 16
-Height 28
-Mass 100
-Speed 5
-PainChance 130
-MeleeRange 135
-Monster
-+FLOAT
-+NOGRAVITY
-+DONTFALL
-+NEVERRESPAWN
-+DONTHURTSPECIES
-+DONTHARMSPECIES
-+FLOATBOB
-+ROLLSPRITE
-Damage (random(15,15))
-FloatBobStrength 0.3
-Species "Soul"
-SeeSound "BSkull/See"
-PainSound "BSkull/Pain"
-DeathSound ""
-ActiveSound "BSkull/Active"
-Obituary "%o got spat on by a blood skull."
-Tag "Blood Skull"
-Bloodtype "PM_NormalBloodBase"
-TeleFogSourceType "PM_SmallDemonicTeleportFog"
-TeleFogDestType "PM_SmallDemonicTeleportFog"
+  Default
+  {
+   Health 100;
+   Radius 16;
+   Height 28;
+   Mass 100;
+   Speed 5;
+   PainChance 130;
+   MeleeRange 135;
+   Monster;
+   +FLOAT
+   +NOGRAVITY
+   +DONTFALL
+   +NEVERRESPAWN
+   +DONTHARMCLASS
+   +DONTHARMSPECIES
+   +FLOATBOB
+   +ROLLSPRITE
+   DamageFunction 15;
+   FloatBobStrength 0.3;
+   Species "Soul";
+   SeeSound "BSkull/See";
+   PainSound "BSkull/Pain";
+   DeathSound "";
+   ActiveSound "BSkull/Active";
+   Obituary "%o got spat on by a Blood Skull.";
+   Tag "Blood Skull";
+   Bloodtype "PM_NormalBloodBase";
+   TeleFogSourceType "PM_SmallDemonicTeleportFog";
+   TeleFogDestType "PM_SmallDemonicTeleportFog";
+   }
+   
+   override void Tick()
+   {
+    if(level.IsFrozen()) return;
+    Super.Tick();
+	if ((level.maptime % 20) == 0 && health > 0)
+	A_SpawnItemEx("SkullBloodDrip",random(0,4),random(-2,2),0,0,0,0,0,0);
+   }
+   
 States
 {
 Spawn:
-	SWBS AAA 4 PM_Look()
-	Loop
+	SWBS AAA 4 PM_Look();
+	Loop;
 Look:
-	TNT1 A 0 A_SetRoll(0)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_SetSpeed(5)
-	SWBS AA 2 PM_LookingForPlayer()
-    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP)
-	SWBS AA 2 PM_LookingForPlayer()
-	TNT1 A 0 A_SpawnItemEx("SkullBloodDrip",random(0,4),random(-2,2),0,0,0,0,0,0)
-	TNT1 A 0 A_JumpIfCloser(170,"Backup")
-    Loop
+	TNT1 A 0 {
+	bFRIGHTENED = false;
+	A_SetSpeed(5); 
+	A_SetRoll(0); }
+	SWBS AA 2 PM_LookingForPlayer();
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+	SWBS AA 2 PM_LookingForPlayer();
+	TNT1 A 0 A_JumpIfCloser(170,"Backup");
+    Loop;
 Spotted:
-    TNT1 A 0 A_Jump(256,"Roar","Retreat")
+    TNT1 A 0 A_Jump(256,"Roar","Retreat");
 Roar:
-    TNT1 A 0 PM_AlertSound()
+    TNT1 A 0 PM_AlertSound();
 See:
 See2:
-	TNT1 A 0 A_SetRoll(0)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_SetSpeed(5)
-	SWBS AA 2 A_Chase
-	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3))
-	SWBS AA 2 A_Chase
-	TNT1 A 0 A_SpawnItemEx("SkullBloodDrip",random(0,4),random(-2,2),0,0,0,0,0,0)
-	TNT1 A 0 A_Recoil(-0.02)
-	TNT1 A 0 A_JumpIfCloser(170,"Backup")
-	Loop
+	TNT1 A 0 {
+	bFRIGHTENED = false;
+	A_SetSpeed(5); 
+	A_SetRoll(0); }
+	SWBS AA 2 A_Chase();
+	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
+	SWBS AA 2 A_Chase();
+	TNT1 A 0 A_Recoil(-0.02);
+	TNT1 A 0 A_JumpIfCloser(170,"Backup");
+	Loop;
 Backup:
-	SWBS A 1 A_FaceTarget
-	TNT1 A 0 A_Recoil(5)
-	SWBS AAAAAA 2
-    Goto See2
+	SWBS A 1 A_FaceTarget;
+	TNT1 A 0 A_Recoil(5);
+	SWBS AAAAAA 2;
+    Goto See2;
 Missile:
-	TNT1 A 0 A_Jump(100,"Retreat","Charge","TeleCharge")
+	TNT1 A 0 A_Jump(100,"Retreat","Charge","TeleCharge");
 	SWBS AAAAAAA 2
 	{
-	A_FaceTarget;
+	A_FaceTarget();
 	A_SpawnItemEx("MaliceBloodSplash",2,0,12,random(0,3),random(-1,1),random(-1,3));
 	}
-	SWBS A 5 A_FaceTarget
-	SWBS B 2 A_CustomMissile("PM_BloodSpit",12,0,0,0,0)
-	SWBS BA 2
-	TNT1 A 0 A_SpawnItemEx("SkullBloodDrip",random(-2,2),random(-2,2),0,0,0,0,0,0)
-	Goto See2
+	SWBS A 5 A_FaceTarget;
+	SWBS B 2 A_SpawnProjectile("PM_BloodSpit",12,0,0,0,0);
+	SWBS BA 2;
+	Goto See2;
 Retreat:
-	TNT1 A 0 A_StopSound(CHAN_6)
-	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	TNT1 A 0 A_SetSpeed(20)
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	SWBS A 10 A_Facetarget
-	TNT1 AAAAAAAAAAA 0 A_Chase
-	TNT1 A 0 A_PlaySound("Skulker/Port",CHAN_7)
-	SWBS A 10 A_Facetarget
-	TNT1 AAAAAAAAAAA 0 A_Wander
-	TNT1 A 0 A_PlaySound("Skulker/Port",CHAN_7)
-	SWBS A 10 A_Facetarget
-	TNT1 AAAAAAAAAAA 0 A_Wander
-	TNT1 A 0 A_PlaySound("Skulker/Port",CHAN_7)
-	Goto See2
+	TNT1 A 0 A_StopSound(6);
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	TNT1 A 0 {
+	A_SetSpeed(20);
+	bFRIGHTENED = true; }
+	SWBS A 10 A_FaceTarget;
+	TNT1 AAAAAAAAAAA 0 A_Chase();
+	TNT1 A 0 A_StartSound("Skulker/Port",7);
+	SWBS A 10 A_FaceTarget;
+	TNT1 AAAAAAAAAAA 0 A_Wander();
+	TNT1 A 0 A_StartSound("Skulker/Port",7);
+	SWBS A 10 A_FaceTarget;
+	TNT1 AAAAAAAAAAA 0 A_Wander();
+	TNT1 A 0 A_StartSound("Skulker/Port",7);
+	Goto See2;
 TeleCharge:
-	TNT1 A 0 A_PlaySound("BloodSkull/Croak",CHAN_6)
-	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE)
-	TNT1 A 0 A_SetSpeed(35)
-	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	TNT1 A 0 A_SpawnItemEx("SkullBloodDrip",random(0,4),random(-2,2),0,0,0,0,0,0)
-	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS A 2 A_SetRoll(-6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS B 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	SWBS A 2 A_SetRoll(-6,SPF_INTERPOLATE)
-	TNT1 A 0 A_SpawnItemEx("SkullBloodDrip",random(0,4),random(-2,2),0,0,0,0,0,0)
-	TNT1 A 0 A_FaceTarget
-	SWBS B 2 A_SetRoll(6,SPF_INTERPOLATE)
-	TNT1 A 0 A_FaceTarget
-	TNT1 A 1 A_Wander
-	TNT1 AAAAAA 1 A_Chase("Charge",0)
-	TNT1 A 0 A_Jump(20,"See2")
-	Loop
+	TNT1 A 0 A_StartSound("BloodSkull/Croak",6);
+	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	TNT1 A 0 A_SetSpeed(35);
+	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS A 2 A_SetRoll(-6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS B 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS B 2 A_SetRoll(-6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS A 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS A 2 A_SetRoll(-6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	SWBS B 2 A_SetRoll(6,SPF_INTERPOLATE);
+	TNT1 A 0 A_FaceTarget;
+	TNT1 A 1 A_Wander();
+	TNT1 AAAAAA 1 A_Chase("Charge",null);
+	TNT1 A 0 A_Jump(20,"See2");
+	Loop;
 Charge:
-	SWBS A 2 A_SetRoll(5,SPF_INTERPOLATE)
-	SWBS A 2 A_SetRoll(-5,SPF_INTERPOLATE)
-	SWBS A 2 A_SetRoll(5,SPF_INTERPOLATE)
-	SWBS A 2 A_SetRoll(-5,SPF_INTERPOLATE)
-	SWBS A 2 A_SetRoll(0)
+	SWBS A 2 A_SetRoll(5,SPF_INTERPOLATE);
+	SWBS A 2 A_SetRoll(-5,SPF_INTERPOLATE);
+	SWBS A 2 A_SetRoll(5,SPF_INTERPOLATE);
+	SWBS A 2 A_SetRoll(-5,SPF_INTERPOLATE);
+	SWBS A 2 A_SetRoll(0);
 ChargeLoop:
-	TNT1 A 0 A_PlaySound("BSkull/See",CHAN_7)
+	TNT1 A 0 A_StartSound("BSkull/See",7);
 	SWBS B 1
 	{
 	A_SkullAttack(30);
@@ -141,143 +150,120 @@ ChargeLoop:
 	{
 	A_SpawnItemEx("PM_BloodSkullTrail",random(-18,-10),random(-4,4),random(12,26),random(-3,3),random(-3,3),random(-2,2),0,SXF_NOCHECKPOSITION);
 	}
-    Goto ChargeLoop+2
+    Goto ChargeLoop+2;
 Pain:
-	TNT1 A 0 A_SetRoll(0)
-	TNT1 A 0 A_Recoil(7)
-	SWBS B 10 A_Pain
-	TNT1 A 0 A_Jump(80,"Retreat")
-	Goto See2
+	TNT1 A 0 A_SetRoll(0);
+	TNT1 A 0 A_Recoil(7);
+	SWBS B 10 A_Pain;
+	TNT1 A 0 A_Jump(80,"Retreat");
+	Goto See2;
 Death:
-	TNT1 A 0
-	TNT1 A 0 A_SpawnItemEx("PM_BloodSkullDeathHead",0,0,0,random(-7,7),random(-7,7),random(0,7))
-	Stop
+	TNT1 A 0;
+	TNT1 A 0 A_SpawnItemEx("PM_BloodSkullDeathHead",0,0,0,random(-7,7),random(-7,7),random(0,7));
+	Stop;
 }
 }
 
-Actor PM_BloodSkullDeathHead
+Class PM_BloodSkullDeathHead : Actor
 {
-
-	Radius 8
-    Height 25
-	Speed 5
-	Gravity 0.5
-	Mass 4
-	BounceFactor 0.5
-	wallbouncefactor 0.5
-	BounceCount 2
+    Default
+	{
+	Radius 8;
+    Height 25;
+	Speed 5;
+	Gravity 0.5;
+	Mass 4;
+	BounceFactor 0.5;
+	wallbouncefactor 0.5;
+	BounceCount 2;
 	+ROLLSPRITE
-	BounceType Doom
-	SeeSound ""
-	BounceSound "Gore/HeadBounce"
+	BounceType "Doom";
+	SeeSound "";
+	BounceSound "Gore/HeadBounce";
 	+MISSILE
     +MOVEWITHSECTOR
     +CLIENTSIDEONLY
     +NOBLOCKMAP
     +NOTELEPORT
 	+THRUACTORS
+	}
 	States
 	{
 	Spawn:
-		TNT1 A 1
-		TNT1 A 0 A_PlaySound("BSkull/Death",CHAN_7,1.0)
+		TNT1 A 1;
+		TNT1 A 0 A_StartSound("BSkull/Death",7);
 	Spawn1:
-		SWBS J 2 A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(-5,5),random(-2,2),random(-2,2),random(0,3),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SetRoll(roll+15,SPF_INTERPOLATE)
-	Loop
+		SWBS J 2 A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(-5,5),random(-2,2),random(-2,2),random(0,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SetRoll(roll+15,SPF_INTERPOLATE);
+	Loop;
 	Bounce:
-		//TNT1 A 0 A_PlaySound("Gore/HeadBounce",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
-		Goto Spawn1
+		TNT1 AA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+		Goto Spawn1;
 	Death:
-		TNT1 A 0 A_PlaySound("Gore/HeadBounce",CHAN_7)
-		TNT1 A 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION)
-		TNT1 AA 0 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
-		TNT1 AAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION)
-		TNT1 A 0 A_NoBlocking
-		TNT1 A 0 A_QueueCorpse
-		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE)
-		SWBS KKKKKKKKKK 5 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,9),0,SXF_NOCHECKPOSITION)
-        SWBS K -1
-		Stop
+		TNT1 A 0 A_StartSound("Gore/HeadBounce",7);
+		TNT1 A 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION);
+		TNT1 AA 0 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+		TNT1 AAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,6),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_NoBlocking;
+		TNT1 A 0 A_QueueCorpse;
+		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+		SWBS KKKKKKKKKK 5 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-3,3),random(-3,3),random(1,9),0,SXF_NOCHECKPOSITION);
+        SWBS K -1;
+		Stop;
 	}
 }
 
-Actor PM_BloodSkullBloodPuke
+Class SkullBloodDrip : Actor
 {
-  Damage 0
-  Height 1
-  Radius 1
-  Speed 16
-  Mass 1
-  Damage (2)
-  +FORCEXYBILLBOARD
-  +CLIENTSIDEONLY
-  +DONTSPLASH
-  Scale 0.20
-  Gravity 0.8
-  PROJECTILE
-  -NOGRAVITY
-  Decal "BloodSplat1"
-  States
+  Default
   {
-  Spawn:
-  TNT1 A 0 A_SetRoll(random(0,360))
-  Go:
-	FBLD ABCD 3 A_SetScale(ScaleX+0.05)
-	Loop
-  Death:
-	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3))
-    Stop
+  Radius 1;
+  Height 4;
+  +MISSILE
+  +TOUCHY
+  +DONTSPLASH
+  Damage 0;
+  Scale 0.4;
+  Gravity 0.7;
+  ReactionTime 10;
+  }
+States
+{
+Spawn:
+	BDR2 A 5 A_CountDown;
+	Loop;
+Death:
+	TNT1 A 1;
+	Stop;
   }
 }
 
-Actor SkullBloodDrip
+Class PM_BloodSpit : Actor
 {
-Radius 1
-Height 4
-+MISSILE
-+TOUCHY
-+DONTSPLASH
-Damage 0
-Scale 0.4
-Gravity 0.7
-ReactionTime 10
+  Default
+  {
+  Radius 3;
+  Height 3;
+  Speed 22;
+  DamageFunction 10;
+  Scale 0.5;
+  SeeSound "GenericBloodSpit";
+  DeathSound "GenericBloodImpact";
+  PROJECTILE;
+  Decal "BloodSplat";
+  }
 States
 {
 Spawn:
-	BDR2 A 5 A_CountDown
-	Loop
+	FGOR ABCDEF 1 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-2,2),random(-2,2),random(0,4),0,SXF_NOCHECKPOSITION);
+	Loop;
 Death:
-	TNT1 A 1
-	Stop
-}
-}
-
-Actor PM_BloodSpit
-{
-Radius 3
-Height 3
-Speed 22
-Damage (10)
-Scale 0.5
-SeeSound "GenericBloodSpit"
-DeathSound "GenericBloodImpact"
-PROJECTILE
-Decal BloodSplat
-States
-{
-Spawn:
-	FGOR ABCDEF 1 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-2,2),random(-2,2),random(0,4),0,SXF_NOCHECKPOSITION)
-	Loop
-Death:
-	TNT1 AAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
-	BSHT C 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
-	BSHT D 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION)
-	Stop
-}
+	TNT1 AAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+	BSHT C 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+	BSHT D 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+	Stop;
+  }
 }
 
 
