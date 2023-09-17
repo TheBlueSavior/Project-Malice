@@ -6871,3 +6871,12 @@ Subtractive 1
 Size 40
 SecondarySize 30
 }
+
+Flickerlight PM_NightmareFlash
+{
+Color 0.3 0.3 1.0
+Size 35
+SecondarySize 10
+Chance 0.5
+Offset 0 26 0
+}
