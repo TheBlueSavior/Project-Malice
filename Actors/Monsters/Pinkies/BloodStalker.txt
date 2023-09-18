@@ -278,7 +278,11 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		Roar:
 			SAR2 A 3 A_FaceTarget;
 			SAR2 E 1 A_StartSound("BloodStalker/Roar");
-			SAR2 EFFFFFFFFEEEFFFFE 4 A_FaceTarget;
+			SAR2 EFFFFFFFFEEEFFFFE 4
+			{
+				A_QuakeEx(1, 0, 0, 30, 0, 300, "", QF_SCALEDOWN|QF_RELATIVE|QF_3D, rollintensity: 0.5, rollwave: 0.5);
+				A_FaceTarget();
+			}
 			Goto See2;
 		Melee:
 		    TNT1 A 0 A_Jump(45,"FrostBreath");

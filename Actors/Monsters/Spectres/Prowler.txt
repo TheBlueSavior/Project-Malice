@@ -78,27 +78,27 @@ Class PM_Prowler : PMUmbralMonsterBase
 		bNOPAIN = true;
 		bFRIGHTENED = true;
 		A_SetSpeed(20); }
-		SHDW A 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW AAA 1 A_Chase();
+		SCR_ A 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ AAA 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",12);
-		SHDW B 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW BBB 1 A_Chase();
-		SHDW C 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW CCC 1 A_Chase();
+		SCR_ B 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ BBB 1 A_Chase();
+		SCR_ C 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ CCC 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",13);
-		SHDW D 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW DDD 1 A_Chase();
+		SCR_ D 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ DDD 1 A_Chase();
 		TNT1 A 0 A_SetTranslucent(0.5);
-		SHDW A 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW AAA 1 A_Chase();
+		SCR_ A 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ AAA 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",12);
-		SHDW B 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW BBB 1 A_Chase();
-		SHDW C 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW CCC 1 A_Chase();
+		SCR_ B 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ BBB 1 A_Chase();
+		SCR_ C 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ CCC 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",13);
-		SHDW D 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW DDD 1 A_Chase();
+		SCR_ D 0 A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		SCR_ DDD 1 A_Chase();
 		SHDW A 0 A_SetTranslucent(0.0);
 		SHDW AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase();
 		TNT1 A 1
@@ -292,7 +292,7 @@ Class PM_Prowler : PMUmbralMonsterBase
 		Goto Stalk1;
 	RealCharge:
 		TNT1 A 0 { pm_attackloop = random(15,25); }
-		SHDW A 1 A_StartSound("Prowler/Charge",7);
+		SCR_ A 1 A_StartSound("Prowler/Charge",7);
 		TNT1 A 0 
 			{
 			A_SetSpeed(24);
@@ -300,25 +300,25 @@ Class PM_Prowler : PMUmbralMonsterBase
 			bFRIGHTENED = false;
 			A_SetTranslucent(1.0);
 			}
-		SHDW AAA 1 A_Chase();
+		SCR_ AAA 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",12);
-		SHDW BBB 1 A_Chase();
-		SHDW CCC 1 A_Chase();
+		SCR_ BBB 1 A_Chase();
+		SCR_ CCC 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",13);
-		SHDW DDD 1 A_Chase();
-		SHDW AAA 1 A_Chase();
+		SCR_ DDD 1 A_Chase();
+		SCR_ AAA 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",12);
-		SHDW BBB 1 A_Chase();
-		SHDW CCC 1 A_Chase();
+		SCR_ BBB 1 A_Chase();
+		SCR_ CCC 1 A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",13);
-		SHDW DDD 1 A_Chase();
+		SCR_ DDD 1 A_Chase();
 	ChargeLoop:
-		SHDW AAA 1 Fast A_Chase();
+		SCR_ AAA 1 Fast A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",12);
-		SHDW BBB 1 Fast A_Chase();
-		SHDW CCC 1 Fast A_Chase();
+		SCR_ BBB 1 Fast A_Chase();
+		SCR_ CCC 1 Fast A_Chase();
 		TNT1 A 0 A_StartSound("Prowler/Foot",13);
-		SHDW DDD 1 Fast A_Chase();
+		SCR_ DDD 1 Fast A_Chase();
 		TNT1 A 0 { if(pm_attackloop < 0) SetStateLabel("QuickRetreat"); pm_attackloop--; }
 		Loop;
 	CloseChoice:
