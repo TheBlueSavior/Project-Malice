@@ -114,6 +114,7 @@ version "4.10.0"
 //Barons
 #include "Actors/Monsters/Barons/HeresyLord.txt"
 #include "Actors/Monsters/Barons/Bruiser.txt"
+#include "Actors/Monsters/Barons/CerebralIncarnate.txt"
 
 //Viles
 #include "Actors/Monsters/Archviles/Exile.txt"

@@ -51,6 +51,19 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
 
+Model PM_CIncTracer
+{ 
+  Path "Models"
+  Skin 0 "malicedeathtracer.png"
+  Model 0 "tracer.md3"
+  Scale 1.0 1.0 1.0
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRCR A 0 0
+}
+
 Model PM_TyrantTankShell
 { 
 Path "Models"
