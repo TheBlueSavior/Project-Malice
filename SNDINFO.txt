@@ -4158,6 +4158,11 @@ CIncActive1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive1.ogg"
 CIncActive2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive2.ogg"
 CIncActive3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive3.ogg"
 
+$random CInc/Hum { CIncHum1 CIncHum2 CIncHum3 }
+CIncHum1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum1.ogg"
+CIncHum2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum2.ogg"
+CIncHum3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum3.ogg"
+
 $random CInc/Attack { CIncAttack1 CIncAttack2 CIncAttack3 }
 CIncAttack1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack1.ogg"
 CIncAttack2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack2.ogg"
