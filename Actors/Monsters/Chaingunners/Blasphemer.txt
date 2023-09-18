@@ -1329,7 +1329,7 @@ Class PM_BlasFireSigil : Actor
   {
 	Super.Tick();
 	A_Warp(AAPTR_MASTER, 45, 0, 40, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
-	if( master.CountInv("PM_BlasSigilGoAway") == 1)
+	if(master && master.CountInv("PM_BlasSigilGoAway") == 1)
 	 SetStateLabel("Death");
 	else if(!master)
 	 SetStateLabel("Death");
