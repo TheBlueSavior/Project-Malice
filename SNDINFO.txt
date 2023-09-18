@@ -1116,6 +1116,28 @@ Aff2Death2 "Sounds/Monsters/Fodder/Afflicted/Aff2Death2.ogg"
 Aff2Death3 "Sounds/Monsters/Fodder/Afflicted/Aff2Death3.ogg"
 Aff2Death4 "Sounds/Monsters/Fodder/Afflicted/Aff2Death4.ogg"
 
+$random FAfflicted/Idle { FAffIdle1 FAffIdle2 FAffIdle3 }
+FAffIdle1 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedIdle1.ogg"
+FAffIdle2 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedIdle2.ogg"
+FAffIdle3 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedIdle3.ogg"
+
+$random FAfflicted/Howl { FAffHowl1 FAffHowl2 FAffHowl3 FAffHowl4 }
+FAffHowl1 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedHowl1.ogg"
+FAffHowl2 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedHowl2.ogg"
+FAffHowl3 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedHowl3.ogg"
+FAffHowl4 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedHowl4.ogg"
+$rolloff FAfflicted/Howl 300 1200
+$volume FAfflicted/Howl 0.7
+
+$random FAfflicted/Pain { FAffPain1 FAffPain2 FAffPain3 }
+FAffPain1 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedPain1.ogg"
+FAffPain2 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedPain2.ogg"
+FAffPain3 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedPain3.ogg"
+
+$random FAfflicted/Death { FAffDeath1 FAffDeath2 }
+FAffDeath1 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedDeath1.ogg"
+FAffDeath2 "Sounds/Monsters/Fodder/Afflicted/FemaleAfflictedDeath2.ogg"
+
 $random Afflicted/Howl { AffHowl1 AffHowl2 AffHowl3 AffHowl4 }
 AffHowl1 "Sounds/Monsters/Fodder/Afflicted/AfflictedHowl1.ogg"
 AffHowl2 "Sounds/Monsters/Fodder/Afflicted/AfflictedHowl2.ogg"
@@ -1125,6 +1147,7 @@ $rolloff Afflicted/Howl 300 1200
 $volume Afflicted/Howl 0.7
 
 Afflicted/Puke "Sounds/Monsters/Fodder/Afflicted/AfflictedPuke.ogg"
+Afflicted/ScreechSummon "Sounds/Monsters/Fodder/Afflicted/AffScreechSummon.ogg"
 
 $random Afflicted/Spawn { AffSpawn1 AffSpawn2 AffSpawn3 AffSpawn4 AffSpawn5 }
 AffSpawn1 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn1.ogg"

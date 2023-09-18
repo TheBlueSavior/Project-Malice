@@ -7,6 +7,7 @@ Class HungerHorde : Actor
 		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_Afflicted",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_SpawnItemEx("PM_AffScreamer",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
 		Stop;
+
 	}
 }
 
@@ -86,9 +87,9 @@ Class PM_AffScreamer : PMFodderMonsterBase
 	TNT1 A 0
 	{ if (called) SetStateLabel("See"); }
 	ZHUN T 8 A_FaceTarget;
-	TNT1 A 0 A_StartSound("Afflicted/Howl");
+	TNT1 A 0 A_StartSound("Afflicted/ScreechSummon",10);
 	ZHUN U 3 A_FaceTarget;
-	ZHUN VWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVU 1 A_FaceTarget;
+	ZHUN VWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWU 1 A_FaceTarget;
 	TNT1 A 0 { for(int i=random(16,20);i>0;i--) A_SpawnItemEx("HungrySeekSpawn");  called = 1; }
 	ZHUN C 7 A_FaceTarget;
 	Goto See;
@@ -173,6 +174,8 @@ Class HungrySeekSpawn : Actor
 Class PM_Afflicted : PMFodderMonsterBase
 {
 	int choose;
+	int oldspeed;
+	bool grouped;
 	Default
 	{
     Health 40;
@@ -213,12 +216,21 @@ Class PM_Afflicted : PMFodderMonsterBase
     case 1: sprite = GetSpriteIndex("SCZA"); break;
     case 2: sprite = GetSpriteIndex("SCZC"); break;
     case 3: sprite = GetSpriteIndex("ZHUN"); break;
+	case 4: sprite = GetSpriteIndex("AF_F"); break;
      }
+	}
+	
+	void PM_AffChase()
+	{
+	 if(grouped)
+	 A_Recoil(-0.65);
+	 A_Chase();
 	}
 
 	override void PostBeginPlay()
 	{ Super.PostBeginPlay();
-	  choose = random(0,3);
+	  choose = random(0,4);
+	  oldspeed = speed;
 	  PM_AfflictedAssignSprite();
 	  if(choose == 3)
 	  {
@@ -226,6 +238,11 @@ Class PM_Afflicted : PMFodderMonsterBase
 	  Scale.Y = 0.91;
 	  PainSound = "Afflicted2/Pain";
 	  DeathSound = "Afflicted2/Death";
+	  }
+	  if(choose == 4)
+	  {
+	  PainSound = "FAfflicted/Pain";
+	  DeathSound = "FAfflicted/Death";
 	  }
 	}
   States
@@ -235,6 +252,7 @@ Class PM_Afflicted : PMFodderMonsterBase
 	SCZA ABCDEFGHIJKLMNOPQRSTUVWXYZ 0;
 	SCZC ABCDEFGHIJKLMNOPQRSTUVWXYZ 0;
 	ZHUN ABCDEFGHIJKLMNOPQRSTUVWXYZ 0;
+	AF_F ABCDEFGHIJKLMNOPQRSTUVWXYZ 0;
   Spawn:
 	"####" AB 4 A_Wander();
 	"####" AB 0 A_Look;
@@ -247,18 +265,31 @@ Class PM_Afflicted : PMFodderMonsterBase
   Grumble:
 	"####" A 0 { if(choose == 3) 
 	A_StartSound("Afflicted2/Idle");
+	if(choose == 4)
+	A_StartSound("FAfflicted/Idle");
 	else
 	A_StartSound("Afflicted/Idle"); }
 	Goto See;
   See:
-  "####" AA 2	A_Chase();
-  "####" BB 2 A_Chase();
+  "####" A 0 
+  {
+  if(CheckProximity("PM_Afflicted",450,5))
+  {
+   grouped = true;
+   speed = random(7,10);
+  }
+  else
+  {
+   grouped = false; 
+   speed = oldspeed;
+  }
+   }
+  "####" AABB 2 PM_AffChase();
   "####" A 0 A_StartSound("Afflicted/RunStep",5);
-  "####" CC 2 A_Chase();
-  "####" DD 2 A_Chase();
+  "####" CCDD 2 PM_AffChase();
   "####" A 0 A_StartSound("Afflicted/RunStep",5);
   "####" A 0 A_Jump(8,"Puke","Howl");
-	//TNT1 A 0 A_Jump(2,"Lunge")
+  //TNT1 A 0 A_Jump(2,"Lunge")
    Loop;
   Lunge:
 	"####" A 0 A_Recoil(-10);
@@ -268,7 +299,7 @@ Class PM_Afflicted : PMFodderMonsterBase
 	"####" A 0 A_CheckSight("See");
 	"####" G 6;
 	"####" A 0 A_StartSound("GenericBloodPuke",2);
-	"####" A 0 A_StartSound("Afflicted/Puke");
+	"####" A 0 A_StartSound("Afflicted/Puke",13);
 	"####" BBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(10,-20));
 	"####" B 1 A_SpawnProjectile("HungerMaggotMissile",42,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4));
 	"####" BBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(10,-20));
@@ -277,7 +308,10 @@ Class PM_Afflicted : PMFodderMonsterBase
   Howl:
 	"####" A 0 A_CheckSight("See");
   "####" D 10 A_FaceTarget;
-	"####" A 0 A_StartSound("Afflicted/Howl");
+	"####" A 0 { if(choose == 4)
+	A_StartSound("FAfflicted/Howl",15,CHANF_OVERLAP);
+	else
+	A_StartSound("Afflicted/Howl",15,CHANF_OVERLAP); }
 	"####" A 20 A_FaceTarget;
 	"####" D 10 A_FaceTarget;
 	Goto See;
