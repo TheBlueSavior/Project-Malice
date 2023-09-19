@@ -4148,51 +4148,48 @@ PMGazer/Death3 "Sounds/Monsters/Souls/Gazer/GazerDeath3.ogg"
 PMGazer/Death4 "Sounds/Monsters/Souls/Gazer/GazerDeath4.ogg" 
 PMGazer/Death5 "Sounds/Monsters/Souls/Gazer/GazerDeath5.ogg"
 
-//Cerebral Incarnate
-$random CInc/Sight { CIncSight1 CIncSight2 }
-CIncSight1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncSight1.ogg"
-CIncSight2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncSight2.ogg"
+//Death's Emissary
+$random DEmi/Sight { DemiSight1 DemiSight2 }
+DemiSight1 "Sounds/Monsters/Barons/DeathEmissary/DemiSight1.ogg"
+DemiSight2 "Sounds/Monsters/Barons/DeathEmissary/DemiSight2.ogg"
 
-$random CInc/Active { CIncActive1 CIncActive2 CIncActive3 }
-CIncActive1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive1.ogg"
-CIncActive2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive2.ogg"
-CIncActive3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncActive3.ogg"
+$random DEmi/Active { DemiActive1 DemiActive2 DemiActive3 }
+DemiActive1 "Sounds/Monsters/Barons/DeathEmissary/DemiActive1.ogg"
+DemiActive2 "Sounds/Monsters/Barons/DeathEmissary/DemiActive2.ogg"
+DemiActive3 "Sounds/Monsters/Barons/DeathEmissary/DemiActive3.ogg"
 
-$random CInc/Hum { CIncHum1 CIncHum2 CIncHum3 }
-CIncHum1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum1.ogg"
-CIncHum2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum2.ogg"
-CIncHum3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum3.ogg"
-$rolloff CInc/Hum 200 2200
-$limit CInc/Hum 5
+$random DEmi/Hum { DEmiHum1 DEmiHum2 DEmiHum3 }
+DEmiHum1 "Sounds/Monsters/Barons/DeathEmissary/DEmiHum1.ogg"
+DEmiHum2 "Sounds/Monsters/Barons/DeathEmissary/DEmiHum2.ogg"
+DEmiHum3 "Sounds/Monsters/Barons/DeathEmissary/DEmiHum3.ogg"
 
-$random CInc/Attack { CIncAttack1 CIncAttack2 CIncAttack3 }
-CIncAttack1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack1.ogg"
-CIncAttack2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack2.ogg"
-CIncAttack3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack3.ogg"
+$random DEmi/Attack { DEmiAttack1 DEmiAttack2 DEmiAttack3 }
+DEmiAttack1 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack1.ogg"
+DEmiAttack2 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack2.ogg"
+DEmiAttack3 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack3.ogg"
 
-CInc/Windup "Sounds/Monsters/Barons/CerebralIncarnate/CIncWindup.ogg"
-CInc/Fire "Sounds/Monsters/Barons/CerebralIncarnate/CIncFire.ogg"
-CInc/Gunloop "Sounds/Monsters/Barons/CerebralIncarnate/CIncGunLoop.ogg"
-$volume CInc/Fire 0.75
-$rolloff CInc/Fire 400 2200
-$rolloff CInc/Windup 400 2200
-$rolloff CInc/Attack 500 2000
+DEmi/Windup "Sounds/Monsters/Barons/DeathEmissary/DEmiWindup.ogg"
+DEmi/Fire "Sounds/Monsters/Barons/DeathEmissary/DEmiFire.ogg"
+DEmi/Gunloop "Sounds/Monsters/Barons/DeathEmissary/DEmiGunLoop.ogg"
+$volume DEmi/Fire 0.75
+$rolloff DEmi/Fire 400 2200
+$rolloff DEmi/Windup 400 2200
 
-$random CInc/TracerHit { CIncTH1 CIncTH2 CIncTH3 CIncTH4 CIncTH5 }
-CIncTH1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit1.ogg"
-CIncTH2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit2.ogg"
-CIncTH3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit3.ogg"
-CIncTH4 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit4.ogg"
-CIncTH5 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit5.ogg"
+$random DEmi/TracerHit { DEmiTH1 DEmiTH2 DEmiTH3 DEmiTH4 DEmiTH5 }
+DEmiTH1 "Sounds/Monsters/Barons/DeathEmissary/DEmiTracerHit1.ogg"
+DEmiTH2 "Sounds/Monsters/Barons/DeathEmissary/DEmiTracerHit2.ogg"
+DEmiTH3 "Sounds/Monsters/Barons/DeathEmissary/DEmiTracerHit3.ogg"
+DEmiTH4 "Sounds/Monsters/Barons/DeathEmissary/DEmiTracerHit4.ogg"
+DEmiTH5 "Sounds/Monsters/Barons/DeathEmissary/DEmiTracerHit5.ogg"
 
-$random CInc/Pain { CIncPain1 CIncPain2 CIncPain3 }
-CIncPain1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncPain1.ogg"
-CIncPain2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncPain2.ogg"
-CIncPain3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncPain3.ogg"
+$random DEmi/Pain { DEmiPain1 DEmiPain2 DEmiPain3 }
+DEmiPain1 "Sounds/Monsters/Barons/DeathEmissary/DEmiPain1.ogg"
+DEmiPain2 "Sounds/Monsters/Barons/DeathEmissary/DEmiPain2.ogg"
+DEmiPain3 "Sounds/Monsters/Barons/DeathEmissary/DEmiPain3.ogg"
 
-$random CInc/Death { CIncDeath1 CIncDeath2 }
-CIncDeath1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncDeath1.ogg"
-CIncDeath2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncDeath2.ogg"
+$random DEmi/Death { DEmiDeath1 DEmiDeath2 }
+DEmiDeath1 "Sounds/Monsters/Barons/DeathEmissary/DEmiDeath1.ogg"
+DEmiDeath2 "Sounds/Monsters/Barons/DeathEmissary/DEmiDeath2.ogg"
 
 //Big Gore Splats
 $random PM/BigGoreSplat		{ PM/BigGoreSplat1 PM/BigGoreSplat2 PM/BigGoreSplat3 PM/BigGoreSplat4 PM/BigGoreSplat5 PM/BigGoreSplat6 }

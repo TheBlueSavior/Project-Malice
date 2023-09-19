@@ -51,7 +51,7 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
 
-Model PM_CIncTracer
+Model PM_DEmiTracer
 { 
   Path "Models"
   Skin 0 "malicedeathtracer.png"
