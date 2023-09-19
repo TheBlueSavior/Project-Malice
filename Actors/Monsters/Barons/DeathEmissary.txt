@@ -2,6 +2,7 @@
 Class PM_DeathEmissary : PMDeathMonsterBase
 {
     int rush;
+	int deathwither;
 	int oldspeed;
 	bool phased;
     Default
@@ -35,6 +36,43 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
 	PMMonsterBase.RealHeight 78;
+	}
+
+    void PM_DIWither()
+	{
+	 for(int i=random(1,3);i>0;i--)
+	 A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[1],
+	 style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(50,160),
+	 size: frandom(30,100), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,15),
+	 velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0,2),
+	 startalphaf: frandom(0.50,0.95), fadestepf: -1, sizestep: frandom(-0.8,0.8),
+	 startroll: random(-180,180), rollvel: frandom(-0.3,0.3)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "848484",
+	 tex[0],
+	 style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270),
+	 size: frandom(1,32), xoff: random(-40,40), yoff: random(-40,40), zoff: frandom(0,25),
+	 velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4),
+	 startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), 
+	 startroll: random(-180,180), rollvel: random(-4,4)
+	 );
+	 for(int i=random(1,3);i>0;i--)
+	 A_SpawnParticleEx
+	 (
+	 "",
+	 tex[2],
+	 style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+	 lifetime: random(70,170), size: frandom(1,5), xoff: random(-30,30),
+	 yoff: random(-35,35), zoff: random(-10,45), velx: frandom(-1,1),
+	 vely: frandom(-1,1), velz: frandom(0,1),
+	 accelx: frandom(-0.0095,0.0095), accely: frandom(-0.0095,0.0095),  accelz: frandom(0.0015,0.0045),
+	 startalphaf: frandom(0.75,1), fadestepf: -0.10, sizestep: -0.05, startroll: random(-180,180)
+	 );
 	}
 	
 	void PM_DemiPhaseTrans()
@@ -84,7 +122,16 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	}
 	
 	override void PostBeginPlay()
-	{ Super.PostBeginPlay(); oldspeed = speed; }
+	{ 
+	Super.PostBeginPlay(); 
+	oldspeed = speed; 
+	deathwither = random(60,85);
+	tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[3];
 	
     States
     {
@@ -150,12 +197,52 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 		TNT1 A 0 A_Jump(15,"See2");
 		Loop;
     Missile:
-		TNT1 A 0 A_Jump(256,"Minigun","SoulShotgun");
+	    TNT1 A 0 { 
+		if(random(1,3) == 1 && target && CheckSight(target) && Distance3D(target) < 300)
+		SetStateLabel("Flamethrower");
+		}
+		TNT1 A 0 A_Jump(102,"SoulShotgun");
+		Goto Minigun;
+	Flamethrower:
+		TNT1 A 0;
+		TNT1 A 0 { pm_attackloop = 80; }
+		TNT1 A 0 A_StartSound("DEmi/Attack",25);
+		TNT1 A 0 A_StartSound("Hectebus/Aim",24,pitch:0.75);
+		LMDA EEEEEEEEEEEEEEEEEEEEEEEEEEE 1 Light("HellsFuryBall1") A_FaceTarget();
+		TNT1 A 0 A_StartSound("Defiler/Breath",23,pitch:0.85);
+	FTGo:
+		LMDA FFF 1
+		{
+		if(pm_attackloop < 0)
+		SetStateLabel("FTEnd");
+		A_SpawnProjectile("PM_HFuryFirebreath",62,-25,frandom(-0.75,0.75),CMF_OFFSETPITCH,random(-1,1));
+		A_SpawnProjectile("PM_HFuryFirebreath",62,25,frandom(-0.75,0.75),CMF_OFFSETPITCH,random(-1,1));
+		A_FaceTarget();
+		pm_attackloop--;
+		}
+		Loop;
+	FTEnd:
+		LMDA GFE 5 Light("HellsFuryBall2") A_FaceTarget();
+		LMDA EEE 3 Light("HellsFuryBall2") A_FaceTarget();
+		LMDA EEE 5 A_FaceTarget();
+		Goto See2;	    
 	SoulShotgun:
 		TNT1 A 0;
 		TNT1 A 0 A_StartSound("DEmi/Attack",25);
 		TNT1 A 0 A_StartSound("Hectebus/Aim",24,pitch:0.9);
-		LMDA EEEEEEEEEEEEEEEEEE 1 A_FaceTarget();
+		LMDA E 1 
+		{ 
+		if(rush)
+		ThrustThing(random(0,128),16,0,0);
+		A_FaceTarget();
+		}
+		LMDA EEEE 1 
+		{
+		if(rush)
+		A_SpawnItemEx("PM_GenericPhaseGhost",xofs:-5,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+		A_FaceTarget();
+		}
+		LMDA EEEEEEEEEEEEE 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Plasmatron/MortarFire",23);
 		LMDA FFFFFFFFFFFF 0
 		{
@@ -261,22 +348,41 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 		}
 		Goto See2;
     Pain:
-		TNT1 A 0 { A_StopSound(12); A_StopSound(11); A_StopSound(10); }
-		TNT1 A 0 A_Jump(55,"PainPhase");
+		TNT1 A 0 {
+		if(alpha < 1)
+		A_FadeIn(1.0,0);
+		A_StopSound(12); A_StopSound(11); A_StopSound(10); 
+		}
+		TNT1 A 0 A_Jump(45,"PainPhase");
 		LMDA H 5;
         LMDA H 5 A_Pain;
         Goto See2;
 	PainPhase:
 	    TNT1 A 0 PM_DemiPhaseTrans();
 		Goto Phase;
+	XDeath:
     Death:
-		TNT1 A 0 A_StopSounds(0,0);
-        LMDA K 8;
-		LMDA L 8 A_Scream();
-		LMDA M 8 A_Fall();
-		LMDA NOP 8;
-		TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-		LMDA QRSTU 6;
+		TNT1 A 0 {
+		if(alpha < 1)
+		A_FadeIn(1.0,0);
+		A_StopSounds(0,0);
+		}
+        LMDA K 5;
+		LMDA L 9 A_Scream();
+		LMDA M 6 A_Fall();
+		TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+		LMDA NNOO 5 PM_DIWither();
+	DeathLoop:
+	    LMDA OOOO 3 Light("PM_NightmareFlash")
+		{
+		PM_DIWither();
+		deathwither--;
+		}
+		TNT1 A 0 { if(deathwither < 0) SetStateLabel("DeathEnd"); }
+	    Loop;
+	DeathEnd:
+	    LMDA PPPQQQRRR 4 Light("PM_NightmareFlash")  { A_FadeOut(0.1,0); PM_DIWither(); }
+		LMDA SSSTTTUUU 4 Light("PM_NightmareFlash")  { A_FadeOut(0.1,0); PM_DIWither(); }
 		LMDA V -1;
         Stop;
     }
@@ -299,6 +405,16 @@ Default
  RenderStyle "Add";
  Alpha 0.60;
 }
+ override void PostBeginPlay()
+ {
+ Super.PostBeginPlay();
+ tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+ tex[1] = TexMan.CheckForTexture("SPKBC0",TexMan.Type_Sprite);
+ tex[2] = TexMan.CheckForTexture("SPKBA0",TexMan.Type_Sprite);
+ }
+ 
+ TextureID tex[3];
+
 States
 {
 	Spawn:
@@ -308,7 +424,7 @@ States
 		A_SpawnParticleEx
 			(
 			"0B3D94",
-			TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
+			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(10,200), size: frandom(10,50), xoff: -25,
 			velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
 			startalphaf: frandom(0.45,0.85), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
@@ -317,7 +433,7 @@ States
 			A_SpawnParticleEx
 			(
 			"",
-			TexMan.CheckForTexture("SPKBC0"),
+			tex[1],
 			style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,4),
 			size: frandom(80,200), xoff: -34, startalphaf: 1.0,
 			fadestepf: 0, startroll: random(-180,180)
@@ -326,7 +442,7 @@ States
 			A_SpawnParticleEx
 			(
 			"",
-			TexMan.CheckForTexture("SPKBA0"),
+			tex[2],
 			style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 			lifetime: random(1,50), size: frandom(1,18), xoff: -22,
 			velx: frandom(1,4), vely: frandom(-2,2), velz: frandom(-3,3),
@@ -348,7 +464,7 @@ States
 		 A_SpawnParticleEx
 		 (
 		 "",
-		 TexMan.CheckForTexture("SPKBA0"),
+		 tex[1],
 		 style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(2,8),
 		 size: random(60,80), startalphaf: 0.95, fadestepf: -1, sizestep: -15, startroll: random(-180,180)
 		 );
@@ -356,7 +472,7 @@ States
 		 A_SpawnParticleEx
 		 (
 		 "3d85c6",
-		 TexMan.CheckForTexture("SPKBA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		 lifetime: random(10,55), size: frandom(5,15),
 		 velx: frandom(-4,4), vely: frandom(-4,4), velz: frandom(-4,4),
 		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.45,0.95), fadestepf: -0.5,
