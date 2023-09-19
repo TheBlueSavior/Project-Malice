@@ -4157,6 +4157,7 @@ $random DEmi/Active { DemiActive1 DemiActive2 DemiActive3 }
 DemiActive1 "Sounds/Monsters/Barons/DeathEmissary/DemiActive1.ogg"
 DemiActive2 "Sounds/Monsters/Barons/DeathEmissary/DemiActive2.ogg"
 DemiActive3 "Sounds/Monsters/Barons/DeathEmissary/DemiActive3.ogg"
+$rolloff DEmi/Active 400 1800
 
 $random DEmi/Hum { DEmiHum1 DEmiHum2 DEmiHum3 }
 DEmiHum1 "Sounds/Monsters/Barons/DeathEmissary/DEmiHum1.ogg"
@@ -4167,6 +4168,7 @@ $random DEmi/Attack { DEmiAttack1 DEmiAttack2 DEmiAttack3 }
 DEmiAttack1 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack1.ogg"
 DEmiAttack2 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack2.ogg"
 DEmiAttack3 "Sounds/Monsters/Barons/DeathEmissary/DEmiAttack3.ogg"
+$rolloff DEmi/Attack 500 1800
 
 DEmi/Windup "Sounds/Monsters/Barons/DeathEmissary/DEmiWindup.ogg"
 DEmi/Fire "Sounds/Monsters/Barons/DeathEmissary/DEmiFire.ogg"
