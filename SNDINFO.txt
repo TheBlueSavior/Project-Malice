@@ -4162,6 +4162,8 @@ $random CInc/Hum { CIncHum1 CIncHum2 CIncHum3 }
 CIncHum1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum1.ogg"
 CIncHum2 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum2.ogg"
 CIncHum3 "Sounds/Monsters/Barons/CerebralIncarnate/CIncHum3.ogg"
+$rolloff CInc/Hum 200 2200
+$limit CInc/Hum 5
 
 $random CInc/Attack { CIncAttack1 CIncAttack2 CIncAttack3 }
 CIncAttack1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncAttack1.ogg"
@@ -4174,6 +4176,7 @@ CInc/Gunloop "Sounds/Monsters/Barons/CerebralIncarnate/CIncGunLoop.ogg"
 $volume CInc/Fire 0.75
 $rolloff CInc/Fire 400 2200
 $rolloff CInc/Windup 400 2200
+$rolloff CInc/Attack 500 2000
 
 $random CInc/TracerHit { CIncTH1 CIncTH2 CIncTH3 CIncTH4 CIncTH5 }
 CIncTH1 "Sounds/Monsters/Barons/CerebralIncarnate/CIncTracerHit1.ogg"
