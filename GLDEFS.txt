@@ -2355,17 +2355,6 @@ Flickerlight2 HellionballN
  Interval 0.005
 }
 
-Object PM_HellionBall
-{
- Frame HLBLA { Light HellionballA }
- Frame HLBLB { Light HellionballB }
- Frame HLBLJ { Light HellionballJ }
- Frame HLBLK { Light HellionballK }
- Frame HLBLL { Light HellionballL }
- Frame HLBLM { Light HellionballM }
- Frame HLBLN { Light HellionballN }
-}
-
 //Object Hellionpuff
 //{
  //Frame HLBLC { Light HellionballC }
