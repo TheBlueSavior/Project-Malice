@@ -4307,8 +4307,9 @@ $limit Wrath/Ire 5
 $rolloff Wrath/Ire 800 2600
 
 Wrath/IreLoop "Sounds/Monsters/SFX/WrathIreLoop.ogg"
-$limit Wrath/IreLoop 5
-$rolloff Wrath/IreLoop 300 1600
+$limit Wrath/IreLoop 4
+$volume Wrath/IreLoop 0.66
+$rolloff Wrath/IreLoop 300 1500
 
 Envy/SigilSummon "Sounds/Other/PMEnvySigil.ogg"
 $rolloff Envy/SigilSummon 400 1800
@@ -4402,3 +4403,10 @@ Nazi/Fast/8		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_7.wav"
 Nazi/Fast/9		"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_8.wav"
 Nazi/Fast/10	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_9.wav"
 $random Nazi/Fast {Nazi/Fast/1 Nazi/Fast/2 Nazi/Fast/3 Nazi/Fast/4 Nazi/Fast/5 Nazi/Fast/6 Nazi/Fast/7 Nazi/Fast/8 Nazi/Fast/9 Nazi/Fast/10}
+
+//Frozen Horrorspawn?
+$random Umbralspawn/Scream { Umbralspawn/Scream1 Umbralspawn/Scream2 Umbralspawn/Scream3 Umbralspawn/Scream4 }
+Umbralspawn/Scream1 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream1.ogg"
+Umbralspawn/Scream2 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream2.ogg"
+Umbralspawn/Scream3 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream3.ogg"
+Umbralspawn/Scream4 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream4.ogg"
