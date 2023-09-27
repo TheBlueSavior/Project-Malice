@@ -4405,6 +4405,7 @@ Nazi/Fast/10	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Fast_9.wav"
 $random Nazi/Fast {Nazi/Fast/1 Nazi/Fast/2 Nazi/Fast/3 Nazi/Fast/4 Nazi/Fast/5 Nazi/Fast/6 Nazi/Fast/7 Nazi/Fast/8 Nazi/Fast/9 Nazi/Fast/10}
 
 //Frozen Horrorspawn?
+$random Umbralspawn/TurnAround { Skulker/Breath Skulker/Wail Skulker/Laugh Skulker/Whisper POTS/Laugh2 }
 $random Umbralspawn/Scream { Umbralspawn/Scream1 Umbralspawn/Scream2 Umbralspawn/Scream3 Umbralspawn/Scream4 }
 Umbralspawn/Scream1 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream1.ogg"
 Umbralspawn/Scream2 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream2.ogg"
