@@ -5,7 +5,7 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
 	Health 60;
     Radius 20;
     Height 56;
-    Speed 20;
+    Speed 25;
     Obituary "%o felt the cold shoulder.";
 	Tag "Frozen Horrorspawn";
 	DeathSound "Umbralspawn/Scream";
@@ -42,27 +42,35 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
   States
   {
   Spawn:
-	UMBE A 10 A_Look();
+	TNT1 A 10 PM_Look();
+	Loop;
+  Look:
+    TNT1 A 5 { for(int i=30;i>0;i--) A_Wander(); }
+	TNT1 A 0 A_CheckSight("See");
 	Loop;
   See:
 	UMBE A random(0, 5)
 	{
 		if (target)
 		{
-			if (!CheckSight(target)) A_Chase();
+			if (!CheckSight(target)) A_Wander();
 			
 			FLineTraceData m;
 			target.LineTrace(target.angle - 180, 9999, target.pitch, 0, (target.height) / 2, 0, 0, m);
 			if (m.HitActor && m.HitActor == self)
-			{ A_Chase("DoNothing",null); A_FaceTarget(); A_Recoil(-random(1, 10)); }
-			else A_Stop();
+			{
+			 if(random(1,15) == 1) A_StartSound("UmbralSpawn/TurnAround",15,CHANF_NOSTOP);
+			 else
+			 A_Chase("DoNothing",null); A_FaceTarget(); A_Recoil(-random(1, 10)); 
+			}
+			else { A_StopSound(15); A_Stop(); }
 		}
 	}
 	Loop;
   DoNothing:
     UMBE A random(1,15) {
-	if(random(1,120) == 1) A_StartSound("UmbralSpawn/TurnAround",15,CHANF_NOSTOP,pitch:frandom(0.65,0.35));
-	if(random(1,15) == 1) { A_FaceTarget(); A_SpawnProjectile("PM_PotsLunge"); }
+	if(random(1,70) == 1) A_StartSound("UmbralSpawn/TurnAround",15,CHANF_NOSTOP);
+	if(random(1,20) == 1) { A_FaceTarget(); A_SpawnProjectile("PM_PotsLunge"); }
 	if(target && CheckSight(target))
 	SetStateLabel("See"); 
 	A_Stop(); }
@@ -90,4 +98,15 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
   Raise:
 	Stop;
   }
+}
+
+Class PM_FrozenCorpseSpawn : Actor
+{
+	States
+	{
+	Spawn:
+	    TNT1 A 1 Nodelay;
+		TNT1 AAAAAA 0 A_SpawnItemEx("PM_UmbralHorrorspawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
 }
