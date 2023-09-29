@@ -109,7 +109,7 @@ version "4.10.0"
 #include "Actors/Monsters/Hellknights/Noble.txt"
 #include "Actors/Monsters/HellKnights/Vore.txt"
 #include "Actors/Monsters/HellKnights/Whiplash.txt"
-#include "Actors/Monsters/Hellknights/HellsFury.txt"
+#include "Actors/Monsters/Hellknights/GraveGuard.txt"
 
 //Barons
 #include "Actors/Monsters/Barons/HeresyLord.txt"

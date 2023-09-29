@@ -112,7 +112,7 @@ Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight
 {
 	DropItem "PM_Vore", 255, 11
 	//DropItem "Void", 255, 1
-	DropItem "PM_HellsFury", 255, 4
+	DropItem "PM_GraveGuard", 255, 4
 	DropItem "PM_Whiplash", 255, 4
 	DropItem "PM_Squire", 255, 41
 	DropItem "PM_Noble", 255, 22

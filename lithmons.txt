@@ -52,7 +52,7 @@
    scr: 4000 exp: 40      type: cacodemon     filter: "PM_Wicked";
    scr: 4000 exp: 40      type: cacodemon     filter: "PM_Wretched";
    scr: 4000 exp: 40      type: cacodemon     filter: "PM_VoidFloater";
-   scr: 4100 exp: 40      type: hellknight    filter: "PM_HellsFury";
+   scr: 4100 exp: 40      type: hellknight    filter: "PM_GraveGuard";
    scr: 4100 exp: 40      type: hellknight    filter: "PM_Noble";
    scr: 4100 exp: 40      type: hellknight    filter: "PM_Squire";
    scr: 4100 exp: 40      type: hellknight    filter: "PM_Vore";

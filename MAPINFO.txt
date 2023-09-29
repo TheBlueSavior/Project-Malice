@@ -85,7 +85,7 @@ DoomEdNums
 	23056 = "PM_Tainted"
 	23057 = "PM_Zephyr"
 	//HellKnights
-	23058 = "PM_HellsFury"
+	23058 = "PM_GraveGuard"
 	23059 = "PM_Noble"
 	23060 = "Paladin"
 	23061 = "PM_Squire"
