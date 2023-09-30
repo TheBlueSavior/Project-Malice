@@ -2,6 +2,137 @@ gameInfo
 {
 	addEventHandlers = "PM_InitialAmbientSpawner"
 	addEventHandlers = "MonsterDropper"
+
+	PrecacheSounds =
+	//Common Sounds
+	"PM/BulletHit", "PM/LargeBulletHit", "GenericShotgunFire", "GenericShotgunPump", "PM/BloodHit", "PM/BigGoreSplat", "PM/GibSplat", "PM/GibLand", "Fire/Unleash",
+	"Fire/Idle", "ZombieRifleDistant", "GunnerRifleDistant", "ShotgunnerGunDistant", "BigExplosionDistant", "TeleportVoices", "TeleportSound", "PM/NormalTeleport",
+	"PM/DemonTeleFire", "PM/GluttonyTeleVoice", "PM/GluttonyTeleSplat", "PM/LustTele", "PM/LustTeleVoice", "PM/BulletHellSpawn", "PM/SigilSpawn", "PM/RuneFill",
+	"PM/MagicFireFire", "PM/MagicFireExplode", "GenericSmallCharge", "GenericSmallFireball", "PM/ShockWarning", "GenericPinkyBite", "GenericPlasmaExp",
+	"GHeavyPlasmaExp", "GenericPlasmaFire", "Hellknight/Cast", "Hellknight/BallImpact", "SmallMissileExplosion", "FastMissileFlyby", "GenericCometExp",
+	"Skeleton/Step", "Corpse/Fall", "Corpse/FallMed", "Corpse/FallMetal", "baron/melee", "baron/attack", "MancubStep", "GBloodSplashBig", "GenericSteam", "Ice/Freeze",
+	"GenericBloodPuke", "DemonicSprite/Flee", "DemonicSprite/Warn", "Paranormal/EvilDrone", "PM/BigElectricCharge", "GenericMancShot", "ArachCrash", "ArachExpGore", "GenericArachWalk", "ArachChassisExplode",
+	"MaliceBloodSpray", "MaliceHeadExp", "MaliceMetalGore", "Marine/Torture", "Marine/Death", "GenericChargeHeavy",
+	
+	//RE-RE-RELOAD!
+	"PM/GunClick", "PM/PistolMagOut", "PM/PistolMagIn", "PM/RifleMagOut", "PM/RifleMagIn", "PM/RifleBoltSlide", 
+	"PM/HeavyRifleOpen", "PM/HeavyRifleMagOut", "PM/HeavyRifleMagIn", "PM/HeavyRifleClose", "PM/HeavyRifleBoltSlide", "PM/NailgunMagOut", "PM/NailgunMagIn",
+	"PM/NailgunReady", "PM/GatlingBeltAlign", "PM/GatlingBeltCram", "PM/GatlingReady", "PM/DualGatlingReady", "PM/HeavyPlasmaCooldown", "PM/HeavyPlasmaReload",
+	"PM/ArachnoCooldown", "PM/ArachnoReloadStart", "PM/ArachnoReload", "PM/ArachnoReloadEnd", "PM/BigVentLoop", "PM/BigVentEnd", "PM/ShellInsert",
+	"PM/BulletBounce", "PM/ShellBounce", "PM/MagBounce", "PM/PistolMagBounce", "PM/HeavyMagBounce",
+	
+	//Fodder
+	"Horrorspawn/Wake", "Horrorspawn/Step", "ZombieFodder/Sight", "ZombieFodder/Roar", "ZombieFodder/Active", "ZombieFodder/Pain", "ZombieFodder/Death", "ZombieFodder/Melee", "ZombieFodder/Bite", "ZombieFodder/Summon", "ZombieFodder/Howl",
+	"Afflicted/RunStep", "Afflicted/WalkStep", "Afflicted/Sight", "Afflicted/Active", "Afflicted/Pain", "Afflicted/Death", "Afflicted2/Idle", "Afflicted2/Pain", "Afflicted2/Death", "FAfflicted/Idle", "FAfflicted/Howl", "FAfflicted/Pain", "FAfflicted/Death", "Afflicted/Puke", "Afflicted/ScreechSummon", "Afflicted/Howl",
+	"Afflicted/Spawn", "Trite/Sight", "Trite/Active", "Trite/Attack", "Trite/MeleeHit", "Trite/Step", "Trite/Splat", "Trite/Pain", "Trite/Death", "Trite/WebStart", "Trite/WebEnd",
+	"HTrite/Sight", "HTrite/Active", "HTrite/Pain", "HTrite/Death", "HSpawnBurster/Sight", "HSpawnBurster/Loop", "HSpawnBurster/Explode", "HSpawnBurster/Arm", "Remnant/Sight", "Remnant/Pain", "Remnant/Death", "Remnant/Active", "Blob/Slosh", "Blob/Sight", "Blob/Active", "Blob/Pain", "Blob/Explode",
+	"SwarmFlySight", "SwarmFlyAttack", "SwarmFly", "SwarmFlyDeath", "Mimic/Spawn", "Mimic/Pain", "Mimic/Death", "Mimic/Active", "Mimic/Roar", "maggdie", "POTS/Sight", "POTS/Laugh", "POTS/Horde",
+	"Voidspawn/Search", "Voidspawn/Sight", "Voidspawn/Death", "Voidspawn/Scream", "Voidspawn/Active", "Voidspawn/Fatal", "Voidspawn/Stutter",
+	
+	//Zombiemen
+	"PistolZombie/See", "PistolZombie/Pain", "PistolZombie/Active", "PistolZombie/Death", "PistolZombie/Fire", "PistolZombie/FireDistant",
+	"ZombieSoldier/See", "ZombieSoldier/Pain", "ZombieSoldier/Active", "ZombieSoldier/Attack", "ZombieSoldier/Death", "ZombieSoldier/Step", "ZombieSoldier/Rifle",
+	"HelmetZombie/Sight", "HelmetZombie/Pain", "HelmetZombie/Active", "HelmetZombie/Death", "ZTrooper/FragArm", "ZTrooper/FragTick", "ZTrooper/FragThrow",
+	"ZTrooper/FragBounce", "ZTrooper/FragExp", "ZTrooper/FragDebris", "ZTrooper/Fire", "HellSoldier/Sight", "HellSoldier/Pain", "HellSoldier/Active", "HellSoldier/Death",
+	"HellSoldier/Plasma", "HellSoldier/ChargeReady", "HellSoldier/ChargeReady2", "HellSoldier/ChargePlas", "HellSoldier/ChargeExp",
+	"RFZ/Fire", "RFZ/Load", "RFZ/QuickLoad", "RFZ/RapidFire", "RFZ/WindDown", "Decayed/Sight", "Decayed/Active", "Decayed/Pain", "Decayed/Death",
+	"Decayed/Roll", "Decayed/Fire", "FOC/Sight", "FOC/Pain", "FOC/Active", "FOC/Attack", "FOC/Distort",
+	
+	//Shotgunners
+	"FacelessZ/Sight", "FacelessZ/Pain", "FacelessZ/Active", "FacelessZ/Attack", "FacelessZ/Death", "SlugShotgunner/Fire", "Decayed/ShottyCharge",
+	"Nailgunner/Sight", "Nailgunner/Pain", "Nailgunner/Active", "Nailgunner/Death", "Nailgunner/Fire", "Nailgunner/Altfire", "Nailgunner/Charge",
+	"Nailgunner/QuickCharge", "Nailgunner/SpinUp", "Nailgunner/SpinLoop", "Nailgunner/SpinDown", "CyberZombie/Step", "CyberZ/Sight", "CyberZ/Pain",
+	"CyberZ/Active", "CyberZ/Death", "CyberZ/Prefire", "CyberZ/Fire", "PM/FlamerReady", "CyberFodder/Flamer", "FOCShotgun/Sight", "FOCShotgun/Charge",
+	"FallenSoldiers/Sight", "FallenSoldiers/Active", "FSGunner/Fire", "GrenadeLaunch", "SmokeGrenadeExp", "FallenSoldiers/Pain", "FallenSoldiers/Death",
+	
+	//Chaingunners
+	"CarbineZombie/Sight", "CarbineZombie/Active", "CarbineZombie/Pain", "CarbineZombie/Death", "Carbine/Bolt", "Carbine/Shot", "Carbine/Stab",
+	"MutatedGunner/Sight", "MutatedGunner/Active", "MutatedGunner/Pain", "MutatedGunner/Death", "MutatedGunner/Prefire", "MutatedGunner/Fire", "FallenSoldiers/MGun",
+	"PMBlasphemer/Sight", "PMBlasphemer/Active", "PMBlasphemer/Pain", "PMBlasphemer/Death", "PMBlasphemer/Yell", "HellPriestSee", "HellPriestActive", "HellPriestPain",
+	"HPriest/VoidShot", "HPriest/SoulLoop", "DComm/WARNING", "DComm/Stop", "DComm/Fire", "DComm/GunLoop", "DComm/WindUp",
+	
+	//Imps
+	"Devil/Sight", "Devil/Active", "Devil/Roar", "Devil/Pain", "Devil/Death", "Charred/Sight", "Charred/Active", "Charred/Pain", "Charred/Idle", "Charred/Death", "Charred/Fireball",
+	"Hellion/Sight", "Hellion/Active", "Hellion/Pain", "Hellion/Death", "Hellion/Proj", "Hellion/ProjExp", "Hellion/BuffMonNova", "Hellion/BuffGive", "Hellion/BuffRelease",
+	"Zephyr/Sight", "Zephyr/Active", "Zephyr/Pain", "Zephyr/Death", "Zephyr/Ball", "Tainted/Sight", "Tainted/Active", "Tainted/Slide", "Tainted/Pain", "Tainted/Death", "TaintedBall",
+	"TaintedProjFire", "TaintedBloodFire", "TaintedBloodExp", "FeralImp/Sight", "FeralImp/Active", "FeralImp/Attack", "FeralImp/Pain", "FeralImp/Death", "FeralImp/Leap",
+	"FeralImp/Swing", "FeralImp/Ball", "FeralImp/BallExp", "FeralImp/Ireball", "Host/Sight", "Host/Active", "Host/Pain", "Host/Death", "Host/Charge", "Host/Fly", "Host/FlyLoop",
+	"Harvester/Sight", "Harvester/Active", "Harvester/Pain", "Harvester/Death", "Harvester/PhaseLoop", "Harvester/SoulLaunch", "Harvester/SoulExp", "Harvester/SoulLoop", "Harvester/PhaseStart",
+	"Harvester/PhaseEnd", "Harvester/Summon1", "Harvester/Summon2", "Harvester/Summon3", "Harvester/Summon4", "NetherConduit/Sight", "NetherConduit/Active", "NetherConduit/Pain", "NetherConduit/Death",
+	"NetherConduit/ChaserCharge", "NetherConduit/StreamCharge", "NetherConduit/SmallZap", "NetherConduit/ZapExp", "NetherConduit/ThunderCharge", "NetherConduit/ThunderOrb", "NetherConduit/HomingLoop",
+	"NetherConduit/HomingExp",
+	
+	//Pinkies
+	"Brute/Sight", "Brute/Grumble", "Brute/Active", "Brute/Pain", "Brute/Death", "CBrute/Sight", "CBrute/Sight", "CBrute/Active", "CBrute/Hyd",
+	"CBrute/Jump", "CBrute/Land", "Glutton/Sight", "Glutton/Active", "Glutton/Pain", "Glutton/Spit", "Glutton/Attack", "Glutton/Pain", "Glutton/Death",
+	"DTechSee", "DTechActive", "DTechPain", "DTechAttack", "DTechWalk", "DTech/Fire", "DTech/Exp", "BloodStalker/Sight", "BloodStalker/Active", "BloodStalker/Pain",
+	"BStalker/Death", "BloodStalker/Roar", "BStalker/Warp",
+	
+	//Spectres
+	"PBrute/Sight", "PBrute/Active", "PBrute/Pain", "PBrute/Death", "Nightmare/Sight", "Nightmare/Active", "Nightmare/Melee", "Nightmare/Pain", "Nightmare/Death", "Nightmare/WindPull",
+	"DTechSpectre/Sight", "DTechSpectre/Active", "DTechSpectre/Ready", "DTechSpectre/Fire", "DTechSpectre/Sniper", "DTechSpectre/Death", "Prowler/Foot", "Prowler/Miss",
+	"Prowler/Cover", "Prowler/Swing", "Prowler/Snarl", "Prowler/Peek", "Prowler/Charge", "Prowler/Pain", "Prowler/Death", "Skulker/See",
+	"Skulker/Charge", "Skulker/Flee", "Skulker/Flinch", "Skulker/Breath", "Skulker/Hunt", "Skulker/Hit", "Skulker/Miss", "Skulker/Swing", "Skulker/Port", "Skulker/Phase", "Skulker/Whisper", "Skulker/Wail",
+	
+	//Lost Souls
+	"BurntSoul/Active", "BurntSoul/Attack", "BurntSoul/Pain", "BurntSoul/Death", "BSkull/See", "BSkull/Pain", "BloodSkull/Croak", "BSkull/Active", "BSkull/Death",
+	"PMGazer/Sight", "PMGazer/Hover", "PMGazer/Active", "PMGazer/Death", "Fleshspawn/Sight", "Fleshspawn/Active", "Fleshspawn/Pain", "Fleshspawn/Death", "Fleshspawn/Attack",
+	"Blot/Sight", "Blot/Death", "Blot/Active", "UHeart/Sight", "UHeart/Loop", "UHeart/Death", "VenMaggot/Sight", "VenMaggot/Idle", "VenMaggot/Pain", "VenMaggot/Die", "VenMaggot/Melee",
+	
+	//Cacodemons
+	"Wretched/Sight", "Wretched/Charge", "Wretched/Active", "Wretched/Pain", "Wretched/Death", "Wretched/Spit", "Wretched/Death", "Wretched/Fire",
+	"Wretched/ShotLoop", "PhaseCaco/BallExp", "PhaseCaco/Active", "PhaseCaco/BallLoop", "PhaseCaco/Death", "PhaseCaco/Fire", "PhaseCaco/Pain", "PhaseCaco/Small",
+	"PhaseCaco/SmallExp", "Beholder/Sight", "Beholder/Pain", "Beholder/Death", "Beholder/Active", "Beholder/Cry", "Beholder/Spit",
+	"PMInfernal/Fire", "PMInfernal/Roar", "PMInfernal/Explode", "PMInfernal/MeleeCharge", "PMInfernal/MeleeBlast", "PMInfernal/Ire", "PMInfernal/Death", "PMInfernal/Laugh",
+	"PMInfernal/LavaballLoop", "PMInfernal/Sight", "PMInfernal/Charge", "PMInfernal/Active", "PMInfernal/Pain", "PMInfernal/Lavaball", "PMInfernal/LavaballExp",
+	"WickSight", "WickActive", "WickAttack", "WickRush", "WickPain", "WickDeath", "WickFire", "WickFireExp", "WickCharge", "WickChargeThrow",
+	"Watcher/Sight", "Watcher/Active", "Watcher/Pain", "Watcher/Death", "Watcher/IShard", "Watcher/IShardExp", "Watcher/IBall", "Watcher/IBallExp", "Watcher/Roar",
+	"Floater/Sight", "Floater/Wail", "Floater/Active", "Floater/Groan", "Floater/Aggro", "Floater/Grumble", "Floater/LaserCharge", "Floater/Roar", "Floater/Bellow", "Floater/Flinch", "Floater/Pain", "Floater/Phase", "Floater/Fire",
+	
+	//Pain Elementals
+	"Defiler/Fire", "Defiler/Active", "Defiler/Pain", "Defiler/Death", "Defiler/Breath", "Defiler/Roar", "Defiler/Gag", "Defiler/Ack", "Defiler/Shoot",
+	"GrossElem/Sight", "GrossElem/Pain", "GrossElem/Die", "GrossElem/Spit", "GrossElem/VenomWhiz",
+
+	//Revenants
+	"Cadaver/Missile", "Cadaver/MissileExp", "Cadaver/Fire", "Cadaver/Homing", "Cadaver/HomingLoop", "Cadaver/Sight", "Cadaver/Active", "Cadaver/Pain", "Cadaver/Death", "Cadaver/Step",
+	"Fiend/HomingFire", "FiendRocketFire", "Fiend/Step", "Fiend/Death", "Fiend/Active", "Fiend/Pain", "Fiend/Sight", "Fiend/Attack", "Fiend/HomingYell", "Fiend/Charge", "Fiend/Lockon", "Fiend/Jump", "Fiend/Land",
+	"Husk/Sight", "Husk/Pain", "Husk/Active", "Husk/Death", "Husk/Rush", "Husk/Melee", "Husk/MeleeSwing", "Husk/Cloud", "Husk/Throw", "Draugr/Servos", "Draugr/Step",
+	"Draugr/RocketWhoosh", "Draugr/RocketLaunch", "Draugr/RocketAim", "Draugr/RocketLock", "Draugr/GunAim", "Draugr/BuffNade", "Draugr/BuffStart", "Draugr/BuffLoop", "Draugr/BuffLoop", "Draugr/BuffMonGet", "Draugr/BuffMonLoop", "Draugr/BuffMonEnd",
+	"Draugr/Fire", "Draugr/Proj", "Draugr/Sight", "Draugr/Active", "Draugr/Pain", "Draugr/Death", "Depraved/Sprint", "Depraved/BeamStart", "Depraved/Beam", "Depraved/BeamEnd", "Depraved/Scream", "Depraved/Spit",
+	"Depraved/SmallShock", "Depraved/SuperShock1", "Depraved/SuperShock2", "Depraved/Active", "Depraved/Sight", "Depraved/Revive", "Infested/Idle", "Infested/Sight", "Infested/Active", "Infested/Death",
+
+	//Nobles
+	"Squire/Step", "Squire/Sight", "Squire/Active", "Squire/Death", "Squire/Pain", "Squire/Charge", "Squire/LeapReady", "Squire/Leap",
+	"Noble/Sight", "Noble/Active", "Noble/PreBomb", "Noble/BombExpFar", "Noble/BombExp", "Whiplash/GroundLoop", "Whiplash/Ground", "Whiplash/GroundFire", "Whiplash/GSpikeSummon",
+	"Whiplash/Sight", "Whiplash/Active", "Whiplash/Pain", "Whiplash/Death", "Whiplash/Flank", "Whiplash/KnifeStab", "Whiplash/Schwing", "Whiplash/SpearThrow", "Whiplash/SpearCharge", "Whiplash/MeleeSwing",
+	"Vore/Sight", "Vore/Active", "Vore/Attack", "Vore/Throw", "Vore/Pain", "Vore/Death", "Shadow/attack", "HFurySight", "HFuryPain",
+	"HFuryDeath", "HFuryRoar", "HFuryProj", "HFuryProjExp", "HFury/Rush", "HFury/RushAdd", "HFury/SoulScreech", "HFury/SoulPrefire",
+	
+	//Barons
+	"HeresyLord/Sight", "HeresyLord/Active", "HeresyLord/Pain", "HeresyLord/Death", "HeresyLord/BarrageSummon", "HeresyLord/BarrageRedFire", "HeresyLord/BarrageRedDeath", "HeresyLord/BarrageWhiteFire", "HeresyLord/BarrageWhiteDeath", "HeresyLord/BarrageRCharge", "HeresyLord/BarrageWCharge",
+	"HeresyLord/RedFire", "HeresyLord/RedDeath", "HeresyLord/WhiteFire", "HeresyLord/WhiteDeath", "Bruiser/Sight", "Bruiser/Active", "Bruiser/Pain", "Bruiser/Swing", "Bruiser/Death", "Bruiser/Attack",
+	"Bruiser/LeapCharge", "Bruiser/LeapPropel", "Bruiser/LeapLoop", "Demi/Sight", "Demi/Active", "Demi/Hum", "Demi/Attack", "Demi/Windup", "Demi/Fire", "Demi/GunLoop", "Demi/TracerHit", "Demi/Pain", "Demi/Death",
+	
+	//Mancubi
+	"Hectebus/Sight", "Hectebus/Active", "Hectebus/Attack", "Hectebus/Pain", "Hectebus/BallExp", "Hectebus/Death", "Hectebus/Aim",
+	"Corpulent/Sight", "Corpulent/Active", "Corpulent/Pain", "Corpulent/Death", "Corpulent/Attack", "Corpulent/Fire", "Corpulent/Whiz",
+	"Abhorrent/Sight", "Abhorrent/Active", "Abhorrent/Pain", "Abhorrent/Death", "Abhorrent/Attack", "Abhor/BarrageCharge", "Abhor/BarrageLaunch", "Abhor/Phase", "Abhor/BarrageWhiz", "Abhor/BallWhiz", "Abhor/BallExp", "Abhor/SoulExp",
+	
+	//Arachnotrons
+	"Fusionite/Sight", "Fusionite/Pain", "Fusionite/Active", "Fusionite/Death", "Fusionite/Scattershot", "Fusionite/SmallShot", "Fusionite/Charge", "Fusionite/ScatterCharge", "Fusionite/SmallCharge",
+	"Plasmatron/See", "Plasmatron/Pain", "Plasmatron/Active", "Plasmatron/Death", "Plasmatron/Step", "Plasmatron/Servos", "Plasmatron/SmallFire", "Plasmatron/ReadySmall", "Plasmatron/Fire", "Plasmatron/MortarCharge", "Plasmatron/MortarFire", "Plasmatron/MortarLoop", "Plasmatron/MortarExp",
+	
+	//Archviles
+	"Exile/Step", "Exile/Sight", "Exile/Active", "Exile/Pain", "Exile/Attack", "Exile/Death", "Exile/Resurrect", "Exile/Immolate", "Exile/ImmolateStart", "Exile/FireReady", "Exile/FireHum", "Exile/FireExplode", "Exile/GroundStart", "Exile/GroundLoop", "Exile/GroundEnd", "Exile/Teleport", "Exile/ShieldSpawn", "Exile/ShieldLoop",
+	
+	//Minibosses
+	"PM/TerrorMusicLoop", "PM/FreedHostLaugh", "PM/ControllerFlee", "PM/ControllerTransform", "PM/ControllerScream", "PM/ControllerPain", "PM/ControllerHunt", "PM/ControllerDrag", "PM/ControllerHostCry",
+	"Broken/Pain/1", "Broken/Pain/2", "Broken/Pain/3", "Broken/Pain/4", "Broken/Flinch", "Broken/Die", "Broken/Pain/Light", "Broken/Pain/Heavy", "Broken/TP", "Broken/Railgun", "Broken/Plasma", "Broken/VFGCharge", "Broken/VFGFire", "Broken/VFGLoop", "Broken/VFGScream", "Broken/VFGExp", "Broken/LOOP", "Broken/LOOP2", "Broken/LOOP3",
+	
+	//Cyberdemons
+	"Tyrant/Hoof", "Tyrant/Sight", "Tyrant/Death", "Tyrant/Attack", "Tyrant/Pain", "Tyrant/Active", "Tyrant/ShellLoad", "Tyrant/ShellLoadReady", "Tyrant/ShellFire", "Tyrant/ShellExplode", "Tyrant/ShellFireAdd", "Tyrant/ShellFireAdd2", "Tyrant/ShellOpen", "Tyrant/ShellFall", "Tyrant/Rocket", "Tyrant/RocketExp",
+	"Tyrant/Missile", "Tyrant/MissileExp", "Tyrant/RocketRiver", "Tyrant/RailCharge", "Tyrant/RailWarn", "Tyrant/RailFire", "Tyrant/Dodge", "Tyrant/Flamer", "Tyrant/Stomp",
+	"Avatar/WindPull", "PM/AvatarBreathe", "EntAva/Footstep", "EntAva/MulchLoop", "EntAva/ScreamLoop1", "EntAva/ScreamLoop2", "EntAva/IdleScreaming", "EntAva/Slam", "EntAva/ChargeRoar", "EntAva/Laugh", "EntAva/Roar", "EntAva/Yell", "EntAva/Drag", "EntAva/VoidBall", "EntAva/Sing", "EntAva/Soul"
 }
 
 DamageType PM_BulletHellDamage
