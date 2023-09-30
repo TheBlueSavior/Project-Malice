@@ -4418,3 +4418,50 @@ Umbralspawn/Scream1 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream1.ogg"
 Umbralspawn/Scream2 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream2.ogg"
 Umbralspawn/Scream3 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream3.ogg"
 Umbralspawn/Scream4 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream4.ogg"
+
+//Bulltubus
+$random Bulltubus/Sight { Bulltubus/Sight1 Bulltubus/Sight2 Bulltubus/Sight3 }
+Bulltubus/Sight1 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSight1.ogg"
+Bulltubus/Sight2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSight2.ogg"
+Bulltubus/Sight3 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSight3.ogg"
+
+Bulltubus/Active "Sounds/Monsters/Mancubis/Bulltubus/BulltubusActive.ogg"
+Bulltubus/Roar   "Sounds/Monsters/Mancubis/Bulltubus/BulltubusRoar.ogg"
+
+$random Bulltubus/Attack { Bulltubus/Attack1 Bulltubus/Attack2 }
+Bulltubus/Attack1 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusAttack1.ogg"
+Bulltubus/Attack2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusAttack2.ogg"
+
+Bulltubus/Pain "Sounds/Monsters/Mancubis/Bulltubus/BulltubusPain.ogg"
+
+$random Bulltubus/Death { Bulltubus/Death1 Bulltubus/Death2 }
+Bulltubus/Death1 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusDeath1.ogg"
+Bulltubus/Death2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusDeath2.ogg"
+
+Bulltubus/WindUp "Sounds/Monsters/Mancubis/Bulltubus/BulltubusWindUp.ogg"
+Bulltubus/WindLoop "Sounds/Monsters/Mancubis/Bulltubus/BulltubusWindLoop.ogg"
+Bulltubus/IreWindLoop1 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusIreWindLoop1.ogg"
+Bulltubus/IreWindLoop2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusIreWindLoop2.ogg"
+Bulltubus/WindDown "Sounds/Monsters/Mancubis/Bulltubus/BulltubusWindDown.ogg"
+
+Bulltubus/Gun "Sounds/Monsters/Mancubis/Bulltubus/BulltubusGun.ogg"
+Bulltubus/IreGun "Sounds/Monsters/Mancubis/Bulltubus/BulltubusIreGun.ogg"
+Bulltubus/IreGunDown "Sounds/Monsters/Mancubis/Bulltubus/BulltubusIreGunDown.ogg"
+Bulltubus/FlamerStart "Sounds/Monsters/Mancubis/Bulltubus/BulltubusFlamerStart.ogg"
+Bulltubus/FlamerLoop "Sounds/Monsters/Mancubis/Bulltubus/BulltubusFlamerLoop.ogg"
+Bulltubus/FlamerEnd "Sounds/Monsters/Mancubis/Bulltubus/BulltubusFlamerEnd.ogg"
+Bulltubus/MagOpen "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagOpen.ogg"
+Bulltubus/MagClose "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagClose.ogg"
+
+$rolloff Bulltubus/Gun 400 2200
+$rolloff Bulltubus/IreGun 400 2200
+$rolloff Bulltubus/IreGunDown 400 2200
+$rolloff Bulltubus/WindUp 300 1800
+$rolloff Bulltubus/WindLoop 300 1800
+$rolloff Bulltubus/IreWindLoop1 250 1800
+$rolloff Bulltubus/IreWindLoop2 250 1800
+$rolloff Bulltubus/WindDown 300 1800
+$volume Bulltubus/IreGun 0.65
+$volume Bulltubus/IreGunDown 0.65
+$volume Bulltubus/IreWindLoop1 0.45
+$volume Bulltubus/IreWindLoop2 0.55

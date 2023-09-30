@@ -98,6 +98,7 @@ version "4.10.0"
 //Mancubi
 #include "Actors/Monsters/Mancubi/Hectebus.txt"
 #include "Actors/Monsters/Mancubi/Corpulent.txt"
+#include "Actors/Monsters/Mancubi/Bulltubus.txt"
 #include "Actors/Monsters/Mancubi/Abhorrent.txt"
 
 //Arachnos

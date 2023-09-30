@@ -77,6 +77,32 @@ Model PM_HellionFlareSlow
   FrameIndex TRCR A 0 0
 }
 
+Model PM_BulltubusSlowTracer
+{ 
+  Path "Models"
+  Skin 0 "malicetracer1.tga"
+  Model 0 "Tracer.md3"
+  Scale 0.5 2.0 0.5
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRCR A 0 0
+}
+
+Model PM_BulltubusFastTracer
+{ 
+  Path "Models"
+  Skin 0 "malicetracer1.tga"
+  Model 0 "Tracer.md3"
+  Scale 0.5 1.5 0.5
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRCR A 0 0
+}
+
 Model PM_DEmiTracer
 { 
   Path "Models"

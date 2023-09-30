@@ -132,6 +132,7 @@ Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 {
 	DropItem "PM_Hectebus", 255, 12
 	DropItem "PM_Corpulent", 255, 7
+	DropItem "PM_Bulltubus", 255, 5
 	DropItem "PM_Abhorrent", 255, 1
 }
 

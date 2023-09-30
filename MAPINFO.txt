@@ -117,6 +117,7 @@ gameInfo
 	"Hectebus/Sight", "Hectebus/Active", "Hectebus/Attack", "Hectebus/Pain", "Hectebus/BallExp", "Hectebus/Death", "Hectebus/Aim",
 	"Corpulent/Sight", "Corpulent/Active", "Corpulent/Pain", "Corpulent/Death", "Corpulent/Attack", "Corpulent/Fire", "Corpulent/Whiz",
 	"Abhorrent/Sight", "Abhorrent/Active", "Abhorrent/Pain", "Abhorrent/Death", "Abhorrent/Attack", "Abhor/BarrageCharge", "Abhor/BarrageLaunch", "Abhor/Phase", "Abhor/BarrageWhiz", "Abhor/BallWhiz", "Abhor/BallExp", "Abhor/SoulExp",
+	"Bulltubus/Sight", "Bulltubus/Active", "Bulltubus/Attack", "Bulltubus/Roar", "Bulltubus/Pain", "Bulltubus/Death",
 	
 	//Arachnotrons
 	"Fusionite/Sight", "Fusionite/Pain", "Fusionite/Active", "Fusionite/Death", "Fusionite/Scattershot", "Fusionite/SmallShot", "Fusionite/Charge", "Fusionite/ScatterCharge", "Fusionite/SmallCharge",
