@@ -9,7 +9,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
    Height 64;
    painchance 70;
    Speed 7;
-   Scale 1.05;
+   Scale 1.1;
    Mass 1000;
    SeeSound "Bulltubus/Sight";
    PainSound "Bulltubus/Pain";
