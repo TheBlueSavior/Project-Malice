@@ -99,6 +99,14 @@ Actor PM_BulletCasing : PM_BulletCasingBase
   }
 }
 
+Actor PM_BigBulletCasing : PM_BulletCasing
+{
+ Scale 0.30
+ States
+ {
+  }
+}
+
 Actor PM_ShellCasing : PM_BulletCasingBase
 {
  BounceSound "PM/ShellBounce"

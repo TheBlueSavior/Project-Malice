@@ -4285,8 +4285,8 @@ PM/HeavyMagBounce2 "Sounds/Other/PMHeavyMagBounce2.ogg"
 PM/HeavyMagBounce3 "Sounds/Other/PMHeavyMagBounce3.ogg"
 PM/HeavyMagBounce4 "Sounds/Other/PMHeavyMagBounce4.ogg"
 
-$rolloff PM/BulletBounce 200 1050
-$rolloff PM/ShellBounce 200 1050
+$rolloff PM/BulletBounce 200 1450
+$rolloff PM/ShellBounce 200 1450
 $rolloff PM/MagBounce 200 1200
 $rolloff PM/HeavyMagBounce 200 1200
 $rolloff PM/PistolMagBounce 200 1200
@@ -4454,14 +4454,16 @@ Bulltubus/MagOpen "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagOpen.ogg"
 Bulltubus/MagClose "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagClose.ogg"
 
 $rolloff Bulltubus/Gun 400 2200
-$rolloff Bulltubus/IreGun 400 2200
+$rolloff Bulltubus/IreGun 400 2800
 $rolloff Bulltubus/IreGunDown 400 2200
 $rolloff Bulltubus/WindUp 300 1800
 $rolloff Bulltubus/WindLoop 300 1800
-$rolloff Bulltubus/IreWindLoop1 250 1800
-$rolloff Bulltubus/IreWindLoop2 250 1800
+$rolloff Bulltubus/IreWindLoop1 450 2000
+$rolloff Bulltubus/IreWindLoop2 450 2000
 $rolloff Bulltubus/WindDown 300 1800
+$rolloff Bulltubus/Roar 300 2000
+$rolloff Bulltubus/FlamerLoop 300 2000
 $volume Bulltubus/IreGun 0.65
 $volume Bulltubus/IreGunDown 0.65
-$volume Bulltubus/IreWindLoop1 0.45
-$volume Bulltubus/IreWindLoop2 0.55
+$volume Bulltubus/IreWindLoop1 0.75
+$volume Bulltubus/IreWindLoop2 0.85
