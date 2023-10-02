@@ -113,11 +113,12 @@ Class PM_AffScreamer : PMFodderMonsterBase
     Goto See;
   Pain:
     ZHUN H 4;
+    TNT1 A 0 A_StopSound(10);
     ZHUN H 4 A_Pain;
 	Goto See;
   Death:
-	TNT1 A 0;
     ZHUN I 7;
+    TNT1 A 0 A_StopSound(10);
     ZHUN J 7 A_Scream;
     ZHUN K 5 A_NoBlocking;
     ZHUN L 5;

@@ -540,7 +540,7 @@ Class PM_WhiplashKnife : MageWandMissile
 {
   Default
   {
-  damage 3;
+  DamageFunction 10;
   Scale 1.8;
   Speed 22;
   radius 2;
@@ -551,15 +551,29 @@ Class PM_WhiplashKnife : MageWandMissile
   Seesound "Whiplash/Blades";
   deathsound "Whiplash/KnifeStab";
   }
+
+  override void PostBeginPlay()
+  { Super.PostbeginPlay();
+    tex[0] = TexMan.CheckForTexture("SPKOP0",TexMan.Type_Sprite); }
+	
+   TextureID tex[1];
+
   States
   {
   Spawn:
     BLA2 A 1 BRIGHT Light("WhipKnife")
 	{
-	A_SpawnItemEX("WKnifeBlur");
-	A_SpawnItemEX("WKnifeBlur2");
+	 A_SpawnItemEx("WKnifeBlur");
+	 A_SpawnParticleEx
+	 ( "", tex[0], style: STYLE_Add,
+	 flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(1,80), size: random(1,8),
+	 xoff: frandom(-3,3), yoff: frandom(-3,3), zoff: frandom(-3,3), velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1),
+	 startalphaf: frandom(0.65,0.95), sizestep: -0.85, startroll: random(-180,180), rollvel: random(-5,5) );
 	}
-    loop;
+    Loop;
+  Death:
+    BLA2 A 80 BRIGHT Light("WhipKnife2");
+	Stop;
   Death:
     BLA2 A 80 BRIGHT Light("WhipKnife2");
 	stop;

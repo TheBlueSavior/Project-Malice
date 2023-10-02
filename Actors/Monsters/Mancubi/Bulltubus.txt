@@ -430,10 +430,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	   A_SpawnItemEx("PM_LavaMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
 	   A_SpawnItemEx("PM_LavaMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
 	   }
-       FDFD B 6
-	   {
-	   A_Scream();
-	   }
+       FDFD B 6 A_Scream();
        FDFD C 6 A_SpawnItemEx("PM_LavaMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
        FDFD DEF 6 A_SpawnItemEx("PM_LavaMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
 	   TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
@@ -458,7 +455,7 @@ Class PM_BulltubusSlowTracer : Fatshot
    Radius 4;
    Height 6;
    Scale 1.0;
-   DamageFunction (random(15,20));
+   DamageFunction 20;
    SeeSound "";
    DeathSound "FeralImp/Ireball";
    Decal "BigScorch";

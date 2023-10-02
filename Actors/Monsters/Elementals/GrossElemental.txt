@@ -178,8 +178,9 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    DFLY G 4 Fast A_Pain;
    Goto See2;
   Death:
-   DFLY HHI 4 A_StartSound("GrossElem/Die",6);
-   DFLY IJJ 3 Bright;
+   DFLY H 4 A_StartSound("GrossElem/Die",6);
+   DFLY HI 4;
+   DFLY IJJ 3;
    TNT1 A 0 A_StartSound("Blob/Explode",6);
    TNT1 A 0 A_StartSound("GBloodSplashBig",7);
    TNT1 AAAAAA 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
