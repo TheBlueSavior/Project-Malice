@@ -180,9 +180,12 @@ Class PM_Beholder : PMGluttonyMonsterBase
 		Death:
 			TNT1 A 0 A_StopSounds(0,0);
 			CAB1 G 7 {bFLOATBOB = False;}
-			CAB1 H 7 A_Scream();
-			CAB1 I 7;
-			CAB1 J 7;
+		    CAB1 H 5 { A_Scream();
+			for(int i=3;i>0;i--)
+			A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION); }
+			CAB1 HH 4 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+			CAB1 III 5 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+			CAB1 J 5 A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(15,30),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
 			CAB1 K 7 A_NoBlocking();
 			CAB1 L -1 A_SetFloorClip();
 			Stop;

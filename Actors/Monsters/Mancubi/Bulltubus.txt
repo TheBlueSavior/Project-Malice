@@ -301,7 +301,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	A_StartSound("Bulltubus/Attack",17);
 	A_StartSound("Hectebus/Aim",16); }
     FEFE G 1 A_FaceTarget();
-	FEFE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 PM_BulltubusFlamerCharge();
+	FEFE GGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 PM_BulltubusFlamerCharge();
 	FEFE I 5 Light("AvatarFireball2")
 	{
 	 A_StartSound("GenericShotgunFire",16,CHANF_OVERLAP,pitch:0.80);

@@ -411,6 +411,7 @@ Class PMWrathMonsterBase : PMMonsterBase
   Default
   {
    PMMonsterBase.HealthMultCVar 'pm_healthfactor_wrath';
+   PainChance "Fire", 0;
   }
 
  override void PM_Gib()
@@ -493,6 +494,8 @@ Class PMUmbralMonsterBase : PMMonsterBase
  Default
  {
   PMMonsterBase.HealthMultCVar 'pm_healthfactor_umbral';
+  PainChance "Ice", 0;
+  DamageFactor "Ice", 0.1;
  }
 }
 
