@@ -298,7 +298,6 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	  bNOPAIN = true;
 	 else
 	  bNOPAIN = false;
-	}
 	A_StartSound("Bulltubus/Attack",17);
 	A_StartSound("Hectebus/Aim",16); }
     FEFE G 1 A_FaceTarget();
@@ -460,7 +459,7 @@ Class PM_BulltubusSlowTracer : Fatshot
    Radius 4;
    Height 6;
    Scale 1.0;
-   DamageFunction (random(15,20));
+   DamageFunction 20;
    SeeSound "";
    DeathSound "FeralImp/Ireball";
    Decal "PM_PlasmatronScorchLarge";
