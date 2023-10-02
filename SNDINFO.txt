@@ -4453,7 +4453,13 @@ Bulltubus/FlamerEnd "Sounds/Monsters/Mancubis/Bulltubus/BulltubusFlamerEnd.ogg"
 Bulltubus/MagOpen "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagOpen.ogg"
 Bulltubus/MagClose "Sounds/Monsters/Mancubis/Bulltubus/BulltubusMagClose.ogg"
 
+$random Bulltubus/Shotgun { Bulltubus/Shotgun1 Bulltubus/Shotgun2 Bulltubus/Shotgun3 }
+Bulltubus/Shotgun1 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG1.ogg"
+Bulltubus/Shotgun2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG2.ogg"
+Bulltubus/Shotgun3 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG3.ogg" 
+
 $rolloff Bulltubus/Gun 400 2200
+$rolloff Bulltubus/Shotgun 400 2500
 $rolloff Bulltubus/IreGun 400 2800
 $rolloff Bulltubus/IreGunDown 400 2200
 $rolloff Bulltubus/WindUp 300 1800
@@ -4463,6 +4469,7 @@ $rolloff Bulltubus/IreWindLoop2 450 2000
 $rolloff Bulltubus/WindDown 300 1800
 $rolloff Bulltubus/Roar 300 2000
 $rolloff Bulltubus/FlamerLoop 300 2000
+$volume Bulltubus/Shotgun 0.90
 $volume Bulltubus/IreGun 0.65
 $volume Bulltubus/IreGunDown 0.65
 $volume Bulltubus/IreWindLoop1 0.75
