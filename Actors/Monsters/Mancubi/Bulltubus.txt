@@ -77,14 +77,14 @@ Class PM_Bulltubus : PMWrathMonsterBase
 		tex[1],
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(1,50),
-		size: random(3,15),
+		lifetime: random(1,80),
+		size: random(3,10),
 		xoff: frandom(20,25),
 		yoff: 34,
 		zoff: frandom(-3.5,3.5) + 25,
-		velx: frandom(-0.95,0.95),
+		velx: frandom(0.85,1.35),
 		vely: frandom(-0.95,0.95),
-		velz: frandom(-0.95,0.95),
+		velz: frandom(-0.35,0.35),
 		startalphaf: frandom(0.25,0.9),
 		fadestepf: 0,
 		sizestep: 0,
@@ -98,13 +98,13 @@ Class PM_Bulltubus : PMWrathMonsterBase
 		style: STYLE_Add,
 		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,50),
-		size: random(3,15),
+		size: random(3,10),
 		xoff: frandom(20,25),
 		yoff: -34,
 		zoff: frandom(-3.5,3.5) + 25,
-		velx: frandom(-0.95,0.95),
+		velx: frandom(0.85,1.35),
 		vely: frandom(-0.95,0.95),
-		velz: frandom(-0.95,0.95),
+		velz: frandom(-0.35,0.35),
 		startalphaf: frandom(0.25,0.9),
 		fadestepf: 0,
 		sizestep: 0,
@@ -294,6 +294,11 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	Goto See2;
  Shotgun:
     TNT1 A 0 {
+	if(ire)
+	  bNOPAIN = true;
+	 else
+	  bNOPAIN = false;
+	}
 	A_StartSound("Bulltubus/Attack",17);
 	A_StartSound("Hectebus/Aim",16); }
     FEFE G 1 A_FaceTarget();
@@ -389,7 +394,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	bNOINFIGHTING = false;
 	bNOFEAR = false;
 	bNOPAIN = false;
-    pm_irecount = random(70,164);
+    pm_irecount = random(40,164);
 	A_RemoveChildren(1,RMVF_EVERYTHING); 
 	A_StopSound(30); A_StopSound(31); A_StopSound(20); A_StopSound(19); }
 	FEFE GGIIGGIIGGII 4 A_FaceTarget(0.85,3,0,0);
@@ -455,10 +460,10 @@ Class PM_BulltubusSlowTracer : Fatshot
    Radius 4;
    Height 6;
    Scale 1.0;
-   DamageFunction 20;
+   DamageFunction (random(15,20));
    SeeSound "";
    DeathSound "FeralImp/Ireball";
-   Decal "BigScorch";
+   Decal "PM_PlasmatronScorchLarge";
    DamageType "Fire";
    RenderStyle "Add";
   }
