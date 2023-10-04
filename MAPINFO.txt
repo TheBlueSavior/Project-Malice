@@ -79,6 +79,12 @@ DamageType PM_InfernalMelee
    ReplaceFactor
 }
 
+DamageType PM_BulltubusMelee
+{
+   Factor = 1.0
+   ReplaceFactor
+}
+
 DoomEdNums
 {	
 	//Zombiemen

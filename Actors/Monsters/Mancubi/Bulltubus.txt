@@ -18,8 +18,10 @@ Class PM_Bulltubus : PMWrathMonsterBase
    Obituary "%o was utterly obliterated by a Bulltubus.";
    Species "Mancubus";
    MinMissileChance 220;
+   MeleeRange 250;
    Tag "Bulltubus";
    BloodColor "Orange";
+   DamageFactor "PM_BulltubusMelee", 0;
    Monster;
    Bloodtype "PM_LavaBloodBase";
    +DONTHARMCLASS
@@ -35,9 +37,13 @@ Class PM_Bulltubus : PMWrathMonsterBase
     Super.PostBeginPlay();
 	tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
 	tex[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+	tex[3] = TexMan.CheckForTexture("BLHDA0",TexMan.Type_Sprite);
+	tex[4] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	tex[5] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
    }
    
-   TextureID tex[2];
+   TextureID tex[6];
    
    void PM_BulltubusFlamerCharge()
    {
@@ -169,27 +175,27 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	TNT1 A 0 { bNOPAIN = true; }
 	TNT1 A 0 PM_AlertSound();
 	TNT1 A 0 A_StartSound("MancubStep");
-    FEFE AAAA 1 A_Chase(null,null);
-	FEFE BBBBCCCC 1 A_Chase(null,null);
+    FEFE AAAA 1 A_Chase(null,"Melee");
+	FEFE BBBBCCCC 1 A_Chase(null,"Melee");
 	TNT1 A 0 A_StartSound("MancubStep");
-	FEFE DDDD 2 A_Chase(null,null);
-	FEFE EEEEFFFF 1 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("MancubStep");
-	TNT1 A 0 { if(target && Distance3D(target) < 400 && random(1,4) == 1)
-	SetStateLabel("Shotgun"); }
-    FEFE AAAA 1 A_Chase(null,null);
-	FEFE BBBBCCCC 1 A_Chase(null,null);
-	TNT1 A 0 A_StartSound("MancubStep");
-	FEFE DDDD 1 A_Chase(null,null);
-	FEFE EEEEFFFF 1 A_Chase(null,null);
+	FEFE DDDD 2 A_Chase(null,"Melee");
+	FEFE EEEEFFFF 1 A_Chase(null,"Melee");
 	TNT1 A 0 A_StartSound("MancubStep");
 	TNT1 A 0 { if(target && Distance3D(target) < 400 && random(1,4) == 1)
 	SetStateLabel("Shotgun"); }
-    FEFE AAAA 1 A_Chase(null,null);
-	FEFE BBBBCCCC 1 A_Chase(null,null);
+    FEFE AAAA 1 A_Chase(null,"Melee");
+	FEFE BBBBCCCC 1 A_Chase(null,"Melee");
 	TNT1 A 0 A_StartSound("MancubStep");
-	FEFE DDDD 1 A_Chase(null,null);
-	FEFE EEEEFFF 1 A_Chase(null,null);
+	FEFE DDDD 1 A_Chase(null,"Melee");
+	FEFE EEEEFFFF 1 A_Chase(null,"Melee");
+	TNT1 A 0 A_StartSound("MancubStep");
+	TNT1 A 0 { if(target && Distance3D(target) < 400 && random(1,4) == 1)
+	SetStateLabel("Shotgun"); }
+    FEFE AAAA 1 A_Chase(null,"Melee");
+	FEFE BBBBCCCC 1 A_Chase(null,"Melee");
+	TNT1 A 0 A_StartSound("MancubStep");
+	FEFE DDDD 1 A_Chase(null,"Melee");
+	FEFE EEEEFFF 1 A_Chase(null,"Melee");
 	TNT1 A 0 { if(target && Distance3D(target) < 400 && random(1,4) == 1)
 	SetStateLabel("Shotgun"); }
 	TNT1 A 0
@@ -200,6 +206,78 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	  bNOPAIN = false;
 	}
     Goto See2;
+  Melee:
+  TNT1 A 0 A_Jump(75,"Shotgun");
+	TNT1 A 0 {bNOPAIN = True;}
+	TNT1 A 0 A_StartSound("Bulltubus/Attack",10);
+	TNT1 A 0 A_StartSound("Bruiser/LeapCharge",11);
+	FEFE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("HectebusBallLight")
+	{
+	A_SpawnParticleEx
+	( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(50,80), size: frandom(1,400), xoff: random(-50,50), yoff: random(-50,50),
+	zoff: random(-10,70), startalphaf: frandom(0.3,0.7), startroll: random(-180,180) );
+	Radius_Quake (1, 2, 0, 7, 0);
+	A_FaceTarget();
+	}
+	TNT1 A 0 { Radius_Quake (8, 24, 0, 10, 0);
+	A_StartSound("Bruiser/LeapPropel",12); 
+	A_SpawnParticleEx
+	( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: 8, size: 360, zoff: 40, startalphaf: 1, startroll: random(-180,180) );
+	A_SpawnParticleEx
+	( "", tex[3], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: 20, size: 800, zoff: 50, startalphaf: 1, fadestepf: -1, sizestep: -25,
+    startroll: random(-180,180) );
+	}
+	FEFE I 5 PM_LeapTo(target,565,"See2");
+  MeleeGo:
+    FEFE IIII 1
+	{
+	if(random(1,15) == 1)
+	   ThrustThing(random(0,360)*256/360,2,0,0);
+	A_SpawnParticleEx
+	( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	lifetime: random(50,80), size: frandom(1,200), xoff: random(-50,50), yoff: random(-50,50),
+	zoff: random(-10,70), startalphaf: frandom(0.3,0.7), startroll: random(-180,180) );
+	Radius_Quake (1, 2, 0, 7, 0);
+	}
+	FEFE I 0 A_CheckFloor("MeleeEnd");
+	Loop;
+   MeleeEnd:
+    TNT1 A 0 {bNOPAIN = false;}
+	TNT1 A 0 A_RadiusThrust(4000,300);
+	TNT1 A 0 A_Explode(50,200,XF_NOTMISSILE,0,50,0,0,"BulletPuff","PM_BulltubusMelee");
+    TNT1 A 0 {
+    	A_StartSound("Doom4/Monsters/BaronFloorPound",12,CHANF_OVERLAP);
+    	A_StartSound("PMInfernal/MeleeBlast",13,CHANF_OVERLAP); }
+    FEFE G 40 
+	{
+	A_Stop();
+	A_SpawnParticleEx
+	    ( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	    lifetime: 8, size: 250, zoff: 40, startalphaf: 1, startroll: random(-180,180) );
+	A_SpawnParticleEx
+	    ( "", tex[3], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: 20, size: 600, zoff: 50, startalphaf: 1, fadestepf: -1, sizestep: -25,
+        startroll: random(-180,180) );
+	for(int i=8;i>0;i--) A_SpawnParticleEx
+	    ( "727272", tex[4], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,35), zoff: random(10,60),
+	    velx: frandom(-8,8), vely: frandom(-8,8), velz: frandom(-8,12),
+	    accelz: frandom(-0.1,-0.5), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4) );
+		for(int i=8;i>0;i--) A_SpawnParticleEx
+	     ( "6C6C6C", tex[5], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(30,60),
+	     size: frandom(80,220), zoff: random(10,60), velx: random(-9,9), vely: random(-9,9),
+		 velz: random(-9,9), startalphaf: frandom(0.4,0.75), fadestepf: -1, sizestep: 12, startroll: random(-180,180),
+		 rollvel: random(-2,2) );
+	for(int i=8;i>0;i--) A_SpawnParticleEx
+		 ( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 lifetime: random(80,120), size: frandom(1,35), zoff: random(10,60), velx: random(-8,8),
+		 vely: random(-8,8), velz: random(-8,8), accelz: frandom(-0.1,-0.3),
+		 startalphaf: 1, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-2,2) );
+	}
+	Goto See2;
    SpotMissile:
     FEFE G 5 A_FaceTarget();
    Goto Missile;
