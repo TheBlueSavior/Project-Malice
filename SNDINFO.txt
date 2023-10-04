@@ -32,8 +32,8 @@ Aff/RStep3 "Sounds/Monsters/SFX/AffRunStep3.ogg"
 
 $random Afflicted/WalkStep { Aff/WStep1 Aff/WStep2 Aff/WStep3 }
 Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep1.ogg"
-Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep2.ogg"
-Aff/WStep1 "Sounds/Monsters/SFX/AffWalkStep3.ogg"
+Aff/WStep2 "Sounds/Monsters/SFX/AffWalkStep2.ogg"
+Aff/WStep3 "Sounds/Monsters/SFX/AffWalkStep3.ogg"
 
 $rolloff Afflicted/RunStep 100 450
 $rolloff Afflicted/WalkStep 100 370
@@ -4224,6 +4224,11 @@ PM/GunClick        "Sounds/Other/PMGunClick.ogg" //oh shit
 
 PM/PistolMagOut    "Sounds/Other/PMPistolMagOut.ogg"
 PM/PistolMagIn     "Sounds/Other/PMPistolMagIn.ogg"
+PM/RevolverHammer  "Sounds/Other/PMRevolverHammer.ogg"
+PM/RevolverOpen    "Sounds/Other/PMRevolverOpen.ogg"
+PM/RevolverBulletIn  "Sounds/Other/PMRevolverBulletIn.ogg"
+PM/RevolverBulletOut  "Sounds/Other/PMRevolverBulletOut.ogg"
+PM/RevolverClose   "Sounds/Other/PMRevolverClose.ogg"
 PM/RifleMagOut     "Sounds/Other/PMRifleMagOut.ogg"
 PM/RifleMagIn      "Sounds/Other/PMRifleMagIn.ogg"
 PM/RifleBoltSlide  "Sounds/Other/PMRifleBoltSlide.ogg"
@@ -4474,3 +4479,66 @@ $volume Bulltubus/IreGun 0.65
 $volume Bulltubus/IreGunDown 0.65
 $volume Bulltubus/IreWindLoop1 0.75
 $volume Bulltubus/IreWindLoop2 0.85
+
+//Civilian Zombie
+
+$random CivZombie/Sight { CivZombie/Sight1 CivZombie/Sight2 CivZombie/Sight3 }
+CivZombie/Sight1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight1.ogg"
+CivZombie/Sight2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight2.ogg"
+CivZombie/Sight3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight3.ogg"
+
+$random CivZombie/Active { CivZombie/Active1 CivZombie/Active2 CivZombie/Active3 CivZombie/Active4 }
+CivZombie/Active1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive1.ogg"
+CivZombie/Active2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive2.ogg"
+CivZombie/Active3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive3.ogg"
+CivZombie/Active4 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive4.ogg"
+
+$random CivZombie/Attack { CivZombie/Attack1 CivZombie/Attack2 CivZombie/Attack3 CivZombie/Attack4 }
+CivZombie/Attack1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack1.ogg"
+CivZombie/Attack2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack2.ogg"
+CivZombie/Attack3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack3.ogg"
+CivZombie/Attack4 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack4.ogg"
+
+$random CivZombie/Pain { CivZombie/Pain1 CivZombie/Pain2 CivZombie/Pain3 }
+CivZombie/Pain1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain1.ogg"
+CivZombie/Pain2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain2.ogg"
+CivZombie/Pain3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain3.ogg"
+
+$random CivZombie/Death { CivZombie/Death1 CivZombie/Death2 }
+CivZombie/Death1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath1.ogg"
+CivZombie/Death2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath2.ogg"
+
+$random CivZombie/Shot { CivZombie/Shot1 CivZombie/Shot2 CivZombie/Shot3 }
+CivZombie/Shot1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZShot1.ogg"
+CivZombie/Shot2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZShot2.ogg"
+CivZombie/Shot3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZShot3.ogg"
+
+$random CivZombie/IEDTakeOut { CivZombie/IEDTakeOut1 CivZombie/IEDTakeOut2 CivZombie/IEDTakeOut3  }
+CivZombie/IEDTakeOut "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDTakeOut1.ogg"
+CivZombie/IEDTakeOut "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDTakeOut2.ogg"
+CivZombie/IEDTakeOut "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDTakeOut3.ogg"
+
+CivZombie/IEDBounce "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDBounce.ogg"
+CivZombie/IEDBeep   "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDBeep.ogg"
+CivZombie/IEDBeepConfirm "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDConfirm.ogg"
+CivZombie/MolotovFuse   "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovFuse.ogg"
+
+$random CivZombie/IEDDetonate { CivZombie/IEDDetonate1 CivZombie/IEDDetonate2 CivZombie/IEDDetonate3  }
+CivZombie/IEDDetonate1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDDetonate1.ogg"
+CivZombie/IEDDetonate2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDDetonate2.ogg"
+CivZombie/IEDDetonate3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDDetonate3.ogg"
+
+$random CivZombie/MolotovDetonate { CivZombie/MolotovDetonate1 CivZombie/MolotovDetonate2 CivZombie/MolotovDetonate3  }
+CivZombie/MolotovDetonate1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovDetonate1.ogg"
+CivZombie/MolotovDetonate2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovDetonate2.ogg"
+CivZombie/MolotovDetonate3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovDetonate3.ogg"
+
+$rolloff CivZombie/Shot 400 2200
+$rolloff CivZombie/IEDDetonate 400 2500
+$rolloff CivZombie/MolotovDetonate 400 2500
+$rolloff CivZombie/IEDBounce 0 1000
+$rolloff CivZombie/IEDBeep 0 800
+$rolloff CivZombie/MolotovFuse 0 1500
+$rolloff CivZombie/IEDBeepConfirm 500 2000
+
+$volume CivZombie/MolotovFuse 0.65

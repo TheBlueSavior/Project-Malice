@@ -109,6 +109,15 @@ States
 	}
 }
 
+Class PM_RevolverTracer : PM_BulletTracer
+{
+Default
+ {
+  DamageFunction 10;
+  Scale 0.75;
+ }
+}
+
 Class PM_PelletTracer : Actor
 {
 Default

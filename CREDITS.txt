@@ -56,7 +56,7 @@ Zarezynski - Vore sprite
 E.V.P. - Cyberdemon Heavy Rocket sprites
 phoenix/phoenixfire - Devil roar sprites, Umbral Crawler sounds
 Project Brutality 3.0 - Minigun Sounds
-Craneo - Gross Elemental, Whiplash, Rotfly sprites
+Craneo - Gross Elemental, Whiplash, Rotfly sprites, Pipebomb sprite
 Yurithra - MAJOR Code help
 Phobos867 - Doom 4 revenant/Fiend sprites
 Dithered Output - Awesome outmoded zombie sprites from Siren, edited into Voidspawn
@@ -127,6 +127,10 @@ Deep Rock Galactic
 Search and Rescue (S.A.R)
 Freesounds.org
 Alchemilla
+Counter Strike 1.6
+Counter Strike: Global Offensive
+Unreal
+Unreal Tournament 1999
 
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY
