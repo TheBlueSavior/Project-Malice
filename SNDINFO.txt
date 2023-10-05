@@ -4487,11 +4487,15 @@ CivZombie/Sight1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight1.ogg"
 CivZombie/Sight2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight2.ogg"
 CivZombie/Sight3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight3.ogg"
 
+$volume CivZombie/Sight 0.4
+
 $random CivZombie/Active { CivZombie/Active1 CivZombie/Active2 CivZombie/Active3 CivZombie/Active4 }
 CivZombie/Active1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive1.ogg"
 CivZombie/Active2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive2.ogg"
 CivZombie/Active3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive3.ogg"
 CivZombie/Active4 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive4.ogg"
+
+$volume CivZombie/Active 0.3
 
 $random CivZombie/Attack { CivZombie/Attack1 CivZombie/Attack2 CivZombie/Attack3 CivZombie/Attack4 }
 CivZombie/Attack1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack1.ogg"
@@ -4499,14 +4503,21 @@ CivZombie/Attack2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack2.ogg"
 CivZombie/Attack3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack3.ogg"
 CivZombie/Attack4 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack4.ogg"
 
+
+$volume CivZombie/Attack 0.4
+
 $random CivZombie/Pain { CivZombie/Pain1 CivZombie/Pain2 CivZombie/Pain3 }
 CivZombie/Pain1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain1.ogg"
 CivZombie/Pain2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain2.ogg"
 CivZombie/Pain3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain3.ogg"
 
+$volume CivZombie/Pain 0.3
+
 $random CivZombie/Death { CivZombie/Death1 CivZombie/Death2 }
 CivZombie/Death1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath1.ogg"
 CivZombie/Death2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath2.ogg"
+
+$volume CivZombie/Death 0.3
 
 $random CivZombie/Shot { CivZombie/Shot1 CivZombie/Shot2 CivZombie/Shot3 }
 CivZombie/Shot1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZShot1.ogg"
