@@ -4550,15 +4550,15 @@ $rolloff Director/Charge 1000 3000
 Director/Death "Sounds/Monsters/Bosses/Director/DirectorDeath.ogg"
 Director/DeathServo "Sounds/Monsters/Bosses/Director/DirectorDeathServo.ogg"
 Director/Fall "Sounds/Monsters/Bosses/Director/DirectorFall.ogg"
-$rolloff Director/DeathServo 1000 3000
-$rolloff Director/Fall 1000 4000
+$rolloff Director/DeathServo 400 3000
+$rolloff Director/Fall 600 4000
 
 Director/GunLoop "Sounds/Monsters/Bosses/Director/DirectorGunLoop.ogg"
 Director/GunStart "Sounds/Monsters/Bosses/Director/DirectorGunStart.ogg"
 Director/GunStop "Sounds/Monsters/Bosses/Director/DirectorGunStop.ogg"
-$rolloff Director/GunStart 1000 3000
-$rolloff Director/GunLoop 1000 3000
-$rolloff Director/GunStop 1000 3000
+$rolloff Director/GunStart 800 3000
+$rolloff Director/GunLoop 800 3000
+$rolloff Director/GunStop 800 3000
 $volume Director/GunStart 0.3
 $volume Director/GunLoop 0.3
 $volume Director/GunStop 0.3
@@ -4579,7 +4579,8 @@ Director/Pain12 "Sounds/Monsters/Bosses/Director/DirectorPain12.ogg"
 Director/Pain13 "Sounds/Monsters/Bosses/Director/DirectorPain13.ogg"
 Director/Pain14 "Sounds/Monsters/Bosses/Director/DirectorPain14.ogg"
 Director/Pain15 "Sounds/Monsters/Bosses/Director/DirectorPain15.ogg"
-$rolloff Director/Pain 1000 3000
+$rolloff Director/Pain 200 3000
+$volume Director/Pain 0.4
 
 $random Director/Plasma { Director/Plasma1 Director/Plasma2 Director/Plasma3 Director/Plasma4 }
 Director/Plasma1 "Sounds/Monsters/Bosses/Director/DirectorPlasma1.ogg"
@@ -4597,26 +4598,38 @@ Director/PlasmaImpact4 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact4.og
 $random Director/Screech { Director/Screech1 Director/Screech2 }
 Director/Screech1 "Sounds/Monsters/Bosses/Director/DirectorScreech1.ogg"
 Director/Screech2 "Sounds/Monsters/Bosses/Director/DirectorScreech2.ogg"
-$rolloff Director/Screech 1000 3000
+$rolloff Director/Screech 500 3000
+$volume Director/Screech 0.8
 
 $random Director/Servo { Director/Servo1 Director/Servo2 Director/Servo3 }
 Director/Servo1 "Sounds/Monsters/Bosses/Director/DirectorServo1.ogg"
 Director/Servo2 "Sounds/Monsters/Bosses/Director/DirectorServo2.ogg"
 Director/Servo3 "Sounds/Monsters/Bosses/Director/DirectorServo3.ogg"
-$rolloff Director/Servo 1000 3000
+$rolloff Director/Servo 200 2500
+$volume Director/Servo 0.6
 
 Director/Sight "Sounds/Monsters/Bosses/Director/DirectorSight.ogg"
+$volume Director/Sight 0.4
 
 $random Director/Step { Director/Step1 Director/Step2 Director/Step3 }
 Director/Step1 "Sounds/Monsters/Bosses/Director/DirectorStep1.ogg"
 Director/Step2 "Sounds/Monsters/Bosses/Director/DirectorStep2.ogg"
 Director/Step3 "Sounds/Monsters/Bosses/Director/DirectorStep3.ogg"
-$rolloff Director/Step 1000 3000
+$rolloff Director/Step 200 2500
+$volume Director/Step 0.5
+
+$random Director/Stomp { Director/Stomp1 Director/Stomp2 Director/Stomp3 }
+Director/Stomp1 "Sounds/Monsters/Bosses/Director/DirectorStomp1.ogg"
+Director/Stomp2 "Sounds/Monsters/Bosses/Director/DirectorStomp2.ogg"
+Director/Stomp3 "Sounds/Monsters/Bosses/Director/DirectorStomp3.ogg"
+$rolloff Director/Stomp 200 3000
+$volume Director/Stomp 0.9
 
 Director/WindLoop "Sounds/Monsters/Bosses/Director/DirectorWindLoop.ogg"
 Director/WindUp "Sounds/Monsters/Bosses/Director/DirectorWindUp.ogg"
-$rolloff Director/WindUp 2000 3000
-$rolloff Director/WindLoop 2000 3000
+$rolloff Director/WindUp 800 3000
+$volume Director/WindUp 0.9
+$rolloff Director/WindLoop 800 3000
 
 $random Director/ASPodExtend { Director/AStrikePodExtend1 Director/AStrikePodExtend2 }
 Director/AStrikePodExtend1 "Sounds/Monsters/Bosses/Director/DirectorASPodExtend1.ogg"
