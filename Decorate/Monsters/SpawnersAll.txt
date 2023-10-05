@@ -150,7 +150,7 @@ Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 
 Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 {
-	DropItem "PM_AracnorbQueen", 255, 25
+	DropItem "PM_Director", 255, 25
 	DropItem "PM_EntropicAvatar", 255, 1
 }
 

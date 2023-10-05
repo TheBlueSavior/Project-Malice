@@ -1,5 +1,7 @@
 Class PM_Director : PMUnaffMonsterBase
 {
+    int misangle2;
+    int misangle;
     int attackmode; 
 	//0 = Bullet
 	//1 = Plasma
@@ -13,7 +15,7 @@ Class PM_Director : PMUnaffMonsterBase
 		Height 100;
 		Mass 2000;
 		Speed 12;
-		PainChance 40;
+		PainChance 3;
 		Monster;
 		+DONTHARMSPECIES
 		+DONTHARMCLASS
@@ -49,6 +51,15 @@ Class PM_Director : PMUnaffMonsterBase
 	
 	TextureID tex[2];
 	
+	void PM_DirectorGAUSound()
+	{
+		A_StartSound("Director/GunStart",130);
+		A_StartSound("Director/WindLoop",134,CHANF_LOOPING,pitch:0.85);
+		A_StartSound("Bulltubus/IreWindLoop1",131,CHANF_LOOPING,0.75,attenuation:.7,pitch:1.85);
+		A_StartSound("Bulltubus/IreWindLoop2",132,CHANF_LOOPING,0.75,attenuation:.7,pitch:1.25);
+		A_StartSound("Bulltubus/IreGun",133,CHANF_LOOPING,1,.5,pitch:1.25);
+	}
+	
 	States
 	{
 	Spawn:
@@ -81,44 +92,68 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Goto See;
 	BulletMissile:
+	    TNT1 A 0 A_Jump(56,"ARM"); //All-Radial Missile
 	    TNT1 A 0 A_Jump(95,"AirStrike");
 		Goto GAU8;
-	AirStrike:
-	    TNT1 A 0 { pm_attackloop = random(5,10); }
-		DIRE G 0 A_StartSound("Director/ASPodExtend",24);
-		DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_FaceTarget();
-	ASLoop:
-	    DIRE G random(1,15)
+	ARM:
+	    TNT1 A 0 { misangle2 = 80; misangle = 15; pm_attackloop = 50; }
+		DIRE G 0 
+		{
+		A_StartSound("Tyrant/ShellLoad",23);
+		A_StartSound("Director/ASPodExtend",24);
+		}
+	    DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("TyrantFire") A_FaceTarget();
+	ArmLoop:
+	    DIRE G 3 Light("TyrantFire")
 		{
 		 if(pm_attackloop <= 0)
-		 SetStateLabel("ASEnd");
+		 SetStateLabel("AttackEnd");
+		 A_StartSound("Fiend/HomingFire",28);
+		 A_SpawnProjectile("PM_DirectorMissile",95,0,-misangle,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch-misangle2);
+		 misangle += 20;
+		 misangle2 -= 5;
+		 pm_attackloop--;
+		}
+		Loop;
+	AirStrike:
+	    TNT1 A 0 { pm_attackloop = random(5,18); }
+		DIRE G 0 A_StartSound("Director/ASPodExtend",24);
+		DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("TyrantFire") A_FaceTarget();
+	ASLoop:
+	    DIRE G random(1,15) Light("TyrantFire")
+		{
+		 if(pm_attackloop <= 0)
+		 SetStateLabel("AttackEnd");
 		 A_FaceTarget(2,2);
 		 A_StartSound("Director/AStrikeShot",20,CHANF_OVERLAP);
 		 A_SpawnProjectile("PM_DirectorAStrikeShotTell",45,-25,frandom(40,60),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-30,-55));
 		}
-		DIRE G random(1,15)
+		DIRE G random(1,15) Light("TyrantFire")
 		{
 		A_StartSound("Director/AStrikeShot",20,CHANF_OVERLAP);
 		A_SpawnProjectile("PM_DirectorAStrikeShotTell",45,25,frandom(-40,-60),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-30,-55));
 		pm_attackloop--;
 		}
 		Loop;
-	ASEnd:
+	AttackEnd:
 	    DIRE G random(45,65) A_FaceTarget(2,2);
 		Goto See;
 	GAU8:
+	    TNT1 A 0;
+	    TNT1 A 0 A_Jump(85,"GAUBurst");
 		DIRE G 0 A_StartSound("Director/Screech",CHAN_VOICE);
-		DIRE GGGGGGGGGGGGGGGGGGGGGG 1 A_FaceTarget();
+		DIRE G 1 
+		{
+		A_SetAngle(angle+random(-30,30));
+	    A_SetPitch(pitch+random(-15,30));
+		}
+		DIRE GGGGGGGGGGGGGGGGGGGGG 1 A_FaceTarget();
 		DIRE G 0 A_StartSound("Director/WindUp",50,CHAN_OVERLAP,1);
 		DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("TyrantFire") A_FaceTarget();
 		DIRE G 0 Light("TyrantFire")
 		{
 			pm_attackloop = random(200, 400);
-			A_StartSound("Director/GunStart",130);
-			A_StartSound("Director/WindLoop",134,CHANF_LOOPING,pitch:0.85);
-			A_StartSound("Bulltubus/IreWindLoop1",131,CHANF_LOOPING,0.75,attenuation:.7,pitch:1.85);
-			A_StartSound("Bulltubus/IreWindLoop2",132,CHANF_LOOPING,0.75,attenuation:.7,pitch:1.25);
-			A_StartSound("Bulltubus/IreGun",133,CHANF_LOOPING,1,.5,pitch:1.25);
+			PM_DirectorGAUSound();
 		}
 		DIRE HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Light("TyrantFire")
 		{
@@ -132,14 +167,31 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE H 2 Light("TyrantFire")
 		{
 			pm_attackloop--;
-			A_FaceTarget(1.7, 1.7);
+			A_FaceTarget(2, 2);
 			A_Quake(random(1, 3), 10, 0, 1000);
 			A_SpawnProjectile("PM_RevolverTracer",48,0,frandom(-2,2),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
-			
 			if (pm_attackloop <= 0) SetStateLabel("Cooldown");
 			if (target && (!CheckSight(target) || target.Health <= 0)) SetStateLabel("Cooldown");
 		}
 		Loop;
+	GAUBurst:
+		DIRE G 0 A_StartSound("Director/Screech",CHAN_VOICE);
+		DIRE G 1 
+		{
+		A_SetAngle(angle+random(-30,30));
+	    A_SetPitch(pitch+random(-15,30));
+		}
+		DIRE GGGGGGGGGGGG 1 A_FaceTarget();
+		DIRE G 0 A_StartSound("Director/WindUp",50,CHAN_OVERLAP,1);
+		DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("TyrantFire") A_FaceTarget();
+		DIRE G 0 Light("TyrantFire") PM_DirectorGAUSound();
+		DIRE HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 2 Light("TyrantFire")
+		{
+			A_FaceTarget(2,2);
+			A_Quake(random(1, 3), 10, 0, 1000);
+			A_SpawnProjectile("PM_RevolverTracer",48,0,frandom(-2,2),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
+		}
+		Goto Cooldown;
 	Cooldown:
 		TNT1 A 0 A_StartSound("Director/GunStop",20);
 		DIRE A 1 A_StopSounds(129, 135);
@@ -405,7 +457,58 @@ Class PM_DirectorAStrikeShotTell : Actor
    }
 }
 
-
+Class PM_DirectorMissile : TyrantStreamRocket
+{
+ int timer;
+ Default
+ {
+  Speed 12;
+  Scale 0.45;
+  DamageFunction 20;
+  SeeSound "";
+  DeathSound "SmallMissileExplosion";
+  +SEEKERMISSILE
+ }
+ States
+ {
+  Spawn:
+   TYM3 A 1 Bright
+   {
+     if(timer > 30)
+	 SetStateLabel("Go");
+     A_SeekerMissile(1,3,SMF_PRECISE);
+	 A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+	 A_SpawnParticleEx
+	 ( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,
+	 fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
+	 A_SpawnParticleEx
+	 ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+     lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
+	 timer++;
+   }
+   Loop;
+  Go:
+   TYM3 A 1 Bright
+   {
+	 A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+	 A_SpawnParticleEx
+	 ( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,
+	 fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
+	 A_SpawnParticleEx
+	 ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+     lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
+   }
+   Wait;
+  Death:
+    TNT1 A 0 Radius_Quake (2, 54, 0, 10, 0);
+	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+	TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+	TNT1 A 15 BRIGHT Light("AvatarFireball5");
+	Stop;
+  }
+}
 
 
 
