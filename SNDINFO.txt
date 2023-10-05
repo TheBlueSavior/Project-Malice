@@ -4542,3 +4542,78 @@ $rolloff CivZombie/MolotovFuse 0 1500
 $rolloff CivZombie/IEDBeepConfirm 500 2000
 
 $volume CivZombie/MolotovFuse 0.65
+
+//Director
+Director/Charge "Sounds/Monsters/Bosses/Director/DirectorCharge.ogg"
+$rolloff Director/Charge 1000 3000
+
+Director/Death "Sounds/Monsters/Bosses/Director/DirectorDeath.ogg"
+Director/DeathServo "Sounds/Monsters/Bosses/Director/DirectorDeathServo.ogg"
+Director/Fall "Sounds/Monsters/Bosses/Director/DirectorFall.ogg"
+$rolloff Director/DeathServo 1000 3000
+$rolloff Director/Fall 1000 4000
+
+Director/GunLoop "Sounds/Monsters/Bosses/Director/DirectorGunLoop.ogg"
+Director/GunStart "Sounds/Monsters/Bosses/Director/DirectorGunStart.ogg"
+Director/GunStop "Sounds/Monsters/Bosses/Director/DirectorGunStop.ogg"
+$rolloff Director/GunStart 1000 3000
+$rolloff Director/GunLoop 1000 3000
+$rolloff Director/GunStop 1000 3000
+$volume Director/GunStart 0.3
+$volume Director/GunLoop 0.3
+$volume Director/GunStop 0.3
+
+$random Director/Pain { Director/Pain1 Director/Pain2 Director/Pain3 Director/Pain4 Director/Pain5 Director/Pain6 Director/Pain7 Director/Pain8 Director/Pain9 Director/Pain10 Director/Pain11 Director/Pain12 Director/Pain13 Director/Pain14 Director/Pain15 }
+Director/Pain1 "Sounds/Monsters/Bosses/Director/DirectorPain1.ogg"
+Director/Pain2 "Sounds/Monsters/Bosses/Director/DirectorPain2.ogg"
+Director/Pain3 "Sounds/Monsters/Bosses/Director/DirectorPain3.ogg"
+Director/Pain4 "Sounds/Monsters/Bosses/Director/DirectorPain4.ogg"
+Director/Pain5 "Sounds/Monsters/Bosses/Director/DirectorPain5.ogg"
+Director/Pain6 "Sounds/Monsters/Bosses/Director/DirectorPain6.ogg"
+Director/Pain7 "Sounds/Monsters/Bosses/Director/DirectorPain7.ogg"
+Director/Pain8 "Sounds/Monsters/Bosses/Director/DirectorPain8.ogg"
+Director/Pain9 "Sounds/Monsters/Bosses/Director/DirectorPain9.ogg"
+Director/Pain10 "Sounds/Monsters/Bosses/Director/DirectorPain10.ogg"
+Director/Pain11 "Sounds/Monsters/Bosses/Director/DirectorPain11.ogg"
+Director/Pain12 "Sounds/Monsters/Bosses/Director/DirectorPain12.ogg"
+Director/Pain13 "Sounds/Monsters/Bosses/Director/DirectorPain13.ogg"
+Director/Pain14 "Sounds/Monsters/Bosses/Director/DirectorPain14.ogg"
+Director/Pain15 "Sounds/Monsters/Bosses/Director/DirectorPain15.ogg"
+$rolloff Director/Pain 1000 3000
+
+$random Director/Plasma { Director/Plasma1 Director/Plasma2 Director/Plasma3 Director/Plasma4 }
+Director/Plasma1 "Sounds/Monsters/Bosses/Director/DirectorPlasma1.ogg"
+Director/Plasma2 "Sounds/Monsters/Bosses/Director/DirectorPlasma2.ogg"
+Director/Plasma3 "Sounds/Monsters/Bosses/Director/DirectorPlasma3.ogg"
+Director/Plasma4 "Sounds/Monsters/Bosses/Director/DirectorPlasma4.ogg"
+$rolloff Director/Plasma 500 1500
+
+$random Director/PlasmaImpact { Director/PlasmaImpact1 Director/PlasmaImpact2 Director/PlasmaImpact3 Director/PlasmaImpact4 }
+Director/PlasmaImpact1 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact1.ogg"
+Director/PlasmaImpact2 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact2.ogg"
+Director/PlasmaImpact3 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact3.ogg"
+Director/PlasmaImpact4 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact4.ogg"
+
+$random Director/Screech { Director/Screech1 Director/Screech2 }
+Director/Screech1 "Sounds/Monsters/Bosses/Director/DirectorScreech1.ogg"
+Director/Screech2 "Sounds/Monsters/Bosses/Director/DirectorScreech2.ogg"
+$rolloff Director/Screech 1000 3000
+
+$random Director/Servo { Director/Servo1 Director/Servo2 Director/Servo3 }
+Director/Servo1 "Sounds/Monsters/Bosses/Director/DirectorServo1.ogg"
+Director/Servo2 "Sounds/Monsters/Bosses/Director/DirectorServo2.ogg"
+Director/Servo3 "Sounds/Monsters/Bosses/Director/DirectorServo3.ogg"
+$rolloff Director/Servo 1000 3000
+
+Director/Sight "Sounds/Monsters/Bosses/Director/DirectorSight.ogg"
+
+$random Director/Step { Director/Step1 Director/Step2 Director/Step3 }
+Director/Step1 "Sounds/Monsters/Bosses/Director/DirectorStep1.ogg"
+Director/Step2 "Sounds/Monsters/Bosses/Director/DirectorStep2.ogg"
+Director/Step3 "Sounds/Monsters/Bosses/Director/DirectorStep3.ogg"
+$rolloff Director/Step 1000 3000
+
+Director/WindLoop "Sounds/Monsters/Bosses/Director/DirectorWindLoop.ogg"
+Director/WindUp "Sounds/Monsters/Bosses/Director/DirectorWindUp.ogg"
+$rolloff Director/WindUp 2000 3000
+$rolloff Director/WindLoop 2000 3000
