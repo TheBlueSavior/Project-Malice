@@ -4617,3 +4617,26 @@ Director/WindLoop "Sounds/Monsters/Bosses/Director/DirectorWindLoop.ogg"
 Director/WindUp "Sounds/Monsters/Bosses/Director/DirectorWindUp.ogg"
 $rolloff Director/WindUp 2000 3000
 $rolloff Director/WindLoop 2000 3000
+
+$random Director/ASPodExtend { Director/AStrikePodExtend1 Director/AStrikePodExtend2 }
+Director/AStrikePodExtend1 "Sounds/Monsters/Bosses/Director/DirectorASPodExtend1.ogg"
+Director/AStrikePodExtend2 "Sounds/Monsters/Bosses/Director/DirectorASPodExtend2.ogg"
+
+$random Director/AStrikeShot { Director/AStrikeShot1 Director/AStrikeShot2 Director/AStrikeShot3 Director/AStrikeShot4 }
+Director/AStrikeShot1 "Sounds/Monsters/Bosses/Director/DirectorAStrikeShot1.ogg"
+Director/AStrikeShot2 "Sounds/Monsters/Bosses/Director/DirectorAStrikeShot2.ogg" 
+Director/AStrikeShot3 "Sounds/Monsters/Bosses/Director/DirectorAStrikeShot3.ogg"
+Director/AStrikeShot4 "Sounds/Monsters/Bosses/Director/DirectorAStrikeShot4.ogg"
+
+$random Director/ASPreImpact { Director/AStrikePreImpact1 Director/AStrikePreImpact2 Director/AStrikePreImpact3 Director/AStrikePreImpact4 Director/AStrikePreImpact5  }
+Director/AStrikePreImpact1 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact1.ogg"
+Director/AStrikePreImpact2 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact2.ogg"
+Director/AStrikePreImpact3 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact3.ogg"
+Director/AStrikePreImpact4 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact4.ogg"
+Director/AStrikePreImpact5 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact5.ogg"
+
+$rolloff Director/ASPodExtend 2000 3000
+$rolloff Director/AStrikeShot 1000 3000
+$rolloff Director/ASPreImpact 2000 3000
+$limit Director/ASPreImpact 5
+$limit Director/AStrikeShot 20
