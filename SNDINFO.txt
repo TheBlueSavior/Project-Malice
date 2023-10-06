@@ -4593,18 +4593,33 @@ Director/Pain15 "Sounds/Monsters/Bosses/Director/DirectorPain15.ogg"
 $rolloff Director/Pain 200 3000
 $volume Director/Pain 0.4
 
-$random Director/Plasma { Director/Plasma1 Director/Plasma2 Director/Plasma3 Director/Plasma4 }
+$random Director/PlasmaAdd { Director/PlasmaAdd1 Director/PlasmaAdd2 Director/PlasmaAdd3 Director/PlasmaAdd4 }
+Director/PlasmaAdd1 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd1.ogg"
+Director/PlasmaAdd2 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd2.ogg"
+Director/PlasmaAdd3 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd3.ogg"
+Director/PlasmaAdd4 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd4.ogg"
+$rolloff Director/PlasmaAdd 300 3500
+$limit Director/PlasmaAdd 10
+$volume Director/Plasma 0.50
+
+$random Director/Plasma { Director/Plasma1 Director/Plasma2 Director/Plasma3 }
 Director/Plasma1 "Sounds/Monsters/Bosses/Director/DirectorPlasma1.ogg"
 Director/Plasma2 "Sounds/Monsters/Bosses/Director/DirectorPlasma2.ogg"
 Director/Plasma3 "Sounds/Monsters/Bosses/Director/DirectorPlasma3.ogg"
-Director/Plasma4 "Sounds/Monsters/Bosses/Director/DirectorPlasma4.ogg"
-$rolloff Director/Plasma 500 1500
+$rolloff Director/Plasma 500 3000
+$limit Director/Plasma 15
+$volume Director/Plasma 0.55
 
 $random Director/PlasmaImpact { Director/PlasmaImpact1 Director/PlasmaImpact2 Director/PlasmaImpact3 Director/PlasmaImpact4 }
 Director/PlasmaImpact1 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact1.ogg"
 Director/PlasmaImpact2 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact2.ogg"
 Director/PlasmaImpact3 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact3.ogg"
 Director/PlasmaImpact4 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact4.ogg"
+$volume Director/PlasmaImpact 0.50
+
+Director/BigPlasma "Sounds/Monsters/Bosses/Director/DirectorBigPlasma.ogg"
+$rolloff Director/BigPlasma 500 3000
+$volume Director/BigPlasma 0.75
 
 $random Director/Screech { Director/Screech1 Director/Screech2 }
 Director/Screech1 "Sounds/Monsters/Bosses/Director/DirectorScreech1.ogg"
@@ -4658,6 +4673,14 @@ Director/AStrikePreImpact2 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact2
 Director/AStrikePreImpact3 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact3.ogg"
 Director/AStrikePreImpact4 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact4.ogg"
 Director/AStrikePreImpact5 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact5.ogg"
+
+Director/ModeChange "Sounds/Monsters/Bosses/Director/DirectorModeChange.ogg"
+Director/ModeBullet "Sounds/Monsters/Bosses/Director/DirectorModeBullet.ogg"
+Director/ModePlasma "Sounds/Monsters/Bosses/Director/DirectorModePlasma.ogg"
+
+$rolloff Director/ModeChange 500 3000
+$rolloff Director/ModeBullet 500 3000
+$rolloff Director/ModePlasma 500 3000
 
 $rolloff Director/ASPodExtend 2000 3000
 $rolloff Director/AStrikeShot 1000 3000
