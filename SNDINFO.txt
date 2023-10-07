@@ -3589,6 +3589,13 @@ Fiend/Charge "Sounds/Monsters/Revenants/Fiend/FiendCharge.ogg"
 Fiend/Lockon "Sounds/Monsters/Revenants/Fiend/FiendLockon.ogg"
 $rolloff Fiend/Lockon 300 1800
 
+$random Fiend/MissileLaunch { Fiend/MissileLaunch1 Fiend/MissileLaunch2 Fiend/MissileLaunch3  }
+Fiend/MissileLaunch1 "Sounds/Monsters/Revenants/Fiend/FiendMissileLaunch1.ogg"
+Fiend/MissileLaunch2 "Sounds/Monsters/Revenants/Fiend/FiendMissileLaunch2.ogg"
+Fiend/MissileLaunch3 "Sounds/Monsters/Revenants/Fiend/FiendMissileLaunch3.ogg"
+$rolloff Fiend/MissileLaunch 400 2200
+
+
 $random Fiend/Jump { FiendJump1 FiendJump2 }
 FiendJump1 "Sounds/Monsters/Revenants/Fiend/FiendJump1.ogg"
 FiendJump2 "Sounds/Monsters/Revenants/Fiend/FiendJump2.ogg"
@@ -4673,6 +4680,21 @@ Director/AStrikePreImpact2 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact2
 Director/AStrikePreImpact3 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact3.ogg"
 Director/AStrikePreImpact4 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact4.ogg"
 Director/AStrikePreImpact5 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact5.ogg"
+
+Director/GLaserCharge "Sounds/Monsters/Bosses/Director/DirectorGLaserCharge.ogg"
+Director/GLaserLoopStart "Sounds/Monsters/Bosses/Director/DirectorGLaserLoopStart.ogg"
+Director/GLaserLoop "Sounds/Monsters/Bosses/Director/DirectorGLaserLoop.ogg"
+Director/GLaserBeep "Sounds/Monsters/Bosses/Director/DirectorGLaserBeep.ogg"
+Director/GLaserRestart "Sounds/Monsters/Bosses/Director/DirectorGLaserLoopRestart.ogg"
+Director/GLaserEnd "Sounds/Monsters/Bosses/Director/DirectorGLaserEnd.ogg"
+$rolloff Director/GLaserCharge 500 3000
+$rolloff Director/GLaserLoopStart 500 3000
+$rolloff Director/GLaserLoop 500 3000
+$rolloff Director/GLaserBeep 500 3000
+$rolloff Director/GLaserRestart 500 3000
+$rolloff Director/GLaserEnd 500 3000
+$volume Director/GLaserStart 0.95
+$volume Director/GLaserRestart 0.95
 
 Director/ModeChange "Sounds/Monsters/Bosses/Director/DirectorModeChange.ogg"
 Director/ModeBullet "Sounds/Monsters/Bosses/Director/DirectorModeBullet.ogg"
