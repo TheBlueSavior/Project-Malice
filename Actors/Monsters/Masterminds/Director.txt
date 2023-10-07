@@ -105,12 +105,20 @@ Class PM_Director : PMUnaffMonsterBase
 	  lifetime: 250, size: 800, xoff: random(16,20),
 	  yoff: random(-5,5), zoff: 50, velx: frandom(-0.10,0.10), vely: frandom(-0.10,0.10), velz: frandom(-0.10,0.10),
 	  startalphaf: 0.95, fadestepf: -1.85, sizestep: -9.95, startroll: random(-180,180), rollvel: -5, rollacc: -0.65 );
+	  A_SpawnParticleEx
+	  ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+	  lifetime: 100, size: 150, xoff: random(16,20),
+	  yoff: random(-5,5), zoff: 50, velx: frandom(-0.10,0.10), vely: frandom(-0.10,0.10), velz: frandom(-0.10,0.10),
+	  startalphaf: 0.95, fadestepf: -1.85, sizestep: 12.95, startroll: random(-180,180), rollvel: -5, rollacc: -0.65 );
 	}
 	
 	States
 	{
 	Spawn:
-	    TNT1 A 0 NoDelay { attackmode = random(0,1); }
+	    TNT1 A 0 NoDelay { 
+	    	attackmode = random(0,1);
+	    	changecooldown = 200; 
+	    }
 	Idle:
 		DIRE A 10
 		{
@@ -691,7 +699,7 @@ Class PM_DirectorPlasmaShot : Actor
    RenderStyle "Add";
    Speed 30;
    Scale 0.85;
-   DamageFunction 15;
+   DamageFunction 15iu;
    Decal "PM_HellPlasmaScorch";
    SeeSound "";
    DeathSound "Director/PlasmaImpact";
