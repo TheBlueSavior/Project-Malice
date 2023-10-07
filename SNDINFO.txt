@@ -4566,6 +4566,7 @@ Director/Charge "Sounds/Monsters/Bosses/Director/DirectorCharge.ogg"
 $rolloff Director/Charge 1000 3000
 
 Director/Death "Sounds/Monsters/Bosses/Director/DirectorDeath.ogg"
+$volume Director/Death 0.6
 Director/DeathServo "Sounds/Monsters/Bosses/Director/DirectorDeathServo.ogg"
 Director/Fall "Sounds/Monsters/Bosses/Director/DirectorFall.ogg"
 $rolloff Director/DeathServo 400 3000
