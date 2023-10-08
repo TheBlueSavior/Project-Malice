@@ -169,6 +169,7 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Goto See;
 	Missile:
+		TNT1 A 0 A_Jump(256,"Gigalaser");
 	    TNT1 A 0 
 		{
 		if(attackmode == 1)
@@ -346,7 +347,7 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE U 1 Light("ShadowBall3")
 		{
 		    pm_attackloop--;
-			A_FaceTarget(0.2,0.15);
+			A_FaceTarget(0.4,0.25);
 			A_QuakeEx(3,3,3,10,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
 			A_SpawnProjectile("PM_DirectorPlasmaLaser",55,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-0.1,0.1));
 			if (pm_attackloop <= 0) SetStateLabel("GLCooldown");
