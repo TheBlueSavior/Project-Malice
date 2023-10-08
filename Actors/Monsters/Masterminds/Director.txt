@@ -169,7 +169,6 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Goto See;
 	Missile:
-		TNT1 A 0 A_Jump(256,"Gigalaser");
 	    TNT1 A 0 
 		{
 		if(attackmode == 1)
