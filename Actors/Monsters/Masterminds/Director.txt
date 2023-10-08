@@ -127,7 +127,7 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Loop;
 	See:
-		DIRE A 0 { A_StopSounds(129, 135); bNOPAIN = false; }
+		DIRE A 0 { A_StopSounds(52, 135); bNOPAIN = false; }
 		DIRE A 7 A_Chase(flags:CHF_DONTMOVE);
 		DIRE A 0 A_StartSound("Director/Servo",CHAN_5,CHANF_OVERLAP);
 		DIRE ABBCC 5 { A_Chase(); if(changecooldown) changecooldown--; }
@@ -393,7 +393,7 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Goto GigalaserLoop;
 	GLCooldown:
-	    TNT1 A 0 A_StopSounds(53,56);
+	    TNT1 A 0 A_StopSounds(52,56);
 		TNT1 A 0 A_StartSound("Director/GLaserEnd",20);
 		TNT1 A 0 A_StartSound("PM/ArachnoCooldown",21,attenuation:0.6,pitch:0.45);
 		DIRE GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1
@@ -490,12 +490,12 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Loop;
 	Pain:
-		DIRE I 5 A_StopSounds(53, 134);
+		DIRE I 5 A_StopSounds(52, 134);
 		DIRE I 5 A_Pain();
 		Goto See;
 	Death:
 		DIRE I 1;
-		DIRE I 1 A_StopSounds(130, 134);
+		DIRE I 1 A_StopSounds(52, 134);
 		DIRE I 10 A_Scream();
 		DIRE J 6 A_StartSound("Director/DeathServo", CHAN_BODY);
 		DIRE K 7 Light("TyrantMExp");
