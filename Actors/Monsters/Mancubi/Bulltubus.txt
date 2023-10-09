@@ -18,7 +18,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
    Obituary "%o was utterly obliterated by a Bulltubus.";
    Species "Mancubus";
    MinMissileChance 220;
-   MeleeRange 250;
+   MeleeRange 170;
    Tag "Bulltubus";
    BloodColor "Orange";
    DamageFactor "PM_BulltubusMelee", 0;
