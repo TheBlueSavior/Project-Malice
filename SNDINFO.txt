@@ -1964,16 +1964,15 @@ $volume NetherConduit/Active 0.7
 $volume NetherConduit/Pain 0.7
 $volume NetherConduit/Death 0.7
 
-/*$random PM/ShockWarning { PMShockWarning1 PMShockWarning2 PMShockWarning3 PMShockWarning4 PMShockWarning5  }
+$random PM/ShockWarning { PMShockWarning1 PMShockWarning2 PMShockWarning3 PMShockWarning4 PMShockWarning5  }
 PMShockWarning1 "Sounds/Other/PMShockWarning1.ogg"
 PMShockWarning2 "Sounds/Other/PMShockWarning2.ogg"
 PMShockWarning3 "Sounds/Other/PMShockWarning3.ogg"
 PMShockWarning4 "Sounds/Other/PMShockWarning4.ogg"
-PMShockWarning5 "Sounds/Other/PMShockWarning5.ogg"*/
-
-PM/ShockWarning "Sounds/Other/PMShockWarning.ogg"
+PMShockWarning5 "Sounds/Other/PMShockWarning5.ogg"
 
 $pitchset PM/ShockWarning 0.8 1.5
+$volume PM/ShockWarning 0.75
 
 NLITE NLITE
 $volume NLITE 0.7

@@ -190,7 +190,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 		}
         SPS4 AAA 5;
         TNT1 A 0 A_StartSound("PM/ShellInsert",CHAN_5);
-        TNT1 A 0 { user_numbullets = 1; }
+        TNT1 A 0 { user_numbullets += 1; }
         SPS4 BB 3;
         SPS4 AAA 3;
 		TNT1 A 0

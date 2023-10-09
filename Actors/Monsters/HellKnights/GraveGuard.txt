@@ -279,7 +279,7 @@ Class PM_GraveGuard : PMDeathMonsterBase
 	 for(int i=random(1,2);i>0;i--)
 	 A_SpawnItemEx("PM_DeathBloodMulti",zofs:15,zvel:3,flags:SXF_NOCHECKPOSITION);
 	 for(int i=random(1,2);i>0;i--)
-	 A_SpawnItemEx("PM_DeathBloodSoul",xofs:random(-10,10),yofs:random(-15,15),zofs:random(15,20),yvel:random(-3,3),zvel:random(3,4),flags:SXF_NOCHECKPOSITION);
+	 A_SpawnItemEx("PM_DeathBloodSoul",xofs:random(-10,10),yofs:random(-15,15),zofs:random(15,20),yvel:random(-3,3),zvel:random(3,4),angle:random(0,360),flags:SXF_NOCHECKPOSITION);
 	}
     HFD_ CCCCCC 1 A_SpawnItemEx("PM_DeathBloodSoul",yofs:random(-10,10),zofs:random(15,20),yvel:random(-3,3),zvel:random(3,4),flags:SXF_NOCHECKPOSITION);
     HFD_ C 0 

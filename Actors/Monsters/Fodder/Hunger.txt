@@ -28,7 +28,7 @@ Class PM_AffScreamer : PMFodderMonsterBase
 	  int called;
     Default
    {
-   Health 20;
+   Health 40;
    GibHealth 20;
    Radius 18;
    Height 56;
@@ -179,7 +179,7 @@ Class PM_Afflicted : PMFodderMonsterBase
 	bool grouped;
 	Default
 	{
-    Health 40;
+    Health 20;
     GibHealth 20;
     Radius 18;
     Height 56;

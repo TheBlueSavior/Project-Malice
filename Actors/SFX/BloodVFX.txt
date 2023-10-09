@@ -2051,21 +2051,21 @@ Class PM_LavaBlood1 : PM_NormalBlood1
 		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
 	Splash1:
 		TNT1 A 0 A_SetRoll(random(0,360));
-		X0_7 ABCDEF 2; //A_FadeOut(0.05)
-		X0_7 GHIJK 1; //A_FadeOut(0.05)
-		X0_7 LMNOPQRS 1; //A_FadeOut(0.03)
+		X0_7 ABCDEF 2;
+		X0_7 GHIJK 1;
+		X0_7 LMNOPQRS 1; 
 		Stop;
 	Splash2:
 		TNT1 A 0 A_SetRoll(random(0,360));
-		X0_8 ABCDEF 2; //A_FadeOut(0.05)
-		X0_8 GHIJK 1; //A_FadeOut(0.05)
-		X0_8 LMNOPQR 1; //A_FadeOut(0.03)
+		X0_8 ABCDEF 2;
+		X0_8 GHIJK 1;
+		X0_8 LMNOPQR 1;
 		Stop;
 	Splash3:
 		TNT1 A 0 A_SetRoll(random(0,360));
-		X0_9 ABCD 2; //A_FadeOut(0.03)
-		X0_9 EFGHIJ 1; //A_FadeOut(0.04)
-		X0_9 KLM 1; //A_FadeOut(0.05)
+		X0_9 ABCD 2; 
+		X0_9 EFGHIJ 1; 
+		X0_9 KLM 1; 
 		Stop;
 	}
 }
@@ -2131,6 +2131,28 @@ Class PM_LavaBlood2 : PM_LavaBlood1
 			rollvel: frandom(-1,1)
 			);
 		}
+		TNT1 A 0 A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_7 ABCDEF 2;
+		X0_7 GHIJK 1;
+		X0_7 LMNOPQRS 1; 
+		Stop;
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_8 ABCDEF 2;
+		X0_8 GHIJK 1;
+		X0_8 LMNOPQR 1;
+		Stop;
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_9 ABCD 2; 
+		X0_9 EFGHIJ 1; 
+		X0_9 KLM 1; 
 		Stop;
 	}
 }
@@ -2221,6 +2243,28 @@ Class PM_LavaBlood3 : PM_NormalBlood3
 			rollvel: frandom(-1,1)
 			);
 		}
+		TNT1 A 0 A_SetRoll(random(0,360));
+		TNT1 A 0 A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,2),CVF_REPLACE);
+		TNT1 A 0 A_SetGravity(frandom(0.00,0.60));
+		TNT1 A 0 A_SetScale(frandom(0.15,1.20));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_7 ABCDEF 2;
+		X0_7 GHIJK 1;
+		X0_7 LMNOPQRS 1; 
+		Stop;
+	Splash2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_8 ABCDEF 2;
+		X0_8 GHIJK 1;
+		X0_8 LMNOPQR 1;
+		Stop;
+	Splash3:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		X0_9 ABCD 2; 
+		X0_9 EFGHIJ 1; 
+		X0_9 KLM 1; 
 		Stop;
 	}
 }
@@ -2445,6 +2489,7 @@ Class PM_DeathBlood3 : PM_NormalBlood1
 		xvel: frandom(-0.6,0.6),
 		yvel: frandom(-0.6,0.6),
 		zvel: frandom(-0.6,0.6),
+		angle: random(0,360),
 		flags: SXF_NOCHECKPOSITION
 		);
 		for(int i=random(5,7);i>0;i--)
@@ -2560,21 +2605,26 @@ Class PM_DeathBloodSoul : Actor
 		}
 		TNT1 A 0 A_SetScale(frandom(0.15,0.20));
 		TNT1 A 0 A_CheckSight("SightNull");
-		SHBA AABB 10 A_FadeIn(0.45);
+		SHBA AABB 1
+		{
+		if(alpha > 1)
+		SetStateLabel("WanderingSoul");
+		A_FadeIn(0.05);
+		}
+		Wait;
 	WanderingSoul:
         SHBA AABBAA 2
 		{
 		if(timer < 0)
 		SetStateLabel("SightNull");
-		vel.x += frandom(-0.9,0.9);
-		vel.y += frandom(-0.9,0.9);
-		vel.z += frandom(-0.9,0.9);
-		A_FaceTarget(0.45,0.45);
+		vel.x += frandom(-0.85,0.85);
+		vel.y += frandom(-0.85,0.85);
+		vel.z += frandom(-0.85,0.85);
 		timer--;
 		}
 		Loop;
 	SightNull:
-		TNT1 A 1 A_FadeOut(0.05);
+		SHBA A 1 A_FadeOut(0.095);
 		Loop;
 	}
 }

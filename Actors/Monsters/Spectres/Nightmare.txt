@@ -3,7 +3,7 @@ Class PM_Nightmare : PMUmbralMonsterBase
   Default
   {
 	//$Category "PM_Monsters/Spectres"
-    Health 150;
+    Health 100;
     Radius 20;
     Height 56;
     Speed 7;
