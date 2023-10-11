@@ -4625,7 +4625,10 @@ Director/PlasmaImpact4 "Sounds/Monsters/Bosses/Director/DirectorPlasmaImpact4.og
 $volume Director/PlasmaImpact 0.50
 
 Director/BigPlasma "Sounds/Monsters/Bosses/Director/DirectorBigPlasma.ogg"
+Director/BigPlasmaExp "Sounds/Monsters/Bosses/Director/DirectorBigPlasmaExp.ogg"
 $rolloff Director/BigPlasma 500 3000
+$volume Director/BigPlasma 0.75
+$rolloff Director/BigPlasmaExp 500 3000
 $volume Director/BigPlasma 0.75
 
 $random Director/Screech { Director/Screech1 Director/Screech2 }
