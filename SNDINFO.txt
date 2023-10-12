@@ -4199,6 +4199,26 @@ $random DEmi/Death { DEmiDeath1 DEmiDeath2 }
 DEmiDeath1 "Sounds/Monsters/Barons/DeathEmissary/DEmiDeath1.ogg"
 DEmiDeath2 "Sounds/Monsters/Barons/DeathEmissary/DEmiDeath2.ogg"
 
+$random DEmi/CannonFire { DEmiCannonF1 DEmiCannonF2 DEmiCannonF3 }
+DEmiCannonF1 "Sounds/Monsters/Barons/DeathEmissary/DEmiCannonF1.ogg"
+DEmiCannonF2 "Sounds/Monsters/Barons/DeathEmissary/DEmiCannonF2.ogg"
+DEmiCannonF3 "Sounds/Monsters/Barons/DeathEmissary/DEmiCannonF3.ogg"
+$rolloff DEmi/CannonF 600 2500
+
+DEmi/BFGCritical "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGCritical.ogg"
+$rolloff DEmi/BFGCritical 1000 3000
+DEmi/BFGExplode "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGExplode.ogg"
+$rolloff DEmi/BFGExplode 500 2200
+$random DEmi/BFGIdle { DEmi/BFGIdle1 DEmi/BFGIdle2 DEmi/BFGIdle3 }
+DEmi/BFGIdle1 "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGIdle1.ogg"
+DEmi/BFGIdle2 "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGIdle2.ogg"
+DEmi/BFGIdle3 "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGIdle3.ogg"
+$rolloff DEmi/Idle 500 1600
+DEmi/BFGLoop "Sounds/Monsters/Barons/DeathEmissary/DEmiBFGLoop.ogg"
+$rolloff DEmi/Loop 400 2200
+DEmi/Ready "Sounds/Monsters/Barons/DeathEmissary/DEmiReady.ogg"
+$rolloff DEmi/Ready 400 1600
+
 //Big Gore Splats
 $random PM/BigGoreSplat		{ PM/BigGoreSplat1 PM/BigGoreSplat2 PM/BigGoreSplat3 PM/BigGoreSplat4 PM/BigGoreSplat5 PM/BigGoreSplat6 }
 PM/BigGoreSplat1	"Sounds/Other/PMBigGoreSplat1.ogg"

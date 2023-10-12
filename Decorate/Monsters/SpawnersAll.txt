@@ -123,6 +123,7 @@ Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 {
 	DropItem "PM_HeresyLord",255, 72
 	DropItem "PM_Bruiser",255, 34
+	DropItem "PM_DeathEmissary",255, 13
 	DropItem "PM_ControlledSoldier",255, 2
 	DropItem "PM_Broken",255, 2
 	DropItem "PM_PotsGroup",100, 2
