@@ -191,7 +191,7 @@ Class PM_Exile : PMUnaffMonsterBase
 			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",72,-70,0,0,0,0,0,SXF_NOCHECKPOSITION);
 			EILE MMMNNNOOOO 3 BRIGHT Light("EXILATK2") A_FaceTarget();
 			TNT1 A 0 A_StartSound("Exile/ShieldSpawn",CHAN_6);
-			TNT1 AAA 0 A_SpawnProjectile ("RainCometNull",28,0,random(-80,80));
+			TNT1 AAA 0 A_SpawnProjectile ("PM_ExileOrbShower",28,0,random(-80,80));
 			TNT1 A 0 A_SpawnItemEx("PM_ExileWallSpawner",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER);
 			EILE PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 Bright Light("EXILATK1")
 			{
@@ -874,4 +874,134 @@ Class ExileDropFire : Actor
       NULL A 1 Bright;
       stop;
    }
+}
+
+Class PM_ExileOrbShower : Actor
+{
+	Default
+	{
+		
+		Speed 4;
+		Projectile;
+		+FLOORCLIP
+		+RIPPER
+		+THRUACTORS
+		+NOINTERACTION
+		+CEILINGHUGGER
+		+DONTHURTSPECIES
+	}
+	
+	int time;
+	
+	States
+	{
+	Spawn:
+		TNT1 AAAAAA random(0, 4)
+		{
+			vel.x += frandom(-2, 2);
+			vel.y += frandom(-2, 2);
+			A_Wander();
+			time++;
+			
+			if (time > 150) SetStateLabel("Death");
+		}
+		TNT1 A random(3, 16) A_CustomMissile("PM_ExileOrb",-24,random(0,128),random(0,360),2,random(1,89));
+		Loop;
+	Death:
+		Stop;
+	}
+}
+
+Class PM_ExileOrb : DoomImpBall
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 5;
+		DamageFunction 6;
+		Scale 0.5;
+		Alpha 1;
+		RenderStyle "Add";
+		DamageType "Fire";
+		Projectile;
+		SeeSound "GenericSmallFireball";
+		-NOGRAVITY
+		+FLOORCLIP
+		+ROLLSPRITE
+		+DONTHURTSPECIES
+		+BRIGHT
+		+SPAWNCEILING
+		Decal "RevenantScorch";
+	}
+	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay;
+		TNT1 A 1 Light("AvatarFireball2")
+		{
+			vel.x += frandom(-3, 3);
+			vel.y += frandom(-3, 3);
+			
+			A_StartSound("PMInfernal/Explode", 40, volume: 0.6, pitch: frandom(1.5, 2.5));
+			A_SpawnItemEx("PM_SmallDemonicTeleportFog");
+		}
+		Goto Go;
+	Go:
+		COMT AABBCC 1 Light("AvatarFireball2")
+		{
+			roll = frandom(0, 360);
+			
+			vel.z = clamp(vel.z, -17, 17);
+			
+			A_SpawnItemEx("PM_CadaverFireGlobs");
+			
+			A_SpawnParticleEx
+		    (
+				"",
+				tex[0],
+				style: STYLE_Add,
+				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+				lifetime: 1,
+				size: frandom(10.0,30.0),
+				angle: 0,
+				startalphaf: frandom(0.8,1),
+				startroll: random(-180,180)
+			);
+			
+			A_SpawnParticleEx
+			(
+				"",
+				tex[1],
+				style: STYLE_None,
+				flags: SPF_ROLL|SPF_RELATIVE,
+				lifetime: random(60,100),
+				size: 20.0,
+				startalphaf: frandom(0.3,0.55),
+				fadestepf: -1,
+				sizestep: frandom(0.0,0.8),
+				startroll: random(-180,180)
+			);
+		}
+		Loop;
+	Death:
+		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+		TNT1 A 0
+		{
+			for (int i = 360; i > 0; i -= random(30, 60)) A_SpawnItemEx("OFireBallExplode", xvel: frandom(-2, 2), yvel: frandom(-2, 2), zvel: frandom(-0.75, 0.75));
+		}
+		TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
+		AFX5 D 2 bright Light("AvatarFireball4");
+		AFX5 EFGH 2 Light("AvatarFireball4") Bright;
+		Stop;
+	}
 }
