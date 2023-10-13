@@ -888,7 +888,7 @@ Class PM_ExileOrbShower : Actor
 		+THRUACTORS
 		+NOINTERACTION
 		+CEILINGHUGGER
-		+DONTHURTSPECIES
+		+DONTHARMSPECIES
 	}
 	
 	int time;
@@ -905,7 +905,7 @@ Class PM_ExileOrbShower : Actor
 			
 			if (time > 150) SetStateLabel("Death");
 		}
-		TNT1 A random(3, 16) A_CustomMissile("PM_ExileOrb",-24,random(0,128),random(0,360),2,random(1,89));
+		TNT1 A random(3, 16) A_SpawnProjectile("PM_ExileOrb",-24,random(0,128),random(0,360),2,-random(1,89));
 		Loop;
 	Death:
 		Stop;
@@ -929,7 +929,7 @@ Class PM_ExileOrb : DoomImpBall
 		-NOGRAVITY
 		+FLOORCLIP
 		+ROLLSPRITE
-		+DONTHURTSPECIES
+		+DONTHARMSPECIES
 		+BRIGHT
 		+SPAWNCEILING
 		Decal "RevenantScorch";
