@@ -1,7 +1,7 @@
 Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 {
-	DropItem "PM_ZombieSoldier", 255, 60
-	DropItem "PM_PistolZombie", 255, 57
+	DropItem "PM_ZombieSoldier", 255, 80
+	DropItem "PM_PistolZombie", 255, 67
 	DropItem "PM_ZombieMarine", 255, 18
 	DropItem "PM_CivilianZombie", 255, 12
 	DropItem "PM_ZombieTrooper", 255, 11
@@ -15,12 +15,12 @@ Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 
 Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
-	DropItem "PM_FShotgunner", 255, 58
-	DropItem "PM_SlugShotgunner", 255, 16
+	DropItem "PM_FShotgunner", 255, 80
+	DropItem "PM_SlugShotgunner", 255, 28
 	DropItem "PM_CyberFodder", 255, 12
 	DropItem "PM_Nailgunner", 255, 11
 	DropItem "PM_DecayedShotgunner", 255, 7
-	DropItem "PM_FallenShotgunner", 255, 6
+	DropItem "PM_FallenShotgunner", 255, 3
 	DropItem "PM_FOCShotgun", 255, 1
 }
 
@@ -29,7 +29,7 @@ Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 {
 	DropItem "PM_MutatedGunner", 255, 8
 	DropItem "PM_FallenMarine", 255, 7
-	DropItem "PM_HeavyCarbineZombie", 255, 37
+	DropItem "PM_HeavyCarbineZombie", 255, 57
 	DropItem "PM_HellPriest", 255, 1
 	DropItem "PM_DecayedCommando", 255, 1
 	DropItem "PM_Blasphemer", 255, 2
@@ -38,7 +38,7 @@ Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 
 Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 {
-	Dropitem "PM_Brute", 255, 24
+	Dropitem "PM_Brute", 255, 44
 	Dropitem "PM_CyberBrute", 255, 4
 	Dropitem "PM_DemonTechBrute", 255, 2
 	Dropitem "PM_BloodStalker", 255, 1
@@ -49,8 +49,8 @@ Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 
 Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
 {
-	DropItem "PM_PhaseBrute", 255, 54
-	DropItem "PM_CyberSpectre", 255, 17
+	DropItem "PM_PhaseBrute", 255, 74
+	DropItem "PM_CyberSpectre", 255, 24
 	DropItem "PM_Nightmare", 255, 15
 	DropItem "PM_DemonTechSpectre", 255, 10
 	DropItem "PM_Prowler", 255, 9
@@ -61,12 +61,12 @@ Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
 Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 {
 	DropItem "PM_Tainted", 255, 4
-	DropItem "PM_Charred", 255, 7
+	DropItem "PM_Charred", 255, 12
 	DropItem "PM_Host", 255, 3
 	DropItem "PM_Hellion", 255, 1
 	DropItem "PM_Harvester", 255, 2
-	DropItem "PM_Zephyr", 255, 7
-	DropItem "PM_Devil", 255, 48
+	DropItem "PM_Zephyr", 255, 12
+	DropItem "PM_Devil", 255, 78
 	DropItem "PM_NetherImp", 255, 1
 	DropItem "PM_FeralImp", 255, 3
 }
@@ -74,17 +74,17 @@ Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 
 Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 {
-	DropItem "PM_Blot", 255, 4
-	DropItem "PM_BurntSoul", 255, 16
-	DropItem "PM_FleshspawnDropper", 255, 2
-	DropItem "PM_BloodSkull", 255, 1
-	DropItem "PM_Gazer", 255, 1
+	DropItem "PM_Blot", 255, 1
+	DropItem "PM_BurntSoul", 255, 36
+	DropItem "PM_FleshspawnDropper", 255, 1
+	DropItem "PM_BloodSkull", 255, 3
+	DropItem "PM_Gazer", 255, 2
 }
 
 
 Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 {
-	DropItem "PM_Cadaver", 255, 36
+	DropItem "PM_Cadaver", 255, 56
 	DropItem "PM_Depraved", 255, 2
 	DropItem "PM_Infested", 255, 2
 	DropItem "PM_Draugr", 255, 2
@@ -94,8 +94,8 @@ Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 
 Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
 {
-	DropItem "PM_Wretched", 255, 52
-	DropItem "PM_PhaseCaco", 255, 26
+	DropItem "PM_Wretched", 255, 72
+	DropItem "PM_PhaseCaco", 255, 28
 	DropItem "PM_Beholder", 225, 10
     DropItem "PM_Infernal", 225, 9
 	DropItem "PM_Wicked", 255, 7
@@ -111,28 +111,28 @@ Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
 
 Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight
 {
-	DropItem "PM_Vore", 255, 11
+	DropItem "PM_Vore", 255, 5
 	//DropItem "Void", 255, 1
-	DropItem "PM_GraveGuard", 255, 4
-	DropItem "PM_Whiplash", 255, 4
-	DropItem "PM_Squire", 255, 41
-	DropItem "PM_Noble", 255, 22
+	DropItem "PM_GraveGuard", 255, 3
+	DropItem "PM_Whiplash", 255, 8
+	DropItem "PM_Squire", 255, 61
+	DropItem "PM_Noble", 255, 26
 }
 
 Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 {
-	DropItem "PM_HeresyLord",255, 72
+	DropItem "PM_HeresyLord",255, 92
 	DropItem "PM_Bruiser",255, 34
-	DropItem "PM_DeathEmissary",255, 13
-	DropItem "PM_ControlledSoldier",255, 2
-	DropItem "PM_Broken",255, 2
+	DropItem "PM_DeathEmissary",255, 10
+	DropItem "PM_ControlledSoldier",255, 1
+	DropItem "PM_Broken",255, 1
 	DropItem "PM_PotsGroup",100, 2
 	DropItem "PM_PotsScreamer",100, 1
 }
 
 Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso 
 {
-	DropItem "PM_Hectebus", 255, 12
+	DropItem "PM_Hectebus", 255, 32
 	DropItem "PM_Corpulent", 255, 7
 	DropItem "PM_Bulltubus", 255, 5
 	DropItem "PM_Abhorrent", 255, 1
@@ -140,8 +140,8 @@ Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 
 Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
 {
-	DropItem "PM_Fusionite", 255, 25
-	DropItem "PM_Plasmatron", 255, 5
+	DropItem "PM_Fusionite", 255, 45
+	DropItem "PM_Plasmatron", 255, 8
 }
 
 Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
@@ -151,7 +151,7 @@ Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 
 Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 {
-	DropItem "PM_Director", 255, 25
+	DropItem "PM_Director", 255, 45
 	DropItem "PM_EntropicAvatar", 255, 1
 }
 
