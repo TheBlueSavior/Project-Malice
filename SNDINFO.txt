@@ -3815,6 +3815,42 @@ $volume BloodStalker/Roar 0.6
 BStalker/Death "Sounds/Monsters/Pinkies/BloodStalker/BStalkerDeath.ogg"
 BStalker/Warp "Sounds/Monsters/Pinkies/BloodStalker/BStalkerWarp.ogg"
 
+// FireStarter
+
+Fire/Starter/Awaken/1		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Awaken_1"
+Fire/Starter/Awaken/2		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Awaken_2"
+
+Fire/Starter/Splash/1	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_1"
+Fire/Starter/Splash/2	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_2"
+Fire/Starter/Splash/3	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_3"
+Fire/Starter/Splash/4	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_4"
+Fire/Starter/Splash/5	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_5"
+Fire/Starter/Splash/6	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_6"
+Fire/Starter/Splash/7	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Splash_7"
+$random Fire/Starter/Splash {Fire/Starter/Splash/1 Fire/Starter/Splash/2 Fire/Starter/Splash/3 Fire/Starter/Splash/4 Fire/Starter/Splash/5 Fire/Starter/Splash/6 Fire/Starter/Splash/7}
+
+Fire/Starter/Chitter/1	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Chitter_1"
+Fire/Starter/Chitter/2	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Chitter_2"
+Fire/Starter/Chitter/3	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Chitter_3"
+Fire/Starter/Chitter/4	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Chitter_4"
+$random Fire/Starter/Chitter {Fire/Starter/Chitter/1 Fire/Starter/Chitter/2 Fire/Starter/Chitter/3 Fire/Starter/Chitter/4}
+
+Fire/Starter/SCREE/1	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_1"
+Fire/Starter/SCREE/2	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_2"
+Fire/Starter/SCREE/3	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_3"
+Fire/Starter/SCREE/4	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_4"
+Fire/Starter/SCREE/5	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_5"
+Fire/Starter/SCREE/6	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_6"
+Fire/Starter/SCREE/7	"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_SCREE_7"
+$random Fire/Starter/SCREE {Fire/Starter/SCREE/1 Fire/Starter/SCREE/2 Fire/Starter/SCREE/3 Fire/Starter/SCREE/4 Fire/Starter/SCREE/5 Fire/Starter/SCREE/6 Fire/Starter/SCREE/7}
+
+Fire/Starter/Yell/1		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Yell_1"
+Fire/Starter/Yell/2		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Yell_2"
+Fire/Starter/Yell/3		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Yell_3"
+Fire/Starter/Yell/4		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Yell_4"
+Fire/Starter/Yell/5		"Sounds/Monsters/Mancubis/FireStarter/Fire_Starter_Yell_5"
+$random Fire/Starter/Yell {Fire/Starter/Yell/1 Fire/Starter/Yell/2 Fire/Starter/Yell/3 Fire/Starter/Yell/4 Fire/Starter/Yell/5}
+
 //Broken
 
 Broken/Pain/1	"Sounds/Monsters/Paranormal/Broken/Broken_Pain_1"

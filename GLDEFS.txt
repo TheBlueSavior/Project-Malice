@@ -5406,6 +5406,34 @@ Frame DEFIJ { Light DefilerDeath3 }
 Frame DEFIK { Light DefilerDeath4 }
 }
 
+// white fire lights
+// FireStarter stuff
+Pointlight WhiteFire1
+{
+	Color 0.8 0.8 0.8
+	Size 50
+}
+
+Pointlight WhiteFire2
+{
+	Color 0.9 0.9 0.9
+	Size 64
+}
+
+Pointlight WhiteFire3
+{
+	Color 1.0 1.0 1.0
+	Size 75
+}
+
+flickerlight WhiteFire4
+{
+	Color 1.0 1.0 1.0
+	Size 75
+	secondarySize 200
+	chance 1.0
+}
+
 //BFG
 Pointlight DCBMiss1
 {

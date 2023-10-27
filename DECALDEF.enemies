@@ -156,3 +156,19 @@ decal PM_BruiserBiggestScorch
 	randomflipx
 	randomflipy
 }
+
+// PM_FireStarter
+
+decal PM_WhiteFireScorch 
+{
+	pic XFSDA0
+	shade "ffffff"
+	x-scale 0.5
+	y-scale 0.5
+	add 1.0
+	randomflipx
+	randomflipy
+	fullbright
+	animator PM_ScorchFader
+	lowerdecal DoomImpScorch
+}

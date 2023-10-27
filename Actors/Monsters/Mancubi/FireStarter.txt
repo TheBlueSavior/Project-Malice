@@ -1,0 +1,1329 @@
+// PLS keep all added attacks fire related.
+// PLS keep all sounds not glitchy like other void monsters. thanks, H3LLW4LK3R.
+
+// spine sprites needed
+
+Class PM_FireStarter : PMVoidMonsterBase
+{
+
+	bool IsAwoken, Hiding;
+	int HidingTime, HidingMax;
+	
+	property Hiding : Hiding;
+	property HidingTime : HidingTime;
+	property HidingMax : HidingMax;
+	
+	Void A_VoidCloud()
+	{
+		A_SpawnParticleEx
+			(
+			"000000",
+			TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal,
+			flags: SPF_ROLL|SPF_RELATIVE,
+			lifetime: random(3,80),
+			size: frandom(30,200),
+			angle: 0,
+			xoff: frandom(-20,20),
+			yoff: frandom(-20,20),
+			zoff: frandom(0,5),
+			velx: frandom(-2,2),
+			vely: frandom(-2,2),
+			velz: frandom(-2,2),
+			accelx: 0,
+			accely: 0,
+			accelz: 0,
+			startalphaf: frandom(0.1,0.6),
+			fadestepf: -0.35,
+			sizestep: frandom(0.2,5),
+			startroll: random(-180,180),
+			rollvel: frandom(-0.5,0.5),
+			rollacc: 0
+			);
+	}
+		
+	override void Tick()
+	{
+		if (level.isFrozen()) return;
+		super.Tick();
+		
+		if (IsAwoken)
+		{
+			if (!(GetAge() % 2))
+			{
+				A_SpawnItemEx("WhiteFloatyEmbers",random(-radius,radius),random(-radius,radius),random(5,height),random(-3,3),random(-3,3),random(-3,3));
+			}
+		}
+		
+		if (Hiding == true)
+		{
+			HidingTime++;
+			//console.printf("Hiding Time: %d", HidingTime);
+		}
+		
+		if (HidingTime >= HidingMax)//random(500,2000))
+		{
+			Hiding = false;
+			HidingTime = 0;
+			//console.printf("Is hiding?: %d", Hiding);
+		}
+		
+	}
+
+	Default
+	{
+		Health 2000;
+		Radius 40;
+		Height 60;
+		Speed 16;
+		PainChance 0;
+		
+		Monster;
+		+FLOORCLIP;
+		
+		-NOCLIP;
+		-Countkill;
+		-BRIGHT;
+		
+		+MISSILEEVENMORE;
+		+FLOORCLIP;
+		+NOINFIGHTING;
+		+THRUSPECIES;
+		+SLIDESONWALLS;
+		+DONTHARMCLASS;
+		+DONTHARMSPECIES;
+		+DONTFALL;
+		+NOICEDEATH;
+		+NOBLOOD;
+		+DROPOFF;
+		+NOBLOCKMONST;
+		
+		Obituary "%o was cooked alive.";
+		Tag"?IR? S??RT?R";
+
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_SmallDemonicTeleportFog";
+		
+		PM_FireStarter.Hiding false;
+		PM_FireStarter.HidingTime 0;
+		PM_FireStarter.HidingMax 1500;
+	}
+	
+	States
+	{
+	
+///////////////////////////////////////////////////// BIRTH
+
+// fake out
+
+	Spawn:
+		TNT1 A 0 A_JumpIf( (IsAwoken == true), "LaughAtDeadPlayer");
+		TABU A 10 PM_Look();
+		Loop;
+	Look:
+		TNT1 A 0 A_JumpIf( (IsAwoken == true), "Seek");
+	Birth:
+		TNT1 A 0 
+				{
+					bNODAMAGE = false;
+					A_FaceTarget();
+				}
+		XFST A 64;
+		TNT1 A 0 
+				{
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_QuakeEx(1,1,1,5,0,1000,"*");
+				}
+				
+		XFST B 33;
+		TNT1 A 0 
+				{
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_SpawnItemEx("PM_DarkRedBloodBase",FRandom(-Radius,Radius),FRandom(-Radius,Radius),FRandom(0,Height),zvel:FRandom(0.5,1),0,0,0,SXF_NOCHECKPOSITION);
+					A_QuakeEx(1,1,1,10,0,1000,"*");
+				}
+		XFST C 28;
+
+
+
+		TNT1 A 0
+				{
+					PM_Gib();
+					PM_Gib();
+					A_SpawnItemEx("PM_FireStarter_Manc_Corp",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+					A_QuakeEx(1,1,1,15,0,1000,"*");
+
+		// turn into black goo man
+					
+					bNOCLIP = true;
+					IsAwoken = true;
+					HidingMax = random(1000,2000);
+					Hiding = true;
+					Height = 80;
+					
+					A_SetScale(1.5); // temp, maybe later will resprite his tiny ass
+					A_SetSpeed(30);
+					A_SetPainThreshold(8);
+					
+					
+				}
+	
+///////////////////////////////////////////////////// MOVEMENT
+	
+	Hide:
+		TNT1 A 0 A_StartSound("Fire/Starter/Splash",0,0,0.75);
+		TNT1 A 0;
+		TNT1 AAA 1
+					{
+						A_Wander();
+						A_SpawnItemEx("PM_FireStarter_Puddle");
+						A_VoidCloud();
+					}
+		TNT1 AAA 1
+					{
+						PM_Look();
+						A_SpawnItemEx("PM_FireStarter_Puddle");
+						A_VoidCloud();
+					}
+		Loop;
+		
+	Seek:
+		TNT1 A 0 A_Jump(5,"twitch");
+		TNT1 A 0 A_Jumpif( (Hiding == true) , "Hide");
+		
+		TNT1 A 0 A_StartSound("Fire/Starter/Splash",0,0,0.75);
+		
+		TNT1 AAA 1
+				{
+						A_Chase();
+						A_SpawnItemEx("PM_FireStarter_Puddle");
+						A_VoidCloud();
+				}
+		Loop;
+	
+	Pain:
+	twitch:
+		TNT1 A 0
+				{	// random chance to start hiding again
+					if( 1 == random(1,10) )
+					{	// less hiding time then start
+						HidingMax = random(100,500);
+						Hiding = true;
+						//console.printf("Hiding Time Max: %d", HidingMax);
+					}
+				}
+		
+		TNT1 A 0 A_StartSound("Fire/Starter/Chitter",0,0,1);
+		
+		XFST QRIIJH 1 ThrustThing(random(-360,360),1,0,0);
+		TNT1 A 0 A_Jump(50,"Seek");
+		XFST HJJKGHIHI 1 ThrustThing(random(-360,360),1,0,0);
+		TNT1 A 0 A_Jump(50,"Seek");
+		XFST GGGJJHGHIIHK 1 ThrustThing(random(-360,360),1,0,0);
+		TNT1 A 0 A_Jump(50,"Seek");
+		XFST JIGRQ 1 ThrustThing(random(-360,360),1,0,0);
+		Goto Seek;
+		
+	LaughAtDeadPlayer: //heheheha
+		XFST I 10;
+		
+		TNT1 A 0 A_StartSound("Fire/Starter/Chitter",0,0,1);
+		
+		XFST H 4;
+		XFST G 2;
+		XFST H 4;
+		XFST G 2;
+		XFST H 4;
+		XFST G 2;
+		XFST H 4;
+		XFST G 2;
+		XFST H 4;
+		XFST G 2;
+		XFST H 4;
+		XFST G 2;
+		XFST I 10;
+		XFST RQ 2;
+		TNT1 A 0 {Hiding = true;}
+		Goto hide;
+		
+	GlideForward:
+		TNT1 A 0 A_Jumpif( (Hiding == true) , "Hide");
+		TNT1 A 0 A_Jump(128,"FlameThrowerCharge"); // Death charge to be a attack, ie sprint at player and breath fire like dragon // like dragon these nuts across your face!! // omg got em
+		
+		TNT1 A 0 A_StartSound("Fire/Starter/Splash",0,0,0.75);
+		
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		TNT1 A 0 ThrustThing(angle*256/360, 4, 0, 0);
+		TNT1 AA 1 {A_FaceTarget(); A_SpawnItemEx("PM_FireStarter_Puddle");}
+		
+		Goto Seek;
+		
+///////////////////////////////////////////////////// COMBAT
+
+	Missile:
+		//hiding if Hiding = true
+		TNT1 A 0 A_Jumpif( (Hiding == true) , "Hide");
+		//checking if close enough to shoot
+		TNT1 A 0 A_Jumpif((Distance3d(target) >= 500),"GlideForward");
+		TNT1 A 0 A_CheckLOF("MissileProceed");
+		TNT1 A 0 A_CheckSight("Hide");
+		
+	MissileProceed:
+		//actual shoot
+		TNT1 A 0 A_Jump(64,"BigFireBall");
+		TNT1 A 0 A_Jump(128,"LeftGlide");
+
+	RightGlide:
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST QR 1 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST E 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+64, 4, 0, 0);
+		XFST RQ 1 A_FaceTarget;
+		Goto Seek;
+		
+		
+	LeftGlide:
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST QR 1 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,-20);
+		// fire ball
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST F 2 A_FaceTarget;
+		TNT1 A 0 ThrustThing(angle*256/360+192, 4, 0, 0);
+		XFST RQ 1 A_FaceTarget;
+		Goto Seek;
+		
+	FlameThrowerCharge:
+		//		burn...
+
+		XFST QR 1 ThrustThing(angle*256/360, 2, 0, 0);
+		
+		TNT1 A 0 A_StartSound("Fire/Starter/Yell",0,0,1);
+		TNT1 A 0 A_StartSound("Fire/Starter/SCREE",0,0,1);
+		
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",60,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",40,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+		TNT1 A 0 A_SpawnProjectile("PM_Basic_Fire_Starter_Ball",20,-20);
+		XFST DDDD 1
+				{
+					A_FaceTarget(5,5);
+					ThrustThing(angle*256/360, 2, 0, 0);
+					A_SpawnItemEx("W_Fire_Flare",20,0,60);
+					A_SpawnProjectile("W_Fire_Breath",60,0,random(-1,1),CMF_AIMDIRECTION,7);
+				}
+				
+		XFST RQ 1 ThrustThing(angle*256/360, 2, 0, 0);
+		Goto Seek;
+		
+		
+	BigFireBallLooper:
+		TNT1 A 0 A_Jump(128,"Seek");
+		TNT1 A 0 A_Jump(256,"BigFireBallLoop"); // to avoid 0 tic state
+		
+	BigFireBall:
+		XFST QR 1;
+		TNT1 A 0 A_StartSound("PMInfernal/MeleeCharge",0,0,1);
+		TNT1 A 0 A_StartSound("Fire/Starter/Chitter",0,0,1);
+		XFST D 20 {A_SpawnItemEx("W_Fire_Flare",20,0,60); A_FaceTarget();}
+	BigFireBallLoop:
+		XFST D 15 {A_SpawnItemEx("W_Fire_Flare",20,0,60); A_FaceTarget();}
+		TNT1 A 0 A_StartSound("Exile/Immolate",0,0,1);
+		TNT1 A 0 A_SpawnProjectile("PM_Big_White_Fire_ball",60,0,random(-1,1));
+		XFST D 3 A_SpawnItemEx("W_Fire_Flare",20,0,60);
+		XFST F 7;
+		TNT1 A 0 A_CheckLOF("BigFireBallLooper");
+		XFST RQ 1;
+		Goto Seek;
+		
+///////////////////////////////////////////////////// DEATH
+		
+	Death:
+		TNT1 A 0 A_StartSound("Fire/Starter/Splash",0,0,0.75);
+		TNT1 A 0 A_CustomMissile("PM_Fire_Starter_Flee",1,0,random(-170,170));
+		TNT1 A 1;
+		stop;
+
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////// Important FX
+
+Class PM_FireStarter_Manc_Corp : ACTOR
+{
+	Default
+	{
+		Radius 16;
+		Height 56;
+		-SOLID;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TABU Q 1 Light("PM_HugeFastHorrorBlackflash");
+		TABU RS 1;
+		TABU T 7;
+
+		TNT1 A 0 A_StartSound("Fire/Starter/Awaken/2",20,0,1.0,ATTN_NONE);
+		TNT1 A 0 A_StartSound("Fire/Starter/Awaken/1",15,0,1.0,ATTN_NONE);
+		
+		TABU T -1;
+		Stop;
+	}
+}
+
+Class PM_FireStarter_Puddle : ACTOR
+{
+	Default
+	{
+		Radius 16;
+		Height 56;
+		-SOLID;
+		+FLATSPRITE;
+		+ROLLSPRITE;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 0 {A_SetRoll(90); A_SetAngle(Random(0,359));}
+			XFST P 1;
+			Stop;
+	}
+}
+
+Class PM_Fire_Starter_Flee : actor
+{
+
+	Void A_VoidCloud()
+	{
+		A_SpawnParticleEx
+			(
+			"000000",
+			TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal,
+			flags: SPF_ROLL|SPF_RELATIVE,
+			lifetime: random(3,80),
+			size: frandom(30,200),
+			angle: 0,
+			xoff: frandom(-20,20),
+			yoff: frandom(-20,20),
+			zoff: frandom(0,5),
+			velx: frandom(-2,2),
+			vely: frandom(-2,2),
+			velz: frandom(-2,2),
+			accelx: 0,
+			accely: 0,
+			accelz: 0,
+			startalphaf: frandom(0.1,0.6),
+			fadestepf: -0.35,
+			sizestep: frandom(0.2,5),
+			startroll: random(-180,180),
+			rollvel: frandom(-0.5,0.5),
+			rollacc: 0
+			);
+	}
+
+	Default
+	{
+		-SOLID;
+		+NOINTERACTION;
+		
+		+THRUACTORS;
+		+FLOORHUGGER;
+		+MISSILE;
+		+BRIGHT;
+		+FLATSPRITE;
+		+ROLLSPRITE;
+		Speed 30;
+	}
+	States
+	{
+	Spawn:
+		XFST PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1 {A_SetRoll(90); A_SetAngle(Random(0,359)); A_VoidCloud();}
+		Stop;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////// Fire FX
+
+Class W_Fire_Flare : Actor
+{
+	Default
+	{
+		+NOINTERACTION
+		+NOGRAVITY
+		+CLIENTSIDEONLY
+		Renderstyle "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Radius 1;
+		Height 1;
+		Alpha 0.9;
+		Scale 0.4;
+	}
+	states
+	{
+	Spawn:
+		LEYS O 2 bright;
+		stop;
+	}
+}
+
+Class PM_White_Fire_Effect : Actor
+{
+	Default
+	{
+		+NOINTERACTION;
+		+CLIENTSIDEONLY;
+		+ROLLSPRITE;
+		+FORCEXYBILLBOARD;
+		Renderstyle "Add";
+		Scale 0.20;
+		+Bright;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+		TNT1 A 0 A_SetScale(ScaleX-0.01);
+		FIR4 Q 1 A_FadeOut(0.08);
+		Loop;
+	}
+}
+
+Class PM_White_Fire_Trails : actor
+{
+	Default
+	{
+		PROJECTILE;
+		-NOGRAVITY;
+		+FORCEXYBILLBOARD;
+		+CLIENTSIDEONLY;
+		+THRUACTORS;
+		+DOOMBOUNCE;
+		+ROLLSPRITE;
+		
+		RenderStyle "Add";
+		Damagetype "fire";
+		//Game "Doom";
+		
+		Radius 1;
+		Height 1;
+		Scale 0.5;
+		Speed 2;
+		Gravity 0;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 2;
+		TNT1 A 0 A_SetRoll(random(0,360));
+		XFSD CDEFGH 1 BRIGHT;
+		Stop;
+	}
+}
+
+Class PM_White_Fire_ball_Explosion_Flames : PM_White_Fire_Trails
+{
+	Default
+	{
+		Scale 0.9;
+		Speed 1;
+	}
+	States
+	{
+		Spawn:
+		FIR4 CDEFGHIJKLMNOP 1 BRIGHT;
+		Stop;
+	}
+}
+
+Class WhiteEmbers : actor
+{
+	Default
+	{
+		+MISSILE;
+		Height 0;
+		Radius 0;
+		Damage 0;
+		Mass 0;
+		Scale 0.055;
+		+CLIENTSIDEONLY;
+		+DOOMBOUNCE;
+		RENDERSTYLE "Add";
+		BounceFactor 0.4;
+		Gravity 0.5;
+		+Bright;
+	}
+	States
+	{
+	Spawn:
+		FIR4 R 3 Bright A_FadeOut(0.08);
+		Loop;
+	}
+}
+
+Class WhiteEmbersSpawn : actor
+{
+	Default
+	{
+		+CLIENTSIDEONLY;
+		+NOINTERACTION;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0);
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0);
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0);
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0);
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbers",0,0,0,Random(5,-5),Random(5,-5),Random(5,-5),0);
+		Stop;
+	}
+}
+
+Class WhiteFloatyEmbers : actor
+{
+	Default
+	{
+		+MISSILE;
+		
+		Height 0;
+		Radius 0;
+		Damage 0;
+		Mass 0;
+		Scale 0.025;
+		
+		+CLIENTSIDEONLY;
+		+DOOMBOUNCE;
+		+NOGRAVITY;
+		
+		RENDERSTYLE "Add";
+		
+		BounceFactor 0.4;
+		//Gravity 0.5;
+		
+		+Bright;
+	}
+	States
+	{
+	Spawn:
+		FIR4 R 5 Bright A_FadeOut(0.08);
+		Loop;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////// Fire Projectiles
+
+Class PM_Basic_Fire_Starter_Ball : DoomImpBall
+{
+	Default
+	{
+		DamageFunction 30;
+		+NOGRAVITY
+		-LOWGRAVITY
+		seesound "FIREBA1";
+		Decal "PM_WhiteFireScorch";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		DamageType "Fire";
+		Speed 20;
+		FastSpeed 21;
+		Scale 0.93;
+	}
+	states
+	{
+Spawn:
+ AFX5 AABBCC 1 bright Light("WhiteFire3") 
+		{
+			A_SpawnParticleEx
+				(
+					"ffffff",
+					TexMan.CheckForTexture("GNSML0"),
+					style: STYLE_None,
+					flags: SPF_ROLL|SPF_RELATIVE,
+					lifetime: 95,
+					size: 30.0,
+					xoff: -10,
+					startalphaf: 0.4,
+					fadestepf: -1,
+					startroll: random(-180,180)
+				);
+			A_SpawnParticleEx
+				(
+					"ffffff",
+					TexMan.CheckForTexture("XFSDB0"),
+					style: STYLE_Add,
+					flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+					lifetime: 1,
+					size: 80.0,
+					xoff: -10,
+					startalphaf: 0.6
+				);
+			A_SpawnItemEx("PM_White_Fire_Trails",0,0,0,0,0,0,0,128,0);
+			A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+	
+	loop;
+		Death:
+		
+		TNT1 A 0 A_SpawnItemEx("WhiteEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("W_FireBallExplode");
+		TNT1 A 0 A_SpawnProjectile ("W_Ground_Fire",0,0,0,4);
+		TNT1 A 0 A_SpawnItemEx("PM_White_Fire_ball_Explosion_Flames");
+		AFX5 D 2 bright Light("WhiteFire2");
+		FIR3 CDEFGHIJKLMNOP 2 Light("WhiteFire2") Bright;
+		stop;
+	}
+}
+
+Class W_FireBallExplode : Actor
+{
+	Default
+	{
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Scale 0.65;
+		Alpha 0.84;
+		Renderstyle "Add";
+		+CLIENTSIDEONLY
+		+NOINTERACTION
+		+Bright;
+		Speed 1;
+	}
+	States
+	{
+	Spawn:
+		FXPO AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.06);
+		Stop;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////// BEEG fire ball
+
+Class PM_Fire_White_Globs : actor
+{
+	Default
+	{
+		Radius 1;
+		Height 1;
+		Speed 2;
+		PROJECTILE;
+		RenderStyle "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Scale 0.8;
+		Gravity 0;
+		-NOGRAVITY;
+		+FORCEXYBILLBOARD;
+		+CLIENTSIDEONLY;
+		+THRUACTORS;
+		+DOOMBOUNCE;
+		+ROLLSPRITE;
+	}
+	States
+	{
+    Spawn:
+	   TNT1 A 1;
+	   TNT1 A 0 A_SetRoll(random(0,360));
+       FIR3 BCDEFGHIJKLMNOP 1 BRIGHT;
+       Stop;
+	}
+}
+
+Class PM_Big_Fire_White_Globs : PM_Fire_White_Globs
+{
+	Default
+	{
+		Speed 4;
+		Scale 1.7;
+	}
+}
+
+Class PM_White_Explosion_Flare_Effect : actor
+{
+	Default
+	{
+		+NOINTERACTION;
+		+NOGRAVITY;
+		+CLIENTSIDEONLY;
+		+NOTONAUTOMAP;
+		+FORCEXYBILLBOARD;
+		Renderstyle "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Radius 1;
+		Height 1;
+		XScale 2.0;
+		YScale 1.5;
+		Alpha 0.4;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		FLAR B 2 BRIGHT;
+		FLAR BBBBBBBBBBBBBB 1 BRIGHT A_FadeOut(0.11);
+		Stop;
+	}
+}
+
+Class PM_White_Explosion_Flare_Spawner : Actor
+{
+	Default
+	{
+		+NOINTERACTION;
+		+NOGRAVITY;
+		+CLIENTSIDEONLY;
+		+NOTONAUTOMAP;
+		+FORCEXYBILLBOARD;
+		Renderstyle "Add";
+		Radius 1;
+		Height 1;
+		Alpha 0.4;
+		Scale 0.4;
+	}
+	States
+	{
+	Spawn:
+	    TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_White_Explosion_Flare_Effect");
+	    TNT1 A 0 A_SpawnItemEx("PM_White_Explosion_Flare_Effect", 36, 36);
+		TNT1 A 0 A_SpawnItemEx("PM_White_Explosion_Flare_Effect", 36, -36);
+		TNT1 A 0 A_SpawnItemEx("PM_White_Explosion_Flare_Effect", -36, 36);
+		TNT1 A 0 A_SpawnItemEx("PM_White_Explosion_Flare_Effect", -36, -36);
+		Stop;
+	}
+}
+
+Class PM_LargeWhiteFlare : Actor
+{
+	Default
+	{
+		+NOINTERACTION;
+		+NOGRAVITY;
+		+FORCEXYBILLBOARD;
+		+CLIENTSIDEONLY;
+		Renderstyle "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Radius 1;
+		Height 1;
+		Scale 1.0;
+		Alpha 0.3;
+	}
+	states
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,2);
+		LENR A 2 Bright;
+		Stop;
+		TNT1 A 0;
+		LENR B 2 Bright;
+		Stop;
+	}
+}
+
+Class PM_White_Generic_Explosion_Flames : actor
+{
+	Default
+	{
+		Radius 1;
+		Height 1;
+		PROJECTILE;
+		-NOGRAVITY;
+		+FORCEXYBILLBOARD;
+		+CLIENTSIDEONLY;
+		+THRUACTORS;
+		+DOOMBOUNCE;
+		+ROLLSPRITE;
+		RenderStyle "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		Damagetype "fire";
+		Scale 3.2;
+		Speed 2;
+		Gravity 0;
+	}
+	States
+	{
+    Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SetRoll(random(0,360));
+        EXPL AA 3 BRIGHT A_SpawnItem("PM_LargeWhiteFlare",0,0);
+		EXPL AA 0 A_CustomMissile ("PM_BoomSmoke",0,0,random(0,360),2,random(0,360));
+        EXPL BCDEFGH 3 BRIGHT;
+        Stop;
+	}
+}
+
+Class PM_White_Burnt_Soul_Fire : actor
+{
+	Default
+	{
+	Radius 1;
+	Height 1;
+	Speed 2;
+	Damage 0;
+    Scale 0.4;
+	Alpha 0.8;
+	Gravity 0;
+	RenderStyle "Add";
+	Translation "0:255=%[0,0,0]:[1,1,1]";
+    +NOBLOCKMAP
+    +NOTELEPORT
+    +DONTSPLASH
+	+FORCEXYBILLBOARD
+    +CLIENTSIDEONLY
+	+ROLLSPRITE
+	+MISSILE
+	}
+	States
+	{
+    Spawn:
+        TNT1 A 2;
+		TNT1 A 0 A_CheckSight("SightNull");
+		TNT1 A 0 A_SetRoll(random(0,360));
+        FRFX KLMNOP 3 BRIGHT;
+        Stop;
+	SightNull:
+		TNT1 A 1;
+		Stop;
+	}
+}
+
+Class PM_White_Fire_Shrapnel : Actor
+{
+    int timer;
+	Default
+	{
+		Radius 4;
+		Height 4;
+		Speed 9;
+		Mass 3;
+		BounceFactor 0.6;
+		WallBounceFactor 0.6;
+		+HEXENBOUNCE
+		+NOBLOCKMAP
+		+MISSILE
+		+NOTELEPORT
+		+DONTSPLASH
+		+ROLLSPRITE
+		Scale 0.76;
+	}
+
+    States
+	{
+		Spawn:
+			TNT1 A 0 NoDelay { timer = random(20,75); }
+		Go:
+			TNT1 A 2 
+			{
+			if(timer < 0)
+			SetStateLabel("Death");
+			A_SpawnProjectile("PM_White_Burnt_Soul_Fire",0,0,random(0,360),2,random(0,160));
+			timer--;
+			}
+			Loop;
+		Death:
+			TNT1 A 0;
+			TNT1 A 0 A_SpawnItem("W_Ground_Fire");
+			Stop;
+    }
+}
+
+Class PM_Big_White_Fire_ball : Actor
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 25;
+		FastSpeed 30;
+		DamageFunction (Random(18,25));
+		Scale 1;
+		Projectile;
+		Alpha 1;
+		SeeSound "Husk/Throw";
+		DeathSound "GenericCometExp";
+		Decal "BigScorch";
+	}
+
+	States
+	{
+		Spawn:
+			TNT1 A 1 Light("WhiteFire3") 
+			{
+				A_SpawnItemEx("PM_Fire_White_Globs",0,0,0,0,0,0,0,128);
+			}
+			Loop;
+		Death:
+			TNT1 A 0;
+			TNT1 A 0 A_StartSound("BigExplosionDistant", CHAN_7);
+			TNT1 A 0 A_Explode(35,140);
+			TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0);
+			TNT1 A 0 A_StartSound("baron/attack",CHAN_6);
+			TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_Big_Fire_White_Globs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+			TNT1 AAA 0 A_SpawnItemEx("PM_White_Explosion_Flare_Spawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("PM_White_Generic_Explosion_Flames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_White_Fire_Shrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+			BZR2 CDE 6 Light("WhiteFire4");
+			Stop;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////// Fire Breath
+
+Class W_Fire_Breath : Actor
+{
+	Default
+	{
+		Radius 2;
+		Height 4;
+		Speed 28;
+		DamageFunction 3;
+		PROJECTILE;
+		RENDERSTYLE "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		DamageType "Fire";
+		Scale 0.02;
+		DeathSound "Fire/Unleash";
+		+THRUGHOST
+		+ROLLSPRITE
+		+FORCEXYBILLBOARD
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_SpawnItemEx("PM_White_Fire_Effect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+		NULL A 1 Bright;
+		TNT1 A 0 A_Jump(255,"Go","Go2");
+		
+	Go:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		FLMF ABCDEFEDCBA 2 Bright Light("WhiteFire1")
+				{
+					A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+					A_SetScale(Scale.X+0.04);
+				}
+		TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+		FLMF ABCDEF 2 Bright Light("WhiteFire1");
+		TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+		FLMF EDCBABC 2 Bright Light("WhiteFire1")
+				{
+					A_SetScale(Scale.X+0.05);
+					A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+					A_Fadeout(0.1);
+				}
+		Stop;
+		
+	Go2:
+		TNT1 A 0 A_SetRoll(random(0,360));
+		FLMF FEDCBABCDEF 2 Bright
+				{
+					A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+					A_SetScale(Scale.X+0.03);
+				}
+		TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+		FLMF EDCBA 2 Bright;
+		TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+		FLMF BCDEFED 2 Bright
+				{
+					A_SetScale(Scale.X+0.05);
+					A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+					A_Fadeout(0.1);
+				}
+		stop;
+	
+	Death:
+		FRFX HIJ 2 Bright;
+		FRFX J 0 A_SpawnProjectile ("W_Ground_Fire",0,0,0,4);
+		FRFX KLM 2 Bright;
+		FRFX NO 2 Bright;
+		stop;
+	}
+}
+
+Class W_Ground_Fire : Actor
+{
+	Default
+	{
+		Radius 8;
+		Height 40;
+		PROJECTILE;
+		RENDERSTYLE "Add";
+		Translation "0:255=%[0,0,0]:[1,1,1]";
+		DamageType "Fire";
+		ALPHA 1;
+		Scale 1.3;
+		-NOGRAVITY
+		+LOWGRAVITY
+		+NOEXPLODEFLOOR
+		+NODAMAGETHRUST
+		+THRUGHOST
+		+DONTSPLASH
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetScale(frandom(0.4,1.7));
+		FRTF ABC 4 Bright;
+		FRTF A 0 Bright A_StartSound("Fire/Idle",CHAN_5,1,true,2);
+	
+	Go:
+		FRTF A 0 Bright A_Explode(1,16,0);
+		FRTF CDEFGEF 4 Bright A_Explode(1,16,0);
+		FRTF A 0 A_Jump(16,1);
+		loop;
+		NULL A 0;
+		FRTF GHIJKLMNO 3 Bright;
+		goto death;
+		
+	Death:
+		TNT1 A 0 A_StopSound(CHAN_5);
+		NULL A 1 Bright;
+		stop;
+	}
+}

@@ -76,7 +76,7 @@ Accensus - Target leading code, Venting/Sigil sounds, Hitbox code, Health slider
 Bugsie - Revamped bullet spark code, Void Floater sprites and code, Gazer code and sprites, Blasphemer code base and sprite edits, Infernal code base, sounds and sprite edits, Hell's Fury/Grave Guard sprites, Bulltubus sprites, Director code base and sounds
 jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
-H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, sprites and code
+H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, Fire Starter, sprites and code
 Touhou - Projectile Sprites
 
 MY APOLOGIES IF I MISSED ANYONE!
