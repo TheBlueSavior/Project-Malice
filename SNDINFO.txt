@@ -4527,7 +4527,7 @@ Bulltubus/Shotgun3 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG3.ogg"
 
 $rolloff Bulltubus/Gun 400 2200
 $rolloff Bulltubus/Shotgun 400 2500
-$rolloff Bulltubus/IreGun 400 2800
+$rolloff Bulltubus/IreGun 400 2500
 $rolloff Bulltubus/IreGunDown 400 2200
 $rolloff Bulltubus/WindUp 300 1800
 $rolloff Bulltubus/WindLoop 300 1800
@@ -4537,8 +4537,8 @@ $rolloff Bulltubus/WindDown 300 1800
 $rolloff Bulltubus/Roar 300 2000
 $rolloff Bulltubus/FlamerLoop 300 2000
 $volume Bulltubus/Shotgun 0.90
-$volume Bulltubus/IreGun 0.65
-$volume Bulltubus/IreGunDown 0.65
+$volume Bulltubus/IreGun 0.95
+$volume Bulltubus/IreGunDown 0.85
 $volume Bulltubus/IreWindLoop1 0.75
 $volume Bulltubus/IreWindLoop2 0.85
 

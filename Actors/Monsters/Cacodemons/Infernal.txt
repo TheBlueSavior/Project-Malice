@@ -9,7 +9,7 @@ Class PM_Infernal : PMWrathMonsterBase
 		ActiveSound "PMInfernal/Active";
 		Obituary "%o got pulverized by the Infernal's full potential.";
 		HitObituary "%o got turned into a charred corpse.";
-		Health 440;
+		Health 420;
 		Radius 31;
 		Height 56;
 		Mass 400;
@@ -31,7 +31,7 @@ Class PM_Infernal : PMWrathMonsterBase
 		+SLIDESONWALLS
 		+DONTHARMSPECIES
 		+DONTHARMCLASS
-		+NOTARGET
+		//+NOTARGET
 		Bloodtype "PM_LavaBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
@@ -130,12 +130,12 @@ Class PM_Infernal : PMWrathMonsterBase
 			if(ire == true)
 			A_SetSpeed(14);
 			}
-			TNT1 A 0 A_Jump(20,"Rush");
+			TNT1 A 0 A_Jump(10,"Rush");
 			INFR ABCD 2
 			{
 			A_Chase();
 			if(ire == true)
-			A_Jump(40,"Rush");
+			A_Jump(30,"Rush");
 			}
 			TNT1 A 0 { pm_irecount -= 2; }
 			Loop;
@@ -465,7 +465,7 @@ Class PM_Infernal : PMWrathMonsterBase
 			TNT1 A 0 A_StopSound(CHAN_6);
 			INFR K 2 A_Pain;
 			TNT1 A 0 { pm_irecount -= 10; }
-			TNT1 A 0 A_Jump(120,"Rush");
+			TNT1 A 0 A_Jump(60,"Rush");
 			INFR FGF 5;
 			Goto See2;
 		Death:

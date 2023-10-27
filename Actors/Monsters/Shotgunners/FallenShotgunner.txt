@@ -4,7 +4,7 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
    Default
    {
    //$Category "PM_Monsters/Shotgunners"
-   Health 120;
+   Health 80;
    Height 56;
    Radius 20;
    Speed 8;

@@ -9,7 +9,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
     Height 56;
     Speed 10;
     Mass 100;
-    PainChance 65;
+    PainChance 35;
     Damage 1;
     MONSTER;
     -COUNTKILL
@@ -191,7 +191,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
         UDM2 G 2
 		{
 		A_Pain();
-		ThrustThing(random(0,128),random(8,25), 0, 0);
+		ThrustThing(random(0,128),random(0,20), 0, 0);
 	    ThrustThingZ(0,5,0,1);
 		}
 		UDM2 GGGGGGGG 1
