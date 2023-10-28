@@ -32,7 +32,7 @@ Class PM_FeralImp : PMWrathMonsterBase
   MeleeRange 155;
   +FLOORCLIP
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_DemonicTeleportFog";
+  TeleFogDestType "PM_WrathTeleportFog";
   }
   
   states

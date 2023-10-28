@@ -28,7 +28,7 @@ Class PM_Wicked : PMEnvyMonsterBase
 		+Float
 		+FloatBob
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogDestType "PM_EnvyTeleportFog";
 		PMMonsterBase.RealHeight 86;
 	}
 	

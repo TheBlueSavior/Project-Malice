@@ -30,7 +30,7 @@ Class PM_Vore : PMEnvyMonsterBase
   Species "Nobles";
   Tag "Vore";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_DemonicTeleportFog";
+  TeleFogDestType "PM_EnvyTeleportFog";
   }
   
   void PM_EnvyRuneGlow()

@@ -28,7 +28,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
    +DONTHARMSPECIES
    +FLOORCLIP
    TeleFogSourceType "PM_SmallDemonicTeleportFog";
-   TeleFogDestType "PM_DemonicTeleportFog";
+   TeleFogDestType "PM_WrathTeleportFog";
    }
  
    

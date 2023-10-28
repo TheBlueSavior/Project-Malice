@@ -2740,6 +2740,11 @@ Actor PM_LustTeleportFire : PM_DemonTeleportFire
   Translation "0:255=%[0,0,0]:[0.8,0.2,2.0]"
 }
 
+Actor PM_EnvyTeleportFire : PM_DemonTeleportFire
+{
+  Translation "0:255=%[0,0,0]:[0.7,1.9,0.0]"
+}
+
 ACTOR PM_TeleSummonCircle
 {
 +CLIENTSIDEONLY
@@ -2763,6 +2768,36 @@ Spawned:
 	C1TE A 100 Bright
 Fade:
 	C1TE A 5 Bright
+	{
+	A_FadeOut(0.1);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_WrathSummonCircle
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright
++FLATSPRITE
+Radius 20
+Height 1
++NOBLOCKMAP
+Scale 1.5
+Alpha 1
+Renderstyle "Add"
+States
+{
+Spawn:
+    FXPO C 1 Bright
+	{
+	A_SetAngle(frandom(-180,180));
+	}
+Spawned:
+	FXPO C 150 Bright
+Fade:
+	FXPO C 5 Bright
 	{
 	A_FadeOut(0.1);
 	}
@@ -2818,6 +2853,36 @@ Spawn:
     C1TE AAAAAAAAAAAAAAAAAAAAA 1 Bright
 	{
 	A_SpawnItemEx("PM_LustTeleportFire",random(-40,40),random(-40,40),0,0,0,random(3,6));
+	}
+Spawned:
+	C1TE A 100 Bright
+Fade:
+	C1TE A 5 Bright
+	{
+	A_FadeOut(0.1);
+	}
+    Loop
+    }
+}
+
+ACTOR PM_EnvyTeleCircle
+{
++CLIENTSIDEONLY
++NOINTERACTION
++Bright
+Radius 20
+Height 1
++NOBLOCKMAP
++FLATSPRITE
+Scale 0.7
+Alpha 1
+Translation "0:255=%[0,0,0]:[0.5,1.9,0.0]"
+States
+{
+Spawn:
+    C1TE AAAAAAAAAAAAAAAAAAAAA 1 Bright
+	{
+	A_SpawnItemEx("PM_EnvyTeleportFire",random(-40,40),random(-40,40),0,0,0,random(3,6));
 	}
 Spawned:
 	C1TE A 100 Bright
@@ -3724,6 +3789,11 @@ Speed 2
 ACTOR PM_GrenadeGenericExplosionFlames : PM_GenericExplosionFlames
 {
 Scale 2.3
+}
+
+ACTOR PM_WrathTeleExplosionFlames : PM_GenericExplosionFlames
+{
+Scale 1.8
 }
 
 ACTOR PM_WhiteExplosionFlames : PM_GenericExplosionFlames

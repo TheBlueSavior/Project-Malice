@@ -34,7 +34,7 @@ Class PM_Infernal : PMWrathMonsterBase
 		//+NOTARGET
 		Bloodtype "PM_LavaBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogDestType "PM_WrathTeleportFog";
 	}
 	
 	override void PostBeginPlay()

@@ -4399,7 +4399,22 @@ $pitchset PM/GluttonyTeleSplat 0.25 0.45
 PM/LustTele	"Sounds/Other/PMLustTele.ogg"
 $pitchset PM/LustTele 0.8 1.1
 $limit PM/LustTele 4
-$rolloff PM/LustTele 300 1800
+$rolloff PM/LustTele 200 1800
+
+PM/EnvyTele	"Sounds/Other/PMEnvyTele.ogg"
+$pitchset PM/EnvyTele 0.8 1.1
+$limit PM/EnvyTele 4
+$rolloff PM/EnvyTele 200 1800
+
+PM/WrathTele1	"Sounds/Other/PMWrathTele1.ogg"
+$pitchset PM/WrathTele1 0.9 1.1
+$limit PM/WrathTele1 4
+$rolloff PM/WrathTele1 200 1800
+
+PM/WrathTele2	"Sounds/Other/PMWrathTele2.ogg"
+$pitchset PM/WrathTele2 0.9 1.1
+$limit PM/WrathTele2 4
+$rolloff PM/WrathTele2 200 1800
 
 $random PM/LustTeleVoice { PM/LustTeleVoice1 PM/LustTeleVoice2 PM/LustTeleVoice3 PM/LustTeleVoice4 PM/LustTeleVoice5 }
 PM/LustTeleVoice1 "Sounds/Other/PMLustTeleVoice1.ogg"
@@ -4411,6 +4426,15 @@ $volume PM/LustTeleVoice 0.23
 $limit PM/LustTeleVoice 4
 $pitchset PM/LustTeleVoice 0.7 1
 $rolloff PM/LustTeleVoice 100 3200
+
+$random PM/WrathTeleVoice { PM/WrathTeleVoice1 PM/WrathTeleVoice2 }
+PM/WrathTeleVoice1 "Sounds/Other/PMWrathTeleVoice1.ogg"
+PM/WrathTeleVoice2 "Sounds/Other/PMWrathTeleVoice2.ogg"
+
+$volume PM/WrathTeleVoice 0.8
+$limit PM/WrathTeleVoice 4
+$pitchset PM/WrathTeleVoice 0.5 1.2
+$rolloff PM/WrathTeleVoice 100 3200
 
 //Nazi Zombie Sounds
 Nazi/Attack/1	"Sounds/Monsters/Zombiemen/NaziZombieSounds/Nazi_Attack_1.wav"
