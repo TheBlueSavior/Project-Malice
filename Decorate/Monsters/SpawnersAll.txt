@@ -136,7 +136,7 @@ Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 	DropItem "PM_Corpulent", 255, 7
 	DropItem "PM_Bulltubus", 255, 5
 	DropItem "PM_Abhorrent", 255, 1
-	DropItem "PM_FireStarter", 255, 1
+	//DropItem "PM_FireStarter", 255, 1
 }
 
 Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
