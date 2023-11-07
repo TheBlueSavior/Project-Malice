@@ -68,7 +68,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 		Goto RealMissile;
     Missile:
 		TNT1 A 0;
-		TNT1 A 0 A_Jump(20,"Roar");
+		TNT1 A 0 A_Jump(10,"Roar");
 		TNT1 A 0 A_Jump(100,"StandoffCheck");
 		TNT1 A 0 A_JumpIfCloser(300,"RealMissile");
 		TNT1 A 0 A_Jump(195,"RealMissile");
@@ -113,11 +113,11 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 		Goto See2;
 		
 		CloseMissile:
-		TNT1 A 0 A_Jump(256,"Missile","Retreat");
+		TNT1 A 0 A_Jump(256,"Missile");
 		Goto See2;
 		
 	StandoffCheck:
-		TNT1 A 0 A_JumpIfCloser(500,"CloseMissile");
+		TNT1 A 0 A_JumpIfCloser(400,"CloseMissile");
 		TNT1 A 0 A_SetSpeed(12);
 		TNT1 A 0 { bFRIGHTENED = true; }
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
@@ -144,7 +144,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 		TNT1 A 0 { bFRIGHTENED = false; }
 		TNT1 A 0 { bMISSILEEVENMORE = true; }
 		TNT1 A 0 A_Jump(10,"See2");
-		TNT1 A 0 A_JumpIfCloser(500,"Retreat");
+		TNT1 A 0 A_JumpIfCloser(200,"Retreat","RealMissile");
 		TNT1 A 0 A_SetSpeed(0);
 		A02A BBBBBBBBBBBB 3 
 		{

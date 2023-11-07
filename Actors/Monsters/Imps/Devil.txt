@@ -24,7 +24,6 @@ Class PM_Devil : PMUnaffMonsterBase
   +MissileMore
   +DONTHARMCLASS
   +DONTHARMSPECIES
-  +AVOIDMELEE
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_DemonicTeleportFog";
   }
@@ -49,6 +48,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	Goto See2;
   See2:
 	TNT1 A 0 { bMISSILEevenMore=False; }
+	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM AAABBB 2 A_Chase();
@@ -59,6 +59,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	Loop;
   AltSee:
 	TNT1 A 0;
+	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_SetSpeed(12);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
     D3IM AABB 2 A_Chase();
@@ -66,11 +67,10 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCDD 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
 	TNT1 A 0 A_Jump(19,"See2","Fight");
     loop;
    BackCheck:
-	TNT1 A 0 A_Jump(135,"DespMissile","Backup");
+	TNT1 A 0 A_Jump(135,"DespMissile","Backup","FireLeft","FireRight");
 	Goto Fear;
    Backup:
 	TNT1 A 0 { bNODROPOFF=True; }
@@ -123,10 +123,11 @@ Class PM_Devil : PMUnaffMonsterBase
 	A_FaceTarget();
 	}
 	TNT1 A 0 { bNODROPOFF=False; }
+	TNT1 A 0 A_Jump(100,"DespMissile");
 	Goto Missile;
   Melee:
 	TNT1 A 0;
-	TNT1 A 0 A_Jump(128,"FearCheck");
+	TNT1 A 0 A_Jump(40,"FearCheck");
 	TNT1 A 0 A_Jump(100,"Missile");
 	D3IM W 1 A_FaceTarget();
 	D3IM WE 4 ;
@@ -143,7 +144,7 @@ Class PM_Devil : PMUnaffMonsterBase
   Missile:
 	TNT1 A 0 A_Jump(140,"StandoffCheck");
 	TNT1 A 0 A_Jump(60,"FireLeft","FireRight");
-	TNT1 A 0 A_Jump(30,"Roar");
+	TNT1 A 0 A_Jump(20,"Roar");
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
@@ -271,7 +272,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCDD 2 A_Wander();
 	TNT1 A 0 { bFRIGHTENED=False; }
-	TNT1 A 0 A_Jump(95,"Standoff");
+	TNT1 A 0 A_Jump(115,"Standoff");
 	Loop;
   StandoffMissile:
 	TNT1 A 0 A_Jump(60,"SFireLeft","SFireRight");
@@ -380,7 +381,7 @@ Class PM_Devil : PMUnaffMonsterBase
    Goto See2;
 	
   RetreatCheck:
-	TNT1 A 0 A_Jump(100,"Standoff");
+	TNT1 A 0 A_Jump(100,"Standoff","DespMissile","FireRight","FireLeft");
   Retreat:
     TNT1 A 0 A_SetSpeed(9);
 	TNT1 A 0 { bFRIGHTENED=True; }
@@ -406,7 +407,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	A_Chase();
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_Jump(60,"Standoff");
+	TNT1 A 0 A_Jump(120,"Standoff");
 	Loop;
   DespMissile:
 	TNT1 A 0 ThrustThingZ(0,24,0,1);
@@ -459,17 +460,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	D3IM CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AB 3 A_Chase();
-	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CD 3 A_Chase();
-	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AB 3 A_Chase();
-	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CD 3 A_Chase();
-	TNT1 AA 0 A_Recoil(-1);
+	TNT1 A 0 A_Jump(100,"DespMissile");
   Fight:
 	TNT1 A 0 { bFRIGHTENED=False; }
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)

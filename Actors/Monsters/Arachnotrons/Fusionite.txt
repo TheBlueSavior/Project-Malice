@@ -53,7 +53,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			Loop;
 		Missile:
 			TNT1 A 0 A_Jump(100,"Shotgun","Rapid");
-			FSPI G 20
+			FSPI G 15
 			{
 			A_StartSound("Fusionite/Charge");
 			A_FaceTarget();
