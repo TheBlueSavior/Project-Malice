@@ -2835,7 +2835,7 @@ SHAACT SHAACT
 
 //Voidspawn
 Voidspawn/Search "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSearch.ogg"
-$rolloff Voidspawn/Search 200 1100
+$rolloff Voidspawn/Search 200 1500
 VoidSpawn/Sight "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSight.ogg"
 Voidspawn/Death "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnDeath.ogg"
 Voidspawn/Scream "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnScream.ogg"

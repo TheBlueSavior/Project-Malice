@@ -13,7 +13,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		Mass 400;
 		Speed 12;
 		Scale 1.2;
-		Meleerange 200;
+		Meleerange 120;
 		Meleethreshold 66;
 		PainChance 128;
 		Species "Cacodemon";
@@ -379,7 +379,8 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		Goto Dissapear;
 	Chase:
 		TNT1 A 0 {bNOPAIN = true;}
-		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 A_StartSound("Voidspawn/Search",35,CHANF_LOOPING,1,ATTN_NORM,0.85);
+		TNT1 A 0 A_SetSpeed(4);
 		TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
 		VIFL A 2 Light("PM_HorrorBlackflash")
 		{
@@ -428,8 +429,28 @@ Class PM_VoidFloater : PMVoidMonsterBase
 				}
 			}
 		}
+		TNT1 A 0 A_Jump(50,"Chase");
+		TNT1 A 0 A_CheckSight("ChaseFind");
 		Loop;
+	ChaseFind:
+		TNT1 A 0 {bNOPAIN = true;}
+		TNT1 A 0 A_SetSpeed(20);
+		VIFL A 2 Light("PM_HorrorBlackflash")
+		{
+			FloaterEffects();
+			//A_Recoil(-0.1);
+			A_Chase();
+			A_FaceTarget();
+		}
+		TNT1 A 0 A_Jump(10,"Chase");
+		TNT1 A 0 A_CheckSight("ChaseFind");
+		Goto ChaseFound;
+	ChaseFound:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+		Goto Chase;
 	CreepChaseStart:
+		TNT1 A 0 A_Jump(100,"Chase","Phase");
 		TNT1 A 0 A_StartSound("Floater/Groan",24,CHANF_DEFAULT,1,ATTN_NORM,frandom(0.7,1.2));
 	CreepChase:
 		TNT1 A 0 {bNOPAIN = true;}
