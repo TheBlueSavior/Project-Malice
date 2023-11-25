@@ -358,8 +358,9 @@ Class PM_ExileWallSpawner : Actor
 			TNT1 A 1;
 			Loop;
 		Death:
-			TNT1 A 0 A_StopSound(CHAN_7);
-			TNT1 A 0 A_KillChildren();
+			TNT1 A 1 A_StopSound(CHAN_7);
+			TNT1 A 1 A_KillChildren();
+			TNT1 A 1;
 			Stop;
 	}
 }
