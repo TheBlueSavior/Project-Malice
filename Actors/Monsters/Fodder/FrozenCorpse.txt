@@ -46,10 +46,13 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
 	TNT1 A 10 PM_Look();
 	Loop;
   Look:
+    TNT1 A 0 { bTHRUACTORS = true; }
     TNT1 A 5 { for(int i=30;i>0;i--) A_Wander(); }
-	TNT1 A 0 A_CheckSight("See");
+	  TNT1 A 0 A_CheckSight("See");
 	Loop;
   See:
+    TNT1 A 0 { bTHRUACTORS = false; }
+  See2:
 	UMBE A random(0, 8)
 	{
 		if (target)

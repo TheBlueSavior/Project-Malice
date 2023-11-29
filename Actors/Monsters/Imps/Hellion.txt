@@ -246,14 +246,18 @@ Class PM_Hellion : PMUnaffMonsterBase
 	A_CheckProximity("Burst","PM_HellionGeyser",2000,2);
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_StartSound("Exile/ImmolateStart",15,pitch:1.25);
+	HELN K 6 { 
+	if(target && CheckSight(target))
+	A_SpawnProjectile("PM_HellionGeyser");
+	else
+	A_Jump(256,1);
+	}
 	HELN KKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
 	{
 	A_SpawnItemEx("ExileHandFire",8,random(-8,1),30,0,0,1);
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,6));
 	A_FaceTarget();
 	}
-	HELN K 6 A_SpawnProjectile("PM_HellionGeyser");
 	HELN KKKKKKKKKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
 	{
 	A_SpawnItemEx("ExileHandFire",8,random(-8,1),30,0,0,1);
@@ -535,7 +539,19 @@ Class PM_HellionGeyser : Actor
  States
  {
   Spawn:
-   TNT1 A 20;
+   TNT1 A 0;
+   TNT1 A 2 A_StartSound("Exile/ImmolateStart",15,pitch:1.25);
+   SBLL AAAAAAAAAAAAAAAAAAAAAAAAAAA 2
+   {
+   A_SetRoll(random(0,360));
+   A_FadeIn(0.01,FTF_CLAMP);
+   A_SpawnParticleEx
+	   ( "",
+		TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,60), size: frandom(0.9,24), xoff: random(-55,55), yoff: random(-55,55),
+		zoff: random(0,15), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(0,2),
+		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+   }
    TNT1 A 0
    {
     A_StartSound("Exile/Immolate");
