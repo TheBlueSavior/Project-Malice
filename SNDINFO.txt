@@ -4364,7 +4364,10 @@ $limit PM/MagBounce 4
 $limit PM/HeavyMagBounce 4
 $limit PM/PistolMagBounce 4
 
-//Sin-Specific Stuff
+//Sin-Specific Stuff & Miscellaneous
+
+HugeFire/Idle "Sounds/Other/PMHugeFireLoop.ogg"
+HugeFire/End "Sounds/Other/PMHugeFireLoopEnd.ogg"
 
 $random Wrath/Ire { WrathIre1 WrathIre2 WrathIre3 }
 WrathIre1 "Sounds/Monsters/SFX/WrathIre1.ogg"

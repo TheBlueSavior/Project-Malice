@@ -732,7 +732,7 @@ Class PM_HuskFirebomb : DoomImpBall
 	TNT1 A 0 A_Explode(30,100);
 	TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0);
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
-	TNT1 AAAAA 0 
+	TNT1 A 0  
 	{
 	for(int i=2;i>0;i--)
 	 {
@@ -821,7 +821,7 @@ Class PM_HuskMeteor : DoomImpBall
 	TNT1 AAAA 0 A_SpawnProjectile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360));
 	TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0);
     HUBL EFGHI 1 BRIGHT Light("AvatarFireball4");
-	TNT1 A 0 A_SpawnProjectile("PM_HuskMeteorFire", 0, 0, 0, 0);
+	TNT1 A 0 { for(int i=random(2,3);i=0;i--) A_SpawnItemEx("PM_HuskMeteorFire",0,0,0,frandom(-3,3),frandom(-3,3),frandom(-5,5)); }
 	TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_ExplosionLongerSmokeBig2",0,0,1,random(-3,3),random(-3,3),random(-3,3),0,0,70);
 	TNT1 AAAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
 	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
@@ -857,59 +857,62 @@ Class PM_HuskMeteorIre : PM_HuskMeteor
 
 Class PM_HuskMeteorFire : Actor
 {
+  int timer;
   Default
   {
   DamageType "Fire";
-  scale 2.0;
+  Scale 0.10;
   Radius 8;
   Height 40;
-  renderstyle "Add";
-  alpha 0.90;
+  Renderstyle "Add";
+  Alpha 0.90;
   PROJECTILE;
+  Gravity 0.65;
   -NOGRAVITY
-  +LOWGRAVITY
   +NOEXPLODEFLOOR
   +NODAMAGETHRUST
   +THRUGHOST
   }
-  states
+  States
   {
   Spawn:
     TNT1 A 0;
-	TNT1 A 0 A_StartSound("Fire/Idle",5,1,true);
+	TNT1 A 0 { timer = random(4,8); }
   Go:
-    CFCF LKJ 2 bright; 
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode(4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56);
-	CFCF LKJ 2 bright;
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode(4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56); 
-	CFCF LKJ 2 bright;
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode(4, 56);
-	CFCF A 1 bright;
-	CFCF A 1 bright A_Explode (4, 56);
-	CFCF BCDEFGHIJKLM 2 bright A_Explode (4, 56);
-	CFCF NOP 2 bright;
-	TNT1 A 0 A_StopSounds(0,0);
+    SPKO AA 2
+	{ A_SpawnParticleEx ( "", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add,
+	 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 30, size: 20.0, 
+	 velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5), startalphaf: 0.75,
+	 fadestepf: -0.35, sizestep: -1, startroll: random(-180,180)); }
+	SPKO A 0 A_CheckFloor("FirePop");
+	Loop;
+  FirePop:
+    TNT1 A 0;
+	TNT1 A 0 {
+	A_SetScale(0.85);
+	A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	A_StartSound("PM/WrathTele2",16);
+	A_StartSound("HugeFire/Idle",5,CHANF_LOOPING);
+	for(int i=random(3,4);i>0;i--)
+	 A_SpawnItemEx("PM_SmallerGenericExplosionFlames",0,0,0,frandom(-2.45,2.45),frandom(-2.45,2.45),frandom(0.45,3),SXF_NOCHECKPOSITION);
+	}
+  Go:
+	FLME A 1 bright A_Explode(8,56);
+	FLME BCDEFGHIJKLM 2 Bright
+	{ A_SpawnParticleEx ( "", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add,
+	 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(1,30), size: random(5,15), xoff: frandom(-12,12), yoff: frandom(-12,12), zoff: frandom(0.45,1), 
+	 velx: frandom(-0.25,0.25), vely: frandom(-0.25,0.25), velz: frandom(3.0,6.5), startalphaf: 0.85,
+	 fadestepf: -0.55, sizestep: -0.25, startroll: random(-180,180)); }
+	TNT1 A 0 { if(timer == 0)
+	SetStateLabel("GoEnd"); timer--; }
+    Loop;
+   GoEnd:
+	TNT1 A 0 A_StartSound("HugeFire/End",5);
+	FLME ABCDEFGHIJKLM 2 Bright
+	{
+	 A_SetScale(Scale.X-0.08,Scale.Y-0.08);
+	 A_FadeOut(0.08);
+	}
     stop;
   }
 }
