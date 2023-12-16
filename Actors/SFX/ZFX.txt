@@ -2124,7 +2124,7 @@ States
  TNT1 A 0 A_StartSound("PM/WrathTele1",23,CHANF_DEFAULT,1);
  TNT1 A 0 A_StartSound("PM/WrathTele2",25,CHANF_DEFAULT,1);
  //TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,CHANF_DEFAULT,0.3);
- TNT1 A 0 Radius_Quake (3, 54, 0, 30, 0);
+ TNT1 A 0 Radius_Quake (2, 54, 0, 7, 0);
  TNT1 AAA 0 A_SpawnItemEx("PM_LavaMeatChunk",0,0,0,frandom(-8,8),frandom(-8,8),frandom(0,8),0,SXF_NOCHECKPOSITION,150);
  TNT1 A 0 A_SpawnItemEx("PM_WrathSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
  TNT1 AAA 0 A_SpawnItemEx("PM_WrathTeleExplosionFlames",0,0,50,frandom(-2,2),frandom(-2,2),frandom(-2,2),0,SXF_NOCHECKPOSITION);
