@@ -655,14 +655,13 @@ Class PM_ExileFireShrapnel : Actor
 		Height 4;
 		Speed 9;
 		Mass 3;
-		BounceFactor 0.6;
-		WallBounceFactor 0.6;
+		BounceFactor 0.4;
 		+HEXENBOUNCE
 		+NOBLOCKMAP
 		+MISSILE
 		+NOTELEPORT
 		+DONTSPLASH
-		//+MOVEWITHSECTOR
+		+MOVEWITHSECTOR
 		+ROLLSPRITE
 		Scale 0.76;
 	}
@@ -672,12 +671,15 @@ Class PM_ExileFireShrapnel : Actor
 		Spawn:
 			TNT1 A 0 NoDelay { timer = random(20,75); }
 		Go:
-			TNT1 A 2 
+			TNT1 A 2
+			{
+			A_SpawnProjectile("PM_BurntSoulFire",0,0,random(0,360),CMF_OFFSETPITCH,random(0,-160));
+			timer--;
+			}
+			TNT1 A 0
 			{
 			if(timer < 0)
 			SetStateLabel("Death");
-			A_SpawnProjectile("PM_BurntSoulFire",0,0,random(0,360),2,random(0,160));
-			timer--;
 			}
 			Loop;
 		Death:
