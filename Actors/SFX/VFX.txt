@@ -4305,7 +4305,7 @@ Scale 2
 ACTOR PM_BelphFlameTrails: PM_GenericExplosionFlames
 {
 	Translation "0:255=%[0,0,0]:[2.0,0.4,0.28]"
-	Scale 0.355
+	Scale 0.3
 	Speed 3
 	States
 	{

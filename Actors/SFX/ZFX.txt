@@ -2518,7 +2518,7 @@ Default
 	TexMan.CheckForTexture("GNSML0"),
 	style: STYLE_None,
 	flags: SPF_ROLL|SPF_RELATIVE,
-	lifetime: frandom(45,125),
+	lifetime: random(45,125),
      size: random(30,76),
 	xoff: (master) ? frandom(-master.radius, master.radius) : frandom(-10,10),
 	yoff: (master) ? frandom(-master.radius, master.radius) : frandom(-7,7),
