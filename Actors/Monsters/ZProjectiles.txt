@@ -126,6 +126,32 @@ Default
     Cont:
         TRCR A 1 BRIGHT A_Quake(1,4,0,100,0);
         Loop;
+	Death:
+	    TNT1 AA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	    TRCR A 0 A_StartSound("PM/BulletHit");
+	    TNT1 A 0
+	    {
+		 for(int i=3;i>0;i--)
+		 A_SpawnParticleEx
+		 ( "#d2d2d2", tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		 size: frandom(65,150), velx: frandom(-2,2), vely: frandom(-2,2), velz: frandom(-1,1), startalphaf: frandom(0.4,0.9),
+		 fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1));
+		 for(int i=random(2,6);i>0;i--)
+		 A_SpawnParticleEx
+		 ( "", tex[4], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(20,85),
+		 size: frandom(3,15), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(-1,5), accelz: -0.3, startalphaf: frandom(0.4,1.0),
+		 fadestepf: -1, sizestep: -0.2, startroll: random(-180,180), rollvel: frandom(-1,1));
+	    }
+        Stop;
+  XDeath:
+        TNT1 A 0;
+		TNT1 A 0 A_RadiusThrust(150,200,RTF_NOIMPACTDAMAGE);
+        TRCR A 0 A_StartSound("PM/BulletHitFlesh");
+        Stop;
+  Crash:
+        TNT1 AA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        TRCR A 0 A_StartSound("PM_BulletHit");
+        Stop;
 	}
 }
 
