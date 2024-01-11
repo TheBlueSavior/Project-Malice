@@ -536,7 +536,7 @@ Class PM_Director : PMUnaffMonsterBase
 		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",frandom(-40, 40),frandom(-40, 40),50,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
 		TNT1 A 0
 		{
-
+            A_Explode(150,280);
 			A_StartSound("ArachChassisExplode",CHAN_5,attenuation:.5,pitch:.5);
 			A_Quake(6, 15, 0, 1000);
 			A_Quake(3, 35, 0, 2000);
