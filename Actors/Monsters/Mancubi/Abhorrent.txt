@@ -175,7 +175,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
 	ABHR DDD 2 PM_LookingForPlayer();
 	ABHR EEEFFF 2 PM_LookingForPlayer();
     Loop;
-  See2:
+  See:
 	TNT1 A 0 { bSHOOTABLE = true; }
 	TNT1 A 0 { bNOPAIN = false; }
 	TNT1 A 0 A_Jump(30,"Phase");
@@ -188,7 +188,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
     Loop;
   Spotted:
     TNT1 A 0 A_Jump(256,"SpotMissile","Roar");
-    Goto See2;
+    Goto See;
   Roar:
     TNT1 A 0 A_StartSound("Abhorrent/Sight",CHAN_5);
   SpotMissile:
@@ -209,7 +209,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
 	}
 	TNT1 A 0 { bNOPAIN = false; }
 	ABHR IG 12 A_FaceTarget();
-	Goto See2;
+	Goto See;
   SoulBreath:
     TNT1 A 0 { bNOPAIN = true; }
     ABHR GGII 3 A_FaceTarget();
@@ -221,7 +221,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
     }
 	TNT1 A 0 { bNOPAIN = false; }
     ABHR IG 5 A_FaceTarget();
-    Goto See2;
+    Goto See;
   Missile3:
     TNT1 A 0 { bNOPAIN = true; }
   ABHR G 1 A_StartSound("Abhor/BarrageCharge",25,pitch:frandom(0.75,1.0));
@@ -255,7 +255,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
     Loop;
   Mis3End:
   ABHR IG 12 A_FaceTarget(0.65,3,0,0);
-  Goto See2;
+  Goto See;
   Phase:
 	TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
 	ABHR G 5 A_FaceTarget();
@@ -274,13 +274,13 @@ Class PM_Abhorrent : PMDeathMonsterBase
 	TNT1 A 0 { bSHOOTABLE = true; }
 	TNT1 AAAAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
 	ABHR J 10 A_FaceTarget();
-	Goto See2;
+	Goto See;
   Pain:
     ABHR J 1;
 	TNT1 A 0 { bSHOOTABLE = true; }
 	TNT1 A 0 A_StartSound("MancubStep");
     ABHR J 13 A_Pain;
-    Goto See2;
+    Goto See;
   Death:
        TNT1 A 0 A_StopSounds(0,0);
 	   ABHR K 1;

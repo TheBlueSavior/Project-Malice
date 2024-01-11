@@ -57,16 +57,16 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 		TNT1 AA 0 A_Recoil(-1);
         Goto Look+1;
 	Spotted:
-	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
-		Goto See2;
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See");
+		Goto See;
 	Roar:
 	    TNT1 A 0 PM_AlertSound();
-		Goto See2;
+		Goto See;
 	SpotMissile:
         TNT1 A 0 PM_AlertSound();
 	    SPS4 EEE 3 A_FaceTarget();
 	    Goto Missile;
-    See2:
+    See:
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         SPS4 AA 4 A_Chase();
 		TNT1 AA 0 A_Recoil(-1);
@@ -110,7 +110,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 		SPS4 AA 5 A_FaceTarget();
         TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		SPS4 BB 5 A_FaceTarget();
-		Goto See2;
+		Goto See;
 	Slug:
         TNT1 A 0;
         TNT1 A 0
@@ -155,7 +155,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 		SPS4 AA 5 A_FaceTarget();
         TNT1 A 0 A_SpawnItemEx("PM_ShellCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		SPS4 BB 5 A_FaceTarget();
-		Goto See2;
+		Goto See;
 	NoAmmo:
 		SPS4 E 7 A_FaceTarget();
 		TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
@@ -222,11 +222,11 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPS4 AA 5 A_FaceTarget();
 	    SPS4 BB 5 A_FaceTarget();
-        Goto See2;
+        Goto See;
     Pain:
         SPS4 G 5;
         SPS4 G 3 A_Pain;
-        Goto See2;
+        Goto See;
     Death:
 	    TNT1 A 0 A_StopSound(0);
 		TNT1 A 0 A_Jump(35,"PossDeath");

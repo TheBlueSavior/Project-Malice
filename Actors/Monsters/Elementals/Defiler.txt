@@ -60,7 +60,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	Spotted:
 		TNT1 A 0;
 		Goto Roar;
-	See2:
+	See:
 		DEFI AAAABBBBCCCC 2
 		{
 		A_Recoil(-0.013);
@@ -73,7 +73,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI D 0 A_Jump(90, "DefilerBalls","FastSkull");
 		DEFI D 0 A_Jump(237, "SkullGag","SkullNoGag","SkullGagBig","BarrageStart");
 		DEFI D 0 A_Jump(255, "Roar");
-		Goto See2;
+		Goto See;
 	FastSkull:
 		DEFI AA 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
@@ -86,7 +86,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_ShootSoulAttack",15,0,0);
 		}
 		DEFI FFEEDD 2 Light("AvatarFireball2") A_FaceTarget();
-		Goto See2;
+		Goto See;
 	BarrageStart:
 	   TNT1 A 0 A_JumpIfCloser(200,"Missile");
 	   DEFI DD 4 A_FaceTarget();
@@ -98,7 +98,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 	   TNT1 A 0 A_JumpIfCloser(300,"Missile");
 	Barrage:
-		TNT1 A 0 A_CheckSight("See2");
+		TNT1 A 0 A_CheckSight("See");
 		TNT1 A 0 A_JumpIfCloser(300,"AvoidBack");
 		DEFI A 2 A_FaceTarget();
 		TNT1 A 0 A_Jump(240,"BarrageLeft","BarrageRight","BarrageShoot");
@@ -123,9 +123,9 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 	   Goto BarrageShoot;
 	BarrageShoot:
-		TNT1 A 0 A_CheckSight("See2");
+		TNT1 A 0 A_CheckSight("See");
 		TNT1 A 0 A_Jump(255,"BFastSkull","BSoulSpit","BarrageBalls");
-		Goto See2;
+		Goto See;
 	BarrageBalls:
 		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
@@ -186,7 +186,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget();
-		Goto See2;
+		Goto See;
 	SkullGagBig:
 		DEFI D 0 A_Jump(60,"SkullNoGag");
 		TNT1 A 0 A_StartSound("Defiler/Ack",CHAN_5);
@@ -233,7 +233,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
-		Goto See2;
+		Goto See;
 	SkullNoGag:
 		DEFI AA 4 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
@@ -246,7 +246,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget();
-		Goto See2;
+		Goto See;
 	DefilerBalls:
 		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
@@ -256,7 +256,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8));
 		DEFI F 5 Light("AvatarFireball4") A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8));
 		DEFI FED 4 A_FaceTarget();
-		Goto See2;
+		Goto See;
     Roar:
 		DEFI A 4 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Roar", CHAN_VOICE);
@@ -266,7 +266,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
 		}
 		DEFI A 4 A_FaceTarget();
-	   Goto See2;
+	   Goto See;
 	FireBreath:
 		DEFI DDDDDDDDD 2 Light("AvatarFireball2")
 		{
@@ -285,7 +285,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		TNT1 A 0 A_StopSound(CHAN_5);
 		DEFI FED 5 A_FaceTarget();
 		TNT1 A 0 A_Jump(200,"AvoidBack");
-		Goto See2;
+		Goto See;
 	AvoidLeft:
 	   DEFI DD 4 A_FaceTarget();
 	   TNT1 A 0 ThrustThing(128, 9, 0, 0);
@@ -294,7 +294,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 ThrustThingZ(0,8,0,0);
 	   DEFI GG 5 A_FaceTarget();
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-       Goto See2;
+       Goto See;
   AvoidRight:
 	   DEFI DD 4 A_FaceTarget();
 	   TNT1 A 0 ThrustThing(0, 9, 0, 0);
@@ -303,7 +303,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 ThrustThingZ(0,8,0,0);
 	   DEFI GG 5 A_FaceTarget();
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-       Goto See2;
+       Goto See;
   AvoidBack:
 	   DEFI DD 4 A_FaceTarget();
 	   TNT1 A 0 ThrustThing(64, 9, 0, 0);
@@ -312,7 +312,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 ThrustThingZ(0,8,0,0);
 	   DEFI GG 5 A_FaceTarget();
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-       Goto See2;
+       Goto See;
   AvoidForward:
 	   DEFI EE 4 A_FaceTarget();
 	   TNT1 A 0 ThrustThing(192, 9, 0, 0);
@@ -321,12 +321,12 @@ Class PM_Defiler : PMUnaffMonsterBase
 	   TNT1 A 0 ThrustThingZ(0,8,0,0);
 	   DEFI GG 5 A_FaceTarget();
 	   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-       Goto See2;
+       Goto See;
 	Pain:
 		TNT1 A 0 A_StopSound(CHAN_5);
 		DEFI G 5;
 		DEFI G 5 A_Pain;
-		Goto See2;
+		Goto See;
 	Death:
 		TNT1 A 0 A_StartSound("Defiler/Death",CHAN_6);
 		TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",random(-15,15),random(-15,15),random(-0,30),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);

@@ -55,16 +55,16 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		TNT1 AA 0 A_Recoil(-1);
         Loop;
 	Spotted:
-	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See2");
-		Goto See2;
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See");
+		Goto See;
 	Roar:
 	    TNT1 A 0 PM_AlertSound();
-		Goto See2;
+		Goto See;
 	SpotMissile:
         TNT1 A 0 PM_AlertSound();
 	    POS1 EEE 3 A_FaceTarget();
 	    Goto Missile;
-	See2:
+	See:
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         POS1 AA 4 A_Chase();
 		TNT1 AAA 0 A_Recoil(-1);
@@ -133,7 +133,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		POS1 EEEBBBBBBBB 4 A_FaceTarget(10,20,0,0);
 		TNT1 A 0 A_StartSound("PM/RifleBoltSlide",CHAN_5);
 		POS1 AAABBBBBB 4 A_FaceTarget(10,20,0,0);
-		Goto See2;
+		Goto See;
     Missile:
         TNT1 A 0;
 		TNT1 A 0 A_Jump(30,"Puke");
@@ -207,7 +207,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		}
 		}
 		POS1 E 6 A_FaceTarget(10,15,0,0);
-        Goto See2;
+        Goto See;
 	OnceShot:
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
@@ -224,7 +224,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		return ResolveState(null);
 		}
 		POS1 E 6 A_FaceTarget(10,15,0,0);
-		Goto See2;
+		Goto See;
 	Missile2:
 		TNT1 A 0 A_StartSound("ZombieSoldier/Attack",CHAN_6);
 		POS1 EE 6
@@ -248,8 +248,8 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		return ResolveState(null);
 		}
 		POS1 E 6 A_FaceTarget(15,15,0,0);
-		TNT1 A 0 A_Jump(30,"See2");
-		D3CG E 0 A_MonsterRefire(60,"See2");
+		TNT1 A 0 A_Jump(30,"See");
+		D3CG E 0 A_MonsterRefire(60,"See");
 		Goto Missile2+1;
 	Puke:
 		TNT1 A 0 A_StartSound("GenericBloodPuke");
@@ -263,7 +263,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		A_SpawnProjectile("HungerBloodSpray",46,0,random(20,-20),CMF_AIMDIRECTION);
 		}
 		POS1 G 3;
-		Goto See2;
+		Goto See;
     Pain:
         POS1 G 5;
         POS1 G 3 A_Pain;
@@ -278,7 +278,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		}
 		 return ResolveState(null);
 		}
-        Goto See2;
+        Goto See;
     Death:
 	    TNT1 A 0 A_StopSound(0);
 		TNT1 A 0 A_Jump(35,"PossDeath");

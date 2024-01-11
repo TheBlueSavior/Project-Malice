@@ -72,7 +72,7 @@ Class PM_Vore : PMEnvyMonsterBase
     Loop;
   Spotted:
     TNT1 A 0 PM_AlertSound();
-  See2:
+  See:
 	TNT1 A 0 A_SetSpeed(8);
 	TNT1 A 0 { bFRIGHTENED = false; }
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
@@ -104,7 +104,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	TNT1 A 0 A_StartSound("Vore/Throw");
 	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreDagger", 32, 0, 0);
     VORE J 4 Bright Light("Greenball2") A_FaceTarget();
-	Goto See2;
+	Goto See;
   RowDagger:
     TNT1 A 0 A_JumpIfHigherorLower("NormalMissile","NormalMissile");
     VORE G 0 
@@ -178,7 +178,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	 bNOPAIN = false;
 	}
     VORE JJ 4 Bright Light("Greenball2") A_FaceTarget();
-	Goto See2;
+	Goto See;
   HomingOrb:
     VORE G 0 Bright A_StartSound("Vore/Attack", CHAN_BODY);
 	VORE GGGGHHHHHHHHHH 1 
@@ -252,7 +252,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	 sigil = false;
 	}
 	VORE JJJJJJ 1 A_FaceTarget;
-	Goto See2;
+	Goto See;
   //[NERU] only does copy attacks if threatened during standoff state
   //or if player is too close during attack states
   CopyAttack:
@@ -377,7 +377,7 @@ Class PM_Vore : PMEnvyMonsterBase
 		 );
 		A_SpawnItemEx("PM_EnvyMorphGhost",zvel:1,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		}
-		Goto See2;
+		Goto See;
   CopyLeapPause:
         BOS6 EEEEEEEEE 1 Light("GreenBall2")
 		{
@@ -411,7 +411,7 @@ Class PM_Vore : PMEnvyMonsterBase
 		 );
 		 A_SpawnItemEx("PM_EnvyMorphGhost",zvel:1,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 		}
-		Goto See2;
+		Goto See;
   CopyNoble:
 	TNT1 A 0
 	{
@@ -482,7 +482,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	 sigil = false;
 	}
 	VORE JJJJJJ 1 A_FaceTarget;
-	Goto See2;
+	Goto See;
   CopyWhiplash:
 	TNT1 A 0
 	{
@@ -557,12 +557,12 @@ Class PM_Vore : PMEnvyMonsterBase
 	 sigil = false;
 	}
 	VORE JJJJJJ 1 A_FaceTarget;
-	Goto See2;
+	Goto See;
   StandoffCheck:
 	TNT1 A 0 A_JumpIfCloser(150,"CopyAttack");
   Standoff:
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",1)
-	TNT1 A 0 A_Jump(1,"See2");
+	TNT1 A 0 A_Jump(1,"See");
 	TNT1 A 0 A_JumpIfCloser(150,"CopyAttack");
 	TNT1 A 0 A_SetSpeed(0);
 	VORE BBBRRRBBBSSS 3 
@@ -570,7 +570,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	A_Chase(null,"StandoffMissile");
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_CheckSight("See");
 	TNT1 A 0 A_Jump(120,"StandoffRepos");
 	Loop;
   RetreatCheck:
@@ -804,7 +804,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	VORE K 4;
 	VORE K 4 A_Pain;
 	TNT1 A 0 A_Jump(150,"RetreatCheck");
-	Goto See2;
+	Goto See;
   Death:
 	TNT1 A 0 
 	{

@@ -62,9 +62,9 @@ Class PM_FOCRifle : PMVoidMonsterBase
 	Spotted2:
 		TNT1 A 0 { bFRIGHTENED=False; }
 	    TNT1 A 0 PM_AlertSound();
-	    TNT1 A 0 A_Jump(256,"PhaseStart","See2");
-		Goto See2;
-    See2:
+	    TNT1 A 0 A_Jump(256,"PhaseStart","See");
+		Goto See;
+    See:
 		TNT1 A 0 A_SetSpeed(random(7,15));
         UDM2 A random(1,7)
 		{
@@ -121,18 +121,18 @@ Class PM_FOCRifle : PMVoidMonsterBase
 		{ bFRIGHTENED=False; }
 		}
 		TNT1 A 0 A_Recoil(-0.5);
-		TNT1 A 0 A_Jump(30,"PhaseStart","See2","WanderTele");
+		TNT1 A 0 A_Jump(30,"PhaseStart","See","WanderTele");
         Loop;
 	 WanderTele:
 		TNT1 A 0 A_SetSpeed(random(15,50));
 		ZOM3 ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD 1 A_Wander();
 		TNT1 A 0 A_Jump(100,"CreepSee");
-		Goto See2;
+		Goto See;
 	 RetreatTele:
 		TNT1 A 0 { bFRIGHTENED=True; }
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase();
 		TNT1 A 0 { bFRIGHTENED=False; }
-		Goto See2;
+		Goto See;
 	 CreepTele:
 		TNT1 AAAAAAAA 0 A_Chase(null,null);
 		Goto CreepSee;
@@ -184,7 +184,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
         Loop;
 	MissileEnd:
 	    UDM2 E random(10,15) A_FaceTarget(30,60,0,0);
-		Goto See2;
+		Goto See;
     Pain:
 	    TNT1 AAAAAAAAAA 0 A_FadeIn(0.1,0);
         UDM2 G 1 A_FaceTarget();
@@ -199,7 +199,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
 		A_SpawnItemEx("PM_FOCPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 		}
 		TNT1 A 0 A_Jump(25,"PhaseStart");
-        Goto See2;
+        Goto See;
 	XDeath:
     Death:
 	    TNT1 A 0;

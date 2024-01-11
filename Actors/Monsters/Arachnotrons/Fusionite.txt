@@ -45,7 +45,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			Loop;
 		Spotted:
 			TNT1 A 0 PM_AlertSound();
-		See2:
+		See:
 			FSPI A 2 A_StartSound("GenericArachWalk");
 			FSPI ABBCC 2 A_Chase();
 			FSPI D 2 A_StartSound("GenericArachWalk");
@@ -73,8 +73,8 @@ Class PM_Fusionite : PMUnaffMonsterBase
 				user_numbullets--;
 				return ResolveState(null);
 			}
-			FSPI G 1 A_CheckSight("See2"); //A_SpidRefire
-			TNT1 A 0 A_Jump(10,"See2");
+			FSPI G 1 A_CheckSight("See"); //A_SpidRefire
+			TNT1 A 0 A_Jump(10,"See");
 			Goto Missile+2;
 		Shotgun:
 			FSPI A 9 A_FaceTarget();
@@ -106,7 +106,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			FSPI G 3 A_FaceTarget();
 			TNT1 A 0 A_StartSound("GenericSteam");
 			FSPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1;
-			Goto See2;
+			Goto See;
 		ShotgunNoAmmo:
 			TNT1 A 0 A_StartSound("Fusionite/ScattershotDry");
 			FSPI H 3 Light("GreenBall3")
@@ -144,7 +144,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 				user_numbullets--;
 				return ResolveState(null);
 			}
-			FSPI G 1 A_CheckSight("See2");
+			FSPI G 1 A_CheckSight("See");
 			Goto Rapid+4;
 		NoAmmo:
 			TNT1 A 0 A_StartSound("PM/ArachnoCooldown");
@@ -378,12 +378,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			TNT1 A 0 A_StartSound("PM/ArachnoReloadEnd",CHAN_5);
 			FSPI GGG 5 Light("GreenBall3") A_FaceTarget();
 			TNT1 A 0 A_Jump(56,"Missile");
-			Goto See2;
+			Goto See;
 		Pain:
 			TNT1 A 0;
 			TNT1 A 0 A_StopSound(5);
 			FSPI I 12 A_Pain();
-			Goto See2;
+			Goto See;
 		Death:
 			TNT1 A 0;
 			TNT1 A 0 A_StopSounds(0,0);

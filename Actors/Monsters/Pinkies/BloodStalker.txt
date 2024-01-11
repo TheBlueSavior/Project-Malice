@@ -133,7 +133,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			Goto RoarNoAnim;
 		RoarNoAnim:
 		    TNT1 A 0 PM_AlertSound();
-		See2:
+		See:
 			TNT1 A 0 A_SetSpeed(15);
 			SAR2 AA 2 Fast A_Chase;
 			TNT1 A 0 A_Recoil(-0.5);
@@ -160,7 +160,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			SAR2 CCC 2 A_Chase;
 			TNT1 A 0 A_StartSound("demonstep", 3);
 			SAR2 DDD 2 A_Chase;
-			TNT1 A 0 A_Jump(10,"See2");
+			TNT1 A 0 A_Jump(10,"See");
 			Loop;
 		TPCheck:
 		    TNT1 A 0 A_Jump(66,"TPRush");
@@ -271,10 +271,10 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		A_SetSpeed(13);
 	    }
         SAR2 AABBCCDD 2 A_Chase(null,null);
-		Goto See2;
+		Goto See;
 		RoarCheck:
 			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000);
-			Goto See2;
+			Goto See;
 		Roar:
 			SAR2 A 3 A_FaceTarget;
 			SAR2 E 1 A_StartSound("BloodStalker/Roar");
@@ -283,7 +283,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 				A_QuakeEx(1, 0, 0, 30, 0, 300, "", QF_SCALEDOWN|QF_RELATIVE|QF_3D, rollintensity: 0.5, rollwave: 0.5);
 				A_FaceTarget();
 			}
-			Goto See2;
+			Goto See;
 		Melee:
 		    TNT1 A 0 A_Jump(45,"FrostBreath");
 			TNT1 A 0 A_StartSound("GenericPinkyBite");
@@ -294,7 +294,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			ThrustThingZ(0,18,0,1);
 			}
 			SAR2 G 8 A_SpawnProjectile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
-			Goto See2;
+			Goto See;
 		FrostBreath:
 			TNT1 A 0 A_StartSound("BStalker/Sight");
 			SAR2 EEEEEEEEEEEFFFFFFFFFFFF 1 
@@ -349,10 +349,10 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 		     );
 			}
 			SAR2 EE 4 A_FaceTarget;
-			Goto See2;
+			Goto See;
 		Pain:
 			SAR2 H 5 A_Pain;
-			Goto See2;
+			Goto See;
 		Death:
 		    TNT1 A 0 A_StopSounds(0,0);
 			SAR2 I 6 A_Scream;

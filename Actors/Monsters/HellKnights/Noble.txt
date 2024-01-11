@@ -44,13 +44,13 @@ Class PM_Noble : PMMonsterBase
         TNT1 A 0 A_Jump(256,"Roar","SpotMissile");
     Roar:
         TNT1 A 0 A_StartSound("Noble/Sight",CHAN_5);
-        Goto See2;
+        Goto See;
     SpotMissile:
         TNT1 A 0 A_StartSound("Noble/Sight",CHAN_5);
         NO1S EE 4 A_FaceTarget();
 		TNT1 A 0 A_Jump(256,"SingleFireball","Fireball1");
         Goto SingleFireball;
-	See2:
+	See:
 		TNT1 A 0 { bFRIGHTENED = false; }
 	    TNT1 A 0 A_SetSpeed(7);
 		TNT1 A 0 { bMISSILEEVENMORE = false; }
@@ -71,7 +71,7 @@ Class PM_Noble : PMMonsterBase
 		NO1S E 6 A_FaceTarget();
 		NO1S G 6 A_CustomMeleeAttack(random(10,30),"Doom4/Other/MeleeHit");
 		NO1S F 2 A_Recoil(2);
-		Goto See2;
+		Goto See;
 	Missile:
 	TNT1 A 0 A_Jump(60,"StandoffCheck");
 	TNT1 A 0 A_JumpIfCloser(700,"CloserChoice");
@@ -88,8 +88,8 @@ Class PM_Noble : PMMonsterBase
 	Goto Retreat;
     Standoff:
 	TNT1 A 0 { bMISSILEEVENMORE = true; }
-	TNT1 A 0 A_Jump(6,"See2");
-	TNT1 A 0 A_JumpIfCloser(300,"See2");
+	TNT1 A 0 A_Jump(6,"See");
+	TNT1 A 0 A_JumpIfCloser(300,"See");
 	TNT1 A 0 A_SetSpeed(0);
 	TNT1 A 0 A_SetScale(1.05,1.05);
 	NO1S BBB 3
@@ -115,11 +115,11 @@ Class PM_Noble : PMMonsterBase
 	A_Chase("Melee","StandoffMissile");
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_CheckSight("See");
 	TNT1 A 0 A_Jump(80,"StandoffRepos");
 	Loop;
   RetreatCheck:
-	TNT1 A 0 A_JumpIfCloser(200,"See2");
+	TNT1 A 0 A_JumpIfCloser(200,"See");
 	TNT1 A 0 A_Jump(145,"Standoff");
   Retreat:
 	TNT1 A 0 A_SetScale(1.05,1.05);
@@ -213,7 +213,7 @@ Class PM_Noble : PMMonsterBase
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		}
-	    TNT1 A 0 A_JumpIfCloser(250,"See2");
+	    TNT1 A 0 A_JumpIfCloser(250,"See");
 	    TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck");
 	Goto Standoff;
 
@@ -257,7 +257,7 @@ Class PM_Noble : PMMonsterBase
 		A_SpawnProjectile("PM_NobleFireball",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		}
-		TNT1 A 0 A_JumpIfCloser(250,"See2");
+		TNT1 A 0 A_JumpIfCloser(250,"See");
 	    TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck");
 	Goto Standoff;
   StandoffRepos:
@@ -299,7 +299,7 @@ Class PM_Noble : PMMonsterBase
 		A_SpawnProjectile("PM_NobleFireball",40);
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		}
-		Goto See2;
+		Goto See;
 	FireBall1:
 		NO1S EEEEE 1 Light("Greenball4") 
 		{
@@ -338,7 +338,7 @@ Class PM_Noble : PMMonsterBase
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		A_SpawnProjectile("PM_NobleFireball",40);
 		}
-		Goto See2;
+		Goto See;
 	Bomb:
 		TNT1 A 0 A_StartSound("Noble/PreBomb",CHAN_7);
 		NO1S EEEEEEEEEEEEE 1 Light("Greenball4") 
@@ -363,7 +363,7 @@ Class PM_Noble : PMMonsterBase
 		A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,7);
 		}
 		NO1S GGG 5 Light("Greenball3");
-		Goto See2;
+		Goto See;
 		
 	 FireBall2:
 		NO2S EEEEE 1 Light("Greenball4") 
@@ -403,7 +403,7 @@ Class PM_Noble : PMMonsterBase
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		A_SpawnProjectile("PM_NobleFireball",40);
 		}
-		Goto See2;
+		Goto See;
 	FireBall3:
 		NO1S EEEEE 1 Light("Greenball4") 
 		{
@@ -479,11 +479,11 @@ Class PM_Noble : PMMonsterBase
 		A_StartSound("HellKnight/Cast",CHAN_7);
 		A_SpawnProjectile("PM_NobleFireball",40);
 		}
-		Goto See2;
+		Goto See;
 	Pain:
 		NO1S H 2 A_StopSound(CHAN_7);
 		NO1S H 2 A_Pain;
-		Goto See2;
+		Goto See;
 
 	Death:
 	    TNT1 A 0 A_StopSounds(0,0);

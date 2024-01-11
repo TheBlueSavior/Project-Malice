@@ -67,12 +67,12 @@ Class PM_Husk : PMWrathMonsterBase
     Goto Roar;
   Roar:
     TNT1 A 0 A_StartSound("Husk/Sight",CHAN_7);
-    Goto See2;
+    Goto See;
   SpotMissile:
     TNT1 A 0 A_StartSound("Husk/Sight",CHAN_7);
     GHUL GGG 5 A_FaceTarget;
     Goto Missile;
-  See2:
+  See:
     TNT1 A 0 { bSPRITEFLIP = false; }
 	TNT1 A 0 A_Jump(40,"Sprint");
 	TNT1 A 0 A_StopSound(6);
@@ -122,7 +122,7 @@ Class PM_Husk : PMWrathMonsterBase
 	}
 	TNT1 A 0 PM_IreStartSound();
 	GHUL LLLLLLLLLLLLLLLLLLLLLLLL 2 A_FaceTarget();
-	Goto See2;
+	Goto See;
   Sprint:
 	TNT1 A 0 
 	{
@@ -154,7 +154,7 @@ Class PM_Husk : PMWrathMonsterBase
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_HuskWalkFire2",0,-5,0,1,0,0,0,128);
 	NULL A 0 A_StartSound("skeleton/step",5);
-	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_CheckSight("See");
    Loop;
 	SprintMissile:
 	GHUL H 3 Light("AvatarFireball3")
@@ -184,7 +184,7 @@ Class PM_Husk : PMWrathMonsterBase
     GHUL H 6 A_FaceTarget();
     GHUL I 6 A_CustomBulletAttack(0,0,1,random(8,8),"PM_HuskMeleeHit",65);
 	TNT1 A 0 { pm_irecount -= random(2,3); }
-    Goto See2;
+    Goto See;
   Missile:
 	TNT1 A 0 A_Jump(95,"Missile2");
 	TNT1 A 0 A_StartSound("GenericChargeHeavy",CHAN_6);
@@ -208,7 +208,7 @@ Class PM_Husk : PMWrathMonsterBase
 	 if(ire)
 	 { SetStateLabel("IreMeteor"); }
 	}
-    Goto See2;
+    Goto See;
   IreMeteor:
     TNT1 A 0 { bSPRITEFLIP = true; }
     GHUL GGGGGGGGGGGG 1 Light("AvatarFireball3") 
@@ -224,7 +224,7 @@ Class PM_Husk : PMWrathMonsterBase
 	}
 	TNT1 A 0 { bSPRITEFLIP = false; }
     GHUL I 5 A_FaceTarget();
-	Goto See2;
+	Goto See;
   Missile2:
     TNT1 A 0 A_StopSound(6);
 	TNT1 A 0 
@@ -267,7 +267,7 @@ Class PM_Husk : PMWrathMonsterBase
 	GHUL GHHI 3 Light("AvatarFireball3")
 	{
 	if(pm_attackloop < 0)
-	{ SetStateLabel("See2"); }
+	{ SetStateLabel("See"); }
 	A_FaceTarget();
 	if(ire)
 	 A_SpawnProjectile("PM_HuskIreball",random(40,45),random(-10,10),frandom(-15,15),CMF_OFFSETPITCH,random(-3,3));
@@ -290,14 +290,14 @@ Class PM_Husk : PMWrathMonsterBase
 	Loop;
   Missile2End:
     GHUL I 4 A_FaceTarget;
-	Goto See2;
+	Goto See;
   Pain:
 	TNT1 A 0 A_StopSound(CHAN_6);
 	TNT1 A 0 { bSPRITEFLIP = false; }
     GHUL L 5;
     GHUL L 5 A_Pain;
 	TNT1 A 0 { pm_irecount -= random(6,8); }
-    Goto See2;
+    Goto See;
   Death:
 	TNT1 A 0 
 	{

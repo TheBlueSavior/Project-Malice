@@ -55,8 +55,8 @@ Class PM_CyberBrute : PMUnaffMonsterBase
             Loop;
 		Spotted:
 		    TNT1 A 0 A_Jump(65,"RoarCheck");
-			Goto See2;
-		See2:
+			Goto See;
+		See:
 			TNT1 A 0 { bNOPAIN = false; }
 			TNT1 A 0 { bSLIDESONWALLS = false; }
 			CBRU AA 2 Fast A_Chase();
@@ -74,21 +74,21 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 			Loop;
 		RoarCheck:
 			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000);
-			Goto See2;
+			Goto See;
 		Roar:
 			CBRU A 3 A_FaceTarget;
 			CBRU E 1 A_StartSound("CBrute/Sight");
 			CBRU EFFFFFFFFE 4 A_FaceTarget;
-			Goto See2;
+			Goto See;
 		LungeCheck:
 		    TNT1 A 0;
-			TNT1 A 0 A_CheckSight("See2");
-			TNT1 A 0 A_JumpIfHigherOrLower("See2","Lunge");
+			TNT1 A 0 A_CheckSight("See");
+			TNT1 A 0 A_JumpIfHigherOrLower("See","Lunge");
 		Lunge:
 		    TNT1 A 0;
 			TNT1 A 0 A_CheckSight("See");
 			TNT1 A 0 A_JumpIfCloser(340,1);
-			Goto See2;
+			Goto See;
 			CBRU H 8
 			{
 			A_StartSound("CBrute/Hyd",2);
@@ -123,7 +123,7 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 			CBRU G 2;
 			TNT1 A 0 A_Quake(1,8,0,500,0);
 			CBRU H 10 A_StartSound("CBrute/Land",3);
-			Goto See2;
+			Goto See;
 		Melee:
 			CBRU E 2 A_FaceTarget;
 			CBRU E 3;
@@ -134,10 +134,10 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 			CBRU F 6;
 			CBRU G 6 A_SpawnProjectile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
 			CBRU G 8;
-			Goto See2;
+			Goto See;
 		Pain:
 			CBRU H 2 A_Pain;
-			Goto See2;
+			Goto See;
 		Death:
 		    TNT1 A 0 A_StopSounds(0,0);
 			CBRU I 6 A_Scream;

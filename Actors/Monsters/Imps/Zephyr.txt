@@ -51,7 +51,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
     TNT1 A 0 A_Jump(256,"RoarNoAnim","RoarNoAnim","Jump","CeilingJump","Fight","Roar");
   RoarNoAnim:
     TNT1 A 0 PM_AlertSound();
-  See2:
+  See:
 	TNT1 A 0 { bMISSILEMORE = false; }
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
 	TNT1 A 0 A_SetSpeed(16);
@@ -72,11 +72,11 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	CBEL DDCCBBAACCBBAACCBBAADDCCBBAA 2 A_Chase();
 	TNT1 A 0 A_SetSpeed(18);
 	TNT1 A 0 A_Jump(50,"Missile");
-	Goto See2;
+	Goto See;
 	
 	CeilingJump:
 	TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2);
-	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See2");
+	TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See");
     CBEL BBAA 4;
 	TNT1 A 0 ThrustThingZ(0,25,0,1);
 	//TNT1 A 0 A_StartSound("MAMAMIA")	//I will always remember you. F
@@ -86,9 +86,9 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	CBEL EEE 2 A_CheckCeiling("CeilingLatch");
 	TNT1 A 0 ThrustThingZ(0,55,0,1);
 	CBEL EEEE 3 A_CheckCeiling("CeilingLatch");
-	CBEL EEEEEEE 3 A_CheckFloor("See2");
+	CBEL EEEEEEE 3 A_CheckFloor("See");
 	TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
-	Goto See2;
+	Goto See;
 	
 	CeilingLatch:
 	TNT1 A 0
@@ -151,7 +151,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 		TNT1 A 0 A_StartSound("Imp/Step",4);
 		TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
 		CBEL BB 2 A_FaceTarget();
-		Goto See2;
+		Goto See;
 		
 	CeilingPounce: 
 		TNT1 AAA 0;
@@ -188,7 +188,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	    A_SpawnitemEx("BelphFire",7,random(-5,5),random(18,26),0,0,2);
 	    A_SpawnProjectile("PM_FastImpBall",35,5);
 	    }
-        Goto See2;
+        Goto See;
       StandoffCheck:
 	    TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
 	    TNT1 A 0 A_JumpIfCloser(300,"StandoffMissile");
@@ -199,7 +199,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 		bMISSILEMORE = true;
 		bFRIGHTENED = false;
 		}
-	    TNT1 A 0 A_Jump(12,"See2");
+	    TNT1 A 0 A_Jump(12,"See");
 	    TNT1 A 0 A_JumpIfCloser(150,"FearCheck");
 	    TNT1 A 0 A_SetSpeed(0);
 	    BELA AAAAAAAAAAAA 2
@@ -208,7 +208,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	    A_FaceTarget();
 	    return A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
 	    }
-	    TNT1 A 0 A_CheckSight("See2");
+	    TNT1 A 0 A_CheckSight("See");
 	    TNT1 A 0 A_Jump(150,"StandoffRepos");
 	    TNT1 A 0 A_Jump(50,"StandoffDodge");
 	    Loop;
@@ -218,7 +218,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	bMISSILEMORE = true;
 	bFRIGHTENED = false;
 	}
-	TNT1 A 0 A_Jump(12,"See2");
+	TNT1 A 0 A_Jump(12,"See");
 	TNT1 A 0 A_JumpIfCloser(150,"FearCheck");
 	TNT1 A 0 A_SetSpeed(0);
 	CBEL DDDDDDDDDDDD 2 
@@ -227,7 +227,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	A_FaceTarget();
 	return A_JumpIfInTargetLOS("AimingAtMe",30,JLOSF_DEADNOJUMP,1000);
 	}
-	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_CheckSight("See");
 	TNT1 A 0 A_Jump(150,"StandoffRepos");
 	TNT1 A 0 A_Jump(50,"StandoffDodge");
 	Loop;
@@ -365,7 +365,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	}
 	CBEL B 10 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF = false; }
-    Goto See2;
+    Goto See;
    Melee:
    Recoil:
 	TNT1 A 0 { bNODROPOFF = true; }
@@ -375,7 +375,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	CBEL B 10 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF = false; }
 	TNT1 A 0 A_Jump(50,"Missile");
-	Goto See2;
+	Goto See;
   Dodge:
 	TNT1 A 0
 	{
@@ -386,7 +386,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	CBEL B 10 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF = false; }
 	TNT1 A 0 A_Jump(50,"Missile");
-	Goto See2;
+	Goto See;
   Jump:
 	TNT1 A 0
 	{
@@ -398,25 +398,25 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	CBEL B 10 A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF = false; }
 	TNT1 A 0 A_Jump(45,"CrouchSee");
-	Goto See2;
+	Goto See;
   FearCheck:
 	TNT1 A 0 A_JumpIfCloser(90,"FearTwo");
 	TNT1 A 0 A_Jump(80,"Fear");
-	Goto See2;
+	Goto See;
   FearTwo:
 	TNT1 A 0 A_Jump(128,"Recoil");
   Fear:
 	TNT1 A 0 { bFRIGHTENED = true; }
-	Goto See2;
+	Goto See;
   Fight:
 	TNT1 A 0 { bFRIGHTENED = false; }
-	Goto See2;
+	Goto See;
   Roar:
 	BELA BBBFFF 3 A_FaceTarget();
 	TNT1 A 0 PM_AlertSound();
 	BELA AAAAAAAAA 3 A_FaceTarget();
 	BELA BBBB 3 A_FaceTarget();
-	Goto See2;
+	Goto See;
   Pain:
 	TNT1 A 0;
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
@@ -425,7 +425,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
     BELA H 8 A_Pain;
 	TNT1 A 0 A_Jump(90,"Recoil");
 	TNT1 A 0 { bFRIGHTENED = true; }
-    goto See2;
+    goto See;
   Death:
 	TNT1 A 0;
 	TNT1 A 0 A_StopSound(0);

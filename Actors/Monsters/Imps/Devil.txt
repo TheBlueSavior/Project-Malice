@@ -45,8 +45,8 @@ Class PM_Devil : PMUnaffMonsterBase
     TNT1 A 0 A_Jump(256,"FearCheck","RoarNoAnim","RoarNoAnim","Roar","Roar","Fight","BackCheck");
   RoarNoAnim:
     TNT1 A 0 PM_AlertSound();
-	Goto See2;
-  See2:
+	Goto See;
+  See:
 	TNT1 A 0 { bMISSILEevenMore=False; }
 	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_JumpIfCloser(200,"FearCheck");
@@ -67,7 +67,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	D3IM CCDD 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
-	TNT1 A 0 A_Jump(19,"See2","Fight");
+	TNT1 A 0 A_Jump(19,"See","Fight");
     loop;
    BackCheck:
 	TNT1 A 0 A_Jump(135,"DespMissile","Backup","FireLeft","FireRight");
@@ -171,7 +171,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 A_Jump(30,"AltSee");
-    goto See2;
+    goto See;
 	
   FireLeft:
     D3IM A 1 A_FaceTarget();
@@ -208,7 +208,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
-   Goto See2;
+   Goto See;
   FireRight:
   D3IM A 1 A_FaceTarget();
 	TNT1 A 0
@@ -244,7 +244,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
-   Goto See2;
+   Goto See;
 	
   StandoffCheck:
 	TNT1 A 0 A_JumpIfCloser(300,"FearCheck");
@@ -252,7 +252,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(130,"StandoffRepos");
 	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 { bMISSILEevenMORE=True; }
-	TNT1 A 0 A_Jump(10,"See2");
+	TNT1 A 0 A_Jump(10,"See");
 	TNT1 A 0 A_JumpIfCloser(270,"FearCheck");
 	TNT1 A 0 A_SetSpeed(0);
 	D3IM AAAXXXAAAYYY 3 
@@ -260,7 +260,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	A_Chase(null,"StandoffMissile");
 	A_FaceTarget();
 	}
-	TNT1 A 0 A_CheckSight("See2");
+	TNT1 A 0 A_CheckSight("See");
 	Loop;
   StandoffRepos:
 	TNT1 A 0 { bFRIGHTENED=True; }
@@ -342,7 +342,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
-   Goto See2;
+   Goto See;
   SFireRight:
   D3IM A 1 A_FaceTarget();
 	TNT1 A 0
@@ -378,7 +378,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
-   Goto See2;
+   Goto See;
 	
   RetreatCheck:
 	TNT1 A 0 A_Jump(100,"Standoff","DespMissile","FireRight","FireLeft");
@@ -437,12 +437,12 @@ Class PM_Devil : PMUnaffMonsterBase
 	A_SpawnProjectile("PM_DevilImpBall",32,0,random(-30,30),CMF_OFFSETPITCH,random(-15,15));
 	}
     D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
-	TNT1 A 0 A_Jump(30,"See2");
+	TNT1 A 0 A_Jump(30,"See");
     goto FearCheck;
   FearCheck:
 	TNT1 A 0 A_JumpIfCloser(150,"BackCheck");
 	TNT1 A 0 A_Jump(35,"Fear");
-	Goto See2;
+	Goto See;
   Fear:
 	TNT1 A 0 { bFRIGHTENED=True; }
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",1)
@@ -464,13 +464,13 @@ Class PM_Devil : PMUnaffMonsterBase
   Fight:
 	TNT1 A 0 { bFRIGHTENED=False; }
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
-	Goto See2;
+	Goto See;
   Roar:
 	D3IM VVVVVV 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Devil/Roar");
 	D3IM WWWWWWWWW 3 A_FaceTarget();
 	D3IM AAAAA 3 A_FaceTarget();
-	Goto See2;
+	Goto See;
    StandoffRoar:
 	D3IM VVVVVV 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Devil/Roar");
@@ -483,7 +483,7 @@ Class PM_Devil : PMUnaffMonsterBase
     D3IM H 2 A_Pain();
 	TNT1 A 0 A_Jump(140,"Fear","Backup","AltSee");
 	TNT1 A 0 A_Jump(100,"DespMissile");
-    goto See2;
+    goto See;
   Death:
     TNT1 A 0 A_StopSound(0);
     D3IM I 8;

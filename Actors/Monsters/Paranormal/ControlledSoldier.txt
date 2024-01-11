@@ -458,7 +458,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	TNT1 A 0 A_Jump(256,"Flip1","See2","See1","Blink")
     Loop
   Blink:
-	TNT1 A 0 A_Jump(128,"Flip1","See2","See1","Flip2")
+	TNT1 A 0 A_Jump(128,"Flip1","See","See1","Flip2")
 	TNT1 A 0
 	TNT1 A 0 A_SetSpeed(50)
 	TNT1 AAA 1 A_Wander
@@ -723,14 +723,14 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	Goto See
+	Goto See2
   Pain:
 	TNT1 A 0
 	TNT1 A 0 A_StopSound(CHAN_7)
 	TNT1 A 0 A_Jump(100,"Pain2")
     0DEM A 4 Light("PM_HorrorBlackflash")
     0DEM A 4 Light("PM_HorrorBlackflash") A_Pain
-	Goto See
+	Goto See2
   Pain2:
 	0DEM A 1 Light("PM_HorrorBlackflash")
 	TNT1 A 0 A_PlaySound("PM/ControllerPain",CHAN_7)
@@ -741,8 +741,8 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
 	}
 	TNT1 A 0 A_SetSpeed(10)
-	//TNT1 A 0 A_Jump(256,"Flip1","See2","See1","Flip2")
-	Goto See
+	//TNT1 A 0 A_Jump(256,"Flip1","See","See1","Flip2")
+	Goto See2
   Death:
 	TNT1 A 0
 	TNT1 A 0 A_StopSound(CHAN_5)

@@ -57,7 +57,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
     Goto RoarNoAnim;
   RoarNoAnim:
     TNT1 A 0 PM_AlertSound();
-  See2:
+  See:
     CREV AABBCC 2 A_Chase();
 	NULL A 0 A_StartSound("Cadaver/Step",5);
 	CREV DDEEFF 2 A_Chase();
@@ -68,7 +68,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
     CREV G 6 A_StartSound("Doom4/Other/MeleeSwing",20);
     CREV H 6 A_FaceTarget();
     CREV I 6 A_CustomMeleeAttack(30,"Doom4/Other/MeleeHit");
-    Goto See2;
+    Goto See;
   Missile:
 	TNT1 A 0 A_Jump(20,"Roar");
 	TNT1 A 0 A_Jump(30,"SpecialBarrage");
@@ -88,7 +88,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverRocket",56,10,-4);
 		}
 	CREV K 15;
-	Goto See2;
+	Goto See;
   Roar:
 	CKLA A 6 A_FaceTarget();
 	CKLA B 6 A_FaceTarget();
@@ -99,7 +99,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 	CKLA DED 5 A_FaceTarget();
 	CKLA CBAA 4 A_FaceTarget();
 	CREV B 3 A_FaceTarget();
-	Goto See2;
+	Goto See;
   SpecialBarrage:
 	CKLA A 4 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Cadaver/Sight",CHAN_7);
@@ -156,7 +156,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverRocket",56,10);
 		}
 	CREV K 8 A_FaceTarget();
-	Goto See2;
+	Goto See;
 	
   Missile1:
 	CREV BBB 3 A_FaceTarget();
@@ -168,7 +168,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverRocket",56,-17);
 		}
 	CREV K 10;
-	Goto See2;
+	Goto See;
   Missile2:
 	CREV BBB 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Cadaver/Missile",CHAN_6);
@@ -179,7 +179,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverRocket",56,10);
 		}
 	CREV K 10;
-	Goto See2;
+	Goto See;
   Missile3:
 	CREV JJJJJJJJJJ 1 Light("Shadowball2")
 		{
@@ -194,7 +194,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverHRocket",58,10);
 		}
 	CREV K 10;
-	Goto See2;
+	Goto See;
   Missile4:
 	CREV JJJJJJJJJJ 1 Light("Shadowball2")
 		{
@@ -209,11 +209,11 @@ Class PM_Cadaver : PMUnaffMonsterBase
 		A_SpawnProjectile("PM_CadaverHRocket",58,-17);
 		}
 	CREV K 10;
-	Goto See2;
+	Goto See;
   Pain:
     CREV L 5;
     CREV L 5 A_Pain;
-    Goto See2;
+    Goto See;
   Death:
     TNT1 A 0 A_StopSounds(0,0);
     CREV LM 7;

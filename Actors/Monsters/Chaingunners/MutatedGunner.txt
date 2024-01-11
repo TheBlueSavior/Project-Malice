@@ -46,8 +46,8 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
             Goto Look+1;
 		Spotted:
 		    TNT1 A 0 PM_AlertSound();
-			Goto See2;
-		See2:
+			Goto See;
+		See:
 			TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 			D3C2 AABB 3 A_Chase();
 			TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
@@ -91,10 +91,10 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
 			D3C2 E 10;
 			TNT1 A 0 A_StartSound("GenericSteam");
 			D3C2 GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 A_SpawnItemEx("PM_VentSmoke",20,10,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
-			Goto See2;
+			Goto See;
 		SuppressionCheck:
 			TNT1 A 0 A_Jump(200,"Suppression");
-			Goto See2;
+			Goto See;
 		Suppression:
 			TNT1 A 0 A_StartSound("Tentaclecommando/sight",CHAN_6);
 		SuppressionStart:
@@ -132,7 +132,7 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
 			A_SpawnProjectile("PM_BloodSpit",48,0,random(7,-7),CMF_OFFSETPITCH,random(7,-7));
 			}
 			D3C2 A 10 A_FaceTarget();
-			Goto See2;
+			Goto See;
        NoAmmo:
          TNT1 A 0 A_StartSound("MutatedGunner/WindDown",CHAN_6);
 		 D3C2 E 10;
@@ -161,17 +161,17 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
          D3C2 DDDDDBBBBB 3 A_FaceTarget();
          TNT1 A 0 A_StartSound("PM/GatlingReady",CHAN_5);
          D3C2 AAAABB 4 A_FaceTarget();
-         Goto See2;
+         Goto See;
 		Melee:
 			D3C2 A 1 A_FaceTarget();
 			D3C2 A 6 A_StartSound("Doom4/Other/MeleeSwing",CHAN_5);
 			D3C2 E 6 A_FaceTarget();
 			D3C2 V 6 A_CustomMeleeAttack(random(1, 5) * 10, "Doom4/Other/MeleeHit");
-			Goto See2;
+			Goto See;
 		Pain:
 			D3C2 G 3;
 			D3C2 G 3 A_Pain;
-		Goto See2;
+		Goto See;
 		Death:
 		    TNT1 A 0 A_StopSounds(0,0);
 			TNT1 A 0 A_Jump(35,"PossDeath");

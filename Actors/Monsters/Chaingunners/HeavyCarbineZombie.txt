@@ -46,7 +46,7 @@ Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
     Goto Look+1;
   Spotted:
     TNT1 A 0 PM_AlertSound();
-  See2:
+  See:
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
     HCPO AABB 3 A_Chase();
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
@@ -93,7 +93,7 @@ Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
     user_numbullets--;
   }
   HCPO E 2 A_FaceTarget(3,3,0,0);
-  HCPO E 1 A_MonsterRefire(68,"See2");
+  HCPO E 1 A_MonsterRefire(68,"See");
   Goto Missile+5;
   NoAmmo:
 	HCPO E 7 A_FaceTarget();
@@ -121,16 +121,16 @@ Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
      HCPO AAAABB 4;
      TNT1 A 0 A_StartSound("PM/HeavyRifleBoltSlide",CHAN_5);
      HCPO CCAA 4;
-     Goto See2;
+     Goto See;
 	Melee:
     HCPO D 16 A_FaceTarget();
     HCPO E 8 A_custommeleeattack(6,"Carbine/Stab");
 	HCPO D 6;
-	Goto See2;
+	Goto See;
   Pain:
     HCPO G 3;
     HCPO G 3 A_Pain;
-    Goto See2;
+    Goto See;
   Death:
     TNT1 A 0 A_StopSound(0);
 	TNT1 A 0 A_Jump(35,"PossDeath");

@@ -56,12 +56,12 @@ Class PM_Tainted : PMGluttonyMonsterBase
 	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile");
 	Roar:
 	    TNT1 A 0 PM_AlertSound();
-		Goto See2;
+		Goto See;
 	SpotMissile:
         TNT1 A 0 PM_AlertSound();
 	    BZRD EE 5 A_FaceTarget();
 		Goto Missile;
-	See2:
+	See:
 		TNT1 A 0 { bNoPain = false; }
 		TNT1 A 0 A_StartSound("Tainted/Step",4);
         BZRD AABB 3 A_Chase();
@@ -78,7 +78,7 @@ Class PM_Tainted : PMGluttonyMonsterBase
         BZRD G 4 A_CustomComboAttack("PM_TaintedBall", 36, 3 * random(4, 7), "imp/melee");
 		BZRD FEAAAAA 3 A_FaceTarget();
 		TNT1 A 0 A_Jump(100,"Teleport");
-        Goto See2;
+        Goto See;
 	BounceCheck:
 		TNT1 A 0 A_JumpIfCloser(600,"Missile2");
 		Goto Missile+1;
@@ -102,7 +102,7 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
 		}
 		BZRD AA 2 A_FaceTarget();
-		Goto See2;
+		Goto See;
 	Teleport:
 		BPWA A 0 { bShootable = false; }
 		TNT1 A 0 A_StartSound("Tainted/Slide");
@@ -125,7 +125,7 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		A_FaceTarget();
 		}
 		TNT1 A 0 { bNoPain = false; }
-		Goto See2;
+		Goto See;
 	Teleport2:
 		BPWA A 0 { bShootable = false; }
 		TNT1 A 0 A_StartSound("Tainted/Slide");
@@ -141,12 +141,12 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		}
 		TNT1 A 0 { bShootable = true; }
 		BZRD NOPQRST 3 A_FaceTarget();
-		Goto See2;
+		Goto See;
     Pain:
         BZRD H 2;
         BZRD H 6 A_Pain;
 		TNT1 A 0 A_Jump(100,"Teleport");
-        Goto See2;
+        Goto See;
     Death:
 	    TNT1 A 0 A_StopSound(0);
         BZRD I 12;

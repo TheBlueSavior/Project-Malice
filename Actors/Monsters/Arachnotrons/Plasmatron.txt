@@ -55,7 +55,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			Loop;
 		Spotted:
 			TNT1 A 0 PM_LookingForPlayer();
-		See2:
+		See:
 			PL01 A 3 A_StartSound("Plasmatron/Step",CHAN_6);
 			TNT1 A 0 {bNOPAIN = False;}
 			PL01 ABB 3 A_Chase();
@@ -116,7 +116,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				user_numbullets--;
 			}
 			PL01 G 4;
-			Goto See2;
+			Goto See;
 		Missile2: //it's sweepin' time
 		    TNT1 A 0;
 		    TNT1 A 0 A_StartSound("Fusionite/SmallCharge",18,volume:1,pitch:0.65);
@@ -152,8 +152,8 @@ Class PM_Plasmatron : PMUnaffMonsterBase
             Goto Mis2Loop2+2;
 		Mis2End:
 		    PL01 GGG 5 A_FaceTarget();
-			PL01 G 2 A_MonsterRefire(10,"See2");
-			TNT1 A 0 A_Jump(5,"See2");
+			PL01 G 2 A_MonsterRefire(10,"See");
+			TNT1 A 0 A_Jump(5,"See");
 			Goto Missile2;
 		Missile3:
 		    TNT1 A 0;
@@ -169,8 +169,8 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				A_SpawnProjectile("PM_PTronBall",22,0,random(-2,2),CMF_OFFSETPITCH,random(-1,1));
 				user_numbullets--;
 			}
-			PL01 G 2 A_MonsterRefire(10,"See2");
-			TNT1 A 0 A_Jump(10,"See2");
+			PL01 G 2 A_MonsterRefire(10,"See");
+			TNT1 A 0 A_Jump(10,"See");
 			Goto Missile3+7;
 		Missile4:
 			PL01 AGGG 3 A_FaceTarget();
@@ -196,7 +196,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				Return ResolveState(null);
 			}
 			PL01 GGA 5 A_FaceTarget();
-			Goto See2;
+			Goto See;
 		MortarNoAmmo:
 			TNT1 A 0 A_StartSound("Fusionite/ScattershotDry",21);
 			PL01 H 3 Light("AvatarFireball4")
@@ -240,11 +240,11 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			TNT1 A 0 A_StartSound("PM/ArachnoReloadEnd",CHAN_5);
 			PL01 GGG 5 Light("AvatarFireball3") A_FaceTarget();
 			TNT1 A 0 A_Jump(56,"Missile");
-			Goto See2;
+			Goto See;
 		Pain:
 			TNT1 A 0;
 			PL01 I 12 A_Pain();
-			Goto See2;
+			Goto See;
 		Death:
 			TNT1 A 0 A_StopSounds(0,0);
 			PL01 J 15 A_Scream();
