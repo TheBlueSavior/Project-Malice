@@ -10,8 +10,9 @@ ACTOR MaliceSwarm : PMFodderMonsterBase
 	+CANTSEEK
 	-COUNTKILL
 	+NOBLOOD
+	+DONTTHRUST
 	Health 3
-	Mass 10000
+	Mass 1
 	Radius 24
 	Height 48
 	Speed 10
@@ -69,6 +70,7 @@ ACTOR ActiveSwarm
 	MONSTER
 	+FLOAT
 	+NOGRAVITY
+	+DONTTHRUST
 	+LOOKALLAROUND
 	+SHOOTABLE
 	-SOLID
@@ -76,7 +78,7 @@ ACTOR ActiveSwarm
 	-COUNTKILL
 	+NOBLOOD
 	Health 3
-	Mass 10000
+	Mass 1
 	Radius 24
 	Height 48
 	Speed 10

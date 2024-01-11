@@ -323,6 +323,7 @@ Class PM_ExileWallSpawner : Actor
 	Default
 	{
 		+NOGRAVITY
+		+NODAMAGE
 		+NEVERTARGET
 		+SHOOTABLE
 		+NOTONAUTOMAP
@@ -379,7 +380,6 @@ Class PM_ExilePreWallSpawner : Actor
 		-COUNTKILL
 		+NOTARGETSWITCH
 		+ALLOWPAIN
-		Health 5000;
 		Radius 24;
 		Height 56;
 		RenderStyle "Add";
@@ -408,7 +408,7 @@ Class PM_ExileWall1 : Actor
 {
 	Default
 	{
-		Health 2000;
+	    Health 2000;
 		XScale 1;
 		YScale 2.8;
 		Radius 16;
@@ -420,6 +420,7 @@ Class PM_ExileWall1 : Actor
 		+Shootable
 		+Solid
 		+FORCERADIUSDMG
+		+NODAMAGE
 		+NODAMAGETHRUST
 		+DONTSPLASH
 		+NOBLOOD
