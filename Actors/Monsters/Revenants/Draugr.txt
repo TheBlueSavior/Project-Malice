@@ -106,7 +106,7 @@ Class PM_Draugr : PMPrideMonsterBase
 	    TNT1 A 0 A_StartSound("Draugr/GunAim",5);
 		DRGR JJJJJJJJJJJJJ 1 A_FaceTarget();
 		DRGR J 15 A_StartSound("Director/Servo",6);
-		TNT1 A 0 A_Recoil(-8);
+		TNT1 A 0 A_Recoil(-12);
 		DRGR K 6 A_FaceTarget();
 		TNT1 A 0 A_SpawnProjectile("PM_DraugrPunch",flags:CMF_AIMDIRECTION);
 		DRGR L 6;
@@ -151,7 +151,7 @@ Class PM_Draugr : PMPrideMonsterBase
 	{
 	if(pm_attackloop < 0)
 	SetStateLabel("FLightningEnd");
-	A_SpawnProjectile("PM_DraugrLightningArcs",56,-15,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,(pitch*1));
+	A_SpawnProjectile("PM_DraugrLightningArcs",56,-15,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-0.1,0.1)+1);
 	A_FaceTarget(0.95,0.95);
 	pm_attackloop--;
 	}
@@ -668,8 +668,8 @@ Class PM_DraugrLightningArcs : Actor
 {
   Default
   {
-    Radius 2;
-    Height 2;
+    Radius 5;
+    Height 5;
     Speed 60;
     DamageFunction 7;
     Renderstyle "Add";
