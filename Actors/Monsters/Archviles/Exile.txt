@@ -215,7 +215,6 @@ Class PM_Exile : PMUnaffMonsterBase
 			TNT1 A 0 A_KillChildren("NewArchvileFire");
 			EILE Q 5;
 			EILE Q 5 A_Pain();
-			TNT1 A 0 A_Jump(20,"FirePort","FireWall");
 			Goto See;
 		Death:
 			TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
@@ -346,7 +345,7 @@ Class PM_ExileWallSpawner : Actor
 			TNT1 A 1;
 			Goto Shield;
 		Shield:
-			TNT1 A 0 A_StartSound("Exile/ShieldLoop", CHAN_7);
+			TNT1 A 0 A_StartSound("Exile/ShieldLoop",CHAN_7);
 			TNT1 A 0 A_SpawnItemEx("PM_ExileWall1",96,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER);
 			TNT1 A 0 A_SpawnItemEx("PM_ExileWall2",88,24,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER);
 			TNT1 A 0 A_SpawnItemEx("PM_ExileWall2",88,-24,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER);
@@ -356,8 +355,8 @@ Class PM_ExileWallSpawner : Actor
 			TNT1 A 0 A_SpawnItemEx("PM_ExileWall4",72,-70,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS|SXF_SETMASTER);
 			Goto Waiting;
 		Waiting:
-			TNT1 A 1;
-			Loop;
+			TNT1 ABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHH 1;
+			Goto Death;
 		Death:
 			TNT1 A 1 A_StopSound(CHAN_7);
 			TNT1 A 1 A_KillChildren();
@@ -430,9 +429,8 @@ Class PM_ExileWall1 : Actor
 	States
 	{
 		Spawn:  
-			F1RE ABCD 1 Bright;//A_SpawnItemEX("ArchWallPuff",Random(8,-8),Random(32,-32),Random(32,-32),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-			F1RE EFGH 2 Bright; //A_SpawnItemEX("ArchWallPuff",Random(8,-8),Random(32,-32),Random(32,-32),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERPOINTERS)
-			Loop;
+			F1RE ABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHHABCDEEFFGGHH 1 Bright;
+			Goto Death;
 		Death:
 			//Idk if there is a puff for Archwall so I just used BulletPuff
 			TNT1 A 0 A_Explode (4,64,XF_HURTSOURCE,0,0,0,0,"BulletPuff","Archwall");
@@ -473,7 +471,7 @@ Class PM_ExileGroundFlames : Actor
 	{
 		Radius 12;
 		Height 64;
-		Speed 18;
+		Speed 16;
 	    DamageFunction (15);
 	    XScale 1.7;
 	    YScale 1.9;
@@ -766,19 +764,134 @@ Class ExileFireHit : NewArchvileFire
 		+SEEKERMISSILE
 	}
 
+	
+override void PostBeginPlay()
+{
+ Super.PostBeginPlay();
+ tex[0] = TexMan.CheckForTexture("SPKOB0",TexMan.Type_Sprite);
+ tex[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+ tex[2] = TexMan.CheckForTexture("DB26W0",TexMan.Type_Sprite);
+ tex[3] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+ tex[4] = TexMan.CheckForTexture("F1R1A0",TexMan.Type_Sprite);
+ tex[5] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+ tex[6] = TexMan.CheckForTexture("LENYA0",TexMan.Type_Sprite);
+}
+
+ TextureID tex[7];
+
+
 	States
 	{
 		Spawn:
-			TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 AA 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			//TNT1 A 0 A_SpawnItemEx("ExileAttackFire")
-			TNT1 A 1 A_SpawnItemEx("OrangeExplosionFlareMed",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 A 0;
+			TNT1 AAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[6],
+			style: STYLE_Add,
+			flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(8,15),
+			size: random(290,500),
+			angle: 0,
+			xoff: 0,
+			yoff: 0,
+			zoff: 0,
+			startalphaf: 0.95,
+			fadestepf: -1,
+			sizestep: -15,
+			startroll: random(-180,180)
+			);
+			}
+			TNT1 A 0
+			{
+			A_SpawnParticleEx
+			(
+			"ff9d1c",
+			tex[0],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: 1000,
+			zoff: 50,
+			startalphaf: 1,
+			fadestepf: -1,
+			sizestep: -20,
+			startroll: random(-180,180),
+			rollvel: frandom(-5,5)
+			);
+			for(int i=2;i>0;i--)
+			A_SpawnParticleEx
+			(
+			"ff9d1c",
+			tex[0],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 10,
+			size: 700,
+			zoff: 10,
+			startalphaf: 1,
+			fadestepf: -1,
+			sizestep: 20,
+			startroll: random(-180,180),
+			rollvel: frandom(-5,5)
+			);
+			}
+			TNT1 AAAAAAAAAAAAAAAAAAA 0
+			{
+			A_SpawnParticleEx
+			(
+			"",
+			tex[1],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(10,100),
+			size: frandom(1,25),
+			xoff: random(-30,30),
+			yoff: random(-30,30),
+			velx: frandom(-0.2,0.2),
+			vely: frandom(-0.2,0.2),
+			velz: frandom(0.5,3),
+			accelx: frandom(-0.02,0.02),
+			accely: frandom(-0.02,0.02),
+			accelz: frandom(-0.02,0.02),
+			startalphaf: 1.0,
+			fadestepf: -1,
+			sizestep: -0.5,
+			startroll: random(-180,180),
+			rollvel: frandom(-10,10),
+			rollacc: frandom(-1,1)
+			);
+		A_SpawnParticleEx
+			(
+			"",
+			tex[1],
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(80,120),
+			size: frandom(1,15),
+			zoff: random(10,60),
+			velx: random(-6,6),
+			vely: random(-6,6),
+			velz: random(0,8),
+			accelz: frandom(-0.2,-0.8),
+			startalphaf: 1,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-2,2)
+			);
+		A_SpawnParticleEx
+			( "727272", tex[5], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70), size: frandom(1,22), zoff: random(10,35),
+			velx: frandom(-7,7), vely: frandom(-7,7), velz: frandom(1,12),
+			accelz: frandom(-0.1,-0.9), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4));
+			}
+			TNT1 A 0 A_SpawnItemEx("PM_WrathSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
 			TNT1 AAAA 0 A_SpawnProjectile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360));
 			TNT1 AAAAA 0 A_SpawnProjectile("PM_BigFireGlobs",10,0,random(0,360),2,random(0,360));
-			TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-150,150),random(-150,150),0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 AAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+			TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-100,100),random(-50,50),0,0,0,0,0,SXF_NOCHECKPOSITION);
 			TNT1 A 15 BRIGHT Light("AvatarFireball5");
 			Stop;
 	}
