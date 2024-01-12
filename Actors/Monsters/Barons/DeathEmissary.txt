@@ -13,7 +13,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
     Height 64;
     Speed 16;
 	Scale 1.1;
-    PainChance 20;
+    PainChance 8;
     Mass 1500;
     MONSTER;
 	Bloodtype "PM_DeathBloodBase";
