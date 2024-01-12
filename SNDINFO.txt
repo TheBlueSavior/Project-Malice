@@ -2767,6 +2767,14 @@ Draugr/RocketAim "Sounds/Monsters/Revenants/Draugr/DraugrRocketAim.ogg"
 Draugr/RocketLock "Sounds/Monsters/Revenants/Draugr/DraugrRocketLock.ogg"
 Draugr/GunAim "Sounds/Monsters/Revenants/Draugr/DraugrGunAim.ogg"
 
+Draugr/LightningReady "Sounds/Monsters/Revenants/Draugr/DraugrLightningReady.ogg"
+Draugr/LightningFire "Sounds/Monsters/Revenants/Draugr/DraugrLightningFire.ogg"
+Draugr/LightningLoop "Sounds/Monsters/Revenants/Draugr/DraugrLightningLoop.ogg"
+
+$rolloff Draugr/LightningReady 600 2000
+$rolloff Draugr/LightningFire 800 2500
+$rolloff Draugr/LightningLoop 700 2500
+
 Draugr/BuffNade "Sounds/Monsters/Revenants/Draugr/DraugrBuffNade.ogg"
 Draugr/BuffStart "Sounds/Monsters/Revenants/Draugr/DraugrBuffStart.ogg"
 Draugr/BuffLoop "Sounds/Monsters/Revenants/Draugr/DraugrBuffLoop.ogg"

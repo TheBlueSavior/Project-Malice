@@ -3,14 +3,13 @@ Class PM_Draugr : PMPrideMonsterBase
 	int buffgrenade;
     Default
     {
-	//$Category "PM_Monsters/Revenants"
 	Health 400;
 	Speed 12;
 	Monster;
     Radius 20;
     Height 56;
     Mass 500;
-    MeleeThreshold 196;
+    MeleeRange 144;
     Monster;
 	SeeSound "Draugr/Sight";
 	PainSound "Draugr/Pain";
@@ -41,6 +40,21 @@ Class PM_Draugr : PMPrideMonsterBase
 		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
 		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-15),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.2, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
 	}
+	
+	void PM_DraugrLightningCharge()
+	{
+	 A_SpawnParticleEx
+	 ( "", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+	   lifetime: random(15,25), size: random(1,40), xoff: random(18,20), yoff: random(-30,-34), zoff: 65,
+	   velx: frandom(0.5,5.5), vely: frandom(-5.5,5.5), velz: frandom(-5.5,5.5),
+	   startalphaf: frandom(0.75,1), fadestepf: -0.95, startroll: random(-180,180));
+	 A_SpawnParticleEx
+	 ( "", TexMan.CheckForTexture("SPKRC0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+	   lifetime: random(1,10), size: random(150,200), xoff: random(18,20), yoff: random(-30,-34), zoff: 65,
+	   velx: frandom(0.1,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5),
+	   startalphaf: frandom(0.75,1), fadestepf: -0.95, startroll: random(-180,180));
+	}
+
   States
   {
 	Spawn:
@@ -89,15 +103,17 @@ Class PM_Draugr : PMPrideMonsterBase
 		TNT1 A 0 A_StartSound("Draugr/Step",5);
 		Loop;
 	Melee:
-		DRGR J 1 A_FaceTarget();
-		DRGR J 6 A_StartSound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+	    TNT1 A 0 A_StartSound("Draugr/GunAim",5);
+		DRGR JJJJJJJJJJJJJ 1 A_FaceTarget();
+		DRGR J 15 A_StartSound("Director/Servo",6);
+		TNT1 A 0 A_Recoil(-8);
 		DRGR K 6 A_FaceTarget();
-		TNT1 A 0 A_CustomMeleeAttack(random(20,25),"Doom4/Other/MeleeHit");
+		TNT1 A 0 A_SpawnProjectile("PM_DraugrPunch",flags:CMF_AIMDIRECTION);
 		DRGR L 6;
 		Goto See;	
   Missile:
+	TNT1 A 0 A_Jump(45,"FocusedLightning");
 	TNT1 A 0 A_Jump(122,"BuffGrenadeCheck");
-	TNT1 A 0 A_Jump(55,"HeavyRocket");
   FireCannon:
 	TNT1 A 0 A_StartSound("Draugr/GunAim");
 	DRG2 ABC 5 A_FaceTarget();
@@ -114,32 +130,41 @@ Class PM_Draugr : PMPrideMonsterBase
 	A_SpawnProjectile("PM_CadaverFireFlare",66,-15);
 	}
     DRGR I 12 A_FaceTarget();
-	TNT1 A 0 { bNOTARGET = false; }
 	TNT1 A 0 A_StopSound(2);
     Goto See;
-  HeavyRocket:
-	TNT1 A 0 A_StartSound("Draugr/RocketAim");
-	DRG2 ABC 5 A_FaceTarget();
-    DRGR GGGGGGGGGGGGGG 1
-	{
-	A_FaceTarget();
-	A_SpawnProjectile("DHomingFlare",62,-15);
-	DraugrAimLaser();
-	//A_CustomRailgun(0,-15,"","Red",RGF_SILENT|RGF_NOPIERCING|RGF_FULLBRIGHT , 1, 0, "RailNullPuff", 0, 0, 0, 2, 0.8, 1.0, "",35);
+  FocusedLightning:
+    TNT1 A 0 A_StartSound("Draugr/RocketAim",8);
+    DRG2 AAABBBB 3 A_FaceTarget();
+	TNT1 A 0 {
+	A_SetAngle(random(-30,30));
+	A_SetPitch(random(-35,25));
 	}
-    DRGR H 6 Bright Light("AvatarFireball4");
-	TNT1 A 0 A_StartSound("Draugr/RocketWhoosh", CHAN_5);
-    DRGR I 8 Light("AvatarFireball4")  
+	TNT1 A 0 A_StartSound("Draugr/LightningReady",9);
+	DRG2 CCCCCCCCCCCCCCC 1 PM_DraugrLightningCharge();
+    DRGR GGGGGGGGGGGGGGGGGGGGGGGGGGG 1 PM_DraugrLightningCharge();
+    DRGR G 6 Bright Light("Shadowball4") A_FaceTarget();
+	TNT1 A 0 A_StartSound("Draugr/LightningFire",CHAN_6);
+	TNT1 A 0 A_StartSound("Draugr/LightningLoop",CHAN_5,CHANF_LOOPING);
+	TNT1 A 0 { pm_attackloop = random(90,150); }
+   FLightningLoop:
+    DRGR G 2 Light("Shadowball2") 
 	{
-	A_SpawnProjectile("PM_DraugrHeavyRocket",66,-15,0,0);
-	A_SpawnProjectile("PM_CadaverFireFlare",66,-15,0,0);
-	A_SpawnProjectile("PM_CadaverFireFlare",66,-15,0,0);
-	A_SpawnProjectile("PM_CadaverFireFlare",66,-15,0,0);
+	if(pm_attackloop < 0)
+	SetStateLabel("FLightningEnd");
+	A_SpawnProjectile("PM_DraugrLightningArcs",56,-15,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,(pitch*1));
+	A_FaceTarget(0.95,0.95);
+	pm_attackloop--;
 	}
-    DRGR I 15 A_FaceTarget();
-	TNT1 A 0 { bNOTARGET = false; }
-	TNT1 A 0 A_StopSound(2);
-    Goto See;
+    Loop;
+   FLightningEnd:
+	TNT1 A 0 A_StopSound(5);
+    TNT1 A 0 A_StartSound("Draugr/BuffMonEnd",CHAN_7);
+    DRGR III 5 A_FaceTarget(1,1);
+	DRGR A 25 {
+	A_StartSound("PM/ArachnoReload",8);
+	A_SpawnItemEx("PM_EmptyHeavyMag",-10,0,45,frandom(-1,-5),frandom(2,-2),random(5,12));
+	}
+	Goto See;
   BuffGrenadeCheck:
 	TNT1 A 0 A_CheckProximity("FireCannon","PM_DraugrBuffCircle",800);
 	TNT1 A 0 A_CheckProximity("FireCannon","PM_DraugrBuffGrenade",800);
@@ -297,6 +322,45 @@ Class DraugrEXParticle : Actor
 	F1R1 A 1 A_FadeOut(0.07);
 	TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",0,0,0,frandom(-1,0),0,frandom(0,1),0,SXF_TRANSFERALPHA);
 	Loop;
+	}
+}
+
+Class PM_DraugrPunch : BaronBall
+{
+    Default
+	{
+	Radius 12;
+	Height 48;
+	Projectile; 
+    Speed 20;
+	FastSpeed 20;
+    DamageFunction 25;
+	+RANDOMIZE
+    +NOBLOOD
+	+FORCEXYBILLBOARD
+	+THRUGHOST
+	+NODAMAGETHRUST
+    DamageType "Melee";
+	SeeSound "";
+	DeathSound "Doom4/Other/MeleeHit";
+	Decal "";
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 1;
+		Stop;
+	Death:
+		TNT1 A 0 BRIGHT;
+		TNT1 A 10;
+		Stop;
+	Crash:
+	XDeath:
+		TNT1 A 0 BRIGHT;
+		TNT1 A 10 A_RadiusThrust(4500,80);
+		Stop;
 	}
 }
 
@@ -598,6 +662,123 @@ Class PM_DraugrHeavyRocket : RevenantTracer
 		TNT1 A 18 BRIGHT Light("TyrantMExp");
 		Stop;
 	}
+}
+
+Class PM_DraugrLightningArcs : Actor
+{
+  Default
+  {
+    Radius 2;
+    Height 2;
+    Speed 60;
+    DamageFunction 7;
+    Renderstyle "Add";
+    ALPHA 0.85;
+    Scale 1.75;
+    DeathSound "NetherConduit/SmallZap";
+    PROJECTILE;
+	Decal "PM_RedFireScorch";
+	DamageType "Electric";
+	//Translation "0:255=%[0,0,0]:[3.0,0.0,0.3]";
+	+ROLLSPRITE
+	}
+  override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("SPKRC0",TexMan.Type_Sprite);
+	}
+	TextureID tex[4];
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 0
+	{
+	 A_SpawnParticleEx
+	  (
+	  "",
+	  tex[0],
+	  style: STYLE_Add,
+	  flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	  lifetime: random(1,20),
+	  size: 180.0,
+	  xoff: -10,
+	  startalphaf: 0.85,
+	  fadestepf: -1,
+	  sizestep: 0,
+	  startroll: random(-180,180)
+	  );
+	  A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,25),
+		size: random(60,195),
+		xoff: -10,
+		velx: frandom(-0.1,0.1),
+		vely: frandom(-0.1,0.1),
+		velz: frandom(-0.1,0.1),
+		startalphaf: 0.9,
+		startroll: random(-180,180)
+	    );
+	  }
+  Go:
+	TRCR A 1 Bright
+	{
+	  if(random(1,5) == 1)
+	  A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,25),
+		size: random(5,100),
+		xoff: -10,
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(-0.5,0.5),
+		startalphaf: frandom(0.45,0.9),
+		startroll: random(-180,180)
+	    );
+	}
+    Loop;
+  Death:
+	TNT1 A 0
+	{
+	 A_SpawnParticleEx
+	  ( "", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	  lifetime: random(1,20), size: 200.0, xoff: -10, startalphaf: 0.85,
+	  fadestepf: -1, startroll: random(-180,180) );
+	A_SpawnParticleEx
+	  ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	  lifetime: random(1,100), size: random(1,30), xoff: frandom(-3,3), yoff: frandom(-3,3), zoff: frandom(-3,3),
+	  velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(-0.5,1.5),
+		accelz: -0.005,
+		startalphaf: 0.9,
+		startroll: random(-180,180)
+	    );
+		A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(5,30),
+		size: random(20,195),
+		startalphaf: 0.9,
+		startroll: random(-180,180)
+	    );
+	}
+    TNT1 AAA 1 Bright Light("Shadowball2");
+	TNT1 AA 1 Bright Light("Shadowball3");
+    Stop;
+  }
 }
 
 Class PM_DraugrBuffGrenade : Rocket
