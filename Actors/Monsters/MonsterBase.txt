@@ -59,7 +59,7 @@ class PMMonsterBase : Actor abstract
 		DamageFactor "PM_BulletHellDamage", 0;
 		TeleFogDestType "PM_DemonicTeleportFog";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		PMMonsterBase.CodexLore "Lorem ipsum and all that fancy web developer stuff.";
+		PMMonsterBase.CodexLore "";
 	}
 
 	// This code was initially written by MajorCooke

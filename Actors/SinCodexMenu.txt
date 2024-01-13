@@ -21,7 +21,7 @@ class PM_CodexMenu : ListMenu
 			if (pmCls && !pmCls.IsAbstract())
 			{
 				let def = GetDefaultByType(pmCls);
-				if (def.SinName ~== sin)
+				if (def.SinName ~== sin && def.CodexLore != "")
 				{
 					SinEnemies.Push(pmCls);
 				}
