@@ -17,7 +17,7 @@ OptionMenu "projectmalice_options"
 	StaticText "The option below enables stealth detection for almost all monsters."
 	StaticText "Hide behind a dark corner, and they'll forget about you."
 	StaticText "Disabled by default."
-	Option "Stealth Monsters", "pm_forgetcheck", "pm_forgetoption"
+	Option "Stealth: Monsters Forget", "pm_forgetcheck", "pm_forgetoption"
 	StaticText ""
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2

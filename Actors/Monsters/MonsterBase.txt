@@ -256,7 +256,7 @@ class PMMonsterBase : Actor abstract
 		}
 
 		double dist = Distance3D(Target);
-		double distRedFac = (Target.CurSector.lightlevel / 176.0) * (0.5 + Target.Vel.Length() / 8.0) * (Target.Player ? Target.Player.crouchfactor : 1.0);
+		double distRedFac = (Target.CurSector.lightlevel / 144.0) * (0.5 + Target.Vel.Length() / 8.0) * (Target.Player ? Target.Player.crouchfactor : 1.0) * (Target.bSHADOW ? 0.35 : 1.0);
 
 		return dist, MaxSeeDistance * distRedFac;
 	}
