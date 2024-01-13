@@ -6,7 +6,8 @@ class PMMonsterBase : Actor abstract
 	property HealthMultCVar: HealthMultCVar;
 	protected meta Name HealthALLMultCVar;
 	property HealthALLMultCVar: HealthALLMultCVar;
-
+	transient CVar ForgetOption;
+	
 	override void PostBeginPlay()
 	{
 	 super.PostBeginPlay();
@@ -38,8 +39,7 @@ class PMMonsterBase : Actor abstract
 	// However, the initial size needs to be small so monsters placed in wall holes (e.g. Cacodemons on Tricks and Traps) can leave.
 	protected meta int RealHeight;
 	property RealHeight: RealHeight;
-	protected meta Name ForgetCheck;
-	property ForgetCheck: ForgetCheck;
+	
 
 	int ForgetThreshold;
 	property ForgetThreshold: ForgetThreshold; // [Ace] The higher this number, the slower it'll take for an enemy to give up on you, provided you've jammed yourself in a mousehole.
@@ -55,7 +55,6 @@ class PMMonsterBase : Actor abstract
 
 	Default
 	{
-	    PMMonsterBase.ForgetCheck "pm_forgetcheck";
 		PMMonsterBase.ForgetThreshold 200;
 		PMMonsterBase.AlwaysSeeDistance 256;
 		PMMonsterBase.MaxSeeDistance 6144;
@@ -202,12 +201,14 @@ class PMMonsterBase : Actor abstract
 
 	override void Tick()
 	{
+	    if(!ForgetOption) { ForgetOption = CVar.GetCVar('pm_forgetcheck'); }
+		
 		if (Height != RealHeight && RealHeight > 0)
 		{
 			A_SetSize(-1, RealHeight, true);
 		}
 
-		if (GetAge() % 35 == 0)
+		if (GetAge() % 35 == 0 && ForgetOption.GetInt())
 		{
 			if (Target)
 			{
@@ -217,7 +218,7 @@ class PMMonsterBase : Actor abstract
 				if (dist > AlwaysSeeDistance) // [Ace] I was considering adding a CheckSight to this, but it made me think that it'd be more immersive to have to hide in a dark corner than to just go AROUND a corner.
 				{
 					ForgetThreshold -= int(1000 / max(10, adjDist));
-					if (ForgetThreshold <= 0 && Health >= 0 && CVar.GetCVar(ForgetCheck).GetInt())
+					if (ForgetThreshold <= 0 && Health >= 0)
 					{
 						A_ClearTarget();
 						SetState(SpawnState);
