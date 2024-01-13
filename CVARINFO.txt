@@ -1,3 +1,5 @@
+//Monster Behavior and Spawns
+Server Int pm_forgetcheck = 0;
 Server Float projectmalice_fodderdivider = 0.25;
 
 //HP Slider

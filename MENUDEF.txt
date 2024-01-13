@@ -13,9 +13,16 @@ OptionMenu "projectmalice_options"
 	Submenu "Sin Codex", "projectmalice_sincodex"
 	StaticText ""
 	StaticText "Project Malice Options", white
+	StaticText ""
+	StaticText "The option below enables stealth detection for almost all monsters."
+	StaticText "Hide behind a dark corner, and they'll forget about you."
+	StaticText "Disabled by default."
+	Option "Stealth Monsters", "pm_forgetcheck", "pm_forgetoption"
+	StaticText ""
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
-	StaticText " "
+	StaticText ""
+	StaticText ""
 	StaticText "Health Multiplier"
 	StaticText "Change health multipliers of every enemy. Save the hassle."
 	Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
@@ -44,6 +51,12 @@ OptionMenu "projectmalice_options"
 	Slider "Umbral", "pm_healthfactor_umbral", 1, 10, 0.05, 2
 	Slider "Void", "pm_healthfactor_void", 1, 10, 0.05, 2
 	StaticText " "
+}
+
+OptionValue "pm_forgetoption"
+{
+   0, "No"
+   1, "Yes"
 }
 
 OptionMenu "projectmalice_sincodex"

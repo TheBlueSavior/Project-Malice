@@ -1,20 +1,21 @@
 class PMMonsterBase : Actor abstract
 {
-    int pm_attackloop;
+	int pm_attackloop;
 	int pm_projangle;
-    protected meta Name HealthMultCVar;
-    property HealthMultCVar: HealthMultCVar;
+	protected meta Name HealthMultCVar;
+	property HealthMultCVar: HealthMultCVar;
 	protected meta Name HealthALLMultCVar;
 	property HealthALLMultCVar: HealthALLMultCVar;
 
-    override void PostBeginPlay()
-    {
+	override void PostBeginPlay()
+	{
 	 super.PostBeginPlay();
 	 if(HealthMultCVar && HealthALLMultCVar) Health = StartHealth = int(ceil(Default.Health * 
 	 CVar.GetCVar(HealthMultCVar).GetFloat() * CVar.GetCVar(HealthALLMultCVar).GetFloat()));
+	 Super.PostBeginPlay();
 	 
-    }
-    
+	}
+	
 	enum BeamAttackFlags
 	{
 		BAF_EXPLICITANGLE = 1,
@@ -31,6 +32,40 @@ class PMMonsterBase : Actor abstract
 		SBF_NOADD = 1,
 		SBF_ALLOWREPLACE = 2,
 		SBF_NOSCALEDENSITY = 4
+	}
+
+	// [Ace] If there is enough space, monsters will readjust their height so the collision box matches their sprite.
+	// However, the initial size needs to be small so monsters placed in wall holes (e.g. Cacodemons on Tricks and Traps) can leave.
+	protected meta int RealHeight;
+	property RealHeight: RealHeight;
+	protected meta Name ForgetCheck;
+	property ForgetCheck: ForgetCheck;
+
+	int ForgetThreshold;
+	property ForgetThreshold: ForgetThreshold; // [Ace] The higher this number, the slower it'll take for an enemy to give up on you, provided you've jammed yourself in a mousehole.
+
+	double AlwaysSeeDistance;
+	property AlwaysSeeDistance: AlwaysSeeDistance;
+
+	double MaxSeeDistance;
+	property MaxSeeDistance: MaxSeeDistance;
+
+	double MaxHearDistance;
+	property MaxHearDistance: MaxHearDistance;
+
+	Default
+	{
+	    PMMonsterBase.ForgetCheck "pm_forgetcheck";
+		PMMonsterBase.ForgetThreshold 200;
+		PMMonsterBase.AlwaysSeeDistance 256;
+		PMMonsterBase.MaxSeeDistance 6144;
+		PMMonsterBase.MaxHearDistance 6144;
+		Monster;
+		+FLOORCLIP;
+		DamageFactor "PM_BulletHellDamage", 0;
+		TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		PMMonsterBase.HealthALLMultCVar 'pm_healthfactor';
 	}
 
 	// This code was initially written by MajorCooke
@@ -172,24 +207,32 @@ class PMMonsterBase : Actor abstract
 			A_SetSize(-1, RealHeight, true);
 		}
 
+		if (GetAge() % 35 == 0)
+		{
+			if (Target)
+			{
+				double dist, adjDist;
+				[dist, adjDist] = GetAdjustedSeeDistance();
+				//Console.Printf("\c[DarkGray]Distance:\c- %.2f, \c[DarkGray]Adj. See Distance:\c- %.2f", dist, adjDist);
+				if (dist > AlwaysSeeDistance) // [Ace] I was considering adding a CheckSight to this, but it made me think that it'd be more immersive to have to hide in a dark corner than to just go AROUND a corner.
+				{
+					ForgetThreshold -= int(1000 / max(10, adjDist));
+					if (ForgetThreshold <= 0 && Health >= 0 && CVar.GetCVar(ForgetCheck).GetInt())
+					{
+						A_ClearTarget();
+						SetState(SpawnState);
+					}
+				}
+			}
+			else
+			{
+				ForgetThreshold = default.ForgetThreshold;
+			}
+		}
+
 		// [Ace] If you load DS before PM, you can use the helper stuff from DS for debugging. Just don't forget to comment out the code later.
 		//DSCore.DrawCollisionBox(self);
 		Super.Tick();
-	}
-
-	// [Ace] If there is enough space, monsters will readjust their height so the collision box matches their sprite.
-	// However, the initial size needs to be small so monsters placed in wall holes (e.g. Cacodemons on Tricks and Traps) can leave.
-	protected meta int RealHeight;
-	property RealHeight: RealHeight;
-
-	Default
-	{
-		Monster;
-		+FLOORCLIP;
-		DamageFactor "PM_BulletHellDamage", 0;
-	    TeleFogDestType "PM_DemonicTeleportFog";
-		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		PMMonsterBase.HealthALLMultCVar 'pm_healthfactor';
 	}
 
 	void PM_LeadTarget(double projSpeed)
@@ -203,21 +246,54 @@ class PMMonsterBase : Actor abstract
 		Angle = aimAngles.X;
 		Pitch = aimAngles.Y;
 	}
-		
-	void PM_Look()
+
+	double, double GetAdjustedSeeDistance()
 	{
-		A_LookEx(LOF_NOSEESOUND, label: "Look");
+		if (!Target || !Target.CurSector)
+		{
+			return 0, MaxSeeDistance;
+		}
+
+		double dist = Distance3D(Target);
+		double distRedFac = (Target.CurSector.lightlevel / 176.0) * (0.5 + Target.Vel.Length() / 8.0) * (Target.Player ? Target.Player.crouchfactor : 1.0);
+
+		return dist, MaxSeeDistance * distRedFac;
+	}
+		
+	void PM_Look(double fov = 140, int flags = LOF_NOSEESOUND)
+	{
+		// [Ace] Simplify things for friendly monsters. Just attack.
+		if (bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
+		{
+			A_LookEx(flags, label: "Look");
+			return;
+		}
+
+		A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
+		if (Target && !LastHeard)
+		{
+			double dist, adjDist;
+			[dist, adjDist] = GetAdjustedSeeDistance();
+			if (dist > AlwaysSeeDistance && (dist > adjDist || random(0, 10)))
+			{
+				A_ClearTarget();
+			}
+		}
+		if (Target)
+		{
+			SetStateLabel('Look');
+		}
 	}
 
 	virtual void PM_Gib()
 	{
 	 for(int i=0; i<2; i++){
-     A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
-     for(int gib=0; gib<5; gib++){A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
-     A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
-      }
-      A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
-      A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+	 A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+	 for(int gib=0; gib<5; gib++){A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
+	 A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+	  }
+	  A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
+	  A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
 	}
 
 	virtual void PM_LookingForPlayer()
@@ -229,7 +305,6 @@ class PMMonsterBase : Actor abstract
 	{
 		A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
 	}
-
 }
 
 class PM_BeamSegment : Actor abstract
@@ -337,11 +412,11 @@ Class PMMonsterDummy : PMMonsterBase
  {
   Spawn:
 	ZFOD AAAAAAAAA 10 A_Look;
-    Loop;
+	Loop;
   See:
-    ZFOD AABB 4 A_Chase();
+	ZFOD AABB 4 A_Chase();
 	ZFOD CCDD 4 A_Chase();
-    Loop;
+	Loop;
  }
 }
 
@@ -426,7 +501,7 @@ Class PMWrathMonsterBase : PMMonsterBase
 
    void PM_IreStartSound()
    {
-    A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));
+	A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));
 	A_StartSound("Wrath/IreLoop",19,CHANF_LOOP);
    }
 }
@@ -507,6 +582,7 @@ Class PMVoidMonsterBase : PMMonsterBase
   +NOCLIP
   +NOBLOODDECALS
   +NOICEDEATH
+  PMMonsterBase.ForgetThreshold 9999; //[NERU] they'll always remember you <3
   PMMonsterBase.HealthMultCVar 'pm_healthfactor_void';
  }
 }
