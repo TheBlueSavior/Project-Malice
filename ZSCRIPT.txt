@@ -5,6 +5,8 @@ version "4.10.0"
 #include "Actors/SFX/BloodVFX.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
+#include "Actors/SinCodexMenu.txt"
+
 //Fodder
 #include "Actors/Monsters/Fodder/Hunger.txt"
 #include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"

@@ -1,0 +1,119 @@
+class PM_CodexMenu : ListMenu
+{
+	protected int SelectedIndex;
+	protected Array<class<PMMonsterBase> > SinEnemies;
+	protected Array<ListMenuItem> MonsterInfo;
+
+	override void Init(Menu parent, ListMenuDescriptor desc)
+	{
+		Super.Init(parent, desc);
+
+		Array<string> split;
+		string s = desc.mMenuName;
+		s.Split(split, "_");
+
+		string sin = split[2];
+		SelectedIndex = -1;
+
+		foreach (cls : AllActorClasses)
+		{
+			let pmCls = (class<PMMonsterBase>)(cls);
+			if (pmCls && !pmCls.IsAbstract())
+			{
+				let def = GetDefaultByType(pmCls);
+				if (def.SinName ~== sin)
+				{
+					SinEnemies.Push(pmCls);
+				}
+			}
+		}
+	}
+
+	override bool MenuEvent(int mkey, bool fromcontroller)
+	{
+		bool changed = false;
+		switch (mkey)
+		{
+			case MKEY_Left:
+			{
+				if (--SelectedIndex == -2)
+				{
+					SelectedIndex = SinEnemies.Size() - 1;
+				}
+				MenuSound("menu/cursor");
+				changed = true;
+				break;
+			}
+			case MKEY_Right:
+			{
+				if (++SelectedIndex == SinEnemies.Size())
+				{
+					SelectedIndex = -1;
+				}
+				MenuSound("menu/cursor");
+				changed = true;
+				break;
+			}
+		}
+
+		if (changed && SelectedIndex != -1)
+		{
+			// [Ace] Can't be arsed to draw shit manually so let's just create the items we need dynamically but use a separate array to track them because
+			// we want to keep the original definition untouched as that one does not change.
+			MonsterInfo.Clear();
+
+			let cls = SinEnemies[SelectedIndex];
+			let def = GetDefaultByType(cls);
+
+			double x = 160;
+			double y = 100;
+
+			let tag = new('ListMenuItemStaticTextCentered');
+			tag.Init(mDesc, x, y - 80, def.GetTag(), Font.FindFontColor(def.SinColor));
+			MonsterInfo.Push(tag);
+
+			let img = new('ListMenuItemStaticPatch');
+			let tex = def.SpawnState.GetSpriteTexture(0);
+			img.Init(mDesc, x, y, tex);
+			MonsterInfo.Push(img);
+			y += 20;
+
+			let stat = new('ListMenuItemStaticTextCentered');
+			stat.Init(mDesc, x, y, "\c[DarkGray]Health: \c-"..def.Health, Font.CR_RED);
+			MonsterInfo.Push(stat);
+			y += 10;
+
+			BrokenLines lines = mDesc.mFont.BreakLines(def.CodexLore, x * 3);
+			int count = lines.Count();
+			for (int i = 0; i < count; ++i)
+			{
+				let lore = new('ListMenuItemStaticTextCentered');
+				lore.Init(mDesc, x, y, lines.StringAt(i), Font.CR_TAN);	
+				MonsterInfo.Push(lore);
+				y += 8;
+			}
+			
+
+			return true;
+		}
+		return Super.MenuEvent(mkey, fromcontroller);
+	}
+
+	override void Drawer()
+	{
+		if (SelectedIndex == -1)
+		{
+			for (int i = 0; i < mDesc.mItems.Size(); i++)
+			{
+				if (mDesc.mItems[i].mEnabled)
+				{
+					mDesc.mItems[i].Draw(mDesc.mSelectedItem == i, mDesc);
+				}
+			}
+		}
+		else foreach (m : MonsterInfo)
+		{
+			m.Draw(false, mDesc);
+		}
+	}
+}

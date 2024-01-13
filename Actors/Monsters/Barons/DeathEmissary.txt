@@ -978,7 +978,7 @@ Class PM_DEmiSpherule : Actor
 					{
 						if (a is "PlayerPawn" && distance3D(a) < 700) a.DamageMobj(self, self, (distance3D(a) < 256) ? 75 : 45, "Plasma", DMG_THRUSTLESS);
 						else a.DamageMobj(self, self, random(200, 600), "Plasma", DMG_FORCED|DMG_THRUSTLESS);
-						a.Vel3DFromAngle((rad / 3) / (a.Mass / (a.Mass / 2)), self.AngleTo(a), self.PitchTo(a));
+						a.Vel3DFromAngle((rad / 3) / max(1, a.Mass / 2), self.AngleTo(a), self.PitchTo(a));
 						if (a.GetMaxHealth() < 2500)
 						{
 							if (a is "PlayerPawn") a.vel.z += (rad / 13);

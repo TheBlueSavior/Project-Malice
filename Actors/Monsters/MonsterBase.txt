@@ -1,22 +1,5 @@
 class PMMonsterBase : Actor abstract
 {
-	int pm_attackloop;
-	int pm_projangle;
-	protected meta Name HealthMultCVar;
-	property HealthMultCVar: HealthMultCVar;
-	protected meta Name HealthALLMultCVar;
-	property HealthALLMultCVar: HealthALLMultCVar;
-	transient CVar ForgetOption;
-	
-	override void PostBeginPlay()
-	{
-	 super.PostBeginPlay();
-	 if(HealthMultCVar && HealthALLMultCVar) Health = StartHealth = int(ceil(Default.Health * 
-	 CVar.GetCVar(HealthMultCVar).GetFloat() * CVar.GetCVar(HealthALLMultCVar).GetFloat()));
-	 Super.PostBeginPlay();
-	 
-	}
-	
 	enum BeamAttackFlags
 	{
 		BAF_EXPLICITANGLE = 1,
@@ -35,12 +18,15 @@ class PMMonsterBase : Actor abstract
 		SBF_NOSCALEDENSITY = 4
 	}
 
+	int pm_attackloop;
+	int pm_projangle;
+	transient CVar ForgetOption;
+
 	// [Ace] If there is enough space, monsters will readjust their height so the collision box matches their sprite.
 	// However, the initial size needs to be small so monsters placed in wall holes (e.g. Cacodemons on Tricks and Traps) can leave.
 	protected meta int RealHeight;
 	property RealHeight: RealHeight;
 	
-
 	int ForgetThreshold;
 	property ForgetThreshold: ForgetThreshold; // [Ace] The higher this number, the slower it'll take for an enemy to give up on you, provided you've jammed yourself in a mousehole.
 
@@ -53,6 +39,15 @@ class PMMonsterBase : Actor abstract
 	double MaxHearDistance;
 	property MaxHearDistance: MaxHearDistance;
 
+	meta class<PMMonsterBase> SinBaseClass;
+	property SinBaseClass: SinBaseClass;
+
+	meta string SinName, SinColor;
+	property Sin: SinName, SinColor;
+
+	meta string CodexLore;
+	property CodexLore: CodexLore;
+
 	Default
 	{
 		PMMonsterBase.ForgetThreshold 200;
@@ -64,7 +59,7 @@ class PMMonsterBase : Actor abstract
 		DamageFactor "PM_BulletHellDamage", 0;
 		TeleFogDestType "PM_DemonicTeleportFog";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		PMMonsterBase.HealthALLMultCVar 'pm_healthfactor';
+		PMMonsterBase.CodexLore "Lorem ipsum and all that fancy web developer stuff.";
 	}
 
 	// This code was initially written by MajorCooke
@@ -197,6 +192,16 @@ class PMMonsterBase : Actor abstract
 				offset.Y + i * unit.Y + partDiff.Y,
 				offset.Z + i * unit.Z + partDiff.Z);
 		}
+	}
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+
+		Health = StartHealth = 
+		int(ceil(Default.Health * pm_healthfactor *
+		(SinName != "" ? 
+		CVar.GetCVar("pm_healthfactor_"..SinName).GetFloat() : 1.0)));
 	}
 
 	override void Tick()
@@ -421,12 +426,12 @@ Class PMMonsterDummy : PMMonsterBase
  }
 }
 
-Class PMFodderMonsterBase : PMMonsterBase
+Class PMFodderMonsterBase : PMMonsterBase abstract
 {
  Default
  {
  -COUNTKILL
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_fodder';
+  PMMonsterBase.Sin "Fodder", "Red";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_SmallDemonicTeleportFog";
  }
@@ -442,51 +447,51 @@ Class PMFodderMonsterBase : PMMonsterBase
  }
 }
 
-Class PMUnaffMonsterBase : PMMonsterBase
+Class PMUnaffMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_unaffiliated';
+  PMMonsterBase.Sin "Unaffiliated", "Red";
  }
 }
 
 //TIERS OF SIN
-Class PMLustMonsterBase : PMMonsterBase
+Class PMLustMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_lust';
+  PMMonsterBase.Sin "Lust", "Purple";
   TeleFogDestType "PM_LustTeleportFog";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
  }
 }
 
-Class PMGluttonyMonsterBase : PMMonsterBase
+Class PMGluttonyMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_gluttony';
+  PMMonsterBase.Sin "Gluttony", "Red";
   TeleFogDestType "PM_GluttonyTeleportFog";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
  }
 }
 
-Class PMGreedMonsterBase : PMMonsterBase
+Class PMGreedMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_greed';
+  PMMonsterBase.Sin "Greed", "Green";
  }
 }
 
-Class PMWrathMonsterBase : PMMonsterBase
+Class PMWrathMonsterBase : PMMonsterBase abstract
 {
   int pm_irecount;
   bool ire;
   
   Default
   {
-   PMMonsterBase.HealthMultCVar 'pm_healthfactor_wrath';
+  PMMonsterBase.Sin "Wrath", "Orange";
    PainChance "Fire", 0;
   }
 
@@ -507,75 +512,75 @@ Class PMWrathMonsterBase : PMMonsterBase
    }
 }
 
-Class PMSlothMonsterBase : PMMonsterBase
+Class PMSlothMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_sloth';
+  PMMonsterBase.Sin "Sloth", "Olive";
  }
 }
 
-Class PMEnvyMonsterBase : PMMonsterBase
+Class PMEnvyMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_envy';
+  PMMonsterBase.Sin "Envy", "DarkGreen";
  }
 }
 
-Class PMPrideMonsterBase : PMMonsterBase
+Class PMPrideMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_pride';
+  PMMonsterBase.Sin "Pride", "DarkRed";
  }
 }
 
 //TIERS OF THE APOCALYPSE
-Class PMPestilenceMonsterBase : PMMonsterBase
+Class PMPestilenceMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_pestilence';
+  PMMonsterBase.Sin "Pestilence", "DarkGreen";
  }
 }
 
-Class PMFamineMonsterBase : PMMonsterBase
+Class PMFamineMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_famine';
+  PMMonsterBase.Sin "Famine", "Brick";
  }
 }
 
-Class PMWarMonsterBase : PMMonsterBase
+Class PMWarMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_war';
+  PMMonsterBase.Sin "War", "Grey";
  }
 }
 
-Class PMDeathMonsterBase : PMMonsterBase
+Class PMDeathMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_death';
+  PMMonsterBase.Sin "Death", "Sapphire";
  }
 }
 
 //ENDGAME
-Class PMUmbralMonsterBase : PMMonsterBase
+Class PMUmbralMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_umbral';
+  PMMonsterBase.Sin "Umbral", "Black";
   PainChance "Ice", 0;
   DamageFactor "Ice", 0.1;
  }
 }
 
-Class PMVoidMonsterBase : PMMonsterBase
+Class PMVoidMonsterBase : PMMonsterBase abstract
 {
  Default
  {
@@ -584,6 +589,6 @@ Class PMVoidMonsterBase : PMMonsterBase
   +NOBLOODDECALS
   +NOICEDEATH
   PMMonsterBase.ForgetThreshold 9999; //[NERU] they'll always remember you <3
-  PMMonsterBase.HealthMultCVar 'pm_healthfactor_void';
+  PMMonsterBase.Sin "Void", "Black";
  }
 }
