@@ -3,7 +3,9 @@ Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
   int user_numbullets;
   Default
   {
-  //$Category "PM_Monsters/Chaingunners"
+  PMMonsterBase.CodexLore 
+  "Former heavy weapons experts that were unfortunate enough to succumb to a sprite, the possessor makes use of their bulk and large caliber machinegun to act as a walking sentry, firing upon civilians and survivors should they dare cross its sight.
+   Yet still, they'd have to reload eventually.";
   Health 70;
   Radius 20;
   Height 56;
@@ -30,7 +32,7 @@ Class PM_HeavyCarbineZombie : PMUnaffMonsterBase
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay
+    HCPO A 0 NoDelay
     {
      user_numbullets = random(20,60);
     }

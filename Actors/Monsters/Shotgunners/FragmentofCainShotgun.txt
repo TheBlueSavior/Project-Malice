@@ -3,7 +3,14 @@ Class PM_FOCShotgun : PMVoidMonsterBase
     int cainphase;
 	Default
 	{
-	//$Category "PM_Monsters/Shotgunners"
+	PMMonsterBase.CodexLore
+	"\cmHell is an infinite dream. But the L?GHTBR??NG?R has made me lucid.
+	
+	 \cmOur existence proves that there is hope for all of us, to stop resisting our Lord's embrace, and accept the end.
+	 
+	 \cmIf you still choose to resist, then there will be no mercy. We will descend to torment you, to assist you in your impermanence.
+	 
+	 \cmWhile we live forever as demigods.";
     Health 250;
     Radius 20;
     Height 56;
@@ -43,14 +50,17 @@ Class PM_FOCShotgun : PMVoidMonsterBase
     States
     {
     Spawn:
-		TNT1 A 10 PM_Look();
+		FOCA B 10 
+		{
+		A_FadeOut(1.0,0);
+		PM_Look();
+		}
         Loop;
 	Look:
-        TNT1 A 4 PM_LookingForPlayer();
-		TNT1 A 4 PM_LookingForPlayer();
+	    TNT1 A 0 A_FadeIn(1.0,0);
+        TNT1 AA 4 PM_LookingForPlayer();
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",50,JLOSF_DEADNOJUMP);
-		TNT1 A 4 PM_LookingForPlayer();
-		TNT1 A 4 PM_LookingForPlayer();
+		TNT1 AA 4 PM_LookingForPlayer();
         Loop;
 	Spotted:
 		TNT1 A 0;

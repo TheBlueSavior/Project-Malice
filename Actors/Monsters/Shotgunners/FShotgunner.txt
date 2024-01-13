@@ -3,7 +3,10 @@ Class PM_FShotgunner : PMUnaffMonsterBase
   int user_numbullets;
   Default
   {
-  //$Category "PM_Monsters/Shotgunners"
+  PMMonsterBase.CodexLore 
+  "The possessor only allowed them to fire the shotgun at just the right angle so much of their brain is intact. They are also suffering because of the pain, and will violently spasm and run around as the sprite occasionally allows them to control their body for brief moments.
+  
+  Attacks you with its shotgun.";
   Health 30;
   Radius 20;
   Height 56;
@@ -31,7 +34,7 @@ Class PM_FShotgunner : PMUnaffMonsterBase
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay
+    F1SH A 0 NoDelay
      {
       user_numbullets = random(0,8);
      }

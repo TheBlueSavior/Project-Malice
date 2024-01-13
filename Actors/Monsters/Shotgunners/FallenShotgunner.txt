@@ -3,7 +3,12 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
    int user_numbullets;
    Default
    {
-   //$Category "PM_Monsters/Shotgunners"
+   PMMonsterBase.CodexLore 
+   "Each engagement against the enemy was tougher than the last. Not only did they have to deal with logistics, supplies and manpower, but they also had to deal with treating those that were especially traumatized after repeat conflicts.
+    For some, the mere idea of evil itself taking upon physical and spiritual form was impossible to comprehend, and sooner or later their minds would fall to insanity after prolonged exposure, the ambient evil around passively influencing them.
+	When the main resistance crumbled, more of this phenomenon would occur, and it didn't take long for almost the entirety of humanity to fall into the clutches of evil.
+	
+	Being an elite, this lunatic attacks you with it's powerful shotgun, but can also deploy a smoke grenade and retreat to cover to reload.";
    Health 80;
    Height 56;
    Radius 20;
@@ -32,7 +37,7 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay
+    ZSP1 A 0 NoDelay
     {
      user_numbullets = random(5,8);
     }
@@ -229,23 +234,11 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
     Goto See;
   Death:
     TNT1 A 0 A_StopSound(0);
-	TNT1 A 0 A_Jump(35,"PossDeath");
     ZSP1 H 5;
     ZSP1 I 5 A_Scream;
     ZSP1 J 5;
     ZSP1 K 5 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-    ZSP1 L -1;
-	Stop;
-  PossDeath:
-    TNT1 A 0 A_StopSound(0);
-    ZSP1 H 5;
-    ZSP1 I 5 A_Scream;
-    ZSP1 J 5;
-    ZSP1 K 5 A_NoBlocking;
-	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-	ZSP1 L 90;
-	TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
     ZSP1 L -1;
 	Stop;
   XDeath:

@@ -4,7 +4,10 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
     int user_numslugs;
 	Default
 	{
-	//$Category "PM_Monsters/Shotgunners"
+	PMMonsterBase.CodexLore 
+	"Soldiers that were once a step above your typical corporal with a shotgun, now reduced to a shambling mess just like the others.
+	 
+	 Attacks you with its shotgun, but can also load in a slug to fire at you with.";
     Health 40;
     Radius 20;
     Height 56;
@@ -34,7 +37,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        SPS4 A 0 NoDelay
         {
          user_numbullets = random(0,8);
          user_numslugs = random(0,3);

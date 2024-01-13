@@ -4,7 +4,10 @@ Class PM_FallenMarine : PMUnaffMonsterBase
   int user_numbullets;
   Default
   {
-  //$Category "PM_Monsters/Chaingunners"
+  PMMonsterBase.CodexLore
+  "This fallen soldier's mind may have rotted, but it didn't rot enough for it to forget what to do during a gunfight.
+  
+   Attacks you with its compact assault rifle, but can also take you by surprise with a lengthy barrage and may follow it up with a frag grenade.";
   Health 70;
   Radius 20;
   Height 56;
@@ -33,7 +36,7 @@ Class PM_FallenMarine : PMUnaffMonsterBase
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay
+    ZSP2 A 0 NoDelay
      {
       user_numbullets = random(2,50);
      }

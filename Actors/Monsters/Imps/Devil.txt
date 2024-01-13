@@ -2,7 +2,10 @@ Class PM_Devil : PMUnaffMonsterBase
 {
   Default
   {
-  //$Category "PM_Monsters/Imps"
+  PMMonsterBase.CodexLore
+  "Scrawny and spiky, Devils are best known as Hell's typical cannon fodder. As lowly beings within Hell taken physical form, their behavior is best described as instinctual, attacking humans on sight with fireballs or their claws.
+   Their hold on their magic isn't really the best, so their fireballs are slow and sometimes weave off-course. And while they're confident in clawing unarmed survivors to death, you aren't exactly unarmed. Thus, shooting them and/or getting close to these demons will always result in them keeping their distance, or even fleeing from you outright.
+   Just try not to get too cocky, they're never alone.";
   Health 60;
   Radius 20;
   Height 56;
