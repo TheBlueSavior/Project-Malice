@@ -5,6 +5,7 @@ class PM_Broken : PMVoidMonsterBase
 
 	Default
 	{
+		PMMonsterBase.CodexLore "I failed.";
 		Health 450;
 		Radius 20;
 		Height 56;

@@ -9,7 +9,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 	 Most of the attempts didn't work.
 	 
 	 Uses its standard issue assault rifle. 
-	 Has terrible aim and lacks the ability to properly reload due to one missing half of its brain.";
+	 Has terrible aim and lacks the ability to properly reload due to missing one half of its brain.";
     Health 20;
     Radius 20;
     Height 56;

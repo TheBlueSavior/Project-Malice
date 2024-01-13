@@ -8,7 +8,7 @@ Class PM_Draugr : PMPrideMonsterBase
 	 Having been created to serve the circle of Pride, these automatons act as slow, but nonetheless mobile sentries that double as castle guards during defensive oppositions. 
 	 They are most commonly seen fighting alongside demons and cultists belonging to Pride, however the higher-ranking demons within the same circle don't particularly enjoy being tagged along with barely-sentient meatbags.
 	 
-	 Fires at you with it's small howitzer, but can occasionally cast a magic beam or place down a buff grenade when in groups.";
+	 Fires at you with its small howitzer, but can occasionally cast a magic beam or deploy a buff grenade when near groups of monsters.";
 	Health 400;
 	Speed 12;
 	Monster;
