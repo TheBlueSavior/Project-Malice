@@ -3,7 +3,14 @@ Class PM_ZombieMarine : PMUnaffMonsterBase
     int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Yet despite everything, the human forces fought to the bitter end. For a moment, it seemed as if everyone had united to destroy the evil and banish it from whence it came.
+     They were aware of what exactly they were dealing with, and for a while, it seemed as if they were winning. But Hell had already sank its teeth into humanity long before they attacked.
+	 Betrayals and outbursts slowly occured after repeat internal arguments within the human forces, some out of desperation for a bargaining, some out of sheer devotion for evil.
+	 These occurences happened quickly, and combined with the might of the underworld, had severely crippled the resistance, leaving it exposed for Hell's maw to devour..
+	 
+	 Attacks using a standard issue assault rifle. 
+	 Slightly more accurate than the Soldier, and actually knows how to reload.";
     Health 35;
     Radius 20;
     Height 56;
@@ -32,7 +39,7 @@ Class PM_ZombieMarine : PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        UDM2 A 0 NoDelay
         {
          user_numbullets = random(0,31);
         }

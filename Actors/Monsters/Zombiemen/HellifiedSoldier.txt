@@ -2,7 +2,12 @@ Class PM_HellifiedSoldier : PMUnaffMonsterBase
 { 
     Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Humanity's struggle against evil continues to this day. More of the enemy continues to spill, yet they keep going. They hold onto the hope that one day, the evil shall be banished from their world, and only then will they finally live in peace.
+	 They must keep fighting. Even if the possibility of that day keeps getting lower and lower.
+	 
+	 Having merged with their weapons post-mortem, Hellified Soldiers attack with their experimental plasma rifles.
+	 Can sometimes overcharge their plasma rifles to fire bursts of giant orbs that move close to the player and explode.";
     Health 50;
     Radius 20;
     Height 56;

@@ -2,7 +2,16 @@ Class PM_Blasphemer : PMPrideMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Chaingunners"
+		PMMonsterBase.CodexLore 
+		"Blasphemers were former humans that had once belonged to cults that revered acts of sin and evil.
+		 When Hell came and tore their world asunder, they did not fear them, for they had waited this very moment for Hell granted them its blessing.
+		 
+		 Power.
+		 
+		 In truth, the demons of Pride had only given them a fraction of their strength, but it proved to be enough for them to go insane from the powertrip, unaware that Hell cursed them to become so deluded in their strength that they fail to realize they are still beneath most demons.
+		 
+		 Has access to a fairly wide variety of dangerous spells, but they are easily telegraphed.
+		 Just make sure to avoid or interrupt its fireball.";
 		Obituary "The Blasphemer stands tall before %o.";
 		Health 250;
 		Radius 20;

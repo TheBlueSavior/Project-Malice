@@ -3,7 +3,14 @@ Class PM_FOCRifle : PMVoidMonsterBase
     int cainphase;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore 
+	"\cmThe sights of Hell corrupt the innocent. The voices of Hell tempt the weak. The claws of Hell carve the strong.
+	
+	 \cmBut I have been made anew. I have seen the freezing abyss which no Man dares to tread. Those fools. They deserved what was coming to them.
+	 
+	 \cmThrough my sacrifices, the L?GHTBR?NG??R has reshaped me into His pawn, and I bow to none but Him.
+	 
+	 \cmAND BY HIS HAND, HIS ORDERS WILL REMAIN ABSOLUTE.";
     Health 250;
     Radius 20;
     Height 56;
@@ -43,14 +50,17 @@ Class PM_FOCRifle : PMVoidMonsterBase
     States
     {
     Spawn:
-		TNT1 A 10 PM_Look();
+		FOCA A 10 
+		{
+		A_FadeOut(1.0,0);
+		PM_Look();
+		}
         Loop;
 	Look:
-        TNT1 A 4 PM_LookingForPlayer();
-		TNT1 A 4 PM_LookingForPlayer();
+	    TNT1 A 0 A_FadeIn(1.0,0);
+        TNT1 AA 4 PM_LookingForPlayer();
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",50,JLOSF_DEADNOJUMP);
-		TNT1 A 4 PM_LookingForPlayer();
-		TNT1 A 4 PM_LookingForPlayer();
+		TNT1 AA 4 PM_LookingForPlayer();
         Loop;
 	Spotted:
 		TNT1 A 0;

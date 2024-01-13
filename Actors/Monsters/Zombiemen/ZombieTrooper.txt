@@ -3,7 +3,14 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
     int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Humanity was outnumbered and outsmarted. Hell had proved to have been a threat that they absolutely could have never conquered. And knowing that, Hell took its sweet time, reveling in the suffering they created.
+	They allowed pockets of resistance to form. They allowed them to enter gateways into other universes, knowing that humanity, out of sheer, primal desperation, chose to expand the underworld's reach into other universes.
+	They allowed them to preserve the image that they still had a chance at victory, thus only few know of the true insanity and hopelessness of their situation.
+	Hell's pure resentment against humanity could not have been made any more clearer.
+	
+	Attacks using battle rifles, firing in bursts.
+	Comes packing with a handful of frag grenades to toss at the player.";
     Health 40;
     Radius 20;
     Height 56;
@@ -34,7 +41,7 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        UTM2 A 0 NoDelay
         {
          user_numbullets = random(0,31);
         }

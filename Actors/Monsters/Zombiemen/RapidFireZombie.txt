@@ -14,7 +14,9 @@ Class PM_RFZombie: PMUnaffMonsterBase
     int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Previously converted cultists that waited for the right time to strike within the human resistance, now revived as zombies wielding jury-rigged assault rifles.
+	 Their haphazard modifications allow them to fire a rapid barrage of bullets, much faster than a standard chaingun. The only downside is waiting for the barrel to cool.";
     Health 30;
     Radius 20;
     Height 56;
@@ -44,7 +46,7 @@ Class PM_RFZombie: PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        RFTR A 0 NoDelay
         {
          user_numbullets = random(0,45);
         }

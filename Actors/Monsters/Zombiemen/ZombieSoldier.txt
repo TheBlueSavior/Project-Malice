@@ -3,7 +3,13 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 	int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Most of the zombies you fight are former members of various armies that were either alerted to Hell's incursion or ambushed by Hell's forces, both outcomes leaving a massive dent in their manpower and adding onto Hell's already endless supply of horrors.
+	 Some of them who had realized they were being possessed had attempted to make one last effort to defy the face of evil through committing suicide, hoping in doing so the sprite would forcibly abandon the body.
+	 Most of the attempts didn't work.
+	 
+	 Uses its standard issue assault rifle. 
+	 Has terrible aim and lacks the ability to properly reload due to one missing half of its brain.";
     Health 20;
     Radius 20;
     Height 56;
@@ -34,7 +40,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        POS1 A 0 NoDelay
         {
          user_numbullets = random(0,31);
         }

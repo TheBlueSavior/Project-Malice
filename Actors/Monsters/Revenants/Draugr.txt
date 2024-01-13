@@ -3,6 +3,12 @@ Class PM_Draugr : PMPrideMonsterBase
 	int buffgrenade;
     Default
     {
+	PMMonsterBase.CodexLore
+	"Draugrs are best described as biological, humanoid machines rather than angry six foot tall skeletons.
+	 Having been created to serve the circle of Pride, these automatons act as slow, but nonetheless mobile sentries that double as castle guards during defensive oppositions. 
+	 They are most commonly seen fighting alongside demons and cultists belonging to Pride, however the higher-ranking demons within the same circle don't particularly enjoy being tagged along with barely-sentient meatbags.
+	 
+	 Fires at you with it's small howitzer, but can occasionally cast a magic beam or place down a buff grenade when in groups.";
 	Health 400;
 	Speed 12;
 	Monster;
@@ -58,7 +64,7 @@ Class PM_Draugr : PMPrideMonsterBase
   States
   {
 	Spawn:
-	    TNT1 A 0 NoDelay { buffgrenade = random(1,3); }
+	    DRGR A 0 NoDelay { buffgrenade = random(1,3); }
 	Idle:
 		DRGR A 6 PM_Look();
 		Loop;

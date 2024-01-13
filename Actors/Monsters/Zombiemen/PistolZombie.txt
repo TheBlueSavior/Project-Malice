@@ -3,7 +3,12 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 	int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore 
+	"After Hell's emergence wiped out a majority of humanity's population, allowing its corruption to quickly spread throughout the world, so too did its denizens that dwell within, waiting for the right opportunity to strike.
+	 And while most demons weren't as lucky to obtain a corporeal form, reduced to tiny blots referred to as Sprites, they make up for it by possessing any living being they come across, though they will always choose to possess a human over any animal, resulting in the creation of zombies.
+	 Zombies are shambling, living corpses, unwillingly given a second chance by their possessor, whether they like it or not. 'Killing' them is only an act of ridding the sprite of its host body, forcing it to flee.
+	 
+	 Fires at you using its pistol.";
     Health 20;
     Radius 20;
     Height 56;
@@ -32,7 +37,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
     states
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        A02A A 0 NoDelay
         {
          user_numbullets = random(0,8);
         }
