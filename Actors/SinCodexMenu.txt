@@ -27,6 +27,7 @@ class PM_CodexMenu : ListMenu
 				}
 			}
 		}
+		//menuactive = OnNoPause;
 	}
 
 	override bool MenuEvent(int mkey, bool fromcontroller)
@@ -65,17 +66,25 @@ class PM_CodexMenu : ListMenu
 			let cls = SinEnemies[SelectedIndex];
 			let def = GetDefaultByType(cls);
 
-			double x = 160;
-			double y = 90;
+			double w = mDesc.DisplayWidth();
+			double h = mDesc.DisplayHeight();
 
-			let tag = new('ListMenuItemStaticTextCentered');
-			tag.Init(mDesc, x, y - 80, def.GetTag(), Font.FindFontColor(def.SinColor));
-			MonsterInfo.Push(tag);
+			double x = w / 2.0;
+			double y = h / 2.0;
 
 			let img = new('ListMenuItemStaticPatch');
 			let tex = def.SpawnState.GetSpriteTexture(0);
-			img.Init(mDesc, x, y, tex);
+			Vector2 size = TexMan.GetScaledSize(tex);
+			Vector2 offset = TexMan.GetScaledOffset(tex);
+			double diff = offset.Y - size.Y; // [Ace] Account for floating monsters.
+
+			img.Init(mDesc, x, y + diff, tex);
 			MonsterInfo.Push(img);
+			y += 10;
+
+			let tag = new('ListMenuItemStaticTextCentered');
+			tag.Init(mDesc, x, y, def.GetTag(), Font.FindFontColor(def.SinColor));
+			MonsterInfo.Push(tag);
 			y += 20;
 
 			let stat = new('ListMenuItemStaticTextCentered');
@@ -83,7 +92,7 @@ class PM_CodexMenu : ListMenu
 			MonsterInfo.Push(stat);
 			y += 10;
 
-			BrokenLines lines = mDesc.mFont.BreakLines(def.CodexLore, x * 3);
+			BrokenLines lines = mDesc.mFont.BreakLines(def.CodexLore, w);
 			int count = lines.Count();
 			for (int i = 0; i < count; ++i)
 			{

@@ -1,8 +1,8 @@
 
 AddOptionMenu "OptionsMenu"
 {
-    StaticText ""
-    Submenu "Project Malice", "projectmalice_options"
+	StaticText ""
+	Submenu "Project Malice", "projectmalice_options"
 	StaticText ""
 }
 
@@ -17,7 +17,7 @@ OptionMenu "projectmalice_options"
 	StaticText "The option below enables stealth detection for almost all monsters."
 	StaticText "Hide behind a dark corner, and they'll forget about you."
 	StaticText "Disabled by default."
-	Option "Stealth: Monsters Forget", "pm_forgetcheck", "pm_forgetoption"
+	Option "Stealth: Monsters Forget", "pm_forgetcheck", "YesNo"
 	StaticText ""
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
@@ -53,15 +53,9 @@ OptionMenu "projectmalice_options"
 	StaticText " "
 }
 
-OptionValue "pm_forgetoption"
-{
-   0, "No"
-   1, "Yes"
-}
-
 OptionMenu "projectmalice_sincodex"
 {
-    Title "Sin Codex"
+	Title "Sin Codex"
 	StaticText " "
 	StaticText "This menu will list down all the tiers and its enemies in Project Malice"
 	StaticText "that you will encounter. Keep in mind all of these tiers are"
@@ -80,7 +74,7 @@ OptionMenu "projectmalice_sincodex"
 	Submenu "Pride", "PM_CodexMenu_Pride"
 	StaticText " "
 	Submenu "Pestilence", "PM_CodexMenu_Pestilence"
-	Submenu "Famine", "PM_CodexMenu_Famine"
+	Submenu "Famine (WIP)", "PM_CodexMenu_Famine"
 	Submenu "War", "PM_CodexMenu_War"
 	Submenu "Death", "PM_CodexMenu_Death"
 	StaticText " "
@@ -91,191 +85,191 @@ OptionMenu "projectmalice_sincodex"
 ListMenu "PM_CodexMenu_Fodder"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Red"
+	Font "BigFont", "Red"
+	Size 640, 480
 	
-	StaticTextCentered 160, 20, "FODDER"
-	
-	StaticPatchCentered 116, 50, "FODDERLIST"
+	StaticTextCentered 320, 100, "FODDER"
+	StaticPatch 320, 240, "FODDERLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 160, "Extremely common and usually lacks ranged attacks. They usually"
-	StaticTextCentered 160, 170, "spawn around already placed enemies within the map."
-	StaticTextCentered 160, 180, "Typically very weak, but may obstruct movement"
-	StaticTextCentered 160, 190, "simply by being in the way."
+	StaticTextCentered 320, 330, "Extremely common and usually lacks ranged attacks. They usually"
+	StaticTextCentered 320, 338, "spawn around already placed enemies within the map."
+	StaticTextCentered 320, 346, "Typically very weak, but may obstruct movement"
+	StaticTextCentered 320, 364, "simply by being in the way."
 }
 
 ListMenu "PM_CodexMenu_Unaffiliated"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Red"
+	Font "BigFont", "Red"
+	Size 640, 480
 	
-	StaticTextCentered 160, 17, "UNAFFILIATED"
-	
-	StaticPatchCentered 160, 35, "UNAFFLIS"
+	StaticTextCentered 320, 100, "UNAFFILIATED"
+	StaticPatch 320, 240, "UNAFFLIS"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "Common and is faithful to their vanilla counterparts."
-	StaticTextCentered 160, 200, "Some extra types are added as a step above them, however."
+	StaticTextCentered 320, 330, "Common and is faithful to their vanilla counterparts."
+	StaticTextCentered 320, 338, "Some extra types are added as a step above them, however."
 }
 
 ListMenu "PM_CodexMenu_Lust"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Purple"
+	Font "BigFont", "Purple"
+	Size 640, 480
 	
-	StaticTextCentered 160, 20, "LUST"
-	
-	StaticPatchCentered 160, 30, "LUSTLIST"
+	StaticTextCentered 320, 100, "LUST"
+	StaticPatch 320, 240, "LUSTLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "Enemies of this tier sometimes fly, are fast,"
-	StaticTextCentered 160, 200, "And love phasing attacks. Has lower health to compensate for speed."
+	StaticTextCentered 320, 330, "Enemies of this tier sometimes fly, are fast,"
+	StaticTextCentered 320, 338, "And love phasing attacks. Has lower health to compensate for speed."
 }
 
 ListMenu "PM_CodexMenu_Gluttony"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Red"
+	Font "BigFont", "Red"
+	Size 640, 480
 	
-	StaticTextCentered 160, 10, "GLUTTONY"
-	
-	StaticPatchCentered 160, 5, "GLUTTLIST"
+	StaticTextCentered 320, 100, "GLUTTONY"
+	StaticPatch 320, 240, "GLUTTLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "Enemies of this tier use gore and/or bile"
-	StaticTextCentered 160, 200, "to attack. Some enemies of this type are tanky."
+	StaticTextCentered 320, 330, "Enemies of this tier use gore and/or bile"
+	StaticTextCentered 320, 338, "to attack. Some enemies of this type are tanky."
 }
 
 ListMenu "PM_CodexMenu_Wrath"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Orange"
+	Font "BigFont", "Orange"
+	Size 640, 480
 	
-	StaticTextCentered 160, 5, "WRATH"
-	
-	StaticPatchCentered 160, -1, "WRATHLIST"
+	StaticTextCentered 320, 100, "WRATH"
+	StaticPatch 320, 240, "WRATHLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "Demons of this type are aggressive, and will close the gap between you"
-	StaticTextCentered 160, 200, "very quickly for melee attacks. Can turn enraged if constantly hurt"
-	StaticTextCentered 160, 210, "or left alone for too long."
+	StaticTextCentered 320, 330, "Demons of this type are aggressive, and will close the gap between you"
+	StaticTextCentered 320, 338, "very quickly for melee attacks. Can turn enraged if constantly hurt"
+	StaticTextCentered 320, 346, "or left alone for too long."
 }
 
 ListMenu "PM_CodexMenu_Envy"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "DarkGreen"
+	Font "BigFont", "DarkGreen"
+	Size 640, 480
 	
-	StaticTextCentered 160, 8, "ENVY"
-	
-	StaticPatchCentered 160, 0, "ENVYLIST"
+	StaticTextCentered 320, 100, "ENVY"
+	StaticPatch 320, 240, "ENVYLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "Second most powerful sin."
-	StaticTextCentered 160, 200, "Has the ability to inherit one of each sin's attacks."
-	StaticTextCentered 160, 210, "Most demons of this sin like to keep its distance from the player."
+	StaticTextCentered 320, 330, "Second most powerful sin."
+	StaticTextCentered 320, 338, "Has the ability to inherit one of each sin's attacks."
+	StaticTextCentered 320, 346, "Most demons of this sin like to keep its distance from the player."
 }
 
 ListMenu "PM_CodexMenu_Pride"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "DarkRed"
+	Font "BigFont", "DarkRed"
+	Size 640, 480
 	
-	StaticTextCentered 160, 8, "PRIDE"
-	
-	StaticPatchCentered 160, 0, "PRIDELIST"
+	StaticTextCentered 320, 100, "PRIDE"
+	StaticPatch 320, 240, "PRIDELIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "The most powerful sin." 
-	StaticTextCentered 160, 200, "Attacks are fierce and intimidating."
-	StaticTextCentered 160, 210, "Lots of magic focused abilities and attacks."
+	StaticTextCentered 320, 330, "The most powerful sin." 
+	StaticTextCentered 320, 338, "Attacks are fierce and intimidating."
+	StaticTextCentered 320, 346, "Lots of magic focused abilities and attacks."
 }
 
 ListMenu "PM_CodexMenu_Pestilence"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "DarkGreen"
+	Font "BigFont", "DarkGreen"
+	Size 640, 480
 	
-	StaticTextCentered 150, 6, "PESTILENCE"
-	
-	StaticPatchCentered 160, -20, "PESTLIST"
+	StaticTextCentered 320, 100, "PESTILENCE"
+	StaticPatch 320, 240, "PESTLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 200, "The first apocalypse." 
-	StaticTextCentered 160, 210, "Nasty, pests and infection run wild in these demons."
-	StaticTextCentered 160, 220, "Dying enemies may leave behind 'parting gifts'."
+	StaticTextCentered 320, 330, "The first apocalypse." 
+	StaticTextCentered 320, 338, "Nasty, pests and infection run wild in these demons."
+	StaticTextCentered 320, 346, "Dying enemies may leave behind 'parting gifts'."
 }
 
 ListMenu "PM_CodexMenu_War"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Grey"
+	Font "BigFont", "Grey"
+	Size 640, 480
 	
-	StaticTextCentered 158, 8, "WAR"
-	
-	StaticPatchCentered 160, -5, "WARLIST"
+	StaticTextCentered 320, 100, "WAR"
+	StaticPatch 320, 240, "WARLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "The third apocalypse." 
-	StaticTextCentered 160, 200, "All burns in war. Attacks with bullets, plasma, fire and poison."
-	StaticTextCentered 160, 210, "The most heavily equipped of the apocalypses."
+	StaticTextCentered 320, 330, "The third apocalypse." 
+	StaticTextCentered 320, 338, "All burns in war. Attacks with bullets, plasma, fire and poison."
+	StaticTextCentered 320, 346, "The most heavily equipped of the apocalypses."
 }
 
 ListMenu "PM_CodexMenu_Death"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Sapphire"
+	Font "BigFont", "Sapphire"
+	Size 640, 480
 	
-	StaticTextCentered 157, 8, "DEATH"
-	
-	StaticPatchCentered 160, 0, "DEATHLIST"
+	StaticTextCentered 320, 100, "DEATH"
+	StaticPatch 320, 240, "DEATHLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 190, "The final apocalypse." 
-	StaticTextCentered 160, 200, "The eternal resting place of man. Primarily attacks with souls."
-	StaticTextCentered 160, 210, "Every demon uses varying degrees of phasing abilities."
+	StaticTextCentered 320, 330, "The final apocalypse." 
+	StaticTextCentered 320, 338, "The eternal resting place of man. Primarily attacks with souls."
+	StaticTextCentered 320, 346, "Every demon uses varying degrees of phasing abilities."
 }
 
 ListMenu "PM_CodexMenu_Umbral"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Black"
+	Font "BigFont", "Black"
+	Size 640, 480
 	
-	StaticTextCentered 160, 3, "UMBRAL"
-	
-	StaticPatchCentered 160, 0, "UMBRALIST"
+	StaticTextCentered 320, 100, "UMBRAL"
+	StaticPatch 320, 240, "UMBRALIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 210, "The deep dwellers that lay restless within Hell." 
-	StaticTextCentered 160, 220, "Lightning and ice is a prominent method of attack,"
-	StaticTextCentered 160, 230, "but some demons can deviate. The second toughest tier in general."
+	StaticTextCentered 320, 330, "The deep dwellers that lay restless within Hell." 
+	StaticTextCentered 320, 338, "Lightning and ice is a prominent method of attack,"
+	StaticTextCentered 320, 346, "but some demons can deviate. The second toughest tier in general."
 }
 
 ListMenu "PM_CodexMenu_Void"
 {
 	Class "PM_CodexMenu"
-     Font "BigFont", "Black"
+	Font "BigFont", "Black"
+	Size 640, 480
 	
-	StaticTextCentered 160, 6, "VOID"
-	
-	StaticPatchCentered 160, 0, "VOIDLIST"
+	StaticTextCentered 320, 100, "VOID"
+	StaticPatch 320, 240, "VOIDLIST"
 	
 	Font "SmallFont", "White"
 	
-	StaticTextCentered 160, 210, "The eternal darkness that rests beyond the inferno." 
-	StaticTextCentered 160, 220, "Defies our plane of existence, and uses it to their advantage to haunt."
-	StaticTextCentered 160, 230, "Very rare, and very dangerous."
+	StaticTextCentered 320, 330, "The eternal darkness that rests beyond the inferno." 
+	StaticTextCentered 320, 338, "Defies our plane of existence, and uses it to their advantage to haunt."
+	StaticTextCentered 320, 346, "Very rare, and very dangerous."
 }
 	/*StaticText " "
 	StaticText "Tiers of Sin"
