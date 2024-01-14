@@ -56,7 +56,6 @@ class PMMonsterBase : Actor abstract
 		PMMonsterBase.MaxHearDistance 6144;
 		Monster;
 		+FLOORCLIP;
-		+AMBUSH
 		DamageFactor "PM_BulletHellDamage", 0;
 		TeleFogDestType "PM_DemonicTeleportFog";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
