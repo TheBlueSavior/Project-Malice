@@ -25,9 +25,15 @@ Class HungryGroup : Actor
 
 Class PM_AffScreamer : PMFodderMonsterBase
 {
-	  int called;
+	int called;
     Default
    {
+   PMMonsterBase.CodexLore
+   "Afflicted are humans that have gone mad from witnessing the sights of Hell - an all too common result of the invasion.
+    Their minds were eroded long ago, any hope of convincing them is forever lost, their thoughts already reverted to its base, primal instincts.
+	While all Afflicted wield improvised weapons or just their bare fists to hunt, they all eventually become emaciated as time passes, resorting to nothing but their scrawny, long fingers.
+	
+	Kill on sight lest one of them attracts a horde from their screams and cries.";
    Health 40;
    GibHealth 20;
    Radius 18;
@@ -62,7 +68,7 @@ Class PM_AffScreamer : PMFodderMonsterBase
   States
   {
   Spawn:
-	 TNT1 A 0 NoDelay { called = 0; }
+	 ZHUN A 0 NoDelay { called = 0; }
 	 ZHUN AB 4 A_Wander();
 	 ZHUN AB 0 A_Look;
    TNT1 A 0 A_StartSound("Horrorspawn/Step",5,volume:0.3);

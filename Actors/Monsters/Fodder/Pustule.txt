@@ -7,7 +7,11 @@ Class IsOnCeiling : Inventory {
 Class Pustule : PMFodderMonsterBase {
   bool isOnCeiling;
   default {
-	//$Category "PM_Monsters/Fodder"
+	PMMonsterBase.CodexLore
+	"Piles of viscera given life from prolonged exposure to ambient evil, these sloshing teratomas serve as Hell's fleshy landmines, creeping up on anything that breathes.
+	 Their explosions are the result of sudden pressure buildup until the fragile body can't handle it, releasing a disgusting mix of acidic blood, sinew and bone.
+	 
+	 Watch the floors and ceiling, otherwise they can be easily avoided by simply moving away from the Pustule before it bursts.";
     Obituary "%o was popped by a Pustule.";
     Health 65;
     Radius 20;

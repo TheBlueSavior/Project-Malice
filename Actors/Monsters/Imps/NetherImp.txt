@@ -2,7 +2,12 @@ Class PM_NetherImp : PMUmbralMonsterBase
 {
   Default
   {
-	//$Category "PM_Monsters/Imps"
+	PMMonsterBase.CodexLore
+	"Powerful and aggressive, these slow-moving imps act as shocktroopers in the field, casting all manner of electricity magic, whether it's electric wisps or simply unfocused arcs of lightning.
+	 Nether Conduits have the ability to resurrect demons and zombies alike by forcefully inserting an electric wisp into their remains, often giving the illusion that they're defibrillating them back from the dead.
+	 This illusion is quickly lost once their target of resurrection is a mangled, unrecognizable corpse, however.
+	 
+	 Can fire slow-moving balls of electricity, launch a slow but constantly damaging giant orb, and fire arcs of electricity either upclose or in long ranges.";
     Health 180;
     radius 20;
 	height 56;

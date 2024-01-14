@@ -3,14 +3,14 @@ Class PM_FOCShotgun : PMVoidMonsterBase
     int cainphase;
 	Default
 	{
-	PMMonsterBase.CodexLore
+	/*PMMonsterBase.CodexLore
 	"\cmHell is an infinite dream. But the L?GHTBR??NG?R has made me lucid.
 	
 	 \cmOur existence proves that there is hope for all of us, to stop resisting our Lord's embrace, and accept the end.
 	 
 	 \cmIf you still choose to resist, then there will be no mercy. We will descend to torment you, to assist you in your impermanence.
 	 
-	 \cmWhile we live forever as demigods.";
+	 \cmWhile we live forever as demigods.";*/
     Health 250;
     Radius 20;
     Height 56;

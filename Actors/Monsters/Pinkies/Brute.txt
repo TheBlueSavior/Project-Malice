@@ -2,7 +2,12 @@ Class PM_Brute : PMUnaffMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Pinkies"
+	PMMonsterBase.CodexLore
+	"Brutes and their subspecies are the fast bullet sponges of the underworld, usually kept in line by the more intelligent demons in the field.
+	 They're notorious for having a one-track mind, always searching for prey to devour no matter what. It particularly correlates screams and cries for help with food, which is why they always target defensive zones where the military keeps civilians.
+	 Their anatomy allows them to reliably charge towards prey to devour, but their hide, thankfully, isn't built to withstand automatic fire or buckshot.
+	 
+	 Can only attack by biting you, and roars on occasion.";
 	Health 150;
 	Radius 30;
 	Height 56;

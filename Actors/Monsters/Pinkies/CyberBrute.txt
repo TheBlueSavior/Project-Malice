@@ -2,7 +2,13 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Pinkies"
+	PMMonsterBase.CodexLore
+	"A blind subspecies of Brute modified through mechanical means, Cyber Brutes hunt purely by smell, but their one-track mind makes them just as predictable as a regular Brute.
+	 Most of the Cyber Brutes that aid Hell's forces in the field are modified by an unknown party to gain a significant movement advantage over regular Brutes.
+	 This, combined with their excellent sense of smell, allows them to reach their prey in a single, near-precise leap, often catching them in their jaws to be devoured.
+	 Some Cyber Brutes also come with a special cloaking field similar to the Phase Brute's, often recognized by their pale skin that seems to be a side-effect of the field somehow.
+	 
+	 Despite that ability and added health, they still don't have much. Their leap can be interrupted.";
 	Health 200;
 	Radius 30;
 	Height 56;

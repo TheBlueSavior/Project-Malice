@@ -2,6 +2,13 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 {
 	Default
 	{
+	PMMonsterBase.CodexLore
+	"Phase Brutes are a subspecies of Brute known to have adapted to low-light conditions. 
+	 Their distinctly quieter growls and darker skin make the Phase Brute near-undetectable within the dark, typically silencing prey by going for the head or their upper torso.
+	 They're a tad bit smarter than regular Brutes in the field, as their impressive cloaking ability still works in ambushing soldiers and civilians alike. 
+	 However, their cloaking ability dissapears the moment they make quick and sudden movements, such as lunging at their prey.
+	 
+	 Has the same attacks as a regular Brute.";
 	Health 150;
 	Radius 30;
 	Height 56;
