@@ -4,11 +4,11 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
    Default
    {
    PMMonsterBase.CodexLore 
-   "Each engagement against the enemy was tougher than the last. Not only did they have to deal with logistics, supplies and manpower, but they also had to deal with treating those that were especially traumatized after repeat conflicts.
+   "Each engagement against the enemy was tougher than the last. Not only did they have to deal with steadily decreasing logistics and manpower, they also had to deal with treating those that were especially traumatized after repeat conflicts.
     For some, the mere idea of evil itself taking upon physical and spiritual form was impossible to comprehend, and sooner or later their minds would fall to insanity after prolonged exposure, the ambient evil around passively influencing them.
 	When the main resistance crumbled, more of this phenomenon would occur, and it didn't take long for almost the entirety of humanity to fall into the clutches of evil.
 	
-	Being an elite, this lunatic attacks you with it's powerful shotgun, but can also deploy a smoke grenade and retreat to cover to reload.";
+	Being an elite, this lunatic attacks you with its powerful shotgun, but can also deploy a smoke grenade and retreat to cover to reload.";
    Health 80;
    Height 56;
    Radius 20;

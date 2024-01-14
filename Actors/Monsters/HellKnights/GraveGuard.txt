@@ -3,7 +3,12 @@ Class PM_GraveGuard : PMDeathMonsterBase
     int deathwither;
     Default
 	{
-	//$Category "PM_Monsters/HellKnights"
+	PMMonsterBase.CodexLore
+	"Grave Guards are named so due to their tendency to defend their spoils (most commonly being souls or cadavers) from other demons of the same circle.
+	 They are usually highly aggressive, but in the field all of their anger is directly focused onto you. Combined with their fast and sudden phasing ability, they are relentless in their assault.
+	 
+	 Uses a fast, seeking soul as its primary attack. May also breathe out blue flames or screaming souls.
+	 Can charge up lightning in its hands and releases them in the form of focused thunder from both palms.";
     Health 500;
     Radius 24;
     Height 64;

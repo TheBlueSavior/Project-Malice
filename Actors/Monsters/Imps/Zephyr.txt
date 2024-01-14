@@ -2,7 +2,11 @@ Class PM_Zephyr : PMUnaffMonsterBase
 {
   Default
   {
-  //$Category "PM_Monsters/Imps"
+  PMMonsterBase.CodexLore
+  "Zephyrs are named due to their flighty disposition in battle, being able to dodge, crawl and weave through enemy fire followed up by a quick red fireball to the face.
+   They fill the role of distraction, harassing singular targets and leaving them open for bigger demons to attack.
+   
+   They have a longer pain time, so automatic weapons are recommended to stunlock a Zephyr.";
   Obituary "%o was outpaced by a Zephyr.";
   HitObituary "%o was ripped in half by a Zephyr.";
   Health 50;

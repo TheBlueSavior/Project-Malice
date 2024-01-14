@@ -4,7 +4,11 @@ Class PM_Harvester : PMDeathMonsterBase
   int phasetimer;
   Default
   {
-    //$Category "PM_Monsters/Imps"
+    PMMonsterBase.CodexLore
+	"Harvesters are cruel beings residing in the circle of Death. Living so close to the abyss, these demons usurp the souls of the dead to use as playthings, weaving their essence to use as weapons against others or purely for their own entertainment.
+	 They, like many other demons in the circle, have absorbed countless souls after Hell's invasion, and are poised to use them against you.
+	 
+	 Attacks by casting homing souls at you, either in bursts or concentrating the essence into one big soul.";
     Health 100;
     Radius 20;
     Height 56;

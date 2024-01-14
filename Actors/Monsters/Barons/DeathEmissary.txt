@@ -7,7 +7,11 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	bool phased;
     Default
 	{
-	//$Category "PM_Monsters/Barons"
+	PMMonsterBase.CodexLore
+	"Emissaries never show themselves outright within the fray. Only during special circumstances, such as the circle of Death marking a specific person for immediate termination, should an Emissary ever appear.
+	 Equipped with a pair of chainguns and a large cannon inside its chest, an Emissary is especially equipped to reap a soul should they become far too stubborn.
+	 
+	 Can sometimes spawn invisible. Fire at where you hear chainguns whirring.";
     Health 1000;
     Radius 22;
     Height 64;
@@ -187,7 +191,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
     States
     {
     Spawn:
-	    TNT1 A 0 NoDelay A_Jump(65,"PhaseIdle");
+	    LMDA A 0 NoDelay A_Jump(65,"PhaseIdle");
 	Idle:
         LMDA A 10 PM_Look();
         Loop;

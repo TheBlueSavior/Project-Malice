@@ -5,7 +5,13 @@ Class PM_Hellion : PMUnaffMonsterBase
   int bufflimit;
   Default
   {
-	//$Category "PM_Monsters/Imps"
+	PMMonsterBase.CodexLore
+	"Hellions belong to an ancient caste of demons, well known for their innate mastery over fire and resurrection magic. Since they're still juvenile, Hellions lack the experience or strength of a mature demon of its same caste.
+	 Despite this, they try to make some attempt to use their magic for other areas. One of the more common cases of this attempt is by binding a guardian wisp to a demon. Once that demon dies, the wisp is released, and after a while casts a weak magic shield coating upon any demon nearby.
+	 Interestingly, the shielding is not too dissimilar to an Exile's magic shield, although this variant is less subtle and much weaker than an Exile's.
+	 
+	 They use their fire magic by launching faster fireballs at you in bursts, barrages or shotgun-like blasts.
+	 They may also concentrate it in their hands to fire homing fireballs indefinitely, though these are much slower.";
     Obituary "A Hellion burned %o to a crisp.";
     Health 140;
     Radius 20;

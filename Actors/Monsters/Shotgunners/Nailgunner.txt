@@ -8,7 +8,7 @@ Class PM_Nailgunner : PMUnaffMonsterBase
   Default
   {
   PMMonsterBase.CodexLore 
-  "Nailgunners are devoted cultists, self-mutilated under the belief that a dark sprite may choose to possess them. It worked, though from the demon's perspective, it found it amusing that so much of humanity was so frail to accept evil that they choose to tear themselves apart for its sake.
+  "Nailgunners are devoted cultists, self-mutilated under the belief that a demon may choose to possess them. It worked, though usually from the demon's perspective, it found it amusing that so much of humanity was so frail to accept evil that they choose to tear themselves apart for its sake.
    
    Attacks you with its modified nailgun, and can sometimes overload it to launch a shotgun-like burst.";
   Health 45;

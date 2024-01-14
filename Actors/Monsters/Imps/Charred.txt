@@ -2,7 +2,11 @@ Class PM_Charred : PMUnaffMonsterBase
 {
   Default
   {
-  //$Category "PM_Monsters/Imps"
+  PMMonsterBase.CodexLore
+  "Lesser demons with a better grasp at pyromancy than your average Devil, Charred act as suppressors in battle, casting concentrated fireballs in waves in order to overwhelm the opposition.
+   They are born from the fiery crags of the underworld, their scorched skin a telling result of adapting to an inhospitable environment. Despite their strength, they're still just as animalistic as your average demon.
+   
+   Can cast strong fireballs at you, sometimes in threes. Can also hold in their magic in order to cast a barrage of weaker, inaccurate fireballs.";
   Health 65;
   Radius 20;
   Height 56;

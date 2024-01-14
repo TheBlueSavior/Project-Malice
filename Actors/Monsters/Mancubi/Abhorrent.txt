@@ -3,7 +3,10 @@ Class PM_Abhorrent : PMDeathMonsterBase
  int deathwither;
  Default
  {
- //$Category "PM_Monsters/Mancubi"
+ PMMonsterBase.CodexLore
+ "Gluttonous and unceasing, these mancubi have engorged themselves with far too many souls to use against you.
+  Their cannons can condense all of the essence stored into one singular point, allowing them to launch massive, homing, but slow-moving souls at you.
+  They can also fire them in barrages, though this stunts the condensation process and only lets the cannons launch smaller, but faster non-homing souls.";
  health 600;
  Radius 48;
  Height 64;
