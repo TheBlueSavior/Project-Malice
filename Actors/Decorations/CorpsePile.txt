@@ -9,8 +9,8 @@ States
 Spawn:
 	PILE A 0
 	"####" A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) // was 200 chance
-	"####" AAAAAAAAAA 0 A_SpawnItemEx("Fly")
-	"####" AAAAAAAAAA 0 A_SpawnItemEx("LargeWhiteMaggot")
+	"####" AAAAAAAAAA 0 A_SpawnItemEx("PM_Fly")
+	"####" AAAAAAAAAA 0 A_SpawnItemEx("PM_LargeWhiteMaggot")
 	"####" A 0 A_SpawnItemEx("MaliceBodiless_Swarm")
 	"####" A -1
 	Stop
@@ -28,8 +28,8 @@ States
 Spawn:
 	UNCO A 0
 	"####" A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-	"####" AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("Fly")
-	"####" AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LargeWhiteMaggot")
+	"####" AAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_Fly")
+	"####" AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_LargeWhiteMaggot")
 	"####" A -1
 	Stop
 }

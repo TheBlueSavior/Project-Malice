@@ -112,31 +112,31 @@ Class PM_Infested : PMPestilenceMonsterBase
     ZKEL L 5;
 	TNT1 AAAAAAA 0 A_SpawnProjectile("MaggotFall", random(35,74), 0, random(-300,300), 0);
     ZKEL L 5 A_Pain;
-	ZKEL LLLLLL 1 A_SpawnItemEx("MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5));
+	ZKEL LLLLLL 1 A_SpawnItemEx("PM_MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5));
     Goto See3;
   Pain2:
     ZKEL L 5;
 	TNT1 AAAAA 0 A_SpawnProjectile("MaggotFall", random(35,74), 0, random(-300,300), 0);
     ZKEL B 10 A_Pain;
 	TNT1 A 0 A_StartSound("ZFODDGIB");
-	ZKEL LLLLLLLLLLLLLLL 1 A_SpawnItemEx("MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5));
+	ZKEL LLLLLLLLLLLLLLL 1 A_SpawnItemEx("PM_MaggotMissile",0,0,random(35,74),random(-3,3),random(-3,3),random(0,5));
 	TNT1 AAAAA 0 A_SpawnProjectile("MaggotFall", random(35,74), 0, random(-300,300), 0);
 	ZKEL A 5;
     Goto See3;
   Death:
     TNT1 A 0 A_StopSounds(0,0);
     TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
-    ZKEL LM 7 A_SpawnItemEx("LargeWhiteMaggot");
+    ZKEL LM 7 A_SpawnItemEx("PM_LargeWhiteMaggot");
 	TNT1 AAAAAAAAAA 0 A_SpawnProjectile("MaggotFall", random(35,74), 0, random(-300,300), 0);
     ZKEL N 7 A_Scream;
 	TNT1 AAAA 0 A_SpawnProjectile("MaggotFall",random(35,74), 0, random(-300,300),70);
     ZKEL O 7 A_NoBlocking;
 	TNT1 AAAA 0 A_SpawnProjectile("MaggotFall", random(25,44), 0, random(-300,300),0,75);
-    ZKEL P 7 A_SpawnItemEx("LargeWhiteMaggot");
+    ZKEL P 7 A_SpawnItemEx("PM_LargeWhiteMaggot");
 	TNT1 AAAA 0 A_SpawnProjectile("MaggotFall", random(5,24), 0, random(-300,300),80);
 	TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-	ZKEL QQQQQQQQQQQQQQQQ 3 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6));
-	ZKEL QQQQQQQQQQQQQQQQQQ 1 A_SpawnItemEx("PassiveMaggot",0,0,0,random(-3,3),random(-3,3),random(0,5));
+	ZKEL QQQQQQQQQQQQQQQQ 3 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6));
+	ZKEL QQQQQQQQQQQQQQQQQQ 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6));
     ZKEL Q -1;
     Stop;
   Raise:

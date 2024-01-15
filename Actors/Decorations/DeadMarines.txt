@@ -16,9 +16,9 @@ ACTOR DeadMarineNew
   BodyChoosed:
 	"####" "###" 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,220)
 	"####" "#" 0 A_SpawnItemEx("PM_SpiderSacSpawner",random(-15,15),random(-15,15),0,0,0,0,0,SXF_NOCHECKPOSITION,250)
-	"####" "####" 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,225)
-	"####" "#####" 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
-	"####" "###" 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
+	"####" "####" 1 A_SpawnItemEx("PM_Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,225)
+	"####" "#####" 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,210)
+	"####" "###" 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,215)
 	"####" "###" 1 A_SpawnItemEx("PM_ScurryRat",random(-20,20),random(-20,20),0,0,0,0,0,SXF_NOCHECKPOSITION,200)
 	"####" "###" 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,180)
 	"####" "#" 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
@@ -147,7 +147,7 @@ ACTOR DeadMarineNew
 
 Actor PM_CorpseCritterRandoms : RandomSpawner
 {
-	DropItem "MaliceSwarm", 255, 4
+	DropItem "PM_Swarm", 255, 4
 	DropItem "Pustule", 255, 2
 	DropItem "RatDropper", 255, 2
 	DropItem "PM_TriteSelection", 255, 2
@@ -248,8 +248,8 @@ ACTOR MaliceTorturedMarine
 	Spawn:
 		TNT1 A 0
 		TNT1 AA 1 A_SpawnItem("CorpseMaggotSpawner",0,15)
-		TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,155)
-		TNT1 AAAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,155)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(17,35))
 		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
@@ -413,9 +413,9 @@ Actor DeadZombieSoldier : DeadZombieMan
 	{
 	Spawn:
 		TNT1 AA 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,140)
-		TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-		TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-		TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
+		TNT1 AAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
 		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
@@ -430,9 +430,9 @@ Actor DeadFacelessShotgunner : DeadShotgunGuy
 	{
 	Spawn:
 		TNT1 AA 1 A_SpawnItemEx("CorpseMaggotSpawner",0,0,0,0,0,0,0,0,140)
-		TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-		TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-		TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
+		TNT1 AAAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
+		TNT1 AAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
 		TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
 		TNT1 A 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0) //230
 		TNT1 A 1 A_SpawnItemEx("PM_CorpseCritterRandoms",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)

@@ -119,63 +119,6 @@ Class PM_AmbientSpawner : Actor
 	}
 }
 
-//Monster Dropper
-
-class PM_HorrorPassiveSpawn : Actor
-{
-	Default
-	{
-	Speed 100;
-	Radius 34;
-    Height 56;
-	Mass 40;
-	+THRUACTORS
-	-COUNTKILL
-	}
-	States
-	{
-	Spawn:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 5 A_Wander();
-		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 0 A_Jump(50,"Die");
-		Loop;
-	Create:
-		//TNT1 A 0 A_ChangeFlag("ThruActors",false);
-                TNT1 A 0 {bTHRUACTORS = false;}
-		TNT1 A 1
-		{
-		if (TestMobjLocation())
-			return A_Jump(256,"Create2");
-		else
-			return A_Jump(256,"Die");
-		}
-		Stop;
-	Create2:
-		TNT1 A 0 A_SpawnItemEx("Horrorspawnmap");
-		Stop;
-	Die:
-		TNT1 A 0;
-		Stop;
-	}
-}
-
-
-
 // a simple data class used to contain a position
 // arrays don't support vectors for some reason
 class DropperPoint {

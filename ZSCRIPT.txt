@@ -8,7 +8,13 @@ version "4.10.0"
 #include "Actors/SinCodexMenu.txt"
 
 //Fodder
+#include "Actors/Monsters/Fodder/Remnant.txt"
+#include "Actors/Monsters/Fodder/Swarm.txt"
+#include "Actors/Monsters/Fodder/LargeMaggot.txt"
+#include "Actors/Monsters/Fodder/Fly.txt"
 #include "Actors/Monsters/Fodder/Hunger.txt"
+#include "Actors/Monsters/Fodder/Horrorspawn.txt"
+#include "Actors/Monsters/Fodder/HorrorspawnVariants.txt"
 #include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
 #include "Actors/Monsters/Fodder/FrozenCorpse.txt"
 #include "Actors/Monsters/Fodder/PawnsoftheShadow.txt"
@@ -67,6 +73,7 @@ version "4.10.0"
 #include "Actors/Monsters/Revenants/Draugr.txt"
 #include "Actors/Monsters/Revenants/Infested.txt"
 #include "Actors/Monsters/Revenants/Depraved.txt"
+//#include "Actors/Monsters/Revenants/SoulReaver.txt"
 
 //Spectres
 #include "Actors/Monsters/Spectres/PhaseBrute.txt"

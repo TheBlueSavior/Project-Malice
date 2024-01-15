@@ -1,347 +1,317 @@
-Actor PM_Remnant : PMFodderMonsterBase
+Class PM_Remnant : PMFodderMonsterBase
 {
-	//$Category "PM_Monsters/Fodder"
-    Health 200
-    Radius 20
-    Height 54
-    Speed 10
-	Mass 100
-	Painchance 80
-	Obituary "%o was turned into the Remnant's maggot barf bag!" 
-    SeeSound "Remnant/Sight"
-    PainSound "Remnant/Pain"
-    DeathSound "Remnant/Death"
-    ActiveSound "Remnant/Active"
-    MeleeSound "Remnant/Sight"
-    MONSTER 
+	Default
+	{
+	PMMonsterBase.CodexLore
+	"Some of the corpses you come across might not be truly dead after much exposure to underworld elements, simply waiting for the chance to ambush unsuspecting victims.
+	 Be careful, as some mimics may have even \crworse \cbmutations...";
+    Health 200;
+    Radius 20;
+    Height 54;
+    Speed 10;
+	Mass 100;
+	Painchance 80;
+	Obituary "%o was turned into the Remnant's maggot barf bag.";
+    SeeSound "Remnant/Sight";
+    PainSound "Remnant/Pain";
+    DeathSound "Remnant/Death";
+    ActiveSound "Remnant/Active";
+    MeleeSound "Remnant/Sight";
+    Monster;
 	+FLOORCLIP
-	+DONTHURTSPECIES
 	+NOINFIGHTING
 	-COUNTKILL
-	+DONTHURTSPECIES
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
-	Species "Fodder"
-	BloodColor "DarkRed"
-	Bloodtype "PM_PestilenceZombieBloodBase"
-	DropItem "ArmorBonus"
-	DropItem "Shotgun"
-	Tag "Remnant"
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
+	Species "Fodder";
+	BloodColor "DarkRed";
+	Bloodtype "PM_PestilenceZombieBloodBase";
+	DropItem "ArmorBonus";
+	DropItem "Shotgun";
+	Tag "Remnant";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
     States
     {
     Spawn:
-	  TNT1 A 0 A_Look
-	  ZOM3 A 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 A 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 B 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 B 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 C 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 C 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 D 4 A_wander
-	  TNT1 A 0 A_Look
-	  ZOM3 D 4 A_wander
-	  Loop
+	  ZOM3 A 0 NoDelay;
+	Idle:
+	  TNT1 A 0 A_Look();
+	  ZOM3 AA 4 A_Wander();
+	  TNT1 A 0 A_Look();
+	  ZOM3 BB 4 A_Wander();
+	  TNT1 A 0 A_Look();
+	  ZOM3 CC 4 A_Wander();
+	  TNT1 A 0 A_Look();
+	  ZOM3 DD 4 A_Wander();
+	  Loop;
     See:
-	  ZOM3 BBGG 6 A_FaceTarget
-	  ZOD4 AA 6
-	  ZOM3 G 6
+	  ZOM3 BBGG 6 A_FaceTarget();
+	  ZOD4 AA 6;
+	  ZOM3 G 6;
 	See2:
-	  TNT1 A 0 A_ChangeFlag("NOPAIN",0)
-      ZOM3 AABB 3 A_Chase
-	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
-      ZOM3 CCDD 3 A_Chase
-	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
-	  TNT1 A 0 A_Jump(45,"Puke")
-	  TNT1 A 0 A_Jump(56,"ChargeCheck")
-	  Loop
+	  TNT1 A 0 { bNOPAIN = false; }
+      ZOM3 AABB 3 A_Chase();
+	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80);
+      ZOM3 CCDD 3 A_Chase();
+	  TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80);
+	  TNT1 A 0 A_Jump(45,"Puke");
+	  TNT1 A 0 A_Jump(56,"ChargeCheck");
+	  Loop;
 	ChargeCheck:
-	  TNT1 A 0
-      ZOM3 AAA 5 A_FaceTarget
-	  TNT1 A 0 A_CheckSight("See2")
-	  Goto Charge
+	  TNT1 A 0;
+      ZOM3 AAA 5 A_FaceTarget();
+	  TNT1 A 0 A_CheckSight("See2");
+	  Goto Charge;
 	Charge:
-	  TNT1 A 0 A_PlaySound("Remnant/Sight",CHAN_5)
+	  TNT1 A 0 A_StartSound("Remnant/Sight");
 	Charge2:
-	  ZOM3 AA 2 A_Chase
-	  TNT1 A 0 A_Recoil(-0.3)
-      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
-	  ZOM3 BB 2 A_Chase
-	  TNT1 A 0 A_Recoil(-0.3)
-      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
-	  ZOM3 CC 2 A_Chase
-	  TNT1 A 0 A_Recoil(-0.3)
-      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80)
-	  ZOM3 DD 2 A_Chase
-	  TNT1 A 0 A_JumpIfCloser(100,"Puke")
-	  Loop
+	  ZOM3 AA 2 A_Chase();
+	  TNT1 A 0 A_Recoil(-0.3);
+      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80);
+	  ZOM3 BB 2 A_Chase();
+	  TNT1 A 0 A_Recoil(-0.3);
+      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80);
+	  ZOM3 CC 2 A_Chase();
+	  TNT1 A 0 A_Recoil(-0.3);
+      TNT1 A 0 A_SpawnItemEx("WMaggotSpawn",random(-5,5),random(-5,5),random(35,50),0,0,0,0,0,80);
+	  ZOM3 DD 2 A_Chase();
+	  TNT1 A 0 A_JumpIfCloser(100,"Puke");
+	  Loop;
 	Puke:
-	  TNT1 A 0
-	  TNT1 A 0 A_CheckSight("See2")
+	  TNT1 A 0;
+	  TNT1 A 0 A_CheckSight("See2");
 	 // TNT1 A 0 A_PlaySound("FATSPIT")
-	  ZOM3 GGGG 1
-	  TNT1 A 0 A_PlaySound("Afflicted/Puke",CHAN_6)
-	  TNT1 A 0 A_PlaySound("GenericBloodPuke",2)
-      ZOM3 E 5
+	  ZOM3 GGGG 1;
+	  TNT1 A 0 A_StartSound("Afflicted/Puke",6);
+	  TNT1 A 0 A_StartSound("GenericBloodPuke",2);
+      ZOM3 E 5;
 	  ZOM3 GGGGGGGG 1
 	  {
-		A_CustomMissile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
-		A_CustomMissile("RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("PM_RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
 	  }
 	  ZOM3 GGG 1
 	  {
-		A_CustomMissile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
-		A_CustomMissile("MaggotMissile",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
-		A_CustomMissile("RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("PM_MaggotMissile",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("PM_RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
 	  }
 	  ZOM3 GGGGGGGGGGGGGG 1
 	  {
-		A_CustomMissile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
-		A_CustomMissile("RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("MaggotPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
+		A_SpawnProjectile("PM_RemnantBloodPuke",48,0,random(8,-8),CMF_AIMDIRECTION,random(-3,3));
 	  }
-	  ZOM3 GGGGG 1
-	  ZOM3 BBBBBBBBBB 1
-      Goto See2
+	  ZOM3 GGGGG 1;
+	  ZOM3 BBBBBBBBBB 1;
+      Goto See2;
     Melee:
-	  ZOM3 E 5 A_FaceTarget
-      ZOM3 F 6 A_CustomMeleeAttack(Random(6,9)*3, "Zombie/melee","none")
-	  Goto See2
+	  ZOM3 E 5 A_FaceTarget();
+      ZOM3 F 6 A_CustomMeleeAttack(10, "Zombie/melee","");
+	  Goto See2;
     Pain:
-	  ZOM3 G 2
-	  ZOM3 G 2 A_Pain
-	  Goto See2
+	  ZOM3 G 2;
+	  ZOM3 G 2 A_Pain;
+	  Goto See2;
 	Death:
-	  ZOD4 A 5
-	  ZOD4 B 5 A_Scream
-	  ZOD4 C 4
-	  ZOD4 D 4 A_Fall
-	  ZOD4 FG 1
-	  TNT1 A 0 A_PlaySound("Corpse/Fall",CHAN_6)
-	  ZOD4 G -1
-	  Stop
+	  ZOD4 A 5;
+	  ZOD4 B 5 A_Scream;
+	  ZOD4 C 4;
+	  ZOD4 D 4 A_Fall;
+	  ZOD4 FG 1;
+	  TNT1 A 0 A_StartSound("Corpse/Fall",6);
+	  ZOD4 G -1;
+	  Stop;
 	}
 } 
 
-Actor RemnantBloodPuke
+Class PM_RemnantBloodPuke : Actor
 {
-  Damage 0
-  Height 1
-  Radius 1
-  Speed 9
-  Mass 1
+  Default
+  {
+  Damage 0;
+  Height 1;
+  Radius 1;
+  Speed 9;
+  Mass 1;
   +FORCEXYBILLBOARD
   +CLIENTSIDEONLY
   +DONTSPLASH
-  Scale 0.20
-  Gravity 0.8
-  PROJECTILE
+  Scale 0.20;
+  Gravity 0.8;
+  Projectile;
   -NOGRAVITY
-  Decal "BloodSplat1"
+  Decal "BloodSplat1";
+  }
   States
   {
   Spawn:
-  TNT1 A 0 A_SetRoll(random(0,360))
+  TNT1 A 0 A_SetRoll(random(0,360));
   Go:
-	FBLD ABCD 3 A_SetScale(ScaleX+0.042)
-	Loop
+	FBLD ABCD 3 A_SetScale(Scale.X+0.042);
+	Loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3))
-    Stop
+	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3));
+    Stop;
   }
 }
 
-Actor BloodSprayPuke
+Class BloodSprayPuke : Actor
 {
-  Damage 0
-  Height 1
-  Radius 1
-  Speed 15
-  Mass 1
+  Default
+  {
+  Damage 0;
+  Height 1;
+  Radius 1;
+  Speed 15;
+  Mass 1;
   +FORCEXYBILLBOARD
   +CLIENTSIDEONLY
-  Scale 0.20
-  Gravity 0.5
-  PROJECTILE
+  Scale 0.20;
+  Gravity 0.5;
+  Projectile;
   -NOGRAVITY
-  Decal "BloodSplat1"
+  Decal "BloodSplat1";
+  }
   States
   {
   Spawn:
-  TNT1 A 0 A_SetRoll(random(0,360))
+  TNT1 A 0 A_SetRoll(random(0,360));
   Go:
-	FBLD ABCD 3
-	Loop
+	FBLD ABCD 3;
+	Loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3))
-    Stop
+	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3));
+    Stop;
   }
 }
 
-Actor BloodPukeSplatter
+Class BloodPukeSplatter : Actor
 {
-	Height 1
-	Radius 1
-	Mass 1
+    Default
+	{
+	Height 1;
+	Radius 1;
+	Mass 1;
 	+CLIENTSIDEONLY
+	}
 	States
 	{
 	Spawn:
-	BDR1 BCDEFGH 3
-	Stop
+	BDR1 BCDEFGH 3;
+	Stop;
 	}
 }
 
-Actor PM_Remnantspawn : RandomSpawner
+Class PM_RemnantSpawn : RandomSpawner
 {
-	DropItem "PM_Remnantspawn1", 255, 1
-	DropItem "PM_Remnantspawn2", 255, 1
-	DropItem "PM_Remnantspawn3", 255, 1
-	DropItem "PM_Remnantspawn4", 255, 1
+    Default
+	{
+	DropItem "PM_RemnantSpawn1", 255, 1;
+	DropItem "PM_RemnantSpawn2", 255, 1;
+	DropItem "PM_RemnantSpawn3", 255, 1;
+	DropItem "PM_RemnantSpawn4", 255, 1;
+	}
 }
 
-actor PM_Remnantspawn1
+Class PM_RemnantSpawn1 : Actor
 {
-  +DONTHURTSPECIES
+  Default
+  {
+  +DONTHARMSPECIES
   +AMBUSH
   +NOBLOCKMAP
   +MOVEWITHSECTOR
-  states
+  }
+  States
   {
   Spawn:
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-	TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
-	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
-	TNT1 AAA 1 A_SpawnItemEx("PM_ScurryRat",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 A 1 A_SpawnItemEx("MaliceSwarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
+	TNT1 AAAA 1 A_SpawnItemEx("PM_Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190);
+	TNT1 AAAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160);
+	TNT1 AAA 1 A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170);
+	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140);
+	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230);
+	TNT1 AAA 1 A_SpawnItemEx("PM_ScurryRat",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160);
+	TNT1 A 1 A_SpawnItemEx("PM_Swarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240);
+	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252);
+	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245);
   Spawn1:
-    DEAD F 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
+    DEAD F 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360);
+    Loop;
   Idle:
-	 DEAD F 5 
+	 DEAD F 5;
   See:
-     DEAD F 105
-	 TNT1 A 0 A_PlaySound("Afflicted/Idle",CHAN_7)
-     DEAD F 5 A_FaceTarget
-	 TNT1 A 0 A_PlaySound("Decayed/Roll",CHAN_6)
-	ZOD4 GFEDCBBBBA 3
-	TNT1 A 0 A_KillChildren
-    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
+     DEAD F random(105,255);
+	 TNT1 A 0 A_StartSound("Afflicted/Idle",7);
+     DEAD F 5 A_FaceTarget();
+	 TNT1 A 0 A_StartSound("Decayed/Roll",CHAN_6);
+	ZOD4 GFEDCBBBBA 3;
+	TNT1 A 0 A_KillChildren;
+    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
   }
 }
 
-actor PM_Remnantspawn2
+Class PM_RemnantSpawn2 : PM_RemnantSpawn1
 {
-  +DONTHURTSPECIES
-  +AMBUSH
-  +NOBLOCKMAP
-  +MOVEWITHSECTOR
-  states
+  States
   {
-  Spawn:
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-	TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
-	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
-	TNT1 AAA 1 A_SpawnItemEx("PM_ScurryRat",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 A 1 A_SpawnItemEx("MaliceSwarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
   Spawn1:
-     DEAD E 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
+     DEAD E 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360);
+    Loop;
   Idle:
-	 DEAD E 5 
+	 DEAD E 5;
   See:
-     DEAD E 105
-	 TNT1 A 0 A_PlaySound("Afflicted/Idle",CHAN_7)
-     DEAD F 5 A_FaceTarget
-	 TNT1 A 0 A_PlaySound("Decayed/Roll",CHAN_6)
-	ZOD4 GFEDCBBBBA 3
-	TNT1 A 0 A_KillChildren
-    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
+     DEAD E random(105,255);
+	 TNT1 A 0 A_StartSound("Afflicted/Idle",7);
+     DEAD F 5 A_FaceTarget();
+	 TNT1 A 0 A_StartSound("Decayed/Roll",6);
+	ZOD4 GFEDCBBBBA 3;
+	TNT1 A 0 A_KillChildren;
+    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
   }
 }
 
-actor PM_Remnantspawn3
+Class PM_RemnantSpawn3 : PM_RemnantSpawn1
 {
-  +DONTHURTSPECIES
-  +AMBUSH
-  +NOBLOCKMAP
-  +MOVEWITHSECTOR
-  states
+  States
   {
-  Spawn:
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-	TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
-	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
-	TNT1 AAA 1 A_SpawnItemEx("PM_ScurryRat",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 A 1 A_SpawnItemEx("MaliceSwarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
   Spawn1:
-     DEAD O 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
+     DEAD O 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360);
+    Loop;
   Idle:
-	 DEAD O 5 
+	 DEAD O 5;
   See:
-     DEAD O 105
-	 TNT1 A 0 A_PlaySound("Afflicted/Idle",CHAN_7)
-     DEAD F 5 A_FaceTarget
-	 TNT1 A 0 A_PlaySound("Decayed/Roll",CHAN_6)
-	ZOD4 GFEDCBBBBA 3
-	TNT1 A 0 A_KillChildren
-    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
+     DEAD O random(105,255);
+	 TNT1 A 0 A_StartSound("Afflicted/Idle",7);
+     DEAD F 5 A_FaceTarget();
+	 TNT1 A 0 A_StartSound("Decayed/Roll",6);
+	ZOD4 GFEDCBBBBA 3;
+	TNT1 A 0 A_KillChildren;
+    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    stop;
   }
 }
 
-actor PM_Remnantspawn4
+Class PM_RemnantSpawn4 : PM_RemnantSpawn1
 {
-  +DONTHURTSPECIES
-  +AMBUSH
-  +NOBLOCKMAP
-  +MOVEWITHSECTOR
-  states
+  States
   {
-  Spawn:
-	TNT1 AAAA 1 A_SpawnItemEx("Fly",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,190)
-	TNT1 AAAA 1 A_SpawnItemEx("PassiveMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 AAA 1 A_SpawnItemEx("LargeWhiteMaggot",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,170)
-	TNT1 AAA 0 A_SpawnItemEx("MaliceGoreFlies",random(-10,10),random(-10,10),random(8,30),0,0,0,0,0,140)
-	TNT1 AA 1 A_Spawnitemex("DecalMaster",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,230)
-	TNT1 AAA 1 A_SpawnItemEx("PM_ScurryRat",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,160)
-	TNT1 A 1 A_SpawnItemEx("MaliceSwarm",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,240)
-	TNT1 AAAA 0 A_SpawnItemEx("Trite",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,252)
-	TNT1 A 1 A_SpawnItemEx("RatDropper",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,245)
   Spawn1:
-     DEAD Q 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360)
-    loop
+     DEAD Q 5 A_LookEx(LOF_NOSOUNDCHECK,0,256,0,360);
+    Loop;
   Idle:
-	 DEAD Q 5 
+	 DEAD Q 5;
   See:
-     DEAD Q 105
-	 TNT1 A 0 A_PlaySound("Afflicted/Idle",CHAN_7)
-     DEAD F 5 A_FaceTarget
-	 TNT1 A 0 A_PlaySound("Decayed/Roll",CHAN_6)
-	ZOD4 GFEDCBBBBA 3
-	TNT1 A 0 A_KillChildren
-    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0)
-    stop
+     DEAD Q random(105,255);
+	 TNT1 A 0 A_StartSound("Afflicted/Idle",7);
+     DEAD F 5 A_FaceTarget();
+	 TNT1 A 0 A_StartSound("Decayed/Roll",6);
+	ZOD4 GFEDCBBBBA 3;
+	TNT1 A 0 A_KillChildren;
+    ZOD4 A 0 A_SpawnItemEx("PM_Remnant",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+    Stop;
   }
 }

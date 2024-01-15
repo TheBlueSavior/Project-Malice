@@ -188,7 +188,7 @@ Class PM_Host : PMPestilenceMonsterBase
     HOS1 KL 6;
     HOS1 M 6 A_NoBlocking;
 	TNT1 AAAAAAAA 0 A_SpawnItemEx("HostSwarmFly",0,0,5);
-	TNT1 A 0 A_SpawnItemEx("ActiveSwarm",0,0,7,0,0,0,0,0,200);
+	TNT1 A 0 A_SpawnItemEx("PM_ActiveSwarm",0,0,7,0,0,0,0,0,200);
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 	HOS1 NNNNNNNNNN 30
 	{

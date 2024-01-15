@@ -459,7 +459,7 @@ Class HungerMaggotMissile : Actor
 	WAGO ABABABABABABABAB 1;
 	Loop;
   Death:
-    TNT1 A 0 A_SpawnItemEx("LargeWhiteMaggot");
+    TNT1 A 0 A_SpawnItemEx("PM_LargeWhiteMaggot");
     Stop;
   }
 }
