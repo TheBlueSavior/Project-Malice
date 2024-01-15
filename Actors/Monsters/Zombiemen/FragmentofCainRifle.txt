@@ -57,7 +57,6 @@ Class PM_FOCRifle : PMVoidMonsterBase
 		}
         Loop;
 	Look:
-	    TNT1 A 0 A_FadeIn(1.0,0);
         TNT1 AA 4 PM_LookingForPlayer();
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",50,JLOSF_DEADNOJUMP);
 		TNT1 AA 4 PM_LookingForPlayer();
@@ -75,7 +74,8 @@ Class PM_FOCRifle : PMVoidMonsterBase
 	    TNT1 A 0 A_Jump(256,"PhaseStart","See");
 		Goto See;
     See:
-        TNT1 A 0 A_FadeIn(1.0,0);
+	    TNT1 A 0;
+	    TNT1 A 0 A_FadeIn(1.0,0);
 		TNT1 A 0 A_SetSpeed(random(7,15));
         UDM2 A random(1,7)
 		{
@@ -169,6 +169,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
 	    UDM2 AAAAAAAAA 1 A_FadeIn(0.1,0);
     Missile:
 		TNT1 A 0;
+		TNT1 A 0 A_FadeIn(1.0,0);
 		TNT1 A 0 A_Jump(100,"RetreatTele");
 		TNT1 A 0 A_FaceTarget();
 	    UDM2 E 12 A_StartSound("FOC/Attack");
@@ -197,7 +198,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
 	    UDM2 E random(10,15) A_FaceTarget(30,60,0,0);
 		Goto See;
     Pain:
-	    TNT1 AAAAAAAAAA 0 A_FadeIn(0.1,0);
+	    TNT1 A 0;
         UDM2 G 1 A_FaceTarget();
         UDM2 G 2
 		{
@@ -209,7 +210,7 @@ Class PM_FOCRifle : PMVoidMonsterBase
 		{
 		A_SpawnItemEx("PM_FOCPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 		}
-		TNT1 A 0 A_Jump(25,"PhaseStart");
+		TNT1 A 0 A_Jump(25,"PhaseStart","RetreatTele");
         Goto See;
 	XDeath:
     Death:
