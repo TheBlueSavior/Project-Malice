@@ -4,7 +4,8 @@ Class PM_POTS : PMVoidMonsterBase
 	int user_pawntick;
 	Default
 	{
-	//$Category "PM_Monsters/Fodder/POTS"
+	PMMonsterBase.CodexLore
+	"'It is quite within the bounds of possibility for a man to recognize the relative evil of his nature, but it is a rare and shattering experience for him to gaze into the absolute face of evil.'";
     Health 100;
     Radius 20;
     Height 56;
@@ -48,7 +49,7 @@ Class PM_POTS : PMVoidMonsterBase
     States
     {
     Spawn:
-		TNT1 A 0 NoDelay
+		POTS A 0 NoDelay
         {
          user_pawnkicker = random(-4,0);
 		 user_pawntick = random(1,13);
