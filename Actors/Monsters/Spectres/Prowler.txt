@@ -3,6 +3,10 @@ Class PM_Prowler : PMUmbralMonsterBase
     int user_timer;
 	Default
 	{
+	PMMonsterBase.CodexLore
+	"\cmI can see what you see not, vision milky then eyes rot. When you turn they will be gone, whispering their hidden song. Then you see what cannot be, shadows move where light should be! Out of darkness, out of mind, cast down into the Halls of the Blind.
+	 
+	 \crH U N T.";
 	Health 200;
 	Radius 20;
 	Height 56;
@@ -33,8 +37,8 @@ Class PM_Prowler : PMUmbralMonsterBase
 	States
 	{
 	Spawn: 
-		/*Goto Idle
-	Idle:*/ //[NERU] DUDE
+		SHDW E 0 NoDelay;
+	Idle: //[NERU] i underestimated you. sumimasen
 		TNT1 A 10 A_Look();
 		Loop;
 	See:

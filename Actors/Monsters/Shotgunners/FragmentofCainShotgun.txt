@@ -50,11 +50,9 @@ Class PM_FOCShotgun : PMVoidMonsterBase
     States
     {
     Spawn:
-		FOCA B 10 
-		{
-		A_FadeOut(1.0,0);
-		PM_Look();
-		}
+	    FOCA B 0 NoDelay;
+	Idle:
+		TNT1 A 10 PM_Look();
         Loop;
 	Look:
         TNT1 AA 4 PM_LookingForPlayer();

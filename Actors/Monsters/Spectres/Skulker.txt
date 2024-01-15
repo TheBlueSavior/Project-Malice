@@ -2,6 +2,10 @@ Class PM_Skulker : PMVoidMonsterBase
 {
     Default
 	{
+	PMMonsterBase.CodexLore
+	"Be not afraid of the dark. Be afraid of what might lurk in it, for there are horrors beyond life’s edge that we do not suspect, and once in a while man’s evil prying calls them just within our range.
+	
+	\crH A U N T.";
     Health 650;
     GibHealth 20;
     Radius 20;
@@ -34,12 +38,13 @@ Class PM_Skulker : PMVoidMonsterBase
   States
   {
   Spawn:
+    SKU1 I 0 NoDelay;
+  Idle:
 	TNT1 AA 7 A_Wander();
 	TNT1 AA 0 A_Look;
 	TNT1 AA 7 A_Wander();
     TNT1 AA 0 A_Look;
     Loop;
-	
   See:
     TNT1 AAAAAA 2 A_Chase();
 	TNT1 A 0 A_CheckSight("See");
