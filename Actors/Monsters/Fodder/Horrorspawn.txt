@@ -368,8 +368,17 @@ Class PM_Horrorspawn : PMFodderMonsterBase
     Goto SeeAngry;
   Death:
 	"####" A 0
-	{ if(choose == 0 && random(1,4) == 1)
-	  SetStateLabel("DecapDeath"); }
+	{ if(choose == 0)
+	  SetStateLabel("DeathV1"); }
+    "####" I 7;
+    "####" J 7 A_Scream;
+    "####" K 5 A_NoBlocking;
+    "####" L 5;
+	"####" A 0 A_StartSound("Corpse/Fall",6);
+    "####" L -1;
+    Stop;
+  DeathV1:
+	"####" A 0 A_Jump(120,"DecapDeath");
     "####" I 7;
     "####" J 7 A_Scream;
     "####" K 5 A_NoBlocking;
