@@ -49,7 +49,7 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
   States
   {
   Spawn:
-	UMBE A 0 NoDelay
+	UMBE A 0 NoDelay;
 	TNT1 A 10 PM_Look();
 	Wait;
   Look:
