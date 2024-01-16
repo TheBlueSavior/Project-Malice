@@ -7,6 +7,7 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
 	 Huh? Why is it on the list? Well.. who knows?
 	 
 	 Just don't turn your back on them.";
+	PMMonsterBase.ForgetThreshold 9999;
 	Health 60;
     Radius 20;
     Height 56;
@@ -48,14 +49,11 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
   States
   {
   Spawn:
-	UMBE A 10 
-	{
-	A_FadeOut(1.0,0);
-	PM_Look();
-	}
-	Loop;
+	UMBE A 0 NoDelay
+	TNT1 A 10 PM_Look();
+	Wait;
   Look:
-    TNT1 A 0 { A_FadeIn(1.0,0); bTHRUACTORS = true; }
+    TNT1 A 0 { bTHRUACTORS = true; }
     TNT1 A 5 { for(int i=30;i>0;i--) A_Wander(); }
 	  TNT1 A 0 A_CheckSight("See");
 	Loop;
