@@ -4803,3 +4803,46 @@ $rolloff Director/AStrikeShot 1000 3000
 $rolloff Director/ASPreImpact 2000 3000
 $limit Director/ASPreImpact 5
 $limit Director/AStrikeShot 20
+
+//Exalted
+
+$random Exalt/Sight { Exalt/Sight1 Exalt/Sight2 Exalt/Sight3 Exalt/Sight4 Exalt/Sight5 }
+Exalt/Sight1 "Sounds/Monsters/Barons/Exalted/ExaltSight1.ogg"
+Exalt/Sight2 "Sounds/Monsters/Barons/Exalted/ExaltSight2.ogg"
+Exalt/Sight3 "Sounds/Monsters/Barons/Exalted/ExaltSight3.ogg"
+Exalt/Sight4 "Sounds/Monsters/Barons/Exalted/ExaltSight4.ogg"
+Exalt/Sight5 "Sounds/Monsters/Barons/Exalted/ExaltSight5.ogg"
+
+$random Exalt/Active { Exalt/Active1 Exalt/Active2 }
+Exalt/Active1 "Sounds/Monsters/Barons/Exalted/ExaltActive1.ogg"
+Exalt/Active2 "Sounds/Monsters/Barons/Exalted/ExaltActive2.ogg"
+
+$random Exalt/Voice { Exalt/Voice1 Exalt/Voice2 Exalt/Voice3 Exalt/Voice4 }
+Exalt/Voice1 "Sounds/Monsters/Barons/Exalted/ExaltVoice1.ogg"
+Exalt/Voice2 "Sounds/Monsters/Barons/Exalted/ExaltVoice2.ogg"
+Exalt/Voice3 "Sounds/Monsters/Barons/Exalted/ExaltVoice3.ogg"
+Exalt/Voice4 "Sounds/Monsters/Barons/Exalted/ExaltVoice4.ogg"
+
+$random Exalt/Pain { Exalt/Pain1 Exalt/Pain2 Exalt/Pain3 }
+Exalt/Pain1 "Sounds/Monsters/Barons/Exalted/ExaltPain1.ogg" 
+Exalt/Pain2 "Sounds/Monsters/Barons/Exalted/ExaltPain2.ogg" 
+Exalt/Pain3 "Sounds/Monsters/Barons/Exalted/ExaltPain3.ogg" 
+
+$random Exalt/Death { Exalt/Death1 Exalt/Death2 Exalt/Death3 }
+Exalt/Death1 "Sounds/Monsters/Barons/Exalted/ExaltDeath1.ogg" 
+Exalt/Death2 "Sounds/Monsters/Barons/Exalted/ExaltDeath2.ogg" 
+Exalt/Death3 "Sounds/Monsters/Barons/Exalted/ExaltDeath3.ogg"
+
+Exalt/TPStart  "Sounds/Monsters/Barons/Exalted/ExaltedTPStart.ogg"
+Exalt/TPEnd  "Sounds/Monsters/Barons/Exalted/ExaltedTPEnd.ogg"
+$random Exalt/BHShot { Exalt/BHShot1 Exalt/BHShot2 Exalt/BHShot3 }
+Exalt/BHShot1 "Sounds/Monsters/Barons/Exalted/ExaltBHShot1.ogg"
+Exalt/BHShot2 "Sounds/Monsters/Barons/Exalted/ExaltBHShot2.ogg"
+Exalt/BHShot3 "Sounds/Monsters/Barons/Exalted/ExaltBHShot3.ogg"
+Exalt/BHShotExp "Sounds/Monsters/Barons/Exalted/ExaltBHShotExp.ogg" 
+
+$rolloff Exalt/BHShot 400 2400
+$rolloff Exalt/TPStart 500 2600
+$rolloff Exalt/TPEnd 500 2600
+$limit Exalt/BHShotExp 8
+$limit Exalt/BHShot 6
