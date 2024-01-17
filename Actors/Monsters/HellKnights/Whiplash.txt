@@ -2,7 +2,11 @@ Class PM_Whiplash : PMLustMonsterBase
 {
   Default
   {
-  //$Category "PM_Monsters/HellKnights"
+  PMMonsterBase.CodexLore
+  "Cunning and indulgent, Whiplashes derive most of their pleasure from violent acts of flagellation, their victims usually dying a slow and painful death with a hundred blades piercing skin before their screams cut short with a spear through the head.
+   Each act of violence thoroughly satisfies a Whiplash, and even in the field of battle they're all too happy to feel pain themselves as you blast them to pieces.
+   
+   Whiplashes are fast, aggressive and will close in on you quickly, but their attacks don't deal much in terms of damage.";
   Health 500;
   Radius 25;
   Height 64;

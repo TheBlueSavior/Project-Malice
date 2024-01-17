@@ -4846,3 +4846,36 @@ $rolloff Exalt/TPStart 500 2600
 $rolloff Exalt/TPEnd 500 2600
 $limit Exalt/BHShotExp 8
 $limit Exalt/BHShot 6
+
+//Sybarite
+
+$random Sybarite/Sight { Sybarite/Sight1 Sybarite/Sight2 Sybarite/Sight3 }
+Sybarite/Sight1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteSight1.ogg"
+Sybarite/Sight2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteSight2.ogg"
+Sybarite/Sight3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteSight3.ogg"
+
+$random Sybarite/Pain { Sybarite/Pain1 Sybarite/Pain2 }
+Sybarite/Pain1 "Sounds/Monsters/Chaingunners/Sybarite/SybaritePain1.ogg"
+Sybarite/Pain2 "Sounds/Monsters/Chaingunners/Sybarite/SybaritePain2.ogg"
+
+$random Sybarite/Death { Sybarite/Death1 Sybarite/Death2 Sybarite/Death3 }
+Sybarite/Death1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteDeath1.ogg"
+Sybarite/Death2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteDeath2.ogg"
+Sybarite/Death3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteDeath3.ogg"
+
+Sybarite/Autocannon "Sounds/Monsters/Chaingunners/Sybarite/SybariteAutocannon.ogg"
+Sybarite/GrenadeLaunch "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeLaunch.ogg"
+Sybarite/SlotIn "Sounds/Monsters/Chaingunners/Sybarite/SybariteSlotIn.ogg"
+
+$random Sybarite/GrenadeBounce { Sybarite/GrenadeBounce1 Sybarite/GrenadeBounce2 Sybarite/GrenadeBounce3 }
+Sybarite/GrenadeBounce1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce1.ogg"
+Sybarite/GrenadeBounce2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce2.ogg"
+Sybarite/GrenadeBounce3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce3.ogg"
+
+$rolloff Sybarite/SlotIn 300 2200
+$rolloff Sybarite/GrenadeLaunch 500 2500
+$limit Sybarite/GrenadeBounce 8
+$volume Sybarite/SlotIn 0.45
+$volume Sybarite/Sight 0.95
+$volume Sybarite/Pain 0.95
+$volume Sybarite/Death 0.95

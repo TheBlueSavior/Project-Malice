@@ -6,7 +6,12 @@ Class PM_CivilianZombie : PMLustMonsterBase
 	int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Zombiemen"
+	PMMonsterBase.CodexLore
+	"Hedonists are aggressive zombies possessed by sprites belonging to the circle of Lust. 
+	With their brains hot-wired to seek pleasure by any means necessary, they are especially ruthless in their endless thirst for blood, usually fatally injuring survivors with the first firearm they'd see and watching them limp for the sake of it, or setting entire triage stations on fire with molotov cocktails.
+	Getting too close to a Hedonist isn't recommended, for the sprite also happened to create some.. turbulent changes to their torso's anatomy.
+	
+	Uses a revolver to nail shots at you with. Can sometimes throw molotovs, if they happen to have one or several.";
     Health 20;
     Radius 20;
     Height 56;
@@ -20,8 +25,8 @@ Class PM_CivilianZombie : PMLustMonsterBase
 	+HARMFRIENDS
 	+DOHARMSPECIES
 	Species "Zombie";
-	Tag "Civilian Zombie";
-    Obituary "A Civilian Zombie shown %o their final sunset.";
+	Tag "Hedonist";
+    Obituary "A Hedonist shown %o their final sunset.";
     SeeSound "CivZombie/Sight";
     PainSound "CivZombie/Pain";
     DeathSound "CivZombie/Death";
@@ -36,7 +41,7 @@ Class PM_CivilianZombie : PMLustMonsterBase
     States
     {
     Spawn:
-        TNT1 A 0 NoDelay
+        TIPZ A 0 NoDelay
         {
 		 grenadecount = random(-1,4);
          user_numbullets = random(0,5);
