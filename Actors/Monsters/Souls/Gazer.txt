@@ -10,7 +10,7 @@ Class PM_Gazer : PMPrideMonsterBase
 	 
 	 Charges at you like any other soul, but can also fire bursts or barrages of slow-moving shots.";
 	Health 150;
-	Radius 20;
+	Radius 16;
 	Height 56;
 	Mass 300;
 	Speed 4;

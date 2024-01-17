@@ -1148,6 +1148,7 @@ $volume Afflicted/Howl 0.7
 
 Afflicted/Puke "Sounds/Monsters/Fodder/Afflicted/AfflictedPuke.ogg"
 Afflicted/ScreechSummon "Sounds/Monsters/Fodder/Afflicted/AffScreechSummon.ogg"
+$rolloff Afflicted/ScreechSummon 650 2800
 
 $random Afflicted/Spawn { AffSpawn1 AffSpawn2 AffSpawn3 AffSpawn4 AffSpawn5 }
 AffSpawn1 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn1.ogg"
@@ -4875,7 +4876,7 @@ Sybarite/GrenadeBounce3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBo
 $rolloff Sybarite/SlotIn 300 2200
 $rolloff Sybarite/GrenadeLaunch 500 2500
 $limit Sybarite/GrenadeBounce 8
-$volume Sybarite/SlotIn 0.45
+/*$volume Sybarite/SlotIn 0.45
 $volume Sybarite/Sight 0.95
 $volume Sybarite/Pain 0.95
-$volume Sybarite/Death 0.95
+$volume Sybarite/Death 0.95*/

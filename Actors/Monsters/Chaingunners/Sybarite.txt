@@ -161,6 +161,7 @@ Class PM_Sybarite : PMLustMonsterBase
 
 Class PM_SybGrenade : PM_ZTrooperFragGrenade
 {
+ int timer;
  Default
  {
   Radius 10;
@@ -196,10 +197,16 @@ Class PM_SybGrenade : PM_ZTrooperFragGrenade
   Land:
 	GRNP AA 1 Light("SatyrLordRedMissile9")
 	{
+	if(timer >= 500)
+	SetStateLabel("Fade");
+	timer++;
 	A_SpawnParticleEx( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,75),
 	size: frandom(5,35), xoff: -5, velx: frandom(-0.2,0.2), vely: frandom(-0.4,0.4), velz: frandom(0.5,2),
 	startalphaf: frandom(0.3,0.5), fadestepf: -0.5, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
 	}
+	Loop;
+  Fade:
+    GRNP A 2 A_FadeOut(0.05);
 	Loop;
  }
 }

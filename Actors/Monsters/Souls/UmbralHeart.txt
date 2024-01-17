@@ -4,8 +4,8 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
   {
 	//$Category "PM_Monsters/Souls"
     Health 200;
-    Radius 25;
-    Height 20;
+    Radius 16;
+    Height 56;
     Mass 3000;
 	MeleeRange 230;
     Speed 5;

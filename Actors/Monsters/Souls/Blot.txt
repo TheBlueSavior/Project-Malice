@@ -58,7 +58,7 @@ Default
   //$Category "PM_Monsters/Souls"
   obituary "%o was engulfed by a Dark Sprite.";
   health 100;
-  radius 20;
+  radius 16;
   height 30;
   mass 50;
   speed 3;
