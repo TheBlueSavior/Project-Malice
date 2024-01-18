@@ -26,13 +26,26 @@ Class PM_Hellion : PMUnaffMonsterBase
     DeathSound "Hellion/Death";
     ActiveSound "Hellion/Active";
 	Tag "Hellion";
-	Bloodtype "PM_NormalBloodBase";
+	Bloodtype "PM_BlackBloodBase";
+	BloodColor "Black";
 	+MISSILEMORE
     Monster;
     +FloorClip
 	+DONTHARMSPECIES
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
+  }
+  
+  override void PM_Gib()
+  {
+	 for(int gib=0; gib<5; gib++)
+	  A_SpawnItemEx("PM_BlackMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+     for(int i=random(3,5);i>0;i--)
+      A_SpawnItemEx("PM_BlackBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+      A_SpawnItemEx("PM_BlackBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+	  
+	  A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
+	  A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
   }
   
   override void PM_LookingForPlayer()
@@ -52,7 +65,7 @@ Class PM_Hellion : PMUnaffMonsterBase
   States
   {
   Spawn:
-    HELN AB 10 PM_Look();
+    HELN AA 10 PM_Look();
     Loop;
   Look:
 	TNT1 A 0 A_StartSound("Imp/Step",4);
@@ -278,7 +291,7 @@ Class PM_Hellion : PMUnaffMonsterBase
 	Goto See;
   Pain:
     HELN M 2;
-    HELN M 2 A_Pain();
+    HELN M 6 A_Pain();
     Goto See;
   Death:
     TNT1 A 0 A_StopSound(0);
