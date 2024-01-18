@@ -4845,7 +4845,15 @@ Exalt/BHShot1 "Sounds/Monsters/Barons/Exalted/ExaltBHShot1.ogg"
 Exalt/BHShot2 "Sounds/Monsters/Barons/Exalted/ExaltBHShot2.ogg"
 Exalt/BHShot3 "Sounds/Monsters/Barons/Exalted/ExaltBHShot3.ogg"
 Exalt/BHShotExp "Sounds/Monsters/Barons/Exalted/ExaltBHShotExp.ogg" 
+Exalt/SuperBall "Sounds/Monsters/Barons/Exalted/ExaltedSuperBall.ogg"
+Exalt/SuperBallExp "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp.ogg"
+Exalt/SuperCastReady "Sounds/Monsters/Barons/Exalted/ExaltedSuperCastReady.ogg"
+Exalt/SuperCast "Sounds/Monsters/Barons/Exalted/ExaltedSuperCast.ogg"
+Exalt/CastAdd "Sounds/Monsters/Barons/Exalted/ExaltedCastAdd.ogg"
 
+$rolloff Exalt/CastAdd 600 2300
+$rolloff Exalt/SuperBall 500 2500
+$rolloff Exalt/SuperBallExp 500 2600
 $rolloff Exalt/BHShot 400 2400
 $rolloff Exalt/TPStart 500 2600
 $rolloff Exalt/TPEnd 500 2600
