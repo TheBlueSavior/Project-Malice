@@ -6,7 +6,7 @@ Class Horrorspawn : RandomSpawner
 	//DropItem "HorrorspawnScreamer", 255, 1
 	DropItem "PM_FreshHorrorspawn", 255, 4;
 	DropItem "PM_Afflicted", 255, 3;
-	DropItem "Voidspawn", 255, 1;
+	DropItem "PM_Voidspawn", 255, 1;
 	DropItem "PM_FrozenCorpseSpawn", 255, 1;
 	DropItem "PM_HorrorspawnBurster", 255, 2;
 	}
@@ -23,7 +23,7 @@ Class Horrorspawnmap : RandomSpawner
 	{
 	DropItem "PM_Horrorspawn", 255, 50;
 	DropItem "PM_Afflicted", 255, 8;
-	DropItem "PM_SleepingHorrorspawn1", 255, 6;
+  DropItem "PM_SleepingHorrorspawn1", 255, 6;
 	DropItem "PM_SleepingHorrorspawn2", 255, 6;
 	DropItem "PM_SleepingHorrorspawn3", 255, 6;
 	DropItem "PM_SleepingHorrorspawn4", 255, 6;
@@ -34,7 +34,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_HorrorspawnBurster", 255, 2;
 	DropItem "PM_AffScreamer", 255, 2;
 	DropItem "FodderDropper", 255, 1;
-	DropItem "Voidspawn", 255, 1;
+	DropItem "PM_Voidspawn", 255, 1;
 	DropItem "PM_FrozenCorpseSpawn", 255, 1;
 	DropItem "PM_FodderSleeperDropper", 255, 1;
 	DropItem "HeadDropper", 255, 1;
@@ -103,7 +103,18 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	{
 	 Super.PostBeginPlay();
 	  choose = random(0,3);
-	  rchoose = random(0,6);
+	  rchoose = random(0,15);
+	}
+	
+	void PM_HorrorspawnChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) >= 400)
+	  A_Wander();
+	  else
+	  A_Chase();
+	 }
 	}
 
 	
@@ -130,33 +141,19 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" AB 7 A_Wander();
 	"####" AB 0 A_Look();
 	"####" CD 7 A_Wander();
-    "####" AB 0 A_Look();
-	"####" AB 7 A_Wander();
 	"####" AB 0 A_Look();
-	"####" CD 7 A_Wander();
-    "####" AB 0 A_Look();
-	"####" AB 7 A_Wander();
-	"####" AB 0 A_Look();
-	"####" CD 7 A_Wander();
-    "####" AB 0 A_Look();
-	"####" AB 7 A_Wander();
-	"####" AB 0 A_Look();
-	"####" CD 7 A_Wander();
-    "####" AB 0 A_Look();
-	"####" AB 7 A_Wander();
-	"####" AB 0 A_Look();
-	"####" CD 7 A_Wander();
-    "####" AB 0 A_Look();
-	"####" AB 7 A_Wander();
-	"####" AAAAAAAAA 10 A_Look();
+	"####" A 0 A_Jump(5,"IdleStill");
+	Loop;
+  IdleStill:
+	"####" A 0 A_Jump(5,"Idle");
     Loop;
   See:
 	"####" A 0 A_Jump(10,"See2");
 	"####" A 0 A_SetSpeed(5);
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-    "####" AABB 4 A_Chase();
+    "####" AABB 4 PM_HorrorspawnChase();
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-	"####" CCDD 4 A_Chase();
+	"####" CCDD 4 PM_HorrorspawnChase();
 	"####" A 0 A_Jump(3,"Lunge");
 	"####" A 0 A_Jump(10,"See2","See3","See6","See8","See9","Roar");
 	"####" A 0 
@@ -170,12 +167,12 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" A 0 A_SetSpeed(5);
 	"####" A 0 A_Recoil(-3);
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-	"####" AB 4 A_Chase();
-	"####" B 20 A_Chase();
+	"####" AB 4 PM_HorrorspawnChase();
+	"####" B 20 PM_HorrorspawnChase();
 	"####" A 0 A_Recoil(-3);
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-	"####" CD 4 A_Chase();
-	"####" D 20 A_Chase();
+	"####" CD 4 PM_HorrorspawnChase();
+	"####" D 20 PM_HorrorspawnChase();
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(15,"See","Roar");
     Loop;
@@ -187,7 +184,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" BB 4 A_Chase();
 	"####" AAA 0 A_Recoil(-0.3);
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-	"####" CC 4 A_Chase();
+	"####" CC 4 A_Chase;
 	"####" A 0 ThrustThing(angle * 256 / 360 + 192,3);
 	"####" DD 4 A_Chase();
 	"####" AAA 0 A_Recoil(-0.3);
@@ -253,7 +250,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
   See8:
 	"####" A 0 A_SetSpeed(4);
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
-    "####" AABB 10 A_Chase();
+    "####" AABB 10 A_Chase;
 	"####" A 0 A_StartSound("Horrorspawn/Step",6);
 	"####" CCDD 10 A_Chase();
 	"####" A 0 A_Jump(3,"Lunge");
@@ -299,9 +296,9 @@ Class PM_Horrorspawn : PMFodderMonsterBase
     "####" A 0 A_Jump(140,"Bite");
     "####" EE 9 A_FaceTarget();
 	"####" F 2;
-	"####" A 0 A_StartSound("ZombieFodder/Pain",7);
-	"####" A 0 A_Recoil(-6);
-	"####" A 0 ThrustThingZ(0,16,0,1);
+	"####" F 0 A_StartSound("ZombieFodder/Pain",7);
+	"####" F 0 A_Recoil(-6);
+	"####" F 0 ThrustThingZ(0,16,0,1);
 	"####" G 2;
     "####" G 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
 	"####" G 5;
@@ -316,25 +313,25 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	 {
 	 if(CheckSight(target) || rchoose == 0)
 	  SetStateLabel("See");
-	 if(rchoose == 5)
+	 if(rchoose == 14)
 	  SetStateLabel("ChunkThrow");
-	 if(rchoose == 6)
+	 if(rchoose == 15)
 	  SetStateLabel("BloodSpit");
 	 }
 	}
 	Goto See;
   BloodSpit:
-	"####" A 0 A_CheckSight("See");
+	"####" C 0 A_CheckSight("See");
 	"####" CCCCC 5 A_FaceTarget();
-	"####" A 0 A_StartSound("GenericBloodPuke",5);
-	"####" A 0 A_StartSound("Afflicted/Puke");
+	"####" C 0 A_StartSound("GenericBloodPuke",5);
+	"####" C 0 A_StartSound("Afflicted/Puke");
 	"####" BBBBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(10,-20));
 	"####" B 1 A_SpawnProjectile("PM_HSpawnSpitterBlood",42,0,random(-10,10),CMF_AIMDIRECTION,random(-4,6));
 	"####" BBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(20,-10));
 	"####" BBBBBDDDDC 4;
 	Goto See;
   ChunkThrow:
-    "####" AAA 5 A_FaceTarget();
+    "####" HHH 5 A_FaceTarget();
 	"####" H 1 A_FaceTarget();
 	"####" H 5 A_StartSound("ZFODDGIB");
 	"####" HH 1 A_SpawnItemEX("PM_NormalBloodMulti",0,0,30,random(-6,6),random(-6,6),random(-2,6),random(0,360),SXF_NOCHECKPOSITION);
@@ -350,41 +347,41 @@ Class PM_Horrorspawn : PMFodderMonsterBase
   Bite:
 	"####" BB 3 A_FaceTarget();
 	"####" B 3;
-	"####" A 0 A_Recoil(-10);
-	"####" A 0 ThrustThingZ(0,6,0,1);
+	"####" B 0 A_Recoil(-10);
+	"####" B 0 ThrustThingZ(0,6,0,1);
 	"####" B 2;
-	"####" A 0 A_StartSound("ZombieFodder/Bite");
+	"####" C 0 A_StartSound("ZombieFodder/Bite");
     "####" C 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
 	"####" C 3;
-	"####" A 0 A_Jump(240,"See2","See3","See6","See8","See9");
-	"####" A 0 
+	"####" C 0 A_Jump(240,"See2","See3","See6","See8","See9");
+	"####" C 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
     Goto See;
   Pain:
     "####" H 4;
     "####" H 4 A_Pain;
-	"####" A 0 A_Jump(100,"See");
+	"####" H 0 A_Jump(100,"See");
     Goto SeeAngry;
   Death:
-	"####" A 0
+	"####" I 0
 	{ if(choose == 0)
 	  SetStateLabel("DeathV1"); }
     "####" I 7;
     "####" J 7 A_Scream;
     "####" K 5 A_NoBlocking;
-    "####" L 5;
-	"####" A 0 A_StartSound("Corpse/Fall",6);
-    "####" L -1;
+    2FOD L 5;
+	2FOD L 0 A_StartSound("Corpse/Fall",6);
+    2FOD L -1;
     Stop;
   DeathV1:
-	"####" A 0 A_Jump(120,"DecapDeath");
+	"####" I 0 A_Jump(120,"DecapDeath");
     "####" I 7;
     "####" J 7 A_Scream;
     "####" K 5 A_NoBlocking;
     "####" L 5;
-	"####" A 0 A_StartSound("Corpse/Fall",6);
-    "####" M -1;
+	"####" L 0 A_StartSound("Corpse/Fall",6);
+    "####" L -1;
     Stop;
    DecapDeath:
 	"####" I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));

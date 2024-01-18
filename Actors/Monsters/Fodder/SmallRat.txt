@@ -1,21 +1,29 @@
-ACTOR SmallRat : PMFodderMonsterBase
+Class PM_SmallRat : PMFodderMonsterBase
 {
-	//$Category "PM_Monsters/Fodder/Crickets"
-	Health 5
-	Radius 8
-	Height 28
-	Mass 200
-	Speed 6
-	PainChance 64
-	GibHealth 100
-	MeleeRange 18
-	Scale 0.8
-	SeeSound "RatSpawn/Sight"
-	Obituary "%o was nibbled by a Small Rat."
-	Species "Fodder"
-	Monster
-	Tag "Rat"
-	+DONTHURTSPECIES
+    Default
+	{
+	/*PMMonsterBase.CodexLore "rats 
+	
+	the rats 
+	
+	we're the rats";*/
+	Health 5;
+	Radius 8;
+	Height 28;
+	Mass 200;
+	Speed 6;
+	PainChance 64;
+	GibHealth 100;
+	MeleeRange 18;
+	Scale 0.8;
+	SeeSound "RatSpawn/Sight";
+	PainSound "RatHit/Pain";
+	DeathSound "RatDead/Death";
+	Obituary "%o was nibbled by a Small Rat.";
+	Species "Fodder";
+	Monster;
+	Tag "Rat";
+	+DONTHARMSPECIES
     +NOINFIGHTING
 	-solid
     +shootable
@@ -24,69 +32,68 @@ ACTOR SmallRat : PMFodderMonsterBase
 	-CANUSEWALLS
 	-CANPUSHWALLS
 	+CANTSEEK
-	TeleFogSourceType "PM_SmallDemonicTeleportFog"
-	TeleFogDestType "PM_SmallDemonicTeleportFog"
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
 	States
 	{
-	Spawn:
-		RATA A 5 A_Look
-		RATA A 5 A_Wander
-		RATA A 5 A_Look
-		RATA B 5 A_Wander
-		RATA A 5 A_Look
-		RATA C 5 A_Wander
-		Loop
-	See:
-		RATA AAABBBCCC 1 A_Chase
-		TNT1 A 0 A_Jump(30,"Fight")
-		Loop
-	Melee:
-    		RATA A 20 A_FaceTarget
-    		RATA B 3 A_CustomMeleeAttack(1,0,0,0,0)
-			TNT1 A 0 A_PlaySound("RatAttack/Attack")
-    		Goto Fear
-	Fear:
-    TNT1 A 0 A_ChangeFlag("FRIGHTENED",1)
-	TNT1 A 0 A_SetSpeed(10)
-	RATA AA 1 A_Chase
-	RATA A 0 A_CheckSight ("Vanish")
-	RATA BB 1 A_Chase
-	RATA A 0 A_CheckSight ("Vanish")
-	RATA CC 1 A_Chase
-	RATA A 0 A_CheckSight ("Vanish")
-	TNT1 A 0 A_Jump(2,"Fight")
-	Loop
-	
-    Fight:
-	TNT1 A 0 A_ChangeFlag("FRIGHTENED",0)
-	TNT1 A 0 A_SetSpeed(6)
-	Goto See
-	
-	Vanish:
-	TNT1 A 0
-	Stop
-	
-	Pain:
-		RATA A 1
-		TNT1 A 0 A_PlaySound("RatHit/Pain")
-		Goto See
+   Spawn:
+	RATA A 5 A_Look();
+	RATA A 5 A_Wander();
+	RATA A 5 A_Look();
+	RATA B 5 A_Wander();
+	RATA A 5 A_Look();
+	RATA C 5 A_Wander();
+	Loop;
+   See:
+	TNT1 A 0 A_Jump(35,"Fear");
+	RATA AAABBBCCC 1 A_Chase();
+	TNT1 A 0 A_Jump(30,"Fight");
+	Loop;
+   Melee:
+    RATA A 20 A_FaceTarget();
+    RATA B 3 A_CustomMeleeAttack(1);
+	TNT1 A 0 A_StartSound("RatAttack/Attack");
+    Goto Fear;
+   Fear:
+    TNT1 A 0 { bFRIGHTENED = true; }
+	TNT1 A 0 A_SetSpeed(10);
+	RATA AA 1 A_Chase(null,null);
+	RATA A 0 A_CheckSight ("Vanish");
+	RATA BB 1 A_Chase(null,null);
+	RATA A 0 A_CheckSight ("Vanish");
+	RATA CC 1 A_Chase(null,null);
+	RATA A 0 A_CheckSight ("Vanish");
+	TNT1 A 0 A_Jump(2,"Fight");
+	Loop;
+   Fight:
+	TNT1 A 0 { bFRIGHTENED = false; }
+	TNT1 A 0 A_SetSpeed(6);
+	Goto See;
+   Vanish:
+	TNT1 A 0;
+	Stop;
+   Pain:
+	RATA A 1;
+	TNT1 A 0 A_Pain();
+	Goto See;
 	Death:
-		TNT1 A 0 A_PlaySound("RatDead/Death")
-		RATD AAAABBBBCCCC 1
-		Stop
+	TNT1 A 0 A_Scream();
+	RATD AAAABBBBCCCC 1;
+	Stop;
 
 	}
 }
 
-Actor RatDropper
+Class RatDropper : Actor
 {
-    +ISMONSTER
+    Default { +ISMONSTER }
 	States
 	{
 	Spawn:
-	    TNT1 A 1 Nodelay
-		TNT1 AAAAAAA 0 A_SpawnItemEx("SmallRat",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION)
-		Stop
+	    TNT1 A 1 Nodelay;
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_SmallRat",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
+		Stop;
 
 	}
 }

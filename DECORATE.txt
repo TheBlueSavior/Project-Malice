@@ -14,13 +14,11 @@
 #include "Actors/Monsters/HellKnights/Void.txt"
 #include "Actors/Monsters/Fodder/Trite.txt"
 #include "Actors/Monsters/Barons/SmokeMonster.txt"
-#include "Actors/Monsters/Fodder/SmallRat.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
 #include "Actors/Monsters/Fodder/Mimic.txt"
 #include "Actors/Monsters/Masterminds/Queen.txt"
 #include "Actors/Monsters/Hellknights/Paladin.txt"
 #include "Actors/Monsters/Fodder/TriteHatchling.txt"
-#include "Actors/Monsters/Fodder/Voidspawn.txt"
 #include "Actors/Monsters/Fodder/Rotfly.txt"
 
 #include "Actors/Monsters/Paranormal/ControlledSoldier.txt"

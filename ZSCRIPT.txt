@@ -9,6 +9,7 @@ version "4.10.0"
 
 //Fodder
 #include "Actors/Monsters/Fodder/Remnant.txt"
+#include "Actors/Monsters/Fodder/SmallRat.txt"
 #include "Actors/Monsters/Fodder/Swarm.txt"
 #include "Actors/Monsters/Fodder/LargeMaggot.txt"
 #include "Actors/Monsters/Fodder/Fly.txt"
@@ -18,6 +19,7 @@ version "4.10.0"
 #include "Actors/Monsters/Fodder/SleepingHorrorspawn.txt"
 #include "Actors/Monsters/Fodder/FrozenCorpse.txt"
 #include "Actors/Monsters/Fodder/PawnsoftheShadow.txt"
+#include "Actors/Monsters/Fodder/Voidspawn.txt"
 
 //Zombies
 #include "Actors/Monsters/Zombiemen/PistolZombie.txt"

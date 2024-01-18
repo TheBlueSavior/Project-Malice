@@ -4,7 +4,7 @@ Class PM_Sybarite : PMLustMonsterBase
   Default
   {
   PMMonsterBase.CodexLore 
-  "Sybarites are zombies whose possessors have an openly self-indulgent towards war, arming themselves with heavy weaponry in order to shamble into the field with explosions galore. They care not for friendly fire, only concerning themselves with who dies first and so on in the hands of their mania.
+  "Sybarites are zombies whose possessors have an openly self-indulgent approach towards war, arming themselves with heavy weaponry in order to shamble into the field with explosions galore. They care not for friendly fire, only concerning themselves with who dies first and so on in the hands of their mania.
    
    Comes in with a repeating autocannon. If you're sufficiently close enough, it'll fire away with bouncy grenades.";
   Health 80;
