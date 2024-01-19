@@ -20,7 +20,7 @@ Class Mimic : PMFodderMonsterBase
   painchance 5;
   MeleeThreshold 196;
   MeleeRange 112;
-  +DONTHURTSPECIES
+  +DONTHARMSPECIES
   +NOINFIGHTING
   -COUNTKILL
   +NOTARGET
@@ -82,7 +82,7 @@ Class Mimicspawn : Actor
   Default
   {
   //$Category "PM_Monsters/Fodder/Mimic";
-  +DONTHURTSPECIES
+  +DONTHARMSPECIES
   +AMBUSH
   +NOBLOCKMAP
   +MOVEWITHSECTOR
