@@ -4,7 +4,12 @@ Class PM_Exile : PMUnaffMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Archviles"
+		PMMonsterBase.CodexLore
+		"Exiles are greater demons with complete mastery over their pyromancy, having chosen to live most of their lives in isolation within the underworld's badlands. 
+		 As Hell breached the surface, however, most of them found the opportunity to condemn a bunch of scared mortals into immolation too enticing to pass up.
+		 
+		 With its mastery over fire magic, it has access to a variety of dangerous, typically very damaging attacks. Not only that, but it learned to use its magic for other means,
+		 such as movement and resurrection.";
 		Health 700;
 		Radius 20;
 		Height 56;
@@ -181,23 +186,24 @@ Class PM_Exile : PMUnaffMonsterBase
 		FireWall:
 			TNT1 A 0 A_Jump(100,"Fireball","GroundFlames","FireLake");
 			TNT1 A 0 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Exile/ImmolateStart",CHAN_6);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",96,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",88,24,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",88,-24,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",80,48,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",80,-48,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",72,70,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 A_SpawnItemEx("ExileAttackFire",72,-70,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			EILE MMMNNNOOOO 3 BRIGHT Light("EXILATK2") A_FaceTarget();
-			TNT1 A 0 A_StartSound("Exile/ShieldSpawn",CHAN_6);
-			TNT1 AAA 0 A_SpawnProjectile ("PM_ExileOrbShower",28,0,random(-80,80));
-			TNT1 A 0 A_SpawnItemEx("PM_ExileWallSpawner",0,0,0,0,0,0,0,SXF_TRANSFERPOINTERS|SXF_SETMASTER);
-			EILE PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 2 Bright Light("EXILATK1")
+			TNT1 A 0 A_StartSound("Exile/ImmolateStart",6);
+			EILE MMMNNNNOOOO 3 BRIGHT Light("EXILATK2") A_FaceTarget();
+			TNT1 A 0 A_StartSound("Exile/ShieldLoop",7,CHANF_LOOPING);
+			EILE OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO 2 Bright Light("EXILATK1")
+			{
+			    if(random(1,10) == 1)
+				{
+				A_StartSound("Exile/ShieldSpawn",6,CHANF_OVERLAP);
+				A_SpawnProjectile ("PM_ExileOrbShower",28,0,random(-80,80));
+			    A_SpawnProjectile("PM_ExileOrbShowerRise",28,0,random(-30,30),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-80,-100));
+				}
+				A_SpawnItemEx("PM_FireGlobs",10,random(-5,5),random(35,45),random(-1,1),random(-1,1),random(-1,2));
+			}
+			TNT1 A 0 A_StopSound(7);
+			EILE OOOOO 2 Bright Light("EXILATK1")
 			{
 				A_SpawnItemEx("PM_FireGlobs",10,random(-5,5),random(35,45),random(-1,1),random(-1,1),random(-1,2));
 			}
-			TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
 			Goto FirePort;
 	
 		Heal:
@@ -211,13 +217,14 @@ Class PM_Exile : PMUnaffMonsterBase
 			EILR XX 5 Bright Light("SatyrLordRedMissile4");
 			Goto See;
 		Pain:
-			TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
+		    TNT1 A 0 A_StopSound(7);
 			TNT1 A 0 A_KillChildren("NewArchvileFire");
 			EILE Q 5;
 			EILE Q 5 A_Pain();
 			Goto See;
 		Death:
-			TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
+		    TNT1 A 0 A_StopSound(7);
+			//TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
 			TNT1 A 0 A_KillChildren("NewArchvileFire");
 			EILE Q 7
 			{
@@ -993,6 +1000,33 @@ Class ExileDropFire : Actor
    }
 }
 
+Class PM_ExileOrbShowerRise : Actor
+{
+    Default
+	{
+	 Speed 42;
+	 Projectile;
+	 RenderStyle "Add";
+	 +BRIGHT
+	 +THRUACTORS
+	 +SKYEXPLODE
+	 +NOINTERACTION
+	}
+	
+	States
+	{
+	Spawn:
+	 TNT1 A 0;
+	 TRCR A 1;
+	 Wait;
+	Crash:
+	Death:
+	XDeath:
+	 TNT1 A 0;
+	 Stop;
+	}
+}
+
 Class PM_ExileOrbShower : Actor
 {
 	Default
@@ -1000,11 +1034,14 @@ Class PM_ExileOrbShower : Actor
 		
 		Speed 4;
 		Projectile;
+		RenderStyle "Add";
+		+BRIGHT
 		+FLOORCLIP
 		+RIPPER
 		+THRUACTORS
 		+NOINTERACTION
 		+CEILINGHUGGER
+		+FLATSPRITE
 		+DONTHARMSPECIES
 	}
 	
@@ -1013,7 +1050,7 @@ Class PM_ExileOrbShower : Actor
 	States
 	{
 	Spawn:
-		TNT1 AAAAAA random(0, 4)
+		SBLL AABBCC random(0, 4)
 		{
 			vel.x += frandom(-2, 2);
 			vel.y += frandom(-2, 2);
@@ -1022,7 +1059,7 @@ Class PM_ExileOrbShower : Actor
 			
 			if (time > 150) SetStateLabel("Death");
 		}
-		TNT1 A random(3, 16) A_SpawnProjectile("PM_ExileOrb",-24,random(0,128),random(0,360),2,-random(1,89));
+		SBLL A random(3, 16) A_SpawnProjectile("PM_ExileOrb",-24,random(0,128),random(0,360),2,-random(1,89));
 		Loop;
 	Death:
 		Stop;
