@@ -37,7 +37,7 @@ Class Mimic : PMFodderMonsterBase
   states
   {
   Spawn:
-	MIMD W 0;
+	DEAD F 0;
 	Goto Idle;
   Idle:
     MIMD J 1 A_Look;
