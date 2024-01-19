@@ -4811,6 +4811,25 @@ $rolloff Director/ASPreImpact 2000 3000
 $limit Director/ASPreImpact 5
 $limit Director/AStrikeShot 20
 
+//Soul Reaver
+
+//Dormant Reaver
+
+/*$random DorReaver/Sight { DorReaver/Sight1 DorReaver/Sight2 }
+DorReaver/Sight1 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverSight1.ogg"
+DorReaver/Sight2 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverSight2.ogg"
+
+$random DorReaver/Attack { DorReaver/Attack1 DorReaver/Attack2 }
+DorReaver/Attack1 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverAttack1.ogg"
+DorReaver/Attack2 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverAttack2.ogg"
+
+$random DorReaver/Death { DorReaver/Death1 DorReaver/Death2 }
+DorReaver/Death1 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverDeath1.ogg"
+DorReaver/Death2 "Sounds/Monsters/Revenants/SoulReaver/DormantReaverDeath2.ogg"
+
+DorReaver/Active "Sounds/Monsters/Revenants/SoulReaver/DormantReaverActive.ogg"
+DorReaver/Pain "Sounds/Monsters/Revenants/SoulReaver/DormantReaverPain.ogg"*/
+
 //Exalted
 
 $random Exalt/Sight { Exalt/Sight1 Exalt/Sight2 Exalt/Sight3 Exalt/Sight4 Exalt/Sight5 }
