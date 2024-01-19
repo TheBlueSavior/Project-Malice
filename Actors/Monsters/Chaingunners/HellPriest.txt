@@ -2,7 +2,15 @@ Class PM_HellPriest : PMUmbralMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Chaingunners"
+	PMMonsterBase.CodexLore 
+	"What exactly is under those robes? No one knows. What's important is that they are exhalted entities from the deepest pit.
+    
+	Think of elite veteran soldiers, but made solely out of Hell's hand. Considering they come from the freezing abyss,
+    Considering they come from the freezing abyss, they will try to glaciate you by spewing spherules made out of entropy and antiparticles.
+	When they raise their hands, they will often release the souls of the damned, either in a barrage or a loop.
+	
+	\cmThey are not so merciful to anyone, and will take your soul after the deed is done.";
+	
     Health 250;
     PainChance 150;
     Speed 8;
@@ -26,8 +34,8 @@ Class PM_HellPriest : PMUmbralMonsterBase
     TeleFogDestType "PM_PossessedTeleportFog";
     +FloorClip
     +DontHarmClass
-	+HARMFRIENDS
-    +DOHARMSPECIES
+	//+HARMFRIENDS
+    //+DOHARMSPECIES
 	+LOWGRAVITY
     -NoGravity
 	+SLIDESONWALLS

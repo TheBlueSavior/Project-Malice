@@ -3,7 +3,11 @@ Class PM_Vore : PMEnvyMonsterBase
   bool sigil;
   Default
   {
-  //$Category "PM_Monsters/HellKnights"
+  PMMonsterBase.CodexLore
+  "Vores are not known for their eldritch presence or their cowardly deportment, but their ability to create pasquinades and travesties of other Knights.
+  The Hell's hand has created them specifically for being kept as paladins of the circle of Envy. They might not as be as tough on the outside, but when a threat comes nearby its solitude, they'll see its true colors.
+  
+  Will spawn hell-powered knives to throw at the player, but alongside that, more spells are being put to use.";
   Health 500;
   Radius 25;
   Height 64;

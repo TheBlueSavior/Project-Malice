@@ -15,7 +15,6 @@
 #include "Actors/Monsters/Fodder/Trite.txt"
 #include "Actors/Monsters/Barons/SmokeMonster.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
-#include "Actors/Monsters/Fodder/Mimic.txt"
 #include "Actors/Monsters/Masterminds/Queen.txt"
 #include "Actors/Monsters/Hellknights/Paladin.txt"
 #include "Actors/Monsters/Fodder/TriteHatchling.txt"

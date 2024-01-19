@@ -18,7 +18,7 @@ ACTOR PM_Rotfly : PMFodderMonsterBase
   PainSound "Rotfly/Pain"
   DeathSound "Rotfly/Death"
   Tag "Rotfly"
-  Obituary "o% was somehow killed by a Rotfly."
+  Obituary "%o was somehow killed by a Rotfly."
   TeleFogSourceType "PM_SmallDemonicTeleportFog"
   TeleFogDestType "PM_SmallDemonicTeleportFog"
   +FLOAT

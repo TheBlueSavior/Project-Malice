@@ -2,7 +2,11 @@ Class PM_Noble : PMMonsterBase
 {
    Default
    {
-	//$Category "PM_Monsters/HellKnights"
+    PMMonsterBase.CodexLore
+	"Nobles belong to an ancient demonic bloodline, and rank just above the more animalistic Squires. Although they are a higher class of demon, they are not nearly as powerful as other Knight demons tied to specific sins.
+	They act as sergeants on the field, their slightly higher intelligence allows them to corral the more mindless hordes. Ravenously charging full speed at victims with fists raised is below them, but they'll gladly scorch anyone from a distance with hellish flames, and flush out survivors.
+	
+	Just like the Squires, they will throw copper-infused fireballs at you, but can also overcharge and throw a flammable faux-grenade.";
 	Health 500;
 	Radius 24;
 	Height 64;

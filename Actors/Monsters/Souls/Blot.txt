@@ -55,7 +55,9 @@ class PM_Blot : PMUmbralMonsterBase
 {
 Default
 {
-  //$Category "PM_Monsters/Souls"
+  PMMonsterBase.CodexLore
+  "When the negative energy in an area reaches an unnatural critical mass, it condenses into near-sentient masses of pure evil and negativity.
+  Continued influx of negative energy from the environment sustains them. The agony, fear and despair absorbed from their victims empowers them even further.";
   obituary "%o was engulfed by a Dark Sprite.";
   health 100;
   radius 16;
@@ -90,8 +92,11 @@ Default
   states
   {
   Spawn:
+	BLOT E 0 NoDelay;
+	Goto Spawn1;
+  Spawn1:
 	TNT1 A 1 ThrustThingZ(0,30,0,0);
-  Spawn2:
+  Idle:
     TNT1 A 10 PM_Look();
     loop;
   Look:

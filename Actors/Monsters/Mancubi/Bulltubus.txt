@@ -3,7 +3,11 @@ Class PM_Bulltubus : PMWrathMonsterBase
   int casingcount;
   Default
   {
-   //$Category "PM_Monsters/Mancubi"
+   PMMonsterBase.CodexLore 
+   "Bulltubi are the heavy weapon elites of the circle of Wrath, being born from molten magma and a heart of pure hatred towards humanity.
+    They are much more hardheaded and used more as elites compared to their Corupulent brethren. With a gruesome smile, they will immolate anything that it's in their way.
+	
+	Will use flame-ignited chainguns, and a bodyslam if the opponent is nearby its sight. When it reaches its boiling point, it can unleash hot laser beams.";
    Health 600;
    Radius 48;
    Height 64;
@@ -121,7 +125,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
    States
  {
   Spawn:
-    FEFE A 0 NoDelay { pm_irecount = random(10,114); }
+    FEFE G 0 NoDelay { pm_irecount = random(10,114); }
   Idle:
     FEFE A 10 PM_Look();
     Loop;

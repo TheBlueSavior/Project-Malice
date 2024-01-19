@@ -4,7 +4,12 @@ Class PM_Bruiser : PMUnaffMonsterBase
   int user_leapstrength;
   Default
   {
-	//$Category "PM_Monsters/Barons"
+	PMMonsterBase.CodexLore 
+	"Bruisers are hellish powerhouses, imbued with enough Hellfire magic that it visibly bursts out of their hands and hooves. This power allows them incredible feats of destruction, yet they hold none of the refinement and wisdom necessary to wield it fully.
+	For their strength, Bruisers have a limited intelligence, their anger or hunger dictating how feral they behave to any supposed allied demons around them.
+	They can be found on the battlefield as shock troops, usually kept under control by their more intelligent Heresy Lord cousins.
+	
+	Fires a spread of four fireballs, and sometimes even a pulverizing comet.";
     Health 1000;
     Radius 22;
     Height 64;

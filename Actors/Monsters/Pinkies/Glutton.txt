@@ -2,7 +2,11 @@ Class PM_Glutton : PMGluttonyMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Pinkies"
+	PMMonsterBase.CodexLore
+	"Gluttons are fleshy bloated demons cursed to be ravenously hungry yet somehow perpetually full on the verge of bursting, forcing them into a disturbing cycle of endlessly regurgitating viscera in-between periods of desperately eating anything in sight.
+	In Hell, most of them exist en masse in waist-high swamps of gory slurry, where blood and guts are endlessly eaten, regurgitated, and eaten again.
+	
+	They are much more slower and tankier than their Brute counterparts, but can vomit corrosive gore at you.";
 	Health 300;
 	PainChance 64;
 	Speed 35;

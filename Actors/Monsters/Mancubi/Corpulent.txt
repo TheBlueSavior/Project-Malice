@@ -2,7 +2,11 @@ Class PM_Corpulent : PMUnaffMonsterBase
  {
   Default
   {
-   //$Category "PM_Monsters/Mancubi"
+   PMMonsterBase.CodexLore 
+   "Armed with accurate flame cannons, Corpulents are seen as a refined step above their more ramshackle Hectebus cousins.
+   Although still limited in intelligence, they're frequently used as guards, slave labor and hardy pawns in innumerable conflicts within Hell, renown for mercilessly scorching any opponent that makes the mistake of getting too close.
+   
+   Will use flamethrowers when close and spew fireballs at you when far away.";
    Health 600;
    Radius 48;
    Height 64;
