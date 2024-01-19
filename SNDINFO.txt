@@ -4281,6 +4281,8 @@ $volume PM/BigGoreSplat 0.5
 //Magic Stuff
 PM/BulletHellSpawn "Sounds/Monsters/SFX/BulletHellFire.ogg"
 PM/SigilSpawn "Sounds/Monsters/SFX/MagicSigilSpawn.ogg"
+PM/BulletHellLaserStart "Sounds/Monsters/SFX/BulletHellLaserStart.ogg"
+PM/BulletHellLaserLoop "Sounds/Monsters/SFX/BulletHellLaserLoop.ogg"
 PM/RuneFill "Sounds/Monsters/SFX/MagicRuneFill.ogg"
 PM/MagicFireFire "Sounds/Monsters/SFX/MagicFireFire.ogg"
 PM/MagicFireExplode "Sounds/Monsters/SFX/MagicFireExplode.ogg"

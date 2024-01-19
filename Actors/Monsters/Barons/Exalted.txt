@@ -1,21 +1,21 @@
-//[NERU] unfinished, needs a few more attacks & particle work, also death state AAAAAAA
+
 Class PM_Exalted : PMPrideMonsterBase
 {
     actor cast;
 	bool fireballs;
     Default
 	{
-	/*PMMonsterBase.CodexLore
+	PMMonsterBase.CodexLore
 	"\cgHumans. Demons. All the same. Fools who lust for the simplest manifestations of power. Cretins.
 	
-	\cgWE wield the power of the light at our fingertips. It is high time that we show them the full extent of our capabilities.";*/
+	\cgWE wield the power of the light at our fingertips. It is high time that we show them the full extent of our capabilities.";
 	PMMonsterBase.ForgetThreshold 9999; //[NERU] putting this in for now
     Health 1000;
     Radius 22;
     Height 64;
     Speed 14;
 	Scale 1.2;
-    PainChance 20;
+    PainChance 16;
     Mass 1500;
     MONSTER;
 	Bloodtype "PM_NormalBloodBase";
@@ -23,9 +23,9 @@ Class PM_Exalted : PMPrideMonsterBase
 	//+NOINFIGHTING
 	+DONTHARMCLASS
 	+DONTHARMSPECIES
-	+MISSILEMORE
 	+FLATSPRITE
 	+THRUACTORS
+	+MISSILEMORE
 	+CANTSEEK
 	-SHOOTABLE
 	+DONTTHRUST
@@ -212,7 +212,7 @@ Class PM_Exalted : PMPrideMonsterBase
 		}
 		Goto BurstLoop;
 	Missile:
-	    TNT1 A 0 A_Jump(256,"SuperBall");
+	    TNT1 A 0 A_Jump(45,"SuperBall","CultSummon");
 	    TNT1 A 0 A_Jump(65,"BulletBarrage");
 	BurstShot:
 	    EXAL E 30 
@@ -287,47 +287,189 @@ Class PM_Exalted : PMPrideMonsterBase
 	   }
 	   EXAL EE 2 Bright A_FaceTarget(10,10);
 	   Loop;
+	CultSummon:
+	   EXAL E 40 Light("ShadowBall4")
+	   {
+	    pm_attackloop = random(3,6);
+		A_FaceTarget(360,180);
+		if(random(1,2) == 1)
+		PM_ExaltedVoice();
+		A_SpawnItemEx("PM_ExaltedSuperSigilRise",flags:SXF_SETMASTER);
+	    A_SpawnItemEx("PM_ExaltedSigilRotate",flags:SXF_SETMASTER);
+		A_StartSound("Exalt/SuperCastReady",17);
+		A_StartSound("Exalt/CastAdd",20);
+		A_StartSound("PMGazer/Sight",18,pitch:1.3);
+		A_StartSound("PMGazer/Sight",19,pitch:1.15);
+	   }
+	CSLoop:
+	   TNT1 A 0 { if(pm_attackloop <= 0) SetStateLabel("SuperCastEnd"); }
+	   EXAL E 10 Light("ShadowBall4") A_SpawnItemEx("PM_ExaltedBeacon",frandom(-20,20),frandom(-25,25));
+	   EXAL E 5 Light("ShadowBall4") {
+	   A_SpawnProjectile("PM_ExaltedCultSummon",32,0,frandom(-180,180));
+	   pm_attackloop--;
+	   }
+	   Loop;
 	SuperCastEnd:
 	   EXAL E 15;
-	   TNT1 A 0 { if(random(1,3) == 1) SetStateLabel("PhaseJump"); }
+	   TNT1 A 0 { if(random(1,2) == 1) SetStateLabel("PhaseJump"); }
 	   Goto See;
 	MissileRedEnd:
 	   EXAL F random(10,20);
-	   TNT1 A 0 { if(random(1,3) == 1) SetStateLabel("PhaseJump"); }
+	   TNT1 A 0 { if(random(1,6) == 1) SetStateLabel("PhaseJump"); }
 	   Goto See;
     Pain:
         EXAL K 5;
-		EXAL K 5 A_Pain;
+		EXAL K 10 A_Pain;
+		TNT1 A 0 A_Jump(32,"PainTeleport");
         Goto See;
+	PainTeleport:
+	    EXAL E 5 { if(CountInv("PM_ExaPainTPCD")) SetStateLabel("See"); bNOPAIN = true; }
+		EXAL E 10 { 
+		A_StartSound("Exalt/PainTele",30);
+		for(int i=random(20,40);i>0;i--)
+		 {
+		  A_Wander();
+		  A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		 }
+		}
+		EXAL E 5 { bNOPAIN = false; A_GiveInventory("PM_ExaPainTPCD",1); }
+		Goto MissileQuick;
     Death:
-		TNT1 A 0 A_StopSounds(0,0);
-        EXAL L 8
+		TNT1 A 0 A_StopSound(0);
+        EXAL L 5
 		{
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_StartSound("PMGazer/Hover",103,CHANF_LOOPING,pitch:0.65);
+		for(int i=20;i>0;i--)
+		A_SpawnParticleEx
+			(
+			"545454",
+			TexMan.CheckForTexture("DUSTC0"),
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70),
+			size: frandom(1,30),
+			xoff: frandom(-35,35),
+			yoff: frandom(-35,35),
+			zoff: random(0,125),
+			velx: frandom(-8,8),
+			vely: frandom(-8,8),
+			velz: frandom(-8,12),
+			accelz: frandom(-0.1,-0.5),
+			startalphaf: 1.0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(0,4)
+			);
 		}
-		EXAL M 8
+		EXAL M 0 {
+		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,pitch:frandom(0.30,0.75));
+		A_StartSound("Abhor/BallExp",100,attenuation:0.86,pitch:0.30);
+		A_SpawnParticleEx(   
+		"830000",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal,
+	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 65,
+		size: frandom(45,75),
+		xoff: frandom(-25.5,25.5),
+		yoff: frandom(-25.5,25.5),
+		zoff: random(0,15),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(0.3,2),
+		startalphaf: frandom(0.5,0.9),
+		fadestepf: -0.75,
+		sizestep: 5
+		 );
+		}
+		EXAL MMMMNNNOOOOOPPPPPP 3
 		{
-		A_Scream();
-		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,40),0,0,0,0,SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,40),0,0,0,0,SXF_NOCHECKPOSITION);
+		if(random(1,8) == 1)
+		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
+		if(random(1,15) == 1)
+		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
+		A_SpawnParticleEx(   
+		"830000",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal,
+	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 85,
+		size: frandom(45,75),
+		xoff: frandom(-25.5,25.5),
+		yoff: frandom(-25.5,25.5),
+		zoff: random(0,15),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(0.3,2),
+		startalphaf: frandom(0.5,0.9),
+		fadestepf: -0.75,
+		sizestep: 5
+		 );
+		A_SpawnParticleEx(
+		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
+		zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),
+		rollvel: random(0,4));
 		}
-		EXAL N 8
+		EXAL QQQQQQRRRRRRSSSSSSSSTTTTT 5
 		{
-		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(15,30),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
-		A_Fall();
+		if(random(1,10) == 1)
+		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
+		if(random(1,18) == 1)
+		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
+		A_SpawnParticleEx(   
+		"830000",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal,
+	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 85,
+		size: frandom(45,75),
+		xoff: frandom(-25.5,25.5),
+		yoff: frandom(-25.5,25.5),
+		zoff: random(0,15),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(0.3,2),
+		startalphaf: frandom(0.5,0.9),
+		fadestepf: -0.75,
+		sizestep: 5
+		 );
+		A_SpawnParticleEx(
+		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
+		zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),
+		rollvel: random(0,4));
 		}
-		EXAL OPQ 8
+		EXAL TTTTTTTTTTTTTTTTTTT 4
 		{
-		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,20),0,0,0,0,SXF_NOCHECKPOSITION);
+		if(random(1,12) == 1)
+		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
+		if(random(1,18) == 1)
+		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
+		A_SpawnParticleEx(   
+		"830000",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal,
+	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 85,
+		size: frandom(45,75),
+		xoff: frandom(-25.5,25.5),
+		yoff: frandom(-25.5,25.5),
+		zoff: random(0,15),
+		velx: frandom(-0.5,0.5),
+		vely: frandom(-0.5,0.5),
+		velz: frandom(0.3,2),
+		startalphaf: frandom(0.5,0.9),
+		fadestepf: -0.75,
+		sizestep: 5
+		 );
+		A_SpawnParticleEx(
+		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
+		zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),
+		rollvel: random(0,4));
 		}
-		TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-		EXAL RSTT 8;
+		EXAL T 5 A_StopSound(103);
 		EXAL T -1;
         Stop;
 	Raise:
@@ -337,6 +479,8 @@ Class PM_Exalted : PMPrideMonsterBase
 }
 
 Class PM_ExaltVoiceCD : Powerup { Default { Powerup.Duration -8; } }
+
+Class PM_ExaPainTPCD : Powerup { Default { Powerup.Duration -4; } }
 
 Class PM_ExaltedCastReady : Actor
 {
@@ -399,7 +543,7 @@ Class PM_ExaltedBeacon : Actor
  Spawn:
   DI_A AA 1
   {
-    A_FadeOut(0.01);
+    A_FadeOut(0.03);
 	A_QuakeEx(2,2,2,10,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.3,rollwave:0.3);
 	if(random(1,3) == 1)
 	A_SpawnParticleEx(
@@ -502,8 +646,6 @@ Class PM_ExaltedMagicShot : Actor
     Stop;
   }
 }
-
-Class PM_ExaCastBegone : Inventory { Default { Inventory.MaxAmount 1; } }
 
 Class PM_ExaltedSuperSigil : Actor
 {
@@ -728,10 +870,10 @@ Class PM_ExaltedSuperBall : Actor
 	 if(random(0,2) == 2)
 	  {
 	   A_SpawnProjectile("PM_ExaltedBHBall",20,0,0,CMF_AIMDIRECTION|CMF_TRACKOWNER);
-       A_SpawnProjectile("PM_ExaltedBHBall",20,0,10,CMF_AIMDIRECTION|CMF_TRACKOWNER);
-       A_SpawnProjectile("PM_ExaltedBHBall",20,0,-5,CMF_AIMDIRECTION|CMF_TRACKOWNER);
-	   A_SpawnProjectile("PM_ExaltedBHBall",20,0,5,CMF_AIMDIRECTION|CMF_TRACKOWNER);
-	   A_SpawnProjectile("PM_ExaltedBHBall",20,0,-10,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+       A_SpawnProjectile("PM_ExaltedBHBall",20,0,20,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+       A_SpawnProjectile("PM_ExaltedBHBall",20,0,-10,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+	   A_SpawnProjectile("PM_ExaltedBHBall",20,0,10,CMF_AIMDIRECTION|CMF_TRACKOWNER);
+	   A_SpawnProjectile("PM_ExaltedBHBall",20,0,-20,CMF_AIMDIRECTION|CMF_TRACKOWNER);
 	  }
 	 else
 	  {
@@ -803,6 +945,249 @@ Class PM_ExaltedBHBall : PM_BlashemerBHBall
 	  TNT1 A 5 Light("Shadowball2");
       Stop;
  }
+}
+
+Class PM_ExaltedCultSummon : Actor
+{
+  Default
+  {
+  Radius 10;
+  Height 10;
+  Projectile;
+  Speed 8;
+  RenderStyle "Normal";
+  BounceType "Hexen";
+  BounceFactor 0.3;
+  Scale 1.0;
+  Alpha 0.95;
+  +FLOATBOB
+  +BRIGHT
+  +DONTTHRUST
+  +THRUACTORS
+  +FORCEXYBILLBOARD
+  +SEEKERMISSILE
+  +FLOORHUGGER
+  }
+  
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[3] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+  }
+	TextureID tex[4];
+  
+  States
+  {
+  Spawn:
+   TNT1 A 0;
+   TNT1 AAAAAAAAAAAA random(1,5);
+  Go:
+   TNT1 A 0 {
+   A_ScaleVelocity(0);
+   A_SpawnItemEx("PM_ExaltedBeacon",flags:SXF_NOCHECKPOSITION); }
+   TNT1 AAAAAAA 3 A_FaceTracer();
+   TNT1 A 0 {
+    A_SpawnItemEx("PM_ExaltCultist",0,0,10,0,0,0,0,flags:SXF_NOCHECKPOSITION); }
+   Stop;
+  }
+}
+
+Class PM_ExaltCultist : Actor
+{
+ Default
+ {
+  Radius 20;
+  Height 56;
+  Health 80;
+  Monster;
+  -COUNTKILL
+  +FLOAT
+  +THRUSPECIES
+  +DONTHARMSPECIES
+  StencilColor "DarkRed";
+  BloodType "PM_NormalBloodBase";
+  Species "Nobles";
+  Tag "Imperial Blasphemer";
+  Obituary "%o was struck down by an Exalted's servant.";
+ }
+
+  override void PostBeginPlay()
+  {
+	Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[3] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+  }
+	TextureID tex[4];
+	
+ States
+ {
+ Spawn:
+  TNT1 A 0;
+  TNT1 A 0 {
+    A_StartSound("PM/PrideTele",20);
+	for(int i=3;i>0;i--)
+	A_SpawnParticleEx(
+		"", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: 45, size: 350, xoff: 10, zoff: 45,
+		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
+	for(int i=5;i>0;i--)
+		A_SpawnParticleEx(
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
+  }
+ See:
+  DISC AAAAAAAAAA 5 A_FaceTarget(5,5);
+  TNT1 A 0 A_Jump(56,"Fireball","Laser"); //,"GroundCrasher");
+  Normal:
+   DISC E 30  { A_StartSound("PMBlasphemer/Yell",21); A_FaceTracer(5,5); }
+   DISC EEEEE 5 {
+		A_SpawnProjectile("PM_ExaltCultBall",36,randompick(-4, 4),0,CMF_AIMDIRECTION,pitch+frandom(-0.2,0.2));
+		A_FaceTarget(3,3);
+   }
+   Goto ByeBye;
+  Laser:
+   TNT1 A 0 A_StartSound("GenericChargeSmall",22);
+   DISC EEEEEEEEEEEEEEEE 2 Light("ShadowBall2") 
+   {
+    A_FaceTarget(5,5);
+	A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKRC0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+	lifetime: random(1,10), size: random(90,150), xoff: random(18,20), yoff: random(-5,5), zoff: 36,
+	velx: frandom(0.1,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5),
+	startalphaf: frandom(0.75,1), fadestepf: -0.95, startroll: random(-180,180));
+   }
+   TNT1 A 0 A_StartSound("PM/BulletHellLaserStart",23);
+   DISC FFFFFFFF 2 Light("ShadowBall3")
+   {
+    A_FaceTarget(0.50,0.50);
+	A_SpawnProjectile("PM_ExaltCultBeam",36,0,0,CMF_AIMDIRECTION,pitch+frandom(-0.2,0.2));
+   }
+   TNT1 A 0 A_StartSound("PM/BulletHellLaserLoop",24);
+   DISC FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 Light("ShadowBall3")
+   {
+    A_FaceTarget(0.50,0.50);
+	A_SpawnProjectile("PM_ExaltCultBeam",36,0,0,CMF_AIMDIRECTION,pitch+frandom(-0.2,0.2));
+   }
+   DISC E 10 Light("ShadowBall2") A_FaceTarget(0.50,0.50);
+   Goto ByeBye;
+  Fireball:
+	DISC E 2
+	{
+	 A_FaceTarget();
+	 A_StartSound("PMBlasphemer/Yell",21,pitch:frandom(0.7, 1.2));
+	 A_StartSound("GenericChargeSmall",20);
+	}
+	DISC EEEEEEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
+	{
+	for (int i = -20; i < 21; i += 40)
+	 {
+	 A_SpawnParticleEx(   
+	"FF7800", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: random(1,8), size: frandom(20,270), xoff: frandom(5,10), yoff: frandom(-3.5,3.5) + i, zoff: frandom(-3.5,3.5) + 70,
+	startalphaf: 0.9, fadestepf: -1, startroll: random(-180,180));
+	 }
+    for (int i = -20; i < 21; i += 40)
+	 {
+	 A_SpawnParticleEx(   
+	 "",
+	 TexMan.CheckForTexture("F1R1A0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	 lifetime: random(12,20), size: frandom(40,70), xoff: frandom(5,10), yoff: frandom(-3.5,3.5) + i, zoff: frandom(-3.5,3.5) + 74,
+	 velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.5,3.5), startalphaf: 1, sizestep: -5, startroll: random(-180,180));
+	 }
+	  A_FaceTarget(5,5);
+     }
+	 DISC F 7 Light("Avatarfireball4")
+	 {
+	  A_StartSound("PM/SigilSpawn",17,pitch:0.85);
+	  A_FaceTarget(5,5);
+	 }
+	 DISC FFFFFFFFFF 1 Light("Avatarfireball4")
+	 {
+	  A_FaceTarget(5,5);
+	  A_SpawnParticleEx(   
+	  "FF7800", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	  lifetime: random(2,10), size: frandom(80,300), xoff: 5, zoff: 40, startalphaf: 0.5,
+	  fadestepf: -1, startroll: random(-180,180));
+	 }
+	 DISC F 0
+	 {
+	  A_FaceTarget(5,5);
+	  A_StartSound("PM/RuneFill",21);
+      for(int i=3;i>0;i--)
+	  A_SpawnParticleEx(
+	  "", TexMan.CheckForTexture("DTPRO0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+	  lifetime: 10, size: 190, xoff: 40, zoff: 40, startalphaf: 1, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+	 }
+	 DISC FFFFFFFFFFFFFFFFF 1 Light("Avatarfireball4")
+	 {
+	  A_FaceTarget(5,5);
+	  A_SpawnParticleEx(   
+	  "FF7800", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	  lifetime: random(2,10), size: frandom(80,300), xoff: 5, zoff: 40, startalphaf: 0.5, fadestepf: -1, startroll: random(-180,180));
+	 }
+	TNT1 A 0 A_SpawnProjectile("PM_ExaltCultFireball",36,0,0,CMF_AIMDIRECTION,pitch+frandom(-0.2,0.2));
+	Goto ByeBye;
+	Death:
+	 DISC G 15 A_StartSound("PMBlasphemer/Pain",21);
+	 DISC E 15;
+     DISC E 0 {
+     A_StartSound("Exalt/TPStart",20,pitch:frandom(1.15,1.45));
+	 for(int i=3;i>0;i--)
+	 A_SpawnParticleEx(
+		"", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: 45, size: 350, xoff: 10, zoff: 45,
+		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
+	 for(int i=5;i>0;i--)
+	 A_SpawnParticleEx(
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
+	 for (int i = -15; i <= 15; i+= 10)
+		A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,i,0,0,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME);
+     }
+	 Stop;
+	ByeBye:
+     DISC E 30;
+     DISC E 0 {
+     A_StartSound("Exalt/TPStart",20,pitch:frandom(1.15,1.45));
+	 for(int i=3;i>0;i--)
+	 A_SpawnParticleEx(
+		"", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: 45, size: 350, xoff: 10, zoff: 45,
+		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
+	 for(int i=5;i>0;i--)
+	 A_SpawnParticleEx(
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
+	 for (int i = -15; i <= 15; i+= 10)
+		A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,i,0,0,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME);
+     }
+	 Stop;
+	}
+}
+
+Class PM_ExaltCultBall : PM_BlasphemerBall
+{
+  Default { Species "Nobles"; +MTHRUSPECIES }
+}
+
+Class PM_ExaltCultFireball : PM_BlasphemerFireball
+{
+ Default { DamageFunction 30; Species "Nobles"; +MTHRUSPECIES }
+}
+
+Class PM_ExaltCultBeam : PM_DraugrLightningArcs
+{
+  Default
+  {
+  Speed 36;
+  DamageType "PM_BulletHellDamage";
+  Species "Nobles";
+  +MTHRUSPECIES
+  }
 }
 
  
