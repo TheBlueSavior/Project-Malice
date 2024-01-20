@@ -4813,14 +4813,17 @@ $limit Director/AStrikeShot 20
 
 //Soul Reaver
 
+SoulReaver/Transform "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTransform.ogg"
+$rolloff SoulReaver/Transform 300 1600
+
 SoulReaver/Beam "Sounds/Monsters/Revenants/SoulReaver/SoulReaverBeam.ogg"
+
+SoulReaver/Sight "Sounds/Monsters/Revenants/SoulReaver/SoulReaverSight.ogg"
 
 SoulReaver/Death "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeath.ogg"
 SoulReaver/DeathSequence "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathSequence.ogg"
 
 SoulReaver/Ready "Sounds/Monsters/Revenants/SoulReaver/SoulReaverReady.ogg"
-
-SoulReaver/Sight "Sounds/Monsters/Revenants/SoulReaver/SoulReaverSight.ogg"
 
 //Dormant Reaver
 
