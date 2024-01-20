@@ -376,18 +376,13 @@ Class PM_DormantReaver : PMDeathMonsterBase
 	}
 	SRE2 J 10
 	{
-		A_StartSound("Abhor/BarrageLaunch",10,CHANF_OVERLAP,volume:1,pitch:frandom(0.35,0.65));
-		A_StartSound("GenericMancShot",volume:0.75,pitch:1.6);
+		A_StartSound("Abhor/BarrageLaunch",10,CHANF_OVERLAP,volume:1,attenuation:0.5,pitch:frandom(0.35,0.65));
+		A_StartSound("GenericMancShot",volume:0.75,attenuation:0.5,pitch:1.6);
 		
-		for (int i = random(4, 8); i > 0; i--)
+		for (int i = 7; i > 0; i--)
 		{
-			A_SpawnProjectile("PM_SmallSoulReaverBall",56,-17,random(-25, 25) + angle, CMF_OFFSETPITCH, frandom(-25, 25));
-			A_SpawnProjectile("PM_SmallSoulReaverBall",56,17,random(-25, 25) + angle, CMF_OFFSETPITCH, frandom(-25, 25));
-		}
-		for (int i = 4; i > 0; i--)
-		{
-			A_SpawnProjectile("PM_DEmiTracer",56,-17,random(-15, 15) + angle, CMF_OFFSETPITCH, frandom(-15, 15));
-			A_SpawnProjectile("PM_DEmiTracer",56,17,random(-15, 15) + angle, CMF_OFFSETPITCH, frandom(-15, 15));
+			A_SpawnProjectile("PM_SoulReaverSoulgun",56,-17,random(-5, 5), CMF_OFFSETPITCH, frandom(-5, 5));
+			A_SpawnProjectile("PM_SoulReaverSoulgun",56,17,random(-5, 5), CMF_OFFSETPITCH, frandom(-5, 5));
 		}
 	}
 	SRE2 K 35;
@@ -905,7 +900,108 @@ Class PM_SoulReaverSeeker : Actor
   }
 }
 
-Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""; Speed 15; Scale 0.35; DamageFunction 5; } }
+Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""; Speed 15; Scale 0.35; DamageFunction random(3, 4); } }
+
+Class PM_SoulReaverSoulgun : Actor
+{
+  Default
+  {
+    Radius 4;
+    Height 4;
+    Scale 0.5;
+    Speed 32;
+    DamageFunction 6;
+    Renderstyle "Add";
+    SeeSound "DorReaver/Fire";
+    DeathSound "Harvester/SoulExp";
+	Decal "PM_DeathSoulScorchMed";
+    PROJECTILE;
+    +SEEKERMISSILE
+  }
+
+ override void PostBeginPlay()
+   {
+    tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("DTPRB0",TexMan.Type_Sprite);
+   }
+
+	TextureID tex[3];
+  
+  int count;
+  
+  States
+  {
+  Spawn:
+	  TNT1 A 0 NoDelay
+	  {
+		A_SpawnParticleEx
+			(
+			"0B3D94",
+			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(50,90), size: frandom(128,180),
+			startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+			startroll: random(-180,180), rollvel: frandom(-1,1)
+			);
+			for(int i=random(4,8);i>0;i--)
+			A_SpawnParticleEx
+			( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+			lifetime: random(1,75), size: frandom(1,25), xoff: -22,
+			velx: frandom(5,8), vely: frandom(-4,4), velz: frandom(-5,5),
+			startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-1,-0.1), startroll: random(-180,180)
+			);
+		A_StartSound("Harvester/SoulLoop",11,CHANF_LOOPING,pitch:1.4);
+	  }
+	Go:
+    SHBA AABB 1 Bright
+	{
+	A_SpawnParticleEx
+	 (
+	 "0B3D94",
+	 tex[0],
+	 style: STYLE_Add,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(40,80),
+	 size: 15.0,
+	 xoff: -5,
+	 startalphaf: frandom(0.25,0.65),
+	 fadestepf: -1,
+	 startroll: random(-180,180),
+	 rollvel: random(-1, 1)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "143B76",
+	 tex[0],
+	 style: STYLE_Add,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(8,50),
+	 size: 35.0,
+	 xoff: -5,
+	 startalphaf: frandom(0.5,0.8),
+	 fadestepf: -1,
+	 startroll: random(-180,180)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "",
+	 tex[2],
+	 style: STYLE_Add,
+	 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	 lifetime: random(1,2),
+	 size: frandom(1.0,150.0),
+	 angle: 0,
+	 xoff: -8,
+	 startalphaf: frandom(0.2,0.85),
+	 startroll: random(-180,180)
+	 );
+	}
+    Loop;
+  Death:
+    SHBA CDEFGHIJKL 3 Bright;
+    Stop;
+  }
+}
 
 //Miniboss Version
 /*Class PM_PreSoulReaver : PM_DormantReaver
