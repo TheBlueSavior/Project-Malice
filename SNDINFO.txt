@@ -1941,17 +1941,8 @@ NetherConduitSmallZap3 "Sounds/Monsters/Imps/NetherConduit/NetherConduitSmallZap
 NetherConduit/StreamCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitStreamCharge.ogg"
 $rolloff NetherConduit/StreamCharge 800 2000
 
-$random NetherConduit/ChaserCharge { NC/CCharge1 NC/CCharge2 NC/CCharge3 }
-NC/CCharge1 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge1.ogg"
-NC/CCharge2 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge2.ogg"
-NC/CCharge3 "Sounds/Monsters/Imps/NetherConduit/NCChaserCharge2.ogg"
-
-$random NetherConduit/ChaserFire { NC/CFire1 NC/CFire2 NC/CFire3 }
-NC/CFire1 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire1.ogg"
-NC/CFire2 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire2.ogg"
-NC/CFire3 "Sounds/Monsters/Imps/NetherConduit/NCChaserFire3.ogg"
-
-$rolloff NetherConduit/ChaserFire 200 1900
+NetherConduit/ChaserCharge "Sounds/Monsters/Imps/NetherConduit/NCChaserChargeLoop.ogg"
+$rolloff NetherConduit/ChaserCharge 500 2400
 
 NetherConduit/HomingCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingCharge.ogg"
 NetherConduit/ThunderCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderCharge.ogg"
@@ -4280,9 +4271,12 @@ $volume PM/BigGoreSplat 0.5
 
 //Magic Stuff
 PM/BulletHellSpawn "Sounds/Monsters/SFX/BulletHellFire.ogg"
-PM/SigilSpawn "Sounds/Monsters/SFX/MagicSigilSpawn.ogg"
+PM/BulletHellSLaser "Sounds/Monsters/SFX/BHStraightLaser.ogg"
 PM/BulletHellLaserStart "Sounds/Monsters/SFX/BulletHellLaserStart.ogg"
 PM/BulletHellLaserLoop "Sounds/Monsters/SFX/BulletHellLaserLoop.ogg"
+PM/GigalaserStart "Sounds/Monsters/SFX/BulletHellGigalaserStart.ogg"
+PM/GigalaserLoop "Sounds/Monsters/SFX/BulletHellGigalaserLoop.ogg"
+PM/SigilSpawn "Sounds/Monsters/SFX/MagicSigilSpawn.ogg"
 PM/RuneFill "Sounds/Monsters/SFX/MagicRuneFill.ogg"
 PM/MagicFireFire "Sounds/Monsters/SFX/MagicFireFire.ogg"
 PM/MagicFireExplode "Sounds/Monsters/SFX/MagicFireExplode.ogg"
@@ -4888,25 +4882,34 @@ Exalt/Death3 "Sounds/Monsters/Barons/Exalted/ExaltDeath3.ogg"
 
 Exalt/TPStart  "Sounds/Monsters/Barons/Exalted/ExaltedTPStart.ogg"
 Exalt/TPEnd  "Sounds/Monsters/Barons/Exalted/ExaltedTPEnd.ogg"
-$random Exalt/BHShot { Exalt/BHShot1 Exalt/BHShot2 Exalt/BHShot3 }
-Exalt/BHShot1 "Sounds/Monsters/Barons/Exalted/ExaltBHShot1.ogg"
-Exalt/BHShot2 "Sounds/Monsters/Barons/Exalted/ExaltBHShot2.ogg"
-Exalt/BHShot3 "Sounds/Monsters/Barons/Exalted/ExaltBHShot3.ogg"
-Exalt/BHShotExp "Sounds/Monsters/Barons/Exalted/ExaltBHShotExp.ogg" 
-Exalt/SuperBall "Sounds/Monsters/Barons/Exalted/ExaltedSuperBall.ogg"
-Exalt/SuperBallExp "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp.ogg"
+$random Exalt/BHShotExp { Exalt/BHShotExp1 Exalt/BHShotExp2 }
+Exalt/BHShotExp1 "Sounds/Monsters/Barons/Exalted/ExaltedBHShotExp1.ogg"
+Exalt/BHShotExp2 "Sounds/Monsters/Barons/Exalted/ExaltedBHShotExp2.ogg"  
+
+$random Exalt/SuperBall { Exalt/SuperBall1 Exalt/SuperBall2 Exalt/SuperBall3 }
+Exalt/SuperBall1 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBall1.ogg"
+Exalt/SuperBall2 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBall2.ogg"
+Exalt/SuperBall3 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBall3.ogg"
+
+$random Exalt/SuperBallExp { Exalt/SuperBallExp1 Exalt/SuperBallExp2 Exalt/SuperBallExp3 } 
+Exalt/SuperBallExp1 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp1.ogg"
+Exalt/SuperBallExp2 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp2.ogg"
+Exalt/SuperBallExp3 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp3.ogg"
+
 Exalt/SuperCastReady "Sounds/Monsters/Barons/Exalted/ExaltedSuperCastReady.ogg"
 Exalt/SuperCast "Sounds/Monsters/Barons/Exalted/ExaltedSuperCast.ogg"
 Exalt/CastAdd "Sounds/Monsters/Barons/Exalted/ExaltedCastAdd.ogg"
 
 $rolloff Exalt/CastAdd 600 2300
+$rolloff Exalt/BasicCastLoop 600 2300
+$rolloff Exalt/BasicBarrageLoop 600 2300
 $rolloff Exalt/SuperBall 500 2500
 $rolloff Exalt/SuperBallExp 500 2600
 $rolloff Exalt/BHShot 400 2400
 $rolloff Exalt/TPStart 500 2600
 $rolloff Exalt/TPEnd 500 2600
-$limit Exalt/BHShotExp 8
-$limit Exalt/BHShot 6
+$limit Exalt/SuperBallExp 8
+$limit Exalt/SuperBall 6
 
 //Sybarite
 
