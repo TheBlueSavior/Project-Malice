@@ -471,3 +471,16 @@ Model PM_SoulReaverArbalest
   Rotation-Speed 15.0
   FrameIndex TRCR A 0 0
 }
+
+Model PM_SoulReaverLaser
+{ 
+Path "Models"
+Skin 0 "malicedeathtracer.png"
+Model 0 "Tracer.md3"
+Scale 0.7 1.0 1.0
+PITCHFROMMOMENTUM
+ROTATING
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}

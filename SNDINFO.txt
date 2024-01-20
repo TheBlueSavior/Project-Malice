@@ -4816,6 +4816,14 @@ $limit Director/AStrikeShot 20
 
 //Soul Reaver
 
+SoulReaver/Amb1 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb1.ogg"
+SoulReaver/Amb2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb2.ogg"
+SoulReaver/Amb3 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb3.ogg"
+
+$rolloff SoulReaver/Amb1 500 2500
+$rolloff SoulReaver/Amb2 500 1600
+$rolloff SoulReaver/Amb3 500 1000
+
 SoulReaver/Transform "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTransform.ogg"
 $rolloff SoulReaver/Transform 300 1600
 
