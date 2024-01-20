@@ -5,13 +5,11 @@ Class PM_DormantReaver : PMDeathMonsterBase
   int deathwither;
   Default
   {
-  /*PMMonsterBase.CodexLore
+  PMMonsterBase.CodexLore
   "These Dormant Reavers are the sentinels of Death, constantly assisting for the quietus of mortals and taking their souls.
-  Not only they are good at being ghastly guards, but they are also heavily reliant on being very aggressive and agile, making them really good crusaders on the isolated badlands of hell.
+  Not only are they good at being ghastly guards, but they are also heavily reliant on being very combatant cutthroats, making them really good crusaders on the isolated badlands of hell.
   
-  When engaged into battle, they will fire big spectral souls at you, and at times may fire an arbalest to destroy your living body.
-  
-  Sometimes, they do have an amount of souls that they have quenched for and consumed...";*/
+  When engaged into battle, they will fire big spectral souls at you, and at times may fire an arbalest to destroy your living body.";
   +DONTHARMSPECIES
   Species "Revenant";
   Tag "Dormant Reaver";
@@ -198,7 +196,8 @@ Class PM_DormantReaver : PMDeathMonsterBase
   Missile:
     TNT1 A 0 A_JumpIfCloser(450,"LungeCheck");
     TNT1 A 0 A_Jump(60,"Arbalest");
-	TNT1 A 0 A_Jump(120,"SeekerBalls");
+	TNT1 A 0 A_Jump(120,"SoulGun");
+	TNT1 A 0 A_Jump(150,"SeekerBalls");
 	TNT1 A 0 A_Jump(240,"SoulShotRight","SoulShotLeft");
     TNT1 A 0
 	{
@@ -305,9 +304,98 @@ Class PM_DormantReaver : PMDeathMonsterBase
 		}
 	SRE2 K 30;
 	Goto See;
+  SoulGun:
+	SRE2 J 10;
+	TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
+	SRE2 J 5
+	{
+		A_StartSound("Harvester/PhaseStart", 14, pitch: 0.75);
+		bFRIGHTENED = true;
+		bNOPAIN = true;
+		bSHOOTABLE = false;
+		A_FaceTarget();
+	}
+	TNT1 A 0 A_SetRenderStyle(0.8,STYLE_AddShaded);
+	TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
+	SRE2 AABBCCDDEEFFAABBCCDDEEFFAABB 1
+	{
+		A_FadeOut(0.01);
+		A_SpawnItemEx("PM_GenericPhaseGhost",xofs:-5,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERALPHA|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+		A_SpawnParticleEx
+		(
+		"0B3D94",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(5,50),
+		size: random(35,75), xoff: random(-8,8), yoff: random(-25,25), zoff: random(-1,45),
+		startalphaf: frandom(0.25,0.85), fadestepf: -1, startroll: random(-180,180));
+		
+		for (int i = 3; i > 0; i--) A_Chase(null, null, CHF_NOPLAYACTIVE);
+	}
+	TNT1 A 0 { bFRIGHTENED = false; }
+	TNT1 A random(30, 60)
+	{
+		A_SetRenderStyle(1,STYLE_Normal);
+		A_StopSounds(0, 0);
+		for (int i = random(50, 60); i > 0; i--) A_Chase(null, null, CHF_NOPLAYACTIVE);
+		alpha = 1;
+	}
+	TNT1 A 0 
+	{
+	bFRIGHTENED = false;
+	bNOPAIN = false;
+	bSHOOTABLE = true;
+	
+	A_StartSound("Harvester/PhaseEnd", 14, pitch: 0.75);
+	
+	for (int i = 3; i > 0; i--) A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
+	
+	if(random(1,2) == 1) A_StartSound("DorReaver/Attack",10);
+	
+	A_StartSound("DorReaver/PreFire",8,pitch:0.65);
+	A_StartSound("DorReaver/Arbalest",9,volume:0.85,attenuation:0.65,pitch:0.65);
+	}
+	SRE2 JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 1 Light("HellsFuryBall3")
+	{
+		A_FaceTarget();
+		
+		for (int i = 1; i > -2; i -= 2)
+		{
+			A_SpawnParticleEx
+			(
+			"0B3D94",
+			TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Add,
+			flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+			lifetime: random(25,60),
+			size: random(35,75), xoff: 4 + frandom(-2, 2), yoff: i * (-17 + + frandom(-2, 2)), zoff: 56 + frandom(-2, 2),
+			velx: frandom(-.1, .1), vely: frandom(-.1, .1), velz: frandom(0.1, 1),
+			startalphaf: frandom(0.5,1), fadestepf: -1, startroll: random(-180,180));
+		}
+	}
+	SRE2 J 10
+	{
+		A_StartSound("Abhor/BarrageLaunch",10,CHANF_OVERLAP,volume:1,pitch:frandom(0.35,0.65));
+		A_StartSound("GenericMancShot",volume:0.75,pitch:1.6);
+		
+		for (int i = random(4, 8); i > 0; i--)
+		{
+			A_SpawnProjectile("PM_SmallSoulReaverBall",56,-17,random(-25, 25) + angle, CMF_OFFSETPITCH, frandom(-25, 25));
+			A_SpawnProjectile("PM_SmallSoulReaverBall",56,17,random(-25, 25) + angle, CMF_OFFSETPITCH, frandom(-25, 25));
+		}
+		for (int i = 4; i > 0; i--)
+		{
+			A_SpawnProjectile("PM_DEmiTracer",56,-17,random(-15, 15) + angle, CMF_OFFSETPITCH, frandom(-15, 15));
+			A_SpawnProjectile("PM_DEmiTracer",56,17,random(-15, 15) + angle, CMF_OFFSETPITCH, frandom(-15, 15));
+		}
+	}
+	SRE2 K 35;
+	Goto See;
   Pain:
     SRE2 L 5;
     SRE2 L 5 A_Pain;
+	SRE2 L 0 A_Jump(50, "SoulGun");
     Goto See;
   Death:
     TNT1 A 0 A_StopSounds(0,0);
@@ -479,11 +567,16 @@ States
 			( "", tex[5], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,5),
 			size: frandom(100,190), xoff: 44, startalphaf: 0.65,
 			fadestepf: -1.5, startroll: random(-180,180) );
+		A_SpawnParticleEx
+			( "0B3D94", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(25,50),
+			size: frandom(30,60), xoff: frandom(11, 55), startalphaf: frandom(0.5, 1),
+			fadestepf: -1.5, startroll: random(-180,180) );
 		}
         Loop;
 	Death:
 	    TNT1 A 0
 		{
+		Radius_Quake(5, 24, 0, 6, 0);
 		 A_RadiusThrust(2000,400,RTF_NOIMPACTDAMAGE);
 		 A_QuakeEx(4,4,2,40,0,700,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
 		A_SpawnParticleEx
@@ -515,6 +608,31 @@ States
 		 }
 		for(int i = random(4, 8); i > 0; i--)
 			A_SpawnProjectile("PM_SmallSoulReaverBall",random(0,56),random(-75,75),random(0,360),CMF_TRACKOWNER|CMF_OFFSETPITCH,random(-45,45));
+		for (int i = random(3, 6); i > 0; i--)
+		{
+			let glob = Spawn("PM_BigFireGlobs", pos);
+			if (glob)
+			{
+				glob.vel.x = random(-9, 9);
+				glob.vel.y = random(-9, 9);
+				glob.vel.z = random(-9, 9);
+				glob.SetShade("2683fc");
+				glob.A_SetRenderStyle(1, STYLE_AddShaded);
+			}
+		}
+		
+		for (int i = random(2, 3); i > 0; i--)
+		{
+			let xp = Spawn("PM_GenericExplosionFlames", pos);
+			if (xp)
+			{
+				xp.vel.x = random(-3, 3);
+				xp.vel.y = random(-3, 3);
+				xp.vel.z = random(-3, 3);
+				xp.SetShade("2683fc");
+				xp.A_SetRenderStyle(1, STYLE_AddShaded);
+			}
+		}
 		}
 		TRCR A 0 A_StartSound("PM/WrathTele2",20);
 	DeathLoop:
@@ -787,7 +905,7 @@ Class PM_SoulReaverSeeker : Actor
   }
 }
 
-Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""; Speed 15; } }
+Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""; Speed 15; Scale 0.35; DamageFunction 5; } }
 
 //Miniboss Version
 /*Class PM_PreSoulReaver : PM_DormantReaver
@@ -795,10 +913,10 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 	Default
 	{
 		Tag "Unusual Dormant Reaver";
-		PMMonsterBase.CodexLore
+		/*PMMonsterBase.CodexLore
 		"I am the one with many names. The Reaper, Fate, Azrael, the Angel of Death. Even I have known what the power of hell is really capable of. The many souls I have consumed, they are all suffering in endless torment. The satisfaction of expunging everything is unbearable.
 
-		/cgDo not underestimate me.";
+		/cgDo not underestimate me.";*/
 	}
 	
 	bool consume;
@@ -808,8 +926,19 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 	{
 		super.Tick();
 		
+		if (!(GetAge() % random(2, 5)))
+			if (!random(0, 7))
+				A_SpawnItemEx("PM_DeathBloodSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(45, height), frandom(-0.6,0.6), frandom(-0.6,0.6), frandom(-0.6,0.6), random(0,360), flags: SXF_NOCHECKPOSITION);
+		
 		if (consume)
 		{
+			if (!random(0, 15))
+				A_SpawnItemEx("PM_DeathBloodSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(45, height), frandom(-0.6,0.6), frandom(-0.6,0.6), frandom(-0.6,0.6), random(0,360), flags: SXF_NOCHECKPOSITION);
+			if (!random(0, 20))
+				A_SpawnItemEx("PM_BlackMist",random(-50,50),random(-50,50),random(0,60),0,0,0,0,0);
+			if (!random(0, 60))
+				A_SpawnItemEx("PM_DeathBlood",random(-20,20),random(-20,20),random(35,80),frandom(-1, 1),frandom(-1, 1),frandom(-1, 1),0,0);
+				
 			A_SpawnParticleEx
 			(
 			"0B3D94",
@@ -837,6 +966,9 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 		
 		if (souls)
 		{
+			if (!random(0, 5))
+				A_SpawnItemEx("PM_DeathBloodSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(45, height), frandom(-0.6,0.6), frandom(-0.6,0.6), frandom(-0.6,0.6), random(0,360), flags: SXF_NOCHECKPOSITION);
+
 			A_SpawnParticleEx
 			(
 			"000000",
@@ -883,10 +1015,10 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 			A_StartSound("GenericChargeHeavy", CHAN_6, attenuation: 0.3);
 		}
 		WEL_ BBDEFGHIJ 6 A_FaceTarget();
-		WEL_ J 100 A_FaceTarget();
+		WEL_ J 80 A_FaceTarget();
 		SRE2 L 15 A_FaceTarget();
 		SRE2 L 0 A_StartSound("SoulReaver/Ready", 50, attenuation: 0.5, pitch: 0.9);
-		SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("PM_HugeFastHorrorBlackflash")
+		SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("PM_HugeFastHorrorBlackflash")
 		{
 			A_SpawnParticleEx
 			( "8cf2ff", TexMan.CheckForTexture("SPKOS0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
@@ -905,8 +1037,11 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 			startalphaf: frandom(0.3,0.8), fadestepf: -1, startroll: random(-180,180), rollvel: random(-2, 2)
 			);
 			
+			if (!random(0, 1))
+				A_SpawnItemEx("PM_DeathBlood",random(-20,20),random(-20,20),random(35,80),frandom(-4, 4),frandom(-4, 4),frandom(-4, 4),0,0);
+			
 			Radius_Quake (20, 2, 0, 30, 0);
 		}
 		Stop;
 	}
-}*/
+}

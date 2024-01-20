@@ -87,6 +87,7 @@ Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 {
 	DropItem "PM_Cadaver", 255, 56
+	DropItem "PM_DormantReaver", 255, 1
 	DropItem "PM_Depraved", 255, 2
 	DropItem "PM_Infested", 255, 2
 	DropItem "PM_Draugr", 255, 2
