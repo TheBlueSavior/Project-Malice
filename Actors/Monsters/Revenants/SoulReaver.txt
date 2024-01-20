@@ -913,10 +913,10 @@ Class PM_SmallSoulReaverBall : PM_SmallSoulHarvesterBall { Default { SeeSound ""
 	Default
 	{
 		Tag "Unusual Dormant Reaver";
-		/*PMMonsterBase.CodexLore
+		PMMonsterBase.CodexLore
 		"I am the one with many names. The Reaper, Fate, Azrael, the Angel of Death. Even I have known what the power of hell is really capable of. The many souls I have consumed, they are all suffering in endless torment. The satisfaction of expunging everything is unbearable.
 
-		/cgDo not underestimate me.";*/
+		/cgDo not underestimate me.";
 	}
 	
 	bool consume;
