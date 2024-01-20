@@ -193,7 +193,7 @@ Class PM_Noble : PMMonsterBase
 		PM_LeadTarget(15);
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
-		NOIS G 1;
+		NO1S G 1;
 		NO1S G 5 Light("Greenball3")
 		{
 		PM_LeadTarget(15);
@@ -296,7 +296,7 @@ Class PM_Noble : PMMonsterBase
 		A_FaceTarget();
 		A_Spawnitemex("GreenFireEffect",10,random(40,35),45,0,0,2);
 		}
-		NOIS G 1 Light("Greenball3");
+		NO1S G 1 Light("Greenball3");
 		NO1S G 7 Light("Greenball3")
 		{
 		A_FaceTarget();

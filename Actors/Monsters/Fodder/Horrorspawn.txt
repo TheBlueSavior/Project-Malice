@@ -375,13 +375,13 @@ Class PM_Horrorspawn : PMFodderMonsterBase
     2FOD L -1;
     Stop;
   DeathV1:
-	"####" I 0 A_Jump(120,"DecapDeath");
-    "####" I 7;
-    "####" J 7 A_Scream;
-    "####" K 5 A_NoBlocking;
-    "####" L 5;
-	"####" L 0 A_StartSound("Corpse/Fall",6);
-    "####" M -1;
+	ZFOD I 0 A_Jump(120,"DecapDeath");
+    ZFOD I 7;
+    ZFOD J 7 A_Scream;
+    ZFOD K 5 A_NoBlocking;
+    ZFOD L 5;
+	ZFOD L 0 A_StartSound("Corpse/Fall",6);
+    ZFOD M -1;
     Stop;
    DecapDeath:
 	"####" I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));
@@ -743,9 +743,9 @@ Class PM_HorrorspawnScreamer : PMFodderMonsterBase
     ZFOD M -1;
     Stop;
    DecapDeath:
-	ZFPD I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));
+	ZFOD I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));
 	ZFOD I 0 A_SpawnItemEx("PM_HorrorspawnDecap",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-	ZFPD I 1 A_StartSound("MaliceHeadExp");
+	ZFOD I 1 A_StartSound("MaliceHeadExp");
 	Stop;
   XDeath:
     ZFOD N 5 PM_Gib();
