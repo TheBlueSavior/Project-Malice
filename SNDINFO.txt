@@ -4281,6 +4281,13 @@ PM/RuneFill "Sounds/Monsters/SFX/MagicRuneFill.ogg"
 PM/MagicFireFire "Sounds/Monsters/SFX/MagicFireFire.ogg"
 PM/MagicFireExplode "Sounds/Monsters/SFX/MagicFireExplode.ogg"
 
+$rolloff PM/BulletHellSLaser 500 2400
+$rolloff PM/BulletHellLaserStart 300 2400
+$rolloff PM/BulletHellLaserLoop 300 2400
+$rolloff PM/GigalaserStart 500 2700
+$rolloff PM/GigalaserLoop 500 2700
+$volume PM/BulletHellSLaser 0.5
+$limit PM/BulletHellSLaser 20
 $volume PM/BulletHellSpawn 0.3
 $limit PM/BulletHellSpawn 20
 $rolloff PM/SigilSpawn 400 1600

@@ -50,9 +50,10 @@ Class PM_Exalted : PMPrideMonsterBase
 	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
 	 tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
 	 tex[3] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
 	}
 	
-	TextureID tex[4];
+	TextureID tex[5];
 	
 	void PM_ExaCast(class<actor> effect)
 	{
@@ -94,7 +95,8 @@ Class PM_Exalted : PMPrideMonsterBase
 	Looking:
 	    TNT1 A 0 { for(int i=random(15,40);i>0;i--) A_Wander(); } 
         TNT1 AA 10 PM_LookingForPlayer();
-		TNT1 A 0 A_Jump(15,"Spotted");
+		TNT1 A 0 A_Jump(256,"Spotted");
+		//TNT1 A 0 A_Jump(15,"Spotted");
         Loop;
     Spotted:
         EXAF A 8 Bright
@@ -382,133 +384,87 @@ Class PM_Exalted : PMPrideMonsterBase
     Death:
         EXAL L 5
 		{
+		bDONTTHRUST = true;
 		PM_Scream();
-		A_StartSound("PMGazer/Hover",103,CHANF_LOOPING,pitch:0.65);
+		A_StartSound("PMGazer/Hover",103,CHANF_LOOPING,pitch:0.75);
 		for(int i=20;i>0;i--)
-		A_SpawnParticleEx
-			(
-			"545454",
-			TexMan.CheckForTexture("DUSTC0"),
-			style: STYLE_Normal,
-			flags: SPF_RELATIVE|SPF_ROLL,
-			lifetime: random(40,70),
-			size: frandom(1,30),
-			xoff: frandom(-35,35),
-			yoff: frandom(-35,35),
-			zoff: random(0,125),
-			velx: frandom(-8,8),
-			vely: frandom(-8,8),
-			velz: frandom(-8,12),
-			accelz: frandom(-0.1,-0.5),
-			startalphaf: 1.0,
-			sizestep: -0.2,
-			startroll: random(-180,180),
-			rollvel: random(0,4)
-			);
+		A_SpawnParticleEx(
+		"545454", tex[5], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(25,85), size: frandom(1,50), xoff: frandom(-25,25), yoff: frandom(-25,25), zoff: random(0,65),
+		velx: frandom(-8,8), vely: frandom(-8,8), velz: frandom(-0.1,30), accelz: frandom(-0.1,-0.5), startalphaf: 1.0,
+		sizestep: -0.2, startroll: random(-180,180), rollvel: random(0,4));
 		}
 		EXAL M 0 {
 		A_Fall();
 		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,pitch:frandom(0.30,0.75));
 		A_StartSound("Abhor/BallExp",100,attenuation:0.86,pitch:0.30);
+		for(int i=15;i>0;i--)
 		A_SpawnParticleEx(   
-		"830000",
-		TexMan.CheckForTexture("GNSMK0"),
-		style: STYLE_Normal,
-	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 65,
-		size: frandom(45,75),
-		xoff: frandom(-25.5,25.5),
-		yoff: frandom(-25.5,25.5),
-		zoff: random(0,15),
-		velx: frandom(-0.5,0.5),
-		vely: frandom(-0.5,0.5),
-		velz: frandom(0.3,2),
-		startalphaf: frandom(0.5,0.9),
+		"f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),
+		velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),
 		fadestepf: -0.75,
 		sizestep: 5
 		 );
 		}
-		EXAL MMMMNNNOOOOOPPPPPP 3
+		EXAL MMNOOPPQQQRRRSSSTTTTTTTTTTTTTTTTTTTTT 3
 		{
 		if(random(1,8) == 1)
 		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
 		if(random(1,15) == 1)
 		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
 		A_SpawnParticleEx(   
-		"830000",
-		TexMan.CheckForTexture("GNSMK0"),
-		style: STYLE_Normal,
-	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 85,
-		size: frandom(45,75),
-		xoff: frandom(-25.5,25.5),
-		yoff: frandom(-25.5,25.5),
-		zoff: random(0,15),
-		velx: frandom(-0.5,0.5),
-		vely: frandom(-0.5,0.5),
-		velz: frandom(0.3,2),
-		startalphaf: frandom(0.5,0.9),
+		"f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),
+		velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),
 		fadestepf: -0.75,
 		sizestep: 5
 		 );
 		A_SpawnParticleEx(
+		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(40,70),
+		size: frandom(1,40), xoff: frandom(-25,25), yoff: frandom(-25,25), zoff: random(0,65), velx: frandom(-8,8), vely: frandom(-8,8),
+		velz: frandom(-8,12), accelz: frandom(-0.1,-0.5), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(0,4));
+		A_SpawnParticleEx(
 		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
-		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
+		lifetime: random(20,120), size: frandom(1,45), xoff: random(-30,30), yoff: random(-30,30),
 		zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),
 		rollvel: random(0,4));
 		}
-		EXAL QQQQQQRRRRRRSSSSSSSSTTTTT 5
+		EXAL TTTTTTTTTTTTTTTTTTTTTTTTTTT 5
 		{
 		if(random(1,10) == 1)
-		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
+		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.65,pitch:frandom(0.30,0.75));
 		if(random(1,18) == 1)
-		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
+		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.45,pitch:frandom(1.35,1.75));
 		A_SpawnParticleEx(   
-		"830000",
-		TexMan.CheckForTexture("GNSMK0"),
-		style: STYLE_Normal,
-	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 85,
-		size: frandom(45,75),
-		xoff: frandom(-25.5,25.5),
-		yoff: frandom(-25.5,25.5),
-		zoff: random(0,15),
-		velx: frandom(-0.5,0.5),
-		vely: frandom(-0.5,0.5),
-		velz: frandom(0.3,2),
-		startalphaf: frandom(0.5,0.9),
+		"f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),
+		velx: frandom(-0.1,0.1), vely: frandom(-0.1,0.1), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),
 		fadestepf: -0.75,
 		sizestep: 5
 		 );
+		A_SpawnParticleEx(   
+		"830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),
+		velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9), fadestepf: -0.75,
+		sizestep: 5);
 		A_SpawnParticleEx(
 		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
 		zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),
 		rollvel: random(0,4));
 		}
-		EXAL TTTTTTTTTTTTTTTTTTT 4
+		EXAL TTTTTTTTTTTTTTTTTTTTTT 4
 		{
 		if(random(1,12) == 1)
 		A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
 		if(random(1,18) == 1)
 		A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
 		A_SpawnParticleEx(   
-		"830000",
-		TexMan.CheckForTexture("GNSMK0"),
-		style: STYLE_Normal,
-	    flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 85,
-		size: frandom(45,75),
-		xoff: frandom(-25.5,25.5),
-		yoff: frandom(-25.5,25.5),
-		zoff: random(0,15),
-		velx: frandom(-0.5,0.5),
-		vely: frandom(-0.5,0.5),
-		velz: frandom(0.3,2),
-		startalphaf: frandom(0.5,0.9),
-		fadestepf: -0.75,
-		sizestep: 5
-		 );
+		"830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+		lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5),
+		zoff: random(0,15), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2),
+		startalphaf: frandom(0.5,0.9), fadestepf: -0.75, sizestep: 5);
 		A_SpawnParticleEx(
 		"545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),
