@@ -212,31 +212,32 @@ Class PM_DecayedCommando : PMPestilenceMonsterBase
     goto See;
   Death:
 	  TNT1 A 0 A_Jump(100,"Death2");
-    DCOM H 5 A_StopSound(0);
+    DCOM H 5;
     TNT1 A 0 A_StopSound(CHAN_5);
-    DCOM I 5 A_Scream;
+    DCOM I 5 PM_Scream();
     DCOM J 5 A_NoBlocking;
     DCOM KLM 5;
 	TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
     DCOM N -1;
     stop;
   Death2:
-  TNT1 A 0 A_StopSound(CHAN_5);
-	DCOM GGGGGG 3 A_StopSound(0);
-	TNT1 A 0 PM_Gib();
-	DCOM HHHHHHOOOO 1; 
-	TNT1 A 0 A_SpawnItemEx("RatDropper",0,0,20,frandom(-3,3),frandom(-3,3),frandom(-3,3),0);
+    TNT1 A 0 A_StopSound(CHAN_5);
+	  DCOM GGGGGG 3 A_StopSound(555);
+	  TNT1 A 0 PM_Gib();
+	  DCOM HHHHHHOOOO 1; 
+	  TNT1 A 0 A_SpawnItemEx("RatDropper",0,0,20,frandom(-3,3),frandom(-3,3),frandom(-3,3),0);
     DCOM OOOOO 1;
     DCOM P 5 A_XScream;
     DCOM Q 5 A_NoBlocking;
     DCOM RS 5;
-	DCOM TTTTTTTTTT 10;
+	  DCOM TTTTTTTTTT 10;
     DCOM T -1;
-	stop;
+	  Stop;
   XDeath:
     DCOM O 0 A_StopSound(CHAN_5);
-    DCOM OOOOO 1 PM_Gib();
-	DCOM OOOOO 1;
+    TNT1 A 0 A_StopSound(555);
+    DCOM O 1 PM_Gib();
+	  DCOM OOOOO 1;
     DCOM P 5 A_XScream;
     DCOM Q 5 A_NoBlocking;
     DCOM RS 5;

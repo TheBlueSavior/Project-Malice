@@ -136,21 +136,14 @@ Class PM_Sybarite : PMLustMonsterBase
   Death:
     TNT1 A 0 A_StopSound(10);
     SY_D A 5;
-    SY_D B 5 A_Scream;
+    SY_D B 5 PM_Scream();
     SY_D C 5 A_NoBlocking;
     SY_D D 5;
-	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-	SY_D EFG 5;
-	SY_D G 90;
-	TNT1 A 0 { if(random(1,4) == 1) A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION); }
+	  TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+	  SY_D EFG 5;
+	  SY_D G 90;
+	  TNT1 A 0 { if(random(1,4) == 1) A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION); }
     SY_D G -1;
-    Stop;
-  XDeath:
-    SY_A M 5 PM_Gib();
-    SY_A N 5 A_XScream;
-    SY_A O 5 A_NoBlocking;
-    SY_A PQR 5;
-    SY_A S -1;
     Stop;
   Raise:
     SY_A L 5;

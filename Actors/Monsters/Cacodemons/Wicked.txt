@@ -487,11 +487,10 @@ Class PM_Wicked : PMEnvyMonsterBase
 			 A_GiveInventory("PM_EnvySigilGoAway");
 			 sigil = false;
 			}
-			TNT1 A 0 A_StopSound(0);
 			TNT1 A 0 {bFLOATBOB = False;}
 			TNT1 A 0;
 			TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
-			WIC2 N 5 A_Scream();
+			WIC2 N 5 PM_Scream();
 			WIC2 OP 5;
 			TNT1 AAAA 0 A_SpawnItemEx("PM_GreenMeatChunkLauncher",0,0,48);
 			WIC2 P 0 A_SpawnItemEX("WickedTorso", 0,0,48, 0,0,0, 0, SXF_SETMASTER);

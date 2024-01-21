@@ -432,20 +432,20 @@ Class PM_Zephyr : PMUnaffMonsterBase
     goto See;
   Death:
 	TNT1 A 0;
-	TNT1 A 0 A_StopSound(0);
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
 	TNT1 A 0 { bNOGRAVITY = false; }
     BELA I 8;
-    BELA J 8 A_Scream;
+    BELA J 8 PM_Scream();
     BELA K 6;
     BELA L 6 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     BELA M -1;
     stop;
   XDeath:
-	TNT1 A 0;
-	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
-	TNT1 A 0 { bNOGRAVITY = false; }
+	  TNT1 A 0;
+	  TNT1 A 0 A_StopSound(555);
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	  TNT1 A 0 { bNOGRAVITY = false; }
     BELA N 5 PM_Gib();
     BELA O 5 A_XScream;
     BELA P 5;

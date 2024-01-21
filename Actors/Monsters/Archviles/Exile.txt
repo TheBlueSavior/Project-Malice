@@ -224,6 +224,7 @@ Class PM_Exile : PMUnaffMonsterBase
 			Goto See;
 		Death:
 		    TNT1 A 0 A_StopSound(7);
+		    TNT1 A 0 A_StopSound(555);
 			//TNT1 A 0 A_KillChildren("PM_ExileWallSpawner");
 			TNT1 A 0 A_KillChildren("NewArchvileFire");
 			EILE Q 7

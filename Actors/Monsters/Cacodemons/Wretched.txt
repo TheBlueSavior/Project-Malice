@@ -16,7 +16,7 @@ Class PM_Wretched : PMUnaffMonsterBase
 		BloodColor "Blue";
 		Obituary "%o was zapped by a Wretched.";
 		HitObituary "%o was devoured by a Wretched.";
-		SeeSound "";
+		SeeSound "Wretched/Sight";
 		ActiveSound "Wretched/Active";
 		PainSound "Wretched/Pain";
 		DeathSound "Wretched/Death";
@@ -54,7 +54,7 @@ Class PM_Wretched : PMUnaffMonsterBase
 		Spotted:
 			TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim","RoarNoAnim");
 		RoarNoAnim:
-			TNT1 A 0 A_StartSound("Wretched/Sight",CHAN_5);
+			TNT1 A 0 PM_AlertSound();
 		See:
 			TNT1 A 0
 			{
@@ -308,7 +308,7 @@ Class PM_Wretched : PMUnaffMonsterBase
 		Roar:
 			TNT1 A 0 A_Recoil(-0.6);
 			C1C2 AB 3 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Wretched/Sight");
+			TNT1 A 0 PM_AlertSound();
 			C1C2 CCDCCDCCC 6 A_FaceTarget();
 			C1C2 BA 3 A_FaceTarget();
 			Goto See;
@@ -348,9 +348,8 @@ Class PM_Wretched : PMUnaffMonsterBase
 			Goto See;
 		XDeath:
 		Death:
-			TNT1 A 0 A_StopSounds(0,0);
 			C1C2 G 6 {bFLOATBOB = False;}
-			C1C2 H 6 A_Scream();
+			C1C2 H 6 PM_Scream();
 			C1C2 IJ 6;
 			C1C2 K 6 A_NoBlocking();
 			C1C2 L -1 A_SetFloorClip();

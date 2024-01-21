@@ -475,7 +475,7 @@ Class PM_Infernal : PMWrathMonsterBase
 			A_StopSound(20);
 			}
 			INFR K 5 A_RemoveChildren(1,RMVF_EVERYTHING);
-			INFR L 6 A_Scream();
+			INFR L 6 PM_Scream();
 			INFR LLLLLL 3 Light("AvatarFireball4")
 			{
 			A_SpawnParticleEx

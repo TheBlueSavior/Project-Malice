@@ -173,27 +173,17 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
 			D3C2 G 3 A_Pain;
 		Goto See;
 		Death:
-		    TNT1 A 0 A_StopSounds(0,0);
-			TNT1 A 0 A_Jump(35,"PossDeath");
 			D3C2 H 5;
-			D3C2 I 5 A_Scream;
+			D3C2 I 5 PM_Scream();
 			D3C2 J 5 A_NoBlocking;
-            TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
-			D3C2 KLM 5;
-			D3C2 N -1;
-			Stop;
-		PossDeath:
-		    TNT1 A 0 A_StopSounds(0,0);
-			D3C2 H 5;
-			D3C2 I 5 A_Scream;
-			D3C2 J 5 A_NoBlocking;
-            TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+      TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
 			D3C2 KLM 5;
 			D3C2 N 90;
-			TNT1 A 0 A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION);
+			TNT1 A 0 { if(random(1,3) == 1) A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION); }
 			D3C2 N -1;
 			Stop;
 		XDeath:
+		  TNT1 A 0 A_StopSound(555);
 			D3C2 O 5 PM_Gib();
 			D3C2 P 5 A_XScream;
 			D3C2 Q 5 A_NoBlocking;

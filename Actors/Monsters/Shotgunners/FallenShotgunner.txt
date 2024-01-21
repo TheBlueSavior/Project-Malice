@@ -233,15 +233,15 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
     ZSP1 G 5;
     Goto See;
   Death:
-    TNT1 A 0 A_StopSound(0);
     ZSP1 H 5;
-    ZSP1 I 5 A_Scream;
+    ZSP1 I 5 PM_Scream();
     ZSP1 J 5;
     ZSP1 K 5 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     ZSP1 L -1;
 	Stop;
   XDeath:
+    TNT1 A 0 A_StopSound(555);
 	  ZSP1 H 5 PM_Gib();
     ZSP1 I 5 A_Scream;
     ZSP1 J 5 A_NoBlocking;

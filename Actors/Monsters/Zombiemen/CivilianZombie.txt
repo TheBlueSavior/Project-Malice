@@ -308,9 +308,8 @@ Class PM_CivilianZombie : PMLustMonsterBase
         THPZ H 3 A_Pain;
         Goto See;
     Death:
-	    TNT1 A 0 A_StopSound(0);
-        THPZ H 5 A_NoBlocking;
-        THPZ I 5 A_Scream;
+        THPZ H 5 PM_Scream();
+        THPZ I 5 A_NoBlocking;
         THPZ J 5;
         THPZ K 5;
 		THPZ A 0 A_StartSound("Corpse/Fall",CHAN_6);
@@ -319,6 +318,7 @@ Class PM_CivilianZombie : PMLustMonsterBase
         THPZ L -1;
         Stop;
     XDeath:
+        TNT1 A 0 A_StopSound(555);
 		THPZ M 5 PM_Gib();
 		THPZ N 5 A_XScream;
         THPZ O 5 A_NoBlocking;

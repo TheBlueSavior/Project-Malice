@@ -22,6 +22,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	FloatBobStrength 0.4;
 	Tag "Defiler";
 	Species "Elemental";
+	SeeSound "Defiler/Roar";
 	PainSound "Defiler/Pain";
 	DeathSound "Defiler/Death";
 	ActiveSound "Defiler/Active";
@@ -259,7 +260,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		Goto See;
     Roar:
 		DEFI A 4 A_FaceTarget();
-		TNT1 A 0 A_StartSound("Defiler/Roar", CHAN_VOICE);
+		TNT1 A 0 PM_AlertSound();
 		DEFI DEFFFFFFFFFFFFFEDD 3 Light("AvatarFireball2")
 		{
 		A_FaceTarget();
@@ -328,13 +329,12 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI G 5 A_Pain;
 		Goto See;
 	Death:
-		TNT1 A 0 A_StartSound("Defiler/Death",CHAN_6);
 		TNT1 A 0 A_SpawnItemEx("PM_BigFireGlobs",random(-15,15),random(-15,15),random(-0,30),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
 		DEFI H 3 Light("AvatarFireball4") A_SpawnItemEx("PM_BigFireGlobs",random(-15,15),random(-15,15),random(-0,30),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
 		DEFI I 3 Light("AvatarFireball4")
 		{
 		A_SpawnItemEx("PM_BigFireGlobs",random(-15,15),random(-15,15),random(-0,30),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
-		A_Scream();
+		PM_Scream();
 		}
 		DEFI I 3 BRIGHT Light("AvatarFireball4")
 		{

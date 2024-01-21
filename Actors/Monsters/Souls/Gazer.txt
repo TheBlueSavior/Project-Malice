@@ -411,7 +411,7 @@ Class PM_Gazer : PMPrideMonsterBase
 			 A_GiveInventory("PM_GazerSigilGoAway");
 			 sigil = false;
 			}
-	PRID A 0 { gazer = false; A_Scream(); alpha = 1; }
+	PRID A 0 { gazer = false; PM_Scream(); alpha = 1; }
 	PRID AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
 	{
 		vel.z += frandom(-3, 3);

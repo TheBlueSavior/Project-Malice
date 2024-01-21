@@ -95,8 +95,7 @@ Class PM_Brute : PMUnaffMonsterBase
 			//TNT1 A 0 A_Jump(100, "Teleport") [NERU] terrifying
 			Goto See;
 		Death:
-		    TNT1 A 0 A_StopSounds(0,0);
-			BRUT I 6 A_Scream;
+			BRUT I 6 PM_Scream();
 			BRUT I 6 A_NoBlocking;
 			BRUT JKL 6;
 			TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);

@@ -20,7 +20,7 @@ Class PM_HeresyLord : PMUnaffMonsterBase
 	+MISSILEMORE
 	Species "Nobles";
 	//DropItem "RagePoint1"
-    SeeSound "";
+    SeeSound "HeresyLord/Sight";
     PainSound "HeresyLord/Pain";
     DeathSound "HeresyLord/Death";
     ActiveSound "HeresyLord/Active";
@@ -47,7 +47,7 @@ Class PM_HeresyLord : PMUnaffMonsterBase
 		TNT1 A 0 A_StartSound("hoofstep",3);
         Loop;
     Spotted:
-        TNT1 A 0 A_StartSound("HeresyLord/Sight",CHAN_5);
+        TNT1 A 0 PM_AlertSound();
     See:
 	    TNT1 A 0 { bSPRITEFLIP = false; }
         LOHS AABB 4 A_Chase();
@@ -140,7 +140,6 @@ Class PM_HeresyLord : PMUnaffMonsterBase
         Goto See;
     Death:
 	    TNT1 A 0 { bSPRITEFLIP = false; }
-		TNT1 A 0 A_StopSounds(0,0);
         LOHS I 8
 		{
 		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(20,60),0,0,0,0,SXF_NOCHECKPOSITION);
@@ -149,7 +148,7 @@ Class PM_HeresyLord : PMUnaffMonsterBase
 		}
 		LOHS J 8
 		{
-		A_Scream();
+		PM_Scream();
 		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
 		A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(20,50),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);

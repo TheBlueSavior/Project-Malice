@@ -619,10 +619,10 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 		TNT1 A 0 {
 		if(alpha < 1)
 		A_FadeIn(1.0,0);
-		A_StopSounds(0,0);
+	    A_StopSound(12); A_StopSound(11); A_StopSound(10);
 		}
         LMDA K 5;
-		LMDA L 9 A_Scream();
+		LMDA L 9 PM_Scream();
 		LMDA M 6 A_Fall();
 		TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
 		LMDA NNOOPPQPPPPOO 4 PM_DIWither();

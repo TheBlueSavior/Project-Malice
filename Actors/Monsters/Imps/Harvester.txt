@@ -291,8 +291,7 @@ Class PM_Harvester : PMDeathMonsterBase
     Goto See;
   Death:
     TNT1 A 0 { if(phase) PM_HarvesterPhaseStop(); }
-    TNT1 A 0 A_StopSound(0);
-    SLHV O 7 A_Scream();
+    SLHV O 7 PM_Scream();
 	TNT1 A 0 A_SetRenderStyle(1.0,STYLE_Translucent);
     SLHV PQR 7;
     SLHV S 6 A_SpawnItemEx("SoulHarvesterGhost", 0,0,32, 0,0,0, 0, SXF_CLIENTSIDE);
@@ -319,7 +318,8 @@ Class PM_Harvester : PMDeathMonsterBase
     Wait;
   XDeath:
     TNT1 A 0 { if(phase) PM_HarvesterPhaseStop(); }
-    SLHV X 6 A_Xscream();
+    TNT1 A 0 A_StopSound(555);
+    SLHV X 6 A_XScream();
     SLHV Y 6 A_SpawnItemEx("SoulHarvesterGhost", 0,0,32, 0,0,0, 0, SXF_CLIENTSIDE);
     SLHV Z 6 A_RemoveChildren;
 	TNT1 A 0 A_SetRenderStyle(1.0,STYLE_Translucent);

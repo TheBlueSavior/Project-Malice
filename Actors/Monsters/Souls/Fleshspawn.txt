@@ -82,7 +82,7 @@ Class PM_Fleshspawn : PMFamineMonsterBase
     Goto See;
   Death:
     FLSP I 5;
-    FLSP J 5 A_Scream();
+    FLSP J 5 PM_Scream();
     FLSP K 5;
     FLSP L 5 A_NoBlocking();
     FLSP MN 5 A_SetFloorClip();

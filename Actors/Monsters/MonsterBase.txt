@@ -1,5 +1,5 @@
 class PMMonsterBase : Actor abstract
-{
+{                      
 	enum BeamAttackFlags
 	{
 		BAF_EXPLICITANGLE = 1,
@@ -309,7 +309,13 @@ class PMMonsterBase : Actor abstract
 
 	void PM_AlertSound()
 	{
-		A_StartSound(SeeSound, 0, attenuation: (!bBOSS) ? 1 : 0);
+		A_StartSound(SeeSound, 555, attenuation: (!bBOSS) ? 1 : 0);
+	}
+
+	void PM_Scream()
+	{
+		A_StopSound(555);
+		A_StartSound(DeathSound, 556, attenuation: (!bBOSS) ? 1 : 0);
 	}
 }
 

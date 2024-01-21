@@ -47,10 +47,10 @@ Class PM_Noble : PMMonsterBase
     Spotted:
         TNT1 A 0 A_Jump(256,"Roar","SpotMissile");
     Roar:
-        TNT1 A 0 A_StartSound("Noble/Sight",CHAN_5);
+        TNT1 A 0 PM_AlertSound();
         Goto See;
     SpotMissile:
-        TNT1 A 0 A_StartSound("Noble/Sight",CHAN_5);
+        TNT1 A 0 PM_AlertSound();
         NO1S EE 4 A_FaceTarget();
 		TNT1 A 0 A_Jump(256,"SingleFireball","Fireball1");
         Goto SingleFireball;
@@ -490,9 +490,8 @@ Class PM_Noble : PMMonsterBase
 		Goto See;
 
 	Death:
-	    TNT1 A 0 A_StopSounds(0,0);
 		NO1S I 8 A_SpawnItemEx("PM_GreenMeatChunkLauncher",random(-2,2),random(-2,2),random(20,50),0,0,0,0,SXF_NOCHECKPOSITION);
-		NO1S J 8 A_Scream;
+		NO1S J 8 PM_Scream();
 		NO1S K 8
 		{
 		A_SpawnItemEx("PM_GreenInstestinGib",random(-4,4),random(-4,4),random(25,35),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);

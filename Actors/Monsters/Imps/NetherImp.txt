@@ -399,10 +399,9 @@ Class PM_NetherImp : PMUmbralMonsterBase
   Death:
 	TNT1 A 0 A_Jump(75,"ExplodeDeath");
 	TNT1 A 0 A_StopSound(20);
-	TNT1 A 0 A_StopSound(0);
     TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
     DRKF I 8;
-    DRKF J 8 A_Scream();
+    DRKF J 8 PM_Scream();
     DRKF K 5;
     DRKF L 5 A_Fall();
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
@@ -540,7 +539,7 @@ Class PM_NetherImp : PMUmbralMonsterBase
     DRKF M -1;
     Stop;
   ExplodeDeath:
-	TNT1 A 0 A_StopSound(0);
+	TNT1 A 0 A_StopSound(555);
 	TNT1 A 0 A_StopSound(20);
 	TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
 	TNT1 A 0 A_StartSound("NetherConduit/Pain",CHAN_6);
@@ -972,6 +971,7 @@ Class PM_NetherImp : PMUmbralMonsterBase
     Stop;
   XDeath:
     TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
+    TNT1 A 0 A_StopSound(555);
     DRKF Q 5 PM_Gib();
     DRKF R 5 A_XScream();
     DRKF SSSTTT 2 A_SpawnProjectile("PM_BlueLightningVFX",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));

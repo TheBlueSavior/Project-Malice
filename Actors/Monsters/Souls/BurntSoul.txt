@@ -127,7 +127,7 @@ Class PM_BurntSoul : PMUnaffMonsterBase
 	Goto Backup;
   Death:
 	TNT1 A 0 A_Jump(150,"Death2");
-    BSOU F 4 Bright Light("BurntSoulLight") A_Scream;
+    BSOU F 4 Bright Light("BurntSoulLight") PM_Scream();
 	TNT1 A 0 A_StartSound("imp/shotx",6);
 	TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
 	TNT1 AAA 0 A_SpawnProjectile("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360));

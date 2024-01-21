@@ -148,10 +148,9 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		TNT1 A 0 A_Jump(100,"Teleport");
         Goto See;
     Death:
-	    TNT1 A 0 A_StopSound(0);
         BZRD I 12;
         BZRD J 3;
-		BZRD J 6 A_Scream;
+		BZRD J 6 PM_Scream;
         BZRD K 8;
         BZRD L 6 A_NoBlocking;
         BZRD L 0;
@@ -165,6 +164,7 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		BZRD N -1;
         Stop;
 	XDeath:
+	    TNT1 A 0 A_StopSound(555);
 		BZRD N 5 PM_Gib();
 		BZRD N 5 A_XScream;
 		BZRD N 1 A_NoBlocking;

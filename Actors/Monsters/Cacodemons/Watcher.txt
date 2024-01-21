@@ -216,8 +216,7 @@ Class PM_Watcher : PMUmbralMonsterBase
 		Death:
 			TNT1 A 0;
 			TNT1 A 0 A_Jump(128,"DyingFrozen");
-			TNT1 A 0 A_StopSounds(0,0);
-			WATC I 8 A_Scream();
+			WATC I 8 PM_Scream();
 			WATC J 6 {bFLOATBOB = False;}
 			WATC KLM 6;
 			WATC N 6 A_NoBlocking();
@@ -227,7 +226,7 @@ Class PM_Watcher : PMUmbralMonsterBase
 		DyingFrozen:
 			WATC H 5 A_Pain();
 			WATC H 10 A_FaceTarget();
-			TNT1 A 0 A_Scream();
+			TNT1 A 0 PM_Scream();
 			TNT1 A 0 A_SetSpeed(15);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			WATC HHHHHHHHHAAAAAAAAHHHHHHHBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDDDDDDD 1 Light("PM_WatcherBallSmall1")

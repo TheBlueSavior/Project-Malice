@@ -242,21 +242,21 @@ Class PM_Charred : PMUnaffMonsterBase
     CH5R H 2 A_Pain;
     Goto See;
   Death:
-    TNT1 A 0 A_StopSound(0);
     CH5R I 8;
-    CH5R J 8 A_Scream;
+    CH5R J 8 PM_Scream();
     CH5R K 6;
     CH5R L 6 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     CH5R M -1;
     Stop;
   XDeath:
-	CH5R O 5 PM_Gib();
-	CH5R P 5 A_XScream;
-	CH5R Q 5 A_NoBlocking;
-	CH5R RST 5;
-	CH5R U -1;
-	Stop;
+    TNT1 A 0 A_StopSound(555);
+	  CH5R O 5 PM_Gib();
+	  CH5R P 5 A_XScream;
+	  CH5R Q 5 A_NoBlocking;
+	  CH5R RST 5;
+	  CH5R U -1;
+	  Stop;
   Raise:
     CH5R ML 8;
     CH5R KJI 6;

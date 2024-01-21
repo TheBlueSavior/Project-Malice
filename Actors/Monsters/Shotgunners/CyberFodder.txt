@@ -209,16 +209,16 @@ Class PM_CyberFodder : PMWarMonsterBase
     CFOD H 3 A_Pain;
     Goto See;
   Death:
-	TNT1 A 0 A_StopSound(0);
-	TNT1 A 0 A_StopSound(CHAN_5);
+	  TNT1 A 0 A_StopSound(CHAN_5);
     CFOD I 7;
-    CFOD J 7 A_Scream;
+    CFOD J 7 PM_Scream();
     CFOD K 5;
     CFOD L 5 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     CFOD M -1;
     Stop;
   XDeath:
+   TNT1 A 0 A_StopSound(555);
 	CFOD N 3 PM_Gib();
 	TNT1 A 0 A_StopSound(CHAN_5);
     CFOD O 3 A_XScream;

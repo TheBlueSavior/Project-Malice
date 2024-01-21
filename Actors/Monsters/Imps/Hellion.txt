@@ -294,16 +294,15 @@ Class PM_Hellion : PMUnaffMonsterBase
     HELN M 6 A_Pain();
     Goto See;
   Death:
-    TNT1 A 0 A_StopSound(0);
     HELN N 6;
-    HELN O 6 A_Scream();
+    HELN O 6 PM_Scream();
     HELN PQR 6;
     HELN S 6 A_NoBlocking();
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     HELN T -1;
     Stop;
   XDeath:
-    TNT1 A 0 A_StopSound(0);
+    TNT1 A 0 A_StopSound(555);
     HELN U 5 PM_Gib();
     HELN V 5 A_XScream();
     HELN W 5;

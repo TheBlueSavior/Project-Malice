@@ -354,8 +354,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			SAR2 H 5 A_Pain;
 			Goto See;
 		Death:
-		    TNT1 A 0 A_StopSounds(0,0);
-			SAR2 I 6 A_Scream;
+			SAR2 I 6 PM_Scream();
 			SAR2 IJKLM 6 A_NoBlocking;
 			TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 			SAR2 N -1;
