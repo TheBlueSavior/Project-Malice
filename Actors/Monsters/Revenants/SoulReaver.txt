@@ -1282,6 +1282,8 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	
 	if (!level.isfrozen() && health > 0)
 	{
+		if (target) ReaverSoulSuck();
+		
 		if (!random(0, 5))
 			A_SpawnItemEx("PM_DeathBloodSoul", frandom(-radius, radius), frandom(-radius, radius), frandom(45, height), frandom(-0.6,0.6), frandom(-0.6,0.6), frandom(-0.6,0.6), random(0,360), flags: SXF_NOCHECKPOSITION);
 			
@@ -1331,6 +1333,47 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	A_StartSound("EntAva/Footstep",5,CHANF_OVERLAP,attenuation:1.45);
   }
   
+  int power;
+  const succ_range = 1200;
+  
+  void ReaverSoulSuck()
+  {
+		BlockThingsIterator it = BlockThingsIterator.Create(self, succ_range);
+		while(it.Next())
+		{
+			double rad = abs((999 - Distance3D(it.thing)) / 2);
+			
+			if(it.thing && (it.thing is "PM_Blot" || it.thing is "PM_FleeingDarkSpiritOrb"
+			|| it.thing is "PM_PossSpriteFlee" || it.thing is "PM_PossessingDemonSprite" ||
+			it.thing is "PM_PossSpriteAttack" || it.thing is "PM_ControllerFlee") && CheckSight(it.thing))
+			{		
+				if (distance3D(it.thing) <= succ_range)
+				{
+					it.Thing.vel *= 0.1;	
+					it.thing.Vel3DFromAngle(-(rad / 23), self.AngleTo(it.thing), self.PitchTo(it.thing));
+				}
+				
+				if(distance3D(it.thing) <= 50)
+				{
+					self.A_StartSound("Exalted/SuperCast", CHAN_BODY);
+					it.thing.A_SpawnParticleEx
+					( "", TexMan.CheckForTexture("SPKOS0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+					lifetime: random(35,65), size: 50, startalphaf: 1, sizestep: 5, startroll: random(-180,180), rollvel: frandom(-5, 5));
+					
+					power += 1;
+					if (it.thing is "PM_Blot") power += 5;
+					if (it.thing is "PM_ControllerFlee") power += 100;
+					
+					it.thing.DamageMobj(self, self, 999, 'Normal', DMG_FORCED);
+					it.thing.A_ScreamAndUnblock();
+					it.thing.Destroy();
+					
+					return;
+				}
+			}
+		}
+  }
+	
   int neg;
   
   States

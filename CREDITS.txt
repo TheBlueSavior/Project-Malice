@@ -79,6 +79,7 @@ Supercharge - Gore code
 H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, Fire Starter, sprites and code
 Touhou - Projectile Sprites
 Ultra64 - Grenadier sprites
+Titanium - Hellfire Revenant Melee sprites
 
 MY APOLOGIES IF I MISSED ANYONE!
 
@@ -138,6 +139,9 @@ Raising The Bar Redux
 Resident Evil: Revelations
 F.E.A.R.
 Stardust Arena
+Ys: IV - Dawn of Ys
+Certain M.U.G.E.N Characters
+Ghoul's Insanity
 
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY

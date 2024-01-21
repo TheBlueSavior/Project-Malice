@@ -4833,6 +4833,19 @@ SoulReaver/Sight "Sounds/Monsters/Revenants/SoulReaver/SoulReaverSight.ogg"
 
 SoulReaver/Death "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeath.ogg"
 SoulReaver/DeathSequence "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathSequence.ogg"
+SoulReaver/DeathSequence2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathSequence2.ogg"
+SoulReaver/DeathAdd "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathAdd.ogg"
+
+$rolloff SoulReaver/DeathSequence 500 2500
+$rolloff SoulReaver/DeathSequence2 500 1600
+$rolloff SoulReaver/DeathAdd 500 2500
+
+SoulReaver/GrenadeExplode "Sounds/Monsters/Revenants/SoulReaver/SoulReaverGrenadeExplode.ogg"
+SoulReaver/Nova "Sounds/Monsters/Revenants/SoulReaver/SoulReaverNova.ogg"
+$rolloff SoulReaver/Nova 1000 3000
+
+SoulReaver/Taunt "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTaunt.ogg"
+$rolloff SoulReaver/DeathAdd 1000 5000
 
 SoulReaver/Ready "Sounds/Monsters/Revenants/SoulReaver/SoulReaverReady.ogg"
 
