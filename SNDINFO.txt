@@ -4827,8 +4827,8 @@ SoulReaver/Amb1 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb1.ogg"
 SoulReaver/Amb2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb2.ogg"
 SoulReaver/Amb3 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb3.ogg"
 
-$rolloff SoulReaver/Amb1 500 2500
-$rolloff SoulReaver/Amb2 500 1600
+$rolloff SoulReaver/Amb1 1500 2500
+$rolloff SoulReaver/Amb2 1000 1600
 $rolloff SoulReaver/Amb3 500 1000
 
 SoulReaver/Transform "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTransform.ogg"
@@ -4846,6 +4846,10 @@ SoulReaver/DeathAdd "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathAdd.ogg
 $rolloff SoulReaver/DeathSequence 500 2500
 $rolloff SoulReaver/DeathSequence2 500 1600
 $rolloff SoulReaver/DeathAdd 500 2500
+
+SoulReaver/Charge "Sounds/Monsters/Revenants/SoulReaver/SoulReaverCharge.wav"
+SoulReaver/PhaseStart "Sounds/Monsters/Revenants/SoulReaver/SoulReaverPhaseStart.ogg"
+SoulReaver/Phase "Sounds/Monsters/Revenants/SoulReaver/SoulReaverPhase.ogg"
 
 SoulReaver/GrenadeExplode "Sounds/Monsters/Revenants/SoulReaver/SoulReaverGrenadeExplode.ogg"
 SoulReaver/Nova "Sounds/Monsters/Revenants/SoulReaver/SoulReaverNova.ogg"
