@@ -312,7 +312,7 @@ class PMMonsterBase : Actor abstract
 		A_StartSound(SeeSound, 555, attenuation: (!bBOSS) ? 1 : 0);
 	}
 
-	void PM_Scream()
+	virtual void PM_Scream()
 	{
 		A_StopSound(555);
 		A_StartSound(DeathSound, 556, attenuation: (!bBOSS) ? 1 : 0);
@@ -511,6 +511,11 @@ Class PMWrathMonsterBase : PMMonsterBase abstract
    A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
  }
 
+ override void PM_Scream()
+ {
+  Super.PM_Scream();
+  A_StopSound(19);
+ }
    void PM_IreStartSound()
    {
 	A_StartSound("Wrath/Ire",20,CHANF_DEFAULT,0.95,ATTN_NORM,frandom(-0.35,1));
