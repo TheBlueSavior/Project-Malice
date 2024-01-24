@@ -79,6 +79,7 @@ Class PM_Sybarite : PMLustMonsterBase
     SY_A FFFFFF 5 Bright {
 	A_FaceTarget(5,5);
 	A_StartSound("Sybarite/Autocannon",11);
+	A_StartSound("GunnerRifleDistant",12,CHANF_OVERLAP);
 	A_SpawnProjectile("PM_HellionFlare",32,15,frandom(-4.5,4.5),CMF_AIMDIRECTION,pitch+frandom(-3.5,3.5));
 	}
 	SY_A E 5 { A_StartSound("Sybarite/SlotIn",12); user_numbullets--; pm_attackloop--; }

@@ -1465,6 +1465,8 @@ Hellion/BuffRelease "Sounds/Monsters/Imps/Hellion/HellionBuffRelease.ogg"
 FireTracer/SmallExp "Sounds/Monsters/SFX/FireTracerSmallExp.ogg"
 $limit FireTracer/SmallExp 12
 $volume FireTracer/SmallExp 0.8
+$rolloff FireTracer/SmallExp 200 950
+
 $limit HellionProj 12
 
 $Limit Roach/Fire 0
