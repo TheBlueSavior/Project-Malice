@@ -1,0 +1,174 @@
+Class PM_Maggot : PMLustMonsterBase
+{
+    bool spooked;
+	Default
+	{
+	PMMonsterBase.CodexLore
+	"Maggots are demons belonging to the same line as Zephyrs, having adapted within the circle of Lust. Just like Zephyrs, they like to confuse and distract their victims before lunging in for a kill, or worse.
+	 Their lack of fire magic is made up for the fact that they have the ability to cloak, however how they're able to is still unknown to mortals. It seems the extent of humanity's sin continues to influence the demons invading.
+	 
+	 Employs hit and run tactics, but is a bit more predictable than a Zephyr.";
+	Health 80;
+	Radius 20;
+	Height 56;
+	Speed 18;
+	PainChance 145;
+	Mass 200;
+	MeleeRange 60;
+	MaxTargetRange 700;
+	+FLOORCLIP
+	+DONTHARMSPECIES
+	+DONTHARMCLASS
+	+ROLLSPRITE
+	Species "Brute";
+	Monster;
+	Bloodcolor "Black";
+	Bloodtype "PM_NormalBloodBase";
+	MeleeDamage 4;
+	SeeSound "Maggot/Sight";
+	DeathSound "Maggot/Death";
+	ActiveSound "Maggot/Active";
+	PainSound "Maggot/Pain";
+	Tag "Maggot";
+	Obituary "%o was struck down by a Maggot %p didn't see coming.";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_LustTeleportFog";
+	}
+	
+	void PM_MaggotChase()
+	{
+	 if(bFRIGHTENED)
+	  bFRIGHTENED = false;
+	 if(alpha <= 1)
+	  A_FadeIn(0.1,0);
+	 if(target && CheckSight(target) && CheckIfInTargetLOS(20,JLOSF_DEADNOJUMP,765,0) && random(1,30) == 1)
+	  SetStateLabel("Evade");
+	 A_Chase();
+	}
+	
+	void PM_MaggotRetreat() //[NERU] THE JOESTARS' SECRET TECHNIQUE
+	{
+	 if(alpha <= 1)
+	  A_FadeIn(0.1,0);
+	 if(target && CheckSight(target) && CheckIfInTargetLOS(30,JLOSF_DEADNOJUMP,1200,0) && random(1,20) == 1)
+	  A_ChangeVelocity(0,randompick(-8,8),8,CVF_RELATIVE|CVF_REPLACE);
+	 A_Chase(null,null);
+	}
+	
+	void PM_MaggotPhase()
+	{
+	 if(target && Distance3D(target) > 1000)
+	  A_Chase(null,null,CHF_NOPLAYACTIVE);
+	 else
+	  {
+	   if(random(1,50) == 1 && Distance3D(target) < 700)
+	   SetStateLabel("Missile");
+	   A_Wander();
+	  }
+	}
+	
+	States
+	{
+		Spawn:
+			MAG_ A 4 PM_Look();
+			Loop;
+		Look:
+			MAG_ AA 2 Fast PM_LookingForPlayer();
+			TNT1 A 0 A_Recoil(-0.5);
+			TNT1 A 0 A_StartSound("Imp/Step",10);
+			MAG_ BB 2 Fast PM_LookingForPlayer();
+			TNT1 A 0 A_Recoil(-0.5);
+            TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+			MAG_ CC 2 Fast PM_LookingForPlayer();
+			TNT1 A 0 A_Recoil(-0.5);
+			TNT1 A 0 A_StartSound("Imp/Step",10);
+			MAG_ DD 2 Fast PM_LookingForPlayer();
+			TNT1 A 0 A_Recoil(-0.5);
+			Loop;
+		Spotted:
+		    TNT1 A 0 A_Jump(65,"See");
+		Roar:
+		    TNT1 A 0 PM_AlertSound();
+			Goto See;
+		See:
+			MAG_ AABB 2 Fast PM_MaggotChase();
+			TNT1 A 0 A_StartSound("Imp/Step",10);
+			MAG_ CCDD 2 Fast PM_MaggotChase();
+			TNT1 A 0 A_StartSound("Imp/Step",10);
+			TNT1 A 0 A_Jump(5,"Evade");
+			TNT1 A 0 A_Jump(20,"Phase");
+			Loop;
+        Evade:
+		    MAG_ E 15 {
+			A_ChangeVelocity(0,randompick(-6,6,-12,12),8,CVF_RELATIVE|CVF_REPLACE);
+			A_FaceTarget();
+			}
+			Goto See;
+		Phase:
+		    MAG_ E 1 
+			{
+			 if(alpha < 0)
+			 SetStateLabel("PhaseHunt");
+			A_FadeOut(0.1,0);
+			}
+			Loop;
+		PhaseHunt:
+		    MAG_ AABB 1 PM_MaggotPhase();
+			TNT1 A 0 A_StartSound("Imp/Step",10,volume:0.35);
+			MAG_ CCDD 1 Fast PM_MaggotPhase();
+			TNT1 A 0 A_StartSound("Imp/Step",10,volume:0.35);
+			TNT1 A 0 A_Jump(10,"See");
+			Loop;
+		Retreat:
+		    TNT1 A 0 { bFRIGHTENED = true; }
+			MAG_ AABB 1 Fast PM_MaggotRetreat();
+			TNT1 A 0 A_StartSound("Imp/Step",10);
+			MAG_ CCDD 1 Fast PM_MaggotRetreat();
+			TNT1 A 0 {
+			A_StartSound("Imp/Step",10);
+			if(target && !CheckSight(target))
+			   SetStateLabel("See");
+			return A_Jump(13,"See");
+			}
+			Goto Retreat+1;
+		Missile:
+		    TNT1 A 0 A_Jump(76,"See");
+		Leap:
+			TNT1 A 0 A_StartSound("Maggot/Attack",11);
+			MAG_ AAAA 2 { if(alpha < 0)
+			A_FadeIn(0.5,0);
+			A_FaceTarget(); }
+			MAG_ E 10 A_FaceTarget();
+			TNT1 A 0 {
+			if(target && CheckSight(target))
+			 {
+			  if(Distance3D(target) < 900)
+			   A_ChangeVelocity(28,0,10,CVF_RELATIVE|CVF_REPLACE);
+			  if(Distance3D(target) < 400)
+			   A_ChangeVelocity(20,0,6,CVF_RELATIVE|CVF_REPLACE);
+			 }
+			}
+			MAG_ EEFF 1;
+			MAG_ GGGGG 3 A_SpawnProjectile("CBruteJump",20,0,0,2);
+			TNT1 A 0 A_SpawnProjectile("CBruteJump",20,0,0,2);
+			TNT1 A 0 A_Jump(56,"Retreat");
+			TNT1 A 0 A_Jump(35,"Phase");
+			Goto See;
+		Pain:
+			MAG_ H 9 A_Pain;
+			TNT1 A 0 A_Jump(45,"Retreat");
+			Goto See;
+		Death:
+		    TNT1 A 0 { if(alpha <= 0) A_FadeIn(1.0,0); }
+			MAD_ A 8 A_Scream;
+			MAD_ B 6 A_NoBlocking;
+			MAD_ CD 6;
+			TNT1 A 0 A_StartSound("Corpse/Fall",6);
+			MAD_ E 6;
+			MAD_ F -1;
+			Stop;
+		Raise:
+			MAD_ FECDBA 3;
+			Goto Look;
+	}
+}

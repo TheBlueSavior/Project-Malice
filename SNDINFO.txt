@@ -5002,3 +5002,35 @@ Harpy/Death "Sounds/Monsters/Pinkies/Harpy/HarpyDeath.ogg"
 
 $rolloff Harpy/WingFlap 400 1200
 $limit Harpy/WingFlap 8
+
+//Maggot
+
+$random Maggot/Sight { Maggot/Sight1 Maggot/Sight2 Maggot/Sight3 Maggot/Sight4 Maggot/Sight5 }
+Maggot/Sight1 "Sounds/Monsters/Spectres/Maggot/MaggotSight1.ogg"
+Maggot/Sight2 "Sounds/Monsters/Spectres/Maggot/MaggotSight2.ogg"
+Maggot/Sight3 "Sounds/Monsters/Spectres/Maggot/MaggotSight3.ogg"
+Maggot/Sight4 "Sounds/Monsters/Spectres/Maggot/MaggotSight4.ogg"
+Maggot/Sight5 "Sounds/Monsters/Spectres/Maggot/MaggotSight5.ogg"
+
+$random Maggot/Active { Maggot/Active1 Maggot/Active2 Maggot/Active3 Maggot/Active4 }
+Maggot/Active1 "Sounds/Monsters/Spectres/Maggot/MaggotActive1.ogg"
+Maggot/Active2 "Sounds/Monsters/Spectres/Maggot/MaggotActive2.ogg"
+Maggot/Active3 "Sounds/Monsters/Spectres/Maggot/MaggotActive3.ogg"
+Maggot/Active4 "Sounds/Monsters/Spectres/Maggot/MaggotActive4.ogg"
+
+$random Maggot/Pain { Maggot/Pain1 Maggot/Pain2 Maggot/Pain3 Maggot/Pain4 }
+Maggot/Pain1 "Sounds/Monsters/Spectres/Maggot/MaggotPain1.ogg"
+Maggot/Pain2 "Sounds/Monsters/Spectres/Maggot/MaggotPain2.ogg"
+Maggot/Pain3 "Sounds/Monsters/Spectres/Maggot/MaggotPain3.ogg"
+Maggot/Pain4 "Sounds/Monsters/Spectres/Maggot/MaggotPain4.ogg"
+
+$random Maggot/Death { Maggot/Death1 Maggot/Death2 Maggot/Death3 Maggot/Death4 }
+Maggot/Death1 "Sounds/Monsters/Spectres/Maggot/MaggotDeath1.ogg"
+Maggot/Death2 "Sounds/Monsters/Spectres/Maggot/MaggotDeath2.ogg"
+Maggot/Death3 "Sounds/Monsters/Spectres/Maggot/MaggotDeath3.ogg"
+Maggot/Death4 "Sounds/Monsters/Spectres/Maggot/MaggotDeath4.ogg"
+
+$random Maggot/Attack { Maggot/Attack1 Maggot/Attack2 Maggot/Attack3 }
+Maggot/Attack1 "Sounds/Monsters/Spectres/Maggot/MaggotAttack1.ogg"
+Maggot/Attack2 "Sounds/Monsters/Spectres/Maggot/MaggotAttack2.ogg"
+Maggot/Attack3 "Sounds/Monsters/Spectres/Maggot/MaggotAttack3.ogg"

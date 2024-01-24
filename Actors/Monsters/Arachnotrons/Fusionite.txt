@@ -481,14 +481,14 @@ Class PM_ScatterFusionShot : Actor
 				(
 				"218900",
 				TexMan.CheckForTexture("GNSMK0"),
-				style: STYLE_Normal,
-				flags: SPF_RELATIVE,
+				style: STYLE_Add,
+				flags: SPF_RELATIVE|SPF_ROLL,
 				lifetime: random(60,120),
-				size: 40.0,
+				size: 85.0,
 				xoff: -5,
-				startalphaf: 0.3,
+				startalphaf: 0.45,
 				fadestepf: -1,
-				sizestep: 3,
+				sizestep: 0.15,
 				startroll: random(-180,180)
 				);
 				A_SpawnParticleEx

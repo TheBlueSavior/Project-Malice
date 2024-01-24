@@ -83,6 +83,7 @@ version "4.10.0"
 //Spectres
 #include "Actors/Monsters/Spectres/PhaseBrute.txt"
 #include "Actors/Monsters/Spectres/CyberSpectre.txt"
+#include "Actors/Monsters/Spectres/Maggot.txt"
 #include "Actors/Monsters/Spectres/DTechSpectre.txt"
 #include "Actors/Monsters/Spectres/Nightmare.txt"
 #include "Actors/Monsters/Spectres/Prowler.txt"

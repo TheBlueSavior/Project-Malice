@@ -41,7 +41,7 @@ Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 {
 	DropItem "PM_Brute", 255, 44
 	DropItem "PM_CyberBrute", 255, 4
-	DropItem "PM_Harpy", 255, 3
+	DropItem "PM_Harpy", 255, 4
 	DropItem "PM_Glutton", 255, 2
 	DropItem "PM_DemonTechBrute", 255, 2
 	DropItem "PM_BloodStalker", 255, 1
@@ -53,6 +53,7 @@ Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
 {
 	DropItem "PM_PhaseBrute", 255, 74
 	DropItem "PM_CyberSpectre", 255, 24
+	DropItem "PM_Maggot", 255, 19
 	DropItem "PM_Nightmare", 255, 15
 	DropItem "PM_DemonTechSpectre", 255, 10
 	DropItem "PM_Prowler", 255, 9
