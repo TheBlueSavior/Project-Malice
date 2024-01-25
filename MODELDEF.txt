@@ -345,16 +345,6 @@ PITCHFROMMOMENTUM
 FrameIndex BLA2 A 0 0
 }
 
-Model PM_WhiplashSpear
-{ 
-Path "Models"
-Skin 0 "maliceknifetracer.png"
-Model 0 "Tracer.md3"
-Scale 0.6 0.4 1.0
-PITCHFROMMOMENTUM
-FrameIndex BLA2 A 0 0
-}
-
 Model WKnifeBlur
 { 
 Path "Models"
