@@ -1171,7 +1171,6 @@ Class PM_SoulReaver : PMDeathMonsterBase
   bool charging;
   Default
   {
-  /*PMMonsterBase.CodexLore
   PMMonsterBase.CodexLore
   "I am the one with many names. The Reaper, Fate, Azrael, the Angel of Death... Even I have known what the power of hell is really capable of. The many souls I have consumed, they are all suffering in endless torment. The satisfaction of expunging everything is unbearable.
   
