@@ -77,8 +77,8 @@ Class PM_Hectebus : PMUnaffMonsterBase
 		SetStateLabel("MissileEnd");
 		A_FaceTarget();
 		A_StartSound("GenericMancShot",CHAN_6);
-		A_SpawnProjectile("PM_HectebusBall",28,-34,random(-15,15));
-		A_SpawnProjectile("PM_HectebusBall",28,34,random(-15,15));
+		A_SpawnProjectile("PM_HectebusBall",28,-34,randompick(0,8,12,14,16));
+		A_SpawnProjectile("PM_HectebusBall",28,34,randompick(0,-8,-12,-14,-16));
 		pm_attackloop--;
 	}
 	TABU IG 5 A_FaceTarget();

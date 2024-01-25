@@ -777,6 +777,7 @@ Class FeralLunge : Actor
   Radius 24;
   Speed 15;
   DamageFunction (10);
+  DamageType "Melee";
   DeathSound "";
   SeeSound "";
   PROJECTILE;
