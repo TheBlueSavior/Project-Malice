@@ -94,6 +94,13 @@ Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 	DropItem "PM_Draugr", 255, 2
 	DropItem "PM_Husk", 255, 3
 	DropItem "PM_Fiend", 255, 8
+	DropItem "PM_SoulReaverSpawner", 255, 1
+}
+
+Actor PM_SoulReaverSpawner : RandomSpawner
+{
+	DropItem "PM_DormantReaver",255, 150
+	DropItem "PM_PreSoulReaver",255, 1
 }
 
 Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
@@ -131,6 +138,7 @@ Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 	DropItem "PM_DeathEmissary",255, 10
 	DropItem "PM_ControlledSoldier",255, 2
 	DropItem "PM_Broken",255, 2
+	DropItem "PM_PreSoulReaver",255, 1
 	DropItem "PM_PotsGroup",100, 4
 	DropItem "PM_PotsScreamer",100, 2
 }

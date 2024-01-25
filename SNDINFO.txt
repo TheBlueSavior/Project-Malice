@@ -4828,17 +4828,35 @@ $limit Director/AStrikeShot 20
 SoulReaver/Amb1 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb1.ogg"
 SoulReaver/Amb2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb2.ogg"
 SoulReaver/Amb3 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAmb3.ogg"
+$volume SoulReaver/Amb3 0.75
 
-$rolloff SoulReaver/Amb1 1500 2500
+$rolloff SoulReaver/Amb1 1500 3500
 $rolloff SoulReaver/Amb2 1000 1600
 $rolloff SoulReaver/Amb3 500 1000
 
 SoulReaver/Transform "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTransform.ogg"
-$rolloff SoulReaver/Transform 300 1600
+$rolloff SoulReaver/Transform 400 2000
+
+SoulReaver/SoulCharge "Sounds/Monsters/Revenants/SoulReaver/SoulReaverSoulCharge.ogg"
+$rolloff SoulReaver/SoulCharge 400 2000
 
 SoulReaver/Beam "Sounds/Monsters/Revenants/SoulReaver/SoulReaverBeam.ogg"
 
 SoulReaver/Sight "Sounds/Monsters/Revenants/SoulReaver/SoulReaverSight.ogg"
+
+$random SoulReaver/Active { SoulReaver/Active1 SoulReaver/Active2 SoulReaver/Active3 }
+SoulReaver/Active1 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverActive1.ogg"
+SoulReaver/Active2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverActive2.ogg"
+SoulReaver/Active3 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverActive3.ogg"
+
+$random SoulReaver/Attack { SoulReaver/Attack1 SoulReaver/Attack2 SoulReaver/Attack3 SoulReaver/Attack4 }
+SoulReaver/Attack1 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAttack1.ogg"
+SoulReaver/Attack2 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAttack2.ogg"
+SoulReaver/Attack3 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAttack3.ogg"
+SoulReaver/Attack4 "Sounds/Monsters/Revenants/SoulReaver/SoulReaverAttack4.ogg"
+
+$rolloff SoulReaver/Active 300 2000
+$rolloff SoulReaver/Attack 600 2500
 
 SoulReaver/Death "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeath.ogg"
 SoulReaver/DeathSequence "Sounds/Monsters/Revenants/SoulReaver/SoulReaverDeathSequence.ogg"
@@ -4855,7 +4873,9 @@ SoulReaver/Phase "Sounds/Monsters/Revenants/SoulReaver/SoulReaverPhase.ogg"
 
 SoulReaver/GrenadeExplode "Sounds/Monsters/Revenants/SoulReaver/SoulReaverGrenadeExplode.ogg"
 SoulReaver/Nova "Sounds/Monsters/Revenants/SoulReaver/SoulReaverNova.ogg"
-$rolloff SoulReaver/Nova 1000 3000
+$rolloff SoulReaver/Nova 1500 4000
+SoulReaver/NovaSouls "Sounds/Monsters/Revenants/SoulReaver/SoulReaverNovaSouls.ogg"
+$rolloff SoulReaver/NovaSouls 1000 3000
 
 SoulReaver/Taunt "Sounds/Monsters/Revenants/SoulReaver/SoulReaverTaunt.ogg"
 $rolloff SoulReaver/DeathAdd 1000 5000

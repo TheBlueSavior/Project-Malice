@@ -264,7 +264,7 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 		 A_FaceTarget();
 		}
 		RUNR D 5 A_FaceTarget();
-		TNT1 A 0 {bNOPAIN = false; if (!random(0, 2)) SetStateLabel("NewWalkCycle"); }
+		TNT1 A 0 {bNOPAIN = false; if (!random(0, 2)) SetStateLabel("StartMoving"); }
 		Goto StartingCharge;
 	StartingCharge:
 		TNT1 A 0 A_StopSound(CHAN_7);

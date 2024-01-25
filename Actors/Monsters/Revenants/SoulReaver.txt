@@ -1167,16 +1167,17 @@ Class PM_PreSoulReaver : PM_DormantReaver
 
 Class PM_SoulReaver : PMDeathMonsterBase
 {
-  int rush;
-  int deathwither;
+  int rush, deathwither;
+  bool charging;
   Default
   {
   /*PMMonsterBase.CodexLore
-  "I am the one with many names. The Reaper, Fate, Azrael, the Angel of Death. Even I have known what the power of hell is really capable of. The many souls I have consumed, they are all suffering in endless torment. The satisfaction of expunging everything is unbearable.
+  PMMonsterBase.CodexLore
+  "I am the one with many names. The Reaper, Fate, Azrael, the Angel of Death... Even I have known what the power of hell is really capable of. The many souls I have consumed, they are all suffering in endless torment. The satisfaction of expunging everything is unbearable.
   
   \cgDo not underestimate me.
   
-  \crR E A V E .";*/
+  \crR E A V E .";
   
   +DONTHARMSPECIES
   Species "Revenant";
@@ -1184,7 +1185,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   SeeSound "SoulReaver/Sight";
   PainSound "DorReaver/Pain";
   DeathSound "SoulReaver/Death";
-  ActiveSound "SoulReaver/Taunt";
+  ActiveSound "";
   FloatBobStrength 0.4;
   Health 1600;
   Speed 10;
@@ -1193,7 +1194,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   Mass 500;
   MeleeThreshold 196;
   MeleeRange 85;
-  PainChance 11;
+  PainChance 18;
   Monster;
   +MISSILEMORE 
   +BOSS
@@ -1206,7 +1207,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   Bloodtype "PM_DeathBloodBase";
   StencilColor "6fa8dc";
   BloodColor "Black";
-  Obituary "%o was utterly expunged by a Soul Reaver.";
+  Obituary "%o's soul was taken to the depths of the central hell by a Soul Reaver.";
   HitObituary "%o was no more.";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_DemonicTeleportFog";
@@ -1314,13 +1315,6 @@ Class PM_SoulReaver : PMDeathMonsterBase
 			velx: frandom(-2, 2), vely: frandom(-2, 2), velz: frandom(1, 2),
 			startalphaf: frandom(0.2,0.5), fadestepf: -1, startroll: random(-180,180), rollvel: random(-2, 2)
 			);
-			for(int i=random(5,15);i>0;i--)
-			A_SpawnParticleEx
-			( "0099ff", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
-			lifetime: random(1,50), size: frandom(1,15), xoff: -frandom(-60, 60), yoff: frandom(-60, 60), zoff: frandom(-10, 0),
-			velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4),
-			startalphaf: 1.0, sizestep: frandom(-1,-0.1), startroll: random(-180,180)
-			);
 			A_SpawnParticleEx
 			( "0099ff", TexMan.CheckForTexture("SPKOS0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 			lifetime: random(50,80), size: frandom(1,255), xoff: random(-50,50), yoff: random(-50,50),
@@ -1416,9 +1410,19 @@ Class PM_SoulReaver : PMDeathMonsterBase
   
   int neg, phasetimer;
   
+  void InitiateCharge(bool b = true)
+  {
+	charging = (b) ? true : false;
+	if (flying) painchance = (b) ? 55 : 80;
+	else painchance = (b) ? 55 : 18;
+  }
+  
   void A_ReaverChase()
   {
 	A_Chase();
+	
+	if (!random(0, 300)) A_StartSound("SoulReaver/Taunt", 667);
+	if (!random(0, 150) && target && CheckSight(target)) A_StartSound("SoulReaver/Active", CHAN_VOICE);
 	
 	switch (power)
 	{
@@ -1459,7 +1463,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	{
 		A_StartSound("Bulltubus/FlamerStart", 14);
 		dashing = true;
-		painchance = 100;
+		painchance = 60;
 		A_FaceTarget();
 	}
 	SRE1 JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ 1 A_FaceTarget();
@@ -1494,7 +1498,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	}
 	Goto SeeFly;
   SeeFly:
-	SRE1 A 0 { if (!flying) { SetStateLabel("SeeNormal"); painchance = 11; } else painchance = 100; }
+	SRE1 A 0 { if (!flying) { SetStateLabel("SeeNormal"); painchance = 18; } else painchance = 60; }
 	SRE1 BBBBBEEEEEE 2
 	{
 		A_Recoil(-0.2);
@@ -1537,15 +1541,17 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		bNOGRAVITY = false;
 		bFLOAT = false;
 		bFLOATBOB = false;
-		painchance = 11;
+		painchance = 18;
 		bNOPAIN = false;
 		A_FaceTarget();
 	}
 	SRE1 LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL 1;
 	Goto See;
   Pain:
+	SRE1 K 0 { if (charging == true) SetStateLabel("Interrupted"); }
 	SRE1 K 3
 	{
+		A_StartSound("SoulReaver/Active", CHAN_VOICE);
 		A_StopSound(60);
 		
 		if (flying)
@@ -1608,6 +1614,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	}
 	Loop;
   Zip:
+	SRE1 A 0 { if (flying) SetStateLabel("Phase"); }
 	SRE1 A 0
 	{
 		A_StartSound("Exalt/CastAdd", 10, attenuation: 0.5, pitch: 0.35);
@@ -1640,7 +1647,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	}
 	Goto Zip+1;
   Melee:
-	TNT1 A 0 { bSPRITEFLIP = false; if (flying) { painchance = 100; SetStateLabel("SoulLaser"); } else painchance = 11; }
+	TNT1 A 0 { bSPRITEFLIP = false; if (flying) { painchance = 60; SetStateLabel("SoulLaser"); } else painchance = 18; }
 	TNT1 A 0 A_Jump(140, "Vomit");
   Haymaker:
 	SRE1 G 0
@@ -1727,6 +1734,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		startalphaf: 1.0, sizestep: frandom(-1,-0.1), startroll: random(-180,180)
 		);	
 	}
+	SRE1 A 0 A_StartSound("SoulReaver/Attack", CHAN_VOICE);
 	SRE1 JJJJJJJJJJJJJJJJJJJJJ random(1, 2)
 	{
 		A_SpawnParticleEx
@@ -1753,6 +1761,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   SoulLaser:
 	SRE1 J 0
 	{
+		InitiateCharge(true);
 		neg = randompick(-1, 1);
 		pm_attackloop = 50;
 		A_StartSound("PM/GigalaserStart", 40, attenuation: 0.5, pitch: 1.3);
@@ -1783,7 +1792,11 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		startroll: random(-180,180), rollvel: frandom(-1,1)
 		);
 	}
-	SRE1 J 0 A_StartSound("SoulReaver/Beam", 40, attenuation: 0.45);
+	SRE1 J 0
+	{
+		InitiateCharge(false);
+		A_StartSound("SoulReaver/Beam", 40, attenuation: 0.45);
+	}
 	Goto BLARG;
   BLARG:
 	SRE1 K 1
@@ -1798,15 +1811,16 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	Loop;
   Missile:
 	TNT1 A 0 { bSPRITEFLIP = false; }
-	TNT1 A 0 A_Jump(100, "Fly");
+	TNT1 A 0 A_Jump(50, "Fly");
 	TNT1 A 0 A_Jump(120, "Vomit", "Zip", "Phase", "SoulLoop");
 	TNT1 A 0 A_Jump(150, "DoubleArbalest", "SoulLaser");
   SeekerBalls:
 	TNT1 A 0 
 	{
+	InitiateCharge(true);
 	pm_attackloop = 0;
 	if(random(1,4) == 1)
-	A_StartSound("DorReaver/Attack",10);
+	A_StartSound("SoulReaver/Attack",10);
 	A_StartSound("DorReaver/PreFire",8,pitch:0.35);
 	A_StartSound("DorReaver/PreFire",8,pitch:0.5);
 	}
@@ -1820,6 +1834,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   SeekerLoop:
 	SRE1 J 11 Bright
 	{
+		InitiateCharge(false);
 		if (power > 30) tics = 1;
 		A_FaceTarget();
 		for (int i = random(3, 6); i > 0; i--) A_SpawnProjectile("PM_SmallSoulReaverBall",56,-17,random(-5, 5), CMF_OFFSETPITCH, frandom(-5, 5));
@@ -1844,9 +1859,10 @@ Class PM_SoulReaver : PMDeathMonsterBase
   SoulLoop:
 	TNT1 A 0 
 	{
+		InitiateCharge(true);
 		pm_attackloop = 0;
 		if(random(1,4) == 1)
-		A_StartSound("DorReaver/Attack",10);
+		A_StartSound("SoulReaver/Attack",10);
 		A_StartSound("HeresyLord/WhiteFire", CHAN_7, attenuation:0.65, pitch: 0.75);
 		A_StartSound("DorReaver/PreFire",8);
 		
@@ -1863,7 +1879,11 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		A_SpawnItemEx("PM_HFuryThrowFire",6,10,56,0,0,random(0,3));
 		A_SpawnItemEx("PM_HFuryThrowFire",6,-17,56,0,0,random(0,3));
 	}
-	SRE1 J 0 A_StartSound("HPriest/SoulLoop",60,CHANF_LOOP,attenuation:0.65);
+	SRE1 J 0
+	{
+		InitiateCharge(false);
+		A_StartSound("HPriest/SoulLoop",60,CHANF_LOOP,attenuation:0.65);
+	}
 	Goto SoulLoopX;
   SoulLoopX:
 	SRE1 J 3 Bright
@@ -1889,7 +1909,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
   DoubleArbalest:
     TNT1 A 0 
 	{
-	A_StartSound("DorReaver/Attack",10);
+	A_StartSound("SoulReaver/Attack",10);
 	A_StartSound("DorReaver/ArbalestReady",8,volume:0.5,attenuation:0.5);
 	}
     SRE1 J 5
@@ -1926,6 +1946,85 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	}
 	SRE1 K 70;
 	Goto See;
+  Interrupted:
+	SREX A 1
+	{
+		charging = false;
+		bNOPAIN = true;
+		A_StartSound("SoulReaver/Active", CHAN_VOICE);
+		A_StartSound("GenericChargeHeavy", 40);
+	}
+	SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+		A_SpawnParticleEx
+		(
+		"0B3D94",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(10,20),
+		size: random(75,155), xoff: random(-20,20), yoff: random(-20,20), zoff: random(-1,45),
+		velx: frandom(-5, 5), vely: frandom(-5, 5), velz: frandom(5, 15),
+		startalphaf: frandom(0.5, 1), fadestepf: -1, startroll: random(-180,180), rollvel: random(-12, 12)
+		);
+		
+		A_FaceTarget();
+		Radius_Quake (3, 2, 0, 30, 0);
+	}
+	SREX A 0
+	{
+		for (int i = 0; i < 360; i += frandom(20, 55))
+			A_SpawnProjectile("PM_SoulReaverMadSouls", 50, 0, i, (flying) ? CMF_AIMDIRECTION|CMF_OFFSETPITCH : CMF_AIMDIRECTION, (flying) ? random(-90, 90) : 0);
+	}
+	SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+	{
+		A_SpawnParticleEx
+		(
+		"0B3D94",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(10,20),
+		size: random(75,155), xoff: random(-20,20), yoff: random(-20,20), zoff: random(-1,45),
+		velx: frandom(-5, 5), vely: frandom(-5, 5), velz: frandom(5, 15),
+		startalphaf: frandom(0.5, 1), fadestepf: -1, startroll: random(-180,180), rollvel: random(-12, 12)
+		);
+		
+		A_FaceTarget();
+		Radius_Quake (3, 2, 0, 30, 0);
+	}
+	SREX A 0 { bNOPAIN = false; }
+	Goto See;
+  /*TormentedNova:
+	SREX A 0
+	{
+		A_StartSound("GenericChargeHeavy", 40);
+		A_StartSound("SoulReaver/NovaSouls", 42, pitch: 1.3);
+		A_StartSound("SoulReaver/SoulCharge", 43);
+	}
+	SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("PM_HugeFastHorrorBlackflash")
+	{
+		A_SpawnParticleEx
+		( "8cf2ff", TexMan.CheckForTexture("SPKOS0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,3), size: frandom(1,500), xoff: random(-50,50), yoff: random(-50,50),
+		zoff: random(-10,70), startalphaf: frandom(0.5,1), startroll: random(-180,180) );
+		
+		A_SpawnParticleEx
+		(
+		"0B3D94",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(50,25),
+		size: random(75,155), xoff: random(-20,20), yoff: random(-20,20), zoff: random(-1,45),
+		velx: frandom(-4, 4), vely: frandom(-4, 4), velz: frandom(2, 5),
+		startalphaf: frandom(0.3,0.8), fadestepf: -1, startroll: random(-180,180), rollvel: random(-2, 2)
+		);
+		
+		A_FaceTarget();
+		Radius_Quake (20, 2, 0, 30, 0);
+	}
+	Goto See;*/
   Cooldown:
 	SRE1 K 30;
 	Goto See;
@@ -2141,4 +2240,125 @@ Class PM_SoulReaverLaser : PM_DraugrLightningArcs
 		}
 		Stop;
 	}
+}
+
+Class PM_SoulReaverMadSouls : Actor
+{
+	int soulhspeed;
+	int soulvspeed;
+	int soulhdist;
+	int soulvdist;
+	
+   Default
+   {
+	DamageFunction 2;
+	+RIPPER
+	Projectile;
+	DeathSound "Abhor/BallExp";
+	Decal "";
+	RenderStyle "Add";
+	Alpha 1.0;
+	Height 10;
+	Radius 10;
+	Speed 15;
+	Scale 0.9;
+   }
+   
+   TextureID tex[1];
+
+	states
+  	{
+  Spawn:
+    TNT1 A 0 NoDelay
+	{
+	 soulhspeed = random(-2,2);
+	 soulhdist = random(-2,2);
+	}
+	TNT1 A 0 A_StartSound("HFury/SoulScreech",10,pitch:frandom(0.1,0.6));
+	TNT1 A 0 A_StartSound("EntAva/Soul",11,pitch:frandom(0.3,0.6));
+	TNT1 A 0 A_ScaleVelocity(frandom(0.85,1.2));
+  Go:
+    PSMM DDEEFF 1 Bright Light("HellsFuryBall1")
+    {
+	A_SpawnParticleEx
+	   (
+		"",
+		TexMan.CheckForTexture("DTPRB0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,2),
+		size: frandom(40.0,250.0),
+		angle: 0,
+		xoff: -8,
+		startalphaf: frandom(0.2,0.95),
+		startroll: random(-180,180)
+	    );
+	A_SpawnParticleEx
+	    (
+		"0099ff",
+		TexMan.CheckForTexture("SPKOS0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,70),
+		size: frandom(0.2,15),
+		xoff: random(-15,0),
+		yoff: random(-15,15),
+		zoff: random(-15,15),
+		velx: frandom(-0.6,0.6),
+		vely: frandom(-0.6,0.6),
+		velz: frandom(-0.6,1),
+		startalphaf: 1.0,
+		fadestepf: -0.5,
+		sizestep: -0.2,
+		startroll: random(-180,180)
+		);
+	A_SpawnParticleEx
+	(
+		"0099ff",
+		TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Add,
+		flags: SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(40, 80),
+		size: 100.0,
+		xoff: -10,
+		startalphaf: 0.4,
+		fadestepf: -1,
+		startroll: random(-180,180)
+	);
+	 A_Weave(soulhspeed,0,soulhdist,0);
+	}
+	TNT1 A 0 A_Jump(128, "WeaveReset");
+	loop;
+  WeaveReset:
+    TNT1 A 0
+	{
+	 soulhspeed = random(-2,2);
+	 soulvspeed = random(-2,2);
+	 soulhdist = random(-2,2);
+	 soulvdist = random(-2,2);
+	}
+	Goto Go;
+  Death:
+    TNT1 A 0;
+	TNT1 A 0 A_StartSound("imp/shotx",CHAN_7);
+	TNT1 A 0
+	{
+		for (int i = random(2, 4); i > 0; i--)
+		{
+			let glob = Spawn("PM_BigFireGlobs", pos);
+			if (glob)
+			{
+				glob.vel.x = random(-4, 4);
+				glob.vel.y = random(-4, 4);
+				glob.vel.z = random(-4, 4);
+				glob.SetShade("3474eb");
+				glob.A_SetRenderStyle(1, STYLE_AddShaded);
+			}
+		}
+	}
+	TNT1 AAAA 0 A_SpawnItemEx("PM_HFuryBlueBallExplode",0,0,0,random(-6,6),random(-6,6),random(-6,6),0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAA 0 A_SpawnProjectile("BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+    HFBB CDE 5 Bright Light("HellsFuryBall2");
+    Stop;
+  }
 }
