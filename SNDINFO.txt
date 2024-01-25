@@ -4051,8 +4051,9 @@ PM/GibSplat3 "Sounds/Other/PMGibSplat3.ogg"
 PM/GibSplat4 "Sounds/Other/PMGibSplat4.ogg"
 PM/GibSplat5 "Sounds/Other/PMGibSplat5.ogg"
 PM/GibSplat6 "Sounds/Other/PMGibSplat6.ogg"
-$limit PM/GibSplat 2
+$limit PM/GibSplat 4
 $volume PM/GibSplat 0.65
+$rolloff PM/GibSplat 8 765
 
 PM/GibLand "Sounds/Other/PMGibLand.ogg"
 
@@ -4071,6 +4072,21 @@ PM/BloodHit9 "Sounds/Other/PMBloodHit9.ogg"
 $limit PM/BloodHit 2
 $volume PM/BloodHit 0.65
 $rolloff PM/BloodHit 8 576
+
+$random PM/BloodCyberHit { PM/BloodCyberHit1 PM/BloodCyberHit2 PM/BloodCyberHit3 PM/BloodCyberHit4 PM/BloodCyberHit5 PM/BloodCyberHit6 PM/BloodCyberHit7 PM/BloodCyberHit8 }
+
+PM/BloodCyberHit1 "Sounds/Other/PMBloodCyberHit1.ogg"
+PM/BloodCyberHit2 "Sounds/Other/PMBloodCyberHit2.ogg"
+PM/BloodCyberHit3 "Sounds/Other/PMBloodCyberHit3.ogg"
+PM/BloodCyberHit4 "Sounds/Other/PMBloodCyberHit4.ogg"
+PM/BloodCyberHit5 "Sounds/Other/PMBloodCyberHit5.ogg"
+PM/BloodCyberHit6 "Sounds/Other/PMBloodCyberHit6.ogg"
+PM/BloodCyberHit7 "Sounds/Other/PMBloodCyberHit7.ogg"
+PM/BloodCyberHit8 "Sounds/Other/PMBloodCyberHit8.ogg"
+
+$limit PM/BloodCyberHit 10
+$rolloff PM/BloodCyberHit 200 950
+$pitchset PM/BloodCyberHit 0.75 1.25
 
 //Horrorspawn Burster
 $random HSpawnBurster/Sight { HSpawnBurster/Sight1 HSpawnBurster/Sight2 HSpawnBurster/Sight3 }

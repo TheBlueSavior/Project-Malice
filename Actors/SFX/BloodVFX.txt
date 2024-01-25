@@ -537,9 +537,20 @@ Class PM_NormalHitSpark : Actor
 	{
 	Spawn:
 		TNT1 A 0;
+	    TNT1 A 0 {
+		for(int i=random(0,3);i>0;i--)
+		 A_SpawnParticleEx
+		 ( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(25,85),
+		 size: frandom(28,56), velx: frandom(-0.15,0.15), vely: frandom(-0.15,0.15), velz: frandom(-0.50,0.50), startalphaf: frandom(0.15,0.55),
+		 fadestepf: -1, sizestep: frandom(0.0,0.90), startroll: random(-180,180), rollvel: frandom(-1,1));
+		for(int i=random(0,5);i>0;i--)
+		 A_SpawnParticleEx(
+		 "545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,60), size: frandom(1,9),
+		 velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(-5,6), accelz: frandom(-0.3,-0.8), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(0,4));
+		}
 		TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_SpawnItemEx("PM_NormalBlood3",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,100);
-	    TRCR A 0 A_StartSound("PM/BulletHit",2);
+	    TRCR A 0 A_StartSound("PM/BloodCyberHit",100,CHANF_OVERLAP);
 		Stop;
 	}
 }
