@@ -4086,7 +4086,6 @@ PM/BloodCyberHit8 "Sounds/Other/PMBloodCyberHit8.ogg"
 
 $limit PM/BloodCyberHit 10
 $rolloff PM/BloodCyberHit 200 950
-$pitchset PM/BloodCyberHit 0.75 1.25
 
 //Horrorspawn Burster
 $random HSpawnBurster/Sight { HSpawnBurster/Sight1 HSpawnBurster/Sight2 HSpawnBurster/Sight3 }
