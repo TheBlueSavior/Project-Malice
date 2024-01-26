@@ -14,7 +14,7 @@ Class PM_DemonTechBrute : PMWarMonsterBase
 	MeleeRange 60;
 	Scale 1.1;
     Monster;
-	BloodType "PM_GreenBloodBase";
+	BloodType "PM_WarGreenBloodBase";
     +FLOORCLIP
 	+DONTHARMCLASS
 	+DONTHARMSPECIES

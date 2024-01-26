@@ -31,6 +31,7 @@ Class PM_Husk : PMWrathMonsterBase
   Tag "Husk";
   PoisonDamage 128;
   Bloodtype "PM_LavaBloodBase";
+  BloodColor "ff 50 00";
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_WrathTeleportFog";
   }

@@ -30,6 +30,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
 	Bloodtype "PM_LavaBloodBase";
+	BloodColor "ff 50 00";
 	}
 	
 	override void PostBeginPlay()

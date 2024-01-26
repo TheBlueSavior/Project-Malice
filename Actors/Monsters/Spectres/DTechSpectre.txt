@@ -19,7 +19,7 @@ Class PM_DemonTechSpectre : PMWarMonsterBase
 	+DONTHARMCLASS
 	Species "Brute";
 	BloodColor "Dark Red";
-	Bloodtype "PM_NormalBloodBase";
+	Bloodtype "PM_WarBloodBase";
     SeeSound "DTechSpectre/Sight";
     PainSound "DTechPain";
     DeathSound "DTechSpectre/Death";

@@ -4087,6 +4087,38 @@ PM/BloodCyberHit8 "Sounds/Other/PMBloodCyberHit8.ogg"
 $limit PM/BloodCyberHit 10
 $rolloff PM/BloodCyberHit 200 950
 
+$random PM/BloodStoneHit { PM/BloodStoneHit1 PM/BloodStoneHit2 PM/BloodStoneHit3 PM/BloodStoneHit4 PM/BloodStoneHit5 PM/BloodStoneHit6 }
+PM/BloodStoneHit1 "Sounds/Other/PMBloodStoneHit1.ogg"
+PM/BloodStoneHit2 "Sounds/Other/PMBloodStoneHit2.ogg"
+PM/BloodStoneHit3 "Sounds/Other/PMBloodStoneHit3.ogg"
+PM/BloodStoneHit4 "Sounds/Other/PMBloodStoneHit4.ogg"
+PM/BloodStoneHit5 "Sounds/Other/PMBloodStoneHit5.ogg"
+PM/BloodStoneHit6 "Sounds/Other/PMBloodStoneHit6.ogg"
+$limit PM/BloodStoneHit 4
+$rolloff PM/BloodStoneHit 8 576
+
+PM/LavaDebris "Sounds/Other/PMLavaDebris.ogg"
+
+$limit PM/LavaDebris 5
+$rolloff PM/LavaDebris 200 950
+
+$random PM/WarDebrisLaunch { PM/WarDebrisLaunch1 PM/WarDebrisLaunch2 PM/WarDebrisLaunch3 PM/WarDebrisLaunch4  }
+PM/WarDebrisLaunch1 "Sounds/Other/PMWarDebrisLaunch1.ogg"
+PM/WarDebrisLaunch2 "Sounds/Other/PMWarDebrisLaunch2.ogg"
+PM/WarDebrisLaunch3 "Sounds/Other/PMWarDebrisLaunch3.ogg"
+PM/WarDebrisLaunch4 "Sounds/Other/PMWarDebrisLaunch4.ogg"
+
+$limit PM/WarDebrisLaunch 5
+$rolloff PM/WarDebrisLaunch 150 1000
+
+$random PM/WarDebrisDisable { PM/WarDebrisDisable1 PM/WarDebrisDisable2 PM/WarDebrisDisable3  }
+PM/WarDebrisDisable1 "Sounds/Other/PMWarDebrisDisable1.ogg"
+PM/WarDebrisDisable2 "Sounds/Other/PMWarDebrisDisable2.ogg"
+PM/WarDebrisDisable3 "Sounds/Other/PMWarDebrisDisable3.ogg"
+
+$limit PM/WarDebrisDisable 3
+$rolloff PM/WarDebrisDisable 150 800
+
 //Horrorspawn Burster
 $random HSpawnBurster/Sight { HSpawnBurster/Sight1 HSpawnBurster/Sight2 HSpawnBurster/Sight3 }
 HSpawnBurster/Sight1 "Sounds/Monsters/Fodder/Horrorspawn/HorrorspawnBurster/HSpawnBursterSight1.ogg"
