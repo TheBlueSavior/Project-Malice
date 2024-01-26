@@ -135,7 +135,7 @@ Class PM_Harpy : PMLustMonsterBase
 			Wait;
 		Crash:
 			TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-			HR__ EEF 6;
+			HR__ EEF 6 A_Fall();
 			HR__ G -1;
 			Stop;
 		Raise:
