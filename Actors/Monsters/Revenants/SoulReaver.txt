@@ -1157,7 +1157,7 @@ Class PM_PreSoulReaver : PM_DormantReaver
 			if (!random(0, 1))
 				A_SpawnItemEx("PM_DeathBlood",random(-20,20),random(-20,20),random(35,80),frandom(-4, 4),frandom(-4, 4),frandom(-4, 4),0,0);
 			
-			let rev = spawn("PM_SoulReaver", pos + (0, 0, 1));
+			A_SpawnItemEx("PM_SoulReaver", 0, 0, 1, flags: SXF_NOCHECKPOSITION);
 			
 			Radius_Quake (20, 2, 0, 30, 0);
 		}
@@ -1810,7 +1810,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	Loop;
   Missile:
 	TNT1 A 0 { bSPRITEFLIP = false; }
-	TNT1 A 0 A_Jump(50, "Fly");
+	TNT1 A 0 A_Jump(25, "Fly");
 	TNT1 A 0 A_Jump(120, "Vomit", "Zip", "Phase", "SoulLoop");
 	TNT1 A 0 A_Jump(150, "DoubleArbalest", "SoulLaser");
   SeekerBalls:
