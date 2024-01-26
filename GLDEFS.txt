@@ -5836,48 +5836,6 @@ Attenuate 1
 Dontlightself 0
 }
 
-Pointlight InfernoBall
-{
-Color 0.8 0.0 0.0
-Size 24
-}
-
-Pointlight InfernoBall2
-{
-Color 0.8 0.0 0.0
-Size 32
-}
-
-Pointlight InfernoBall3
-{
-Color 0.8 0.0 0.0
-Size 28
-}
-
-Pointlight InfernoBall4
-{
-Color 0.8 0.0 0.0
-Size 16
-}
-
-Object PM_InfernoBallTrail
-{
-Frame ITRLA { Light InfernoBall }
-Frame ITRLB { Light InfernoBall3 }
-Frame ITRLC { Light InfernoBall2 }
-Frame ITRLD { Light InfernoBall2 }
-Frame ITRLE { Light InfernoBall2 }
-Frame ITRLF { Light InfernoBall2 }
-Frame ITRLG { Light InfernoBall2 }
-Frame ITRLH { Light InfernoBall2 }
-Frame ITRLI { Light InfernoBall2 }
-Frame ITRLJ { Light InfernoBall2 }
-Frame ITRLK { Light InfernoBall2 }
-Frame ITRLL { Light InfernoBall }
-Frame ITRLM { Light InfernoBall3 }
-Frame ITRLN { Light InfernoBall4 }
-}
-
 Pointlight NetherLightning
 {
 Color 0.0 0.8 0.0

@@ -81,9 +81,15 @@ Class PM_Exalted : PMPrideMonsterBase
     {
     Spawn:
 	    EXAL E 0 NoDelay;
-        TNT1 A 10 { if(spawned)
-		SetStateLabel("LookSpawned");
-		PM_Look(); }
+        TNT1 A 10 
+        { 
+        	if(spawned)
+            {
+		     SetStateLabel("LookSpawned");
+		     return;
+            }
+		 PM_Look(); 
+	    }
         Wait;
 	LookSpawned:
 	    EXAL A 10 PM_Look();
