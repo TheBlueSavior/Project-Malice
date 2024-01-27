@@ -554,6 +554,17 @@ Class PMPestilenceMonsterBase : PMMonsterBase abstract
  {
   PMMonsterBase.Sin "Pestilence", "DarkGreen";
  }
+
+ override void PM_Gib()
+ {
+  for(int i=random(4,5);i>0;i--)
+  A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,random(-20,20),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+  for(int i=random(3,5);i>0;i--)
+  A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+ A_SpawnItemEx("PM_PestilenceBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+ }
+ 
 }
 
 Class PMFamineMonsterBase : PMMonsterBase abstract

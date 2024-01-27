@@ -27,16 +27,6 @@ Class PM_Host : PMPestilenceMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
 	}
-
- override void PM_Gib()
- {
-  for(int i=random(4,5);i>0;i--)
-  A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,random(-20,20),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
-  for(int i=random(3,5);i>0;i--)
-  A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
- A_SpawnItemEx("PM_PestilenceBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
-   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
- }
  
   States
   {
@@ -186,32 +176,13 @@ Class PM_Host : PMPestilenceMonsterBase
     HOS1 J 8 PM_Scream();
     HOS1 KL 6;
     HOS1 M 6 A_NoBlocking;
-	TNT1 AAAAAAAA 0 A_SpawnItemEx("HostSwarmFly",0,0,5);
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_HostSwarmFly",0,0,5);
 	TNT1 A 0 A_SpawnItemEx("PM_ActiveSwarm",0,0,7,0,0,0,0,0,200);
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 	HOS1 NNNNNNNNNN 30
 	{
-	A_SpawnParticleEx
-	(   
-	"252D00",
-	TexMan.CheckForTexture("GNSMK0"),
-	style: STYLE_Normal,
-	flags: SPF_ROLL|SPF_RELATIVE,
-	lifetime: random(80,200),
-	size: frandom(15,45),
-	velx: frandom(-0.1,0.1),
-	vely: frandom(-0.1,0.1),
-	velz: frandom(1,2),
-	accelx: frandom(-0.02,0.02),
-	accely: frandom(-0.02,0.02),
-	accelz: frandom(-0.03,0.01),
-	startalphaf: frandom(0.3,0.6),
-	fadestepf: -0.001,
-	sizestep: frandom(0.2,4),
-	startroll: random(-180,180),
-	rollvel: random(-2,2)
-	);
-	A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0);
+	  A_SpawnParticleEx("252D00",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80,200),size: frandom(15,45),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(1,2),accelx: frandom(-0.02,0.02),accely: frandom(-0.02,0.02),accelz: frandom(-0.03,0.01),startalphaf: frandom(0.3,0.6),fadestepf: -0.001,sizestep: frandom(0.2,4),startroll: random(-180,180),rollvel: random(-2,2));
+	  A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0);
 	}
     HOS1 N -1;
     Stop;
@@ -233,7 +204,7 @@ Class PM_Host : PMPestilenceMonsterBase
   }
 }
 
-Class HostPoisonSplash : Actor
+Class PM_HostPoisonSplash : Actor
 {
     Default
 	{
@@ -270,7 +241,7 @@ Class HostPoisonSplash : Actor
 	}
 }
 
-Class HostPoisonSplashSmall : HostPoisonSplash
+Class PM_HostPoisonSplashSmall : PM_HostPoisonSplash
 { Default { Scale 0.75; } }
 
 Class PM_HostAttackFlies : DoomImpBall
@@ -361,75 +332,24 @@ Class PM_HostSprayPuke : Actor
   TNT1 A 0 A_Jump(255,"One","Two","Three","Four");
   Loop;
   One:
-	FBLG A 2 BRIGHT
-	{
-	A_SetScale(Scale.X+0.05);
-	}
+	FBLG A 2 BRIGHT A_SetScale(Scale.X+0.05);
 	Loop;
   Two:
-	FBLG B 2 BRIGHT
-	{
-	A_SetScale(Scale.X+0.05);
-	}
+	FBLG B 2 BRIGHT A_SetScale(Scale.X+0.05);
 	Loop;
   Three:
-	FBLG C 2 BRIGHT
-	{
-	A_SetScale(Scale.X+0.05);
-	}
+	FBLG C 2 BRIGHT A_SetScale(Scale.X+0.05);
 	Loop;
   Four:
-	FBLG D 2 BRIGHT
-	{
-	A_SetScale(Scale.X+0.05);
-	}
+	FBLG D 2 BRIGHT A_SetScale(Scale.X+0.05);
 	Loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("HostPukeSplatter",random(-3,3),random(-3,3));
-	TNT1 A 0 A_SpawnItemEx("HostPukeSplatterLight",random(-3,3),random(-3,3),0,0,0,0,0,0,180);
+	BDRG BCDEFGH 3 Bright Light("HostPuke");
     Stop;
   }
 }
 
-
-Class HostPukeSplatter : Actor
-{
-    Default
-	{
-	Height 1;
-	Radius 1;
-	Mass 1;
-	Scale 1.2;
-	+CLIENTSIDEONLY
-	RenderStyle "Add";
-	}
-	States
-	{
-	Spawn:
-	BDRG BCDEFGH 3 BRIGHT;
-	Stop;
-	}
-}
-
-Class HostPukeSplatterLight : Actor
-{
-    Default
-	{
-	Height 1;
-	Radius 1;
-	Mass 1;
-	Scale 1.2;
-	+CLIENTSIDEONLY
-	}
-	States
-	{
-	Spawn:
-	TNT1 A 21 BRIGHT Light("HostPuke");
-	Stop;
-	}
-}
-
-Class HostGasTrail : Actor
+Class PM_HostGasTrail : Actor
 {
   Default
   {
@@ -446,7 +366,7 @@ Class HostGasTrail : Actor
 	}
 }
 
-Class HostSwarmFly : Actor
+Class PM_HostSwarmFly : Actor
 {
   
   Default
@@ -497,12 +417,12 @@ Class PM_HostPoisonShot : Actor
     FVUL AAABBB 1 Bright Light("HostShot")
 	{
 	A_SpawnParticle("A6 FE 6C",SPF_RELATIVE,37,7,0,random(-3,3),random(-3,3),random(-3,3),0,0,0,0,0,0,1,-1,0);
-	A_SpawnItemEx("HostGasTrail", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE, 0);
+	A_SpawnItemEx("PM_HostGasTrail", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE, 0);
 	}
     loop;
   Death:
-	TNT1 AAAAA 0 A_SpawnItemEx("HostPoisonSplash",random(-1,1),random(-1,1),random(-1,1),random(-1,1),random(-1,1),frandom(-1,1));
-	TNT1 AAAAA 0 A_SpawnItemEx("HostBallSplatter",random(-3,3),random(-3,3),random(-3,3),random(-4,4),random(-4,4),frandom(-4,5));
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_HostPoisonSplash",random(-1,1),random(-1,1),random(-1,1),random(-1,1),random(-1,1),frandom(-1,1));
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_HostBallSplatter",random(-3,3),random(-3,3),random(-3,3),random(-4,4),random(-4,4),frandom(-4,5));
 	TNT1 A 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-1,1),random(-1,1),random(-1,1),0,0);
     FVUL CDEF 4 Bright Light("HostShot2");
     stop;
@@ -535,14 +455,14 @@ Class PM_HostPoisonShotSmall : Actor
 	}
     loop;
   Death:
-	TNT1 AA 0 A_SpawnItemEx("HostPoisonSplashSmall",random(-1,1),random(-1,1),random(-1,1),random(-1,1),random(-1,1),frandom(-1,1));
-	TNT1 AAA 0 A_SpawnItemEx("HostBallSplatter",random(-3,3),random(-3,3),random(-3,3),random(-4,4),random(-4,4),frandom(-4,5));
+	TNT1 AA 0 A_SpawnItemEx("PM_HostPoisonSplashSmall",random(-1,1),random(-1,1),random(-1,1),random(-1,1),random(-1,1),frandom(-1,1));
+	TNT1 AAA 0 A_SpawnItemEx("PM_HostBallSplatter",random(-3,3),random(-3,3),random(-3,3),random(-4,4),random(-4,4),frandom(-4,5));
     FVUL CDEF 4 Bright Light("HostShot");
     stop;
   }
 }
 
-Class HostBallSplatter : Actor
+Class PM_HostBallSplatter : Actor
 {
   Default
   {
@@ -599,7 +519,7 @@ Class HostBallSplatter : Actor
   }
 }
 
-Class HostBarbTrail : Actor
+Class PM_HostBarbTrail : Actor
 {   
     Default
 	{
@@ -619,32 +539,13 @@ Class HostBarbTrail : Actor
   }
 }
 
-Class HostSmoke : Actor
-{
-  Default
-  {
-  +NOINTERACTION
-  +ROLLSPRITE
-  Renderstyle "Translucent";
-  Alpha 0.25;
-  Scale 0.3;
-  }
-  States
-  {
-  Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
-	GSM1 A 1 A_FadeOut(0.008);
-	Wait;
-	}
-}
-
 Class PM_HostSmokeCloud : Actor
 {
   Default
   {
   Radius 2;
   Height 2;
-  Mass 0x7fffffff;
+  +DONTTHRUST
   +NOBLOCKMAP
   +NOGRAVITY
   +DROPOFF
@@ -689,86 +590,27 @@ Class PM_HostSmokeCloud : Actor
   }
 }
 
-Class PM_HostSmokeCloud2 : Actor
+Class PM_HostSmokeCloud2 : PM_HostSmokeCloud
 {
   Default
   {
-  Radius 2;
-  Height 2;
-  Mass 1;
-  +NOBLOCKMAP
-  +NOGRAVITY
-  +DROPOFF
-  +NODAMAGETHRUST
-  +DONTSPLASH
-  +NOTELEPORT
-  +SKYEXPLODE
-  +FORCEXYBILLBOARD
-  +FOILINVUL
-  +CANBLAST
-  +RIPPER
-  +THRUACTORS
-  +BLOODLESSIMPACT
-  +BLOCKEDBYSOLIDACTORS
-  +FORCERADIUSDMG
-  +DOOMBOUNCE
-  +ROLLSPRITE
-  +ROLLCENTER
-  BounceFactor 0.2;
-  WallBounceFactor 0.2;
-  RenderStyle "Normal";
-  Alpha 0.3;
-  Scale 1.2;
+    BounceFactor 0.2;
+    WallBounceFactor 0.2;
+    RenderStyle "Normal";
+    Alpha 0.3;
+    Scale 1.2;
   }
-  states
+  States
   {
   Spawn:
-	TNT1 AAAAAAAAA random(1,8)
-	{
-	A_SpawnParticleEx
-	(   
-	"252D00",
-	TexMan.CheckForTexture("GNSMK0"),
-	style: STYLE_Normal,
-	flags: SPF_ROLL|SPF_RELATIVE,
-	lifetime: random(80,200),
-	size: frandom(15,45),
-	velx: frandom(-0.2,0.2),
-	vely: frandom(-0.2,0.2),
-	velz: frandom(-0.2,0.2),
-	startalphaf: frandom(0.1,0.3),
-	fadestepf: -0.001,
-	sizestep: frandom(0.2,2),
-	startroll: random(-180,180),
-	rollvel: random(-2,2)
-	);
-	}
+	TNT1 AAAAAAAAA random(1,8) { A_SpawnParticleEx("252D00",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80,200),size: frandom(15,45),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.1,0.3),fadestepf: -0.001,sizestep: frandom(0.2,2),startroll: random(-180,180),rollvel: random(-2,2)); }
 	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(4,20)
 	{
-	A_SpawnParticleEx
-	(   
-	"252D00",
-	TexMan.CheckForTexture("GNSMK0"),
-	style: STYLE_Normal,
-	flags: SPF_ROLL|SPF_RELATIVE,
-	lifetime: random(400,900),
-	size: frandom(25,65),
-	xoff: random(-20,20),
-	yoff: random(-20,20),
-	zoff: random(-20,20),
-	velx: frandom(-0.2,0.2),
-	vely: frandom(-0.2,0.2),
-	velz: frandom(-0.2,0.2),
-	startalphaf: frandom(0.1,0.6),
-	fadestepf: -1,
-	sizestep: frandom(0.1,1),
-	startroll: random(-180,180),
-	rollvel: frandom(-1,1)
-	);
-	A_Explode(Random(3,5),48);
-	A_FadeOut(0.02);
-	A_SetScale(scale.x+0.01);
+	  A_SpawnParticleEx("252D00",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(400,900),size: frandom(25,65),xoff: random(-20,20),yoff: random(-20,20),zoff: random(-20,20),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.1,0.6),fadestepf: -1,sizestep: frandom(0.1,1),startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_Explode(Random(3,5),48);
+	  A_FadeOut(0.02);
+	  A_SetScale(scale.x+0.01);
 	}
   Death:
 	TNT1 A 1;
