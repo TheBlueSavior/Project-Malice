@@ -350,30 +350,6 @@ States
   }
 }
 
-Actor PM_OrangeEmbersSmaller
-{
-  +CLIENTSIDEONLY
-  +DOOMBOUNCE
-  +MISSILE
-  Scale 0.025
-  RENDERSTYLE ADD
-  BounceFactor 0.4
-  Gravity 0.35
-  +Bright
-  States
-  {
-  Spawn:
-	TNT1 A 1 A_Jump(50,"Spark")
-	Goto Ending
-  Spark:
-	SPKO A 3 Bright A_FadeOut(0.08)
-  Loop
-  Ending:
-	TNT1 A 0
-  Stop
-  }
-}
-
 Actor PM_OrangeEmbersBig
 {
   +CLIENTSIDEONLY
