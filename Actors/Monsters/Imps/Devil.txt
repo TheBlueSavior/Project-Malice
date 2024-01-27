@@ -137,9 +137,9 @@ Class PM_Devil : PMUnaffMonsterBase
     TNT1 A 0 A_FaceTarget();
     TNT1 A 0 A_Recoil (-12);
 	TNT1 A 0 A_StartSound("Devil/Roar",CHAN_7);
-	D3IM EF 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	D3IM EF 2 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
     D3IM F 6 A_FaceTarget();
-	D3IM G 1 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	D3IM G 1 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
 	D3IM GG 2;
 	D3IM GEEE 2;
 	Goto Fear;

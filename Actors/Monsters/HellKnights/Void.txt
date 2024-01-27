@@ -42,7 +42,7 @@ ACTOR Void
 	A_Quake(1,8,0,200,0);
 	A_Quake(6,8,0,100,0);
 	}
-	NULL A 0 A_SpawnItemEx("HuskSmoke", Random(-12, 12), Random(-12, 12), Random(15, 99), 0, 0, 0, 0)
+	NULL A 0 A_SpawnItemEx("PM_FlameSmoke", Random(-12, 12), Random(-12, 12), Random(15, 99), 0, 0, 0, 0)
 	Loop
   Melee:
     AVA1 A 3 A_CustomMeleeAttack(random(1,8)*45, "", "")

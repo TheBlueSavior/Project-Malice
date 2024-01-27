@@ -93,7 +93,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	TNT1 A 0
 	{
 	for (int i = -80; i <= 80; i+= 10)
-    A_SpawnProjectile("DefilerBreath",3,-30,i);
+    A_SpawnProjectile("PM_DefilerBreath",3,-30,i);
 	}
 	TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig");
 	TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare");
@@ -616,20 +616,20 @@ Class PM_Tyrant : PMUnaffMonsterBase
     Goto See;
   Death: 
 	TNT1 A 0 A_StopSound(CHAN_7);
-	TNT1 AAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
     DUKE H 11 Light("TyrantFire") A_Scream;
-	TNT1 AAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
+	TNT1 AAAAAA 0 A_SpawnItemEx("PM_DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
     DUKE I 9 Light("TyrantFire");
-	TNT1 AAAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
+	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
 	DUKE JKL 6 Light("TyrantFire");
-	TNT1 AAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
 	TNT1 A 0 A_NoBlocking;
-	TNT1 AAAAAAA 0 A_SpawnItemEx("DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_DefilerBreath",random(-40,40),random(-40,40),random(10,75),random(-3,3),random(-3,3),random(-3,3));
 	DUKE MNO 6 Light("TyrantFire");
 	TNT1 A 0
 	{
 	for (int i = -80; i <= 80; i+= 10)
-    A_SpawnProjectile("DefilerBreath",3,-30,i);
+    A_SpawnProjectile("PM_DefilerBreath",3,-30,i);
 	}
 	//TNT1 A 0 A_SpawnProjectile("RictusBall",3,-30,10)
 	//TNT1 A 0 A_SpawnProjectile("RictusBall",3,-30,30)
@@ -1562,7 +1562,7 @@ Class TyrantMFireEffect : Actor
 	}
 }
 
-Class TyrantPlasmaThrower : Actor
+Class TyrantPlasmaThrower : PM_CyberFodderFire
 {
 
   override void BeginPlay()
@@ -1576,56 +1576,48 @@ Class TyrantPlasmaThrower : Actor
    Radius 14;
    Height 14;
    Speed 26;
-   Damage 2;
-   PROJECTILE;
-   Renderstyle "Add";
-   DamageType "Fire";
+   DamageFunction 7;
    Scale 0.13;
-   DeathSound "Fire/Unleash";
-   Decal "Scorch";
-   +THRUGHOST
-   +ROLLSPRITE
-   +FORCEXYBILLBOARD
    Translation "0:255=%[0,0,0]:[1.9,0.5,0.5]";
    }
    States
    {
    Spawn:
-	  TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+	  TNT1 A 0;
       NULL A 1 Bright;
 	  TNT1 A 0 A_Jump(255,"Go","Go2");
 	  Go:
 	  TNT1 A 0 A_SetRoll(random(0,360));
       FLMF ABCDEFEDCBA 2 Bright Light("TyrantRail")
 	  {
-	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
-	  A_SetScale(Scale.X+0.06);
+	    A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+	    A_SetScale(Scale.X+0.06);
 	  }
 	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF ABCDEF 2 Bright Light("TyrantRail");
 	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF EDCBABC 2 Bright Light("TyrantRail")
 	  {
-	  A_SetScale(Scale.X+0.07);
-	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
-	  A_Fadeout(0.1);
+	    A_SetScale(Scale.X+0.07);
+	    A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+	    A_Fadeout(0.1);
 	  }
 	  Stop;
 	  Go2:
 	  TNT1 A 0 A_SetRoll(random(0,360));
 	  FLMF FEDCBABCDEF 2 Bright
 	  {
-	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
-	  A_SetScale(Scale.X+0.05);
+	    A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+	    A_SetScale(Scale.X+0.05);
 	  }
 	  TNT1 A 0 A_ChangeVelocity(random(-2,-5),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF EDCBA 2 Bright;
 	  TNT1 A 0 A_ChangeVelocity(random(-2,-5),random(-2,2),random(0,4),CVF_RELATIVE);
 	  FLMF BCDEFED 2 Bright
 	  {
-	  A_SetScale(Scale.X+0.07);
-	  A_SpawnItemEx("HuskSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
-	  A_Fadeout(0.1);
+	    A_SetScale(Scale.X+0.07);
+	    A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+	    A_Fadeout(0.1);
 	  }
       Stop;
    Death:

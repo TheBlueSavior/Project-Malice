@@ -29,26 +29,23 @@ Class PM_Fusionite : PMUnaffMonsterBase
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay
-			{
-				user_numbullets = random(5,75);
-			}
+			TNT1 A 0 NoDelay { user_numbullets = random(5,75); }
 		Idle:
 			FSPI A 10 PM_Look();
 			Loop;
 		Look:
-			FSPI A 2 A_StartSound("GenericArachWalk");
+			FSPI A 2 A_StartSound("GenericArachWalk",12,CHANF_OVERLAP);
 			FSPI ABBCC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP);
-			FSPI D 2 A_StartSound("GenericArachWalk");
+			FSPI D 2 A_StartSound("GenericArachWalk",12);
 			FSPI DEEFF 2 PM_LookingForPlayer();
 			Loop;
 		Spotted:
 			TNT1 A 0 PM_AlertSound();
 		See:
-			FSPI A 2 A_StartSound("GenericArachWalk");
+			FSPI A 2 A_StartSound("GenericArachWalk",12);
 			FSPI ABBCC 2 A_Chase();
-			FSPI D 2 A_StartSound("GenericArachWalk");
+			FSPI D 2 A_StartSound("GenericArachWalk",12,CHANF_OVERLAP);
 			FSPI DEEFF 2 A_Chase();
 			Loop;
 		Missile:
@@ -66,8 +63,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 				{
 					return ResolveState("NoAmmo");
 				}
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+				for(int i=3;i>0;i--)
 				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
 				A_SpawnProjectile("PM_FusionShot",22,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
 				user_numbullets--;
@@ -78,29 +74,23 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			Goto Missile+2;
 		Shotgun:
 			FSPI A 9 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Fusionite/ScatterCharge");
+			TNT1 A 0 A_StartSound("Fusionite/ScatterCharge",13);
 			FSPI GGGGGG 5 Light("GreenBall2") A_FaceTarget();
-			TNT1 A 0 A_StartSound("HellSoldier/ChargeReady2",CHAN_7);
+			TNT1 A 0 A_StartSound("HellSoldier/ChargeReady2",14);
 			FSPI GGGGG 5 Light("GreenBall2") A_FaceTarget();
 			TNT1 A 0 
 			{
 				user_numbullets = (user_numbullets - 7);
 			}
 			TNT1 A 0 A_JumpIf(user_numbullets < 0, "ShotgunNoAmmo");
-			TNT1 A 0 A_StartSound("Fusionite/Scattershot");
+			TNT1 A 0 A_StartSound("Fusionite/Scattershot",15);
 			FSPI H 3 Light("GreenBall3")
 			{
 				A_FaceTarget();
-				//A_SpawnItemEx("CSmoke",0,2,20,1,0,1,0,0,0,0);
-				//A_SpawnItemEx("CSmoke",0,2,20,1,0,1,0,0,0,0);
-				//A_SpawnItemEx("CSmoke",0,2,20,1,0,1,0,0,0,0);
-				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
 				A_SpawnProjectile("PM_GreenFusioniteFlare",22,0);
+				for(int i=2;i>0;i--)
 				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnProjectile("PM_ScatterFusionShot",22,0,frandom(-12,12),CMF_OFFSETPITCH,frandom(-3,3));
-				A_SpawnProjectile("PM_ScatterFusionShot",22,0,frandom(-12,12),CMF_OFFSETPITCH,frandom(-3,3));
-				A_SpawnProjectile("PM_ScatterFusionShot",22,0,frandom(-12,12),CMF_OFFSETPITCH,frandom(-3,3));
-				A_SpawnProjectile("PM_ScatterFusionShot",22,0,frandom(-15,12),CMF_OFFSETPITCH,frandom(-3,3));
+				for(int i=5;i>0;i--)
 				A_SpawnProjectile("PM_ScatterFusionShot",22,0,frandom(-12,12),CMF_OFFSETPITCH,frandom(-3,3));
 			}
 			FSPI G 3 A_FaceTarget();
@@ -108,17 +98,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			FSPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1;
 			Goto See;
 		ShotgunNoAmmo:
-			TNT1 A 0 A_StartSound("Fusionite/ScattershotDry");
+			TNT1 A 0 A_StartSound("Fusionite/ScattershotDry",15);
 			FSPI H 3 Light("GreenBall3")
 			{
 				A_FaceTarget();
 				A_SpawnProjectile("PM_GreenFusioniteFireFlare",22,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
-				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
+                for(int i=7;i>0;i--)
 				A_SpawnItemEx("PM_VentSmoke",10,0,32,random(5,-5),random(5,-5),random(1,10),random(-10,10),0,0,0);
 			}
 			FSPI G 3 A_FaceTarget();
@@ -240,12 +225,8 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			FSPI MN 6 Light("TyrantMExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
 			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
 			TNT1 A 0 A_StartSound("ArachCrash",CHAN_7);
-			FSPI O 6 Light("AvatarFireball4") A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
-			FSPI PPPPPPP 3
-			{
-				A_SpawnItemEx("HuskSmoke",random(-30,30),random(-30,30),random(0,5),0,0,2);
-				A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
-			}
+			FSPI O 6 Light("AvatarFireball4");
+			FSPI PPPPPPP 3 A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
 			FSPI P 1 A_KillMaster();
 			FSPI P -1;
 			Stop;

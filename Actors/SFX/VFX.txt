@@ -250,6 +250,27 @@ Actor PM_CasingSmoke
     }
 }
 
+Actor PM_FlameSmoke
+{
+  +NOINTERACTION
+  +ROLLSPRITE
+  Renderstyle "Translucent"
+  Scale 0.4
+  Alpha 0.6
+  States
+  {
+  Spawn:
+  TNT1 A 1
+  TNT1 A 0 A_CheckSight("SightNull")
+  TNT1 A 0 A_SetRoll(random(0,360))
+  SMK3 ABCDEFGHIJKLM 2 A_FadeOut(0.008)
+  Stop
+  SightNull:
+  TNT1 A 1
+  Stop
+  }
+}
+
 Actor PM_WhiteFireballExplode
 {
 	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"
