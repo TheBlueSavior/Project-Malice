@@ -553,7 +553,6 @@ Class PM_Director : PMUnaffMonsterBase
 		TNT1 A 0 A_StartSound("BigExplosionDistant",5,CHANF_DEFAULT,0.7);
 		TNT1 A 0 A_StartSound("ArachExpGore",CHAN_6);
 		DIRE N 6 Light("TyrantExp");
-		TNT1 AAAAAA 0 A_SpawnProjectile("SmokePuff",random(24,40),0,random(0,360),2,random(0,360));
 		DIRE OPQRSSSSSSSSSSSSSSSS 6 Light("TyrantExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
 		DIRE S -1 A_BossDeath();
 		Stop;

@@ -255,7 +255,6 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			TNT1 A 0 A_SpawnItemEx("PM_ArachExpMist",0,0,20);
 			TNT1 A 0 A_StartSound("ArachExpGore",CHAN_6);
 			PL01 L 6 Light("TyrantMExp");
-			TNT1 AAAAAA 0 A_SpawnProjectile("SmokePuff",random(24,40),0,random(0,360),2,random(0,360));
 			PL01 MN 6 Light("TyrantMExp") A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15));
 			TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
 			TNT1 A 0 A_StartSound("ArachCrash",CHAN_7);

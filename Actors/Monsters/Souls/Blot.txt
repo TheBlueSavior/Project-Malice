@@ -1,4 +1,4 @@
-class BlotSmoke: actor
+Class PM_BlotSmoke: Actor
 {
 Default
 {
@@ -533,7 +533,7 @@ Default
 		 rollacc: 0
 	    );
 	}
-	EYES AAAAAAAAAAAAAA 1 bright Light("SmallBlacklight") A_SpawnItemEx ("BlotSmoke", -1, random (-8, 8), random (8, 16), random(1,10), random (-2, 2), random (-2, 2), 0, 160);
+	EYES AAAAAAAAAAAAAA 1 bright Light("SmallBlacklight") A_SpawnItemEx ("PM_BlotSmoke", -1, random (-8, 8), random (8, 16), random(1,10), random (-2, 2), random (-2, 2), 0, 160);
 	Goto See;
   Pain:
 	TNT1 A 1;
@@ -636,9 +636,9 @@ Default
   Spawn:
 	EYES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
 	{
-	A_SpawnItemEx ("BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
-	A_SpawnItemEx ("BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
-	A_SpawnItemEx ("BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
+	A_SpawnItemEx ("PM_BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
+	A_SpawnItemEx ("PM_BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
+	A_SpawnItemEx ("PM_BlotSmoke", -2, random (8, -8), random (-8, 8), 0, random (-1, 1), random (-1, 1), 0, 160);
 	}
 	Stop;
 	}
