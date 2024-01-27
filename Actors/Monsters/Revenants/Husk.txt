@@ -239,7 +239,7 @@ Class PM_Husk : PMWrathMonsterBase
 	GHUL GGGGGGGGGGGGGGGGGGGGG 1 Light("AvatarFireball3")
 	{
 	A_FaceTarget();
-	A_Spawnitemex("OrangeFireEffect",random(-3,3),random(21,27),30,random(-1,1),random(-1,1),random(0,3));
+	A_Spawnitemex("PM_OrangeFireEffect",random(-3,3),random(21,27),30,random(-1,1),random(-1,1),random(0,3));
 	}
    Missile2Loop:
 	GHUL GHHI 3 Light("AvatarFireball3")

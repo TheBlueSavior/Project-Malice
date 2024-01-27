@@ -60,15 +60,15 @@ Class PM_Hectebus : PMUnaffMonsterBase
 	TABU GGGGGGGG 1 Light("AvatarFireBall2")
 	{
 	A_FaceTarget();
-	A_SpawnItemEx("OrangeFireEffect",18,random(30,38),random(23,27),0,0,2);
-	A_SpawnItemEx("OrangeFireEffect",18,random(-30,-38),random(23,27),0,0,2);
+	A_SpawnItemEx("PM_OrangeFireEffect",18,random(30,38),random(23,27),0,0,2);
+	A_SpawnItemEx("PM_OrangeFireEffect",18,random(-30,-38),random(23,27),0,0,2);
 	}
 	TNT1 A 0 A_StartSound("Fire/Unleash",CHAN_6);
 	TABU GGGGGGGGGGGGGGG 1 Light("AvatarFireBall2")
 	{
 	A_FaceTarget();
-	A_SpawnItemEx("OrangeFireEffect",18,random(30,38),random(23,27),0,0,2);
-	A_SpawnItemEx("OrangeFireEffect",18,random(-30,-38),random(23,27),0,0,2);
+	A_SpawnItemEx("PM_OrangeFireEffect",18,random(30,38),random(23,27),0,0,2);
+	A_SpawnItemEx("PM_OrangeFireEffect",18,random(-30,-38),random(23,27),0,0,2);
 	}
   MissileLoop:
 	TABU H 10 Light("AvatarFireBall2")
@@ -201,30 +201,6 @@ Death:
       TABE CDE 3 Bright Light("YellowMediumFlicker2");
       Stop;
       }
-}
-
-Class MancBallFire : Actor
-{
-  Default
-  {
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +ROLLSPRITE
-  +FORCEXYBILLBOARD
-  +Bright
-  Renderstyle "Add";
-  Scale 0.3;
-  }
-  States
-  {
-  Spawn:
-	TNT1 A 1;
-	Go:
-	TNT1 A 0 A_SetRoll(random(0,360));
-	TNT1 A 0 A_SetScale(Scale.X-0.02);
-	F1R1 A 1 A_FadeOut(0.07);
-	Loop;
-	}
 }
 
 Class PM_HectebusBallExplode : Actor

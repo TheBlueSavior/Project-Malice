@@ -673,7 +673,7 @@ Class PM_DirectorAStrikeShotTell : Actor
    }
 }
 
-Class PM_DirectorMissile : TyrantStreamRocket
+Class PM_DirectorMissile : PM_TyrantStreamRocket
 {
  int timer;
  Default
@@ -711,7 +711,7 @@ Class PM_DirectorMissile : TyrantStreamRocket
   Death:
     TNT1 A 0 Radius_Quake (2, 54, 0, 10, 0);
 	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
-	TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+	TNT1 AAAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
 	TNT1 A 15 BRIGHT Light("AvatarFireball5");
 	Stop;
   }

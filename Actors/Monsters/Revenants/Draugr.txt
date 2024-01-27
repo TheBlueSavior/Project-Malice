@@ -328,7 +328,7 @@ Class DraugrEXParticle : Actor
 	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
   Go:
 	F1R1 A 1 A_FadeOut(0.07);
-	TNT1 A 0 A_SpawnItemEx("OrangeFireEffect",0,0,0,frandom(-1,0),0,frandom(0,1),0,SXF_TRANSFERALPHA);
+	TNT1 A 0 A_SpawnItemEx("PM_OrangeFireEffect",0,0,0,frandom(-1,0),0,frandom(0,1),0,SXF_TRANSFERALPHA);
 	Loop;
 	}
 }
@@ -423,7 +423,7 @@ Class PM_DraugrFastBall : RevenantTracer
 		TNT1 AAAA 0 A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
 		TNT1 AAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
 		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
-		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		FSHT BBCCDDEE 1 BRIGHT Light("AvatarFireball1");
 		Stop;
 	}

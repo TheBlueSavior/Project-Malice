@@ -237,7 +237,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	DUKE F 2 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_SpawnProjectile("PM_TyrantStreamRocket",68,-25,random(-1,1),CMF_OFFSETPITCH,random(-1,1));
 		A_FaceTarget();
 		}
 	DUKE E 2 
@@ -370,7 +370,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 		if(pm_attackloop > 14)
 		{ SetStateLabel("Mis3End"); }
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantSmallRocket",68,-25,random(-10,10),CMF_OFFSETPITCH,0);
+		A_SpawnProjectile("PM_TyrantSmallRocket",68,-25,random(-10,10),CMF_OFFSETPITCH,0);
 		pm_attackloop++;
 		}
 	DUKE E 1 A_FaceTarget();
@@ -546,7 +546,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	DUKE F 3 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,sweepangles[sweepindex]);
+		A_SpawnProjectile("PM_TyrantStreamRocket",68,-25,sweepangles[sweepindex]);
 		A_FaceTarget();
 		}
 	DUKE E 3 A_FaceTarget();
@@ -597,7 +597,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	DUKE F 3 Light("TyrantFire")
 		{
 		A_SpawnProjectile("PlasmatronFlare",68,-25);
-		A_SpawnProjectile("TyrantStreamRocket",68,-25,SweepAngles2[SweepIndex]);
+		A_SpawnProjectile("PM_TyrantStreamRocket",68,-25,SweepAngles2[SweepIndex]);
 		A_FaceTarget();
 		}
 	DUKE E 3 A_FaceTarget();
@@ -756,7 +756,7 @@ Class PM_TyrantBackMissile : Actor
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
 		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
-		TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+		TNT1 AAAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
 		TNT1 A 15 BRIGHT Light("AvatarFireball5");
 		Stop;
 	}
@@ -1144,7 +1144,7 @@ Class TyrantHeavyRocket : RevenantTracer
 	}
 }
 
-Class TyrantStreamRocket : RevenantTracer
+Class PM_TyrantStreamRocket : RevenantTracer
 {
     Default
 	{
@@ -1177,7 +1177,7 @@ Class TyrantStreamRocket : RevenantTracer
 		TYM2 A 1 BRIGHT Light("AvatarFireball3")
 		{
 		  A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
-		  A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		  A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		  A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,80),size: 15.0,xoff: frandom(-2,-15),startalphaf: 0.8,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
 	      A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: frandom(50,80),xoff: -10,startalphaf: 0.6);
 		}
@@ -1189,7 +1189,7 @@ Class TyrantStreamRocket : RevenantTracer
         TYM2 A 1 BRIGHT Light("AvatarFireball3")
 		{
 		  A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
-		  A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		  A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		  A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,80),size: 15.0,xoff: frandom(-2,-15),startalphaf: 0.8,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
 	      A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: frandom(50,80),xoff: -10,startalphaf: 0.6);
 		}
@@ -1203,13 +1203,13 @@ Class TyrantStreamRocket : RevenantTracer
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
 		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
-		TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+		TNT1 AAAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
 		TNT1 A 15 BRIGHT Light("AvatarFireball5");
 		Stop;
 	}
 }
 
-Class TyrantSmallRocket : RevenantTracer
+Class PM_TyrantSmallRocket : RevenantTracer
 {
     Default
 	{
@@ -1231,79 +1231,79 @@ Class TyrantSmallRocket : RevenantTracer
 	Spawn:
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		TNT1 A 0 A_ChangeVelocity(0,random(-1,1),random(-1,1),CVF_RELATIVE);
 	SeekTime:
 		TYM3 AAAAAA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		A_SeekerMissile(5,6,SMF_PRECISE);
 		}
 	SeekDone:
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
         TNT1 A 0 A_JumpIfTracerCloser(330,"Noise");
         Loop;
@@ -1312,7 +1312,7 @@ Class TyrantSmallRocket : RevenantTracer
     Cont:
 		TYM3 AA 1 BRIGHT Light("AvatarFireball1") 
 		{
-		A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		A_SpawnItemEx("PM_TyrantMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
 		}
 		Loop;
 	Death:
@@ -1321,14 +1321,14 @@ Class TyrantSmallRocket : RevenantTracer
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
 		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
-		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
 		FSHT BBCCDDEE 1 BRIGHT Light("AvatarFireball1");
 		Stop;
 	}
 }
 
 
-Class TyrantMFireEffect : Actor
+Class PM_TyrantMFireEffect : Actor
 {
   Default
   {

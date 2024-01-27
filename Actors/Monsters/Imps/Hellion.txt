@@ -664,29 +664,6 @@ Class PM_HellionGeyserBall : PM_InfernalLavaBall
  }
 }
 
-Class MaliceHellionPuff : Actor
-{
-  Default
-  {
-    Radius 3;
-    Height 3;
-    RenderStyle "Add";
-    Alpha 0.67;
-    +NoGravity
-    +NoBlockMap
-    +DontSplash
-    +ForceXYBillboard
-  }
-
-  States
-  {
-  Spawn:
-    TNT1 A 3 Bright;
-    HLBL CDEFGHI 3 Bright;
-    Stop;
-  }
-}
-
 Class PM_HellionMendingBuffGiver : Inventory
 {
  Default

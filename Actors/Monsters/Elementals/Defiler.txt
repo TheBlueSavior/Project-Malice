@@ -646,13 +646,13 @@ Class PM_GagSoulAttack : DoomImpBall
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
 		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
-		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU G 4 Light("AvatarFireball4") A_Scream;
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU H 4 Light("AvatarFireball4") A_NoBlocking;
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
         Stop;
 	}
@@ -697,13 +697,13 @@ Class PM_ShootSoulAttack : DoomImpBall
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
 		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
-		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		TNT1 AAAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU G 4 Light("AvatarFireball4") A_Scream;
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU H 4 Light("AvatarFireball4") A_NoBlocking;
-		TNT1 AAAA 0 A_SpawnItemEx("FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",random(-10,10),random(-10,10),random(5,10));
 		BSOU IJK 4 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
       Stop;
 	}
