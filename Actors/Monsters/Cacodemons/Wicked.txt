@@ -1133,7 +1133,7 @@ Class PM_WickedChaserBall : Actor
 		startroll: random(-180,180)
 	    );
 		}
-		TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		TNT1 A 0 
 		{
 		A_SpawnParticleEx
@@ -1395,7 +1395,7 @@ Class PM_WickedCopyBall : PM_WretchedBall
 		startroll: random(-180,180)
 	    );
 		}
-		TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		TNT1 A 0 
 		{
 		A_SpawnParticleEx
@@ -1668,8 +1668,8 @@ Class PM_WickedCopyPBall : PM_PhaseCacoBall
 			startroll: random(-180,180)
 			);
 			}
-			TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
-			TNT1 AAAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+			TNT1 AAAA 0 A_SpawnProjectile("PM_GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+			TNT1 AAAA 0 A_SpawnProjectile("PM_GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 			TNT1 A 0
 			{
 			 A_SpawnParticleEx

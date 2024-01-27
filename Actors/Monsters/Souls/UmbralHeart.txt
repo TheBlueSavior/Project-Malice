@@ -180,10 +180,10 @@ Class PM_UmbralHeartShock : Actor
     loop;
   Death:
     TNT1 A 0 A_StopSound(CHAN_6);
-	TNT1 A 0 A_SpawnItemEx("RedShock",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("PM_RedShock",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("PM_RedLongFlare1",0,0,0);
 	TNT1 A 0 A_SpawnItemEx("PM_DepravedArcsMega",0,0,0);
-	TNT1 AAAAA 0 A_SpawnProjectile("RedShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+	TNT1 AAAAA 0 A_SpawnProjectile("PM_RedShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
     Stop;
   }
 }

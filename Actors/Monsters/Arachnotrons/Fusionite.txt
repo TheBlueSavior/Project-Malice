@@ -507,7 +507,7 @@ Class PM_ScatterFusionShot : Actor
 			TNT1 A 0 A_SetScale(2.5);
 			TNT1 A 0 A_SpawnItemEx("GFireBallExplode",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION);
 			TNT1 AAA 0 A_SpawnItemEx("PM_GreenFireballExpFlames",0,0,0,random(-4,4),random(-4,4),random(-4,4),0,SXF_NOCHECKPOSITION);
-			TNT1 AAA 0 A_SpawnProjectile("GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+			TNT1 AAA 0 A_SpawnProjectile("PM_GreenShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 			TNT1 A 0 A_SpawnItem("PM_GreenFusioniteFlare");
 			FS03 HIJ 8 Bright Light("GreenBall3");
 			Stop;

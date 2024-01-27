@@ -569,7 +569,7 @@ Class PM_WretchedBall : Actor
 		rollacc: 0
 	    );
 		}
-		TNT1 AAAA 0 A_SpawnProjectile("BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
+		TNT1 AAAA 0 A_SpawnProjectile("PM_BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 		TNT1 A 0 A_SpawnItemEx("PM_WretchedBallFlare",0,0,0);
 	    DKB1 CDE 3 Bright Light("WretchedBall2");
 		stop;
