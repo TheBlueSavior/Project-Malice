@@ -90,7 +90,6 @@ version "4.10.0"
 #include "Actors/Monsters/Spectres/Skulker.txt"
 
 //Souls
-#include "Actors/Monsters/Souls/Rictus.txt"
 #include "Actors/Monsters/Souls/BurntSoul.txt"
 #include "Actors/Monsters/Souls/BloodSkull.txt"
 #include "Actors/Monsters/Souls/Fleshspawn.txt"
