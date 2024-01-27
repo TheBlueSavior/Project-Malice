@@ -1694,7 +1694,7 @@ Class PM_WickedCopyPBall : PM_PhaseCacoBall
 	}
 }
 
-Class PM_WickedCopyPBallTrail : PhaseCacoBallTrail
+Class PM_WickedCopyPBallTrail : PM_PhaseCacoBallTrail
 {
   Default
   {

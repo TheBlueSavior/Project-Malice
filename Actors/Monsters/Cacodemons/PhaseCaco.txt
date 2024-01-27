@@ -380,7 +380,7 @@ Class PM_PhaseCacoBall : Actor
 			TNT1 AAAA 0 { A_SpawnParticleEx("8F00FF",TexMan.CheckForTexture("DTPRB0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 10,size: 195.0,xoff: -10,startalphaf: 0.9,fadestepf: 0.1,sizestep: 0,startroll: random(-180,180)); }
 			CAB4 AAA 1 Bright Light("PhaseCacBall")
 			{
-			A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 		Sound:
 			TNT1 A 0 A_StartSound("PhaseCaco/BallLoop",CHAN_5,CHANF_LOOPING,0.45);
@@ -390,7 +390,7 @@ Class PM_PhaseCacoBall : Actor
 			  PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 BBB 1 Bright Light("PhaseCacBall2")
 			{
@@ -398,14 +398,14 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 CCC 1 Bright Light("PhaseCacBall")
 			{
               PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 DDD 1 Bright Light("PhaseCacBall2")
 			{
@@ -413,14 +413,14 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 AAA 1 Bright Light("PhaseCacBall")
 			{
               PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 BBB 1 Bright Light("PhaseCacBall2")
 			{
@@ -428,14 +428,14 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 CCC 1 Bright Light("PhaseCacBall")
 			{
               PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 DDD 1 Bright Light("PhaseCacBall2")
 			{
@@ -443,14 +443,14 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 AAA 1 Bright Light("PhaseCacBall")
 			{
               PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 BBB 1 Bright Light("PhaseCacBall2")
 			{
@@ -458,14 +458,14 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(0,random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 CCC 1 Bright Light("PhaseCacBall")
 			{
               PM_PCacoBallParticles();
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			CAB4 DDD 1 Bright Light("PhaseCacBall2")
 			{
@@ -473,7 +473,7 @@ Class PM_PhaseCacoBall : Actor
 			  A_Weave(user_phspeed, user_pvspeed, user_phdist, user_pvdist);
 			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_ChangeVelocity(random(-1,1),random(-1,1),random(-1,1));
-			  A_SpawnItemEx("PhaseCacoBallTrail",0,0,0);
+			  A_SpawnItemEx("PM_PhaseCacoBallTrail",0,0,0);
 			}
 			TNT1 A 0
 			{
@@ -495,13 +495,13 @@ Class PM_PhaseCacoBall : Actor
 			}
 			TNT1 AAAA 0 A_SpawnProjectile("PM_BlueShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
 			TNT1 AAAA 0 A_SpawnProjectile("PM_RedShock",2,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
-			TNT1 A 0 A_SpawnItemEx("PhaseBallFlare",0,0,0);
+			TNT1 A 0 A_SpawnItemEx("PM_PhaseBallFlare",0,0,0);
 			DKB1 CDE 6 Bright Light("PhaseCacBall3");
 			Stop;
 	}
 }
 
-Class PhaseCacoBallTrail : Actor
+Class PM_PhaseCacoBallTrail : Actor
 {
 	Default
 	{
@@ -589,7 +589,7 @@ Class PhaseCacoBallTrail2 : Actor
 	}
 }
 
-Class PhaseBallFlare : Actor
+Class PM_PhaseBallFlare : Actor
 {
 	Default
 	{
