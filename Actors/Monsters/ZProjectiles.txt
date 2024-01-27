@@ -207,6 +207,32 @@ States
 	}
 }
 
+//Melee Attacks
+
+Class PM_FastMeleeHitbox : Actor //[NERU] primarily used for lunging monsters
+{
+  Default
+  {
+    Height 15;
+    Radius 15;
+    Speed 22;
+    DamageFunction 4;
+    +RIPPER
+    +THRUGHOST
+    +NODAMAGETHRUST
+    DeathSound "";
+    SeeSound "";
+    DamageType "Melee";
+    Projectile;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+    Stop;
+    }
+}
+
 //Elementals
 
 Class PM_GElemVenomBurst : CacodemonBall

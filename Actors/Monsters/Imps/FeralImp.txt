@@ -1,6 +1,7 @@
 //ALL CREDITS TO Major Cooke's Doom 4 for Doom FOR THE LEAP CODE!
 Class PM_FeralImp : PMWrathMonsterBase
 {
+
   int delay;
   int user_leapstrength;
   
@@ -9,12 +10,12 @@ Class PM_FeralImp : PMWrathMonsterBase
   //$Category "PM_Monsters/Imps"
   Obituary "%o burned to a crisp by a Feral Imp's fireballs.";
   HitObituary "%o was cut down by a Feral Imp.";
-  health 75;
-  radius 20;
-  height 56;
-  mass 120;
-  speed 11;
-  painchance 160;
+  Health 75;
+  Radius 20;
+  Height 56;
+  Mass 120;
+  Speed 11;
+  PainChance 160;
   Monster;
   +DONTHARMCLASS
   +DONTHARMSPECIES
@@ -24,19 +25,19 @@ Class PM_FeralImp : PMWrathMonsterBase
   Tag "Feral Imp";
   Species "Imp";
   //DropItem "RagePoint1"
-  seesound "FeralImp/Sight";
-  painsound "FeralImp/Pain";
-  deathsound "FeralImp/Death";
-  activesound "FeralImp/Active";
-  Bloodtype "PM_LavaBloodBase";
-  BloodColor "ff 50 00";
+  SeeSound "FeralImp/Sight";
+  PainSound "FeralImp/Pain";
+  DeathSound "FeralImp/Death";
+  ActiveSound "FeralImp/Active";
+  BloodType "PM_LavaBloodBase";
+  BloodColor "Orange";
   MeleeRange 155;
   +FLOORCLIP
   TeleFogSourceType "PM_SmallDemonicTeleportFog";
   TeleFogDestType "PM_WrathTeleportFog";
   }
   
-  states
+  States
   {
   Spawn:
     TNT1 A 0 NoDelay { pm_irecount = random(45,80); }
@@ -69,10 +70,10 @@ Class PM_FeralImp : PMWrathMonsterBase
 	{
 	A_Chase();
 	if(ire)
-	 {
-	  A_SetTics(2);
-	  A_Recoil(-0.75);
-	 }
+	  {
+	   A_SetTics(2);
+	   A_Recoil(-0.75);
+	  }
 	}
 	TNT1 A 0
 	{
@@ -85,8 +86,8 @@ Class PM_FeralImp : PMWrathMonsterBase
 	A_Chase();
 	if(ire)
 	 {
-	  A_SetTics(2);
-	  A_Recoil(-0.75);
+	   A_SetTics(2);
+	   A_Recoil(-0.75);
 	 }
 	}
 	TNT1 A 0 
@@ -155,12 +156,12 @@ Class PM_FeralImp : PMWrathMonsterBase
 	TNT1 A 0 A_Recoil(-9);
 	TNT1 A 0 A_StartSound("FeralImp/Swing");
 	1ROO FFF 1 A_FaceTarget();
-	1ROO G 8 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROO G 8 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
 	1ROO IIIII 1 A_FaceTarget();
 	TNT1 A 0 ThrustThingZ(0,14,0,1);
 	TNT1 A 0 A_Recoil(-9);
 	TNT1 A 0 A_StartSound("FeralImp/Swing");
-	1ROA H 8 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROA H 8 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
 	1ROO A 10;
 	TNT1 A 0 { pm_irecount -= random(5,8); }
 	Goto See;
@@ -172,10 +173,10 @@ Class PM_FeralImp : PMWrathMonsterBase
     TNT1 A 0 A_FaceTarget();
     TNT1 A 0 A_Recoil (-20);
 	TNT1 A 0 A_StartSound("FeralImp/Attack",CHAN_7);
-	1ROT EF 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROT EF 2 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
     1ROT F 6 A_FaceTarget();
-	1ROT G 1 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
-	1ROT GG 2 A_SpawnProjectile("FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROT G 1 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	1ROT GG 2 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
 	1ROT GHHH 2;
 	TNT1 A 0 { pm_irecount -= random(5,8); }
 	Goto See;
@@ -249,71 +250,71 @@ Class PM_FeralImp : PMWrathMonsterBase
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
     1ROO EEEEEEE 1 Light("Avatarfireball4") 
 	{
-	A_FaceTarget();
-	A_Spawnitemex("FeralFireEffect",2,random(18,24),30,0,0,2);
+	 A_FaceTarget();
+	 A_SpawnitemEx("PM_FeralFireEffect",2,random(18,24),30,0,0,2);
 	}
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
 	1ROO FF 3 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
-	A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
 	}
 	//TNT1 A 0 A_Recoil(-2)
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(10,12),33,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",10,random(10,12),33,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",15,random(10,12),33,0,0,2);
     1ROO G 8 Light("Avatarfireball4") 
 	{
-	A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
-	A_Spawnitemex("FeralFireEffect",15,random(10,12),33,0,0,2);
-	if(ire)
-	{
-	A_StartSound("FeralImp/Ireball",flags:CHANF_OVERLAP);
-    A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
+	  A_SpawnItemEx("PM_FeralFireEffect",15,random(10,12),33,0,0,2);
+	  A_SpawnItemEx("PM_FeralFireEffect",15,random(10,12),33,0,0,2);
+	 if(ire)
+	 {
+	  A_StartSound("FeralImp/Ireball",flags:CHANF_OVERLAP);
+      A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
+	 }
+	 else
+	  A_SpawnProjectile("PM_FeralImpBall",32,0,random(-4,4),CMF_OFFSETPITCH,frandom(-0.7,0.7));
+	  pm_irecount -= random(1,8);
 	}
-	else
-	A_SpawnProjectile("PM_FeralImpBall",32,0,random(-4,4),CMF_OFFSETPITCH,frandom(-0.7,0.7));
-	pm_irecount -= random(1,8);
-	}
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(12,14),32,0,0,2);
 	1ROO III 3 Light("Avatarfireball4") 
 	{
-	A_FaceTarget();
-	A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
+	 A_FaceTarget();
+	 A_SpawnItemEx("PM_FeralFireEffect",7,random(-12,-14),32,0,0,2);
 	}
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",7,random(-12,-14),32,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",10,random(-10,-12),33,0,0,2);
-	TNT1 A 0 A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(-12,-14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",7,random(-12,-14),32,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",10,random(-10,-12),33,0,0,2);
+	TNT1 A 0 A_SpawnItemEx("PM_FeralFireEffect",15,random(-10,-12),33,0,0,2);
     1ROA H 8 Light("Avatarfireball4") 
 	{
-	A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
-	A_Spawnitemex("FeralFireEffect",15,random(-10,-12),33,0,0,2);
-	if(ire)
-	{
-	A_StartSound("FeralImp/Ireball",11,flags:CHANF_OVERLAP);
-    A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
+	  A_SpawnItemEx("PM_FeralFireEffect",15,random(-10,-12),33,0,0,2);
+	  A_SpawnItemEx("PM_FeralFireEffect",15,random(-10,-12),33,0,0,2);
+	 if(ire)
+	 {
+	  A_StartSound("FeralImp/Ireball",11,flags:CHANF_OVERLAP);
+      A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
+	 }
+	 else
+	  A_SpawnProjectile("PM_FeralImpBall",32,0,random(-4,4),CMF_OFFSETPITCH,frandom(-0.7,0.7));
+	  pm_irecount -= random(1,8);
 	}
-	else
-	A_SpawnProjectile("PM_FeralImpBall",32,0,random(-4,4),CMF_OFFSETPITCH,frandom(-0.7,0.7));
-	pm_irecount -= random(1,8);
-	}
-  1ROO B 2 Light("Avatarfireball4") A_FaceTarget();
-    goto See;
+    1ROO B 2 Light("Avatarfireball4") A_FaceTarget();
+    Goto See;
   Roar:
 	1ROT AAAAA 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("FeralImp/Sight",CHAN_7);
 	1ROT BBCCCCCCCCCCCCCC 3 
 	{
-	A_FaceTarget();
-	A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
-	if(ire == true)
-	A_SetTics(2);
+	  A_FaceTarget();
+	  A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
+	 if(ire == true)
+	  A_SetTics(2);
 	}
 	1ROO AAA 3 A_FaceTarget();
 	Goto See;
@@ -322,12 +323,12 @@ Class PM_FeralImp : PMWrathMonsterBase
 	1ROT AAAAA 3 A_FaceTarget();
 	TNT1 A 0 
 	{ 
-    ire = true;
-	bNOINFIGHTING = true;
-	bNOPAIN = true;
-	bNOFEAR = true;
-	A_SpawnItemEx("PM_WrathIreActivate",0,0,20);
-	A_SpawnItemEx("PM_WrathIreEffect",0,0,20,flags:SXF_SETMASTER);
+     ire = true;
+	 bNOINFIGHTING = true;
+	 bNOPAIN = true;
+	 bNOFEAR = true;
+	 A_SpawnItemEx("PM_WrathIreActivate",0,0,20);
+	 A_SpawnItemEx("PM_WrathIreEffect",0,0,20,flags:SXF_SETMASTER);
 	}
 	TNT1 A 0 PM_IreStartSound();
 	TNT1 A 0 A_StartSound("FeralImp/Sight",CHAN_7,CHANF_DEFAULT,1,3);
@@ -338,11 +339,11 @@ Class PM_FeralImp : PMWrathMonsterBase
 	1ROT HH 5 A_FaceTarget();
 	1ROT CCCCC 5 Light("Avatarfireball4")
 	{
-	A_FaceTarget();
-	A_SpawnItemEx("CFireFlare",3,0,45);
-	A_SpawnItemEx("CFireFlare",3,0,45);
-	A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
-	A_SpawnProjectile("PM_FeralImpSpitFireball",45,0,random(-3,3),CMF_OFFSETPITCH,random(-3,3));
+	 A_FaceTarget();
+	 A_SpawnItemEx("CFireFlare",3,0,45);
+	 A_SpawnItemEx("CFireFlare",3,0,45);
+	 A_SpawnItemEx("OrangeEmbersFloat",3,0,45,random(1,3),random(-1,1),random(-1,1));
+	 A_SpawnProjectile("PM_FeralImpSpitFireball",45,0,random(-3,3),CMF_OFFSETPITCH,random(-3,3));
 	}
 	1ROS A 5 A_FaceTarget();
 	TNT1 A 0;
@@ -350,14 +351,14 @@ Class PM_FeralImp : PMWrathMonsterBase
   Pain:
     1ROO H 2;
     1ROO H 2 A_Pain;
-	  TNT1 A 0 { pm_irecount -= random(13,17); }
-    goto See;
+	TNT1 A 0 { pm_irecount -= random(13,17); }
+    Goto See;
   Death:
    TNT1 A 0
     {
 	   A_StopSound(19);
 	   A_StopSound(20);
-     A_RemoveChildren(1,RMVF_EVERYTHING);
+       A_RemoveChildren(1,RMVF_EVERYTHING);
     }
     2ROH K 1;
     2ROH K 8 PM_Scream();
@@ -366,29 +367,29 @@ Class PM_FeralImp : PMWrathMonsterBase
     2ROH N 6 A_NoBlocking;
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
     2ROH O -1;
-    stop;
+    Stop;
   XDeath:
 	TNT1 A 0
     {
 	   A_StopSound(19);
 	   A_StopSound(20);
-	  }
-	  TNT1 A 0 A_StopSound(555);
+	}
+	TNT1 A 0 A_StopSound(555);
     TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
     2RO4 A 5 PM_Gib();
     2RO4 B 5 A_XScream;
     2RO4 C 5;
     2RO4 D 5 A_NoBlocking;
     2RO4 E -1;
-    stop;
+    Stop;
   Raise:
     D3IM ML 8;
     D3IM KJI 6;
-    goto Look;
+    Goto Look;
 	}
 }
 
-Class FeralFireEffect : Actor
+Class PM_FeralFireEffect : Actor
 {
   Default
   {
@@ -413,7 +414,7 @@ Class FeralFireEffect : Actor
 	}
 }
 
-Class FeralBallTrail : Actor
+/*Class FeralBallTrail : Actor
 {
   Default
   {
@@ -443,7 +444,7 @@ Spawn:
 	TNT1 A 0;
 	Stop;
     }
-}
+}*/
 
 Class PM_FeralImpSpitFireball : PM_CharredBall
 {
@@ -485,7 +486,7 @@ Class PM_FeralImpBall : DoomImpBall
 	DamageFunction 14;
 	+NOGRAVITY
 	-LOWGRAVITY
-	seesound "FeralImp/Ball";
+	SeeSound "FeralImp/Ball";
 	Decal "PM_OrangeFireScorch";
 	FastSpeed 23;
 	DamageType "Fire";
@@ -493,78 +494,32 @@ Class PM_FeralImpBall : DoomImpBall
 	Scale 0.85;
 	Translation "0:255=%[0,0,0]:[2.0,1.2,0.3]";
     }
-	states
-  	{
-  Spawn:
-    NDEB AABBCC 1 bright Light("AvatarFireball3")
-	{
-	A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
-	A_SpawnParticleEx
-	(
-		"",
-		TexMan.CheckForTexture("GNSML0"),
-		style: STYLE_None,
-		flags: SPF_ROLL|SPF_RELATIVE,
-		lifetime: 95,
-		size: 30.0,
-		xoff: -10,
-		startalphaf: 0.4,
-		fadestepf: -1,
-		startroll: random(-180,180)
-	);
-	A_SpawnParticleEx
-	    (
-		"",
-		TexMan.CheckForTexture("SPKOA0"),
-		style: STYLE_Add,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(1,70),
-		size: frandom(0.2,10),
-		xoff: random(-10,5),
-		yoff: random(-5,5),
-		zoff: random(-5,5),
-		velx: frandom(-0.6,0.6),
-		vely: frandom(-0.6,0.6),
-		velz: frandom(-0.6,0.6),
-		startalphaf: 1.0,
-		fadestepf: -0.5,
-		sizestep: -0.2,
-		startroll: random(-180,180)
-		);
-	A_SpawnParticleEx
-	   (
-		"",
-		TexMan.CheckForTexture("LENRA0"),
-		style: STYLE_Add,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 1,
-		size: 80.0,
-		angle: 0,
-		xoff: -5,
-		startalphaf: 0.6
-	    );
-	}
-	loop;
-  Death:
-	TNT1 AAAAAAAAAAAAAAA 0
+  
+    override void PostBeginPlay()
     {
-    	A_SpawnParticleEx
-	(
-		"",
-		TexMan.CheckForTexture("SPKOA0"),
-		style: STYLE_Add,
-		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: random(5,20),
-		size: random(15,20),
-		xoff: -7,
-		velx: frandom(-5,5),
-		vely: frandom(-5,5),
-		velz: frandom(-5,5),
-		startalphaf: 0.8,
-		fadestepf: -1,
-		startroll: random(-180,180)
-	);
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+     tex[3] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+    }
+  
+    TextureID tex[5];
+  
+	States
+  	{
+    Spawn:
+     NDEB AABBCC 1 bright Light("AvatarFireball3")
+	{
+	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
+	  A_SpawnParticleEx("",tex[4],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
+	Loop;
+  Death:
+	TNT1 AAAAAAAAAAAAAAA 0 { A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(5,20),size: random(15,20),xoff: -7,velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.8,fadestepf: -1,startroll: random(-180,180)); }
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
     NDEB D 2 bright Light("AvatarFireball4");
     FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright;
@@ -582,206 +537,55 @@ Class PM_FeralImpIreball : PM_FeralImpBall
    SeeSound "";
   }
   
-  override void PostBeginPlay()
-  {
-   Super.PostBeginPlay();
-   tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
-   tex[1] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
-   tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
-  }
-  
-  TextureID tex[3];
-  
   States
   {
   Spawn:
-        TNT1 A 0;
-		TNT1 A 0
-		{
-		A_SpawnParticleEx
-			(
-			"#d2d2d2",
-			tex[0],
-			style: STYLE_Normal,
-			flags: SPF_RELATIVE|SPF_ROLL,
-			lifetime: random(10,250),
-			size: frandom(10,50),
-			angle: 0,
-			xoff: -25,
-			yoff: 0,
-			zoff: 0,
-			velx: frandom(0,2),
-			vely: frandom(-0.4,0.4),
-			velz: frandom(-0.4,0.7),
-			accelx: 0,
-			accely: 0,
-			accelz: 0,
-			startalphaf: frandom(0.1,0.5),
-			fadestepf: -0.5,
-			sizestep: frandom(0.0,1.4),
-			startroll: random(-180,180),
-			rollvel: frandom(-1,1)
-			);
-			A_SpawnParticleEx
-			(
-			"",
-			tex[1],
-			style: STYLE_Add,
-			flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
-			lifetime: random(1,4),
-			size: frandom(6,180),
-			xoff: -22,
-			startalphaf: 0.9,
-			fadestepf: 0,
-			sizestep: frandom(0.0,3),
-			startroll: random(-180,180)
-			);
-         }
+    TNT1 A 0;
+    TNT1 A 0
+	{
+	  A_SpawnParticleEx("#d2d2d2",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.1,0.5),fadestepf: -0.5,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(6,180),xoff: -22,startalphaf: 0.9,sizestep: frandom(0.0,3),startroll: random(-180,180));
+    }
     TNT1 AAAAA 0
 	{
-	 	A_SpawnParticleEx
-		(
-		 "",
-		 tex[2],
-		 style: STYLE_Add,
-		 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		 lifetime: random(1,40),
-		 size: frandom(0.1,7),
-		 xoff: -22,
-		 velx: frandom(1,5),
-		 vely: frandom(-0.5,0.5),
-		 velz: frandom(-0.5,0.5),
-		 accelz: frandom(-0.0,-0.3),
-		 startalphaf: 1.0,
-		 fadestepf: -0.5,
-		 sizestep: -0.2,
-		 startroll: random(-180,180)
-		);
-		A_SpawnParticleEx
-		(
-		 "",
-		 tex[2],
-		 style: STYLE_Add,
-		 flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		 lifetime: random(1,40),
-		 size: frandom(0.1,7),
-		 xoff: -22,
-		 velx: frandom(1,4),
-		 vely: frandom(-0.5,0.5),
-		 velz: frandom(-0.5,0.5),
-		 accelz: frandom(-0.0,-0.2),
-		 startalphaf: 1.0,
-		 fadestepf: -0.5,
-		 sizestep: -0.2,
-		 startroll: random(-180,180)
-		 );
-	 }
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.1,7),xoff: -22,velx: frandom(1,5),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),accelz: frandom(-0.0,-0.3),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.1,7),xoff: -22,velx: frandom(1,4),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),accelz: frandom(-0.0,-0.2),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	}
   Go:
     NDEB AABBCC 1 bright Light("AvatarFireball3")
 	{
-	A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
-	A_SpawnParticleEx
-	(
-		"ffb521",
-		TexMan.CheckForTexture("GNSML0"),
-		style: STYLE_Add,
-		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 45,
-		size: 55.0,
-		xoff: -10,
-		startalphaf: 0.6,
-		fadestepf: -1,
-		startroll: random(-180,180)
-	);
-	A_SpawnParticleEx
-	    (
-		"",
-		TexMan.CheckForTexture("SPKOA0"),
-		style: STYLE_Add,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(1,40),
-		size: frandom(0.2,10),
-		xoff: random(-10,5),
-		yoff: random(-5,5),
-		zoff: random(-5,5),
-		velx: frandom(-0.6,0.6),
-		vely: frandom(-0.6,0.6),
-		velz: frandom(-0.6,0.6),
-		startalphaf: 1.0,
-		fadestepf: -0.5,
-		sizestep: -0.2,
-		startroll: random(-180,180)
-		);
-	A_SpawnParticleEx
-	   (
-		"",
-		TexMan.CheckForTexture("LENRA0"),
-		style: STYLE_Add,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 1,
-		size: 80.0,
-		angle: 0,
-		xoff: -5,
-		startalphaf: 0.6
-	    );
+	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
+	  A_SpawnParticleEx("ffb521",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45,size: 55.0,xoff: -10,startalphaf: 0.6,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
-	loop;
+	Loop;
   Death:
-	TNT1 AAAAAAAAAAAAAAA 0
-    {
-    	A_SpawnParticleEx
-	(
-		"",
-		TexMan.CheckForTexture("SPKOA0"),
-		style: STYLE_Add,
-		flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: random(5,20),
-		size: random(15,20),
-		xoff: -7,
-		velx: frandom(-5,5),
-		vely: frandom(-5,5),
-		velz: frandom(-5,5),
-		startalphaf: 0.8,
-		fadestepf: -1,
-		startroll: random(-180,180)
-	);
-	}
 	TNT1 A 0
 	{
-		A_SpawnParticleEx
-	   (
-		"",
-		TexMan.CheckForTexture("LENRA0"),
-		style: STYLE_Add,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: 30,
-		size: 40.0,
-		angle: 0,
-		xoff: -5,
-		startalphaf: 0.6,
-		sizestep: 3,
-		startroll: random(-180,180)
-	    );
+	 for(int i=random(10,15);i>0;i--)
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(5,20),size: random(15,20),xoff: -7,velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.8,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 30,size: 40.0,xoff: -5,startalphaf: 0.6,sizestep: 3,startroll: random(-180,180));
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
     NDEB D 2 bright Light("AvatarFireball4");
     FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright;
-    stop;
+    Stop;
   }
 }
 
-Class FeralLunge : Actor
+Class PM_FeralLunge : Actor
 {
   Default
   {
-  Height 15;
-  Radius 24;
-  Speed 15;
-  DamageFunction (10);
-  DamageType "Melee";
-  DeathSound "";
-  SeeSound "";
-  PROJECTILE;
+   Height 15;
+   Radius 24;
+   Speed 15;
+   DamageFunction (10);
+   DamageType "Melee";
+   DeathSound "";
+   SeeSound "";
+   Projectile;
   }
 States
 {

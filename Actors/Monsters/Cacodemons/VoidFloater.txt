@@ -101,109 +101,16 @@ Class PM_VoidFloater : PMVoidMonsterBase
 	void FloaterEffects()
 	{
 		A_SetScale(frandom(.94,1.06),frandom(.96,1.04));
-		if ((level.maptime % 3) == 0)
-		{
-		A_SpawnParticleEx
-		(
-		"000000",
-		tex[0],
-		style: STYLE_None,
-		flags: SPF_ROLL|SPF_RELATIVE,
-		lifetime: random(50,160),
-		size: frandom(30,120),
-		xoff: frandom(-20,20),
-		yoff: frandom(-20,20),
-		zoff: frandom(30,60),
-		velx: frandom(-1,1),
-		vely: frandom(-1,1),
-		velz: frandom(-3,0),
-		startalphaf: frandom(0.1,0.85),
-		fadestepf: -1,
-		sizestep: frandom(0.0,0.8),
-		startroll: random(-180,180),
-		rollvel: frandom(-0.3,0.3)
-		);
-		A_SpawnParticleEx
-	    (
-		"000000",
-		tex[1],
-		style: STYLE_Normal,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(200,500),
-		size: frandom(0.8,30),
-		xoff: random(-2000,2000),
-		yoff: random(-2000,2000),
-		zoff: random(-300,300),
-		velx: frandom(-1,1),
-		vely: frandom(-1,1),
-		velz: frandom(-1,1),
-		accelx: frandom(-0.1,0.1),
-		accely: frandom(-0.1,0.1),
-		accelz: frandom(-0.1,0.1),
-		startalphaf: 1.0,
-		fadestepf: 0,
-		sizestep: -0.2,
-		startroll: random(-180,180)
-		);
-		A_SpawnParticleEx
-	    (
-		"000000",
-		tex[1],
-		style: STYLE_Normal,
-		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-		lifetime: random(200,500),
-		size: frandom(0.8,30),
-		xoff: random(-2000,2000),
-		yoff: random(-2000,2000),
-		zoff: random(-300,300),
-		velx: frandom(-1,1),
-		vely: frandom(-1,1),
-		velz: frandom(-1,1),
-		accelx: frandom(-0.1,0.1),
-		accely: frandom(-0.1,0.1),
-		accelz: frandom(-0.1,0.1),
-		startalphaf: 1.0,
-		fadestepf: 0,
-		sizestep: -0.2,
-		startroll: random(-180,180)
-		);
-		}
-		if ((level.maptime % 10) == 0)
-		{
-		A_SpawnParticleEx
-		(
-		"000000",
-		TexMan.CheckForTexture("PURLA0"),
-		style: STYLE_Normal,
-		flags: SPF_ROLL|SPF_RELATIVE,
-		lifetime: random(1,15),
-		size: frandom(1,300),
-		xoff: frandom(-20,20),
-		yoff: frandom(-20,20),
-		zoff: frandom(30,60),
-		velx: random(-1,1),
-		vely: random(-1,1),
-		velz: random(-1,1),
-		startalphaf: frandom(0.8,1),
-		fadestepf: -1,
-		sizestep: frandom(-5,0),
-		startroll: random(-180,180),
-		rollvel: frandom(-2,2)
-		);
-		A_SpawnParticleEx
-		(   
-		0x000000,
-		TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-		style: STYLE_Normal,
-		flags: SPF_RELATIVE,
-		lifetime: 3,
-		size: frandom(20,110),
-		xoff: frandom(-40,40),
-		yoff: frandom(-40,40),
-		zoff: frandom(-20,70),
-		fadestepf: 0,
-		sizestep: 0
-		);
+		 if ((level.maptime % 3) == 0)
+		 {
+		    A_SpawnParticleEx("000000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(50,160),size: frandom(30,120),xoff: frandom(-20,20),yoff: frandom(-20,20),zoff: frandom(30,60),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-3,0),startalphaf: frandom(0.1,0.85),fadestepf: -1,sizestep: frandom(0.0,0.8),startroll: random(-180,180),rollvel: frandom(-0.3,0.3));
+		    A_SpawnParticleEx("000000",tex[1],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(200,500),size: frandom(0.8,30),xoff: random(-2000,2000),yoff: random(-2000,2000),zoff: random(-300,300),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),accelx: frandom(-0.1,0.1),accely: frandom(-0.1,0.1),accelz: frandom(-0.1,0.1),startalphaf: 1.0,fadestepf: 0,sizestep: -0.2,startroll: random(-180,180));
+		    A_SpawnParticleEx("000000",tex[1],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(200,500),size: frandom(0.8,30),xoff: random(-2000,2000),yoff: random(-2000,2000),zoff: random(-300,300),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),accelx: frandom(-0.1,0.1),accely: frandom(-0.1,0.1),accelz: frandom(-0.1,0.1),startalphaf: 1.0,fadestepf: 0,sizestep: -0.2,startroll: random(-180,180));
+		 }
+		 if ((level.maptime % 10) == 0)
+		 {
+		    A_SpawnParticleEx("000000",TexMan.CheckForTexture("PURLA0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,15),size: frandom(1,300),xoff: frandom(-20,20),yoff: frandom(-20,20),zoff: frandom(30,60),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(-5,0),startroll: random(-180,180),rollvel: frandom(-2,2));
+		    A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,110),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-20,70),fadestepf: 0,sizestep: 0);
 		}
 	}
 	
@@ -339,7 +246,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		VIFL ABC 4 Light("PM_HorrorBlackflash")
 		{
 			A_Recoil(-1);
-			A_SpawnProjectile("CBruteJump", 32, flags: CMF_AIMDIRECTION);
+			A_SpawnProjectile("PM_FastMeleeHitbox", 32, flags: CMF_AIMDIRECTION);
 			FloaterEffects();
 			A_SpawnItemEx("PM_ControllerChargeMist",random(10,10),random(-20,20),random(0,45),0,0,0,0,0);
 			A_FaceTarget();
@@ -349,30 +256,8 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			FloaterEffects();
 			A_FaceTarget();
 			A_Recoil(-2.35);
-			
-			A_SpawnParticleEx
-			(   
-			 "000000",
-			 TexMan.CheckForTexture("GNSMK0"),
-			 style: STYLE_Normal,
-			 flags: SPF_ROLL|SPF_RELATIVE,
-			 lifetime: 50,
-			 size: frandom(152,195),
-			 xoff: frandom(-30,30),
-			 yoff: frandom(-30,30),
-			 zoff: frandom(0,45),
-			 velx: frandom(-1.4,1.4),
-			 vely: frandom(-1.4,1.4),
-			 velz: frandom(-1.4,1.4),
-			 startalphaf: frandom(0.3,0.85),
-			 fadestepf: -0.5,
-			 sizestep: frandom(3,6.4),
-			 startroll: random(-180,180),
-			 rollvel: 0,
-			 rollacc: 0
-			);
-		
-			A_SpawnProjectile("CBruteJump", 32, flags: CMF_AIMDIRECTION);
+			A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 50,size: frandom(152,195),xoff: frandom(-30,30),yoff: frandom(-30,30),zoff: frandom(0,45),velx: frandom(-1.4,1.4),vely: frandom(-1.4,1.4),velz: frandom(-1.4,1.4),startalphaf: frandom(0.3,0.85),fadestepf: -0.5,sizestep: frandom(3,6.4),startroll:random(-180,180));
+			A_SpawnProjectile("PM_FastMeleeHitbox", 32, flags: CMF_AIMDIRECTION);
 		}
 		TNT1 A 0 A_Stop();
 		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
@@ -394,38 +279,12 @@ Class PM_VoidFloater : PMVoidMonsterBase
 				A_StartSound("Broken/TP", CHAN_BODY);
 				for (int i = random(6, 13); i > 0; i--)
 				{
-					A_SpawnParticleEx
-					(   
-					 0x000000,
-					 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-					 style: STYLE_Normal,
-					 flags: SPF_RELATIVE,
-					 lifetime: 3,
-					 size: frandom(20,70),
-					 xoff: frandom(-40,40),
-					 yoff: frandom(-40,40),
-					 zoff: frandom(-40,40),
-					 fadestepf: 0,
-					 sizestep: 0
-					);
+				  A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,70),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-40,40),fadestepf: 0,sizestep: 0);
 				}
 				for (int i = random(10, 1000); i > 0; i--) A_Chase(null, null, CHF_NOPLAYACTIVE);
 				for (int i = random(6, 13); i > 0; i--)
 				{
-					A_SpawnParticleEx
-					(   
-					 0x000000,
-					 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-					 style: STYLE_Normal,
-					 flags: SPF_RELATIVE,
-					 lifetime: 3,
-					 size: frandom(20,70),
-					 xoff: frandom(-40,40),
-					 yoff: frandom(-40,40),
-					 zoff: frandom(-40,40),
-					 fadestepf: 0,
-					 sizestep: 0
-					);
+				  A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,70),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-40,40),fadestepf: 0,sizestep: 0);
 				}
 			}
 		}
@@ -501,20 +360,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 			A_FaceTarget();
 			for (int i = random(6, 1); i > 0; i--)
 			{
-				A_SpawnParticleEx
-				(   
-				 0x000000,
-				 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-				 style: STYLE_Normal,
-				 flags: SPF_RELATIVE,
-				 lifetime: 3,
-				 size: frandom(20,70),
-				 xoff: frandom(-40,40),
-				 yoff: frandom(-40,40),
-				 zoff: frandom(-40,40),
-				 fadestepf: 0,
-				 sizestep: 0
-				);
+				A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,70),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-40,40),fadestepf: 0,sizestep: 0);
 			}
 		}
 		VIFL DDDDDDDDDDD random(1, 10) Light("PM_HorrorBlackflash")
@@ -679,37 +525,8 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		CA22 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Wretchball2")
 		{
 			A_FaceTarget();
-			A_SpawnParticleEx
-			(
-			"",
-			TexMan.CheckForTexture("DTPRB0"),
-			style: STYLE_Add,
-			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-			lifetime: 10,
-			size: random(70,130),
-			xoff: 20,
-			zoff: 18,
-			startalphaf: 0.3,
-			fadestepf: 0.1,
-			sizestep: 0,
-			startroll: random(-180,180)
-			);
-			A_SpawnParticleEx
-			(
-			"",
-			TexMan.CheckForTexture("BLULA0"),
-			style: STYLE_Add,
-			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-			lifetime: random(2,10),
-			size: random(1,100),
-			xoff: 20,
-			zoff: 18,
-			velx: random(-3,3),
-			vely: random(-3,3),
-			velz: random(-3,3),
-			startalphaf: frandom(0,1),
-			startroll: random(-180,180)
-			);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRB0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 10,size: random(70,130),xoff: 20,zoff: 18,startalphaf: 0.3,fadestepf: 0.1,sizestep: 0,startroll: random(-180,180));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("BLULA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(2,10),size: random(1,100),xoff: 20,zoff: 18,velx: random(-3,3),vely: random(-3,3),velz: random(-3,3),startalphaf: frandom(0,1),startroll: random(-180,180));
 		}
 		C1C2 ABC 2 A_FaceTarget();
 		C1C2 DDDDD 5 Light("Wretchball2")
@@ -768,48 +585,9 @@ Class PM_FloaterBall : CacodemonBall
 	{
 		for (int i = random(1, 3); i > 0; i--)
 		{
-			A_SpawnParticleEx
-			(   
-			 0x000000,
-			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-			 style: STYLE_Normal,
-			 flags: SPF_RELATIVE,
-			 lifetime: 10,
-			 size: frandom(1,30),
-			 xoff: frandom(-10,10),
-			 yoff: frandom(-10,10),
-			 zoff: frandom(-10,10),
-			 fadestepf: 0,
-			 sizestep: 0
-			);
-			A_SpawnParticleEx
-			(   
-			 0x000000,
-			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-			 style: STYLE_Normal,
-			 flags: SPF_RELATIVE,
-			 lifetime: 10,
-			 size: frandom(1,30),
-			 xoff: frandom(-10,10),
-			 yoff: frandom(-10,10),
-			 zoff: frandom(-10,10),
-			 fadestepf: 0,
-			 sizestep: 0
-			);
-			A_SpawnParticleEx
-			(   
-			 0x000000,
-			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-			 style: STYLE_Normal,
-			 flags: SPF_RELATIVE,
-			 lifetime: 10,
-			 size: frandom(1,10),
-			 xoff: frandom(-10,10),
-			 yoff: frandom(-10,10),
-			 zoff: frandom(-10,10),
-			 fadestepf: 0,
-			 sizestep: 0
-			);
+			A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 10,size: frandom(1,30),xoff: frandom(-10,10),yoff: frandom(-10,10),zoff: frandom(-10,10),fadestepf: 0,sizestep: 0);
+			A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 10,size: frandom(1,30),xoff: frandom(-10,10),yoff: frandom(-10,10),zoff: frandom(-10,10),fadestepf: 0,sizestep: 0);
+			A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 10,size: frandom(1,10),xoff: frandom(-10,10),yoff: frandom(-10,10),zoff: frandom(-10,10),fadestepf: 0,sizestep: 0);
 		}
 		
 		if (!random(0, 2))
@@ -831,23 +609,10 @@ Class PM_FloaterBall : CacodemonBall
 	{
 		for (int i = random(6, 13); i > 0; i--)
 		{
-			A_SpawnParticleEx
-			(   
-			 0x000000,
-			 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-			 style: STYLE_Normal,
-			 flags: SPF_RELATIVE,
-			 lifetime: 3,
-			 size: frandom(20,70),
-			 xoff: frandom(-40,40),
-			 yoff: frandom(-40,40),
-			 zoff: frandom(-40,40),
-			 fadestepf: 0,
-			 sizestep: 0
-			);
+			A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,70),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-40,40),fadestepf: 0,sizestep: 0);
 		}
 	}
-    stop;
+    Stop;
   }
 }
 
@@ -869,31 +634,14 @@ Class PM_FloaterLaser : FastProjectile
 	
 	for (int i = random(6, 13); i > 0; i--)
 	{
-		A_SpawnParticleEx
-		(   
-		 0x000000,
-		 TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),
-		 style: STYLE_Normal,
-		 flags: SPF_RELATIVE,
-		 lifetime: 3,
-		 size: frandom(20,70),
-		 xoff: frandom(-40,40),
-		 yoff: frandom(-40,40),
-		 zoff: frandom(-40,40),
-		 fadestepf: 0,
-		 sizestep: 0
-		);
+		A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,70),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-40,40),fadestepf: 0,sizestep: 0);
 	}
   }
   
   States
   {
   Spawn:
-	TNT1 A 1
-	{
-		if (!random(0, 1))
-			A_SpawnProjectile("PM_ControllerHomingSoul",0,0,random(0, 360),CMF_OFFSETPITCH,random(-90, 90));
-	}
+	TNT1 A 1;
 	Loop;
   Death:
 	TNT1 A 0;

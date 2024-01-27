@@ -486,7 +486,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
   JumpLoop:
 	0DEM AAAACBCBCCBBCABABCABBCBACBACCBABACBACBACCBABACBCBACBABCAACCCBBABCBCABCBBCAACCABAAAAAAAAAA 1 Light("PM_HorrorBlackflash")
 	{
-	A_CustomMissile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
+	A_CustomMissile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
 	A_FaceTarget(4,2,0,0);
 	A_Quake(4,8,0,500,0);
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);

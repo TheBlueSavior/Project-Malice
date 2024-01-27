@@ -167,7 +167,7 @@ Class PM_Skulker : PMVoidMonsterBase
 	SKU1 G 3 Light("PM_SkulkerRed")
 		{
 		A_FaceTarget();
-		A_SpawnProjectile("CBruteJump",18,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
 		A_SpawnItemEx("PM_SkulkerTrail",flags:SXF_TRANSFERSPRITEFRAME);
 		}
 	SKU1 FF 1 Light("PM_SkulkerRed");
