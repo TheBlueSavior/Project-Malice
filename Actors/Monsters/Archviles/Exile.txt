@@ -1092,6 +1092,7 @@ Class PM_ExileOrb : DoomImpBall
 	
 	override void PostBeginPlay()
 	{
+	 Super.PostBeginPlay();
 	 tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
 	 tex[1] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
 	}
@@ -1119,40 +1120,15 @@ Class PM_ExileOrb : DoomImpBall
 			vel.z = clamp(vel.z, -17, 17);
 			
 			A_SpawnItemEx("PM_CadaverFireGlobs");
-			
-			A_SpawnParticleEx
-		    (
-				"",
-				tex[0],
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-				lifetime: 1,
-				size: frandom(10.0,30.0),
-				angle: 0,
-				startalphaf: frandom(0.8,1),
-				startroll: random(-180,180)
-			);
-			
-			A_SpawnParticleEx
-			(
-				"",
-				tex[1],
-				style: STYLE_None,
-				flags: SPF_ROLL|SPF_RELATIVE,
-				lifetime: random(60,100),
-				size: 20.0,
-				startalphaf: frandom(0.3,0.55),
-				fadestepf: -1,
-				sizestep: frandom(0.0,0.8),
-				startroll: random(-180,180)
-			);
+			A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 1,size: frandom(10.0,30.0),startalphaf: frandom(0.8,1),startroll: random(-180,180));
+			A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(60,100),size: 20.0,startalphaf: frandom(0.3,0.55),fadestepf: -1,sizestep: frandom(0.0,0.8),startroll: random(-180,180));
 		}
 		Loop;
 	Death:
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0
 		{
-			for (int i = 360; i > 0; i -= random(30, 60)) A_SpawnItemEx("OFireBallExplode", xvel: frandom(-2, 2), yvel: frandom(-2, 2), zvel: frandom(-0.75, 0.75));
+			for (int i = 360; i > 0; i -= random(30, 60)) A_SpawnItemEx("PM_OFireBallExplode", xvel: frandom(-2, 2), yvel: frandom(-2, 2), zvel: frandom(-0.75, 0.75));
 		}
 		TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
 		AFX5 D 2 bright Light("AvatarFireball4");

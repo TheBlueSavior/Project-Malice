@@ -531,8 +531,8 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE K 7 Light("TyrantMExp");
 		DIRE L 0 A_StartSound("Director/Fall", 55);
 		DIRE LM 7 Light("TyrantMExp");
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,random(-10,10));
-		DIRE N 3 Light("AvatarFireball4") A_SpawnItemEx("OrangeEmbersSpawn",0,0,30);
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode",random(-10,10),0,random(-10,10));
+		DIRE N 3 Light("AvatarFireball4") A_SpawnItemEx("PM_OrangeEmbersSpawn",0,0,30);
 		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",frandom(-40, 40),frandom(-40, 40),50,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
 		TNT1 A 0
 		{
@@ -541,8 +541,8 @@ Class PM_Director : PMUnaffMonsterBase
 			A_Quake(6, 15, 0, 1000);
 			A_Quake(3, 35, 0, 2000);
 		}
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,25);
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode",random(-10,10),0,30);
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn",0,0,25);
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode",random(-10,10),0,30);
 		TNT1 AAAAA 0 A_SpawnItemEx("PM_ArachnotronGenericExplosionFlames",0,0,35,random(-7,7),random(-7,7),random(0,7));
 		TNT1 A 0 A_NoBlocking();
 		TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
@@ -695,13 +695,8 @@ Class PM_DirectorMissile : TyrantStreamRocket
 	 SetStateLabel("Go");
      A_SeekerMissile(1,5,SMF_PRECISE|SMF_CURSPEED);
 	 //A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-	 A_SpawnParticleEx
-	 ( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,
-	 lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,
-	 fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
-	 A_SpawnParticleEx
-	 ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-     lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
+	 A_SpawnParticleEx( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
+	 A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
 	 timer++;
    }
    Wait;
@@ -709,18 +704,13 @@ Class PM_DirectorMissile : TyrantStreamRocket
    TYM3 A 1 Bright
    {
 	 //A_SpawnItemEx("CadMFireEffect",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
-	 A_SpawnParticleEx
-	 ( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,
-	 lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,
-	 fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
-	 A_SpawnParticleEx
-	 ( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-     lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
+	 A_SpawnParticleEx( "", tex[1], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,45), size: 10.0, xoff: frandom(-2,-15), startalphaf: 0.8,fadestepf: -1, sizestep: 0.3, startroll: random(-180,180), rollvel: frandom(-0.5,0.5) );
+	 A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2, size: frandom(20,80), xoff: -10, startalphaf: 0.6 );
    }
    Wait;
   Death:
     TNT1 A 0 Radius_Quake (2, 54, 0, 10, 0);
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 	TNT1 AAAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),2,random(0,360));
 	TNT1 A 15 BRIGHT Light("AvatarFireball5");
 	Stop;

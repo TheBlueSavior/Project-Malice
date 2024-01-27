@@ -116,7 +116,6 @@ Class RictusBall : Actor
     DRFX ABCDEF 1 bright A_SpawnItemEx("MiniRictusFire", random(1,-1),random(1,-1),random(1,-1), 2,0,random(1,-1), random(90,270), SXF_NOCHECKPOSITION | SXF_CLIENTSIDE, 0);
     loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
     DRFX G 4 bright A_Explode(5,16, XF_HURTSOURCE);
     DRFX GGGGG 0 bright A_SpawnItemEx("MiniRictusFire", random(1,-1),random(1,-1),random(1,-1), 6,0,random(1,-1), random(0,360), SXF_CLIENTSIDE, 0);
     DRFX HIJKL 4 bright;

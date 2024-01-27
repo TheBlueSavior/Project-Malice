@@ -286,7 +286,7 @@ Class PM_FallenSGunnerSmokeGrenade : Rocket
   Spawn:
 	GRNP A 1 
     {
-     A_SpawnItemEx("DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
+     A_SpawnItemEx("PM_DevilBallSmoke",random(-1,1),random(-1,1),0,0,0,0,0,128,50);
     }
 	Loop;
   Death:

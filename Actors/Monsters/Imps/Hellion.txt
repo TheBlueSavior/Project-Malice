@@ -523,8 +523,8 @@ Class PM_HellionHoming : CacodemonBall
     Loop;
   Death:
     TNT1 A 0;
-    TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
-	TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+    TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
     TNT1 AAAAA 2 Light("HellionballA") Bright;
     Stop;
   }

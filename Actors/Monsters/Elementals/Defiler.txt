@@ -80,8 +80,8 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI AA 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DDEE 4 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget();
@@ -132,7 +132,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
 		DEFI F 0 A_StartSound("Defiler/Fire");
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8));
 		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8));
 		DEFI F 5 Light("AvatarFireball4") A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8));
@@ -142,8 +142,8 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI AA 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget();
@@ -156,8 +156,8 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI AA 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 6 Light("AvatarFireball4")
 		{
 		A_FaceTarget();
@@ -172,14 +172,14 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI DD 5 Light("AvatarFireball2") A_FaceTarget();
 		DEFI EEEEEEEEEEE 1 Light("AvatarFireball3")
 		{
-		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		A_FaceTarget();
 		}
 		DEFI DAAA 4 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 8 Light("AvatarFireball4")
 		{
 		A_FaceTarget();
@@ -195,44 +195,39 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI DDD 5 Light("AvatarFireball2") A_FaceTarget();
 		DEFI EEEEEEEEEEEEEEEEE 1 Light("AvatarFireball3")
 		{
-		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		A_FaceTarget();
+		  A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		  A_FaceTarget();
 		}
 		DEFI DGGGGG 4 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI ADEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		  A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DEEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 5 Light("AvatarFireball4")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
-		//A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFED 4 Light("AvatarFireball2") A_FaceTarget();
 		Goto See;
@@ -240,12 +235,12 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI AA 4 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Gag",CHAN_6);
 		DEFI DDEE 3 Light("AvatarFireball3") A_FaceTarget();
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("MancuOrangeEmbers",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersBig",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 8 Light("AvatarFireball4")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_GagSoul",0,0,15,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
 		}
 		DEFI FFEEDD 4 Light("AvatarFireball2") A_FaceTarget();
 		Goto See;
@@ -253,7 +248,7 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI D 5 Light("AvatarFireball2") A_FaceTarget(); 
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
 		DEFI F 0 A_StartSound("Defiler/Fire");
-		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
+		TNT1 AAAAAAAAAA 0 A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,6),random(-1,1),random(-1,1));
 		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, -45,CMF_OFFSETPITCH,random(0,8));
 		DEFI F 0 A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 0,CMF_OFFSETPITCH,random(0,8));
 		DEFI F 5 Light("AvatarFireball4") A_SpawnProjectile("PM_DefilerSoulSlow", 15, 0, 45,CMF_OFFSETPITCH,random(0,8));
@@ -264,25 +259,25 @@ Class PM_Defiler : PMUnaffMonsterBase
 		TNT1 A 0 PM_AlertSound();
 		DEFI DEFFFFFFFFFFFFFEDD 3 Light("AvatarFireball2")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
 		}
 		DEFI A 4 A_FaceTarget();
 	   Goto See;
 	FireBreath:
 		DEFI DDDDDDDDD 2 Light("AvatarFireball2")
 		{
-		A_FaceTarget();
-		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,3),random(-3,3),random(-3,3));
+		  A_FaceTarget();
+		  A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,3),random(-3,3),random(-3,3));
 		}
 		DEFI E 5 Light("AvatarFireball3") A_FaceTarget();
 		TNT1 A 0 A_StartSound("Defiler/Breath",CHAN_5,1,1);
 		DEFI FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 Light("AvatarFireball4")
 		{
-		A_SpawnItemEx("DefilerBFlare",20,4,15);
-		A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
-		A_SpawnProjectile("PM_DefilerBreath",random(12,18),random(-20,20),random(-2,2));
-		A_FaceTarget();
+		  A_SpawnItemEx("PM_DefilerBFlare",20,4,15);
+		  A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
+		  A_SpawnProjectile("PM_DefilerBreath",random(12,18),random(-20,20),random(-2,2));
+		  A_FaceTarget();
 		}
 		TNT1 A 0 A_StopSound(CHAN_5);
 		DEFI FED 5 A_FaceTarget();
@@ -345,33 +340,10 @@ Class PM_Defiler : PMUnaffMonsterBase
 		DEFI IIII 3 BRIGHT Light("AvatarFireball4") A_SpawnItemEx("PM_BigFireGlobs",random(-15,15),random(-15,15),random(-0,30),random(-5,5),random(-5,5),random(-5,5),random(0,360),SXF_NOCHECKPOSITION);
 	    TNT1 A 0 Radius_Quake (2, 24, 0, 5, 0);
 		TNT1 A 0 Radius_Quake (4, 24, 0, 5, 0);
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+		TNT1 A 0
 		{
-		A_SpawnParticleEx
-		(
-		"727272",
-		tex[5],
-		style: STYLE_Normal,
-		flags: SPF_RELATIVE|SPF_ROLL,
-		lifetime: random(70,150),
-		size: frandom(2,45),
-		angle: 0,
-		xoff: 0,
-		yoff: 0,
-		zoff: random(10,60),
-		velx: frandom(-8,8),
-		vely: frandom(-8,8),
-		velz: frandom(-1,12),
-		accelx: 0,
-		accely: 0,
-		accelz: frandom(-0.1,-0.5),
-		startalphaf: 1.0,
-		fadestepf: 0,
-		sizestep: -0.2,
-		startroll: random(-180,180),
-		rollvel: random(-4,4),
-		rollacc: 0
-		);
+		 for(int i=random(15,20);i>0;i--)
+		  A_SpawnParticleEx("727272",tex[5],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(70,150),size: frandom(2,45),zoff: random(10,60),velx: frandom(-8,8),vely: frandom(-8,8),velz: frandom(-1,12),accelz: frandom(-0.1,-0.5),startalphaf: 1.0,sizestep: -0.2,startroll: random(-180,180),rollvel: random(-4,4));
 		}
 		TNT1 AAAAAAAAA 0
 		{
@@ -383,8 +355,8 @@ Class PM_Defiler : PMUnaffMonsterBase
 		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
 		TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_SpawnItemEx("ExileFireHit",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		TNT1 A 0 A_StartSound("PMInfernal/Explode",CHAN_6);
 		TNT1 A 0 A_StartSound("Noble/BombExp",CHAN_5);
@@ -429,43 +401,39 @@ Class PM_DefilerSoulSlow : Actor
         BSOU D 2 Bright Light("BurntSoulLight") 
 		{
 		A_SpawnItemEx("BurntSoulFire",random(-9,-1),random(-4,4),random(1,10),frandom(-1,0),frandom(-1,1),frandom(0,2));
-		//A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
-		//A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
 		A_ChangeVelocity(0,random(-2,2),random(-2,2));
 		}
 		BSOU C 2 Bright Light("BurntSoulLight") 
 		{
 		A_SeekerMissile(3,4,SMF_PRECISE);
 		A_SpawnItemEx("BurntSoulFire",random(-9,-1),random(-4,4),random(1,10),frandom(-1,0),frandom(-1,1),frandom(0,2));
-		A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
-		//A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
+		A_SpawnItemEx("PM_OrangeEmbersBig",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
 		}
         Loop;
 	Failure:
 		BSOU D 2 Bright Light("BurntSoulLight") 
 		{
 		A_SpawnItemEx("BurntSoulFire",random(-9,-1),random(-4,4),random(1,10),frandom(-1,0),frandom(-1,1),frandom(0,2));
-		//A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
-		A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
+		A_SpawnItemEx("PM_DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
 		A_ChangeVelocity(0,random(-2,2),random(-2,2));
 		}
 		BSOU C 2 Bright Light("BurntSoulLight") 
 		{
 		A_SpawnItemEx("BurntSoulFire",random(-9,-1),random(-4,4),random(1,10),frandom(-1,0),frandom(-1,1),frandom(0,2));
-		A_SpawnItemEx("MancuOrangeEmbers",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
-		A_SpawnItemEx("DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
+		A_SpawnItemEx("PM_OrangeEmbersBig",0,-5,random(1,10),random(-2,2),random(-2,2),random(-2,2),random(-360,360),0,190);
+		A_SpawnItemEx("PM_DevilBallSmoke",random(-2,2),random(-2,2),0,0,0,0,0,0,128,0);
 		}
         Loop;
     Death:
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SetRenderstyle(alpha-0.1,STYLE_ADD);
         BSOU FGHIJ 2 Bright Light("AvatarFireball3");
         Stop;
     }
 }
 
-Class DefilerBFlare : Actor
+Class PM_DefilerBFlare : Actor
 {
    Default
    {
@@ -674,8 +642,8 @@ Class PM_GagSoulAttack : DoomImpBall
 	Death:
 		BSOU F 4 Light("BurntSoulLight");
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
 		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
 		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));
@@ -725,8 +693,8 @@ Class PM_ShootSoulAttack : DoomImpBall
 	Death:
 		BSOU F 4 Light("BurntSoulLight");
 		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
-		TNT1 A 0 A_SpawnItemEx("OrangeEmbersSpawn");
-		TNT1 A 0 A_SpawnItemEx("OFireBallExplode");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
 		TNT1 A 0 A_SpawnItemEx("ZombieDropFire");
 		TNT1 AAAA 0 A_SpawnProjectile("FiendBallExplode",0,0,random(0,360),CMF_OFFSETPITCH,random(0,360));

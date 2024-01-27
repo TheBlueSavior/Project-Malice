@@ -502,7 +502,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
 	FEFE GGIIGGIIGGIIGGIIGGII 4 Light("AvatarFireball3") 
 	{
 	A_FaceTarget();
-	if (!(level.time % 2)) A_SpawnItemEx("OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
+	if (!(level.time % 2)) A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(1,12),random(-3,3),random(-3,3));
 	}
 	Goto See;
   Pain:

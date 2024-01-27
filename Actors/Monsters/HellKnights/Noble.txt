@@ -642,7 +642,7 @@ Class PM_NobleBomb : Rocket
 			{
 			return ResolveState("XDeath");
 			}
-		A_SpawnItemEx("DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
+		A_SpawnItemEx("PM_DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
 		user_grenadetime++;
 		return ResolveState(null);
 		}

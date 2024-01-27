@@ -436,7 +436,7 @@ Class PM_ZTrooperFragGrenade : Rocket
 	ZGRN A 1 Light("SatyrLordRedMissile9")
     {
 	 A_SpawnParticle("FF2A2A",SPF_FULLBRIGHT|SPF_RELATIVE,95,13,0,0,0,0,0,0,0,0,0,0,0.85,-0.2,-1);
-     A_SpawnItemEx("DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
+     A_SpawnItemEx("PM_DevilBallSmoke",0,frandom(-2,2),frandom(-2,2),0,0,frandom(0,2));
      A_SetRoll(roll+15);
     }
 	Loop;
