@@ -233,6 +233,21 @@ Class PM_FastMeleeHitbox : Actor //[NERU] primarily used for lunging monsters
     }
 }
 
+Class PM_MeleeHitbox : PM_FastMeleeHitbox
+{
+  Default
+  {
+   Speed 15;
+   FastSpeed 15;
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 10;
+	Stop;
+  }
+}
+
 //Elementals
 
 Class PM_GElemVenomBurst : CacodemonBall

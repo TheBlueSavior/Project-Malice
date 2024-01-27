@@ -59,7 +59,7 @@ Class Mimic : PMFodderMonsterBase
 		ThrustThingZ(0,12,0,1);
 		A_SkelWhoosh();
 	}
-	MIMD RRSTTTT 2 A_SpawnProjectile("BruteJump",5,0,0,2);
+	MIMD RRSTTTT 2 A_SpawnProjectile("PM_MeleeHitbox",5,0,0,2);
 	Goto SeeGo;
   Pain:
 	MIMD V 5;
