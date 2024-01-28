@@ -1,3 +1,5 @@
+//[NERU] UNUSED. code from this is kept on purpose for a future void enemy
+
 ACTOR Void
 {
   //$Category "PM_Monsters/HellKnights"
