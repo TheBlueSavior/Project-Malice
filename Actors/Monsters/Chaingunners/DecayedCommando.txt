@@ -21,7 +21,7 @@ Class PM_DecayedCommando : PMPestilenceMonsterBase
   Tag "Decayed Commando";
   Monster;
   BloodColor "DarkRed";
-  Bloodtype "PM_PestilenceZombieBloodBase";
+  Bloodtype "PM_DarkRedCyberBloodBase";
   TeleFogSourceType "PM_PossessedTeleportFog";
   TeleFogDestType "PM_PossessedTeleportFog";
   +FloorClip

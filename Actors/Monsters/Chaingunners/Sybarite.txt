@@ -26,7 +26,7 @@ Class PM_Sybarite : PMLustMonsterBase
   Obituary "%o was blown apart to satisfy a Sybarite's self-indulgence.";
   Dropitem "Chaingun";
   Species "Chaingunner";
-  Bloodtype "PM_NormalBloodBase";
+  Bloodtype "PM_NormalTyrantBloodBase";
   TeleFogSourceType "PM_PossessedTeleportFog";
   TeleFogDestType "PM_PossessedTeleportFog";
   }

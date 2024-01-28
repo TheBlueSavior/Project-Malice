@@ -1513,6 +1513,18 @@ Class PM_DarkRedBloodBase : PM_NormalBloodBase
 	}
 }
 
+Class PM_DarkRedCyberBloodBase : PM_NormalBloodBase
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_DarkRedCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
 Class PM_DarkRedBlood : RandomSpawner
 {
     Default
@@ -1531,6 +1543,19 @@ Class PM_DarkRedBloodEx : RandomSpawner
 	{
 	DropItem "PM_DarkRedBlood1", 255, 2;
 	DropItem "PM_DarkRedBlood2", 255, 2;
+	}
+}
+
+Class PM_DarkRedCyberBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_DarkRedBlood1", 255, 2;
+	DropItem "PM_DarkRedBlood2", 255, 2;
+	DropItem "PM_DarkRedBlood3", 255, 2;
+	DropItem "PM_DarkRedBloodMulti", 255, 2;
+	DropItem "PM_DarkRedMeatChunkLauncher", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 4;
 	}
 }
 
