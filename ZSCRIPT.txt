@@ -49,7 +49,7 @@ version "4.10.0"
 #include "Actors/Monsters/Chaingunners/FallenMarine.txt"
 #include "Actors/Monsters/Chaingunners/Sybarite.txt"
 #include "Actors/Monsters/Chaingunners/DecayedCommando.txt"
-#include "Actors/Monsters/Chaingunners/HellPriest.txt"
+#include "Actors/Monsters/Chaingunners/UmbralDisciple.txt"
 #include "Actors/Monsters/Chaingunners/Blasphemer.txt"
 
 //Imps
