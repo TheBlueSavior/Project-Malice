@@ -1188,19 +1188,6 @@ Color 0.8 0.0 0.0 //Color 1.0 1.0 1.0
 Size 40
 }
 
-Object Void
-{
-Frame BKELA { Light Blacklight }
-Frame BKELB { Light Blacklight }
-Frame BKELC { Light Blacklight }
-Frame BKELD { Light Blacklight }
-Frame BKELE { Light Blacklight }
-Frame BKELF { Light Blacklight }
-Frame BKELG { Light Blacklight }
-Frame BKELH { Light Blacklight }
-Frame BKELI { Light Blacklight }
-}
-
 Pointlight ShadowBall
 {
 Color 1.0 0.0 0.0

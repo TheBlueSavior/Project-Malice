@@ -166,7 +166,7 @@ DoomEdNums
 	23066 = "PM_FreshHorrorspawn"
 	23067 = "PM_HorrorspawnBurster"
 	23068 = "PM_AffScreamer"
-	23079 = "PM_Afflicted"
+	23069 = "PM_Afflicted"
 	23070 = "PM_SleepingHorrorspawn"
 	23071 = "PM_Fly"
 	23072 = "PM_LargeMaggot"
