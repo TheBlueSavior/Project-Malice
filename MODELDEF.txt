@@ -345,7 +345,7 @@ PITCHFROMMOMENTUM
 FrameIndex BLA2 A 0 0
 }
 
-Model WKnifeBlur
+Model PM_WKnifeBlur
 { 
 Path "Models"
 Skin 0 "maliceknifetracer.png"

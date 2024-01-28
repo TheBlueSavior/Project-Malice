@@ -2631,6 +2631,54 @@ Class PM_EnvySigil : Actor
   }
 }
 
+Class PM_EnvyCastSigil : Actor
+{
+  Default
+  {
+  StencilColor "Green";
+  Scale 0.60;
+  Alpha 0.75;
+  +FLATSPRITE
+  +NOINTERACTION
+  +BRIGHT;
+  Translation "0:255=%[0,0,0]:[0.3,2.0,0.1]";
+  }
+  override void PostBeginPlay()
+	{
+	if(master)
+		{
+		master.A_StartSound("PM/SigilSpawn",20);
+		}
+	Super.PostBeginPlay();
+	pitch = 270;
+	}
+  override void Tick()
+  {
+	Super.Tick();
+	A_Warp(AAPTR_MASTER, 45, 0, 40, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+	if(master && master.CountInv("PM_EnvySigilGoAway") == 1)
+	 SetStateLabel("Death");
+	else if(!master)
+	 SetStateLabel("Death");
+  }
+  States
+  {
+  Spawn:
+   TNT1 A 0;
+   C1TE AAA 5 A_FadeIn(0.55,0);
+   C1TE A 1;
+   Wait;
+  Death:
+    TNT1 A 0 
+   {
+   if(master)
+    master.A_TakeInventory("PM_EnvySigilGoAway");
+   }
+   C1TE A 2 A_FadeOut(0.35);
+   Wait;
+  }
+}
+
 Class PM_EnvySigilGoAway : Inventory
 {
  Default { Inventory.MaxAmount 1; }
