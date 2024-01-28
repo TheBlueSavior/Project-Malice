@@ -641,7 +641,7 @@ Class PM_GagSoulAttack : DoomImpBall
 		Loop;
 	Death:
 		BSOU F 4 Light("BurntSoulLight");
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeExplosionFlareSmall");
 		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");
@@ -692,7 +692,7 @@ Class PM_ShootSoulAttack : DoomImpBall
 		Loop;
 	Death:
 		BSOU F 4 Light("BurntSoulLight");
-		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlareSmall");
+		TNT1 A 0 A_SpawnItemEx("PM_OrangeExplosionFlareSmall");
 		TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
 		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 		TNT1 A 0 A_SpawnItemEx("OrangeShockwave");

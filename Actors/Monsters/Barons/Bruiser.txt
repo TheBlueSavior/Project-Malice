@@ -402,7 +402,7 @@ Class PM_BruiserSmallFireball : DoomImpBall
 	TNT1 A 0 A_SetTranslation("PM_GreenFusionTint");
 	TNT1 A 0 A_SetScale(1.5);
     NDEB D 1 bright Light("GreenFireLight");
-	TNT1 A 0 A_SpawnItemEx("GFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_GFireBallExplode");
 	TNT1 A 0 A_SpawnItemEx("PM_GreenFireballExpFlames");
 	FIR3 CCDDEEFFGGHHIIJJKKLLMMNNOOPP 1 Light("GreenFireLight") bright A_FadeOut(0.05);
     stop;

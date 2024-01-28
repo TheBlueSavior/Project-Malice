@@ -190,7 +190,7 @@ Class PM_GraveGuard : PMDeathMonsterBase
     {
 	A_Chase(null,null);
     A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
-    A_SpawnProjectile("BlueSoulFlare",32,0,0);
+    A_SpawnProjectile("PM_BlueSoulFlare",32,0,0);
     }
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
     TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
@@ -290,7 +290,7 @@ Class PM_GraveGuard : PMDeathMonsterBase
     {
 	A_Wander();
     A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));
-    A_SpawnProjectile("BlueSoulFlare",32,0,0);
+    A_SpawnProjectile("PM_BlueSoulFlare",32,0,0);
     }
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
     TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",random(10,45),0,random(0,360),2,random(0,360));

@@ -1600,7 +1600,7 @@ Spawn:
     }
 }
 
-ACTOR OrangeExplosionFlareSmall
+ACTOR PM_OrangeExplosionFlareSmall
 {
 +CLIENTSIDEONLY
 +FORCEXYBILLBOARD
@@ -1620,12 +1620,12 @@ Spawn:
     }
 }
 
-ACTOR BlueExplosionFlareSmall : OrangeExplosionFlareSmall
+ACTOR PM_BlueExplosionFlareSmall : PM_OrangeExplosionFlareSmall
 {
 Translation "0:255=%[0,0,0]:[0.4,0.4,1.9]"
 }
 
-ACTOR BlueSoulFlare
+ACTOR PM_BlueSoulFlare
 {
 +CLIENTSIDEONLY
 +NOINTERACTION
@@ -1659,7 +1659,7 @@ Spawn:
     }
 }
 
-ACTOR BlueSoulFlareSmall : BlueSoulFlare
+ACTOR PM_BlueSoulFlareSmall : PM_BlueSoulFlare
 {
 +CLIENTSIDEONLY
 +NOINTERACTION

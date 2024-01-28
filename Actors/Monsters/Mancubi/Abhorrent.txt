@@ -279,7 +279,7 @@ Class PM_AbhorBall : Fatshot
 	}
     Loop;
   Death:
-	TNT1 A 0 A_SpawnItemEx("BlueExplosionFlareSmall",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("PM_BlueExplosionFlareSmall",0,0,0);
 	TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",0,0,random(0,360),2,random(0,360));
 	TNT1 AAAAAAAA 0 A_SpawnProjectile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
     SHBA CDEFGHIJKL 4 Bright Light("SoulHarvesterBall2");
@@ -339,7 +339,7 @@ Class PM_AbhorBarrageBall : Fatshot
     Loop;
   Death:
     TNT1 A 0 A_StopSound(3);
-	TNT1 A 0 A_SpawnItemEx("BlueExplosionFlareSmall",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("PM_BlueExplosionFlareSmall",0,0,0);
     TNT1 AAAA 0 A_SpawnProjectile("PM_AbhorSmallBall",0,0,random(0,360),CMF_OFFSETPITCH | CMF_TRACKOWNER,random(-80,80));
 	TNT1 AAA 0 A_SpawnProjectile("AbhorBallExplode",0,0,random(0,360),2,random(0,360));
     SHBA CDEFGHIJKL 3 Bright Light("SoulHarvesterBall2");
