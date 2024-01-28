@@ -412,7 +412,7 @@ Class PM_Infernal : PMWrathMonsterBase
 					A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
 					A_SpawnItemEx("PM_HuskFirebomb",0,0,5,random(-2,15),random(-2,15),random(5,25),0,SXF_NOCHECKPOSITION);
 					A_SpawnItemEx("PM_ExplosionLongerSmokeBig2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0,70);
-					A_SpawnItemEx("MonsterHole",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+					A_SpawnItemEx("PM_VoidSmoke",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
 				}
 			}
 			Stop;

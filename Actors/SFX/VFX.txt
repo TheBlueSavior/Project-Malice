@@ -292,6 +292,24 @@ Actor PM_DevilBallSmoke
 	}
 }
 
+Actor PM_VoidSmoke
+{
+   +NOCLIP
+   +NOGRAVITY
+   +NOINTERACTION
+   +NOTIMEFREEZE
+   RenderStyle Translucent
+   Alpha 0.3
+   Scale .75
+   States
+   {
+   Spawn:
+    TNT1 A 2
+    SMMO ABCDEFGHIJKLMNOPQR 2
+    Stop
+   }
+}
+
 Actor PM_WhiteFireballExplode
 {
 	Translation "0:255=%[0,0,0]:[0.8,0.8,0.8]"

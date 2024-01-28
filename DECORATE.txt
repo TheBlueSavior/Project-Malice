@@ -13,7 +13,6 @@
 
 #include "Actors/Monsters/HellKnights/Void.txt"
 #include "Actors/Monsters/Fodder/Trite.txt"
-#include "Actors/Monsters/Barons/SmokeMonster.txt"
 #include "Actors/Monsters/Cyberdemons/PyroDemon.txt"
 #include "Actors/Monsters/Masterminds/Queen.txt"
 #include "Actors/Monsters/Hellknights/Paladin.txt"

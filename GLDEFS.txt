@@ -1974,22 +1974,6 @@ Map "brightmaps/AUTO/GHULJ8.png"
 DisableFullBright
 }*/
 
-FlickerLight2 SmokeLight_A
-{
-Color 255 255 255
-Subtractive 1
-Size 32
-SecondarySize 48
-Interval 2.0
-Offset 0 0 0
-}
-
-Object SmokeMonster
-{
-Frame SMMO { Light SmokeLight_A }
-Frame TNT1 { Light SmokeLight_A }
-}
-
 //Hectebus
 BRIGHTMAP SPRITE TABUA1 { MAP "Brightmaps/Monsters/Fatsos/TABUA1.png" }
 BRIGHTMAP SPRITE TABUA2A8 { MAP "Brightmaps/Monsters/Fatsos/TABUA2A8.png" }
@@ -3258,7 +3242,7 @@ Color 0.2 0.2 0.2
 Size 16
 }
 
-Object PM_AcolyteShot
+Object PM_UDiscipleShot
 {
 Frame CFX1A { Light AcolyteShot1 }
 Frame CFX1B { Light AcolyteShot1 }
@@ -3339,7 +3323,7 @@ Size 48
 Offset 0 48 0
 }
 
-Object PM_HellPriest
+Object PM_UmbralDisciple
 {
 Frame ACOLG { Light AcolyteExplode1 }
 Frame ACOLH { Light AcolyteExplode2 }

@@ -202,7 +202,7 @@ DoomEdNums
 	23099 = "PM_DecayedCommando"
 	23100 = "PM_FallenMarine"
 	23101 = "PM_HeavyCarbineZombie"
-	23102 = "PM_HellPriest"
+	23102 = "PM_UmbralDisciple"
 	23103 = "PM_MutatedGunner"
 	//Cacodemons
 	23113 = "PM_Beholder"

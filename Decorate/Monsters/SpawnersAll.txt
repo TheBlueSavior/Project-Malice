@@ -31,7 +31,7 @@ Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 	DropItem "PM_FallenMarine", 255, 7
 	DropItem "PM_Sybarite", 255, 7
 	DropItem "PM_HeavyCarbineZombie", 255, 57
-	DropItem "PM_HellPriest", 255, 1
+	DropItem "PM_UmbralDisciple", 255, 1
 	DropItem "PM_DecayedCommando", 255, 1
 	DropItem "PM_Blasphemer", 255, 2
 }

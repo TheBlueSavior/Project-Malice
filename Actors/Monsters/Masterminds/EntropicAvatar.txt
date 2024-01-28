@@ -950,7 +950,7 @@ Default
 			rollvel: frandom(-0.5,0.5)
 			);
 		}
-		TNT1 AAAA 2 Light("SmallBlacklight") A_SpawnItemEx("MonsterHole",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+		TNT1 AAAA 2 Light("SmallBlacklight") A_SpawnItemEx("PM_VoidSmoke",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
 		Stop;
 	}
 }
