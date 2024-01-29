@@ -34,7 +34,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay { user_numbullets = random(5,75); }
+			FSPI A 0 NoDelay { user_numbullets = random(5,75); }
 		Idle:
 			FSPI A 10 PM_Look();
 			Loop;

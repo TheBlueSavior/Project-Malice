@@ -132,7 +132,7 @@ Class PM_Director : PMUnaffMonsterBase
 	States
 	{
 	Spawn:
-	    TNT1 A 0 NoDelay { 
+	    DIRE A 0 NoDelay { 
 	    	attackmode = random(0,1);
 	    	changecooldown = 200; 
 	    }

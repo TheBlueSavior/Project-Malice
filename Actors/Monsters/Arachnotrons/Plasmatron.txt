@@ -39,7 +39,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 	States
 	{
 		Spawn:
-			TNT1 A 0 NoDelay
+			PL01 A 0 NoDelay
 			{
 				user_numbullets = random(5,50);
 			}
