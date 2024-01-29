@@ -2,39 +2,44 @@ Class PM_BurntSoul : PMUnaffMonsterBase
 {
   Default
   {
-  Health 80;
-  Scale 0.76;
-  PainChance 255;
-  Speed 5;
-  Radius 16;
-  Height 56;
-  Mass 50;
-  Monster;
-  SeeSound  "BurntSoul/Sight";
-  PainSound "BurntSoul/Pain";
-  DeathSound "BurntSoul/Death";
-  ActiveSound "BurntSoul/Active";
-  AttackSound "BurntSoul/Attack";
-  +BRIGHT
-  Renderstyle "Normal";
-  DamageFunction 15;
-  DeathHeight 4;
-  Obituary "%o's will was shattered by a Burnt Soul.";
-  Tag "Burnt Soul";
-  Species "Soul";
-  //+NOINFIGHTING
-  +FLOATBOB
-  FloatBobStrength 0.3;
-  +NOICEDEATH
-  +NOGRAVITY
-  +DONTFALL
-  +NOBLOOD
-  +FORCEXYBILLBOARD
-  +DONTHARMCLASS
-  +DONTHARMSPECIES
-  +ROLLSPRITE
-  TeleFogSourceType "PM_SmallDemonicTeleportFog";
-  TeleFogDestType "PM_SmallDemonicTeleportFog";
+  	PMMonsterBase.CodexLore
+  	"Burnt Souls are the remains of shattered human souls, manifested into floating wisps that fly aimlessly around places that have suffered a demonic incursion, or places that have been the source of ghost hauntings. Some even speculate they are the cause behind many of said hauntings even before the invasion began.
+  	 They do not serve any role in the legion, and are merely a consequence of many attempts from the resistance to hold off the ever-growing, malicious threat. No battle is left without a casualty.
+
+  	 They will direct any hatred left in their frail bodies to lunge at you, potentially distracting you from larger threats.";
+    Health 80;
+    Scale 0.76;
+    PainChance 255;
+    Speed 5;
+    Radius 16;
+    Height 56;
+    Mass 50;
+    Monster;
+    SeeSound  "BurntSoul/Sight";
+    PainSound "BurntSoul/Pain";
+    DeathSound "BurntSoul/Death";
+    ActiveSound "BurntSoul/Active";
+    AttackSound "BurntSoul/Attack";
+    +BRIGHT
+    Renderstyle "Normal";
+    DamageFunction 15;
+    DeathHeight 4;
+    Obituary "%o's will was shattered by a Burnt Soul.";
+    Tag "Burnt Soul";
+    Species "Soul";
+    //+NOINFIGHTING
+    +FLOATBOB
+    FloatBobStrength 0.3;
+    +NOICEDEATH
+    +NOGRAVITY
+    +DONTFALL
+    +NOBLOOD
+    +FORCEXYBILLBOARD
+    +DONTHARMCLASS
+    +DONTHARMSPECIES
+    +ROLLSPRITE
+    TeleFogSourceType "PM_SmallDemonicTeleportFog";
+    TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
 
    override void Tick()

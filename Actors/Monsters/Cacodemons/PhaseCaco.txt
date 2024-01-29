@@ -2,7 +2,11 @@ Class PM_PhaseCaco : PMUnaffMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Cacodemons"
+		PMMonsterBase.CodexLore
+		"Phase Cacodemons are insidious fliers, using their same cloaking attribute as a Phase Brute in order to hide in plain sight, the glow of their eye being the only warning their victims will ever receive.
+		 They act as aerial fire support during an assault, usually blanketing the air with slow-moving, but much stronger electric orbs- sometimes barfing out a salvo of smaller but faster ones just to catch its victims off-guard.
+
+		 Fire at where you see a floating yellow light. Other than that, they aren't much of note.";
 		SeeSound "PhaseCaco/Sight";
 		PainSound "PhaseCaco/Pain";
 		DeathSound "PhaseCaco/Death";

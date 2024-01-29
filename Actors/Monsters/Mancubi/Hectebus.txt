@@ -2,7 +2,11 @@ Class PM_Hectebus : PMUnaffMonsterBase
  {
    Default
    {
-	//$Category "PM_Monsters/Mancubi"
+	  PMMonsterBase.CodexLore 
+	  "Hectebi are large fatty brutes, typically lead around by greater Heresy Lords as slaves with one track minds, or left to rot with its lesser brethren as meatshields during conflicts.
+	   With their arms amputated and replaced with large flame cannons that while strong are painfully inaccurate, they may overwhelm players in close combat, taking advantage of their weapon's unpredictability up-close.
+
+	   Mid-to-long range, they aren't much to note, and are quite easy to take down, provided you have the ammo to shoot through the bulk.";
     Health 600;
     Radius 48;
     Height 64;

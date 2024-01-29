@@ -3,7 +3,11 @@ Class PM_Squire : PMMonsterBase
 	int user_leapstrength;
 	Default
 	{
-	//$Category "PM_Monsters/HellKnights"
+	PMMonsterBase.CodexLore
+	"Squires are the common berserkers within Hell's endless legion, renown for their unrestrained aggression and forgoing fire and flames in favor of simply brutalizing humans left and right, their animalistic behavior yet another method of inducing fear into opposing soldiers and survivors.
+	 They are part of the same bloodline as Heresy Lords and Nobles, but are ranked far lower in the same level as Devils and Wretched because of their intelligence, or lack thereof.
+
+	 They are fast, brutal and WILL close in on you, but like the standard Hellknights, are no match for a shotgun blast to the face or two.";
 	Health 500;
 	Radius 24;
 	Height 64;

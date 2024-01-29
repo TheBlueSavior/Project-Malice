@@ -9,8 +9,11 @@ Class PM_Director : PMUnaffMonsterBase
 	//2 = Psychic
 	Default
 	{
-		//$Category "PM_Monsters/Masterminds"
-		//$Title "Director"
+		PMMonsterBase.CodexLore
+		"Directors are the masterminds behind the invasion of Earth, embodying the humans' tactical and logical thinking in order to conduct every possible method of warfare to slam the resistance with until they are reduced to the small pockets they are now. Directors are concertmasters, and the legions of Hell are their orchestra.
+		 When forced to engage in battle, however, they are not to be messed with despite their armor being slightly weaker than a Tyrant's. Their energy has not been tainted once since aging unlike its smaller brethren, and its large chariot has an arsenal that would put the Tyrant's to shame, were it not attached to a lousy platform.
+		 
+		 Their MO is overwhelming the player with their wider arsenal, usually lasting far longer than a typical Tyrant attack, but leaving it wide open as a consequence.";
 		Health 3000;
 		Radius 128;
 		Height 100;

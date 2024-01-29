@@ -13,7 +13,12 @@ Class PM_Fiend : PMUnaffMonsterBase
 		}
   Default
   {
-  //$Category "PM_Monsters/Revenants"
+  PMMonsterBase.CodexLore
+  "Fiends are the direct opposite of the relatively mindless Cadavers, being fully human souls condemned to endless suffering by having their minds transported to an augmented Cadaver's body.
+   This would be thrilling for the owner, had Hell not allowed them to feel every cybernetic nerve digging into the very bone, commanding actions that are not theirs, and forcing them to watch as they blast apart former allies they once knew as friends.
+   Their screams are wrathful, for they are unable to beg for the sweet release of death without the right vocal cords.
+
+   Can fire a barrage of missiles, homing and non-homing, and the cybernetic system's aggression has been cranked up way higher to account for the added mobility.";
   Health 300;
   Radius 20;
   Height 56;

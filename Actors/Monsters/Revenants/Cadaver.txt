@@ -14,7 +14,11 @@ Class PM_Cadaver : PMUnaffMonsterBase
 
   Default
   {
-  //$Category "PM_Monsters/Revenants"
+  PMMonsterBase.CodexLore
+  "Cadavers are bony puppets brought upon by an unknown source as lanky footsoldiers, all of their limbs automated by a cybernetic nervous system that runs deep inside the bone.
+   They have a simple brain that is genetically programmed to follow simple orders, and are never really seen fighting against other demons due to their strictly mechanical nature.
+
+   Attacks you with rockets, both homing and non-homing.";
   +DONTHARMSPECIES
   //+NOINFIGHTING
   Species "Revenant";

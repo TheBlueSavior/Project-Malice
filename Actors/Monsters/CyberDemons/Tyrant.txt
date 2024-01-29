@@ -7,7 +7,13 @@ Class PM_Tyrant : PMUnaffMonsterBase
   
   Default
   {
-  //$Category "PM_Monsters/CyberDemons"
+  PMMonsterBase.CodexLore
+  "Prideful banes of humanity, with the strength of a million men and the firepower of several battleships. Let their strength bless this unclean land, and let their presence strike the deepest, primal fear in the hearts of men and women.
+
+   If the Heresy Lords command small hordes, then Tyrants are the captains and generals of large-scale hordes, leading their troops in the frontlines and participating within the battles themselves, bearing down upon the human resistance like hammer against nail.
+   Their supreme firepower allows them to wipe out armed convoys and platoons, conquering the soil and laying waste to all humanity holds dear. For this reason, their target priority is extremely high on the list.
+
+   Exercise extreme caution when dealing with Tyrants, for they are an offensive force most terrifying to behold in a fight. They care not for the lives of other allied demons when attacking you.";
   Health 4000;
   Radius 40;
   Height 110;

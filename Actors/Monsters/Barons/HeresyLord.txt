@@ -3,7 +3,11 @@ Class PM_HeresyLord : PMUnaffMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Barons"
+	PMMonsterBase.CodexLore
+	"Heresy Lords are intelligent, aeonic archdemons, their deepest but taciturn level of cruelty seen in their actions. They serve as the commanders of lesser and greater demons, the source of countless plights during the invasion as they revel in sowing the seeds of terror in the field.
+	 Their wings have grown vestigial since they aged, but they serve as extremely telling indicators of their authority; both to the demons and the humans.
+
+	 Can fire a triple salvo of red fireballs or a precise white soul orb to strike down a target on the move, and can strengthen both energies for a powerful barrage.";
     Health 1000;
     Radius 22;
     Height 64;

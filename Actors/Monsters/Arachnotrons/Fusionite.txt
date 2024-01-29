@@ -3,7 +3,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 	int user_numbullets;
 	Default
 	{
-		//$Category "PM_Monsters/Arachnotrons"
+		PMMonsterBase.CodexLore 
+		"Fusionites were a race of psychic archdemons that ruled alongside Heresy Lords, now reduced to nothing more than vestigial bodies operating on a metal chariot.
+		 Their tendrils are deeply rooted inside these personal chariots, granting them the ability to fire condensed psychic energy in the form of plasma bolts, essentially acting as their main power source aswell as their only mode of transportation.
+		 Killing them causes their bodies to overload the metal chariot with too much energy, causing all of its internal systems to erupt in a violent explosion.
+
+		 Has a variety of ways it can spew plasma at the player before it needs to reload, but keep your distance when it dies.";
 		Health 500;
 		Height 64;
 		Mass 600;

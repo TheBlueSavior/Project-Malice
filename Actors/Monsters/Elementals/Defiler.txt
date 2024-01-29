@@ -2,7 +2,11 @@ Class PM_Defiler : PMUnaffMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Elementals"
+	PMMonsterBase.CodexLore
+	"Defilers best thrive in pain and suffering, consuming Burnt Souls both in order to live; and as a method of attack. So powerful is their hatred for life and the need for all to suffer to the point where it is literally bursting from their eyes and mouth in the form of dense flames.
+	 Despite their classification as being unaffiliated with any circle, their origins may be an offshoot within the fourth circle of Hell, only growing exponentially into the surface layer due to the sheer amount of fury and the results of said fury humanity inflicts upon itself and others.
+
+	 Stay VERY clear of the Defiler when it dies, and if possible, shoot down the souls it barfs out. Souls spawned by the Defiler cannot be killed once they charge, and die once they hit something.";
 	Health 480;
 	Radius 31;
 	Height 56;
