@@ -7,7 +7,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 	{
 		PMMonsterBase.CodexLore
 		"Some Fusionite brains tend to age faster more than others, and with it their tendency to power the chariot with enough energy to keep moving. Once a brain starts to noticeably grow pale, they are uprooted from their chariots and are transported to another better suited for their age.
-		 Plasmatrons are the result of this aging, their metal bodies now mostly powered with electrical energy as a result of imitating mankind's own machinery. They typically act as fire support, using what remains of their psychic power to fire away slow balls of plasma to smother an opposition in curtain fire.
+		 Plasmatrons are the result of this aging, their metal bodies now mostly powered with electrical energy as a result of imitating mankind's own machinery. They typically act as fire support, firing away slow balls of plasma to smother an opposition in curtain fire.
 
 		 Not really that strong on their own, but do be careful; they also have a quick burst to catch unwary players offguard.";
 		Tag "Plasmatron";
