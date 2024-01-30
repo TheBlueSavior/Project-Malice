@@ -2,7 +2,11 @@ Class PM_Tainted : PMGluttonyMonsterBase
 {
     Default
 	{
-	//$Category "PM_Monsters/Imps"
+	PMMonsterBase.CodexLore
+	"Shapeless blobs made out of blood taking humanoid form, these golems like to hide in plain sight as small puddles of blood that creep around the player, soon rising to attack.
+	 They are known to absorb anything living, turning skin and bone into viscous blood and takes advantage of this attribute to tear chunks off of itself to throw at you.
+     
+     Can reform into blood to 'burrow' past you when hurt or dodging. High damage weapons are recommended.";
     Health 80;
     Radius 20;
     Height 56;
@@ -28,10 +32,10 @@ Class PM_Tainted : PMGluttonyMonsterBase
     States
     {
     Spawn:
-        TNT1 A 0 NoDelay 
+        BZRD A 0 NoDelay 
 		{
-		bSolid = false;
-		bShootable = false;
+		  bSolid = false;
+		  bShootable = false;
 		}
     Idle:
         BZRD N 4 PM_Look();
@@ -48,8 +52,8 @@ Class PM_Tainted : PMGluttonyMonsterBase
 		BZRD NOPQ 3 A_FaceTarget();
         TNT1 A 0
 		{
-		bSolid = true;
-		bShootable = true;
+		  bSolid = true;
+		  bShootable = true;
 		}
         BZRD RST 3 A_FaceTarget();
 	Spotted2:

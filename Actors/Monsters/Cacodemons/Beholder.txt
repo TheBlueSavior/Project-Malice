@@ -2,7 +2,11 @@ Class PM_Beholder : PMGluttonyMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Cacodemons"
+		PMMonsterBase.CodexLore
+		"Beholders are cacodemons that relish in their own suffering, actively preying on live victims rather than feasting on corpses in stark contrast to other demons of its kind.
+		 Once cornering prey, they will forcibly assimilate the victim into its body by way of chomping them down with its jaws, condemning them to the same torment the Beholder feels every second it lives.
+
+		 Can vomit corrosive gore in bursts or in barrages, and can throw up barely-sentient eyes that launch themselves at the player after a while.";
 		SeeSound "Beholder/Sight";
 		PainSound "Beholder/Pain";
 		DeathSound "Beholder/Death";

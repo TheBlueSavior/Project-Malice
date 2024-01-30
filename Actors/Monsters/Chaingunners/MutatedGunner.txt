@@ -3,7 +3,11 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
     int user_numbullets;
 	Default
 	{
-	//$Category "PM_Monsters/Chaingunners"
+	PMMonsterBase.CodexLore
+	"Slow and bulky, much of what remains of this human's body has turned into thick layers of fleshy armor to the point where it's able to tank several rifle rounds at best before it falls.
+	 Their mutated body has allowed them to better feast upon corpses, their toothy mouths opening into elongated jaws to feed. In combat though, they prefer to use their tendril arm to swat victims down.
+
+	 Uses its chaingun for suppression, and can easily fill the room its in with lead in seconds.";
 	Health 80;
 	Radius 20;
 	Height 56;
@@ -30,9 +34,9 @@ Class PM_MutatedGunner : PMGluttonyMonsterBase
 	States
 	{
 		Spawn:
-            TNT1 A 0 NoDelay
+         D3C2 A 0 NoDelay
             {
-             user_numbullets = random(5,150);
+             user_numbullets = random(50,150);
             }
         Idle:
 			D3C2 A 10 PM_Look();
