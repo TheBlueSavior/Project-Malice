@@ -84,17 +84,20 @@ Class PM_CivilianZombie : PMLustMonsterBase
 		WTFF A 4 A_StartSound("CivZombie/MutationRip",15);
 		WTFF BBBCCC 3
 		{
+			A_Recoil(-0.15);
 			A_FaceTarget();
 			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),30,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
 		}
 		WTFF D 0 { if (!random(0, 1)) A_StartSound("CivZombie/Death2", CHAN_VOICE); }
 		WTFF DDDDDD 2
 		{
+			A_Recoil(-0.85);
 			A_FaceTarget();
 			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),30,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
 		}
 		WTFF E 40
 		{
+			A_Recoil(-1);
 			A_FaceTarget();
 			A_StartSound("GBloodSplashBig",16);
 			A_StartSound("ArachExpGore",17,CHANF_DEFAULT,0.65);
