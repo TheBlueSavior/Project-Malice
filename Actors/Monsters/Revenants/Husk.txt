@@ -204,9 +204,7 @@ Class PM_Husk : PMWrathMonsterBase
 		
 		if (target && checksight(target) && distance3D(target) < 165)
 		{
-			int damage = 25 + (random(1, 2) * 2);
-			int newdam = target.DamageMobj(self, self, damage, "Fire");
-			target.TraceBleed(newdam > 0 ? newdam : damage, self);
+			A_Explode(40,165,XF_NOTMISSILE,0,50,0,0,"BulletPuff","GhoulCloud");
 			target.Vel3DFromAngle(15, self.angle, self.pitch);
 			target.vel.z += 7;
 		}
