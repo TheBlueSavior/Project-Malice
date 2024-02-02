@@ -4707,6 +4707,14 @@ CivZombie/MolotovDetonate1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotov
 CivZombie/MolotovDetonate2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovDetonate2.ogg"
 CivZombie/MolotovDetonate3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovDetonate3.ogg"
 
+$random CivZombie/MutationRip { CivZombie/MutationRip1 CivZombie/MutationRip2 }
+CivZombie/MutationRip1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMutationRip1.ogg"
+CivZombie/MutationRip2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMutationRip2.ogg"
+
+$random CivZombie/MutationExit { CivZombie/MutationExit1 CivZombie/MutationExit2 }
+CivZombie/MutationExit1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMutationExit1.ogg"
+CivZombie/MutationExit2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMutationExit2.ogg"
+
 $rolloff CivZombie/Shot 400 2200
 $rolloff CivZombie/IEDDetonate 400 2500
 $rolloff CivZombie/MolotovDetonate 400 2500

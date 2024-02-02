@@ -17,6 +17,7 @@ Class PM_CivilianZombie : PMLustMonsterBase
     Height 56;
     Speed 8;
     PainChance 200;
+	MeleeRange 75;
     Mass 100;
     Damage 1;
     MONSTER;
@@ -78,6 +79,40 @@ Class PM_CivilianZombie : PMLustMonsterBase
         TNT1 A 0 PM_AlertSound();
 	    THPZ EE 3 A_FaceTarget();
 		Goto RealMissile;
+	Melee:
+		WTFF A 10 A_FaceTarget();
+		WTFF A 4 A_StartSound("CivZombie/MutationRip",15);
+		WTFF BBBCCC 3
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),30,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
+		}
+		WTFF D 0 { if (!random(0, 1)) A_StartSound("CivZombie/Death2", CHAN_VOICE); }
+		WTFF DDDDDD 2
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),30,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
+		}
+		WTFF E 40
+		{
+			A_FaceTarget();
+			A_StartSound("GBloodSplashBig",16);
+			A_StartSound("ArachExpGore",17,CHANF_DEFAULT,0.65);
+			
+			if (target && checksight(target) && distance3D(target) < 75)
+			{
+				int damage = 30;
+				int newdam = target.DamageMobj(self, self, damage, "Lust");
+				target.TraceBleed(newdam > 0 ? newdam : damage, self);
+				target.Vel3DFromAngle(8, self.angle, self.pitch);
+			}
+		
+			for (int i = random(5, 15); i > 0; i--) A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),30,random(0,4),random(-4,4),random(0,5),0,SXF_NOCHECKPOSITION);
+			for (int i = random(3, 2); i > 0; i--) A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-5,5) + 8,random(-5,5),30,random(0,4),random(-4,4),random(0,5),0,SXF_NOCHECKPOSITION);
+		}
+		WTFF E 4 A_StartSound("CivZombie/MutationExit",15);
+		WTFF DCBAA 5 A_FaceTarget();
+		Goto See;
     Missile:
 		TNT1 A 0;
 		TNT1 A 0 { if(target && CheckSight(target) && random(1,2) == 1 && grenadecount > 0 )
