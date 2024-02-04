@@ -5062,6 +5062,8 @@ Harpy/Sight3 "Sounds/Monsters/Pinkies/Harpy/HarpySight3.ogg"
 Harpy/Sight4 "Sounds/Monsters/Pinkies/Harpy/HarpySight4.ogg"
 Harpy/Sight5 "Sounds/Monsters/Pinkies/Harpy/HarpySight5.ogg"
 
+$volume Harpy/Sight 0.85
+
 $random Harpy/WingFlap { Harpy/WingFlap1 Harpy/WingFlap2 Harpy/WingFlap3 Harpy/WingFlap4 }
 Harpy/WingFlap1 "Sounds/Monsters/Pinkies/Harpy/HarpyWingFlap1.ogg"
 Harpy/WingFlap2 "Sounds/Monsters/Pinkies/Harpy/HarpyWingFlap2.ogg"
@@ -5071,9 +5073,11 @@ Harpy/WingFlap4 "Sounds/Monsters/Pinkies/Harpy/HarpyWingFlap4.ogg"
 $random Harpy/Roar { Harpy/Roar1 Harpy/Roar2 }
 Harpy/Roar1 "Sounds/Monsters/Pinkies/Harpy/HarpyRoar1.ogg"
 Harpy/Roar2 "Sounds/Monsters/Pinkies/Harpy/HarpyRoar2.ogg"
+$volume Harpy/Roar 0.9
 
 Harpy/Pain "Sounds/Monsters/Pinkies/Harpy/HarpyPain.ogg"
 Harpy/Death "Sounds/Monsters/Pinkies/Harpy/HarpyDeath.ogg"
+$volume Harpy/Death 0.8
 
 $rolloff Harpy/WingFlap 400 1200
 $limit Harpy/WingFlap 8

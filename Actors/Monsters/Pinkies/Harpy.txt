@@ -1,5 +1,6 @@
 Class PM_Harpy : PMLustMonsterBase
 {
+	bool seeskip;
     Default
 	{
 	PMMonsterBase.CodexLore
@@ -8,8 +9,8 @@ Class PM_Harpy : PMLustMonsterBase
 	 
 	 Has the ability to quickly lunge at you and can fly, but otherwise has the same aggressiveness as a Brute.";
 	Health 90;
-	Radius 20;
-	Height 56;
+	Radius 18;
+	Height 50;
 	Speed 14;
 	PainChance 120;
 	Mass 400;
@@ -24,7 +25,7 @@ Class PM_Harpy : PMLustMonsterBase
 	Monster;
 	MeleeDamage 4;
 	MeleeRange 300;
-	Scale 1;
+	Scale 0.85;
 	Bloodtype "PM_NormalBloodBase";
 	SeeSound "Harpy/Sight";
 	DeathSound "Harpy/Death";
@@ -37,35 +38,72 @@ Class PM_Harpy : PMLustMonsterBase
 	States
 	{
 		Spawn:
+			HRP_ A 0;
+			"####" A 0 { if(seeskip) SetStateLabel("See");}
 			HRP_ A 10 PM_Look();
 			Loop;
         Look:
-			HRP_ AAABBB 2 PM_LookingForPlayer();
+			HRP_ AABB 2 PM_LookingForPlayer();
 			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
             TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
-			HRP_ CCCDDDCCCBBB 2 PM_LookingForPlayer();
+			HRP_ CCDDCCCBBBA 2 PM_LookingForPlayer();
 			Loop;
 		Spotted:
 		    TNT1 A 0 A_Jump(256,"RoarCheck","RoarNoAnim");
 			Goto RoarNoAnim;
 		RoarNoAnim:
 		    TNT1 A 0 PM_AlertSound();
+			TNT1 A 0 A_Jump(128,"Woosh");
 			Goto See;
 		See:
-			HRP_ AAABBB 2 A_Chase();
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
-			HRP_ CCCDDD 2 A_Chase();
-			HRP_ CCCBBB 2 A_Chase();
+			HRP_ A 0 { seeskip = true; }
+			TNT1 A 0 A_SetSpeed(14);
+			HRP_ AABB 2
+			{
+			ThrustThing(random(0,360),random(0,1));
+			ThrustThingZ(0,2,0,1);
+			A_Chase();
+			}
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.5);
+			HRP_ CCDD 2
+			{
+			ThrustThingZ(0,2,0,1);
+			A_Chase();
+			}
+			HRP_ CCCBBBA 2
+			{
+			ThrustThingZ(0,3,1,1);
+			A_Chase();
+			}
+			TNT1 A 0 A_Jump(20,"SeeFast");
 			TNT1 A 0 A_Jump(7,"RoarCheck");
 			Loop;
 		SeeFast:
-			HRP_ AAABBB 1 A_Chase(null,null);
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
-			HRP_ CCCDDD 1 A_Chase(null,null);
-			HRP_ CCCBBB 1 A_Chase(null,null);
-			HRP_ AAABBB 1 A_Chase(null,null);
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
-			HRP_ CCCDDD 1 A_Chase(null,null);
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 A 0 A_SetSpeed(16);
+			HRP_ AABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
+			HRP_ CCCBBB 1 A_Wander();
+			HRP_ AAABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
+			HRP_ CCCBBB 1 A_Wander();
+			HRP_ AABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
+			HRP_ CCCBBB 1 A_Wander();
+			HRP_ AAABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
+			HRP_ CCCBBB 1 A_Chase();
+			HRP_ AABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
+			HRP_ CCCBBB 1 A_Wander();
+			HRP_ AAABB 1 A_Wander();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_Wander();
 			HRP_ CCCBBB 1 A_Chase();
 			Goto See;
 		RoarCheck:
@@ -75,6 +113,7 @@ Class PM_Harpy : PMLustMonsterBase
 			HRP_ A 3 A_FaceTarget;
 			HRP_ B 1 A_StartSound("Harpy/Roar",7);
 			HRP_ GGGGGB 4 A_FaceTarget;
+			TNT1 A 0 A_Jump(128,"Woosh");
 			Goto See;
 		Dodge:
 		    TNT1 A 0 {
@@ -82,32 +121,58 @@ Class PM_Harpy : PMLustMonsterBase
 			A_FaceTarget();
 			}
 			HRP_ AAABB 1 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
 			HRP_ CCDD 1 A_FaceTarget();
 			HRP_ CCBB 1 A_FaceTarget();
 			HRP_ AAABB 1 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
 			HRP_ CCDD 1 A_FaceTarget();
 			HRP_ CCBB 1 A_FaceTarget();
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-			TNT1 A 0 { if(target && CheckSight(target) && Distance3D(target) < 350) SetStateLabel("RealMelee"); }
+			TNT1 A 0 { if(target && CheckSight(target) && Distance3D(target) < 450) SetStateLabel("RealMeleeStart"); }
 			Goto See;
 		Missile:
 		    TNT1 A 0 A_Jump(65,"Dodge");
-			TNT1 A 0 A_JumpIfCloser(350,"RealMelee");
+			TNT1 A 0 A_JumpIfCloser(450,"RealMeleeStart");
 			Goto See;
+		RealMeleeStart:
+			HRP_ AABB 1 A_FaceTarget();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_FaceTarget();
+			HRP_ CCBB 1 A_FaceTarget();
+			HRP_ AABB 1 A_FaceTarget();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
+			HRP_ CCDD 1 A_FaceTarget();
+			HRP_ CCBB 1 A_FaceTarget();
 		RealMelee:
-			HRP_ E 7 A_FaceTarget;
-			TNT1 A 0 A_StartSound("Harpy/Sight",7);
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			HRP_ E 4 A_FaceTarget;
-			TNT1 A 0 A_Recoil(-20);
-			HRP_ FFFFF 1;
-			HRP_ FFF 4 A_SpawnProjectile("PM_MeleeHitbox",20,0,0);
-			TNT1 A 0 A_SpawnProjectile("PM_MeleeHitbox",20,0,0);
+			TNT1 A 0 A_StartSound("Harpy/Sight",7);
+			HRP_ E 1 A_FaceTarget;
+			HRP_ E 1 A_SkullAttack(24);
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,1.0,ATTN_NORM,0.65);
+			TNT1 A 0 A_StartSound("GenericChargeHeavy",13);
+			HRP_ FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+			{
+			A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+			A_SpawnProjectile("PM_WeakMeleeHitbox",20,0,0);
+			}
+			TNT1 A 0 A_StopSound(13);
+			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			TNT1 A 0 A_Jump(128,"Woosh");
+			Goto See;
+		Woosh:
+			HRP_ DDDCCCBBBAAA 1 A_FaceTarget();
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,1.0,ATTN_NORM,0.7);
+			HRP_ A 0 ThrustThingZ(0,25,0,1);
+			HRP_ ABCD 1 A_FaceTarget();
+			HRP_ DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 A_FaceTarget();
+			HRP_ BBBBCCCCBBBAA 0 ThrustThingZ(0,2,1,1);
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			Goto See;
 		Pain:
 		    TNT1 A 0 A_StopSound(7);
+			TNT1 A 0 A_StopSound(13);
 			HRP_ H 2 A_Pain;
 	        HRP_ H 2 {
 			if(random(1,3) == 1)
@@ -115,17 +180,18 @@ Class PM_Harpy : PMLustMonsterBase
 			else
 			A_ChangeVelocity(random(-4,-7),0,0,CVF_RELATIVE|CVF_REPLACE); }
 			HRP_ AAABB 1 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
 			HRP_ CCDD 1 A_FaceTarget();
 			HRP_ CCBB 1 A_FaceTarget();
 			HRP_ AAABB 1 A_FaceTarget();
-			TNT1 A 0 A_StartSound("Harpy/WingFlap",12);
+			TNT1 A 0 A_StartSound("Harpy/WingFlap",12,CHANF_DEFAULT,0.7);
 			HRP_ CCDD 1 A_FaceTarget();
 			HRP_ CCBB 1 A_FaceTarget();
 			TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 			TNT1 A 0 A_Jump(56,"SeeFast");
 			Goto See;
 		Death:
+			TNT1 A 0 A_StopSound(13);
 		    TNT1 A 0 A_StopSound(7);
 			HR__ A 6 PM_Scream();
 			HR__ B 6 A_Fall();

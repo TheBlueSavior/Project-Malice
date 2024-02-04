@@ -247,3 +247,19 @@ Class PM_MeleeHitbox : PM_FastMeleeHitbox //[NERU] used for pinkies
 	Stop;
   }
 }
+
+Class PM_WeakMeleeHitbox : PM_FastMeleeHitbox
+{
+  Default
+  {
+   DamageFunction 2;
+   Speed 12;
+   FastSpeed 12;
+  }
+  States
+  {
+  Spawn:
+    TNT1 A 6;
+	Stop;
+  }
+}
