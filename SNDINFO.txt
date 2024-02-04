@@ -5109,3 +5109,97 @@ $random Maggot/Attack { Maggot/Attack1 Maggot/Attack2 Maggot/Attack3 }
 Maggot/Attack1 "Sounds/Monsters/Spectres/Maggot/MaggotAttack1.ogg"
 Maggot/Attack2 "Sounds/Monsters/Spectres/Maggot/MaggotAttack2.ogg"
 Maggot/Attack3 "Sounds/Monsters/Spectres/Maggot/MaggotAttack3.ogg"
+
+//Grievance
+
+Grievance/Attack "Sounds/Monsters/Revenants/Grievance/GrievanceAttack.ogg"
+
+Grievance/Death "Sounds/Monsters/Revenants/Grievance/GrievanceDeath.ogg"
+
+$random Grievance/Active { Grievance/Grunt1 Grievance/Grunt2 Grievance/Grunt3 Grievance/Grunt4 }
+Grievance/Grunt1 "Sounds/Monsters/Revenants/Grievance/GrievanceGrunt1.ogg"
+Grievance/Grunt2 "Sounds/Monsters/Revenants/Grievance/GrievanceGrunt2.ogg"
+Grievance/Grunt3 "Sounds/Monsters/Revenants/Grievance/GrievanceGrunt3.ogg"
+Grievance/Grunt4 "Sounds/Monsters/Revenants/Grievance/GrievanceGrunt4.ogg"
+
+$random Grievance/Sight { Grievance/Sight1 Grievance/Sight2 Grievance/Sight3 Grievance/Sight4 }
+Grievance/Sight1 "Sounds/Monsters/Revenants/Grievance/GrievanceSight1.ogg"
+Grievance/Sight2 "Sounds/Monsters/Revenants/Grievance/GrievanceSight2.ogg"
+Grievance/Sight3 "Sounds/Monsters/Revenants/Grievance/GrievanceSight3.ogg"
+Grievance/Sight4 "Sounds/Monsters/Revenants/Grievance/GrievanceSight4.ogg"
+
+Grievance/Charge "Sounds/Monsters/Revenants/Grievance/GrievanceCharge.ogg"
+
+$rolloff Grievance/Sight 300 1500
+$rolloff Grievance/Active 200 1200
+$rolloff Grievance/Attack 200 1200
+$rolloff Grievance/Death 300 1500
+$rolloff Grievance/Charge 300 1500
+
+Grievance/RocketFail "Sounds/Monsters/Revenants/Grievance/GrievanceRocketFail.ogg"
+
+$random PM/HardMetalBounce { PM/HardMetalBounce1 PM/HardMetalBounce2 PM/HardMetalBounce3 }
+PM/HardMetalBounce1 "Sounds/Other/PMHardMetalImpact1.ogg"
+PM/HardMetalBounce2 "Sounds/Other/PMHardMetalImpact2.ogg"
+PM/HardMetalBounce3 "Sounds/Other/PMHardMetalImpact3.ogg"
+$volume PM/HardMetalBounce 0.7
+
+$random Grievance/HomingExp { Grievance/HomingExp1 Grievance/HomingExp2 Grievance/HomingExp3 Grievance/HomingExp4 Grievance/HomingExp5 }
+Grievance/HomingExp1 "Sounds/Monsters/Revenants/Grievance/GrievanceHomingExp1.ogg"
+Grievance/HomingExp2 "Sounds/Monsters/Revenants/Grievance/GrievanceHomingExp2.ogg"
+Grievance/HomingExp3 "Sounds/Monsters/Revenants/Grievance/GrievanceHomingExp3.ogg"
+Grievance/HomingExp4 "Sounds/Monsters/Revenants/Grievance/GrievanceHomingExp4.ogg"
+Grievance/HomingExp5 "Sounds/Monsters/Revenants/Grievance/GrievanceHomingExp5.ogg"
+
+Grievance/HomingStart "Sounds/Monsters/Revenants/Grievance/GrievanceHomingStart.ogg"
+Grievance/GrenadeOpen "Sounds/Monsters/Revenants/Grievance/GrievanceGrenadeOpen.ogg"
+
+Grievance/HomingFire "Sounds/Monsters/Revenants/Grievance/GrievanceHomingFire.ogg"
+
+Grievance/Launch "Sounds/Monsters/Revenants/Grievance/GrievanceLaunch.ogg"
+
+Grievance/RocketFail "Sounds/Monsters/Revenants/Grievance/GrievanceRocketFail.ogg"
+
+$rolloff Grievance/HomingExp 500 1500
+$rolloff Grievance/GrenadeOpen 300 2200
+$rolloff Grievance/HomingStart 500 1500
+$rolloff Grievance/RocketFail 500 2000
+
+Grievance/StealthBazooka "Sounds/Monsters/Revenants/Grievance/GrievanceStealthBazooka.ogg"
+Grievance/StealthBazookaLoop "Sounds/Monsters/Revenants/Grievance/GrievanceStealthBazookaLoop.ogg"
+
+$rolloff Grievance/StealthBazooka 500 2500
+$limit Grievance/StealthBazookaLoop 4
+$rolloff Grievance/StealthBazookaLoop 1000 3000
+
+//Bacillus
+
+$random Bacillus/Bite { Bacillus/Bite1 Bacillus/Bite2 Bacillus/Bite3 Bacillus/Bite4 }
+Bacillus/Bite1 "Sounds/Monsters/Souls/Bacillus/BacillusBite1.ogg"
+Bacillus/Bite2 "Sounds/Monsters/Souls/Bacillus/BacillusBite2.ogg"
+Bacillus/Bite3 "Sounds/Monsters/Souls/Bacillus/BacillusBite3.ogg"
+Bacillus/Bite4 "Sounds/Monsters/Souls/Bacillus/BacillusBite4.ogg"
+
+$random Bacillus/Death { Bacillus/Death1 Bacillus/Death2 Bacillus/Death3 }
+Bacillus/Death1 "Sounds/Monsters/Souls/Bacillus/BacillusDeath1.ogg"
+Bacillus/Death2 "Sounds/Monsters/Souls/Bacillus/BacillusDeath2.ogg"
+Bacillus/Death3 "Sounds/Monsters/Souls/Bacillus/BacillusDeath3.ogg"
+
+$random Bacillus/Impact { Bacillus/Impact1 Bacillus/Impact2 }
+Bacillus/Impact1 "Sounds/Monsters/Souls/Bacillus/BacillusImpact1.ogg"
+Bacillus/Impact2 "Sounds/Monsters/Souls/Bacillus/BacillusImpact2.ogg"
+
+$random Bacillus/Proj { Bacillus/Proj1 Bacillus/Proj2 Bacillus/Proj3 Bacillus/Proj4 Bacillus/Proj5 Bacillus/Proj6 Bacillus/Proj7 Bacillus/Proj8 }
+Bacillus/Proj1 "Sounds/Monsters/Souls/Bacillus/BacillusProj1.ogg"
+Bacillus/Proj2 "Sounds/Monsters/Souls/Bacillus/BacillusProj2.ogg"
+Bacillus/Proj3 "Sounds/Monsters/Souls/Bacillus/BacillusProj3.ogg"
+Bacillus/Proj4 "Sounds/Monsters/Souls/Bacillus/BacillusProj4.ogg"
+Bacillus/Proj5 "Sounds/Monsters/Souls/Bacillus/BacillusProj5.ogg"
+Bacillus/Proj6 "Sounds/Monsters/Souls/Bacillus/BacillusProj6.ogg"
+Bacillus/Proj7 "Sounds/Monsters/Souls/Bacillus/BacillusProj7.ogg"
+Bacillus/Proj8 "Sounds/Monsters/Souls/Bacillus/BacillusProj8.ogg"
+
+$random Bacillus/Sight { Bacillus/Sight1 Bacillus/Sight2 Bacillus/Sight3 }
+Bacillus/Sight1 "Sounds/Monsters/Souls/Bacillus/BacillusSight1.ogg"
+Bacillus/Sight2 "Sounds/Monsters/Souls/Bacillus/BacillusSight2.ogg"
+Bacillus/Sight3 "Sounds/Monsters/Souls/Bacillus/BacillusSight3.ogg"

@@ -78,9 +78,10 @@ Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 {
 	DropItem "PM_Blot", 255, 2
-	DropItem "PM_BurntSoul", 255, 36
+	DropItem "PM_BurntSoul", 255, 47
 	DropItem "PM_FleshspawnDropper", 255, 1
-	DropItem "PM_BloodSkull", 255, 3
+	DropItem "PM_BloodSkull", 255, 4
+	DropItem "PM_Bacillus", 255, 3
 	DropItem "PM_Gazer", 255, 2
 }
 
@@ -93,6 +94,7 @@ Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 	DropItem "PM_Infested", 255, 2
 	DropItem "PM_Draugr", 255, 2
 	DropItem "PM_Husk", 255, 3
+	DropItem "PM_Grievance", 255, 3
 	DropItem "PM_Fiend", 255, 8
 	DropItem "PM_SoulReaverSpawner", 255, 1
 }

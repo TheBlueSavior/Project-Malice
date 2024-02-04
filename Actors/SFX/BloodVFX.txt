@@ -794,7 +794,31 @@ Class PM_GreenBloodMist : PM_NormalBloodMist
 	}
 }
 
+Class PM_GreenCyberBloodBase : PM_NormalBloodBase
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_GreenCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
 
+Class PM_GreenCyberBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_GreenBlood1", 255, 2;
+	DropItem "PM_GreenBlood2", 255, 2;
+	DropItem "PM_GreenBlood3", 255, 2;
+	DropItem "PM_GreenBloodMulti", 255, 2;
+	DropItem "PM_GreenBloodMist", 255, 2;
+	DropItem "PM_GreenMeatChunkLauncher", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 4;
+	}
+}
 
 //DARK GREEN BLOOD
 Class PM_DarkGreenBloodBase : PM_NormalBloodBase

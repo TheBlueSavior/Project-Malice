@@ -446,3 +446,84 @@ DecalGroup WallDamage
 	WallDamage10 1
 	WallDamage11 1
 }
+
+decal PM_GreenBloodSplat1
+{
+	pic BSPLAT1
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat2
+{
+	pic BSPLAT2
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat3
+{
+	pic BSPLAT3
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat4
+{
+	pic BSPLAT4
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat5
+{
+	pic BSPLAT5
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat6
+{
+	pic BSPLAT6
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decal PM_GreenBloodSplat7
+{
+	pic BSPLAT7
+	shade "00 40 00"
+	x-scale 0.75
+	y-scale 0.75
+	randomflipx
+	randomflipy
+}
+
+decalgroup PM_GreenBloodSplat
+{
+	PM_GreenBloodSplat1	2
+	PM_GreenBloodSplat2	1
+	PM_GreenBloodSplat3	5
+	PM_GreenBloodSplat4	5
+	PM_GreenBloodSplat5	5
+	PM_GreenBloodSplat6	5
+	PM_GreenBloodSplat7	6
+}

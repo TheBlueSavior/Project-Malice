@@ -2,7 +2,11 @@ Class PM_Wicked : PMEnvyMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Cacodemons"
+		PMMonsterBase.CodexLore 
+		"The sentinels of Envy; the green-eyed monster which mocks the meat it feeds on. They are imbued with enough hell magic so that it visibly glows the eyes of the wicked.
+		They serve as drones in the isolated battlefields of Hell, quiet and sinister watchers that keeps hostiles under surveillance. No matter what type of hostile it is, it desires to be stronger.
+		
+		Can usually spit jade energy balls at you, with or without seeking. Can be capable of mimicking Wretched and its brethrens.";
 		Health 350;
 		Radius 31;
 		Height 56;

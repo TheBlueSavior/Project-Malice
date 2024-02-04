@@ -78,6 +78,7 @@ version "4.10.0"
 #include "Actors/Monsters/Revenants/Draugr.txt"
 #include "Actors/Monsters/Revenants/Infested.txt"
 #include "Actors/Monsters/Revenants/Depraved.txt"
+#include "Actors/Monsters/Revenants/Grievance.txt"
 #include "Actors/Monsters/Revenants/SoulReaver.txt"
 
 //Spectres
@@ -96,6 +97,7 @@ version "4.10.0"
 #include "Actors/Monsters/Souls/Blot.txt"
 #include "Actors/Monsters/Souls/UmbralHeart.txt"
 #include "Actors/Monsters/Souls/Gazer.txt"
+#include "Actors/Monsters/Souls/Bacillus.txt"
 
 //Cacos
 #include "Actors/Monsters/Cacodemons/Beholder.txt"

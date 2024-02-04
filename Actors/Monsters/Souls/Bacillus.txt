@@ -1,0 +1,433 @@
+Class PM_Bacillus : PMEnvyMonsterBase
+{
+	bool sigil;
+	
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"A eldritch drone that is always reliant on being a minuscule bulwark, specifically protecting the demons within the circle of Envy.
+		Bacilli are covered with a electric substance that makes itself fearful to threats and is a perfectionist at electric magic, but they are covetous of their aspects.
+		
+		Slighty tankier than its predecessors, but never charge and is more reliant on spitting electric orbs at you. Don't get too close to them, since they are Hell's jellyfish.";
+		Health 128;
+		Radius 16;
+		Height 56;
+		Mass 300;
+		Speed 5;
+		Scale 1.0;
+		DamageFunction 20;
+		PainChance 150;
+		Tag "Bacillus";
+		Species "Soul";
+		BloodColor "660000";
+		Obituary "%o got scowled by a bacillus." ;
+		HitObituary "%o felt the pain of touching a jellyfish of hell.";
+		AttackSound "";
+		SeeSound "Bacillus/Sight";
+		PainSound "Bacillus/Impact";
+		DeathSound "Bacillus/Death";
+		ActiveSound "";
+		Monster;
+		+FLOAT
+		+NOGRAVITY
+		+DONTHARMCLASS
+		+DONTHARMSPECIES
+		+DONTFALL
+		+FORCEXYBILLBOARD
+		+NOTARGET
+		+FLOATBOB
+		+ROLLSPRITE
+		-MISSILEMORE
+		FloatBobStrength 0.3;
+		BloodType "PM_GreenBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+	
+	override void PostBeginPlay()
+	{
+		tex[0] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	}
+	
+	textureID tex[3];
+	
+	void PM_BacillusCharge()
+	{
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 10, random(80,100), xoff: 15, zoff: 14, startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,10), random(1,50), xoff: 15, zoff: 14, velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0,1), startroll: random(-180,180));
+	}
+	
+	void PM_BacillusShock()
+	{
+		A_SpawnParticleEx("00ff00", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 1, random(1,400), xoff: 15, zoff: 14, startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,20), random(1,150), xoff: 15, zoff: 14, velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0.5,1), startroll: random(-180,180));
+		for (int i = random(1, 2); i > 0; i--) A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,30), random(1,150), xoff: frandom(-60, 60), yoff: frandom(-60, 60), zoff: 14 + frandom(-10, 10), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0.5,1), startroll: random(-180,180));
+		A_SpawnParticleEx("24ff24", tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(100, 200), random(40,100), xoff: frandom(-60, 60), yoff: frandom(-60, 60), zoff: 14 + frandom(-10, 10), startalphaf: frandom(0.3, 0.6), sizestep: frandom(0, 1), startroll: random(-180,180), rollvel: frandom(-2, 2));
+	}
+	
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (!random(0, 7)) A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,10), random(1,50), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: 25 + frandom(-10, 10), velx: random(-1,1), vely: random(-1,1), velz: random(-1,1), startalphaf: frandom(0,1), startroll: random(-180,180));
+	}
+	
+	States
+	{
+	Spawn:
+		VY_A AAABBB 2 BRIGHT PM_Look();
+		Loop;
+	Look:
+		VY_A AAABBB 2
+		{
+			A_Recoil(-0.05);
+			PM_LookingForPlayer();
+		}
+		TNT1 A 0 A_JumpifTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+		Loop;
+	Spotted:
+		TNT1 A 0 PM_AlertSound();
+	See:
+		VY_A A 0 A_SetSpeed(5);
+		VY_A AAABBB 2
+		{
+			A_Recoil(-0.05);
+			A_Chase();
+			
+			if (target && CheckSight(target) && distance3D(target) < 180) SetStateLabel("Shock");
+		}
+		TNT1 A 0 A_Jump(60, "Rush");
+		Goto See;
+	Rush:
+		VY_A A 0 A_SetSpeed(12);
+		VY_A AAABBB 1
+		{
+			A_Chase(null, null);
+			if (target && CheckSight(target) && distance3D(target) < 180) SetStateLabel("Shock");
+			
+			if (!random(0, 1)) for (int i = random(1, 2); i > 0; i--) A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,30), random(1,150), xoff: frandom(-30, 30), yoff: frandom(-30, 30), zoff: 14 + frandom(-10, 10), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0.5,1), startroll: random(-180,180));
+			A_SpawnParticleEx("24ff24", tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(100, 200), random(40,100), xoff: frandom(-30, 30), yoff: frandom(-30, 30), zoff: 14 + frandom(-10, 10), startalphaf: frandom(0.2, 0.45), sizestep: frandom(0, 1), startroll: random(-180,180), rollvel: frandom(-2, 2));
+		}
+		TNT1 A 0 A_Jump(15, "See");
+		Loop;
+	Shock:
+		TNT1 A 0 A_Jump(40, "CopyBloodSkull");
+		VY_A E 0 Light("GreenBall3") A_StartSound("NetherConduit/ChaserCharge", 11, pitch: 1.7);
+		VY_A EEEEEEEEEEEEEEEEEEEEEEE 1 Light("GreenBall4")
+		{
+			PM_BacillusCharge();
+			A_FaceTarget();
+		}
+		Goto ShockLoop;
+	ShockLoop:
+		VY_A CCDD random(3, 2) Light("GreenBall2")
+		{
+			A_StartSound("Grievance/RocketFail",CHAN_BODY);
+			PM_BacillusShock();
+			A_FaceTarget();
+			A_Explode((2), 200, XF_NOTMISSILE);
+			
+			if (target && Distance3D(target) > 180) SetStateLabel("Cooldown");
+		}
+		Loop;
+	Missile:
+		TNT1 A 0 { if (target && distance3D(target) > 300 && !random(0, 7)) SetStateLabel("Copy"); }
+		TNT1 A 0 A_Jump(60, "MultiShot");
+		VY_A E 10 A_FaceTarget();
+		VY_A E 10 Light("GreenBall3") A_FaceTarget();
+		VY_A E 5 Light("GreenBall3") A_StartSound("Bacillus/Proj", 15);
+		VY_A D 5 Light("GreenBall3")
+		{
+			A_FaceTarget();
+			A_SpawnProjectile("PM_BacillusBall", 14, 0, frandom(-5, 5), CMF_OFFSETPITCH, pitch - random(5, 5));
+		}
+		VY_A E 15 Light("GreenBall3") A_FaceTarget();
+		Goto See;
+	MultiShot:
+		VY_A E 0 Light("GreenBall3") A_StartSound("Bacillus/Bite", CHAN_VOICE);
+		VY_A EEEEEEEEEEEEEEEEEEEEEEE 2 Light("GreenBall3")
+		{
+			PM_BacillusCharge();
+			A_FaceTarget();
+		}
+		Goto MultiShotLoop;
+	MultiShotLoop:
+		VY_A D 0 { pm_attackloop = random(3,4); }
+		VY_A D 5 Light("GreenBall3")
+		{
+			A_FaceTarget();
+			A_StartSound("Bacillus/Proj", 15, CHANF_OVERLAP);
+			A_SpawnProjectile("PM_BacillusBall", 14, 0, frandom(-20, 20), CMF_OFFSETPITCH, pitch - random(5, 5));
+			pm_attackloop--;
+		}
+		VY_A E 5 Light("GreenBall3")
+		{
+			if (pm_attackloop <= 0) SetStateLabel("Cooldown");
+			A_FaceTarget();
+		}
+		Goto MultiShotLoop+1;
+	Cooldown:
+		TNT1 A 0 
+		{ 
+		 if(sigil)
+		 A_GiveInventory("PM_EnvySigilGoAway");
+		 sigil = false;
+		}
+		VY_A E 20 A_FaceTarget();
+		Goto See;
+	Copy:
+		TNT1 A 0 A_Jump(150, "CopyBloodSkull");
+		Goto CopyBurntSoul;
+	CopyBurntSoul:
+		VY_A E 0 Light("GreenBall3") A_StartSound("Bacillus/Bite", CHAN_VOICE);
+		VY_A EEEEEEEEEEEEEEEEEEEEEEE 1 Light("GreenBall3") A_FaceTarget();
+		VY_A E 1 Light("GreenBall3")
+		{
+			let castsigil = Spawn("PM_EnvyCastSigil",pos);
+			castsigil.master = self;
+			sigil = true;
+			A_FaceTarget();
+		}
+		VY_A DDDDDCCCCCDDDDDCCCCC 1 Bright Light("Greenball3") 
+		{
+			A_FaceTarget();
+			A_SpawnParticleEx("47ae1a", tex[0], STYLE_Add, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(2,10), frandom(80,300), xoff: 5, zoff: 14, startalphaf: 0.5, fadestepf: -1, startroll: random(-180,180));
+		}
+		Goto SoulLoop;
+	CopyBloodSkull:
+		TNT1 A 0 A_StopSound(6);
+		VY_A E 0 Light("GreenBall3") A_StartSound("Bacillus/Bite", CHAN_VOICE);
+		VY_A EEEEEEEEEEEEEEEEEEEEEEE 1 Light("GreenBall3") A_FaceTarget();
+		VY_A E 1 Light("GreenBall3")
+		{
+			let castsigil = Spawn("PM_EnvyCastSigil",pos);
+			castsigil.master = self;
+			sigil = true;
+			A_FaceTarget();
+		}
+		TNT1 A 0 Vel3DFromAngle(12, frandom(0, 360), frandom(-90, 90));
+		VY_A EEE 10
+		{
+			A_FaceTarget();
+			A_SpawnProjectile("PM_CopyBloodSpit", 14, 0, frandom(-4, 4));
+		}
+		VY_A E 10 A_Stop();
+		Goto Cooldown;
+	SoulLoop:
+		VY_A D 0 { pm_attackloop = random(2, 3); }
+		VY_A D 5 Light("GreenBall3")
+		{
+			A_StartSound("PM/RuneFill",21);
+			A_FaceTarget();
+			A_StartSound("Bacillus/Proj", 15, CHANF_OVERLAP);
+			A_SpawnItemEx("PM_BacillusBurntSoulCopy", 0, 0, 14, frandom(0, 1), flags: SXF_NOCHECKPOSITION|SXF_SETMASTER);
+			A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, random(150, 200), xoff: 15, zoff: 14, sizestep: -random(10, 15), startroll: random(-180,180));
+			pm_attackloop--;
+		}
+		VY_A E 20 Light("GreenBall3")
+		{
+			if (pm_attackloop <= 0) SetStateLabel("Cooldown");
+			A_FaceTarget();
+		}
+		Goto SoulLoop+1;
+	Pain:
+		TNT1 A 0 
+		{ 
+		 A_StopSound(11);
+		 if(sigil)
+		 A_GiveInventory("PM_EnvySigilGoAway");
+		 sigil = false;
+		 A_Stop();
+		}
+		VY_A A 4;
+		VY_A A 4 A_Pain();
+		VY_A A 1 A_Jump(100, "Retreat");
+		Goto See;
+	Retreat:
+		VY_A A 0 { bFRIGHTENED = true; bNOPAIN = true; }
+		VY_A AABBAABBAABBAABBAABBAABBAABBAABB 2
+		{
+			A_Recoil(-0.5);
+			if (target) angle = target.angle - 180;
+			A_Chase(null, null);
+		}
+		VY_A A 0 { bFRIGHTENED = false; bNOPAIN = false; A_Stop(); }
+		Goto See;
+	Death:
+		TNT1 A 0 
+		{ 
+		 if(sigil)
+		 A_GiveInventory("PM_EnvySigilGoAway");
+		 sigil = false;
+		}
+		VY_A E 1 A_ScreamAndUnblock;
+		VY_A EEEF 2
+		{
+			A_FaceTarget();
+			PM_BacillusCharge();
+		}
+		VY_A GHIJ 4
+		{
+			for (int i = random(1, 3); i > 0; i--) PM_BacillusShock();
+			for (int i = randompick(1, 1, 2); i > 0; i--)
+				A_SpawnItemEx("PM_GreenBloodBase", frandom(-10, 10), frandom(-10, 10), frandom(10, 20), frandom(-1, 1), frandom(-1, 1), frandom(-1, 1), flags: SXF_NOCHECKPOSITION);
+		}
+		VY_A K 4;
+		Stop;
+	}
+}
+
+Class PM_BacillusBall : WickedShot
+{
+	Default
+	{
+		SeeSound "";
+		DamageFunction 5;
+		Speed 25;
+		+NEVERFAST
+	}
+	
+	override void PostBeginPlay()
+	{
+		tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	void BallFX()
+	{
+		A_SpawnParticleEx("00ff00", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, frandom(25, 30), random(15,30), xoff: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
+		A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,10), random(1,50), xoff: frandom(-5, 5), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0,1), startroll: random(-180,180));
+	}
+	
+	States
+	{
+	Spawn:
+		SBAL A 1 BRIGHT Light("GreenBall5") BallFX();
+		SBAL B 1 BRIGHT Light("GreenBall5") BallFX();
+		SBAL C 1 BRIGHT Light("GreenBall5") BallFX();
+		Loop;
+  }
+}
+
+Class PM_BacillusBurntSoulCopy : Actor
+{
+	int timer;
+	Default
+	{
+	Health 50;
+	Radius 16;
+	Height 56;
+	Alpha 0.75;
+	Scale 0.76;
+	Speed 0;
+	Mass 50;
+	Monster;
+	-COUNTKILL
+	+NOTELEPORT
+	FloatBobStrength 0.3;
+	+NOICEDEATH
+	+NOGRAVITY
+	+DONTFALL
+	+NOPAIN
+	+NOBLOOD
+	+FORCEXYBILLBOARD
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+ROLLSPRITE
+	+THRUSPECIES
+	+THRUACTORS
+	Species "Soul";
+	BloodColor "Green";
+	Tag "Burnt Soul Copy";
+	RenderStyle "AddShaded";
+	StencilColor "Green";
+	Obituary "%o's will was shattered by a Burnt Soul Copy.";
+	}
+	
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (!(GetAge() % 2)) A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSCALE);
+	}
+	
+	States
+	{
+	Spawn:
+		BSOU AABB 1 A_Look();
+		Loop;
+	See:
+		BSOU AABB 1
+		{
+			timer++;
+			if (timer > random(200, 250)) SetStateLabel("Death");
+			
+			vel.x += frandom(-1, 1);
+			vel.y += frandom(-1, 1);
+			vel.z += frandom(-1, 1);
+			A_FaceTarget();
+			A_Chase(flags: CHF_DONTMOVE);
+		}
+		Loop;
+	Missile:
+		BSOU AABBAABB 1 A_FaceTarget();
+		BSOU A 0 A_Stop();
+		BSOU C 1
+		{
+			A_StartSound("BurntSoul/Attack", CHAN_VOICE, pitch: 0.8);
+			A_SkullAttack();
+		}
+		Goto Chrge;
+	Chrge:
+		BSOU CD 1
+		{
+			if (target && distance3D(target) < 80)
+			{
+				A_Explode((15), 30, XF_NOTMISSILE);
+				SetStateLabel("Death");
+			}
+			
+			timer++;
+			if (timer > random(200, 250)) SetStateLabel("Death");
+		}
+		Loop;
+	Death:
+	   TNT1 A 0 A_StartSound("BurntSoul/Death", pitch:0.8);
+	   BSOU EEEE 2
+	   {
+		A_FadeOut(0.095);
+		vel.x += frandom(-0.50,0.50);
+		vel.y += frandom(-0.50,0.50);
+		vel.z += frandom(-0.50,0.50);
+		angle = frandom(0,360);
+		A_Explode((5), 30, XF_NOTMISSILE);
+		A_SpawnParticleEx("87ff52", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(45,67), size: 90.0, xoff: frandom(-3.5,3.5), yoff: frandom(-3.5,3.5), zoff: frandom(-3.5,3.5) + 30, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: (alpha / 2), fadestepf: -1, sizestep: 2, startroll: random(-180,180));
+	   }
+	   Wait;
+	}
+}
+
+Class PM_CopyBloodSpit : PM_BloodSpit
+{
+	Default
+	{
+		Decal "PM_GreenBloodSplat";
+		RenderStyle "Shaded";
+		StencilColor "24ff24";
+	}
+	
+	States
+	{
+	Spawn:
+		FGOR ABCDEF 1 A_SpawnItemEx("PM_GreenBloodEx",0,0,0,random(-2,2),random(-2,2),random(0,4),0,SXF_NOCHECKPOSITION);
+		Loop;
+	Death:
+		TNT1 AAAAA 0 A_SpawnItemEx("PM_GreenBlood1",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+		BSHT C 6 A_SpawnItemEx("PM_GreenBloodMist",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+		BSHT D 6 A_SpawnItemEx("PM_GreenBloodMist",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
