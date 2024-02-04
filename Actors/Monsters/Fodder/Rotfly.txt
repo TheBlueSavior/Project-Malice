@@ -271,6 +271,9 @@ Class PM_RotflyYoungling : PMFodderMonsterBase
   States
   {
   Spawn:
+	FLYA A 0;
+	Goto Idle;
+  Idle:
     SFLY ABCBAC 2 A_Wander;
 	SFLY A 1 A_Look;
 	Loop;
