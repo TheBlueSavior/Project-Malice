@@ -12,8 +12,5 @@
 #include "Actors/Decorations/OGGibs.txt"
 
 //#include "Actors/Monsters/HellKnights/Void.txt"
-#include "Actors/Monsters/Fodder/Trite.txt"
-#include "Actors/Monsters/Fodder/TriteHatchling.txt"
-#include "Actors/Monsters/Fodder/Rotfly.txt"
 
 #include "Actors/Monsters/Paranormal/ControlledSoldier.txt"

@@ -616,7 +616,7 @@ Class PM_GazerSigil : Actor
   {
 	Super.Tick();
 	A_Warp(AAPTR_MASTER, 20, 0, 30, 0, WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
-	if( master.CountInv("PM_GazerSigilGoAway") == 1)
+	if(master && master.CountInv("PM_GazerSigilGoAway") == 1)
 	 SetStateLabel("Death");
 	else if(!master)
 	 SetStateLabel("Death");

@@ -1,7 +1,10 @@
-Class PM_LargeMaggot : Actor
+Class PM_LargeMaggot : PMFodderMonsterBase
 {
 	Default
 	{
+	PMMonsterBase.CodexLore
+	"Soft-bodied legless larvas that are usually found in areas of pestilence and decomposition. These maggots, however, are slightly but abnormally larger than what you expect.
+	Would love nothing more than to burrow into your flesh. Thankfully, it can only nibble at your feet and die randomly.";
 	Health 1;
 	Radius 4;
 	Height 5;
@@ -31,7 +34,7 @@ Class PM_LargeMaggot : Actor
 	States
 	{
 	Spawn:
-	    MAGO A 0 NoDelay { if(random(1,2) == 1) bFRIGHTENED = true; } 
+	    MAGO B 0 NoDelay { if(random(1,2) == 1) bFRIGHTENED = true; } 
 	Idle:
 		MAGO AB 8 A_Wander();
 		TNT1 A 0 A_Jump(40,"See");
@@ -64,6 +67,7 @@ Class PM_LargeWhiteMaggot : PM_LargeMaggot
 {
 	Default
 	{
+	PMMonsterBase.CodexLore "";
 	Radius 2;
 	Height 2;
 	Speed 3;
@@ -75,7 +79,7 @@ Class PM_LargeWhiteMaggot : PM_LargeMaggot
 	States
 	{
 	Spawn:
-	    WAGO A 0 NoDelay { if(random(1,2) == 1) bFRIGHTENED = true; }
+	    WAGO B 0 NoDelay { if(random(1,2) == 1) bFRIGHTENED = true; }
 	Idle:
 		WAGO AB 40 
 		{

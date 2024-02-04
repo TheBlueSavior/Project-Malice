@@ -402,6 +402,10 @@ Class PM_FreshHorrorspawn : PMFodderMonsterBase
 {
 	Default
 	{
+	PMMonsterBase.CodexLore
+	"A prior human in the earlier stages of transformation into a Horrorspawn. At this point of their madness, they have started to succumb to vigorous amounts of Hell's Energy, in which their minds are rotted to the max. They seldom have any hope for living or for continuing to survive, for they are have started to become hell's fodder zombies.
+	
+	Their attacks are a vague mixture of the Afflicted and a Horrorspawn, but their etiquette are still unpredictable.";
     Health 15;
     GibHealth 20;
     Radius 20;
