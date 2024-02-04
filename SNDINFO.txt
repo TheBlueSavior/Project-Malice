@@ -5179,11 +5179,13 @@ Bacillus/Bite1 "Sounds/Monsters/Souls/Bacillus/BacillusBite1.ogg"
 Bacillus/Bite2 "Sounds/Monsters/Souls/Bacillus/BacillusBite2.ogg"
 Bacillus/Bite3 "Sounds/Monsters/Souls/Bacillus/BacillusBite3.ogg"
 Bacillus/Bite4 "Sounds/Monsters/Souls/Bacillus/BacillusBite4.ogg"
+$volume Bacillus/Bite 0.6
 
 $random Bacillus/Death { Bacillus/Death1 Bacillus/Death2 Bacillus/Death3 }
 Bacillus/Death1 "Sounds/Monsters/Souls/Bacillus/BacillusDeath1.ogg"
 Bacillus/Death2 "Sounds/Monsters/Souls/Bacillus/BacillusDeath2.ogg"
 Bacillus/Death3 "Sounds/Monsters/Souls/Bacillus/BacillusDeath3.ogg"
+$volume Bacillus/Death 0.75
 
 $random Bacillus/Impact { Bacillus/Impact1 Bacillus/Impact2 }
 Bacillus/Impact1 "Sounds/Monsters/Souls/Bacillus/BacillusImpact1.ogg"
@@ -5203,3 +5205,10 @@ $random Bacillus/Sight { Bacillus/Sight1 Bacillus/Sight2 Bacillus/Sight3 }
 Bacillus/Sight1 "Sounds/Monsters/Souls/Bacillus/BacillusSight1.ogg"
 Bacillus/Sight2 "Sounds/Monsters/Souls/Bacillus/BacillusSight2.ogg"
 Bacillus/Sight3 "Sounds/Monsters/Souls/Bacillus/BacillusSight3.ogg"
+$volume Bacillus/Sight 0.5
+
+$random Bacillus/Active { Bacillus/Active1 Bacillus/Active2 Bacillus/Active3 }
+Bacillus/Active1 "Sounds/Monsters/Souls/Bacillus/BacillusActive1.ogg"
+Bacillus/Active2 "Sounds/Monsters/Souls/Bacillus/BacillusActive2.ogg"
+Bacillus/Active3 "Sounds/Monsters/Souls/Bacillus/BacillusActive3.ogg"
+$volume Bacillus/Active 0.7

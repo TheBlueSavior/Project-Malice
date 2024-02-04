@@ -65,7 +65,7 @@ Class PM_Grievance : PMEnvyMonsterBase
 		double sa = sin(Angle);
 		double ca = cos(Angle);
 		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
-		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-22),"24ff24",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: scal, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-22),"24ff24",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: scal, offset: (relOff.X, relOff.Y, 40),baseTime: 1,fadeTime: 0);
 	}
 	
 	States
