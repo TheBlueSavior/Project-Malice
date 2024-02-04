@@ -37,7 +37,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_Voidspawn", 255, 1;
 	DropItem "PM_FrozenCorpseSpawn", 255, 1;
 	DropItem "PM_FodderSleeperDropper", 255, 1;
-	DropItem "HeadDropper", 255, 1;
+	DropItem "PM_HeadDropper", 255, 1;
 	DropItem "RatDropper", 255, 1;
 	}
 }
