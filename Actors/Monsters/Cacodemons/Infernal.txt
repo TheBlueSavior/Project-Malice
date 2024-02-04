@@ -2,7 +2,13 @@ Class PM_Infernal : PMWrathMonsterBase
 {
   Default
 	{
-		//$Category "PM_Monsters/Cacodemons"
+		PMMonsterBase.CodexLore
+	    "\c[Orange]Laughter fills up the air.\c-
+		
+		Living molten beasts that are born from the cauldrons of Hell which fill up the role of fast-moving battleships of this circle.
+		They are considered Hell's aviatrix owning to the fact that they are turbulent and never-forgiving. It seeks pleasure in spewing its scorn at everything; destructive behavior is it's middle name.
+		
+		Will use a huge fireball as its primary attack, and spew molten lava as its secondary attack. When in close range, it will explode in a irascible manner, pushing everything away.";
 		SeeSound "PMInfernal/Sight";
 		PainSound "PMInfernal/Pain";
 		DeathSound "PMInfernal/Death";
@@ -103,7 +109,7 @@ Class PM_Infernal : PMWrathMonsterBase
 	States
 	{
 		Spawn:
-			INFR A 0;
+			INFR Z 0;
 		Idle:
 			INFR ABCD 2 PM_Look();
 			Loop;

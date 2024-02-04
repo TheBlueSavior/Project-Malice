@@ -7,7 +7,12 @@ Class PM_FeralImp : PMWrathMonsterBase
   
   Default
   {
-  //$Category "PM_Monsters/Imps"
+  PMMonsterBase.CodexLore
+  "Ravenous battle-hardened predators from the isolated badlands in the underworld. They are not as volcanic as their Charred brethren, yet fire immolates inside the body to the point where it gets out of the mouth, making them fireborne.
+  Their anger and desire is off the charts when it comes to combat. Every time it wants to kill, its patience will start to decrease, and their hatred will start to gradually grow.
+  When left in its devices, it will start to snap and they start to become lustful for destruction, fully taking advantage of their rage...
+  
+  They LOVE being in melee range, and can tear you apart in seconds. Alongside that, it will spew dual fireballs.";
   Obituary "%o burned to a crisp by a Feral Imp's fireballs.";
   HitObituary "%o was cut down by a Feral Imp.";
   Health 75;
@@ -40,7 +45,7 @@ Class PM_FeralImp : PMWrathMonsterBase
   States
   {
   Spawn:
-    TNT1 A 0 NoDelay { pm_irecount = random(45,80); }
+    1ROZ A 0 NoDelay { pm_irecount = random(45,80); }
   Idle:
     1ROO A 10 PM_Look();
     loop;
