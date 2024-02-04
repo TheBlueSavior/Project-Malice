@@ -5216,3 +5216,77 @@ Bacillus/Active1 "Sounds/Monsters/Souls/Bacillus/BacillusActive1.ogg"
 Bacillus/Active2 "Sounds/Monsters/Souls/Bacillus/BacillusActive2.ogg"
 Bacillus/Active3 "Sounds/Monsters/Souls/Bacillus/BacillusActive3.ogg"
 $volume Bacillus/Active 0.7
+
+//Cataclysm
+
+$random Cataclysm/Active { Cataclysm/Active1 Cataclysm/Active2 Cataclysm/Active3 Cataclysm/Active4 Cataclysm/Active5 }
+Cataclysm/Active1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmActive1.ogg"
+Cataclysm/Active2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmActive2.ogg"
+Cataclysm/Active3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmActive3.ogg"
+Cataclysm/Active4 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmActive4.ogg"
+Cataclysm/Active5 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmActive5.ogg"
+
+$volume Cataclysm/Active 0.8
+
+Cataclysm/Ball "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBall.ogg"
+Cataclysm/BallExplode "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBallExplode.ogg"
+Cataclysm/Beam "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBeam.ogg"
+
+$volume Cataclysm/Ball 0.4
+$volume Cataclysm/Beam 0.45
+
+$random Cataclysm/Collide { Cataclysm/Collide1 Cataclysm/Collide2 Cataclysm/Collide3 Cataclysm/Collide4 }
+Cataclysm/Collide1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCollide1.ogg"
+Cataclysm/Collide2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCollide2.ogg"
+Cataclysm/Collide3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCollide3.ogg"
+
+$volume Cataclysm/Collide 0.8
+
+$random Cataclysm/Command { Cataclysm/Command1 Cataclysm/Command2 Cataclysm/Command3 Cataclysm/Command4 }
+Cataclysm/Command1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCommand1.ogg"
+Cataclysm/Command2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCommand2.ogg"
+Cataclysm/Command3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCommand3.ogg"
+Cataclysm/Command4 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmCommand4.ogg"
+
+$volume Cataclysm/Command 0.8
+$rolloff Cataclysm/Command 300 1500
+
+$random Cataclysm/Death { Cataclysm/Death1 Cataclysm/Death2 Cataclysm/Death3 }
+Cataclysm/Death1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmDeath1.ogg"
+Cataclysm/Death2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmDeath2.ogg"
+Cataclysm/Death3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmDeath3.ogg"
+
+$volume Cataclysm/Death 0.8
+$rolloff Cataclysm/Death 300 2000
+
+Cataclysm/GigaLaser "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmGigaLaser.ogg"
+Cataclysm/GigaLaserAdd "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmGigaLaserAdd.ogg"
+Cataclysm/GigaLaserCharge "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmGigaLaserCharge.ogg"
+
+$rolloff Cataclysm/GigaLaser 1000 3000
+$rolloff Cataclysm/GigaLaserAdd 1000 3000
+$rolloff Cataclysm/GigaLaserCharge 1000 3000
+
+$random Cataclysm/Machinery { Cataclysm/Machinery1 Cataclysm/Machinery2 Cataclysm/Machinery3 Cataclysm/Machinery4 Cataclysm/Machinery5 }
+Cataclysm/Machinery1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmMachinery1.ogg"
+Cataclysm/Machinery2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmMachinery2.ogg"
+Cataclysm/Machinery3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmMachinery3.ogg"
+Cataclysm/Machinery4 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmMachinery4.ogg"
+Cataclysm/Machinery5 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmMachinery5.ogg"
+
+$volume Cataclysm/Machinery 0.8
+
+Cataclysm/Plasma "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmPlasma.ogg"
+
+$volume Cataclysm/Plasma 0.4
+
+$random Cataclysm/SCREAM { Cataclysm/SCREAM1 Cataclysm/SCREAM2 Cataclysm/SCREAM3 Cataclysm/SCREAM4 }
+Cataclysm/SCREAM1 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM1.ogg"
+Cataclysm/SCREAM2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM2.ogg"
+Cataclysm/SCREAM3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM3.ogg"
+Cataclysm/SCREAM4 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM4.ogg"
+
+$volume Cataclysm/SCREAM 0.75
+$rolloff Cataclysm/SCREAM 700 3000 //it's LOUD
+
+Cataclysm/SmallLaser "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSmallLaser.ogg"

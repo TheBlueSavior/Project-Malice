@@ -2778,3 +2778,27 @@ Class PM_WarMeatChunkLauncher : PM_NormalMeatChunkLauncher
 		Stop;
 	}
 }
+
+Class PM_LavaWarBloodBase : PM_NormalBloodBase
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodStoneHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_LavaWarBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+Class PM_LavaWarBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_LavaBlood1", 255, 1;
+	DropItem "PM_LavaBlood2", 255, 1;
+	DropItem "PM_LavaBlood3", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 6;
+	DropItem "PM_WarMeatChunkLauncher", 255, 2;
+	}
+}

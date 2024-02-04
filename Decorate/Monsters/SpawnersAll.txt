@@ -113,6 +113,7 @@ Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
     DropItem "PM_Infernal", 225, 9
 	DropItem "PM_Wicked", 255, 7
 	DropItem "PM_Watcher", 225, 5
+	DropItem "PM_Cataclysm", 225, 5
 	DropItem "PM_VoidFloater", 225, 2
 }
 

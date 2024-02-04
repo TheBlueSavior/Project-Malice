@@ -5,7 +5,14 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 
 	Default
 	{
-		//$Category "PM_Monsters/Masterminds"
+		PMMonsterBase.CodexLore
+	    "\c[Black]...
+		
+		
+		\c[Black]The L?GHTBR?NGER... The AV?T?R... It is real...
+		
+		
+		\c[Black]Bow before us... And we will make you suffer...";
 		Health 3000;
 		Radius 28;
 		Height 90;
@@ -18,7 +25,7 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 		MaxStepHeight 80;
 		MaxDropOffHeight 80;
 		Species "VoidElder";
-		Tag "EN?ROP?C AV??AR";
+		Tag "...";
 		+NORADIUSDMG;
 		+FLOORCLIP;
 		+BOSS;
@@ -52,9 +59,9 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 	
 	static const string TagNames[] =
 	{
-		"RUN", "RUN", "Run.", "RUN!!", "!", "@", "#", "$", "???", "?", "%*$()", "@#$(", "$@(#)%*", "^", "*", "??????????????????????", "EN?ROP?C AV??AR", "VOIDVOIDVOID", "RUNRUNRUNRUNRUNRUNRUNRUN", "You will be beautiful.", "youwillbebeautifulyouwillbebeautifulyouwillbebeautiful",
-		"RNU", "HELP", "void", "($#%#@*%)(#@*$()*@#()%*&@#(&)%!&%*_&!%)*(@)$*", "^)%__+_#", "!_@#+!_", "Unknown", "", " ", "suffer", "CUT THE FLESH", "PEEL THE SKIN", "BREAK THE BONE", "THE VOICES",
-		"RRUUNN", "DEPR?V??Y ?F HUM??I?Y", "YOU ARE SEEING IT, AND IT IS BEAUTIFUL", "FACILIS DECENSUS AVERNO", "AVERNO", "HELL", "?!@?!@?!?#!?@#?@!??_)______________________________"
+		"RUN", "RUN", "Run.", "L?GHTBR?NGER", "!", "@", "#", "$", "???", "?", "%*$()", "@#$(", "$@(#)%*", "^", "*", "LIGHTBRINGER", "EN?ROP?C AV??AR", "VOID VOID VOID", "ENTROPIC AVATAR", "You will be beautiful.",
+		"RNU", "HELP.", "void", "($#%#@*%)(#@*$()*@#", "()%*&@#(&)%!&%*_&!%)*(@)$*", "^)%__+_#", "!_@#+!_", "Unknown", "", " ", "suffer", "CUT THE FLESH", "PEEL THE SKIN", "BREAK THE BONE", "THE VOICES",
+		"RRUUNN", "DEPR?V??Y ?F HUM??I?Y", "YOU ARE SEEING IT, AND IT IS BEAUTIFUL", "FACILIS DECENSUS AVERNO", "AVERNO", "HELL", "______________________________"
 	};
 	
 	override void PostBeginPlay()

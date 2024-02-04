@@ -2,11 +2,16 @@ Class PM_VoidFloater : PMVoidMonsterBase
 {
 	Default
 	{
-		//$Category "PM_Monsters/Cacodemons"
+		PMMonsterBase.CodexLore
+	    "\c[Black]What a fine little star you are. I'm going to enjoy staring at you. So that you can stare back and we can gaze into the ABYSS together.
+		
+		\c[Black]So that we can be delighted and be beaufitul for ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and\c-
+		
+		\crT O R T U R E .";
 		Obituary "%o is gone.";
 		HitObituary "%o doesn't want to do this anymore.";
-		Tag "V?ID F??AT?R";
-		Health 1000;
+		Tag "V?ID FL?AT?R";
+		Health 750;
 		GibHealth 400;
 		Radius 31;
 		Height 56;
@@ -117,6 +122,9 @@ Class PM_VoidFloater : PMVoidMonsterBase
 	States
 	{
 	Spawn:
+		VIFL C 0;
+		Goto Idle;
+	Idle:
 		TNT1 A 10 PM_Look();
 		Loop;
 	Look:
