@@ -215,7 +215,7 @@ class PMMonsterBase : Actor abstract
 
 		if (GetAge() % 35 == 0 && ForgetOption.GetInt())
 		{
-			if (Target)
+			if (Target && Health >= 0)
 			{
 				double dist, adjDist;
 				[dist, adjDist] = GetAdjustedSeeDistance();
@@ -223,7 +223,7 @@ class PMMonsterBase : Actor abstract
 				if (dist > AlwaysSeeDistance) // [Ace] I was considering adding a CheckSight to this, but it made me think that it'd be more immersive to have to hide in a dark corner than to just go AROUND a corner.
 				{
 					ForgetThreshold -= int(1000 / max(10, adjDist));
-					if (ForgetThreshold <= 0 && Health >= 0)
+					if (ForgetThreshold <= 0)
 					{
 						A_ClearTarget();
 						SetState(SpawnState);
@@ -274,9 +274,12 @@ class PMMonsterBase : Actor abstract
 			A_LookEx(flags, label: "Look");
 			return;
 		}
-
-		A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
-		if (Target && !LastHeard)
+        
+		if(!ForgetOption)
+		  { A_LookEx(flags, label: "Look"); }
+		else
+		  { A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov); }
+		if (Target && !LastHeard && Health >= 0)
 		{
 			double dist, adjDist;
 			[dist, adjDist] = GetAdjustedSeeDistance();
