@@ -269,16 +269,13 @@ class PMMonsterBase : Actor abstract
 	void PM_Look(double fov = 140, int flags = LOF_NOSEESOUND)
 	{
 		// [Ace] Simplify things for friendly monsters. Just attack.
-		if (bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
+		if (!ForgetOption || bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
 		{
 			A_LookEx(flags, label: "Look");
 			return;
 		}
         
-		if(!ForgetOption)
-		  { A_LookEx(flags, label: "Look"); }
-		else
-		  { A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov); }
+		  A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
 		if (Target && !LastHeard && Health >= 0)
 		{
 			double dist, adjDist;
