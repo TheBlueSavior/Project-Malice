@@ -1,0 +1,473 @@
+Class PM_Warforge : PMWarMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+	    "Warforges are mini-factories of the apocalypse, holding up the military industrial complex of war. Unlike Heresy Lords, which control small hordes of demons, Warforges control the battlefields of the infernal plane; they command hordes of drones and lesser robots in the battlefield.
+		They are also considered the mother of drones, for have a lot of drones to release from, whether they are infused with plasmatic energy, ones that emit poison gas, ones that act like living bombs and discharge at any time given when nearby their pray.
+		When severely damaged, it will initiate a self-destruct sequence with a pinch of releasing many of its drones that have been generated inside of its all-mechanical esophagus and core.
+		
+		They are very good snipers. Can emit a superheated flamethrower, vomit metal scrap, and fire off sniper laser bolts. May also spit some metal-scrap infused grenades. Will, of course, also spit drones to make your experience a living hell.";
+		Health 600;
+		Tag "Warforge";
+		Radius 31;
+		Height 56;
+		Mass 400;
+		Speed 6;
+		PainChance 66;
+		SeeSound "Warforge/SCREAM";
+		ActiveSound "Warforge/Active";
+		PainSound "Cataclysm/Machinery";
+		DeathSound "Warforge/Death";
+		BloodColor "ff ff 00";
+		Bloodtype "PM_LavaWarBloodBase";
+		Monster;
+		+MISSILEMORE
+		+MISSILEEVENMORE
+		+SLIDESONWALLS
+		+NOTARGET
+		+DONTHARMSPECIES
+		+DONTHARMCLASS
+		+NOINFIGHTING
+		+FLOATBOB
+		+NOGRAVITY
+		+LOWGRAVITY
+		+FLOAT
+		FloatBobStrength 0.4;
+		MinMissileChance 169;
+		MaxTargetRange 1280;
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+		Obituary "%o faced the hell's mini-artillery of destruction, Warforge, and failed.";
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+		tex[3] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+   
+	TextureID tex[4];
+	
+	void WarforgeBreath()
+	{
+		if (!random(0, 1)) A_SpawnItemEx("PM_OrangeEmbersFloat",0,random(-10,10),15,random(5,20),random(-5,5),random(-5,5));
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 1, random(300,400), xoff: 15, zoff: 35, startalphaf: 0.45, startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_ROLL, random(25, 75), random(15,55), xoff: 15 + frandom(-5, 5), yoff: frandom(-20, 20), zoff: 35 + frandom(-15, 15), velx: frandom(0, 3), vely: frandom(-1, 1), velz: frandom(0, 2), accelz: 0.025, startalphaf: frandom(.2, .6), sizestep: frandom(0, -1), startroll: random(-180,180), rollvel: frandom(-1, 1));
+		A_SpawnParticleEx("", tex[3], STYLE_Normal, SPF_RELATIVE|SPF_ROLL, random(50, 100), random(40,100), xoff: 15, zoff: 35 + frandom(-5, 5), velx: frandom(0, 5), vely: frandom(-2, 2), velz: frandom(-2, 2), accelz: 0.01, startalphaf: frandom(.2, .6), sizestep: frandom(0, 1), startroll: random(-180,180), rollvel: frandom(-4, 4));
+	}
+	
+	void WarforgeTurrets()
+	{
+		for (int i = 1; i > -2; i -= 2)
+		{
+			A_SpawnParticleEx("",tex[2],style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(1,3), size: random(10,60), xoff: 6, yoff: i * 28, zoff: 29, startalphaf: frandom(0.5,1), fadestepf: -1, startroll: random(-180,180));
+			A_SpawnParticleEx("110303",tex[3],style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(25,60), size: random(35,75), xoff: 5, yoff: i * 28, zoff: 29, velx: frandom(-.1, .1), vely: frandom(-.1, .1), velz: frandom(-.1, .1), startalphaf: frandom(0.5,1), fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-3, 3));
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		MATR D 0;
+		Goto Idle;
+	Idle:
+		MATR A 10 PM_Look();
+		Loop;
+	Look:
+		MATR AABBCC 3 PM_LookingForPlayer();
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+		Loop;
+	Spotted:
+		TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim");
+	RoarNoAnim:
+		TNT1 A 0 PM_AlertSound();
+	See:
+		MATR A 0 A_SetSpeed(6);
+		MATR AABBCC 3
+		{
+			A_Recoil(-0.05);
+			A_FaceTarget();
+			A_Chase();
+			
+			if (!random(0, 45)) SetStateLabel("Dodge");
+		}
+		Loop;
+	ROAR:
+		MATR A 2 A_FaceTarget();
+		MATR A 0 A_StartSound(SeeSound, CHAN_VOICE, CHANF_OVERLAP);
+		MATR DDEEFFFFFFFFFFFFFFFFFFFFFFEEDD 1 Light("AvatarFireball")
+		{
+			Radius_Quake(randompick(1, 1, 2), 2, 0, 10, 0);
+			WarforgeBreath();
+			A_FaceTarget();
+		}
+		Goto See;
+	Missile:
+		TNT1 A 0 { if (target && CheckSight(target) && distance3D(target) < 200 && !random(0, 3)) SetStateLabel("Slag"); }
+		TNT1 A 0 A_Jump(50, "Flamethrower", "Dodge");
+		TNT1 A 0 A_Jump(140, "Slag");
+		Goto Sniper;
+	Sniper:
+		MATR A 5 A_FaceTarget();
+		MATR D 0
+		{
+			pm_attackloop = random(1,3);
+			A_StartSound("Grievance/Charge", CHAN_WEAPON, pitch: 1.2);
+		}
+		MATR DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1
+		{
+			A_FaceTarget(4, 4);
+			WarforgeTurrets();
+		}
+		Goto SniperLoop;
+	SniperLoop:
+		MATR D 1
+		{
+			A_FaceTarget(4, 4);
+			A_StartSound("Warforge/Sniper", CHAN_WEAPON, volume: .5);
+			A_SpawnProjectile("PM_WarforgeSniperTracer", 29, -28, frandom(-3, 3), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-3, 3));
+			pm_attackloop--;
+		}
+		MATR DDDDDDDDDDDDDDDDDDDDDDD random(0, 1)
+		{
+			A_FaceTarget(4, 4);
+			WarforgeTurrets();
+		}
+		MATR D 5
+		{
+			A_FaceTarget(4, 4);
+			A_StartSound("Warforge/Sniper", CHAN_WEAPON, volume: .5);
+			A_SpawnProjectile("PM_WarforgeSniperTracer", 29, 28, frandom(-3, 3), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-3, 3));
+		}
+		MATR D 0 { if (pm_attackloop <= 0) SetStateLabel("TurretCooldown"); }
+		Loop;
+	TurretCooldown:
+		MATR DCA 10 A_FaceTarget();
+		Goto See;
+	Flamethrower:
+		MATR A 10 A_FaceTarget();
+		MATR D 0 A_StartSound(SeeSound, CHAN_VOICE, CHANF_OVERLAP);
+		MATR DE 4 A_FaceTarget();
+		MATR E 0 { pm_attackloop = random(100, 150); A_StartSound("Bulltubus/FlamerStart", CHAN_6); }
+		MATR EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1
+		{
+			A_FaceTarget(2, 2);
+			WarforgeBreath();
+		}
+		TNT1 A 0
+		{
+			A_StartSound("Defiler/Breath",30,CHANF_LOOPING);
+			A_StartSound("Bulltubus/FlamerLoop",31,CHANF_LOOPING);
+			A_StartSound("Tyrant/Flamer",32,CHANF_LOOPING,0.5,pitch:1.35);
+		}
+		Goto FlamethrowerLoop;
+	FlamethrowerLoop:
+		MATR F 1
+		{
+			A_SpawnProjectile("PM_WarforgeFlamer", 20, 0, random(-3,3), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch+frandom(-0.5,0.5));
+			A_FaceTarget(0.85,3,0,0);
+			WarforgeBreath();
+			pm_attackloop--;
+		}
+		MATR F 0 { if (pm_attackloop <= 0) { SetStateLabel("Cooldown"); A_StopSounds(29, 33); }  }
+		Loop;
+	Slag:
+		MATR A 0 { if (target && CheckSight(target) && distance3D(target) > 650) SetStateLabel("Sniper"); }
+		MATR A 10 A_FaceTarget();
+		MATR D 0 A_StartSound(PainSound, CHAN_VOICE, CHANF_OVERLAP);
+		MATR DE 6 A_FaceTarget();
+		MATR E 0 { pm_attackloop = random(1, 2); }
+		MATR FFFFFFF 2
+		{
+			A_FaceTarget();
+			WarforgeBreath();
+		}
+		Goto SlagLoop;
+	SlagLoop:
+		MATR F 1 PM_LeadTarget(15);
+		MATR F 1
+		{
+			A_StartSound("Cataclysm/Machinery", CHAN_WEAPON, volume: .75, pitch: 1.5);
+			for (int i = random(5, 12); i > 0; i--) A_SpawnProjectile("PM_WarforgeSlag", 15, -0, frandom(-6, 6), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-3, 3));
+			pm_attackloop--;
+		}
+		MATR FFFFFFF 2
+		{
+			A_FaceTarget();
+			WarforgeBreath();
+		}
+		MATR D 0 { if (pm_attackloop <= 0) SetStateLabel("Cooldown"); }
+		Loop;
+	Cooldown:
+		MATR FEDA 10 A_FaceTarget();
+		Goto See;
+	Pain:
+		MATR G 4 A_StopSounds(29, 33);
+		MATR G 0 A_Jump(128, "Dodge");
+		MATR G 4 A_Pain();
+		Goto See;
+	Dodge:
+		MATR A 0
+		{
+			vel.z -= 2;
+			VelFromAngle(random(5, 15), 45 * random(0, 8));
+		}
+		MATR GGGGG 3
+		{
+			vel.z = clamp(vel.z, -6, 6);
+			A_FaceTarget();
+		}
+		MATR A 0 { vel.z += 2; }
+		MATR GGGGG 3
+		{
+			vel.z = clamp(vel.z, -6, 6);
+			A_FaceTarget();
+		}
+		MATR K 0 A_Stop();
+		Goto See;
+	Death:
+		MATR G 5 A_StopSounds(29, 33);
+		MATR G 10 A_Scream();
+		MATR HHHHHHHHHIIJ random(1, 3)
+		{
+			Radius_Quake(2, 6, 0, 10, 0);
+			A_StartSound("Wrath/Tele2", pitch: frandom(2, 3));
+			for (int i = random(1, 3); i > 0; i--) A_SpawnItemEx("PM_SmallerGenericExplosionFlames",frandom(-40, 40), frandom(-40, 40), frandom(10, 50), frandom(-2, 2), frandom(-2, 2), frandom(-2, 2),flags:SXF_NOCHECKPOSITION);	
+		}
+		TNT1 A 0
+		{
+			bFLOAT = false;
+			bFLOATBOB = false;
+			A_StartSound("PMInfernal/Explode",8);
+			A_StartSound("Cataclysm/Collide",CHAN_6);
+			Radius_Quake(6, 12, 0, 30, 0);
+			
+			A_StartSound("ArachChassisExplode",CHAN_5,attenuation:.85,pitch:.75);
+			
+			for(int i=random(45,50);i>0;i--)
+			  A_SpawnParticleEx("323232",TexMan.CheckForTexture("DUSTC0"),style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(40,70),size: frandom(2,35),zoff: random(10,60),velx: frandom(-8,8),vely: frandom(-8,8),velz: frandom(-8,12),accelz: frandom(-0.1,-0.5),startalphaf: 1.0,sizestep: -0.2,startroll: random(-180,180),rollvel: random(-4,4));
+			 
+			for (int i = 4; i > 0; i--) A_SpawnItemEx("PM_ExplosionFlareSpawner",flags:SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("OrangeExplosionFlare",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+			
+			A_SetRenderStyle(1, STYLE_ADDSHADED);
+			for (int i = random(4, 6); i > 0; i--) A_SpawnItemEx("PM_InfernalLavaSplashBig",random(-8,8),random(-8,8),random(-2,8),random(-8,8),random(-8,8),random(-2,8),0,SXF_NOCHECKPOSITION);
+			for (int i = 25; i > 0; i--) A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-12,12),random(-12,12),random(-9,12),0,SXF_NOCHECKPOSITION);
+			for (int i = random(3, 6); i > 0; i--) A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+			for (int i = random(5, 10); i > 0; i--)
+			{
+				A_SpawnItemEx("PM_ExileFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("PM_WarMeatChunkLauncher", frandom(-20, 20), frandom(-20, 20), frandom(15, 25), frandom(-18, 18), frandom(-18, 18), frandom(-1, 22), frandom(0, 360), SXF_NOCHECKPOSITION);
+			}
+		}
+		TNT1 A 0 A_SetRenderStyle(1, STYLE_NORMAL);
+		MATR JKLM 6;
+		Stop;
+	}
+}
+
+Class PM_WarforgeFlamer : PM_CyberFodderFire
+{
+   Default
+   {
+   Radius 7;
+   Height 7;
+   Speed 40;
+   DamageFunction 4;
+   Scale 0.15;
+   }
+   
+   States
+   {
+   Spawn:
+	  TNT1 A 0 A_SpawnItemEx("PM_OrangeFireEffect",20,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+      NULL A 1 Bright;
+	  TNT1 A 0 A_Jump(255,"Go","Go2");
+	Go:
+	  TNT1 A 0 A_SetRoll(random(0,360));
+      FLMF ABCDEFEDCBA 2 Bright Light("AvatarFireball2") A_SetScale(Scale.X+0.06);
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF ABCDEF 2 Bright Light("AvatarFireball2");
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF EDCBABC 2 Bright Light("AvatarFireball2")
+	  {
+	  A_SetScale(Scale.X+0.07);
+	  A_Fadeout(0.1);
+	  }
+	  Stop;
+	Go2:
+	  TNT1 A 0 A_SetRoll(random(0,360));
+	  FLMF FEDCBABCDEF 2 Bright
+	  {
+	  A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,248);
+	  A_SetScale(Scale.X+0.05);
+	  }
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF EDCBA 2 Bright;
+	  TNT1 A 0 A_ChangeVelocity(random(-3,-6),random(-2,2),random(0,4),CVF_RELATIVE);
+	  FLMF BCDEFED 2 Bright
+	  {
+	  A_SetScale(Scale.X+0.07);
+	  A_SpawnItemEx("PM_FlameSmoke",random(-5,5),random(-5,5),random(0,3),0,0,random(1,3),0,0,240);
+	  A_Fadeout(0.1);
+	  }
+      Stop;
+   Death:
+      FRFX HIJ 2 Bright;
+      FRFX J 0
+	  {
+		if(!random(0,2))
+			A_SpawnItemEx("PM_HuskMeteorFire",0,0,0,frandom(-5,5),frandom(-5,5),frandom(-5,5),SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("ZombieDropFire",0,0,0,4);
+	  }
+      FRFX KLM 2 Bright;
+      FRFX NO 2 Bright;
+      stop;
+   }
+}
+
+Class PM_WarforgeSniperTracer : PM_DTechSpectreSniperTracer
+{
+	Default
+	{
+		Speed 50;
+		DamageFunction 20;
+		SeeSound "Warforge/Sniper";
+		DeathSound "Cataclysm/BallExplode";
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tx[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+		tx[1] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+		tx[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+   
+	TextureID tx[3];
+   
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (!level.isFrozen() && vel != (0, 0, 0))
+			if (!(getAge() % 4)) A_SpawnItemEx("PM_WarforgeRing", xvel: vel.x, yvel: vel.y, zvel: vel.z, flags: SXF_ABSOLUTEVELOCITY|SXF_NOCHECKPOSITION);
+	}
+	
+	States
+	{
+	Death:
+		TNT1 AAAAA 0 { A_SpawnParticleEx("",tx[1],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: 25,size: random(80,200),startalphaf: 0.85,startroll: random(-180,180)); }
+		TNT1 AAAAAAAAAAAAAAA 0 { A_SpawnParticleEx("",tx[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(85,133),size: random(5,45),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),sizestep: -1,startroll: random(-180,180),rollvel: random(-10,10)); }
+		TNT1 AAAA 0 A_SpawnProjectile("PM_RFireBallExplode",0,0,random(0,360),2,random(0,360));
+		TNT1 AAA 0 A_SpawnItemEx("PM_RFireballExplode",xvel: frandom(-1,1),yvel: frandom(-1,1),zvel: frandom(-1,1),flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+		TNT1 AAAAAAAAAAAA random(0, 2) { A_SpawnParticleEx("110303",tx[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(120,250),size: random(45,90),xoff: random(-15,15),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-.31,.31),vely: frandom(-.31,.31),velz: frandom(-.31,.31),sizestep: 1,startroll: random(-180,180),rollvel: random(-3,3)); }
+		Stop;
+	}
+}
+
+Class PM_WarforgeRing : Actor
+{
+  Default
+  {
+  Scale .01;
+  Alpha 1.0;
+  RenderStyle "Add";
+  -SOLID
+  +NOINTERACTION
+  +FLATSPRITE
+  +ROLLSPRITE
+  }
+  
+  States
+  {
+  Spawn:
+	EF3_ L 0 NoDelay
+	{
+		A_ChangeVelocity(vel.x / 100, vel.y / 100, vel.z / 100, CVF_REPLACE);
+		A_FaceMovementDirection();
+		A_SetPitch(Pitch + 90);
+	}
+	EF3_ L 1
+	{
+		A_SetScale(Scale.X + 0.01);
+		A_SetRoll(Roll + 5);
+		A_FadeOut(0.05);
+	}
+	Wait;
+  }
+}
+
+Class PM_WarforgeSlag : PM_WarforgeSniperTracer
+{
+	Default
+	{
+		Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]";
+		DamageFunction 8;
+		RenderStyle "Normal";
+		Speed 15;
+		Scale 0.8;
+		Alpha 1;
+		+ROLLSPRITE
+		SeeSound "";
+		DeathSound "";
+	}
+	
+	float rollv;
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		rollv = frandom(-30, 30);
+		tx[0] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+		tx[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+		tx[2] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	void SlagFX()
+	{
+		A_SpawnParticleEx("", tx[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 1, random(1,70), xoff: 5, startalphaf: 0.45, startroll: random(-180,180));
+		A_SpawnParticleEx("", tx[1], STYLE_Add, SPF_RELATIVE|SPF_ROLL, random(25, 75), random(1,15), xoff: frandom(-5, 5), yoff: frandom(-5, 5), zoff: frandom(-5, 5), velx: frandom(0, 3), vely: frandom(-1, 1), velz: frandom(0, 2), accelz: 0.025, startalphaf: frandom(.2, .6), sizestep: frandom(0, -1), startroll: random(-180,180), rollvel: frandom(-1, 1));
+		A_SpawnParticleEx("", tx[2], STYLE_Normal, SPF_RELATIVE|SPF_ROLL, random(50, 100), random(20,50), accelz: 0.01, startalphaf: frandom(.2, .4), sizestep: frandom(0, 1), startroll: random(-180,180), rollvel: frandom(-4, 4));
+	}
+	
+	override void Tick()
+	{
+		actor.Tick();
+	}
+	
+	States
+	{
+	LoadSprites:
+		MEAT ABCDEFGHIJLKMNOPQRST 0;
+	Spawn:
+		MEAT "#" 0 NoDelay { frame = random(0, 19); vel.z += frandom(0, 0.5); }
+		Goto Starte;
+	Starte:
+		"####" "#" 1
+		{
+			roll += rollv;
+			vel.x += frandom(-0.3, 0.3);
+			vel.y += frandom(-0.3, 0.3);
+			vel.z += frandom(-0.3, 0.3);
+			vel.z -= 0.1;
+			SlagFX();
+		}
+		Loop;
+	Death:
+		"####" "#" 0
+		{
+			bNOGRAVITY = false;
+			vel += (frandom(-3, 3), frandom(-3, 3), frandom(0, 3));
+			A_SetRoll(0);
+			if (!random(0, 1)) A_SpawnItemEx("PM_NormalHitSpark",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION);
+		}
+		"####" "#" 200;
+		"####" "#" 1 A_FadeOut;
+		Wait;
+	}
+}

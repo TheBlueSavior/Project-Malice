@@ -5290,3 +5290,52 @@ $volume Cataclysm/SCREAM 0.75
 $rolloff Cataclysm/SCREAM 700 3000 //it's LOUD
 
 Cataclysm/SmallLaser "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSmallLaser.ogg"
+
+//Warforge
+
+$random Warforge/Active { Warforge/Active1 Warforge/Active2 }
+Warforge/Active1 "Sounds/Monsters/Elementals/Warforge/WarforgeActive1.ogg"
+Warforge/Active2 "Sounds/Monsters/Elementals/Warforge/WarforgeActive2.ogg"
+
+$rolloff Warforge/Active 300 1500
+
+$random Warforge/Command { Warforge/Command1 Warforge/Command2 Warforge/Command3 Warforge/Command4 }
+Warforge/Command1 "Sounds/Monsters/Elementals/Warforge/WarforgeCommand1.ogg"
+Warforge/Command2 "Sounds/Monsters/Elementals/Warforge/WarforgeCommand2.ogg"
+Warforge/Command3 "Sounds/Monsters/Elementals/Warforge/WarforgeCommand3.ogg"
+Warforge/Command4 "Sounds/Monsters/Elementals/Warforge/WarforgeCommand4.ogg"
+
+$rolloff Warforge/Command 700 2000
+
+$random Warforge/Death { Warforge/Death1 Warforge/Death2 }
+Warforge/Death1 "Sounds/Monsters/Elementals/Warforge/WarforgeDeath1.ogg"
+Warforge/Death2 "Sounds/Monsters/Elementals/Warforge/WarforgeDeath2.ogg"
+
+$rolloff Warforge/Death 700 2000
+
+$random Warforge/SCREAM { Warforge/SCREAM1 Warforge/SCREAM2 Warforge/SCREAM3 Warforge/SCREAM4 Warforge/SCREAM5 Warforge/SCREAM6 }
+Warforge/SCREAM1 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM1.ogg"
+Warforge/SCREAM2 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM2.ogg"
+Warforge/SCREAM3 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM3.ogg"
+Warforge/SCREAM4 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM4.ogg"
+Warforge/SCREAM5 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM5.ogg"
+Warforge/SCREAM6 "Sounds/Monsters/Elementals/Warforge/WarforgeSCREAM6.ogg"
+
+$rolloff Warforge/SCREAM 700 3000
+
+Warforge/Deploy "Sounds/Monsters/Elementals/Warforge/WarforgeDeploy.ogg"
+
+$rolloff Warforge/Deploy 500 2500
+
+Warforge/GrenadeCharge "Sounds/Monsters/Elementals/Warforge/WarforgeGrenadeCharge.ogg"
+Warforge/GrenadeFire1 "Sounds/Monsters/Elementals/Warforge/WarforgeGrenadeFire1.ogg"
+Warforge/GrenadeFire2 "Sounds/Monsters/Elementals/Warforge/WarforgeGrenadeFire2.ogg"
+
+$random Warforge/Sniper { Warforge/Sniper1 Warforge/Sniper2 Warforge/Sniper3 Warforge/Sniper4 Warforge/Sniper5 }
+Warforge/Sniper1 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper1.ogg"
+Warforge/Sniper2 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper2.ogg"
+Warforge/Sniper3 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper3.ogg"
+Warforge/Sniper4 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper4.ogg"
+Warforge/Sniper5 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper5.ogg"
+
+$rolloff Warforge/Sniper 300 2500

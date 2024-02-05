@@ -119,8 +119,9 @@ Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
 
 Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
 {
-	DropItem "PM_Defiler",255, 10
-	DropItem "PM_GrossElemental",255, 1
+	DropItem "PM_Defiler",255, 20
+	DropItem "PM_GrossElemental",255, 5
+	DropItem "PM_Warforge",255, 2
 }
 
 Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight

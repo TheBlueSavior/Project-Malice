@@ -115,6 +115,7 @@ version "4.10.0"
 //Elementals
 #include "Actors/Monsters/Elementals/Defiler.txt"
 #include "Actors/Monsters/Elementals/GrossElemental.txt"
+#include "Actors/Monsters/Elementals/Warforge.txt"
 
 //Mancubi
 #include "Actors/Monsters/Mancubi/Hectebus.txt"

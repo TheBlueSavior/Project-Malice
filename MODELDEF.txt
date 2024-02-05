@@ -500,3 +500,13 @@ Rotation-Vector 1.0 0.0 0.0
 Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
+
+Model PM_WarforgeSniperTracer
+{ 
+Path "Models"
+Skin 0 "malicetracer2.tga"
+Model 0 "Tracer.md3"
+Scale 3.0 2.0 2.0
+PITCHFROMMOMENTUM
+FrameIndex TRCR B 0 0
+}
