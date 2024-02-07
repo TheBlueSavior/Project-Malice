@@ -313,7 +313,7 @@ Class PM_CataclysmLaser : PM_BlashemerBHBall
 	Default
 	{
 		Radius 12;
-		Speed 35;
+		Speed 32;
 		+NEVERFAST
 		Scale .7;
 		SeeSound "";

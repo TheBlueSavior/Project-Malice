@@ -5231,6 +5231,7 @@ $volume Cataclysm/Active 0.8
 Cataclysm/Ball "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBall.ogg"
 Cataclysm/BallExplode "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBallExplode.ogg"
 Cataclysm/Beam "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmBeam.ogg"
+$rolloff Cataclysm/Ball 300 2200
 
 $volume Cataclysm/Ball 0.4
 $volume Cataclysm/Beam 0.45
@@ -5290,6 +5291,7 @@ $volume Cataclysm/SCREAM 0.70
 $rolloff Cataclysm/SCREAM 300 2200
 
 Cataclysm/SmallLaser "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSmallLaser.ogg"
+$rolloff Cataclysm/SmallLaser 250 2100
 
 //Warforge
 

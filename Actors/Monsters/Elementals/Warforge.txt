@@ -545,7 +545,7 @@ Class PM_WarforgePlasmaBall : Actor
    {
    Height 3;
    Radius 3;
-   Speed 20;
+   Speed 25;
    Damagefunction 8;
    Scale 0.07;
    PROJECTILE;
