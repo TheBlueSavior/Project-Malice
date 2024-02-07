@@ -5286,8 +5286,8 @@ Cataclysm/SCREAM2 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM2.ogg"
 Cataclysm/SCREAM3 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM3.ogg"
 Cataclysm/SCREAM4 "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSCREAM4.ogg"
 
-$volume Cataclysm/SCREAM 0.75
-$rolloff Cataclysm/SCREAM 700 3000 //it's LOUD
+$volume Cataclysm/SCREAM 0.70
+$rolloff Cataclysm/SCREAM 300 2200
 
 Cataclysm/SmallLaser "Sounds/Monsters/Cacodemons/Cataclysm/CataclysmSmallLaser.ogg"
 

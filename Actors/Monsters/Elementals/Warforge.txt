@@ -247,7 +247,7 @@ Class PM_Warforge : PMWarMonsterBase
 			A_StartSound("InfernalLBall4",13);
 			A_StartSound("PMInfernal/Fire",14);
 			for (int i = random(5, 12); i > 0; i--) A_SpawnProjectile("PM_WarforgeSlag", 15, -0, frandom(-6, 6), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-5, 3));
-			for (int i = random(0, 9); i > 0; i--) A_SpawnProjectile("PM_BulletTracer", 15, -0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-10, 10));
+			for (int i = random(0, 5); i > 0; i--) A_SpawnProjectile("PM_BulletTracer", 15, -0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-10, 10));
 			for (int i = random(0, 2); i > 0; i--) A_StartSound("ZombieRifleDistant",14,CHANF_OVERLAP);
 			for (int i = random(0, 1); i > 0; i--) A_StartSound("ZombieSoldier/Rifle",15);
 			for (int i = random(0, 1); i > 0; i--) A_StartSound("GenericShotgunFire",16);
@@ -256,7 +256,7 @@ Class PM_Warforge : PMWarMonsterBase
 			for (int i = random(0, 1); i > 0; i--) A_SpawnProjectile("PM_FiendHomingMissile", 15, -0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-10, 10));
 			for (int i = random(0, 1); i > 0; i--) A_SpawnProjectile("PM_CadaverRocket", 15, -0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-10, 10));
 			for (int i = random(0, 1); i > 0; i--) A_SpawnProjectile("PM_InfernalLavaBall", 15, -0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-10, 10));
-			for (int i = random(7, 12); i > 0; i--) A_SpawnItemEx("PM_BigBulletCasing", 5, 0, 15, random(5,20),random(-10,10),random(-10,10));
+			for (int i = random(6, 12); i > 0; i--) A_SpawnItemEx("PM_BigBulletCasing", 5, 0, 15, random(5,20),random(-10,10),random(-10,10));
 			pm_attackloop--;
 		}
 		MATR FFFFFFF 2 Light("AvatarFireBall2")
