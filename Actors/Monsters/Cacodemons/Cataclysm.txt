@@ -170,7 +170,7 @@ Class PM_Cataclysm : PMWarMonsterBase
 		C0C3 D random(1, 5) Light("AvatarFireball")
 		{
 			A_StartSound("Cataclysm/SmallLaser", CHAN_WEAPON, CHANF_OVERLAP, pitch: frandom(.7, 1.1));
-			A_SpawnProjectile("PM_CataclysmLaser", random(20, 40), random(-10, 10), frandom(-5, 5), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch + frandom(-5, 5));
+			A_SpawnProjectile("PM_CataclysmLaser", random(18, 25), random(-20, 20), frandom(-5, 5), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch + frandom(-5, 5));
 			CataclysmElec();
 			A_FaceTarget(3, 3);
 			pm_attackloop--;
@@ -313,7 +313,7 @@ Class PM_CataclysmLaser : PM_BlashemerBHBall
 	Default
 	{
 		Radius 12;
-		Speed 25;
+		Speed 32;
 		+NEVERFAST
 		Scale .7;
 		SeeSound "";
@@ -417,6 +417,7 @@ Class PM_CataclysmPlasma : PM_CataclysmLaser
 		DamageFunction 10;
 		DeathSound "Cataclysm/BallExplode";
 		SeeSound "Cataclysm/Ball";
+		+SEEKERMISSILE
 	}
 	
 	textureID tex[4];
@@ -455,6 +456,7 @@ Class PM_CataclysmPlasma : PM_CataclysmLaser
 			A_ScaleVelocity(0.05);
 		}
 		DTPR OOOOOOOOOOOOOO 1 Bright BallFX();
+		TNT1 A 0 A_ChangeVelocity(0,frandom(-0.1,0.1),frandom(-0.1,0.1),CVF_RELATIVE);
 		DTPR O 1
 		{
 			A_StartSound("Cataclysm/Plasma", 15, CHANF_OVERLAP, pitch: frandom(1.5, 1.55));
