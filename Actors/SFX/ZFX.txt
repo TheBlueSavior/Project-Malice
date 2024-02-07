@@ -107,6 +107,40 @@ Class PM_BulletHit : Actor
   }
 }
 
+//Fires
+
+Class PM_WalkFire : Actor
+{
+ Default
+ {
+  +NoClip
+  +DropOff
+  +Randomize
+  +CLIENTSIDEONLY
+  Scale 1.5;
+  Speed 0;
+  RenderStyle "Add";
+  Alpha 1;
+ }
+  States
+  {
+  Spawn:
+    FRTF A random(2,3) Bright;
+    FRTF A 0;
+    FRTF B random(2,3) Bright;
+    FRTF B 0;
+    FRTF C random(2,3) Bright;
+    FRTF CDEFGEFCDEFGEFGHIJKLMNO 3 Bright;
+    Stop;
+  }
+}
+
+Class PM_BruiserWalkFire : PM_WalkFire
+{ Default { Translation "0:255=%[0,0,0]:[0.6,2.0,0.28]"; } }
+
+Class PM_GraveGuardWalkFire : PM_WalkFire
+{ Default { Translation "0:255=%[0,0,0]:[0.6,0.9,2.0]"; } }
+
 //Possessing Demons
 class PM_FleeingDarkSpiritOrb: Actor
 {

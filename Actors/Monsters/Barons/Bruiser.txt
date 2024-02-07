@@ -322,34 +322,6 @@ Class PM_Bruiser : PMUnaffMonsterBase
     }
 }
 
-Class PM_BruiserWalkFire : Actor
-{
- Default
- {
-  +NoClip
-  +Missile
-  +DropOff
-  +Randomize
-  +CLIENTSIDEONLY
-  Scale 1.5;
-  Speed 0;
-  RenderStyle "Add";
-  Alpha 1;
-  Translation "0:255=%[0,0,0]:[0.6,2.0,0.28]";
- }
-  States
-  {
-  Spawn:
-    FRTF A 3 Bright;
-    FRTF A 0;
-    FRTF B 3 Bright;
-    FRTF B 0;
-    FRTF C 3 Bright;
-    FRTF CDEFGEFCDEFGEFGHIJKLMNO 3 Bright;
-    Stop;
-  }
-}
-
 Class PM_BruiserSmallFireball : DoomImpBall
 {
     Default

@@ -360,34 +360,6 @@ Class PM_GraveGuard : PMDeathMonsterBase
    }
 }
 
-Class PM_GraveGuardWalkFire : Actor
-{
- Default
- {
-  +NoClip
-  +Missile
-  +DropOff
-  +Randomize
-  +CLIENTSIDEONLY
-  Scale 1.2;
-  Speed 0;
-  RenderStyle "Add";
-  Alpha 1;
-  Translation "0:255=%[0,0,0]:[0.6,0.9,2.0]";
- }
-  States
-  {
-  Spawn:
-    FRTF A random(2,3) Bright;
-    FRTF A 0;
-    FRTF B random(2,3) Bright;
-    FRTF B 0;
-    FRTF C random(2,3) Bright;
-    FRTF CDEFGEFCDEFGEFGHIJKLMNO random(2,4) Bright;
-    Stop;
-  }
-}
-
 Class PM_HellsFuryBall : Actor
 {
     Default
