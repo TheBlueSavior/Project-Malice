@@ -92,7 +92,7 @@ class PM_CodexMenu : ListMenu
 			MonsterInfo.Push(stat);
 			y += 10;
 
-			BrokenLines lines = mDesc.mFont.BreakLines(def.CodexLore, w);
+			BrokenLines lines = mDesc.mFont.BreakLines(def.CodexLore, int(ceil( w )) );
 			int count = lines.Count();
 			for (int i = 0; i < count; ++i)
 			{

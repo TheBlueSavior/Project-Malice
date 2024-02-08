@@ -312,7 +312,7 @@ Class PM_BacillusBall : WickedShot
 	
 	void BallFX()
 	{
-		A_SpawnParticleEx("00ff00", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, frandom(25, 30), random(15,30), xoff: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
+		A_SpawnParticleEx("00ff00", tex[0], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, int(ceil( frandom(25, 30) )), random(15,30), xoff: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
 		A_SpawnParticleEx("", tex[1], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(2,10), random(1,50), xoff: frandom(-5, 5), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: frandom(0,1), startroll: random(-180,180));
 	}
 	

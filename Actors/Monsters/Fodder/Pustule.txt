@@ -195,13 +195,13 @@ Class Pustule : PMFodderMonsterBase {
 	  Goto See;
     SlideLeft:
 	  TNT1 A 0 ThrustThingZ(0,5,0,1);
-	  FLOB A 0 ThrustThing(angle*256/360 +64, 12, 0, 0);
+	  FLOB A 0 ThrustThing( int(ceil(angle*256/360 +64)), 12, 0, 0);
 	  TNT1 A 0 A_StartSound("Blob/Slosh");
 	  FLOB B 20;
 	  Goto See;
     SlideRight:
 	  TNT1 A 0 ThrustThingZ(0,5,0,1);
-	  FLOB A 0 ThrustThing(angle*256/360 +192, 12, 0, 0);
+	  FLOB A 0 ThrustThing( int(ceil(angle*256/360 +192)) , 12, 0, 0);
 	  TNT1 A 0 A_StartSound("Blob/Slosh");
 	  FLOB B 20;
 	  Goto See;

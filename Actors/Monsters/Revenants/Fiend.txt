@@ -339,7 +339,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle * 256 / 360 + 128,12,0,0);
+	ThrustThing( int(ceil( angle * 256 / 360 + 128 )),12,0,0);
 	}
 	Goto StrafeAttackLoop;
    StrafeAttackRight:
@@ -352,7 +352,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle * 256 / 360 + 64,12, 0, 0);
+	ThrustThing( int(ceil( angle * 256 / 360 + 64 )) ,12, 0, 0);
 	}
 	Goto StrafeAttackLoop;
   StrafeAttackLeft:
@@ -365,7 +365,7 @@ MissileLead:
 	FIEN K 4 Light("YellowMediumFlicker2")
 	{
 	ThrustThingZ(0,42,0,0); 
-	ThrustThing(angle * 256 / 360 + 192,12,0,0);
+	ThrustThing( int(ceil( angle * 256 / 360 + 192 )) ,12,0,0);
 	}
 	Goto StrafeAttackLoop;
   StrafeAttackLoop:

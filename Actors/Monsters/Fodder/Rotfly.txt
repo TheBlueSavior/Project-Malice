@@ -93,7 +93,7 @@ Class PM_Rotfly : PMFodderMonsterBase
 	TNT1 A 0 A_SpawnProjectile("PM_RotflySpit",2);
 	Goto StandoffStart;
   Dodge:
-	TNT1 A 0 ThrustThing(angle*256/360 + randompick(64, 192), 12, 0, 0);
+	TNT1 A 0 ThrustThing( int(ceil( angle*256/360 + randompick(64, 192) )), 12, 0, 0);
 	BFLY ABAB 5 A_FaceTarget;
 	Goto StandoffStart;
   FlySpawn:

@@ -237,7 +237,7 @@ Class PM_Afflicted : PMFodderMonsterBase
 	override void PostBeginPlay()
 	{ Super.PostBeginPlay();
 	  choose = random(0,4);
-	  oldspeed = speed;
+	  oldspeed = int(ceil( speed ));
 	  PM_AfflictedAssignSprite();
 	  if(choose == 3)
 	  {

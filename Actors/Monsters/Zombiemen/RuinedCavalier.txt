@@ -368,7 +368,7 @@ Class PM_CavilerEnthusiasmBuff : PowerProtection
   {
 	if (owner && owner.health > 0)
 	{
-		owner.A_AttachLight("WarBuff", DynamicLight.PulseLight, "bf7628", owner.radius * 2, owner.radius * 3);
+		owner.A_AttachLight("WarBuff", DynamicLight.PulseLight, "bf7628",  int(ceil( owner.radius )) * 2, int(ceil( owner.radius )) * 3);
 		for (int i = 0; i < 360; i += random(10, 50)) owner.A_SpawnParticleEx("bf7628", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 	}
   }

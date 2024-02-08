@@ -55,7 +55,7 @@ Class PM_Grievance : PMEnvyMonsterBase
 		if (!level.isFrozen() && health > 0)
 		{
 			for (int i = -10; i < 11; i += 20)
-				A_SpawnParticleEx("279c1a", tex[2], STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, frandom(55, 85), frandom(30, 50), angle, -frandom(4, 6), i + frandom(-2, 2), frandom(-2, 2) + 36, velz: frandom(-1, -2), startalphaf: frandom(0.5, 0.1), startroll: frandom(0, 360), rollvel: frandom(-2, 2));
+				A_SpawnParticleEx("279c1a", tex[2], STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, int(ceil( frandom(55, 85) )), frandom(30, 50), angle, -frandom(4, 6), i + frandom(-2, 2), frandom(-2, 2) + 36, velz: frandom(-1, -2), startalphaf: frandom(0.5, 0.1), startroll: frandom(0, 360), rollvel: frandom(-2, 2));
 		}
 	}
 	
@@ -366,7 +366,7 @@ Class PM_Grievance : PMEnvyMonsterBase
 		PSEV G 2
 		{
 			A_FadeOut(0.025);
-			A_SpawnParticleEx("279c1a", tex[2], STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, frandom(50, 100), frandom(50, 100), angle, frandom(20, -20), frandom(-20, 20), frandom(-15, 15) + 36, frandom(-3, 3) / 2, frandom(-3, 3) / 2, frandom(1, 3) / 2, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: frandom(0.5, 1), startroll: frandom(0, 360), rollvel: frandom(-2, 2));
+			A_SpawnParticleEx("279c1a", tex[2], STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, int(ceil(frandom(50, 100))), frandom(50, 100), angle, frandom(20, -20), frandom(-20, 20), frandom(-15, 15) + 36, frandom(-3, 3) / 2, frandom(-3, 3) / 2, frandom(1, 3) / 2, frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(-0.01, 0.01), startalphaf: frandom(0.5, 1), startroll: frandom(0, 360), rollvel: frandom(-2, 2));
 			if (!random(0, 1)) A_SpawnParticleEx("727272", tex[3], STYLE_Normal, SPF_RELATIVE|SPF_ROLL, random(40, 70), frandom(5, 45), angle, frandom(-20, 20), frandom(-20, 20), random(30, 60), velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-2, 6), accelz: frandom(-0.1, -0.5), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180, 180), rollvel: random(-2, 2));
 		}
 		Wait;
@@ -434,7 +434,7 @@ Class PM_GrievanceRocket : RevenantTracer
 		  A_SpawnItemEx("PM_GrievanceSmokeCloud",frandom(-5, 5),frandom(-5, 5),frandom(-5, 5),frandom(-1, 1),frandom(-1, 1),frandom(-1, 1),flags: SXF_NOCHECKPOSITION);
 		  A_SpawnItemEx("PM_CadaverHomingFireGlobs",random(-2,0),random(-3,3),random(-3,3),flags:128|SXF_TRANSFERTRANSLATION);
 		  
-		  A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, frandom(1, 10), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: frandom(.5, 1), startroll: random(-180,180));
+		  A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, int(ceil(frandom(1, 10))), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: frandom(.5, 1), startroll: random(-180,180));
 		  A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
 	      A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: 0.6);
 		}
@@ -525,7 +525,7 @@ Class PM_GrievanceFailedGrenade : Rocket
 		A_StartSound("Grievance/RocketFail",CHAN_BODY);
 		
 		for (int i = random(5, 10); i > 0; i--)
-			A_SpawnParticleEx("",tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT, frandom(30, 50), frandom(1, 15), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), accelz: -0.1, startalphaf: frandom(0.5, 1));
+			A_SpawnParticleEx("",tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT, int(ceil(frandom(30, 50))), frandom(1, 15), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), accelz: -0.1, startalphaf: frandom(0.5, 1));
 		
 		bNOGRAVITY = false;
 		A_ScaleVelocity(0.5);
@@ -534,7 +534,8 @@ Class PM_GrievanceFailedGrenade : Rocket
 	}
 	Goto Malfunction;
   Malfunction:
-	GRNP A 1 { if (!random(0, 7)) A_SpawnParticleEx("",tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT, frandom(30, 50), frandom(1, 15), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), accelz: -0.1, startalphaf: frandom(0.5, 1)); }
+	GRNP A 1 { if (!random(0, 7)) A_SpawnParticleEx("",tex[2], STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT, int(ceil( frandom(30, 50) )) , 
+	frandom(1, 15), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), accelz: -0.1, startalphaf: frandom(0.5, 1)); }
 	Loop;
   Death:
     GRNP A random(10, 20);
@@ -624,7 +625,7 @@ Class PM_GrievanceStealthBazooka : PM_GrievanceRocket
 	void MissileFX()
 	{
 		A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-2,2),random(-2,2),random(-2,2),0,0,0,0,128|SXF_TRANSFERTRANSLATION|SXF_TRANSFERALPHA);
-		A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, frandom(1, 10), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: alpha * frandom(.5, 1), startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, int(ceil( frandom(1, 10) )), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: alpha * frandom(.5, 1), startroll: random(-180,180));
 		A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: alpha / 2.5,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: alpha / 1.5);
 	}

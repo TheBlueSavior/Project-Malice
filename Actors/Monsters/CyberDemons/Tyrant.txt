@@ -171,7 +171,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
 	TNT1 A 0 { bNODROPOFF = true; }
 	DUKE E 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (angle * 256 / 360 + 192, 20,0,0);
+	DUKE E 0 ThrustThing ( int(ceil(angle * 256 / 360 + 192)) , 20,0,0);
 	DUKE EEEEEEEEEEEEEEEEEE 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
@@ -194,7 +194,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
     TNT1 A 0 { bNODROPOFF = true; }
 	DUKE E 1 A_FaceTarget();
     TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7);
-	DUKE E 0 ThrustThing (angle * 256 / 360 + 64, 20,0,0);
+	DUKE E 0 ThrustThing ( int(ceil(angle * 256 / 360 + 64)) , 20,0,0);
 	DUKE EEEEEEEEEEEEEEEEEE 1
 	{
 	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);

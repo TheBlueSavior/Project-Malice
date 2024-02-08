@@ -147,7 +147,7 @@ Class PM_Exalted : PMPrideMonsterBase
 		accelx: frandom(-0.05,0.05), accely: frandom(-0.05,0.05), startalphaf: frandom(0.2,0.9), fadestepf: -0.5, sizestep: 4, startroll: random(-180,180), rollvel: frandom(-1,1));
 	for(int i=10;i>0;i--)
 		A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(15,30),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(15,30),
 		xoff: frandom(-45,45), yoff: frandom(-45,45), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
 	for(int i=10;i>0;i--)
 	A_SpawnParticleEx(
@@ -1168,7 +1168,7 @@ Class PM_ExaltedGigalaserSigil : Actor
 		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
 	for(int i=5;i>0;i--)
 		A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(10,20),
 		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
   }
  See:
@@ -1225,7 +1225,7 @@ Class PM_ExaltedGigalaserSigil : Actor
 		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
 	 for(int i=5;i>0;i--)
 	 A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(10,20),
 		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
      }
 	 EXAF A 1 { A_SetRoll(roll+5); A_SetScale(Scale.X+0.05); A_FadeOut(0.1); }
@@ -1295,7 +1295,7 @@ Class PM_ExaltCultist : Actor
 		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
 	for(int i=5;i>0;i--)
 		A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(10,20),
 		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
   }
  See:
@@ -1401,7 +1401,7 @@ Class PM_ExaltCultist : Actor
 		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
 	 for(int i=5;i>0;i--)
 	 A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(10,20),
 		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
 	 for (int i = -15; i <= 15; i+= 10)
 		A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,i,0,0,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME);
@@ -1418,7 +1418,7 @@ Class PM_ExaltCultist : Actor
 		startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180));
 	 for(int i=5;i>0;i--)
 	 A_SpawnParticleEx(
-	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: frandom(10,50), size: random(10,20),
+	    "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(10,20),
 		xoff: frandom(-15,15), yoff: frandom(-15,15), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
 	 for (int i = -15; i <= 15; i+= 10)
 		A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,i,0,0,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME);

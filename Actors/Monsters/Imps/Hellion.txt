@@ -706,7 +706,7 @@ Class PM_HellionMendingBuff : Powerup
   {
   Super.DoEffect();
   if(owner.health > 0 && !IsFrozen())
-   owner.A_SpawnParticle("#89fd56",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0,radius),0,random(4,height),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
+   owner.A_SpawnParticle("#89fd56",SPF_FULLBRIGHT|SPF_RELATIVE,random(12,18),frandom(8,14),random(0,360),random(0, int(ceil( radius )) ),0,random(4,int(ceil(height))),random(0,1),0,random(2,5),0,0,0.4,1,-1,-1);
   }
   
   Override Void OwnerDied()
@@ -918,8 +918,8 @@ Class PM_HellionMendingBuff2 : PowerProtection
    owner.A_SpawnParticle
    ("#89fd56",
    flags: SPF_FULLBRIGHT|SPF_RELATIVE, lifetime: random(12,18),
-   size: frandom(8,18), angle: random(0,360), xoff: random(0,radius),
-   zoff: random(25,height), velx:frandom(-2,2), vely:frandom(-2,2)
+   size: frandom(8,18), angle: random(0,360), xoff: random(0, int(ceil(radius))),
+   zoff: random(25,int(ceil(height))), velx:frandom(-2,2), vely:frandom(-2,2)
    );
   }
  

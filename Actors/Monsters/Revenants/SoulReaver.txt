@@ -1972,7 +1972,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 	}
 	SREX A 0
 	{
-		for (int i = 0; i < 360; i += frandom(20, 55))
+		for (int i = 0; i < 360; i += int(ceil( frandom(20, 55) )) )
 			A_SpawnProjectile("PM_SoulReaverMadSouls", 50, 0, i, (flying) ? CMF_AIMDIRECTION|CMF_OFFSETPITCH : CMF_AIMDIRECTION, (flying) ? random(-90, 90) : 0);
 	}
 	SREX AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1

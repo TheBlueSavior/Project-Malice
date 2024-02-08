@@ -179,7 +179,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	override void PostBeginPlay()
 	{ 
 	Super.PostBeginPlay(); 
-	oldspeed = speed; 
+	oldspeed = int(ceil( speed )) ; 
 	deathwither = random(10,90);
 	tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
 	tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
@@ -914,8 +914,8 @@ Class PM_DEmiSpherule : Actor
 		{
 			Radius_Quake(1, 2, 0, 5, 0);
 			criticalmass++;
-			prevr = radius;
-			prevh = height;
+			prevr = int(ceil(radius));
+			prevh = int(ceil(height));
 			A_SetScale(prevr + (criticalmass / 2.85), prevh + (criticalmass / 2.85));
 			if (criticalmass > random(400, 500)) SetStateLabel("Explode");
 		}
