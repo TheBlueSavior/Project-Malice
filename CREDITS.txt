@@ -78,9 +78,10 @@ jazzmaster - Exploder zombie sprites
 Supercharge - Gore code
 H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, Fire Starter, sprites and code
 Touhou - Projectile Sprites
-Ultra64 - Grenadier sprites
+Ultra64 - Grenadier sprites, used for Sybarite
 Titanium - Hellfire Revenant Melee sprites
 Captain red pants - Sprites for the War Zombieman, Ruined Cavalier
+tsran - Plamexis Bruiser sprites, used for Landrazer
 
 MY APOLOGIES IF I MISSED ANYONE!
 
