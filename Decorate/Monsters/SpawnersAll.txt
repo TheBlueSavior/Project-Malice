@@ -9,6 +9,7 @@ Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 	DropItem "PM_RFZombie", 255, 7
 	DropItem "PM_DecayedSoldier", 255, 7
 	DropItem "PM_CyberFodder", 255, 4
+	DropItem "PM_RuinedCavalier", 255, 2
 	DropItem "PM_FOCRifle", 255, 1
 }
 

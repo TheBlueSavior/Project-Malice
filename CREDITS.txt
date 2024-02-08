@@ -80,6 +80,7 @@ H3LLW4LK3R - Entropic Avatar, Broken, MP40 Nazi Zombie, Fire Starter, sprites an
 Touhou - Projectile Sprites
 Ultra64 - Grenadier sprites
 Titanium - Hellfire Revenant Melee sprites
+Captain red pants - Sprites for the War Zombieman, Ruined Cavalier
 
 MY APOLOGIES IF I MISSED ANYONE!
 
@@ -148,6 +149,8 @@ World of Warcraft
 Metamor Jupiter
 Titanfall 2
 Wolfenstein II: The New Colossus
+Your Battle
+Remnants from the Ashes
 
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY

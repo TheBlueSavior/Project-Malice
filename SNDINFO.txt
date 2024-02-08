@@ -5398,3 +5398,31 @@ Breacher/Death "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherDeath.ogg"
 Breacher/Shotgun "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherShotgun.ogg"
 $limit Breacher/Shotgun 12
 $rolloff Breacher/Shotgun 600 2200
+
+//Ruined Cavalier
+
+$random RCavalier/WarCry { RCavalier/Cry1 RCavalier/Cry2 RCavalier/Cry3 RCavalier/Cry4 }
+RCavalier/Cry1 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierCry1.ogg"
+RCavalier/Cry2 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierCry2.ogg"
+RCavalier/Cry3 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierCry3.ogg"
+RCavalier/Cry4 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierCry4.ogg"
+
+RCavalier/Buff "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierBuff.ogg"
+
+$rolloff RCavalier/WarCry 1000 2000
+$rolloff RCavalier/Buff 500 2500
+
+$random RCavalier/Death { RCavalier/Death1 RCavalier/Death2 RCavalier/Death3 }
+RCavalier/Death1 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierDeath1.ogg"
+RCavalier/Death2 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierDeath2.ogg"
+RCavalier/Death3 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierDeath3.ogg"
+
+$random RCavalier/Sight { RCavalier/Sight1 RCavalier/Sight2 RCavalier/Sight3 RCavalier/Sight4 }
+RCavalier/Sight1 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSight1.ogg"
+RCavalier/Sight2 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSight2.ogg"
+RCavalier/Sight3 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSight3.ogg"
+RCavalier/Sight4 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSight4.ogg"
+
+RCavalier/Swing "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSwing.ogg"
+RCavalier/Ghost "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierGhost.ogg"
+RCavalier/GhostAppear "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierGhostAppear.ogg"

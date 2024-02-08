@@ -34,6 +34,7 @@ version "4.10.0"
 #include "Actors/Monsters/Zombiemen/RapidFireZombie.txt"
 #include "Actors/Monsters/Zombiemen/CivilianZombie.txt"
 #include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
+#include "Actors/Monsters/Zombiemen/RuinedCavalier.txt"
 #include "Actors/Monsters/Zombiemen/FragmentofCainRifle.txt"
 #include "Actors/Monsters/Zombiemen/WolfSS_MP40.txt"
 
