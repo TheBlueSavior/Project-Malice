@@ -382,7 +382,7 @@ Class PM_CavilerEnthusiasmBuff : PowerProtection
 		if ((level.time % random(1, 5)) == 0)
 			owner.A_SpawnParticleEx("472c0f", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 60, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01), frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		
-		owner.A_SetTics(int(owner.tics / randompick(1, 1.5)));
+		owner.A_SetTics(int(owner.tics / randompick(1, 2)));
 		if (owner.bNOINFIGHTING) has1 = true;
 		if (!has1) owner.bNOINFIGHTING = true;
 		if (owner.bNOTARGET) has2 = true;
