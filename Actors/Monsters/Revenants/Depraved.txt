@@ -395,26 +395,6 @@ Class PM_Depraved : PMUmbralMonsterBase
   }
 }
 
-Class PM_RedFireEffect : Actor
-{
-  Default
-  {
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +ROLLSPRITE
-  Renderstyle "Add";
-  Scale 0.1;
-  +Bright
-  }
-  States
-  {
-  Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
-	TNT1 A 0 A_SetScale(Scale.X-0.015);
-	FIR1 R 1 A_FadeOut(0.08);
-	Wait;
-	}
-}
 
 Class RedFlareEffect : Actor
 {
@@ -433,27 +413,6 @@ Class RedFlareEffect : Actor
   {
   Spawn:
 	LENR A 1 A_FadeOut(0.1);
-	Wait;
-	}
-}
-
-Class PM_RedFireEffectBig : Actor
-{
-  Default
-  {
-  +NOINTERACTION
-  +CLIENTSIDEONLY
-  +ROLLSPRITE
-  Renderstyle "Add";
-  Scale 0.3;
-  +Bright
-  }
-  States
-  {
-  Spawn:
-	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
-	TNT1 A 0 A_SetScale(Scale.X-0.015);
-	FIR1 R 1 A_FadeOut(0.08);
 	Wait;
 	}
 }
