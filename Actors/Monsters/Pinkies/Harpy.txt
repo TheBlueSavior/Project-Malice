@@ -191,15 +191,14 @@ Class PM_Harpy : PMLustMonsterBase
 			TNT1 A 0 A_Jump(56,"SeeFast");
 			Goto See;
 		Death:
-			TNT1 A 0 A_StopSound(13);
-		    TNT1 A 0 A_StopSound(7);
+			TNT1 A 0 { A_Fall(); A_StopSound(7); A_StopSound(13); }
 			HR__ A 6 PM_Scream();
-			HR__ B 6 A_Fall();
+			HR__ B 6;
 			HR__ CD 6;
 			Wait;
 		Crash:
 			TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-			HR__ EEF 6 A_Fall();
+			HR__ EEF 6;
 			HR__ G -1;
 			Stop;
 		Raise:
