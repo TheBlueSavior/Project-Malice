@@ -40,10 +40,11 @@ version "4.10.0"
 //Shotgunners
 #include "Actors/Monsters/Shotgunners/FShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/Nailgunner.txt"
-#include "Actors/Monsters/Shotgunners/CyberFodder.txt"
 #include "Actors/Monsters/Shotgunners/SlugShotgunner.txt"
-#include "Actors/Monsters/Shotgunners/DecayedShotgunner.txt"
 #include "Actors/Monsters/Shotgunners/FallenShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/EnragedBreacher.txt"
+#include "Actors/Monsters/Shotgunners/DecayedShotgunner.txt"
+#include "Actors/Monsters/Shotgunners/CyberFodder.txt"
 #include "Actors/Monsters/Shotgunners/FragmentofCainShotgun.txt"
 
 //Chaingunners
@@ -131,8 +132,9 @@ version "4.10.0"
 //Knights
 #include "Actors/Monsters/Hellknights/Squire.txt"
 #include "Actors/Monsters/Hellknights/Noble.txt"
-#include "Actors/Monsters/HellKnights/Vore.txt"
 #include "Actors/Monsters/HellKnights/Whiplash.txt"
+#include "Actors/Monsters/HellKnights/Landrazer.txt"
+#include "Actors/Monsters/HellKnights/Vore.txt"
 #include "Actors/Monsters/Hellknights/GraveGuard.txt"
 
 //Barons

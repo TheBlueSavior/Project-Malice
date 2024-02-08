@@ -5341,3 +5341,60 @@ Warforge/Sniper4 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper4.ogg"
 Warforge/Sniper5 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper5.ogg"
 
 $rolloff Warforge/Sniper 300 2500
+
+//Landrazer
+
+$random Landrazer/Sight { Landrazer/Sight1 Landrazer/Sight2 }
+Landrazer/Sight1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerSight1.ogg"
+Landrazer/Sight2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerSight2.ogg"
+
+$random Landrazer/Attack { Landrazer/Attack1 Landrazer/Attack2 }
+Landrazer/Attack1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerAttack1.ogg"
+Landrazer/Attack2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerAttack2.ogg"
+
+$random Landrazer/Active { Landrazer/Active1 Landrazer/Active2 }
+Landrazer/Active1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerActive1.ogg"
+Landrazer/Active2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerActive2.ogg"
+
+$random Landrazer/Pain { Landrazer/Pain1 Landrazer/Pain2 Landrazer/Pain3 }
+Landrazer/Pain1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerPain1.ogg"
+Landrazer/Pain2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerPain2.ogg"
+Landrazer/Pain3 "Sounds/Monsters/Hellknights/Landrazer/LandrazerPain3.ogg"
+
+Landrazer/Death "Sounds/Monsters/Hellknights/Landrazer/LandrazerDeath.ogg"
+
+$random Landrazer/Ready { Landrazer/Ready1 Landrazer/Ready2 }
+Landrazer/Ready1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerReady1.ogg"
+Landrazer/Ready2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerReady2.ogg"
+
+$random Landrazer/Lock { Landrazer/Lock1 Landrazer/Lock2 }
+Landrazer/Lock1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerLock1.ogg"
+Landrazer/Lock2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerLock2.ogg"
+
+$random Landrazer/Step { Landrazer/Step1 Landrazer/Step2 }
+Landrazer/Step1 "Sounds/Monsters/SFX/LandrazerStep1.ogg"
+Landrazer/Step2 "Sounds/Monsters/SFX/LandrazerStep2.ogg"
+
+$rolloff Landrazer/Step 100 1000
+$volume Landrazer/Step 0.8
+
+//Enraged Breacher
+
+$random Breacher/Sight { Breacher/Sight1 Breacher/Sight2 Breacher/Sight3 }
+Breacher/Sight1 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherSight1.ogg"
+Breacher/Sight2 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherSight2.ogg"
+Breacher/Sight3 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherSight3.ogg"
+
+$random Breacher/Rage { Breacher/Rage1 Breacher/Rage2 Breacher/Rage3 }
+Breacher/Rage1 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherRage1.ogg"
+Breacher/Rage2 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherRage2.ogg"
+Breacher/Rage3 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherRage3.ogg"
+
+$random Breacher/Pain { Breacher/Pain1 Breacher/Pain2 }
+Breacher/Pain1 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherPain1.ogg"
+Breacher/Pain2 "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherPain2.ogg"
+
+Breacher/Death "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherDeath.ogg"
+Breacher/Shotgun "Sounds/Monsters/Shotgunners/EnragedBreacher/BreacherShotgun.ogg"
+$limit Breacher/Shotgun 12
+$rolloff Breacher/Shotgun 600 2200

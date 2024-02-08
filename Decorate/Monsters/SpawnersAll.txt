@@ -17,10 +17,11 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
 	DropItem "PM_FShotgunner", 255, 80
 	DropItem "PM_SlugShotgunner", 255, 28
-	DropItem "PM_CyberFodder", 255, 12
-	DropItem "PM_Nailgunner", 255, 11
-	DropItem "PM_DecayedShotgunner", 255, 7
 	DropItem "PM_FallenShotgunner", 255, 3
+	DropItem "PM_Nailgunner", 255, 11
+	DropItem "PM_EnragedBreacher", 255, 9
+	DropItem "PM_CyberFodder", 255, 12
+	DropItem "PM_DecayedShotgunner", 255, 7
 	DropItem "PM_FOCShotgun", 255, 1
 }
 
@@ -126,12 +127,12 @@ Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
 
 Actor MaliceHellKnightSpawner : RandomSpawner replaces HellKnight
 {
-	DropItem "PM_Vore", 255, 5
-	//DropItem "Void", 255, 1
-	DropItem "PM_GraveGuard", 255, 3
-	DropItem "PM_Whiplash", 255, 18
 	DropItem "PM_Squire", 255, 61
-	DropItem "PM_Noble", 255, 26
+	DropItem "PM_Noble", 255, 28
+    DropItem "PM_Whiplash", 255, 15
+	DropItem "PM_Landrazer", 255, 11
+	DropItem "PM_Vore", 255, 6
+	DropItem "PM_GraveGuard", 255, 4
 }
 
 Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
