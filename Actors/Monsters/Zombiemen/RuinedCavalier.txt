@@ -39,6 +39,14 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	TeleFogDestType "PM_PossessedTeleportFog";
 	}
 	
+	override void PostBeginPlay()
+	{
+	 tex[0] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+	
 	actor LastTarget;
 	int warcrycool;
 	
@@ -46,6 +54,70 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	{
 		super.Tick();
 		if (warcrycool >= 0) warcrycool--;
+	}
+	
+	void PM_CavalierWither()
+	{
+	A_SpawnParticleEx
+	 (
+	 "545454",
+	 tex[1],
+	 style: STYLE_None,
+	 flags: SPF_ROLL|SPF_RELATIVE,
+	 lifetime: random(50,160),
+	 size: frandom(10,100),
+	 xoff: frandom(-20,20),
+	 yoff: frandom(-20,20),
+	 zoff: 0,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0,2),
+	 startalphaf: frandom(0.2,0.95),
+	 fadestepf: -1,
+	 sizestep: frandom(-0.8,0.8),
+	 startroll: random(-180,180),
+	 rollvel: frandom(-0.3,0.3)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "848484",
+	 tex[0],
+	 style: STYLE_Normal,
+	 flags: SPF_RELATIVE|SPF_ROLL,
+	 lifetime: random(90,270),
+	 size: frandom(1,22),
+	 xoff: random(-25,25),
+	 yoff: random(-25,25),
+	 zoff: 5,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0.3,4),
+	 startalphaf: 1.0,
+	 fadestepf: -0.05,
+	 sizestep: frandom(-0.1,-1),
+	 startroll: random(-180,180),
+	 rollvel: random(-4,4)
+	 );
+	 A_SpawnParticleEx
+	 (
+	 "848484",
+	 tex[0],
+	 style: STYLE_Normal,
+	 flags: SPF_RELATIVE|SPF_ROLL,
+	 lifetime: random(90,270),
+	 size: frandom(0.5,15),
+	 xoff: random(-25,25),
+	 yoff: random(-25,25),
+	 zoff: 5,
+	 velx: frandom(-1,1),
+	 vely: frandom(-1,1),
+	 velz: frandom(0.3,4),
+	 startalphaf: 1.0,
+	 fadestepf: -0.05,
+	 sizestep: frandom(-0.1,-1),
+	 startroll: random(-180,180),
+	 rollvel: random(-4,4)
+	 );
 	}
 	
 	States
@@ -242,7 +314,7 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 			A_FadeOut(0.025, 0|FTF_CLAMP);
 		}
 		KNOH A 0 { bFRIGHTENED = false; bNOFEAR = true; bVISIBILITYPULSE = randompick(false, true); }
-		Goto Look;
+		Goto Spotted;
 	Death:
 		KNOH H 5;
 		KNOH H 1 { bFRIGHTENED = false; bNOFEAR = true; bVISIBILITYPULSE = true; }
@@ -250,8 +322,9 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 		KNOH J 6 A_NoBlocking();
 		KNOH KLM 6;
 		KNOH M random(50, 200) CanRaise;
-		KNOH M 0 A_StartSound("RCavalier/GhostAppear", 14);
-		KNOH M 1 { A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA); A_FadeOut(0.1); }
+		KNOH M 0 A_StartSound("Abhor/SoulExp", 14);
+		TNT1 AAAAAAAAAA 0 PM_CavalierWither();
+		KNOH M 1 { A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA); A_FadeOut(0.1); PM_CavalierWither(); }
 		Wait;
 	Raise:
 		KNOH MLKJIH 5;
