@@ -281,7 +281,7 @@ Class PM_EnragedBreacher : PMWrathMonsterBase
         FOMD G -1;
         Stop;
     XDeath:
-        TNT1 A 0 A_StopSound(555);
+        TNT1 A 0 { A_StopSound(11); A_StopSound(555); }
         FOMD H 5 PM_Gib();
         FOMD I 5 A_XScream;
         FOMD J 5 A_NoBlocking;
