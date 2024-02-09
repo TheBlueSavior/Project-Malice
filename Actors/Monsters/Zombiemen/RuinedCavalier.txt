@@ -3,8 +3,9 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	Default
 	{
 	PMMonsterBase.CodexLore
-	"Humanity's strife for freedom and conquest was sometimes inevitable. It took millions of innocent souls to the gates of Heaven or the graveyard of veterans, due to violence, war, and destruction. It was not known if any of the soldiers in the battlefield were depraved, nor if they have done anything what Hell would've empowered them for...
-	It seems like not all souls are innocent. Remnants of the strifes and wars have been reborn as haunting possessed apparitions from past wars. They are the paranormal guardians of the apocalypse of War, and it's their time to bring back upheaval and for them to win, so that the future will be dystopian or defeated.
+	"Ever since the beginning of time, War has waited. Ever since the first human killed his fellow man for conquest, War has collected.
+    After man's countless wars across millennia, War has amassed its trophy; the damned souls of soldiers across time. They fight amongst each other endlessly in Hell, mindlessly, kept as imprisoned parodies of their former selves.
+    Now that Earth's reckoning has come to pass, War's horde -mankind's past sins of the battlefield- has been unleashed upon the world.
 	
 	Acts like a combination of a ghost and a medieval knight. May stalk you to land a perfect blow. Will emit plasmatic sword slashes. Sometimes they might do a war cry to empower the demons nearby it into battle, granting them a little bit of firerate and big resistance.";
 	Health 100;
@@ -15,6 +16,7 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	MeleeRange 120;
 	MeleeThreshold 15;
     Mass 200;
+	Alpha 0.8;
     MONSTER;
     +FloorClip
 	+VISIBILITYPULSE
@@ -54,6 +56,12 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	{
 		super.Tick();
 		if (warcrycool >= 0) warcrycool--;
+	}
+	
+	void PM_CavalierEffects()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,70),size: frandom(35,80),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: frandom(0,0.5),fadestepf: -1,sizestep: frandom(4,-4),startroll: random(-180,180));
+		A_SetScale(frandom(.94,1.06),frandom(.96,1.04));
 	}
 	
 	void PM_CavalierWither()
@@ -137,6 +145,7 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 				A_Recoil(-2);
 				PM_LookingForPlayer();
 			}
+			PM_LookingForPlayer();
 		}
 		KNOH N 0 { if (target && distance3D(target) < 145 && CheckSight(target)) SetStateLabel("Spotted"); }
 		KNOH N 0 A_JumpIfTargetinLOS("Spotted",128,JLOSF_DEADNOJUMP);
@@ -155,6 +164,7 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 			}
 			else A_Recoil(-.35);
 			
+			PM_CavalierEffects();
 			A_Chase();
 		}
 		Loop;
@@ -182,25 +192,33 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 		}
 		KNOH EEEEEEEEEE 1
 		{
+			PM_CavalierEffects();
 			A_Recoil(-0.1);
 			A_FaceTarget();
 		}
 		KNOH F 1
 		{
+			PM_CavalierEffects();
 			A_Recoil(-random(15, 25));
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
 			A_FaceTarget();
 			A_StartSound("RCavalier/Swing", 13, pitch: frandom(0.8, 0.6));
 		}
-		KNOH FFFF 1 A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
+		KNOH FFFF 1
+		{
+		PM_CavalierEffects();
+		A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
+		}
 		KNOH GGGG 1
 		{
+			PM_CavalierEffects();
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
 			A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
 			A_CustomMeleeAttack((6));
 		}
 		KNOH GGGGGGGG 1
 		{
+			PM_CavalierEffects();
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
 			A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
 			A_Recoil(-0.5);
@@ -272,17 +290,20 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 		}
 		KNOH E 1
 		{
+			PM_CavalierEffects();
 			A_FaceTarget();
 			A_StartSound("RCavalier/Sight", 14, pitch: frandom(1.4, 1.6));
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 20, 150, xoff: 5, yoff: -3, zoff: 48, sizestep: -35, startroll: random(-180,180), rollvel: frandom(-40, 40));
 		}
 		KNOH EEEEEEEEEEEEEE 1
 		{
+			PM_CavalierEffects();
 			A_Recoil(-0.1);
 			A_FaceTarget();
 		}
 		KNOH F 1
 		{
+			PM_CavalierEffects();
 			A_StartSound("Whiplash/MeleeSwing", 15, CHANF_OVERLAP, pitch: 0.65);
 			A_StartSound("Whiplash/Blades", 15, CHANF_OVERLAP, pitch: 0.65);
 			A_Recoil(-5);
@@ -293,6 +314,7 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 		}
 		KNOH FFFFFGGGGGGGGGGGGGGGGG 1
 		{
+			PM_CavalierEffects();
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 40, 40, xoff: 5, yoff: -3, zoff: 48, sizestep: -5, startroll: random(-180,180), rollvel: frandom(-40, 40));
 			A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
 			A_Recoil(-0.5);
@@ -324,6 +346,26 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 		KNOH M random(50, 200) CanRaise;
 		KNOH M 0 A_StartSound("Abhor/SoulExp", 14);
 		TNT1 AAAAAAAAAA 0 PM_CavalierWither();
+		TNT1 A 0
+		{
+		A_SpawnParticleEx
+			(   
+			"",
+			TexMan.CheckForTexture("SPKWE0"),
+			style: STYLE_Add,
+			flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: random(200,300),
+			size: 10,
+			zoff: 5,
+			accelx: frandom(-0.05,0.05),
+			accely: frandom(-0.05,0.05),
+			accelz: frandom(-0.05,0.2),
+			startalphaf: frandom(0.8,1),
+			fadestepf: 0,
+			sizestep: -0.01,
+			startroll: random(-180,180)
+			);
+		}
 		KNOH M 1 { A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA); A_FadeOut(0.1); PM_CavalierWither(); }
 		Wait;
 	Raise:
@@ -366,12 +408,13 @@ Class PM_CavalierSlashTracer : PM_BulletTracer
 {
 	Default
 	{
-	Speed 35;
+	Speed 32;
 	+RIPPER
 	DamageFunction 7;
 	+THRUGHOST
 	+BRIGHT
 	+ROLLSPRITE
+	StencilColor "Yellow";
 	}
 	
 	override void PostBeginPlay()
@@ -432,7 +475,7 @@ Class PM_CavilerEnthusiasmBuff : PowerProtection
 	+INVENTORY.ALWAYSPICKUP;
 	+INVENTORY.AUTOACTIVATE;
 	Powerup.Duration -45;
-	DamageFactor 0.75;
+	DamageFactor 0.85;
   }
   
   bool has1, has2;

@@ -516,7 +516,7 @@ Model PM_CavalierSlashTracer
 Path "Models"
 Skin 0 "yellowbeam.png"
 Model 0 "Tracer.md3"
-Scale 1.0 5.0 1.0
+Scale 0.2 0.5 12.0
 PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
@@ -526,7 +526,7 @@ Model PM_SlashTrail
 Path "Models"
 Skin 0 "yellowbeam.png"
 Model 0 "Tracer.md3"
-Scale 1.0 5.0 1.0
+Scale 0.3 0.5 12.0
 PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
