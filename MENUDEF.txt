@@ -15,9 +15,12 @@ OptionMenu "projectmalice_options"
 	StaticText "Project Malice Options", white
 	StaticText ""
 	StaticText "The option below enables stealth detection for almost all monsters."
-	StaticText "Hide behind a dark corner, and they'll forget about you."
+	StaticText "Detection Only: Enemies will never forget where you are once they have seen you.", "Orange"
+	StaticText "Same stealth detection rules as Full.", "Orange"
+	StaticText "Full: Enemies will have a harder time seeing you if you stick to the shadows.", "Green"
+	StaticText "They will forget about you eventually if you hide in a dark corner. Crouching helps too.", "Green"
 	StaticText "Disabled by default."
-	Option "Stealth: Monsters Forget", "pm_forgetcheck", "YesNo"
+	Option "Stealth Mechanics", "pm_forgetcheck", "PMStealth"
 	StaticText ""
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
@@ -296,3 +299,11 @@ ListMenu "PM_CodexMenu_Void"
 	StaticText "Comes in pure black like its sibling tier. They can't die-- only be warded off."
 	StaticText "All physical barriers mean nothing in the face of entropic nightmares."
 	StaticText "Beware.", red*/
+
+
+OptionValue "PMStealth"
+{
+	0, "Disabled"
+	1, "Detection Only"
+	2, "Full"
+}

@@ -20,7 +20,7 @@ class PMMonsterBase : Actor abstract
 
 	int pm_attackloop;
 	int pm_projangle;
-	transient CVar ForgetOption;
+	transient CVar StealthOption;
 
 	// [Ace] If there is enough space, monsters will readjust their height so the collision box matches their sprite.
 	// However, the initial size needs to be small so monsters placed in wall holes (e.g. Cacodemons on Tricks and Traps) can leave.
@@ -206,16 +206,16 @@ class PMMonsterBase : Actor abstract
 
 	override void Tick()
 	{
-	    if(!ForgetOption) { ForgetOption = CVar.GetCVar('pm_forgetcheck'); }
+	    if (!StealthOption) { StealthOption = CVar.GetCVar('pm_forgetcheck'); }
 		
 		if (Height != RealHeight && RealHeight > 0)
 		{
 			A_SetSize(-1, RealHeight, true);
 		}
 
-		if (GetAge() % 35 == 0 && ForgetOption.GetInt())
+		if (GetAge() % 35 == 0 && StealthOption.GetInt() > 1)
 		{
-			if (Target && Health >= 0)
+			if (Target && Health > 0)
 			{
 				double dist, adjDist;
 				[dist, adjDist] = GetAdjustedSeeDistance();
@@ -269,13 +269,13 @@ class PMMonsterBase : Actor abstract
 	void PM_Look(double fov = 140, int flags = LOF_NOSEESOUND)
 	{
 		// [Ace] Simplify things for friendly monsters. Just attack.
-		if (!ForgetOption || bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
+		if (!StealthOption || StealthOption.GetInt() == 0 || bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
 		{
 			A_LookEx(flags, label: "Look");
 			return;
 		}
         
-		  A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
+		A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
 		if (Target && !LastHeard && Health >= 0)
 		{
 			double dist, adjDist;
