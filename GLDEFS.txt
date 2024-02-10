@@ -4682,6 +4682,6 @@ Offset 0 26 0
 
 Pointlight PM_DirectorPsychicLight
 {
-Color 0.3 0.5 1.0
+Color 0.8 0.2 1.0
 Size 100
 }
