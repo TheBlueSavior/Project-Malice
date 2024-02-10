@@ -223,8 +223,12 @@ Class PM_Director : PMUnaffMonsterBase
 	ModeChange:
 	    TNT1 A 0 A_StartSound("Director/ModeChange",45);
 	    DIRE G 100 {
-		if(attackmode >= 2)
-		attackmode--; else attackmode++; 
+		switch(attackmode)
+		{
+			case 0: attackmode = randompick(1, 2); break;
+			case 1: attackmode = randompick(0, 2); break;
+			case 2: attackmode = randompick(0, 1); break;
+		}
 		A_FaceTarget(); psi = false; }
 		TNT1 A 0
 		{
