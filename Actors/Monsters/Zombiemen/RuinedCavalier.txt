@@ -24,7 +24,6 @@ Class PM_RuinedCavalier : PMWarMonsterBase
 	+SLIDESONWALLS
 	+HARMFRIENDS
 	+DOHARMSPECIES
-	+GHOST
 	+NOFEAR
 	MinMissileChance 400;
 	Bloodtype "PM_BlackBloodBase";
