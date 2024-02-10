@@ -694,7 +694,7 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		DIRE TTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
 		DIRE T 30;
-		TNT1 A 0 { changecooldown -= random(10, 60); }
+		TNT1 A 0 { changecooldown -= random(10, 45); }
 		Goto See;
 	Pain:
 		DIRE I 5 A_StopSounds(52, 134);
