@@ -4911,6 +4911,7 @@ $rolloff Director/PsychicThunder 1000 4000
 $rolloff Director/Rise 500 3000
 $rolloff Director/DeathThreat 500 22000
 $limit Director/DeathThreat 1
+$volume Director/DeathThreat 0.75
 
 //Soul Reaver
 

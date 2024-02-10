@@ -286,7 +286,7 @@ Class PM_Director : PMUnaffMonsterBase
 	    TNT1 A 0 A_Jump(95,"BigPlasmaGun");
 		Goto PlasmaGun;
 	PsiMissile:
-		//TNT1 A 0 A_Jump(19,"HeavyStorm");
+		TNT1 A 0 A_Jump(19,"HeavyStorm");
 		TNT1 A 0 A_Jump(56, "PsychicRush", "BuffCheck");
 		TNT1 A 0 A_Jump(75, "Hallucinations");
 		//TNT1 A 0 A_Jump(95, "PsychicBeam");
@@ -771,7 +771,7 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE TT 5 A_CheckProximity("Buff", "PMMonsterBase", 750, 3, CPXF_ANCESTOR|CPXF_CHECKSIGHT);
 		Goto RockThrow;
 	Buff:
-		DIRE I 0 { if (buffcooldown > 0) SetStateLabel("RockThrow"); }
+		DIRE I 0 { if (buffcooldown > 0) SetStateLabel("RockThrow"); else A_StartSound("Director/PsychicStart",24); }
 		DIRE TTTTTTTTTTTTTTTTTTTTTTTT 1 A_FaceTarget();
 		DIRE G 0  A_StartSound("Director/TK",50,CHAN_OVERLAP,1);
 		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") PM_DirectorBuff();
@@ -780,8 +780,30 @@ Class PM_Director : PMUnaffMonsterBase
 			PM_DirectorBuff();
 			A_RadiusGive("PM_DirectorResistanceGiver", 765, RGF_MONSTERS|RGF_CUBE|RGF_NOSIGHT);
 		}
-		DIRE T 70 { buffcooldown = random(250, 700); }
+		DIRE T 70 { A_StartSound("Director/PsychicStop",24); buffcooldown = random(250, 700); }
 		TNT1 A 0 { changecooldown -= random(15, 40); }
+		Goto See;
+	HeavyStorm:
+		DIRE I 0 { if (stormcooldown > 0) SetStateLabel("RockThrow"); else { bNOPAIN = true; A_StartSound("Grievance/Charge",24,attenuation: 0.35,pitch:1.2); A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 30, 100, xoff: 30, zoff: 80, sizestep: 12); } }
+		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
+		DIRE T 0 { pm_attackloop = random(260, 340); A_StartSound("Director/DeathThreat", 132); A_StartSound("GenericHeavyCharge", 133, attenuation: 0.35); }
+		Goto StormLoop;
+	StormLoop:
+		DIRE T 1
+		{
+			A_FaceTarget();
+			if (!random(0, 2)) A_SpawnProjectile("PM_DirectorPsychicLightning", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
+			if (!random(0, 17) && !(GetAge() % random(2, 6))) A_SpawnProjectile("PM_DirectorPsychicHeavyLightning", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
+			PM_DirectorBuff();
+			if (!(GetAge() % 14)) A_SpawnItemEx("PM_DirectorMindPower", 20, 0, 78, flags: SXF_NOCHECKPOSITION);
+			pm_attackloop--;
+			
+			if (pm_attackloop <= 0) SetStateLabel("StormCooldown");
+		}
+		Loop;
+	StormCooldown:
+		TNT1 A 0 { changecooldown -= random(15, 150); stormcooldown = random(1000, 2500); }
+		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTAAAAAAAAAA 2 PM_DirectorPsiCast();
 		Goto See;
 	Death:
 		DIRE I 1;
@@ -2037,4 +2059,217 @@ Class PM_DirectorResistance : PowerProtection
 		Destroy();
 	}
   }
+}
+
+Class PM_DirectorMindPower : Actor
+{
+	Default
+	{
+	RenderStyle "AddShaded";
+	StencilColor "7c2ec9";
+	+NOINTERACTION
+	-SOLID
+	Scale 1.16;
+	}
+	
+	States
+	{
+	Spawn:
+		C28Y ABCDEFGHIJKLMNOPQ 1;
+		Stop;
+	}
+}
+
+Class PM_DirectorPsychicLightning : Actor
+{
+	Default
+	{
+	Translation "0:255=%[0.00,0.00,0.00]:[1.43,1.10,2.00]";
+	Scale 1.25;
+	RenderStyle "Add";
+	Projectile;
+	Speed 55;
+	-SOLID
+	+BRIGHT
+	+SEEKERMISSILE
+	+THRUACTORS
+	+FLOORHUGGER
+	+FLATSPRITE
+	+ROLLSPRITE
+	}
+ 
+ override void PostBeginPlay()
+ {
+  Super.PostBeginPlay();
+  timer = random(1,5);
+  tex[0] = TexMan.CheckForTexture("SPKPA0",TexMan.Type_Sprite);
+  tex[1] = TexMan.CheckForTexture("PURLA0",TexMan.Type_Sprite);
+  tex[2] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+ }
+ 
+ TextureID tex[3];
+ 
+ int timer;
+ 
+ States
+ {
+  Spawn:
+   TNT1 A random(3, 24) NoDelay;
+   TNT1 A 0
+   {
+	A_ScaleVelocity(0);
+	A_Stop();
+	A_FadeOut(1.0,FTF_CLAMP);
+   }
+   TNT1 A random(15,85);
+   TNT1 A 0 
+   { A_StartSound("PM/WarDebrisLaunch",20, pitch: frandom(0.9, 1.2)); }
+   SBLL A 1 Light("PM_DirectorPsychicLight2")
+   {
+    if(timer >= 50)
+	SetStateLabel("Explode");
+    A_FadeIn(0.095,FTF_CLAMP);
+	A_SetRoll(random(0,360));
+	A_QuakeEx(1,1,1,1,0,500,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+	A_SetScale(Scale.X+0.025,Scale.Y+0.025);
+	timer++;
+   }
+   Wait;
+   Explode:
+    TNT1 A 0
+	{
+	bFLATSPRITE = false;
+	bROLLSPRITE = false;
+	bSPRITEFLIP = randompick(false, true);
+	A_SetScale(frandom(1, 1.5),4);
+	A_QuakeEx(3,3,3,10,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+	A_Explode(30,200);
+	A_StartSound("Noble/BombExp",21);
+	A_StartSound("Noble/BombExpFar",22);
+	for(int i=3;i>0;i--)
+	A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	A_SpawnParticleEx
+	    ( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	    lifetime: 8, size: 600, zoff: -15, startalphaf: 1, startroll: random(-180,180) );
+	for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: frandom(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+	for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ( "727272", tex[2], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,35), zoff: random(10,35),
+	    velx: frandom(-8,8), vely: frandom(-8,8), velz: frandom(1,12),
+	    accelz: frandom(-0.1,-0.9), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4) );
+	}
+	SP4_ ABCDEFG random(2, 3)
+	{
+		A_Explode((2),150);
+		for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: frandom(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+	}
+	Stop;
+   }
+}
+
+Class PM_DirectorPsychicHeavyLightning : PM_DirectorPsychicLightning
+{
+	Default
+	{
+	Scale 1.6;
+	}
+ 
+ States
+ {
+  Spawn:
+   TNT1 A random(3, 20) NoDelay;
+   TNT1 A 0
+   {
+	A_ScaleVelocity(0);
+	A_Stop();
+	A_FadeOut(1.0,FTF_CLAMP);
+   }
+   TNT1 A random(15,65);
+   TNT1 A 0 
+   { A_StartSound("SoulReaver/Charge", attenuation: 0.35, pitch: 0.5); A_StartSound("PM/WarDebrisLaunch",20, pitch: frandom(0.6, 0.5)); A_StartSound("PM/WarDebrisLaunch",20, pitch: frandom(0.6, 0.5)); }
+   SBLL A 1 Light("PM_DirectorPsychicLight2")
+   {
+    if(timer >= 100)
+	SetStateLabel("Explode");
+    A_FadeIn(0.095,FTF_CLAMP);
+	A_SetRoll(random(0,360));
+	for(int i=random(1,2);i>0;i--) A_SpawnParticleEx
+	("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	lifetime: frandom(1, 30), size: frandom(1, 300), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+	A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, random(55, 110), random(5,25), 0, frandom(50, -50), frandom(-50, 50), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(0.1, 5), accelz: 0.08, sizestep: -.5, startroll: random(-180,180), rollvel: frandom(-4, 4));
+	A_QuakeEx(1,1,1,1,0,500,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+	A_SetScale(Scale.X+0.025,Scale.Y+0.025);
+	timer++;
+   }
+   Wait;
+   Explode:
+    TNT1 A 0
+	{
+		bFLATSPRITE = false;
+		bROLLSPRITE = false;
+		
+		A_SetScale(2,2);
+		A_QuakeEx(6,6,6,40,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+		A_Explode(60,350);
+		A_StartSound("Noble/BombExp",21);
+		A_StartSound("Noble/BombExpFar",22);
+		A_StartSound("Director/PsychicThunder",23);
+		A_StartSound("Director/PsychicTeleport",24);
+		A_StartSound("Broken/VFGExp",25,volume:0.75);
+		for(int i=3;i>0;i--)
+		A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+		A_SpawnParticleEx
+			( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 14, size: 1000, zoff: -15, startalphaf: 1, startroll: random(-180,180) );
+		for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+			("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: frandom(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-6, 6), vely: frandom(-6, 6), velz: frandom(0, 6), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+		for(int i=random(5,15);i>0;i--) A_SpawnParticleEx
+			( "727272", tex[2], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70), size: frandom(2,35), zoff: random(10,35),
+			velx: frandom(-15,15), vely: frandom(-15,15), velz: frandom(1,12),
+			accelz: frandom(-0.1,-0.9), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4) );
+		A_RadiusThrust(2000,700,RTF_NOTMISSILE|RTF_NOIMPACTDAMAGE);
+		A_SpawnParticleEx
+		( "", tex[0], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: 80, size: random(450,500), xoff: -7, startalphaf: frandom(0.95,1), fadestepf: -0.65, sizestep: 7, startroll: random(-180,180));
+		for(int i=random(20,35);i>0;i--)
+		 A_SpawnParticleEx
+		 ( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		 lifetime: random(120,200), size: random(10,45), xoff: frandom(-20,20), yoff:frandom(-20,20), zoff:frandom(-10,10), velx: frandom(-20,20), vely: frandom(-20,20), velz: frandom(1,9),
+		 accelz: frandom(-0.0095,-0.0115), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+		
+		BlockThingsIterator ti = BlockThingsIterator.Create(self, 350);
+		actor a;
+		
+		while(ti.Next())
+		{
+			a = ti.thing;
+			double rad = abs((350 - Distance3D(a)) / 2);
+			if (a && a.Health > 0 && a.bSHOOTABLE && !a.bINVULNERABLE && !a.bDORMANT && !a.bNODAMAGE && CheckSight(a) && distance3D(a) < 350 && !a.bDONTTHRUST)
+			{
+				if (a != self && a.species != "Cyberdemon" && a.species != "Mastermind" && a.species != "PM_VoidElder")
+				{
+					a.VelFromAngle((rad / 3), self.AngleTo(a));
+					a.vel.z += (rad / 6) / ((a.Mass > 600) ? 2.5 : 1);
+					a.vel.z = clamp(a.vel.z, -25, 25);
+				}
+			}
+		}
+	}
+	SP3_ ABCDEFGH random(4, 6)
+	{
+		A_Explode((2),150);
+		for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: frandom(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1, fadestepf: -1, startroll: random(-180,180) );
+	}
+	Stop;
+   }
 }

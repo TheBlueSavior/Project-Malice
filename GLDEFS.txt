@@ -4685,3 +4685,9 @@ Pointlight PM_DirectorPsychicLight
 Color 0.8 0.2 1.0
 Size 100
 }
+
+Pointlight PM_DirectorPsychicLight2
+{
+Color 0.8 0.2 1.0
+Size 55
+}
