@@ -4849,6 +4849,13 @@ Director/AStrikePreImpact3 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact3
 Director/AStrikePreImpact4 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact4.ogg"
 Director/AStrikePreImpact5 "Sounds/Monsters/Bosses/Director/DirectorASPreImpact5.ogg"
 
+Director/UraniumGun "Sounds/Monsters/Bosses/Director/DirectorUraniumGun.ogg"
+Director/UraniumWarn "Sounds/Monsters/Bosses/Director/DirectorUraniumWarn.ogg"
+$rolloff Director/UraniumGun 1200 12000
+$rolloff Director/UraniumWarn 500 5000
+$volume Director/UraniumGun 0.6
+$volume Director/UraniumWarn 0.75
+
 Director/GLaserCharge "Sounds/Monsters/Bosses/Director/DirectorGLaserCharge.ogg"
 Director/GLaserLoopStart "Sounds/Monsters/Bosses/Director/DirectorGLaserLoopStart.ogg"
 Director/GLaserLoop "Sounds/Monsters/Bosses/Director/DirectorGLaserLoop.ogg"
@@ -4864,19 +4871,46 @@ $rolloff Director/GLaserEnd 500 3000
 $volume Director/GLaserStart 0.95
 $volume Director/GLaserRestart 0.95
 
+Director/PsychicTeleport "Sounds/Monsters/Bosses/Director/DirectorPsychicTeleport.ogg"
+Director/PsychicThunder "Sounds/Monsters/Bosses/Director/DirectorPsychicThunder.ogg"
+
+Director/Rise "Sounds/Monsters/Bosses/Director/DirectorRise.ogg"
+Director/Rock "Sounds/Monsters/Bosses/Director/DirectorRock.ogg"
+Director/RockSmash "Sounds/Monsters/Bosses/Director/DirectorRockSmash.ogg"
+
+Director/DeathThreat "Sounds/Monsters/Bosses/Director/DirectorDeathThreat.ogg"
+
+Director/PsychicStart "Sounds/Monsters/Bosses/Director/DirectorPsychicStart.ogg"
+Director/PsychicStop "Sounds/Monsters/Bosses/Director/DirectorPsychicStop.ogg"
+
+$volume Director/PsychicStart 0.7
+$volume Director/PsychicStop 0.7
+
+$random Director/TK { Director/TK1 Director/TK2 Director/TK3 }
+Director/TK1 "Sounds/Monsters/Bosses/Director/DirectorTK1.ogg"
+Director/TK2 "Sounds/Monsters/Bosses/Director/DirectorTK2.ogg"
+Director/TK3 "Sounds/Monsters/Bosses/Director/DirectorTK3.ogg"
+
 Director/ModeChange "Sounds/Monsters/Bosses/Director/DirectorModeChange.ogg"
 Director/ModeBullet "Sounds/Monsters/Bosses/Director/DirectorModeBullet.ogg"
 Director/ModePlasma "Sounds/Monsters/Bosses/Director/DirectorModePlasma.ogg"
+Director/ModePsychic "Sounds/Monsters/Bosses/Director/DirectorModePsychic.ogg"
 
 $rolloff Director/ModeChange 500 3000
 $rolloff Director/ModeBullet 500 3000
 $rolloff Director/ModePlasma 500 3000
+$rolloff Director/ModePsychic 500 3000
 
 $rolloff Director/ASPodExtend 2000 3000
 $rolloff Director/AStrikeShot 1000 3000
 $rolloff Director/ASPreImpact 2000 3000
 $limit Director/ASPreImpact 5
 $limit Director/AStrikeShot 20
+
+$rolloff Director/PsychicThunder 1000 4000
+$rolloff Director/Rise 500 3000
+$rolloff Director/DeathThreat 500 22000
+$limit Director/DeathThreat 1
 
 //Soul Reaver
 
