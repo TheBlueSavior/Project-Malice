@@ -2012,7 +2012,7 @@ Class PM_DirectorResistance : PowerProtection
 		for (int i = 0; i < 360; i += random(10, 50))
 		{
 			owner.A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, random(55, 110), random(5,25), 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(0.1, 5), accelz: 0.08, sizestep: -.5, startroll: random(-180,180), rollvel: frandom(-4, 4));
-			owner.A_SpawnParticleEx("bf7628", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+			owner.A_SpawnParticleEx("7c2ec9", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		}
 	}
   }
@@ -2038,7 +2038,7 @@ Class PM_DirectorResistance : PowerProtection
 		for (int i = 0; i < 360; i += random(10, 50))
 		{
 			owner.A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, random(55, 110), random(5,25), frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(0.1, 5), accelz: 0.08, sizestep: -.5, startroll: random(-180,180), rollvel: frandom(-4, 4));
-			owner.A_SpawnParticleEx("bf7628", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+			owner.A_SpawnParticleEx("7c2ec9", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		}
 	}
   }
@@ -2053,7 +2053,7 @@ Class PM_DirectorResistance : PowerProtection
 		for (int i = 0; i < 360; i += random(10, 50))
 		{
 			owner.A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, random(55, 110), random(5,25), frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(0.1, 5), accelz: 0.08, sizestep: -.5, startroll: random(-180,180), rollvel: frandom(-4, 4));
-			owner.A_SpawnParticleEx("bf7628", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
+			owner.A_SpawnParticleEx("7c2ec9", TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, 180, 30, 0, frandom(owner.radius, -owner.radius), frandom(-owner.radius, owner.radius), frandom(0, owner.height), frandom(-0.01, 0.01) + 5, frandom(-0.01, 0.01), frandom(0.01, -0.01), frandom(-0.25, 0.25), frandom(-0.25, 0.25), frandom(-0.25, 0.25), startalphaf: 0.85, fadestepf: 0.0375, sizestep: 3.5, startroll: frandom(0, 360), rollvel: random(0, 1) ? 0.5 : -0.5);
 		}
 		
 		Destroy();
