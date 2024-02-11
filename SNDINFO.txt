@@ -4891,6 +4891,13 @@ Director/TK1 "Sounds/Monsters/Bosses/Director/DirectorTK1.ogg"
 Director/TK2 "Sounds/Monsters/Bosses/Director/DirectorTK2.ogg"
 Director/TK3 "Sounds/Monsters/Bosses/Director/DirectorTK3.ogg"
 
+$random Director/Taunt { Director/Taunt1 Director/Taunt2 Director/Taunt3 }
+Director/Taunt1 "Sounds/Monsters/Bosses/Director/DirectorTaunt1.ogg"
+Director/Taunt2 "Sounds/Monsters/Bosses/Director/DirectorTaunt2.ogg"
+Director/Taunt3 "Sounds/Monsters/Bosses/Director/DirectorTaunt3.ogg"
+
+$volume Director/Taunt 0.7
+
 Director/ModeChange "Sounds/Monsters/Bosses/Director/DirectorModeChange.ogg"
 Director/ModeBullet "Sounds/Monsters/Bosses/Director/DirectorModeBullet.ogg"
 Director/ModePlasma "Sounds/Monsters/Bosses/Director/DirectorModePlasma.ogg"
@@ -4908,8 +4915,12 @@ $limit Director/ASPreImpact 5
 $limit Director/AStrikeShot 20
 
 $rolloff Director/PsychicThunder 1000 4000
+$rolloff Director/PsychicTeleport 300 2000
+$rolloff Director/Rock 300 2000
+$rolloff Director/TK 300 2000
 $rolloff Director/Rise 500 3000
 $rolloff Director/DeathThreat 500 22000
+$rolloff Director/Taunt 500 22000
 $limit Director/DeathThreat 1
 $volume Director/DeathThreat 0.75
 
@@ -5082,6 +5093,7 @@ Sybarite/GrenadeBounce3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBo
 
 $rolloff Sybarite/SlotIn 300 2200
 $rolloff Sybarite/GrenadeLaunch 500 2500
+$rolloff Sybarite/Autocannon 500 2500
 $limit Sybarite/GrenadeBounce 8
 /*$volume Sybarite/SlotIn 0.45
 $volume Sybarite/Sight 0.95
