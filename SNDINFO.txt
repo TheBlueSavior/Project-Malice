@@ -5473,3 +5473,110 @@ RCavalier/Sight4 "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSight4.ogg"
 RCavalier/Swing "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierSwing.ogg"
 RCavalier/Ghost "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierGhost.ogg"
 RCavalier/GhostAppear "Sounds/Monsters/Zombiemen/RuinedCavalier/RCavalierGhostAppear.ogg"
+
+//Cherub
+
+$random Cherub/Attack { Cherub/Attack1 Cherub/Attack2 }
+Cherub/Attack1 "Sounds/Monsters/Souls/Cherub/CherubAttack1.ogg"
+Cherub/Attack2 "Sounds/Monsters/Souls/Cherub/CherubAttack2.ogg"
+
+$random Cherub/Death { Cherub/Death1 Cherub/Death2 }
+Cherub/Death1 "Sounds/Monsters/Souls/Cherub/CherubDeath1.ogg"
+Cherub/Death2 "Sounds/Monsters/Souls/Cherub/CherubDeath2.ogg"
+
+$random Cherub/Flap { Cherub/Flap1 Cherub/Flap2 Cherub/Flap3 Cherub/Flap4 Cherub/Flap5 Cherub/Flap6 Cherub/Flap7 Cherub/Flap8 }
+Cherub/Flap1 "Sounds/Monsters/Souls/Cherub/CherubFlap1.ogg"
+Cherub/Flap2 "Sounds/Monsters/Souls/Cherub/CherubFlap2.ogg"
+Cherub/Flap3 "Sounds/Monsters/Souls/Cherub/CherubFlap3.ogg"
+Cherub/Flap4 "Sounds/Monsters/Souls/Cherub/CherubFlap4.ogg"
+Cherub/Flap5 "Sounds/Monsters/Souls/Cherub/CherubFlap5.ogg"
+Cherub/Flap6 "Sounds/Monsters/Souls/Cherub/CherubFlap6.ogg"
+Cherub/Flap7 "Sounds/Monsters/Souls/Cherub/CherubFlap7.ogg"
+Cherub/Flap8 "Sounds/Monsters/Souls/Cherub/CherubFlap8.ogg"
+
+$random Cherub/Idle { Cherub/Idle1 Cherub/Idle2 Cherub/Idle3 Cherub/Idle4 }
+Cherub/Idle1 "Sounds/Monsters/Souls/Cherub/CherubIdle1.ogg"
+Cherub/Idle2 "Sounds/Monsters/Souls/Cherub/CherubIdle2.ogg"
+Cherub/Idle3 "Sounds/Monsters/Souls/Cherub/CherubIdle3.ogg"
+Cherub/Idle4 "Sounds/Monsters/Souls/Cherub/CherubIdle4.ogg"
+
+$random Cherub/Pain { Cherub/Pain1 Cherub/Pain2 Cherub/Pain3 Cherub/Pain4 }
+Cherub/Pain1 "Sounds/Monsters/Souls/Cherub/CherubPain1.ogg"
+Cherub/Pain2 "Sounds/Monsters/Souls/Cherub/CherubPain2.ogg"
+Cherub/Pain3 "Sounds/Monsters/Souls/Cherub/CherubPain3.ogg"
+Cherub/Pain4 "Sounds/Monsters/Souls/Cherub/CherubPain4.ogg"
+
+$random Cherub/Sight { Cherub/Sight1 Cherub/Sight2 Cherub/Sight3 }
+Cherub/Sight1 "Sounds/Monsters/Souls/Cherub/CherubSight1.ogg"
+Cherub/Sight2 "Sounds/Monsters/Souls/Cherub/CherubSight2.ogg"
+Cherub/Sight3 "Sounds/Monsters/Souls/Cherub/CherubSight3.ogg"
+
+//Enceinte
+
+$random Enceinte/Active { Enceinte/Active1 Enceinte/Active2 }
+Enceinte/Active1 "Sounds/Monsters/Elementals/Enceinte/EnceinteActive1.ogg"
+Enceinte/Active2 "Sounds/Monsters/Elementals/Enceinte/EnceinteActive2.ogg"
+Enceinte/Active3 "Sounds/Monsters/Elementals/Enceinte/EnceinteActive3.ogg"
+
+$random Enceinte/Attack { Enceinte/Attack1 Enceinte/Attack2 }
+Enceinte/Attack1 "Sounds/Monsters/Elementals/Enceinte/EnceinteAttack1.ogg"
+Enceinte/Attack2 "Sounds/Monsters/Elementals/Enceinte/EnceinteAttack2.ogg"
+
+$random Enceinte/CumImpact { Enceinte/CumImpact1 Enceinte/CumImpact2 }
+Enceinte/CumImpact1 "Sounds/Monsters/Elementals/Enceinte/EnceinteCumImpact1.ogg"
+Enceinte/CumImpact2 "Sounds/Monsters/Elementals/Enceinte/EnceinteCumImpact2.ogg"
+Enceinte/CumReady "Sounds/Monsters/Elementals/Enceinte/EnceinteCumReady.ogg"
+
+$random Enceinte/Death { Enceinte/Death1 Enceinte/Death2 Enceinte/Death3 }
+Enceinte/Death1 "Sounds/Monsters/Elementals/Enceinte/EnceinteDeath1.ogg"
+Enceinte/Death2 "Sounds/Monsters/Elementals/Enceinte/EnceinteDeath2.ogg"
+Enceinte/Death3 "Sounds/Monsters/Elementals/Enceinte/EnceinteDeath3.ogg"
+
+$random Enceinte/Pain { Enceinte/Pain1 Enceinte/Pain2 Enceinte/Pain3 Enceinte/Pain4 Enceinte/Pain5 }
+Enceinte/Pain1 "Sounds/Monsters/Elementals/Enceinte/EnceintePain1.ogg"
+Enceinte/Pain2 "Sounds/Monsters/Elementals/Enceinte/EnceintePain2.ogg"
+Enceinte/Pain3 "Sounds/Monsters/Elementals/Enceinte/EnceintePain3.ogg"
+Enceinte/Pain4 "Sounds/Monsters/Elementals/Enceinte/EnceintePain4.ogg"
+Enceinte/Pain5 "Sounds/Monsters/Elementals/Enceinte/EnceintePain5.ogg"
+
+$random Enceinte/Sight { Enceinte/Sight1 Enceinte/Sight2 Enceinte/Sight3 Enceinte/Sight4 Enceinte/Sight5 Enceinte/Sight6 }
+Enceinte/Sight1 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight1.ogg"
+Enceinte/Sight2 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight2.ogg"
+Enceinte/Sight3 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight3.ogg"
+Enceinte/Sight4 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight4.ogg"
+Enceinte/Sight5 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight5.ogg"
+Enceinte/Sight6 "Sounds/Monsters/Elementals/Enceinte/EnceinteSight6.ogg"
+
+$rolloff Enceinte/Sight 300 1500
+
+Enceinte/SacBounce "Sounds/Monsters/Elementals/Enceinte/EnceinteSacBounce.ogg"
+Enceinte/SacExplode "Sounds/Monsters/Elementals/Enceinte/EnceinteSacExplode.ogg"
+$rolloff Enceinte/SacExplode 500 2000
+$random Enceinte/SacGrow { Enceinte/SacGrow1 Enceinte/SacGrow2 }
+Enceinte/SacGrow1 "Sounds/Monsters/Elementals/Enceinte/EnceinteSacGrow.ogg"
+Enceinte/SacGrow2 "Sounds/Monsters/Elementals/Enceinte/EnceinteSacGrow2.ogg"
+$rolloff Enceinte/SacGrow 300 1500
+
+$random NCherub/Attack { NCherub/Attack1 NCherub/Attack2 }
+NCherub/Attack1 "Sounds/Monsters/Souls/Cherub/CherubAttack1.ogg"
+NCherub/Attack2 "Sounds/Monsters/Souls/Cherub/CherubAttack2.ogg"
+
+$random NCherub/Idle { NCherub/Idle1 NCherub/Idle2 }
+NCherub/Idle1 "Sounds/Monsters/Souls/Cherub/CherubIdle1.ogg"
+NCherub/Idle2 "Sounds/Monsters/Souls/Cherub/CherubIdle2.ogg"
+
+NCherub/Pain "Sounds/Monsters/Souls/Cherub/CherubPain3.ogg"
+
+NCherub/Death "Sounds/Monsters/Souls/Cherub/CherubDeath1.ogg"
+
+$pitchset NCherub/Attack1 1.3 1.3
+$pitchset NCherub/Attack2 1.3 1.3
+$pitchset NCherub/Idle1 1.4 1.4
+$pitchset NCherub/Idle2 1.3 1.3
+$pitchset NCherub/Pain 1.3 1.3
+$pitchset NCherub/Death 1.4 1.4
+
+$volume NCherub/Attack 0.7
+$volume NCherub/Idle 0.7
+$volume NCherub/Pain 0.7
+$volume NCherub/Death 0.7

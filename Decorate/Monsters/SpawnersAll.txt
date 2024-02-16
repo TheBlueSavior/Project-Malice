@@ -82,6 +82,7 @@ Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 	DropItem "PM_Blot", 255, 2
 	DropItem "PM_BurntSoul", 255, 47
 	DropItem "PM_FleshspawnDropper", 255, 1
+	DropItem "PM_Cherub", 255, 5
 	DropItem "PM_BloodSkull", 255, 4
 	DropItem "PM_Bacillus", 255, 3
 	DropItem "PM_Gazer", 255, 2
@@ -122,6 +123,7 @@ Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
 Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
 {
 	DropItem "PM_Defiler",255, 20
+	DropItem "PM_Enceinte",255, 9
 	DropItem "PM_GrossElemental",255, 5
 	DropItem "PM_Warforge",255, 2
 }
