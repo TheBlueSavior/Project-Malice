@@ -82,6 +82,7 @@ Ultra64 - Grenadier sprites, used for Sybarite
 Titanium - Hellfire Revenant Melee sprites
 Captain red pants - Sprites for the War Zombieman, Ruined Cavalier
 tsran - Plamexis Bruiser sprites, used for Landrazer
+Bruh88 - Forzen Corpse code revisements
 
 MY APOLOGIES IF I MISSED ANYONE!
 
