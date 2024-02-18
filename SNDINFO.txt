@@ -5590,7 +5590,7 @@ FleshMason/Heart "Sounds/Monsters/Archviles/FleshMason/FleshMasonHeart.ogg"
 FleshMason/HeartExplode "Sounds/Monsters/Archviles/FleshMason/FleshMasonHeartExplode.ogg"
 
 FleshMason/Sight "Sounds/Monsters/Archviles/FleshMason/FleshMasonSight.ogg"
-FleshMason/Idle "Sounds/Monsters/Archviles/FleshMason/FleshMasonIdle.ogg"
+FleshMason/Active "Sounds/Monsters/Archviles/FleshMason/FleshMasonIdle.ogg"
 FleshMason/Pain "Sounds/Monsters/Archviles/FleshMason/FleshMasonPain.ogg"
 FleshMason/Death "Sounds/Monsters/Archviles/FleshMason/FleshMasonDeath.ogg"
 
