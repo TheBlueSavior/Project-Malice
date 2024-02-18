@@ -5598,3 +5598,46 @@ FleshMason/Rise "Sounds/Monsters/Archviles/FleshMason/FleshMasonRise.ogg"
 
 FleshMason/Rune "Sounds/Monsters/Archviles/FleshMason/FleshMasonRune.ogg"
 FleshMason/RuneExplode "Sounds/Monsters/Archviles/FleshMason/FleshMasonRuneExplode.ogg"
+
+//Wendigo
+$random Wendigo/Death { Wendigo/Death1 Wendigo/Death2 Wendigo/Death3 }
+Wendigo/Death1 "Sounds/Monsters/Imps/Wendigo/WendigoDeath1.ogg"
+Wendigo/Death2 "Sounds/Monsters/Imps/Wendigo/WendigoDeath2.ogg"
+Wendigo/Death3 "Sounds/Monsters/Imps/Wendigo/WendigoDeath3.ogg"
+
+$random Wendigo/Idle { Wendigo/Idle1 Wendigo/Idle2 Wendigo/Idle3 Wendigo/Idle4 Wendigo/Idle5 }
+Wendigo/Idle1 "Sounds/Monsters/Imps/Wendigo/WendigoIdle1.ogg"
+Wendigo/Idle2 "Sounds/Monsters/Imps/Wendigo/WendigoIdle2.ogg"
+Wendigo/Idle3 "Sounds/Monsters/Imps/Wendigo/WendigoIdle3.ogg"
+Wendigo/Idle4 "Sounds/Monsters/Imps/Wendigo/WendigoIdle4.ogg"
+Wendigo/Idle5 "Sounds/Monsters/Imps/Wendigo/WendigoIdle5.ogg"
+
+$rolloff Wendigo/Idle 500 1000
+
+$random Wendigo/Lunge { Wendigo/Lunge1 Wendigo/Lunge2 }
+Wendigo/Lunge1 "Sounds/Monsters/Imps/Wendigo/WendigoLunge.ogg"
+Wendigo/Lunge2 "Sounds/Monsters/Imps/Wendigo/WendigoLunge2.ogg"
+
+$rolloff Wendigo/Lunge 400 4000
+
+$random Wendigo/Melee { Wendigo/Melee1 Wendigo/Melee2 Wendigo/Melee3 Wendigo/Melee4 Wendigo/Melee5 }
+Wendigo/Melee1 "Sounds/Monsters/Imps/Wendigo/WendigoMelee1.ogg"
+Wendigo/Melee2 "Sounds/Monsters/Imps/Wendigo/WendigoMelee2.ogg"
+Wendigo/Melee3 "Sounds/Monsters/Imps/Wendigo/WendigoMelee3.ogg"
+Wendigo/Melee4 "Sounds/Monsters/Imps/Wendigo/WendigoMelee4.ogg"
+Wendigo/Melee5 "Sounds/Monsters/Imps/Wendigo/WendigoMelee5.ogg"
+
+$random Wendigo/Pain { Wendigo/Pain1 Wendigo/Pain2 }
+Wendigo/Pain1 "Sounds/Monsters/Imps/Wendigo/WendigoPain1.ogg"
+Wendigo/Pain2 "Sounds/Monsters/Imps/Wendigo/WendigoPain2.ogg"
+
+$volume Wendigo/Pain2 0.8
+
+$random Wendigo/Sight { Wendigo/Sight1 Wendigo/Sight2 Wendigo/Sight3 Wendigo/Sight4 Wendigo/Sight5 }
+Wendigo/Sight1 "Sounds/Monsters/Imps/Wendigo/WendigoSight1.ogg"
+Wendigo/Sight2 "Sounds/Monsters/Imps/Wendigo/WendigoSight2.ogg"
+Wendigo/Sight3 "Sounds/Monsters/Imps/Wendigo/WendigoSight3.ogg"
+Wendigo/Sight4 "Sounds/Monsters/Imps/Wendigo/WendigoSight4.ogg"
+Wendigo/Sight5 "Sounds/Monsters/Imps/Wendigo/WendigoSight5.ogg"
+
+$rolloff Wendigo/Sight 500 1000

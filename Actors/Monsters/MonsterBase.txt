@@ -571,8 +571,56 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.Sin "Famine", "Brick";
+  PMMonsterBase.Sin "Famine", "Tan";
  }
+ 
+	void HandleEating()
+	{
+		if(Health > 0 && !isFrozen())
+		{
+			Actor a = GetCorpse(47);
+
+			if(a && !eaten && !(GetAge() & random(10, 20)))
+			{
+				int victimbasehp = (int(ceil((a.SpawnHealth() * 0.65))));
+				int newhp = self.health + victimbasehp;
+					self.health = newhp;
+				
+				for(int i=0; i<2; i++){
+				a.A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+				 for(int gib=0; gib<5; gib++){a.A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
+				 a.A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+				  }
+				  a.A_StartSound("ArachExpGore",CHAN_6,CHANF_DEFAULT,0.65);
+				  a.A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+				  
+				a.A_Remove(AAPTR_DEFAULT);
+				eaten = true;
+				bNOPAIN = true;
+				if (self.health > 0) SetStateLabel("Eat");
+			}
+		}
+	}
+	
+	virtual Actor GetCorpse(int range)
+	{
+		BlockThingsIterator ti = BlockThingsIterator.Create(self, range);
+		
+		while (ti.Next())
+		{
+			let next = ti.Thing;
+
+			if(next && self && next.Health <= 0 && next.bISMONSTER && next != self &&
+			self.CheckSight(next) && self.Distance3D(next) < range)
+			{
+				return next;
+			}
+		}
+
+		return null;
+	}
+	
+	bool eaten;
 }
 
 Class PMWarMonsterBase : PMMonsterBase abstract

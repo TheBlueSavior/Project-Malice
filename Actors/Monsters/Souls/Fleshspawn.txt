@@ -2,14 +2,18 @@ Class PM_Fleshspawn : PMFamineMonsterBase
 {
   Default
   {
-	//$Category "PM_Monsters/Souls"
-    Obituary "%o was burned by a FleshSpawn." ;
+	PMMonsterBase.CodexLore
+	"Crazed sentinels of Famine. Even the smallest of the smallest are in constant torment due to starvation. These little living orbs show no mercy, and they will close in the gap for constant mauling.
+	Unlike other demons residing within Famine, they cannot eat large corpses, so they will mostly have to rely on packs.
+	
+	Will charge at you like any other soul, but can sometimes charge two times and even dodge.";
+    Obituary "A Fleshspawn considered %o as food." ;
     HitObituary "%o was devoured by a FleshSpawn.";
     health 16;
     radius 13;
     height 15;
     mass 80;
-    speed 6;
+    speed 10;
     damage 1;
 	Scale 0.7;
     painchance 224;
@@ -33,6 +37,23 @@ Class PM_Fleshspawn : PMFamineMonsterBase
 	TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
 
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	scale.x = frandom(0.6, 0.85);
+	scale.y = scale.x;
+  }
+  
+  override void PM_Gib()
+ {
+  for(int gib=0;gib<3;gib++)
+ { A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY); }
+  for(int a=0;a<3;a++)
+ { A_SpawnItemEx("PM_NormalBloodMulti",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY); }
+ A_SpawnItemEx("PM_NormalBloodMist",0,0,32,random(-1,1),random(-1,1),random(-1,1),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+   A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
+ }
+  
   States
   {
   Spawn:
@@ -44,45 +65,67 @@ Class PM_Fleshspawn : PMFamineMonsterBase
   Spotted:
     TNT1 A 0 PM_AlertSound();
   See:
+	FLSP A 0 A_SetSpeed(10);
     FLSP AABB 2 A_Chase();
 	TNT1 A 0 A_ChangeVelocity(frandom(-0.6,0.6),frandom(-0.6,0.6),frandom(-0.3,0.3));
 	TNT1 A 0 A_JumpIfCloser(170,"Backup");
+	TNT1 A 0 A_Jump(20, "Rush");
+	TNT1 A 0 A_Jump(62, "Dodge");
     loop;
+  Rush:
+	FLSP A 0 A_SetSpeed(17);
+	FLSP AABBAABBAABB 1
+	{
+		A_Recoil(-0.3);
+		A_Chase();
+	}
+	TNT1 A 0 A_Jump(60, "See");
+	Loop;
   Missile:
-    FLSP C 0 A_Jump(256,"Charge");
+    FLSP C 0 A_Jump(256,"Charge","Stare");
     goto See;
+  Stare:
+	FLSP A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	FLSP AAAABBBBAAAABBBB random(1, 3) A_FaceTarget();
+	Goto See;
   Backup:
 	FLSP A 1 A_FaceTarget();
-	TNT1 A 0 A_Recoil(4);
-	FLSP AA 2;
-	FLSP BB 2;
-	FLSP AA 2;
+	TNT1 A 0 A_Recoil(20);
+	FLSP AABBAAAABBAA 1 A_SpawnItemEx("PM_GenericPhaseGhost", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	FLSP A 0 A_Stop();
     Goto See;
   Charge:
-    FLSP C 0; //A_Jump(96, "StaggerCharge");
+    FLSP C 0 A_Jump(96, "StaggerCharge", "Dodge");
     FLSP C 15 A_FaceTarget();
     FLSP D 10 A_FaceTarget();
-    FLSP E 4 A_SkullAttack(14);
+    FLSP E 1 A_SkullAttack(28);
   ChargeLoop:
-    FLSP FE 4;
+    FLSP FE 1 A_SpawnItemEx("PM_GenericPhaseGhost", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
     Loop;
   StaggerCharge:
     FLSP C 8 A_FaceTarget();
     FLSP D 4 A_FaceTarget();
-    FLSP E 4 A_SkullAttack();
-    FLSP FEFE 4;
+    FLSP E 4 A_SkullAttack(28);
+    FLSP FFFEEEFFFEEE 1 A_SpawnItemEx("PM_GenericPhaseGhost", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	FLSP F 0 A_Stop();
     FLSP C 6 A_FaceTarget();
     FLSP D 4 A_FaceTarget();
-    FLSP E 4 A_SkullAttack();
-    FLSP FE 4;
+    FLSP E 4 A_SkullAttack(28);
+    FLSP FFFEEEFFFEEE 1 A_SpawnItemEx("PM_GenericPhaseGhost", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
     Goto ChargeLoop;
   Pain:
-    FLSP I 3;
+    FLSP I 3 A_Stop();
     FLSP I 3 A_Pain();
+	FLSP I 0 A_Jump(40, "Rush", "Dodge");
     Goto See;
+  Dodge:
+	FLSP I 1 Vel3DFromAngle(random(10, 20), frandom(0, 360), frandom(-20, 20));
+	FLSP IIIIII 1 A_SpawnItemEx("PM_GenericPhaseGhost", flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+    FLSP I 0 A_Stop();
+	Goto See;
   Death:
     FLSP I 5;
-    FLSP J 5 PM_Scream();
+    FLSP J 5 { PM_Gib(); PM_Scream(); }
     FLSP K 5;
     FLSP L 5 A_NoBlocking();
     FLSP MN 5 A_SetFloorClip();
@@ -93,17 +136,8 @@ Class PM_Fleshspawn : PMFamineMonsterBase
     FLSP Q 3
     {
       A_FaceTarget();
-      A_SpawnItemEx("FleshSpawnGibs", 0,0,0, 0,0,0, 0, SXF_CLIENTSIDE);
-      A_SpawnProjectile("Fleshspawngib1", 14, 0, random(-180,180), 2, random(-10,-40));
-      A_SpawnProjectile("Fleshspawngib2", 6, 2, random(-180,180), 2, random(0,-25));
-      A_SpawnProjectile("Fleshspawngib2B", 10, -2, random(-180,180), 2, random(0,-25));
-      A_SpawnProjectile("Fleshspawngib3", 8, 0, random(-180,180), 2, random(0,-35));
-      A_SpawnProjectile("Fleshspawngib4", 12, 5, random(-180,180), 2, random(5,-40));
-      A_SpawnProjectile("Fleshspawngib4B", 5, -5, random(-180,180), 2, random(0,-30));
-      A_SpawnProjectile("Fleshspawngib5", 6, 3, random(-180,180), 2, random(-10,-60));
-      A_SpawnProjectile("Fleshspawngib5", 8, 0, random(-180,180), 2, random(10,-55));
-      A_SpawnProjectile("Fleshspawngib6", 12, 0, 0, 2, 0);
-      A_XScream();
+	  for (int i = 3; i > 0; i--) PM_Gib();
+      A_SpawnItemEx("PM_FleshSpawnGibs", flags: SXF_CLIENTSIDE);
     }
     FLSP R 3 A_NoBlocking();
     FLSP STU 3;
@@ -115,7 +149,7 @@ Class PM_Fleshspawn : PMFamineMonsterBase
   }
 }
 
-Class FleshSpawnGibs : Actor
+Class PM_FleshSpawnGibs : Actor
 {
   Default
   {
@@ -128,21 +162,21 @@ Class FleshSpawnGibs : Actor
   Spawn:
     TNT1 A 0 NoDelay
     {
-      A_SpawnProjectile("Fleshspawngib1", 14, 0, random(-180,180), 2, random(-10,-40));
-      A_SpawnProjectile("Fleshspawngib2", 6, 2, random(-180,180), 2, random(0,-25));
-      A_SpawnProjectile("Fleshspawngib2B", 10, -2, random(-180,180), 2, random(0,-25));
-      A_SpawnProjectile("Fleshspawngib3", 8, 0, random(-180,180), 2, random(0,-35));
-      A_SpawnProjectile("Fleshspawngib4", 12, 5, random(-180,180), 2, random(5,-40));
-      A_SpawnProjectile("Fleshspawngib4B", 5, -5, random(-180,180), 2, random(0,-30));
-      A_SpawnProjectile("Fleshspawngib5", 6, 3, random(-180,180), 2, random(-10,-60));
-      A_SpawnProjectile("Fleshspawngib5", 8, 0, random(-180,180), 2, random(10,-55));
-      A_SpawnProjectile("Fleshspawngib6", 12, 0, 0, 2, 0);
+      A_SpawnProjectile("PM_FleshSpawnGib1", 14, 0, random(-180,180), 2, random(-10,-40));
+      A_SpawnProjectile("PM_FleshSpawnGib2", 6, 2, random(-180,180), 2, random(0,-25));
+      A_SpawnProjectile("PM_FleshSpawnGib2B", 10, -2, random(-180,180), 2, random(0,-25));
+      A_SpawnProjectile("PM_FleshSpawnGib3", 8, 0, random(-180,180), 2, random(0,-35));
+      A_SpawnProjectile("PM_FleshSpawnGib4", 12, 5, random(-180,180), 2, random(5,-40));
+      A_SpawnProjectile("PM_FleshSpawnGib4B", 5, -5, random(-180,180), 2, random(0,-30));
+      A_SpawnProjectile("PM_FleshSpawnGib5", 6, 3, random(-180,180), 2, random(-10,-60));
+      A_SpawnProjectile("PM_FleshSpawnGib5", 8, 0, random(-180,180), 2, random(10,-55));
+      A_SpawnProjectile("PM_FleshSpawnGib6", 12, 0, 0, 2, 0);
     }
     Stop;
   }
 }
 
-Class Fleshspawngib1 : Actor
+Class PM_FleshSpawnGib1 : Actor
 {
   Default
   {
@@ -167,7 +201,7 @@ Class Fleshspawngib1 : Actor
   }
 }
 
-Class Fleshspawngib2 : Fleshspawngib1
+Class PM_FleshSpawnGib2 : PM_FleshSpawnGib1
 {
   States
   {
@@ -180,7 +214,7 @@ Class Fleshspawngib2 : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib2B : Fleshspawngib1
+Class PM_FleshSpawnGib2B : PM_FleshSpawnGib1
 {
   States
   {
@@ -193,7 +227,7 @@ Class Fleshspawngib2B : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib3 : Fleshspawngib1
+Class PM_FleshSpawnGib3 : PM_FleshSpawnGib1
 {
   States
   {
@@ -206,7 +240,7 @@ Class Fleshspawngib3 : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib4 : Fleshspawngib1
+Class PM_FleshSpawnGib4 : PM_FleshSpawnGib1
 {
   States
   {
@@ -219,7 +253,7 @@ Class Fleshspawngib4 : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib4B : Fleshspawngib1
+Class PM_FleshSpawnGib4B : PM_FleshSpawnGib1
 {
   States
   {
@@ -232,7 +266,7 @@ Class Fleshspawngib4B : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib5 : Fleshspawngib1
+Class PM_FleshSpawnGib5 : PM_FleshSpawnGib1
 {
   States
   {
@@ -245,7 +279,7 @@ Class Fleshspawngib5 : Fleshspawngib1
   }
 }
 
-Class Fleshspawngib6 : Fleshspawngib1
+Class PM_FleshSpawnGib6 : PM_FleshSpawnGib1
 {
   Default
   {

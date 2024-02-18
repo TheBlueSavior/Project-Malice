@@ -83,6 +83,7 @@ Titanium - Hellfire Revenant Melee sprites
 Captain red pants - Sprites for the War Zombieman, Ruined Cavalier
 tsran - Plamexis Bruiser sprites, used for Landrazer
 Bruh88 - Forzen Corpse code revisements
+Corruption Cards / CutmanMike - Code for checking corpses, used for Famine enemiees
 
 MY APOLOGIES IF I MISSED ANYONE!
 

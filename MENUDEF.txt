@@ -77,7 +77,7 @@ OptionMenu "projectmalice_sincodex"
 	Submenu "Pride", "PM_CodexMenu_Pride"
 	StaticText " "
 	Submenu "Pestilence", "PM_CodexMenu_Pestilence"
-	Submenu "Famine (WIP)", "PM_CodexMenu_Famine"
+	Submenu "Famine", "PM_CodexMenu_Famine"
 	Submenu "War", "PM_CodexMenu_War"
 	Submenu "Death", "PM_CodexMenu_Death"
 	StaticText " "
@@ -209,6 +209,23 @@ ListMenu "PM_CodexMenu_Pestilence"
 	StaticTextCentered 320, 330, "The first apocalypse." 
 	StaticTextCentered 320, 338, "Nasty, pests and infection run wild in these demons."
 	StaticTextCentered 320, 346, "Dying enemies may leave behind 'parting gifts'."
+}
+
+ListMenu "PM_CodexMenu_Famine"
+{
+	Class "PM_CodexMenu"
+	Font "BigFont", "Tan"
+	Size 640, 480
+	
+	StaticTextCentered 320, 100, "FAMINE"
+	StaticPatch 320, 240, "FAMILIST"
+	
+	Font "SmallFont", "White"
+	
+	StaticTextCentered 320, 330, "The second apocalypse."
+	StaticTextCentered 320, 338, "Crazed, ravenous demons that suffer from eternal starvation."
+	StaticTextCentered 320, 346, "They are VERY aggressive, agile, and rely on swift melee attacks. However, they are prone to infighting."
+	StaticTextCentered 320, 354, "Once they see a carcass, they feel pleasure. But that does not resolve their limitless hunger."
 }
 
 ListMenu "PM_CodexMenu_War"

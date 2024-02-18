@@ -65,6 +65,7 @@ version "4.10.0"
 #include "Actors/Monsters/Imps/Tainted.txt"
 #include "Actors/Monsters/Imps/FeralImp.txt"
 #include "Actors/Monsters/Imps/Host.txt"
+#include "Actors/Monsters/Imps/Wendigo.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
 
