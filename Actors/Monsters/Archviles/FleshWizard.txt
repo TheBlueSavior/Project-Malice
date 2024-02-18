@@ -1,159 +1,828 @@
-Class XWizard : Actor
+Class PM_FleshMason : PMGluttonyMonsterBase
 {
-  Default
-  {
-    obituary "%o was burned by FleshWizard.";
-    health 700;
-    radius 15;
-    height 60;
-    mass 100;
-    speed 12;
-    painchance 200;
-	Species "Archvile";
-	+DONTHARMSPECIES
-	//DropItem "RagePoint1";
-    SEESOUND "wizard/sight";
-    painsound "wizard/pain";
-    deathsound "wizard/death";
-    activesound "wizard/active";
-    MONSTER;
-    +FLOORCLIP
-    -SOLID
-  }
-
-  States
-  {
-  Spawn:
-	Idle:
-    LMWZ E 10 A_Look();
-    loop;
-  See:
-    LMWZ EEEEEEFFFFFF 2 Light("ShadowBall2")
+	Default
 	{
-	A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-	A_VileChase();
+		PMMonsterBase.CodexLore
+		"Flesh Masons are archdemons residing within Gluttony. These slender abominations are heavily reliant on haemo magic and will make mortals succumb to the belly of the beast.
+		There is nothing much to say about it except that it is a bit more tactic with its blood magic, and with its abscence of legs it can dodge fairly easily compared to its predecessors.
+		
+		We're all blood here. You will be consumed.
+		
+		Slower than usual due to its mutated torso, but heavier than the Exile. Will spawn runes underneath its target to summon blood blasts. Can also summon fleshy pustules at will.";
+		Health 750;
+		Radius 20;
+		Height 56;
+		Mass 500;
+		Speed 6;
+		PainChance 10;
+		MaxTargetRange 896;
+		Species "Archvile";
+		DamageFactor "Vile", 0;
+		PainChance "Vile", 0;
+		Gibhealth 40;
+		Obituary "%o succumbed to the Flesh Mason.";
+		Tag "Flesh Mason";
+		SeeSound "FleshMason/Sight";
+		PainSound "FleshMason/Pain";
+		DeathSound "FleshMason/Death";
+		ActiveSound "FleshMason/Active";
+		Bloodtype "PM_NormalBloodBase";
+		+NOTARGET
+		+QUICKTORETALIATE
+		+DONTHARMSPECIES
+		+DONTHARMCLASS
+		+NOINFIGHTSPECIES
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_GluttonyTeleportFog";
 	}
-    loop;
-  Missile:
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ E 0;
-    LMWZ EFG 5 Light("ShadowBall2")
+
+	int summoncooldown;
+	
+	override void Tick()
 	{
-	A_FaceTarget();
-	A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
+		super.Tick();
+		if (summoncooldown > 0) summoncooldown--;
 	}
-    LMWZ H 20 Light("ShadowBall2") A_SpawnProjectile("WizardBall",65,0);
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ G 5 Light("ShadowBall2");
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ E 5 Light("ShadowBall2");
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ E 1 A_PlaySound("wizard/telenew");
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    Goto See;
-  Heal:
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-	LMWZ E 8 BRIGHT Light("ShadowBall2") A_SpawnItem("DefilerFire", 55);
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-	LMWZ FG 8 BRIGHT Light("ShadowBall2") A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-	Goto See;
-  Pain:
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ I 3 Light("ShadowBall2");
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ I 5 Light("ShadowBall2") A_Pain();
-	TNT1 A 0 A_SpawnItemEx("WizardSmoke",random(-10,10),random(-16,16),random(25,58),0,0,frandom(1,3));
-    LMWZ I 0 A_PlaySound ("wizard/pain");
-    Goto See;
-  Death:
-    LMWZ J 6 A_Scream();
-    LMWZ K 6 A_NoBlocking();
-    LMWZ LMNO 6 A_RemoveChildren(1,RMVF_EVERYTHING);
-    LMWZ P -1;
-    Stop;
-  }
-}
-
-
-Class FleshWizard : Actor
-{
-  Default
-  {
-    obituary "%o was burned by FleshWizard.";
-    health 160;
-    radius 20;
-    height 80;
-    mass 100;
-    speed 80;
-    painchance 200;
-    SEESOUND "wizard/sight";
-    painsound "wizard/pain";
-    deathsound "wizard/death";
-    activesound "wizard/active";
-    MONSTER;
-    +FLOORCLIP
-    +STEALTH
-    -SOLID
-  }
-
-  States
-  {
-  Spawn:
-    LMWZ E 10 A_Look();
-    loop;
-  See:
-    LMWZ EEFFEEFF 1 A_Chase(null, "Missile", CHF_FASTCHASE);
-    loop;
-  Missile:
-    LMWZ E 50
-    { //Original had a 50% chance to jump to states with longer delays at the start
-      if(random(0, 1)) //50% chance
-        A_SetTics( 50 + (randompick(10, 20, 30, 40, 50, 60, 70)) );
+	
+	override void PostBeginPlay()
+    {
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
     }
-    LMWZ E 0 A_SetShootable();
-    LMWZ EFG 5 A_FaceTarget();
-    LMWZ H 20 A_SpawnProjectile("WizardBall",65,0);
-    LMWZ G 5;
-    LMWZ E 5 A_UnSetShootable();
-    LMWZ E 0 A_PlaySound ("wizard/tele");
-    goto See;
-  Pain:
-    LMWZ I 3;
-    LMWZ I 5 A_Pain();
-    LMWZ I 0 A_PlaySound ("wizard/tele");
-    Goto See;
-  Death:
-    LMWZ J 6 A_Scream();
-    LMWZ K 6 A_NoBlocking();
-    LMWZ LMNO 6;
-    LMWZ P -1;
-    Stop;
-  }
+  
+    TextureID tex[2];
+	
+	void Wiz()
+	{
+		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-125, 125), yoff: random(-125, 125),velz: frandom(.3, 2),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("890000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-125, 125), yoff: random(-125, 125),velz: frandom(.3, 2),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,3),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	}
+	
+	void Wiz2()
+	{
+		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-65, 65), yoff: random(-65, 65),velz: frandom(.3, 8),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	}
+	
+	States
+	{
+	Spawn:
+		LMWZ E 10 PM_Look();
+		Loop;
+	Look:
+		LMWZ F 3
+		{
+			PM_LookingForPlayer();
+			A_Recoil(-0.25);
+		}
+		Loop;
+	Spotted:
+		LMWZ A 0 PM_AlertSound();
+	See:
+		LMWZ F 3
+		{
+			A_VileChase();
+			A_Recoil(-0.25);
+		}
+		LMWZ F 0 A_Jump(20, "Dodge");
+		Loop;
+	Heal:
+		LMWZ E 5 Bright Light("SatyrLordRedMissile3")
+		{
+			A_StartSound("Exile/Resurrect",CHAN_6);
+			A_SpawnItem("PM_ExileRessurectFire", 55);
+		}
+		LMWZ F 5 Bright Light("SatyrLordRedMissile3");
+		LMWZ GGGG 5 Bright Light("SatyrLordRedMissile5");
+		Goto See;
+	Missile:
+		TNT1 A 0 A_Jump(65, "SummonCritters", "Pod");
+		TNT1 A 0 A_Jump(96, "Heart", "Rune");
+	FleshBallBarrage:
+		LMWZ FGH 5 A_FaceTarget();
+		LMWZ HHHHHHHHHHHHHHHHHHH random(2, 4)
+		{
+			A_SpawnProjectile("PM_MasonBall", 50, 0, frandom(-4, 4), CMF_AIMDIRECTION, pitch + frandom(-4, 4));
+			A_FaceTarget(3, 4);
+		}
+		LMWZ HGF 4 A_FaceTarget();
+		Goto See;
+	Heart:
+		LMWZ E 10 A_FaceTarget();
+		LMW2 A 0 A_StartSound("CivZombie/MutationRip",15);
+		LMW2 AAAAAAAAAA 2
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
+		}
+		LMW2 BBBBBBBBBBB 1
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION);
+		}
+		LMW2 B 30
+		{
+			A_StartSound("GBloodSplashBig",16, volume:.5);
+			A_StartSound("ArachExpGore",17,CHANF_DEFAULT,0.5);
+			A_StartSound("FleshMason/Heart",18, attenuation: 0.75);
+			
+			for (int i = random(10, 22); i > 0; i--) A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,8),random(-8,8),random(0,8),0,SXF_NOCHECKPOSITION);
+			for (int i = random(6, 2); i > 0; i--) A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-5,5) + 8,random(-5,5),70,random(0,4),random(-4,4),random(0,5),0,SXF_NOCHECKPOSITION);
+			
+			A_Facetarget();
+			Radius_Quake(4, 10, 0, 10, 0);
+			A_SpawnItemEx("PM_MasonHeart",0,0,65,random(2,6),random(-1,1),random(-1,1),random(-50,50),SXF_SETMASTER);
+		}
+		LMW2 A 10;
+		Goto See;
+	Rune:
+		LMWZ E 10 A_FaceTarget();
+		LMWZ F 0 A_StartSound("FleshMason/Grunt", CHAN_6);
+		LMWZ F 0 A_VileTarget("PM_MasonRune");
+		LMWZ EFGH 5
+		{
+			A_FaceTarget();
+			Wiz2();
+		}
+		LMWZ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1
+		{
+			A_FaceTarget();
+			Wiz2();
+		}
+		LMWZ HGFE 5 Wiz2();
+		Goto See;
+	SummonCritters:
+		LMWZ E 0 { if (summoncooldown > 0) SetStateLabel("FleshBallBarrage"); }
+		LMWZ E 10 A_FaceTarget();
+		LMWZ F 0 A_StartSound("FleshMason/Cast", CHAN_6);
+		LMWZ EFGH 5
+		{
+			A_FaceTarget();
+			Wiz();
+		}
+		LMWZ F 0 A_StartSound("FleshMason/Rune", CHAN_6, pitch: 0.75);
+		LMWZ HHHHHHH random(0, 3) A_SpawnProjectile("PM_MasonSummon", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
+		LMWZ E 0 { summoncooldown = random(200, 500); }
+		LMWZ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 Wiz();
+		LMWZ HGFE 5 Wiz();
+		Goto See;
+	Pod:
+		LMWZ E 0 { if (summoncooldown > 0) SetStateLabel("FleshBallBarrage"); }
+		LMWZ E 10 A_FaceTarget();
+		LMWZ F 0 A_StartSound("FleshMason/Cast", CHAN_6);
+		LMWZ EFGH 5
+		{
+			A_FaceTarget();
+			Wiz2();
+		}
+		LMWZ H 0 A_SpawnProjectile("PM_MasonPod", 1);
+		LMWZ E 0 { summoncooldown = random(100, 400); }
+		LMWZ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 Wiz2();
+		LMWZ HGFE 5 Wiz2();
+		Goto See;
+	Dodge:
+		LMWZ I 0 ThrustThing(random(0,128),random(2,15), 0, 0);
+	    LMWZ AAAAAAAAAAAAAA 1  A_SpawnItemEx("PM_GenericPhaseGhost", zofs:6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+		Goto See;
+	Pain:
+		LMWZ I 3;
+		LMWZ I 1 { A_Stop(); A_Pain(); }
+		LMWZ I 0 ThrustThing(random(0,128),random(2,22), 0, 0);
+	    LMWZ IIIIIII 1  A_SpawnItemEx("PM_GenericPhaseGhost", zofs:6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+		Goto See;
+	Death:
+		LMWZ J 0 A_KillChildren("PM_MasonTainted");
+		LMWZ J 0 A_KillChildren("PM_MasonPustule");
+		LMWZ J 7
+		{
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		}
+		LMWZ K 7
+		{
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_Scream();
+		}
+		LMWZ L 7
+		{
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_NoBlocking();
+		}
+		LMWZ MN 7 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
+		LMWZ OP 7 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,15),0,0,0,0,SXF_NOCHECKPOSITION);
+		LMWZ P -1;
+		Stop;
+	}
 }
 
-Class WizardBall : Actor
+Class PM_MasonBall : PM_BloodSpit
+{
+	Default
+	{
+		SeeSound "FleshMason/Fire";
+		DeathSound "Enceinte/CumImpact";
+		RenderStyle "Add";
+		Speed 20;
+		+NEVERFAST
+	}
+	
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+    }
+  
+    TextureID tex[3];
+  
+	States
+  	{
+    Spawn:
+		LMBW AABB 1 bright Light("ShadowBall2")
+		{
+		  vel.x += frandom(-1, 1);
+		  vel.y += frandom(-1, 1);
+		  vel.z += frandom(-1, 1);
+		  if (!random(0, 2)) A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
+		  A_SpawnItemEx("PM_BelphFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
+		  A_SpawnParticleEx("#890000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		  A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		  A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
+		}
+		Loop;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_SetTranslation("PM_RedFireTint");
+		TNT1 A 0 A_SetScale(1);
+		TNT1 A 0 A_SpawnItemEx("PM_RFireBallExplode");
+		TNT1 AA 0 A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180));
+		TNT1 AAAAAA 0
+		{
+			A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		}
+		BFX5 D 2 Bright Light("Shadowball2");
+		FIR3 CDEFGHIJKLMNOP 2 Bright Light("Shadowball2");
+		stop;
+	}
+}
+
+Class PM_MasonHeart : PM_BeholderEye
+{
+	Default
+	{
+		Health 120;
+		Species "Archvile";
+		SeeSound "FleshMason/Heart";
+		DeathSound "FleshMason/HeartExplode";
+		Tag "Mason Faux-Heart";
+	}
+
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+    }
+  
+    TextureID tex[3];
+	
+	States
+	{
+		Spawn:
+			HEE_ AAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDD 1 Bright Light("ShadowBall2")
+			{
+				A_Recoil(-.6);
+				vel.x += frandom(-.5, .5);
+				vel.y += frandom(-.5, .5);
+				vel.z += frandom(-.5, .5);
+				vel *= .93;
+				A_FaceTarget();
+				if (!random(0, 12)) A_SpawnProjectile("PM_BloodSpit", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-90, 90));
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
+			}
+			Goto Go;
+		Go:	
+			HEE_ AAABBCCDDD 1 Bright Light("ShadowBall2")
+			{
+				vel.x += frandom(-1, 1);
+				vel.y += frandom(-1, 1);
+				vel.z += frandom(-1, 1);
+				vel *= .93;
+				if (!random(0, 7)) A_SpawnProjectile("PM_BloodSpit", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-90, 90));
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
+			}
+			TNT1 A 0 A_Jump(44,"Charge");
+			Loop;
+		Charge:
+			HEE_ AAAAAAAAAAAAAA 2 Light("ShadowBall3") 
+			{
+				A_FaceTarget();
+				vel *= .93;
+				A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
+			}
+			BEYE A 0 A_SpawnProjectile("PM_MasonHeartAttack",0,0,0,CMF_TRACKOWNER);
+			Stop;
+		Bounce:
+			TNT1 A 0 A_SpawnProjectile("RedGroundOoze",0,random(-6,6),random(-90,90));
+			TNT1 A 0 A_SpawnProjectile("RedGroundOoze",0,random(-6,6),random(-90,90));
+			Goto Spawn;
+		Death:
+			TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_LargerBloodSplash",0,0,0,random(-7,7),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 A 0 A_SpawnItemEx("PM_RFireBallExplode");
+			TNT1 AAAAAA 0 A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180));
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RedGroundOoze",0,0,0,random(-8,8),random(-8,8),random(-8,8));
+			TNT1 A 0 A_SpawnItemEx("RedGroundStain",0,0,0);
+			BEYX ABC 4 Bright Light("ShadowBall2");
+			Stop;
+	}
+}
+
+Class PM_MasonHeartAttack : PM_BeholderEyeAttack
+{
+	Default
+	{
+		Speed 33;
+		FastSpeed 40;
+		DamageFunction 50;
+		Radius 15;
+		Height 15;
+		Scale 1.1;
+		Seesound "Grievance/Missile";
+		DeathSound "FleshMason/HeartExplode";
+	}
+	
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+    }
+  
+    TextureID tex[3];
+	
+	States
+	{
+		Spawn:
+			HEE_ AAABBCCDDD 1 Bright Light("ShadowBall2")
+			{
+				vel.x += frandom(-.1, .1);
+				vel.y += frandom(-.1, .1);
+				vel.z += frandom(-.1, .1);
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("PM_BelphFlameTrails",random(-20,20),random(-20,20),0,0,0,0,0,128,0);
+				A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
+				A_SpawnItemEx("PM_BloodTrail", flags:SXF_NOCHECKPOSITION);
+			}
+			Loop;
+		Death:
+			TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_LargerBloodSplash",0,0,0,random(-7,7),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
+			TNT1 AA 0 A_SpawnItemEx("PM_RFireBallExplode");
+			TNT1 A 0 A_Explode(10, 160, XF_NOTMISSILE);
+			TNT1 AAAAAA 0 A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180));
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RedGroundOoze",0,0,0,random(-8,8),random(-8,8),random(-8,8));
+			TNT1 A 0 A_SpawnItemEx("RedGroundStain",0,0,0);
+			BEYX ABC 4 Bright Light("ShadowBall2");
+			Stop;
+	}
+}
+
+Class PM_MasonRune : ArchvileFire
+{
+	Default
+	{
+		+FLATSPRITE
+		RenderStyle "Normal";
+		Translation "0:255=%[0,0,0]:[2.0,0.1,0.1]";
+	}
+	
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	 angle = frandom(0, 360);
+    }
+  
+    TextureID tex[2];
+	
+	void Rune()
+	{
+		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-70, 70),yoff: random(-70,70),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,7),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	}
+	
+	States
+	{
+	Spawn:
+		C1TE A 0 NoDelay A_StartSound("FleshMason/Rune",10);
+		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+		{
+		A_Fire();
+		Rune();
+		angle += 5;
+		}
+		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+		{
+		A_Fire();
+		for (int i = random(2, 3); i > 0; i--) Rune();
+		angle += 15;
+		}
+		C1TE AAAAAAAAAAA 1 Bright
+		{
+		for (int i = random(2, 3); i > 0; i--) Rune();
+		angle += 15;
+		}
+		Goto Burst;
+	Burst:
+		C1TE A 0
+		{
+			A_Explode((60), 90, XF_NOTMISSILE);
+			A_StartSound("FleshMason/RuneExplode");
+		}
+		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+		{
+		for (int i = random(2, 3); i > 0; i--) Rune();
+		angle += 15;
+		if (!(GetAge() % 2)) A_SpawnItemEx("PM_TaintedDeathSplash",random(-40,40),random(-40,40),0,0,0,random(3,6));
+		A_SpawnItemEx("PM_MasonGeyser", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5) + 15, frandom(-2, 2), frandom(-2, 2), frandom(6, 12), 0, SXF_NOCHECKPOSITION);
+		}
+		C1TE A 1 Bright
+		{
+		angle += 5;
+		A_FadeOut(0.01);
+		}
+		Wait;
+	}
+}
+
+Class PM_MasonGeyser : PM_BloodSpit
+{
+	Default
+	{
+		SeeSound "";
+		DeathSound "";
+		DamageFunction 5;
+		-NOGRAVITY
+		Gravity .5;
+		Scale 1.75;
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+		TNT1 A 0 A_Jump(256,"Splash1","Splash2","Splash3");
+	Splash1:
+		X057 ABCDEFGHIJKLMNOPQRS 1;
+		Stop;
+	Splash2:
+		X058 ABCDEFGHIJKLMNOPQR 1;
+		Stop;
+	Splash3:
+		X059 ABCDEFGHIJKLM 1;
+		Stop;
+	}
+}
+
+Class PM_MasonPod : PM_MasonHeart
 {
   Default
   {
-    radius 6;
-    height 8;
-    speed 22;
-    damage 5;
-    renderstyle "Add";
-    seesound "baron/attack";
-    deathsound "eltimp/explode";
-	decal "Scorch";
-    PROJECTILE;
-    +NOGRAVITY
-    +RANDOMIZE
+  Speed 40;
+  -NOGRAVITY
+  +FLOORHUGGER
+  -SHOOTABLE
+  Tag "Mason Flesh Pod";
+  Health 150;
   }
+  
+  States
+  {
+  Spawn:
+   TNT1 A 0;
+   TNT1 AAAAAAAAAAA random(1,5) A_Chase();
+   Goto Go;
+  Go:
+   TNT1 A random(10, 60);
+   TNT1 A 0 { bSHOOTABLE = true; A_StartSound("FleshMason/Rise"); }
+   SK_N BBBBBBBBBBBBBBAAAAAAAAAAAAA 1 A_SpawnItemEx("PM_TumorBurstBlood", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(2, 5), flags: SXF_NOCHECKPOSITION);
+   SK_N A random(10, 40);
+   SK_N AAAA random(5, 20)
+   {
+	A_StartSound("Blob/Explode", pitch: frandom(1.4, 1.5));
+	for (int i = 5; i > 0; i--) A_SpawnItemEX("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("PM_MasonPustule",0,0,10,frandom(-4, 4), frandom(-4, 4), frandom(10, 22),flags:SXF_NOCHECKPOSITION|SXF_SETMASTER);
+   }
+   SK_N A 0 A_StartSound("FleshMason/Rise");
+   SK_N AAAAAAAAAAAAAAABBBBBBBBBBBB 1 A_SpawnItemEx("PM_TumorBurstBlood", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(2, 5), flags: SXF_NOCHECKPOSITION);
+	Stop;
+  }
+}
+
+Class PM_MasonSummon : PM_ExaltedCultSummon
+{
+  Default
+  {
+  Speed 12;
+  }
+  
+  States
+  {
+  Spawn:
+   TNT1 A 0;
+   TNT1 AAAAA random(1,5);
+  Go:
+   TNT1 A random(10, 60) A_ScaleVelocity(0);
+   TNT1 AAAAAAAAAAAAAAAAAAAAA 1
+   {
+		A_SpawnItemEx("PM_TumorBurstBlood", frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), frandom(-3, 3), frandom(-3, 3), frandom(2, 5), flags: SXF_NOCHECKPOSITION);
+		A_FaceTracer();
+   }
+	TNT1 A 2 A_StartSound("Blob/Explode");
+	TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEX("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION);
+	TNT1 A 0 A_SpawnItemEx((!random(0, 2)) ? "PM_MasonPustule" : "PM_MasonTainted",zofs:10,flags:SXF_NOCHECKPOSITION|SXF_SETMASTER);
+	Stop;
+  }
+}
+
+Class PM_MasonTainted : PM_Tainted
+{
+	Default
+	{
+		Tag "Regurgitated Tainted";
+		Health 60;
+		-COUNTKILL
+		+THRUSPECIES
+		Species "Archvile";
+		PMMonsterBase.CodexLore "";
+		+MISSILEEVENMORE
+		+NOINFIGHTING
+	}
+	
+	int timer;
+	bool ded;
+	
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (!isFrozen() && health > 0 && ++timer >= 300 && !ded) { ded = true; A_Die(); SetStateLabel("Death"); }
+	}
+	
+	States
+	{
+	Spawn:
+		BZRD N 4 A_LookEx(label: "Spotted");
+    Spotted:
+	    BZRD NNNN 3 A_Chase(null,null,CHF_NOPLAYACTIVE);
+		BZRD NOPQ 3 A_FaceTarget();
+        TNT1 A 0
+		{
+		  bSolid = true;
+		  bShootable = true;
+		}
+        BZRD RST 3 A_FaceTarget();
+		Goto Spotted2;
+	}
+}
+
+Class PM_MasonPustule : Pustule
+{
+  default {
+	PMMonsterBase.CodexLore "";
+    Obituary "%o was popped by a Flesh Mason's living gore mass.";
+    Health 75;
+    Speed 5;
+    Meleerange 65;
+    Tag "Gore Mass";
+    Species "Archvile";
+	+NOINFIGHTING
+	+THRUSPECIES
+  }
+  int timer;
+  bool ded;
+  
+  override void Tick()
+  {
+	super.Tick();
+	
+	if (!isFrozen() && health > 0 && ++timer >= 300 && !ded) { ded = true; setStateLabel("Melee"); }
+  }
+  
+  override void PostBeginPlay()
+  {
+	super.PostBeginPlay();
+	scale.x = frandom(0.5, 0.75);
+	scale.y = scale.x;
+  }
+  
   states
   {
-  Spawn:
-    LMBW AB 4 bright;
-    loop;
-  Death:
-    LMBW CDE 6 bright;
-    stop;
+    Spawn:
+      FLO2 GGGG 3 A_Wander();
+	  TNT1 A 0 A_Look();
+	  FLO2 BBBB 3 A_Wander();
+	  TNT1 A 0 A_Look();
+	  FLO2 CCCC 3 A_Wander();
+	  TNT1 A 0 A_Look();
+	  FLO2 BBBB 3 A_Wander();
+	  TNT1 A 0 A_Look();
+      loop;
+    See:
+	  TNT1 A 0;
+      TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+      FLO2 GGGGBBBBCCCCBBBB random(2, 4)
+	  {
+		A_Recoil(-0.15);
+		A_Chase();
+	  }
+	  TNT1 A 0 A_Jump(140,"Yuck");
+	  TNT1 A 0 A_Jump(50,"CeilingJump");
+	  TNT1 A 0 A_Jump(90,"Flop","SlideForward","SlideBack","SlideLeft","SlideRight");
+      loop;
+
+    CeilingJump:
+  	  TNT1 A 0 A_JumpIf(CallACS("GetActorZDist") <= 80, 2);
+	  TNT1 AAA 0;
+	  TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "See");
+      FLO2 DE 4;
+	  TNT1 A 0 ThrustThingZ(0,60,0,1) ;
+	  //TNT1 A 0 A_PlaySound("MAMAMIA")	//I will always remember you. F
+	  FLO2 EEEE 2 A_CheckCeiling("CeilingLatch");
+	  TNT1 A 0 ThrustThingZ(0,45,0,1);
+	  TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+	  FLO2 FFF 2 A_CheckCeiling("CeilingLatch");
+	  TNT1 A 0 ThrustThingZ(0,45,0,1);
+	  FLO2 EEEE 3 A_CheckCeiling("CeilingLatch");
+	  FLO2 EEEEEEE 3 A_CheckFloor("See");
+	  TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+	  Goto See;
+
+  	CeilingLatch:
+      TNT1 A 0
+	  {
+	  bNOGRAVITY = true;
+	  bTHRUSPECIES = true;
+	  bNOVERTICALMELEERANGE = true; 
+	  }
+	  //TNT1 A 0 A_ChangeFlag("CEILINGHUGGER", 1)
+	  TNT1 A 0 {isOnCeiling = true;} 
+      FLO2 EEDDD 3 ThrustThingZ(0,500,0,1); //1;
+	  Goto CeilingCrawl;
+
+  	CeilingCrawl:
+      TNT1 A 0 A_SetRoll(180,SPF_INTERPOLATE);
+	  TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce");
+	  TNT1 A 0 A_JumpIf(vel.z > 250,"CeilingPounce");
+	  TNT1 A 0 A_CheckFloor("CeilingDrop");
+	  TNT1 A 0 ThrustThingZ(0,500,0,1);
+	  FLO2 CCCCCCCBBBBBBB 2 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	  TNT1 A 0 A_Recoil(-0.05);
+	  TNT1 A 0 ThrustThingZ(0,500,0,1);
+	  TNT1 A 0 A_JumpIf(vel.z > 250, "CeilingPounce");
+      TNT1 A 0 A_CheckFloor("CeilingDrop");
+	  TNT1 A 0 ThrustThingZ(0,500,0,1);
+	  TNT1 A 0 A_JumpIf(CallACS("IsThisSky") == 1, "CeilingPounce");
+	  TNT1 A 0 A_JumpIf(vel.z > 250, "CeilingPounce");
+	  TNT1 A 0 A_CheckFloor("CeilingDrop");
+	  TNT1 A 0 A_JumpIfCloser(50,"CeilingStrike",True);
+	  TNT1 A 0 A_Jump(5,"CeilingDrop");
+	  Loop;
+		
+     CeilingStrike:
+	  TNT1 A 0;
+	  FLO2 BBB 5 A_SpawnItemEx("SkullBloodDrip",random(-6,6),random(-6,6),0,0,0,0,0,0);
+	  TNT1 A 0 A_StartSound("PUSWAL");
+	  FLO2 BBB 1;
+	  TNT1 A 0 {isOnCeiling=false;}
+	  TNT1 A 0 
+	  {
+	  bNOGRAVITY = false;
+	  bCEILINGHUGGER =  false;
+	  }
+	  FLO2 G 2 A_FaceTarget();
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	  Goto CeilingDropping;
+		
+	CeilingDrop:
+	  TNT1 A 0;
+	  TNT1 A 0 {isOnCeiling=false;}
+	  TNT1 A 0 
+	  {
+	  bNOGRAVITY = false;
+	  bCEILINGHUGGER =  false;
+	  }
+	  FLO2 G 2 A_Face(target);
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	CeilingDropping:
+	  FLO2 DD 1 A_JumpIf (vel.z == 0, "CeilingLanding");
+	  loop;
+	CeilingLanding:
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 BBBBBB 0 A_SpawnItemEx("MaliceBloodSplash",2,0,0,random(2,6),random(-2,2),random(-2,7));
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	  FLO2 BBBB 3 A_Face(target);
+	  Goto See;
+		
+	CeilingPounce: 
+	  TNT1 AAA 0;
+	  TNT1 A 0 {isOnCeiling=true;}
+	  TNT1 A 0 
+	  {
+	  bNOGRAVITY = false;
+	  bCEILINGHUGGER = false;
+	  bTHRUSPECIES = false;
+	  }
+	  TNT1 A 0 A_Recoil (-18);
+	  TNT1 A 0 A_Face(target);
+	  FLO2 BBCC 2;
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	  FLO2 GGBB 2;
+	  Goto CeilingDropping;		
+
+    Yuck:
+	  TNT1 A 0 A_StartSound("PUSWAL");
+	  Goto See;
+	Missile:
+    Flop:
+	  FLO2 B 5 A_FaceTarget();
+	  FLO2 A 0 A_Recoil(-9);
+	  TNT1 A 0 ThrustThingZ(0,32,0,1);
+	  FLO2 A 17;
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 BBB 1 A_SpawnItemEx("MaliceBloodSplash",2,0,0,random(2,6),random(-2,2),random(-2,7));
+	  FLO2 B 8;
+	  Goto See;
+    SlideForward:
+	  TNT1 A 0 ThrustThingZ(0,5,0,1);
+	  FLO2 A 0 A_Recoil(-14);
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 B 20;
+	  Goto See;
+    SlideBack:
+	  TNT1 A 0 ThrustThingZ(0,5,0,1);
+	  FLO2 A 0 A_Recoil(14);
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 B 20;
+	  Goto See;
+    SlideLeft:
+	  TNT1 A 0 ThrustThingZ(0,5,0,1);
+	  FLO2 A 0 ThrustThing( int(ceil(angle*256/360 +64)), 12, 0, 0);
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 B 20;
+	  Goto See;
+    SlideRight:
+	  TNT1 A 0 ThrustThingZ(0,5,0,1);
+	  FLO2 A 0 ThrustThing( int(ceil(angle*256/360 +192)) , 12, 0, 0);
+	  TNT1 A 0 A_StartSound("Blob/Slosh");
+	  FLO2 B 20;
+	  Goto See;
+    Pain:
+	  TNT1 A 0;
+	  TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
+	  TNT1 A 0 { bNOGRAVITY = false; }
+      FLO2 A 1 A_Pain;
+      FLO2 A 8;
+	  TNT1 A 0 A_Jump(150,"Flop","SlideForward","SlideBack","SlideLeft","SlideRight","CeilingJump");
+      goto See;
+    Melee:
+	  TNT1 A 0 { bNOPAIN = true; }
+	  FLO2 A 0 A_StartSound("blob/active");
+	  FLO2 GGBBCCBBGGB 1
+	  {
+	    A_SetScale(Scale.X+0.04);
+	    A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(-5,5),random(2,6),random(-2,2),random(-2,7),0,SXF_NOCHECKPOSITION);
+	  }
+      FLO2 A 0 A_Die();
+    Death:
+      FLO2 F 2 A_StartSound("Blob/Explode");
+	  TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",0,0,3,0,0,0,0,SXF_NOCHECKPOSITION);
+      FLO2 F 0 A_SpawnItem("PustuleDamage");
+      FLO2 FFFFFFFFFFFFFFFFFFFFFFFF 0 A_SpawnItemEX("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION);
+	  FLO2 FFFFFF 0 A_SpawnItemEX("PM_NormalMeatChunkLauncher", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION,70);
+      FLO2 GH 2;
+      stop;
   }
 }

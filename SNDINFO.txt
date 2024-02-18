@@ -5580,3 +5580,21 @@ $volume NCherub/Attack 0.7
 $volume NCherub/Idle 0.7
 $volume NCherub/Pain 0.7
 $volume NCherub/Death 0.7
+
+//Flesh Mason
+FleshMason/Cast "Sounds/Monsters/Archviles/FleshMason/FleshMasonCast.ogg"
+FleshMason/Fire "Sounds/Monsters/Archviles/FleshMason/FleshMasonFire.ogg"
+FleshMason/Grunt "Sounds/Monsters/Archviles/FleshMason/FleshMasonGrunt.ogg"
+
+FleshMason/Heart "Sounds/Monsters/Archviles/FleshMason/FleshMasonHeart.ogg"
+FleshMason/HeartExplode "Sounds/Monsters/Archviles/FleshMason/FleshMasonHeartExplode.ogg"
+
+FleshMason/Sight "Sounds/Monsters/Archviles/FleshMason/FleshMasonSight.ogg"
+FleshMason/Idle "Sounds/Monsters/Archviles/FleshMason/FleshMasonIdle.ogg"
+FleshMason/Pain "Sounds/Monsters/Archviles/FleshMason/FleshMasonPain.ogg"
+FleshMason/Death "Sounds/Monsters/Archviles/FleshMason/FleshMasonDeath.ogg"
+
+FleshMason/Rise "Sounds/Monsters/Archviles/FleshMason/FleshMasonRise.ogg"
+
+FleshMason/Rune "Sounds/Monsters/Archviles/FleshMason/FleshMasonRune.ogg"
+FleshMason/RuneExplode "Sounds/Monsters/Archviles/FleshMason/FleshMasonRuneExplode.ogg"

@@ -148,6 +148,7 @@ version "4.10.0"
 
 //Viles
 #include "Actors/Monsters/Archviles/Exile.txt"
+#include "Actors/Monsters/Archviles/FleshWizard.txt"
 
 //Bosses
 #include "Actors/Monsters/CyberDemons/Tyrant.txt"
