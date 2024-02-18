@@ -5641,3 +5641,58 @@ Wendigo/Sight4 "Sounds/Monsters/Imps/Wendigo/WendigoSight4.ogg"
 Wendigo/Sight5 "Sounds/Monsters/Imps/Wendigo/WendigoSight5.ogg"
 
 $rolloff Wendigo/Sight 500 1000
+
+//Sawcubus
+
+$random Sawcubus/Active { Sawcubus/Active1 Sawcubus/Active2 Sawcubus/Active3 Sawcubus/Active4 }
+Sawcubus/Active1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusActive1.ogg"
+Sawcubus/Active2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusActive2.ogg"
+Sawcubus/Active3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusActive3.ogg"
+$volume Sawcubus/Active 0.7
+
+$random Sawcubus/Attack { Sawcubus/Attack1 Sawcubus/Attack2 Sawcubus/Attack3 Sawcubus/Attack4 }
+Sawcubus/Attack1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusAttack1.ogg"
+Sawcubus/Attack2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusAttack2.ogg"
+Sawcubus/Attack3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusAttack3.ogg"
+Sawcubus/Attack4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusAttack4.ogg"
+$volume Sawcubus/Attack 0.7
+
+$random Sawcubus/Death { Sawcubus/Death1 Sawcubus/Death2 Sawcubus/Death3 Sawcubus/Death4 }
+Sawcubus/Death1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusDeath1.ogg"
+Sawcubus/Death2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusDeath2.ogg"
+Sawcubus/Death3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusDeath3.ogg"
+Sawcubus/Death4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusDeath4.ogg"
+$volume Sawcubus/Death 0.7
+
+Sawcubus/Ready "Sounds/Monsters/Pinkies/Sawcubus/SawcubusReady.ogg"
+Sawcubus/SawIdle "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSawIdle.ogg"
+Sawcubus/AttackLoop "Sounds/Monsters/Pinkies/Sawcubus/SawcubusAttackLoop.ogg"
+$rolloff Sawcubus/AttackLoop 350 1000
+
+$limit Sawcubus/SawIdle 5
+$limit Sawcubus/AttackLoop 5
+
+$random Sawcubus/Impact { Sawcubus/Impact1 Sawcubus/Impact2 Sawcubus/Impact3 Sawcubus/Impact4 }
+Sawcubus/Impact1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusImpact1.ogg"
+Sawcubus/Impact2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusImpact2.ogg"
+Sawcubus/Impact3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusImpact3.ogg"
+Sawcubus/Impact4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusImpact4.ogg"
+
+$random Sawcubus/Pain { Sawcubus/Pain1 Sawcubus/Pain2 Sawcubus/Pain3 Sawcubus/Pain4 }
+Sawcubus/Pain1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusPain1.ogg"
+Sawcubus/Pain2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusPain2.ogg"
+Sawcubus/Pain3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusPain3.ogg"
+Sawcubus/Pain4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusPain4.ogg"
+$volume Sawcubus/Pain 0.7
+
+$random Sawcubus/SCREAM { Sawcubus/SCREAM1 Sawcubus/SCREAM2 }
+Sawcubus/SCREAM1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSCREAM.ogg"
+Sawcubus/SCREAM2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSCREAM2.ogg"
+$volume Sawcubus/SCREAM 0.7
+
+$random Sawcubus/Sight { Sawcubus/Sight1 Sawcubus/Sight2 Sawcubus/Sight3 Sawcubus/Sight4 }
+Sawcubus/Sight1 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight1.ogg"
+Sawcubus/Sight2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight2.ogg"
+Sawcubus/Sight3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight3.ogg"
+Sawcubus/Sight4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight4.ogg"
+$volume Sawcubus/Sight 0.7

@@ -74,6 +74,7 @@ version "4.10.0"
 #include "Actors/Monsters/Pinkies/CyberBrute.txt"
 #include "Actors/Monsters/Pinkies/Harpy.txt"
 #include "Actors/Monsters/Pinkies/Glutton.txt"
+#include "Actors/Monsters/Pinkies/Sawcubus.txt"
 #include "Actors/Monsters/Pinkies/DTechBrute.txt"
 #include "Actors/Monsters/Pinkies/BloodStalker.txt"
 
