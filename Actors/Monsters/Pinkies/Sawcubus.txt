@@ -40,7 +40,7 @@ Class PM_Sawcubus : PMFamineMonsterBase
 	override void Tick()
 	{
 		super.Tick();
-		HandleEating(300);
+		HandleEating(400);
 	}
 	
 	States

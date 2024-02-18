@@ -39,7 +39,7 @@ Class PM_Wendigo : PMFamineMonsterBase
 	override void Tick()
 	{
 		super.Tick();
-		HandleEating();
+		HandleEating(250);
 	}
 	
 	States
