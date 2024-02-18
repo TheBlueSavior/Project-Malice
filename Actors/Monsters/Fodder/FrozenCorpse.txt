@@ -64,18 +64,20 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
 	{
 		if (target)
 		{
-			if (!CheckSight(target)) A_Wander();
+			double TAngle= atan2(self.pos.xy-target.pos.xy);
+			double TPitch= atan2(target.pos.z-pos.z,(target.pos.xy-self.pos.xy).length());
+			double SAngle= absangle(target.angle,TAngle);
+			double SPitch= absangle(target.pitch,TPitch);
 			
-			FLineTraceData m;
-			target.LineTrace(target.angle - 180, 9999, target.pitch, 0, (target.height) / 2, 0, 0, m);
-			if (m.HitActor && m.HitActor == self)
-			{
-			 if(Distance3D(target) < 50)
-			 { A_FaceTarget(); A_SpawnProjectile("PM_PotsLunge"); A_Stop(); }
-			 A_StartSound("Skeleton/Step",volume:0.45,pitch:1.15);
-       A_Chase(); A_FaceTarget(); A_Recoil(-random(1, 10)); 
-			}
-			else { A_StopSound(15); A_Stop(); }
+			
+			if(CheckSight(target)&&(SAngle>70||SPitch>55)){
+				if(Distance3D(target) < 50){
+					A_FaceTarget(); A_SpawnProjectile("PM_PotsLunge"); A_Stop();
+				}
+				A_StartSound("Skeleton/Step",volume:0.45,pitch:1.15);
+				A_Chase(); A_FaceTarget(); A_Recoil(-random(1, 10));
+			}else{A_StopSound(15); A_Stop();}
+			if(!CheckSight(target))A_Wander();
 		}
 	}
 	Loop;
