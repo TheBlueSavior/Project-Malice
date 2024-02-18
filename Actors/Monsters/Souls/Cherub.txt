@@ -10,7 +10,7 @@ Class PM_Cherub : PMLustMonsterBase
 		Health 60;
 		Scale 0.865;
 		PainChance 255;
-		Speed 7;
+		Speed 12;
 		Radius 16;
 		Height 56;
 		Mass 50;
@@ -73,19 +73,19 @@ Class PM_Cherub : PMLustMonsterBase
 		CHE_ A 5 A_FaceTarget();
 		Goto See;
 	See:
-		CHE_ AABB 3 A_Chase();
+		CHE_ AABB 2 A_Chase();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 3 A_Chase();
+		CHE_ CCBB 2 A_Chase();
 		CHE_ A 0 A_Jump(50, "Dodge");
 		Loop;
 	Dodge:
 		CHE_ A 0 VelFromAngle(10, randompick(1, -1) * 90);
-		CHE_ AABB 2 A_FaceTarget();
+		CHE_ AABB 1 A_FaceTarget();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 2 A_FaceTarget();
-		CHE_ AABB 2 A_FaceTarget();
+		CHE_ CCBB 1 A_FaceTarget();
+		CHE_ AABB 1 A_FaceTarget();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 2 A_FaceTarget();
+		CHE_ CCBB 1 A_FaceTarget();
 		CHE_ A 0 A_Stop();
 		Goto See;
 	Missile:
@@ -95,7 +95,7 @@ Class PM_Cherub : PMLustMonsterBase
 		CHE_ D 0 A_Jump(95, "Spit");
 		Goto Charge;
 	Charge:
-		CHE_ AABBCC 3 A_FaceTarget();
+		CHE_ AABBCC 2 A_FaceTarget();
 		CHE_ D 2 A_SkullAttack();
 		CHE_ DEEEEEEEEEEEEDD 2;
 		CHE_ D 0 A_Stop();

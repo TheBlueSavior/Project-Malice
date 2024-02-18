@@ -13,7 +13,7 @@ Class PM_Enceinte : PMLustMonsterBase
 		Radius 31;
 		Height 56;
 		Mass 400;
-		Speed 7;
+		Speed 12;
 		PainChance 66;
 		SeeSound "Enceinte/Sight";
 		ActiveSound "Enceinte/Active";
@@ -333,7 +333,7 @@ Class PM_BabyCherub : PM_Cherub
 		Translation "172:179=0:0";
 		DeathSound "Enceinte/BabyDeath";
 		Health 40;
-		Speed 3;
+		Speed 4;
 		Tag "Neonate Cherub";
 		-COUNTKILL
 		+THRUSPECIES
@@ -387,20 +387,36 @@ Class PM_BabyCherub : PM_Cherub
 		Loop;
 	See:
 		CHE_ A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
-		CHE_ AABB 4 A_Chase();
+		CHE_ AABB 2 A_Chase();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 4 A_Chase();
+		CHE_ CCBB 2 A_Chase();
+		CHE_ A 0 A_Jump(50, "Dodge");
+		Loop;
+	Strafe:
+		CHE_ A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+		CHE_ AABB 2
+		{
+			A_Wander();
+			A_FaceTarget();
+		}
+		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
+		CHE_ CCBB 2
+		{
+			A_Chase("Missile","Missile",CHF_DONTMOVE);
+			A_Wander();
+			A_FaceTarget();
+		}
 		CHE_ A 0 A_Jump(50, "Dodge");
 		Loop;
 	Dodge:
 	Melee:
 		CHE_ A 0 VelFromAngle(6, randompick(1, -1) * 90);
-		CHE_ AABB 3 A_FaceTarget();
+		CHE_ AABB 2 A_FaceTarget();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 3 A_FaceTarget();
-		CHE_ AABB 3 A_FaceTarget();
+		CHE_ CCBB 2 A_FaceTarget();
+		CHE_ AABB 2 A_FaceTarget();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
-		CHE_ CCBB 3 A_FaceTarget();
+		CHE_ CCBB 2 A_FaceTarget();
 		CHE_ A 0 A_Stop();
 		Goto See;
 	Missile:
@@ -410,14 +426,14 @@ Class PM_BabyCherub : PM_Cherub
 		CHE_ D 0 A_Jump(95, "Spit");
 		Goto Charge;
 	Charge:
-		CHE_ AABBCC 3 A_FaceTarget();
+		CHE_ AABBCC 2 A_FaceTarget();
 		CHE_ D 2 A_SkullAttack(10);
 		CHE_ DEEEEEEDD 2;
 		CHE_ D 0 A_Stop();
 		CHE_ D 0 A_Jump(128, "Dodge");
 		Goto See;
 	Spit:
-		CHE_ AABBCC 3 A_FaceTarget();
+		CHE_ AABBCC 2 A_FaceTarget();
 		CHE_ D 0 A_StartSound("Enceinte/CumReady", 12, pitch: 1.6);
 		CHE_ DE 3 A_FaceTarget();
 		CHE_ E 3
@@ -425,8 +441,8 @@ Class PM_BabyCherub : PM_Cherub
 			PM_LeadTarget(35);
 			A_SpawnProjectile("PM_CherubSpit", 10, flags: CMF_AIMDIRECTION, pitch: pitch);
 		}
-		CHE_ ED 3 A_FaceTarget();
-		Goto See;
+		CHE_ ED 2 A_FaceTarget();
+		Goto Strafe;
 	}
 }
 
