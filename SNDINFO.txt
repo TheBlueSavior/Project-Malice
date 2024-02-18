@@ -5696,3 +5696,44 @@ Sawcubus/Sight2 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight2.ogg"
 Sawcubus/Sight3 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight3.ogg"
 Sawcubus/Sight4 "Sounds/Monsters/Pinkies/Sawcubus/SawcubusSight4.ogg"
 $volume Sawcubus/Sight 0.7
+
+//Angel's Hand
+
+$random AngelsHand/Active { AngelsHand/Active1 AngelsHand/Active2 }
+AngelsHand/Active1 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandActive1.ogg"
+AngelsHand/Active2 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandActive2.ogg"
+AngelsHand/Active3 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandActive3.ogg"
+
+$random AngelsHand/Attack { AngelsHand/Attack1 AngelsHand/Attack2 }
+AngelsHand/Attack1 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandAttack1.ogg"
+AngelsHand/Attack2 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandAttack2.ogg"
+
+$random AngelsHand/Death { AngelsHand/Death1 AngelsHand/Death2 AngelsHand/Death3 }
+AngelsHand/Death1 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandDeath1.ogg"
+AngelsHand/Death2 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandDeath2.ogg"
+AngelsHand/Death3 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandDeath3.ogg"
+
+AngelsHand/Orbit "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandOrbit.ogg"
+$volume AngelsHand/Orbit 0.35
+$limit AngelsHand/Orbit 0
+
+AngelsHand/Pain "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandPain.ogg"
+$volume AngelsHand/Pain 0.8
+
+$random AngelsHand/Sight { AngelsHand/Sight1 AngelsHand/Sight2 AngelsHand/Sight3 }
+AngelsHand/Sight1 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSight1.ogg"
+AngelsHand/Sight2 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSight2.ogg"
+AngelsHand/Sight3 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSight3.ogg"
+$volume AngelsHand/Sight 0.8
+$rolloff AngelsHand/Sight 500 1000
+
+AngelsHand/Appear "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandAppear.ogg"
+$rolloff AngelsHand/Appear 500 2000
+
+$random AngelsHand/Spell { AngelsHand/Spell1 AngelsHand/Spell2 AngelsHand/Spell3 AngelsHand/Spell4 AngelsHand/Spell5 }
+AngelsHand/Spell1 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell1.ogg"
+AngelsHand/Spell2 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell2.ogg"
+AngelsHand/Spell3 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell3.ogg"
+AngelsHand/Spell4 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell4.ogg"
+AngelsHand/Spell5 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell5.ogg"
+$rolloff AngelsHand/Spell 300 1500

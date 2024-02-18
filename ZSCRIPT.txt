@@ -133,6 +133,7 @@ version "4.10.0"
 //Arachnos
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Arachnotrons/Plasmatron.txt"
+#include "Actors/Monsters/Arachnotrons/AngelsHand.txt"
 
 //Knights
 #include "Actors/Monsters/Hellknights/Squire.txt"

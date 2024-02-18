@@ -1,0 +1,432 @@
+Class PM_AngelsHand : PMPrideMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"\c[red]Do you know who are you dealing with, you ignoramus? You better believe it...\c-
+		
+		Will shoot a helix of bullets at you, cast orbital lasers, and can sometimes grow wings to fly.";
+		PMMonsterBase.ForgetThreshold 9999;
+		Health 600;
+		Height 64;
+		Mass 600;
+		PainChance 100;
+		Speed 5;
+		Radius 20;
+		Scale 1.1;
+		MaxStepHeight 24;
+		MaxDropOffHeight 24;
+		Tag "The Angel's Hand";
+		Obituary "%o is now deemed fallen by the Angel's Hand.";
+		Species "Arachnotron";
+		+DONTHARMSPECIES
+		+NOINFIGHTING
+		+NOFEAR
+		-SHOOTABLE
+		+MISSILEEVENMORE
+		SEESOUND "AngelsHand/Sight";
+		PAINSOUND "AngelsHand/Pain";
+		DEATHSOUND "AngelsHand/Death";
+		ACTIVESOUND "AngelsHand/Active";
+		Bloodtype "PM_NormalTyrantBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+		DamageFactor "PM_BulletHellDamage", 0;
+		StencilColor "ff2424";
+		FloatBobStrength 0.1;
+		FloatSpeed 1;
+	}
+	
+	bool spawned, floating;
+	float y1, z1;
+	int floatcooldown;
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+		tex[3] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[4];
+	
+	override void Tick()
+	{
+		super.Tick();
+		y1 = 10.5 * sin(MsTimeF() * 0.35);
+		z1 = 7.5 * sin(MSTimeF() * 0.32);
+		if (floatcooldown > 0) floatcooldown--;
+	}
+	
+	void LichFog()
+	{
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[1], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(50,150), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
+	}
+	
+	void LichDeath()
+	{
+		LichFog();
+		A_SpawnParticleEx("e53737", tex[1], STYLE_None, SPF_ROLL|SPF_RELATIVE, lifetime: 95, size: random(80,120), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,1), startalphaf: frandom(0.2,0.4), fadestepf: -.5, startroll: random(-180,180));
+		A_SpawnParticleEx("848484", tex[3], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+	}
+	
+	void SetFly(bool t = true)
+	{
+		bNOGRAVITY = t;
+		bFLOAT = t;
+		bFLOATBOB = t;
+		floating = t;
+		if (t) A_SpawnItemEx("PM_AngelsHandWings", flags: SXF_NOCHECKPOSITION|SXF_SETMASTER);
+		else
+		{
+			A_RemoveChildren(1, RMVF_EVERYTHING);
+			A_StartSound("Exalt/CastAdd",10);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: -20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: -5);
+			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: -20, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
+			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		MLCH F 0 NoDelay A_Jump(200, "Faded");
+		Goto Idle;
+	Faded:
+		TNT1 A 10 PM_Look();
+		Loop;
+	Idle:
+		MLCH A 0 { spawned = true; bSHOOTABLE = true; }
+		MLCH AB 10 PM_Look();
+		Loop;
+	Look:
+		MLCH A 0 { if (spawned) SetStateLabel("LookVisible"); }
+		TNT1 A 2 { for (int i = random(1, 10); i > 0; i--) PM_LookingForPlayer(); }
+		Loop;
+	LookVisible:
+		MLCH AAABBB 3 PM_LookingForPlayer();
+		MLCH B 0 A_StartSound("hoofstep", 55, pitch: 1.35);
+		MLCH CCCDDD 3 PM_LookingForPlayer();
+		MLCH D 0 A_StartSound("hoofstep", 55, pitch: 1.35);
+		Loop;
+	Spotted:
+		TNT1 A 0 { if (spawned) SetStateLabel("SpottedVisible"); }
+		TNT1 A 0 A_StartSound("GenericChargeHeavy");
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(3, 1) LichFog();
+		TNT1 A 0
+		{
+			for(int i=2;i>0;i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			for(int i=random(10, 15);i>0;i--) LichFog();
+			A_StartSound("Tyrant/ShellExplode", 92, volume: 0.75, pitch: 1.3);
+			A_StartSound("AngelsHand/Appear", 91);
+			A_StartSound("PMGazer/Sight",93,CHANF_DEFAULT,1,pitch:1.575);
+			A_StartSound("PMGazer/Sight",94,CHANF_DEFAULT,1,pitch:1.375);
+			bSHOOTABLE = true;
+		}
+		MLCH F 10 A_FaceTarget();
+		Goto SpottedVisible;
+	SpottedVisible:
+		MLCH F 0 PM_AlertSound();
+		MLCH FFFFFF 10 A_FaceTarget();
+		Goto See;
+	See:
+		MLCH AAABBB 3 { if (floating) A_Recoil(-0.2); A_Chase(); }
+		MLCH B 0 A_StartSound("hoofstep", 55, pitch: 1.35);
+		MLCH CCCDDD 3 A_Chase();
+		MLCH D 0 A_StartSound("hoofstep", 55, pitch: 1.35);
+		Loop;
+	Missile:
+		MLCH E 0 A_Jump(128, "BulletHell");
+		MLCH E 0 A_Jump(80, "Flight");
+		MLCH E 5 A_FaceTarget();
+		MLCH E 20
+		{
+			A_StartSound("PM/SigilSpawn",20);
+			if (!random(0, 1)) A_StartSound("AngelsHand/Attack",CHAN_VOICE);
+			A_StartSound("AngelsHand/Spell",93,CHANF_DEFAULT,1);
+			A_FaceTarget();
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+		}
+		MLCH EFG 5 A_FaceTarget();
+		MLCH H 10
+		{
+			A_StartSound("PM/RuneFill",21);
+			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: 40, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
+			A_SpawnProjectile("PM_AngelOrbitSpawn", 5, flags: CMF_AIMDIRECTION);
+			A_FaceTarget();
+		}
+		Goto Cooldown;
+	Flight:
+		MLCH F 0 { if (floatcooldown > 0) SetStateLabel("BulletHell"); }
+		MLCH F 0 { if (floating) SetStateLabel("DisableFloat"); }
+		MLCH F 5 { bNOPAIN = true; A_FaceTarget(); }
+		MLCH F 5
+		{
+			A_StartSound("PM/SigilSpawn",20);
+			if (!random(0, 1)) A_StartSound("AngelsHand/Sight",CHAN_VOICE);
+			A_StartSound("AngelsHand/Spell",93,CHANF_DEFAULT,1);
+			A_StartSound("PMGazer/Sight",93,CHANF_DEFAULT,1,pitch:1.3975);
+			A_StartSound("PMGazer/Sight",94,CHANF_DEFAULT,1,pitch:1.2975);
+			A_StartSound("GenericChargeHeavy",40);
+			A_FaceTarget();
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+		}
+		MLCH FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+		{
+			A_FaceTarget();
+			LichFog();
+		}
+		MLCH E 1 { SetFly(true); vel.z += 5; floatcooldown = random(400, 600); }
+		MLCH EEEEEEEEEEEEEEEEEEEEEEEE 1 { vel *= 0.96; A_FaceTarget(); }
+		MLCH E 0 { bNOPAIN = false; A_Stop(); }
+		Goto See;
+	DisableFloat:
+		MLCH A 60 SetFly(false);
+		Goto See;
+	Cooldown:
+		MLCH GFA 8;
+		Goto See;
+	BulletHell:
+		MLCH E 5 A_FaceTarget();
+		MLCH E 30
+		{
+			pm_attackloop = random(30, 55);
+			A_StartSound("PM/SigilSpawn",20);
+			A_StartSound("AngelsHand/Active",CHAN_VOICE);
+			A_StartSound("AngelsHand/Spell",93,CHANF_DEFAULT,1);
+			A_StartSound("PMGazer/Death",94,CHANF_DEFAULT,1,pitch:2.0854735);
+			A_FaceTarget();
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: 10);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180, rollvel: 10);
+		}
+		MLCH EFG 5 PM_LeadTarget(30);
+		Goto BulletHelLLoop;
+	BulletHellLoop:
+		MLCH H random(2, 3)
+		{
+			if (target && CheckSight(target))
+			{
+				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, z1 + frandom(-2, 2));
+				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), -y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, -z1 + frandom(-2, 2));
+				A_FaceTarget(0.5, 0.5);
+				pm_attackloop--;
+			}
+			else { A_FaceTarget(3, 3); if (!(GetAge() % 5)) pm_attackloop--; }
+			if (pm_attackloop <= 0) SetStateLabel("Cooldown");
+		}
+		Loop;
+	Pain:
+		MLCH P 4 A_SetRenderStyle(1, STYLE_NORMAL);
+		MLCH P 4 A_Pain();
+		MLCH P 0 A_Jump(96, "PainTele");
+		Goto See;
+	PainTele:
+		MLCH P 10 { if (!floating) tics = 2; }
+		MLCH P 1
+		{
+			if (!floating)
+			{
+			A_StartSound("PM/PrideTele",21);
+			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			for(int i=random(10, 15);i>0;i--) LichFog();
+			A_SetRenderStyle(1, STYLE_ADDSHADED);
+			bSHOOTABLE = false;
+			}
+			else VelFromAngle(10, frandom(0, 360));
+		}
+		MLCH PPPPPPPPPPPPPP 1
+		{
+			for (int i = 8; i > 0; i--) A_Wander();
+			A_FaceTarget();
+			A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME);
+		}
+		MLCH P 10
+		{
+			if (!floating)
+			{
+			bSHOOTABLE = true;
+			A_StartSound("PM/PrideTele",21);
+			A_StartSound("Exalt/TPEnd",20); 
+			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			for(int i=random(10, 15);i>0;i--) LichFog();
+			A_SetRenderStyle(1, STYLE_NORMAL);
+			}
+			else A_Stop();
+		}
+		Goto See;
+	Death:
+		MLCH P 4;
+		MLCH Q 1
+		{
+			if (floating) SetFly(false);
+			A_SetRenderStyle(1, STYLE_NORMAL);
+			A_StartSound("PMGazer/Death",93,CHANF_DEFAULT,1,pitch:0.975);
+			A_StartSound("PMGazer/Death",94,CHANF_DEFAULT,1,pitch:0.775);
+			A_ScreamAndUnblock();
+		}
+		MLCH QQQQQQRRRRRRSSSSSSTTTTTTUUUUUUVVVVVVWWWWWW 1 LichDeath();
+		MLCH XXXXXXXXXXXXXXXXX random(2, 3) LichDeath();
+		MLCH X -1;
+		Stop;
+	Raise:
+		MLCH XWVUTSRQP 6;
+		Goto See;
+	}
+}
+
+Class PM_AngelOrbitSpawn : PM_ExaltedCultSummon
+{
+	Default
+	{
+	BounceCount 999;
+	Speed 35;
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 3 NoDelay;
+		TNT1 AAAAAAA 5 A_SpawnItemEx("PM_AngelHOrbit", zofs: 0.1, flags: SXF_NOCHECKPOSITION);
+		Stop;
+	Death:
+		Stop;
+	}
+}
+
+Class PM_AngelHOrbit : Actor
+{
+	Default
+	{
+		Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.52,0.52]";
+		Scale 1.25;
+		RenderStyle "Normal";
+		Projectile;
+		Speed 55;
+		-SOLID
+		+BRIGHT
+		+SEEKERMISSILE
+		+THRUACTORS
+		+FLOORHUGGER
+		+FLATSPRITE
+		+ROLLSPRITE
+		Alpha 0;
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("BLHDA0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+		tex[3] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[4];
+	
+	States
+	{
+	Spawn:
+		TNT1 A random(5, 20) NoDelay;
+		C1TE A 1 Light("ShadowBall2")
+		{
+		if(alpha >= 1) SetStateLabel("Explode");
+		else A_SetScale(Scale.X+0.025);
+		A_FadeIn(0.025,FTF_CLAMP);
+		angle -= 5;
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[3], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(40,80), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
+		A_QuakeEx(1,1,1,1,0,500,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+		}
+	Wait;
+	Explode:
+		TNT1 A 0
+		{
+		A_SetRenderStyle(1, STYLE_ADD);
+		bFLATSPRITE = false;
+		bROLLSPRITE = false;
+		A_SetScale(.18, 8);
+		A_QuakeEx(3,3,0,10,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+		A_Explode(35,160);
+		A_StartSound("ZTrooper/FragExp",23);
+		A_StartSound("Noble/BombExpFar",21);
+		A_StartSound("AngelsHand/Orbit",22);
+		for(int i=4;i>0;i--)
+		A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+		A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 50, size: 600, zoff: -5, startalphaf: 1, startroll: random(-180,180), rollvel: frandom(-4, 4));
+		for(int i=random(3,6);i>0;i--) A_SpawnParticleEx("727272", tex[2], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(40,70), size: frandom(2,35), zoff: random(10,35), velx: frandom(-8,8), vely: frandom(-8,8), velz: frandom(1,12), accelz: frandom(-0.1,-0.9), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4) );
+		}
+		TNT1 A 0 A_SetScale(.18, 8);
+		DI_A AAAAAAAAAAAAAAAAAA 1
+		{
+		 A_FadeOut(0.2,FTF_CLAMP);
+		 A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		 if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[3], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(40,80), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
+		}
+		Stop;
+   }
+}
+
+Class PM_AngelsHandBHBall : PM_BlashemerBHBall { Default { Speed 25; +NEVERFAST } }
+
+Class PM_AngelsHandWings : Actor
+{
+	Default
+	{
+		Scale 0.15;
+		RenderStyle "Translucent";
+		Alpha 0.5;
+	}
+  
+	override void Tick()
+	{
+		Super.Tick();
+		if (master)
+		{
+			angle = master.angle;
+			Warp(master, xofs: -2, zofs: 66, flags: WARPF_NOCHECKPOSITION|WARPF_INTERPOLATE);
+		}
+		else { Destroy(); return; }
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+	}
+	
+	textureID tex[2];
+	
+	States
+	{
+	Spawn:
+		MWN_ A 1;
+		MWN_ A 0
+		{
+			A_StartSound("Exalt/CastAdd",10);
+			A_StartSound("AngelsHand/Appear",11);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: -20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: -5);
+			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: -20, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
+			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+		}
+		MWN_ AAAABBCC 1
+		{
+			A_SetScale(Scale.X + 0.16);
+			A_FadeIn(0.1);
+		}
+		MWN_ DDDDDDDDDDDDDDDDD 1;
+		MWN_ CDBA 3;
+		Goto Looper;
+	Looper:
+		MWN_ ABC 4;
+		MWN_ D 4 A_StartSound("Harpy/WingFlap", volume: 0.95, attenuation: 0.85, pitch: 0.75);
+		MWN_ CB 4;
+		Loop;
+	}
+}
