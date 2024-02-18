@@ -47,7 +47,7 @@ OptionMenu "projectmalice_options"
 	Slider "Pride", "pm_healthfactor_pride", 1, 10, 0.05, 2
 	StaticText " " 
 	Slider "Pestilence", "pm_healthfactor_pestilence", 1, 10, 0.05, 2
-	Slider "Famine (WIP)", "pm_healthfactor_famine", 1, 10, 0.05, 2
+	Slider "Famine", "pm_healthfactor_famine", 1, 10, 0.05, 2
 	Slider "War", "pm_healthfactor_war", 1, 10, 0.05, 2
 	Slider "Death", "pm_healthfactor_death", 1, 10, 0.05, 2
 	StaticText " "
@@ -224,8 +224,9 @@ ListMenu "PM_CodexMenu_Famine"
 	
 	StaticTextCentered 320, 330, "The second apocalypse."
 	StaticTextCentered 320, 338, "Crazed, ravenous demons that suffer from eternal starvation."
-	StaticTextCentered 320, 346, "They are VERY aggressive, agile, and rely on swift melee attacks. However, they are prone to infighting."
-	StaticTextCentered 320, 354, "Once they see a carcass, they feel pleasure. But that does not resolve their limitless hunger."
+	StaticTextCentered 320, 346, "They are VERY aggressive, agile, and rely on swift melee attacks."
+	StaticTextCentered 320, 354, "However, they are very quick on turning on each other. Letting them infight isn't recommended."
+	StaticTextCentered 320, 362, "They get exponentially more tankier within eating carcasses."
 }
 
 ListMenu "PM_CodexMenu_War"
@@ -303,7 +304,7 @@ ListMenu "PM_CodexMenu_Void"
 	StaticText "Comes in teal. Attacks slow or generally restrict player movement."
 	StaticText "Uses teal projectiles with black cores, or pull the player forward with chains."
 	StaticText "None of the enemies belong to the sin as of right now."
-	StaticText "Famine (WIP)", gray
+	StaticText "Famine", gray
 	StaticText "Comes in pale gray. Very quick to turn on each other, however"
 	StaticText "letting them infight isn't recommended. More ravenous than Gluttony."
 	StaticText "Endgame Tiers"
