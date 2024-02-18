@@ -574,11 +574,11 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
   PMMonsterBase.Sin "Famine", "Tan";
  }
  
-	void HandleEating()
+	void HandleEating(int maxHealth = 350)
 	{
 		if(Health > 0 && !isFrozen())
 		{
-			Actor a = GetCorpse(47);
+			Actor a = GetCorpse(47, maxHealth);
 
 			if(a && !eaten && !(GetAge() & random(10, 20)))
 			{
@@ -602,7 +602,7 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
 		}
 	}
 	
-	virtual Actor GetCorpse(int range)
+	virtual Actor GetCorpse(int range, int maxHealth = 350)
 	{
 		BlockThingsIterator ti = BlockThingsIterator.Create(self, range);
 		
@@ -610,7 +610,7 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
 		{
 			let next = ti.Thing;
 
-			if(next && self && next.Health <= 0 && next.bISMONSTER && next != self &&
+			if(next && self && next.Health <= 0 && next.GetMaxHealth() <= maxhealth && next.bISMONSTER && next != self &&
 			self.CheckSight(next) && self.Distance3D(next) < range)
 			{
 				return next;
