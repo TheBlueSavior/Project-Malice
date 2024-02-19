@@ -2,6 +2,7 @@ gameInfo
 {
 	addEventHandlers = "PM_InitialAmbientSpawner"
 	addEventHandlers = "MonsterDropper"
+	addEventHandlers = "PM_Spawner"
 
 	PrecacheSounds =
 	//Common Sounds

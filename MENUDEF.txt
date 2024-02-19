@@ -14,6 +14,12 @@ OptionMenu "projectmalice_options"
 	StaticText ""
 	StaticText "Project Malice Options", white
 	StaticText ""
+	Option "Master Switch", "pm_masterswitch", "OnOff"
+	StaticText "Toggles the mod's monster spawning on/off."
+	StaticText "Use this if you'd like another mod's spawns to take priority."
+	StaticText ""
+	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
+	StaticText ""
 	StaticText "The option below enables stealth detection for almost all monsters."
 	StaticText "Detection Only: Enemies will never forget where you are once they have seen you.", "Orange"
 	StaticText "Same stealth detection rules as Full.", "Orange"
@@ -319,6 +325,11 @@ ListMenu "PM_CodexMenu_Void"
 	StaticText "Beware.", red*/
 
 
+OptionValue "PMOn"
+{
+	0, "Mod Disabled"
+	1, "Mod Enabled"
+}
 OptionValue "PMStealth"
 {
 	0, "Disabled"
