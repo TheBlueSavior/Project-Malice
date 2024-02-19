@@ -5612,13 +5612,11 @@ Wendigo/Idle3 "Sounds/Monsters/Imps/Wendigo/WendigoIdle3.ogg"
 Wendigo/Idle4 "Sounds/Monsters/Imps/Wendigo/WendigoIdle4.ogg"
 Wendigo/Idle5 "Sounds/Monsters/Imps/Wendigo/WendigoIdle5.ogg"
 
-$rolloff Wendigo/Idle 500 1000
-
 $random Wendigo/Lunge { Wendigo/Lunge1 Wendigo/Lunge2 }
 Wendigo/Lunge1 "Sounds/Monsters/Imps/Wendigo/WendigoLunge.ogg"
 Wendigo/Lunge2 "Sounds/Monsters/Imps/Wendigo/WendigoLunge2.ogg"
 
-$rolloff Wendigo/Lunge 400 4000
+$rolloff Wendigo/Lunge 200 3000
 
 $random Wendigo/Melee { Wendigo/Melee1 Wendigo/Melee2 Wendigo/Melee3 Wendigo/Melee4 Wendigo/Melee5 }
 Wendigo/Melee1 "Sounds/Monsters/Imps/Wendigo/WendigoMelee1.ogg"
@@ -5640,7 +5638,7 @@ Wendigo/Sight3 "Sounds/Monsters/Imps/Wendigo/WendigoSight3.ogg"
 Wendigo/Sight4 "Sounds/Monsters/Imps/Wendigo/WendigoSight4.ogg"
 Wendigo/Sight5 "Sounds/Monsters/Imps/Wendigo/WendigoSight5.ogg"
 
-$rolloff Wendigo/Sight 500 1000
+$rolloff Wendigo/Sight 200 1000
 
 //Sawcubus
 

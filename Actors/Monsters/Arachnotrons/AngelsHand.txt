@@ -11,7 +11,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		Height 64;
 		Mass 600;
 		PainChance 100;
-		Speed 5;
+		Speed 12;
 		Radius 20;
 		Scale 1.1;
 		MaxStepHeight 24;
@@ -133,7 +133,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		MLCH FFFFFF 10 A_FaceTarget();
 		Goto See;
 	See:
-		MLCH AAABBB 3 { if (floating) A_Recoil(-0.2); A_Chase(); }
+		MLCH AAABBB 3 { if (floating) A_Recoil(-0.4); A_Chase(); }
 		MLCH B 0 A_StartSound("hoofstep", 55, pitch: 1.35);
 		MLCH CCCDDD 3 A_Chase();
 		MLCH D 0 A_StartSound("hoofstep", 55, pitch: 1.35);
@@ -181,7 +181,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			A_FaceTarget();
 			LichFog();
 		}
-		MLCH E 1 { SetFly(true); vel.z += 5; floatcooldown = random(400, 600); }
+		MLCH E 1 { SetFly(true); vel.z += 8; floatcooldown = random(400, 600); }
 		MLCH EEEEEEEEEEEEEEEEEEEEEEEE 1 { vel *= 0.96; A_FaceTarget(); }
 		MLCH E 0 { bNOPAIN = false; A_Stop(); }
 		Goto See;
@@ -195,7 +195,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		MLCH E 5 A_FaceTarget();
 		MLCH E 30
 		{
-			pm_attackloop = random(30, 55);
+			pm_attackloop = random(30, 75);
 			A_StartSound("PM/SigilSpawn",20);
 			A_StartSound("AngelsHand/Active",CHAN_VOICE);
 			A_StartSound("AngelsHand/Spell",93,CHANF_DEFAULT,1);
@@ -207,13 +207,13 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		MLCH EFG 5 PM_LeadTarget(30);
 		Goto BulletHelLLoop;
 	BulletHellLoop:
-		MLCH H random(2, 3)
+		MLCH H random(1, 3)
 		{
 			if (target && CheckSight(target))
 			{
-				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, z1 + frandom(-2, 2));
-				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), -y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, -z1 + frandom(-2, 2));
-				A_FaceTarget(0.5, 0.5);
+				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, z1 + pitch+frandom(-2, 2));
+				A_SpawnProjectile("PM_AngelsHandBHBall", 50 + frandom(-5, 5), -12 + frandom(-5, 5), -y1 + frandom(-2, 2), CMF_OFFSETPITCH|CMF_AIMDIRECTION, -z1 + pitch+frandom(-2, 2));
+				A_FaceTarget(3, 8);
 				pm_attackloop--;
 			}
 			else { A_FaceTarget(3, 3); if (!(GetAge() % 5)) pm_attackloop--; }

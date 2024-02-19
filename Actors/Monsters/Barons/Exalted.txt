@@ -247,7 +247,7 @@ Class PM_Exalted : PMPrideMonsterBase
 	BurstLoop:
 	   EXAL FFFFF random(2,7) Bright
 	   {
-	    A_FaceTarget(5,5);
+	    A_FaceTarget(10,12);
 		A_StartSound("PM/RuneFill",pitch:frandom(0.85,1.45));
 		A_SpawnProjectile("PM_ExaltedMagicShot",frandom(40,67),frandom(-45,45),frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-0.5,0.5));
 	   }
@@ -270,7 +270,7 @@ Class PM_Exalted : PMPrideMonsterBase
 	   {
 	    if(pm_attackloop <= 0)
 		SetStateLabel("MissileRedEnd");
-	    A_FaceTarget(5,5);
+	    A_FaceTarget(10,12);
 		A_SpawnProjectile("PM_BlasphemerBall",67,-20,frandom(-2.5,5),CMF_AIMDIRECTION,pitch+frandom(-0.8,0.8));
 		A_SpawnProjectile("PM_BlasphemerBall",70,20,frandom(-5,2.5),CMF_AIMDIRECTION,pitch+frandom(-0.8,0.8));
 		pm_attackloop--;
@@ -333,7 +333,7 @@ Class PM_Exalted : PMPrideMonsterBase
 	   {
 	   A_StartSound("Exalt/SuperCast",19,pitch:1.15);
 	   A_StartSound("PMGazer/Sight",18,pitch:1.3);
-	   A_FaceTarget(10,10);
+	   A_FaceTarget(12,15);
 	   A_SpawnItemEx("PM_ExaltedSuperSigil",flags:SXF_SETMASTER);
 	   }
 	SuperBallLoop:
@@ -341,7 +341,7 @@ Class PM_Exalted : PMPrideMonsterBase
 	   {
 	    if(pm_attackloop <= 0)
 		 SetStateLabel("SuperCastEnd");
-	    A_FaceTarget(10,10);
+	    A_FaceTarget(14,15);
 	    A_SpawnProjectile("PM_ExaltedSuperBall",80,0,frandom(-30,30),CMF_OFFSETPITCH,frandom(-20,20));
 		pm_attackloop--;
 	   }

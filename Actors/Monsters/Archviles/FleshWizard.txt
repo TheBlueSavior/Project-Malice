@@ -36,6 +36,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 		+MISSILEEVENMORE
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_GluttonyTeleportFog";
+		PMMonsterBase.RealHeight 76;
 	}
 
 	int summoncooldown;
@@ -91,7 +92,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 			A_Chase("Missile","Missile",CHF_DONTMOVE|CHF_RESURRECT);
 			A_Wander();
 			A_FaceTarget();
-			A_SpawnItemEx("RedGroundStain",random(-6,6),random(-6,6),1,frandom(-3,3),frandom(-3,3),0,0,SXF_NOCHECKPOSITION);
+			A_SpawnItemEx("RedGroundStain",random(-8,8),random(-8,8),1,frandom(-1,1),frandom(-1,1),0,0,SXF_NOCHECKPOSITION);
 			//A_Recoil(-0.25);
 		}
 		TNT1 A 0
@@ -175,7 +176,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 		LMWZ FGH 5 A_FaceTarget();
 		LMWZ HHHHHHHHHHHHHHHHHHH random(2, 4)
 		{
-			A_SpawnProjectile("PM_MasonBall", 50, 0, frandom(-4, 4), CMF_AIMDIRECTION, pitch + frandom(-4, 4));
+			A_SpawnProjectile("PM_MasonBall", random(50,70), 0, frandom(-4, 4), CMF_AIMDIRECTION, pitch + frandom(-4, 4));
 			A_FaceTarget(6, 8);
 		}
 		LMWZ HGF 4 A_FaceTarget();
@@ -606,6 +607,7 @@ Class PM_MasonGeyser : PM_BloodSpit
 		DeathSound "";
 		DamageFunction 5;
 		-NOGRAVITY
+		+CLIENTSIDEONLY
 		Gravity .5;
 		Scale 1.75;
 	}
