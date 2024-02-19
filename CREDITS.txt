@@ -63,7 +63,7 @@ Dithered Output - Awesome outmoded zombie sprites from Siren, edited into Voidsp
 TheDoomLad - Archvile fire wall code
 Death Foretold - Blood Sprites, Gib code
 IMX - Doom 3 Imp sprites
-Reu - Extensive sound hunting. Thanks!
+Neru/VisceralCXXII - Extensive sound hunting. Thanks!
 The Project Malice Lounge Discord - Wouldn't have been able to make mod without your suggestions, help, critiques and ideas. Thank you!
 Cutman - Ghouls World Jitterskull sounds
 JMartinez2098 - Generous fixes for errors I didn't get to
@@ -86,6 +86,7 @@ Bruh88 - Forzen Corpse code revisements
 Corruption Cards / CutmanMike - Code for checking corpses, used for Famine enemiees
 Desfar - Lich sprites
 Antinous - Master switch spawn code
+Ember - Gib code, Master switch spawn code fix, general coding help
 
 MY APOLOGIES IF I MISSED ANYONE!
 
