@@ -19,7 +19,7 @@ class PM_Spawner : EventHandler
                 case 'BaronOfHell': e.Replacement="MaliceBaronOfHellSpawner"; break;
                 case 'Fatso': e.Replacement="MaliceFatsoSpawner"; break;
                 case 'Arachnotron': e.Replacement="MaliceArachnotronSpawner"; break;
-                case 'Arcvhile': e.Replacement="MaliceArchvileSpawner"; break;
+                case 'Archvile': e.Replacement="MaliceArchvileSpawner"; break;
                 case 'SpiderMastermind': e.Replacement="MaliceSpiderMastermindSpawner"; break;
                 case 'Cyberdemon': e.Replacement="MaliceCyberdemonSpawner"; break;
                 case 'WolfensteinSS': e.Replacement="WolfensteinSS_Spawner"; break;
