@@ -3,6 +3,7 @@ version "4.10.0"
 #include "Actors/Monsters/MonsterBase.txt"
 #include "Actors/SFX/ZFX.txt"
 #include "Actors/SFX/BloodVFX.txt"
+#include "Decorate/Monsters/Spawner.txt"
 #include "Decorate/Monsters/AmbientSpawns.txt"
 
 #include "Actors/SinCodexMenu.txt"

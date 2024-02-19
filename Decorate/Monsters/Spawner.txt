@@ -1,0 +1,25 @@
+
+class PM_Spawner : EventHandler
+{
+	override void CheckReplacement(ReplaceEvent e)
+	{
+		if(e.Replacee is "ZombieMan"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceZombiemanSpawner";}
+		if(e.Replacee is "ShotgunGuy"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceShotgunGuySpawner";}
+		if(e.Replacee is "ChaingunGuy"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceChaingunGuySpawner";}
+		if(e.Replacee is "Demon"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceDemonSpawner";}
+		if(e.Replacee is "Spectre"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceSpectreSpawner";}
+		if(e.Replacee is "DoomImp"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceDoomImpSpawner";}
+		if(e.Replacee is "LostSoul"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceLostSoulSpawner";}
+		if(e.Replacee is "Revenant"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceRevenantSpawner";}
+		if(e.Replacee is "Cacodemon"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceCacodemonSpawner";}
+		if(e.Replacee is "PainElemental"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MalicePainElementalSpawner";}
+		if(e.Replacee is "HellKnight"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceHellKnightSpawner";}
+		if(e.Replacee is "BaronOfHell"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceBaronOfHellSpawner";}
+		if(e.Replacee is "Fatso"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceFatsoSpawner";}
+		if(e.Replacee is "Arachnotron"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceArachnotronSpawner";}
+		if(e.Replacee is "Archvile"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceArchvileSpawner";}
+		if(e.Replacee is "SpiderMastermind"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceSpiderMastermindSpawner";}
+		if(e.Replacee is "Cyberdemon"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="MaliceCyberdemonSpawner";}
+		if(e.Replacee is "WolfensteinSS"){if(cvar.GetCVar('pm_masterswitch').getbool())e.Replacement="WolfensteinSS_Spawner";}
+	}
+}

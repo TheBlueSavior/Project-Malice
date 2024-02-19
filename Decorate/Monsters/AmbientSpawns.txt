@@ -1,4 +1,3 @@
-
 class PM_InitialAmbientSpawner : EventHandler
 	{
 	override void WorldLoaded(WorldEvent e)
