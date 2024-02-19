@@ -1,0 +1,138 @@
+Class PM_StrandedSigil : PMFodderMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"Random burnt pentagrams that are stranded on the floor. Who knows what phenomenon has caused these to appear? Is it because of sacrifices or because of hellish energy permeating throughout the soil?
+		All that you need to know is that they burn you briefly when you step or land on them. Just be on the case.";
+		-SHOOTABLE
+		-SOLID
+		-COUNTKILL
+		+BRIGHT
+		+DONTTHRUST
+		+FLATSPRITE
+		Gravity 1000;
+		Tag "Stranded Sigil";
+		RenderStyle "Add";
+		Alpha 0.8;
+		Obituary "%o should've watched the ground.";
+		Species "Traps";
+		MeleeRange 65;
+		Speed 0;
+	}
+	
+	double rollv;
+	int playsound;
+	
+	override void Tick()
+	{
+		super.Tick();
+		if (!level.isFrozen()) if (target && CheckSight(target)) roll += rollv;
+		if (playsound > 0) playsound--;
+		
+		if (target && CheckSight(target))
+		{
+			if (!(GetAge() % 12))
+			{
+				A_SpawnParticleEx("", tex[0], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,1), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+			}
+		}
+	}
+	
+	override void PostBeginPlay()
+	{
+		super.PostBeginPlay();
+		scale.x = frandom(1.05, 0.85);
+		rollv = frandom(-0.5, 0.5);
+		scale.y = scale.x;
+		let penta = Spawn("PM_StrandedSigilPenta", Vec3Offset(0, 0, .1));
+		if (penta)
+		{
+			penta.scale = scale;
+			penta.scale *= 0.95;
+			penta.master = self;
+		}
+		tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	}
+	
+	textureID tex[2];
+	
+	States
+	{
+	Spawn:
+		_PNT A 0 NoDelay;
+		Goto Idle;
+	Idle:
+		_PNT B 15 A_Look();
+		Loop;
+	See:
+		_PNT B 15 { if (target && CheckSight(target) && distance3D(target) < 60) SetStateLabel("Burn"); }
+		Loop;
+	Burn:
+		_PNT B random(1, 2)
+		{
+			if (!playsound && target && distance3D(target) < 60)
+			{
+				A_StartSound("PM/SigilBurn", CHAN_6, CHANF_OVERLAP);
+				playsound = 100;
+			}
+		}
+		_PNT B 1
+		{
+			if (!(GetAge() % 13))
+			{
+				if (target && distance3D(target) < 70)
+				{
+					int damage = 5;
+					int newdam = target.DamageMobj(self, self, damage, 'Fire', DMG_THRUSTLESS);
+				}
+				else SetStateLabel("See");
+			}
+			
+			if (!(GetAge() % 3))
+			{
+				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,3), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+			}
+		}
+		Goto Burn+1;
+	}
+}
+
+Class PM_StrandedSigilPenta : Actor
+{
+	Default
+	{
+		RenderStyle "Normal";
+		Alpha 1;
+		+FLATSPRITE
+		+NOINTERACTION
+		+FLOORHUGGER
+		+BRIGHT
+	}
+	
+	override void Tick()
+	{
+		super.Tick();
+		
+		if (!master) destroy();
+		else Warp(master, 0, 0, 0.05, angle: selfang, flags: WARPF_INTERPOLATE);
+	}
+	
+	double selfang;
+	
+	override void PostBeginPlay()
+	{
+		super.PostBeginPlay();
+		selfang = frandom(0, 360);
+	}
+	
+	States
+	{
+	Spawn:
+		_PNT C -1;
+		Stop;
+	}
+}

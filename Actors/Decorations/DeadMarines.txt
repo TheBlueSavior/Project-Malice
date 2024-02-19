@@ -340,11 +340,17 @@ Actor PM_SpiderSacSpawner
 		TNT1 A 0 A_Jump(20,"Die")
 		Loop
 	Create:
-		TNT1 A 0 A_SpawnItemEx("PM_FleshPod")
+		TNT1 A 0 A_SpawnItemEx("PM_TrapSpawner")
 		Stop
 	Die:
 		Stop	
 	}
+}
+
+Actor PM_TrapSpawner : RandomSpawner
+{
+	DropItem "PM_FleshPod", 255, 2
+	DropItem "PM_StrandedSigil", 255, 1
 }
 
 Actor HorrorspawnExtra

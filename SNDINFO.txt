@@ -4431,6 +4431,9 @@ $limit PM/PistolMagBounce 4
 
 //Sin-Specific Stuff & Miscellaneous
 
+PM/SigilBurn "Sounds/Other/PMStrandedSigilBurn.ogg"
+$volume PM/SigilBurn 0.5
+
 HugeFire/Idle "Sounds/Other/PMHugeFireLoop.ogg"
 HugeFire/End "Sounds/Other/PMHugeFireLoopEnd.ogg"
 
