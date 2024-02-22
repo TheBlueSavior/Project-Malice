@@ -367,13 +367,13 @@ Class PM_AngelHOrbit : Actor
 		{
 		 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		 A_SpawnParticleEx("801111", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(50, 200), size: random(100, 200), zoff: -5, velx: frandom(-2, 2), vely: frandom(-2, 2), velz: frandom(1, 3), startalphaf: frandom(.2, .4), sizestep: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
-		 A_SetScale(scalex + 0.05);
+		 A_SetScale(scale.x + 0.05);
 		 A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
 		 if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[3], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(40,80), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
 		}
 		RAY_ FFFFFFFFFFF 1
 		{
-			A_SetScale(scalex + 0.05);
+			A_SetScale(scale.x + 0.05);
 			A_SpawnParticleEx("801111", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(50, 200), size: random(100, 200), zoff: -5, velx: frandom(-2, 2), vely: frandom(-2, 2), velz: frandom(1, 3), startalphaf: frandom(.1, .4), sizestep: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
 			A_FadeOut(0.1);
 		}
