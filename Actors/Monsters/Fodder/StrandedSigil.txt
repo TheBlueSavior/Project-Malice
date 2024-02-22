@@ -4,7 +4,10 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 	{
 		PMMonsterBase.CodexLore
 		"Random burnt pentagrams that are stranded on the floor. Who knows what phenomenon has caused these to appear? Is it because of sacrifices or because of hellish energy permeating throughout the soil?
-		All that you need to know is that they burn you briefly when you step or land on them. Just be on the case.";
+		All that you need to know is that they burn you briefly when you step or land on them. Just be on the case.
+		
+		Unlike other traps, you cannot kill it. Only avoid stepping on it.";
+		Health 999999; //For the codex to define that it's invulnerable
 		-SHOOTABLE
 		-SOLID
 		-COUNTKILL
@@ -14,7 +17,7 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		Gravity 1000;
 		Tag "Stranded Sigil";
 		RenderStyle "Add";
-		Alpha 0.8;
+		Alpha 0.05;
 		Obituary "%o should've watched the ground.";
 		Species "Traps";
 		MeleeRange 65;
@@ -68,7 +71,11 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		_PNT B 15 A_Look();
 		Loop;
 	See:
-		_PNT B 15 { if (target && CheckSight(target) && distance3D(target) < 60) SetStateLabel("Burn"); }
+		_PNT B 1
+		{
+			if (alpha > 0.05) A_FadeOut(0.035, FTF_CLAMP);
+			if (target && CheckSight(target) && distance3D(target) < 60) SetStateLabel("Burn");
+		}
 		Loop;
 	Burn:
 		_PNT B random(1, 2)
@@ -81,6 +88,7 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		}
 		_PNT B 1
 		{
+			if (alpha < 1.25) A_FadeIn(0.035);
 			if (!(GetAge() % 13))
 			{
 				if (target && distance3D(target) < 70)
@@ -91,9 +99,9 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 				else SetStateLabel("See");
 			}
 			
-			if (!(GetAge() % 3))
+			if (!(GetAge() % random(2, 4)))
 			{
-				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.2,0.7), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
 				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,3), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
 			}
 		}

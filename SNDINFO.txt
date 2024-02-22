@@ -5738,3 +5738,13 @@ AngelsHand/Spell3 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell3.ogg"
 AngelsHand/Spell4 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell4.ogg"
 AngelsHand/Spell5 "Sounds/Monsters/Arachnotrons/AngelsHand/AngelsHandSpell5.ogg"
 $rolloff AngelsHand/Spell 300 1500
+
+//Hangman
+
+PMHangman/Charge "Sounds/Monsters/Fodder/Hangman/HangmanCharge.ogg"
+PMHangman/Death "Sounds/Monsters/Fodder/Hangman/HangmanDeath.ogg"
+PMHangman/Pain "Sounds/Monsters/Fodder/Hangman/HangmanFire.ogg"
+$random PMHangman/Sight { PMHangman/Sight1 PMHangman/Sight2 PMHangman/Sight3 }
+PMHangman/Sight1 "Sounds/Monsters/Fodder/Hangman/HangmanSight.ogg"
+PMHangman/Sight2 "Sounds/Monsters/Fodder/Hangman/HangmanSight2.ogg"
+PMHangman/Sight3 "Sounds/Monsters/Fodder/Hangman/HangmanSight3.ogg"

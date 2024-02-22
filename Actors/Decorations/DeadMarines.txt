@@ -350,7 +350,8 @@ Actor PM_SpiderSacSpawner
 Actor PM_TrapSpawner : RandomSpawner
 {
 	DropItem "PM_FleshPod", 255, 2
-	DropItem "PM_StrandedSigil", 255, 1
+	DropItem "PM_StrandedSigil", 255, 2
+	DropItem "PM_Hangman", 255, 1
 }
 
 Actor HorrorspawnExtra

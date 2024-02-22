@@ -88,7 +88,7 @@ class PM_CodexMenu : ListMenu
 			y += 20;
 
 			let stat = new('ListMenuItemStaticTextCentered');
-			stat.Init(mDesc, x, y, "\c[DarkGray]Health: \c-"..def.Health, Font.CR_RED);
+			stat.Init(mDesc, x, y, (def.Health == 999999) ? "\c[DarkGray]Invulnerable\c-" : "\c[DarkGray]Health: \c-"..def.Health, Font.CR_RED);
 			MonsterInfo.Push(stat);
 			y += 10;
 
