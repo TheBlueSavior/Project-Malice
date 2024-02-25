@@ -6,13 +6,12 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore
-	    "\c[Black]...
+	    "The Abyss is a chaotic, but patient nadir.
 		
-		
-		\c[Black]The L?GHTBR?NGER... The AV?T?R... It is real...
-		
-		
-		\c[Black]Bow before us... And we will make you suffer...";
+		 They'd usually dwell within it, waiting tirelessly for the next soul to fall inside. There are rarer times where they might call to the most damned soul to walk right in, inviting them to a place where they can call home.
+		 For those unwilling, the Abyss would send unto them its puppets. The thralls would follow each other's cries, dragging them into the night below, to cause them an eternity of suffering most incomprehensible until they swear loyalty to the light below.
+		 
+		 The \cr?????? \cbis but a countermeasure for those who would be brave or foolish enough to resist completely.";
 		Health 3000;
 		Radius 28;
 		Height 90;
