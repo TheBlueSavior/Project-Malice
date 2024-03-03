@@ -147,11 +147,11 @@ ACTOR DeadMarineNew
 
 Actor PM_CorpseCritterRandoms : RandomSpawner
 {
-	DropItem "PM_Swarm", 255, 4
-	DropItem "Pustule", 255, 2
-	DropItem "RatDropper", 255, 2
+	DropItem "PM_Swarm", 255, 12
+	DropItem "Pustule", 255, 3
+	DropItem "RatDropper", 255, 3
 	DropItem "PM_TriteSelection", 255, 2
-	DropItem "PM_HatchlingSelection", 255, 3
+	DropItem "PM_HatchlingSelection", 255, 5
 	DropItem "PM_PustuleSelection", 255, 1
 	DropItem "PM_SpiderSacSpawner", 255, 1
 	DropItem "PM_RotflySelection", 255, 3

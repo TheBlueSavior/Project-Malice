@@ -40,8 +40,11 @@ Class PM_Rotfly : PMFodderMonsterBase
   Spawn:
 	BFLY A 5 PM_Look;
   Look:
-    BFLY ABABABAB 2 A_Wander;
-	BFLY A 0 PM_LookingForPlayer;
+    BFLY ABABABAB 2
+	{
+	A_Wander();
+	PM_LookingForPlayer();
+	}
 	Loop;
   Spotted:
 	TNT1 A 0 PM_AlertSound();
@@ -218,7 +221,7 @@ Class PM_RotflySpit : DoomImpBall
 {
 	Default
 	{
-	Damage (5);
+	DamageFunction 6;
 	SeeSound "";
 	DeathSound "";
 	Speed 12;

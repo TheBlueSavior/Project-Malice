@@ -23,7 +23,7 @@ Class Horrorspawnmap : RandomSpawner
 	{
 	DropItem "PM_Horrorspawn", 255, 70;
 	DropItem "PM_Afflicted", 255, 8;
-  DropItem "PM_SleepingHorrorspawn1", 255, 6;
+	DropItem "PM_SleepingHorrorspawn1", 255, 6;
 	DropItem "PM_SleepingHorrorspawn2", 255, 6;
 	DropItem "PM_SleepingHorrorspawn3", 255, 6;
 	DropItem "PM_SleepingHorrorspawn4", 255, 6;
@@ -39,6 +39,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_FodderSleeperDropper", 255, 1;
 	DropItem "PM_HeadDropper", 255, 1;
 	DropItem "RatDropper", 255, 1;
+	DropItem "PM_SpiderSacSpawner", 255, 8;
 	}
 }
 

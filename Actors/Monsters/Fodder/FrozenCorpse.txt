@@ -112,7 +112,7 @@ Class PM_FrozenCorpseSpawn : Actor
 	{
 	Spawn:
 	    TNT1 A 1 Nodelay;
-		TNT1 AAAAAA 0 A_SpawnItemEx("PM_UmbralHorrorspawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
+		TNT1 AAAAAA 0 A_SpawnItemEx("PM_UmbralHorrorspawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION,160);
 		Stop;
 	}
 }
