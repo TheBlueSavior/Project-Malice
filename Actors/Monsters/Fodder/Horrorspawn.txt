@@ -2,7 +2,7 @@ Class Horrorspawn : RandomSpawner
 {
     Default
 	{
-	DropItem "PM_Horrorspawn", 255, 50;
+	DropItem "PM_Horrorspawn", 255, 60;
 	//DropItem "HorrorspawnScreamer", 255, 1
 	DropItem "PM_FreshHorrorspawn", 255, 4;
 	DropItem "PM_Afflicted", 255, 3;
@@ -21,7 +21,7 @@ Class Horrorspawnmap : RandomSpawner
 {
     Default
 	{
-	DropItem "PM_Horrorspawn", 255, 50;
+	DropItem "PM_Horrorspawn", 255, 70;
 	DropItem "PM_Afflicted", 255, 8;
   DropItem "PM_SleepingHorrorspawn1", 255, 6;
 	DropItem "PM_SleepingHorrorspawn2", 255, 6;
@@ -32,7 +32,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_HorrorspawnScreamer", 255, 2;
 	DropItem "HungryGroup", 255, 2;
 	DropItem "PM_HorrorspawnBurster", 255, 2;
-	DropItem "PM_AffScreamer", 255, 2;
+	DropItem "PM_AffScreamer", 255, 1;
 	DropItem "FodderDropper", 255, 1;
 	DropItem "PM_Voidspawn", 255, 1;
 	DropItem "PM_FrozenCorpseSpawn", 255, 1;

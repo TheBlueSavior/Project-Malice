@@ -172,7 +172,7 @@ Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
 
 Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 {
-	DropItem "PM_Exile", 255, 10
+	DropItem "PM_Exile", 255, 6
 	DropItem "PM_FleshMason", 255, 1
 }
 
