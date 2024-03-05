@@ -395,9 +395,9 @@ Class PM_BelphegorCelestialTwilight : BaronBall
 			if (!(GetAge() % 2))
 			{
 				A_SpawnParticleEx("00fffb", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(400,500), size: frandom(1,15), xoff: -5, yoff: frandom(-50,45), zoff: frandom(-50,50), velx: frandom(-1,3), startalphaf: frandom(.2, .9), fadestepf: -1, sizestep: -0.05, startroll: random(-180,180), rollvel: frandom(-4, 4));
-				A_SpawnParticleEx("279ca5", tex[3], style: STYLE_Stencil, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(30,70), size: frandom(100, 150), xoff: -15, yoff: frandom(-20,20), zoff: frandom(-20,20), startalphaf: frandom(0.5,1), fadestepf: -1, sizestep: -0.5, startroll: random(-180,180));
-				A_SpawnParticleEx("103b52", tex[3], style: STYLE_Stencil, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: random(60,90), size: frandom(100, 150), xoff: -15, yoff: frandom(-10,10), zoff: frandom(-10,10), startalphaf: frandom(0.3,1), fadestepf: -1, sizestep: -0.5, startroll: random(-180,180));
-				A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(4,20), size: frandom(180,270), xoff: -5, startalphaf: frandom(.8, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+				A_SpawnParticleEx("279ca5", tex[3], style: STYLE_Shaded, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(50,70), size: frandom(100, 180), xoff: -18, yoff: frandom(-20,20), zoff: frandom(-20,20), startalphaf: frandom(0.4,0.6), fadestepf: -1, sizestep: -1, startroll: random(-180,180));
+				A_SpawnParticleEx("103b52", tex[3], style: STYLE_Shaded, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: random(50,90), size: frandom(100, 180), xoff: -18, yoff: frandom(-10,10), zoff: frandom(-10,10), startalphaf: frandom(0.2,0.6), fadestepf: -1, sizestep: -1, startroll: random(-180,180));
+				A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(2,6), size: frandom(240,270), xoff: -9, startalphaf: frandom(.8, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
 				vel.x += frandom(-0.05, 0.05);
 				vel.y += frandom(-0.05, 0.05);
 				vel.z += frandom(-0.05, 0.05);
