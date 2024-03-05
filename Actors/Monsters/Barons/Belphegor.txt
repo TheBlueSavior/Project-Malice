@@ -5,8 +5,9 @@ Class PM_SpawnOfBelphegor : PMSlothMonsterBase
 		PMMonsterBase.CodexLore
 		"\c[olive]Nothing even matters what you do on this insignificant, mortal plane. Why even try? The Sun will explode and the Earth with it, within millions of years everything you do will be forgotten, just like the universe will slowly die from heat death. There's no hope. Why bother?\c-
 		
-		Spawns of Belphegor are heavily armored archdemons that were made for the durability of the harsher environments residing within Sloth. Their heavy resistance makes it up for one of the tankiest Sloth demons and can pass through barbed wire easily with no disturbance.
-		Unlike other Sloth demons, they are not imbued by destructive sadness and nihilism, but instead bring the nihilism to other victims. They heavily rely on slowing its victims down until they are stagnant on death.
+	
+		 It is said that the Arch-Demon of Sloth, Belphegor, seduces people with ingenious discoveries that have promise of convenience and wealth, convincing them it was their original ideas. All of his inventions are meant to slowly stagnate mankind. This is one of his more violent cybernetic creations.
+		 Unlike other Sloth demons, they are not naturally imbued with the aspects of the sin, but instead created to impose it on others. They heavily rely on slowing their victims down until they are slowly torn apart.
 		
 		Due to its bulky armor, it is very tanky, but is sluggish as a side effect. Can shoot bloody spears with chained tails. May also fire a huge twilight core and a duo of barbed wire grenades. Can also summon a plasmatic shield if needed.";
 		Health 1000;
