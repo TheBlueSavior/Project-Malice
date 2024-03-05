@@ -1523,6 +1523,28 @@ Class PM_BlackBloodMist : PM_NormalBloodMist
 	}
 }
 
+Class PM_BlackTyrantBloodBase : PM_NormalBloodBase
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_BlackTyrantBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+Class PM_BlackTyrantBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_BlackBlood1", 255, 1;
+	DropItem "PM_BlackBlood2", 255, 1;
+	DropItem "PM_BlackBlood3", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 10;
+	}
+}
 
 //DARK RED BLOOD
 Class PM_DarkRedBloodBase : PM_NormalBloodBase

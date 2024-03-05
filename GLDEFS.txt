@@ -4691,3 +4691,15 @@ Pointlight PM_DirectorPsychicLight2
 Color 0.8 0.2 1.0
 Size 55
 }
+
+Pointlight SlothLight1
+{
+Color 0.3 1.0 1.0
+Size 64
+}
+
+Pointlight SlothLight2
+{
+Color 0.3 1.0 1.0
+Size 46
+}

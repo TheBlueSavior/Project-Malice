@@ -86,6 +86,7 @@ Bruh88 - Forzen Corpse code revisements
 Corruption Cards / CutmanMike - Code for checking corpses, used for Famine enemiees
 Desfar - Lich sprites
 Antinous - Master switch spawn code
+High Councilor - Sprites for the Spawn of Belphegor
 
 MY APOLOGIES IF I MISSED ANYONE!
 
@@ -158,6 +159,7 @@ Your Battle
 Remnants from the Ashes
 Final Fantasy XII
 The Evil Within
-
+Mass Effect 2
+Robots
 
 THIS PROJECT WOULDN'T BE POSSIBLE WITHOUT THE AMAZING TALENT OF THE DOOM COMMUNIY

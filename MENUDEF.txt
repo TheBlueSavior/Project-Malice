@@ -72,7 +72,7 @@ OptionMenu "projectmalice_sincodex"
 	SubMenu "Gluttony", "PM_CodexMenu_Gluttony"
 	Submenu "Greed (WIP)", "PM_CodexMenu_Greed"
 	Submenu "Wrath", "PM_CodexMenu_Wrath"
-	Submenu "Sloth (WIP)", "PM_CodexMenu_Sloth"
+	Submenu "Sloth", "PM_CodexMenu_Sloth"
 	Submenu "Envy", "PM_CodexMenu_Envy"
 	Submenu "Pride", "PM_CodexMenu_Pride"
 	StaticText " "
@@ -161,6 +161,22 @@ ListMenu "PM_CodexMenu_Wrath"
 	StaticTextCentered 320, 330, "Demons of this type are aggressive, and will close the gap between you"
 	StaticTextCentered 320, 338, "very quickly for melee attacks. Can turn enraged if constantly hurt"
 	StaticTextCentered 320, 346, "or left alone for too long."
+}
+
+ListMenu "PM_CodexMenu_Sloth"
+{
+	Class "PM_CodexMenu"
+	Font "BigFont", "Olive"
+	Size 640, 480
+	
+	StaticTextCentered 320, 100, "SLOTH"
+	StaticPatch 320, 240, "SLOTHLIST"
+	
+	Font "SmallFont", "White"
+	
+	StaticTextCentered 320, 330, "Hosts eternally consumed by sorrow, despair, and nihilism."
+	StaticTextCentered 320, 338, "Demons of this tier are like snails, but very tanky."
+	StaticTextCentered 320, 346, "They use star slop, space-themed attacks, chains, and barbed wire. Can also pull you in with grappling hooks."
 }
 
 ListMenu "PM_CodexMenu_Envy"
@@ -300,7 +316,7 @@ ListMenu "PM_CodexMenu_Void"
 	StaticText "break open the outer layer. None of the enemies belong to the sin"
 	StaticText "as of right now."
 	StaticText " "
-	StaticText "Sloth (WIP)", cyan
+	StaticText "Sloth", cyan
 	StaticText "Comes in teal. Attacks slow or generally restrict player movement."
 	StaticText "Uses teal projectiles with black cores, or pull the player forward with chains."
 	StaticText "None of the enemies belong to the sin as of right now."

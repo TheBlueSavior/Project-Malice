@@ -145,6 +145,7 @@ Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 {
 	DropItem "PM_HeresyLord",255, 82
 	DropItem "PM_Bruiser",255, 30
+	DropItem "PM_SpawnOfBelphegor", 255, 23
 	DropItem "PM_Exalted", 255, 16
 	DropItem "PM_DeathEmissary",255, 10
 	DropItem "PM_ControlledSoldier",255, 2

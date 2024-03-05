@@ -556,3 +556,23 @@ Scale 0.3 0.5 12.0
 PITCHFROMMOMENTUM
 FrameIndex TRCR A 0 0
 }
+
+Model PM_BelphegorChainShot
+{ 
+Path "Models"
+Skin 0 "slothtracer.png"
+Model 0 "Tracer.md3"
+Scale 0.1 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLAD A 0 0
+}
+
+Model PM_BelphegorChainShotBlur
+{ 
+Path "Models"
+Skin 0 "slothtracer.tga"
+Model 0 "Tracer.md3"
+Scale 0.1 1.0 1.0
+PITCHFROMMOMENTUM
+FrameIndex BLAD A 0 0
+}

@@ -4431,6 +4431,12 @@ $limit PM/PistolMagBounce 4
 
 //Sin-Specific Stuff & Miscellaneous
 
+$random PMPlasmaShield/Explode { PMPlasmaShield/Explode1 PMPlasmaShield/Explode2 PMPlasmaShield/Explode3 PMPlasmaShield/Explode4 }
+PMPlasmaShield/Explode1 "Sounds/Other/PlasmaShieldExplode1.ogg"
+PMPlasmaShield/Explode2 "Sounds/Other/PlasmaShieldExplode2.ogg"
+PMPlasmaShield/Explode3 "Sounds/Other/PlasmaShieldExplode3.ogg"
+PMPlasmaShield/Explode4 "Sounds/Other/PlasmaShieldExplode4.ogg"
+
 PM/SigilBurn "Sounds/Other/PMStrandedSigilBurn.ogg"
 $volume PM/SigilBurn 0.5
 
@@ -5748,3 +5754,70 @@ $random PMHangman/Sight { PMHangman/Sight1 PMHangman/Sight2 PMHangman/Sight3 }
 PMHangman/Sight1 "Sounds/Monsters/Fodder/Hangman/HangmanSight.ogg"
 PMHangman/Sight2 "Sounds/Monsters/Fodder/Hangman/HangmanSight2.ogg"
 PMHangman/Sight3 "Sounds/Monsters/Fodder/Hangman/HangmanSight3.ogg"
+
+// Spawn of Belphegor
+
+PMBelphegor/TwilightFire "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilightFire.ogg"
+$rolloff PMBelphegor/TwilightFire 350 2000
+
+$random PMBelphegor/Active { PMBelphegor/Active1 PMBelphegor/Active2 PMBelphegor/Active3 PMBelphegor/Active4 }
+PMBelphegor/Active1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorActive1.ogg"
+PMBelphegor/Active2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorActive2.ogg"
+PMBelphegor/Active3 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorActive3.ogg"
+PMBelphegor/Active4 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorActive4.ogg"
+
+$random PMBelphegor/Aim { PMBelphegor/Aim1 PMBelphegor/Aim2 }
+PMBelphegor/Aim1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAim1.ogg"
+PMBelphegor/Aim2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAim2.ogg"
+PMBelphegor/AimAdd "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAimAdd.ogg"
+
+$rolloff PMBelphegor/AimAdd 500 1500
+$volume PMBelphegor/Aim 0.6
+
+$random PMBelphegor/Attack { PMBelphegor/Attack1 PMBelphegor/Attack2 PMBelphegor/Attack3 PMBelphegor/Attack4 PMBelphegor/Attack5 PMBelphegor/Attack6 }
+PMBelphegor/Attack1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack1.ogg"
+PMBelphegor/Attack2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack2.ogg"
+PMBelphegor/Attack3 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack3.ogg"
+PMBelphegor/Attack4 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack4.ogg"
+PMBelphegor/Attack5 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack5.ogg"
+PMBelphegor/Attack6 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorAttack6.ogg"
+
+PMBelphegor/Chain "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorChain.ogg"
+PMBelphegor/ChainImpact "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorChainImpact.ogg"
+PMBelphegor/Charge "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorCharge.ogg"
+
+$random PMBelphegor/Death { PMBelphegor/Death1 PMBelphegor/Death2 }
+PMBelphegor/Death1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorDeath1.ogg"
+PMBelphegor/Death2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorDeath2.ogg"
+PMBelphegor/DeathAdd "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorDeathAdd.ogg"
+$rolloff PMBelphegor/Death 500 2000
+$rolloff PMBelphegor/DeathAdd 500 3000
+
+$random PMBelphegor/Pain { PMBelphegor/Pain1 PMBelphegor/Pain2 PMBelphegor/Pain3 PMBelphegor/Pain4 }
+PMBelphegor/Pain1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorPain1.ogg"
+PMBelphegor/Pain2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorPain2.ogg"
+PMBelphegor/Pain3 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorPain3.ogg"
+PMBelphegor/Pain4 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorPain4.ogg"
+
+PMBelphegor/ShieldLoop "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorShieldLoop.ogg"
+$rolloff PMBelphegor/ShieldLoop 1000 1500
+
+$random PMBelphegor/Grenade { PMBelphegor/Grenade1 PMBelphegor/Grenade2 }
+PMBelphegor/Grenade1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorGrenade1.ogg"
+PMBelphegor/Grenade2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorGrenade2.ogg"
+$rolloff PMBelphegor/Grenade 600 2500
+
+$random PMBelphegor/Sight { PMBelphegor/Sight1 PMBelphegor/Sight2 PMBelphegor/Sight3 }
+PMBelphegor/Sight1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorSight1.ogg"
+PMBelphegor/Sight2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorSight2.ogg"
+PMBelphegor/Sight3 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorSight3.ogg"
+$rolloff PMBelphegor/Sight 500 2000
+
+PMBelphegor/Twilight1 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilight1.ogg"
+PMBelphegor/Twilight2 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilight2.ogg"
+PMBelphegor/Twilight3 "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilight3.ogg"
+$rolloff PMBelphegor/Twilight1 1000 1500
+$rolloff PMBelphegor/Twilight2 1500 2000
+
+PMBelphegor/TwilightExplode "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilightExplode.ogg"
+$rolloff PMBelphegor/TwilightExplode 500 2500
