@@ -180,7 +180,7 @@ Texture "SLOTHLIST", 450, 300
 Texture "ENVYLIST", 450, 300
 {
 	Offset 225, 150
-	Patch "WIC2F1H1", 157, 88
+	Patch "WIC2F1", 157, 88
 	Patch "VOREE1", 233, 141
 }
 

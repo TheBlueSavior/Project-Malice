@@ -689,69 +689,6 @@ Object Wickedshot
  Frame WIBLN { Light WickedballN }
 }
 
-
-//Brightmaps
-
-BrightMap Sprite WICKJ1
-{
-Map BMWICKJ1
-DisableFullBright
-}
-
-BrightMap Sprite WICKJ2J8
-{
-Map BMWICKJ2
-DisableFullBright
-}
-
-BrightMap Sprite WICKJ3J7
-{
-Map BMWICKJ3
-DisableFullBright
-}
-
-BrightMap Sprite WICKJ4J6
-{
-Map BMWICKJ4
-DisableFullBright
-}
-
-BrightMap Sprite WICKJ5
-{
-Map BMWICKJ5
-DisableFullBright
-}
-
-BrightMap Sprite WICKK1
-{
-Map BMWICKK1
-DisableFullBright
-}
-
-BrightMap Sprite WICKK2K8
-{
-Map BMWICKK2
-DisableFullBright
-}
-
-BrightMap Sprite WICKK3K7
-{
-Map BMWICKK3
-DisableFullBright
-}
-
-BrightMap Sprite WICKK4K6
-{
-Map BMWICKK4
-DisableFullBright
-}
-
-BrightMap Sprite WICKK5
-{
-Map BMWICKK5
-DisableFullBright
-}
-
 Pointlight SatyrLordMissile11
 {
 Color 0.6 0.0 0.0
