@@ -1,0 +1,320 @@
+Class PM_ForlornWalker : PMSlothMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"An demonic arachnid inhabiting in the circle of Sloth. It is shaped in a more peculiar way compared to other Fusionites and alike. Due to its smaller mechanical legs and its larger body, it moves like a slug, which caused its lethargy.
+		They are named 'Forlorn Walker' because they are often in the state of dolor and hopelessness due to their existance, and they want its victims to feel the same way as it does.
+		
+		Has a cosmic bubble shield that will only dissapear once it attacks. When it does attack, it will overwhelm you with thousands of slow-moving star projectiles.";
+		Health 550;
+		Tag "Forlorn Walker";
+		Height 64;
+		Mass 600;
+		PainChance 150;
+		Speed 7;
+		Radius 48;
+		Scale 1.2;
+		PainChance 15;
+		MaxStepHeight 24;
+		MaxDropOffHeight 24;
+		Obituary "%o felt the destructive dolor of a Forlorn Walker.";
+		Species "Arachnotron";
+		+DONTHARMSPECIES
+		+MISSILEEVENMORE
+		SeeSound "ForlornWalker/Sight";
+		PainSound "ForlornWalker/Pain";
+		DeathSound "ForlornWalker/Death";
+		ActiveSound "ForlornWalker/Active";
+		BloodType "PM_BlackCyberBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+	}
+	
+	bool shielded;
+	int user_numbullets;
+	
+	void SlothShield(bool act)
+	{
+		bINVULNERABLE = act;
+		bNOPAIN = act;
+		
+		if (act)
+		{
+		A_TakeInventory("PM_EnvySigilGoAway", 1);
+		let slothshield = Spawn("PM_ForlornShield",pos);
+		slothshield.master = self;
+		shielded = true;
+		A_StartSound("ForlornWalker/Shield", CHAN_WEAPON);
+		A_StartSound("ForlornWalker/Shield", CHAN_6, volume: 0.5, pitch: 0.65);
+		}
+		else
+		{ 
+		if (shielded) A_GiveInventory("PM_EnvySigilGoAway");
+		shielded = false;
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		WOPI A 0 NoDelay { user_numbullets = random(8,130); }
+	Idle:
+		WOPI A 10 PM_Look();
+		Loop;
+	Look:
+		WOPI AABBCCDDEEFF random(4, 5)
+		{
+			if (frame == 1 || frame == 3 || frame == 5) A_StartSound("ForlornWalker/Step", 9);
+			PM_LookingForPlayer();
+		}
+		Loop;
+	Spotted:
+		WOPI A 0
+		{
+			painchance = 11;
+			PM_AlertSound();
+		}
+		Goto SummonShield;
+	SummonShield:
+		WOPI E 0 { if (shielded) SetStateLabel("See"); }
+		WOPI E 0
+		{
+			bNOPAIN = true;
+			A_StartSound("Fusionite/Charge", CHAN_WEAPON, pitch: 0.65);
+			A_FaceTarget();
+		}
+		WOPI GHGHGHGHGHGHGHGHGHGHGH 1 Light("PM_SlothLight1") A_SpawnParticleEx("", TexMan.CheckForTexture("STR_A0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(20,10), size: frandom(0.5,15), xoff: random(130,300), yoff: random(-30,30), zoff: random(10,50), accelx: -1, startalphaf: 1.0, fadestepf: -0.1, sizestep: -0.4, startroll: random(-180,180));
+		WOPI H 35 SlothShield(true);
+		Goto See;
+	See:
+		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
+		WOPI AABBCCDDEEFF random(4, 5)
+		{
+			if (frame == 1 || frame == 3 || frame == 5) A_StartSound("ForlornWalker/Step", 9);
+			A_Chase();
+		}
+		Loop;
+	Missile:
+		WOPI A 10 A_StartSound("ForlornWalker/Attack", CHAN_VOICE);
+		WOPI GGGGGGGGGGGGG 2 Light("PM_SlothLight2") A_FaceTarget();
+		WOPI G 5 Light("PM_SlothLight1") SlothShield(false);
+		Goto MissileLoop;
+	MissileLoop:
+		WOPI H 3
+		{
+			if (user_numbullets <= 0) SetStateLabel("NoAmmo");
+			else
+			{
+				A_StartSound("ForlornWalker/Star", CHAN_WEAPON);
+				A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, frandom(-20, 5));
+				A_FaceTarget(5, 5);
+				user_numbullets--;
+			}
+		}
+		WOPI G random(0, 4)
+		{
+			if (CheckProximity("PM_ForlornWalker", 400, 3, CPXF_CHECKSIGHT)) tics = random(2, 9);
+			A_FaceTarget(5, 5);
+		}
+		WOPI G 0
+		{
+			if (target && !CheckSight(target)) SetStateLabel("See");
+			if (!target) SetStateLabel("See");
+			if (target && target.Health <= 0) SetStateLabel("See");
+		}
+		Loop;
+	NoAmmo:
+		TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");
+		TNT1 A 0 {bNOPAIN = True; SlothShield(true); }
+		TNT1 AAAAAAAAAAAA 0 A_SpawnParticle("00ffff",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),32,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+		WOPI GGGGGGGGGGGGGGGGGGGG 1 Light("SlothLight2")
+		{
+		A_SpawnParticleEx("", TexMan.CheckForTexture("CBALC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 3, size: 100.0, xoff: 10, zoff: 30, startalphaf: 0.9);
+		A_SpawnParticleEx("40acff", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,90), size: frandom(0.4,10), xoff: random(3,5), yoff: random(-5,5), zoff: 30, velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+		A_SpawnParticleEx("40acff", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,100), size: frandom(30,80), xoff: random(3,5), yoff: random(-5,5), zoff: 30, velx: frandom(15,20), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
+		}
+		TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,CHANF_LOOP);
+		WOPI GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 1 Light("SlothLight2")
+		{
+		A_SpawnParticleEx("", TexMan.CheckForTexture("CBALC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: 2, size: 80.0, xoff: 10, zoff: 30, startalphaf: 0.7);
+		A_SpawnParticleEx("40acff", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,100), size: frandom(30,80), xoff: random(16,20), yoff: random(-5,5), zoff: 30, velx: frandom(-0.8,4), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
+		A_SpawnParticleEx("40acff", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,100), size: 6, xoff: 10, yoff: random(-5,5), zoff: 30, vely: frandom(12,15), velz: frandom(-0.2,0.3), accely: -0.4, startalphaf: 0.5, fadestepf: -1, sizestep: 3, startroll: random(-180,180) );
+		A_SpawnParticleEx("40acff", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,100), size: 6, xoff: 10, yoff: random(-5,5), zoff: 30, vely: frandom(-12,-15), velz: frandom(-0.2,0.3), accely: 0.4, startalphaf: 0.5, fadestepf: -1, sizestep: 3, startroll: random(-180,180) );
+		}
+		TNT1 A 0 A_StopSound(CHAN_7);
+		TNT1 A 0 A_StartSound("PM/BigVentEnd",CHAN_7);
+	ZReload:
+		TNT1 A 0 A_StartSound("PM/ArachnoReloadStart",CHAN_5);
+		WOPI A 20 A_FaceTarget();
+		WOPI A 35
+		{
+		A_StartSound("PM/ArachnoReload",CHAN_6);
+		A_SpawnItemEx("PM_EmptyHeavyMag",-5,10,20,frandom(-1,1),frandom(5,8),random(5,8));
+		A_SpawnItemEx("PM_EmptyHeavyMag",-8,10,20,frandom(-1,1),frandom(5,8),random(5,8));
+		A_FaceTarget(); 
+            }
+		WOPI A 35 
+		{
+		A_StartSound("PM/ArachnoReload",CHAN_6);
+		A_SpawnItemEx("PM_EmptyHeavyMag",-5,-10,20,frandom(-1,1),frandom(-5,-8),random(5,8));
+		A_SpawnItemEx("PM_EmptyHeavyMag",-8,-10,20,frandom(-1,1),frandom(-5,-8),random(5,8));
+		A_FaceTarget(); 
+            }
+		TNT1 A 0 { bNOPAIN = false; user_numbullets = random(99,130); }
+		TNT1 A 0 A_StartSound("ForlornWalker/Ready",CHAN_5);
+		WOPI GGG 5 A_FaceTarget();
+		TNT1 A 0 A_Jump(56,"Missile");
+		Goto See;
+	Pain:
+		WOPI I 4;
+		WOPI I 4 A_Pain();
+		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
+		Goto See;
+	Death:
+		WOPI I 6;
+		WOPI J 1 SlothShield(false);
+		WOPI J 6
+		{
+			for (int i = 4; i > 0; i--) A_SpawnItemEx("PM_BlackMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_Scream();
+		}
+		WOPI K 6
+		{
+			for (int i = 2; i > 0; i--) A_SpawnItemEx("PM_BlackMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+			A_NoBlocking();
+		}
+		WOPI LMNOP 6 A_SpawnItemEx("PM_BlackMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		WOPI P -1;
+		Stop;
+	Raise:
+		WOPI PONMLKJI 6;
+		Goto SummonShield;
+	}
+}
+
+Class PM_ForlornStar : ArachnotronPlasma
+{
+	Default
+	{
+		SeeSound "ForlornWalker/Star";
+		DeathSound "SlothBall/Impact";
+		DamageFunction 25;
+		Speed 4;
+		FastSpeed 6;
+		+BRIGHT
+		+FORCEXYBILLBOARD
+		+ROLLSPRITE
+		+ROLLCENTER
+		+SEEKERMISSILE
+		-RANDOMIZE
+		RenderStyle "Subtract";
+		Scale 0.175;
+		Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+		//DamageType "Ice";
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("CBALC0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("STR_A0",TexMan.Type_Sprite);
+	}
+	  
+	TextureID tex[3];
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay
+		{
+			for(int i=2; i>0; i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(80,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			A_StartSound("SlothBall/Impact", 100, CHANF_OVERLAP, 0.75, pitch: frandom(1.5, 2.5));
+			A_StartSound("SlothBall/Whiz", 100, CHANF_OVERLAP, 0.25, pitch: frandom(0.9, 1));
+		}
+		Goto Go;
+	Go:
+		SPKW E 1
+		{
+			A_SetRoll(roll+2);
+			
+			A_SpawnParticleEx("00ffc9", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: frandom(50, 90), xoff: -5, startalphaf: frandom(.8, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			if (!random(0, 6)) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,40), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
+			
+			vel.x += frandom(-0.15, 0.15);
+			vel.y += frandom(-0.15, 0.15);
+			vel.z += frandom(-0.15, 0.15);
+		}
+		Loop;
+	Death:
+		TNT1 A 1
+		{
+			for(int i=2; i>0; i--) A_SpawnParticleEx("", tex[randompick(0, 2)], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(80,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(30,100), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
+		}
+		TNT1 AAAAAAA random(0, 4) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(30,100), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
+		Stop;
+	}
+}
+
+Class PM_ForlornShield : Actor
+{
+	Default
+	{
+		RenderStyle "Add";
+		Scale 1.6;
+		Alpha 0.01;
+		+NOINTERACTION
+		+BRIGHT
+		Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+	}
+	
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("STR_A0",TexMan.Type_Sprite);
+	}
+	
+	override void Tick()
+	{
+		Super.Tick();
+		A_Warp(AAPTR_MASTER, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+		if(master && master.CountInv("PM_EnvySigilGoAway") == 1)
+		 SetStateLabel("Death");
+		else if(!master)
+		 SetStateLabel("Death");
+	}
+  
+	textureID tex[3];
+	bool pulse;
+	
+	States
+	{
+	Spawn:
+		BCSH AABBCCDDEEFFGGHH 1
+		{
+			if (!pulse)
+			{
+				if (alpha <= 0.02)
+				{
+					for(int i=random(6, 16); i>0; i--) A_SpawnParticleEx("40acff", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(50,200), size: frandom(100, 200), xoff: frandom(-45, 45), yoff: frandom(-45, 45), zoff: frandom(-45, 45) + 40, velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(-1, 1), startalphaf: frandom(.45,.7), fadestepf: -1, sizestep: 5, startroll: random(-180,180), rollvel: frandom(-1, 1));
+					A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,25), size: frandom(400, 600), zoff: 50, velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: 30, startroll: random(-180,180), rollvel: frandom(-4, 4));
+					for(int i=random(15,40);i>0;i--) A_SpawnParticleEx("727272",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,45),size: frandom(2,35),xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20) + 50,velx: frandom(-8,8),vely: frandom(-8,8),velz: frandom(-8,12),accelz: frandom(-0.1,-0.5),startalphaf: 1.0,sizestep: -0.2,startroll: random(-180,180),rollvel: random(-4,4));
+				}
+				A_FadeIn(0.1);
+				if (alpha >= 1) pulse = true;
+			}
+			else alpha = frandom(0.6, 1);
+			
+			if (!random(0, 2)) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(30,100), size: frandom(5,25), xoff: frandom(-70, 70), yoff: frandom(-70, 70), zoff: frandom(-70, 70) + 40, velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
+		}
+		Loop;
+	Death:
+		BCSH A 0 A_StartSound("ForlornWalker/ShieldGone", CHAN_BODY);
+		BCSH AABBCCDDEEFFGGHH 1 A_FadeOut(0.05);
+		Stop;
+	}
+}

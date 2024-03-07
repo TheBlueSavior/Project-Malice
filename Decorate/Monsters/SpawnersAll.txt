@@ -168,6 +168,7 @@ Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
 {
 	DropItem "PM_Fusionite", 255, 45
 	DropItem "PM_Plasmatron", 255, 8
+	DropItem "PM_ForlornWalker", 255, 6
 	DropItem "PM_AngelsHand", 255, 2
 }
 

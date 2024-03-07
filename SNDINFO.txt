@@ -5821,3 +5821,48 @@ $rolloff PMBelphegor/Twilight2 1500 2000
 
 PMBelphegor/TwilightExplode "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilightExplode.ogg"
 $rolloff PMBelphegor/TwilightExplode 500 2500
+
+//Forlorn Walker
+$random ForlornWalker/Active { ForlornWalker/Active1 ForlornWalker/Active2 ForlornWalker/Active3 }
+ForlornWalker/Active1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerActive1.ogg"
+ForlornWalker/Active2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerActive2.ogg"
+ForlornWalker/Active3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerActive3.ogg"
+
+$random ForlornWalker/Attack { ForlornWalker/Attack1 ForlornWalker/Attack2 }
+ForlornWalker/Attack1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerAttack1.ogg"
+ForlornWalker/Attack2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerAttack2.ogg"
+
+$random ForlornWalker/Death { ForlornWalker/Death1 ForlornWalker/Death2 ForlornWalker/Death3 }
+ForlornWalker/Death1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerDeath1.ogg"
+ForlornWalker/Death2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerDeath2.ogg"
+ForlornWalker/Death3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerDeath3.ogg"
+
+$random ForlornWalker/Pain { ForlornWalker/Pain1 ForlornWalker/Pain2 ForlornWalker/Pain3 ForlornWalker/Pain4 }
+ForlornWalker/Pain1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerPain1.ogg"
+ForlornWalker/Pain2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerPain2.ogg"
+ForlornWalker/Pain3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerPain3.ogg"
+ForlornWalker/Pain4 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerPain4.ogg"
+
+ForlornWalker/Shield "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerShield.ogg"
+ForlornWalker/ShieldGone "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerShieldGone.ogg"
+
+$volume ForlornWalker/Shield 0.8
+
+ForlornWalker/Cooldown "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerCooldown.ogg"
+ForlornWalker/Ready "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerReady.ogg"
+
+$random ForlornWalker/Sight { ForlornWalker/Sight1 ForlornWalker/Sight2 ForlornWalker/Sight3 }
+ForlornWalker/Sight1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSight1.ogg"
+ForlornWalker/Sight2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSight2.ogg"
+ForlornWalker/Sight3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSight3.ogg"
+
+ForlornWalker/Star "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStar.ogg"
+$pitchset ForlornWalker/Star 0.6 0.8
+
+$random ForlornWalker/Step { ForlornWalker/Step1 ForlornWalker/Step2 ForlornWalker/Step3 }
+ForlornWalker/Step1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep1.ogg"
+ForlornWalker/Step2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep2.ogg"
+ForlornWalker/Step3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep3.ogg"
+
+SlothBall/Impact "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallImpact.ogg"
+SlothBall/Whiz "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallWhiz.ogg"
