@@ -107,7 +107,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 			else
 			{
 				A_StartSound("ForlornWalker/Star", CHAN_WEAPON);
-				A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, frandom(-20, 5));
+				A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, frandom(-5, 3));
 				A_FaceTarget(5, 5);
 				user_numbullets--;
 			}
@@ -208,49 +208,57 @@ Class PM_ForlornStar : ArachnotronPlasma
 		+ROLLCENTER
 		+SEEKERMISSILE
 		-RANDOMIZE
-		RenderStyle "Subtract";
-		Scale 0.175;
-		Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+		RenderStyle "Add";
+		Scale 0.2;
+		Translation "0:255=%[0.00,0.00,0.00]:[2.00,0.5,0.80]";
 		//DamageType "Ice";
 	}
 	
 	override void PostBeginPlay()
 	{
 		Super.PostBeginPlay();
-		tex[0] = TexMan.CheckForTexture("CBALC0",TexMan.Type_Sprite);
+		tex[0] = TexMan.CheckForTexture("SPKWE0",TexMan.Type_Sprite);
 		tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
-		tex[2] = TexMan.CheckForTexture("STR_A0",TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("SPKBA0",TexMan.Type_Sprite);
+		tex[3] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+		tex[4] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
 	}
 	  
-	TextureID tex[3];
+	TextureID tex[5];
 	
 	States
 	{
 	Spawn:
 		TNT1 A 0 NoDelay
 		{
-			for(int i=2; i>0; i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(80,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			for(int i=2; i>0; i--) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(100,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.8, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: 0, velz: 6, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
+			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: 0, velz: -6, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
+			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: 6, velz: 0, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
+			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: -6, velz: 0, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
 			A_StartSound("SlothBall/Impact", 100, CHANF_OVERLAP, 0.75, pitch: frandom(1.5, 2.5));
 			A_StartSound("SlothBall/Whiz", 100, CHANF_OVERLAP, 0.25, pitch: frandom(0.9, 1));
 		}
 		Goto Go;
 	Go:
-		SPKW E 1
+		SPKW E 1 BRIGHT
 		{
 			A_SetRoll(roll+2);
 			
-			A_SpawnParticleEx("00ffc9", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: frandom(50, 90), xoff: -5, startalphaf: frandom(.8, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
-			if (!random(0, 6)) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,40), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
+			A_SpawnParticleEx("104452", tex[3], style: STYLE_Stencil, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: random(10,20), size: frandom(30, 40), xoff: -8, startalphaf: frandom(0.4,0.6), fadestepf: -1, sizestep: -4, startroll: random(-180,180));
+			A_SpawnParticleEx("0064cf", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: 110, xoff: -5, startalphaf: frandom(.95, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			A_SpawnParticleEx("ff0049", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: 60, xoff: 0, startalphaf: frandom(.95, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			if (!random(0, 6)) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,70), size: frandom(1,14), xoff: frandom(-5, 5), yoff: frandom(-5, 5), zoff: frandom(-5, 5), startalphaf: 1, fadestepf: -0.5, sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-4, 4));
 			
-			vel.x += frandom(-0.15, 0.15);
-			vel.y += frandom(-0.15, 0.15);
-			vel.z += frandom(-0.15, 0.15);
+			vel.x += frandom(-0.05, 0.05);
+			vel.y += frandom(-0.05, 0.05);
+			vel.z += frandom(-0.05, 0.05);
 		}
 		Loop;
 	Death:
 		TNT1 A 1
 		{
-			for(int i=2; i>0; i--) A_SpawnParticleEx("", tex[randompick(0, 2)], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(80,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			for(int i=2; i>0; i--) A_SpawnParticleEx("00ffc9", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(15,30), size: frandom(150,180), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: frandom(.5, 1), fadestepf: -0.5, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-4, 4));
 			A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(30,100), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
 		}
 		TNT1 AAAAAAA random(0, 4) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(30,100), size: frandom(5,25), xoff: frandom(-20, 20), yoff: frandom(-20, 20), zoff: frandom(-20, 20), velz: frandom(-0.1, 1), startalphaf: 1, fadestepf: -0.5, sizestep: -1,startroll: random(-180,180));
@@ -267,7 +275,7 @@ Class PM_ForlornShield : Actor
 		Alpha 0.01;
 		+NOINTERACTION
 		+BRIGHT
-		Translation "0:255=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
+		Translation "0:255=%[0.00,0.00,0.00]:[0.7,1.40,1.20]";
 	}
 	
 	override void PostBeginPlay()
