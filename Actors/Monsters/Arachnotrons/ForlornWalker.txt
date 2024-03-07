@@ -107,7 +107,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 			else
 			{
 				A_StartSound("ForlornWalker/Star", CHAN_WEAPON);
-				A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, frandom(-5, 3));
+				A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-3, 3));
 				A_FaceTarget(5, 5);
 				user_numbullets--;
 			}
