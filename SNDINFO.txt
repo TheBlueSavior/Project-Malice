@@ -966,7 +966,7 @@ CyberZ/Fire "Sounds/Monsters/Shotgunners/CyberFodder/CyberFodderFire.ogg"
 
 $rolloff CyberZ/Prefire 350 2000
 $rolloff CyberZ/Fire 400 2200
-$limit CyberZ/Fire 6
+$limit CyberZ/Fire 10
 $volume CyberZ/Fire 0.70
 $volume CyberZ/Death 0.65
 $volume CyberZ/Sight 0.4
@@ -5857,7 +5857,9 @@ ForlornWalker/Sight2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSi
 ForlornWalker/Sight3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSight3.ogg"
 
 ForlornWalker/Star "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStar.ogg"
+$limit ForlornWalker/Star 12
 $pitchset ForlornWalker/Star 0.6 0.8
+$rolloff ForlornWalker/Star 300 2200
 
 $random ForlornWalker/Step { ForlornWalker/Step1 ForlornWalker/Step2 ForlornWalker/Step3 }
 ForlornWalker/Step1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep1.ogg"
@@ -5865,4 +5867,5 @@ ForlornWalker/Step2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSte
 ForlornWalker/Step3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep3.ogg"
 
 SlothBall/Impact "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallImpact.ogg"
-SlothBall/Whiz "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallWhiz.ogg"
+$pitchset SlothBall/Impact 0.8 1.2
+$volume SlothBall/Impact 0.6

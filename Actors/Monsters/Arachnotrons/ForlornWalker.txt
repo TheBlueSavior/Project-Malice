@@ -21,6 +21,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		Obituary "%o felt the destructive dolor of a Forlorn Walker.";
 		Species "Arachnotron";
 		+DONTHARMSPECIES
+		+MissileMore
 		+MISSILEEVENMORE
 		SeeSound "ForlornWalker/Sight";
 		PainSound "ForlornWalker/Pain";
@@ -86,22 +87,50 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		}
 		WOPI GHGHGHGHGHGHGHGHGHGHGH 1 Light("PM_SlothLight1") A_SpawnParticleEx("", TexMan.CheckForTexture("STR_A0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(20,10), size: frandom(0.5,15), xoff: random(130,300), yoff: random(-30,30), zoff: random(10,50), accelx: -1, startalphaf: 1.0, fadestepf: -0.1, sizestep: -0.4, startroll: random(-180,180));
 		WOPI H 35 SlothShield(true);
+		TNT1 A 0 A_Jump(130,"See2");
 		Goto See;
 	See:
 		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
+		TNT1 A 0 { bFrightened=false; }
 		WOPI AABBCCDDEEFF random(4, 5)
 		{
 			if (frame == 1 || frame == 3 || frame == 5) A_StartSound("ForlornWalker/Step", 9);
 			A_Chase();
 		}
 		Loop;
+	See3:
+		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
+		TNT1 A 0 { bFrightened=false; }
+		WOPI AABBCCDDEEFF 4
+		{
+			if (frame == 1 || frame == 3 || frame == 5) A_StartSound("ForlornWalker/Step", 9);
+			A_Chase("Missile","Missile",CHF_DONTMOVE);
+			A_Wander();
+		}
+		TNT1 A 0 A_CheckLOF("See3");
+		Goto See;
+	See2:
+		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
+		TNT1 A 0 { bFrightened=true; }
+		WOPI FFEEDDCCBBAA random(4, 5)
+		{
+			if (frame == 1 || frame == 3 || frame == 5) A_StartSound("ForlornWalker/Step", 9);
+			A_Chase();
+			A_FaceTarget();
+		}
+		Goto See3;
 	Missile:
+		TNT1 A 0;
+		TNT1 A 0 A_CheckLOF("MissileProceed");
+		Goto See3;
+	MissileProceed:
 		WOPI A 10 A_StartSound("ForlornWalker/Attack", CHAN_VOICE);
 		WOPI GGGGGGGGGGGGG 2 Light("PM_SlothLight2") A_FaceTarget();
 		WOPI G 5 Light("PM_SlothLight1") SlothShield(false);
+		TNT1 A 0 A_Jump(200,"ScatterShot");
 		Goto MissileLoop;
 	MissileLoop:
-		WOPI H 3
+		WOPI H random(0,3)
 		{
 			if (user_numbullets <= 0) SetStateLabel("NoAmmo");
 			else
@@ -119,11 +148,21 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		}
 		WOPI G 0
 		{
-			if (target && !CheckSight(target)) SetStateLabel("See");
-			if (!target) SetStateLabel("See");
-			if (target && target.Health <= 0) SetStateLabel("See");
+			if (target && !CheckSight(target)) SetStateLabel("See3");
+			if (!target) SetStateLabel("See3");
+			if (target && target.Health <= 0) SetStateLabel("See3");
 		}
 		Loop;
+	ScatterShot:
+		WOPI GGGG 2 A_FaceTarget();
+		TNT1 A 0 A_StartSound("Plasmatron/SmallFire",31);
+		WOPI HHHHHHHHHHH 0
+		{
+			A_SpawnProjectile("PM_ForlornStar", 36, 0, frandom(-4, 4), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-1, 1));
+			A_FaceTarget(5, 5);
+		}
+		WOPI GGGG 4;
+		Goto See3;
 	NoAmmo:
 		TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");
 		TNT1 A 0 {bNOPAIN = True; SlothShield(true); }
@@ -165,12 +204,13 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		TNT1 A 0 A_StartSound("ForlornWalker/Ready",CHAN_5);
 		WOPI GGG 5 A_FaceTarget();
 		TNT1 A 0 A_Jump(56,"Missile");
-		Goto See;
+		TNT1 A 0 A_Jump(130,"See3");
+		Goto See3;
 	Pain:
 		WOPI I 4;
 		WOPI I 4 A_Pain();
 		WOPI I 0 { if (!shielded) { bNOPAIN = true; SetStateLabel("SummonShield"); } }
-		Goto See;
+		Goto See2;
 	Death:
 		WOPI I 6;
 		WOPI J 1 SlothShield(false);
@@ -236,8 +276,8 @@ Class PM_ForlornStar : ArachnotronPlasma
 			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: 0, velz: -6, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
 			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: 6, velz: 0, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
 			A_SpawnParticleEx("ff002e", tex[4], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,  lifetime: 12, size: 85, xoff: -5, vely: -6, velz: 0, startalphaf: 0.9, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
-			A_StartSound("SlothBall/Impact", 100, CHANF_OVERLAP, 0.75, pitch: frandom(1.5, 2.5));
-			A_StartSound("SlothBall/Whiz", 100, CHANF_OVERLAP, 0.25, pitch: frandom(0.9, 1));
+			A_StartSound("DTech/Fire", 100, CHANF_OVERLAP, 0.75, pitch: frandom(0.8, 0.95));
+			//A_StartSound("SlothBall/Whiz", 100, CHANF_OVERLAP, 0.25, pitch: frandom(0.9, 1));
 		}
 		Goto Go;
 	Go:
@@ -271,7 +311,7 @@ Class PM_ForlornShield : Actor
 	Default
 	{
 		RenderStyle "Add";
-		Scale 1.6;
+		Scale 1.75;
 		Alpha 0.01;
 		+NOINTERACTION
 		+BRIGHT
@@ -289,7 +329,7 @@ Class PM_ForlornShield : Actor
 	override void Tick()
 	{
 		Super.Tick();
-		A_Warp(AAPTR_MASTER, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+		A_Warp(AAPTR_MASTER,0,0,-20, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
 		if(master && master.CountInv("PM_EnvySigilGoAway") == 1)
 		 SetStateLabel("Death");
 		else if(!master)
@@ -321,7 +361,7 @@ Class PM_ForlornShield : Actor
 		}
 		Loop;
 	Death:
-		BCSH A 0 A_StartSound("ForlornWalker/ShieldGone", CHAN_BODY);
+		//BCSH A 0 A_StartSound("ForlornWalker/ShieldGone", CHAN_BODY);
 		BCSH AABBCCDDEEFFGGHH 1 A_FadeOut(0.05);
 		Stop;
 	}
