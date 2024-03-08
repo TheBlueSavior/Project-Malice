@@ -5869,3 +5869,76 @@ ForlornWalker/Step3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSte
 SlothBall/Impact "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallImpact.ogg"
 $pitchset SlothBall/Impact 0.8 1.2
 $volume SlothBall/Impact 0.6
+
+//Mecha-Aranea
+PMGreaterSigil "Sounds/Monsters/Arachnotrons/MechaAranea/GreaterSigilCopy.ogg"
+$rolloff PMGreaterSigil 800 2500
+
+MechaAraneaReady "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaReady.ogg"
+MechaAraneaReadyAlt "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaReadyAlt.ogg"
+MechaAraneaBeamFire "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamFire.ogg"
+MechaAraneaBeamCooldown "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCooldow.ogg"
+MechaAraneaBeamCharge "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCharge.ogg"
+
+$rolloff MechaAraneaBeamFire 500 2000
+$rolloff MechaAraneaBeamCooldown 400 1500
+$rolloff MechaAraneaReady 400 1500
+$rolloff MechaAraneaReadyAlt 400 1500
+$rolloff MechaAraneaBeamCharge 600 2000
+
+$random MechaAranea/Active { MechaAranea/Active1 MechaAranea/Active2 MechaAranea/Active3 MechaAranea/Active4 MechaAranea/Active5 MechaAranea/Active6 MechaAranea/Active7 MechaAranea/Active8 MechaAranea/Active9 }
+MechaAranea/Active1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive1.ogg"
+MechaAranea/Active2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive2.ogg"
+MechaAranea/Active3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive3.ogg"
+MechaAranea/Active4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive4.ogg"
+MechaAranea/Active5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive5.ogg"
+MechaAranea/Active6 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive6.ogg"
+MechaAranea/Active7 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive7.ogg"
+MechaAranea/Active8 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive8.ogg"
+MechaAranea/Active9 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive9.ogg"
+$random MechaAranea/Attack { MechaAranea/Attack1 MechaAranea/Attack2 MechaAranea/Attack3 MechaAranea/Attack4 MechaAranea/Attack5 MechaAranea/Attack6 MechaAranea/Attack7 MechaAranea/Attack8 MechaAranea/Attack9 }
+MechaAranea/Attack1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack1.ogg"
+MechaAranea/Attack2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack2.ogg"
+MechaAranea/Attack3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack3.ogg"
+MechaAranea/Attack4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack4.ogg"
+MechaAranea/Attack5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack5.ogg"
+MechaAranea/Attack6 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack6.ogg"
+MechaAranea/Attack7 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack7.ogg"
+MechaAranea/Attack8 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack8.ogg"
+MechaAranea/Attack9 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaAttack9.ogg"
+$random MechaAranea/Death { MechaAranea/Death1 MechaAranea/Death2 MechaAranea/Death3 MechaAranea/Death4 }
+MechaAranea/Death1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDeath1.ogg"
+MechaAranea/Death2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDeath2.ogg"
+MechaAranea/Death3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDeath3.ogg"
+MechaAranea/Death4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDeath4.ogg"
+MechaAranea/Dodge "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDodge.ogg"
+$random MechaAranea/Pain { MechaAranea/Pain1 MechaAranea/Pain2 MechaAranea/Pain3 MechaAranea/Pain4 MechaAranea/Pain5 MechaAranea/Pain6 MechaAranea/Pain7 MechaAranea/Pain8 }
+MechaAranea/Pain1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain1.ogg"
+MechaAranea/Pain2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain2.ogg"
+MechaAranea/Pain3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain3.ogg"
+MechaAranea/Pain4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain4.ogg"
+MechaAranea/Pain5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain5.ogg"
+MechaAranea/Pain6 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain6.ogg"
+MechaAranea/Pain7 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain7.ogg"
+MechaAranea/Pain8 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaPain8.ogg"
+$random MechaAranea/Servos { MechaAranea/Servos1 MechaAranea/Servos2 MechaAranea/Servos3 MechaAranea/Servos4 MechaAranea/Servos5 MechaAranea/Servos6 }
+MechaAranea/Servos1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos1.ogg"
+MechaAranea/Servos2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos2.ogg"
+MechaAranea/Servos3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos3.ogg"
+MechaAranea/Servos4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos4.ogg"
+MechaAranea/Servos5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos5.ogg"
+MechaAranea/Servos6 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaServos6.ogg"
+$random MechaAranea/Sight { MechaAranea/Sight1 MechaAranea/Sight2 MechaAranea/Sight3 MechaAranea/Sight4 MechaAranea/Sight5 MechaAranea/Sight6 MechaAranea/Sight7 }
+MechaAranea/Sight1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight1.ogg"
+MechaAranea/Sight2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight2.ogg"
+MechaAranea/Sight3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight3.ogg"
+MechaAranea/Sight4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight4.ogg"
+MechaAranea/Sight5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight5.ogg"
+MechaAranea/Sight6 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight6.ogg"
+MechaAranea/Sight7 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaSight7.ogg"
+$random MechaAranea/Step { MechaAranea/Step1 MechaAranea/Step2 MechaAranea/Step3 MechaAranea/Step4 MechaAranea/Step5 }
+MechaAranea/Step1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaStep1.ogg"
+MechaAranea/Step2 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaStep2.ogg"
+MechaAranea/Step3 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaStep3.ogg"
+MechaAranea/Step4 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaStep4.ogg"
+MechaAranea/Step5 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaStep5.ogg"

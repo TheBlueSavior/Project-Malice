@@ -855,6 +855,31 @@ Class PM_DarkGreenBloodEx : RandomSpawner
 	}
 }
 
+Class PM_DarkGreenCyberBloodBase : PM_NormalBloodBase
+{
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
+		TNT1 A 0 A_SpawnItemEx("PM_DarkGreenCyberBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+Class PM_DarkGreenCyberBlood : RandomSpawner
+{
+    Default
+	{
+	DropItem "PM_DarkGreenBlood1", 255, 2;
+	DropItem "PM_DarkGreenBlood2", 255, 2;
+	DropItem "PM_DarkGreenBlood3", 255, 2;
+	DropItem "PM_DarkGreenBloodMulti", 255, 2;
+	DropItem "PM_DarkGreenBloodMist", 255, 2;
+	DropItem "PM_DarkGreenMeatChunkLauncher", 255, 1;
+	DropItem "PM_NormalHitSpark", 255, 4;
+	}
+}
 //CODE FROM DEATH FORETOLD
 
 Class PM_DarkGreenMeatChunk : PM_NormalMeatChunk

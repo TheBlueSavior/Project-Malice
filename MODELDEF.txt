@@ -576,3 +576,23 @@ Scale 0.1 1.0 1.0
 PITCHFROMMOMENTUM
 FrameIndex BLAD A 0 0
 }
+
+Model PM_AraneaArcs
+{ 
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1 1 1
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}
+
+Model PM_AraneaSniper
+{ 
+Path "Models"
+Skin 0 "greenbeam.png"
+Model 0 "Tracer.md3"
+Scale 2 1 1
+PITCHFROMMOMENTUM
+FrameIndex TRCR A 0 0
+}

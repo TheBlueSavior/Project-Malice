@@ -136,6 +136,7 @@ version "4.10.0"
 #include "Actors/Monsters/Arachnotrons/Fusionite.txt"
 #include "Actors/Monsters/Arachnotrons/Plasmatron.txt"
 #include "Actors/Monsters/Arachnotrons/ForlornWalker.txt"
+#include "Actors/Monsters/Arachnotrons/MechaAranea.txt"
 #include "Actors/Monsters/Arachnotrons/AngelsHand.txt"
 
 //Knights
