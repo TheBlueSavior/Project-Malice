@@ -276,7 +276,11 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			SCRP DDDDDDDDDDDDDD 2 A_FaceTarget();
 			Goto See;
 		Copy:
-			SCRP E 0 A_StartSound("GenericChargeHeavy", 20);
+			SCRP E 0
+			{
+				A_StartSound("GenericChargeHeavy", 20);
+				A_StartSound("MechaAranea/Active", CHAN_VOICE);
+			}
 			SCRP DDDDDDDDDDDDDDDDDDDDD 1 Light("FeralImpFireball3") A_FaceTarget();
 			SCRP D 0 A_Jump(256, "CopyForlornWalker", "CopyFusionite", "CopyPlasmaTron");
 			Goto CopyFusionite;
