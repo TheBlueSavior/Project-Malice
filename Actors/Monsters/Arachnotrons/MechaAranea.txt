@@ -22,7 +22,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		Speed 8;
 		Height 64;
 		Radius 48;
-		Scale 1.1;
+		Scale 1;
 		MaxStepHeight 24;
 		MaxDropOffHeight 24;
 		Obituary "%o got hexed into dust by a Mecha-Aranea.";
@@ -177,8 +177,8 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		Missile:
 			SCRP A 0 A_StartSound("MechaAranea/Attack", CHAN_VOICE);
 			TNT1 A 0 { if (health < (GetMaxHealth() / 2) && !random(0, 5)) SetStateLabel("Copy"); }
-			TNT1 A 0 A_Jump(54, "Copy");
-			TNT1 A 0 A_Jump(128, "Orbs", "Sniper");
+			TNT1 A 0 A_Jump(24, "Copy");
+			TNT1 A 0 A_Jump(115, "Orbs", "Sniper");
 			Goto LightningTracers;
 		Orbs:
 			SCRP A 10 A_Facetarget();
@@ -210,7 +210,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 				else
 				{
 				A_StartSound("DEmi/CannonFire", CHAN_WEAPON, pitch: 1.5);
-				A_SpawnProjectile("PM_AraneaOrb", 30, 0, 0, CMF_AIMDIRECTION, pitch);
+				A_SpawnProjectile("PM_AraneaOrb", 60, 0, 0, CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(0, 4));
 				}
 			}
 			SCRP D 5 { pm_attackloop--; }
@@ -232,13 +232,13 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 				A_SetAngle(angle+random(-30,30));
 				A_SetPitch(pitch+random(-15,30));
 			}
-			SCRP EDEDEDEDEDEDEDEDEDEDEDEDED random(2, 3) Light("FeralimpFireball4")
+			SCRP EDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDED random(2, 3) Light("FeralimpFireball4")
 			{
-				A_FaceTarget(4, 4);
+				A_FaceTarget(3, 3);
 				AraneaCharge();
 				CheckForNoAmmo(1);
 				A_StartSound("Broken/Plasma", CHAN_WEAPON, pitch: 1.2);
-				A_SpawnProjectile("PM_AraneaArcs", 60, 0, frandom(-4, 4), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-4, 4) + 2);
+				A_SpawnProjectile("PM_AraneaArcs", 60, 0, frandom(-2, 2), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-2, 2) + 2);
 			}
 			Goto See;
 		Sniper:
@@ -302,12 +302,12 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 				A_FaceTarget(2,2);
 				if (!(GetAge() % 3))
 				{
-					A_SpawnProjectile("PM_GreenFusioniteFireFlare",66,0);
-					A_SpawnProjectile("PM_SmallFusionShot",66,0,frandom(-4,4),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3)+2);
+					A_SpawnProjectile("PM_GreenFusioniteFireFlare",60,0);
+					A_SpawnProjectile("PM_SmallFusionShot",60,0,frandom(-4,4),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3)+2);
 				}
 				CheckForNoAmmo(1);
-				if (!(GetAge() % 6)) A_SpawnProjectile("PM_FusionShot",66,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1 + 2);
-				if (!(GetAge() % 28)) { CheckForNoAmmo(3); A_StartSound("Fusionite/Scattershot",10,volume:0.75,pitch:1.5); A_SpawnProjectile("PM_ScatterFusionShot",66,0,frandom(-6,6),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-2,2)+2); }
+				if (!(GetAge() % 6)) A_SpawnProjectile("PM_FusionShot",60,0,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1 + 2);
+				if (!(GetAge() % 28)) { CheckForNoAmmo(3); A_StartSound("Fusionite/Scattershot",10,volume:0.75,pitch:1.5); A_SpawnProjectile("PM_ScatterFusionShot",60,0,frandom(-6,6),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-2,2)+2); }
 			}
 			SCRP D 0 A_CheckSight("See");
 			Loop;
@@ -330,7 +330,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 				if (user_numbullets < 75) SlothShield(false);
 				CheckForNoAmmo(5);
 				A_StartSound("ForlornWalker/Star", CHAN_WEAPON);
-				for (int i = random(1, 2); i > 0; i--) A_SpawnProjectile("PM_CopyForlornStar", 36, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-3, 3));
+				for (int i = random(1, 2); i > 0; i--) A_SpawnProjectile("PM_CopyForlornStar", 60, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-1, 6));
 				A_FaceTarget(5, 5);
 			}
 			SCRP D random(0, 5)
@@ -364,8 +364,8 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			{
 				CheckForNoAmmo(2);
 				A_StartSound("Plasmatron/Fire");
-				A_SpawnProjectile("PM_PTronBallCopy",66,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,pitch+2);
-				for (int i = 2; i > 0; i--) A_SpawnProjectile("PM_PTronBallSmallCopy",66,0,SweepAngles[SweepIndex] + frandom(-6, 6),CMF_OFFSETPITCH,pitch+frandom(-3, 3)+2);
+				A_SpawnProjectile("PM_PTronBallCopy",60,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,pitch+2);
+				for (int i = 2; i > 0; i--) A_SpawnProjectile("PM_PTronBallSmallCopy",60,0,SweepAngles[SweepIndex] + frandom(-6, 6),CMF_OFFSETPITCH,pitch+frandom(-3, 3)+2);
 			}
 			SCRP D 4 A_FaceTarget();
 			TNT1 A 0 A_JumpIf(++sweepindex == sweepangles.size(), 1);
@@ -377,8 +377,8 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			{
 				CheckForNoAmmo(2);
 				A_StartSound("Plasmatron/Fire");
-				A_SpawnProjectile("PM_PTronBallCopy",66,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,pitch+2);
-				for (int i = 3; i > 0; i--) A_SpawnProjectile("PM_PTronBallSmallCopy",66,0,SweepAngles[SweepIndex] + frandom(-12, 12),CMF_OFFSETPITCH,pitch+frandom(-3, 3)+2);
+				A_SpawnProjectile("PM_PTronBallCopy",60,0,SweepAngles[SweepIndex],CMF_OFFSETPITCH,pitch+2);
+				for (int i = 3; i > 0; i--) A_SpawnProjectile("PM_PTronBallSmallCopy",60,0,SweepAngles[SweepIndex] + frandom(-12, 12),CMF_OFFSETPITCH,pitch+frandom(-3, 3)+2);
 			}
 			SCRP D 4 A_FaceTarget();
 			TNT1 A 0 A_JumpIf(--sweepindex == -1, "See");
@@ -391,13 +391,13 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		NoAmmo:
 			TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");
 			TNT1 A 0 {bNOPAIN = True;}
-			SCRP DDDDDDDDDDDDDDDDDDD 1 Light("Greenball3")
+			SCRP DDDDDDDDDDD 1 Light("Greenball3")
 			{
 			A_SpawnParticleEx("", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 3, size: 100.0, xoff: 10, zoff: 66, startalphaf: 0.9);
 			A_SpawnParticleEx("0b290c", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,100), size: frandom(30,80), xoff: random(3,5), yoff: random(-5,5), zoff: 66, velx: frandom(15,20), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
 			}
 			TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,CHANF_LOOP);
-			SCRP DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("Greenball3")
+			SCRP DDDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("Greenball3")
 			{
 			A_SpawnParticleEx("", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: 2, size: 80.0, xoff: 10, zoff: 66, startalphaf: 0.7);
 			A_SpawnParticleEx("0b290c", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,100), size: frandom(30,80), xoff: random(16,20), yoff: random(-5,5), zoff: 66, velx: frandom(-0.8,4), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
@@ -410,7 +410,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			TNT1 A 0 A_StartSound("PM/BigVentEnd",CHAN_7);
 		ZReload:
 			TNT1 A 0 A_StartSound("PM/ArachnoReloadStart",CHAN_5);
-			SCRP A 35 A_FaceTarget();
+			SCRP A 20 A_FaceTarget();
 			SCRP A 0
 			{
 				A_StartSound("Envy/SigilSummon", volume: 0.65, pitch: 0.85);
@@ -903,7 +903,7 @@ Class PM_PTronBallCopy : PM_PTronBall
 			TNT1 A 0
 			{
 				A_SpawnItemEx("ZombieDropFire",flags:SXF_TRANSFERTRANSLATION, failchance:100);
-				for (int i = 2; i > 0; i--) A_SpawnParticleEx ("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(5,30), size: random(10,250), velx: frandom(-6, 6), vely: frandom(-6, 6), velz: frandom(-6, 6), startalphaf: 0.9, fadestepf: 0, sizestep: 0, startroll: random(-180,180));
+				for (int i = 2; i > 0; i--) A_SpawnParticleEx ("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(5,30), size: random(10,250), startalphaf: 0.9, fadestepf: 0, sizestep: -10, startroll: random(-180,180));
 				A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE, lifetime: random(15,30), size: random(150,250), xoff: frandom(-4, 4), yoff: frandom(-4, 4), zoff: frandom(-4, 4), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5), startalphaf: frandom(.8,1), sizestep: -20, startroll: random(-180,180), rollvel: frandom(-4, 4));
 			}
 			TNT1 A 10 Light("Greenball4");
