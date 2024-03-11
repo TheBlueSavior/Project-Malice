@@ -5861,6 +5861,9 @@ $limit ForlornWalker/Star 12
 $pitchset ForlornWalker/Star 0.6 0.8
 $rolloff ForlornWalker/Star 300 2200
 
+ForlornWalker/BlackHole "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornBlackHole.ogg"
+$rolloff ForlornWalker/BlackHole 600 2500
+
 $random ForlornWalker/Step { ForlornWalker/Step1 ForlornWalker/Step2 ForlornWalker/Step3 }
 ForlornWalker/Step1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep1.ogg"
 ForlornWalker/Step2 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerStep2.ogg"
