@@ -59,7 +59,7 @@ Class PM_Maggot : PMLustMonsterBase
 	  A_Chase(null,null,CHF_NOPLAYACTIVE);
 	 else
 	  {
-	   if(random(1,50) == 1 && Distance3D(target) < 700)
+	   if(random(1,50) == 1 && target && Distance3D(target) < 700)
 	   SetStateLabel("Missile");
 	   A_Wander();
 	  }
