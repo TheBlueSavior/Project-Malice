@@ -2840,7 +2840,7 @@ Class PM_BarbedWireTemp : Actor
 			A_SetScale(frandom(.1,.3),frandom(.1,.3));
 			frame = random(0, 1);
 			bSPRITEFLIP = randompick(false, true);
-			timer = random(60, 90);
+			timer = random(30, 70);
 		}
 		B1RB ########### 3 A_SetScale(Scale.x + frandom(0.1, 0.25), scale.y + frandom(0.1, 0.15));
 		Goto Loopin;
@@ -3020,4 +3020,4 @@ Class PM_PlasmaShieldBase : Actor
 }
 
 Class PM_ShieldActive : Inventory { Default { Inventory.MaxAmount 1; } }
-Class PM_BelphegorShield : PM_PlasmaShieldBase { Default { Health 800; Tag "Belphegor's Barricade"; Scale 1.75; StencilColor "f716bf"; } }
+Class PM_BelphegorShield : PM_PlasmaShieldBase { Default { Health 600; Tag "Belphegor's Barricade"; Scale 1.75; StencilColor "f716bf"; } }
