@@ -5427,12 +5427,19 @@ $random Landrazer/Lock { Landrazer/Lock1 Landrazer/Lock2 }
 Landrazer/Lock1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerLock1.ogg"
 Landrazer/Lock2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerLock2.ogg"
 
+$random Landrazer/Charge { Landrazer/Charge1 Landrazer/Charge2 Landrazer/Charge3 }
+Landrazer/Charge1 "Sounds/Monsters/Hellknights/Landrazer/LandrazerCharge1.ogg"
+Landrazer/Charge2 "Sounds/Monsters/Hellknights/Landrazer/LandrazerCharge2.ogg"
+Landrazer/Charge3 "Sounds/Monsters/Hellknights/Landrazer/LandrazerCharge3.ogg"
+
 $random Landrazer/Step { Landrazer/Step1 Landrazer/Step2 }
 Landrazer/Step1 "Sounds/Monsters/SFX/LandrazerStep1.ogg"
 Landrazer/Step2 "Sounds/Monsters/SFX/LandrazerStep2.ogg"
 
 $rolloff Landrazer/Step 100 1000
 $volume Landrazer/Step 0.8
+
+$rolloff Landrazer/Charge 500 2600
 
 //Enraged Breacher
 
