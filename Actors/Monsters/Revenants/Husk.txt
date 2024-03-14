@@ -204,7 +204,7 @@ Class PM_Husk : PMWrathMonsterBase
 		
 		if (target && checksight(target) && distance3D(target) < 165)
 		{
-			A_Explode(40,165,XF_NOTMISSILE,0,50,0,0,"BulletPuff","GhoulCloud");
+			A_Explode(25,165,XF_NOTMISSILE,0,50,0,0,"BulletPuff","GhoulCloud");
 			target.Vel3DFromAngle(15, self.angle, self.pitch);
 			target.vel.z += 7;
 		}
@@ -309,24 +309,17 @@ Class PM_Husk : PMWrathMonsterBase
 	 A_StopSound(20);
      A_RemoveChildren(1,RMVF_EVERYTHING);
 	 bSPRITEFLIP = false;
+	 PM_Scream();
     }
-    GHUL LM 7 Light("AvatarFireball4");
-    GHUL N 7 Light("AvatarFireball4") PM_Scream();
+    GHUL LLLLMMMM 2 Light("AvatarFireball4") A_SpawnItemEx("PM_DarkExpSmoke",frandom(-35,35),frandom(-35,35),frandom(1,75),frandom(-2,2),frandom(-2,2),frandom(-2,2));
+    GHUL NNN 2 Light("AvatarFireball4") A_SpawnItemEx("PM_DarkExpSmoke",frandom(-35,35),frandom(-35,35),frandom(1,55),frandom(-2,2),frandom(-2,2),frandom(-2,2));
     GHUL O 7 Light("AvatarFireball4") A_NoBlocking;
     GHUL P 7 Light("AvatarFireball4");
-	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-70,70),random(-70,70),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-30,30),random(-30,30),0,0,0,0,0,SXF_NOCHECKPOSITION);
 	TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-	GHUL QQQQQ 15 Light("AvatarFireball4")
-	{
-	A_SpawnItemEx("PM_ExplosionLongerSmokeBig2",0,0,1,random(-3,3),random(-3,3),random(0,2),0,0,70);
-	A_SpawnItemEx("ExileDropFire",random(-150,150),random(-150,150),0,0,0,0,0,SXF_NOCHECKPOSITION);
-	}
-	TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-150,150),random(-150,150),0,0,0,0,0,SXF_NOCHECKPOSITION);
-	GHUL QQQQQ 15 Light("AvatarFireball2")
-	{
-	A_SpawnItemEx("ExileDropFire",random(-200,200),random(-200,200),0,0,0,0,0,SXF_NOCHECKPOSITION);
-	A_SpawnItemEx("PM_ExplosionLongerSmokeBig2",0,0,1,random(-4,4),random(-4,4),random(0,3),0,0,70);
-	}
+	GHUL QQQQQ 15 Light("AvatarFireball4") A_SpawnItemEx("ExileDropFire",random(-70,70),random(-70,70),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-80,80),random(-80,80),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	GHUL QQQQQ 15 Light("AvatarFireball2") A_SpawnItemEx("ExileDropFire",random(-100,100),random(-100,100),0,0,0,0,0,SXF_NOCHECKPOSITION);
     GHUL Q -1;
     Stop;
   Raise:

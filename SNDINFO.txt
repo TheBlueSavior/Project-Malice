@@ -5063,6 +5063,7 @@ Exalt/SuperBallExp3 "Sounds/Monsters/Barons/Exalted/ExaltedSuperBallExp3.ogg"
 Exalt/SuperCastReady "Sounds/Monsters/Barons/Exalted/ExaltedSuperCastReady.ogg"
 Exalt/SuperCast "Sounds/Monsters/Barons/Exalted/ExaltedSuperCast.ogg"
 Exalt/CastAdd "Sounds/Monsters/Barons/Exalted/ExaltedCastAdd.ogg"
+Exalt/Crumble "Sounds/Monsters/Barons/Exalted/ExaltedCrumble.ogg"
 
 $rolloff Exalt/CastAdd 600 2300
 $rolloff Exalt/BasicCastLoop 600 2300

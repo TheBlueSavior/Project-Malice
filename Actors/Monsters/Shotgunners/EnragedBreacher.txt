@@ -271,6 +271,7 @@ Class PM_EnragedBreacher : PMWrathMonsterBase
         FOMZ G 3 A_Pain;
         Goto See;
     Death:
+        TNT1 A 0 A_StopSound(11);
         FOMD A 5 A_NoBlocking;
         FOMD B 5 PM_Scream();
         FOMD C 5;
