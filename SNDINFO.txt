@@ -348,6 +348,12 @@ Beholder/Cry3 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
 $volume Beholder/Cry 0.5
 
+$random Beholder/BarrageReady { Beholder/BarrageReady1 Beholder/BarrageReady2 Beholder/BarrageReady3 }
+Beholder/BarrageReady1 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady1.ogg"
+Beholder/BarrageReady2 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady2.ogg"
+Beholder/BarrageReady3 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady3.ogg"
+$rolloff Beholder/BarrageReady 400 2200
+
 Beholder/Spit "Sounds/Monsters/Cacodemons/Beholder/BeholderSpit.ogg"
 $limit Beholder/Spit 10
 $volume Beholder/Spit 0.6
