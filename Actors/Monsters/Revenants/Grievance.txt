@@ -761,7 +761,7 @@ Class PM_CopyFiendHomingMissile : PM_FiendHomingMissile
 	
 	override void PostBeginPlay()
 	{
-	 RevenantTracer.PostBeginPlay();
+	 PMProjectileBase.PostBeginPlay();
 	 tex[0] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
 	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
 	 tex[2] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
