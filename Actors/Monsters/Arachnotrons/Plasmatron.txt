@@ -357,7 +357,7 @@ Class PM_PTronBall : Actor
 	}
 }
 
-Class PM_PTronBallSmall : Actor
+Class PM_PTronBallSmall : PMProjectileBase
 {
 	Default
 	{
@@ -369,11 +369,12 @@ Class PM_PTronBallSmall : Actor
 		PROJECTILE;
 		RenderStyle "Add";
 		+BRIGHT
-		+SEEKERMISSILE
 		+FORCEXYBILLBOARD
 		SeeSound "";
 		DeathSound "GenericPlasmaExp";
 		Decal "PM_PlasmatronScorchSmall";
+		PMProjectileBase.WhizSound "PM/PlasmaWhiz";
+		PMProjectileBase.WhizRangeCheck 250;
 	}
 	
 	override void PostBeginPlay()
@@ -391,25 +392,19 @@ Class PM_PTronBallSmall : Actor
     {
        Super.Tick();
        {
-	         if(!IsFrozen())
-			 {
+	     if(!level.IsFrozen())
+	     {
 		      A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: random(1,2),size: 15.0,xoff: frandom(-5.5,6.5),startalphaf: 0.15,fadestepf: -1);
 			  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 1,size: 25.0,startalphaf: 0.35);
 			  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(1,90),size: random(1,10),xoff: frandom(-10,10),yoff: frandom(-10,10),zoff: frandom(-10,10),velx: frandom(-0.5,0.5),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),startalphaf: frandom(0.35,0.85),fadestepf: -1,sizestep: -0.2,rollvel: random(-10,10));
 		      A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(1,5),size: random(10,35),xoff: frandom(-2.5,2.5),yoff: frandom(-2.5,2.5),zoff: frandom(-2.5,2.5),startalphaf: frandom(0.85,1),fadestepf: -1,sizestep: -2,startroll: random(-180,180));
-			 }
+	     }
        }
 	}
 	States
 	{
 		Spawn:
-			DTPR O 1 Bright Light("AvatarFireball1");
-			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
-			Loop;
-		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,0,0.75);
-		Cont:
-			DTPR O 1 Bright Light("AvatarFireball1");
+			DTPR O 1 Bright Light("AvatarFireball1") PM_CheckWhiz();
 			Loop;
 		Death:
 			TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");

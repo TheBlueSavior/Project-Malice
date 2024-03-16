@@ -254,49 +254,38 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
     }
 }
 
-Class PM_SlugBullet : Actor
+Class PM_SlugBullet : PM_BulletTracer
 {
  Default
  {
- Projectile;
- +BLOODSPLATTER 
- +THRUGHOST
- +SEEKERMISSILE
- height 2;
- radius 2;
- speed 35;
- DamageFunction (random(35,45));
- scale 0.85;
- RenderStyle "Add";
- Decal "PM_BulletHoleLarge";
- Alpha 1.0;
+  Speed 35;
+  DamageFunction (random(35,45));
+  Scale 0.85;
+  RenderStyle "Add";
+  Decal "PM_BulletHoleLarge";
+  Alpha 1.0;
  }
+ 
 States
 {
 	Spawn:
         TNT1 A 0;
-		TRCR A 1 BRIGHT Light("AvatarFireball2") A_Quake(1,4,0,100,0);
-        TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
-        Loop;
-    Noise:
-        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,CHANF_DEFAULT,0.50);
-    Cont:
-        TRCR A 1 BRIGHT Light("AvatarFireball2") A_Quake(1,4,0,100,0);
+		TRCR A 1 BRIGHT Light("AvatarFireball2") { PM_CheckWhiz(); A_Quake(1,4,0,100,0); }
         Loop;
 	Death:
-	TNT1 AAAAA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
-	TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
-	TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
-	TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
-	TNT1 AAA 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170);
-	TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-    TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,50);
-	TNT1 AA 0 A_SpawnItemEx("PM_BulletHitFog",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,150);
-    stop;
-  XDeath:
-	 TNT1 A 1 Bright A_RadiusThrust(3000,90);
-     TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-     TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
-     stop;
+	    TNT1 AAAAA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
+	    TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
+	    TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+	    TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
+	    TNT1 AAA 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170);
+	    TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,50);
+	    TNT1 AA 0 A_SpawnItemEx("PM_BulletHitFog",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,150);
+        Stop;
+     XDeath:
+	    TNT1 A 1 Bright A_RadiusThrust(3000,90);
+        TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
+        Stop;
 	}
 }

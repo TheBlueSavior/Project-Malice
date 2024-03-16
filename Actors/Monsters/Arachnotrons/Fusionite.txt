@@ -241,26 +241,26 @@ Class PM_Fusionite : PMUnaffMonsterBase
 	}
 }
 
-Class PM_FusionShot : Actor
+Class PM_FusionShot : PMProjectileBase
 {
 	Default
 	{
-		//Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]"
 		Radius 6;
 		Height 8;
 		Speed 24;
 		FastSpeed 26;
 		DamageFunction (random(15,25));
 		Scale 1.35;
-		RENDERSTYLE "ADD";
+		RenderStyle "Add";
 		+ROLLSPRITE
 		+ROLLCENTER
-		+SEEKERMISSILE
 		+FORCEXYBILLBOARD
 		SeeSound "GenericPlasmaFire";
 		DeathSound "GenericPlasmaExp";
 		Decal "ArachnotronScorch";
-		PROJECTILE;
+		Projectile;
+        PMProjectileBase.WhizSound "PM/PlasmaWhiz";
+        PMProjectileBase.WhizRangeCheck 250;
 	}
 
 	States
@@ -268,102 +268,11 @@ Class PM_FusionShot : Actor
 		Spawn:
 			APPL AAABBB 1 Bright Light("GreenBall4")
 			{
-				A_SetRoll(random(0,259),SPF_INTERPOLATE);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("DTPRA0"),
-				style: STYLE_Add,
-				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-				lifetime: 4,
-				size: 40.0,
-				xoff: random(-8,-12),
-				startalphaf: 0.9,
-				fadestepf: -1,
-				sizestep: -6
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("SPKOG0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-				lifetime: random(1,30),
-				size: frandom(0.2,10),
-				xoff: random(-10,5),
-				yoff: random(-5,5),
-				zoff: random(-5,5),
-				velx: frandom(-0.6,0.6),
-				vely: frandom(-0.6,0.6),
-				velz: frandom(-0.6,0.6),
-				startalphaf: 1.0,
-				fadestepf: -0.5,
-				sizestep: -0.5,
-				startroll: random(-180,180)
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("PBALC0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-				lifetime: 1,
-				size: 95.0,
-				xoff: -10,
-				startalphaf: 0.15
-				);
-			}
-			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
-			Loop;
-		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
-		Cont:
-			APPL AAABBB 1 Bright Light("GreenBall4")
-			{
-				A_SetRoll(random(0,259),SPF_INTERPOLATE);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("DTPRA0"),
-				style: STYLE_Add,
-				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-				lifetime: 4,
-				size: 40.0,
-				xoff: -10,
-				startalphaf: 0.9,
-				fadestepf: -1,
-				sizestep: -6
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("SPKOG0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-				lifetime: random(1,30),
-				size: frandom(0.2,10),
-				xoff: random(-10,5),
-				yoff: random(-5,5),
-				zoff: random(-5,5),
-				velx: frandom(-0.6,0.6),
-				vely: frandom(-0.6,0.6),
-				velz: frandom(-0.6,0.6),
-				startalphaf: 1.0,
-				fadestepf: -0.5,
-				sizestep: -0.5,
-				startroll: random(-180,180)
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("PBALC0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT,
-				lifetime: 1,
-				size: 95.0,
-				xoff: -10,
-				startalphaf: 0.15
-				);
+			  PM_CheckWhiz();
+			  A_SetRoll(random(0,259),SPF_INTERPOLATE);
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 4,size: 40.0,xoff: random(-8,-12),startalphaf: 0.9,fadestepf: -1,sizestep: -6);
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,30),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.5,startroll: random(-180,180));
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("PBALC0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 95.0,xoff: -10,startalphaf: 0.15);
 			}
 			Loop;
 		Death:
@@ -376,24 +285,22 @@ Class PM_FusionShot : Actor
 	}
 }
 
-Class PM_ScatterFusionShot : Actor
+Class PM_ScatterFusionShot : PM_FusionShot
 {
 	Default
 	{
-		//Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]"
 		Radius 8;
 		Height 8;
 		Speed 19;
 		FastSpeed 28;
 		DamageFunction (22);
 		Scale 0.15;
-		RENDERSTYLE "ADD";
+		RenderStyle "Add";
 		+SEEKERMISSILE
 		+FORCEXYBILLBOARD
 		SeeSound "Fusionite/Scattershot"; 
 		DeathSound "HellKnight/BallImpact";
 		Decal "ArachnotronScorch";
-		PROJECTILE;
 	}
 
 	States
@@ -401,108 +308,11 @@ Class PM_ScatterFusionShot : Actor
 		Spawn:
 			DTPR A 1 Bright Light("GreenBall3")
 			{
-				A_SpawnItemEx("PM_GreenFlameTrails",0,0,0,0,0,0,0,128,0);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("DTPRA0"),
-				style: STYLE_Add,
-				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-				lifetime: 6,
-				size: 50.0,
-				xoff: -5,
-				startalphaf: 0.2,
-				fadestepf: -1,
-				sizestep: -1
-				);
-				A_SpawnParticleEx
-				(
-				"218900",
-				TexMan.CheckForTexture("GNSMK0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_ROLL,
-				lifetime: random(60,120),
-				size: 85.0,
-				xoff: -5,
-				startalphaf: 0.45,
-				fadestepf: -1,
-				sizestep: 0.15,
-				startroll: random(-180,180)
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("SPKOG0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-				lifetime: random(1,120),
-				size: frandom(0.2,20),
-				xoff: random(-10,5),
-				yoff: random(-5,5),
-				zoff: random(-5,5),
-				velx: frandom(-0.6,0.6),
-				vely: frandom(-0.6,0.6),
-				velz: frandom(-0.6,0.6),
-				startalphaf: 1.0,
-				fadestepf: -0.5,
-				sizestep: -0.5,
-				startroll: random(-180,180)
-				);
-			}
-			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
-			Loop;
-		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
-		Cont:
-			DTPR A 1 Bright Light("GreenBall3")
-			{
-				A_SpawnItemEx("PM_GreenFlameTrails",0,0,0,0,0,0,0,128,0);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("DTPRA0"),
-				style: STYLE_Add,
-				flags: SPF_FULLBRIGHT|SPF_RELATIVE,
-				lifetime: 6,
-				size: 50.0,
-				xoff: -5,
-				startalphaf: 0.2,
-				fadestepf: -1,
-				sizestep: -1
-				);
-				A_SpawnParticleEx
-				(
-				"218900",
-				TexMan.CheckForTexture("GNSMK0"),
-				style: STYLE_Normal,
-				flags: SPF_RELATIVE,
-				lifetime: random(60,120),
-				size: 40.0,
-				xoff: -5,
-				startalphaf: 0.3,
-				fadestepf: -1,
-				sizestep: 3,
-				startroll: random(-180,180)
-				);
-				A_SpawnParticleEx
-				(
-				"",
-				TexMan.CheckForTexture("SPKOG0"),
-				style: STYLE_Add,
-				flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-				lifetime: random(1,120),
-				size: frandom(0.2,20),
-				xoff: random(-10,5),
-				yoff: random(-5,5),
-				zoff: random(-5,5),
-				velx: frandom(-0.6,0.6),
-				vely: frandom(-0.6,0.6),
-				velz: frandom(-0.6,0.6),
-				startalphaf: 1.0,
-				fadestepf: -0.5,
-				sizestep: -0.5,
-				startroll: random(-180,180)
-				);
+			  PM_CheckWhiz();
+			  A_SpawnItemEx("PM_GreenFlameTrails",0,0,0,0,0,0,0,128,0);
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 6,size: 50.0,xoff: -5,startalphaf: 0.2,fadestepf: -1,sizestep: -1);
+			  A_SpawnParticleEx("218900",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(60,120),size: 85.0,xoff: -5,startalphaf: 0.45,fadestepf: -1,sizestep: 0.15,startroll: random(-180,180));
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.5,startroll: random(-180,180));
 			}
 			Loop;
 		Death:
@@ -519,7 +329,7 @@ Class PM_ScatterFusionShot : Actor
   }
 }
 
-Class PM_SmallFusionShot : Actor
+Class PM_SmallFusionShot : PM_FusionShot
 {
 	Default
 	{
@@ -530,25 +340,17 @@ Class PM_SmallFusionShot : Actor
 		FastSpeed 26;
 		DamageFunction (12);
 		Scale 0.6;
-		RENDERSTYLE "ADD";
 		SeeSound "Fusionite/SmallShot"; 
 		DeathSound "GenericPlasmaExp";
 		Decal "ArachnotronScorch";
 		PROJECTILE;
-		+SEEKERMISSILE
 		+FORCEXYBILLBOARD
 	}
 
 	States
 	{
 		Spawn:
-			FS03 AB 1 Bright Light("GreenBall5") A_SpawnParticle("80FF50",SPF_FULLBRIGHT|SPF_RELATIVE,14,16,0,random(-22,-5),random(-5,5),random(-5,5),0,0,0,0,0,0,1,-1,-2);
-			TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
-			Loop;
-		Noise:
-			TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
-		Cont:
-			FS03 AB 1 Bright Light("GreenBall5") A_SpawnParticle("80FF50",SPF_FULLBRIGHT|SPF_RELATIVE,14,16,0,random(-22,-5),random(-5,5),random(-5,5),0,0,0,0,0,0,1,-1,-2);
+			FS03 AB 1 Bright Light("GreenBall5") { PM_CheckWhiz(); A_SpawnParticle("80FF50",SPF_FULLBRIGHT|SPF_RELATIVE,14,16,0,random(-22,-5),random(-5,5),random(-5,5),0,0,0,0,0,0,1,-1,-2); }
 			Loop;
 		Death:
 			TNT1 A 0;
@@ -556,57 +358,4 @@ Class PM_SmallFusionShot : Actor
 			FS03 HIJ 3 Bright Light("GreenBall5");
 			Stop;
 	}
-}
-
-Class PM_FusionTrail : Actor
-{
-	Default
-	{
-		Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]";
-		+Missile
-		+NoGravity
-		+NoBlockmap
-		+NoInteraction
-		-Solid
-		+Bright
-		Scale 1.5;
-	}
-
-	States
-	{
-		Spawn:
-			TNT1 A 0;
-			TNT1 A 2;
-		Go:
-			FS03 AB 1
-			{
-				A_FadeOut(0.25);
-				A_SetScale(Scale.x-0.4);
-			}
-			Loop;
-    }
-}
-
-Class PM_ScatterFusionTrail : Actor
-{
-	Default
-	{
-		Translation "0:255=%[0,0,0]:[0.8,2.0,0.28]";
-		+Missile
-		+NoGravity
-		+NoBlockmap
-		+NoInteraction
-		-Solid
-		+Bright
-		RENDERSTYLE "ADD";
-		Scale 0.7;
-	}
-
-	States
-	{
-		Spawn:
-			TNT1 A 1;
-			FS03 AB 1 A_FadeOut(0.27);
-			Goto Spawn+1;
-    }
 }
