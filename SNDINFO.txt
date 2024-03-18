@@ -348,11 +348,9 @@ Beholder/Cry3 "Sounds/Monsters/Cacodemons/Beholder/BeholderCry3.ogg"
 $rolloff Beholder/Cry 400 1700
 $volume Beholder/Cry 0.5
 
-$random Beholder/BarrageReady { Beholder/BarrageReady1 Beholder/BarrageReady2 Beholder/BarrageReady3 }
-Beholder/BarrageReady1 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady1.ogg"
-Beholder/BarrageReady2 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady2.ogg"
-Beholder/BarrageReady3 "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady3.ogg"
+Beholder/BarrageReady "Sounds/Monsters/Cacodemons/Beholder/BeholderBarrageReady.ogg"
 $rolloff Beholder/BarrageReady 400 2200
+$pitchset Beholder/BarrageReady 0.85 1.1
 
 Beholder/Spit "Sounds/Monsters/Cacodemons/Beholder/BeholderSpit.ogg"
 $limit Beholder/Spit 10
@@ -1063,6 +1061,15 @@ $volume Host/Death 0.6
 $volume Host/Sight 0.45
 $volume Host/Active 0.55
 $volume Host/Pain 0.6
+
+$random Host/AcidCharge { Host/AcidCharge1 Host/AcidCharge2 Host/AcidCharge3 }
+Host/AcidCharge1 "Sounds/Monsters/Imps/Host/HostAcidReady1.ogg"
+Host/AcidCharge2 "Sounds/Monsters/Imps/Host/HostAcidReady2.ogg"
+Host/AcidCharge3 "Sounds/Monsters/Imps/Host/HostAcidReady3.ogg"
+$rolloff Host/AcidCharge 400 2200
+
+PM/AcidBall "Sounds/Other/PMAcidBall.ogg"
+PM/AcidBallImpact "Sounds/Other/PMAcidBallImpact.ogg"
 
 //Hunger
 $random Afflicted/Sight { AffSight1 AffSight2 }

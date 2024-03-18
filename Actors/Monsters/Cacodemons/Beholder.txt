@@ -107,7 +107,10 @@ Class PM_Beholder : PMGluttonyMonsterBase
 			CAB1 BA 3 A_FaceTarget();
 			Goto See;
 		Eyes:
-		    TNT1 A 0 A_StartSound("Beholder/BarrageReady",14,pitch:frandom(0.75,1));
+		    TNT1 A 0
+			{
+				for (int i = 2; i > 0; i--) A_StartSound("Beholder/BarrageReady",14+i,volume:0.7,pitch:frandom(0.75,1));
+			}
 			CAB1 BBBBBCCC 3 A_FaceTarget();
 			TNT1 A 0 A_StartSound("Enceinte/CumImpact",32,CHANF_OVERLAP);
 			TNT1 A 0 A_StartSound("Afflicted/Puke",CHAN_6);
