@@ -180,7 +180,29 @@ Class PM_Vore : PMEnvyMonsterBase
 	}
 		Goto See;
   CopyLeapPause:
-    BOS6 EEEEEEEEE 1 Light("GreenBall2")
+	BOS6 EEEEEEEEE 1 Light("Greenball4") 
+	{
+      A_FaceTarget();
+	  A_Spawnitemex("PM_GreenFireEffect",10,random(30,25),60,0,0,2);
+	}
+    BOS6 EEEE 1 Light("Greenball4")
+	{
+	  A_FaceTarget();
+	  A_Spawnitemex("PM_GreenFireEffect",10,random(30,25),57,0,0,2);
+	}
+	BOS6 FFFF 1 Light("Greenball3") 
+	{
+	  A_FaceTarget();
+	  A_Spawnitemex("PM_GreenFireEffect",10,random(30,25),45,0,0,2);
+	}
+	BOS6 G 6 Light("Greenball3")
+	{
+	  A_FaceTarget();
+	  A_StartSound("HellKnight/Cast",CHAN_7);
+	  A_SpawnProjectile("PM_SquireFireball",40);
+	}
+	BOS6 G 5 Light("Greenball3") A_FaceTarget();
+    BOS6 GGGGGGGG 1 Light("GreenBall2")
 	{
      for(int a=0;a<random(1,5);a++)
      { A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(15,20),xoff: random(-20,20),yoff: random(-30,30),zoff: random(20,45),velz: frandom(0.5,3)); }

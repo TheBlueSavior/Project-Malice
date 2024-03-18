@@ -14,6 +14,7 @@ Class PM_Squire : PMMonsterBase
 	Mass 1000;
 	Speed 7;
 	PainChance 50;
+	MeleeRange 75;
 	Monster;
 	Bloodtype "PM_BlackBloodBase";
 	Bloodcolor "Black";
@@ -29,7 +30,6 @@ Class PM_Squire : PMMonsterBase
 	Obituary "%o was dispersed by a Squire.";
 	Scale 1.05;
 	Gravity 0.83;
-	Damage 3;
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
 	}
@@ -49,6 +49,7 @@ Class PM_Squire : PMMonsterBase
     Spotted:
         Goto Roar;
 	See:
+	    TNT1 A 0 { bSPRITEFLIP = false; }
 		TNT1 A 0 A_Jump(20,"See2");
 		TNT1 A 0 A_SetSpeed(4);
 		BOS6 AAAA 2 A_Chase();
@@ -61,6 +62,7 @@ Class PM_Squire : PMMonsterBase
 		TNT1 A 0 A_StartSound("Squire/Step");
 		Loop;
 	See2:
+	    TNT1 A 0 { bSPRITEFLIP = false; }
 		TNT1 A 0 A_SetSpeed(12);
 		BOS6 AA 3 A_Chase();
 		TNT1 AA 0 A_Recoil(-0.8);
@@ -91,10 +93,24 @@ Class PM_Squire : PMMonsterBase
 		Goto See;	
 	Melee:
 		BOS6 E 6 A_FaceTarget();
-		BOS6 E 0 A_StartSound("Doom4/Other/MeleeSwing",5,1.0,false,1.1);
+		BOS6 E 0 A_StartSound("Doom4/Other/MeleeSwing",22,CHANF_OVERLAP);
+		BOS6 E 4 { A_Recoil(-2); A_FaceTarget(360,180); }
+		BOS6 F 2 A_Recoil(-4);
+		BOS6 G 4		
+		{
+		  for(int i=3;i>0;i--)
+		   { A_SpawnProjectile("PM_MeleeHitbox",flags:CMF_AIMDIRECTION,pitch); }
+		}
+		TNT1 A 0 { bSPRITEFLIP = true; }
 		BOS6 E 6 A_FaceTarget();
-		BOS6 G 6 A_CustomMeleeAttack(random(10,30),"Doom4/Other/MeleeHit");
-		BOS6 F 2 A_Recoil(2);
+		BOS6 E 0 A_StartSound("Doom4/Other/MeleeSwing",22,CHANF_OVERLAP);
+		BOS6 E 4 { A_Recoil(-2); A_FaceTarget(360,180); }
+		BOS6 F 2 A_Recoil(-4);
+		BOS6 G 4 
+		{
+		  for(int i=3;i>0;i--)
+		   { A_SpawnProjectile("PM_MeleeHitbox",flags:CMF_AIMDIRECTION,pitch); }
+		}
 		Goto See;
 	Missile:
 		TNT1 A 0 A_JumpIfCloser(290,"DecideToCharge");
@@ -149,40 +165,40 @@ Class PM_Squire : PMMonsterBase
 		TNT1 A 0 A_Jump(55,"Roar");
 	    TNT1 A 0 
 	    { 
-	    if(target && Distance3D(target) >= 568)
-	    SetStateLabel("Fireball");
+	     if(target && Distance3D(target) >= 568)
+	      { SetStateLabel("Fireball"); }
 	    }
 		TNT1 A 0 A_JumpIfCloser(256,"ChargeAttack"); //if too close, charges towards target
 		TNT1 A 0 A_StartSound("Squire/LeapReady",13);
 		BOS6 EEEEE 4  A_FaceTarget();
 		BOS6 EEE 5 A_FaceTarget();
+		BOS6 E 2 PM_LeapTo(target, 568, "Fireball");
 		TNT1 A 0 A_StartSound("Squire/Leap",13);
-		BOS6 A 2 PM_LeapTo(target, 568, "SeeNoMissile");
 	LeapLoop:
 		BOS6 FFFF 1 
 		{
-		if(random(1,15) == 1)
-		ThrustThing(random(0,360)*256/360,2,0,0);
-		A_SpawnItemEx("KnightLeapTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		 if(random(1,15) == 1)
+		  { ThrustThing(random(0,360)*256/360,2,0,0); }
+		  A_SpawnItemEx("KnightLeapTrail",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		}
         TNT1 A 0 A_CheckFloor("LeapEnd");
 		Loop;
 		LeapEnd:
-			TNT1 A 0 A_StartSound("Doom4/Monsters/BaronFloorPound",CHAN_7,CHANF_OVERLAP);
-			TNT1 A 0 A_Quake(4,20,0,512);
-			TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",random(-5,5),random(-5,5),0,random(-3,3),random(-5,5),random(5,20),0,SXF_NOCHECKPOSITION);
-            TNT1 AAAAA 0 A_SpawnItemEx("PM_BruiserExplosionFlareEffectLong",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-            TNT1 AAAAA 0 A_SpawnItemEx("PM_BoomSmoke",random(-1,1),random(-1,1),random(2,4),random(-1,1),random(-1,1),random(0,1),0,SXF_NOCHECKPOSITION);
-            TNT1 AA 0 A_SpawnItemEx("PM_BruiserExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-			TNT1 A 0 { if(target && CheckSight(target) && Distance3D(target) < 145) SetStateLabel("DoDamage"); }
-			Goto ResumeLeapEnd;
+		 TNT1 A 0 A_StartSound("Doom4/Monsters/BaronFloorPound",CHAN_7,CHANF_OVERLAP);
+		 TNT1 A 0 A_Quake(4,20,0,512);
+		 TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",random(-5,5),random(-5,5),0,random(-3,3),random(-5,5),random(5,20),0,SXF_NOCHECKPOSITION);
+         TNT1 AAAAA 0 A_SpawnItemEx("PM_BruiserExplosionFlareEffectLong",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+         TNT1 AAAAA 0 A_SpawnItemEx("PM_BoomSmoke",random(-1,1),random(-1,1),random(2,4),random(-1,1),random(-1,1),random(0,1),0,SXF_NOCHECKPOSITION);
+         TNT1 AA 0 A_SpawnItemEx("PM_BruiserExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	     TNT1 A 0 { if(target && CheckSight(target) && Distance3D(target) < 145) SetStateLabel("DoDamage"); }
+		 Goto ResumeLeapEnd;
 		DoDamage:
-			TNT1 A 0 A_BetaSkullAttack;
-			Goto ResumeLeapEnd;
+		 TNT1 A 0 A_BetaSkullAttack;
+		 Goto ResumeLeapEnd;
 		ResumeLeapEnd:
-			BOS6 G 1 A_Stop;
-			BOS6 G 2;
-			Goto SeeNoMissile; 
+		 BOS6 G 1 A_Stop;
+		 BOS6 G 2;
+		 Goto SeeNoMissile; 
 	ChargeAttack: 
 	   TNT1 A 0 A_Jump(60,"Roar");
 	   TNT1 A 0 { bNOTARGETSWITCH = true; }
@@ -197,7 +213,7 @@ Class PM_Squire : PMMonsterBase
 		 A_SpawnProjectile("PM_WeakMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
 	   }
     ChargeAttackMelee:
-	   TNT1 A 0 A_StartSound("Doom4/Other/MeleeSwing",CHAN_AUTO,1.0,false,1.15);
+	   TNT1 A 0 A_StartSound("Doom4/Other/MeleeSwing",22);
 	   TNT1 A 0 { bSLIDESONWALLS = true; }
 	   TNT1 A 0 ThrustThingZ(0,20,0,1);
 	   BOS6 F 5 A_FaceTarget();
@@ -215,9 +231,11 @@ Class PM_Squire : PMMonsterBase
 	Pain:
 		BOS6 H 2;
 		BOS6 H 2 A_Pain;
+		TNT1 A 0 { bSPRITEFLIP = false; }
 		TNT1 A 0 A_Jump(20,"PainRoar");
 		Goto See;
 	Death:
+	    TNT1 A 0 { bSPRITEFLIP = false; }
 		BOS6 I 8 A_SpawnItemEx("PM_BlackMeatChunkLauncher",random(-2,2),random(-2,2),random(20,50),0,0,0,0,SXF_NOCHECKPOSITION);
 		BOS6 J 8 PM_Scream();
 		BOS6 K 8
