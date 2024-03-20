@@ -144,6 +144,8 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 	RealMissile:
         POS1 EEE 6 
 		{
+		  if(user_numbullets <= 0)
+		   { SetStateLabel("NoAmmo"); }
 		  pm_attackloop = random(1,5);
 		  A_FaceTarget(360,180,0,0);
 		  A_SetAngle(angle+random(-10,10));
@@ -154,7 +156,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		{
 		  if(!pm_attackloop)
 		   { SetStateLabel("RMissileEnd"); }
-		  if(!user_numbullets)
+		  if(user_numbullets <= 0)
 		   { SetStateLabel("NoAmmo"); }
 		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("ZombieSoldier/Rifle");
@@ -172,6 +174,8 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		TNT1 A 0 A_StartSound("ZombieSoldier/Attack",CHAN_6);
 		POS1 E 6
 		{
+		  if(user_numbullets <= 0)
+		   { SetStateLabel("NoAmmo"); }
 		  A_FaceTarget(360,180,0,0);
 		  A_SetAngle(angle+random(-10,10));
 		  A_SetPitch(pitch+random(-15,15));
@@ -179,7 +183,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		POS1 E 6 A_FaceTarget(5,5);
         POS1 F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		  if(!user_numbullets)
+		  if(user_numbullets <= 0)
 		   { SetStateLabel("NoAmmo"); }
 		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("ZombieSoldier/Rifle");

@@ -112,6 +112,8 @@ Class PM_ZombieMarine : PMUnaffMonsterBase
 	    UDM2 E 7;
 		UDM2 E 7 
 		{
+		  if(user_numbullets <= 0)
+		   { SetStateLabel("NoAmmo"); }
 		   pm_attackloop = random(3,6);
 		   A_FaceTarget(360,180);
 		   A_SetAngle(angle+random(-10,10));
@@ -122,7 +124,7 @@ Class PM_ZombieMarine : PMUnaffMonsterBase
 		{
 		  if(!pm_attackloop)
 		   { SetStateLabel("RMissileEnd"); }
-		  if(!user_numbullets)
+		  if(user_numbullets <= 0)
 		   { SetStateLabel("NoAmmo"); }
 		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("ZombieSoldier/Rifle");
