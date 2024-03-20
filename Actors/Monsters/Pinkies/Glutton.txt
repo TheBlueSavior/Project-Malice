@@ -15,6 +15,7 @@ Class PM_Glutton : PMGluttonyMonsterBase
 	Mass 400;
 	XScale 1.4;
 	YScale 1.27;
+	MeleeRange 65;
 	Monster;
 	+FLOORCLIP
 	+FORCERADIUSDMG
@@ -63,54 +64,54 @@ Class PM_Glutton : PMGluttonyMonsterBase
 	RoarNoAnim:
 	        TNT1 A 0 A_StartSound("Glutton/Sight",CHAN_5);
 	See:
-			TNT1 A 0 A_SetSpeed(35);
-			TNT1 A 0 A_Jump(26,"Roar");
-			BPWA A 8 Fast
-			{
-			A_Chase();
-		    A_StartSound("demonstep", 3);
-			}
-			TNT1 A 0 A_SetSpeed(5);
-			BPWA BB 6 Fast A_Chase();
-			TNT1 A 0 A_SetSpeed(35);
-			BPWA C 8 Fast
-			{
-			A_Chase();
-			A_StartSound("demonstep", 3);
-			}
-			TNT1 A 0 A_SetSpeed(5);
-			BPWA DD 6 Fast A_Chase();
-			TNT1 A 0 A_Jump(10,"Sprint");
-			Loop;
+		TNT1 A 0 A_SetSpeed(35);
+		TNT1 A 0 A_Jump(26,"Roar");
+		BPWA A 8 Fast
+		{
+		 A_Chase();
+		 A_StartSound("demonstep", 3);
+		}
+		TNT1 A 0 A_SetSpeed(5);
+		BPWA BB 6 Fast A_Chase();
+		TNT1 A 0 A_SetSpeed(35);
+		BPWA C 8 Fast
+		{
+		 A_Chase();
+		 A_StartSound("demonstep", 3);
+		}
+		TNT1 A 0 A_SetSpeed(5);
+		BPWA DD 6 Fast A_Chase();
+		TNT1 A 0 A_Jump(10,"Sprint");
+		Loop;
 	Sprint:
-			TNT1 A 0 A_SetSpeed(35);
-			BPWA A 4 Fast
-			{
-			A_Recoil(-1.5);
-			A_Chase("Melee",null);
-		    A_StartSound("hoofstep", 3);
-			}
-			TNT1 A 0 A_SetSpeed(5);
-			BPWA BB 3 Fast
-			{
-			A_Chase("Melee",null);
-			A_Recoil(-1.5);
-			}
-			TNT1 A 0 A_SetSpeed(35);
-			BPWA C 4 Fast
-			{
-			A_Recoil(-1.5);
-			A_Chase("Melee",null);
-			A_StartSound("hoofstep", 3);
-			}
-			TNT1 A 0 A_SetSpeed(5);
-			BPWA DD 3 Fast
-			{
-			A_Chase("Melee",null);
-			A_Recoil(-1.5);
-			}
-			TNT1 A 0 A_Jump(20,"See");
-			Loop;
+		TNT1 A 0 A_SetSpeed(35);
+		BPWA A 4 Fast
+		{
+		 A_Recoil(-1.5);
+		 A_Chase("Melee",null);
+		 A_StartSound("hoofstep", 3);
+		}
+		TNT1 A 0 A_SetSpeed(5);
+		BPWA BB 3 Fast
+		{
+		 A_Chase("Melee",null);
+		 A_Recoil(-1.5);
+		}
+		TNT1 A 0 A_SetSpeed(35);
+		BPWA C 4 Fast
+		{
+		 A_Recoil(-1.5);
+		 A_Chase("Melee",null);
+		 A_StartSound("hoofstep", 3);
+		}
+		TNT1 A 0 A_SetSpeed(5);
+		BPWA DD 3 Fast
+		{
+		 A_Chase("Melee",null);
+		 A_Recoil(-1.5);
+		}
+		TNT1 A 0 A_Jump(20,"See");
+		Loop;
 	Roar:
 		TNT1 A 0;
 		TNT1 A 0 A_CheckSight("See");
@@ -120,30 +121,30 @@ Class PM_Glutton : PMGluttonyMonsterBase
 		BPBI BBBBABBAAA 5 A_FaceTarget;
 		Goto Sprint;
 	Melee:
-		BPBI AB 8 A_FaceTarget;
-		BPBI C 20 A_SargAttack;
+		BPBI AB 5 A_FaceTarget(360,180);
+		BPBI BBBBB 2 { A_Recoil(-1); A_SpawnProjectile("PM_MeleeHitbox",flags:CMF_AIMDIRECTION,pitch); }
+		BPBI CCCCC 5;
 		Goto See;
 	Missile:
-			TNT1 A 0 A_StartSound("Afflicted/Puke",CHAN_6);
-			BPBI CCAABB 3
-			{
-			A_FaceTarget();
-			A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
-			}
-			BPBI B 0 A_StartSound("Glutton/Spit",CHAN_5);
-			BPBI BBB 1 A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
-			TNT1 A 0 A_FaceTarget;
-			BPBI BBBBB 0 A_SpawnProjectile("PM_GluttonBloodshot",38,0,random(-5,5),CMF_OFFSETPITCH,random(5,-17));
-			TNT1 A 0 A_FaceTarget;
-			BPBI BBBBBBBBB 1 A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
-			BPBI BA 5 A_FaceTarget;
-			Goto See;
+		TNT1 A 0 A_StartSound("Afflicted/Puke",CHAN_6);
+		BPBI CCAABB 3
+		{
+		 A_FaceTarget();
+	     A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
+		}
+		BPBI B 0 A_StartSound("Glutton/Spit",CHAN_5);
+		BPBI BBB 1 A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
+		TNT1 A 0 A_FaceTarget;
+		BPBI BBBBB 0 A_SpawnProjectile("PM_GluttonBloodshot",38,0,random(-5,5),CMF_OFFSETPITCH,random(5,-17));
+		TNT1 A 0 A_FaceTarget;
+		BPBI BBBBBBBBB 1 A_SpawnProjectile("PM_TumorBurstBlood",38,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
+		BPBI BA 5 A_FaceTarget;
+		Goto See;
 	Pain:
 		BPPA A 2;
 		TNT1 A 0 A_StopSound(CHAN_7);
 		BPPA A 14 A_Pain;
 		Goto See;
-		
 	Death:
 		BPDE A 1;
 		BPDE A 8 PM_Scream();

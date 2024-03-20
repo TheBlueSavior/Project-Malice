@@ -464,7 +464,8 @@ Class PM_NailgunnerNail : PM_BulletTracer
    Height 4;
    +CANNOTPUSH
    +NODAMAGETHRUST
-   Decal "bulletchip";
+   RenderStyle "Normal";
+   Decal "BulletChip";
   }
   States
   {

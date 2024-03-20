@@ -215,6 +215,7 @@ Class PM_MeleeHitbox : PM_FastMeleeHitbox //[NERU] used for pinkies
   {
    Speed 12;
    FastSpeed 12;
+   -RIPPER
   }
   States
   {

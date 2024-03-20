@@ -3311,16 +3311,15 @@ $random BigExplosionDistant { BEDistant1 BEDistant2 BEDistant3 }
 BEDistant1 "Sounds/Other/BigExplosionDistant1.ogg"
 BEDistant2 "Sounds/Other/BigExplosionDistant2.ogg"
 BEDistant3 "Sounds/Other/BigExplosionDistant3.ogg"
-$volume BigExplosionDistant 0.8
 
 $limit ZombieRifleDistant 20
 $limit GunnerRifleDistant 20
 $limit ShotgunnerGunDistant 20
 $limit BigExplosionDistant 20
 
-$rolloff ZombieRifleDistant 100 3800
+$rolloff ZombieRifleDistant 200 3800
 $rolloff GunnerRifleDistant 200 3800
-$rolloff ShotgunnerGunDistant 300 3800
+$rolloff ShotgunnerGunDistant 200 3800
 $rolloff BigExplosionDistant 200 4000
 $volume BigExplosionDistant 0.75
 
@@ -5659,8 +5658,6 @@ $random Wendigo/Pain { Wendigo/Pain1 Wendigo/Pain2 }
 Wendigo/Pain1 "Sounds/Monsters/Imps/Wendigo/WendigoPain1.ogg"
 Wendigo/Pain2 "Sounds/Monsters/Imps/Wendigo/WendigoPain2.ogg"
 
-$volume Wendigo/Pain2 0.8
-
 $random Wendigo/Sight { Wendigo/Sight1 Wendigo/Sight2 Wendigo/Sight3 Wendigo/Sight4 Wendigo/Sight5 }
 Wendigo/Sight1 "Sounds/Monsters/Imps/Wendigo/WendigoSight1.ogg"
 Wendigo/Sight2 "Sounds/Monsters/Imps/Wendigo/WendigoSight2.ogg"
@@ -5669,6 +5666,13 @@ Wendigo/Sight4 "Sounds/Monsters/Imps/Wendigo/WendigoSight4.ogg"
 Wendigo/Sight5 "Sounds/Monsters/Imps/Wendigo/WendigoSight5.ogg"
 
 $rolloff Wendigo/Sight 200 1000
+
+$volume Wendigo/Sight 0.65
+$volume Wendigo/Idle 0.65
+$volume Wendigo/Melee 0.65
+$volume Wendigo/Lunge 0.65
+$volume Wendigo/Pain 0.65
+$volume Wendigo/Death 0.65
 
 //Sawcubus
 

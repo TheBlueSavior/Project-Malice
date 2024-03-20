@@ -304,14 +304,8 @@ Class PM_BelphegorChainShot : PM_NailgunnerNail
 				A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 15, size: frandom(80,120.0), xoff: -13, startalphaf: frandom(0.5,0.8), fadestepf: 0.1, sizestep: -10, startroll: random(-180,180));
 			}
 		Go:
-			BLAD A 1 A_SpawnItemEx("PM_BelphegorChainShotBlur");
-			TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
-			loop;
-		Noise:
-			TNT1 A 0 A_StartSound("PM/BulletWhiz",3);
-		Cont:
-			BLAD A 1 A_SpawnItemEx("PM_BelphegorChainShotBlur");
-			loop;
+			BLAD A 1 { PM_CheckWhiz(); A_SpawnItemEx("PM_BelphegorChainShotBlur"); }
+			Loop;
 		Death:
 			BLAD A 0
 			{
