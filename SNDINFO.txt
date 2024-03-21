@@ -5966,9 +5966,9 @@ Sharpshooter/ShotDistant "Sounds/Monsters/Chaingunners/Sharpshooter/Sharpshooter
 Sharpshooter/Reload "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterReload.ogg"
 Sharpshooter/Aim "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterAim.ogg"
 
-$rolloff Sharpshooter/Aim 500 2400
+$rolloff Sharpshooter/Aim 300 2400
 $rolloff Sharpshooter/Shot 500 2400
-$rolloff Sharpshooter/ShotDistant 200 4000
+$rolloff Sharpshooter/ShotDistant 600 4500
 
 //Mecha-Aranea
 PMGreaterSigil "Sounds/Monsters/Arachnotrons/MechaAranea/GreaterSigilCopy.ogg"
