@@ -1,6 +1,5 @@
 Class PM_DecayedCommando : PMPestilenceMonsterBase
 {
-  int user_numbullets;
   Default
   {
   //$Category "PM_Monsters/Chaingunners"

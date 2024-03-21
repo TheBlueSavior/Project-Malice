@@ -5980,11 +5980,17 @@ MechaAraneaBeamFire "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamFir
 MechaAraneaBeamCooldown "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCooldow.ogg"
 MechaAraneaBeamCharge "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCharge.ogg"
 
-$rolloff MechaAraneaBeamFire 500 2000
-$rolloff MechaAraneaBeamCooldown 400 1500
-$rolloff MechaAraneaReady 400 1500
-$rolloff MechaAraneaReadyAlt 400 1500
+Aranea/ArcCharge "Sounds/Monsters/Arachnotrons/MechaAranea/AraneaArcCharge.ogg"
+Aranea/ArcFire "Sounds/Monsters/Arachnotrons/MechaAranea/AraneaArcFire.ogg"
+
+$rolloff MechaAraneaBeamFire 500 2700
+$rolloff MechaAraneaBeamCooldown 400 2200
+$rolloff MechaAraneaReady 400 2200
+$rolloff MechaAraneaReadyAlt 400 2200
 $rolloff MechaAraneaBeamCharge 600 2000
+
+$rolloff Aranea/ArcCharge 300 2500
+$rolloff Aranea/ArcFire 300 2500
 
 $random MechaAranea/Active { MechaAranea/Active1 MechaAranea/Active2 MechaAranea/Active3 MechaAranea/Active4 MechaAranea/Active5 MechaAranea/Active6 MechaAranea/Active7 MechaAranea/Active8 MechaAranea/Active9 }
 MechaAranea/Active1 "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaActive1.ogg"

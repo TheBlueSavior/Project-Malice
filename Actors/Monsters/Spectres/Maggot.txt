@@ -39,7 +39,7 @@ Class PM_Maggot : PMLustMonsterBase
 	  bFRIGHTENED = false;
 	 if(alpha <= 1)
 	  A_FadeIn(0.1,0);
-	 if(target && CheckSight(target) && CheckIfInTargetLOS(20,JLOSF_DEADNOJUMP,765,0) && random(1,30) == 1)
+	 if(target && CheckSight(target) && CheckIfInTargetLOS(10,JLOSF_DEADNOJUMP,765,0) && random(1,30) == 1)
 	  SetStateLabel("Evade");
 	 A_Chase();
 	}
@@ -97,9 +97,10 @@ Class PM_Maggot : PMLustMonsterBase
 			TNT1 A 0 A_Jump(20,"Phase");
 			Loop;
         Evade:
-		    MAG_ E 15 {
-			A_ChangeVelocity(0,randompick(-6,6,-12,12),8,CVF_RELATIVE|CVF_REPLACE);
-			A_FaceTarget();
+		    MAG_ E 15 
+			{
+			 A_ChangeVelocity(0,randompick(-6,6,-12,12),8,CVF_RELATIVE|CVF_REPLACE);
+			 A_FaceTarget();
 			}
 			Goto See;
 		Phase:
@@ -107,7 +108,7 @@ Class PM_Maggot : PMLustMonsterBase
 			{
 			 if(alpha < 0)
 			 SetStateLabel("PhaseHunt");
-			A_FadeOut(0.1,0);
+			 A_FadeOut(0.1,0);
 			}
 			Loop;
 		PhaseHunt:
@@ -122,36 +123,55 @@ Class PM_Maggot : PMLustMonsterBase
 			MAG_ AABB 1 Fast PM_MaggotRetreat();
 			TNT1 A 0 A_StartSound("Imp/Step",10);
 			MAG_ CCDD 1 Fast PM_MaggotRetreat();
-			TNT1 A 0 {
-			A_StartSound("Imp/Step",10);
-			if(target && !CheckSight(target))
-			   SetStateLabel("See");
-			return A_Jump(13,"See");
+			TNT1 A 0 
+			{
+			  A_StartSound("Imp/Step",10);
+			  if(target && !CheckSight(target))
+			   { SetStateLabel("See"); }
+			  return A_Jump(13,"See");
 			}
 			Goto Retreat+1;
 		Missile:
-		    TNT1 A 0 A_Jump(76,"See");
-		Leap:
+		    TNT1 A 0
+			{
+			 if(target && CheckSight(target) && Distance3D(target) < 289)
+			  SetStateLabel("Melee");
+			}
+	    Leap:
 			TNT1 A 0 A_StartSound("Maggot/Attack",11);
 			MAG_ AAAA 2 { if(alpha < 0)
-			A_FadeIn(0.5,0);
+			A_FadeIn(0.8,0);
 			A_FaceTarget(); }
 			MAG_ E 10 A_FaceTarget();
-			TNT1 A 0 {
-			if(target && CheckSight(target))
-			 {
-			  if(Distance3D(target) < 900)
-			   A_ChangeVelocity(28,0,10,CVF_RELATIVE|CVF_REPLACE);
-			  if(Distance3D(target) < 400)
-			   A_ChangeVelocity(20,0,6,CVF_RELATIVE|CVF_REPLACE);
-			 }
+			TNT1 A 0 PM_LeapTo(target,768,"Retreat");
+		LeapLoop:
+			MAG_ EEEEFFFFGGGGG 1 
+			{ 
+			 if(random(1,15) == 1)
+		       { ThrustThing(random(0,360)*256/360,2,0,0); }
+			 A_SpawnProjectile("PM_FastMeleeHitbox",20,0,0,2);
+			 A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE);
 			}
-			MAG_ EEFF 1;
-			MAG_ GGGGG 3 A_SpawnProjectile("PM_FastMeleeHitbox",20,0,0,2);
-			TNT1 A 0 A_SpawnProjectile("PM_FastMeleeHitbox",20,0,0,2);
+			TNT1 A 0 A_CheckFloor("LeapEnd");
+			Goto LeapLoop+9;
+		LeapEnd:
+			MAG_ G 5;
 			TNT1 A 0 A_Jump(56,"Retreat");
 			TNT1 A 0 A_Jump(35,"Phase");
 			Goto See;
+		Melee:
+		    TNT1 A 0 
+			{
+			 if(alpha < 0)
+			  A_FadeIn(0.5,0);
+			}
+			MAG_ EEEEE 1 A_FaceTarget();
+			TNT1 A 0 A_StartSound("FeralImp/Swing",12,CHANF_OVERLAP);
+			MAG_ F 2 { ThrustThingZ(0,13,0,0); A_Recoil(-15); A_FaceTarget(); }
+			MAG_ GGG 1 A_SpawnProjectile("PM_MeleeHitbox",5,0,0,2);
+			MAG_ G 12 A_FaceTarget();
+			TNT1 A 0 A_Jump(67,"Retreat");
+		    Goto See;
 		Pain:
 			MAG_ H 9 A_Pain;
 			TNT1 A 0 A_Jump(45,"Retreat");

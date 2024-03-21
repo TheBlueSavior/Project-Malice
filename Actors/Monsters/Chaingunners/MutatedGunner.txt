@@ -1,6 +1,5 @@
 Class PM_MutatedGunner : PMGluttonyMonsterBase
 {
-    int user_numbullets;
 	Default
 	{
 	PMMonsterBase.CodexLore

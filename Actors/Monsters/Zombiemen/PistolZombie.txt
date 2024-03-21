@@ -1,6 +1,5 @@
 Class PM_PistolZombie : PMUnaffMonsterBase
 { 
-	int user_numbullets;
 	Default
 	{
 	PMMonsterBase.CodexLore 
@@ -182,7 +181,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 	StandoffMissile2:
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		if(user_numbullets < 0) { SetStateLabel("NoAmmo"); }
+		if(user_numbullets <= 0) { SetStateLabel("NoAmmo"); }
 		A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("PistolZombie/Fire");
 		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
@@ -230,7 +229,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 	MissileLoop:
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
 		{
-		if(user_numbullets < 0) { SetStateLabel("NoAmmo"); }
+		if(user_numbullets <= 0) { SetStateLabel("NoAmmo"); }
 		A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("PistolZombie/Fire");
 		A_SpawnProjectile("PM_BulletTracer",43,5,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-3, 3));

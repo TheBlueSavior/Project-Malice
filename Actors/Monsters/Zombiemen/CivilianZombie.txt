@@ -3,7 +3,6 @@ Class PM_CivilianZombie : PMLustMonsterBase
     int shotcount;
 	int grenadecount;
 	int throwrange;
-	int user_numbullets;
 	Default
 	{
 	PMMonsterBase.CodexLore

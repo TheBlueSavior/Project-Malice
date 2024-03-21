@@ -1,7 +1,6 @@
 class PM_WolfSS_MP40 : PMMonsterBase
 {
-	int user_numbullets, Nades;
-
+	int Nades;
 	Default
 	{
 		//$Category "PM_Monsters/Zombiemen"

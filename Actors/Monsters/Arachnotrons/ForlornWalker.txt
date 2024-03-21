@@ -32,7 +32,6 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 	}
 	
 	bool shielded;
-	int user_numbullets;
 	
 	void SlothShield(bool act)
 	{

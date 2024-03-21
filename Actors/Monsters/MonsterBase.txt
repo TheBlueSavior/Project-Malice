@@ -20,6 +20,7 @@ class PMMonsterBase : Actor abstract
 
 	int pm_attackloop;
 	int pm_projangle;
+	int user_numbullets;
 	transient CVar StealthOption;
 
 	// [Ace] If there is enough space, monsters will readjust their height so the collision box matches their sprite.

@@ -1,6 +1,5 @@
 Class PM_EnragedBreacher : PMWrathMonsterBase
 { 
-    int user_numbullets;
     int user_numbreaths;
 	Default
 	{

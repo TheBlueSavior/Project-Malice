@@ -1,6 +1,5 @@
 Class PM_ZombieMarine : PMUnaffMonsterBase
 { 
-    int user_numbullets;
 	int direction;
 	bool standoff;
 	Default

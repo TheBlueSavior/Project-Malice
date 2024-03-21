@@ -4,7 +4,6 @@
 //===========================================================================
 Class PM_Nailgunner : PMUnaffMonsterBase
 {
-  int user_numbullets;
   Default
   {
   PMMonsterBase.CodexLore 

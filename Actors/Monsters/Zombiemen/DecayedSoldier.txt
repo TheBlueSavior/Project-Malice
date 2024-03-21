@@ -1,6 +1,5 @@
 Class PM_DecayedSoldier : PMPestilenceMonsterBase
 { 
-	int user_numbullets;
 	Default
 	{
 	//$Category "PM_Monsters/Zombiemen"
@@ -99,7 +98,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 	Missile1:
         POSK F 2 Light("YellowMediumFlicker2") 
 		{
-		if(user_numbullets < 0)
+		if(user_numbullets <= 0)
 		SetStateLabel("NoAmmo");
 		if(pm_attackloop < 0)
 		SetStateLabel("MissileEnd");
@@ -126,7 +125,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 		}
         POSK F 2 Light("YellowMediumFlicker2")
 		{
-		if(user_numbullets < 0)
+		if(user_numbullets <= 0)
 		SetStateLabel("NoAmmo");
 		if(pm_attackloop < 0)
 		SetStateLabel("MissileEnd");

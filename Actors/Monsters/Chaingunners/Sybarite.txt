@@ -1,6 +1,5 @@
 Class PM_Sybarite : PMLustMonsterBase
 {
-  int user_numbullets;
   Default
   {
   PMMonsterBase.CodexLore 
@@ -76,11 +75,12 @@ Class PM_Sybarite : PMLustMonsterBase
 	if(user_numbullets <= 0)
 	 SetStateLabel("NoAmmo");
 	}
-    SY_A FFFFFF 5 Bright {
-	A_FaceTarget(5,5);
-	A_StartSound("Sybarite/Autocannon",11);
-	A_StartSound("GunnerRifleDistant",12,CHANF_OVERLAP);
-	A_SpawnProjectile("PM_HellionFlare",32,15,frandom(-4.5,4.5),CMF_AIMDIRECTION,pitch+frandom(-3.5,3.5));
+    SY_A FFFFFF 5 Bright 
+	{
+	  A_FaceTarget(5,5);
+	  A_StartSound("Sybarite/Autocannon",11);
+	  A_StartSound("GunnerRifleDistant",12,CHANF_OVERLAP);
+	  A_SpawnProjectile("PM_HellionFlare",32,15,frandom(-4.5,4.5),CMF_AIMDIRECTION,pitch+frandom(-3.5,3.5));
 	}
 	SY_A E 5 { A_StartSound("Sybarite/SlotIn",12); user_numbullets--; pm_attackloop--; }
 	Loop;
@@ -95,10 +95,11 @@ Class PM_Sybarite : PMLustMonsterBase
 	if(user_numbullets <= 0)
 	 SetStateLabel("NoAmmo");
 	}
-    SY_A F 5 Bright {
-	A_FaceTarget(5,5);
-	A_StartSound("Sybarite/GrenadeLaunch",11);
-	A_SpawnProjectile("PM_SybGrenade",32,15,frandom(-2.5,2.5),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-1,-8));
+    SY_A F 5 Bright 
+	{
+	 A_FaceTarget(5,5);
+	 A_StartSound("Sybarite/GrenadeLaunch",11);
+	 A_SpawnProjectile("PM_SybGrenade",32,15,frandom(-2.5,2.5),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-1,-8));
 	}
 	SY_A E 20 { A_StartSound("Sybarite/SlotIn",12); user_numbullets--; pm_attackloop--; }
 	Loop;

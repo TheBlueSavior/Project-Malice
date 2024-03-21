@@ -1,6 +1,5 @@
 Class PM_FallenShotgunner : PMUnaffMonsterBase
 {
-   int user_numbullets;
    Default
    {
    PMMonsterBase.CodexLore 

@@ -1,6 +1,5 @@
 Class PM_Pregnant : PMLustMonsterBase
 { 
-    int user_numbullets;
 	Default
 	{
 	 PMMonsterBase.CodexLore
@@ -102,7 +101,7 @@ Class PM_Pregnant : PMLustMonsterBase
 		TNT1 A 0 A_Jump(60,"Missile2");
 	RealMissile:
 	    PRG_ E 7 { if(user_numbullets <= 0) { SetStateLabel("NoAmmo"); } }
-		PRG_ E 7 
+		PRG_ E 15 
 		{
 		   if(random(1,2) == 1)
 		    A_StartSound("Pregnant/Attack",12);
@@ -114,8 +113,6 @@ Class PM_Pregnant : PMLustMonsterBase
 	RMissileLoop:
         PRG_ F 1 BRIGHT Light("YellowMediumFlicker2") 
 		{
-		  if(user_numbullets <= 0)
-		   { SetStateLabel("NoAmmo"); }
 		  if(!pm_attackloop)
 		   { SetStateLabel("RMissileEnd"); }
 		  A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP,volume:0.55);

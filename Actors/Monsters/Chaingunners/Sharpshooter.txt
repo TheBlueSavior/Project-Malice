@@ -1,6 +1,5 @@
 Class PM_Sharpshooter : PMEnvyMonsterBase
 {
-  int user_numbullets;
   int retreat;
   int annoyed;
   int standoff;
@@ -76,7 +75,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
   Spotted:
     TNT1 A 0 { PM_AlertSound(); }
   See:
-    TNT1 A 0 { standoff == 0; A_SetSpeed(12); bMISSILEMORE = false; bFRIGHTENED = false; }
+    TNT1 A 0 { standoff == 0; A_SetSpeed(12); bMISSILEMORE = false; }
     SN0P AABB 3 PM_SharpshooterChase();
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
 	SN0P CCDD 3 PM_SharpshooterChase();
@@ -100,11 +99,9 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	TNT1 A 0 A_CheckSight("ZReload");
 	Goto ReloadRetreat+1;
   Missile:
-    TNT1 A 0 A_Jump(85,"StandoffCheck");
+    TNT1 A 0 A_Jump(140,"StandoffCheck");
     SN0P E 5
     {
-     if(user_numbullets <= 0)
-      { SetStateLabel("NoAmmo"); }
      A_FaceTarget(360,180);
      A_SetAngle(angle+random(-10,10));
      A_SetPitch(pitch+random(-15,15));
@@ -127,8 +124,8 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	}
     SN0P F 2 Bright Light("AvatarFireball2") 
     {
-	 if(annoyed == 2)
-	  { annoyed -= 2; }
+	 if(annoyed >= 2)
+	  { annoyed = 0; }
 	 PM_LeadTarget(56);
      A_StartSound("Sharpshooter/Shot",CHAN_5,CHANF_OVERLAP);
      A_StartSound("Sharpshooter/ShotDistant",CHAN_7,CHANF_OVERLAP);
@@ -194,12 +191,20 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
      SN0P AAAABB 2;
      Goto See;
   Retreat:
-     TNT1 A 0
-	 {
-	  bFRIGHTENED = true;
-	  retreat = random(20,30);
-	  annoyed++;
-	 }
+     TNT1 A 0 { bFRIGHTENED = true; }
+     SN0P AABB 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+     SN0P CCDD 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+     SN0P AABB 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+     SN0P CCDD 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+     SN0P AABB 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+     SN0P CCDD 2 A_Chase(null,null);
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 TNT1 A 0 { bFRIGHTENED = false; annoyed++; }
 	 Goto See;
   Backup:
      SN0P DDCC 2 { A_FaceTarget(); A_Recoil(3); }
@@ -225,8 +230,8 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	}
 	 Goto See;
   Pain:
-     SN0P G 3;
-     SN0P G 3 A_Pain;
+     SN0P G 3 { bFRIGHTENED = false; }
+     SN0P G 5 A_Pain;
      Goto See;
   Death:
      SN0D A 5;

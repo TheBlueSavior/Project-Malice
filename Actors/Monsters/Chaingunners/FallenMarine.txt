@@ -1,7 +1,6 @@
 
 Class PM_FallenMarine : PMUnaffMonsterBase
 {
-  int user_numbullets;
   Default
   {
   PMMonsterBase.CodexLore

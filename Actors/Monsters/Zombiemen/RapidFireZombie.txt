@@ -11,7 +11,7 @@ Class PM_RFZombie: PMUnaffMonsterBase
 			Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
 			PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-22),"ff2424",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 0.06, offset: (relOff.X, relOff.Y, 35),baseTime: 1,fadeTime: 0);
 		}
-    int user_numbullets;
+		
 	Default
 	{
 	PMMonsterBase.CodexLore

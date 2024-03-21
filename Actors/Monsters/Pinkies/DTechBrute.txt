@@ -1,6 +1,5 @@
 Class PM_DemonTechBrute : PMWarMonsterBase
 { 
-    int user_numbullets;
 	Default
 	{
 	//$Category "PM_Monsters/Pinkies"

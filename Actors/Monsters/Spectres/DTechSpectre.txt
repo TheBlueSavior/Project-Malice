@@ -1,6 +1,5 @@
 Class PM_DemonTechSpectre : PMWarMonsterBase
 { 
-    int user_numbullets;
 	Default
 	{
 	//$Category "PM_Monsters/Spectres"
