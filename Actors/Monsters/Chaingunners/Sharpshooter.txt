@@ -79,7 +79,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
     TNT1 A 0 { standoff == 0; A_SetSpeed(12); bMISSILEMORE = false; bFRIGHTENED = false; }
     SN0P AABB 3 PM_SharpshooterChase();
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-	SN0P AABB 3 PM_SharpshooterChase();
+	SN0P CCDD 3 PM_SharpshooterChase();
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
 	TNT1 A 0 
 	{
@@ -94,7 +94,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
     TNT1 A 0 { bFRIGHTENED = true; }
     SN0P AABB 2 A_Chase(null,null);
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-    SN0P AABB 2 A_Chase(null,null);
+    SN0P CCDD 2 A_Chase(null,null);
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
 	TNT1 A 0 A_Jump(25,"ZReload");
 	TNT1 A 0 A_CheckSight("ZReload");
@@ -202,15 +202,15 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	 }
 	 Goto See;
   Backup:
-     SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+     SN0P DDCC 2 { A_FaceTarget(); A_Recoil(3); }
 	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 SN0P BBAA 2 { A_FaceTarget(); A_Recoil(3); }
 	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 SN0P DDCC 2 { A_FaceTarget(); A_Recoil(3); }
 	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 SN0P BBAA 2 { A_FaceTarget(); A_Recoil(3); }
 	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
-	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 SN0P DDCC 2 { A_FaceTarget(); A_Recoil(3); }
 	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
 	 TNT1 A 0 
 	 { 
