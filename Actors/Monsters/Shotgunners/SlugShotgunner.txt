@@ -140,10 +140,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
 		TNT1 A 0 A_Recoil(6);
 		SPS4 F 5 Light("YellowMediumFlicker2")
 			{
-			A_SpawnProjectile("BulletFlare", 32, 15, 15, 0);
-			A_SpawnProjectile("BulletFlare", 32, 15, 15, 0);
 			A_SpawnProjectile("PM_SlugBullet",35,7,0,CMF_AIMDIRECTION,pitch+frandom(-3,3));
-			A_SpawnProjectile("BulletFlare", 32, 14, 15, 0);
 		    A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
 		    A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
 		    A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
@@ -264,13 +261,22 @@ Class PM_SlugBullet : PM_BulletTracer
   RenderStyle "Add";
   Decal "PM_BulletHoleLarge";
   Alpha 1.0;
+  PMProjectileBase.WhizSound "PM/HeavyBulletWhiz";
  }
  
 States
 {
-	Spawn:
-        TNT1 A 0;
-		TRCR A 1 BRIGHT Light("AvatarFireball2") { PM_CheckWhiz(); A_Quake(1,4,0,100,0); }
+   Spawn:
+      TNT1 A 0;
+	  TNT1 A 0
+	  {
+	   for(int i=random(4,8);i>0;i--)
+	    { A_SpawnParticleEx( "#d2d2d2", tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,250),size: frandom(10,50), xoff: -25, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),startalphaf: frandom(0.3,0.5), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1)); }
+	   A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4), size: frandom(150,200), xoff: -22, startalphaf: frandom(0.75,1), sizestep: frandom(0.0,3),startroll: random(-180,180) );
+	   A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4), size: frandom(150,300), xoff: -22, startalphaf: 1.0, sizestep: frandom(0.0,3),startroll: random(-180,180) );
+	  }
+	Go:
+		TRCR A 1 Bright { PM_CheckWhiz(); A_Quake(1,4,0,100,0); }
         Loop;
 	Death:
 	    TNT1 AAAAA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);

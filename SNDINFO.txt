@@ -495,6 +495,11 @@ PM/BulletWhiz5 "Sounds/Other/PMBulletWhiz5.ogg"
 PM/BulletWhiz6 "Sounds/Other/PMBulletWhiz6.ogg"
 PM/BulletWhiz7 "Sounds/Other/PMBulletWhiz7.ogg"
 
+$random PM/HeavyBulletWhiz { PM/HeavyBulletWhiz1 PM/HeavyBulletWhiz2 PM/HeavyBulletWhiz3 }
+PM/HeavyBulletWhiz "Sounds/Other/PMHeavyBulletWhiz1.ogg"
+PM/HeavyBulletWhiz "Sounds/Other/PMHeavyBulletWhiz2.ogg"
+PM/HeavyBulletWhiz "Sounds/Other/PMHeavyBulletWhiz3.ogg"
+
 $random PM/PlasmaWhiz { PM/PlasmaWhiz1 PM/PlasmaWhiz2 PM/PlasmaWhiz3 PM/PlasmaWhiz4 PM/PlasmaWhiz5 PM/PlasmaWhiz6 }
 PM/PlasmaWhiz1 "Sounds/Other/PMPlasmaWhiz1.ogg"
 PM/PlasmaWhiz2 "Sounds/Other/PMPlasmaWhiz2.ogg"
@@ -4363,6 +4368,8 @@ PM/GunClick        "Sounds/Other/PMGunClick.ogg" //oh shit
 
 PM/PistolMagOut    "Sounds/Other/PMPistolMagOut.ogg"
 PM/PistolMagIn     "Sounds/Other/PMPistolMagIn.ogg"
+PM/SMGOut          "Sounds/Other/PMSMGOut.ogg"
+PM/SMGIn          "Sounds/Other/PMSMGIn.ogg"
 PM/RevolverHammer  "Sounds/Other/PMRevolverHammer.ogg"
 PM/RevolverOpen    "Sounds/Other/PMRevolverOpen.ogg"
 PM/RevolverBulletIn  "Sounds/Other/PMRevolverBulletIn.ogg"
@@ -4745,6 +4752,39 @@ $rolloff CivZombie/MolotovFuse 0 1500
 $rolloff CivZombie/IEDBeepConfirm 500 2000
 
 $volume CivZombie/MolotovFuse 0.65
+
+//Pregnant
+
+$random Pregnant/Sight { Pregnant/Sight1 Pregnant/Sight2 Pregnant/Sight3 }
+Pregnant/Sight1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSight1.ogg" 
+Pregnant/Sight2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSight2.ogg" 
+Pregnant/Sight3 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSight3.ogg" 
+
+$random Pregnant/Active { Pregnant/Active1 Pregnant/Active2 Pregnant/Active3 }
+Pregnant/Active1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantActive1.ogg"
+Pregnant/Active2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantActive2.ogg"
+Pregnant/Active3 "Sounds/Monsters/Shotgunners/Pregnant/PregnantActive3.ogg"
+
+$random Pregnant/Attack { Pregnant/Attack1 Pregnant/Attack2 Pregnant/Attack3 }
+Pregnant/Attack1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantAttack1.ogg"
+Pregnant/Attack2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantAttack2.ogg"
+Pregnant/Attack3 "Sounds/Monsters/Shotgunners/Pregnant/PregnantAttack3.ogg"
+
+$random Pregnant/Pain { Pregnant/Pain1 Pregnant/Pain2 }
+Pregnant/Pain1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantPain1.ogg"
+Pregnant/Pain2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantPain2.ogg"
+
+$random Pregnant/Death { Pregnant/Death1 Pregnant/Death2 Pregnant/Death3 }
+Pregnant/Death1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantDeath1.ogg"
+Pregnant/Death2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantDeath2.ogg"
+Pregnant/Death3 "Sounds/Monsters/Shotgunners/Pregnant/PregnantDeath3.ogg"
+
+$random Pregnant/SMG { Pregnant/SMG1 Pregnant/SMG2 Pregnant/SMG3 }
+Pregnant/SMG1 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSMG1.ogg"
+Pregnant/SMG2 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSMG2.ogg"
+Pregnant/SMG3 "Sounds/Monsters/Shotgunners/Pregnant/PregnantSMG3.ogg"
+
+$rolloff Pregnant/SMG 200 1800 
 
 //Director
 Director/Charge "Sounds/Monsters/Bosses/Director/DirectorCharge.ogg"
@@ -5897,6 +5937,38 @@ ForlornWalker/Step3 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSte
 SlothBall/Impact "Sounds/Monsters/Arachnotrons/ForlornWalker/SlothBallImpact.ogg"
 $pitchset SlothBall/Impact 0.8 1.2
 $volume SlothBall/Impact 0.6
+
+//Envy Zombies
+$random EnvyZombie/Sight { EnvyZombie/Sight1 EnvyZombie/Sight2 }
+EnvyZombie/Sight1 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieSight1.ogg"
+EnvyZombie/Sight2 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieSight2.ogg"
+
+EnvyZombie/Active "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieActive.ogg"
+
+$random EnvyZombie/Attack { EnvyZombie/Attack1 EnvyZombie/Attack2 }
+EnvyZombie/Attack1 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieAttack1.ogg"
+EnvyZombie/Attack2 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieAttack2.ogg"
+
+$random EnvyZombie/Pain { EnvyZombie/Pain1 EnvyZombie/Pain2 }
+EnvyZombie/Pain1 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombiePain1.ogg"
+EnvyZombie/Pain2 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombiePain2.ogg"
+
+$random EnvyZombie/Death { EnvyZombie/Death1 EnvyZombie/Death2 EnvyZombie/Death3 }
+EnvyZombie/Death1 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieDeath1.ogg"
+EnvyZombie/Death2 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieDeath2.ogg"
+EnvyZombie/Death3 "Sounds/Monsters/Zombiemen/EnvyZombies/EnvyZombieDeath3.ogg"
+
+$volume EnvyZombie/Active 0.75
+
+//Resentful Sharpshooter
+Sharpshooter/Shot "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterShot.ogg"
+Sharpshooter/ShotDistant "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterShotDistant.ogg"
+Sharpshooter/Reload "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterReload.ogg"
+Sharpshooter/Aim "Sounds/Monsters/Chaingunners/Sharpshooter/SharpshooterAim.ogg"
+
+$rolloff Sharpshooter/Aim 500 2400
+$rolloff Sharpshooter/Shot 500 2400
+$rolloff Sharpshooter/ShotDistant 200 4000
 
 //Mecha-Aranea
 PMGreaterSigil "Sounds/Monsters/Arachnotrons/MechaAranea/GreaterSigilCopy.ogg"

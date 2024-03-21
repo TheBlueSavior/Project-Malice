@@ -18,8 +18,9 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
 	DropItem "PM_FShotgunner", 255, 80
 	DropItem "PM_SlugShotgunner", 255, 28
-	DropItem "PM_FallenShotgunner", 255, 3
 	DropItem "PM_Nailgunner", 255, 11
+	DropItem "PM_Pregnant", 255, 17
+	DropItem "PM_FallenShotgunner", 255, 3
 	DropItem "PM_EnragedBreacher", 255, 9
 	DropItem "PM_CyberFodder", 255, 12
 	DropItem "PM_DecayedShotgunner", 255, 7
@@ -29,13 +30,14 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 
 Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 {
-	DropItem "PM_MutatedGunner", 255, 8
-	DropItem "PM_FallenMarine", 255, 7
-	DropItem "PM_Sybarite", 255, 7
-	DropItem "PM_HeavyCarbineZombie", 255, 57
-	DropItem "PM_UmbralDisciple", 255, 1
-	DropItem "PM_DecayedCommando", 255, 1
+    DropItem "PM_HeavyCarbineZombie", 255, 57
+	DropItem "PM_MutatedGunner", 255, 12
+	DropItem "PM_Sybarite", 255, 12
+	DropItem "PM_FallenMarine", 255, 9
+	DropItem "PM_Sharpshooter", 255, 3
 	DropItem "PM_Blasphemer", 255, 2
+	DropItem "PM_DecayedCommando", 255, 2
+	DropItem "PM_UmbralDisciple", 255, 1
 }
 
 

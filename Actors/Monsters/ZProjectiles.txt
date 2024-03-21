@@ -122,6 +122,7 @@ Default
   Speed 45;
   DamageFunction 10;
   Scale 1;
+  PMProjectileBase.WhizSound "PM/HeavyBulletWhiz";
  }
 	States
 	{

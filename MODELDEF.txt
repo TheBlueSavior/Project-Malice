@@ -18,6 +18,8 @@ Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
 Scale 0.4 0.4 0.4
 PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 
@@ -26,7 +28,7 @@ Model PM_RevolverTracer
 Path "Models"
 Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
-Scale 1.0 1.0 1.0
+Scale 1.0 1.0 0.8
 PITCHFROMMOMENTUM
 ROTATING
 Rotation-Vector 1.0 0.0 0.0
@@ -41,6 +43,8 @@ Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
 Scale 0.3 0.3 0.3
 PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 
@@ -51,6 +55,8 @@ Skin 0 "malicetracer2.tga"
 Model 0 "Tracer.md3"
 Scale 1.0 1.0 1.0
 PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
 FrameIndex TRCR B 0 0
 }
 
@@ -61,6 +67,21 @@ Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
 Scale 0.6 1.35 1.35
 PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_SniperBullet
+{ 
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 1.35 1.35
+PITCHFROMMOMENTUM
+ROTATING
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 
@@ -383,15 +404,15 @@ FrameIndex BLA2 A 0 0
 
 Model PM_VoreDagger
 { 
-Path "Models"
-Skin 0 "malicevoredaggertracer.png"
-Model 0 "Tracer.md3"
-Scale 1.0 1.0 1.0
-PITCHFROMMOMENTUM
-ROTATING
-Rotation-Vector 1.0 0.0 0.0
-Rotation-Speed 15.0
-FrameIndex TRCR A 0 0
+  Path "Models"
+  Skin 0 "malicevoredaggertracer.png"
+  Model 0 "Tracer.md3"
+  Scale 0.8 0.8 0.8
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRCR A 0 0
 }
 
 Model PM_VoreSmallDagger
@@ -592,12 +613,15 @@ FrameIndex BLAD A 0 0
 
 Model PM_AraneaArcs
 { 
-Path "Models"
-Skin 0 "malicetracer1.tga"
-Model 0 "Tracer.md3"
-Scale 1 1 1
-PITCHFROMMOMENTUM
-FrameIndex TRCR A 0 0
+  Path "Models"
+  Skin 0 "malicetracer1.tga"
+  Model 0 "Tracer.md3"
+  Scale 0.5 0.6 1
+  PITCHFROMMOMENTUM
+  ROTATING
+  Rotation-Vector 1.0 0.0 0.0
+  Rotation-Speed 15.0
+  FrameIndex TRCR A 0 0
 }
 
 Model PM_AraneaSniper

@@ -1,0 +1,253 @@
+Class PM_Sharpshooter : PMEnvyMonsterBase
+{
+  int user_numbullets;
+  int retreat;
+  int annoyed;
+  int standoff;
+  Default
+  {
+   PMMonsterBase.CodexLore 
+   "Envy sprites seem to favor whom they consider to be cowardly and even treacherous. Those who are possessed by these sprites and are thus given a second shot at life freely use it to their own selfish ends, demonstrating that most, if not all of those that Envy possesses show a quality of jealousy and covetousness.
+    It's not known, however, if the victim itself is operating fully independent from the sprite or if it's just the sprite perfectly replicating every aspect of the victim it's possessing. Maybe they're just suffering all the same like the others.
+	
+	Uses a high-caliber sniper rifle, and would prefer keeping his distance away from you more than getting close.";
+   Health 70;
+   Radius 20;
+   Height 56;
+   Mass 100;
+   Speed 12;
+   PainChance 100;
+   Monster;
+   +FLOORCLIP
+   +HARMFRIENDS
+   +DOHARMSPECIES
+   SeeSound "EnvyZombie/Sight";
+   PainSound "EnvyZombie/Pain";
+   DeathSound "EnvyZombie/Death";
+   ActiveSound "EnvyZombie/Active";
+   Tag "Resentful Sharpshooter";
+   Obituary "%o was domed by a Resentful Sharpshooter.";
+   Dropitem "Chaingun";
+   Species "Chaingunner";
+   Bloodtype "PM_NormalBloodBase";
+   TeleFogSourceType "PM_PossessedTeleportFog";
+   TeleFogDestType "PM_PossessedTeleportFog";
+  }
+
+	void PM_SharpshooterAimLaser(Vector2 off = (0, 0), double scal = 0.065)
+	{
+		if (!Target) return;
+		double sa = sin(Angle);
+		double ca = cos(Angle);
+		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
+		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-40),"24ff24",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: scal, offset: (relOff.X, relOff.Y, 42),baseTime: 1,fadeTime: 0);
+	}
+	
+	void PM_SharpshooterChase()
+	{
+	 if(user_numbullets <= 0)
+	  { SetStateLabel("ReloadRetreat"); }
+     if(retreat)
+	  {
+	   retreat--;
+	   A_SetTics(2);
+	  }
+	 A_Chase();
+	}
+
+  States
+  {
+  Spawn:
+    SN0P A 0 NoDelay
+    {
+     user_numbullets = random(3,6);
+    }
+  Idle:
+    SN0P AA 10 PM_Look();
+    Loop;
+  Look:
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+    SN0P AABB 3 PM_LookingForPlayer();
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+	SN0P CCDD 3 PM_LookingForPlayer();
+    Goto Look+1;
+  Spotted:
+    TNT1 A 0 { PM_AlertSound(); }
+  See:
+    TNT1 A 0 { standoff == 0; A_SetSpeed(12); bMISSILEMORE = false; bFRIGHTENED = false; }
+    SN0P AABB 3 PM_SharpshooterChase();
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	SN0P AABB 3 PM_SharpshooterChase();
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	TNT1 A 0 
+	{
+	 if(target && Distance3D(target) < 250 && random(1,20) == 1)
+      { SetStateLabel("BackCheck"); }
+	}
+	Loop;
+   BackCheck:
+    TNT1 A 0 A_Jump(150,"Backup");
+	Goto Retreat;
+   ReloadRetreat:
+    TNT1 A 0 { bFRIGHTENED = true; }
+    SN0P AABB 2 A_Chase(null,null);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+    SN0P AABB 2 A_Chase(null,null);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	TNT1 A 0 A_Jump(25,"ZReload");
+	TNT1 A 0 A_CheckSight("ZReload");
+	Goto ReloadRetreat+1;
+  Missile:
+    TNT1 A 0 A_Jump(85,"StandoffCheck");
+    SN0P E 5
+    {
+     if(user_numbullets <= 0)
+      { SetStateLabel("NoAmmo"); }
+     A_FaceTarget(360,180);
+     A_SetAngle(angle+random(-10,10));
+     A_SetPitch(pitch+random(-15,15));
+    }
+	SN0P EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+	{
+	 if(annoyed <= 2)
+	  {
+	   if(LineTrace(angle,130,pitch,TRF_SOLIDACTORS,32))
+	    { SetStateLabel("Retreat"); }
+	  }
+	  A_FaceTarget(10,10);
+	  PM_SharpshooterAimLaser();
+	}
+	SN0P E 15 A_StartSound("Sharpshooter/Aim",13);
+    SN0P F 2 Bright Light("AvatarFireball2") 
+    {
+	 if(annoyed == 2)
+	  { annoyed -= 2; }
+	 PM_LeadTarget(42);
+     A_StartSound("Sharpshooter/Shot",CHAN_5,CHANF_OVERLAP);
+     A_StartSound("Sharpshooter/ShotDistant",CHAN_7,CHANF_OVERLAP);
+     A_SpawnProjectile("PM_SniperBullet",41,10,frandom(-0.5,0.5),CMF_AIMDIRECTION,pitch+frandom(-0.5,0.5));
+     user_numbullets--;
+    }
+    SN0P EEEEEEE 3 A_FaceTarget(3,3);
+	SN0P E 12 A_StartSound("Sharpshooter/Reload",8);
+	SN0P E 5 A_SpawnItemEx("PM_BulletCasing",-10,0,42,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+	SN0P EEEEE 3 A_FaceTarget(5,5);
+	TNT1 A 0 { if(standoff) { SetStateLabel("StandoffRepos"); } }
+    Goto See;
+  StandoffCheck:
+    TNT1 A 0 
+	{
+	 if(target && CheckSight(target) && Distance3D(target) < 250)
+	  SetStateLabel("Retreat");
+	 standoff == 1;
+	}
+  Standoff:
+    TNT1 A 0 { bFRIGHTENED = false; }
+	TNT1 A 0 { bMISSILEMORE = true; }
+	TNT1 A 0 A_Jump(10,"See");
+	TNT1 A 0 A_JumpIfCloser(250,"Retreat");
+	SN0P BBBBBBBBBBBB 3 
+	{
+	 A_Chase("Retreat","Missile",CHF_DONTMOVE);
+	 A_FaceTarget();
+	}
+	TNT1 A 0 A_Jump(120,"StandoffRepos");
+	Loop;
+  StandoffRepos:
+	TNT1 A 0 { bFRIGHTENED = true; }
+	SN0P A 1 A_Chase();
+  StandoffReposLoop:
+	TNT1 A 0 A_SetSpeed(14);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",4);
+    SN0P AABB 2 A_Wander();
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",4);
+	SN0P CCDD 2 A_Wander();
+	TNT1 A 0 { bFRIGHTENED = false; }
+	TNT1 A 0 A_Jump(80,"Standoff");
+	Loop;
+  NoAmmo:
+	SN0P E 7 A_FaceTarget();
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+	SN0P EE 10 A_FaceTarget();
+	TNT1 A 0 A_Jump(200,"ZReload");
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+	SN0P E 15 A_FaceTarget();
+	TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+	SN0P AAAA 5 A_FaceTarget();
+	Goto ZReload;
+  ZReload:
+     TNT1 A 0 A_StartSound("PM/RifleMagOut",CHAN_5);
+     SN0P EEEE 5;
+     TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-4,0));
+     SN0P CCCBBBB 3;
+     TNT1 A 0 A_StartSound("PM/RifleMagIn",CHAN_5);
+     TNT1 A 0 { user_numbullets = (user_numbullets + random(3,8)); }
+     SN0P DDBB 4;
+     TNT1 A 0 A_StartSound("Sharpshooter/Reload",CHAN_5);
+     SN0P AAAABB 2;
+     Goto See;
+  Retreat:
+     TNT1 A 0
+	 {
+	  bFRIGHTENED = true;
+	  retreat = random(20,30);
+	  annoyed++;
+	 }
+	 Goto See;
+  Backup:
+     SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 SN0P AABB 2 { A_FaceTarget(); A_Recoil(3); }
+	 TNT1 A 0 A_StartSound("ZombieSoldier/Step",9,CHANF_OVERLAP);
+	 TNT1 A 0 
+	 { 
+	 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+	 if(target)
+	   {
+	    if(!CheckSight(target))
+		 SetStateLabel("See");
+	    if(Distance3D(target) > 150)
+		 SetStateLabel("Missile");
+	   }
+	}
+	 Goto See;
+  Pain:
+     SN0P G 3;
+     SN0P G 3 A_Pain;
+     Goto See;
+  Death:
+     SN0D A 5;
+     SN0D B 5 PM_Scream();
+     SN0D C 5 A_NoBlocking;
+     SN0D D 5;
+	 TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+     SN0D E 90;
+     TNT1 A 0 { if(random(1,3) == 1) A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION); }
+     SN0D E -1;
+     Stop;
+  XDeath:
+     TNT1 A 0 A_StopSound(555);
+     SN0D F 5 PM_Gib();
+     SN0D G 5 A_XScream;
+     SN0D H 5 A_NoBlocking;
+     SN0D IJK 5;
+     SN0D L -1;
+     Stop;
+  Raise:
+     SN0D E 5;
+     SN0D DCBA 5;
+     Goto Look;
+  }
+}
+
+Class PM_SniperBullet : PM_SlugBullet
+{
+  Default { Speed 42; }
+}
