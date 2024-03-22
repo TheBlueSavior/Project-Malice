@@ -17,4 +17,11 @@ To download the latest experimental build of PM, scroll up to the top of this pa
 
 ## Settings
 
-**Fodder Multiplier** - Takes the level's monster count and multiplies it by this number to calculate how many extra fodder enemies to spawn.
+**Sin Codex** - Documents all the enemies that are currently implemented. Press Left or Right arrow keys to scroll through enemy sin rosters.
+
+**Stealth Detection** - Enables stealth detection for all monsters. Enemies will forget you when you hide in dark corners when enabled. Crouching helps too. Has two modes that are further detailed in the ingame options.
+
+**Fodder Multiplier** - Takes the level's monster count and multiplies it by an adjustable value to calculate how many extra fodder enemies to spawn.
+
+**Health Multiplier** - Multiplies enemy health by an adjustable value, can go up to 10x. Also includes another health multiplier for when you want to adjust the health only for specific sin enemies. Do note however, that both of these multipliers will stack.
+

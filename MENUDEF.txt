@@ -64,6 +64,7 @@ OptionMenu "projectmalice_sincodex"
 	StaticText "that you will encounter. Keep in mind all of these tiers are"
 	StaticText "unfinished as of right now, and details may change as the mod progresses."
 	StaticText " "
+	StaticText "Press Left or Right arrow keys to scroll through the sin menu that you selected."
 	
 	SubMenu "Fodder", "PM_CodexMenu_Fodder"
 	SubMenu "Unaffiliated", "PM_CodexMenu_Unaffiliated"
