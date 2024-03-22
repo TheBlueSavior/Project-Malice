@@ -121,7 +121,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		WOPI A 10 A_StartSound("ForlornWalker/Attack", CHAN_VOICE);
 		WOPI GGGGGGGG 2 Light("PM_SlothLight2") A_FaceTarget();
 		WOPI G 5 Light("PM_SlothLight1") SlothShield(false);
-		TNT1 A 0 A_Jump(100,"ScatterShot");
+		//TNT1 A 0 A_Jump(100,"ScatterShot");
 		Goto MissileLoop;
 	MissileLoop:
 		WOPI H random(0,3)

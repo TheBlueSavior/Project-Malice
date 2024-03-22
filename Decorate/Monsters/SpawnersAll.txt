@@ -31,8 +31,8 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 {
     DropItem "PM_HeavyCarbineZombie", 255, 57
+	DropItem "PM_Sybarite", 255, 14
 	DropItem "PM_MutatedGunner", 255, 12
-	DropItem "PM_Sybarite", 255, 12
 	DropItem "PM_FallenMarine", 255, 9
 	DropItem "PM_Sharpshooter", 255, 3
 	DropItem "PM_Blasphemer", 255, 2
@@ -169,9 +169,10 @@ Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
 {
 	DropItem "PM_Fusionite", 255, 45
-	DropItem "PM_Plasmatron", 255, 8
-	DropItem "PM_ForlornWalker", 255, 6
-	DropItem "PM_AngelsHand", 255, 2
+	DropItem "PM_Plasmatron", 255, 18
+	DropItem "PM_ForlornWalker", 255, 9
+	DropItem "PM_MechaAranea", 255, 7
+	DropItem "PM_AngelsHand", 255, 3
 }
 
 Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
