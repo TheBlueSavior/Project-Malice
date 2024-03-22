@@ -141,30 +141,34 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			SCRP A 2 A_Chase();
 			TNT1 A 0 A_StartSound("MechaAranea/Servos",CHAN_7,CHANF_OVERLAP,0.7);
 			SCRP BBCC 2 A_Chase();
-			SCRP D 0 A_Jump(20,"Rush");
+			SCRP D 0 A_Jump(20,"RushStart");
 			Loop;
+		RushStart:
+			TNT1 A 0;
+			TNT1 A 0 A_FaceTarget(0,270,random(-180,180));
+			TNT1 A 0
+			{
+			pm_attackloop = random(5,18);
+			}
 		Rush:
-			TNT1 A 0 A_SetSpeed(13);
-			SCRP AA 1 
+			TNT1 A 0 A_SetSpeed(25);
+			SCRP A 2
 			{
-			  if(target && !CheckSight(target))
-			   bFRIGHTENED = false;
-			  else
-			   bFRIGHTENED = true;
-			  A_Chase();
-			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			  if(!pm_attackloop)
+			  { SetStateLabel("See"); }
+			  A_Wander();
+			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE,failchance: 160);
 			}
-			TNT1 A 0 A_StartSound("MechaAranea/Scurry",CHAN_7,CHANF_OVERLAP,0.7);
-			SCRP BBCC 1 
+			TNT1 A 0 A_StartSound("MechaAranea/Scurry",32,CHANF_OVERLAP,0.35,pitch: frandom(0.95,1.05));
+			SCRP BC 2
 			{
-			  if(target && !CheckSight(target))
-			   bFRIGHTENED = false;
-			  else
-			   bFRIGHTENED = true;
-			  A_Chase();
-			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			  A_Wander();
+			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE,failchance: 160);
 			}
-			SCRP D 0 A_Jump(19,"See");
+			TNT1 A 0
+			{
+				pm_attackloop--;
+			}
 			Loop;
 		Evade:
 			TNT1 A 0 { bNODROPOFF = true; }
@@ -191,20 +195,20 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			{ 
 			  for(int i=40;i>0;i--)
 			   { A_Wander(); }
-			  A_SetSpeed(12);
+			  A_SetSpeed(26);
 			}
-		    SCRP AA 1
+		    SCRP A 2
 			{
 			  A_Chase(null,null,CHF_NOPLAYACTIVE);
-			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE,failchance: 160);
 			}
-			TNT1 A 0 A_StartSound("MechaAranea/Scurry",CHAN_7,CHANF_OVERLAP,0.15);
-			SCRP BBCC 1
+			TNT1 A 0 A_StartSound("MechaAranea/Scurry",32,CHANF_OVERLAP,0.2,pitch: frandom(0.95,1.05));
+			SCRP BC 2
 			{
 			  A_Chase(null,null,CHF_NOPLAYACTIVE);
-			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			  A_SpawnItemEx("PM_GenericPhaseGhost",zofs:6,flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE,failchance: 160);
 			}
-			TNT1 A 0 A_Jump(5,"NoAmmo");
+			TNT1 A 0 A_Jump(10,"NoAmmo");
 			TNT1 A 0 A_CheckSight("NoAmmo");
 			Goto RetreatLoop+1;
 		Missile:
@@ -212,6 +216,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			TNT1 A 0 { if (health < (GetMaxHealth() / 2) && !random(0, 5)) SetStateLabel("Copy"); }
 			TNT1 A 0 A_Jump(24, "Copy");
 			TNT1 A 0 A_Jump(115, "Orbs", "Sniper");
+			TNT1 A 0 A_Jump(50, "Sniper");
 			Goto LightningTracers;
 		Orbs:
 			SCRP A 10 A_Facetarget();
@@ -276,6 +281,10 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			}
 			Goto See;
 		Sniper:
+			TNT1 A 0;
+			TNT1 A 0 A_JumpIfTargetinLOS("SniperGo",270,JLOSF_DEADNOJUMP);
+			Goto See;
+		SniperGo:
 			SCRP AD 10 A_FaceTarget();
 			SCRP D 0
 			{
@@ -421,7 +430,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		Pain:
 			SCRP F 2 A_StopSounds(0, 10);
 			SCRP F 2 A_Pain();
-			SCRP A 0 A_Jump(64,"Rush","Evade");
+			SCRP A 0 A_Jump(64,"RushStart","Evade");
 			Goto See;
 		NoAmmo:
 			TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");
