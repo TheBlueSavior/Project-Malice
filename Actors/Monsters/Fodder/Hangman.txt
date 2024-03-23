@@ -133,6 +133,7 @@ Class PM_HangmanSpit : DoomImpBall
 	Go:
 		VBAL AB 2 Bright 
 		{
+			if (GetAge() > 2 && vel.z == 0) SetStateLabel("Death");
 			A_SetRoll(random(0,360));
 			A_SpawnParticleEx("f22b0a",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(30, 60),size: frandom(5, 10),xoff: -10,velx: frandom(-2, 2),vely:frandom(-2, 2),velz:frandom(-2, 2),startalphaf: 1,fadestepf: -1,sizestep: -1,startroll: random(-180,180));
 			A_SpawnParticleEx("cc290e",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 70,size: 25.0,xoff: -10,startalphaf: frandom(.4,.65),sizestep:-1,startroll: random(-180,180));
