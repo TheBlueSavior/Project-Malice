@@ -30,7 +30,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		ACTIVESOUND "AngelsHand/Active";
 		Bloodtype "PM_NormalTyrantBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogDestType "PM_PrideTeleportFog";
 		DamageFactor "PM_BulletHellDamage", 0;
 		StencilColor "ff2424";
 		FloatBobStrength 0.1;

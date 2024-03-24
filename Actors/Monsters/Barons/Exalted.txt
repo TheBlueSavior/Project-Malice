@@ -41,7 +41,7 @@ Class PM_Exalted : PMPrideMonsterBase
     Obituary "%o was cast down from ascension by an Exalted.";
     MeleeDamage 8;
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_DemonicTeleportFog";
+	TeleFogDestType "PM_PrideTeleportFog";
 	PMMonsterBase.RealHeight 70;
 	}
 	

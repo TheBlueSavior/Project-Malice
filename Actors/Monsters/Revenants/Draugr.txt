@@ -32,7 +32,7 @@ Class PM_Draugr : PMPrideMonsterBase
 	+MISSILEMORE
 	+MISSILEevenMORE
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_DemonicTeleportFog";
+	TeleFogDestType "PM_PrideTeleportFog";
     }
 
 	void DraugrAimLaser(Vector2 off = (0, -18))
