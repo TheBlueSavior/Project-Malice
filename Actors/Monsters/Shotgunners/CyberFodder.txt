@@ -386,7 +386,7 @@ Class ZombieDropFire : Actor
    Spawn:
 	  TNT1 A 0 NoDelay A_SetScale(frandom(0.4,1.7));
 	  FRTF ABC 4 Bright;
-	  FRTF A 0 Bright A_StartSound("Fire/Idle",CHAN_5,1,true,2);
+	  FRTF A 0 Bright A_StartSound("Fire/Idle",20,CHANF_LOOPING);
 	  Go:
       FRTF A 0 Bright A_Explode(1,16,0);
       FRTF CDEFGEF 4 Bright A_Explode(1,16,0);
