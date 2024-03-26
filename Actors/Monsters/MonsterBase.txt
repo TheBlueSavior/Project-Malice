@@ -177,22 +177,37 @@ class PMMonsterBase : Actor abstract
 
 		Vector3 partDiff = (0, 0, 0);
 		double dist = diff.Length();
-		for (double i = 0; i < dist; i += 6 * (flags & SBF_NOSCALEDENSITY ? 1 : min(scale, 1.0)))
-		{
-			if (i % (6 * 2) ~== 0)
-			{
-				int rnd = random();
-				partDiff.X = clamp(partDiff.X + ((rnd & 4) ? 1 : -1) * scale, -maxDiff, maxDiff);
-				partDiff.Y = clamp(partDiff.Y + ((rnd & 8) ? 1 : -1) * scale, -maxDiff, maxDiff);
-				partDiff.Z = clamp(partDiff.Z + ((rnd & 16) ? 1 : -1) * scale, -maxDiff, maxDiff);
-			}
-
-			int lifetime = int(ceil(baseTime + fadeTime * (i / dist)));
-			spawner.A_SpawnParticleEx(col, tex, (flags & SBF_NOADD ? STYLE_Normal : STYLE_Add), SPF_FULLBRIGHT | SPF_NOTIMEFREEZE | (flags & SBF_ALLOWREPLACE ? SPF_REPLACE : 0), lifetime, 10 * scale, 0,
-				offset.X + i * unit.X + partDiff.X,
-				offset.Y + i * unit.Y + partDiff.Y,
-				offset.Z + i * unit.Z + partDiff.Z);
-		}
+		flinetracedata Lbeam;
+		double PitchDes=atan2(-diff.z,diff.xy.length());
+		double AngleDes=atan2(diff.xy);
+		
+		spawner.linetrace(
+			AngleDes,
+			int.max,
+			PitchDes,
+			flags:TRF_NOSKY|TRF_ABSOFFSET,
+			offsetz:offset.z,
+			offsetforward:offset.x,
+			offsetside:offset.y,
+			data:Lbeam
+		);
+		
+		let las = spawn("PM_Bolt",(Lbeam.hitlocation),ALLOW_REPLACE);
+		las.scale.y=-lbeam.Distance;
+		las.scale.x=scale;
+		las.pitch=PitchDes-90;
+		las.angle=AngleDes;
+		las.SetShade(col);
+		
+		FSpawnParticleParams part;
+		part.pos=Lbeam.hitlocation;
+		part.color1=col;
+		part.StartAlpha=1;
+		part.texture = tex;
+		part.Size = 40*scale;
+		part.Style=(flags & SBF_NOADD ? STYLE_Normal : STYLE_Add);
+		part.lifetime=1;
+		Level.SpawnParticle(Part);
 	}
 
 	override void PostBeginPlay()
@@ -318,6 +333,28 @@ class PMMonsterBase : Actor abstract
 		A_StopSound(555);
 		A_StartSound(DeathSound, 556, attenuation: (!bBOSS) ? 1 : 0);
 	}
+}
+
+Class PM_Bolt : Actor
+{
+	Default
+	{
+		RenderStyle "Addstencil";
+		+NOINTERACTION
+		+NOBLOCKMAP
+		+BRIGHT
+		+INTERPOLATEANGLES
+		StencilColor "ff2424";
+		Alpha 0.4;
+	}
+	States
+	{
+		Spawn:
+			TNT1 A 1;
+			ZAZA A 1;
+			Stop;
+	}
+
 }
 
 class PM_BeamSegment : Actor abstract

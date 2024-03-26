@@ -82,7 +82,7 @@ Ultra64 - Grenadier sprites, used for Sybarite
 Titanium - Hellfire Revenant Melee sprites
 Captain red pants - Sprites for the War Zombieman, Ruined Cavalier
 tsran - Plamexis Bruiser sprites, used for Landrazer
-Bruh88 - Forzen Corpse code revisements
+Bruh88 - Forzen Corpse code revisements, Model beam code
 Corruption Cards / CutmanMike - Code for checking corpses, used for Famine enemiees
 Desfar - Lich sprites
 Antinous - Master switch spawn code
