@@ -51,6 +51,8 @@ Class PM_AmbientSpawner : Actor
 	-SHOOTABLE
 	MONSTER;
 	-COUNTKILL
+	TeleFogSourceType "";
+	TeleFogDestType "";
 	}
 	States
 	{
