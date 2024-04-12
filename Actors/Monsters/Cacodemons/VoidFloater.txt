@@ -129,7 +129,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		Loop;
 	Look:
 		TNT1 A 0;
-		TNT1 A 0 A_Jump(128, "MimicLooked","DissapearLooked");
+		TNT1 A 0 A_Jump(80, "MimicLooked","DissapearLooked");
 		TNT1 A 0 { bNOCLIP = true; }
 		TNT1 A 0 A_SetSpeed(30);
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
@@ -279,7 +279,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		{
 			FloaterEffects();
 			//A_Recoil(-0.1);
-			A_Chase();
+			A_Chase(null,"Missile");
 			A_FaceTarget();
 			
 			if (!random(0, 125))
@@ -306,7 +306,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		{
 			FloaterEffects();
 			//A_Recoil(-0.1);
-			A_Chase();
+			A_Chase(null,null);
 			A_FaceTarget();
 		}
 		TNT1 A 0 A_Jump(10,"Chase");

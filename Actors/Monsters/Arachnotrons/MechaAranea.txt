@@ -15,9 +15,9 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		Fires lightning-fast bolts of electricity at you alongside a sniper shot and three overcharged plasma orbs.";
 		Tag "Mecha-Aranea";
 		BloodColor "DarkGreen";
-		Health 500;
+		Health 520;
 		Mass 600;
-		PainChance 50;
+		PainChance 80;
 		Speed 11;
 		Height 64;
 		Radius 48;
@@ -28,9 +28,9 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		Species "Arachnotron";
 		Monster;
 		+DONTHARMSPECIES
-		+MISSILEMORE
+		+MissileMore
+		+MISSILEevenMORE
 		+FLOORCLIP
-		+BOSSDEATH
 		Bloodtype "PM_DarkGreenCyberBloodBase";
 		SeeSound "MechaAranea/Sight";
 		PainSound "MechaAranea/Pain";
@@ -80,7 +80,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		double sa = sin(Angle);
 		double ca = cos(Angle);
 		Vector2 relOff = (off.X * ca + off.Y * sa, off.X * sa - off.Y * ca);
-		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-60),"24ff24",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: scal, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
+		PM_SpawnBolt(self, Target.Vec3Offset(0,0,Target.Height-60),"24ff24",TexMan.CheckForTexture("RLSSA0"),maxDiff: 0,scale: 1, offset: (relOff.X, relOff.Y, 65),baseTime: 1,fadeTime: 0);
 	}
 	
 	void AraneaCopyFX(name sprt = "FSPI")
@@ -143,7 +143,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			SCRP A 2 A_Chase();
 			TNT1 A 0 A_StartSound("MechaAranea/Servos",CHAN_7,CHANF_OVERLAP,0.7);
 			SCRP BBCC 2 A_Chase();
-			SCRP D 0 A_Jump(20,"RushStart");
+			SCRP D 0 A_Jump(15,"RushStart");
 			Loop;
 		RushStart:
 			TNT1 A 0;
@@ -308,9 +308,9 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			}
 			Loop;
 		LightningTracers:
-			SCRP AD 10 A_FaceTarget();
+			SCRP AD 5 A_FaceTarget();
 			SCRP D 0 A_StartSound("Aranea/ArcCharge",29,volume:0.8);
-			SCRP DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("FeralimpFireball4")
+			SCRP DDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("FeralimpFireball4")
 			{
 			    A_FaceTarget();
 				AraneaCharge();
@@ -479,13 +479,13 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			TNT1 A 0 A_JumpIf(--sweepindex == -1, "See");
             Goto PlasmatronLoop2+2;
 		Pain:
-			SCRP F 2
+			SCRP F 1
 			{
 				alpha = 1;
 				A_StopSounds(0, 10);
 			}
-			SCRP F 2 A_Pain();
-			SCRP A 0 A_Jump(64,"RushStart","Evade");
+			SCRP A 0 A_Jump(130,"Missile","Evade","SnipeFlank");
+			SCRP F 3 A_Pain();
 			Goto See;
 		NoAmmo:
 			TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");

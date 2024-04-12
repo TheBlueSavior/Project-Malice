@@ -38,6 +38,7 @@ Class PM_Director : PMUnaffMonsterBase
 		+NORADIUSDMG
 		+DONTMORPH
 		+BOSSDEATH
+		-QUICKTORETALIATE
 		SeeSound "Director/Sight";
 		AttackSound "Director/Attack";
 		PainSound "Director/Pain";
