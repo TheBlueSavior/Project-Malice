@@ -159,7 +159,11 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 			{
 			pm_attackloop = random(3,24);
 			}
-		LMWZ FGH 5 A_FaceTarget(360,180);
+		LMWZ FGH 5
+		{
+		A_Wander();
+		A_FaceTarget();
+		}
 	BarrageContinue:
 		LMWZ H random(1, 4)
 		{

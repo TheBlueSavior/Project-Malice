@@ -4521,6 +4521,11 @@ $pitchset PM/PrideTele 0.8 1.1
 $limit PM/PrideTele 4
 $rolloff PM/PrideTele 200 1800
 
+$alias PM/PrideTeleVoice Director/PsychicThunder
+$limit PM/PrideTeleVoice 4
+$volume PM/PrideTeleVoice 0.45
+$pitchset PM/PrideTeleVoice 0.8 1.12
+
 $random PM/LustTeleVoice { PM/LustTeleVoice1 PM/LustTeleVoice2 PM/LustTeleVoice3 PM/LustTeleVoice4 PM/LustTeleVoice5 }
 PM/LustTeleVoice1 "Sounds/Other/PMLustTeleVoice1.ogg"
 PM/LustTeleVoice2 "Sounds/Other/PMLustTeleVoice2.ogg"
@@ -4678,7 +4683,7 @@ CivZombie/Sight1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight1.ogg"
 CivZombie/Sight2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight2.ogg"
 CivZombie/Sight3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZSight3.ogg"
 
-$volume CivZombie/Sight 0.75
+$volume CivZombie/Sight 0.65
 
 $random CivZombie/Active { CivZombie/Active1 CivZombie/Active2 CivZombie/Active3 CivZombie/Active4 }
 CivZombie/Active1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZActive1.ogg"
@@ -4695,20 +4700,20 @@ CivZombie/Attack3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack3.ogg"
 CivZombie/Attack4 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZAttack4.ogg"
 
 
-$volume CivZombie/Attack 0.75
+$volume CivZombie/Attack 0.65
 
 $random CivZombie/Pain { CivZombie/Pain1 CivZombie/Pain2 CivZombie/Pain3 }
 CivZombie/Pain1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain1.ogg"
 CivZombie/Pain2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain2.ogg"
 CivZombie/Pain3 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZPain3.ogg"
 
-$volume CivZombie/Pain 0.65
+$volume CivZombie/Pain 0.55
 
 $random CivZombie/Death { CivZombie/Death1 CivZombie/Death2 }
 CivZombie/Death1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath1.ogg"
 CivZombie/Death2 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZDeath2.ogg"
 
-$volume CivZombie/Death 0.75
+$volume CivZombie/Death 0.45
 
 $random CivZombie/Shot { CivZombie/Shot1 CivZombie/Shot2 CivZombie/Shot3 }
 CivZombie/Shot1 "Sounds/Monsters/Zombiemen/CivilianZombie/CivZShot1.ogg"
