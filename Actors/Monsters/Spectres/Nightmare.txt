@@ -3,7 +3,7 @@ Class PM_Nightmare : PMUmbralMonsterBase
   Default
   {
 	//$Category "PM_Monsters/Spectres"
-    Health 100;
+    Health 200;
     Radius 20;
     Height 56;
     Speed 7;
@@ -100,25 +100,25 @@ Class PM_Nightmare : PMUmbralMonsterBase
     goto See;
   See:
     TNT1 A 0 A_SetSpeed(20);
-	NMRE AA 2 Fast Light("PM_NightmareFlash")
+	NMRE AA 2 Fast //Light("PM_NightmareFlash")
     {
     A_Chase();
-    PM_NightmareVisibleParticles();
+    //PM_NightmareVisibleParticles();
     }
-	NMRE BB 2 Fast Light("PM_NightmareFlash")
+	NMRE BB 2 Fast //Light("PM_NightmareFlash")
     {
     A_Chase();
-    PM_NightmareVisibleParticles();
+    //PM_NightmareVisibleParticles();
     }
-	NMRE CC 2 Fast Light("PM_NightmareFlash")
+	NMRE CC 2 Fast //Light("PM_NightmareFlash")
     {
     A_Chase();
-    PM_NightmareVisibleParticles();
+    //PM_NightmareVisibleParticles();
     }
-	NMRE DD 2 Fast Light("PM_NightmareFlash")
+	NMRE DD 2 Fast //Light("PM_NightmareFlash")
     {
     A_Chase();
-    PM_NightmareVisibleParticles();
+    //PM_NightmareVisibleParticles();
     }
     TNT1 A 0 A_Jump(15,"AltSee");
 	TNT1 A 0 A_Jump(60,"See2");
@@ -128,7 +128,7 @@ Class PM_Nightmare : PMUmbralMonsterBase
 	TNT1 AABBCCDD 2 Fast 
 	{
 	A_Chase();
-	PM_NightmareInvisParticles();
+	//PM_NightmareInvisParticles();
 	}
 	TNT1 A 0 A_Jump(20,"See");
     TNT1 A 0 A_Jump(8,"AltSee");
@@ -138,7 +138,7 @@ Class PM_Nightmare : PMUmbralMonsterBase
     NMRE AABBCCDDAABBCCDDAABBCCDD 2 Fast 
 	{
 	A_Wander();
-	PM_NightmareInvisParticles();
+	//PM_NightmareInvisParticles();
 	}
     Goto See;
   Melee:

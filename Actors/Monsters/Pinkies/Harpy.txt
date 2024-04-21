@@ -8,7 +8,7 @@ Class PM_Harpy : PMLustMonsterBase
 	 They are relentless in the field, and are just as smart as your average Brute in terms of intelligence.
 	 
 	 Has the ability to quickly lunge at you and can fly, but otherwise has the same aggressiveness as a Brute.";
-	Health 90;
+	Health 100;
 	Radius 18;
 	Height 50;
 	Speed 14;

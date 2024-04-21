@@ -12,7 +12,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	 Equipped with a pair of chainguns and a large cannon inside its chest, an Emissary is especially equipped to reap a soul should they become far too stubborn.
 	 
 	 Can sometimes spawn invisible. Fire at where you hear chainguns whirring.";
-    Health 1000;
+    Health 1200;
     Radius 22;
     Height 64;
     Speed 16;
@@ -303,10 +303,10 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 		}
 		LMDA EEEEEEEEEEEEE 1 A_FaceTarget();
 		TNT1 A 0 A_StartSound("Plasmatron/MortarFire",23);
-		LMDA FFFFFFFFFFFF 0
+		LMDA FFFFFFFFFFFFFFFFFF 0
 		{
-		A_SpawnProjectile("PM_AbhorSoulVomit",62,-25,random(-5,5),CMF_OFFSETPITCH,random(-3,3));
-		A_SpawnProjectile("PM_AbhorSoulVomit",62,25,random(-5,5),CMF_OFFSETPITCH,random(-3,3));
+		A_SpawnProjectile("PM_EmissaryShotgunSoul",62,-25,random(-5,5),CMF_OFFSETPITCH,random(-3,3));
+		A_SpawnProjectile("PM_EmissaryShotgunSoul",62,25,random(-5,5),CMF_OFFSETPITCH,random(-3,3));
 		}
 		LMDA FE 3 Light("HellsFuryBall2") A_FaceTarget();
 		LMDA GE 3 Light("HellsFuryBall2") A_FaceTarget();
@@ -371,7 +371,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 			A_SpawnProjectile("PM_DEmiTracer",62,25,frandom(4, -4),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3)+1);
 			A_SpawnProjectile("PM_DEmiTracer",62,-25,frandom(4, -4),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3)+1);
 			}
-		LMDA G 1 A_FaceTarget(6,4);
+		LMDA G 1 A_FaceTarget(9,7);
 		TNT1 A 0 A_CheckSight("MinigunCDQuick");
 		TNT1 A 0 { 	if(pm_attackloop < 0) SetStateLabel("MinigunCD"); pm_attackloop--; }
 		Loop;
@@ -608,8 +608,9 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 		A_StopSound(12); A_StopSound(11); A_StopSound(10); 
 		}
 		TNT1 A 0 A_Jump(45,"PainPhase");
-		LMDA H 5;
+		LMDA H 3;
         LMDA H 5 A_Pain;
+		TNT1 A 0 A_Jump(120,"Missile");
         Goto See;
 	PainPhase:
 	    TNT1 A 0 PM_DemiPhaseTrans();
@@ -995,4 +996,78 @@ Class PM_DEmiSpherule : Actor
 		}
 		Stop;
 	}
+}
+
+Class PM_EmissaryShotgunSoul : Actor
+{
+	int soulhspeed;
+	int soulvspeed;
+	int soulhdist;
+	int soulvdist;
+    Default
+	{
+    Radius 5;
+    Height 5;
+    Scale 0.4;
+    Speed 8;
+    DamageFunction 8;
+    Renderstyle "Add";
+    Alpha 0.75;
+    DeathSound "Abhor/SoulExp";
+	Decal "PM_DeathSoulScorchMed";
+    PROJECTILE;
+    +SEEKERMISSILE
+	}
+	
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+	}
+	
+	TextureID tex[2];
+
+  States
+  {
+  Spawn:
+	 TNT1 A 0 NoDelay
+	 {
+	  soulhspeed = random(-2,2);
+	  soulvspeed = random(-2,2);
+	  soulhdist = random(-3,3);
+	  soulvdist = random(-3,3);
+	 }
+	 TNT1 A 0 { A_ScaleVelocity(frandom(0.5,3.5)); }
+	 TNT1 A 0 A_StartSound("HFury/SoulScreech",pitch:frandom(0.6,1.2));
+     TNT1 A 0
+	 {
+	  for(int i=random(2,4);i>0;i--)
+	      A_SpawnParticleEx("0B3D94",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(15,40),size: random(25,65),xoff: -5,velx: frandom(-0.45,0.45),vely: frandom(-0.45,0.45),velz: frandom(-0.45,0.45),accelx: frandom(0.25,0.95),accely: frandom(-0.15,0.15),accelz: frandom(-0.35,0.35),startalphaf: frandom(0.25,0.65),fadestepf: -1,sizestep: 2,startroll: random(-180,180),rollvel: random(-3,3));
+	  for(int i=random(1,3);i>0;i--)
+		  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,35),size: frandom(1,10),xoff: frandom(-1,1),yoff: frandom(-1,1),zoff: frandom(-1,1),velx: frandom(1,10),vely: frandom(-2,2),velz: frandom(-0.6,3),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	 }
+  Go:
+    SHBA AABB 1 Bright Light("HellsFurySoul2") 
+	{
+	if(random(1,20) == 1)
+	SetStateLabel("WeaveReset");
+	  A_SpawnParticleEx("0B3D94",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(15,40),size: 20.0,xoff: -5,startalphaf: frandom(0.25,0.65),fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("143B76",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(6,20),size: 35.0,xoff: -5,startalphaf: frandom(0.5,0.8),fadestepf: -1,startroll: random(-180,180));
+	  A_Weave(soulhspeed,soulvspeed,soulhdist,soulvdist);
+	}
+    Loop;
+  WeaveReset:
+    TNT1 A 0
+	{
+	 soulhspeed = random(-2,2);
+	 soulvspeed = random(-2,2);
+	 soulhdist = random(-3,3);
+	 soulvdist = random(-3,3);
+	}
+  Goto Go;
+  Death:
+    SHBA CDEFGHIJKL 4 Bright Light("HellsFurySoul3");
+    Stop;
+  }
 }
