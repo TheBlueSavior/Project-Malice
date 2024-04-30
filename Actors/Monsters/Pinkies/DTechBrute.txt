@@ -298,8 +298,10 @@ Class PM_DTechBall : Actor
    {
     A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: 5,size: 20.0,startalphaf: 0.85,sizestep: -1,startroll: random(-180,180));
     A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: 3,size: 45.0,startalphaf: 0.85,sizestep: -1,startroll: random(-180,180));
-	A_SpawnParticleEx("79e54a",tex[0],style: STYLE_Stencil,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(10,12),size: random(15,19),velx: frandom(-0.3,-0.8),startalphaf: 0.75,fadestepf: 0.085,sizestep: -2,startroll: random(-180,180));
-	A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(5,80),size: random(2,8),xoff: -10,yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1.0,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180),rollvel: random(-30,30));
+	A_SpawnParticleEx("79e54a",tex[0],style: STYLE_Stencil,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(10,12),size: random(15,19),velx: frandom(-0.3,-0.8),startalphaf: 0.75
+	,fadestepf: 0.085,sizestep: -2,startroll: random(-180,180));
+	A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(5,80),size: random(2,8),xoff: -10,yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1.0
+	,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180),rollvel: random(-30,30));
    }
 
    States

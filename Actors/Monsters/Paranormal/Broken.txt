@@ -532,8 +532,10 @@ class PM_Broken : PMVoidMonsterBase
 		 A_SetScale(1,1);
 		 A_SpawnItemEx("PM_BrokenBFGCharge",random(-2,5),random(-5,5),0);
 		 A_FaceTarget();
-		 A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,15),size: frandom(35,95),xoff: frandom(20,25),yoff: frandom(-8,8),zoff: frandom(16,22),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-         A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,15),size: frandom(15,50),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		 A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,15),size: frandom(35,95),xoff: frandom(20,25),yoff: frandom(-8,8),zoff: frandom(16,22),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+		 ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+         A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,15),size: frandom(15,50),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+		 ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 		 vfgcharge++;
 		}
 		Loop;
@@ -553,7 +555,8 @@ class PM_Broken : PMVoidMonsterBase
 		 A_SetScale(1,1);
 		 A_SpawnItemEx("PM_BrokenBFGCharge",random(-2,5),random(-5,5),0);
 		 A_FaceTarget();
-		 A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,15),size: frandom(35,95),xoff: frandom(20,25),yoff: frandom(-8,8),zoff: frandom(16,22),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1), startalphaf: 1, fadestepf: -1, sizestep: frandom(1,4.4),startroll: random(-180,180));
+		 A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,15),size: frandom(35,95),xoff: frandom(20,25),yoff: frandom(-8,8),zoff: frandom(16,22),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1), startalphaf: 1
+		 , fadestepf: -1, sizestep: frandom(1,4.4),startroll: random(-180,180));
 		}
 		Loop;
 	BFGRelease:
@@ -707,9 +710,11 @@ Class PM_BrokenBulletTracer : PM_BulletTracer
  TNT1 A 0;
  TNT1 A 0
         {
-            A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.3,0.5),fadestepf: -0.5,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
+            A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.3,0.5)
+			,fadestepf: -1,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
             A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0,sizestep: frandom(0.0,3),startroll: random(-180,180));
-            A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
+            A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0
+			,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
         }
 	Go:
 		TRCR A 1 BRIGHT A_Quake(1,4,0,100,0);
@@ -736,9 +741,11 @@ Class PM_BrokenPelletTracer : PM_PelletTracer
  TNT1 A 0;
  TNT1 A 0
         {
-           A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.3,0.5),fadestepf: -0.5,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
+           A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.3,0.5)
+		   ,fadestepf: -1,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
            A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0,sizestep: frandom(0.0,3),startroll: random(-180,180));
-           A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
+           A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(40,190),xoff: -22,startalphaf: 1.0
+		   ,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
         }
 	Go:
 		TRCR A 1 BRIGHT A_Quake(1,4,0,100,0);
@@ -781,8 +788,10 @@ Class PM_BrokenPlasmaShot : Actor
          A_SetRoll(random(0,259),SPF_INTERPOLATE);
 	      for(int a = 0;a<2;a++)
 		  {
-		    A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,3),size: frandom(20,40),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(-1,1),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-            A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(15,25),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		    A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,3),size: frandom(20,40),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(-1,1),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+            A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(15,25),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 		  }
 		}
   }
@@ -806,8 +815,10 @@ Class PM_BrokenPlasmaShot : Actor
 	TNT1 A 0
 	{
 	    for (int a = 0;a<10;a++)
-		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,20),size: frandom(20,30),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 1,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-        A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,20),size: frandom(15,25),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.9,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,20),size: frandom(20,30),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 1
+		,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+        A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,20),size: frandom(15,25),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.9
+		,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
     }
 	TNT1 AAAAA 3 Bright Light("Shadowball2");
     Stop;
@@ -835,8 +846,10 @@ Class PM_BrokenRailSlug : Actor
  
   void PM_BrokenRailgunParticles()
   {
-		A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,60),size: frandom(10,15),xoff: frandom(-0.9,0.9),yoff: frandom(-0.9,0.9),zoff: frandom(-0.9,0.9),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1,fadestepf: -1,sizestep: frandom(-0.2,-0.5),startroll: random(-180,180));
-        A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,45),size: frandom(20,40),xoff: frandom(-2.0,2.0),yoff: frandom(-2.0,2.0), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3), startalphaf: 0.9,fadestepf: -1,sizestep: frandom(-0.1,-0.3),startroll: random(-180,180));
+		A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,60),size: frandom(10,15),xoff: frandom(-0.9,0.9),yoff: frandom(-0.9,0.9),zoff: frandom(-0.9,0.9),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1
+		,fadestepf: -1,sizestep: frandom(-0.2,-0.5),startroll: random(-180,180));
+        A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,45),size: frandom(20,40),xoff: frandom(-2.0,2.0),yoff: frandom(-2.0,2.0), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3), startalphaf: 0.9
+		,fadestepf: -1,sizestep: frandom(-0.1,-0.3),startroll: random(-180,180));
   }
 
   States
@@ -847,9 +860,11 @@ Class PM_BrokenRailSlug : Actor
   {
       A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,15),size: frandom(80,140),xoff: -22,startalphaf: -0.5,sizestep: frandom(0.0,3),startroll: random(-180,180));
 	for(int i=random(5,9);i>0;i--)
-	  A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,120),size: frandom(10,80),xoff: -22,velx: frandom(1,10),vely: frandom(-2,2),velz: frandom(-1,1),startalphaf: frandom(0.45,0.95),fadestepf: -1,sizestep: frandom(0.3,0.9),startroll: random(-180,180));
+	  A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,120),size: frandom(10,80),xoff: -22,velx: frandom(1,10),vely: frandom(-2,2),velz: frandom(-1,1),startalphaf: frandom(0.45,0.95)
+	  ,fadestepf: -1,sizestep: frandom(0.3,0.9),startroll: random(-180,180));
 	for(int i=random(7,15);i>0;i--)
-      A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.1,15),xoff: -22,velx: frandom(1,7),vely: frandom(-1,1),velz: frandom(-1,1),accelz: frandom(-0.0,-0.5),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+      A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.1,15),xoff: -22,velx: frandom(1,7),vely: frandom(-1,1),velz: frandom(-1,1),accelz: frandom(-0.0,-0.5),startalphaf: 1.0
+	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
   }
   Go:
     TRCR BBBB 1 Bright Light("Shadowball") A_Quake(1,4,0,100,0);
@@ -886,8 +901,10 @@ Class PM_BrokenVFGBall : Actor
   {
         if(!IsFrozen())
 		{
-		  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(95,150),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.95,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-          A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(3,20),size: frandom(40,45),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.85,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(95,150),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.95
+		  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+          A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(3,20),size: frandom(40,45),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.85
+		  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 		}
   }
  }
@@ -941,7 +958,8 @@ Class PM_BrokenVFGBall : Actor
 	 A_QuakeEx(5,5,5,60,0,1500);
 	 for (int a=0;a<15;a++)
 	 {
-       A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(50,100),size: frandom(40,105),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-3,3),vely: frandom(-3,3),velz: frandom(-3,3),startalphaf: 0.75,fadestepf: -0.15,sizestep: frandom(1,4.4),startroll: random(-180,180));
+       A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(50,100),size: frandom(40,105),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-3,3),vely: frandom(-3,3),velz: frandom(-3,3),startalphaf: 0.75
+	   ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 	   A_SpawnItemEx("PM_RedLightningVFX",frandom(-20,20),frandom(-20,20),frandom(-20,20),random(-3,3),random(-3,3),random(-6,6));
 	 }
 	 for(int a=0;a<3;a++)
@@ -982,8 +1000,10 @@ Class PM_BrokenVFGSoul : Actor
 	  {
 	    for(int a = 0;a<2;a++)
 		{
-		  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,3),size: frandom(10,13),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(-1,1),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-          A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(3,5),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,3),size: frandom(10,13),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(-1,1),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+		  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+          A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(3,5),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+		  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 		}
 	   }
   }

@@ -282,11 +282,11 @@ Class PM_ExileRessurectFire : Actor
 			A_SpawnParticleEx
 			( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 			lifetime: random(10,50), size: frandom(300,400), zoff: 10,
-			startalphaf: 1, fadestepf: -0.1, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-1, 1) );
+			startalphaf: 1, fadestepf: -1, sizestep: -10, startroll: random(-180,180), rollvel: frandom(-1, 1) );
 			A_SpawnParticleEx
 			( "ef2929", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 			lifetime: random(100,250), size: frandom(200,400), zoff: 10,
-			startalphaf: 0.7, fadestepf: -0.5, sizestep: 0.25, startroll: random(-180,180), rollvel: frandom(-1, 1) );
+			startalphaf: 0.7, fadestepf: -1, sizestep: 0.25, startroll: random(-180,180), rollvel: frandom(-1, 1) );
 			
 			for (int i = random(1, 5); i > 0; i--)
 			{
@@ -318,7 +318,7 @@ Class PM_ExileRessurectFire : Actor
 			tex[1], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(20,180), size: frandom(50,150), xoff: frandom(-20, 20),
 			yoff: frandom(-20, 20), zoff: frandom(-10, 10), velx: frandom(.2,-.2), vely: frandom(-0.2,0.2), velz: frandom(.5,2.5),
-			startalphaf: frandom(0.1, 0.25), fadestepf: -0.45, sizestep: frandom(0.1, 0.2), startroll: random(-180,180), rollvel: frandom(-3, 3) );
+			startalphaf: frandom(0.1, 0.25), fadestepf: -1, sizestep: frandom(0.1, 0.2), startroll: random(-180,180), rollvel: frandom(-3, 3) );
 		}
 		Wait;
 	}

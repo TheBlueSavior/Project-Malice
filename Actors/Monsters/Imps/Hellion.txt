@@ -360,7 +360,8 @@ Class PM_HellionFlare : PMProjectileBase //[NERU] todo: find a fiery whiz sound
 	TNT1 A 0
 	{
 	for(int i=random(1,4);i>0;i--)
-	  { A_SpawnParticleEx("ffb521",tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,250),size: frandom(10,50), xoff: -25, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),startalphaf: frandom(0.1,0.5), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1)); }
+	  { A_SpawnParticleEx("ffb521",tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,250),size: frandom(10,50), xoff: -25, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),startalphaf: frandom(0.1,0.5)
+	  , fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1)); }
 	  A_SpawnParticleEx("",tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,5),size: 180, xoff: -22, startalphaf: 0.9, sizestep: -8, startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,5), size: 120.0, xoff: -5, startalphaf: 0.6);
 	}
@@ -434,7 +435,7 @@ Class PM_HellionHoming : CacodemonBall
 		tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,40), size: frandom(0.2,10), xoff: random(-5,5), yoff: random(-3,3),
 		zoff: random(-2,2), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6),
-		startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180)
+		startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180)
 	 );
 	A_SpawnParticleEx
 	 (
@@ -458,7 +459,7 @@ Class PM_HellionHoming : CacodemonBall
 	 "#d2d2d2",
 	 tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,250),
 	 size: frandom(10,50), xoff: -25, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
-	 startalphaf: frandom(0.1,0.5), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
+	 startalphaf: frandom(0.1,0.5), fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
 	 rollvel: frandom(-1,1)
 	 );
 	for(int i=random(1,2);i>0;i--)
@@ -527,7 +528,7 @@ Class PM_HellionGeyser : Actor
 		TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,60), size: frandom(0.9,24), xoff: random(-55,55), yoff: random(-55,55),
 		zoff: random(0,15), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(0,2),
-		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
    }
    TNT1 A 0
    {
@@ -547,7 +548,7 @@ Class PM_HellionGeyser : Actor
 		style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 		lifetime: random(10,100), size: frandom(10,80), xoff: random(-65,65), yoff: random(-65,65),
 		zoff: random(0,25), velx: frandom(-3,3), vely: frandom(-3,3), velz: frandom(-0.5,3),
-		startalphaf: frandom(0.1,0.9), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180),
+		startalphaf: frandom(0.1,0.9), fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180),
 		rollvel: frandom(-1,1)
 		);
 	for(int i=random(10,15);i>0;i--)
@@ -557,7 +558,7 @@ Class PM_HellionGeyser : Actor
 		TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,60), size: frandom(0.2,15), xoff: random(-25,25), yoff: random(-25,25),
 		zoff: random(0,15), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(0,0.6),
-		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180)
+		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180)
 	 );
    }
   Go:
@@ -573,7 +574,7 @@ Class PM_HellionGeyser : Actor
 		TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,60), size: frandom(0.9,24), xoff: random(-55,55), yoff: random(-55,55),
 		zoff: random(0,15), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(0,2),
-		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180)
+		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180)
 	 );
 	 loop++;
 	}
@@ -595,7 +596,7 @@ Class PM_HellionGeyser : Actor
 		TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		lifetime: random(1,60), size: frandom(0.2,15), xoff: random(-55,55), yoff: random(-55,55),
 		zoff: random(0,15), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(0,2),
-		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180)
+		accelz: frandom(0.015,0.075), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180)
 	 );
    }
    Loop;

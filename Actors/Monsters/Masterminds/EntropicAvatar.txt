@@ -104,7 +104,7 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 			 accely: 0,
 			 accelz: 0,
 			 startalphaf: frandom(0.1,0.6),
-			 fadestepf: -0.35,
+			 fadestepf: -1,
 			 sizestep: frandom(0.2,5),
 			 startroll: random(-180,180),
 			 rollvel: frandom(-0.5,0.5),
@@ -149,7 +149,7 @@ Class PM_EntropicAvatar : PMVoidMonsterBase
 		vely: random(-1,1),
 		velz: random(-1,1),
 		startalphaf:frandom(0.1, 0.5),
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: frandom(-5,5),
 		startroll: random(-180,180),
 		rollvel: frandom(-2,2)
@@ -950,7 +950,7 @@ Default
 			vely: frandom(-1,1),
 			velz: frandom(-0.1,0.2),
 			startalphaf: frandom(0.5,1.0),
-			fadestepf: -0.5,
+			fadestepf: -1,
 			sizestep: frandom(0.1,3),
 			startroll: random(-180,180),
 			rollvel: frandom(-0.5,0.5)
@@ -1048,7 +1048,7 @@ Class PM_EAvatarSoulVomit : Actor
 		accely: frandom(-0.005,0.005),
 		accelz: frandom(-0.0,-0.8),
 		startalphaf: 1.0,
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: -0.2,
 		startroll: random(-180,180)
 		);

@@ -280,7 +280,7 @@ Class PM_CorpulentBall : Fatshot
 		accely: frandom(-0.005,0.005),
 		accelz: frandom(-0.0,-0.8),
 		startalphaf: 1.0,
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: -0.2,
 		startroll: random(-180,180)
 		);

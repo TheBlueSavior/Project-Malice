@@ -205,7 +205,8 @@ Class PM_Bacillus : PMEnvyMonsterBase
 		VY_A DDDDDCCCCCDDDDDCCCCC 1 Bright Light("Greenball3") 
 		{
 			A_FaceTarget();
-			A_SpawnParticleEx("47ae1a", tex[0], STYLE_Add, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(2,10), frandom(80,300), xoff: 5, zoff: 14, startalphaf: 0.5, fadestepf: -1, startroll: random(-180,180));
+			A_SpawnParticleEx("47ae1a", tex[0], STYLE_Add, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(2,10), frandom(80,300), xoff: 5, zoff: 14, startalphaf: 0.5
+			, fadestepf: -1, startroll: random(-180,180));
 		}
 		Goto SoulLoop;
 	CopyBloodSkull:
@@ -418,7 +419,8 @@ Class PM_BacillusBurntSoulCopy : Actor
 		vel.z += frandom(-0.50,0.50);
 		angle = frandom(0,360);
 		A_Explode((5), 30, XF_NOTMISSILE);
-		A_SpawnParticleEx("87ff52", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(45,67), size: 90.0, xoff: frandom(-3.5,3.5), yoff: frandom(-3.5,3.5), zoff: frandom(-3.5,3.5) + 30, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: (alpha / 2), fadestepf: -1, sizestep: 2, startroll: random(-180,180));
+		A_SpawnParticleEx("87ff52", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(45,67), size: 90.0, xoff: frandom(-3.5,3.5), yoff: frandom(-3.5,3.5), zoff: frandom(-3.5,3.5) + 30, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: (alpha / 2)
+		, fadestepf: -1, sizestep: 2, startroll: random(-180,180));
 	   }
 	   Wait;
 	}

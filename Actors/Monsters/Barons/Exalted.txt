@@ -147,9 +147,9 @@ Class PM_Exalted : PMPrideMonsterBase
 		A_StartSound("PMGazer/Sight",92,CHANF_DEFAULT,1,pitch:0.7);
 		A_StartSound("PMGazer/Sight",93,CHANF_DEFAULT,1,pitch:0.9);
 		A_StartSound("PMGazer/Sight",94,CHANF_DEFAULT,1,pitch:1.2);
-		A_SpawnParticleEx("ff2424", tex[5], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: 20, size: 150, xoff: 10, zoff: 45, startalphaf: 1.0, fadestepf: -.5, sizestep: 80, startroll: random(-180,180), rollvel: frandom(-8, 8));
-		for(int i=3;i>0;i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: 45, size: 850, xoff: 10, zoff: 45, startalphaf: 1.0, fadestepf: -0.002, sizestep: frandom(18, -18), startroll: random(-180,180), rollvel: frandom(-2, 2));
-		for(int i=10;i>0;i--) A_SpawnParticleEx("AF0000", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(50,100), size: 10.0, xoff: random(100,-100), yoff: random(100,-100), zoff: random(0,30), velx: frandom(-1,1), vely: frandom(-1,1), accelx: frandom(-0.05,0.05), accely: frandom(-0.05,0.05), startalphaf: frandom(0.2,0.9), fadestepf: -0.5, sizestep: 4, startroll: random(-180,180), rollvel: frandom(-1,1));
+		A_SpawnParticleEx("ff2424", tex[5], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: 20, size: 150, xoff: 10, zoff: 45, startalphaf: 1.0, fadestepf: -1, sizestep: 80, startroll: random(-180,180), rollvel: frandom(-8, 8));
+		for(int i=3;i>0;i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: 45, size: 850, xoff: 10, zoff: 45, startalphaf: 1.0, fadestepf: -1, sizestep: frandom(18, -18), startroll: random(-180,180), rollvel: frandom(-2, 2));
+		for(int i=10;i>0;i--) A_SpawnParticleEx("AF0000", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(50,100), size: 10.0, xoff: random(100,-100), yoff: random(100,-100), zoff: random(0,30), velx: frandom(-1,1), vely: frandom(-1,1), accelx: frandom(-0.05,0.05), accely: frandom(-0.05,0.05), startalphaf: frandom(0.2,0.9), fadestepf: -1, sizestep: 4, startroll: random(-180,180), rollvel: frandom(-1,1));
 		for(int i=10;i>0;i--) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(15,30), xoff: frandom(-45,45), yoff: frandom(-45,45), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
 		for(int i=10;i>0;i--) A_SpawnParticleEx("", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,10), size: random(1,100), xoff: frandom(-60,60), yoff: frandom(-60,60), zoff: frandom(0,50), velx: random(-6,6), vely: random(-6,6), velz: random(-6,6), startalphaf: frandom(0.8,0.95), startroll: random(-180,180), rollvel: frandom(-30,30));
 		}
@@ -187,11 +187,11 @@ Class PM_Exalted : PMPrideMonsterBase
 		A_SpawnParticleEx(   
 		"", tex[2], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: 50, size: frandom(25,35), xoff: frandom(-65.5,65.5), yoff: frandom(-65.5,65.5), zoff: frandom(15,90),
-		velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: 1, fadestepf: -0.01, sizestep: -2 );
+		velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: 1, fadestepf: -1, sizestep: -2 );
 		A_SpawnParticleEx(   
 		"cc0000", TexMan.CheckForTexture("EXALE1"), style: STYLE_Stencil, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
 		lifetime: 25, size: 175, xoff: frandom(-5.5,5.5), yoff: frandom(-5.5,5.5), zoff: 55, velx: frandom(-0.1,0.1), vely: frandom(-0.1,0.1),
-		velz: frandom(-0.1,0.1), startalphaf: 0.25, fadestepf: -0.01, sizestep: -2, startroll: 180);
+		velz: frandom(-0.1,0.1), startalphaf: 0.25, fadestepf: -1, sizestep: -2, startroll: 180);
 	}
     EXAL E random(10,20) Bright
 	{
@@ -379,7 +379,7 @@ Class PM_Exalted : PMPrideMonsterBase
 		}
 		EXAL E 5 
 		{
-		 A_SpawnParticleEx("", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
+		 A_SpawnParticleEx("", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -1, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
 		 if(tplimit == 3)
 		  {
 		   tplimit = 0;
@@ -405,7 +405,7 @@ Class PM_Exalted : PMPrideMonsterBase
 		 A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,pitch:frandom(0.30,0.75));
 		 A_StartSound("Abhor/BallExp",100,attenuation:0.86,pitch:0.30);
 		for(int i=15;i>0;i--)
-		  A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -0.75,sizestep: 5);
+		  A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -1,sizestep: 5);
 		}
 		EXAL MMNOOPPQQRRSSTTTTTTTTTTTTTTTTTTTTTTTT 3
 		{
@@ -413,9 +413,9 @@ Class PM_Exalted : PMPrideMonsterBase
 		 A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75));
 		if(random(1,15) == 1)
 	     A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75));
-		 A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -0.75,sizestep: 5);
+		 A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -1,sizestep: 5);
 		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(40,70),size: frandom(1,40), xoff: frandom(-25,25), yoff: frandom(-25,25), zoff: random(0,65), velx: frandom(-8,8), vely: frandom(-8,8),velz: frandom(-8,12), accelz: frandom(-0.1,-0.5), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(0,4));
-		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,45), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
+		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,45), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -1, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
 		}
 		EXAL TTTTTTTTTTTTTTTTTTTTTTTTTTT 5
 		{
@@ -423,9 +423,9 @@ Class PM_Exalted : PMPrideMonsterBase
 		 { A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.65,pitch:frandom(0.30,0.75)); }
 		if(random(1,18) == 1)
 		 { A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.45,pitch:frandom(1.35,1.75)); }
-		 A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.1,0.1), vely: frandom(-0.1,0.1), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -0.75,sizestep: 5);
-		 A_SpawnParticleEx("830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9), fadestepf: -0.75,sizestep: 5);
-		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
+		 A_SpawnParticleEx("f42424", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(65,105), size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.1,0.1), vely: frandom(-0.1,0.1), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9),fadestepf: -1,sizestep: 5);
+		 A_SpawnParticleEx("830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5), zoff: random(0,15),velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2), startalphaf: frandom(0.5,0.9), fadestepf: -1,sizestep: 5);
+		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -1, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
 		}
 		EXAL TTTTTTTTTTTTTTTTTTTTTT 4
 		{
@@ -433,8 +433,8 @@ Class PM_Exalted : PMPrideMonsterBase
 		 { A_StartSound("PMGazer/Sight",102,CHANF_OVERLAP,volume:0.35,pitch:frandom(0.30,0.75)); }
 		if(random(1,18) == 1)
 		 { A_StartSound("PMGazer/Sight",103,CHANF_OVERLAP,volume:0.15,pitch:frandom(1.35,1.75)); }
-		 A_SpawnParticleEx("830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5),zoff: random(0,15), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2),startalphaf: frandom(0.5,0.9), fadestepf: -0.75, sizestep: 5);
-		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -0.3, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
+		 A_SpawnParticleEx("830000", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45, size: frandom(45,75), xoff: frandom(-25.5,25.5), yoff: frandom(-25.5,25.5),zoff: random(0,15), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0.3,2),startalphaf: frandom(0.5,0.9), fadestepf: -1, sizestep: 5);
+		 A_SpawnParticleEx("545454", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(20,120), size: frandom(1,25), xoff: random(-30,30), yoff: random(-30,30),zoff: 5, velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(1,4), startalphaf: 1.0, fadestepf: -1, sizestep: -0.4, startroll: random(-180,180),rollvel: random(0,4));
 		}
 		EXAL T 5 { bDONTGIB = false; bDONTTHRUST = false; A_StopSound(103); }
 		EXAL T -1;
@@ -517,7 +517,8 @@ Class PM_ExaltedBeacon : Actor
 	
 	if (!(GetAge() % random(1,2)))
 	{
-		if(!random(0, 12)) A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(15,200), size: random(5,15), xoff: frandom(-120,120), yoff: frandom(-120,120), zoff: frandom(0,25), velx: frandom(-2.5,2.5), vely: frandom(-2.5,2.5), velz: frandom(0,4), accelx: frandom(-0.05, 0.05), accely: frandom(-0.05, 0.05), accelz: frandom(-0.001, 0.05), startalphaf: frandom(0.65, 1), fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		if(!random(0, 12)) A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(15,200), size: random(5,15), xoff: frandom(-120,120), yoff: frandom(-120,120), zoff: frandom(0,25), velx: frandom(-2.5,2.5), vely: frandom(-2.5,2.5), velz: frandom(0,4), accelx: frandom(-0.05, 0.05), accely: frandom(-0.05, 0.05), accelz: frandom(-0.001, 0.05), startalphaf: frandom(0.65, 1)
+		, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
 		if(!random(0, 4)) A_SpawnParticleEx("e53737", tex[1], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: random(100, 200), size: random(150,250), xoff: frandom(-100,100), yoff: frandom(-100,100), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,1.5), accelz: 0.04, startalphaf: frandom(.2,.4), fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-2, 2));
 	}
  }
@@ -630,7 +631,7 @@ Class PM_ExaltedMagicShot : Actor
 	TNT1 A 0;
 	TNT1 A 0
 	{
-	 A_SpawnParticleEx("cc0000",TexMan.CheckForTexture("C1TEA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 5,size: 125,xoff: -20,startalphaf: 1.0,fadestepf: -0.2,sizestep: frandom(0.0,3),startroll: frandom(-180,180));
+	 A_SpawnParticleEx("cc0000",TexMan.CheckForTexture("C1TEA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 5,size: 125,xoff: -20,startalphaf: 1.0,fadestepf: -1,sizestep: frandom(0.0,3),startroll: frandom(-180,180));
 	 A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,20),size: 260.0, xoff: -10, startalphaf: 0.85, fadestepf: -1, startroll: random(-180,180) );
 	 for(int i=random(1,5);i>0;i--)
 	  { A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(2,25), size: random(60,195),xoff: -10, velx: frandom(-0.1,0.1), vely: frandom(-0.1,0.1), velz: frandom(-0.1,0.1), startalphaf: 0.9, startroll: random(-180,180)); }

@@ -441,7 +441,7 @@ Class PM_Blasphemer : PMPrideMonsterBase
 					 vely: frandom(-1,1),
 					 velz: frandom(-1,1),
 					 startalphaf: 1,
-					 fadestepf: -0.01,
+					 fadestepf: -1,
 					 sizestep: -2
 				);
 			}
@@ -476,7 +476,7 @@ Class PM_Blasphemer : PMPrideMonsterBase
 					 vely: frandom(-1,1),
 					 velz: frandom(-1,1),
 					 startalphaf: 1,
-					 fadestepf: -0.01,
+					 fadestepf: -1,
 					 sizestep: -2
 				);
 			}
@@ -832,7 +832,7 @@ Class PM_Blasphemer : PMPrideMonsterBase
 			accelx: 0,
 			accely: 0,
 			startalphaf: 1.0,
-			fadestepf: -0.3,
+			fadestepf: -1,
 			sizestep: -0.4,
 			startroll: random(-180,180),
 			rollvel: random(0,4),
@@ -859,7 +859,7 @@ Class PM_Blasphemer : PMPrideMonsterBase
 			accelx: 0,
 			accely: 0,
 			startalphaf: 1.0,
-			fadestepf: -0.3,
+			fadestepf: -1,
 			sizestep: -0.4,
 			startroll: random(-180,180),
 			rollvel: random(0,4),
@@ -907,7 +907,7 @@ Class PM_BlasphemerBall : DoomImpBall
 			size: frandom(40,90),
 			xoff: -5,
 			startalphaf: 1.0,
-			fadestepf: -0.2,
+			fadestepf: -1,
 			sizestep: frandom(0.0,3),
 			startroll: frandom(-180,180)
 			);
@@ -921,7 +921,7 @@ Class PM_BlasphemerBall : DoomImpBall
 			size: frandom(10,200),
 			xoff: -10,
 			startalphaf: 1.0,
-			fadestepf: -0.2,
+			fadestepf: -1,
 			sizestep: frandom(0.0,3),
 			startroll: frandom(-180,180)
 			);
@@ -936,7 +936,7 @@ Class PM_BlasphemerBall : DoomImpBall
 			xoff: -20,
 			velx: frandom(0,6),
 			startalphaf: frandom(0.4,0.6),
-			fadestepf: -0.05,
+			fadestepf: -1,
 			sizestep: frandom(5,12),
 			startroll: frandom(-180,180),
 			rollvel: frandom(-5,5)
@@ -1022,7 +1022,7 @@ Class PM_BlasphemerBall : DoomImpBall
 			size: frandom(30,100),
 			xoff: -10,
 			startalphaf: 1.0,
-			fadestepf: -0.2,
+			fadestepf: -1,
 			sizestep: frandom(0.0,3),
 			startroll: frandom(-180,180)
 			);

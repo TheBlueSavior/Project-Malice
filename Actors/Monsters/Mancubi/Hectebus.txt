@@ -183,17 +183,22 @@ Class PM_HectebusBall : Fatshot
       TNT1 A 0;
       TNT1 A 0
 	  {
-		 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,5),size: frandom(155,220),startalphaf: 1.0,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
-		 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,7),size: frandom(90,175),startalphaf: 1.0,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
+		 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,5),size: frandom(155,220),startalphaf: 1.0
+		 ,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
+		 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,7),size: frandom(90,175),startalphaf: 1.0
+		 ,fadestepf: 0,sizestep: frandom(0.0,3),startroll: random(-180,180));
 	  	for(int i=random(5,8);i>0;i--)
-		 A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,100),size: frandom(3,15),xoff: frandom(-2,2),yoff: frandom(-2,2),zoff: frandom(-2,2),velx: frandom(1,10),vely: frandom(-3,3),velz: frandom(-0.6,3),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		 A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,100),size: frandom(3,15),xoff: frandom(-2,2),yoff: frandom(-2,2),zoff: frandom(-2,2),velx: frandom(1,10),vely: frandom(-3,3),velz: frandom(-0.6,3),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8),startalphaf: 1.0
+		 ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	  }
   Go:
       BLHD AB 1 Bright Light("HectebusBallLight") A_SpawnItem("PM_HectebusBallTrail");
 	  TNT1 A 0
       {
-      	 A_SpawnParticleEx("",tex[3],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 35,size: 60.0,xoff: -10,velx: random(1,7),startalphaf: 0.8,fadestepf: -2,startroll: random(-180,180));
-      	 A_SpawnParticleEx("fd9c35",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(9,14),size: 50.0,xoff: -7,startalphaf: 0.8,fadestepf: -1,startroll: random(-180,180));
+      	 A_SpawnParticleEx("",tex[3],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 35,size: 60.0,xoff: -10,velx: random(1,7),startalphaf: 0.8
+		 ,fadestepf: -2,startroll: random(-180,180));
+      	 A_SpawnParticleEx("fd9c35",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(9,14),size: 50.0,xoff: -7,startalphaf: 0.8
+		 ,fadestepf: -1,startroll: random(-180,180));
       }
       Loop;
 Death:

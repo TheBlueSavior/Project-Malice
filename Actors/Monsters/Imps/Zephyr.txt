@@ -492,8 +492,10 @@ Class PM_FastImpBall : DoomImpBall
     BFX5 AABBCC 1 bright Light("Shadowball2") 
 	{
 	  A_SpawnItemEx("PM_BelphFlameTrails",0,0,0,0,0,0,0,128,0);
-	  A_SpawnParticleEx("#890000",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(30,50),size: 40.0,xoff: random(-10,0),startalphaf: 0.25,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180));
-	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,20),size: frandom(0.2,6),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+	  A_SpawnParticleEx("#890000",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(30,50),size: 40.0,xoff: random(-10,0),startalphaf: 0.25
+	  ,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,20),size: frandom(0.2,6),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
+	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 60.0,xoff: -5,startalphaf: 0.6);
 	}
 	Loop;
@@ -502,8 +504,10 @@ Class PM_FastImpBall : DoomImpBall
 	TNT1 A 0 A_SetTranslation("PM_RedFireTint");
 	TNT1 A 0 A_SetScale(1);
 	TNT1 A 0 A_SpawnItemEx("PM_RFireBallExplode");
-	TNT1 AA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180)); }
-	TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180)); }
+	TNT1 AA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95
+	,fadestepf: -1,sizestep: -15,startroll: random(-180,180)); }
+	TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0
+	,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
     BFX5 D 2 Bright Light("Shadowball2");
     FIR3 CDEFGHIJKLMNOP 2 Bright Light("Shadowball2");
     stop;

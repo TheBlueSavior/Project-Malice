@@ -503,7 +503,7 @@ Class PM_LandrazerComet : Actor
 	{
 	  A_SetRoll(roll+15);
 	  A_SpawnParticleEx( "",  TexMan.CheckForTexture("F1R1A0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,35),  size: frandom(45,85),  xoff: -10,  startalphaf: 1.0, fadestepf: -1,  sizestep: frandom(0.0,-0.50), startroll: random(-180,180),rollvel: random(-5,5));
-	  A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(35,100), size: frandom(5,20), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(-20,20), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(-0.1,0.1), startalphaf: frandom(0.35,1), fadestepf: -0.35, startroll: random(-180,180));
+	  A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(35,100), size: frandom(5,20), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(-20,20), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(-0.1,0.1), startalphaf: frandom(0.35,1), fadestepf: -1, startroll: random(-180,180));
 	}
 	Loop;
    Death:

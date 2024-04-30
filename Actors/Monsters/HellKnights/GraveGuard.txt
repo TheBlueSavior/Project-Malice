@@ -64,7 +64,7 @@ Class PM_GraveGuard : PMDeathMonsterBase
 	 vely: frandom(-1,1),
 	 velz: frandom(1,4),
 	 startalphaf: 1.0,
-	 fadestepf: -0.3,
+	 fadestepf: -1,
 	 sizestep: -0.4,
 	 startroll: random(-180,180),
 	 rollvel: random(0,4)
@@ -430,7 +430,7 @@ Class PM_HellsFuryBall : Actor
 		vely: frandom(-0.6,0.6),
 		velz: frandom(-0.6,1),
 		startalphaf: 1.0,
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: -0.2,
 		startroll: random(-180,180)
 		);
@@ -556,7 +556,7 @@ Class HellsFurySkull : Actor
 	 vely: frandom(-1,1),
 	 velz: frandom(1,4),
 	 startalphaf: 1.0,
-	 fadestepf: -0.3,
+	 fadestepf: -1,
 	 sizestep: -0.4,
 	 startroll: random(-180,180),
 	 rollvel: random(0,4)
@@ -603,7 +603,7 @@ Class HellsFurySkull : Actor
 	 vely: frandom(-1,1),
 	 velz: frandom(1,4),
 	 startalphaf: 1.0,
-	 fadestepf: -0.3,
+	 fadestepf: -1,
 	 sizestep: -0.4,
 	 startroll: random(-180,180),
 	 rollvel: random(0,4)
@@ -859,7 +859,7 @@ States
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(10,90), size: frandom(65,100), xoff: -25,
 			velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
-			startalphaf: frandom(0.45,0.85), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+			startalphaf: frandom(0.45,0.85), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			A_SpawnParticleEx
@@ -922,7 +922,7 @@ States
 		 ( "3d85c6", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		 lifetime: random(10,75), size: frandom(5,15),
 		 velx: frandom(-4,4), vely: frandom(-4,4), velz: frandom(1,15),
-		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.45,0.95), fadestepf: -0.5,
+		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.45,0.95), fadestepf: -1,
 		 sizestep: -0.5, startroll: random(-180,180));
 	   for(int i=12;i>0;i--) 
 	   A_SpawnParticleEx

@@ -688,7 +688,7 @@ Class WickedShot : Actor
 		    size: random(34,46),
 		    xoff: -10,
 		    startalphaf: 0.75,
-		    fadestepf: -0.65,
+		    fadestepf: -1,
 		    sizestep: -0.25,
 		    startroll: random(-180,180)
 		    );
@@ -794,7 +794,7 @@ Class WickedRevolveShot1 : WickedShot
 		    size: random(34,46),
 		    xoff: -10,
 		    startalphaf: 0.75,
-		    fadestepf: -0.65,
+		    fadestepf: -1,
 		    sizestep: -0.25,
 		    startroll: random(-180,180)
 		    );
@@ -900,7 +900,7 @@ Class WickedRevolveShot2 : WickedShot
 		    size: random(34,46),
 		    xoff: -10,
 		    startalphaf: 0.75,
-		    fadestepf: -0.65,
+		    fadestepf: -1,
 		    sizestep: -0.25,
 		    startroll: random(-180,180)
 		    );
@@ -1900,7 +1900,7 @@ Class PM_WickedInfernalCopy : Actor
    A_SpawnParticleEx(
 	"", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(40,120),
 	size: frandom(0.2,25), xoff: random(-30,30), yoff: random(-30,30), zoff: random(0,60), velx: frandom(-0.6,0.6), vely: frandom(-0.6,0.6), velz: frandom(-0.6,1),
-	startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+	startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
 	timer--;
    }
    Loop;

@@ -258,10 +258,14 @@ Class PM_CyberFodderBall : PMProjectileBase
     {
 	  PM_CheckWhiz();
       A_SetRoll(random(0,259),SPF_INTERPOLATE);
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 1,size: 70.0,xoff: -8,startalphaf: 0.6,fadestepf: -1,sizestep: -4);
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("RLSSA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: 5,size: 25.0,xoff: -6,startalphaf: 0.9,fadestepf: -1,sizestep: -5,startroll: random(-180,180),rollvel: random(-30,30));
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("RLSSA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(5,150),size: random(2,8),xoff: -10,yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1.0,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180),rollvel: random(-30,30));
-	  A_SpawnParticleEx("#890000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(60,70),size: 25.0,xoff: -5,startalphaf: 0.25,fadestepf: -1,sizestep: -0.08,startroll: random(-180,180));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 1,size: 70.0,xoff: -8,startalphaf: 0.6
+	  ,fadestepf: -1,sizestep: -4);
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("RLSSA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: 5,size: 25.0,xoff: -6,startalphaf: 0.9
+	  ,fadestepf: -1,sizestep: -5,startroll: random(-180,180),rollvel: random(-30,30));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("RLSSA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(5,150),size: random(2,8),xoff: -10,yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1.0
+	  ,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180),rollvel: random(-30,30));
+	  A_SpawnParticleEx("#890000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(60,70),size: 25.0,xoff: -5,startalphaf: 0.25
+	  ,fadestepf: -1,sizestep: -0.08,startroll: random(-180,180));
     }
     Loop;
   Death:

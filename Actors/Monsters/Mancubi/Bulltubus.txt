@@ -51,10 +51,14 @@ Class PM_Bulltubus : PMWrathMonsterBase
    
    void PM_BulltubusFlamerCharge()
    {
-	 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(150,250),size: frandom(10,150),xoff: frandom(20,25),yoff: 34,zoff: frandom(-3.5,3.5) + 25,startalphaf: 0.07,fadestepf: -1,startroll: random(-180,180));
-	 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(150,250),size: frandom(10,150),xoff: frandom(20,25),yoff: -34,zoff: frandom(-3.5,3.5) + 25,startalphaf: 0.07,fadestepf: -1,startroll: random(-180,180));
-	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,80),size: random(3,10),xoff: frandom(20,25),yoff: 34,zoff: frandom(-3.5,3.5) + 25,velx: frandom(0.85,1.35),vely: frandom(-0.95,0.95),velz: frandom(-0.35,0.35),startalphaf: frandom(0.25,0.9),fadestepf: 0,sizestep: 0,startroll: random(-180,180),rollvel: frandom(-30,30));
-	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,50),size: random(3,10),xoff: frandom(20,25),yoff: -34,zoff: frandom(-3.5,3.5) + 25,velx: frandom(0.85,1.35),vely: frandom(-0.95,0.95),velz: frandom(-0.35,0.35),startalphaf: frandom(0.25,0.9),fadestepf: 0,sizestep: 0,startroll: random(-180,180),rollvel: frandom(-30,30));
+	 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(150,250),size: frandom(10,150),xoff: frandom(20,25),yoff: 34,zoff: frandom(-3.5,3.5) + 25,startalphaf: 0.07
+	 ,fadestepf: -1,startroll: random(-180,180));
+	 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(150,250),size: frandom(10,150),xoff: frandom(20,25),yoff: -34,zoff: frandom(-3.5,3.5) + 25,startalphaf: 0.07
+	 ,fadestepf: -1,startroll: random(-180,180));
+	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,80),size: random(3,10),xoff: frandom(20,25),yoff: 34,zoff: frandom(-3.5,3.5) + 25,velx: frandom(0.85,1.35),vely: frandom(-0.95,0.95),velz: frandom(-0.35,0.35),startalphaf: frandom(0.25,0.9)
+	 ,fadestepf: 0,sizestep: 0,startroll: random(-180,180),rollvel: frandom(-30,30));
+	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,50),size: random(3,10),xoff: frandom(20,25),yoff: -34,zoff: frandom(-3.5,3.5) + 25,velx: frandom(0.85,1.35),vely: frandom(-0.95,0.95),velz: frandom(-0.35,0.35),startalphaf: frandom(0.25,0.9)
+	 ,fadestepf: 0,sizestep: 0,startroll: random(-180,180),rollvel: frandom(-30,30));
    }
    States
  {

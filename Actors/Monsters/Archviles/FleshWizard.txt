@@ -61,14 +61,14 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 	{
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-125, 125), yoff: random(-125, 125),velz: frandom(.3, 2),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("890000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-125, 125), yoff: random(-125, 125),velz: frandom(.3, 2),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
-		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,3),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,3),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	}
 	
 	void Wiz2()
 	{
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(50, 150),xoff: random(-65, 65), yoff: random(-65, 65),velz: frandom(.3, 8),startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("ff0000", tex[2], STYLE_Add, SPF_RELATIVE|SPF_ROLL, random(20, 50), random(40,200), xoff: 15, zoff: 60, startalphaf: frandom(.2, .9), sizestep: frandom(0, 1), startroll: random(-180,180), rollvel: frandom(-4, 4));
-		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-150, 150),yoff: random(-150,150),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,8),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	}
 	
 	States
@@ -337,7 +337,7 @@ Class PM_MasonBall : PM_BloodSpit
 		  if (!random(0, 2)) A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
 		  A_SpawnItemEx("PM_BelphFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 		  A_SpawnParticleEx("#890000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 30,size: 50.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,sizestep: -2.45,startroll: random(-180,180));
-		  A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		  A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 		  A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 		}
 		TNT1 A 0
@@ -351,7 +351,7 @@ Class PM_MasonBall : PM_BloodSpit
 		  if (!random(0, 2)) A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
 		  A_SpawnItemEx("PM_BelphFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 		  A_SpawnParticleEx("#890000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 30,size: 50.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,sizestep: -2.45,startroll: random(-180,180));
-		  A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		  A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 		  A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 		  A_SeekerMissile(2,2);
 		}
@@ -365,7 +365,7 @@ Class PM_MasonBall : PM_BloodSpit
 		TNT1 AAAAAA 0
 		{
 			A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
-			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 		}
 		BFX5 D 2 Bright Light("Shadowball2");
 		FIR3 CDEFGHIJKLMNOP 2 Bright Light("Shadowball2");
@@ -427,7 +427,7 @@ Class PM_MasonHeart : PM_BeholderEye
 				A_FaceTarget();
 				vel *= .93;
 				A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
-				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 				A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
 			}
 			BEYE A 0 A_SpawnProjectile("PM_MasonHeartAttack",0,0,0,CMF_TRACKOWNER);
@@ -485,7 +485,7 @@ Class PM_MasonHeartAttack : PM_BeholderEyeAttack
 				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
 				A_SpawnItemEx("PM_BelphFlameTrails",random(-20,20),random(-20,20),0,0,0,0,0,128,0);
 				A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
-				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("ff0000",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 				A_SpawnParticleEx("ff0000",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
 				A_SpawnItemEx("PM_BloodTrail", flags:SXF_NOCHECKPOSITION);
 			}
@@ -528,7 +528,7 @@ Class PM_MasonRune : ArchvileFire
 	{
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
-		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-70, 70),yoff: random(-70,70),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,7),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-70, 70),yoff: random(-70,70),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,7),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	}
 	
 	States
@@ -598,7 +598,7 @@ Class PM_MasonPortGeyser : ArchvileFire
 	{
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("ff0000",tex[0],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80, 160),size: frandom(40, 80),xoff: random(-66, 66), yoff: random(-66, 66),velz: frandom(.3, 6),startalphaf: 0.2,fadestepf: -1,startroll: random(-180,180));
-		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-70, 70),yoff: random(-70,70),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,7),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180));
+		A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-70, 70),yoff: random(-70,70),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(1,7),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	}
 	
 	States

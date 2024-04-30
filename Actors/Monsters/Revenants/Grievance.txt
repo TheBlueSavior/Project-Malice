@@ -187,45 +187,53 @@ Class PM_Grievance : PMEnvyMonsterBase
 		}
 		PSEV CCCCCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV CCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LB0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LB0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV CCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LC0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LC0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV CCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LD0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LD0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV CCCCCCCCCCCCCCCCCCCCCCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV D 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_StartSound("Husk/Throw");
 			A_SpawnProjectile("PM_CopyHuskMeteor", 40);
 			A_FaceTarget();
 		}
 		PSEV DDDDDDDDCCCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV D 5 PM_LeadTarget(22);
 		PSEV D 10 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("GH2LE0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_StartSound("Husk/Throw");
 			A_SpawnProjectile("PM_CopyHuskMeteor", 40, 0, 0, CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch * 1);
 		}
@@ -249,7 +257,8 @@ Class PM_Grievance : PMEnvyMonsterBase
 		}
 		PSEV CCCCCCCCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		TNT1 A 0 A_StartSound("Draugr/Arm",23);
@@ -257,7 +266,8 @@ Class PM_Grievance : PMEnvyMonsterBase
 		{
 			GrievanceAimLaser((0,-17));
 			GrievanceAimLaser();
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		TNT1 A 0 A_StartSound("Fiend/Lockon",24);
@@ -265,14 +275,16 @@ Class PM_Grievance : PMEnvyMonsterBase
 		{
 			GrievanceAimLaser((0,-17));
 			GrievanceAimLaser();
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV DDDDDDDD 1 Light("Greenball2")
 		{
 			GrievanceAimLaser((0,-17));
 			GrievanceAimLaser();
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("FIENJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		Goto CopyFiendLoop;
@@ -314,43 +326,50 @@ Class PM_Grievance : PMEnvyMonsterBase
 		}
 		PSEV CCCCCCCCCC 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVB1E1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVB1E1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV CCCCCCCCCCCCCCCCCC 1 Light("Greenball2")
 		{
 			GrievanceAimLaser();
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV D 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_SpawnProjectile("PM_CopyCadaverHRocket", 58, 10);
 			A_FaceTarget();
 		}
 		PSEV DDDDDDDDDDDDD 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV C 0 VelFromAngle(random(15, 25), random(1, 4) * 90);
 		PSEV CCCCCCCCCCCCCCCCCC 1 Light("Greenball2")
 		{
 			GrievanceAimLaser((0, -17));
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVJ1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		PSEV D 1 Light("Greenball2")
 		{
 			A_Stop();
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_SpawnProjectile("PM_CopyCadaverHRocket", 58, -18);
 			A_FaceTarget();
 		}
 		PSEV DDDDDDDDDDDDD 1 Light("Greenball2")
 		{
-			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("4EFF33", TexMan.CheckForTexture("CREVK1"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 30, size: 105, xoff: 20, zoff: 60, startalphaf: 1
+			, fadestepf: 0.1, startroll: 180);
 			A_FaceTarget();
 		}
 		TNT1 A 0 
@@ -415,7 +434,8 @@ Class PM_GrievanceRocket : RevenantTracer
 		CMIS AAAAAAA 1 BRIGHT;
 		TNT1 A 0 A_ScaleVelocity(0.6);
 		CMIS AAAAAA 1 BRIGHT;
-		TNT1 A 0 A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		TNT1 A 0 A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4
+		,fadestepf: -1,startroll: random(-180,180));
 	    TNT1 A 0 A_ScaleVelocity(3);
 	    TNT1 A 0 A_StartSound("Grievance/Launch",CHAN_7);
 	Spawn2:
@@ -435,7 +455,8 @@ Class PM_GrievanceRocket : RevenantTracer
 		  A_SpawnItemEx("PM_CadaverHomingFireGlobs",random(-2,0),random(-3,3),random(-3,3),flags:128|SXF_TRANSFERTRANSLATION);
 		  
 		  A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, int(ceil(frandom(1, 10))), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: frandom(.5, 1), startroll: random(-180,180));
-		  A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		  A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4
+		  ,fadestepf: -1,startroll: random(-180,180));
 	      A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: 0.6);
 		}
 		Loop;
@@ -465,11 +486,13 @@ Class PM_GrievanceSmokeCloud : PM_HostSmokeCloud
   States
   {
   Spawn:
-	TNT1 AAAAAAAAA random(1,8) { A_SpawnParticleEx("004400",TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(80,200), frandom(15,45),velx: frandom(-0.05,0.05),vely: frandom(-0.05,0.05),velz: frandom(-0.05,0.05),startalphaf: frandom(0.1,0.3),fadestepf: -0.001,sizestep: frandom(0.1,1),startroll: random(-180,180),rollvel: random(-2,2)); }
+	TNT1 AAAAAAAAA random(1,8) { A_SpawnParticleEx("004400",TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(80,200), frandom(15,45),velx: frandom(-0.05,0.05),vely: frandom(-0.05,0.05),velz: frandom(-0.05,0.05),startalphaf: frandom(0.1,0.3)
+	,fadestepf: -0.001,sizestep: frandom(0.1,1),startroll: random(-180,180),rollvel: random(-2,2)); }
 	TNT1 A 0 A_Stop();
 	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(4,10)
 	{
-	  if (!random(0, 3)) A_SpawnParticleEx("004400",TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(200,400), frandom(25,65),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.05,0.05),vely: frandom(-0.05,0.05),velz: frandom(-0.05,0.05),startalphaf: frandom(0.1,0.3),fadestepf: -1,sizestep: frandom(0.1,1),startroll: random(-180,180),rollvel: frandom(-1,1));
+	  if (!random(0, 3)) A_SpawnParticleEx("004400",TexMan.CheckForTexture("GNSMK0"), STYLE_ADD, SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, random(200,400), frandom(25,65),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.05,0.05),vely: frandom(-0.05,0.05),velz: frandom(-0.05,0.05),startalphaf: frandom(0.1,0.3)
+	  ,fadestepf: -1,sizestep: frandom(0.1,1),startroll: random(-180,180),rollvel: frandom(-1,1));
 	  A_Explode(Random(1,2),36);
 	  A_FadeOut(0.02);
 	  A_SetScale(scale.x+0.01);
@@ -519,7 +542,8 @@ Class PM_GrievanceFailedGrenade : Rocket
   States
   {
   Spawn:
-	GRNP AAAAAAAAAAAAAAAAAA 1 Light("Greenball3") A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	GRNP AAAAAAAAAAAAAAAAAA 1 Light("Greenball3") A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: 0.4
+	,fadestepf: -1,startroll: random(-180,180));
 	GRNP A 1
 	{
 		A_StartSound("Grievance/RocketFail",CHAN_BODY);
@@ -544,15 +568,19 @@ Class PM_GrievanceFailedGrenade : Rocket
 	{
 		if (tracer) self.target = tracer;
 		A_StartSound("PM/SigilSpawn",20);
-		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 105, zoff: 25, startalphaf: 1, fadestepf: -1, sizestep: 10, startroll: 180);
-		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 105, zoff: 25, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 105, zoff: 25, startalphaf: 1
+		, fadestepf: -1, sizestep: 10, startroll: 180);
+		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 105, zoff: 25, startalphaf: 1
+		, fadestepf: 0.1, startroll: 180);
 	}
-	GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 { A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 105, zoff: 25, startalphaf: 1, fadestepf: 0.1, startroll: 180); }
+	GRNP AAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 { A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 105, zoff: 25, startalphaf: 1
+	, fadestepf: 0.1, startroll: 180); }
 	GRNP A 1 A_StartSound("Grievance/HomingStart",CHAN_6);
   HolySHITitsAlive:
 	GRNP A random(4, 15) Light("Greenball2")
 	{
-		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 105, zoff: 25, startalphaf: 1, fadestepf: 0, startroll: 180);
+		A_SpawnParticleEx("00ff00", TexMan.CheckForTexture("C1TEA0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 105, zoff: 25, startalphaf: 1
+		, fadestepf: 0, startroll: 180);
 		if (grenadetime > random(10, 20)) SetStateLabel("XDeath");
 		A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 200.0,xoff: -10,startalphaf: 0.6);
 		A_StartSound("Grievance/HomingFire",11);
@@ -626,7 +654,8 @@ Class PM_GrievanceStealthBazooka : PM_GrievanceRocket
 	{
 		A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-2,2),random(-2,2),random(-2,2),0,0,0,0,128|SXF_TRANSFERTRANSLATION|SXF_TRANSFERALPHA);
 		A_SpawnParticleEx("", tex[0], STYLE_ADD, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, int(ceil( frandom(1, 10) )), random(1, 40), angle, frandom(-10, 10), frandom(-10, 10), frandom(-10, 10), startalphaf: alpha * frandom(.5, 1), startroll: random(-180,180));
-		A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: alpha / 2.5,fadestepf: -1,startroll: random(-180,180));
+		A_SpawnParticleEx("24ff24",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 76,size: 30.0,xoff: -10,startalphaf: alpha / 2.5
+		,fadestepf: -1,startroll: random(-180,180));
 		A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: alpha / 1.5);
 	}
 	
@@ -693,7 +722,8 @@ Class PM_CopyHuskMeteor : PM_HuskMeteor
 	  A_SeekerMissile(1,1);
 	  A_SetRoll(roll+3);
 	  A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-2,2),random(-2,2),random(-2,2),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERRENDERSTYLE);
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 56,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 56,size: 30.0,xoff: -10,startalphaf: 0.4
+	  ,fadestepf: -1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: 0.6);
 	}
 	Loop;
@@ -730,7 +760,7 @@ Class PM_CopyHuskMeteorFire : PM_HuskMeteorFire
 	{ A_SpawnParticleEx ( "", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add,
 	 flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 30, size: 20.0, 
 	 velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5), startalphaf: 0.75,
-	 fadestepf: -0.35, sizestep: -1, startroll: random(-180,180)); }
+	 fadestepf: -1, sizestep: -1, startroll: random(-180,180)); }
 	SPKO A 0 A_CheckFloor("FirePop");
 	Loop;
   FirePop:
@@ -745,7 +775,8 @@ Class PM_CopyHuskMeteorFire : PM_HuskMeteorFire
 	}
   Go:
 	FLME A 1 bright A_Explode(8,56);
-	FLME BCDEFGHIJKLM 2 Bright A_SpawnParticleEx ( "", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(1,30), size: random(5,15), xoff: frandom(-12,12), yoff: frandom(-12,12), zoff: frandom(0.45,1), velx: frandom(-0.25,0.25), vely: frandom(-0.25,0.25), velz: frandom(3.0,6.5), startalphaf: 0.85, fadestepf: -0.55, sizestep: -0.25, startroll: random(-180,180));
+	FLME BCDEFGHIJKLM 2 Bright A_SpawnParticleEx ( "", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(1,30), size: random(5,15), xoff: frandom(-12,12), yoff: frandom(-12,12), zoff: frandom(0.45,1), velx: frandom(-0.25,0.25), vely: frandom(-0.25,0.25), velz: frandom(3.0,6.5), startalphaf: 0.85
+	, fadestepf: -1, sizestep: -0.25, startroll: random(-180,180));
 	TNT1 A 0 { if(timer == 0) SetStateLabel("GoEnd"); timer--; }
     Loop;
   }
@@ -773,9 +804,11 @@ Class PM_CopyFiendHomingMissile : PM_FiendHomingMissile
 		TNT1 A 0;
 		TNT1 A 0;
 		TNT1 A 0 A_ScaleVelocity(0.6);
-		CMHO AAAAAAAAAAAAA 1 BRIGHT { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,9),xoff: random(-10,1),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180)); }
+		CMHO AAAAAAAAAAAAA 1 BRIGHT { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,9),xoff: random(-10,1),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
+		,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
 		TNT1 A 0 A_ScaleVelocity(0.6);
-		CMHO AAAAAAAAAAAA 1 BRIGHT { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,9),xoff: random(-10,1),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180)); }
+		CMHO AAAAAAAAAAAA 1 BRIGHT { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,9),xoff: random(-10,1),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
+		,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
 		TNT1 A 0 A_StartSound("Fiend/MissileLaunch",24,volume:0.90,pitch:frandom(0.8,1.15));
 		TNT1 A 0 A_StartSound("Cadaver/HomingLoop",CHAN_6,CHANF_LOOPING,0.8);
 		TNT1 A 0 A_ScaleVelocity(3);
@@ -789,7 +822,8 @@ Class PM_CopyFiendHomingMissile : PM_FiendHomingMissile
 		{
 		A_SpawnItemEx("PM_FiendHFireGlobs",random(-1,1),random(-1,1),random(-1,1),flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
 		A_SeekerMissile(1,random(1,5),SMF_PRECISE);
-		A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,80),size: 15.0,xoff: frandom(-2,-15),startalphaf: 0.8,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
+		A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,80),size: 15.0,xoff: frandom(-2,-15),startalphaf: 0.8
+		,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
 	    A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 50.0,xoff: -10,startalphaf: 0.6);
 		}
 		Loop;
@@ -844,7 +878,8 @@ Class PM_CopyCadaverHRocket : PM_CadaverHRocket
 		{
 		  A_SpawnItemEx("PM_CadaverHomingFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
 		  A_SeekerMissile(2,3,SMF_PRECISE);
-		  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 56,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 56,size: 30.0,xoff: -10,startalphaf: 0.4
+		  ,fadestepf: -1,startroll: random(-180,180));
 	      A_SpawnParticleEx("00ff00",TexMan.CheckForTexture("LENRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -10,startalphaf: 0.6);
 		}
 		Loop;

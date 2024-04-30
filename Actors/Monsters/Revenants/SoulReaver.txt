@@ -465,7 +465,7 @@ Class PM_SoulReaverShot : Actor
 	A_SpawnParticleEx
 	 ( "61A9FF", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,70),
 	 size: frandom(0.1,8), xoff: random(-4,0), yoff: random(-3,3), zoff: random(-3,3), velx: frandom(-0.6,0.6),
-	 vely: frandom(-0.6,0.6), velz: frandom(-0.6,1), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.1, startroll: random(-180,180) );
+	 vely: frandom(-0.6,0.6), velz: frandom(-0.6,1), startalphaf: 1.0, fadestepf: -1, sizestep: -0.1, startroll: random(-180,180) );
 	A_SeekerMissile(1,1,SMF_LOOK);
 	}
     Loop;
@@ -533,7 +533,7 @@ States
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(10,90), size: frandom(65,100), xoff: -25,
 			velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
-			startalphaf: frandom(0.45,0.85), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+			startalphaf: frandom(0.45,0.85), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			A_SpawnParticleEx
@@ -586,7 +586,7 @@ States
 		 ( "3d85c6", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		 lifetime: random(10,75), size: frandom(5,50),
 		 velx: frandom(-15,15), vely: frandom(-15,15), velz: frandom(1,15),
-		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.75,1), fadestepf: -0.5,
+		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.75,1), fadestepf: -1,
 		 sizestep: -0.5, startroll: random(-180,180));
 	   for(int i=3;i>0;i--)
 	   {
@@ -713,7 +713,7 @@ Class PM_SoulReaverSeeker : Actor
 	 vely: frandom(-0.6,0.6),
 	 velz: frandom(-0.6,1),
 	 startalphaf: 1.0,
-	 fadestepf: -0.5,
+	 fadestepf: -1,
 	 sizestep: -0.1,
 	 startroll: random(-180,180)
 	 );
@@ -747,7 +747,7 @@ Class PM_SoulReaverSeeker : Actor
 				"0B3D94",
 				tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 				lifetime: random(50,90), size: frandom(128,180),
-				startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+				startalphaf: 1, fadestepf: -1, sizestep: -10, 
 				startroll: random(-180,180), rollvel: frandom(-1,1)
 				);
 				for(int i=random(5,15);i>0;i--)
@@ -777,7 +777,7 @@ Class PM_SoulReaverSeeker : Actor
 			"0B3D94",
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: 1, size: frandom(1,200),
-			startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+			startalphaf: 1, fadestepf: -1, sizestep: -10, 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			for(int i=random(1,5);i>0;i--)
@@ -805,7 +805,7 @@ Class PM_SoulReaverSeeker : Actor
 	"0B3D94",
 	tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 	lifetime: 1, size: frandom(1,200),
-	startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+	startalphaf: 1, fadestepf: -1, sizestep: -10, 
 	startroll: random(-180,180), rollvel: frandom(-1,1)
 	);
 	for(int i=random(1,5);i>0;i--)
@@ -856,7 +856,7 @@ Class PM_SoulReaverSeeker : Actor
 	 vely: frandom(-0.6,0.6),
 	 velz: frandom(-0.6,1),
 	 startalphaf: 1.0,
-	 fadestepf: -0.5,
+	 fadestepf: -1,
 	 sizestep: -0.1,
 	 startroll: random(-180,180)
 	 );
@@ -884,7 +884,7 @@ Class PM_SoulReaverSeeker : Actor
 			"0B3D94",
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(50,90), size: frandom(128,180),
-			startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+			startalphaf: 1, fadestepf: -1, sizestep: -10, 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			for(int i=random(5,15);i>0;i--)
@@ -940,7 +940,7 @@ Class PM_SoulReaverSoulgun : Actor
 			"0B3D94",
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(50,90), size: frandom(128,180),
-			startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+			startalphaf: 1, fadestepf: -1, sizestep: -10, 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			for(int i=random(4,8);i>0;i--)
@@ -1722,7 +1722,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		"0099ff",
 		tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(50,90), size: frandom(60,40), zoff: 56,
-		startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+		startalphaf: 1, fadestepf: -1, sizestep: -10, 
 		startroll: random(-180,180), rollvel: frandom(-1,1)
 		);
 		for(int i=random(5,15);i>0;i--)
@@ -1741,7 +1741,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		"0099ff",
 		tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(50,90), size: frandom(60,40), zoff: 56,
-		startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+		startalphaf: 1, fadestepf: -1, sizestep: -10, 
 		startroll: random(-180,180), rollvel: frandom(-1,1)
 		);
 		for(int i=random(5,15);i>0;i--)
@@ -1774,7 +1774,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		"0099ff",
 		tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(1, 6), size: frandom(80,1), xoff: 10, zoff: 56,
-		startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+		startalphaf: 1, fadestepf: -1, sizestep: -10, 
 		startroll: random(-180,180), rollvel: frandom(-1,1)
 		);
 	}
@@ -1787,7 +1787,7 @@ Class PM_SoulReaver : PMDeathMonsterBase
 		"0099ff",
 		tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 		lifetime: random(1, 6), size: frandom(80,1), xoff: 10, zoff: 56,
-		startalphaf: 1, fadestepf: -0.3, sizestep: -10, 
+		startalphaf: 1, fadestepf: -1, sizestep: -10, 
 		startroll: random(-180,180), rollvel: frandom(-1,1)
 		);
 	}
@@ -2307,7 +2307,7 @@ Class PM_SoulReaverMadSouls : Actor
 		vely: frandom(-0.6,0.6),
 		velz: frandom(-0.6,1),
 		startalphaf: 1.0,
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: -0.2,
 		startroll: random(-180,180)
 		);

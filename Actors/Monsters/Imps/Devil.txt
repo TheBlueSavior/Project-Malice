@@ -468,7 +468,8 @@ Class PM_DevilImpBall : DoomImpBall
   Spawn:
     AFX5 AABBCC 1 bright Light("AvatarFireball3") 
 	{
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4
+	  ,fadestepf: -1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",TexMan.CheckForTexture("LENYA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -10,startalphaf: 0.6);
 	  A_SpawnItemEx("PM_DevilFlameTrails",0,0,0,0,0,0,0,128,0);
 	  A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
@@ -476,7 +477,8 @@ Class PM_DevilImpBall : DoomImpBall
 	Loop;
   Death:
 	TNT1 A 0;
-	TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.2,startroll: random(-180,180)); }
+	TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0
+	,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
 	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
     AFX5 D 2 bright Light("AvatarFireball4");

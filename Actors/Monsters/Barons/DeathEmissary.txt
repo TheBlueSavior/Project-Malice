@@ -63,7 +63,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	 style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270),
 	 size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25),
 	 velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4),
-	 startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), 
+	 startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), 
 	 startroll: random(-180,180), rollvel: random(-4,4)
 	 );
 	 for(int i=random(1,3);i>0;i--)
@@ -76,7 +76,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	 yoff: random(-35,35), zoff: random(-10,45), velx: frandom(-1,1),
 	 vely: frandom(-1,1), velz: frandom(0,1),
 	 accelx: frandom(-0.0095,0.0095), accely: frandom(-0.0095,0.0095),  accelz: frandom(0.0015,0.0045),
-	 startalphaf: frandom(0.75,1), fadestepf: -0.10, sizestep: -0.05, startroll: random(-180,180)
+	 startalphaf: frandom(0.75,1), fadestepf: -1, sizestep: -0.05, startroll: random(-180,180)
 	 );
 	}
 	
@@ -100,7 +100,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	 style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270),
 	 size: frandom(1,32), xoff: random(-48,48), yoff: random(-48,48), zoff: frandom(0,25),
 	 velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4),
-	 startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), 
+	 startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), 
 	 startroll: random(-180,180), rollvel: random(-4,4)
 	 );
 	 for(int i=random(1,3);i>0;i--)
@@ -113,7 +113,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	 yoff: random(-35,35), zoff: random(-10,45), velx: frandom(-1,1),
 	 vely: frandom(-1,1), velz: frandom(0,1),
 	 accelx: frandom(-0.0095,0.0095), accely: frandom(-0.0095,0.0095),  accelz: frandom(0.0015,0.0045),
-	 startalphaf: frandom(0.75,1), fadestepf: -0.10, sizestep: -0.05, startroll: random(-180,180)
+	 startalphaf: frandom(0.75,1), fadestepf: -1, sizestep: -0.05, startroll: random(-180,180)
 	 );
 	}
 	
@@ -125,7 +125,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 	tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 	lifetime: random(30,120), size: frandom(30,200), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,80),
 	velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1),
-	startalphaf: frandom(0.6,0.95), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+	startalphaf: frandom(0.6,0.95), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 	startroll: random(-180,180), rollvel: frandom(-1,1)
 	);
 	}
@@ -536,7 +536,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 				tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 				lifetime: random(70,220), size: frandom(30,200), xoff: frandom(-5,5)+20, yoff: frandom(-5,5), zoff: frandom(5,-5) + 60,
 				velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1),
-				startalphaf: frandom(0.6,0.95), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+				startalphaf: frandom(0.6,0.95), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 				startroll: random(-180,180), rollvel: frandom(-1,1)
 				);
 			}
@@ -547,7 +547,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 			tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(20,50), size: frandom(50,100), xoff: frandom(-5,5)+20, yoff: frandom(-5,5), zoff: frandom(5,-5) + 60,
 			velx: frandom(-2,2) + 2, vely: frandom(-2,2), velz: frandom(-2,2),
-			startalphaf: frandom(0.6,0.95), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+			startalphaf: frandom(0.6,0.95), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			A_SpawnParticleEx
@@ -555,7 +555,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 			"0B3D94", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 			lifetime: random(10,50), size: frandom(20,70), xoff: random(16,20),
 			yoff: random(-5,5), zoff: 60, velx: frandom(-0.10,0.10), vely: frandom(-0.10,0.10), velz: frandom(-0.10,0.10),
-			startalphaf: 0.55, fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
+			startalphaf: 0.55, fadestepf: -1, sizestep: 0.2, startroll: random(-180,180) );
 		}
 		LMDA J 10 Light("HellsFuryBall")
 		{
@@ -576,7 +576,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 				 style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270),
 				 size: frandom(1,32), xoff: frandom(-5,5)+20, yoff: frandom(-5,5), zoff: frandom(5,-5) + 60,
 				 velx: frandom(1,6), vely: frandom(-4,4), velz: frandom(-1,4),
-				 startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), 
+				 startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), 
 				 startroll: random(-180,180), rollvel: random(-4,4)
 				 );
 				}
@@ -586,7 +586,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 				tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 				lifetime: random(70,220), size: frandom(30,200), xoff: frandom(-5,5)+20, yoff: frandom(-5,5), zoff: frandom(5,-5) + 60,
 				velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1),
-				startalphaf: frandom(0.6,0.95), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+				startalphaf: frandom(0.6,0.95), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 				startroll: random(-180,180), rollvel: frandom(-1,1)
 				);
 			}
@@ -596,7 +596,7 @@ Class PM_DeathEmissary : PMDeathMonsterBase
 				"", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
 				lifetime: random(20,100), size: frandom(80,150), xoff: random(25,30),
 				yoff: random(-5,5), zoff: 60, velx: frandom(-0.10,0.10), vely: frandom(-0.10,0.10), velz: frandom(-0.10,0.10),
-				startalphaf: 0.55, fadestepf: -0.5, sizestep: 10, startroll: random(-180,180), rollvel: frandom(-10, 10) );
+				startalphaf: 0.55, fadestepf: -1, sizestep: 10, startroll: random(-180,180), rollvel: frandom(-10, 10) );
 			A_SpawnProjectile("PM_DEmiSpherule", 60);
 		}
 		LMDA I 70 A_FaceTarget();
@@ -682,7 +682,7 @@ States
 			tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(10,200), size: frandom(10,50), xoff: -25,
 			velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
-			startalphaf: frandom(0.45,0.85), fadestepf: -0.3, sizestep: frandom(0.0,1.4), 
+			startalphaf: frandom(0.45,0.85), fadestepf: -1, sizestep: frandom(0.0,1.4), 
 			startroll: random(-180,180), rollvel: frandom(-1,1)
 			);
 			A_SpawnParticleEx
@@ -730,7 +730,7 @@ States
 		 tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		 lifetime: random(10,55), size: frandom(5,15),
 		 velx: frandom(-4,4), vely: frandom(-4,4), velz: frandom(-4,4),
-		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.45,0.95), fadestepf: -0.5,
+		 accelz: frandom(-0.1,-0.9), startalphaf: frandom(0.45,0.95), fadestepf: -1,
 		 sizestep: -0.5, startroll: random(-180,180)
 		 );
 		}
@@ -836,7 +836,7 @@ Class PM_DEmiSpherule : Actor
 	  accely: frandom(-0.005,0.005),
 	  accelz: frandom(-0.0,-0.3),
 	  startalphaf: 1.0,
-	  fadestepf: -0.5,
+	  fadestepf: -1,
 	  sizestep: -0.2,
 	  startroll: random(-180,180)
 	  );
@@ -858,7 +858,7 @@ Class PM_DEmiSpherule : Actor
 		vely: frandom(-0.6,0.6),
 		velz: frandom(-0.6,1),
 		startalphaf: 1.0,
-		fadestepf: -0.5,
+		fadestepf: -1,
 		sizestep: -10,
 		startroll: random(-180,180)
 		);

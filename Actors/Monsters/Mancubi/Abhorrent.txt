@@ -46,8 +46,10 @@ Class PM_Abhorrent : PMDeathMonsterBase
 
     void PM_AbhorrentWither()
 	{
-	 A_SpawnParticleEx("545454",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(50,160),size: frandom(30,100),xoff: frandom(-40,40),yoff: frandom(-40,40),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(0,2),startalphaf: frandom(0.2,0.95),fadestepf: -1,sizestep: frandom(-0.8,0.8),startroll: random(-180,180),rollvel: frandom(-0.3,0.3));
-	 A_SpawnParticleEx("848484",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(90,270),size: frandom(1,32),xoff: random(-40,40),yoff: random(-40,40),zoff: 5,velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(0.3,4),startalphaf: 1.0,fadestepf: -0.05,sizestep: frandom(-0.1,-1),startroll: random(-180,180),rollvel: random(-4,4));
+	 A_SpawnParticleEx("545454",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(50,160),size: frandom(30,100),xoff: frandom(-40,40),yoff: frandom(-40,40),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(0,2),startalphaf: frandom(0.2,0.95)
+	 ,fadestepf: -1,sizestep: frandom(-0.8,0.8),startroll: random(-180,180),rollvel: frandom(-0.3,0.3));
+	 A_SpawnParticleEx("848484",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(90,270),size: frandom(1,32),xoff: random(-40,40),yoff: random(-40,40),zoff: 5,velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(0.3,4),startalphaf: 1.0
+	 ,fadestepf: -0.05,sizestep: frandom(-0.1,-1),startroll: random(-180,180),rollvel: random(-4,4));
 	}
 
 	void PM_AbhorrentBarrageCharge()

@@ -179,7 +179,7 @@ Class PM_SybGrenade : PM_ZTrooperFragGrenade
   {
 	A_SpawnParticleEx( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,75),
 	size: frandom(5,35), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
-	startalphaf: frandom(0.3,0.5), fadestepf: -0.5, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
+	startalphaf: frandom(0.3,0.5), fadestepf: -1, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
   }
  Loop;
  Bounce:
@@ -197,7 +197,7 @@ Class PM_SybGrenade : PM_ZTrooperFragGrenade
 	timer++;
 	A_SpawnParticleEx( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,75),
 	size: frandom(5,35), xoff: -5, velx: frandom(-0.2,0.2), vely: frandom(-0.4,0.4), velz: frandom(0.5,2),
-	startalphaf: frandom(0.3,0.5), fadestepf: -0.5, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
+	startalphaf: frandom(0.3,0.5), fadestepf: -1, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
 	}
 	Loop;
   Fade:

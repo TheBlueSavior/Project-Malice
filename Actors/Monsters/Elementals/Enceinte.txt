@@ -468,7 +468,7 @@ Class PM_EnceinteBlast : PM_CherubSpit
 	  vel.y += frandom(-1, 1);
 	  vel.z += frandom(-1, 1);
 	  A_SpawnParticleEx("",TexMan.CheckForTexture("PURLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,100),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: 0.9,startroll: random(-180,180));
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-10,10),zoff: random(-10,10),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.4,startroll: random(-180,180));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-10,10),zoff: random(-10,10),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.4,startroll: random(-180,180));
 	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(80,130),size: frandom(35,45),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 1,sizestep: .15,startroll: random(-180,180),rollvel:frandom(-4,4));
 	}
     Loop;

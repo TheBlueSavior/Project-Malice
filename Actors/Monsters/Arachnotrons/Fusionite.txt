@@ -150,12 +150,12 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
 		    lifetime: random(1,70), size: frandom(0.4,10), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
 			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
-			fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180) );
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180) );
 			A_SpawnParticleEx
 			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
 			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,100),
 			size: frandom(30,70), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
-			velx: frandom(15,20), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: -0.5,
+			velx: frandom(15,20), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3, fadestepf: 0.5,
 			sizestep: 0.2, startroll: random(-180,180) );
 			}
 			TNT1 A 0 A_StartSound("PM/BigVentLoop",CHAN_7,CHANF_LOOP);
@@ -168,7 +168,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(20,100), size: frandom(30,70), xoff: random(16,20), yoff: random(-5,5), zoff: 30,
 			velx: frandom(-0.8,4), vely: frandom(-0.8,0.8), velz: frandom(-0.8,0.8), startalphaf: 0.3,
-			fadestepf: -0.5, sizestep: 0.2, startroll: random(-180,180) );
+			fadestepf: 0.5, sizestep: 0.2, startroll: random(-180,180) );
 			A_SpawnParticleEx
 			( "C8C8C8", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
 			lifetime: random(50,100), size: 3, xoff: 10, yoff: random(-5,5), zoff: 30, vely: frandom(12,15), velz: frandom(-0.2,0.3),
@@ -270,7 +270,7 @@ Class PM_FusionShot : PMProjectileBase
 			  PM_CheckWhiz();
 			  A_SetRoll(random(0,259),SPF_INTERPOLATE);
 			  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 4,size: 40.0,xoff: random(-8,-12),startalphaf: 0.9,fadestepf: -1,sizestep: -6);
-			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,30),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.5,startroll: random(-180,180));
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,30),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: 0.5,sizestep: -0.5,startroll: random(-180,180));
 			  A_SpawnParticleEx("",TexMan.CheckForTexture("PBALC0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 95.0,xoff: -10,startalphaf: 0.15);
 			}
 			Loop;
@@ -311,7 +311,7 @@ Class PM_ScatterFusionShot : PM_FusionShot
 			  A_SpawnItemEx("PM_GreenFlameTrails",0,0,0,0,0,0,0,128,0);
 			  A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRA0"),style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: 6,size: 50.0,xoff: -5,startalphaf: 0.2,fadestepf: -1,sizestep: -1);
 			  A_SpawnParticleEx("218900",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(60,120),size: 85.0,xoff: -5,startalphaf: 0.45,fadestepf: -1,sizestep: 0.15,startroll: random(-180,180));
-			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -0.5,sizestep: -0.5,startroll: random(-180,180));
+			  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: 0.5,sizestep: -0.5,startroll: random(-180,180));
 			}
 			Loop;
 		Death:

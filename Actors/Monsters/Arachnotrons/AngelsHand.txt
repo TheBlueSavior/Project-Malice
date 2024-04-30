@@ -62,15 +62,15 @@ Class PM_AngelsHand : PMPrideMonsterBase
 	
 	void LichFog()
 	{
-		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: -1/*frandom(-0.01,-0.04)*/, sizestep: -0.005, startroll: random(-180,180));
 		if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[1], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(50,150), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
 	}
 	
 	void LichDeath()
 	{
 		LichFog();
-		A_SpawnParticleEx("e53737", tex[1], STYLE_None, SPF_ROLL|SPF_RELATIVE, lifetime: 95, size: random(80,120), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,1), startalphaf: frandom(0.2,0.4), fadestepf: -.5, startroll: random(-180,180));
-		A_SpawnParticleEx("848484", tex[3], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+		A_SpawnParticleEx("e53737", tex[1], STYLE_None, SPF_ROLL|SPF_RELATIVE, lifetime: 95, size: random(80,120), xoff: frandom(-40,40), yoff: frandom(-40,40), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,1), startalphaf: frandom(0.2,0.4), fadestepf: -1, startroll: random(-180,180));
+		A_SpawnParticleEx("848484", tex[3], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(0.3,4), startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
 	}
 	
 	void SetFly(bool t = true)
@@ -86,7 +86,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			A_StartSound("Exalt/CastAdd",10);
 			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: -20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: -5);
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: -20, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
-			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
 		}
 	}
 	
@@ -118,7 +118,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(3, 1) LichFog();
 		TNT1 A 0
 		{
-			for(int i=2;i>0;i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -18, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			for(int i=2;i>0;i--) A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -1, sizestep: -18, startroll: random(-180,180), rollvel: frandom(-10, 10));
 			for(int i=random(10, 15);i>0;i--) LichFog();
 			A_StartSound("Tyrant/ShellExplode", 92, volume: 0.75, pitch: 1.3);
 			A_StartSound("AngelsHand/Appear", 91);
@@ -232,7 +232,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			if (!floating)
 			{
 			A_StartSound("PM/PrideTele",21);
-			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -1, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
 			for(int i=random(10, 15);i>0;i--) LichFog();
 			A_SetRenderStyle(1, STYLE_ADDSHADED);
 			bSHOOTABLE = false;
@@ -252,7 +252,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			bSHOOTABLE = true;
 			A_StartSound("PM/PrideTele",21);
 			A_StartSound("Exalt/TPEnd",20); 
-			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -0.002, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
+			A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 45, size: 600, xoff: 10, zoff: 40,startalphaf: 1.0, fadestepf: -1, sizestep: -36, startroll: random(-180,180), rollvel: frandom(-10, 10));
 			for(int i=random(10, 15);i>0;i--) LichFog();
 			A_SetRenderStyle(1, STYLE_NORMAL);
 			}
@@ -339,7 +339,7 @@ Class PM_AngelHOrbit : Actor
 		else A_SetScale(Scale.X+0.025);
 		A_FadeIn(0.025,FTF_CLAMP);
 		angle -= 5;
-		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: -1/*frandom(-0.01,-0.04)*/, sizestep: -0.005, startroll: random(-180,180));
 		if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[3], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(40,80), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
 		A_QuakeEx(1,1,1,1,0,500,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
 		}
@@ -368,7 +368,7 @@ Class PM_AngelHOrbit : Actor
 		 A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 		 A_SpawnParticleEx("801111", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(50, 200), size: random(100, 200), zoff: -5, velx: frandom(-2, 2), vely: frandom(-2, 2), velz: frandom(1, 3), startalphaf: frandom(.2, .4), sizestep: 5, startroll: random(-180,180), rollvel: frandom(-4, 4));
 		 A_SetScale(scale.x + 0.05);
-		 A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf: frandom(-0.01,-0.04), sizestep: -0.005, startroll: random(-180,180));
+		 A_SpawnParticleEx("", tex[0], STYLE_Add, SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE, lifetime: random(5,45), size: random(5,25), xoff: frandom(-30,30), yoff: frandom(-30,30), zoff: frandom(0,25), velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0,2), accelz: 0.005, startalphaf: 0.75, fadestepf:-1 /*frandom(-0.01,-0.04)*/, sizestep: -0.005, startroll: random(-180,180));
 		 if(!random(0, 1)) A_SpawnParticleEx("e53737", tex[3], STYLE_Add, SPF_ROLL|SPF_RELATIVE, lifetime: 65, size: random(40,80), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(0,10), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(0,2), startalphaf: frandom(0.6,1), fadestepf: -1, startroll: random(-180,180));
 		}
 		RAY_ FFFFFFFFFFF 1
@@ -422,7 +422,7 @@ Class PM_AngelsHandWings : Actor
 			A_StartSound("AngelsHand/Appear",11);
 			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: -20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: -5);
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: -20, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
-			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -0.05, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
+			for (int i=random(15,25); i>0; i--) A_SpawnParticleEx("848484", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(90,270), size: frandom(1,32), xoff: random(-35,35), yoff: random(-35,35), zoff: frandom(0,25), velx: frandom(-2,2) - 5, vely: frandom(-4,4), velz: frandom(0.3,6), startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-0.1,-1), startroll: random(-180,180), rollvel: random(-4,4));
 		}
 		MWN_ AAAABBCC 1
 		{

@@ -38,7 +38,7 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 			if (!(GetAge() % 12))
 			{
 				A_SpawnParticleEx("", tex[0], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,1), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
-				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
 			}
 		}
 	}
@@ -102,7 +102,7 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 			if (!(GetAge() % random(2, 4)))
 			{
 				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.2,0.7), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
-				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,3), startalphaf: 1.0, fadestepf: -0.5, sizestep: -0.2, startroll: random(-180,180));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,3), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
 			}
 		}
 		Goto Burn+1;
