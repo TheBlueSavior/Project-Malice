@@ -306,7 +306,8 @@ Class PM_CivilianZombie : PMLustMonsterBase
 	  THPZ AA 5 Light("AvatarFireball3");
       THPZ A 5 
       {
-       A_SpawnProjectile("PM_CivZombieMolotov",33,0,random(-1,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,throwrange);
+       let p = A_SpawnProjectile("PM_CivZombieMolotov",33,0,random(-1,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
+	   if(p) p.vel = CalcThrowVector(pos, target.pos, 1.25, 125.0);
 	   grenadecount--;
       }
       Goto Retreat;
@@ -376,7 +377,7 @@ Class PM_CivZombieMolotov : PM_ZTrooperFragGrenade
  Default
  {
   Speed 18;
-  Gravity 0.25;
+  Gravity 1.25;
   BounceCount 4;
   BounceSound "CivZombie/IEDBounce";
   -BOUNCEONACTORS
