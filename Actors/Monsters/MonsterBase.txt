@@ -89,6 +89,68 @@ class PMMonsterBase : Actor abstract
 		return ResolveState(next);
 	}
 
+	//based on the Source SDK's calcThrowVelocity method
+	//This function is mostly based on the arcSize
+	//	Larger arc - slower travel speed
+	//	Smaller arc - faster travel speed
+	//	Set it to 1.0 for a fun time
+	//NEVER set arcSize to zero or negative
+
+	//Example:
+	//let p = A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
+	//p.vel = CalcThrowVector(pos, target.pos, 1.0, 105.5);
+	vector3 CalcThrowVector(vector3 startPos, vector3 endPos, float pGravity = 1.0, float arcSize = 105.0)
+	{
+		if(arcSize <= 0) {
+			console.printf("bruh this shit is NaN");
+			return (0,0,0);
+		}
+		//height needed to hit the target
+		float stepHeight = endPos.z - startPos.z;
+		if(projectmalice_math_throw_debug) console.printf("CalcThrowVector(): height need to get to goal position: %f", stepHeight);
+		float throwHeight = 0;
+
+		//calculate a distance to a point that is between the current and final position.
+		//(basically the apex of the arc) (the apex is the highest point btw)
+		Vector2 targetDir = (endPos.xy - startPos.xy);
+		if(projectmalice_math_throw_debug) console.printf("CalcThrowVector(): Unnormalized direction: x:%f, y:%f", targetDir.x, targetDir.y);
+
+		float distance = targetDir.length(); // normalized distance between the positions
+		if(projectmalice_math_throw_debug) console.printf("CalcThrowVector(): Distance between points A and B: %f", distance);
+		vector2 normDir = targetDir.unit(); // normalized director to end point
+		if(projectmalice_math_throw_debug) console.printf("CalcThrowVector(): Normalized direction: x:%f, y:%f", normDir.x, normDir.y);
+
+		// If jumping up we want to throw a bit higher than the height diff	
+		if (stepHeight > 0) 
+		{
+			throwHeight = stepHeight + arcSize;	
+		}	
+		else
+		{
+			throwHeight = arcSize;
+		}
+		// Make sure that I at least catch some air
+		if (throwHeight < arcSize)
+		{
+			throwHeight = arcSize;
+		}
+
+		// the fun part, actually calculating the throw velocities
+		float verticalVel = (float)(sqrt(2.0 * pGravity * throwHeight));
+
+		float divisor = verticalVel;
+		divisor += (float)(sqrt((2.0 *(-pGravity) * (stepHeight - throwHeight))));
+
+		float zVel = (distance * pGravity) / divisor;
+
+		// create horizontal throw vector and add vertical component
+		Vector3 throwVel = (normDir.x * zVel, normDir.y * zVel, 0);
+		throwVel.z = verticalVel;
+		if(projectmalice_math_throw_debug) console.printf("CalcThrowVector(): Final Throw Velocity: x:%f, y:%f z:%f", throwVel.x, throwVel.y, throwVel.z);
+
+		return throwVel;
+	}
+
 	static clearscope Vector2 GetLeadAngles(Actor caller, Actor target, double projVel)
 	{
 		double ticsToTarget = caller.Distance2D(target) / projVel;
