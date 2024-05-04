@@ -22,5 +22,9 @@ Server Float pm_healthfactor_death = 1;
 Server Float pm_healthfactor_umbral = 1;
 Server Float pm_healthfactor_void = 1;
 
-//Debug Information
-Server bool projectmalice_math_throw_debug = false;
+//THIS IS ALL FOR DEBUG INFORMATION AND TESTING
+server bool pm_math_throw_debug                 = false;
+
+//world debugging
+server bool pm_world_extra_mon_debug            = false;
+server bool pm_world_glutton_hole_debug         = false;
