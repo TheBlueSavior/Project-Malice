@@ -366,7 +366,8 @@ Class PM_Noble : PMMonsterBase
 		{
 		A_FaceTarget();
 		A_StartSound("HellKnight/Cast",CHAN_6);
-		A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,7);
+		let p = A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH);
+		if (p) p.vel = CalcThrowVector(pos, target.pos, 0.50, 115.0);
 		}
 		NO1S GGG 5 Light("Greenball3");
 		Goto See;
@@ -561,16 +562,16 @@ Class PM_NobleBomb : Rocket
   {
   Speed 12;
   Scale 0.4;
-  Gravity 0.3;
+  Gravity 0.50;
   Bouncetype "Doom";
-  BounceFactor 1.3;
+  BounceFactor 1.95;
   WallBounceFactor 0.5;
-  BounceCount 4;
+  BounceCount 2;
   DamageFunction (10);
   RenderStyle "Add";
   DamageType "Fire";
   SeeSound "weapons/bwoosh";
-  BounceSound "imp/shotx";
+  BounceSound "Grievance/HomingExp";
   DeathSound "imp/shotx";
   Decal " ";
   -NOGRAVITY
