@@ -89,6 +89,7 @@ class PMMonsterBase : Actor abstract
 		return ResolveState(next);
 	}
 
+	//Deimos:
 	//based on the Source SDK's calcThrowVelocity method
 	//This function is mostly based on the arcSize
 	//	Larger arc - slower travel speed
@@ -98,7 +99,7 @@ class PMMonsterBase : Actor abstract
 
 	//Example:
 	//let p = A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
-	//p.vel = CalcThrowVector(pos, target.pos, 1.0, 105.5);
+	//p.vel = CalcThrowVector(pos, target.pos, p.gravity, 105.5);
 	vector3 CalcThrowVector(vector3 startPos, vector3 endPos, float pGravity = 1.0, float arcSize = 105.0)
 	{
 		if(arcSize <= 0) {
