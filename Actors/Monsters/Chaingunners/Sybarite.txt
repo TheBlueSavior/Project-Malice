@@ -29,6 +29,16 @@ Class PM_Sybarite : PMLustMonsterBase
   TeleFogSourceType "PM_PossessedTeleportFog";
   TeleFogDestType "PM_PossessedTeleportFog";
   }
+
+	void PM_SybariteGrenade()
+	{
+		int arc;
+		let p = A_SpawnProjectile("PM_SybGrenade",33,0,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
+		if(distance2d(target) <= 400) arc = 20;
+		else arc = 60;
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+	}
+
   States
   {
   Spawn:
@@ -97,8 +107,7 @@ Class PM_Sybarite : PMLustMonsterBase
 	{
 	 A_FaceTarget(13,13);
 	 A_StartSound("Sybarite/GrenadeLaunch",11);
-	 let p = A_SpawnProjectile("PM_SybGrenade",32,15,frandom(-2.5,2.5),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
-	 if(p) p.vel = CalcThrowVector(pos, target.pos, 1.35, frandom(65.0,90.0));
+	 PM_SybariteGrenade();
 	}
 	SY_A E 20 { A_StartSound("Sybarite/SlotIn",12); user_numbullets--; pm_attackloop--; }
 	Loop;

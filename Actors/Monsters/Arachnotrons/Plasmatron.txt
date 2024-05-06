@@ -179,7 +179,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 			PL01 AGGG 3 A_FaceTarget();
 			TNT1 A 0 {bNOPAIN = True;}
 			TNT1 A 0 A_StartSound("Plasmatron/MortarCharge");
-			PL01 GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHG 1 Light("AvatarFireball2")
+			PL01 GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHG 1 Light("AvatarFireball2")
 			{
 				A_FaceTarget();
 				PM_ChargeParticles(self,2,frandom(5.5,10.5),(frandom(-30.5,30.5),frandom(-40.5,40.5),frandom(10.9,35.9)),TexMan.CheckForTexture("RLSSA0"),"fcb13b",0);
@@ -194,7 +194,8 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 					Return ResolveState("MortarNoAmmo");
 				}
 				A_SpawnProjectile("PlasmatronFlare",22,0);
-				A_SpawnProjectile("PM_PTronScatterBall",22,0,frandom(-0.2,0.2),CMF_OFFSETPITCH,frandom(-0.5,0.5));
+				let p = A_SpawnProjectile("PM_PTronScatterBall",22,0,frandom(-1.5,1.5),CMF_OFFSETPITCH);
+				if (p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 85.0);
 				user_numbullets--;
 				Return ResolveState(null);
 			}
@@ -498,15 +499,17 @@ Class PM_PTronScatterBall : Actor
 		Height 7;
 		Radius 7;
 		Speed 30;
-		DamageFunction (30);
+		DamageFunction (10);
+		Gravity 0.45;
 		Scale 0.25;
 		PROJECTILE;
 		RenderStyle "Add";
 		+BRIGHT
 		+FORCEXYBILLBOARD
 		+SEEKERMISSILE
+		-NOGRAVITY
 		SeeSound "";
-		DeathSound "Plasmatron/MortarExp";
+		//DeathSound "Plasmatron/MortarExp";
 		Decal "PM_PlasmatronScorchLarge";
 	}
 
@@ -533,9 +536,9 @@ Class PM_PTronScatterBall : Actor
 			 A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(1,100),size: random(1,15),xoff: frandom(-3,3),yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(-0.1,0.1),accelx: frandom(-0.1,0.1),accely: frandom(-0.1,0.1),accelz: frandom(-0.1,0.1),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,rollvel: random(-10,10));
 		     A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(1,20),size: random(35,135),xoff: frandom(-5.5,5.5),yoff: frandom(-5.5,5.5),zoff: frandom(-5.5,5.5),startalphaf: frandom(0.85,1),fadestepf: -1,sizestep: -2,startroll: random(-180,180));
 			}
-			TNT1 A 0 A_JumpIfTracerCloser(250,"Burst");
+			//TNT1 A 0 A_JumpIfTracerCloser(250,"Burst");
 			Loop;
-		Burst:
+		/*Burst:
 		    TNT1 A 0 A_ScaleVelocity(0.0);
 			TNT1 A 0 A_StartSound("Plasmatron/MortarExp",6,1);
 			TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0);
@@ -545,10 +548,12 @@ Class PM_PTronScatterBall : Actor
 			TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
 			TNT1 AA 0 A_SpawnItemEx("OrangeShockwaveBig");
 			TNT1 A 0 Light("AvatarFireball4");
-			Stop;		    
+			Stop;*/	    
 		Death:
 			TNT1 A 0 A_StopSound(6);
+			TNT1 A 0 A_StartSound("Plasmatron/MortarExp",6);
 			TNT1 A 0 Radius_Quake (1, 54, 0, 10, 0);
+			TNT1 A 0 A_Explode(30,200);
 			TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
 			TNT1 AAAAA 0 A_SpawnItemEx("DraugrEXParticle",random(-3,3),random(-3,3),random(-3,3),random(-10,10),random(-10,10),frandom(-2,8));
 			TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);

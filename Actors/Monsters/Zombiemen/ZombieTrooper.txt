@@ -42,8 +42,8 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 	{
 		int arc;
 		let p = A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1));
-		if(distance2d(target) <= 600) arc = 90;
 		if(distance2d(target) <= 300) arc = 20;
+		else arc = 90;
 		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
 		A_FaceTarget();
 	}

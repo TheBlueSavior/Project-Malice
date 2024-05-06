@@ -33,6 +33,17 @@ Class PM_Noble : PMMonsterBase
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_DemonicTeleportFog";
    }
+   
+   void PM_NobleBombThrow()
+   {
+		int arc;
+		let p = A_SpawnProjectile("PM_NobleBomb",40,0,random(-1,1));
+		if(distance2d(target) <= 300) arc = 20;
+		else arc = 75;
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+		A_FaceTarget();
+   }
+   
 	States
 	{
 	Spawn:
@@ -366,8 +377,7 @@ Class PM_Noble : PMMonsterBase
 		{
 		A_FaceTarget();
 		A_StartSound("HellKnight/Cast",CHAN_6);
-		let p = A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH);
-		if (p) p.vel = CalcThrowVector(pos, target.pos, 0.50, 115.0);
+		PM_NobleBombThrow();
 		}
 		NO1S GGG 5 Light("Greenball3");
 		Goto See;
@@ -566,7 +576,7 @@ Class PM_NobleBomb : Rocket
   Bouncetype "Doom";
   BounceFactor 1.95;
   WallBounceFactor 0.5;
-  BounceCount 2;
+  BounceCount 4;
   DamageFunction (10);
   RenderStyle "Add";
   DamageType "Fire";
