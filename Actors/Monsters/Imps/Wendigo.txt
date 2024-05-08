@@ -233,6 +233,12 @@ Class PM_Wendigo : PMFamineMonsterBase
 
 Class PM_WendigoGroup : Actor
 {
+
+  Default
+	{
+	 +ISMONSTER
+	}
+
 	override void PostBeginPlay()
 	{
 		super.PostBeginPlay();

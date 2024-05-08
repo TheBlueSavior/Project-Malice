@@ -844,7 +844,7 @@ Class PM_DEmiSpherule : Actor
 	
 	override void Tick()
 	{
-		if (isFrozen()) return;
+		if (level.isFrozen()) return;
 		super.Tick();
 		A_SpawnParticleEx
 	    (
