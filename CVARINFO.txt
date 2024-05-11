@@ -22,9 +22,15 @@ Server Float pm_healthfactor_death = 1;
 Server Float pm_healthfactor_umbral = 1;
 Server Float pm_healthfactor_void = 1;
 
-//THIS IS ALL FOR DEBUG INFORMATION AND TESTING
-server bool pm_math_throw_debug                 = false;
+// THIS IS ALL FOR DEBUG INFORMATION AND TESTING
+// math
+server bool pmd_math_throw_debug                    = false;
 
-//world debugging
-server bool pm_world_extra_mon_debug            = false;
-server bool pm_world_glutton_hole_debug         = false;
+// fx
+server bool pmd_fx_trail_log                        = false;
+
+// behavior
+server bool pmd_monster_behavior_log                = false;
+
+// world debugging
+server bool pmd_world_extra_mon                     = false;

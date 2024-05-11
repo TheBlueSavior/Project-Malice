@@ -108,18 +108,18 @@ class PMMonsterBase : Actor abstract
 		}
 		//height needed to hit the target
 		float stepHeight = endPos.z - startPos.z;
-		if(pm_math_throw_debug) console.printf("CalcThrowVector(): height need to get to goal position: %f", stepHeight);
+		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): height need to get to goal position: %f", stepHeight);
 		float throwHeight = 0;
 
 		//calculate a distance to a point that is between the current and final position.
 		//(basically the apex of the arc) (the apex is the highest point btw)
 		Vector2 targetDir = (endPos.xy - startPos.xy);
-		if(pm_math_throw_debug) console.printf("CalcThrowVector(): Unnormalized direction: x:%f, y:%f", targetDir.x, targetDir.y);
+		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): Unnormalized direction: x:%f, y:%f", targetDir.x, targetDir.y);
 
 		float distance = targetDir.length(); // normalized distance between the positions
-		if(pm_math_throw_debug) console.printf("CalcThrowVector(): Distance between points A and B: %f", distance);
+		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): Distance between points A and B: %f", distance);
 		vector2 normDir = targetDir.unit(); // normalized director to end point
-		if(pm_math_throw_debug) console.printf("CalcThrowVector(): Normalized direction: x:%f, y:%f", normDir.x, normDir.y);
+		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): Normalized direction: x:%f, y:%f", normDir.x, normDir.y);
 
 		// If jumping up we want to throw a bit higher than the height diff	
 		if (stepHeight > 0) 
@@ -139,15 +139,15 @@ class PMMonsterBase : Actor abstract
 		// the fun part, actually calculating the throw velocities
 		float verticalVel = (float)(sqrt(2.0 * pGravity * throwHeight));
 
-		float divisor = verticalVel;
-		divisor += (float)(sqrt((2.0 *(-pGravity) * (stepHeight - throwHeight))));
+		float divisor = verticalVel + sqrt((2.0 *(-pGravity) * (stepHeight - throwHeight)));
+		// divisor += (float)();
 
 		float zVel = (distance * pGravity) / divisor;
 
 		// create horizontal throw vector and add vertical component
 		Vector3 throwVel = (normDir.x * zVel, normDir.y * zVel, 0);
 		throwVel.z = verticalVel;
-		if(pm_math_throw_debug) console.printf("CalcThrowVector(): Final Throw Velocity: x:%f, y:%f z:%f", throwVel.x, throwVel.y, throwVel.z);
+		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): Final Throw Velocity: x:%f, y:%f z:%f", throwVel.x, throwVel.y, throwVel.z);
 
 		return throwVel;
 	}

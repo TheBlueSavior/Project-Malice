@@ -185,7 +185,7 @@ class MonsterDropper : EventHandler {
 		// take the total monster number, divide it by 4
 		// multiplication is faster than division
 		double extraMonsters = level.total_monsters * (foddersetting.GetFloat());
-		if(pm_world_extra_mon_debug) console.printf("[PM]: Number of extra monsters: %i.", extraMonsters);
+		if(pmd_world_extra_mon) console.printf("[PM]: Number of extra monsters: %i.", extraMonsters);
 
 		// time to spawn the monsters!
 		for(int i = 0; i < extraMonsters; i++) {
