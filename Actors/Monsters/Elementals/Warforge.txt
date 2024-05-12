@@ -37,7 +37,7 @@ Class PM_Warforge : PMWarMonsterBase
 		MinMissileChance 169;
 		MaxTargetRange 1280;
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
-		TeleFogDestType "PM_DemonicTeleportFog";
+		TeleFogDestType "PM_WarTeleportFog";
 		Obituary "%o faced the hell's mini-artillery of destruction, Warforge, and failed.";
 	}
 	

@@ -1552,6 +1552,22 @@ flickerlight PM_GTeleMediumFlicker2
     chance 0.4
 }
 
+flickerlight PM_BlueTeleMediumFlicker1
+{
+    color 0.6 0.6 1.0
+    size 50
+    secondarySize 65
+    chance 0.4
+}
+
+flickerlight PM_BlueTeleMediumFlicker2
+{
+    color 0.6 0.6 1.0
+    size 60
+    secondarySize 65
+    chance 0.4
+}
+
 flickerlight PM_RTeleMediumFlicker1
 {
     color 1.0 0.4 0.3

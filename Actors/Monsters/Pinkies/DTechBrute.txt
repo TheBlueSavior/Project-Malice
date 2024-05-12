@@ -27,7 +27,7 @@ Class PM_DemonTechBrute : PMWarMonsterBase
 	HitObituary "%o was seared by a Demon Tech Brute.";
 	Tag "Demon Tech Brute";
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_DemonicTeleportFog";
+	TeleFogDestType "PM_WarTeleportFog";
 	}
 	
     States 

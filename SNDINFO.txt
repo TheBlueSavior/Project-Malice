@@ -4508,9 +4508,9 @@ $limit PM/WrathTele2 4
 $rolloff PM/WrathTele2 200 1800
 
 PM/EnvyTele	"Sounds/Other/PMEnvyTele.ogg"
-$pitchset PM/EnvyTele 0.8 1.1
+$pitchset PM/EnvyTele 0.8 1.2
 $limit PM/EnvyTele 4
-$rolloff PM/EnvyTele 200 1800
+$rolloff PM/EnvyTele 300 1900
 
 $random PM/PrideTele { PM/PrideTele1 PM/PrideTele2 PM/PrideTele3 PM/PrideTele4 }
 PM/PrideTele1 "Sounds/Other/PMPrideTele1.ogg"
@@ -4536,6 +4536,12 @@ $volume PM/LustTeleVoice 0.23
 $limit PM/LustTeleVoice 4
 $pitchset PM/LustTeleVoice 0.7 1
 $rolloff PM/LustTeleVoice 100 3200
+
+$random PM/WarTele { PM/WarTele1 PM/WarTele2 }
+PM/WarTele1 "Sounds/Other/PMWarTele1.ogg"
+PM/WarTele2 "Sounds/Other/PMWarTele2.ogg"
+$limit PM/WarTele 4
+$rolloff PM/WarTele 200 1800
 
 $random PM/WrathTeleVoice { PM/WrathTeleVoice1 PM/WrathTeleVoice2 }
 PM/WrathTeleVoice1 "Sounds/Other/PMWrathTeleVoice1.ogg"

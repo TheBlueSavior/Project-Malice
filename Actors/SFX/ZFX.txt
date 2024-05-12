@@ -2461,6 +2461,329 @@ States
  }
 }
 
+//War Teleport
+
+Class PM_WarTeleportSphere : Actor
+{
+ Default
+ {
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +ROLLSPRITE
+  +FORCEXYBILLBOARD
+  +ROLLCENTER
+  Translation "0:255=%[0,0,0]:[0.6,0.7,1.9]";
+  RenderStyle "Add";
+  Scale 2;
+  +Bright
+ }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	PLS1 AABBCCDDEEFFGGHHIIJJKKLL 1;
+   Go:
+    PLS1 AAABBBCCCDDDEEEFFFGGGHHHIIIJJJKKKLLL 1
+	{
+	A_FadeOut(0.06);
+	scale -= default.scale*0.04;
+	}
+	Loop;
+	}
+}
+
+Class PM_WarTeleElectricity : Actor
+{
+	Default
+	{
+	Projectile;
+	Radius 3;
+	Height 3;
+	Scale 0.8;
+	RenderStyle "Add";
+	//Alpha 0.70
+	Damage 0;
+	Speed 150;
+	+ROLLSPRITE;
+	SeeSound "";
+	}
+	States
+	{
+	Spawn:
+        TNT1 A 2 A_Weave(random(-5,5),random(-1,-5),random(-5,5),random(-5,-5));
+		Loop;
+  Death:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(200,"Death2");
+	TNT1 A 0 A_StartSound("PM/ShockWarning",CHAN_6);
+	TNT1 A 0
+	{
+	 A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 12,size: frandom(60,90),startalphaf: 1
+	 ,fadestepf: -1,sizestep: -5,startroll: frandom(-180,180),rollvel: frandom(-20,20));
+	 A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,80),size: frandom(70,140),startalphaf: frandom(0.3,0.85)
+	 ,fadestepf: -1,sizestep: -0.05,startroll: random(-180,180));
+	}
+	TNT1 AAAAAAAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(30,250),size: frandom(0.2,13),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(0.3,10),accelz: frandom(-0.1,-1),startalphaf: 1.0
+	,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
+	TNT1 AAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(2,10),size: random(10,125),velx: random(-3,3),vely: random(-3,3),velz: random(-3,3),startalphaf: 0.9,startroll: random(-180,180)); }
+	TNT1 AA 0 A_SpawnItemEx("PM_ConduitFallingSparks",0,0,0,random(-8,8),random(-8,8),random(2,15),0,SXF_NOCHECKPOSITION,220);
+	TNT1 A 6 Bright Light("ShadowBall4");
+	Stop;
+  Death2:
+	TNT1 A 0;
+	Stop;
+	}
+}
+
+Class PM_WarTeleportFog : Actor
+{
+Default
+{
+Alpha 1;
+Scale 1.2;
+Height 2;
++NOBLOCKMAP
++NOINTERACTION
++NOGRAVITY
++NOTELEPORT
++ZDOOMTRANS
+Translation "0:255=%[0,0,0]:[0.3,0.8,1.9]";
+RenderStyle "Add";
+}
+
+ override void PostBeginPlay()
+ {
+  Super.PostBeginPlay();
+  tex[0] = TexMan.CheckForTexture("SPKBC0",TexMan.Type_Sprite);
+  tex[1] = TexMan.CheckForTexture("SPKOS0",TexMan.Type_Sprite);
+  tex[2] = TexMan.CheckForTexture("DTPRB0",TexMan.Type_Sprite);
+  tex[3] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+  tex[4] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+ }
+ 
+ TextureID tex[5];
+
+States
+ {
+ Spawn:
+ TNT1 A 0;
+ TNT1 A 0 A_StartSound("PM/WarTele",CHAN_6,volume:0.85,pitch:frandom(0.9,1.1));
+ TNT1 A 0 A_SpawnItemEx("PM_WrathSummonCircle",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
+ TNT1 AA 0 A_SpawnItemEx("PM_WarTeleportSphere",0,0,38,0,0,0,0,SXF_NOCHECKPOSITION);
+ TNT1 AA 0
+ {
+	A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: 500,
+		zoff: 50,
+		startalphaf: 1,
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 8,
+		size: 250,
+		zoff: 50,
+		startalphaf: 0.7,
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 4,
+		size: 800,
+		zoff: 50,
+		startalphaf: 0.7,
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+	}
+ TNT1 AAAAAAAAAAAAAAA 0
+	{
+	A_SpawnParticleEx
+	    ( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,80),
+		size: frandom(10,30), xoff: random(-10,10), yoff: random(-10,10), zoff: frandom(30,65),
+		velx: frandom(-4,4), vely: frandom(-4,4), velz: frandom(-4,4), startalphaf: 0.7, fadestepf: -1,
+		sizestep: frandom(-0.3,-3), startroll: random(-180,180), rollvel: frandom(-10,10), rollacc: frandom(-1,1) );
+	A_SpawnParticleEx
+	    ( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,100),
+		size: frandom(0.2,15), xoff: random(-30,30), yoff: random(-30,30), velx: frandom(-0.2,0.2), vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3), accelx: frandom(-0.02,0.02), accely: frandom(-0.02,0.02), accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0, fadestepf: -1, sizestep: -0.5, startroll: random(-180,180), rollvel: frandom(-10,10), rollacc: frandom(-1,1) );
+	}
+ TNT1 ABCDEFGHIJK 1 BRIGHT Light("PM_BlueTeleMediumFlicker2")
+	{
+	A_SpawnProjectile("PM_WarTeleElectricity",33,0,random(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(1,20));
+	A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: random(70,500),
+		xoff: frandom(-20,20),
+		yoff: frandom(-20,20),
+		zoff: frandom(20,60),
+		startalphaf: frandom(0.3,0.9),
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[4],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(2,4),
+		size: random(70,300),
+		angle: 0,
+		xoff: frandom(-30,30),
+		yoff: frandom(-30,30),
+		zoff: frandom(0,50),
+		velx: frandom(-2,2),
+		vely: frandom(-2,2),
+		velz: frandom(-2,2),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[4],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,4),
+		size: random(20,300),
+		angle: 0,
+		xoff: frandom(-100,100),
+		yoff: frandom(-100,100),
+		zoff: frandom(0,50),
+		velx: frandom(-2,2),
+		vely: frandom(-2,2),
+		velz: frandom(-2,2),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+		( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: frandom(100,730),
+		zoff: 50, startalphaf: frandom(0.3,0.9), startroll: random(-180,180) );
+	A_SpawnParticleEx
+	    ( "", tex[4], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,7), size: frandom(10,200),
+		xoff: random(-700,700), yoff: random(-700,700), zoff:1, startalphaf: 1.0,
+		startroll: random(-180,180), rollvel: frandom(-1,1), rollacc: frandom(-1,1));
+	A_SpawnParticleEx
+	    ( "00c9ff", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(50,90), size: frandom(20,90), xoff: random(-30,30), yoff: random(-30,30), zoff: frandom(20,65),
+		velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1), startalphaf: frandom(0.05,0.5), fadestepf: -1,
+		sizestep: frandom(0.2,6), startroll: random(-180,180), rollvel: frandom(-0.1,0.1) );
+	}
+ TNT1 A 0 A_SpawnParticleEx
+		( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 50, size: 400,
+		zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: -2, startroll: random(-180,180));
+ TNT1 LABCDEFGHIJKL 2 BRIGHT Light("PM_BlueTeleMediumFlicker1")
+	{
+	A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: random(10,300),
+		xoff: frandom(-20,20),
+		yoff: frandom(-20,20),
+		zoff: frandom(20,60),
+		startalphaf: frandom(0.1,0.5),
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+	A_SpawnParticleEx
+		(
+		"",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 10,
+		size: random(70,300),
+		xoff: frandom(-20,20),
+		yoff: frandom(-20,20),
+		zoff: frandom(20,60),
+		startalphaf: frandom(0.1,0.5),
+		fadestepf: -1,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[4],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,4),
+		size: random(10,200),
+		angle: 0,
+		xoff: frandom(-100,100),
+		yoff: frandom(-100,100),
+		zoff: frandom(0,70),
+		velx: frandom(-2,2),
+		vely: frandom(-2,2),
+		velz: frandom(-2,2),
+		accelx: 0,
+		accely: 0,
+		accelz: 0,
+		startalphaf: frandom(0.0,0.9),
+		fadestepf: 0,
+		sizestep: 0,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5),
+		rollacc: 0
+	    );
+	A_SpawnParticleEx
+		( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2,
+		size: frandom(100,500), zoff: 50, startalphaf: frandom(0.1,0.9), startroll: random(-180,180) );
+	A_SpawnParticleEx
+	    ( "", tex[4], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,7), size: frandom(10,200),
+		xoff: random(-700,700), yoff: random(-700,700),zoff:1, startalphaf: 1.0,
+		startroll: random(-180,180), rollvel: frandom(-1,1), rollacc: frandom(-1,1));
+		}
+ Stop;
+ }
+}
+
 Class PM_PrideTeleportFog : Actor
 {
 	Default
@@ -2500,7 +2823,7 @@ Class PM_PrideTeleportFog : Actor
 			A_SpawnParticleEx("ff2424", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 50, size: 50, zoff: 10, startalphaf: .6, fadestepf: -.6, sizestep: 25, startroll: 180, rollvel: -5);
 			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 10, size: 400, xoff: -20, yoff: random(-30,30), zoff: random(0,60), startalphaf: 1, fadestepf: -1, sizestep: -40, startroll: random(-180,180));
 			A_StartSound("PM/PrideTele",CHAN_5,CHANF_DEFAULT);
-			A_StartSound((!random(0, 1)) ? "Depraved/SuperShock1" : "Depraved/SuperShock2",CHAN_7,CHANF_DEFAULT,.75,0.8,1.55);
+			A_StartSound((!random(0, 1)) ? "Depraved/SuperShock1" : "Depraved/SuperShock2",CHAN_7,CHANF_DEFAULT,.50,0.8,1.55);
 			A_QuakeEx(3,3,0,30,0,1200,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
 			for(int i=4;i>0;i--)
 			A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);

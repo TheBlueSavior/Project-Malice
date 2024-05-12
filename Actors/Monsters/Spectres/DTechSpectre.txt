@@ -26,7 +26,7 @@ Class PM_DemonTechSpectre : PMWarMonsterBase
     Obituary "%o was blasted where %g least expected by a Demon Tech Spectre.";
 	Tag "Demon Tech Spectre";
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
-	TeleFogDestType "PM_DemonicTeleportFog";
+	TeleFogDestType "PM_WarTeleportFog";
 	}
     States 
     { 

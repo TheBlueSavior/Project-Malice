@@ -25,6 +25,7 @@ Class PM_Hangman : PMFodderMonsterBase
 		SeeSound "PMHangman/Sight";
 		PainSound "PMHangman/Charge";
 		DeathSound "PMHangman/Death";
+		Bloodtype "PM_NormalBloodBase";
 	}
 	
 	States
