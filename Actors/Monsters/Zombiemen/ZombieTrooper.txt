@@ -118,11 +118,11 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 		  A_SetPitch(pitch+random(-15,15));
 		}
 		UTM2 EEEEEEE 1 A_FaceTarget(10,10);
-		UTM2 FFF 1 bright Light("YellowMediumFlicker2")
+		UTM2 FFF 2 bright Light("YellowMediumFlicker2")
 		{
 		  if(user_numbullets <= 0)
 		   { SetStateLabel("NoAmmo"); }
-		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		  A_StartSound("ZombieRifleDistant",CHAN_7);
 		  A_StartSound("ZTrooper/Fire");
 		  A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		  A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
@@ -142,7 +142,7 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 		{
 		  if(user_numbullets <= 0)
 		   { SetStateLabel("NoAmmo"); }
-		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		  A_StartSound("ZombieRifleDistant",CHAN_7);
 		  A_StartSound("ZTrooper/Fire");
 		  A_SpawnProjectile("PM_BulletTracer",33,7,frandom(-1, 1),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 		  A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
