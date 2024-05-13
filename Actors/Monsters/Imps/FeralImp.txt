@@ -519,15 +519,15 @@ Class PM_FeralImpBall : DoomImpBall
 	{
 	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 	  A_SpawnParticleEx("",tex[4],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4
-	  ,fadestepf: -1,startroll: random(-180,180));
+	  ,fadestepf: 1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
-	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
 	Loop;
   Death:
 	TNT1 AAAAAAAAAAAAAAA 0 { A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(5,20),size: random(15,20),xoff: -7,velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.8
-	,fadestepf: -1,startroll: random(-180,180)); }
+	,fadestepf: 1,startroll: random(-180,180)); }
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
     NDEB D 2 bright Light("AvatarFireball4");
     FIR3 CDEFGHIJKLMNOP 2 Light("AvatarFireball4") Bright;
@@ -552,24 +552,24 @@ Class PM_FeralImpIreball : PM_FeralImpBall
     TNT1 A 0
 	{
 	  A_SpawnParticleEx("#d2d2d2",tex[0],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(10,250),size: frandom(10,50),xoff: -25,velx: frandom(0,2),vely: frandom(-0.4,0.4),velz: frandom(-0.4,0.7),startalphaf: frandom(0.1,0.5)
-	  ,fadestepf: -1,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
+	  ,fadestepf: 1,sizestep: frandom(0.0,1.4),startroll: random(-180,180),rollvel: frandom(-1,1));
 	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(6,180),xoff: -22,startalphaf: 0.9,sizestep: frandom(0.0,3),startroll: random(-180,180));
     }
     TNT1 AAAAA 0
 	{
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.1,7),xoff: -22,velx: frandom(1,5),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),accelz: frandom(-0.0,-0.3),startalphaf: 1.0
-	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.1,7),xoff: -22,velx: frandom(1,4),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),accelz: frandom(-0.0,-0.2),startalphaf: 1.0
-	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
 	}
   Go:
     NDEB AABBCC 1 bright Light("AvatarFireball3")
 	{
 	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 	  A_SpawnParticleEx("ffb521",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45,size: 55.0,xoff: -10,startalphaf: 0.6
-	  ,fadestepf: -1,startroll: random(-180,180));
+	  ,fadestepf: 1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
-	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
 	Loop;
@@ -578,7 +578,7 @@ Class PM_FeralImpIreball : PM_FeralImpBall
 	{
 	 for(int i=random(10,15);i>0;i--)
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(5,20),size: random(15,20),xoff: -7,velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),startalphaf: 0.8
-	  ,fadestepf: -1,startroll: random(-180,180));
+	  ,fadestepf: 1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 30,size: 40.0,xoff: -5,startalphaf: 0.6,sizestep: 3,startroll: random(-180,180));
 	}
 	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");

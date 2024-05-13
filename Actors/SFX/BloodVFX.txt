@@ -542,12 +542,12 @@ Class PM_NormalHitSpark : Actor
 		 A_SpawnParticleEx
 		 ( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(15,55),
 		 size: frandom(15,46), velx: frandom(-3,3), vely: frandom(-3,3), velz: frandom(-3,3), startalphaf: frandom(0.15,0.55),
-		 fadestepf: -1, sizestep: frandom(0.0,0.90), startroll: random(-180,180), rollvel: frandom(-1,1));
+		 fadestepf: 1/*-1*/, sizestep: frandom(0.0,0.90), startroll: random(-180,180), rollvel: frandom(-1,1));
 		for(int i=random(0,3);i>0;i--)
 		 A_SpawnParticleEx
 		 ( "", TexMan.CheckForTexture("GNSML0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(25,85),
 		 size: frandom(28,86), velx: frandom(-0.15,0.15), vely: frandom(-0.15,0.15), velz: frandom(-0.50,0.50), startalphaf: frandom(0.15,0.95),
-		 fadestepf: -1, sizestep: frandom(0.0,1.90), startroll: random(-180,180), rollvel: frandom(-1,1));
+		 fadestepf: 1/*-1*/, sizestep: frandom(0.0,1.90), startroll: random(-180,180), rollvel: frandom(-1,1));
 		for(int i=random(1,8);i>0;i--)
 		 A_SpawnParticleEx(
 		 "", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,60), size: frandom(1,20),
@@ -2144,7 +2144,7 @@ Class PM_LavaMeatChunk : PM_NormalMeatChunk
 	     A_SpawnParticleEx(
 	      "ffb521", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,90),
 	      size: frandom(10,50), velx: frandom(-3,3), vely: frandom(-3,3), velz: frandom(-3,3),
-	      startalphaf: frandom(0.1,0.5), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
+	      startalphaf: frandom(0.1,0.5), fadestepf: 0.01/*-0.5*/, sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
 	      rollvel: frandom(-1,1));
 	    A_SpawnParticleEx(
 	      "", TexMan.CheckForTexture("SPKOC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,20),
@@ -2244,7 +2244,7 @@ Class PM_LavaBlood2 : PM_LavaBlood1
 			velz: frandom(-5,7),
 			accelz: frandom(-0.0,-0.8),
 			startalphaf: 1.0,
-			fadestepf: -0.5,
+			fadestepf: 0.5, //-0.5
 			sizestep: -0.2,
 			startroll: random(-180,180)
 			);
@@ -2263,7 +2263,7 @@ Class PM_LavaBlood2 : PM_LavaBlood1
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.8,1.0),
-			fadestepf: -1,
+			fadestepf: 1,
 			sizestep: frandom(0.8,2),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2317,7 +2317,7 @@ Class PM_LavaBlood3 : PM_NormalBlood3
 			velz: frandom(-5,7),
 			accelz: frandom(-0.0,-0.8),
 			startalphaf: 1.0,
-			fadestepf: -0.5,
+			fadestepf: 0.5, //-0.5
 			sizestep: -0.2,
 			startroll: random(-180,180)
 			);
@@ -2356,7 +2356,7 @@ Class PM_LavaBlood3 : PM_NormalBlood3
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.8,1.0),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.8,2),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2422,7 +2422,7 @@ Class PM_LavaBloodMist : PM_NormalBloodMist
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.8,1.0),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.5,1.8),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2489,7 +2489,7 @@ Class PM_DeathBlood1 : PM_NormalBlood1
 			velz: frandom(-5,7),
 			accelz: frandom(-0.0,-0.8),
 			startalphaf: 1.0,
-			fadestepf: -0.5,
+			fadestepf: 0.5, //-0.5
 			sizestep: -0.2,
 			startroll: random(-180,180)
 			);
@@ -2509,7 +2509,7 @@ Class PM_DeathBlood1 : PM_NormalBlood1
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.15,0.75),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.2,4),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2541,7 +2541,7 @@ Class PM_DeathBlood2 : PM_NormalBlood1
 			velz: frandom(-5,7),
 			accelz: frandom(-0.0,-0.8),
 			startalphaf: 1.0,
-			fadestepf: -0.5,
+			fadestepf: 0.5, //-0.5
 			sizestep: -0.2,
 			startroll: random(-180,180)
 			);
@@ -2576,7 +2576,7 @@ Class PM_DeathBlood2 : PM_NormalBlood1
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.15,0.75),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.2,4),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2635,7 +2635,7 @@ Class PM_DeathBlood3 : PM_NormalBlood1
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.15,0.75),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.2,4),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2679,7 +2679,7 @@ Class PM_DeathBloodMist : PM_NormalBloodMist
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.8,1.0),
-			fadestepf: -1,
+			fadestepf: 1, //-1
 			sizestep: frandom(0.5,3),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
@@ -2799,7 +2799,7 @@ Class PM_WarMeatChunk : PM_NormalMeatChunk
 	     A_SpawnParticleEx(
 	      "ffb521", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,90),
 	      size: frandom(1,20), velx: frandom(-3,3), vely: frandom(-3,3), velz: frandom(-3,3),
-	      startalphaf: frandom(0.1,0.5), fadestepf: -0.5, sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
+	      startalphaf: frandom(0.1,0.5), fadestepf: 0.5 /*-0.5*/ , sizestep: frandom(0.0,1.4), startroll: random(-180,180), 
 	      rollvel: frandom(-1,1));
 	    A_SpawnParticleEx(
 	      "", TexMan.CheckForTexture("SPKOC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,20),
@@ -2815,11 +2815,11 @@ Class PM_WarMeatChunk : PM_NormalMeatChunk
 		"####" "#" 4 {
 	   A_SpawnParticleEx(
 	    "", TexMan.CheckForTexture("DTPRB0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
-	    lifetime: 20, size: 100.0, startalphaf: 0.35, fadestepf: -1, startroll: random(-180,180));
+	    lifetime: 20, size: 100.0, startalphaf: 0.35, fadestepf: 1 /*-1*/ , startroll: random(-180,180));
 	   A_SpawnParticleEx
 		 ( "", TexMan.CheckForTexture("GNSML0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(25,85),
 		 size: 30, velx: frandom(-0.15,0.15), vely: frandom(-0.15,0.15), velz: frandom(-0.50,0.50), startalphaf: frandom(0.65,1),
-		 fadestepf: -1, sizestep: frandom(0.0,1.30), startroll: random(-180,180), rollvel: frandom(-1,1));
+		 fadestepf: 1/*-1*/, sizestep: frandom(0.0,1.30), startroll: random(-180,180), rollvel: frandom(-1,1));
 	  if(random(1,2) == 1)
 	   A_SpawnParticleEx(
 	    "", TexMan.CheckForTexture("BLULA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
