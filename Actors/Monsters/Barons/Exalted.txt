@@ -160,6 +160,7 @@ Class PM_Exalted : PMPrideMonsterBase
     See:
         EXAL AAAABBBB 2 A_Chase();
 		TNT1 A 0 A_Quake(1, 4, 0, 312);
+		TNT1 A 0 { bSHOOTABLE = true; }
 		TNT1 A 0 A_StartSound("hoofstep",9);
 		EXAL CCCCDDDD 2 A_Chase();
 		TNT1 A 0 A_Quake(1, 4, 0, 312);

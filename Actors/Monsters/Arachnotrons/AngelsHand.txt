@@ -134,6 +134,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 		Goto See;
 	See:
 		MLCH AAABBB 3 { if (floating) A_Recoil(-0.4); A_Chase(); }
+		TNT1 A 0 { bSHOOTABLE = true; }
 		MLCH B 0 A_StartSound("hoofstep", 55, pitch: 1.35);
 		MLCH CCCDDD 3 A_Chase();
 		MLCH D 0 A_StartSound("hoofstep", 55, pitch: 1.35);
