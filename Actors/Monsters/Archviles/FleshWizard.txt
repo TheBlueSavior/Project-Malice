@@ -117,6 +117,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 	void masonRaise() {
 		A_StartSound("Exile/Resurrect",CHAN_6);
 		for(int i = 0; i < toRaise.size(); ++i) {
+			if(toRaise[i] == null) break; //it's over, just leave them alone
 			Actor a = toRaise[i];
 
 			masonRaiseEffect(a.pos);
