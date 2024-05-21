@@ -28,7 +28,7 @@ states
 	{
 	spawn:
 		tnt1 a 0
-		tnt1 a 0 a_jump(256,"goreSmall","goreBig","WallDamage")
+		tnt1 a 0 a_jump(256,"goreSmall","goreBig","WallDamage","Symbol")
 		stop
 		
 	WallDamage:	
@@ -49,6 +49,12 @@ states
 		TNT1 AAA 0 A_CustomMissile ("GoreDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		stop
+		
+	Symbol:
+		tnt1 a 0
+		TNT1 AAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
+		TNT1 A 0 A_CustomMissile ("GraffitiSymbolsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		stop
 	}
 }
 
@@ -58,13 +64,13 @@ states
 	{
 	spawn:
 		tnt1 a 0
-		tnt1 a 0 a_jump(256,"WitnessMe","graffitiSmall","GraffitiBig","KILL","VOICES")
+		tnt1 a 0 a_jump(256,"WitnessMe","graffitiSmall","GraffitiBig","KILL","VOICES","DEMON")
 		stop
 		
 	WitnessMe:
 		tnt1 a 0
 		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
+		TNT1 AAAAAAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 A 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		stop
 		
@@ -72,14 +78,16 @@ states
 		tnt1 a 0
 		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 A 0 A_CustomMissile ("GraffitiDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
+		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		stop
 		
 	GraffitiBig:
 		tnt1 a 0
 		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AA 0 A_CustomMissile ("GraffitiDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 A 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 A 0 A_CustomMissile ("GraffitiSymbolsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		stop
 	
@@ -87,6 +95,8 @@ states
 		tnt1 a 0
 		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAAAAAAA 0 A_CustomMissile ("KillDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		stop
 	
@@ -94,6 +104,16 @@ states
 		tnt1 a 0
 		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAA 0 A_CustomMissile ("TheVoicesAll", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		stop
+		
+	DEMON:
+		tnt1 a 0
+		TNT1 AA 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		stop
 	}
@@ -105,30 +125,45 @@ states
 	{
 	spawn:
 		tnt1 a 0
-		tnt1 a 0 a_jump(256,"MADNESS","LOOKING","MASSGRAVE")
+		tnt1 a 0 a_jump(256,"MADNESS","LOOKING","MASSGRAVE","DEMONINSANE")
 		stop
 		
 	MADNESS:
 		tnt1 a 0
 		TNT1 A 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAA 0 A_CustomMissile ("KillDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAA 0 A_CustomMissile ("TheVoicesAll", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAA 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAA 0 A_CustomMissile ("KillDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAA 0 A_CustomMissile ("TheVoicesAll", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AA 0 A_CustomMissile ("EyesDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		stop
 		
 	LOOKING:
 		tnt1 a 0
 		TNT1 A 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 A 0 A_CustomMissile ("GraffitiDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAAAAA 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AA 0 A_CustomMissile ("GraffitiSymbolsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAA 0 A_CustomMissile ("EyeDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 A 0 A_CustomMissile ("EyesDecal", 32, 0, random (0, 360), 2, random (0, 60))	
 		stop
 		
 	MASSGRAVE:
+		tnt1 a 0
 		TNT1 A 0 A_CustomMissile ("WallDMGDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AA 0 A_CustomMissile ("GraffitiSymbolsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		TNT1 AAAAAAAA 0 A_CustomMissile ("GraffitiDecal", 32, 0, random (0, 360), 2, random (0, 60))
-		TNT1 AAAAAAAAAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAAAA 0 A_CustomMissile ("BloodDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		stop
+		
+	DEMONINSANE:
+		tnt1 a 0
+		TNT1 A 0 A_CustomMissile ("GraffitiDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAA 0 A_CustomMissile ("GraffitiSymbolsDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_CustomMissile ("DemonLettersDecal", 32, 0, random (0, 360), 2, random (0, 60))
+		TNT1 AAAAAAA 0 A_CustomMissile ("DemonWordsDecal", 32, 0, random (0, 360), 2, random (0, 60))
 		stop
 	}
 }
@@ -175,7 +210,7 @@ ACTOR DecalTemplate
 	+DONTSPLASH
 	+FLOORCLIP
 }
-
+//Blood Splats
 ACTOR GoreDecal : DecalTemplate
 {
 	Decal Bloodsmear
@@ -185,20 +220,45 @@ ACTOR BloodDecal : DecalTemplate
 {
 	Decal BloodSplat
 }
-
+//Wall Damage
 ACTOR WallDMGDecal : DecalTemplate
 {
 	Decal wallDamage
 }
-
+//Blood Graffiti
 ACTOR GraffitiDecal : DecalTemplate
 {
 	Decal Graffiti
 }
 
+ACTOR BurningDecal : DecalTemplate
+{
+	Decal BURNING
+}
+
 ACTOR KillDecal : DecalTemplate
 {
 	Decal KillGraffiti
+}
+
+ACTOR TheVoicesAll : DecalTemplate
+{
+	Decal TheVoicesAllGraffiti
+}
+
+ACTOR DemonLettersDecal : DecalTemplate
+{
+	Decal DemonLetters
+}
+
+ACTOR DemonWordsDecal : DecalTemplate
+{
+	Decal DemonWords
+}
+//Blood Symbols
+ACTOR GraffitiSymbolsDecal : DecalTemplate
+{
+	Decal GraffitiSymbols
 }
 
 ACTOR EyeDecal : DecalTemplate
@@ -209,9 +269,4 @@ ACTOR EyeDecal : DecalTemplate
 ACTOR EyesDecal : DecalTemplate
 {
 	Decal EyesGraffiti
-}
-
-ACTOR TheVoicesAll : DecalTemplate
-{
-	Decal TheVoicesAllGraffiti
 }

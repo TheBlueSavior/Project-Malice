@@ -1,0 +1,472 @@
+//symbols
+decal Pentagram1
+{
+	pic PENTA1
+	translucent 0.90
+}
+decal Pentagram2
+{
+	pic PENTA2
+	translucent 0.90
+}
+decal Skull
+{
+	pic SKULL
+	translucent 0.90
+}
+decal Brimstone1
+{
+	pic BRIM1
+	translucent 0.90
+}
+decal Brimstone2
+{
+	pic BRIM2
+	translucent 0.90
+}
+decal Brimstone3
+{
+	pic BRIM3
+	translucent 0.90
+}
+decal Brimstone4
+{
+	pic BRIM4
+	translucent 0.90
+}
+DecalGroup GraffitiSymbols
+{
+	Pentagram1 1
+	Pentagram2 1
+	Skull 1
+	Brimstone1 1
+	Brimstone2 1
+	Brimstone3 1
+	Brimstone4 1
+}
+
+
+//Blood Graffiti
+//Set1
+decal Hell
+{	
+	pic HELL
+	translucent 0.90
+}
+
+decal AGONY
+{
+	pic MESA1
+	translucent 0.90
+}
+
+decal Beautiful
+{
+	pic MESA2
+	translucent 0.90
+}
+
+decal Cuttheskin
+{
+	pic MESA3
+	translucent 0.90
+}
+
+decal Negative
+{
+	pic MESA4
+	translucent 0.90
+}
+
+decal RUN
+{
+	pic MESA5
+	translucent 0.90
+}
+
+decal SHOOTTHEM
+{
+	pic MESA6
+	translucent 0.90
+}
+
+decal LEFTUS
+{
+	pic MESA7
+	translucent 0.90
+}
+
+//set2
+decal GODISDEAD
+{
+	pic MESA8
+	translucent 0.90
+}
+
+decal HELP
+{
+	pic MESA9
+	translucent 0.90
+}
+
+decal HOPELESS
+{
+	pic MESA10
+	translucent 0.90
+}
+
+decal ITHURTS
+{
+	pic MESA11
+	translucent 0.90
+}
+
+decal NOHOPE
+{
+	pic MESA12
+	translucent 0.90
+}
+
+decal NOSAL
+{
+	pic MESA13
+	translucent 0.90
+}
+
+decal NUKEUS
+{
+	pic MESA14
+	translucent 0.90
+}
+
+decal THELIGHT
+{
+	pic MESA15
+	translucent 0.90
+}
+
+decal SINNERS
+{
+	pic MESA16
+	translucent 0.90
+}
+
+decal HELPUSPOSS
+{
+	pic MESA17
+	translucent 0.90
+}
+
+decal PRAYERPOSS
+{
+	pic MESA18
+	translucent 0.90
+}
+
+DecalGroup Graffiti
+{
+	Hell 1
+	AGONY 1
+	Beautiful 1
+	Cuttheskin 1
+	Negative 1
+	RUN 1
+	SHOOTTHEM 1
+	LEFTUS 1
+	
+	GODISDEAD 1
+	HELP 1
+	HOPELESS 1
+	ITHURTS 1
+	NOHOPE 1
+	NOSAL 1
+	NUKEUS 1
+	THELIGHT 1
+	SINNERS 1
+	
+	HELPUSPOSS 1
+	PRAYERPOSS 1
+}
+
+//"Burning" graffiti
+Decal BURNING1
+{
+	pic MESBN1
+	translucent 0.90
+}
+Decal BURNING2
+{
+	pic MESBN2
+	translucent 0.90
+}
+Decal BURNING3
+{
+	pic MESBN3
+	translucent 0.90
+}
+DecalGroup BURNING
+{
+	BURNING1 1
+	BURNING2 1
+	BURNING3 1
+}
+
+//"Kill" graffiti
+Decal kill1
+{
+	pic kill1
+	translucent 0.90
+}
+
+Decal kill2
+{
+	pic kill2
+	translucent 0.90
+}
+
+Decal kill3
+{
+	pic kill3
+	translucent 0.90
+}
+
+Decal kill4
+{
+	pic kill4
+	translucent 0.90
+}
+
+DecalGroup KillGraffiti
+{
+	KILL1 1
+	KILL2 1
+	KILL3 1
+	KILL4 1
+}
+
+//"Voices" graffiti
+Decal TheVoices1
+{
+	pic THVO1
+	translucent 0.90
+}
+
+Decal TheVoices2
+{
+	pic THVO2
+	translucent 0.90
+}
+
+Decal TheVoices3
+{
+	pic THVO3
+	translucent 0.90
+}
+
+Decal TheVoices4
+{
+	pic THVO4
+	translucent 0.90
+}
+
+Decal TheVoices
+{
+	pic THVO
+	translucent 0.90
+}
+
+DecalGroup TheVoicesAllGraffiti
+{
+	TheVoices 1
+	TheVoices1 1
+	TheVoices2 1
+	TheVoices3 1
+	TheVoices4 1
+}
+
+//"Eye" graffiti
+Decal EYE1
+{
+	pic EYE1
+	translucent 0.90
+}
+
+Decal EYE2
+{
+	pic EYE2
+	translucent 0.90
+}
+
+Decal EYE3
+{
+	pic EYE3
+	translucent 0.90
+}
+
+Decal EYE4
+{
+	pic EYE4
+	translucent 0.90
+}
+
+Decal EYE5
+{
+	pic EYE5
+	translucent 0.90
+}
+
+Decal EYE6
+{
+	pic EYE6
+	translucent 0.90
+}
+
+DecalGroup EyeGraffiti
+{
+	EYE1 1
+	EYE2 1
+	EYE3 1
+	EYE4 1
+	EYE5 1
+	EYE6 1
+}
+
+//"Eyes All" graffiti
+Decal EYEsALL1
+{
+	pic EYESALL1
+	translucent 0.90
+}
+Decal EYEsALL2
+{
+	pic EYESALL2
+	translucent 0.90
+}
+DecalGroup EyesGraffiti
+{
+	EYEsALL1 1
+	EYEsALL2 1
+}
+
+//Demon Blood graffiti
+Decal DemonLetter1
+{
+	pic DEMLET1
+	translucent 0.90
+}
+Decal DemonLetter2
+{
+	pic DEMLET2
+	translucent 0.90
+}
+Decal DemonLetter3
+{
+	pic DEMLET3
+	translucent 0.90
+}
+Decal DemonLetter4
+{
+	pic DEMLET4
+	translucent 0.90
+}
+Decal DemonLetter5
+{
+	pic DEMLET5
+	translucent 0.90
+}
+Decal DemonLetter6
+{
+	pic DEMLET6
+	translucent 0.90
+}
+Decal DemonLetter7
+{
+	pic DEMLET7
+	translucent 0.90
+}
+Decal DemonLetter8
+{
+	pic DEMLET8
+	translucent 0.90
+}
+Decal DemonLetter9
+{
+	pic DEMLET9
+	translucent 0.90
+}
+Decal DemonLetter10
+{
+	pic DEMLET10
+	translucent 0.90
+}
+Decal DemonLetter11
+{
+	pic DEMLET11
+	translucent 0.90
+}
+Decal DemonLetter12
+{
+	pic DEMLET12
+	translucent 0.90
+}
+DecalGroup DemonLetters
+{
+	DemonLetter1 1
+	DemonLetter2 1
+	DemonLetter3 1
+	DemonLetter4 1
+	DemonLetter5 1
+	DemonLetter6 1
+	DemonLetter7 1
+	DemonLetter8 1
+	DemonLetter9 1
+	DemonLetter10 1
+	DemonLetter11 1
+	DemonLetter12 1
+}
+
+Decal DemonWord1
+{
+	pic DEMWRD1
+	translucent 0.90
+}
+Decal DemonWord2
+{
+	pic DEMWRD2
+	translucent 0.90
+}
+Decal DemonWord3
+{
+	pic DEMWRD3
+	translucent 0.90
+}
+Decal DemonWord4
+{
+	pic DEMWRD4
+	translucent 0.90
+}
+Decal DemonWord5
+{
+	pic DEMWRD5
+	translucent 0.90
+}
+Decal DemonWord6
+{
+	pic DEMWRD6
+	translucent 0.90
+}
+DecalGroup DemonWords
+{
+	DemonWord1 1
+	DemonWord2 1
+	DemonWord3 1
+	DemonWord4 1
+	DemonWord5 1
+	DemonWord6 1
+}
+
+DecalGroup DemonWriting
+{
+	DemonWords 1
+	DemonLetters 1
+}
