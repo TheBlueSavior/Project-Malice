@@ -360,15 +360,15 @@ Class PM_Vore : PMEnvyMonsterBase
 		 { A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(75,80),xoff: random(-15,15),yoff: random(-30,30),zoff: random(20,50),velx: random(-5,5),vely: random(-5,5),velz: random(-5,5)); }
 	}
     BOS6 EEEEE 0 A_SpawnItemEx("PM_EnvyMorphGhost",zvel:1,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-    BOS6 EEEEEEEEEEEE 1 Light("GreenBall2") 
+    BOS6 EEEEEEE 1 Light("GreenBall2") 
 	{
 		 for(int a=0;a<random(1,5);a++)
 		 { A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(15,20),xoff: random(-20,20),yoff: random(-30,30),zoff: random(20,45),velz: frandom(0.5,3)); }
 		A_SpawnItemEx("PM_EnvyMorphGhost",zvel:1,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 	}
 	TNT1 A 0 A_StartSound("Squire/LeapReady",18);
-	BOS6 EEEEEEE 4  A_FaceTarget();
-	BOS6 EEE 5 A_FaceTarget();
+	BOS6 EE 4  A_FaceTarget();
+	BOS6 EEE 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Squire/Leap",18);
 	BOS6 A 2 PM_LeapTo(target, 568, "CopyLeapPause");
    CopyLeapLoop:
@@ -450,7 +450,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	  envysigil.master = self;
       sigil = true;
 	}
-	VORE HHHHHHHHHHHHHHHHHHIIIIIIIIIIIII 1 Bright Light("GreenBall2")
+	VORE HHHHHHHHHIIIIIIII 1 Bright Light("GreenBall2")
 	{
 	  A_SpawnParticleEx("4EFF33",TexMan.CheckForTexture("NO1SE1"),style: STYLE_ADD,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 30,size: 110,xoff: 20,zoff: 60,startalphaf: 1
 	  ,fadestepf: 0.1,startroll: 180);
@@ -462,7 +462,7 @@ Class PM_Vore : PMEnvyMonsterBase
 	  ,fadestepf: 0.1,startroll: 180);
 	  A_FaceTarget();
 	}
-	TNT1 A 0 A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,7);
+	TNT1 A 0 A_SpawnProjectile("PM_NobleBomb",40,0,0,CMF_OFFSETPITCH,-7);
 	VORE JJJJJ 1 Bright Light("GreenBall2")
 	{
 	  A_SpawnParticleEx("4EFF33",TexMan.CheckForTexture("NO1SG1"),style: STYLE_ADD,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 30,size: 110,xoff: 20,zoff: 60,startalphaf: 1
@@ -635,8 +635,12 @@ Class PM_Vore : PMEnvyMonsterBase
 	}
 	VORE I 4 Bright Light("Greenball2") A_FaceTarget(14,14);
 	TNT1 A 0 A_StartSound("Vore/Throw");
-	VORE J 8 Bright Light("Greenball3") A_SpawnProjectile("PM_VoreDagger",flags:CMF_AIMDIRECTION,pitch);
-    VORE J 4 Bright Light("Greenball2") A_FaceTarget(14,14);
+	VORE J 8 Bright Light("Greenball3")
+	{
+	PM_LeadTarget(28);
+	A_SpawnProjectile("PM_VoreDagger",flags:CMF_AIMDIRECTION,pitch);
+	}
+    VORE J 4 Bright Light("Greenball2");
 	TNT1 A 0 A_JumpIfCloser(400,"RetreatCheck");
 	Goto Standoff;
   StandoffSmallDaggers:
@@ -734,7 +738,7 @@ Class PM_VoreDagger : Actor
    {
     Radius 5;
     Height 8;
-    Speed 25;
+    Speed 28;
     DamageFunction 32;
     RenderStyle "Add";
 	Scale 0.85;

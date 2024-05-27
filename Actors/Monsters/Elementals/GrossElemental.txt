@@ -277,7 +277,7 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
     A_FaceTarget();
     A_SpawnItemEx("PM_RotflySmallSplash",0,0,15,0,0,random(-2,0),0,128,125);
     }
-   MA1G G 8 A_SpawnProjectile("PM_VenomMaggotSpit",15,0,random(-5,5),CMF_OFFSETPITCH,random(10,20));
+   MA1G G 8 A_SpawnProjectile("PM_VenomMaggotSpit",15,0,random(-5,5),CMF_OFFSETPITCH,random(-10,-20));
    Goto See;
    Melee:
      MA1G EF 6 Fast A_FaceTarget();
@@ -317,7 +317,7 @@ Class PM_VenomMaggotSpit : DoomImpBall
 	States
   	{
   Spawn:
-    TNT1 A 3 A_SpawnItemEx("PM_RotflySmallSplash",0,0,0,0,0,0,0,128,0);
+    TNT1 A 2 A_SpawnItemEx("PM_RotflySmallSplash",0,0,0,0,0,0,0,128,0);
 	Loop;
   Death:
 	TNT1 A 0;
