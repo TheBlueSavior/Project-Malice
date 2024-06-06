@@ -651,3 +651,13 @@ Model PM_BOLT
 	//ROTATING
 	FrameIndex ZAZA A 0 0
 }
+
+Model PM_GrievanceNeedle
+{ 
+Path "Models"
+Skin 0 "envynailtracer.png"
+Model 0 "Tracer.md3"
+Scale 0.15 0.5 0.5
+PITCHFROMMOMENTUM
+FrameIndex N_EN A 0 0
+}
