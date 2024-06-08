@@ -1,7 +1,7 @@
 # Project Malice for GZDoom
 ## A monster randomizer with a darker, less cartoony theme in mind.
 
-### ! PM CURRENTLY DOES NOT PLAY NICE WITH GZDOOM 4.12. PLEASE USE 4.11 UNTIL FIXES ARE MADE. !
+### ! PM DOES NOT PLAY NICE WITH GZDOOM 4.12. PLEASE USE 4.11 UNTIL FIXES ARE MADE. !
 
 
 This is the development GitHub for Project Malice
