@@ -3,17 +3,18 @@ Class PM_Nymphite : PMLustMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore
-		"Beholders are cacodemons that relish in their own suffering, actively preying on live victims rather than feasting on corpses in stark contrast to other demons of its kind.
-		 Once cornering prey, they will forcibly assimilate the victim into its body by way of chomping them down with its jaws, condemning them to the same torment the Beholder feels every second it lives.
+		"Nymphites are nothing more than vile living prisons, and should be treated as such.
+		
+		 They store and utilize the souls of infants as their weapon. Nymphites readily curse and release these souls in droves. The souls, still retaining their awareness and infant-like intelligence, are not fully aware of their situation but are terrified. They naturally seek out something not demonic for comfort, which is you. The curse activates as soon as they get close, making them explosively rupture. The result is deadly and innately demoralizing.
 
-		 Can vomit corrosive gore in bursts or in barrages, and can throw up barely-sentient eyes that launch themselves at the player after a while.";
+		 Destroy with extreme prejudice.";
 		SeeSound "Nymphite/Sight";
 		ActiveSound "Nymphite/Active";
 		PainSound "Nymphite/Pain";
 		DeathSound "Nymphite/Death";
-		Obituary "A Beholder has shared it's torment with %o.";
+		Obituary "A Nymphite's gift was too much for %o to handle.";
 		Bloodcolor "DarkRed";
-		HitObituary "%o was assimilated by a Beholder.";
+		HitObituary "%o was overwhelmed by a Nymphite.";
 		Radius 31;
 		Height 56;
 		Mass 400;
@@ -346,7 +347,7 @@ Class PM_NymphiteInfantBall : PMProjectileBase
 	
 	void PM_BurstCheck2()
 	{
-	 if(tracer && distance3D(tracer) <= 250)
+	 if(tracer && distance3D(tracer) <= 200)
 	  {
        SetStateLabel("Follow");
 	  }
