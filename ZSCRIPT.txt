@@ -120,6 +120,7 @@ version "4.10.0"
 #include "Actors/Monsters/Cacodemons/Infernal.txt"
 #include "Actors/Monsters/Cacodemons/VoidFloater.txt"
 #include "Actors/Monsters/Cacodemons/Cataclysm.txt"
+#include "Actors/Monsters/Cacodemons/Nymphite.txt"
 
 //Elementals
 #include "Actors/Monsters/Elementals/Defiler.txt"

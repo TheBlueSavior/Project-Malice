@@ -6074,3 +6074,51 @@ MechaAranea/Scurry2 "Sounds/Monsters/Arachnotrons/MechaAranea/AraneaScurry2.ogg"
 $limit MechaAranea/Scurry 12
 
 MechaAranea/Dodge "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaDodge.ogg"
+
+//Nymphite
+$random Nymphite/Active { Nymphite/Active1 Nymphite/Active2 Nymphite/Active3 }
+Nymphite/Active1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoActive1.ogg"
+Nymphite/Active2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoActive2.ogg"
+Nymphite/Active3 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoActive3.ogg"
+
+$random Nymphite/Birth { Nymphite/Birth1 Nymphite/Birth2 }
+Nymphite/Birth1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBirth1.ogg"
+Nymphite/Birth2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBirth2.ogg"
+
+$random Nymphite/Charge { Nymphite/Charge1 Nymphite/Charge2 }
+Nymphite/Charge1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoCharge1.ogg"
+Nymphite/Charge2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoCharge2.ogg"
+
+$random Nymphite/Death { Nymphite/Death1 Nymphite/Death2 }
+Nymphite/Death1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoDeath1.ogg"
+Nymphite/Death2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoDeath2.ogg"
+
+$pitchset Nymphite/Death 0.8 1.2
+
+$random Nymphite/Pain { Nymphite/Pain1 Nymphite/Pain2 }
+Nymphite/Pain1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoPain1.ogg"
+Nymphite/Pain2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoPain2.ogg"
+
+$pitchset Nymphite/Pain 0.8 1.2
+
+$random Nymphite/Roar { Nymphite/Roar1 Nymphite/Roar2 Nymphite/Roar3 Nymphite/Roar4 Nymphite/Roar5 }
+Nymphite/Roar1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoRoar1.ogg"
+Nymphite/Roar2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoRoar2.ogg"
+Nymphite/Roar3 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoRoar3.ogg"
+Nymphite/Roar4 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoRoar4.ogg"
+Nymphite/Roar5 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoRoar5.ogg"
+
+$random Nymphite/Sight { Nymphite/Sight1 Nymphite/Sight2 Nymphite/Sight3 }
+Nymphite/Sight1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoSight1.ogg"
+Nymphite/Sight2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoSight2.ogg"
+Nymphite/Sight3 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoSight3.ogg"
+
+$random Nymphite/Ball { Nymphite/Ball1 Nymphite/Ball2 Nymphite/Ball3 Nymphite/Ball4 }
+Nymphite/Ball1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBall1.ogg"
+Nymphite/Ball2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBall2.ogg"
+Nymphite/Ball3 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBall3.ogg"
+Nymphite/Ball4 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBall4.ogg"
+
+Nymphite/BallSplatter "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallSplatter.ogg"
+Nymphite/BallPop "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallPop.ogg"
+Nymphite/BallScream "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallScream.ogg"
