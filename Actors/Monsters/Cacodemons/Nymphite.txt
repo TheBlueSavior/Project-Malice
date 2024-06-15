@@ -303,7 +303,7 @@ Class PM_NymphiteInfantBall : PMProjectileBase
 		+BOUNCEONFLOORS
 		+ROLLSPRITE
 		+ROLLCENTER
-		BounceCount 4;
+		BounceCount 3;
 		BounceSound "Tainted/Step";
 		DamageType "Cacoball";
 		Translation "0:255=%[0.00,0.00,0.00]:[1.70,0.60,1.93]";
@@ -477,7 +477,6 @@ Class PM_NymphiteInfantBall : PMProjectileBase
 			DB26 XXXXXXXXXXXXXXXXXXXXXXXX 3 Bright
 			{
 			  PM_PCacoBallParticles();
-			  A_SeekerMissile(1,1,SMF_PRECISE);
 			  A_SetRoll(random(-3,3));
 			  PM_BurstCheck2();
 			}
