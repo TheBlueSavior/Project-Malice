@@ -25,7 +25,7 @@ Class PM_Director : PMUnaffMonsterBase
 		Height 100;
 		Mass 2000;
 		Speed 16;
-		PainChance 3;
+		PainChance 1;
 		Monster;
 		Scale 1.1;
 		+DONTHARMSPECIES
@@ -33,6 +33,7 @@ Class PM_Director : PMUnaffMonsterBase
 		+NOFEAR
 		+DONTRIP
 		+BOSS
+		+MissileMore
 		+MISSILEevenMORE
 		+FLOORCLIP
 		+NORADIUSDMG
@@ -49,6 +50,7 @@ Class PM_Director : PMUnaffMonsterBase
 		+DONTHARMSPECIES
 		+DONTHARMCLASS
 		Scale 1.1;
+		MeleeRange 400;
 		BloodType "PM_NormalTyrantBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
 		TeleFogDestType "PM_DemonicTeleportFog";
@@ -201,6 +203,8 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		Loop;
 	See:
+		TNT1 A 0;
+		TNT1 A 0 { if (attackmode == 1) SetStateLabel("SeePsy"); }
 		DIRE A 0 { A_StopSounds(52, 135); bNOPAIN = false; }
 		DIRE A 7 A_Chase(flags:CHF_DONTMOVE);
 		DIRE A 0 A_StartSound("Director/Servo",CHAN_5,CHANF_OVERLAP);
@@ -215,6 +219,22 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE A 0 A_StartSound("Director/Step",CHAN_5,CHANF_OVERLAP);
 		DIRE A 0 A_StartSound("Director/Stomp",25,CHANF_OVERLAP);
 		//TNT1 A 0 A_Jump(85,"ModeCheck");
+		TNT1 A 0 { if (attackmode == 1 && !random(0, 4) && rushcooldown <= 0) SetStateLabel("PsychicRush"); }
+		Loop;
+	SeePsy:
+		DIRE A 0 { A_StopSounds(52, 135); bNOPAIN = false; }
+		DIRE A 3 A_Chase(flags:CHF_DONTMOVE);
+		//DIRE A 0 A_StartSound("Director/Servo",CHAN_5,CHANF_OVERLAP);
+		DIRE ABBCC 3 { A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE); A_Chase(); if(changecooldown) changecooldown--; if(psi) A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90)); }
+		DIRE A 0 A_Quake(2, 4, 0, 412);
+		//DIRE A 0 A_StartSound("Director/Step",CHAN_5,CHANF_OVERLAP);
+		DIRE A 0 A_StartSound("Director/Stomp",25,CHANF_OVERLAP,pitch:1.2);
+		DIRE D 3 A_Chase(flags:CHF_DONTMOVE);
+		//DIRE D 0 A_StartSound("Director/Servo",CHAN_5,CHANF_OVERLAP);
+		DIRE DEEFF 3 { A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE); A_Chase(); if(changecooldown) changecooldown--; if(psi) A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90)); }
+		DIRE A 0 A_Quake(2, 4, 0, 412);
+		//DIRE A 0 A_StartSound("Director/Step",CHAN_5,CHANF_OVERLAP);
+		DIRE A 0 A_StartSound("Director/Stomp",25,CHANF_OVERLAP,pitch:1.2);
 		TNT1 A 0 { if (attackmode == 1 && !random(0, 4) && rushcooldown <= 0) SetStateLabel("PsychicRush"); }
 		Loop;
     ModeCheck:
@@ -302,6 +322,28 @@ Class PM_Director : PMUnaffMonsterBase
 		}
 		DIRE G 8;
 		Loop;
+	Melee:
+		DIRE G 1 A_FaceTarget();
+		DIRE G 12;
+		DIRE H 2 Light("TyrantFire")
+		{
+			pm_attackloop--;
+			A_FaceTarget(12, 90);
+			A_Quake(random(1, 3), 10, 0, 1000);
+			A_StartSound("Sybarite/Autocannon",11,CHANF_OVERLAP,pitch:0.8);
+			A_StartSound("Bulltubus/Shotgun",15,CHANF_OVERLAP,pitch:0.8);
+			A_StartSound("GunnerRifleDistant",12,CHANF_OVERLAP,pitch:0.8);
+			A_RadiusThrust(7000,350);
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+			A_SpawnProjectile("PM_DirectorAutocannonracer",55,0,frandom(-10,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-10,10));
+		}
+		DIRE G 8;
+		Goto See;
 	ARM:
 	    TNT1 A 0 { misangle = 15; pm_attackloop = 30; }
 		DIRE G 0 
@@ -622,6 +664,7 @@ Class PM_Director : PMUnaffMonsterBase
 		Loop;
 	RockThrow:
 		TNT1 A 0;
+		TNT1 A 0 A_Jump(120,"RockThrowBigger");
 		DIRE G 0 A_StartSound("Director/Screech",CHAN_VOICE);
 		DIRE TTTTTTTTTTTTTTTT 1
 		{
@@ -637,6 +680,28 @@ Class PM_Director : PMUnaffMonsterBase
 			A_FaceTarget();
 			A_StartSound("Director/Rock", 20);
 			A_SpawnItemEx("PM_DirectorControlledRock", 120, 0, 1, zvel: 8, flags: SXF_SETMASTER);
+		}
+		DIRE TTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
+		DIRE T 20;
+		TNT1 A 0 { changecooldown -= random(0, 10); }
+		Goto See;
+	RockThrowBigger:
+		TNT1 A 0;
+		DIRE G 0 A_StartSound("Director/Screech",CHAN_VOICE);
+		DIRE TTTTTTTTTTTTTTTT 1
+		{
+		A_FaceTarget();
+		A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),frandom(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90));
+		}
+		DIRE G 0  A_StartSound("Director/Rise",50,CHAN_OVERLAP,1);
+		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") { A_FaceTarget(); PM_DirectorPsiRise(); }
+		DIRE TTTTT random(0,20)
+		{
+			A_QuakeEx(2, 2, 2, 10, 0, 1200, "", QF_SCALEDOWN|QF_3D);
+			for (int i = random(15, 25); i > 0; i--) A_SpawnParticleEx("", TexMan.CheckForTexture("R0K_B0"), STYLE_Normal, SPF_RELATIVE|SPF_ROLL, random(40, 80), random(5,25), xoff: 110 + random(-35, 35), yoff: frandom(-200, 200), velx: frandom(-4, 4), vely: frandom(-4, 4), velz: frandom(0.1, 10), accelz: -0.08, startalphaf: frandom(0.5, 1), sizestep: -.1, startroll: random(-180,180), rollvel: frandom(-4, 4));
+			A_FaceTarget();
+			A_StartSound("Director/Rock", 20);
+			A_SpawnItemEx("PM_DirectorControlledRock", random(120,300), random(-300,300), 1, zvel: random(6,12), flags: SXF_SETMASTER);
 		}
 		DIRE TTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
 		DIRE T 20;
@@ -705,10 +770,10 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE G 0 A_StartSound("Director/Screech",CHAN_VOICE);
 		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
 		DIRE G 0  A_StartSound("Director/TK",50,CHAN_OVERLAP,1);
-		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") { A_FaceTarget(); PM_DirectorPsiCast(); A_QuakeEx(2, 2, 2, 10, 0, 1200, "", QF_SCALEDOWN|QF_3D); }
+		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") { A_FaceTarget(); PM_DirectorPsiCast(); A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90)); A_QuakeEx(2, 2, 2, 10, 0, 1200, "", QF_SCALEDOWN|QF_3D); }
 		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight")
 		{
-			A_FaceTarget(); PM_DirectorPsiCast(); A_QuakeEx(2, 2, 2, 10, 0, 1200, "", QF_SCALEDOWN|QF_3D);
+			A_FaceTarget(); PM_DirectorPsiCast(); A_QuakeEx(2, 2, 2, 10, 0, 1200, "", QF_SCALEDOWN|QF_3D); A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90));
 			if (!(getAge() % random(5, 7))) A_SpawnProjectile("PM_DirectorHallucinationSummon", 20, 0, frandom(-90, 90), CMF_AIMDIRECTION);
 		}
 		DIRE TTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
@@ -734,14 +799,20 @@ Class PM_Director : PMUnaffMonsterBase
 		Goto See;
 	HeavyStorm:
 		DIRE I 0 { if (stormcooldown > 0) SetStateLabel("RockThrow"); else { bNOPAIN = true; A_StartSound("Grievance/Charge",24,attenuation: 0.35,pitch:1.2); A_SpawnParticleEx("", TexMan.CheckForTexture("SPKPA0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, 30, 100, xoff: 30, zoff: 80, sizestep: 12); } }
-		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight") A_FaceTarget();
+		DIRE TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1 Light("PM_DirectorPsychicLight")
+		{
+		A_FaceTarget();
+		A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90));
+		}
 		DIRE T 0 { pm_attackloop = random(260, 340); A_StartSound("Director/DeathThreat", 132); A_StartSound("GenericHeavyCharge", 133, attenuation: 0.35); }
 		Goto StormLoop;
 	StormLoop:
 		DIRE T 1
 		{
 			A_FaceTarget();
+			A_SpawnProjectile("PM_DirectorPsiDischarge",random(50,200),random(-180,180),frandom(-180,180),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-90,90));
 			if (!random(0, 2)) A_SpawnProjectile("PM_DirectorPsychicLightning", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
+			if (!random(0, 10)) A_SpawnProjectile("PM_DirectorSeekingLightning", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
 			if (!random(0, 17) && !(GetAge() % random(2, 6))) A_SpawnProjectile("PM_DirectorPsychicHeavyLightning", 10, 0, frandom(0, 360), CMF_AIMDIRECTION);
 			PM_DirectorBuff();
 			if (!(GetAge() % 14)) A_SpawnItemEx("PM_DirectorMindPower", 20, 0, 78, flags: SXF_NOCHECKPOSITION);
@@ -2194,6 +2265,146 @@ Class PM_DirectorPsychicLightning : Actor
    }
 }
 
+Class PM_DirectorSeekingLightning : Actor
+{
+ int timer;
+ int secondtimer;
+ Default
+ {
+ Scale 1.1;
+ Speed 60;
+ RenderStyle "Add";
+ Projectile;
+ +BRIGHT
+ +SKYEXPLODE
+ +SEEKERMISSILE
+ +THRUACTORS
+ }
+ States
+ {
+  Spawn:
+   TNT1 A 0;
+   TNT1 A 1
+   {
+   if(timer >= 8)
+   SetStateLabel("TPAndSeek");
+   timer++;
+   }
+   Wait;
+   Crash:
+   XDeath:
+   Death:
+   TPAndSeek:
+   TNT1 A 0
+   {
+	bFLOORHUGGER = true;
+	bFLATSPRITE = true;
+	bROLLSPRITE = true;
+	A_SetScale(1.25,1.25);
+	A_ScaleVelocity(0);
+	A_FadeOut(1.0,FTF_CLAMP);
+   }
+   TNT1 A random(35,85);
+   TNT1 A 0 A_Warp(AAPTR_TRACER,random(-80,80),random(-80,80),0,random(0,360),WARPF_NOCHECKPOSITION);
+   TNT1 A 0 A_SpawnItemEx("PM_DirectorSeekedLightning");
+	Stop;
+   }
+}
+
+Class PM_DirectorSeekedLightning : Actor
+{
+	Default
+	{
+	Translation "0:255=%[0.00,0.00,0.00]:[1.43,1.10,2.00]";
+	Scale 1.25;
+	RenderStyle "Add";
+	Projectile;
+	Speed 55;
+	-SOLID
+	+BRIGHT
+	+SEEKERMISSILE
+	+THRUACTORS
+	+FLOORHUGGER
+	+FLATSPRITE
+	+ROLLSPRITE
+	}
+ 
+ override void PostBeginPlay()
+ {
+  Super.PostBeginPlay();
+  timer = random(1,5);
+  tex[0] = TexMan.CheckForTexture("SPKPA0",TexMan.Type_Sprite);
+  tex[1] = TexMan.CheckForTexture("PURLA0",TexMan.Type_Sprite);
+  tex[2] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+ }
+ 
+ TextureID tex[3];
+ 
+ int timer;
+ 
+ States
+ {
+  Spawn:
+   TNT1 A 0;
+   TNT1 A 0
+   {
+	A_ScaleVelocity(0);
+	A_Stop();
+	A_FadeOut(1.0,FTF_CLAMP);
+   }
+   TNT1 A random(10,85);
+   TNT1 A 0 
+   { A_StartSound("PM/WarDebrisLaunch",20, pitch: frandom(0.9, 1.2)); }
+   SBLL A 1 Light("PM_DirectorPsychicLight2")
+   {
+    if(timer >= 50)
+	SetStateLabel("Explode");
+    A_FadeIn(0.095,FTF_CLAMP);
+	A_SetRoll(random(0,360));
+	A_QuakeEx(1,1,1,1,0,500,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+	A_SetScale(Scale.X+0.025,Scale.Y+0.025);
+	timer++;
+   }
+   Wait;
+   Explode:
+    TNT1 A 0
+	{
+	bFLATSPRITE = false;
+	bROLLSPRITE = false;
+	bSPRITEFLIP = randompick(false, true);
+	A_SetScale(frandom(1, 1.5),4);
+	A_QuakeEx(3,3,3,10,0,900,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
+	A_Explode(30,200);
+	A_StartSound("Noble/BombExp",21);
+	A_StartSound("Noble/BombExpFar",22);
+	for(int i=3;i>0;i--)
+	A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-5,5),random(-5,5),random(-1,5),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+	A_SpawnParticleEx
+	    ( "", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	    lifetime: 8, size: 600, zoff: -15, startalphaf: 1, startroll: random(-180,180) );
+	for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: random(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1
+		, fadestepf: -1, startroll: random(-180,180) );
+	for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ( "727272", tex[2], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,35), zoff: random(10,35),
+	    velx: frandom(-8,8), vely: frandom(-8,8), velz: frandom(1,12),
+	    accelz: frandom(-0.1,-0.9), startalphaf: 1.0, sizestep: -0.2, startroll: random(-180,180), rollvel: random(-4,4) );
+	}
+	SP4_ ABCDEFG random(2, 3)
+	{
+		A_Explode((2),150);
+		for(int i=random(3,6);i>0;i--) A_SpawnParticleEx
+	    ("", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: random(1, 30), size: frandom(1, 500), zoff: -15, velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3), startalphaf: 1
+		, fadestepf: -1, startroll: random(-180,180) );
+	}
+	Stop;
+   }
+}
+
 Class PM_DirectorPsychicHeavyLightning : PM_DirectorPsychicLightning
 {
 	Default
@@ -2362,9 +2573,9 @@ Class PM_DirectorPsiDischarge : Actor
 		SetStateLabel("WeaveReset");
 	  A_SeekerMissile(seekint1,seekint2);
 	  A_Weave(soulhspeed,soulvspeed,soulhdist,soulvdist);
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,80),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,60),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
 	  ,fadestepf: -1,sizestep: -0.05,startroll: random(-180,180));
 	}
     Loop;
@@ -2378,9 +2589,9 @@ Class PM_DirectorPsiDischarge : Actor
 	  if(random(1,40) == 1)
 		SetStateLabel("WeaveReset");
 	  A_Weave(soulhspeed,soulvspeed,soulhdist,soulvdist);
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,80),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,60),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
 	  ,fadestepf: -1,sizestep: -0.05,startroll: random(-180,180));
 	}
     Loop;
@@ -2402,9 +2613,9 @@ Class PM_DirectorPsiDischarge : Actor
 	{
 	  if(random(1,30) == 1)
 		SetStateLabel("WeaveReset");
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
-	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,80),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,50),size: frandom(5,95),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: -0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+	  A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,60),size: frandom(50,100),xoff: random(0,-45),velx: frandom(0,1),startalphaf: frandom(0.05,0.35)
 	  ,fadestepf: -1,sizestep: -0.05,startroll: random(-180,180));
 	}
 	Loop;
