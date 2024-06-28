@@ -125,7 +125,7 @@ Class PM_DirectorTracer : PM_BulletTracer
 {
 Default
  {
-  Speed 45;
+  Speed 70;
   DamageFunction 10;
   Scale 1;
   PMProjectileBase.WhizSound "PM/HeavyBulletWhiz";
