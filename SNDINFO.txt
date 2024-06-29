@@ -6093,6 +6093,8 @@ $random Nymphite/Death { Nymphite/Death1 Nymphite/Death2 }
 Nymphite/Death1 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoDeath1.ogg"
 Nymphite/Death2 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoDeath2.ogg"
 
+$volume Nymphite/Death 0.6
+
 $pitchset Nymphite/Death 0.8 1.2
 
 $random Nymphite/Pain { Nymphite/Pain1 Nymphite/Pain2 }
