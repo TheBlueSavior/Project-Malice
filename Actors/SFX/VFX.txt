@@ -4234,6 +4234,11 @@ ACTOR PM_BelphFlameTrails: PM_GenericExplosionFlames
 	}
 }
 
+ACTOR PM_DepravedExplosionFlames: PM_GenericExplosionFlames
+{
+	Translation "0:255=%[0,0,0]:[2.0,0.2,0.2]"
+}
+
 ACTOR PM_HeresyLordFlameTrails: PM_GenericExplosionFlames
 {
 	Translation "0:255=%[0,0,0]:[2.0,0.4,0.28]"

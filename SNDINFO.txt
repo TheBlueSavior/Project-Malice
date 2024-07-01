@@ -100,7 +100,7 @@ SkelStep9 "Sounds/Monsters/SFX/SkeletonStep9.ogg"
 $limit skeleton/step 4
 $rolloff skeleton/step 150 800
 $volume skeleton/step 0.3
-$random Depraved/Sprint	{ Depraved/Sprint1 Depraved/Sprint2 Depraved/Sprint3 Depraved/Sprint4 }
+$random Depraved/Sprint	{ Depraved/Sprint1 Depraved/Sprint2 Depraved/Sprint3 Depraved/Sprint4 EntAva/Soul1 EntAva/Soul2 EntAva/Soul3 EntAva/Soul4 EntAva/Soul5 EntAva/Soul6 EntAva/Soul7 EntAva/Soul8 EntAva/Soul9 EntAva/Soul10 EntAva/Sing1 EntAva/Sing2 EntAva/Sing3 EntAva/Sing4 }
 Depraved/Sprint1	"Sounds/Monsters/Revenants/Depraved/DepravedSprint1.ogg"
 Depraved/Sprint2	"Sounds/Monsters/Revenants/Depraved/DepravedSprint2.ogg"
 Depraved/Sprint3	"Sounds/Monsters/Revenants/Depraved/DepravedSprint3.ogg"
@@ -135,6 +135,7 @@ Depraved/Sight "Sounds/Monsters/Revenants/Depraved/DepravedSight.ogg"
 Depraved/Revive "Sounds/Monsters/Revenants/Depraved/DepravedRevive.ogg"
 
 $rolloff Depraved/Scream 500 1200
+$rolloff Depraved/Sprint 500 1500
 
 //Umbral Heart
 
@@ -3380,7 +3381,7 @@ $volume Skulker/Phase 0.7
 
 $limit Skulker/Port 12
 $attenuation Skulker/Port 0.4
-$rolloff Skulker/Port 750 1300
+$rolloff Skulker/Port 300 1200
 
 Skulker/Whisper "Sounds/Monsters/Spectres/Skulker/SkulkerWhisper.ogg"
 

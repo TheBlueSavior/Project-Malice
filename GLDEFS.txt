@@ -64,7 +64,6 @@ Size 24
 
 Object PM_Depraved
 {
-Frame INCAU { Light DeathIncarnate }
 Frame INCXA { Light IncarnateExplode1 }
 Frame INCXB { Light IncarnateExplode2 }
 Frame INCXC { Light IncarnateExplode3 }
