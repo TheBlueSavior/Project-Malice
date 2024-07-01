@@ -7,8 +7,8 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
     Radius 16;
     Height 56;
     Mass 3000;
-	MeleeRange 230;
-    Speed 5;
+	MeleeRange 300;
+    Speed 6;
     Scale 0.5;
     RenderStyle "Add";
     Obituary "%o had %p soul split into a thousand pieces by an Umbral Heart.";
@@ -61,18 +61,20 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
   SeeLoop:
     EYES AAAAAAA 2 Light("Shadowball2")
     {
-		  A_Recoil(-0.1);
+		A_Recoil(-0.12);
 	    A_Chase();
-		  A_SpawnItemEx("PM_RedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_NOCHECKPOSITION,158);
-	    A_SpawnItemEx("PM_SmallRedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(1,1),0,SXF_NOCHECKPOSITION,35);
+		A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,300),xoff: random(-50,50), yoff: random(-50,50), zoff: random(-30,50),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: 0.9,startroll: random(-180,180));
+		A_SpawnParticleEx("ff0000",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(4,8),size:random(200,500),xoff:random(-8,8),yoff:random(-8,0),zoff:random(0,20),startalphaf:frandom(0.4,0.8),startroll:random(-180,180));
 		  A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,150),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: frandom(0,0.9),startroll: random(-180,180));
-      A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+      A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,105),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-30,46),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf:frandom(0.4,1.0)
 	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-	    A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: frandom(80,120.0),xoff: -5,startalphaf: frandom(0.3,0.6));
+	  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,105),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-30,46),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf:frandom(0.4,1.0)
+	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+	    //A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: frandom(80,120.0),xoff: -5,startalphaf: frandom(0.3,0.6));
     }
-	TNT1 A 0 A_ChangeVelocity(frandom(-0.65,0.65),frandom(-0.65,0.65),frandom(-0.35,0.35));
-	TNT1 A 0 A_Jump(10,"RandomDodge");
-	TNT1 A 0 A_Jump(7,"Forward","LeftorRight","Back","RandomDodge");
+	TNT1 A 0 A_ChangeVelocity(frandom(-0.7,0.7),frandom(-0.7,0.7),frandom(-0.5,0.5));
+	TNT1 A 0 A_Jump(6,"RandomDodge");
+	TNT1 A 0 A_Jump(4,"Forward","LeftorRight","Back","RandomDodge");
     Loop;
   RandomDodge:
 	TNT1 A 0;
@@ -80,28 +82,31 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
 	TNT1 A 0 ThrustThingZ(0,random(3,8),random(0,1),1);
 	Goto SeeLoop;
   Forward:
-	TNT1 A 0 A_Recoil(-20);
+	TNT1 A 0 A_Recoil(-10);
 	Goto SeeLoop;
   LeftorRight:
 	TNT1 A 0 ThrustThing(randompick(0,128),6);
 	Goto SeeLoop;
   Back:
-	TNT1 A 0 A_Recoil(8);
+	TNT1 A 0 A_Recoil(10);
 	Goto SeeLoop;
   Melee:
     TNT1 A 0 A_StartSound("NetherConduit/HomingLoop",6,CHANF_LOOPING,volume:1.5,pitch:frandom(1,2));
   MeleeLoop:
     EYES AAA 5 Light("Shadowball3")
 	{
-	  if(Distance3D(target) > 230)
+	  if(Distance3D(target) > 300)
 	  SetStateLabel("MeleeEnd");
-	  A_FaceTarget(5,90);
-	  A_CustomRailgun(2,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_RedLongFlare2",50,30,random(200,325),0,3.2,0,"PM_DepravedArcs",frandom(-2,2));
-	  A_CustomRailgun(2,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_RedLongFlare2",30,20,random(200,325),0,3.2,0,"PM_DepravedArcs",frandom(-2,2));
-    A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
-	,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-	  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,240),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: 1.0
-	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	  A_FaceTarget(15,90);
+	  A_CustomRailgun(6,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_DepravedElectricFx",50,30,random(200,425),0,6.2,0,"PM_DepravedArcs",frandom(-2,2));
+	  A_CustomRailgun(6,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_DepravedElectricFx",30,20,random(200,425),0,6.2,0,"PM_DepravedArcs",frandom(-2,2));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,300),xoff: random(-50,50), yoff: random(-50,50), zoff: random(-30,50),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: 0.9,startroll: random(-180,180));
+	  A_SpawnParticleEx("ff0000",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(8,12),size:random(400,600),xoff:random(-8,8),yoff:random(-8,0),zoff:random(0,20),startalphaf:frandom(0.6,0.95),startroll:random(-180,180));
+	  A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,150),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: frandom(0,0.9),startroll: random(-180,180));
+      A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,105),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-30,46),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf:frandom(0.4,1.0)
+	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+	  A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,105),xoff: frandom(-40,40),yoff: frandom(-40,40),zoff: frandom(-30,46),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf:frandom(0.4,1.0)
+	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 	}
 	Loop;
   MeleeEnd:
@@ -109,28 +114,28 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
    Goto SeeLoop;
   Missile:
    TNT1 A 0 A_Jump(75,"Missile2");
-   TNT1 A 0 A_StartSound("PM/ShockWarning",6,CHANF_DEFAULT);
-   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
+   TNT1 A 0 A_StartSound("PM/ShockWarning",6,CHANF_DEFAULT,frandom(0,0.6));
+   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_DepravedElectricFx",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
    EYES AA 2 Light("Shadowball2")
     {
 	    A_Chase();
 		  A_SpawnItemEx("PM_RedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_NOCHECKPOSITION,158);
 	    A_SpawnItemEx("PM_SmallRedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(1,1),0,SXF_NOCHECKPOSITION,35);
-      A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+      A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
 	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
     } 
    Goto SeeLoop;
   Missile2:
-   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
+   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_DepravedElectricFx",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
    EYES AA 2 Light("Shadowball2")
     {
 	    A_Chase();
 		  A_SpawnItemEx("PM_RedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(-1,1),0,SXF_NOCHECKPOSITION,158);
 	    A_SpawnItemEx("PM_SmallRedLightningVFX",frandom(-5,5),frandom(-5,5),frandom(-5,5),frandom(-1,1),frandom(-1,1),frandom(1,1),0,SXF_NOCHECKPOSITION,35);
-      A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
+      A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,65),size: frandom(24,75),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
 	  ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
     }
-   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_RedLongFlare1",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
+   TNT1 A 0 Light("Shadowball2") A_CustomRailgun(5,0,"","",RGF_CENTERZ|RGF_SILENT|RGF_FULLBRIGHT,0,2000,"PM_DepravedElectricFx",random(-180,180),random(-180,180),753,0,1,0,"PM_DepravedArcs",0);
    Goto SeeLoop;
   Death:
     TNT1 A 0 A_RemoveChildren(1,RMVF_EVERYTHING);
