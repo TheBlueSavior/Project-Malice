@@ -240,6 +240,7 @@ Class PM_CyberFodderBall : PMProjectileBase
     Radius 6;
     Height 6;
     Speed 17;
+	FastSpeed 34;
     DamageFunction 12;
     SeeSound "CyberZ/Fire";
     DeathSound "GenericPlasmaExp";

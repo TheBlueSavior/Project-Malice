@@ -255,6 +255,7 @@ Class PM_SlugBullet : PM_BulletTracer
  Default
  {
   Speed 35;
+  FastSpeed 72;
   DamageFunction (random(35,45));
   Scale 0.85;
   RenderStyle "Add";

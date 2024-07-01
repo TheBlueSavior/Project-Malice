@@ -885,7 +885,7 @@ Class PM_BlasphemerBall : DoomImpBall
 	Seesound "PM/BulletHellSpawn";
 	DeathSound "GenericPlasmaExp";
 	Speed 25;
-	FastSpeed 30;
+	FastSpeed 50;
 	Obituary "The Blaphemer stands tall before %o.";
     WeaveIndexZ 16;
     WeaveIndexXY 64;
@@ -1067,7 +1067,7 @@ Class PM_BlasphemerWeaver : PM_BlasphemerBall
 	+SEEKERMISSILE
 	Scale 0.6;
 	Speed 10;
-	FastSpeed 15;
+	FastSpeed 20;
 	SeeSound "";
 	DeathSound "Abhor/SoulExp";
   }
@@ -1220,6 +1220,7 @@ Class PM_BlashemerBHBall : Actor
    Height 3;
    Radius 3;
    Speed 12;
+   FastSpeed 24;
    Damagefunction 10;
    Scale 1;
    Alpha 0.9;

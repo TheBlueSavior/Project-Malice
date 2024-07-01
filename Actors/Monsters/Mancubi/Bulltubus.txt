@@ -481,6 +481,7 @@ Class PM_BulltubusSlowTracer : Fatshot
   {
    Projectile;
    Speed 22;
+   FastSpeed 44;
    Alpha 0.85;
    Radius 4;
    Height 6;
@@ -579,7 +580,7 @@ Class PM_BulltubusSlowTracer : Fatshot
 }
 
 Class PM_BulltubusFastTracer : PM_BulltubusSlowTracer
-{ Default { Speed 40; } }
+{ Default { Speed 40; FastSpeed 80; } }
 
 Class PM_BulltubusShotgunTracer : PM_BulltubusSlowTracer
 {
@@ -587,6 +588,7 @@ Class PM_BulltubusShotgunTracer : PM_BulltubusSlowTracer
   Default
   {
    Speed 40;
+   FastSpeed 80;
   }
    States
    {

@@ -51,6 +51,7 @@ Class PM_BulletTracer : PMProjectileBase
   Height 2;
   Radius 2;
   Speed 36;
+  FastSpeed 72;
   DamageFunction 9;
   Scale 0.85;
   +BLOODSPLATTER 
@@ -175,6 +176,7 @@ Default
  Height 2;
  Radius 2;
  Speed 36;
+ FastSpeed 72;
  DamageFunction 7;
  Scale 0.85;
 }
