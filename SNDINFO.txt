@@ -125,6 +125,10 @@ $volume DepravedBeamStart 0.6
 $volume DepravedBeam 0.6
 $volume DepravedBeamEnd 0.5
 
+$rolloff DepravedBeamStart 300 1800
+$rolloff DepravedBeam 300 1800
+$rolloff DepravedBeamEnd 300 1800
+
 $random Depraved/Active { DepravedActive1 DepravedActive2 DepravedActive3 DepravedActive4 }
 DepravedActive1 "Sounds/Monsters/Revenants/Depraved/DepravedActive1.ogg"
 DepravedActive2 "Sounds/Monsters/Revenants/Depraved/DepravedActive2.ogg"

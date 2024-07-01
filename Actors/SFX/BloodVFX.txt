@@ -2679,7 +2679,7 @@ Class PM_DeathBloodMist : PM_NormalBloodMist
 			vely: frandom(-0.2,0.2),
 			velz: frandom(-0.2,0.2),
 			startalphaf: frandom(0.8,1.0),
-			fadestepf: 1, //-1
+			fadestepf: -1,
 			sizestep: frandom(0.5,3),
 			startroll: random(-180,180),
 			rollvel: frandom(-1,1)
