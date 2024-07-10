@@ -1,5 +1,6 @@
 Class PM_BloodStalker : PMUmbralMonsterBase
 {
+    bool rushing;
     Default
 	{
 	//$Category "PM_Monsters/Pinkies"
@@ -46,6 +47,7 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 	   A_SpawnParticleEx("bc0707",tex[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,lifetime: random(3,85),size: frandom(25,75),xoff: frandom(-3,3),yoff: frandom(-3,3),zoff: frandom(0,6),velx: frandom(-1.4,1.4),vely: frandom(-1.4,1.4),velz: frandom(-1.4,1.4),startalphaf: frandom(0.1,0.65)
 	   ,fadestepf: -1,sizestep: frandom(3,6.4),startroll: random(-180,180));
 	   A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(2,25),size: random(1,100),xoff: random(-20,20),yoff: random(-20,20),zoff: random(10,45),velx: random(-3,3),vely: random(-3,3),velz: random(-3,3),startalphaf: frandom(0,1),startroll: random(-180,180));
+	   A_SpawnParticleEx("",tex[2],style: STYLE_Add,lifetime: 30,size: random(90,135),zoff: 54,startalphaf: frandom(0.15,0.35));
 	}
 	
 	void PM_BStalkerWarp()
@@ -96,14 +98,15 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			SAR2 DD 2 Fast A_Chase;
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_Jump(5,"RoarCheck");
-			TNT1 A 0 A_Jump(20,"Walk");
+			//TNT1 A 0 A_Jump(20,"Walk");
 			TNT1 A 0 
 			{
-			 if(random(1,8) == 1 && target && CheckSight(target))
+			 if(random(1,6) == 1 && target && CheckSight(target))
 			  SetStateLabel("TPCheck");
 			}
 			Loop;
-		Walk:
+		/*Walk:
+		    TNT1 A 0 { if(rushing) rushing = false; }
 			TNT1 A 0 A_SetSpeed(10);
 			SAR2 AAA 2 A_Chase;
 			TNT1 A 0 A_StartSound("demonstep", 3);
@@ -112,81 +115,37 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			TNT1 A 0 A_StartSound("demonstep", 3);
 			SAR2 DDD 2 A_Chase;
 			TNT1 A 0 A_Jump(10,"See");
-			Loop;
+			Loop;*/
 		TPCheck:
 		    TNT1 A 0 A_Jump(66,"TPRush");
-			Goto TP;
+			Goto See;
 		TPRush:
 		    TNT1 A 0 { A_StartSound("BStalker/Sight");
-			pm_attackloop = random(15,25); }
+			pm_attackloop = random(5,10);
+			rushing = true;
+			}
 		TPRushGo:
 			SAR2 AA 1 Fast { PM_BStalkerWarpParticles(); A_Chase(); }
-			TNT1 A 0 A_Recoil(-0.8);
 			TNT1 A 0 A_StartSound("demonstep", 3);
 			SAR2 BB 1 Fast { PM_BStalkerWarpParticles(); A_Chase(); }
-			TNT1 A 0 A_Recoil(-0.8);
 			SAR2 CC 1 Fast { PM_BStalkerWarpParticles(); A_Chase(); }
-			TNT1 A 0 A_Recoil(-0.8);
 			TNT1 A 0 A_StartSound("demonstep", 3);
 			SAR2 DD 1 Fast { PM_BStalkerWarpParticles(); A_Chase(); }
-			TNT1 A 0 A_Recoil(-0.8); 
-			TNT1 A 0 { if(pm_attackloop < 0) SetStateLabel("Walk"); pm_attackloop--; }
+			TNT1 A 0 A_Jump(45,"TPRush2");
+			TNT1 A 0 { if(pm_attackloop < 0) SetStateLabel("See"); pm_attackloop--; }
 			Loop;
-		  TP:
-		    TNT1 A 0;
-		    TNT1 A 0 
-		    {
-		      bNOPAIN = true;
-		      A_SetSpeed(3);
-		    }
-		    SAR2 H 0 A_StartSound("PM/BigElectricCharge",2);
-		    SAR2 AAAAAA 1 Bright Light("Shadowball3")
-		    {
-		      PM_BStalkerWarpParticles();
-		      A_Chase(null,null);
-		      A_SpawnParticleEx("",tex[2],style: STYLE_Add,lifetime: 30,size: random(20,35),zoff: 54,startalphaf: frandom(0.15,0.35));
-            }
-		    TNT1 A 0 A_StartSound("demonstep",10);
-            SAR2 BBBBBBB 1 Bright Light("Shadowball3")
-		    {
-		      PM_BStalkerWarpParticles();
-		      A_Chase(null,null);
-		      A_SpawnParticleEx("",tex[2],style: STYLE_Add,lifetime: 30,size: random(30,65),zoff: 54,startalphaf: frandom(0.15,0.35));
-            }
-		    SAR2 CCCCCCCC 1 
-		    {
-		      PM_BStalkerWarpParticles();
-		      A_Chase(null,null);
-		      A_SpawnParticleEx("",tex[2],style: STYLE_Add,lifetime: 30,size: random(35,95),zoff: 54,startalphaf: frandom(0.15,0.35));
-            }
-		    TNT1 A 0 A_StartSound("demonstep",10);
-		    SAR2 DDDDDDDDD 1 Bright Light("Shadowball3")
-		    {
-		      PM_BStalkerWarpParticles();
-		      A_Chase(null,null);
-		      A_SpawnParticleEx("",tex[2],style: STYLE_Add,lifetime: 30,size: random(90,135),zoff: 54,startalphaf: frandom(0.15,0.35));
-            }
-		    SAR2 DDD 1 Bright Light("Shadowball3") 
-		    {
-		      PM_BStalkerWarpParticles();
-		      A_SetSpeed(20);
-		    }
-		    SAR2 B 20
+		  TPRush2:
+		    SAR2 B random(10,15)
 		    { 
-		     for(int i=random(35,65);i>0;i--)
+		     for(int i=random(15,25);i>0;i--)
 		      PM_BStalkerWarp();
 		      A_StartSound("BStalker/Warp",20);
 		      A_StartSound("NetherConduit/HomingExp",21,pitch:frandom(0.75,1));
-		      A_StartSound("Depraved/SuperShock1",22);
-		      A_StartSound("Broken/Railgun",23,volume:0.25,pitch:0.55);
+		      A_StartSound("Depraved/SuperShock1",22,volume:0.35,pitch:1.35);
+		      A_StartSound("Broken/Railgun",23,volume:0.25,pitch:1.00+frandom(0.05,0.25));
+			  A_FaceTarget();
 		    }
-		    TNT1 A 0 
-		    {
-		     bNOPAIN = false;
-		     A_SetSpeed(13);
-	        }
-            SAR2 AABBCCDD 2 A_Chase(null,null);
-		     Goto See;
+		     Goto TPRushGo;
 		RoarCheck:
 			TNT1 A 0 A_JumpIfInTargetLOS("Roar",360,JLOSF_DEADNOJUMP,2000);
 			Goto See;
@@ -208,28 +167,31 @@ Class PM_BloodStalker : PMUmbralMonsterBase
 			A_Recoil(-15);
 			ThrustThingZ(0,18,0,1);
 			}
-			SAR2 G 8 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+			SAR2 GG 4 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+			TNT1 A 0 { if(rushing) SetStateLabel("TPRushGo"); }
 			Goto See;
 		FrostBreath:
 			TNT1 A 0 A_StartSound("BStalker/Sight");
-			SAR2 EEEEEEEEEEEFFFFFFFFFFFF 1 
+			SAR2 EEEEFFFFFFFF 1 
 			{
-			A_FaceTarget(0.75,3);
+			A_FaceTarget();
 	 	    A_SpawnParticleEx("C4C5FF",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(5,35),size: frandom(3,75),xoff: frandom(-2,2),yoff: frandom(-10,10),zoff: frandom(20,40),velx: frandom(0.1,0.5),vely: frandom(-0.5,0.5),velz: frandom(0.1,0.5),startalphaf: frandom(0.1,0.9)
 			,fadestepf: -1,sizestep: frandom(0.3,1),startroll: random(-180,180),rollvel: frandom(-5,5));
 			}
-			SAR2 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+			SAR2 FFFFFFFFFFFFFFFFFFFFFFF 1
 			{
 			 A_SpawnProjectile("PM_BStalkerFrostBreath",35,0,frandom(-2,2),CMF_OFFSETPITCH|CMF_AIMDIRECTION,frandom(-1,1));
-			 A_FaceTarget(0.65,3);
+			 A_FaceTarget(3,3);
 		     for(int i=random(1,2);i>0;i--)
-		     A_SpawnParticleEx("9fc5e8",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,100),size: frandom(1,12),xoff: frandom(-2,2),yoff: frandom(-10,10),zoff: frandom(20,40),velx: frandom(1,12),vely: frandom(-0.5,0.5),velz: frandom(-0.6,2),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8)
+		     A_SpawnParticleEx("9fc5e8",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,100),size: frandom(1,20),xoff: frandom(-2,2),yoff: frandom(-10,10),zoff: frandom(20,40),velx: frandom(1,12),vely: frandom(-0.5,0.5),velz: frandom(-0.6,2),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8)
 			 ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 			}
 			SAR2 EE 4 A_FaceTarget;
+			TNT1 A 0 { if(rushing) SetStateLabel("TPRushGo"); }
 			Goto See;
 		Pain:
 			SAR2 H 5 A_Pain;
+			TNT1 A 0 { if(rushing) SetStateLabel("TPRushGo"); }
 			Goto See;
 		Death:
 			SAR2 I 6 PM_Scream();
