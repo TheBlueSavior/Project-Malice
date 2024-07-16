@@ -40,6 +40,10 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 	}
 	void throwGrenade()
 	{
+		if(!target) {
+			SetStateLabel("Spawn");
+			return;
+		}
 		int arc;
 		let p = A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1));
 		if(distance2d(target) <= 300) arc = 20;
