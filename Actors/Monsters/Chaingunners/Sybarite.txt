@@ -32,6 +32,10 @@ Class PM_Sybarite : PMLustMonsterBase
 
 	void PM_SybariteGrenade()
 	{
+		if(!target) {
+			SetStateLabel("Spawn");
+			return;
+		}
 		int arc;
 		let p = A_SpawnProjectile("PM_SybGrenade",33,0,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
 		if(distance2d(target) <= 400) arc = 20;

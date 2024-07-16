@@ -37,6 +37,10 @@ Class PM_Noble : PMMonsterBase
    
    void PM_NobleBombThrow()
    {
+		if(!target) {
+			SetStateLabel("Spawn");
+			return;
+		}
 		int arc;
 		let p = A_SpawnProjectile("PM_NobleBomb",40,0,random(-1,1));
 		if(distance2d(target) <= 300) arc = 20;
