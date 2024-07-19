@@ -20,6 +20,7 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
   Bloodtype "PM_PestilenceBloodBase";
   +DONTHARMSPECIES
   +DONTHARMCLASS
+  +MISSILEMORE
   +FLOATBOB
   +NOGRAVITY
   +FLOAT
@@ -42,7 +43,7 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    TNT1 A 0 PM_AlertSound();
   See:
    TNT1 A 0 {
-   bMISSILEEVENMORE = false;
+   A_StopSound(20);
    bFRIGHTENED = false; }
    TNT1 A 0 A_SetSpeed(10);
    DFLY AA 3 A_Chase();
@@ -50,6 +51,7 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    DFLY CC 3 A_Chase();
    Loop;
   Missile:
+   DFLY D 0 A_JumpIfCloser(300,"LongPuke");
    DFLY D 0 A_Jump(56,"Vomit");
    TNT1 A 0 A_Jump(115,"Standoff");
    TNT1 A 0 A_Jump(120,"MaggotPuke");
@@ -70,12 +72,12 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    Goto See;
   Vomit:
    TNT1 A 0 A_StartSound("Afflicted/Puke");
-   DFLY DDDDDDDDD 1 
+   DFLY DDDDDDD 1 
    {
    A_FaceTarget();
    A_SpawnItemEx("PM_HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
    }
-   DFLY EEEEEEFFFFF 1
+   DFLY EEEEFFF 1
    {
    A_FaceTarget();
    A_SpawnItemEx("PM_HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
@@ -84,6 +86,32 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    TNT1 A 0 A_StartSound("GrossElem/Spit",5);
    DFLY F 9 { for(int i=random(5,7);i>0;i--) A_SpawnProjectile("PM_GElemVenomBurst", 23, 0, random(-6,6),CMF_OFFSETPITCH,random(-2,2)); }
    DFLY F 2 A_FaceTarget();
+   Goto See;
+  LongPuke:
+   TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
+   TNT1 A 0 A_StartSound("Afflicted/Puke",15,pitch:0.75);
+   DFLY DDDDDDDDDDD 1 
+   {
+   A_FaceTarget();
+   A_SpawnItemEx("PM_HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
+   }
+   DFLY EEEEEEEEFFFFFFFFFF 1
+   {
+   A_FaceTarget();
+   A_SpawnItemEx("PM_HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
+   }
+   TNT1 AAAA 0 A_SpawnItemEx("PM_HostPoisonSplash",random(5,10),random(-2,2),random(-3,0),random(5,10),random(-3,3),frandom(-4,4));
+   TNT1 A 0 
+        {
+		 A_StartSound("GrossElem/Spit",5,pitch:0.65);
+		 A_StartSound("FleshMason/RuneExplode",12,pitch:0.50);
+		}
+   DFLY FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1 
+        { 
+		 A_FaceTarget();
+		 A_SpawnProjectile("PM_GElemPuke",23,0,frandom(-6.5,6.5),CMF_OFFSETPITCH,frandom(-20,-1)); 
+		}
+   DFLY F 2 A_StopSound(20);
    Goto See;
  Standoff:
 	TNT1 A 0;
@@ -99,7 +127,6 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
   StandoffStart:
     TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
     TNT1 A 0 {
-    bMISSILEEVENMORE = true;
     bFRIGHTENED = false; }
 	TNT1 A 0 A_Jump(7,"See");
 	TNT1 A 0 A_SetSpeed(0);
@@ -129,6 +156,7 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
 	}
 	Goto StandoffStart;
   StandoffMissile:
+   TNT1 A 0 A_JumpIfCloser(300,"LongPuke");
    TNT1 A 0 A_Jump(67,"StandoffFlySpawn");
    TNT1 A 0 A_Jump(76,"StandoffMaggotSpawn");
 	DFLY ABCE 4
@@ -169,7 +197,7 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    Goto StandoffStart;
   Pain:
    TNT1 A 0 {
-   bMISSILEEVENMORE = false;
+   A_StopSound(20);
    bFRIGHTENED = false; }
    TNT1 A 0 A_SetSpeed(10);
    DFLY G 4 Fast;
@@ -181,8 +209,12 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
    DFLY H 4 PM_Scream();
    DFLY HI 4 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
    DFLY IJJ 3 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
-   TNT1 A 0 A_StartSound("Blob/Explode",6);
-   TNT1 A 0 A_StartSound("GBloodSplashBig",7);
+   TNT1 A 0 
+        {
+		 A_StopSound(556);
+         A_StartSound("Blob/Explode",6);
+         A_StartSound("GBloodSplashBig",7);
+        }
    TNT1 AAAAAA 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION);
    TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_PestilenceBloodMist",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION);
    TNT1 AA 0 A_SpawnItemEx("PM_PestilenceBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION);
@@ -205,17 +237,21 @@ Class PM_GElemVenomBurst : CacodemonBall
     SeeSound "GrossElem/VenomWhiz";
     DeathSound "TaintedBloodExp";
 	Species "Elemental";
-    Scale 0.45;
+    Scale 0.50;
     Gravity 0.4;
     +ROLLSPRITE
     }
     States
     {
    Spawn:
-     VBAL AB 2 Bright 
+     VBAL AB 1 Bright 
      {
        A_SetRoll(random(0,360));
-	   A_SpawnParticleEx("",TexMan.CheckForTexture("VBALA0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 40,size: 25.0,xoff: -10,velx: 5,startalphaf: 0.8,fadestepf: -1,sizestep: -1,startroll: random(-180,180));
+	   A_SpawnParticle("A6 FE 6C",SPF_RELATIVE,37,12,0,frandom(-15,15),frandom(-15,15),frandom(-15,15),0,0,0,0,0,0,1,-1,0);
+	   A_SpawnParticle("59bd2e",SPF_RELATIVE,54,8,0,frandom(-25,25),frandom(-25,25),frandom(-25,25),0,0,0,0,0,0,1,-1,0);
+	A_SpawnParticleEx
+	( "259629", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+	lifetime: 25, size: 90.0, xoff: -4, startalphaf: 0.55, fadestepf: -1, sizestep: -5, startroll: random(-180,180));
      }
      Loop;
    Death:
@@ -223,6 +259,19 @@ Class PM_GElemVenomBurst : CacodemonBall
     VBAL CDE 4;
     Stop;
    }
+}
+
+Class PM_GElemPuke : PM_HostSprayPuke
+{
+  Default {
+  DamageFunction 6;
+  Height 6;
+  Radius 10;
+  Scale 0.35;
+  Gravity 0.30;
+  BounceCount 1;
+  BounceType "Doom";
+  }
 }
 
 Class PM_VenomMaggot : PMPestilenceMonsterBase
@@ -235,7 +284,7 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
     Height 20;
     Mass 75;
     PainChance 150;
-    Speed 7;
+    Speed 12;
 	Tag "Venom Maggot";
     BloodType "PM_PestilenceBloodBase";
     BloodColor "Green";
@@ -249,7 +298,7 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
     +FLOORCLIP
     +DONTHARMCLASS
     +DONTHARMSPECIES
-    -THRUSPECIES
+	+NOBLOCKMONST
     -COUNTKILL
 	}
     States
@@ -264,10 +313,23 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
      TNT1 A 0 PM_AlertSound();
      Goto See;
    See:
-     MA1G AABBCCDD 2 Fast A_Chase();
-    Loop;
+     TNT1 A 0 { bFRIGHTENED = false; }
+     MA1G AABBCCDD 2 Fast A_Chase(null,"Missile");
+	 TNT1 A 0 A_Jump(45,"Retreat");
+	 TNT1 A 0 A_Jump(10,"Slither");
+     Loop;
+   Slither:
+     MA1G AABBCCDDAABBCCDDAABBCCDD 1 Fast A_Chase(null,"Missile");
+	 Goto See;
+   Retreat:
+     TNT1 A 0 { bFRIGHTENED = true; }
+	 MA1G AABBCCDDAABBCCDDAABBCCDD 1 Fast A_Chase(null,"Missile");
+	 TNT1 A 0 A_CheckSight("See");
+	 TNT1 A 0 A_Jump(20,"See");
+	 Loop;
    Missile:
     TNT1 A 0;
+	TNT1 A 0 A_JumpIfCloser(200,"CloseMissile");
     TNT1 A 0 A_JumpIfCloser(600,"RealMissile");
     Goto See;
    RealMissile:
@@ -279,13 +341,19 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
     }
    MA1G G 8 A_SpawnProjectile("PM_VenomMaggotSpit",15,0,random(-5,5),CMF_OFFSETPITCH,random(-10,-20));
    Goto See;
-   Melee:
-     MA1G EF 6 Fast A_FaceTarget();
-     MA1G G 6 Fast A_CustomMeleeAttack(random(2, 6) * 4,"VenMaggot/Melee");
+   CloseMissile:
+     MA1G EEEFF 2 Fast 
+	      {
+		  A_FaceTarget();
+		  A_Recoil(-1);
+		  }
+     MA1G G 3 Fast A_CustomMeleeAttack(random(2, 6) * 4,"VenMaggot/Melee");
     Goto See;
    Pain:
+     TNT1 A 0 { bFRIGHTENED = false; }
      MA1G H 2 Fast;
      MA1G H 2 Fast A_Pain;
+	 TNT1 A 0 A_Jump(35,"Retreat");
     Goto See;
    Death:
      MA1G I 4 A_Scream;
