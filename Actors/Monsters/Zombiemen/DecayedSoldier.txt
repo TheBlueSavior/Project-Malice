@@ -245,13 +245,16 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 			  PM_Gib();
 			  A_SpawnItemEx("PM_ArachExpMist",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION);
 			  for(int i=random(6,10);i>0;i--)
-			  A_SpawnItemEx("PM_PestilenceMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-15,15),random(-15,15),random(0,20),0,SXF_NOCHECKPOSITION);
+			  {
+			   A_SpawnItemEx("PM_PestilenceMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-15,15),random(-15,15),random(0,20),0,SXF_NOCHECKPOSITION);
+			   A_SpawnItemEx("PM_HostSwarmFly",0,0,5);
+			  }
 			  A_Explode(40,158);
 			 }
 		POSK MMNNOOPPQQRRSSTTUU 3 
 		     {
 			  A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6),0,SXF_NOCHECKPOSITION,54);
-			  A_SpawnItemEx("PM_Fly",random(-5,5),random(-5,5),random(0,5),frandom(-1.5,1.5),frandom(-1.5,1.5),frandom(0,3.5),random(-180,180),flags:SXF_NOCHECKPOSITION,failchance:54);
+			  A_SpawnItemEx("PM_RotflyYoungling",random(-5,5),random(-5,5),random(0,5),frandom(-1.5,1.5),frandom(-1.5,1.5),frandom(0,3.5),random(-180,180),flags:SXF_NOCHECKPOSITION,failchance:94);
 			 }
 	    POSK U -1;
         Stop;
