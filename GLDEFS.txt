@@ -3908,62 +3908,6 @@ Color 0.6 0.6 0.6
 Size 30
 }
 
-//Brightmaps
-
-BrightMap Sprite FLSPG1
-{
-    Map BMFLSPG1
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPG2G8
-{
-    Map BMFLSPG2
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPG4G6
-{
-    Map BMFLSPG4
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPG5
-{
-    Map BMFLSPG5
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPH1
-{
-    Map BMFLSPH1
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPH2H8
-{
-    Map BMFLSPH2
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPH3H7
-{
-    Map BMFLSPH3
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPH4H6
-{
-    Map BMFLSPH4
-	DisableFullBright
-}
-
-BrightMap Sprite FLSPH5
-{
-    Map BMFLSPH5
-	DisableFullBright
-}
-
 Pointlight DefilerShot
 {
 Color 1.0 0.0 0.0

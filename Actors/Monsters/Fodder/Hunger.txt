@@ -371,36 +371,6 @@ Class PM_Afflicted : PMFodderMonsterBase
   }
 }
 
-Class HungerBloodPuke : Actor
-{
-	Default
-	{
-  DamageFunction 0;
-  Height 1;
-  Radius 1;
-  Speed 6;
-  Mass 1;
-  +FORCEXYBILLBOARD
-  +CLIENTSIDEONLY
-  Scale 0.16;
-  Gravity 0.8;
-  PROJECTILE;
-  -NOGRAVITY
-  Decal "BloodSplat1";
-  }
-  States
-  {
-  Spawn:
-  TNT1 A 0 A_SetRoll(random(0,360));
-  Go:
-	FBLD ABCD 3;
-	Loop;
-  Death:
-	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3));
-  Stop;
-  }
-}
-
 Class HungerBloodSpray : Actor
 {
 	Default
@@ -418,7 +388,6 @@ Class HungerBloodSpray : Actor
   Gravity 0.8;
   PROJECTILE;
   -NOGRAVITY
-  Species "PukeMonster";
   Decal "BloodSplat1";
   }
   States
@@ -429,10 +398,11 @@ Class HungerBloodSpray : Actor
 	FBLD AABBCCDD 1
 	{
 	A_SetScale(Scale.X+0.05);
-	A_FadeOut(0.05);
+	A_FadeOut(0.02);
 	}
 	Stop;
   Death:
+    TNT1 A 0 A_StartSound("GenericBloodImpact",20,volume:0.40,pitch:frandom(0.75,1.35));
 	TNT1 A 0 A_SpawnItemEx("BloodPukeSplatter",random(-3,3),random(-3,3));
     Stop;
   }
