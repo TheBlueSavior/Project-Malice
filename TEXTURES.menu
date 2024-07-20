@@ -214,35 +214,35 @@ Texture "PESTLIST", 450, 300
 Texture "FAMILIST", 450, 300
 {
 	Offset 225, 150
-	Patch "FIMPC1", 173, 158
-	Patch "FIMPE1", 96, 160
-	Patch "FIMPE8", 283, 146
-	Patch "FIMPG1", 225, 133
+	Patch "F_IMC1", 173, 158
+	Patch "F_IME1", 96, 160
+	Patch "F_IME8", 283, 146
+	Patch "F_IMG1", 225, 133
 	{
 		Alpha 0.20
 		Style Translucent
 	}
-	Patch "FIMPG1", 227, 119
+	Patch "F_IMG1", 227, 119
 	{
 		Alpha 0.50
 		Style Translucent
 	}
-	Patch "FIMPG1", 230, 107
-	Patch "FLSPE1", 165, 99
-	Patch "FLSPD1", 295, 65
-	Patch "FLSPF2F8", 145, 46
+	Patch "F_IMG1", 230, 107
+	Patch "F_LSE1", 165, 99
+	Patch "F_LSD1", 295, 65
+	Patch "F_LSF2F8", 145, 46
 	{
 		Alpha 0.50
 		Style Translucent
 	}
-	Patch "FLSPF2F8", 129, 42
+	Patch "F_LSF2F8", 129, 42
 	{
 		Alpha 0.50
 		Style Translucent
 	}
-	Patch "FLSPF2F8", 115, 41
-	Patch "FLSPA1", 73, 98
-	Patch "FLSPB2B8", 330, 110
+	Patch "F_LSF2F8", 115, 41
+	Patch "F_LSA1", 73, 98
+	Patch "F_LSB2B8", 330, 110
 	{
 		FlipX
 	}
