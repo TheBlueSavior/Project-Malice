@@ -38,6 +38,7 @@ Class PM_BurntSoul : PMUnaffMonsterBase
     +DONTHARMCLASS
     +DONTHARMSPECIES
     +ROLLSPRITE
+	+FLOAT
     TeleFogSourceType "PM_SmallDemonicTeleportFog";
     TeleFogDestType "PM_SmallDemonicTeleportFog";
   }
