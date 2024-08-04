@@ -11,7 +11,7 @@ Class PM_POTS : PMVoidMonsterBase
     Height 56;
     Speed 10;
     Mass 50;
-    PainChance 45;
+    PainChance 256;
     Damage 1;
 	MeleeRange 70;
     MONSTER;
@@ -27,6 +27,8 @@ Class PM_POTS : PMVoidMonsterBase
 	+ROLLSPRITE
     +ROLLCENTER
 	+SLIDESONWALLS
+	-NOCLIP
+	-solid
 	Species "Fodder";
 	Tag "PAWNS OF THE SHADOW";
     Obituary "%o gazed into the shadow, and saw themself.";
@@ -73,7 +75,7 @@ Class PM_POTS : PMVoidMonsterBase
 	Spotted:
 		TNT1 A 0;
 		TNT1 A 0 { bFRIGHTENED=True; }
-		TNT1 A 0 A_Jump(200,"Spotted2");
+		TNT1 A 0 A_Jump(220,"Spotted2");
 	NoclipCheck:
 		TNT1 A 0 { bNOCLIP=True; }
 	Spotted2:
@@ -116,6 +118,7 @@ Class PM_POTS : PMVoidMonsterBase
         }
 		"####" A 0 A_SetSpeed(random(4,12));
 		Goto See2;
+	See:
     See2:
 		"####" A 0 A_Jump(256,"See2Loop","See3","See4","See5");
 	See2Loop:
@@ -344,6 +347,8 @@ Class PM_POTS : PMVoidMonsterBase
 		"####" EEEE 2;
 		Goto CeilingDropping;	
     Pain:
+		"####" A 0;
+		"####" A 0 A_Jump(158,"Pain2");
         "####" C 1
 		{
 		bTHRUACTORS=false;
@@ -362,6 +367,16 @@ Class PM_POTS : PMVoidMonsterBase
 		A_SpawnItemEx("PM_FOCPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL|SXF_TRANSFERSPRITEFRAME);
 		}
         Goto See2;
+	Pain2:
+		"####" C random(10,15)
+		{
+		bTHRUACTORS=false;
+		bNOGRAVITY = false;
+		A_FaceTarget();
+		A_SetRoll(0,SPF_INTERPOLATE);
+		A_Pain();
+		}
+		Goto See2;
    Melee:
 	"####" A 0 A_JumpIfCloser(44,"MeleeClose");
 	"####" A 0 A_Jump(140,"Bite");
@@ -731,7 +746,7 @@ class PM_PotsHorde: Actor
 	{
 	Spawn:
 	    TNT1 A 1 Nodelay;
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_PotsSeekSpawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),SXF_NOCHECKPOSITION,40);
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_PotsSeekSpawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),random(-180,180),SXF_NOCHECKPOSITION,40);
 		Stop;
 	}
 }
@@ -746,7 +761,7 @@ class PM_PotsGroup: Actor
 	{
 	Spawn:
 	    TNT1 A 1 Nodelay;
-		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("PM_PotsSeekSpawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION,40);
+		TNT1 AAAAAAAAAAAA 0 A_SpawnItemEx("PM_PotsSeekSpawn",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION,80);
 		Stop;
 	}
 }
