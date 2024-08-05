@@ -418,6 +418,7 @@ Class PM_GagRotfly : PM_Rotfly
     }
     TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
     TNT1 A 0 A_SpawnProjectile("PM_GagRotflyKamikaze",0,0,0);
+	TNT1 A 0 A_NoBlocking;
 	Stop;
    }
 }
