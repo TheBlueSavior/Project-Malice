@@ -2438,6 +2438,7 @@ Class PM_DeathBloodBase : PM_NormalBloodBase
 	{
 	Spawn:
 		TNT1 A 0;
+		TNT1 A 0 A_StartSound("PM/BloodStoneHit",CHAN_6);
 		TNT1 A 0 A_StartSound("PM/BloodHit",CHAN_7);
 		TNT1 A 0 A_SpawnItemEx("PM_DeathBlood",0,0,0,0,0,random(0,3),0,SXF_NOCHECKPOSITION);
 		Stop;
