@@ -4,7 +4,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 	Default
 	{
 	//$Category "PM_Monsters/Zombiemen"
-    Health 34;
+    Health 50;
     Radius 20;
     Height 56;
     Mass 100;
@@ -12,7 +12,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
     PainChance 200;
     Damage 1;
     MONSTER;
-	+MISSILEMORE
+	+MISSILEevenMORE
     +FloorClip
 	+SLIDESONWALLS
 	+HARMFRIENDS
@@ -43,10 +43,10 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
         Loop;
     Look:
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-		POSK AABBCC 3 PM_LookingForPlayer();
+		POSK AABBCC 5 PM_LookingForPlayer();
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-		POSK DD 3 PM_LookingForPlayer();
+		POSK DD 5 PM_LookingForPlayer();
         Loop;
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","Roar","SpotMissile");
@@ -59,37 +59,32 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
         POSK EE 6 A_FaceTarget();
         Goto Missile;
     See:
-		TNT1 A 0 A_SetSpeed(9);
+		TNT1 A 0 A_SetSpeed(8);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-		POSK AA 3 A_Chase();
-		POSK BB 3 A_Chase();
+		POSK AA random(2,8) A_Chase();
+		TNT1 A 0 A_Recoil(-2);
+		POSK BB random(1,5) A_Chase();
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-		POSK CC 3 A_Chase();
-		POSK DD 3 A_Chase();
-		TNT1 A 0 A_Jump(15,"Backup");
-		TNT1 A 0 A_Jump(30,"MaggotDrop");
-        TNT1 A 0 A_Jump(30,"Sprint");
+		POSK CC random(2,8) A_Chase();
+		TNT1 A 0 A_Recoil(-2);
+		POSK DD random(1,5) A_Chase();
+		TNT1 A 0 A_Jump(60,"MaggotDrop");
+        TNT1 A 0 A_Jump(80,"Sprint");
         Loop;
 	Sprint:
-		TNT1 A 0 A_SetSpeed(7);
-		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-        POSK AA 2 A_Chase();
-		TNT1 AA 0 A_Recoil(-0.6);
-		POSK BB 2 A_Chase();
-		TNT1 AA 0 A_Recoil(-0.6);
-		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
-		POSK CC 2 A_Chase();
-		TNT1 AA 0 A_Recoil(-0.6);
-		POSK DD 2 A_Chase();
-		TNT1 AA 0 A_Recoil(-0.6);
-		TNT1 A 0 A_Jump(45,"See");
+		POSK AAABBBCCC 1
+		{
+		A_Chase();
+		}
+		TNT1 A 0 A_Recoil(-4);
+		POSK GGGGGGGG random(0,2);
 		Loop;
     Missile:
         TNT1 A 0;
 		TNT1 A 0 A_Jump(13,"Puke");
 		TNT1 A 0 A_Jump(30,"Missile2");
-		TNT1 A 0 A_Jump(125,"RollRight","RollLeft");
-		POSK E 6
+		//TNT1 A 0 A_Jump(125,"RollRight","RollLeft");
+		POSK E 8
 		{
 		A_FaceTarget(360,180,0,0);
 		A_SetAngle(angle+random(-10,10));
@@ -113,7 +108,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 		POSK E 2 A_FaceTarget(40,40,0,0);
 		Goto Missile1;
     MissileEnd:
-		POSK E 8 A_FaceTarget();
+		POSK E 13 A_FaceTarget();
 		TNT1 A 0 A_Jump(50,"See");
         Goto See;
 	Missile2:
@@ -142,6 +137,7 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 		Goto Missile2+2;
 	MaggotDrop:
 		TNT1 A 0 A_SpawnProjectile("WMaggotSpawn", 45, random(-4,4), 0, 0, 0);
+		TNT1 A 0 A_SpawnProjectile("WMaggotSpawn", 45, random(-4,4), 0, 0, 0);
 		Goto See;
 	RollRight:
 		TNT1 A 0 A_StartSound("Decayed/Roll");
@@ -169,9 +165,18 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 	Goto See;
 	Puke:
 		TNT1 A 0 A_StartSound("GenericBloodPuke");
+		POSK GGGGG 0 A_SpawnItemEx("PM_DarkRedBlood1",0,0,46,random(2,4),random(-2,2),random(0,3));
+		TNT1 A 0
+		{
+		A_SpawnItemEx("PM_RotflyMaggot",0,0,48,25,frandom(-5,5),frandom(-5,5));
+		A_SpawnItemEx("PM_RotflyMaggot",0,0,48,25,frandom(-5,5),frandom(-5,5));
+		A_SpawnItemEx("PM_RotflyMaggot",0,0,48,25,frandom(-5,5),frandom(-5,5));
+		A_SpawnItemEx("PM_RotflyMaggot",0,0,48,25,frandom(-5,5),frandom(-5,5));
+		}
 		POSK GGGGGGGGGGGGGGGGGG 1
 		{
 		A_FaceTarget();
+		A_SpawnProjectile("HungerMaggotMissile",46,0,random(6,-6),CMF_AIMDIRECTION,random(4,-4));
 		A_SpawnProjectile("MaggotPuke",46,-6,random(6,-6),CMF_OFFSETPITCH,random(-6,6));
 		}
 		POSK G 3;
@@ -204,12 +209,12 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 		Goto See;
     Pain:
         POSK G 5 A_Pain;
-		TNT1 A 0 A_Jump(105,"RollRight","RollLeft");
+		//TNT1 A 0 A_Jump(105,"RollRight","RollLeft");
         Goto See;
     Death:
         POSK H 5 A_NoBlocking;
         POSK I 5 PM_Scream();
-        POSK J 5 A_Jump(55,"BloatDeath");
+        POSK J 5 A_Jump(150,"BloatDeath");
         POSK K 5;
 		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
 		POSK L 90;
@@ -246,11 +251,18 @@ Class PM_DecayedSoldier : PMPestilenceMonsterBase
 			  A_SpawnItemEx("PM_ArachExpMist",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION);
 			  for(int i=random(6,10);i>0;i--)
 			  {
-			   A_SpawnItemEx("PM_PestilenceMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-15,15),random(-15,15),random(0,20),0,SXF_NOCHECKPOSITION);
+			   A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-5,5),random(-5,5),random(10,20),random(-15,15),random(-15,15),random(0,20),0,SXF_NOCHECKPOSITION,50);
+			   A_SpawnItemEx("PM_PestilenceMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-15,15),random(-15,15),random(0,20),0,SXF_NOCHECKPOSITION,150);
 			   A_SpawnItemEx("PM_HostSwarmFly",0,0,5);
 			  }
 			  A_Explode(40,158);
 			 }
+		TNT1 A 0
+			  {
+			  A_SpawnItemEx("PM_VenomMaggot",random(-5,5),random(-5,5),random(0,5),frandom(-1.5,1.5),frandom(-1.5,1.5),frandom(0,3.5),random(-180,180),flags:SXF_NOCHECKPOSITION,failchance:220);
+			  A_SpawnItemEx("PM_Rotfly",random(-5,5),random(-5,5),random(0,5),frandom(-1.5,1.5),frandom(-1.5,1.5),frandom(0,3.5),random(-180,180),flags:SXF_NOCHECKPOSITION,failchance:220);
+			  A_SpawnItemEx("PM_Trite",random(-5,5),random(-5,5),random(0,5),frandom(-1.5,1.5),frandom(-1.5,1.5),frandom(0,3.5),random(-180,180),flags:SXF_NOCHECKPOSITION,failchance:220);
+			  }
 		POSK MMNNOOPPQQRRSSTTUU 3 
 		     {
 			  A_SpawnItemEx("PM_LargeWhiteMaggot",0,0,0,random(-3,3),random(-3,3),random(0,6),0,SXF_NOCHECKPOSITION,54);

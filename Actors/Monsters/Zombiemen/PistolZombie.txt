@@ -175,8 +175,8 @@ Class PM_PistolZombie : PMUnaffMonsterBase
         A02A EEE 6
 	    {
 	    A_FaceTarget(360,180,0,0);
-	    A_SetAngle(angle+random(-10,10));
-	    A_SetPitch(pitch+random(-15,15));
+	    A_SetAngle(angle+random(-5,5));
+	    A_SetPitch(pitch+random(-5,5));
 	    }
 	StandoffMissile2:
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
@@ -184,7 +184,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 		if(user_numbullets <= 0) { SetStateLabel("NoAmmo"); }
 		A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("PistolZombie/Fire");
-		A_SpawnProjectile("PM_BulletTracer",43,5,random(-3, 3),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
+		A_SpawnProjectile("PM_BulletTracer",43,5,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-2, 2));
         A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		user_numbullets--;
 		pm_attackloop--;
@@ -223,8 +223,8 @@ Class PM_PistolZombie : PMUnaffMonsterBase
         A02A EEE 6
 	    {
 	    A_FaceTarget(360,180,0,0);
-	    A_SetAngle(angle+random(-10,10));
-	    A_SetPitch(pitch+random(-15,15));
+	    A_SetAngle(angle+random(-7,7));
+	    A_SetPitch(pitch+random(-7,7));
 	    }
 	MissileLoop:
         A02A F 2 BRIGHT Light("YellowMediumFlicker2")
@@ -232,7 +232,7 @@ Class PM_PistolZombie : PMUnaffMonsterBase
 		if(user_numbullets <= 0) { SetStateLabel("NoAmmo"); }
 		A_StartSound("PistolZombie/FireDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("PistolZombie/Fire");
-		A_SpawnProjectile("PM_BulletTracer",43,5,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
+		A_SpawnProjectile("PM_BulletTracer",43,5,frandom(-4, 4),CMF_AIMDIRECTION,pitch+frandom(-3, 3));
         A_SpawnItemEx("PM_SmallBulletCasing",-10,0,45,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
 		user_numbullets--;
 		pm_attackloop--;

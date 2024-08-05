@@ -14,9 +14,10 @@ Class PM_CivilianZombie : PMLustMonsterBase
     Health 20;
     Radius 20;
     Height 56;
-    Speed 8;
+    Speed 10;
     PainChance 200;
 	MeleeRange 75;
+	MeleeThreshold 120;
     Mass 100;
     Damage 1;
     MONSTER;
@@ -64,15 +65,15 @@ Class PM_CivilianZombie : PMLustMonsterBase
 	See:
 		TNT1 A 0 { bFRIGHTENED = false; }
 		TNT1 A 0 { bMISSILEEVENMORE = false; }
-		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_SetSpeed(12);
 		TNT1 A 0 A_StartSound("Afflicted/WalkStep",CHAN_6);
-		TNT1 A 0 A_Recoil(-1.5);
-        THPZ AA 3 A_Chase();
-		THPZ BB 3 A_Chase();
+		TNT1 A 0 A_Recoil(-1.6);
+        THPZ AA random(2,3) A_Chase();
+		THPZ BB random(2,3) A_Chase();
 		TNT1 A 0 A_StartSound("Afflicted/WalkStep",CHAN_6);
-		TNT1 A 0 A_Recoil(-1.5);
-		THPZ CC 3 A_Chase();
-		THPZ DD 3 A_Chase();
+		TNT1 A 0 A_Recoil(-1.6);
+		THPZ CC random(2,3) A_Chase();
+		THPZ DD random(2,3) A_Chase();
         Loop;
     SpotMissile:
         TNT1 A 0 PM_AlertSound();

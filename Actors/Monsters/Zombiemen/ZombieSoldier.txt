@@ -159,7 +159,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		   { SetStateLabel("NoAmmo"); }
 		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("ZombieSoldier/Rifle");
-		  A_SpawnProjectile("PM_BulletTracer",33,9,frandom(-7, 7),CMF_AIMDIRECTION,pitch+frandom(-4, 4));
+		  A_SpawnProjectile("PM_BulletTracer",33,9,frandom(-5, 5),CMF_AIMDIRECTION,pitch+frandom(-4, 4));
           A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
           user_numbullets--;
 		  pm_attackloop--;
@@ -186,7 +186,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 		   { SetStateLabel("NoAmmo"); }
 		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
 		  A_StartSound("ZombieSoldier/Rifle");
-		  A_SpawnProjectile("PM_BulletTracer",33,9,frandom(-7, 7),CMF_AIMDIRECTION,pitch+frandom(-4, 4));
+		  A_SpawnProjectile("PM_BulletTracer",33,9,frandom(-5, 5),CMF_AIMDIRECTION,pitch+frandom(-4, 4));
           A_SpawnItemEx("PM_BulletCasing",-10,0,32,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
           user_numbullets--;
 		}
