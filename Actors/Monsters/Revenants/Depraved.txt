@@ -9,7 +9,7 @@ Class PM_Depraved : PMUmbralMonsterBase
 	It fully intends on fulfilling both of those traits by making you suffer and being as evil as possible ingame.
 	Don't get near it. Run. Kill it quickly. Still don't trust it if it dies.";
 	
-    Health 300;
+    Health 350;
     Radius 20;
     Species "Revenant";
 	Height 56;

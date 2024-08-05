@@ -153,14 +153,14 @@ Class PM_Draugr : PMPrideMonsterBase
 	A_SetAngle(angle+random(-15,15));
 	A_SetPitch(random(-20,30));
 	}
-	TNT1 A 0 { pm_attackloop = random(90,150); }
+	TNT1 A 0 { pm_attackloop = random(80,120); }
    FLightningLoop:
     DRGR G 2 Light("Shadowball2") 
 	{
 	if(pm_attackloop < 0)
 	SetStateLabel("FLightningEnd");
 	A_SpawnProjectile("PM_DraugrLightningArcs",56,-15,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-0.1,0.1)+1);
-	A_FaceTarget(0.95,0.95,0,0,FAF_MIDDLE);
+	A_FaceTarget(0.01,0.95,0,0,FAF_MIDDLE);
 	pm_attackloop--;
 	}
     Loop;
