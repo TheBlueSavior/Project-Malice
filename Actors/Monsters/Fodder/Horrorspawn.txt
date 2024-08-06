@@ -306,11 +306,12 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" D 15 Fast;
 	Goto See;
   SeeAngry:
-	"####" A 0 A_SetSpeed(10);
-    "####" AB 2 Fast A_Chase();
+	"####" A 0 A_SetSpeed(14);
+    "####" AB 2 A_Chase();
 	"####" AAA 0 A_Recoil(-0.5);
-	"####" CD 2 Fast A_Chase();
+	"####" CD 2 A_Chase();
 	"####" AAA 0 A_Recoil(-0.5);
+	"####" A 0 A_Jump(25,"See2","See3","See6","See8","See9","Lunge");
     Loop;
   Melee:
 	"####" A 0 PM_HorrorspawnAssignSprite();
