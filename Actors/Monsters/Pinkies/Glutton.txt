@@ -42,22 +42,22 @@ Class PM_Glutton : PMGluttonyMonsterBase
 		Loop;
 	Look:
 			TNT1 A 0 A_SetSpeed(35);
-			BPWA A 8 Fast
+			BPWA A 8
 			{
 			PM_LookingForPlayer();
 		    A_StartSound("demonstep", 3);
 			}
 			TNT1 A 0 A_SetSpeed(5);
-			BPWA BB 6 Fast PM_LookingForPlayer();
+			BPWA BB 6 PM_LookingForPlayer();
             TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
 			TNT1 A 0 A_SetSpeed(35);
-			BPWA C 8 Fast
+			BPWA C 8
 			{
 			PM_LookingForPlayer();
 			A_StartSound("demonstep", 3);
 			}
 			TNT1 A 0 A_SetSpeed(5);
-			BPWA DD 6 Fast PM_LookingForPlayer();
+			BPWA DD 6 PM_LookingForPlayer();
             Loop;
 	Spotted:
 	        TNT1 A 0 A_Jump(256,"Roar","RoarNoAnim");
@@ -66,46 +66,46 @@ Class PM_Glutton : PMGluttonyMonsterBase
 	See:
 		TNT1 A 0 A_SetSpeed(35);
 		TNT1 A 0 A_Jump(26,"Roar");
-		BPWA A 8 Fast
+		BPWA A 8
 		{
 		 A_Chase();
 		 A_StartSound("demonstep", 3);
 		}
 		TNT1 A 0 A_SetSpeed(5);
-		BPWA BB 6 Fast A_Chase();
+		BPWA BB 6 A_Chase();
 		TNT1 A 0 A_SetSpeed(35);
-		BPWA C 8 Fast
+		BPWA C 8
 		{
 		 A_Chase();
 		 A_StartSound("demonstep", 3);
 		}
 		TNT1 A 0 A_SetSpeed(5);
-		BPWA DD 6 Fast A_Chase();
+		BPWA DD 6 A_Chase();
 		TNT1 A 0 A_Jump(10,"Sprint");
 		Loop;
 	Sprint:
 		TNT1 A 0 A_SetSpeed(35);
-		BPWA A 4 Fast
+		BPWA A 4
 		{
 		 A_Recoil(-1.5);
 		 A_Chase("Melee",null);
 		 A_StartSound("hoofstep", 3);
 		}
 		TNT1 A 0 A_SetSpeed(5);
-		BPWA BB 3 Fast
+		BPWA BB 3
 		{
 		 A_Chase("Melee",null);
 		 A_Recoil(-1.5);
 		}
 		TNT1 A 0 A_SetSpeed(35);
-		BPWA C 4 Fast
+		BPWA C 4
 		{
 		 A_Recoil(-1.5);
 		 A_Chase("Melee",null);
 		 A_StartSound("hoofstep", 3);
 		}
 		TNT1 A 0 A_SetSpeed(5);
-		BPWA DD 3 Fast
+		BPWA DD 3
 		{
 		 A_Chase("Melee",null);
 		 A_Recoil(-1.5);
@@ -164,6 +164,7 @@ Class PM_Glutton : PMGluttonyMonsterBase
 
 Class PM_GluttonBloodshot : Actor
 {
+  int timer;
   Default
   {
   Radius 3;
@@ -190,7 +191,9 @@ Class PM_GluttonBloodshot : Actor
   States
   {
   Spawn:
-		TNT1 A 0 A_SetScale(frandom(0.7,4.5));
+		TNT1 A 0 NoDelay { timer = random(50,70); }
+	Go:	
+		TNT1 A 0 A_SetScale(frandom(0.2,1.5));
 		TNT1 A 0 A_SetRoll(random(0,180));
 		TNT1 A 0 A_SpawnItemEx("PM_NormalBloodMulti");
 		TNT1 A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
@@ -198,10 +201,19 @@ Class PM_GluttonBloodshot : Actor
 	Play:
 		"####" "#" 2 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,100);
 		"####" "#" 0 A_CheckFloor("Death");
-		"####" "#" 0 A_SetRoll(roll+15);
+		"####" "#" 0
+		{
+		A_SetRoll(roll+15);
+		timer--;
+		}
+		"####" "#" 0
+			{
+			if(timer < 0)
+			SetStateLabel("Death");
+			}
 		Loop;
 	Death:
-		TNT1 A 0 { bMISSILE = false; }
+		"####" "#" 0 { bMISSILE = false; }
 		"####" "#" 0
 		{
 		A_SetRoll(0);

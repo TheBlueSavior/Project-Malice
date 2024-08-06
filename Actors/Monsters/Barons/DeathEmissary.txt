@@ -655,6 +655,7 @@ Default
  height 2;
  radius 2;
  speed 42;
+ FastSpeed 62;
  DamageFunction 9;
  scale 0.50;
  RenderStyle "Add";
@@ -1010,6 +1011,7 @@ Class PM_EmissaryShotgunSoul : Actor
     Height 5;
     Scale 0.4;
     Speed 8;
+	FastSpeed 18;
     DamageFunction 8;
     Renderstyle "Add";
     Alpha 0.75;

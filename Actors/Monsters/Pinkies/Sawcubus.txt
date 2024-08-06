@@ -7,10 +7,11 @@ Class PM_Sawcubus : PMFamineMonsterBase
 		The huge problem that they have is that they are crazed into the madness of Famine. Because of this, they have no choice but to hue and cry in desire. And the only solution for them is...
 		
 		\c[red]TO KILL AND MAIM EVERYTHING THAT MOVES. THEN DEVOUR EVERYTHING THAT YOU SEE.\c-";
-		Health 140;
+		Health 180;
 		Radius 20;
 		Height 56;
 		Speed 15;
+		FastSpeed 25;
 		PainChance 90;
 		Mass 400;
 		+FLOAT

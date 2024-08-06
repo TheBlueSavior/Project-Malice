@@ -1,3 +1,348 @@
+Class PM_HorrorspawnSpitter : PMFodderMonsterBase
+{
+    int choose;
+    Default
+	{
+    Health 15;
+    GibHealth 20;
+    Radius 18;
+    Height 56;
+    Speed 6;
+    PainChance 256;
+    SeeSound "";
+    PainSound "ZombieFodder/Pain";
+    DeathSound "ZombieFodder/Death";
+    ActiveSound "ZombieFodder/Active";
+    Obituary "%o was consumed by a Horrorspawn.";
+	DropItem "Clip", 100;
+	Species "Fodder";
+	Tag "Horrorspawn";
+    Monster;
+	BloodColor "DarkRed";
+	Bloodtype "PM_NormalBloodBase";
+	MeleeRange 70;
+	XScale 0.84;
+	YScale 0.91;
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+
+	void PM_HorrorspawnAssignSprite()
+	{
+    switch(choose)
+     {
+    case 0: sprite = GetSpriteIndex("ZFOD"); break;
+    case 1: sprite = GetSpriteIndex("2FOD"); break;
+    case 2: sprite = GetSpriteIndex("3FOD"); break;
+    case 3: sprite = GetSpriteIndex("4FOD"); break;
+     }
+	}
+	
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	  choose = random(0,3);
+	}
+	
+	void PM_HorrorspawnChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) <= 700)
+	  A_Chase();
+	  else
+	  A_Wander();
+	 }
+	}
+
+	
+  States
+  {
+  Spawn:
+    ZFOD A 0 NoDelay;
+  LoadSprites:
+    ZFOD A 0;
+	2FOD A 0;
+	3FOD A 0;
+	4FOD A 0;
+    "####" A 0 { //[NERU] https://youtu.be/fVz1VVWcF5U?t=48
+	if(CountInv("PM_HSpawnChoose1") == 1)
+	  choose == 0;
+	if(CountInv("PM_HSpawnChoose2") == 1)
+	  choose == 1;
+	if(CountInv("PM_HSpawnChoose3") == 1)
+	  choose == 2;
+	if(CountInv("PM_HSpawnChoose4") == 1)
+	  choose == 3;
+    PM_HorrorspawnAssignSprite(); }
+  Idle:
+	"####" AB 7 A_Wander();
+	"####" AB 0 A_Look();
+	"####" CD 7 A_Wander();
+	"####" AB 0 A_Look();
+	"####" A 0 A_Jump(5,"IdleStill");
+	Loop;
+  IdleStill:
+	"####" A 1 A_Jump(5,"Idle");
+    Loop;
+  See:
+	"####" A 0 A_Jump(10,"See2");
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB 4 Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD 4 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(3,"Lunge");
+	"####" A 0 A_Jump(10,"See2","See3","See6","See8","See9","Roar");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Loop;
+  TwitchJump:
+    "####" A 0 A_Jump(15,"TwitchSlow","TwitchFast","TwitchWalk");
+	Goto See;
+  See2:
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" AB 4 Fast PM_HorrorspawnChase();
+	"####" B 20 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CD 4 Fast PM_HorrorspawnChase();
+	"####" D 20 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(15,"See","Roar");
+    Loop;
+  See3:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AA 4 Fast PM_HorrorspawnChase();
+	"####" A 0 ThrustThing( int(ceil( angle * 256 / 360 + 64 )),3);
+	"####" BB 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CC 4 Fast PM_HorrorspawnChase();
+	"####" A 0 ThrustThing( int(ceil( angle * 256 / 360 + 192 )) ,3);
+	"####" DD 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  TwitchSlow:
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    ZTOD AABB 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	ZTOD CCDD 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  TwitchFast:
+	"####" A 0 A_Jump(50,"See");
+	"####" A 0 A_SetSpeed(9);
+    "####" C random(30,70) Fast A_FaceTarget();
+	"####" A 0 A_SetSpeed(25);
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase(null,null,CHF_NORANDOMTURN);
+	A_StartSound("Horrorspawn/Step",6);
+	}
+	"####" A 0 A_SetSpeed(9);
+	"####" C random(30,70) Fast A_FaceTarget();
+	"####" A 0 A_SetSpeed(25);
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase(null,null,CHF_NORANDOMTURN);
+	A_StartSound("Horrorspawn/Step",6);
+	}
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(205,"See","Roar");
+    Loop;
+  See6:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" AB 3 Fast PM_HorrorspawnChase();
+	"####" B 8 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CD 3 Fast PM_HorrorspawnChase();
+	"####" D 8 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(15,"See","Roar");
+    Loop;
+  TwitchWalk:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    ZTOD AABB 3 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	ZTOD CCDD 3 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  See8:
+	"####" A 0 A_SetSpeed(6);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB 10 Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD 10 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(3,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  See9:
+	"####" A 0 A_SetSpeed(4,12);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB random(1, 12) Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD random(1, 12) Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+	Loop;
+  Roar:
+	"####" C 15 Fast { PM_HorrorspawnAssignSprite(); A_FaceTarget(); }
+	"####" A 0 A_StartSound("ZombieFodder/Roar",7);
+	"####" B 40 Fast A_FaceTarget();
+	"####" C 4 Fast A_FaceTarget();
+	"####" A 0 A_Jump(25,"See2","See3","See6","See8","See9","Lunge");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+	Goto See;
+  Lunge:
+	"####" C 25 Fast PM_HorrorspawnAssignSprite();
+	"####" A 0 A_StartSound("ZombieFodder/Pain",7);
+	"####" A 0 A_Recoil(-15);
+	"####" A 0 ThrustThingZ(0,40,0,1);
+	"####" B 35 Fast;
+	"####" D 15 Fast;
+	Goto See;
+  SeeAngry:
+	"####" A 0 A_SetSpeed(10);
+    "####" AB 2 Fast A_Chase();
+	"####" AAA 0 A_Recoil(-0.5);
+	"####" CD 2 Fast A_Chase();
+	"####" AAA 0 A_Recoil(-0.5);
+    Loop;
+  Melee:
+	"####" A 0 PM_HorrorspawnAssignSprite();
+	"####" A 0 A_JumpIfCloser(44,"MeleeClose");
+    "####" A 0 A_Jump(140,"Bite");
+    "####" EE 9 A_FaceTarget();
+	"####" F 2;
+	"####" F 0 A_StartSound("ZombieFodder/Pain",7);
+	"####" F 0 A_Recoil(-6);
+	"####" F 0 ThrustThingZ(0,16,0,1);
+	"####" G 2;
+    "####" G 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	"####" G 5;
+	"####" A 0 A_Jump(240,"See2","See3","See6","See8","See9");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Goto See;
+  BloodSpit:
+	"####" C 0 A_CheckSight("See");
+	"####" CCCCC 5 A_FaceTarget();
+	"####" C 0 A_StartSound("GenericBloodPuke",5);
+	"####" C 0 A_StartSound("Afflicted/Puke");
+	"####" BBBBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(10,-20));
+	"####" B 1 A_SpawnProjectile("PM_HSpawnSpitterBlood",42,0,random(-10,10),CMF_AIMDIRECTION,random(-4,6));
+	"####" BBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(20,-10));
+	"####" BBBBBDDDDC 4;
+	Goto See;
+  ChunkThrow:
+    "####" HHH 5 A_FaceTarget();
+	"####" H 1 A_FaceTarget();
+	"####" H 5 A_StartSound("ZFODDGIB");
+	"####" HH 1 A_SpawnItemEX("PM_NormalBloodMulti",0,0,30,random(-6,6),random(-6,6),random(-2,6),random(0,360),SXF_NOCHECKPOSITION);
+	"####" H 10 A_FaceTarget();
+	"####" EEEFG 5 A_FaceTarget();
+	"####" G 10 A_SpawnProjectile("PM_HSpawnThrownChunk",32,0,random(-10,10),CMF_AIMDIRECTION,random(0,-70));
+	"####" GFFEE 5;
+	Goto See;
+  MeleeClose:
+    "####" EF 10 A_FaceTarget();
+    "####" G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee");
+    Goto See;
+  Bite:
+	"####" B 3;
+	"####" BB 3 A_FaceTarget();
+	"####" B 0 A_Recoil(-10);
+	"####" B 0 ThrustThingZ(0,6,0,1);
+	"####" B 2;
+	"####" C 0 A_StartSound("ZombieFodder/Bite");
+    "####" C 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	"####" C 3;
+	"####" C 0 A_Jump(240,"See2","See3","See6","See8","See9");
+	"####" C 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Goto See;
+  Missile:
+	"####" A 0 A_CheckSight("See");
+	"####" CCCCC 5 A_FaceTarget();
+	"####" A 0 A_StartSound("GenericBloodPuke",2);
+	"####" A 0 A_StartSound("Afflicted/Puke");
+	"####" BBBBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-20,10));
+	"####" B 1 A_SpawnProjectile("PM_HSpawnSpitterBlood",42,0,random(-10,10),CMF_AIMDIRECTION,random(-6,4));
+	"####" BBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(-10,20));
+	"####" BBBBBDDDDC 4;
+	Goto See;
+  Pain:
+    "####" H 4;
+    "####" H 4 A_Pain;
+	"####" H 0 A_Jump(100,"See");
+    Goto SeeAngry;
+  Death:
+	"####" I 0
+	{ if(choose == 0)
+	  SetStateLabel("DeathV1"); }
+    "####" I 7;
+    "####" J 7 A_Scream;
+    "####" K 5 A_NoBlocking;
+    2FOD L 5;
+	2FOD L 0 A_StartSound("Corpse/Fall",6);
+    2FOD L -1;
+    Stop;
+  DeathV1:
+	ZFOD I 0 A_Jump(120,"DecapDeath");
+    ZFOD I 7;
+    ZFOD J 7 A_Scream;
+    ZFOD K 5 A_NoBlocking;
+    ZFOD L 5;
+	ZFOD L 0 A_StartSound("Corpse/Fall",6);
+    ZFOD M -1;
+    Stop;
+   DecapDeath:
+	"####" I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));
+	"####" I 0 A_SpawnItemEx("PM_HorrorspawnDecap",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	"####" I 1 A_StartSound("MaliceHeadExp");
+	Stop;
+  XDeath:
+    ZFOD N 5 PM_Gib();
+    ZFOD O 5 A_XScream;
+    ZFOD P 5 A_NoBlocking;
+    ZFOD QR 5; 
+    ZFOD S -1;
+    Stop;
+  }
+}
 
 Class PM_HSpawnSpitterBlood : Actor
 {
@@ -27,6 +372,352 @@ Death:
 	BSHT D 6 A_SpawnItemEx("PM_TumorBurstBlood",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION);
 	Stop;
 }
+}
+
+Class PM_HorrorspawnChunkThrower : PMFodderMonsterBase
+{
+    int choose;
+    Default
+	{
+    Health 15;
+    GibHealth 20;
+    Radius 18;
+    Height 56;
+    Speed 6;
+    PainChance 256;
+    SeeSound "";
+    PainSound "ZombieFodder/Pain";
+    DeathSound "ZombieFodder/Death";
+    ActiveSound "ZombieFodder/Active";
+    Obituary "%o was consumed by a Horrorspawn.";
+	DropItem "Clip", 100;
+	Species "Fodder";
+	Tag "Horrorspawn";
+    Monster;
+	BloodColor "DarkRed";
+	Bloodtype "PM_NormalBloodBase";
+	MeleeRange 70;
+	XScale 0.84;
+	YScale 0.91;
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+
+	void PM_HorrorspawnAssignSprite()
+	{
+    switch(choose)
+     {
+    case 0: sprite = GetSpriteIndex("ZFOD"); break;
+    case 1: sprite = GetSpriteIndex("2FOD"); break;
+    case 2: sprite = GetSpriteIndex("3FOD"); break;
+    case 3: sprite = GetSpriteIndex("4FOD"); break;
+     }
+	}
+	
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	  choose = random(0,3);
+	}
+	
+	void PM_HorrorspawnChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) <= 700)
+	  A_Chase();
+	  else
+	  A_Wander();
+	 }
+	}
+
+	
+  States
+  {
+  Spawn:
+    ZFOD A 0 NoDelay;
+  LoadSprites:
+    ZFOD A 0;
+	2FOD A 0;
+	3FOD A 0;
+	4FOD A 0;
+    "####" A 0 { //[NERU] https://youtu.be/fVz1VVWcF5U?t=48
+	if(CountInv("PM_HSpawnChoose1") == 1)
+	  choose == 0;
+	if(CountInv("PM_HSpawnChoose2") == 1)
+	  choose == 1;
+	if(CountInv("PM_HSpawnChoose3") == 1)
+	  choose == 2;
+	if(CountInv("PM_HSpawnChoose4") == 1)
+	  choose == 3;
+    PM_HorrorspawnAssignSprite(); }
+  Idle:
+	"####" AB 7 A_Wander();
+	"####" AB 0 A_Look();
+	"####" CD 7 A_Wander();
+	"####" AB 0 A_Look();
+	"####" A 0 A_Jump(5,"IdleStill");
+	Loop;
+  IdleStill:
+	"####" A 1 A_Jump(5,"Idle");
+    Loop;
+  See:
+	"####" A 0 A_Jump(10,"See2");
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB 4 Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD 4 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(3,"Lunge");
+	"####" A 0 A_Jump(10,"See2","See3","See6","See8","See9","Roar");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Loop;
+  TwitchJump:
+    "####" A 0 A_Jump(15,"TwitchSlow","TwitchFast","TwitchWalk");
+	Goto See;
+  See2:
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" AB 4 Fast PM_HorrorspawnChase();
+	"####" B 20 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CD 4 Fast PM_HorrorspawnChase();
+	"####" D 20 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(15,"See","Roar");
+    Loop;
+  See3:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AA 4 Fast PM_HorrorspawnChase();
+	"####" A 0 ThrustThing( int(ceil( angle * 256 / 360 + 64 )),3);
+	"####" BB 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CC 4 Fast PM_HorrorspawnChase();
+	"####" A 0 ThrustThing( int(ceil( angle * 256 / 360 + 192 )) ,3);
+	"####" DD 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  TwitchSlow:
+	"####" A 0 A_SetSpeed(7);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    ZTOD AABB 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	ZTOD CCDD 4 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  TwitchFast:
+	"####" A 0 A_Jump(50,"See");
+	"####" A 0 A_SetSpeed(9);
+    "####" C random(30,70) Fast A_FaceTarget();
+	"####" A 0 A_SetSpeed(25);
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase(null,null,CHF_NORANDOMTURN);
+	A_StartSound("Horrorspawn/Step",6);
+	}
+	"####" A 0 A_SetSpeed(9);
+	"####" C random(30,70) Fast A_FaceTarget();
+	"####" A 0 A_SetSpeed(25);
+	ZTOD ACACACACACACACACAC 2
+	{
+	A_Chase(null,null,CHF_NORANDOMTURN);
+	A_StartSound("Horrorspawn/Step",6);
+	}
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(205,"See","Roar");
+    Loop;
+  See6:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" AB 3 Fast PM_HorrorspawnChase();
+	"####" B 8 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Recoil(-3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CD 3 Fast PM_HorrorspawnChase();
+	"####" D 8 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(15,"See","Roar");
+    Loop;
+  TwitchWalk:
+	"####" A 0 A_SetSpeed(9);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    ZTOD AABB 3 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	ZTOD CCDD 3 Fast PM_HorrorspawnChase();
+	"####" AAA 0 A_Recoil(-0.3);
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  See8:
+	"####" A 0 A_SetSpeed(6);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB 10 Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD 10 Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(3,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+    Loop;
+  See9:
+	"####" A 0 A_SetSpeed(4,12);
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+    "####" AABB random(1, 12) Fast PM_HorrorspawnChase();
+	"####" A 0 A_StartSound("Horrorspawn/Step",6);
+	"####" CCDD random(1, 12) Fast PM_HorrorspawnChase();
+	"####" A 0 A_Jump(4,"Lunge");
+	"####" A 0 A_Jump(10,"See","Roar");
+	Loop;
+  Roar:
+	"####" C 15 Fast { PM_HorrorspawnAssignSprite(); A_FaceTarget(); }
+	"####" A 0 A_StartSound("ZombieFodder/Roar",7);
+	"####" B 40 Fast A_FaceTarget();
+	"####" C 4 Fast A_FaceTarget();
+	"####" A 0 A_Jump(25,"See2","See3","See6","See8","See9","Lunge");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+	Goto See;
+  Lunge:
+	"####" C 25 Fast PM_HorrorspawnAssignSprite();
+	"####" A 0 A_StartSound("ZombieFodder/Pain",7);
+	"####" A 0 A_Recoil(-15);
+	"####" A 0 ThrustThingZ(0,40,0,1);
+	"####" B 35 Fast;
+	"####" D 15 Fast;
+	Goto See;
+  SeeAngry:
+	"####" A 0 A_SetSpeed(10);
+    "####" AB 2 Fast A_Chase();
+	"####" AAA 0 A_Recoil(-0.5);
+	"####" CD 2 Fast A_Chase();
+	"####" AAA 0 A_Recoil(-0.5);
+    Loop;
+  Melee:
+	"####" A 0 PM_HorrorspawnAssignSprite();
+	"####" A 0 A_JumpIfCloser(44,"MeleeClose");
+    "####" A 0 A_Jump(140,"Bite");
+    "####" EE 9 A_FaceTarget();
+	"####" F 2;
+	"####" F 0 A_StartSound("ZombieFodder/Pain",7);
+	"####" F 0 A_Recoil(-6);
+	"####" F 0 ThrustThingZ(0,16,0,1);
+	"####" G 2;
+    "####" G 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	"####" G 5;
+	"####" A 0 A_Jump(240,"See2","See3","See6","See8","See9");
+	"####" A 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Goto See;
+  BloodSpit:
+	"####" C 0 A_CheckSight("See");
+	"####" CCCCC 5 A_FaceTarget();
+	"####" C 0 A_StartSound("GenericBloodPuke",5);
+	"####" C 0 A_StartSound("Afflicted/Puke");
+	"####" BBBBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(10,-20));
+	"####" B 1 A_SpawnProjectile("PM_HSpawnSpitterBlood",42,0,random(-10,10),CMF_AIMDIRECTION,random(-4,6));
+	"####" BBBBBBBBBBBBBBB 1 A_SpawnProjectile("HungerBloodSpray",42,0,random(-25,25),CMF_AIMDIRECTION,random(20,-10));
+	"####" BBBBBDDDDC 4;
+	Goto See;
+  ChunkThrow:
+    "####" HHH 5 A_FaceTarget();
+	"####" H 1 A_FaceTarget();
+	"####" H 5 A_StartSound("ZFODDGIB");
+	"####" HH 1 A_SpawnItemEX("PM_NormalBloodMulti",0,0,30,random(-6,6),random(-6,6),random(-2,6),random(0,360),SXF_NOCHECKPOSITION);
+	"####" H 10 A_FaceTarget();
+	"####" EEEFG 5 A_FaceTarget();
+	"####" G 10 A_SpawnProjectile("PM_HSpawnThrownChunk",32,0,random(-10,10),CMF_AIMDIRECTION,random(0,-70));
+	"####" GFFEE 5;
+	Goto See;
+  MeleeClose:
+    "####" EF 10 A_FaceTarget();
+    "####" G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee");
+    Goto See;
+  Bite:
+	"####" B 3;
+	"####" BB 3 A_FaceTarget();
+	"####" B 0 A_Recoil(-10);
+	"####" B 0 ThrustThingZ(0,6,0,1);
+	"####" B 2;
+	"####" C 0 A_StartSound("ZombieFodder/Bite");
+    "####" C 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	"####" C 3;
+	"####" C 0 A_Jump(240,"See2","See3","See6","See8","See9");
+	"####" C 0 
+	{ if(choose == 0 && random(1,4) == 1)
+	  SetStateLabel("TwitchJump"); }
+    Goto See;
+  Missile:
+    "####" A 5 A_FaceTarget();
+	"####" H 1 A_FaceTarget();
+	"####" H 5 A_StartSound("ZFODDGIB");
+	"####" HH 1 A_SpawnItemEX("PM_NormalBloodMulti",0,0,30,random(-6,6),random(-6,6),random(-2,6),random(0,360),SXF_NOCHECKPOSITION);
+	"####" H 10 A_FaceTarget();
+	"####" EEEFG 5 A_FaceTarget();
+	"####" G 10 A_SpawnProjectile("PM_HSpawnThrownChunk",32,0,random(-10,10),CMF_AIMDIRECTION,random(-70,0));
+	"####" GFFEE 5;
+	Goto See;
+  Pain:
+    "####" H 4;
+    "####" H 4 A_Pain;
+	"####" H 0 A_Jump(100,"See");
+    Goto SeeAngry;
+  Death:
+	"####" I 0
+	{ if(choose == 0)
+	  SetStateLabel("DeathV1"); }
+    "####" I 7;
+    "####" J 7 A_Scream;
+    "####" K 5 A_NoBlocking;
+    2FOD L 5;
+	2FOD L 0 A_StartSound("Corpse/Fall",6);
+    2FOD L -1;
+    Stop;
+  DeathV1:
+	ZFOD I 0 A_Jump(120,"DecapDeath");
+    ZFOD I 7;
+    ZFOD J 7 A_Scream;
+    ZFOD K 5 A_NoBlocking;
+    ZFOD L 5;
+	ZFOD L 0 A_StartSound("Corpse/Fall",6);
+    ZFOD M -1;
+    Stop;
+   DecapDeath:
+	"####" I 0 A_SpawnProjectile("HorrorspawnHead",50,0,random(-300,300));
+	"####" I 0 A_SpawnItemEx("PM_HorrorspawnDecap",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	"####" I 1 A_StartSound("MaliceHeadExp");
+	Stop;
+  XDeath:
+    ZFOD N 5 PM_Gib();
+    ZFOD O 5 A_XScream;
+    ZFOD P 5 A_NoBlocking;
+    ZFOD QR 5; 
+    ZFOD S -1;
+    Stop;
+  }
 }
 
 Class PM_HSpawnThrownChunk : Actor

@@ -153,6 +153,10 @@ Class PM_Exalted : PMPrideMonsterBase
 		for(int i=10;i>0;i--) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: int(ceil(frandom(10,50))), size: random(15,30), xoff: frandom(-45,45), yoff: frandom(-45,45), zoff: random(0,32), velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(0,5), startalphaf: 1.0, fadestepf: -1, startroll: random(-180,180), rollvel: frandom(-5,5));
 		for(int i=10;i>0;i--) A_SpawnParticleEx("", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,10), size: random(1,100), xoff: frandom(-60,60), yoff: frandom(-60,60), zoff: frandom(0,50), velx: random(-6,6), vely: random(-6,6), velz: random(-6,6), startalphaf: frandom(0.8,0.95), startroll: random(-180,180), rollvel: frandom(-30,30));
 		}
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0
+		{
+		A_SpawnProjectile("PM_GazerBall",random(0,85),random(-25,25),random(-80,80),CMF_TRACKOWNER);
+		}
 		EXAL EEEEEE 5 Bright A_FaceTarget();
 		TNT1 A 0 PM_AlertSound();
 		EXAL EEEEEEEE 5 Bright A_FaceTarget();
@@ -216,6 +220,7 @@ Class PM_Exalted : PMPrideMonsterBase
 		  SetStateLabel("GigalaserSigil");
 		}
 	    TNT1 A 0 A_Jump(45,"CultSummon");
+		TNT1 A 0 A_Jump(45,"BallBarrage");
 	    TNT1 A 0 A_Jump(65,"BallBarrage","LaserSigil");
 	BurstShot:
 	    EXAL E 18 
@@ -259,7 +264,7 @@ Class PM_Exalted : PMPrideMonsterBase
 	BBarrageLoop:
 	   EXAL FFFFFFFFFFFFFFFFFFF 1
 	   {
-	    A_FaceTarget(1.5,1.5);
+	    A_FaceTarget(0.3,1.5);
 	    A_SpawnProjectile("PM_AngelsHandBHBall",65,0,frandom(-5,5),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-6,6)+1);
 		if(random(0,4) == 1)
 		 { A_SpawnProjectile("PM_BlashemerBHBall",65,0,frandom(-60,60),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-30,30)+1); }
@@ -269,7 +274,8 @@ Class PM_Exalted : PMPrideMonsterBase
 	    if(pm_attackloop <= 0)
 		 { SetStateLabel("SuperCastEnd"); }
 	    A_FaceTarget(1.5,1.5);
-	    A_SpawnProjectile("PM_ExaltedSuperBall",65,0,frandom(-50,50),CMF_OFFSETPITCH,frandom(-25,25));
+		A_SpawnItemEx("PM_ExaltedSuperBall",10,0,65,random(-8,8),random(-8,8),random(-8,8),0,SXF_SETMASTER,90);
+	    //A_SpawnProjectile("PM_ExaltedSuperBall",65,0,frandom(-50,50),CMF_OFFSETPITCH,frandom(-25,25));
 		pm_attackloop--;
 	   }
 	   Loop;
@@ -602,6 +608,7 @@ Class PM_ExaltedMagicShot : Actor
     Radius 5;
     Height 5;
     Speed 23;
+	FastSpeed 33;
     DamageFunction 25;
     Renderstyle "Add";
     ALPHA 0.90;
@@ -808,16 +815,19 @@ Class PM_ExaltedSuperBall : Actor
   int timer;
   Default
   {
+  Monster;
   Radius 20;
   Height 20;
   Projectile;
   Speed 8;
-  Alpha 0.15;
+  FastSpeed 18;
+  Alpha 0.75;
   RenderStyle "Add";
   SeeSound "Exalt/SuperBall";
   BounceType "Hexen";
   BounceFactor 0.3;
-  Scale 5.5;
+  Scale 1.3;
+  Translation "0:255=%[0,0,0]:[2.0,0.4,0.4]";
   +BRIGHT
   +FORCEXYBILLBOARD
   +ROLLSPRITE
@@ -848,12 +858,13 @@ Class PM_ExaltedSuperBall : Actor
 	   { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: 30,size: 400,startalphaf: 1,fadestepf: -1,sizestep: -15,startroll: random(-180,180)); }
    }
   Go:
-   BH_B AAAA 3 Bright
+   PLS1 ABCDEFGHIJKL 3 Bright
    {
      if(timer <= 0)
 	  { SetStateLabel("Death"); }
      A_SetRoll(roll+10);
-	 A_SpawnParticleEx("fd3535", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(6,10), size: 185.0, xoff: -5, startalphaf: frandom(0.45,0.75), fadestepf: -1, startroll: random(-180,180));
+	 A_SpawnProjectile("PM_GazerBall",random(0,20),random(-25,25),random(-50,50),CMF_TRACKOWNER|CMF_OFFSETPITCH,random(-50,50));
+	 A_SpawnParticleEx("fd3535", tex[1], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(6,10), size: 185.0, xoff: -5, startalphaf: frandom(0.65,0.95), fadestepf: -1, startroll: random(-180,180));
 	 A_SpawnParticleEx("",tex[3], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(15,65), size: random(1,35), xoff: frandom(-45,45), yoff: frandom(-45,45),zoff: frandom(-45,45),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.55,1), fadestepf: -1, startroll: random(-180,180));
      A_Weave(random(-1,1),random(-1,1),frandom(-2.5,2.5),frandom(-2.5,2.5));
 	 timer--;
@@ -902,7 +913,7 @@ Class PM_ExaltedBHBall : PM_BlashemerBHBall
 }
 
 Class PM_ExaltedBHBallFast : PM_ExaltedBHBall
-{ Default { Speed 20; } }
+{ Default { Speed 45; FastSpeed 65; } }
 
 Class PM_ExaltedCultSummon : Actor
 {

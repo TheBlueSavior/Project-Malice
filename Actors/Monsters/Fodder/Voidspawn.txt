@@ -68,12 +68,12 @@ Class PM_Voidspawn : PMVoidMonsterBase
 	TNT1 A 0 A_StopSound(7);
 	TNT1 A 0 { bNOCLIP = true; }
 	TNT1 A 0 A_SetSpeed(random(5,8));
-    VFOD AABB random(0,4)
+    VFOD AABB random(0,4) Fast
 	{
 	A_Chase();
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 	}
-	VFOD CCDD random(0,4)
+	VFOD CCDD random(0,4) Fast
 	{
 	A_Chase();
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));

@@ -373,6 +373,7 @@ Class PM_WhiplashKnife : MageWandMissile
   DamageFunction 10;
   Scale 1.8;
   Speed 22;
+  FastSpeed 32;
   radius 2;
   height 4;
   -RIPPER

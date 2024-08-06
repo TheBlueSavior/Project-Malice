@@ -539,6 +539,7 @@ Class PM_NobleFireball : DoomImpBall
 	+NOGRAVITY
 	-LOWGRAVITY
 	Speed 15;
+	FastSpeed 25;
 	SeeSound "weapons/bwoosh";
 	DeathSound "HellKnight/BallImpact";
 	Decal "PM_GreenFireScorch";

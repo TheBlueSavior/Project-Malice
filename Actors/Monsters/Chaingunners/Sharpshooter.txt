@@ -263,6 +263,7 @@ Class PM_SniperBullet : PM_SlugBullet
  Default
  {
   Speed 56;
+  FastSpeed 70;
   DamageFunction (random(40,50));
   Scale 0.85;
   RenderStyle "Add";

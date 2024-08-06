@@ -12,6 +12,7 @@ Class PM_Harpy : PMLustMonsterBase
 	Radius 18;
 	Height 50;
 	Speed 14;
+	FastSpeed 25;
 	PainChance 120;
 	Mass 400;
 	+FLOAT

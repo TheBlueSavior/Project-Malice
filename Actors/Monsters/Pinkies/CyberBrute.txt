@@ -13,6 +13,7 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 	Radius 30;
 	Height 56;
 	Speed 12;
+	FastSpeed 20;
 	PainChance 100;
 	Mass 400;
 	+FLOORCLIP
@@ -47,16 +48,16 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 		Look:
 			TNT1 A 0 { bNOPAIN = false; }
 			TNT1 A 0 { bSLIDESONWALLS = false; }
-			CBRU AA 2 Fast PM_LookingForPlayer();
+			CBRU AA 2 PM_LookingForPlayer();
 			TNT1 A 0 A_StartSound("DTechWalk", 3);
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU BB 2 Fast PM_LookingForPlayer();
+			CBRU BB 2 PM_LookingForPlayer();
             TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU CC 2 Fast PM_LookingForPlayer();
+			CBRU CC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_StartSound("DTechWalk", 3);
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU DD 2 Fast PM_LookingForPlayer();
+			CBRU DD 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
             Loop;
 		Spotted:
@@ -65,15 +66,15 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 		See:
 			TNT1 A 0 { bNOPAIN = false; }
 			TNT1 A 0 { bSLIDESONWALLS = false; }
-			CBRU AA 2 Fast A_Chase();
+			CBRU AA 2 A_Chase();
 			TNT1 A 0 A_StartSound("DTechWalk", 3);
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU BB 2 Fast A_Chase;
+			CBRU BB 2 A_Chase;
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU CC 2 Fast A_Chase();
+			CBRU CC 2 A_Chase();
 			TNT1 A 0 A_StartSound("DTechWalk", 3);
 			TNT1 A 0 A_Recoil(-0.5);
-			CBRU DD 2 Fast A_Chase();
+			CBRU DD 2 A_Chase();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_Jump(8,"RoarCheck");
 			TNT1 A 0 A_JumpIfCloser(340,"LungeCheck");

@@ -370,6 +370,7 @@ Class PM_HellsFuryBall : Actor
     Radius 6;
     Height 8;
     Speed 13;
+	FastSpeed 23;
     DamageFunction (random(30,40));
     RenderStyle "Add";
     Alpha 1;
@@ -637,7 +638,7 @@ Class PM_HellsFurySoul : Actor
 	Height 5;
 	Radius 5;
 	Speed 15;
-	FastSpeed 10;
+	FastSpeed 25;
 	Scale 0.35;
    }
    
@@ -827,9 +828,9 @@ Default
  Decal "PM_DeathSoulScorchBig";
  Height 8;
  Radius 8;
- speed 37;
+ Speed 37;
  DamageFunction 30;
- scale 1.0;
+ Scale 1.0;
  RenderStyle "Add";
  Alpha 0.60;
 }

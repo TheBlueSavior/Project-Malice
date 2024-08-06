@@ -190,6 +190,7 @@ Class PM_Afflicted : PMFodderMonsterBase
     Radius 18;
     Height 56;
     Speed 10;
+	FastSpeed 16;
     PainChance 200;
     SeeSound "Afflicted/Sight";
     PainSound "Afflicted/Pain";

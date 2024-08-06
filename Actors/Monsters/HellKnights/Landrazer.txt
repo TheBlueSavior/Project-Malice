@@ -398,7 +398,7 @@ Class PM_LandrazerMissile : PMProjectileBase
 	Height 8;
     DamageFunction 20;
     Speed 28;
-    FastSpeed 32;
+    FastSpeed 38;
 	Scale 1;
 	Decal "PM_OrangeFireScorch";
 	DeathSound "Cadaver/MissileExp";
@@ -450,6 +450,7 @@ Class PM_LandrazerMeteor : PM_HuskMeteor
    Default
    {
     Speed 20;
+	FastSpeed 30;
     DamageFunction 30;
 	SeeSound "Husk/Throw";
 	BounceSound "Grievance/HomingExp";
