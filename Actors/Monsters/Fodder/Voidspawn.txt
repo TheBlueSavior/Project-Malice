@@ -40,6 +40,7 @@ Class PM_Voidspawn : PMVoidMonsterBase
 	+NOINFIGHTING
 	+NOPAIN
 	+DONTTHRUST
+	-NOCLIP
 	+BRIGHT
 	TeleFogSourceType "PM_SmallDemonicTeleportFog";
 	TeleFogDestType "PM_SmallDemonicTeleportFog";
