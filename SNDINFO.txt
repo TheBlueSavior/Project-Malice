@@ -1828,8 +1828,6 @@ $limit DTech/Exp 0
 
 AVASTAL AVASTAL
 $rolloff AVASTAL 300 2000
-AVAVOIC AVAVOIC
-$rolloff AVAVOIC 800 2600
 $rolloff Heartbeat1 200 600
 $rolloff Heartbeat2 200 600
 
@@ -4244,6 +4242,9 @@ $pitchset POTS/Laugh1 0.5 1.3
 $pitchset POTS/Laugh2 0.5 1.3
 $volume POTS/Laugh2 0.8
 $rolloff POTS/Laugh1 500 2000
+POTS/Drone "Sounds/Monsters/Unused/Void/AVAVOIC.ogg"
+$rolloff POTS/Drone 80 600
+$limit POTS/Drone 20
 
 POTS/Horde "Sounds/Monsters/Fodder/PawnsoftheShadow/PawnHorde.ogg"
 

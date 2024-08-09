@@ -20,6 +20,7 @@ Class PM_CyberSpectre : PMUnaffMonsterBase
 	MaxStepHeight 32;
 	MaxDropOffHeight 32;
 	Speed 13;
+	FastSpeed 22;
 	Bloodtype "PM_NormalBloodBase";
 	SeeSound "CBrute/Sight";
 	DeathSound "PBrute/Death";
@@ -37,16 +38,16 @@ Class PM_CyberSpectre : PMUnaffMonsterBase
 			Loop;
 		Look:
 			TNT1 A 0 A_SetTranslucent(0.1);
-			CYSP AA 2 Fast PM_LookingForPlayer();
+			CYSP AA 2 PM_LookingForPlayer();
 			TNT1 A 0 A_StartSound("DTechWalk",13);
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP BB 2 Fast PM_LookingForPlayer();
+			CYSP BB 2 PM_LookingForPlayer();
 			TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP CC 2 Fast PM_LookingForPlayer();
+			CYSP CC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_StartSound("DTechWalk",14);
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP DD 2 Fast PM_LookingForPlayer();
+			CYSP DD 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			Loop;
 		Spotted:
@@ -59,15 +60,15 @@ Class PM_CyberSpectre : PMUnaffMonsterBase
 			TNT1 A 0 {
 			bNOPAIN = false;
 			bSLIDESONWALLS = false; }
-			CYSP AA 2 Fast A_Chase();
+			CYSP AA 2 A_Chase();
 			TNT1 A 0 A_StartSound("DTechWalk", 13);
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP BB 2 Fast A_Chase();
+			CYSP BB 2 A_Chase();
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP CC 2 Fast A_Chase();
+			CYSP CC 2 A_Chase();
 			TNT1 A 0 A_StartSound("DTechWalk", 14);
 			TNT1 A 0 A_Recoil(-0.5);
-			CYSP DD 2 Fast A_Chase();
+			CYSP DD 2 A_Chase();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_JumpIfCloser(340,"LungeCheck");
 			Loop;

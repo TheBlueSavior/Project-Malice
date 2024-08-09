@@ -483,11 +483,12 @@ Class PM_GagRotflySmokeCloud : Actor
   +FORCERADIUSDMG
   +DOOMBOUNCE
   +ROLLSPRITE
+  +ROLLCENTER
   BounceFactor 0.3;
   WallBounceFactor 0.3;
   RenderStyle "Translucent";
   Alpha 0.93;
-  Scale 1.2;
+  Scale 0.35;
   DeathSound "RevGhoul/cloud";
   }
   
@@ -495,11 +496,11 @@ Class PM_GagRotflySmokeCloud : Actor
   {
   Spawn:
 	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
-    GSM1 A 5 A_SetTranslucent(0.2);
-	GSM1 A 5 A_SetTranslucent(0.4);
-	GSM1 A 10 A_SetTranslucent(0.8);
+    GNSM G 5 A_SetTranslucent(0.2);
+	GNSM G 5 A_SetTranslucent(0.4);
+	GNSM G 10 A_SetTranslucent(0.8);
 	TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
-	GSM1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 5
+	GNSM GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG 5
 	{
 	A_Explode(Random(1,5),35);
 	A_FadeOut(0.02);

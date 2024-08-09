@@ -13,6 +13,7 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 	Radius 30;
 	Height 56;
 	Speed 11;
+	FastSpeed 20;
 	PainChance 100;
 	Mass 400;
 	MeleeRange 60;
@@ -41,16 +42,16 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 			PRUT A 4 PM_Look();
 			Loop;
 		Look:
-			PRU1 AA 2 Fast PM_LookingForPlayer();
+			PRU1 AA 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 BB 2 Fast PM_LookingForPlayer();
+			PRU1 BB 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
             TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-			PRU1 CC 2 Fast PM_LookingForPlayer();
+			PRU1 CC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 DD 2 Fast PM_LookingForPlayer();
+			PRU1 DD 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			Loop;
 		Spotted:
@@ -59,15 +60,15 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 		    TNT1 A 0 PM_AlertSound();
 			Goto See;
 		See:
-			PRU1 AA 2 Fast A_Chase(flags:CHF_NORANDOMTURN);
+			PRU1 AA 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 BB 2 Fast A_Chase(flags:CHF_NORANDOMTURN);
+			PRU1 BB 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
-			PRU1 CC 2 Fast A_Chase(flags:CHF_NORANDOMTURN);
+			PRU1 CC 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 DD 2 Fast A_Chase(flags:CHF_NORANDOMTURN);
+			PRU1 DD 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			loop;
 		Melee:

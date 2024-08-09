@@ -59,7 +59,7 @@ Class PM_HorrorspawnSpitter : PMFodderMonsterBase
 	{
 	 if(target)
 	 {
-	  if(CheckSight(target) && Distance3D(target) <= 700)
+	  if(CheckSight(target) && Distance3D(target) <= 1200)
 	  A_Chase();
 	  else
 	  A_Wander();
@@ -435,7 +435,7 @@ Class PM_HorrorspawnChunkThrower : PMFodderMonsterBase
 	{
 	 if(target)
 	 {
-	  if(CheckSight(target) && Distance3D(target) <= 700)
+	  if(CheckSight(target) && Distance3D(target) <= 800)
 	  A_Chase();
 	  else
 	  A_Wander();
