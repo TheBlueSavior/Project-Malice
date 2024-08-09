@@ -342,6 +342,7 @@ Class PM_BelphegorCelestialTwilight : BaronBall
 		DeathSound "";
 		DamageFunction (0);
 		Speed 4;
+		FastSpeed 6;
 		BounceType "Hexen";
 		+SEEKERMISSILE
 		BounceCount 3;

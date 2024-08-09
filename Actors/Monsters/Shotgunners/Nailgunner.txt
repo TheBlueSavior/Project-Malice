@@ -459,7 +459,7 @@ Class PM_NailgunnerNail : PM_BulletTracer
    DamageFunction 12;
    Scale 1;
    Speed 26;
-   FastSpeed 52;
+   FastSpeed 40;
    Radius 2;
    Height 4;
    +CANNOTPUSH

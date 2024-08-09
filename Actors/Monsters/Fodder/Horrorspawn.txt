@@ -288,10 +288,12 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	  SetStateLabel("TwitchJump"); }
 	Loop;
   Roar:
-	"####" C 15 Fast { PM_HorrorspawnAssignSprite(); A_FaceTarget(); }
+	"####" C 0;
+	"####" C 1 A_CheckSight("See");
+	"####" C 13 { PM_HorrorspawnAssignSprite(); A_FaceTarget(); }
 	"####" A 0 A_StartSound("ZombieFodder/Roar",7);
-	"####" B 40 Fast A_FaceTarget();
-	"####" C 4 Fast A_FaceTarget();
+	"####" B 40 A_FaceTarget();
+	"####" C 4 A_FaceTarget();
 	"####" A 0 A_Jump(25,"See2","See3","See6","See8","See9","Lunge");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
@@ -369,8 +371,21 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	  SetStateLabel("TwitchJump"); }
     Goto See;
   Pain:
-    "####" H 4;
-    "####" H 4 A_Pain;
+	"####" A 0;
+	"####" A 0
+	{
+		if(choose == 0)
+		SetStateLabel("Pain1");
+	}
+    "####" H 1;
+    "####" H 1 A_Pain;
+	"####" H random(2,18);
+	"####" H 0 A_Jump(100,"See");
+    Goto SeeAngry;
+  Pain1:
+    ZFOD H 1;
+    "####" H 1 A_Pain;
+	"####" H random(2,18);
 	"####" H 0 A_Jump(100,"See");
     Goto SeeAngry;
   Death:
