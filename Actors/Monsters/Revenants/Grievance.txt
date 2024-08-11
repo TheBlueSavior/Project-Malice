@@ -84,11 +84,11 @@ Class PM_Grievance : PMEnvyMonsterBase
 	See:
 		TNT1 A 0 A_SetSpeed(9);
 		TNT1 A 0 A_StopSound(15);
-		PSEV A 0 A_Jump(100, "Relocate");
+		PSEV A 0 A_Jump(40, "Relocate");
 		PSEV AAAAAAAAAAAAAABBBBBBBBBBBBBB 2 A_Chase();
 		Loop;
 	Relocate:
-		TNT1 A 0 A_SetSpeed(50);
+		TNT1 A 0 A_SetSpeed(40);
 		TNT1 A 0 A_SetRenderStyle(0.4,STYLE_AddStencil);
 		PSEV EEEEEEEEEEEEEEEEEEEEEEEE 1
 		{
@@ -118,7 +118,7 @@ Class PM_Grievance : PMEnvyMonsterBase
 		PSEV E 1 A_Pain();
 		PSEV E 0 { if (target) A_Jump(54, "Copy"); }
 		PSEV E 1 VelFromAngle(random(10, 15), random(1, 4) * 90);
-		TNT1 A 0 A_Jump(160,"PainDodge");
+		TNT1 A 0 A_Jump(120,"PainDodge");
 		Goto See;
 	PainDodge:
 		TNT1 A 0 A_SetSpeed(30);
@@ -139,14 +139,20 @@ Class PM_Grievance : PMEnvyMonsterBase
 		TNT1 A 0 A_Jump(128, "DualRocket");
 		Goto NeedlerStart;
 	NeedlerStart:
-		PSEV CCCCCCCCC 1 Light("Greenball2") A_FaceTarget();
+		TNT1 A 0
+		{
+		ThrustThing(random(0,360),18);
+		ThrustThingZ(0,18,random(0,1),1);
+		}
+		PSEV CCCCCCCCCCC 1 Light("Greenball2") A_FaceTarget();
+		TNT1 A 0 A_ChangeVelocity(0,0,0,CVF_REPLACE);
 		PSEV C 0 { pm_attackloop = random(2, 12); }
 	NeedlerLoop:
 		PSEV C 3 Light("Greenball")
 		{
-			A_FaceTarget();
 			A_StartSound("PMBelphegor/Chain", CHAN_WEAPON, attenuation: 0.5);
-			A_SpawnProjectile("PM_GrievanceNeedle",45,(!random(0, 1) ? 10 : -18),angle:frandom(-3,3),flags:CMF_OFFSETPITCH,pitch:frandom(-2,2));
+			A_SpawnProjectile("PM_GrievanceNeedle",45,(!random(0, 1) ? 10 : -18),angle:frandom(-3,3),flags:CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch+frandom(-3,3));
+			A_FaceTarget(3,8,0,0);
 			pm_attackloop--;
 		}
 		PSEV C 0 { if (pm_attackloop <= 0) SetStateLabel("Cooldown"); }
@@ -174,7 +180,7 @@ Class PM_Grievance : PMEnvyMonsterBase
 			A_SpawnProjectile("PM_GrievanceRocket", 45, 10);
 			A_SpawnProjectile("PM_GrievanceRocket", 45, -18);
 		}
-		PSEV D 0 A_Jump(128, "Avoid");
+		PSEV D 0 A_Jump(188, "Avoid","Relocate");
 		Goto See;
 	Grenade:
 		PSEV C 0

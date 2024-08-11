@@ -106,7 +106,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
      A_SetAngle(angle+random(-10,10));
      A_SetPitch(pitch+random(-15,15));
     }
-	SN0P EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 
+	SN0P EEEEEEEEEEEEEEEEEEEEEEEEEE 1 
 	{
 	 if(annoyed <= 2)
 	  {
