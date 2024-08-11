@@ -17,10 +17,10 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		Gravity 1000;
 		Tag "Stranded Sigil";
 		RenderStyle "Add";
-		Alpha 0.05;
+		Alpha 0.01;
 		Obituary "%o should've watched the ground.";
 		Species "Traps";
-		MeleeRange 65;
+		MeleeRange 45;
 		Speed 0;
 	}
 	
@@ -33,14 +33,6 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		if (!level.isFrozen()) if (target && CheckSight(target)) roll += rollv;
 		if (playsound > 0) playsound--;
 		
-		if (target && CheckSight(target))
-		{
-			if (!(GetAge() % 12))
-			{
-				A_SpawnParticleEx("", tex[0], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,1), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
-				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
-			}
-		}
 	}
 	
 	override void PostBeginPlay()
@@ -71,12 +63,27 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 		_PNT B 15 A_Look();
 		Loop;
 	See:
+		TNT1 A 0 A_StopSound(32);
+	SeeLoop:
 		_PNT B 1
 		{
 			if (alpha > 0.05) A_FadeOut(0.035, FTF_CLAMP);
-			if (target && CheckSight(target) && distance3D(target) < 60) SetStateLabel("Burn");
+			if (target && CheckSight(target) && distance3D(target) < 45) SetStateLabel("BurnStart");
 		}
 		Loop;
+	BurnStart:
+		TNT1 A 0 A_StartSound("Fire/Idle",32);
+		_PNT BBBBBBBBBBBBB 2
+		{
+		if (target && CheckSight(target))
+		{
+			if (!(GetAge() % 7))
+			{
+				A_SpawnParticleEx("", tex[0], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,1), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
+			}
+		}
+		}
 	Burn:
 		_PNT B random(1, 2)
 		{
@@ -101,7 +108,9 @@ Class PM_StrandedSigil : PMFodderMonsterBase
 			
 			if (!(GetAge() % random(2, 4)))
 			{
-				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.2,0.7), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("", tex[0], style: STYLE_None, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,1), startalphaf: frandom(0.1,0.35), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
+				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,0.5), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
+				A_SpawnParticleEx("912a1f", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(77,145), size: frandom(50,160), xoff: frandom(-20,20), yoff: frandom(-20,20), zoff: frandom(-10,10), velz: frandom(0,2.5), startalphaf: frandom(0.45,0.9), fadestepf: -1, sizestep: frandom(0.0,0.8), startroll: random(-180,180), rollvel: frandom(-0.3,0.3));
 				A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(20,90), size: frandom(0.2,15), xoff: random(-40,40), yoff: random(-40,40), zoff: random(-10, 10), velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0.1,3), startalphaf: 1.0, fadestepf: -1, sizestep: -0.2, startroll: random(-180,180));
 			}
 		}
@@ -113,8 +122,10 @@ Class PM_StrandedSigilPenta : Actor
 {
 	Default
 	{
-		RenderStyle "Normal";
-		Alpha 1;
+		RenderStyle "Stencil";
+		StencilColor "Black";
+		Alpha 0.8;
+		Scale 0.9;
 		+FLATSPRITE
 		+NOINTERACTION
 		+FLOORHUGGER
