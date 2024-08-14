@@ -23,7 +23,7 @@ OptionMenu "projectmalice_options"
 	Option "Stealth Mechanics", "pm_forgetcheck", "PMStealth"
 	StaticText ""
 	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
-	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 1.00, 0.01, 2
+	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
 	StaticText ""
 	StaticText ""
 	StaticText "Health Multiplier"
