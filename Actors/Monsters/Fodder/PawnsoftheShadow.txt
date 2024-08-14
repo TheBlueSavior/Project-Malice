@@ -29,6 +29,8 @@ Class PM_POTS : PMVoidMonsterBase
 	+SLIDESONWALLS
 	-NOCLIP
 	-solid
+	-SHOOTABLE
+	+NOPAIN
 	Species "Fodder";
 	Tag "PAWNS OF THE SHADOW";
     Obituary "%o gazed into the shadow, and saw themself.";
@@ -83,6 +85,8 @@ Class PM_POTS : PMVoidMonsterBase
 	    TNT1 A 0 PM_AlertSound();
 		TNT1 A 0 { bTHRUACTORS=false; }
 		TNT1 A 0 { bFRIGHTENED=False; }
+		TNT1 A 0 { bNOPAIN=False; }
+		TNT1 A 0 { bSHOOTABLE=True; }
 	PickingTime:
 		TNT1 A 0 A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8");
 	S1:
