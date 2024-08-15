@@ -29,6 +29,8 @@ Class PM_FOCShotgun : PMVoidMonsterBase
 	+NOBLOCKMONST
 	+MISSILEEVENMORE
 	-NOCLIP
+	-SHOOTABLE
+	+NOPAIN
 	Species "Zombie";
 	Tag "FRAGMENT OF CAIN";
     Obituary "%o lost against a fragment of a betrayer.";
@@ -70,6 +72,8 @@ Class PM_FOCShotgun : PMVoidMonsterBase
 	Spotted2:
 		TNT1 A 0 { bFRIGHTENED=False; }
 	    TNT1 A 0 PM_AlertSound();
+		TNT1 A 0 { bNOPAIN=False; }
+		TNT1 A 0 { bSHOOTABLE=True; }
 		TNT1 A 0 A_StartSound("POTS/Drone",32,CHANF_LOOPING);
 	    TNT1 A 0 A_Jump(256,"PhaseStart","See");
 		Goto See;
@@ -149,6 +153,7 @@ Class PM_FOCShotgun : PMVoidMonsterBase
 		Goto CreepSee;
     Missile:
 		TNT1 A 0;
+		TNT1 A 0 { bSHOOTABLE=True; }
 		TNT1 A 0 A_Jump(100,"BlinkCharge");
 	NormalMissile:
 		TNT1 A 0 A_FaceTarget();
@@ -199,6 +204,8 @@ Class PM_FOCShotgun : PMVoidMonsterBase
 		Goto CreepSee;
     Pain:
 	    TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 { bNOPAIN=False; }
+		TNT1 A 0 { bSHOOTABLE=True; }
         SPS4 G 8 A_FaceTarget();
 		TNT1 A 0 A_Jump(120,"See");
         SPS4 G 2
