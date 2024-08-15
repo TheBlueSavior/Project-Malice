@@ -305,7 +305,7 @@ Class PM_Afflicted : PMFodderMonsterBase
   "####" A 0 A_StartSound("Afflicted/RunStep",5);
   "####" A 0 A_Jump(8,"Puke","Howl");
   "####" A 0 A_JumpIfCloser(300,"See");
-  "####" A 0 A_Jump(128,"SeeWander");
+  "####" A 0 A_Jump(90,"SeeWander");
   //TNT1 A 0 A_Jump(2,"Lunge")
    Loop;
   SeeWander:
@@ -335,7 +335,7 @@ Class PM_Afflicted : PMFodderMonsterBase
 	}
 	"####" A 0 A_StartSound("Afflicted/RunStep",5);
 	"####" A 0 A_Jump(8,"Puke","Howl");
-	"####" A 0 A_Jump(90,"See");
+	"####" A 0 A_Jump(100,"See");
 	"####" A 0 A_JumpIfTargetinLOS("SeeWander",150,JLOSF_DEADNOJUMP);
    Goto See;
    Loop;
