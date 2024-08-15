@@ -48,6 +48,17 @@ Class Pustule : PMFodderMonsterBase {
     scale.y = scale.x;
 	super.PostBeginPlay();
   }
+  
+  void PM_PustuleChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) <= 1200)
+	  A_Chase();
+	  else
+	  A_Wander();
+	 }
+	}
 
   states {
     Spawn:
@@ -63,7 +74,7 @@ Class Pustule : PMFodderMonsterBase {
     See:
 	  TNT1 A 0;
       TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
-      FLOB GGGGBBBBCCCCBBBB 2 A_Chase();
+      FLOB GGGGBBBBCCCCBBBB 2 PM_PustuleChase();
 	  TNT1 A 0 A_Jump(140,"Yuck");
 	  TNT1 A 0 A_Jump(50,"CeilingJump");
 	  TNT1 A 0 A_Jump(90,"Flop","SlideForward","SlideBack","SlideLeft","SlideRight");
