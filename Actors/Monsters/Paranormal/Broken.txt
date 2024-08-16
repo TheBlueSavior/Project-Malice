@@ -6,7 +6,7 @@ class PM_Broken : PMVoidMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore "I failed.";
-		Health 450;
+		Health 550;
 		Radius 20;
 		Height 56;
 		Speed 8;
@@ -90,6 +90,8 @@ class PM_Broken : PMVoidMonsterBase
 ///////////////////////////////////////////////////////////////IDLE
 	
 	Spawn:
+		TNT1 A 0 { bShootable=False; }
+	Spawned:
 		VDGY A 1 {
 					ThrustThing(random(-360,360),1,0,0); 
 					A_SetScale(frandom(.85,1.10),frandom(.90,1.10));
@@ -120,6 +122,7 @@ class PM_Broken : PMVoidMonsterBase
 		
 	See:
 		TNT1 A 0 { bBRIGHT=True; }
+		TNT1 A 0 { bShootable=True; }
 		VDGY A 1 {
 					ThrustThing(random(-360,360),1,0,0); 
 					//A_SetScale(frandom(.85,1.10),frandom(.90,1.10));
@@ -131,10 +134,11 @@ class PM_Broken : PMVoidMonsterBase
 		
 		VDGY A random(1,5) {}
 		TNT1 A 0 {LOOKINGAT++;}
-		TNT1 A 0 A_Jumpif((LOOKINGAT >= 10),"SCreemloop");
+		TNT1 A 0 A_Jumpif((LOOKINGAT >= 10),"HereWeGo");
 		Loop;
-		
-		
+	HereWeGo:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(256,"SCreemloop","FakeDeath");
 	SCreemloop:
 		TNT1 A 0 { bNOCLIP=True; }
 		TNT1 AA 1 Light("PM_HorrorBlackflash")
@@ -186,6 +190,8 @@ class PM_Broken : PMVoidMonsterBase
 		"####" "#" 0 A_Jumpif((screems >= 50),"Watch");
 		Loop;
 	Pain:
+		TNT1 A 0;
+		TNT1 A 0 { bNOCLIP=True; }
 	    TNT1 A 0 A_Jump(65,"FakeDeath");
 		TNT1 A 0 A_Recoil(56);
 		TNT1 A 0 A_StartSound("Broken/Loop",CHAN_7,CHANF_LOOP,0.55);
@@ -204,7 +210,11 @@ class PM_Broken : PMVoidMonsterBase
 		TNT1 A 0 A_StopSound(20);
 		TNT1 A 0 A_StopSound(21);
 		TNT1 A random(85,130);
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+		{
+		A_Wander();
+		A_Recoil(-5);
+		}
 		TNT1 A 0 A_StartSound("Broken/Loop",CHAN_7,CHANF_LOOP,0.55);
 		TNT1 A 0 A_StartSound("Broken/Loop2",20,CHANF_LOOP,0.65);
 		TNT1 A 0 A_StartSound("Broken/Loop3",21,CHANF_LOOP,0.85);
@@ -232,11 +242,14 @@ class PM_Broken : PMVoidMonsterBase
 		
 		
 	Watch:
+		TNT1 A 0;
+		TNT1 A 0 { bNOCLIP=True; }
+		TNT1 A 0 { bShootable=True; }
 		TNT1 A 0 A_Jumpif((target == null),2);
-		TNT1 A 0 A_Jumpif((Distance3d(target) >= 500),"GlideForward");
+		TNT1 A 0 A_Jumpif((Distance3d(target) >= 1500),"GlideForward");
 		//TNT1 A 0 A_Jumpif((Distance3d(target) <= 50),"GlideBackward");
 		
-		TNT1 A 0 A_JumpIfHealthLower(200,"CHAOS");
+		TNT1 A 0 A_JumpIfHealthLower(220,"CHAOS");
 		
 		TNT1 A 0 {
 					WaitTillSHoot	= 0;
@@ -254,16 +267,27 @@ class PM_Broken : PMVoidMonsterBase
 					A_FaceTarget();
 					A_Chase(null,"Missile",CHF_FASTCHASE);
 					}
-		TNT1 A 0 A_Jump(1,"GlitchTP");
-		Loop;
+		TNT1 A 0 A_Jump(2,"GlitchTP");
+		TNT1 A 0 A_Jump(5,"ChargeForwards","MoreMoving");
+		TNT1 A 0
+		{
+		 if(target && CheckSight(target))
+		 SetStateLabel("Watch");
+		}
+		goto GlideForward;
 	   GlitchTP:
+		TNT1 AAAAAA 0
+				{
+				 A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(5,110),xoff: frandom(-20,20),yoff: frandom(-20,20),zoff: frandom(10,60),fadestepf: 0,sizestep: 0);
+				}
 	    TNT1 A 1
 		{
 		 A_StartSound("Broken/TP",CHAN_5,0,1);
 		 for (int a = 0;a<20;a++)
 		 A_Wander();
+		 A_Recoil(-1);
 		}
-		VDGY A random(10,25) A_FaceTarget();
+		VDGY A random(1,15) A_FaceTarget();
 		Goto Watch;
 	
 ///////////////////////////////////////////////////////////////ADVANCED MOVEMENT
@@ -289,6 +313,56 @@ class PM_Broken : PMVoidMonsterBase
 					
 		"####" "#" 0 {Glide++;}
 		"####" "#" 0 A_Jumpif((Glide >= 25),"Watch");
+		"####" "#" 0
+		{
+		 if(target && CheckSight(target))
+		 SetStateLabel("Watch");
+		}
+		Loop;
+		
+		ChargeForwards:
+		"####" "#" 0 A_Jump(128,3,5);
+		VDGY O 0;
+		"####" "#" 0 A_Jump(256,4);
+		VDGY P 0;
+		"####" "#" 0 A_Jump(256,2);
+		VDGY Q 0;
+		
+		"####" "#" 1 Light("PM_FastHorrorBlackflash"){
+					ThrustThing(random(-360,360),1,0,0);
+					A_Recoil(-3);
+					A_SetScale(frandom(.75,1.20),frandom(.80,1.20));
+					A_StartSound("Broken/Pain/3",CHAN_5,0,frandom(0.5,1));
+					//A_StartSound("Broken/SNAP",CHAN_6,0,1);
+					A_FaceTarget();
+					}
+		
+		//"####" "#" random(1,3);
+					
+		"####" "#" 0 {Glide++;}
+		"####" "#" 0 A_Jumpif((Glide >= 25),"Watch");
+		Loop;
+		
+		MoreMoving:
+		"####" "#" 0 A_Jump(128,3,5);
+		VDGY O 0;
+		"####" "#" 0 A_Jump(256,4);
+		VDGY P 0;
+		"####" "#" 0 A_Jump(256,2);
+		VDGY Q 0;
+		
+		"####" "#" 1 Light("PM_FastHorrorBlackflash"){
+					ThrustThing(random(-360,360),1,0,0);
+					A_Wander();
+					A_Recoil(-1);
+					A_SetScale(frandom(.75,1.20),frandom(.80,1.20));
+					A_StartSound("Broken/Pain/3",CHAN_5,0,frandom(0.5,1));
+					}
+		
+		//"####" "#" random(1,3);
+					
+		"####" "#" 0 {Glide++;}
+		"####" "#" 0 A_Jumpif((Glide >= 35),"Watch");
 		Loop;
 
 ///////////////////////////////////////////////////////////////BERSERK MODE
@@ -296,8 +370,13 @@ class PM_Broken : PMVoidMonsterBase
 	CHAOS:
 		TNT1 A 0 {
 					A_setspeed(20);
+					bFLOAT = True;
+					bNOGRAVITY = True;
 				}
-				
+		TNT1 AAAAAA 0
+				{
+				 A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(1,6),size: frandom(5,110),xoff: frandom(-20,20),yoff: frandom(-20,20),zoff: frandom(10,60),fadestepf: 0,sizestep: 0);
+				}
 		TNT1 A 0 {
 					WaitTillSHoot	= 0;
 					screems			= 0;
@@ -307,6 +386,14 @@ class PM_Broken : PMVoidMonsterBase
 				}
 		TNT1 AAAAAAAAAAAAAAAA 1 A_Wander;
 		TNT1 A 0 A_StartSound("Broken/TP",CHAN_5,0,1);
+		TNT1 A 0 A_Jump(2,"GlitchTP");
+		TNT1 A 0 A_Jump(5,"ChargeForwards","MoreMoving");
+		TNT1 A 0
+		{
+		 if(target && CheckSight(target))
+		 SetStateLabel("Missile");
+		}
+		goto GlideForward;
 		
 ///////////////////////////////////////////////////////////////ATTACKS
 		
@@ -355,6 +442,8 @@ class PM_Broken : PMVoidMonsterBase
 		TNT1 A 0 A_Jump(55,"Railgun");
 		TNT1 A 0 A_Jump(20,"BFG");
 	Isshooting:
+		TNT1 A 0 A_Stop;
+	Shootinnn:
 		VDGY F random(1,5) Light("ShadowBall3")
 		{
 		 if(random(1,20) == 1)
@@ -382,6 +471,7 @@ class PM_Broken : PMVoidMonsterBase
 		Loop;
 	ShootingSpam:
 	    TNT1 A 0 { shooting = 0; }
+		TNT1 A 0 A_Stop;
 	    TNT1 A 0 A_StartSound("Broken/Flinch");
 	    VDGY GHGHGHGHGHGH random(1,3) A_SetScale(frandom(.75,1.20),frandom(.80,1.20));
 	ShootingSpamLoop:
@@ -405,11 +495,17 @@ class PM_Broken : PMVoidMonsterBase
 	    VDGY F 2 A_FaceTarget(0.5,3,0,0);
 		Goto GlitchTP;
 	Shotgun:
+		TNT1 A 0 A_Stop;
+		VDGY F 10 Light("ShadowBall2")
+		   {
+			A_SetScale(1,1);
+			A_FaceTarget(1,80);
+		   }
 		VDGY F 1 Light("ShadowBall2")
 		   {
 			ThrustThing(random(-360,360),1,0,0); 
 			A_SetScale(1,1);
-			A_FaceTarget();
+			A_FaceTarget(1,1);
 			A_StartSound("GenericShotgunFire",CHAN_6);
 			A_StartSound("ShotgunnerGunDistant",CHAN_WEAPON);	
 			for(int a = 0;a<11;a++)
@@ -469,6 +565,7 @@ class PM_Broken : PMVoidMonsterBase
 		Loop;
 	Railgun:
 	    VDGY F 0 { pm_attackloop = 0; }
+		TNT1 A 0 A_Stop;
 	RailgunLoop:
 	    VDGY FFF random(1,3) Light("ShadowBall3")
 		{
@@ -493,7 +590,7 @@ class PM_Broken : PMVoidMonsterBase
 		{
 		if(random(1,3) == 1)
 		for(int i=random(1,2);i>0;i--)
-		A_SpawnProjectile("PM_BrokenRailSlug",33,5,frandom(-3,3),CMF_OFFSETPITCH,frandom(-2,2));
+		A_SpawnProjectile("PM_BrokenRailSlug",33,5,frandom(-3,3),CMF_OFFSETPITCH,pitch+frandom(-2,2));
 		A_SpawnProjectile("PM_BrokenRailSlug",33,5,random(-1,1));
 		}
 		Goto Watch;
@@ -505,8 +602,8 @@ class PM_Broken : PMVoidMonsterBase
 		if(pm_attackloop >= 10)
 		SetStateLabel("RGSpamEnd");
 		if(random(1,5) == 1)
-		A_SpawnProjectile("PM_BrokenRailSlug",33,5,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-2,2));
-		A_SpawnProjectile("PM_BrokenRailSlug",33,5,random(-1,1),CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_BrokenRailSlug",33,5,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
+		A_SpawnProjectile("PM_BrokenRailSlug",33,5,random(-1,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
 		ThrustThing(random(-360,360),5,0,0);
 		A_FaceTarget(0.7,3,0,0);
 		pm_attackloop++;
@@ -520,6 +617,7 @@ class PM_Broken : PMVoidMonsterBase
 		 vfgcharge = 0; 
 		 A_StartSound("Broken/VFGCharge",CHAN_5,CHANF_OVERLAP);
 		}
+		TNT1 A 0 A_Stop;
 	BFGCharge:
 	    VDGY F 1 Light("BlackLight")
 		{
@@ -596,6 +694,12 @@ class PM_Broken : PMVoidMonsterBase
 
 	XDeath:
 	Death:
+		TNT1 A 0;
+		TNT1 A 0
+			{
+			bFLOAT = False;
+			bNOGRAVITY = False;
+			}
 		TNT1 A 0 A_StopSounds(0,0);
 		TNT1 A 0 A_StartSound("Broken/Die",20);
 		TNT1 A 0 A_NoBlocking;
@@ -605,7 +709,10 @@ class PM_Broken : PMVoidMonsterBase
 		VDGY G 0;
 		"####" "#" 0 A_Jump(256,2);
 		VDGY H 0;
-	
+		"####" "#" 0
+				{
+				 A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: random(1,6),size: frandom(1,80),xoff: frandom(-20,20),yoff: frandom(-20,20),zoff: frandom(10,60),fadestepf: 0,sizestep: 0);
+				}
 		"####" "#" 1 {
 		            if(random(1,30) == 1)
 					A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-30,30),CMF_OFFSETPITCH,random(-20,20));
@@ -703,6 +810,7 @@ Class PM_BrokenBulletTracer : PM_BulletTracer
  Default
  {
  Alpha 1.5;
+ Speed 50;
  }
  States
  {
@@ -734,6 +842,7 @@ Class PM_BrokenPelletTracer : PM_PelletTracer
  {
  RenderStyle "Normal";
  Alpha 1.5;
+ Speed 50;
  }
  States
  {
@@ -774,27 +883,9 @@ Class PM_BrokenPlasmaShot : Actor
   +ROLLSPRITE
   +ROLLCENTER
   +SEEKERMISSILE
-  Renderstyle "Add";
-  Scale 0.15;
-  Alpha 0.20;
- }
- 
- override void Tick()
- {
- Super.Tick();
-  {
-        if(!IsFrozen())
-		{
-         A_SetRoll(random(0,259),SPF_INTERPOLATE);
-	      for(int a = 0;a<2;a++)
-		  {
-		    A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(1,3),size: frandom(20,40),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(-1,1),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
-			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-            A_SpawnParticleEx("ae1717",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,4),size: frandom(15,25),xoff: frandom(-3.5,3.5),yoff: frandom(-3.5,3.5),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.9
-			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
-		  }
-		}
-  }
+  Renderstyle "Subtract";
+  Scale 0.2;
+  Alpha 1;
  }
 
   States
@@ -803,13 +894,19 @@ Class PM_BrokenPlasmaShot : Actor
      TNT1 A 0;
      TNT1 A 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,10),size: frandom(75,90),xoff: -22,startalphaf: -0.5,sizestep: frandom(0.0,3),startroll: random(-180,180)); }
   Go:
-     DTPR RRRR 1 Bright Light("Shadowball");
+     SPKW EEEEE 1 BRIGHT Light("Shadowball")
+	 {
+	 A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("SPKWE0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: 60, xoff: -2, startalphaf: frandom(.95, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
+	 }
      TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
     Loop;
    Noise:
     TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,CHANF_DEFAULT,0.75);
   Cont:
-    DTPR RRRR 1 Bright Light("Shadowball");
+    SPKW EEEE 1 Bright Light("Shadowball")
+	{
+	 A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("SPKWE0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: 60, xoff: -2, startalphaf: frandom(.95, 1), fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-4, 4));
+	 }
 	Loop;
   Death:
 	TNT1 A 0
@@ -831,7 +928,7 @@ Class PM_BrokenRailSlug : Actor
  {
   Radius 6;
   Height 6;
-  Speed 40;
+  Speed 70;
   DamageFunction 30;
   Projectile;
   SeeSound "Broken/Railgun";
