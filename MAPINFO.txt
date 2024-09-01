@@ -73,6 +73,12 @@ DamageType PM_BulletHellDamage
    ReplaceFactor
 }
 
+DamageType PM_BursterExplode
+{
+   Factor = 1.0
+   ReplaceFactor
+}
+
 DamageType PM_InfernalMelee
 {
    Factor = 1.0
