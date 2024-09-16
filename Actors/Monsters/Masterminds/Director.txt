@@ -323,8 +323,9 @@ Class PM_Director : PMUnaffMonsterBase
 		DIRE G 8;
 		Loop;
 	Melee:
+		DIRE G 0 A_StartSound("Nailgunner/Charge",CHAN_WEAPON, pitch: 0.9);
 		DIRE G 1 A_FaceTarget();
-		DIRE G 12;
+		DIRE G 18;
 		DIRE H 2 Light("TyrantFire")
 		{
 			pm_attackloop--;
