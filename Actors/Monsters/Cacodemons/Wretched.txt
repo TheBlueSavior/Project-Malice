@@ -379,7 +379,6 @@ Class PM_WretchedBall : Actor
 	SeeSound "Wretched/Fire";
 	DeathSound "imp/shotx";
 	+FORCEXYBILLBOARD
-	+FORCEXYBILLBOARD
     +ROLLSPRITE
     +ROLLCENTER
 	Decal "PM_DeathSoulScorchMed";

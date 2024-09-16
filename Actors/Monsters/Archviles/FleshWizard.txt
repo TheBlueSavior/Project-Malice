@@ -135,7 +135,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 			let s = spawn("MasonSpawnTable", a.pos);
 			s.angle = random(1, 8) * 45;
 			a.destroy();
-			raiseCoolDown = 1000;
+			raiseCoolDown = 800;
 		}
 		toRaise.clear();
 	}
@@ -182,8 +182,8 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 		LMWZ J 5
 		{
 		 A_SpawnItemEx("PM_MasonPortGeyser",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
-		 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION,200);
+		 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION,200);
 		}
 		LMWZ K 5 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
 		LMWZ L 5 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION);
@@ -289,7 +289,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 			A_FaceTarget();
 			Wiz2();
 		}
-		LMWZ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1
+		LMWZ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1
 		{
 			A_FaceTarget();
 			Wiz2();
@@ -627,7 +627,7 @@ Class PM_MasonRune : ArchvileFire
 		Rune();
 		angle += 5;
 		}
-		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+		C1TE AAAAAAAAAAAAAAAAAAAAAAA 1 Bright
 		{
 		A_Fire();
 		for (int i = random(2, 3); i > 0; i--) Rune();
@@ -645,9 +645,10 @@ Class PM_MasonRune : ArchvileFire
 			A_Explode((60), 90, XF_NOTMISSILE);
 			A_StartSound("FleshMason/RuneExplode");
 		}
-		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
+		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
 		{
-		for (int i = random(2, 3); i > 0; i--) Rune();
+		A_Explode((10), 70, XF_NOTMISSILE);
+		for (int i = random(2, 3); i > 0; i--) Rune(); A_StartSound("PM/GibSplat",38);
 		angle += 15;
 		if (!(GetAge() % 2)) A_SpawnItemEx("PM_TaintedDeathSplash",random(-40,40),random(-40,40),0,0,0,random(3,6));
 		A_SpawnItemEx("PM_MasonGeyser", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5) + 15, frandom(-2, 2), frandom(-2, 2), frandom(6, 12), 0, SXF_NOCHECKPOSITION);
