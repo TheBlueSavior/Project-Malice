@@ -5149,6 +5149,7 @@ $rolloff Exalt/SuperBallExp 500 2600
 $rolloff Exalt/BHShot 400 2400
 $rolloff Exalt/TPStart 500 2600
 $rolloff Exalt/TPEnd 500 2600
+$rolloff Exalt/Active 600 2300
 $limit Exalt/SuperBallExp 8
 $limit Exalt/SuperBall 6
 

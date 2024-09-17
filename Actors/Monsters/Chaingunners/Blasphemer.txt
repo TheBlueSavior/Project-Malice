@@ -1231,7 +1231,7 @@ Class PM_BlashemerBHBall : Actor
    FastSpeed 24;
    Damagefunction 10;
    Scale 1;
-   Alpha 0.9;
+   Alpha 1.0;
    PROJECTILE;
    RenderStyle "Add";
    +BRIGHT
