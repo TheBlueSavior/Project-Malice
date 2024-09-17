@@ -21,7 +21,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
  BloodType "PM_DeathBloodBase";
  BloodColor "Black";
  Species "Mancubus";
- StencilColor "6fa8dc";
+ StencilColor "Blue";
  +DONTHARMSPECIES
  +MissileMore
  MinMissileChance 2000;
