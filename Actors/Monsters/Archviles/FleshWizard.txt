@@ -232,15 +232,24 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 			}
 		LMWZ FGH 5
 		{
+		A_SpawnItemEx("RedGroundStain",random(-8,8),random(-8,8),1,frandom(-1,1),frandom(-1,1),0,0,SXF_NOCHECKPOSITION);
 		A_Wander();
 		A_FaceTarget();
 		}
 	BarrageContinue:
-		LMWZ H random(1, 4)
+		LMWZ HHH 1
+		{
+		A_SpawnItemEx("RedGroundStain",random(-8,8),random(-8,8),1,frandom(-1,1),frandom(-1,1),0,0,SXF_NOCHECKPOSITION);
+		A_SetSpeed(4);
+		A_Wander();
+		A_FaceTarget();
+		}
+		LMWZ H 1
 		{
 			if(!pm_attackloop)
 			  { SetStateLabel("BarrageEnd"); }
 			A_SpawnProjectile("PM_MasonBall", random(50,70), 0, frandom(-4, 4), CMF_AIMDIRECTION, pitch + frandom(-4, 4));
+			A_SpawnItemEx("RedGroundStain",random(-8,8),random(-8,8),1,frandom(-1,1),frandom(-1,1),0,0,SXF_NOCHECKPOSITION);
 			A_Wander();
 			A_FaceTarget();
 		}
@@ -642,16 +651,20 @@ Class PM_MasonRune : ArchvileFire
 	Burst:
 		C1TE A 0
 		{
-			A_Explode((60), 90, XF_NOTMISSILE);
+			A_Explode((60), 80, XF_NOTMISSILE);
 			A_StartSound("FleshMason/RuneExplode");
 		}
 		C1TE AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Bright
 		{
-		A_Explode((10), 70, XF_NOTMISSILE);
-		for (int i = random(2, 3); i > 0; i--) Rune(); A_StartSound("PM/GibSplat",38);
+		for (int i = random(2, 3); i > 0; i--) Rune();
 		angle += 15;
 		if (!(GetAge() % 2)) A_SpawnItemEx("PM_TaintedDeathSplash",random(-40,40),random(-40,40),0,0,0,random(3,6));
 		A_SpawnItemEx("PM_MasonGeyser", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5) + 15, frandom(-2, 2), frandom(-2, 2), frandom(6, 12), 0, SXF_NOCHECKPOSITION);
+		if (!random(0, 7))
+			{
+				A_Explode((8), 70, XF_NOTMISSILE);
+				A_StartSound("PM/GibbySplat",38,CHANF_OVERLAP,0.8,pitch:0.75);
+			}
 		}
 		C1TE A 1 Bright
 		{

@@ -4082,6 +4082,17 @@ $limit PM/GibSplat 4
 $volume PM/GibSplat 0.65
 $rolloff PM/GibSplat 8 765
 
+$random PM/GibbySplat { PM/GibbySplat1 PM/GibbySplat2 PM/GibbySplat3 PM/GibbySplat4 PM/GibbySplat5 PM/GibbySplat6 }
+
+PM/GibbySplat1 "Sounds/Other/PMGibSplat1.ogg"
+PM/GibbySplat2 "Sounds/Other/PMGibSplat2.ogg"
+PM/GibbySplat3 "Sounds/Other/PMGibSplat3.ogg"
+PM/GibbySplat4 "Sounds/Other/PMGibSplat4.ogg"
+PM/GibbySplat5 "Sounds/Other/PMGibSplat5.ogg"
+PM/GibbySplat6 "Sounds/Other/PMGibSplat6.ogg"
+
+$limit PM/GibbySplat 12
+
 PM/GibLand "Sounds/Other/PMGibLand.ogg"
 
 $random PM/BloodHit { PM/BloodHit1 PM/BloodHit2 PM/BloodHit3 PM/BloodHit4 PM/BloodHit5 PM/BloodHit6 PM/BloodHit7 PM/BloodHit8 PM/BloodHit9 }
