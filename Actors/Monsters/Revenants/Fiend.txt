@@ -466,6 +466,7 @@ Class PM_FiendHomingMissile : PMProjectileBase
 	Height 2;
 	DamageFunction 15;
 	Speed 11;
+	FastSpeed 15;
 	Projectile;
 	RenderStyle "Normal";
 	Decal "PM_OrangeFireScorch";
@@ -567,6 +568,7 @@ Class PM_FiendSmallRocket : PMProjectileBase
 	Height 2;
 	DamageFunction (12);
 	Speed 18;
+	FastSpeed 27;
 	Projectile;
 	SeeSound "FiendRocketFire";
 	Decal "PM_OrangeFireScorch";

@@ -106,19 +106,19 @@ Class PM_Wretched : PMUnaffMonsterBase
 			TNT1 A 0 A_Recoil(-0.3);
 			C1C2 ABC 5
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 			}
 			C1C2 D 6 Light("Wretchball2")
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 				A_StartSound("Wretched/Spit",CHAN_7);
 				A_SpawnProjectile("PM_WretchedBall",25);
 			}
 			C1C2 CBA 5 Light("Wretchball4")
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 			}
 			Goto See;
@@ -205,19 +205,19 @@ Class PM_Wretched : PMUnaffMonsterBase
 			TNT1 A 0 A_Jump(30,"StandoffRoar");
 			C1C2 ABC 5
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 			}
 			C1C2 D 6 Light("Wretchball2")
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 				A_StartSound("Wretched/Spit",CHAN_7);
 				A_SpawnProjectile("PM_WretchedBall",25);
 			}
 			C1C2 CBA 5 Light("Wretchball4")
 			{
-				A_Chase();
+				A_Chase(Null,Null);
 				A_FaceTarget();
 			}
 			TNT1 A 0 A_JumpIfCloser(350,"AvoidBack");

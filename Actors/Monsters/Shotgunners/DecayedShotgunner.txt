@@ -275,7 +275,6 @@ Class PM_DecayedShotgunner : PMPestilenceMonsterBase
 	    TNT1 A 0 A_StartSound("GenericShotgunPump");
 	    SPO6 AA 5 A_FaceTarget();
 	    SPO6 BB 5 A_FaceTarget();
-		TNT1 A 0 A_JumpIfCloser(250,"RollCheck");
         Goto See;
 	RollCheck:
 	    TNT1 A 0 A_Jump(256,"RollRight","RollLeft");
