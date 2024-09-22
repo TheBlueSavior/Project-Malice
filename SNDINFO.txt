@@ -5188,6 +5188,14 @@ Sybarite/Charge3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCharge3.ogg"
 Sybarite/Charge4 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCharge4.ogg"
 $pitchset Sybarite/Charge 0.9 1
 
+$random Sybarite/MissileExp { Sybarite/MissileExp1 Sybarite/MissileExp2 Sybarite/MissileExp3 Sybarite/MissileExp4 }
+Sybarite/MissileExp1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileExp1.ogg"
+Sybarite/MissileExp2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileExp2.ogg"
+Sybarite/MissileExp3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileExp3.ogg"
+Sybarite/MissileExp4 "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileExp4.ogg"
+$pitchset Sybarite/MissileExp 0.9 1.1
+$limit Sybarite/MissileExp 12
+
 $random Sybarite/Step { Sybarite/Step1 Sybarite/Step2 Sybarite/Step3 }
 Sybarite/Step1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteStep1.ogg"
 Sybarite/Step2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteStep2.ogg"
@@ -5196,7 +5204,10 @@ Sybarite/Step3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteStep3.ogg"
 Sybarite/Pain "Sounds/Monsters/Chaingunners/Sybarite/SybaritePain.ogg"
 $pitchset Sybarite/Pain 0.85 1.15
 
-Sybarite/Roar "Sounds/Monsters/Chaingunners/Sybarite/SybariteRoar.ogg"
+$random Sybarite/Roar { Sybarite/Roar1 Sybarite/Roar2 Sybarite/Roar3 }
+Sybarite/Roar1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteRoar1.ogg"
+Sybarite/Roar2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteRoar2.ogg"
+Sybarite/Roar3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteRoar3.ogg"
 $pitchset Sybarite/Roar 0.75 1.25
 
 $random Sybarite/Death { Sybarite/Death1 Sybarite/Death2 }
@@ -5207,8 +5218,18 @@ $volume Sybarite/Death1 0.9
 $volume Sybarite/Death2 0.5
 
 Sybarite/Autocannon "Sounds/Monsters/Chaingunners/Sybarite/SybariteAutocannon.ogg"
+Sybarite/MissileLoop "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileLoop.ogg"
+Sybarite/MissileFire "Sounds/Monsters/Chaingunners/Sybarite/SybariteMissileFire.ogg"
 Sybarite/GrenadeLaunch "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeLaunch.ogg"
+Sybarite/Thump "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeThump.ogg"
 Sybarite/SlotIn "Sounds/Monsters/Chaingunners/Sybarite/SybariteSlotIn.ogg"
+Sybarite/Reload1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteReload1.ogg"
+Sybarite/Reload2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteReload2.ogg"
+Sybarite/Reload3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteReload3.ogg"
+
+$rolloff Sybarite/Reload1 200 1700
+$rolloff Sybarite/Reload2 200 1700
+$rolloff Sybarite/Reload3 300 1800
 
 $random Sybarite/GrenadeBounce { Sybarite/GrenadeBounce1 Sybarite/GrenadeBounce2 Sybarite/GrenadeBounce3 }
 Sybarite/GrenadeBounce1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce1.ogg"
@@ -5219,7 +5240,17 @@ $rolloff Sybarite/Charge 400 1200
 $rolloff Sybarite/Roar 350 1200
 $rolloff Sybarite/Sight 300 1200
 $rolloff Sybarite/SlotIn 300 2200
-$rolloff Sybarite/GrenadeLaunch 500 2500
+$rolloff Sybarite/MissileFire 200 2800
+$pitchset Sybarite/MissileFire 1.1 1.2
+$limit Sybarite/MissileFire 12
+$rolloff Sybarite/GrenadeLaunch 800 2800
+$pitchset Sybarite/GrenadeLaunch 0.9 1.1
+$volume Sybarite/Thump 0.9
+$limit Sybarite/MissileLoop 12
+$rolloff Sybarite/MissileLoop 300 1400
+$pitchset Sybarite/MissileLoop 0.9 1.1
+$rolloff Sybarite/Thump 200 1300
+$pitchset Sybarite/Thump 0.9 1.05
 $rolloff Sybarite/Autocannon 500 2500
 $limit Sybarite/GrenadeBounce 8
 /*$volume Sybarite/SlotIn 0.45
