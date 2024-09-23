@@ -70,6 +70,7 @@ Class PM_Sybarite : PMLustMonsterBase
     TNT1 A 0 A_StartSound("Sybarite/Sight",CHAN_VOICE);
   See:
 	TNT1 A 0 { bMissileEvenMore = False; }
+	TNT1 A 0 { bNOPAIN = False; }
 	TNT1 A 0 A_SetSpeed(10);
 	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6,attenuation:0.7);
     SY_A AABB 3
@@ -146,7 +147,8 @@ Class PM_Sybarite : PMLustMonsterBase
 	TNT1 A 0 A_JumpIfCloser(250,"Charging");
 	TNT1 A 0 A_StartSound("Sybarite/Charge",CHAN_VOICE);
   Charging:
-	TNT1 A 0 A_SetSpeed(13);
+	TNT1 A 0 { bNOPAIN = True; }
+	TNT1 A 0 A_SetSpeed(15);
 	TNT1 A 0 A_StartSound("Sybarite/Step",CHAN_6,CHANF_OVERLAP,0.5);
     SY_A AABB random(2,3)
 	{

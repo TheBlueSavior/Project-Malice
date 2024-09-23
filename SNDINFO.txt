@@ -5237,8 +5237,8 @@ Sybarite/GrenadeBounce2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBo
 Sybarite/GrenadeBounce3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce3.ogg"
 
 $rolloff Sybarite/Charge 400 1200
-$rolloff Sybarite/Roar 350 1200
-$rolloff Sybarite/Sight 300 1200
+$rolloff Sybarite/Roar 300 1600
+$rolloff Sybarite/Sight 200 1700
 $rolloff Sybarite/SlotIn 300 2200
 $rolloff Sybarite/MissileFire 200 2800
 $pitchset Sybarite/MissileFire 1.1 1.2
