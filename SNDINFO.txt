@@ -5175,6 +5175,14 @@ Sybarite/Sight5 "Sounds/Monsters/Chaingunners/Sybarite/SybariteSight5.ogg"
 Sybarite/Sight6 "Sounds/Monsters/Chaingunners/Sybarite/SybariteSight6.ogg"
 $pitchset Sybarite/Sight 0.9 1
 
+$random Sybarite/Capture { Sybarite/Capture1 Sybarite/Capture2 Sybarite/Capture3 Sybarite/Capture4}
+Sybarite/Capture1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCapture1.ogg"
+Sybarite/Capture2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCapture2.ogg"
+Sybarite/Capture3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCapture3.ogg"
+Sybarite/Capture4 "Sounds/Monsters/Chaingunners/Sybarite/SybariteCapture4.ogg"
+$pitchset Sybarite/Capture 0.9 1.1
+$rolloff Sybarite/Capture 200 1700
+
 $random Sybarite/Active { Sybarite/Active1 Sybarite/Active2 Sybarite/Active3 }
 Sybarite/Active1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteActive1.ogg"
 Sybarite/Active2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteActive2.ogg"
@@ -5235,6 +5243,17 @@ $random Sybarite/GrenadeBounce { Sybarite/GrenadeBounce1 Sybarite/GrenadeBounce2
 Sybarite/GrenadeBounce1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce1.ogg"
 Sybarite/GrenadeBounce2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce2.ogg"
 Sybarite/GrenadeBounce3 "Sounds/Monsters/Chaingunners/Sybarite/SybariteGrenadeBounce3.ogg"
+
+$random Sybarite/NetShock { Sybarite/NetShock1 Sybarite/NetShock2 }
+Sybarite/NetShock1 "Sounds/Monsters/Chaingunners/Sybarite/SybariteNetShock1.ogg"
+Sybarite/NetShock2 "Sounds/Monsters/Chaingunners/Sybarite/SybariteNetShock2.ogg"
+
+$pitchset Sybarite/NetShock 0.8 1.2
+
+Sybarite/NetCharge "Sounds/Monsters/Chaingunners/Sybarite/SybariteNetCharge.ogg"
+Sybarite/NetFire "Sounds/Monsters/Chaingunners/Sybarite/SybariteNetFire.ogg"
+$rolloff Sybarite/NetCharge 600 1800
+$rolloff Sybarite/NetFire 600 2000
 
 $rolloff Sybarite/Charge 400 1200
 $rolloff Sybarite/Roar 300 1600
