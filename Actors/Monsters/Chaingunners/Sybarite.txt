@@ -129,7 +129,12 @@ Class PM_Sybarite : PMLustMonsterBase
   Capturing:
 	SY_A EEEEE 1 A_FaceTarget();
 	SY_A E 0 A_StartSound("Sybarite/NetCharge",32);
-	SY_A EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1 A_FaceTarget();
+	SY_A EEEEEEEE 4
+		{
+		A_FaceTarget();
+		A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 5
+		, size: 70, xoff: 20,yoff:10,zoff:32, startalphaf: 1, fadestepf: 0, sizestep: -8,startroll: random(-180,180));
+		}
 	SY_A F 5
 		{
 		A_FaceTarget();
