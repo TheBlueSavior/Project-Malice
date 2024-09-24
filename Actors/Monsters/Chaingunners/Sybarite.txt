@@ -690,19 +690,20 @@ Class PM_SybariteNetted : PowerSpeed
 		Powerup.Color "00 00 00", .3;
 		+POWERSPEED.NOTRAIL;
 	}
-	
 	Override void DoEffect()
 	{
 		Super.DoEffect();
-		if(owner && owner.health)
-		{
 		if(owner.health > 0 && !IsFrozen())
+		{
 			owner.A_SpawnParticleEx("",TexMan.CheckForTexture("BLULA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(2,4),size: random(5,90),xoff: random(-30,30),yoff: random(-30,30), zoff: random(0,60), velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: frandom(0.0,0.9),startroll: random(-180,180),rollvel: frandom(-30,30));
-		if (!random(0, 30))
+			if(!random(0, 30))
 			{
 			owner.A_Explode(5,10,damagetype:"Electric");
+			if(owner && owner.health > 0 && !IsFrozen())
+			{
 			owner.A_SpawnProjectile("PM_ConduitBeamWarning",70,random(-50,50),random(-180,180),CMF_OFFSETPITCH,random(90,70));
-			owner.A_StartSound("Sybarite/NetShock",38,CHANF_OVERLAP,0.8,pitch:frandom(0.8,1.2));
+			owner.A_StartSound("Sybarite/NetShock",100,CHANF_OVERLAP,0.8,pitch:frandom(0.8,1.2));
+			}
 			}
 		}
 	}
