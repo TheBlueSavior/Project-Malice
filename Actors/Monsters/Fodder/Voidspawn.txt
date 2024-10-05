@@ -60,54 +60,84 @@ Class PM_Voidspawn : PMVoidMonsterBase
   Spotted:
 	TNT1 A 0;
 	TNT1 A 0 { bNOCLIP = true; }
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+	TNT1 A 0 A_SetSpeed(20);
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
 	TNT1 A 0 A_StartSound("VoidSpawn/Sight",5);
   See:
 	TNT1 A 0 A_StartSound("Voidspawn/Search",6,CHANF_LOOPING);
 	Goto Chase;
   Chase:
 	TNT1 A 0 A_StopSound(7);
+	TNT1 A 0 A_SetRenderStyle(1,STYLE_Normal);
 	TNT1 A 0 { bNOCLIP = true; }
-	TNT1 A 0 A_SetSpeed(random(5,8));
-    VFOD AABB random(0,4) Fast
+	TNT1 A 0 { bINVISIBLE = false; }
+	TNT1 A 0 A_SetSpeed(random(5,10));
+    VFOD AABB random(0,5) Fast
 	{
 	A_Chase();
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 	}
-	VFOD CCDD random(0,4) Fast
+	VFOD CCDD random(0,5) Fast
 	{
 	A_Chase();
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 	}
 	TNT1 A 0 A_Jump(17,"Wanderport","WanderportShort","BurstChase","Spaz","TeleTo","Run");
 	TNT1 A 0 A_Jump(12,"Spaz","BurstChase","Wanderport","TeleTo","Run");
-	TNT1 A 0 A_JumpIfCloser(340,"Charge");
+	TNT1 A 0 A_JumpIfCloser(500,"Charge");
+	TNT1 A 0 A_CheckSight("MoveCloser");
     Loop;
   Run:
 	TNT1 A 0 A_StopSound(7);
 	TNT1 A 0 { bNOCLIP = true; }
-	TNT1 A 0 A_SetSpeed(random(5,10));
+	TNT1 A 0 A_SetSpeed(random(5,14));
 	TNT1 A 0 A_Recoil(frandom(0.2,-2));
 	TNT1 A 0 ThrustThing(random(0,360),random(1,2));
-	VFOD AABB random(0,2)
+	VFOD AABB random(0,10)
 	{
 	A_Chase();
+	bINVISIBLE = random(false,true);
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 	}
 	TNT1 A 0 A_Recoil(frandom(0.2,-2));
 	TNT1 A 0 ThrustThing(random(0,360),random(1,2));
-	VFOD CCDD random(0,2)
+	VFOD CCDD random(0,10)
+	{
+	A_Chase();
+	bINVISIBLE = random(false,true);
+	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+	}
+	TNT1 A 0 A_Jump(10,"Chase","Wanderport","WanderportShort","BurstChase","Spaz","TeleTo");
+	TNT1 A 0 A_Jump(5,"Chase","Spaz","BurstChase","Wanderport","TeleTo");
+	TNT1 A 0 A_CheckSight("MoveCloser");
+	Loop;
+  MoveCloser:
+	TNT1 A 0 A_JumpIfCloser(500,"See");
+	TNT1 A 0 A_Jump(190,"See");
+  MovingCloser:
+	TNT1 A 0 A_StopSound(7);
+	TNT1 A 0 { bNOCLIP = true; }
+	TNT1 A 0 A_SetSpeed(12);
+    VFOD AABB 1 Fast
+	{
+	A_Chase();
+	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+	}
+	VFOD CCDD 1 Fast
 	{
 	A_Chase();
 	A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
 	}
 	TNT1 A 0 A_Jump(10,"Chase","Wanderport","WanderportShort","BurstChase","Spaz","TeleTo");
-	TNT1 A 0 A_Jump(5,"Chase","Spaz","BurstChase","Wanderport","TeleTo");
-	Loop;
-  Charge:
-	TNT1 A 0 A_Jump(220,"Chase");
-	TNT1 A 0 A_JumpIfCloser(340,1);
+	TNT1 A 0 A_CheckSight("MovingCloser");
 	Goto See;
+  Charge:
+	TNT1 A 0 { bINVISIBLE = false; }
+	TNT1 A 0 A_Jump(220,"Chase");
+	TNT1 A 0 A_CheckSight("See");
+	TNT1 A 0 A_JumpIfCloser(500,"ChargeGo");
+	Goto See;
+  ChargeGo:
 	VFOD HHH 4 A_FaceTarget();
 	TNT1 A 0 A_SetSpeed(12);
 	Goto JumpLoop;
@@ -184,10 +214,11 @@ Class PM_Voidspawn : PMVoidMonsterBase
 	TNT1 A 0 A_Jump(150,"Chase");
 	Loop;
   Melee:
+	TNT1 A 0 { bINVISIBLE = false; }
     Goto Scream;
   Scream:
 	TNT1 A 0 A_StopSound(6);
-	VFOD NNNNNN 5 A_FaceTarget();
+	VFOD NNNNNNNN 5 A_FaceTarget();
 	VFOD A 0 A_StartSound("Voidspawn/Scream",3,volume:0.4);
 	VFOD OOOOOOOOOOOOOOOOOOO 2
 	{
@@ -201,12 +232,14 @@ Class PM_Voidspawn : PMVoidMonsterBase
 	Goto See;
   Pain:
 	TNT1 A 0 A_StopSound(7);
+	TNT1 A 0 { bINVISIBLE = false; }
     VFOD H 4;
     VFOD H 4 A_Pain;
 	TNT1 A 0 A_Jump(100,"See");
     Goto Chase;
   XDeath:
     TNT1 A 0;
+	TNT1 A 0 { bINVISIBLE = false; }
 	TNT1 A 0 A_StopSound(5);
     TNT1 A 0 A_StopSound(6);
     TNT1 A 0 A_StopSound(7);
@@ -229,6 +262,7 @@ Class PM_Voidspawn : PMVoidMonsterBase
 	TNT1 A 0 A_SpawnProjectile("VoidSpawnFlee",1,0,random(-170,170));
     Stop;
   Death:
+	TNT1 A 0 { bINVISIBLE = false; }
 	TNT1 A 0 A_StopSound(5);
 	TNT1 A 0 A_StopSound(7);
     VFOD M 1 A_Scream;
