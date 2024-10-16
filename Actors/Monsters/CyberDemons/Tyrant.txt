@@ -238,7 +238,7 @@ Class PM_Tyrant : PMUnaffMonsterBase
   Missile0: //13 rockets
 	TNT1 A 0 { bNOPAIN = true; }
 	TNT1 A 0 { pm_attackloop = 0; }
-	DUKE EEE 3 A_FaceTarget();
+	DUKE EEEEEE 3 A_FaceTarget();
   Mis0Loop:
 	DUKE F 2 Light("TyrantFire")
 		{
@@ -744,8 +744,8 @@ Class PM_TyrantTankShell : RevenantTracer
 	Radius 13;
 	Height 13;
 	Scale 1.25;
-	DamageFunction (50);
-	Speed 45;
+	DamageFunction (100);
+	Speed 60;
 	Projectile;
 	+RANDOMIZE
 	SeeSound "";
@@ -790,7 +790,7 @@ Class PM_TyrantTankShell : RevenantTracer
 	Death:
 		TNT1 A 0 
 		{
-		  A_Explode(45,175);
+		  A_Explode(50,200);
 		  Radius_Quake (5, 54, 0, 25, 0);
 		}
 		TNT1 A 0 A_StartSound("BigExplosionDistant", CHAN_7);
@@ -864,7 +864,7 @@ Class TyrantHeavyRocket : RevenantTracer
 		}
 		TNT1 A 0 A_StartSound("FastMissileFlyby",24,CHANF_DEFAULT,0.90,ATTN_NORM,frandom(0.7,0.9));
 		TNT1 A 0 A_StartSound("Draugr/RocketLaunch",CHAN_6,CHANF_LOOPING,1.0);
-		TNT1 A 0 A_ScaleVelocity(4.5);
+		TNT1 A 0 A_ScaleVelocity(5.5);
 	Go:
 		TYM1 AAABBB 1 BRIGHT Light("AvatarFireball4") 
 		{
@@ -876,7 +876,7 @@ Class TyrantHeavyRocket : RevenantTracer
 	Death:
 		TNT1 A 0 
 		{
-		A_Explode(30,175);
+		A_Explode(50,200);
 		Radius_Quake (2, 54, 0, 25, 0);
 		}
 		TNT1 A 0 A_StopSound(CHAN_6);
@@ -898,7 +898,7 @@ Class PM_TyrantStreamRocket : PMProjectileBase
 	Height 3;
 	Scale 1;
 	DamageFunction (35);
-	Speed 20;
+	Speed 30;
 	Projectile;
 	+RANDOMIZE
 	RenderStyle "Normal";

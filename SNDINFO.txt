@@ -4313,6 +4313,7 @@ $rolloff DEmi/Attack 500 1800
 DEmi/Windup "Sounds/Monsters/Barons/DeathEmissary/DEmiWindup.ogg"
 DEmi/Fire "Sounds/Monsters/Barons/DeathEmissary/DEmiFire.ogg"
 DEmi/Gunloop "Sounds/Monsters/Barons/DeathEmissary/DEmiGunLoop.ogg"
+$rolloff DEmi/Gunloop 400 2200
 $volume DEmi/Fire 0.75
 $rolloff DEmi/Fire 400 2200
 $rolloff DEmi/Windup 400 2200
@@ -5569,6 +5570,7 @@ Warforge/Sniper4 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper4.ogg"
 Warforge/Sniper5 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper5.ogg"
 
 $rolloff Warforge/Sniper 300 2500
+$rolloff Warforge/GrenadeCharge 300 2500
 
 //Landrazer
 
