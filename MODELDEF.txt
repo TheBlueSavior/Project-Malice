@@ -23,19 +23,6 @@ Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 
-Model PM_RevolverTracer
-{ 
-Path "Models"
-Skin 0 "malicetracer1.tga"
-Model 0 "Tracer.md3"
-Scale 1.0 1.0 0.8
-PITCHFROMMOMENTUM
-ROTATING
-Rotation-Vector 1.0 0.0 0.0
-Rotation-Speed 15.0
-FrameIndex TRCR A 0 0
-}
-
 Model PM_RFZombieLaser
 { 
 Path "Models"
@@ -55,6 +42,19 @@ Skin 0 "malicetracer2.tga"
 Model 0 "Tracer.md3"
 Scale 0.4 0.4 0.4
 PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_RevolverTracer
+{ 
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 1.0 1.0 0.8
+PITCHFROMMOMENTUM
+ROTATING
 Rotation-Vector 1.0 0.0 0.0
 Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
@@ -275,6 +275,32 @@ PITCHFROMMOMENTUM
 ROTATING
 Rotation-Vector 1.0 0.0 0.0
 Rotation-Speed 20.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_KurganStreamLaser
+{ 
+Path "Models"
+Skin 0 "malicedirbeam.png"
+Model 0 "Tracer.md3"
+Scale 0.7 1.0 1.0
+PITCHFROMMOMENTUM
+ROTATING
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_KurganLaserCannonShot
+{ 
+Path "Models"
+Skin 0 "malicetracer2.png"
+Model 0 "Tracer.md3"
+Scale 1.5 3.0 3.0
+PITCHFROMMOMENTUM
+ROTATING
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 

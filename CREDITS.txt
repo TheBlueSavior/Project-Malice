@@ -43,7 +43,7 @@ Supercharge - Fusionite projectiles, Tortured Soul, Gibs, Shotgunner Sprites
 Dusted - Inspiraton from Mauler code and beam loops
 Skelegant, David G. - Heavy Carbine Zombie
 Faerlyn - Hard-Doom Shotgunner sprites
-DrPyspy - Hellified Soldier
+DrPyspy - Hellified Soldier, Kurgan sprites
 Eradrop - Skull Zombie sprites from Avactor
 A_D_M_I_R_A_L/EVP - Missile sprites
 SpacemanStrife and Eradrop - Skull Shotgunner sprites, Arachnobone, Abhorrent

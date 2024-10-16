@@ -163,6 +163,7 @@ version "4.11.3"
 
 //Bosses
 #include "Actors/Monsters/CyberDemons/Tyrant.txt"
+#include "Actors/Monsters/CyberDemons/Kurgan.txt"
 #include "Actors/Monsters/Masterminds/Director.txt"
 #include "Actors/Monsters/Masterminds/EntropicAvatar.txt"
 

@@ -1,0 +1,495 @@
+Class PM_Kurgan : PMUnaffMonsterBase
+{
+  protected int rage;
+  
+  Default
+  {
+  PMMonsterBase.CodexLore
+  "text here";
+  Health 4000;
+  Radius 40;
+  Height 110;
+  Speed 18;
+  PainChance 3;
+  Scale 1.1;
+  MeleeRange 300;
+  Mass 1000;
+  MinMissileChance 160;
+  Species "Cyberdemon";
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +DONTRIP
+  +BOSS
+  +BOSSDEATH
+  +FLOORCLIP
+  +NOFEAR
+  +NORADIUSDMG
+  +DONTMORPH
+  +MISSILEevenMORE
+  Obituary "%o was outclassed by a Kurgan.";
+  BloodType "PM_NormalTyrantBloodBase";
+  Tag "Kurgan";
+  SeeSound "Kurgan/Sight";
+  PainSound "Kurgan/Pain";
+  DeathSound "Kurgan/Pain1";
+  ActiveSound "Kurgan/Active";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_DemonicTeleportFog";
+  }
+
+	void PM_KurganVoice(sound whattoplay = "None", bool force = false)
+	{
+	 if(CountInv("PM_ExaltVoiceCD") && force == false) return;
+	 if(whattoplay == "None") A_StartSound("Kurgan/Attack",16,attenuation:0.7);
+	 else A_StartSound(whattoplay,16,attenuation:0.3);
+	 A_GiveInventory("PM_ExaltVoiceCD");
+	}
+	
+  States
+  {
+  Spawn:
+    U_KG A 0 NoDelay { rage = 0; }
+  Idle:
+	U_KG A 10 PM_Look();
+	Loop;
+  Look:
+    TNT1 A 0 A_Quake(1, 3, 0, 412);
+	TNT1 A 0 A_StartSound("Kurgan/Step",CHAN_5,flags:CHANF_OVERLAP);
+	U_KG B 4 PM_LookingForPlayer();
+	U_KG BBCC 4 PM_LookingForPlayer();
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_Quake(1, 3, 0, 412);
+	TNT1 A 0 A_StartSound("Kurgan/Step",CHAN_5,flags:CHANF_OVERLAP);
+	U_KG DD 4 PM_LookingForPlayer();
+    U_KG DEE 4 PM_LookingForPlayer();
+	Loop;
+   Roar:
+	 TNT1 A 0 PM_AlertSound();
+	 Goto See;
+   Spotted:
+    //TNT1 A 0 A_Jump(45,"Roar");
+    U_KG AAAAAA 4 A_FaceTarget();
+	TNT1 A 0 PM_AlertSound();
+	U_KG FFFFFFFFFFF 4 A_FaceTarget();
+	U_KG AAAAA 3 A_FaceTarget();
+   See:
+    TNT1 A 0 { bNOPAIN = false; }
+    TNT1 A 0 A_Quake(1, 3, 0, 412);
+	TNT1 A 0 A_StartSound("Kurgan/Step",CHAN_5,flags:CHANF_OVERLAP);
+	U_KG B 4 A_Chase("Melee","Missile");
+	U_KG BBCC 4 A_Chase("Melee","Missile");
+	TNT1 A 0 A_Quake(1, 3, 0, 412);
+	TNT1 A 0 A_StartSound("Kurgan/Step",CHAN_5,flags:CHANF_OVERLAP);
+	U_KG DD 4 A_Chase("Melee","Missile");
+    U_KG DEE 4 A_Chase("Melee","Missile");
+	TNT1 A 0 A_Jump(25,"DodgeLR");
+	Loop;
+ DodgeBack:
+	TNT1 A 0 { bNODROPOFF = true; }
+	U_KG U 1 A_FaceTarget();
+	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7,volume:0.75,pitch:1.35);
+	U_KG U 0 A_Recoil(35);
+	U_KG UUUUUUUUUVVVVVVVVVVVV 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("PM_OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	U_KG VV 2 
+	   {
+	    A_Stop();
+	    A_FaceTarget();
+	   }
+	U_KG FF 2 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	Goto LaserBarrage;
+  DodgeLR:
+	TNT1 A 0 { bNODROPOFF = true; }
+	U_KG R 5 
+	   {
+	    if(!random(0,1))
+		 A_SetAngle(-45);
+		else
+		 A_SetAngle(45);
+	  }
+	U_KG S 3;
+	TNT1 A 0 A_StartSound("Tyrant/Dodge",CHAN_7,volume:0.75,pitch:1.35);
+	U_KG T 0 A_Recoil(-40);
+	U_KG TTTTTTTTTTTTTTTTTTTTT 1
+	{
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	A_SpawnItemEx("PM_OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	A_SpawnItemEx("PM_OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	U_KG UUVV 2 A_Stop();
+	U_KG FF 2 A_FaceTarget();
+	TNT1 A 0 { bNODROPOFF = false; }
+	Goto See;
+  Melee:
+    TNT1 A 0 A_Jump(95,"BlastChargeCheck");
+    TNT1 A 0 A_Jump(75,"DodgeBack");
+  Plasmastream:
+	TNT1 A 0 
+	   { 
+	   bNOPAIN = true;
+	   PM_KurganVoice("Kurgan/Talk");
+	   }
+	TNT1 A 0 { pm_attackloop = random(-10,-15); }
+	TNT1 A 0 A_StartSound("Kurgan/PCharge",20,pitch:1.15);
+	U_KG FFFFFFFFFFFFFFFFFFFFFFFFFFF 2 
+	   {
+	    A_FaceTarget(360,180);
+		A_SetPitch(pitch+random(-5,75));
+        A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,300), size: frandom(85,230), xoff: frandom(28,30),yoff: frandom(-35,-45),zoff: frandom(-3.5,3.5) + 68, startalphaf: 0.3, fadestepf: -1, startroll: random(-180,180));
+		A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(5,35), size: random(5,65), xoff: frandom(28,30),yoff: frandom(-36,-40),zoff: frandom(-9.5,9.5) + 68, velx: frandom(1,14), vely: random(-6,6), velz: random(-3,20), accelz: -0.5, startalphaf: 0.9, fadestepf: -1, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
+	   }
+    TNT1 A 0 A_StartSound("Kurgan/PFireStart",21);
+  PlasmastreamLoop:
+	U_KG F 1 Bright Light("ShadowBall2")
+		{
+		A_StartSound("Kurgan/PFireLoop",20,CHANF_LOOPING,pitch:frandom(0.95,1.25));
+		for(int i=random(2,4);i>0;i--)
+		 A_SpawnProjectile("PM_KurganPlasmastream",55,-25,frandom(-5,5),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-4,4));
+		A_FaceTarget(5,5);
+		}
+	U_KG F 1 Bright
+	    {
+		if(pm_attackloop >= 45 || Distance3D(target) > 800)
+		{ return ResolveState("PlasmastreamEnd"); }
+	    A_FaceTarget(3,3);
+		pm_attackloop++;
+		return ResolveState(null);
+		}
+	Loop;
+	PlasmastreamEnd:
+	TNT1 A 0 A_StopSound(20);
+	TNT1 A 0 A_StartSound("Kurgan/PFireEnd",20);
+	U_KG FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
+	   {
+	    A_SpawnParticleEx("b52e25", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(5,65), size: random(55,75), xoff: frandom(28,30),yoff: frandom(-36,-40),zoff: frandom(-9.5,9.5) + 68, velx: frandom(1,4), vely: random(-2,2), velz: random(-3,6), accelz: 0.75, startalphaf: frandom(0.45,0.85), fadestepf: -1, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
+	    A_FaceTarget(3,3,0,0);
+	   }
+	TNT1 A 0 A_JumpIf(!random(0,1) && Distance3D(target) < 500,"DodgeBack");
+	Goto See;
+  Missile:
+    TNT1 A 0 A_Jump(76,"BlastChargeCheck");
+    TNT1 A 0 A_Jump(56,"LaserCannon");
+  LaserBarrage:
+	TNT1 A 0 { bNOPAIN = true; }
+	TNT1 A 0 { pm_attackloop = random(-7,-3); }
+	TNT1 A 0 A_StartSound("Aranea/ArcCharge",20,volume:0.8,pitch:0.85);
+	U_KG FFFFFFFFFFFFFFFF 2 
+	   {
+	    A_FaceTarget(360,180);
+		A_SetPitch(pitch+random(-5,45));
+        A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,100), size: frandom(85,230), xoff: frandom(28,30),yoff: frandom(-35,-45),zoff: frandom(-3.5,3.5) + 68, startalphaf: 0.3, fadestepf: -1, startroll: random(-180,180));
+		A_SpawnParticleEx("", TexMan.CheckForTexture("REDLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,4), size: random(5,350), xoff: frandom(28,30),yoff: frandom(-36,-40),zoff: frandom(-9.5,9.5) + 68, velx: random(-6,6), vely: random(-6,6), velz: random(-6,6), startalphaf: 0.9, fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
+	   }
+  LBarrageLoop:
+	U_KG F 2 Bright Light("ShadowBall2")
+		{
+		A_StartSound("Aranea/ArcFire",20,CHANF_OVERLAP,pitch:frandom(0.95,1.25));
+		A_SpawnProjectile("PM_KurganStreamLaser",55,-25,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-1,1));
+		A_FaceTarget(3,3);
+		}
+	U_KG F 1 Bright
+	    {
+		if(pm_attackloop >= 30)
+		{ return ResolveState("LBarrageEnd"); }
+	    A_FaceTarget(3,3);
+		pm_attackloop++;
+		return ResolveState(null);
+		}
+	Loop;
+	LBarrageEnd:
+	U_KG FFFFFF 2 A_FaceTarget(3,3,0,0);
+	TNT1 A 0 A_Jump(60,"DodgeLR");
+	Goto See;
+  LaserCannon:
+	TNT1 A 0 
+	   { 
+	   bNOPAIN = true;
+	   PM_KurganVoice();
+	   }
+	TNT1 A 0 { pm_attackloop = random(-2,0); }
+	TNT1 A 0 
+	   {
+	    A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: 120, size: 560, xoff: frandom(28,30),yoff: frandom(-35,-45),zoff: frandom(-3.5,3.5) + 68, startalphaf: 0.7, fadestepf: -1, sizestep: -26, startroll: random(-180,180), rollvel: random(-30,30));
+	    A_StartSound("Kurgan/LCharge",20);
+	   }
+	U_KG FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 2 
+	   {
+	    A_FaceTarget(360,180);
+        A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,100), size: frandom(85,230), xoff: frandom(28,30),yoff: frandom(-35,-45),zoff: frandom(-3.5,3.5) + 68, startalphaf: 0.3, fadestepf: -1, startroll: random(-180,180));
+	   }
+  LCannonLoop:
+	U_KG F random(20,24) Bright Light("ShadowBall2")
+		{
+		A_StartSound("Kurgan/LFire",20,CHANF_OVERLAP,pitch:frandom(0.95,1.25));
+		A_SpawnProjectile("PM_KurganLaserCannonShot",55,-25,random(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-1,1));
+		A_FaceTarget(0.8,0.8);
+		}
+	U_KG F 1 Bright
+	    {
+		if(pm_attackloop >= 3)
+		{ return ResolveState("PlasmastreamEnd"); }
+	    A_FaceTarget(0.8,0.8);
+		pm_attackloop++;
+		return ResolveState(null);
+		}
+	Loop;
+  BlastChargeCheck:
+    TNT1 A 0 A_JumpIfHigherorLower("LaserBarrage","LaserBarrage");
+	TNT1 A 0 A_JumpIf(Distance3D(target) > 900,"LaserBarrage");
+  BlastCharge:
+    TNT1 A 0 
+	 {
+	  bNOPAIN = true;
+	  PM_KurganVoice("Kurgan/Laugh");
+	  A_StartSound("Bruiser/LeapCharge",20,pitch:1.25);
+	  A_FaceTarget(180,360);
+	 }
+    U_KG RRRRRRRRRRRRRRRRRRSSSSSSSSSSSSSSSSSSSSSS 1
+	{
+	 A_FaceTarget(0.8,0.8);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	}
+	TNT1 A 0 
+	{
+	 A_ChangeVelocity(35,0,5,CVF_RELATIVE|CVF_REPLACE);
+	 A_StartSound("BigExplosionDistant",13,CHANF_OVERLAP);
+	 A_StartSound("Tyrant/ShellExplode",14,volume:0.6,CHANF_OVERLAP,pitch:0.65);
+	 A_SpawnParticleEx
+	    ( "", TexMan.CheckForTexture("LENRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+	    lifetime: 8, size: 750, zoff: 50, startalphaf: 1, startroll: random(-180,180) );
+	 A_SpawnParticleEx
+	    ( "", TexMan.CheckForTexture("BLHDA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+	    lifetime: 20, size: 900, zoff: 60, startalphaf: 1, fadestepf: -1, sizestep: -25,
+        startroll: random(-180,180) );
+	}
+	U_KG TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1
+	{
+	     A_SpawnParticleEx("", TexMan.CheckForTexture("LENRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 8, size: 400, zoff: 50, startalphaf: 1, startroll: random(-180,180) );
+	     A_SpawnParticleEx("", TexMan.CheckForTexture("GNSMK0"), STYLE_Normal, SPF_RELATIVE|SPF_ROLL, random(55, 90), frandom(55,75), yoff:frandom(-20,20), zoff:35, velx: frandom(-5,5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), accelz: 0.01, startalphaf: frandom(0.65,1), fadestepf: -1, sizestep: 2, startroll:random(-180,180));
+		 A_SpawnParticleEx("", TexMan.CheckForTexture("GNSML0"), STYLE_ADD, SPF_RELATIVE|SPF_ROLL, random(45, 60), frandom(55,75), yoff:frandom(-20,20), zoff: random(1,15), velx: frandom(-5,5), vely: frandom(-0.5, 0.5), velz: frandom(-0.5, 0.5), accelz: 0.01, startalphaf:frandom(0.65,1), fadestepf: -1, sizestep: 2, startroll:random(-180,180));
+	 for (int i = random(1, 3); i > 0; i--)
+		A_SpawnParticleEx("", TexMan.CheckForTexture("DUSTC0"), STYLE_NORMAL, SPF_ROLL||SPF_RELATIVE, random(90, 95), random(5,20), 0, frandom(-20, 20), frandom(-20, 20), 10, velx: frandom(-9, 9), vely: frandom(-9, 9), velz: frandom(1, 20), accelz: -0.5, sizestep: -0.05, startroll:frandom(-180,180));
+	 if(target && Distance3D(target) < 80 || vel.x == 0 && vel.y == 0) SetStateLabel("BlastChargeHit");
+	 A_Recoil(-2.5);
+	 A_FaceTarget(1.2,1.2);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);	 A_SpawnItemEx("PM_OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	 A_SpawnItemEx("PM_OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 0 A_Stop();
+	U_KG UUUUUUUUUUUUUUUVVVVVVVVVVVVVVV 1
+	{
+	 A_Recoil(-0.65);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	 A_SpawnItemEx("PM_OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	Goto See;
+  BlastChargeHit:
+    U_KG T 2 A_FaceTarget(30,180);
+	U_KG U 1
+	{
+	 A_FaceTarget(20,180);
+	 A_CustomBulletAttack(0,0,1,65,"PM_KurganChargeHit",80,CBAF_NORANDOM|CBAF_AIMFACING);
+	}
+	U_KG UUUUUUUUUUUUUUUVVVVVVVVVVVVVVV 1
+	{
+	 A_Recoil(-0.65);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_TyrantBoosterGlobs",-20,-25,85,0,0,-3,0,128);
+	 A_SpawnItemEx("PM_OrangeEmbers",0,40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	 A_SpawnItemEx("PM_OrangeEmbers",0,-40,5,random(-5,5),random(-5,5),random(1,8),0,SXF_NOCHECKPOSITION);
+	}
+	Goto See;
+  Pain:
+    U_KG H 10 A_Pain;
+    Goto See;
+  Death: 
+    TNT1 A 0 A_Scream();
+	U_KD AABBCCDDEE 5;
+	U_KD FFGHIJKLMNOP 2;
+    U_KD P -1 A_BossDeath;
+	Stop;
+  }
+}
+
+Class PM_KurganChargeHit : Actor
+{
+  Default
+  {
+  +NOBLOCKMAP;
+  +NOGRAVITY;
+  +PUFFONACTORS;
+  +BLOODLESSIMPACT;
+  +PUFFGETSOWNER;
+  -ALLOWPARTICLES;
+  ProjectileKickback 1200;
+  Damagetype "Cyberdemons";
+  SeeSound "Kurgan/Crash";
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 10;
+	Stop;
+	}
+}
+
+Class PM_KurganStreamLaser : PM_CataclysmLaser
+{
+	Default
+	{
+		Radius 12;
+		Speed 56;
+		FastSpeed 64;
+		Scale 1.15;
+		SeeSound "";
+		DeathSound "DTech/Exp";
+		DamageType "Plasma";
+		DamageFunction 20;
+		-NEVERFAST
+		Decal "PM_HellPlasmaScorch";
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay
+		{
+			for (int i = random(1,3); i > 0; i--)
+			{
+				A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRC0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(3,8), size: random(130,200), startalphaf: 1, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+			    A_SpawnParticleEx("", TexMan.CheckForTexture("REDLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,5), size: random(50,250), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: 0.7, fadestepf: 0, startroll: random(-180,180));
+			}
+		}
+	Go:
+		TRCR A 1 Bright A_SetRoll(roll+25);
+		Loop;
+	Death:
+	    TNT1 AAAAA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), STYLE_ADD, SPF_ROLL||SPF_RELATIVE, random(10, 45), random(2,20), 0, frandom(-10, 10), frandom(-15, 15), frandom(-5,5), velx: frandom(-9, 9), vely: frandom(-9, 9), velz: frandom(1, 10), accelz: -0.5, sizestep: -0.05, startroll:frandom(-180,180));
+		TNT1 AA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(2,8), size: random(200,300), startalphaf: 0.95, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+		TNT1 AAA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("REDLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(6,15), size: random(50,250), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: 0.7, fadestepf: -1, startroll: random(-180,180));
+		TNT1 A 5 Light("ShadowBall4");
+		Stop;
+	}
+}
+
+Class PM_KurganPlasmastream : PM_DirectorPlasmaShot
+{
+     Default
+	 {
+	  DeathSound "";
+	  PMProjectileBase.WhizSound "";
+	  Speed 32;
+	 }
+	 
+	 int timer;
+  States
+  {
+   Spawn:
+    TNT1 A 0;
+	TNT1 A 0
+	{
+	  A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: random(1,7), size: random(250,400), xoff: -7, startalphaf: frandom(0.65,0.95)
+	  , fadestepf: -1, sizestep: 2);
+	for(int i=random(1,4);i>0;i--)
+	 { A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,50), size: random(10,20), velx: frandom(1,4.5), vely: frandom(-4,4), velz: frandom(-4,2),accelz: frandom(-0.0095,-0.0115), startalphaf: frandom(0.55,0.95)
+	 , fadestepf: -1, startroll: random(-180,180) ); }
+	}
+   Go:
+    FS03 A 1 Bright 
+	    { 
+		 if(timer > 13)
+		  A_FadeOut(0.1);
+		 PM_DirectorPlasmaShotFlare(); 
+		 timer++;
+		}
+    Loop;
+   Death:
+	TNT1 A 0
+	{
+	A_SpawnParticleEx
+	( "", tex[2], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE,
+	lifetime: random(1,20), size: random(100,250), xoff: -7, startalphaf: frandom(0.65,0.95), fadestepf: -1);
+	for(int i=random(1,3);i>0;i--)
+	 A_SpawnParticleEx
+	 ( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+     lifetime: random(1,25), size: random(10,20), velx: frandom(-4,4), vely: frandom(-4,4), velz: frandom(-4,4),
+	 accelz: frandom(-0.0095,-0.0115), startalphaf: 0.7, fadestepf: -1, startroll: random(-180,180));
+	}
+	TNT1 AAA 0 A_SpawnItemEx("HellPlasmaExp",0,0,0);
+	TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0);
+	TNT1 A 13 Light("Shadowball2");
+    Stop;
+   }
+}
+
+Class PM_KurganLaserCannonShot : PM_WarforgeSniperTracer
+{
+	Default
+	{
+		Speed 70;
+		DamageFunction 40;
+		SeeSound "";
+		DeathSound "Tyrant/ShellFireAdd2";
+		Scale 1.55;
+		Decal "PM_BruiserBiggestScorch";
+	}
+	
+	States
+	{
+	Spawn:
+	    TNT1 A 0;
+		TNT1 A 0
+		{
+		for(int i=random(3,4);i>0;i--)
+		   { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRC0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(6,9),size: frandom(230,350),xoff: -20,velx: frandom(5,13),startalphaf: 1.0,fadestepf: -0.002,sizestep: frandom(0.0,3),startroll: random(-180,180)); }
+			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(7,15),size: frandom(150,250),xoff: -20,velx: frandom(5,13),startalphaf: 1.0,fadestepf: -0.002,sizestep: frandom(0.0,3),startroll: random(-180,180));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRC0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(6,10),size: frandom(260,550),xoff: -20,velx: frandom(5,13),startalphaf: 1.0,fadestepf: -0.002,sizestep: frandom(0.0,3),startroll: random(-180,180));
+		}
+		TNT1 A 0
+		{
+		for(int i=random(5,12);i>0;i--)
+	     { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,150),size: frandom(1,20),xoff: frandom(-2,2),yoff: frandom(-2,2),zoff: frandom(-2,2),velx: frandom(1,13),vely: frandom(-6,6),velz: frandom(-0.3,5),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
+		}
+	Go:
+		TRCR AAAA 1 BRIGHT Light("ShadowBall4") Radius_Quake(3,30,0,25,0);
+		Loop;
+	Death:
+		TNT1 A 0 
+		{
+		  A_StartSound("Tyrant/ShellExplode",6,volume:0.35,pitch:1.35);
+		  A_StartSound("Director/BigPlasma",7,volume:0.55,pitch:0.75);
+		  A_Explode(35,175);
+		  Radius_Quake (3, 54, 0, 25, 0);
+		}
+		TNT1 AA 0 { A_SpawnParticleEx( "", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 20, size: 450, xoff: -7, zoff: 50, fadestepf: -1, sizestep: -30.20, startroll: random(-180,180)); }
+		TNT1 AAAAAAAAAAAAAAA 0 { A_SpawnParticleEx("",tx[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(85,133),size: random(25,75),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-20,20),vely: frandom(-20,20),velz: frandom(1,35), accelz: -1, sizestep: -1,startroll: random(-180,180),rollvel: random(-10,10)); }
+		TNT1 AA 0
+		  {
+		   A_SpawnParticleEx
+	       ( "", TexMan.CheckForTexture("SPKRC0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+	       lifetime: random(5,20), size: 310, xoff: -7, startalphaf: frandom(0.65,1), fadestepf: -1, sizestep: -30.20, startroll: random(-180,180));
+	       A_SpawnParticleEx
+	        ( "", tex[0], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+	        lifetime: 50, size: random(200,300), xoff: -7, startalphaf: frandom(0.30,0.65), fadestepf: -0.75, sizestep: 25, startroll: random(-180,180));
+		   for(int i=random(12,32);i>0;i--)
+		   {
+		    A_SpawnParticleEx("727272",TexMan.CheckForTexture("DUSTC0"),style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(40,70),size: frandom(1,30),zoff: random(10,30),velx: frandom(-12,12),vely: frandom(-12,12),velz: frandom(-5,15),accelz: frandom(-0.1,-0.5),startalphaf: 1.0,fadestepf: 0,sizestep: -0.2,startroll: random(-180,180),rollvel: random(-4,4));
+		    A_SpawnParticleEx("6C6C6C",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(30,60),size: frandom(10,220),zoff: random(10,45),velx: random(-9,9),vely: random(-9,9),velz: random(-9,9),startalphaf: frandom(0.2,0.75),fadestepf: -1,sizestep: 12,startroll: random(-180,180),rollvel: random(-2,2));
+		   }  
+		  }
+		TNT1 AAA 0 A_SpawnItemEx("PM_RFireballExplode",xvel: frandom(-1,1),yvel: frandom(-1,1),zvel: frandom(-1,1),flags: SXF_NOCHECKPOSITION|SXF_ABSOLUTEVELOCITY);
+		TNT1 AAAA 0 { A_SpawnParticleEx("b52e25",tx[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(45,140),size: random(95,120),xoff: random(-15,15),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-.31,.31),vely: frandom(-.31,.31),velz: frandom(-.31,.31), startalphaf:frandom(0.45,0.85),sizestep: 3,startroll: random(-180,180),rollvel: random(-3,3)); }
+		Stop;
+	}
+ }

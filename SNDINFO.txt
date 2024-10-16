@@ -6232,3 +6232,52 @@ Nymphite/Ball4 "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBall4.ogg"
 Nymphite/BallSplatter "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallSplatter.ogg"
 Nymphite/BallPop "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallPop.ogg"
 Nymphite/BallScream "Sounds/Monsters/Cacodemons/Nymphite/LustCacoBallScream.ogg"
+
+//Kurgan
+
+Kurgan/Sight "Sounds/Monsters/Bosses/Kurgan/KurganSight.ogg"
+
+$random Kurgan/Pain { Kurgan/Pain1 Kurgan/Pain2 }
+Kurgan/Pain1 "Sounds/Monsters/Bosses/Kurgan/KurganPain1.ogg"
+Kurgan/Pain2 "Sounds/Monsters/Bosses/Kurgan/KurganPain2.ogg"
+
+Kurgan/Laugh "Sounds/Monsters/Bosses/Kurgan/KurganLaugh.ogg"
+Kurgan/RageLaugh "Sounds/Monsters/Bosses/Kurgan/KurganRageLaugh.ogg"
+
+Kurgan/Active "Sounds/Monsters/Bosses/Kurgan/KurganActive.ogg"
+
+$random Kurgan/Step { Kurgan/Step1 Kurgan/Step2 }
+Kurgan/Step1 "Sounds/Monsters/Bosses/Kurgan/KurganStep1.ogg"
+Kurgan/Step2 "Sounds/Monsters/Bosses/Kurgan/KurganStep2.ogg"
+
+$random Kurgan/Talk { Kurgan/Talk1 Kurgan/Talk2 Kurgan/Talk3 }
+Kurgan/Talk1 "Sounds/Monsters/Bosses/Kurgan/KurganTalk1.ogg"
+Kurgan/Talk2 "Sounds/Monsters/Bosses/Kurgan/KurganTalk2.ogg"
+Kurgan/Talk3 "Sounds/Monsters/Bosses/Kurgan/KurganTalk3.ogg"
+
+$random Kurgan/Attack { Kurgan/Attack1 Kurgan/Attack2 }
+Kurgan/Attack1 "Sounds/Monsters/Bosses/Kurgan/KurganAttack1.ogg"
+Kurgan/Attack2 "Sounds/Monsters/Bosses/Kurgan/KurganAttack2.ogg"
+
+Kurgan/LCharge "Sounds/Monsters/Bosses/Kurgan/KurganLCharge.ogg"
+
+$random Kurgan/LFire { Kurgan/LFire1 Kurgan/LFire2 Kurgan/LFire3 }
+Kurgan/LFire1 "Sounds/Monsters/Bosses/Kurgan/KurganLFire1.ogg"
+Kurgan/LFire2 "Sounds/Monsters/Bosses/Kurgan/KurganLFire2.ogg"
+Kurgan/LFire3 "Sounds/Monsters/Bosses/Kurgan/KurganLFire3.ogg"
+
+Kurgan/PCharge "Sounds/Monsters/Bosses/Kurgan/KurganPCharge.ogg"
+Kurgan/PFireStart "Sounds/Monsters/Bosses/Kurgan/KurganPFireStart.ogg"
+Kurgan/PFireLoop "Sounds/Monsters/Bosses/Kurgan/KurganPFireLoop.ogg"
+Kurgan/PFireEnd "Sounds/Monsters/Bosses/Kurgan/KurganPFireEnd.ogg"
+
+Kurgan/Crash "Sounds/Monsters/Bosses/Kurgan/KurganCrash.ogg"
+
+$rolloff Kurgan/Step 500 1400
+$rolloff Kurgan/LCharge 300 4500
+$rolloff Kurgan/LFire 300 4500
+$rolloff Kurgan/PCharge 300 4500
+$rolloff Kurgan/PFireStart 300 4500
+$rolloff Kurgan/PFireLoop 300 4500
+$rolloff Kurgan/PFireEnd 300 4500
+$limit Kurgan/Step 10
