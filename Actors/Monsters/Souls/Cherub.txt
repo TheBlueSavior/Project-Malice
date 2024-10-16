@@ -158,7 +158,7 @@ Class PM_CherubSpit : DoomImpBall
     BAL7 AABB 1 Bright
 	{
 	  A_SpawnItemEx("PM_InfernalLavaTrail",random(0,-5),random(-5,5),random(-5,5),0,random(-1,1),random(-1,2),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
-	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(40,130),size: frandom(15,35),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 0.75,sizestep: -.5,startroll: random(-180,180));
+	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,25),size: frandom(15,35),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 0.75,sizestep: -.5,startroll: random(-180,180));
 	}
     Loop;
   Death:

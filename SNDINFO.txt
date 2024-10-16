@@ -3284,6 +3284,10 @@ RFZ/Fire "Sounds/Monsters/Zombiemen/RFZombie/RFTBasicFire.ogg"
 $limit RFZ/Fire 30
 $rolloff RFZ/Fire 300 2200
 
+RFZ/LaserFire "Sounds/Monsters/Zombiemen/RFZombie/RFLaser.ogg"
+$limit RFZ/LaserFire 30
+$rolloff RFZ/LaserFire 300 2200
+
 RFZ/Load "Sounds/Monsters/Zombiemen/RFZombie/RFTLoad.ogg"
 RFZ/QuickLoad "Sounds/Monsters/Zombiemen/RFZombie/RFTQuickLoad.ogg"
 $rolloff RFZ/Load 600 1500

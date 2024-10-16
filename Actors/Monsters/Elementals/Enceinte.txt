@@ -22,7 +22,6 @@ Class PM_Enceinte : PMLustMonsterBase
 		BloodColor "ff 00 ff";
 		Monster;
 		+MISSILEMORE
-		+MISSILEEVENMORE
 		+SLIDESONWALLS
 		+NOTARGET
 		+DONTHARMSPECIES
@@ -81,13 +80,13 @@ Class PM_Enceinte : PMLustMonsterBase
 		HRN_ D 0 A_Stop();
 		Goto See;
 	BackUp:
-		HRN_ D 0 A_Jump(100, "TinyBalls");
 		HRN_ D 15
 		{
 			A_FaceTarget();
 			Vel3DFromAngle(random(10, 20), 180, frandom(-30, 30));
 		}
 		HRN_ D 0 A_Stop();
+		HRN_ D 0 A_JumpIfCloser(250, "Barf");
 		Goto Missile+1;
 	Pain:
 		HRN_ A 0 { bFRIGHTENED = false; A_SetRenderStyle(1, STYLE_NORMAL); }
@@ -101,7 +100,7 @@ Class PM_Enceinte : PMLustMonsterBase
 		{
 			if (!(GetAge() % 20)) bFRIGHTENED = !bFRIGHTENED;
 			for (int i = 3; i > 0; i--) A_Chase(null, null, CHF_NOPLAYACTIVE);
-			A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+			A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERSTENCILCOL|SXF_TRANSFERALPHA|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE,failchance:128);
 		}
 		HRN_ A 0 { bFRIGHTENED = false; A_SetRenderStyle(1, STYLE_NORMAL); }
 		Goto See;
@@ -109,40 +108,38 @@ Class PM_Enceinte : PMLustMonsterBase
 		HRN_ A 0 { bFRIGHTENED = false; A_SetRenderStyle(1, STYLE_NORMAL); }
 		HRN_ D 0 A_JumpIfCloser(256, "BackUp");
 		HRN_ D 0 A_Jump(56, "Sac", "Phase");
-		HRN_ D 0 A_Jump(130, "Trio", "TinyBalls", "Laser");
+		HRN_ D 0 A_Jump(130,"TinyBalls", "Laser");
 		HRN_ D 0 A_StartSound("Enceinte/CumReady",32,CHANF_OVERLAP);
-		HRN_ DDEEF 4 Light("PM_DirectorPsychicLight2") A_FaceTarget();
-		HRN_ FFF random(4, 12) Light("PM_DirectorPsychicLight2")
+		HRN_ DDEEF 3 Light("PM_DirectorPsychicLight2") A_FaceTarget();
+		HRN_ FFF 5 Light("PM_DirectorPsychicLight2")
 		{
-			PM_LeadTarget(40);
+		    PM_LeadTarget(40);
 			A_StartSound("Enceinte/CumReady",33,CHANF_OVERLAP,pitch: frandom(1.8, 2));
 			A_SpawnProjectile("PM_EnceinteSpit", 25, 0, frandom(-10, 10), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-5, 5));
 		}
 		HRN_ EEDD 4 Light("PM_DirectorPsychicLight2") A_FaceTarget();
 		Goto See;
-	Trio:
-		HRN_ D 0 A_StartSound("Enceinte/CumReady", 32,CHANF_OVERLAP);
-		HRN_ DDEEF 4 Light("PM_DirectorPsychicLight2") A_FaceTarget();
-		HRN_ F 3 Light("PM_DirectorPsychicLight2")
+	Barf:
+		HRN_ D 0 A_StartSound("Enceinte/CumReady", 32,CHANF_OVERLAP,pitch:0.6);
+		HRN_ DDEEF 2 Light("PM_DirectorPsychicLight2") A_FaceTarget();
+		HRN_ FFFFF 3 Light("PM_DirectorPsychicLight2")
 		{
 			A_FaceTarget();
 			A_StartSound("Enceinte/CumReady",33,CHANF_OVERLAP,pitch: frandom(1.4, 1.5));
-			A_SpawnProjectile("PM_EnceinteSpit",22,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
-			A_SpawnProjectile("PM_EnceinteSpit",22,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
-			A_SpawnProjectile("PM_EnceinteSpit",22,0,random(-4,4),CMF_OFFSETPITCH,random(-4,4));
+			A_SpawnProjectile("PM_EnceinteSpitNoGrav",22,0,random(-4,4),CMF_OFFSETPITCH,frandom(-2,-8));
 		}
-		HRN_ F 7 Light("PM_DirectorPsychicLight2") A_FaceTarget();
-		HRN_ E 5 Light("PM_DirectorPsychicLight2") A_FaceTarget();
-		HRN_ D 5 Light("PM_DirectorPsychicLight2") A_FaceTarget();
+		HRN_ F 5 Light("PM_DirectorPsychicLight2") A_FaceTarget();
+		HRN_ E 3 Light("PM_DirectorPsychicLight2") A_FaceTarget();
+		HRN_ D 2 Light("PM_DirectorPsychicLight2") A_FaceTarget();
 		Goto See;
 	TinyBalls:
 		HRN_ D 0 A_StartSound("Enceinte/CumReady",32,CHANF_OVERLAP);
 		HRN_ DDEEF 4 Light("PM_DirectorPsychicLight2") A_FaceTarget();
-		HRN_ FFFFFFFFFFFF random(2, 7) Light("PM_DirectorPsychicLight2")
+		HRN_ FFFFFFFFFFFF random(2,4) Light("PM_DirectorPsychicLight2")
 		{
 			A_FaceTarget(4, 4);
 			A_StartSound("Enceinte/CumImpact",33,CHANF_OVERLAP,pitch: frandom(1.8, 2));
-			A_SpawnProjectile("PM_CherubSpit", 25, frandom(-20, 20), frandom(-20, 20), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-9, 9));
+			A_SpawnProjectile("PM_CherubSpit", 25, frandom(-16, 16), frandom(-16, 16), CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch + frandom(-4, 4));
 		}
 		HRN_ EEDD 4 Light("PM_DirectorPsychicLight2") A_FaceTarget();
 		Goto See;
@@ -166,7 +163,7 @@ Class PM_Enceinte : PMLustMonsterBase
 		HRN_ A 10 A_FaceTarget();
 		HRN_ D 5 Light("PM_DirectorPsychicLight2")
 		{
-			A_StartSound("GenericSmallCharge", 12);
+			A_StartSound("GenericChargeSmall", 12);
 			A_FaceTarget();
 		}
 		HRN_ DDDDDDDDDDDDD 2 Light("PM_DirectorPsychicLight2")
@@ -175,10 +172,10 @@ Class PM_Enceinte : PMLustMonsterBase
 			A_SpawnParticleEx("", TexMan.CheckForTexture("PURLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(2,10), size: random(1,120), xoff: 20, zoff: 30, velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: 1.0, startroll: random(-180,180));
 			A_Facetarget();
 		}
-		HRN_ DDD random(15, 20) Light("PM_DirectorPsychicLight2")
+		HRN_ DDD 15 Light("PM_DirectorPsychicLight2")
 		{
 			A_StartSound("Bacillus/Proj", attenuation: 0.85);
-			A_SpawnProjectile("PM_EnceinteBlast", 34);
+			A_SpawnProjectile("PM_EnceinteBlast", 34, 0, frandom(40,-40),CMF_OFFSETPITCH,frandom(-12,12));
 			A_FaceTarget();
 		}
 		HRN_ DA 10 Light("PM_DirectorPsychicLight2");
@@ -245,7 +242,7 @@ Class PM_EnceinteSpit : PM_CherubSpit
     BAL7 AABB 1 Bright
 	{
 	  A_SpawnItemEx("PM_InfernalLavaTrail",random(0,-5),random(-5,5),random(-5,5),0,frandom(-1.5,1.5),frandom(-1.5,1.5),0,SXF_CLIENTSIDE|SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
-	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(40,130),size: frandom(15,35),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 0.75,sizestep: -.5,startroll: random(-180,180));
+	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,45),size: frandom(15,35),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 0.75,sizestep: -.5,startroll: random(-180,180));
 	}
     Loop;
   Death:
@@ -282,7 +279,10 @@ Class PM_EnceinteSac : PM_ZTrooperFragGrenade
   StencilColor "9a40e3";
   -ZDOOMTRANS
   -DEHEXPLOSION
+  +DONTTHRUST;
   }
+  
+  name minename;
   
   States
   {
@@ -295,27 +295,50 @@ Class PM_EnceinteSac : PM_ZTrooperFragGrenade
 	Loop;
   Bounce:
 	Goto Spawn2;
-  XDeath:
   Death:
 	TNT1 A 0 A_SetRoll(90);
     TNT1 A 0 A_StartSound("Enceinte/SacBounce");
 	SAC_ A random(30, 80) A_SetScale(scale.x / 1.25);
 	SAC_ A 0
 	{
-		A_StartSound("Enceinte/SacGrow");
+		A_StartSound("Enceinte/SacGrow",volume:0.6,pitch:frandom(0.85,0.65));
 		A_SetRoll(0);
 	}
 	SAC_ BBBBCCCCCDDDDDD random(1, 2) A_SpawnItemEx("PM_PurpleBlood2", frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), flags: SXF_NOCHECKPOSITION);
-	SAC_ D random(5, 30) A_SetScale(scale.x * 1.25);
+	TNT1 A 0 
+	 {
+	  A_StartSound("Glutton/Active",20,flags:CHANF_LOOPING,volume:0.3,pitch:frandom(0.45,0.30));
+	  A_StartSound("Nymphite/Charge",21,flags:CHANF_LOOPING,volume:0.1,pitch:frandom(0.45,0.30));
+	 }
+  Death2:
+	SAC_ DD 4 A_SetScale(scale.x+0.025);
+	SAC_ DD 4 A_SetScale(scale.x-0.025);
+	SAC_ DD 4 A_SetScale(scale.x+0.025);
+	SAC_ DD 4 A_SetScale(scale.x-0.025);
+	SAC_ DD 4 A_SetScale(scale.x+0.025);
+	SAC_ DD 4 A_SetScale(scale.x-0.025);
+    TNT1 A 0 
+	  {
+	   A_StopSounds(20,21);
+	   A_StartSound("Nymphite/Death",11,pitch:1.35);
+	   A_StartSound("Beholder/Sight",12,pitch:1.55);
+	   A_StartSound("Beholder/BarrageReady",13);
+	  }
+    SAC_ DDDDDDDDDDDDDDDDDDDDD 1
+	  {
+	   A_SetScale(scale.x+0.020);
+	   A_SpawnItemEx("PM_PurpleBlood2", frandom(-15, 15), frandom(-15, 15), frandom(-15, 15), flags: SXF_NOCHECKPOSITION);
+	  }
 	TNT1 A 0
 	{
+	    A_StopSounds(11,13);
 		A_StartSound("Blob/Explode");
 		A_StartSound("Enceinte/SacExplode",11);
 	}
 	TNT1 A 0 A_SetRenderStyle(1, STYLE_SHADED);
 	TNT1 AAAA 0 A_SpawnItemEx("PM_BabyCherub",random(-6,6),random(-6,6),10,random(-3,3),random(-3,3),random(0,8),0);
 	TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",zofs:3,flags:SXF_TRANSFERSCALE);
-	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("PM_TumorBurstBlood", 0, 0, 0, random (4, 15), random(4,15), random (4, 15), random(0, 360),SXF_NOCHECKPOSITION);
 	Stop;
   }
 }
@@ -333,7 +356,7 @@ Class PM_BabyCherub : PM_Cherub
 		Translation "172:179=0:0";
 		DeathSound "Enceinte/BabyDeath";
 		Health 40;
-		Speed 4;
+		Speed 6;
 		Tag "Neonate Cherub";
 		-COUNTKILL
 		+THRUSPECIES
@@ -390,7 +413,7 @@ Class PM_BabyCherub : PM_Cherub
 		CHE_ AABB 2 A_Chase();
 		CHE_ A 0 A_StartSound("Cherub/Flap", 11);
 		CHE_ CCBB 2 A_Chase();
-		CHE_ A 0 A_Jump(50, "Dodge");
+		CHE_ A 0 A_Jump(50, "Strafe");
 		Loop;
 	Strafe:
 		CHE_ A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
@@ -408,7 +431,6 @@ Class PM_BabyCherub : PM_Cherub
 		}
 		CHE_ A 0 A_Jump(50, "Dodge");
 		Loop;
-	Dodge:
 	Melee:
 		CHE_ A 0 VelFromAngle(6, randompick(1, -1) * 90);
 		CHE_ AABB 2 A_FaceTarget();
@@ -420,17 +442,14 @@ Class PM_BabyCherub : PM_Cherub
 		CHE_ A 0 A_Stop();
 		Goto See;
 	Missile:
-		CHE_ D 0 A_JumpIfCloser(350, "ChargeChance");
-		Goto Spit;
-	ChargeChance:
-		CHE_ D 0 A_Jump(95, "Spit");
+		CHE_ D 0 A_JumpIfCloser(500, "Spit");
 		Goto Charge;
 	Charge:
-		CHE_ AABBCC 2 A_FaceTarget();
-		CHE_ D 2 A_SkullAttack(10);
-		CHE_ DEEEEEEDD 2;
-		CHE_ D 0 A_Stop();
-		CHE_ D 0 A_Jump(128, "Dodge");
+		CHE_ AABBCCBBCCAABBCCBBCCAACC 1 
+		  {
+		   A_Chase(null,null);
+		   A_FaceTarget();
+          }
 		Goto See;
 	Spit:
 		CHE_ AABBCC 2 A_FaceTarget();
@@ -438,11 +457,20 @@ Class PM_BabyCherub : PM_Cherub
 		CHE_ DE 3 A_FaceTarget();
 		CHE_ E 3
 		{
-			PM_LeadTarget(35);
-			A_SpawnProjectile("PM_CherubSpit", 10, flags: CMF_AIMDIRECTION, pitch: pitch);
+			A_SpawnProjectile("PM_CherubSpitNoGrav", 10,0,frandom(-8,8),CMF_OFFSETPITCH,frandom(-2,-5));
 		}
 		CHE_ ED 2 A_FaceTarget();
 		Goto Strafe;
+	}
+}
+
+Class PM_CherubSpitNoGrav : PM_CherubSpit
+{
+	Default { -NOGRAVITY Gravity 0.5; Speed 20; }
+	override void PostBeginPlay()
+	{
+		super.PostBeginPlay();
+		A_ScaleVelocity(frandom(0.5, 1.1));
 	}
 }
 
@@ -450,26 +478,28 @@ Class PM_EnceinteBlast : PM_CherubSpit
 {
 	Default
 	{
-		Speed 20;
+		Speed 13;
 		Scale 1.3;
 		DamageFunction (25);
 		SeeSound "";
 		DeathSound "GenericPlasmaExp";
 		+SEEKERMISSILE
 	}
+	int timer;
 	
 	states
   {
   Spawn:
-    BAL2 AABB 1 Bright
+    BAL2 AABBAA 1 Bright
 	{
-	  A_Tracer2(0.87);
-	  vel.x += frandom(-1, 1);
-	  vel.y += frandom(-1, 1);
-	  vel.z += frandom(-1, 1);
+	  if(timer > 20)
+	  A_ScaleVelocity(1.01);
+	  else
+	  A_SeekerMissile(3,2,SMF_PRECISE);
 	  A_SpawnParticleEx("",TexMan.CheckForTexture("PURLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,100),velx: random(-1,1),vely: random(-1,1),velz: random(-1,1),startalphaf: 0.9,startroll: random(-180,180));
 	  A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-10,10),zoff: random(-10,10),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.4,startroll: random(-180,180));
-	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(80,130),size: frandom(35,45),xoff: random(-1,-10),yoff: frandom(-5,5),zoff: frandom(-5,5),startalphaf: 1,sizestep: .15,startroll: random(-180,180),rollvel:frandom(-4,4));
+	  A_SpawnParticleEx("5d1d91",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(15,35),size: frandom(65,85),xoff: random(-1,-10),yoff: frandom(-2,2),zoff: frandom(-2,2),startalphaf: 1,sizestep: -3,startroll: random(-180,180),rollvel:frandom(-4,4));
+	  timer++;
 	}
     Loop;
   Death:
