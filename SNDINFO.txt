@@ -5569,7 +5569,7 @@ Warforge/Sniper3 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper3.ogg"
 Warforge/Sniper4 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper4.ogg"
 Warforge/Sniper5 "Sounds/Monsters/Elementals/Warforge/WarforgeSniper5.ogg"
 
-$rolloff Warforge/Sniper 300 2500
+$rolloff Warforge/Sniper 300 3000
 $rolloff Warforge/GrenadeCharge 300 2500
 
 //Landrazer
