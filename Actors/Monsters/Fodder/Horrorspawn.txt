@@ -2,12 +2,12 @@ Class Horrorspawn : RandomSpawner
 {
     Default
 	{
-	DropItem "PM_Horrorspawn", 255, 85;
+	DropItem "PM_Horrorspawn", 255, 105;
 	//DropItem "HorrorspawnScreamer", 255, 1
 	DropItem "PM_FreshHorrorspawn", 255, 4;
 	DropItem "PM_Afflicted", 255, 3;
 	DropItem "PM_Voidspawn", 255, 1;
-	DropItem "PM_FrozenCorpseSpawn", 255, 1;
+	DropItem "PM_UmbralHorrorspawn", 255, 1;
 	DropItem "PM_HorrorspawnBurster", 255, 2;
 	DropItem "PM_HorrorspawnSpitter", 255, 5;
 	DropItem "PM_HorrorspawnChunkThrower", 255, 5;
@@ -23,7 +23,7 @@ Class Horrorspawnmap : RandomSpawner
 {
     Default
 	{
-	DropItem "PM_Horrorspawn", 255, 85;
+	DropItem "PM_Horrorspawn", 255, 105;
 	DropItem "PM_Afflicted", 255, 8;
 	DropItem "PM_SleepingHorrorspawn1", 255, 6;
 	DropItem "PM_SleepingHorrorspawn2", 255, 6;
@@ -37,7 +37,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_AffScreamer", 255, 1;
 	DropItem "FodderDropper", 255, 1;
 	DropItem "PM_Voidspawn", 255, 1;
-	DropItem "PM_FrozenCorpseSpawn", 255, 1;
+	DropItem "PM_UmbralHorrorspawn", 255, 1;
 	DropItem "PM_FodderSleeperDropper", 255, 1;
 	DropItem "PM_HeadDropper", 255, 1;
 	DropItem "RatDropper", 255, 1;
@@ -51,6 +51,7 @@ Class Horrorspawnmap : RandomSpawner
 Class PM_Horrorspawn : PMFodderMonsterBase
 {
     int choose;
+	int wanderchoice;
     Default
 	{
 	PMMonsterBase.CodexLore
@@ -114,7 +115,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	{
 	 if(target)
 	 {
-	  if(CheckSight(target) && Distance3D(target) <= 1200)
+	  if(CheckSight(target) && Distance3D(target) <= 1200 || wanderchoice == 1)
 	  A_Chase();
 	  else
 	  A_Wander();
@@ -151,6 +152,11 @@ Class PM_Horrorspawn : PMFodderMonsterBase
   IdleStill:
 	"####" A 1 A_Jump(5,"Idle");
     Loop;
+  WanderTowardsSwitch:
+	"####" A 0
+		{
+		wanderchoice = random(0,1);
+		}
   See:
 	"####" A 0 A_Jump(10,"See2");
 	"####" A 0 A_SetSpeed(7);
@@ -160,6 +166,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" CCDD 4 Fast PM_HorrorspawnChase();
 	"####" A 0 A_Jump(3,"Lunge");
 	"####" A 0 A_Jump(30,"See2","See3","See6","See8","See9","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,2) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -179,6 +186,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" D 20 Fast PM_HorrorspawnChase();
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(15,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -197,6 +205,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" AAA 0 A_Recoil(-0.3);
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(10,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -211,6 +220,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" AAA 0 A_Recoil(-0.3);
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(10,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -235,6 +245,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	}
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(205,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
     Loop;
   See6:
 	"####" A 0 A_SetSpeed(9);
@@ -248,6 +259,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" D 8 Fast PM_HorrorspawnChase();
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(15,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -262,6 +274,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" AAA 0 A_Recoil(-0.3);
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(10,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }
@@ -274,6 +287,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" CCDD 10 Fast PM_HorrorspawnChase();
 	"####" A 0 A_Jump(3,"Lunge");
 	"####" A 0 A_Jump(90,"See","See2","See3","See6","See9","Roar","See8","SeeAngry");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
     Loop;
   See9:
 	"####" A 0 A_SetSpeed(4,12);
@@ -283,6 +297,7 @@ Class PM_Horrorspawn : PMFodderMonsterBase
 	"####" CCDD random(1, 12) Fast PM_HorrorspawnChase();
 	"####" A 0 A_Jump(4,"Lunge");
 	"####" A 0 A_Jump(10,"See","Roar");
+	"####" A 1 A_Jump(100,"WanderTowardsSwitch");
 	"####" A 0 
 	{ if(choose == 0 && random(1,4) == 1)
 	  SetStateLabel("TwitchJump"); }

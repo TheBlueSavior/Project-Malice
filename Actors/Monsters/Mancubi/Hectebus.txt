@@ -154,6 +154,7 @@ Class PM_HectebusBall : Fatshot
  {
  PROJECTILE;
  Speed 20;
+ FastSpeed 25;
  Alpha 1;
  Radius 6;
  Height 8;
