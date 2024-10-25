@@ -250,6 +250,7 @@ Class PM_Kurgan : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(56,"MegaComet","MissileStrike");
     TNT1 A 0 A_Jump(76,"BlastChargeCheck");
     TNT1 A 0 A_Jump(86,"LaserCannon","Railgun");
+    TNT1 A 0 A_Jump(128,"BigFireball");
   LaserBarrage:
 	TNT1 A 0
 	{
@@ -523,6 +524,25 @@ Class PM_Kurgan : PMUnaffMonsterBase
     U_KG P 20 A_SpawnProjectile("PM_KurganComet",75,15,0);
 	U_KG QQQQQ 2 A_FaceTarget();
 	Goto See;
+  BigFireball:
+	TNT1 A 0
+	{
+	  bNOPAIN = true;
+	}
+	U_KG NN 3 A_FaceTarget();
+	TNT1 A 0 A_StartSound("Exile/ShieldSpawn",22,volume:1,pitch:0.75,0.2);
+	TNT1 A 0 A_StartSound("Bruiser/LeapCharge",23,volume:1.0,attenuation:0.8,pitch:1.4);
+	U_KG MMMMMMMMMMM 2 
+	   {
+	    A_FaceTarget();
+        A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,100), size: frandom(40,280), xoff: frandom(28,30),yoff: frandom(50,58),zoff: frandom(-3.5,3.5) + 128, startalphaf: 0.5, fadestepf: -1, startroll: random(-180,180));
+	   }
+	U_KG NNNNNNOO 1 A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,100), size: frandom(120,230) + pm_attackloop, xoff: frandom(28,30),yoff: frandom(50,58),zoff: frandom(-3.5,3.5) + 75, vely: random(-1,-4), velz: random(0,-4), startalphaf: 0.8, fadestepf: -1, startroll: random(-180,180));
+    TNT1 A 0 A_StartSound("Husk/Throw",38,volume:1.0,attenuation:0.4,pitch:0.8);
+	TNT1 A 0 A_SpawnProjectile("PM_KurganFireball",75,15,0);
+	U_KG OP 3 A_FaceTarget();
+	U_KG QQQ 2 A_FaceTarget();
+	Goto See;
   MissileStrike:
 	TNT1 A 0
 	{
@@ -571,22 +591,24 @@ Class PM_Kurgan : PMUnaffMonsterBase
 	U_KD A 20
 	 {
 	   A_FaceTarget();
-	   A_StartSound("GBloodSplashBig",20);
-	   A_StartSound("BigExplosionDistant",21);
-	   A_StartSound("Tyrant/ShellExplode",22);
+	   A_StartSound("GBloodSplashBig",31);
+	   A_StartSound("BigExplosionDistant",33);
+	   A_StartSound("Tyrant/ShellExplode",34);
 	   Radius_Quake (2, 54, 0, 25, 0);
 	   A_SpawnItemEx("OrangeShockwaveBig", flags: SXF_NOCHECKPOSITION);
 	   for (int i = random(2, 4); i > 0; i--) A_SpawnItemEx("PM_BigFireGlobs",0,0,random(56,60),random(-3,3),random(-3,3),random(-2,3),0, flags: SXF_NOCHECKPOSITION);
 	   for (int i = random(2, 4); i > 0; i--) A_SpawnItemEx("PM_GenericExplosionFlames",0,0,random(56,60),random(-3,3),random(-3,3),random(-2,3),0, flags: SXF_NOCHECKPOSITION);
-	   for(int i=random(10,15); i<0; i++) { A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(10,20),0,random(45,65),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY); }
-	   for(int i=2;i>0;i--) A_SpawnItemEx("PM_NormalBloodyCloud",random(10,20),0,random(45,55),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+	   for(int i=random(10,15); i<0; i++) { A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(10,20),0,random(45,65),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION); }
+	   for(int i=2;i>0;i--) A_SpawnItemEx("PM_NormalBloodyCloud",random(10,20),0,random(45,55),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
 	 }
 	U_KD AABBBBBBBBCCCCCCCCCCCCCCCCCCCCDDDDDDDEEEEEEEEFFFFFFFFFFF 2
 	 {
 	  A_FaceTarget();
 	  A_SpawnProjectile("PM_BeholderBloodPukeHarmless",random(55,65),0,random(-18,18),CMF_OFFSETPITCH,random(-4,4));
 	  if(!random(0,6)) A_SpawnProjectile("PM_DepravedBeamWarning",20,0,frandom(-180,180),CMF_OFFSETPITCH,frandom(-20,-75));
-	  if(!random(0,3)) A_SpawnItemEx("PM_NormalMeatChunk",random(10,20),0,random(45,65),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+	  if(!random(0,3)) A_SpawnItemEx("PM_NormalInstestinGib",random(10,20),0,random(55,70),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION);
+	  if(!random(0,3)) A_SpawnItemEx("PM_NormalMeatChunk",random(10,20),0,random(55,70),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION);
+	  if(!random(0,4)) A_StartSound("PM/GibbySplat",38,CHANF_OVERLAP,0.8,pitch:0.75);
 	  if(!random(0,5)) 
 	  { A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,30),size: random(15,125),xoff: random(-40,40),yoff: random(-50,50), zoff: random(0,135), velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: frandom(0.0,0.9),startroll: random(-180,180),rollvel: frandom(-30,30));
 		A_StartSound("Sybarite/NetShock",100,CHANF_OVERLAP,0.5,pitch:frandom(0.8,1.2)); }
@@ -603,15 +625,35 @@ Class PM_Kurgan : PMUnaffMonsterBase
 	{
 	  A_FaceTarget();
 	  if(!random(0,3)) 
-	  { A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,30),size: random(15,125),xoff: random(-40,40),yoff: random(-50,50), zoff: random(0,135), velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: frandom(0.0,0.9),startroll: random(-180,180),rollvel: frandom(-30,30));
-		A_StartSound("Sybarite/NetShock",100,CHANF_OVERLAP,0.8,pitch:frandom(0.8,1.2)); }
+	  { 
+	    A_SpawnParticleEx("", TexMan.CheckForTexture("REDLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,4), size: random(5,200), xoff: frandom(28,30),yoff: frandom(-36,-40),zoff: frandom(-9.5,9.5) + 68, velx: random(-6,6), vely: random(-6,6), velz: random(-6,6), startalphaf: 0.9, fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
+		A_SpawnItemEx("PM_NormalMeatChunk",random(10,20),0,random(60,78),frandom(1,5),frandom(-4,4),frandom(-2,6),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnItemEx("PM_NormalBloodMulti",random(10,20),0,random(60,78),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+		A_SpawnParticleEx("",TexMan.CheckForTexture("REDLA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,30),size: random(15,125),xoff: random(-40,40),yoff: random(-50,50), zoff: random(0,135), velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: frandom(0.0,0.9),startroll: random(-180,180),rollvel: frandom(-30,30));
+		A_StartSound("Sybarite/NetShock",100,CHANF_OVERLAP,0.8,pitch:frandom(0.8,1.2));
 	    A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRR0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(40,300), size: frandom(85,230), xoff: frandom(28,30),yoff: frandom(-49,-55),zoff: frandom(-3.5,3.5) + 68, startalphaf: 0.3, fadestepf: -1, startroll: random(-180,180));
 		A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(5,35), size: random(5,65), xoff: frandom(28,30),yoff: frandom(-49,-55),zoff: frandom(-9.5,9.5) + 68, velx: frandom(1,14), vely: random(-6,6), velz: random(-3,20), accelz: -0.5, startalphaf: 0.9, fadestepf: -1, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
 		A_SpawnParticleEx("", TexMan.CheckForTexture("REDLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(1,4), size: random(5,200), xoff: frandom(28,30),yoff: frandom(-49,-55),zoff: frandom(-9.5,9.5) + 68, velx: random(-6,6), vely: random(-6,6), velz: random(-6,6), startalphaf: 0.9, fadestepf: 0, sizestep: 0, startroll: random(-180,180), rollvel: frandom(-30,30));
+	  }
+	  if(!random(0,4)) { A_SpawnItemEx("PM_NormalBloodMulti",random(10,20),0,random(70,86),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION); }
+	  }
+	TNT1 A 0 A_StartSound("Kurgan/Pain1",30,attenuation:0.8);
+	U_KD HHHH 6 A_SpawnItemEx("PM_NormalBloodMulti",random(10,20),0,random(70,86),frandom(1,20),frandom(-10,10),frandom(-5,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 AAAA 0 A_SpawnItemEx("PM_ArachExpMist",0,0,random(10,120),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_NormalBloodyCloudBig",random(-50,50),random(-50,50),random(40,120),0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEX("PM_ArachExpGoreSplash", random(-20,20), random(-20,20), random(40,120),random (-18,18),random(-18,18),random(4,20),random(0,360),SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_NormalBloodyCloud",random(-100,100),random(-100,100),random(40,150),0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",random(-20,20),random(-20,20),random(60,150),0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 AAAAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",random(-20,20),random(-20,20),random(60,150),random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+	TNT1 AAAAAAAAAAAA 0
+	{
+	A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (10, 120), random(4,10), random (4, 15), random(0, 360), flags: SXF_USEBLOODCOLOR);
+	A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,120),0,0,0,0,SXF_NOCHECKPOSITION);
 	}
-	U_KD H 23 A_StartSound("Kurgan/Pain1",30,attenuation:0.8);
 	TNT1 A 0
 	{
+	   A_StartSound("GBloodSplashBig",25);
+	   A_StartSound("HSpawnBurster/Explode",26);
        A_StartSound("Director/DeathServo",20);
 	   A_StartSound("BigExplosionDistant",21,volume:0.6,pitch:0.65);
 	   A_StartSound("Tyrant/ShellExplode",22,volume:0.6,pitch:0.65);
@@ -631,9 +673,11 @@ Class PM_Kurgan : PMUnaffMonsterBase
 	}
 	U_KD IIJJKKLLMNOPPPPPPP 2 
 	{
-	   for (int i=random(2,6);i>0;i--) { A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360), flags: SXF_USEBLOODCOLOR); }
+	   A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 32, random (4, 10), random(4,10), random (4, 15), random(0, 360), flags: SXF_USEBLOODCOLOR);
 	   for(int i=random(2,5); i<0; i++) { A_SpawnItemEx("PM_ArachExpMist",0,0,20, flags: SXF_USEBLOODCOLOR); }
+	   for(int i=random(2,5); i<0; i++) { A_SpawnItemEx("PM_NormalBigMeatChunkLauncher",0,0,random(10,40),0,0,0,0,SXF_NOCHECKPOSITION); }
 	}
+	TNT1 A 0 A_NoBlocking();
     U_KD P -1 A_BossDeath;
 	Stop;
   }
@@ -1086,4 +1130,53 @@ Class PM_KurganMissileStrike : PM_DirectorAStrikeShotTell
 	}
 	Stop;
    }
+}
+
+Class PM_KurganFireball : DoomImpBall
+{
+    Default
+    {
+	+NOGRAVITY
+	-LOWGRAVITY
+	Speed 40;
+	SeeSound "HellKnight/Cast";
+	DeathSound "GenericCometExp";
+	Decal "PM_GreenFireScorch";
+	DamageFunction 85;
+	DamageType "Fire";
+	Scale 0.74;
+    }
+	states
+  	{
+  Spawn:
+	TNT1 A 0 NoDelay
+	{
+	 A_StartSound("Exile/GroundLoop",31,CHANF_LOOPING,attenuation:0.7,pitch:1);
+	 A_StartSound("Sybarite/MissileLoop",35,CHANF_LOOPING,1,0.5,0.85);
+	}
+  Spawn2:
+    PBAL C 1 bright Light("GreenFireLight") 
+	{
+	A_SpawnItemEx("PM_HugeGreenFlameTrails",0,0,0,0,0,0,0,128,0);
+	A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+	A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(30,180),size: frandom(0.3,15),xoff: random(-10,5),yoff:frandom(-30,30),zoff: random(-20,20),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+	A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(90,200),size: frandom(80,140),xoff: frandom(-10.5,-12.5),velx: frandom(-0.8,0.8),vely: frandom(-0.5,0.5),velz: frandom(-0.5,0.5),startalphaf: frandom(0.3,0.6),fadestepf: -1,startroll: random(-180,180));
+	A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 1, size: 245.0, xoff: -10, startalphaf: 0.5, startroll: random(-180,180));
+	}
+	loop;
+  Death:
+	TNT1 A 0;
+	TNT1 A 0 A_StopSound(31);
+	TNT1 A 0 A_StopSound(35);
+	TNT1 A 0 A_Explode(50,150);
+	TNT1 A 0 A_SetTranslation("PM_GreenFusionTint");
+	TNT1 A 0 A_SetScale(3.2);
+	TNT1 AAAAAA 0 A_SpawnItemEx("PM_BruiserGenericExplosionFlames",0,0,0,random(-2,2),random(-2,2),random(-2,3),0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE);
+    NDEB D 1 bright Light("GreenFireLight");
+	TNT1 AAAAAA 0 A_SpawnItemEx("PM_BruiserFireGlobs",0,0,0,random(-7,7),random(-7,7),random(-3,7),0,SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE); 
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_BruiserExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	TNT1 AAAAA 0 A_SpawnItemEx("PM_NobleFireShrapnel",0,0,0,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+    FIR3 CCDDEEFFGGHHIIJJKKLLMMNNOOPP 1 Light("GreenFireLight") bright A_FadeOut(0.05);
+    stop;
+  }
 }

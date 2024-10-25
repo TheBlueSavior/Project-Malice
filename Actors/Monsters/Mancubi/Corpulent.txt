@@ -208,6 +208,7 @@ Class PM_CorpulentBall : Fatshot
   {
    PROJECTILE;
    Speed 20;
+   FastSpeed 30;
    Alpha 1;
    Radius 4;
    Height 6;
@@ -306,6 +307,7 @@ Class PM_CorpulentFlamer : PM_CyberFodderFire
    Radius 7;
    Height 7;
    Speed 15;
+   FastSpeed 25;
    Scale 0.06;
    }
 }
