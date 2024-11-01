@@ -674,7 +674,8 @@ Class PM_SybariteNet : PMProjectileBase
 	{
 	A_SpawnProjectile("PM_ConduitBeamWarning",70,random(-50,50),random(-180,180),CMF_OFFSETPITCH,random(90,70));
 	A_StartSound("Sybarite/NetShock",38,CHANF_OVERLAP,0.8,pitch:frandom(0.8,1.2));
-	A_GiveToTarget("PM_SybariteNetted",1,AAPTR_TARGET);
+	A_RadiusGive("PM_SybariteNetted",60,RGF_PLAYERS|RGF_MONSTERS,1);
+	//A_GiveToTarget("PM_SybariteNetted",1,AAPTR_TARGET);
 	}
 	Stop;
 	}
