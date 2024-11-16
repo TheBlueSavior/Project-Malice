@@ -5320,6 +5320,8 @@ Maggot/Sight3 "Sounds/Monsters/Spectres/Maggot/MaggotSight3.ogg"
 Maggot/Sight4 "Sounds/Monsters/Spectres/Maggot/MaggotSight4.ogg"
 Maggot/Sight5 "Sounds/Monsters/Spectres/Maggot/MaggotSight5.ogg"
 
+$volume Maggot/Sight 0.8
+
 $random Maggot/Active { Maggot/Active1 Maggot/Active2 Maggot/Active3 Maggot/Active4 }
 Maggot/Active1 "Sounds/Monsters/Spectres/Maggot/MaggotActive1.ogg"
 Maggot/Active2 "Sounds/Monsters/Spectres/Maggot/MaggotActive2.ogg"
@@ -5332,16 +5334,36 @@ Maggot/Pain2 "Sounds/Monsters/Spectres/Maggot/MaggotPain2.ogg"
 Maggot/Pain3 "Sounds/Monsters/Spectres/Maggot/MaggotPain3.ogg"
 Maggot/Pain4 "Sounds/Monsters/Spectres/Maggot/MaggotPain4.ogg"
 
+$volume Maggot/Pain 0.8
+
 $random Maggot/Death { Maggot/Death1 Maggot/Death2 Maggot/Death3 Maggot/Death4 }
 Maggot/Death1 "Sounds/Monsters/Spectres/Maggot/MaggotDeath1.ogg"
 Maggot/Death2 "Sounds/Monsters/Spectres/Maggot/MaggotDeath2.ogg"
 Maggot/Death3 "Sounds/Monsters/Spectres/Maggot/MaggotDeath3.ogg"
 Maggot/Death4 "Sounds/Monsters/Spectres/Maggot/MaggotDeath4.ogg"
 
+$volume Maggot/Death 0.8
+
 $random Maggot/Attack { Maggot/Attack1 Maggot/Attack2 Maggot/Attack3 }
 Maggot/Attack1 "Sounds/Monsters/Spectres/Maggot/MaggotAttack1.ogg"
 Maggot/Attack2 "Sounds/Monsters/Spectres/Maggot/MaggotAttack2.ogg"
 Maggot/Attack3 "Sounds/Monsters/Spectres/Maggot/MaggotAttack3.ogg"
+$volume Maggot/Attack 0.8
+
+Maggot/Hiss "Sounds/Monsters/Spectres/Maggot/MaggotHiss.ogg"
+
+$random Maggot/Scamper { Maggot/Scamper1 Maggot/Scamper2 Maggot/Scamper3 Maggot/Scamper4 }
+Maggot/Scamper1 "Sounds/Monsters/Spectres/Maggot/MaggotScamper1.ogg"
+Maggot/Scamper2 "Sounds/Monsters/Spectres/Maggot/MaggotScamper2.ogg"
+Maggot/Scamper3 "Sounds/Monsters/Spectres/Maggot/MaggotScamper3.ogg"
+Maggot/Scamper4 "Sounds/Monsters/Spectres/Maggot/MaggotScamper4.ogg"
+
+$volume Maggot/Active 0.7
+
+$random Maggot/Howl { Maggot/Howl1 Maggot/Howl2 }
+Maggot/Howl1 "Sounds/Monsters/Spectres/Maggot/MaggotHowl1.ogg"
+Maggot/Howl2 "Sounds/Monsters/Spectres/Maggot/MaggotHowl2.ogg"
+$volume Maggot/Attack 0.8
 
 //Grievance
 
