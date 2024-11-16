@@ -5352,6 +5352,8 @@ $volume Maggot/Attack 0.8
 
 Maggot/Hiss "Sounds/Monsters/Spectres/Maggot/MaggotHiss.ogg"
 
+Maggot/BloodSuck "Sounds/Monsters/Spectres/Maggot/MaggotBloodSuck.ogg"
+
 $random Maggot/Scamper { Maggot/Scamper1 Maggot/Scamper2 Maggot/Scamper3 Maggot/Scamper4 }
 Maggot/Scamper1 "Sounds/Monsters/Spectres/Maggot/MaggotScamper1.ogg"
 Maggot/Scamper2 "Sounds/Monsters/Spectres/Maggot/MaggotScamper2.ogg"
