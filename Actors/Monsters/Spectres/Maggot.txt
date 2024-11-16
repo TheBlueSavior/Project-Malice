@@ -206,7 +206,7 @@ Class PM_Maggot : PMLustMonsterBase
 			TNT1 A 0 PM_LeapTo(target,1568,"Retreat");
 			TNT1 A 0 A_Recoil(-3);
 			TNT1 A 0 A_JumpIfCloser(500,"LeapStraight");
-			TNT1 A 0 ThrustThingZ(0,12,1,1);
+			TNT1 A 0 ThrustThingZ(0,25,1,1);
 			TNT1 A 0 A_Recoil(-12);
 			Goto LeapLoop;
 		LeapStraight:
