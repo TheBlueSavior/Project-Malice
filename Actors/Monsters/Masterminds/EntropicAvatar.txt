@@ -855,6 +855,7 @@ Default
   Speed 28;
   FastSpeed 34;
   DamageFunction 45;
+  DamageType "Void";
   Radius 8;
   Height 8;
   -THRUSPECIES
@@ -976,6 +977,7 @@ Class PM_EAvatarSoulVomit : Actor
     Scale 0.6;
     Speed 8;
     DamageFunction 12;
+	DamageType "Void";
     Renderstyle "Stencil";
 	StencilColor "Black";
     Alpha 0.75;

@@ -23,6 +23,7 @@ Class PM_Brute : PMUnaffMonsterBase
 	Species "Brute";
 	Monster;
 	MeleeDamage 4;
+	DamageType "Bite";
 	MeleeRange 60;
 	Speed 13;
 	Scale 1;

@@ -201,6 +201,7 @@ Class PM_InfestedSpit : DoomImpBall
 	Default
 	{
 	DamageFunction 20;
+	DamageType "Poison";
 	SeeSound "";
 	DeathSound "";
 	Speed 13;
@@ -419,6 +420,7 @@ Class PM_InfestedThrownGiblets : Actor
   Height 3;
   Speed 26;
   DamageFunction 12;
+  DamageType "Poison";
   Alpha 1;
   +ThruGhost
   -NOGRAVITY

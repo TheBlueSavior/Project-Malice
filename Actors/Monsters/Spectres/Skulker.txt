@@ -13,6 +13,7 @@ Class PM_Skulker : PMVoidMonsterBase
     Speed 10;
     PainChance 150;
 	MeleeRange 55;
+	DamageType "Bite";
     SeeSound "";
     PainSound "";
     DeathSound "";

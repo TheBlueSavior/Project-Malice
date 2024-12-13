@@ -19,6 +19,7 @@ Class PM_Prowler : PMUmbralMonsterBase
 	MaxDropOffHeight 60;
 	Scale 1.14;
 	MeleeRange 120;
+	DamageType "Bite";
 	+FLOORCLIP
 	+AVOIDMELEE
 	+DONTHARMSPECIES

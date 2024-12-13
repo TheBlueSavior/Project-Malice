@@ -15,6 +15,7 @@ Class PM_CyberSpectre : PMUnaffMonsterBase
 	Species "Brute";
 	Monster;
 	MeleeDamage 5;
+	DamageType "Bite";
 	MeleeThreshold 240;
 	MeleeRange 80;
 	MaxStepHeight 32;

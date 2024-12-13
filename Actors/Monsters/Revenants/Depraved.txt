@@ -604,6 +604,7 @@ Class PM_DepravedEyeLaser : Actor
 	RenderStyle "Add";
 	//Alpha 0.70
 	DamageFunction (5);
+	DamageType "Plasma";
 	Speed 150;
 	+ROLLSPRITE;
 	SeeSound "";
@@ -638,6 +639,7 @@ Class PM_DepravedSpit : Actor
 	Speed 15;
 	FastSpeed 15;
 	DamageFunction (15);
+	DamageType "Void";
 	Scale 1.3;
 	Projectile;
 	+Strifedamage
@@ -708,6 +710,7 @@ Class PM_DepravedHomingSpit : Actor
 	Speed 20;
 	FastSpeed 20;
 	DamageFunction (20);
+	DamageType "Void";
 	Scale 0.8;
 	Projectile;
 	+Strifedamage

@@ -16,6 +16,7 @@ Class PM_Gazer : PMPrideMonsterBase
 	Speed 4;
 	Scale 1.0;
 	DamageFunction 20;
+	DamageType "Soul";
 	PainChance 230;
 	Tag "Gazer";
 	Species "Soul";

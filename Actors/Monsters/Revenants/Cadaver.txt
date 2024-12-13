@@ -239,6 +239,7 @@ Class PM_CadaverRocket : RevenantTracer
 	Radius 2;
 	Height 2;
 	DamageFunction 30;
+	DamageType "ExplosiveImpact";
 	Speed 15;
 	FastSpeed 20;
 	Projectile;
@@ -291,6 +292,7 @@ Class PM_CadaverHRocket : RevenantTracer
 	Radius 2;
 	Height 2;
 	DamageFunction 30;
+	DamageType "ExplosiveImpact";
 	Speed 11;
 	Projectile;
 	+RANDOMIZE

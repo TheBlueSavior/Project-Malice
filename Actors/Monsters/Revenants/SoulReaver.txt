@@ -430,6 +430,7 @@ Class PM_SoulReaverShot : Actor
     Scale 0.85;
     Speed 13;
     DamageFunction 20;
+	DamageType "Soul";
     Renderstyle "Add";
     SeeSound "Harvester/SoulLaunch";
     DeathSound "Harvester/SoulExp";
@@ -504,6 +505,7 @@ Class PM_SoulReaverArbalest : Actor
   Radius 3;
   speed 35;
   DamageFunction 30;
+  DamageType "Soul";
   scale 0.75;
   RenderStyle "Add";
   Alpha 0.60;
@@ -645,6 +647,7 @@ Class PM_SoulReaverSeeker : Actor
     Scale 1;
     Speed 12;
     DamageFunction 15;
+	DamageType "Soul";
     Renderstyle "Add";
     SeeSound "DorReaver/Fire";
     DeathSound "Harvester/SoulExp";
@@ -911,6 +914,7 @@ Class PM_SoulReaverSoulgun : Actor
     Scale 0.5;
     Speed 32;
     DamageFunction 6;
+	DamageType "Soul";
     Renderstyle "Add";
     SeeSound "DorReaver/Fire";
     DeathSound "Harvester/SoulExp";
@@ -2105,6 +2109,7 @@ Class PM_ReaverSoulVomit : Actor
    Default
    {
 	DamageFunction 8;
+	DamageType "Soul";
 	Projectile;
 	+SEEKERMISSILE
 	DeathSound "Abhor/SoulExp";
@@ -2251,6 +2256,7 @@ Class PM_SoulReaverMadSouls : Actor
    Default
    {
 	DamageFunction 2;
+	DamageType "Soul";
 	+RIPPER
 	Projectile;
 	DeathSound "Abhor/BallExp";

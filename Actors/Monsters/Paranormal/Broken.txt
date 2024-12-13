@@ -876,6 +876,7 @@ Class PM_BrokenPlasmaShot : Actor
   Height 6;
   Speed 20;
   DamageFunction (15);
+  DamageType "Plasma";
   Projectile;
   SeeSound "";
   DeathSound "GenericPlasmaExp";
@@ -930,6 +931,7 @@ Class PM_BrokenRailSlug : Actor
   Height 6;
   Speed 70;
   DamageFunction 30;
+  DamageType "Railgun";
   Projectile;
   SeeSound "Broken/Railgun";
   DeathSound "HellKnight/BallImpact";

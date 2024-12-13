@@ -274,6 +274,7 @@ Class PM_DTechBall : Actor
    Radius 4;
    Speed 15;
    DamageFunction 20;
+   DamageType "Fire";
    Scale 0.08;
    Projectile;
    +BRIGHT

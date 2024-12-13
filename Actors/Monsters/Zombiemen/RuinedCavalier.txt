@@ -335,6 +335,7 @@ Class PM_CavalierSlashTracer : PM_BulletTracer
 	Speed 32;
 	+RIPPER
 	DamageFunction 7;
+	DamageType "Slash";
 	+THRUGHOST
 	+BRIGHT
 	+ROLLSPRITE

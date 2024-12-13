@@ -457,6 +457,7 @@ Class PM_NailgunnerNail : PM_BulletTracer
   Default
   {
    DamageFunction 12;
+   DamageType "Nailgun";
    Scale 1;
    Speed 26;
    FastSpeed 40;

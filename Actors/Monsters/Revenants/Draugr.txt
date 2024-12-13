@@ -437,6 +437,7 @@ Class PM_DraugrFastBall : RevenantTracer
 	Height 3;
 	Scale 1.3;
 	DamageFunction (50);
+	DamageType "Explosive";
 	Speed 16;
 	Projectile;
 	+RANDOMIZE

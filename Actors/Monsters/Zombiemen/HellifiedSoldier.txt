@@ -211,6 +211,7 @@ Class PM_HellifiedSoldierBall : PMProjectileBase
      Speed 20;
 	 FastSpeed 40;
      Damagefunction (random(10,15));
+	 DamageType "Plasma";
      Scale 0.07;
      Projectile;
      RenderStyle "Add";
@@ -318,6 +319,7 @@ Class PM_HellifiedSoldierChargeBall : Actor
    Radius 3;
    Speed 21;
    DamageFunction (random(10,15));
+   DamageType "Plasma";
    Scale 0.10;
    PROJECTILE;
    RenderStyle "Add";

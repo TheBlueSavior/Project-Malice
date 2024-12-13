@@ -15,6 +15,7 @@ Class PM_Fleshspawn : PMFamineMonsterBase
     mass 80;
     speed 10;
     damage 1;
+	DamageType "Bite";
 	Scale 0.7;
     painchance 224;
 	Species "Soul";

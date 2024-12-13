@@ -415,6 +415,7 @@ Class PM_RFZombieLaser : PMProjectileBase
      Speed 59;
 	 FastSpeed 70;
      Damagefunction (random(10,20));
+	 DamageType "Plasma";
      Scale 1.15;
      Projectile;
      RenderStyle "Add";

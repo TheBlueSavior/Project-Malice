@@ -16,6 +16,7 @@ Class PM_Bacillus : PMEnvyMonsterBase
 		Speed 5;
 		Scale 1.0;
 		DamageFunction 20;
+		DamageType "Electric";
 		PainChance 150;
 		Tag "Bacillus";
 		Species "Soul";
@@ -300,6 +301,7 @@ Class PM_BacillusBall : WickedShot
 	{
 		SeeSound "";
 		DamageFunction 5;
+		DamageType "Electric";
 		Speed 25;
 		+NEVERFAST
 	}
