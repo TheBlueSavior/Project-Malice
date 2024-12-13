@@ -290,6 +290,7 @@ Class PM_NymphiteInfantBall : PMProjectileBase
 		FastSpeed 6;
 		Scale 0.9;
 		DamageFunction (20);
+		DamageType "Plasma";
 		Projectile;
 		+RANDOMIZE
 		+SEEKERMISSILE

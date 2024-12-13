@@ -403,6 +403,7 @@ Class PM_WarforgeSniperTracer : PM_DTechSpectreSniperTracer
 	{
 		Speed 50;
 		DamageFunction 20;
+		DamageType "Plasma";
 		SeeSound "Warforge/Sniper";
 		DeathSound "Cataclysm/BallExplode";
 	}
@@ -475,6 +476,7 @@ Class PM_WarforgeSlag : PM_WarforgeSniperTracer
 	{
 		Translation "0:255=%[0,0,0]:[0.3,0.3,0.3]";
 		DamageFunction 8;
+		DamageType "Cut";
 		RenderStyle "Normal";
 		Speed 15;
 		Scale 0.8;
@@ -547,6 +549,7 @@ Class PM_WarforgePlasmaBall : Actor
    Radius 3;
    Speed 25;
    Damagefunction 8;
+   DamageType "Plasma";
    Scale 0.07;
    PROJECTILE;
    RenderStyle "Add";

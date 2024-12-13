@@ -183,6 +183,7 @@ Class PM_HeresyLordRedBall : DoomImpBall
     Default
     {
 	DamageFunction (random(30,35));
+	DamageType "Plasma";
 	Scale 1.2;
 	SeeSound "HeresyLord/RedFire";
 	DeathSound "HeresyLord/RedDeath";
@@ -315,6 +316,7 @@ Class PM_HeresyLordWhiteSoul : Actor
 	{
 	Speed 22;
 	DamageFunction 32;
+	DamageType "Plasma";
 	scale 1.3;
 	radius 6;
 	height 12;
@@ -395,6 +397,7 @@ Class PM_HeresyLordMissileDual1Real : Actor
 	Scale 0.8;
 	RenderStyle "Add";
 	DamageFunction (28);
+	DamageType "Plasma";
 	Radius 6;
 	height 12;
 	SeeSound "HeresyLord/BarrageRedFire";
@@ -497,6 +500,7 @@ Class PM_HeresyLordMissileDual2Real : Actor
 	Speed 18;
 	Radius 6;
 	DamageFunction (28);
+	DamageType "Plasma";
 	Scale 1;
 	RenderStyle "Add";
 	Alpha 0.75;

@@ -28,6 +28,7 @@ Class PM_TriteHatchling : PMFodderMonsterBase
   MaxStepHeight 40;
   MaxDropOffHeight 50;
   DamageFunction 1;
+  DamageType "Bite";
   Monster;
   Species "Fodder";
   +DONTHARMCLASS

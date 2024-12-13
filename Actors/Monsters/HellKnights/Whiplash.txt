@@ -371,6 +371,7 @@ Class PM_WhiplashKnife : MageWandMissile
   Default
   {
   DamageFunction 10;
+  DamageType "Impale";
   Scale 1.8;
   Speed 22;
   FastSpeed 32;
@@ -445,6 +446,7 @@ Class PM_WhiplashMelee : MageWandMissile
   Default
   {
   DamageFunction (random(2,6));
+  DamageType "Stab";
   Scale 1.8;
   Speed 25;
   radius 2;
@@ -478,6 +480,7 @@ Class PM_WhiplashMeleeSpear : MageWandMissile
   Default
   {
   DamageFunction 25;
+  DamageType "Stab";
   Scale 1.8;
   Speed 25;
   radius 2;

@@ -693,6 +693,7 @@ Class PM_AraneaSniper : PMProjectileBase
 		Decal "PM_GreenFireScorch";
 		Speed 50;
 		DamageFunction 40;
+		DamageType "Plasma";
 		Scale 1.0;
 		Height 8;
 		Radius 8;

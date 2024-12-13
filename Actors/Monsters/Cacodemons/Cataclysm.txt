@@ -344,6 +344,7 @@ Class PM_CataclysmGigaLaser : PM_CataclysmLaser
 		Speed 60;
 		Scale 1.25;
 		DamageFunction 7;
+		DamageType "Plasma";
 	}
 	
 	override void PostBeginPlay()
@@ -411,6 +412,7 @@ Class PM_CataclysmPlasma : PM_CataclysmLaser
 		Speed 10;
 		Scale 0.75;
 		DamageFunction 10;
+		DamageType "Plasma";
 		DeathSound "Cataclysm/BallExplode";
 		SeeSound "Cataclysm/Ball";
 		+SEEKERMISSILE

@@ -657,6 +657,7 @@ Default
  speed 42;
  FastSpeed 62;
  DamageFunction 9;
+ DamageType "Minigun";
  scale 0.50;
  RenderStyle "Add";
  Alpha 0.60;
@@ -754,6 +755,7 @@ Class PM_DEmiSpherule : Actor
 		Radius 20;
 		Height 20;
 		DamageFunction (2);
+		DamageType "Plasma";
 		+RIPPER
 		+THRUACTORS
 		+ROLLSPRITE
@@ -1013,6 +1015,7 @@ Class PM_EmissaryShotgunSoul : Actor
     Speed 8;
 	FastSpeed 18;
     DamageFunction 8;
+	DamageType "Plasma";
     Renderstyle "Add";
     Alpha 0.75;
     DeathSound "Abhor/SoulExp";

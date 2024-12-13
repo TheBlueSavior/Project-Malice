@@ -512,6 +512,7 @@ Class PM_BruiserLunge : Actor
 	Radius 16;
 	Speed 27;
 	DamageFunction (5*Random(4,8));
+	DamageType "Claw";
 	Species "Nobles";
 	SeeSound "";
 	DeathSound " ";

@@ -222,6 +222,7 @@ Class PM_RotflySpit : DoomImpBall
 	Default
 	{
 	DamageFunction 6;
+	DamageType "Venom";
 	SeeSound "";
 	DeathSound "";
 	Speed 12;

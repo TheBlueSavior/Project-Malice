@@ -500,6 +500,7 @@ Class PM_SybariteMicroMissile : PMProjectileBase
 	Radius 2;
 	Height 2;
 	DamageFunction 15;
+	DamageType "ExplosiveImpact";
 	Speed 15;
 	FastSpeed 15;
 	Projectile;

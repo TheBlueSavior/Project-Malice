@@ -233,6 +233,7 @@ Class PM_GElemVenomBurst : CacodemonBall
     Radius 8;
     Height 7;
     DamageFunction (20);
+	DamageType "Venom";
     RenderStyle "Add";
     SeeSound "GrossElem/VenomWhiz";
     DeathSound "TaintedBloodExp";
@@ -265,6 +266,7 @@ Class PM_GElemPuke : PM_HostSprayPuke
 {
   Default {
   DamageFunction 6;
+  DamageType "Venom";
   Height 6;
   Radius 10;
   Scale 0.35;
@@ -374,6 +376,7 @@ Class PM_VenomMaggotSpit : DoomImpBall
     Default
 	{
 	DamageFunction (8);
+	DamageType "Venom";
 	seesound "";
 	deathsound "";
 	Speed 19;

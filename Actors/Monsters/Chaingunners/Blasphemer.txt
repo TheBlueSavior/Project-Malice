@@ -889,6 +889,7 @@ Class PM_BlasphemerBall : DoomImpBall
 	Radius 5;
 	Height 5;
 	DamageFunction 10;
+	DamageType "Lightning";
 	+SEEKERMISSILE
 	Seesound "PM/BulletHellSpawn";
 	DeathSound "GenericPlasmaExp";
@@ -1072,6 +1073,7 @@ Class PM_BlasphemerWeaver : PM_BlasphemerBall
    Default
    {
 	DamageFunction 20;
+	DamageType "Lightning";
 	+SEEKERMISSILE
 	Scale 0.6;
 	Speed 10;
@@ -1230,6 +1232,7 @@ Class PM_BlashemerBHBall : Actor
    Speed 12;
    FastSpeed 24;
    Damagefunction 10;
+   DamageType "Electric";
    Scale 1;
    Alpha 1.0;
    PROJECTILE;

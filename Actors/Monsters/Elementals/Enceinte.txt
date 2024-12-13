@@ -234,6 +234,7 @@ Class PM_EnceinteSpit : PM_CherubSpit
 		Speed 15;
 		Scale 1;
 		DamageFunction (15);
+		DamageType "Plasma";
 	}
 	
 	states
@@ -481,6 +482,7 @@ Class PM_EnceinteBlast : PM_CherubSpit
 		Speed 13;
 		Scale 1.3;
 		DamageFunction (25);
+		DamageType "Plasma";
 		SeeSound "";
 		DeathSound "GenericPlasmaExp";
 		+SEEKERMISSILE

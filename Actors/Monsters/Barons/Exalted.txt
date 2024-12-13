@@ -616,6 +616,7 @@ Class PM_ExaltedMagicShot : Actor
     Speed 23;
 	FastSpeed 33;
     DamageFunction 25;
+	DamageType "Plasma";
     Renderstyle "Add";
     ALPHA 0.90;
     Scale 0.50;

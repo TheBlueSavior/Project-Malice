@@ -255,6 +255,7 @@ Class PM_HostAttackFlies : DoomImpBall
   Height 2;
   Radius 2;
   DamageFunction 2;
+  DamageType "Bite";
   Scale 3;
   Speed 15;
   SeeSound "Flying/Fly";
@@ -319,6 +320,7 @@ Class PM_HostSprayPuke : Actor
   Default
   {
   DamageFunction 3;
+  DamageType "Venom";
   Height 1;
   Radius 1;
   Speed 15;
@@ -407,6 +409,7 @@ Class PM_HostPoisonShot : Actor
     Height 16;
     Speed 23;
     DamageFunction 20;
+	DamageType "Acid";
     RENDERSTYLE "Add";
     ALPHA 0.8;
 	Scale 1.3;
@@ -444,6 +447,7 @@ Class PM_HostPoisonShotSmall : Actor
     Height 16;
     Speed 21;
     DamageFunction 10;
+	DamageType "Acid";
     RENDERSTYLE "Add";
     ALPHA 0.8;
 	Scale 0.75;

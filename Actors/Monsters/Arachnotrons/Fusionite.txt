@@ -249,6 +249,7 @@ Class PM_FusionShot : PMProjectileBase
 		Speed 24;
 		FastSpeed 26;
 		DamageFunction (random(15,25));
+		DamageType "Plasma";
 		Scale 1.35;
 		RenderStyle "Add";
 		+ROLLSPRITE
@@ -293,6 +294,7 @@ Class PM_ScatterFusionShot : PM_FusionShot
 		Speed 19;
 		FastSpeed 28;
 		DamageFunction (22);
+		DamageType "Plasma";
 		Scale 0.15;
 		RenderStyle "Add";
 		+SEEKERMISSILE
@@ -338,6 +340,7 @@ Class PM_SmallFusionShot : PM_FusionShot
 		Speed 27;
 		FastSpeed 26;
 		DamageFunction (12);
+		DamageType "Plasma";
 		Scale 0.6;
 		SeeSound "Fusionite/SmallShot"; 
 		DeathSound "GenericPlasmaExp";

@@ -935,6 +935,7 @@ Class PM_WickedChaserBall : Actor
 	RenderStyle "Stencil";
 	StencilColor "Green";
 	DamageFunction (25);
+	DamageType "Electric";
 	Alpha 0.6;
 	Radius 6;
 	height 12;

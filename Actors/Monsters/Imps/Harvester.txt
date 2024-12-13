@@ -398,6 +398,7 @@ Class PM_SoulHarvesterBall : Actor
     Scale 0.63;
     Speed 13;
     DamageFunction 15;
+	DamageType "Soul";
     Renderstyle "Add";
     SeeSound "Harvester/SoulLaunch";
     DeathSound "Harvester/SoulExp";
@@ -526,6 +527,7 @@ Class PM_SmallSoulHarvesterBall : Actor
     Scale 0.4;
     Speed 14;
     DamageFunction 8;
+	DamageType "Soul";
     Renderstyle "Add";
     SeeSound "GenericSmallFireball";
 	Decal "PM_DeathSoulScorchSmall";
@@ -680,6 +682,7 @@ Class PM_HSummonedSoulBall : Actor
    Radius 3;
    Speed 12;
    Damagefunction 10;
+   DamageType "Soul";
    Scale 0.6;
    Alpha 0.9;
    PROJECTILE;
