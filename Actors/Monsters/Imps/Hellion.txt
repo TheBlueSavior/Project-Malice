@@ -687,6 +687,7 @@ Class PM_HellionMendingOrb : Actor
   Health 10;
   Projectile;
   DamageFunction 20;
+  DamageType "Fire";
   SeeSound "";
   Decal "PM_GreenFireScorch";
   Speed 15;
@@ -792,6 +793,7 @@ Class PM_HellionMendingOrb2 : Actor
  {
   Projectile;
   DamageFunction 20;
+  DamageType "Fire";
   SeeSound "HeresyLord/WhiteFire";
   DeathSound "HeresyLord/WhiteDeath";
   Decal "PM_GreenFireScorch";

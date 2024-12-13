@@ -16,6 +16,7 @@ Class PM_Glutton : PMGluttonyMonsterBase
 	XScale 1.4;
 	YScale 1.27;
 	MeleeRange 65;
+	DamageType "Bite";
 	Monster;
 	+FLOORCLIP
 	+FORCERADIUSDMG

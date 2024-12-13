@@ -23,6 +23,7 @@ Class PM_BurntSoul : PMUnaffMonsterBase
     +BRIGHT
     Renderstyle "Normal";
     DamageFunction 15;
+	DamageType "Fire";
     DeathHeight 4;
     Obituary "%o's will was shattered by a Burnt Soul.";
     Tag "Burnt Soul";

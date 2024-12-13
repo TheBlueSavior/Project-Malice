@@ -265,6 +265,7 @@ Class PM_SniperBullet : PM_SlugBullet
   Speed 56;
   FastSpeed 70;
   DamageFunction (random(40,50));
+  DamageType "Sniper";
   Scale 0.85;
   RenderStyle "Add";
   Decal "PM_BulletHoleLarge";

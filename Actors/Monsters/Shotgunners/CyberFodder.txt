@@ -242,6 +242,7 @@ Class PM_CyberFodderBall : PMProjectileBase
     Speed 17;
 	FastSpeed 34;
     DamageFunction 12;
+	DamageType "Plasma";
     SeeSound "CyberZ/Fire";
     DeathSound "GenericPlasmaExp";
     Decal "PM_HellPlasmaScorch";

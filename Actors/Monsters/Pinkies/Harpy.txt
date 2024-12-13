@@ -25,6 +25,7 @@ Class PM_Harpy : PMLustMonsterBase
 	Species "Brute";
 	Monster;
 	MeleeDamage 4;
+	DamageType "Bite";
 	MeleeRange 300;
 	Scale 0.85;
 	Bloodtype "PM_NormalBloodBase";
@@ -214,6 +215,7 @@ Class PM_HarpyMeleeHitbox : PM_FastMeleeHitbox
   Default
   {
    DamageFunction 4;
+   DamageType "Melee";
    Speed 12;
    FastSpeed 12;
   }

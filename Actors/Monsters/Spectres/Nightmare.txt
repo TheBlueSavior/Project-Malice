@@ -10,6 +10,7 @@ Class PM_Nightmare : PMUmbralMonsterBase
     PainChance 144;
     RenderStyle "Add";
 	MeleeRange 150;
+	DamageType "Bite";
 	MaxTargetRange 550;
     Mass 400;
     Alpha 0.0;

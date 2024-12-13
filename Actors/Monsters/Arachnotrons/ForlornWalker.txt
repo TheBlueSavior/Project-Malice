@@ -249,6 +249,7 @@ Class PM_ForlornStar : ArachnotronPlasma
 		SeeSound "ForlornWalker/Star";
 		DeathSound "SlothBall/Impact";
 		DamageFunction 25;
+		DamageType "Plasma";
 		Speed 4;
 		FastSpeed 6;
 		+BRIGHT
@@ -384,6 +385,7 @@ Class PM_ForlornLargeBall : Actor
 		Radius 12;
 		Speed 5;
 		DamageFunction (30);
+		DamageType "Plasma";
 		Scale 0.9;
 		PROJECTILE;
 		RenderStyle "Add";

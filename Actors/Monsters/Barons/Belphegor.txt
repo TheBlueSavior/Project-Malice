@@ -286,6 +286,7 @@ Class PM_BelphegorChainShot : PM_NailgunnerNail
 	Default
 	{
 		DamageFunction 7;
+		DamageType "Nailgun";
 		Speed 30;
 		Radius 3;
 		Height 5;
@@ -341,6 +342,7 @@ Class PM_BelphegorCelestialTwilight : BaronBall
 		SeeSound "PMBelphegor/TwilightFire";
 		DeathSound "";
 		DamageFunction (0);
+		DamageType "Plasma";
 		Speed 4;
 		FastSpeed 6;
 		BounceType "Hexen";
@@ -481,6 +483,7 @@ Class PM_BelphegorGrenade : Rocket
 	Default
 	{
 		DamageFunction 20;
+		DamageType "Explosive";
 		Speed 30;
 		Radius 3;
 		Height 5;

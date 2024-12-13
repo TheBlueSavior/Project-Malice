@@ -24,6 +24,7 @@ Class PM_Wendigo : PMFamineMonsterBase
 	-DONTHARMCLASS
 	XScale 0.95;
 	YScale 1.02;
+	DamageType "Bite";
 	Species "Imp";
 	Tag "Wendigo";
     Obituary "%o is now a host to the endless, ravenous hunger.";

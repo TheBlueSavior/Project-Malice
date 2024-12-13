@@ -29,6 +29,7 @@ Class PM_Maggot : PMLustMonsterBase
 	Bloodcolor "Red";
 	Bloodtype "PM_NormalBloodBase";
 	MeleeDamage 4;
+	DamageType "Bite";
 	SeeSound "Maggot/Sight";
 	DeathSound "Maggot/Death";
 	ActiveSound "Maggot/Active";

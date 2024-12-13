@@ -754,6 +754,7 @@ Class PM_VoreDagger : Actor
     Speed 28;
 	FastSpeed 38;
     DamageFunction 32;
+	DamageType "Plasma";
     RenderStyle "Add";
 	Scale 0.85;
     Alpha 0.90;
@@ -814,6 +815,7 @@ Class PM_VoreSmallDagger : PM_VoreDagger
     Speed 22;
 	FastSpeed 32;
     DamageFunction 15;
+	DamageType "Plasma";
     RenderStyle "Add";
 	Scale 0.80;
     Alpha 0.50;

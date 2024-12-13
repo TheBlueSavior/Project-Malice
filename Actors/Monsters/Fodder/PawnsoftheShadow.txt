@@ -684,6 +684,7 @@ Default
   Speed 30;
   FastSpeed 40;
   DamageFunction (random(10,15));
+  DamageType "Void";
   Radius 5;
   Height 5;
   SeeSound "";

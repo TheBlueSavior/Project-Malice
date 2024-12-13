@@ -241,6 +241,7 @@ Class PM_AbhorBall : Fatshot
     Scale 1.0;
     Speed 11;
 	DamageFunction (random(40,40));
+	DamageType "Soul";
     Renderstyle "Add";
     seesound "Abhor/BallWhiz";
 	deathsound "Abhor/BallExp";
@@ -302,6 +303,7 @@ Class PM_AbhorBarrageBall : Fatshot
     Speed 40;
 	FastSpeed 60;
 	DamageFunction (random(25,30));
+	DamageType "Soul";
     Renderstyle "Add";
     seesound "Abhor/BarrageLaunch";
 	deathsound "Abhor/BallExp";
@@ -410,6 +412,7 @@ Class PM_AbhorSoulVomit : Actor
     Scale 0.4;
     Speed 12;
     DamageFunction 8;
+	DamageType "Soul";
     Renderstyle "Add";
     Alpha 0.75;
     DeathSound "Abhor/SoulExp";

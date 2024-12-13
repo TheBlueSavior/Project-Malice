@@ -801,6 +801,7 @@ Class PM_KurganLaserCannonShot : PM_WarforgeSniperTracer
 	    Radius 10;
 		Speed 70;
 		DamageFunction 60;
+		DamageType "Plasma";
 		SeeSound "";
 		DeathSound "Tyrant/ShellFireAdd2";
 		Scale 1.55;

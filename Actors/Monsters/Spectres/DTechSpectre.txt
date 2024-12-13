@@ -11,6 +11,7 @@ Class PM_DemonTechSpectre : PMWarMonsterBase
     PainChance 160;
 	MeleeThreshold 300;
 	MeleeRange 230;
+	DamageType "Bite";
 	Scale 1.1;
     Monster;
     +FLOORCLIP
@@ -405,6 +406,7 @@ Class PM_DTechSpectreShot : Actor
    Radius 2;
    Speed 36;
    DamageFunction 3;
+   DamageType "Plasma";
    Decal "PM_HellPlasmaScorch";
    DeathSound "GenericPlasmaExp";
    Scale 0.45;
@@ -481,6 +483,7 @@ Class PM_DTechSpectreSniperTracer : Actor
    Radius 4;
    Speed 40;
    DamageFunction 30;
+   DamageType "Plasma";
    Scale 0.65;
    Projectile;
    +FORCERADIUSDMG

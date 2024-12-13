@@ -629,6 +629,7 @@ Class PM_HellsFurySoul : Actor
    Default
    {
 	DamageFunction 8;
+	DamageType "Soul";
 	Projectile;
 	+SEEKERMISSILE
 	DeathSound "Abhor/SoulExp";
@@ -721,6 +722,7 @@ Class PM_HellsFurySpreadFire : Actor
    Default
    {
 	DamageFunction 18;
+	DamageType "Soul";
 	+NOGRAVITY
 	-LOWGRAVITY
 	+MISSILE
@@ -830,6 +832,7 @@ Default
  Radius 8;
  Speed 37;
  DamageFunction 30;
+ DamageType "Lightning";
  Scale 1.0;
  RenderStyle "Add";
  Alpha 0.60;

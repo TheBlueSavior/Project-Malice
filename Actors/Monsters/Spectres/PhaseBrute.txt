@@ -17,6 +17,7 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 	PainChance 100;
 	Mass 400;
 	MeleeRange 60;
+	DamageType "Bite";
 	+FLOORCLIP
 	+DONTHARMSPECIES
 	+DONTHARMCLASS

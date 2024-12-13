@@ -24,6 +24,7 @@ Class PM_CyberBrute : PMUnaffMonsterBase
 	Monster;
 	AttackSound "GenericPinkyBite";
 	MeleeDamage 4;
+	DamageType "Bite";
 	MeleeThreshold 230;
 	//MaxStepHeight 32
 	//MaxDropOffHeight 32

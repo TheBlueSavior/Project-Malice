@@ -1010,6 +1010,7 @@ Class HorrorLunge : Actor
  Radius 15;
  Speed 11;
  DamageFunction 4;
+ DamageType "Claw";
  DeathSound "";
  SeeSound "";  
  PROJECTILE;
@@ -1030,6 +1031,7 @@ Class SoulLunge : Actor
  Radius 15;
  Speed 11;
  DamageFunction 1;
+ DamageType "Claw";
  DeathSound "";
  SeeSound "";
  Projectile;

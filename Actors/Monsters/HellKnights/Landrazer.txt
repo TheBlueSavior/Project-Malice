@@ -402,6 +402,7 @@ Class PM_LandrazerMissile : PMProjectileBase
     Radius 8;
 	Height 8;
     DamageFunction 20;
+	DamageType "ExplosiveImpact";
     Speed 28;
     FastSpeed 38;
 	Scale 1;
@@ -457,6 +458,7 @@ Class PM_LandrazerMeteor : PM_HuskMeteor
     Speed 20;
 	FastSpeed 30;
     DamageFunction 30;
+	DamageType "Fire";
 	SeeSound "Husk/Throw";
 	BounceSound "Grievance/HomingExp";
 	BounceType "Hexen";
@@ -495,6 +497,7 @@ Class PM_LandrazerFirebomb : PM_HuskFirebomb
    {
     Speed 20;
     DamageFunction 5;
+	DamageType "Fire";
 	BounceType "Hexen";
 	BounceCount 8;
 	-NOGRAVITY
@@ -510,6 +513,7 @@ Class PM_LandrazerComet : Actor
 	Height 13;
 	Projectile;
 	DamageFunction 30;
+	DamageType "Fire";
 	SeeSound "GenericChargeHeavy";
 	DeathSound "GenericCometExp";
 	Speed 36;

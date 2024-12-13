@@ -574,6 +574,7 @@ Class PM_ExileFireball : Actor
 		Speed 19;
 		FastSpeed 30;
 		DamageFunction (Random(18,25));
+		DamageType "Fire";
 		Scale 1;
 		Projectile;
 		Alpha 1;

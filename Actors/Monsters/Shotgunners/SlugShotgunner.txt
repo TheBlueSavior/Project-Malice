@@ -257,6 +257,7 @@ Class PM_SlugBullet : PM_BulletTracer
   Speed 35;
   FastSpeed 72;
   DamageFunction (random(35,45));
+  DamageType "Shotgun";
   Scale 0.85;
   RenderStyle "Add";
   Decal "PM_BulletHoleLarge";

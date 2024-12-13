@@ -651,6 +651,7 @@ Class PM_TyrantBackMissile : PMProjectileBase
 	 Speed 16;
 	 FastSpeed 16;
 	 DamageFunction (25);
+	 DamageType "Explosive";
 	 Scale 1.25;
 	 Alpha 1;
 	 +BRIGHT
@@ -743,6 +744,7 @@ Class PM_TyrantTankShell : RevenantTracer
 	Height 13;
 	Scale 1.25;
 	DamageFunction (100);
+	DamageType "Explosive";
 	Speed 80;
 	Projectile;
 	+RANDOMIZE
@@ -827,6 +829,7 @@ Class TyrantHeavyRocket : RevenantTracer
 	Height 8;
 	Scale 0.95;
 	DamageFunction (75);
+	DamageType "Explosive";
 	Speed 20;
 	Projectile;
 	+RANDOMIZE
@@ -902,6 +905,7 @@ Class PM_TyrantStreamRocket : PMProjectileBase
 	Height 3;
 	Scale 1;
 	DamageFunction (35);
+	DamageType "Explosive";
 	Speed 30;
 	Projectile;
 	+RANDOMIZE
@@ -957,6 +961,7 @@ Class PM_TyrantSmallRocket : PMProjectileBase
 	Radius 3;
 	Height 3;
 	DamageFunction (35);
+	DamageType "ExplosiveImpact";
 	Speed 20;
 	Projectile;
 	+RANDOMIZE
@@ -1045,6 +1050,7 @@ Class TyrantPlasmaThrower : PM_CyberFodderFire
    Height 14;
    Speed 26;
    DamageFunction 7;
+   DamageType "Plasma";
    Scale 0.13;
    Translation "0:255=%[0,0,0]:[1.9,0.5,0.5]";
    }

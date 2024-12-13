@@ -25,6 +25,7 @@ Class PM_Sawcubus : PMFamineMonsterBase
 		Species "Brute";
 		Monster;
 		MeleeDamage 4;
+		DamageType "Bite";
 		MeleeRange 650;
 		Scale 1.07;
 		Bloodtype "PM_DarkRedBloodBase";

@@ -556,6 +556,7 @@ Class PM_HuskSmallFireball : DoomImpBall
   {
   Speed 12;
   DamageFunction (12);
+  DamageType "Fire";
   Scale 0.8;
   Projectile;
   +RANDOMIZE
