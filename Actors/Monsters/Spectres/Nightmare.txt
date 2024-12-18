@@ -905,7 +905,7 @@ Class PM_NightmareFreezingDamage : PowerSpeed
 		Super.DoEffect();
 		if(owner.health > 0 && !IsFrozen())
 		{
-			if(!random(0,3))
+			if(!random(0,3) && IsFrozen() && owner.health > 0)
 			{
 			owner.A_SpawnParticleEx
 			(   
@@ -931,11 +931,11 @@ Class PM_NightmareFreezingDamage : PowerSpeed
 			rollacc: 0
 			);
 			}
-			if(!random(0, 10))
+			if(!random(0, 10) && IsFrozen() && owner.health > 0)
 			{
 			owner.A_Explode(1,10,damagetype:"Ice");
 			}
-			if(!random(0, 40))
+			if(!random(0, 40) && IsFrozen() && owner.health > 0)
 			{
 			owner.A_StartSound ("misc/freeze", random(30,35),pitch:frandom(0.9,1.1));
 			}
