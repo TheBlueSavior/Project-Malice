@@ -233,10 +233,11 @@ class PMMonsterBase : Actor abstract
 	}
 
 	// [Ace] maxDiff reaches its peak roughly around 16, I think.
-	static void PM_SpawnBolt(Actor spawner, Vector3 endPos, Color col, TextureID tex, double maxDiff = 16.0, double scale = 1.0, Vector3 offset = (0, 0, 0), int flags = 0, int baseTime = 35, int fadeTime = 20)
+	PM_Bolt AimLaser;
+	VisualThinker part;
+	void PM_SpawnBolt(Actor spawner, Vector3 endPos, Color col, TextureID tex, double maxDiff = 16.0, double scale = 1.0, Vector3 offset = (0, 0, 0), int flags = 0, int baseTime = 35, int fadeTime = 20, double alpha = 0.4)
 	{
 		Vector3 diff = Level.Vec3Diff(spawner.Vec3Offset(offset.X, offset.Y, offset.Z), endPos);
-		Vector3 unit = diff.Unit();
 
 		Vector3 partDiff = (0, 0, 0);
 		double dist = diff.Length();
@@ -254,23 +255,36 @@ class PMMonsterBase : Actor abstract
 			offsetside:offset.y,
 			data:Lbeam
 		);
+		if(!AimLaser){
+		AimLaser = PM_Bolt(self.spawn("PM_Bolt",(Lbeam.hitlocation),ALLOW_REPLACE));
 		
-		let las = spawn("PM_Bolt",(Lbeam.hitlocation),ALLOW_REPLACE);
-		las.scale.y=-lbeam.Distance;
-		las.scale.x=scale;
-		las.pitch=PitchDes-90;
-		las.angle=AngleDes;
-		las.SetShade(col);
+		}
 		
-		FSpawnParticleParams part;
-		part.pos=Lbeam.hitlocation;
-		part.color1=col;
-		part.StartAlpha=1;
-		part.texture = tex;
-		part.Size = 40*scale;
-		part.Style=(flags & SBF_NOADD ? STYLE_Normal : STYLE_Add);
-		part.lifetime=1;
-		Level.SpawnParticle(Part);
+		if(AimLaser){
+		AimLaser.setorigin(Lbeam.hitlocation,true);
+		Aimlaser.alpha=alpha;
+		AimLaser.scale.y=-lbeam.Distance;
+		AimLaser.scale.x=scale;
+		AimLaser.pitch=PitchDes-90;
+		AimLaser.angle=AngleDes;
+		AimLaser.SetShade(col);
+		//Setting it to 1 gets it deleted
+		AimLaser.tics=1+baseTime;
+		PM_Bolt(Aimlaser).fade=Alpha/max(1,fadeTime);
+		}
+		
+		//Someone please try to make this look less ass
+		if(!part)part=PM_BoltPart.spawn("PM_Boltpart",tex,Lbeam.hitlocation,(0,0,0));
+		if(part){
+			part.SetRenderStyle(flags & SBF_NOADD ? STYLE_Normal : STYLE_Add);
+			part.Texture=tex;
+			PM_BoltPart(part).movepoint=Lbeam.hitlocation;
+			PM_BoltPart(part).Thealpha=1;
+			PM_BoltPart(part).fade=1/max(1,fadeTime);
+			part.scolor=col;
+			part.scale = (1,1)*scale*1.5;
+		}
+		
 	}
 
 	override void PostBeginPlay()
@@ -400,8 +414,10 @@ class PMMonsterBase : Actor abstract
 
 Class PM_Bolt : Actor
 {
+	Double Fade;
 	Default
 	{
+		+FORCEXYBILLBOARD;
 		RenderStyle "Addstencil";
 		+NOINTERACTION
 		+NOBLOCKMAP
@@ -410,16 +426,61 @@ Class PM_Bolt : Actor
 		StencilColor "ff2424";
 		Alpha 0.4;
 	}
+	Override Void Tick(){
+	super.Tick();
+		if(alpha<=0||fade<0)destroy();
+	}
+
 	States
 	{
 		Spawn:
-			TNT1 A 1;
-			ZAZA A 1;
-			Stop;
+			ZAZA A 2;
+		Fadeloop:
+			ZAZA A 1 {alpha-=fade;}
+			Loop;
 	}
-
 }
-
+Class PM_BoltPart : VisualThinker
+{
+	Vector3 Movepoint;
+	double fade;
+	double thealpha;
+			
+	override void Tick()
+	{
+		Super.Tick();
+		Pos=movepoint;
+		
+		//This shit is so ass :brokenheart:
+		alpha -= fade;
+		alpha = thealpha;
+		thealpha=0;
+		
+		if(alpha<=0)Destroy();
+		
+	}
+}
+//Check PM_ZTrooperFragGrenade for example
+Class PM_Trailer : actor abstract
+{
+	static vector3 Trail(Actor owner,vector3 OtherPos,Color col,vector3 offset = (0,0,0), double scale = 1,double alpha = 0.3,int fadetics = 1){
+		actor las;
+		vector3 newPos = owner.pos+(RotateVector(offset.xy,owner.angle),offset.z);
+		las = spawn("PM_bolt",newpos,ALLOW_REPLACE);
+		if(las){
+			vector3 substitute = (OtherPos-newPos);
+			las.alpha = alpha;
+			las.SetShade(col);
+			las.scale.x = scale;
+			las.scale.y = (substitute).length();
+			las.angle = atan2(substitute.xy);
+			las.pitch = atan2(-(substitute.z),(substitute.xy).length())-90;
+			PM_bolt(las).fade = alpha/fadetics;	
+		}
+		return newpos;
+		
+	}
+}
 class PM_BeamSegment : Actor abstract
 {
 	protected virtual void SpawnRayParticles()
