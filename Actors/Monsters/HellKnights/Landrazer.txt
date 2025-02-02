@@ -397,6 +397,11 @@ Class PM_LandrazerMissile : PMProjectileBase
    int pvspeed;
    double phdist;
    double pvdist;
+   vector3 lastpos;
+   override void postbeginplay(){
+	  lastpos=self.pos;
+	  super.postbeginplay();
+  }
    Default
    {
     Radius 8;
@@ -430,6 +435,7 @@ Class PM_LandrazerMissile : PMProjectileBase
 	Go:
       CMIS A 1 Bright 
 	     { 
+	let Coord = PM_Trailer.Trail(Self,lastpos,"ff7424",(-10,0,0),1,0.3,8);lastpos=Coord;
 		  PM_CheckWhiz();
 		  if(timer < 0)
 		   { A_Weave(phspeed,pvspeed,phdist,pvdist); }

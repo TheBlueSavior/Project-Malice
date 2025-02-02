@@ -478,7 +478,7 @@ Class PM_BelphegorCelestialTwilight : BaronBall
 	}
 }
 
-Class PM_BelphegorGrenade : Rocket 
+Class PM_BelphegorGrenade : Rocket
 {
 	Default
 	{
@@ -498,9 +498,10 @@ Class PM_BelphegorGrenade : Rocket
 		DeathSound "";
 		Translation "0:255=%[0.00,0.00,0.00]:[0.46,0.46,0.46]", "16:60=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "160:235=%[0.00,0.00,0.00]:[1.01,2.00,2.00]", "0:0=%[0.00,0.00,0.00]:[1.01,2.00,2.00]";
 	}
-	
+	vector3 lastpos;
 	override void PostBeginPlay()
 	{
+		 lastpos=self.pos;
 		Super.PostBeginPlay();
 		tex[0] = TexMan.CheckForTexture("CBALC0",TexMan.Type_Sprite);
 		tex[1] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
@@ -525,7 +526,10 @@ Class PM_BelphegorGrenade : Rocket
 				A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 15, size: frandom(80,120.0), xoff: -13, startalphaf: frandom(0.5,0.8), fadestepf: 0.1, sizestep: -10, startroll: random(-180,180));
 			}
 		Go:
-			CMIS A 1 A_SpawnParticleEx("#d2d2d2", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,250), size: frandom(10,20), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7), startalphaf: frandom(0.1,0.5), fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1));
+			CMIS A 1 {
+			let Coord = PM_Trailer.Trail(Self,lastpos,"45d0ff",(-10,0,0),1,0.3,13);lastpos=Coord;
+			A_SpawnParticleEx("#d2d2d2", tex[1], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(10,250), size: frandom(10,20), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7), startalphaf: frandom(0.1,0.5), fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1));
+			}
 			Loop;
 		Death:
 			BLAD A 0

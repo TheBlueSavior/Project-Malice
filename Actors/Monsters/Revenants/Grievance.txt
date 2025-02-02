@@ -1027,7 +1027,13 @@ Class PM_GrievanceNeedle : PM_NailgunnerNail
 		DeathSound "PMBelphegor/ChainImpact";
 		DamageType "Poison";
 	}
-
+	
+	vector3 lastpos;
+	override void postbeginplay(){
+	  lastpos=self.pos;
+	  super.postbeginplay();
+	  }
+	
 	States
 	{
 		Spawn:
@@ -1039,7 +1045,7 @@ Class PM_GrievanceNeedle : PM_NailgunnerNail
 				A_SpawnParticleEx("", TexMan.CheckForTexture("PBALC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 15, size: frandom(80,120.0), xoff: -13, startalphaf: frandom(0.5,0.8), fadestepf: 0.1, sizestep: -10, startroll: random(-180,180));
 			}
 		Go:
-			N_EN A 1 BRIGHT { PM_CheckWhiz(); A_SpawnParticleEx("", TexMan.CheckForTexture("PBALC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 15, size: 10, xoff: -8, startalphaf: 1, fadestepf: 0, sizestep: -1, startroll: random(-180,180)); }
+			N_EN A 1 BRIGHT { PM_CheckWhiz(); let Coord = PM_Trailer.Trail(Self,lastpos,"93ff00",(-10,0,0),0.6,0.1,4);lastpos=Coord; }
 			Loop;
 		Death:
 			N_EN A 0

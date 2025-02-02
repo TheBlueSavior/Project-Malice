@@ -784,8 +784,8 @@ Class PM_VoreDagger : Actor
 	 //A_SeekerMissile(random(0,1),random(0,1));
 	 //A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,8,0,random(20,-20),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
 	 //A_SpawnParticle("80FF38",SPF_FULLBRIGHT|SPF_RELATIVE,95,8,0,random(20,-20),random(-5,5),random(-5,5),10,0,0,0,0,0,1,-1,-0.3);
-	 A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 80,size: 25.0,xoff:frandom(-3,-10), velx: frandom(0,2), startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
-	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,35),size: random(1,15),xoff: random(-15,15),yoff: random(-9,9),zoff: random(-7,7),velx: frandom(-0.2,0.2),vely: frandom(-0.5,0.5),velz: frandom(-0.2,-2),startalphaf: frandom(0.65,0.95),startroll: random(-180,180));
+	 A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 80,size: 18.0,xoff:frandom(-3,-10), velx: frandom(0,2), startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	 A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,35),size: random(1,8),xoff: random(-15,15),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.2,0.2),vely: frandom(-0.5,0.5),velz: frandom(-0.2,-2),startalphaf: frandom(0.65,0.95),startroll: random(-180,180));
 	}
     Loop;
   Death:
@@ -829,9 +829,9 @@ Class PM_VoreSmallDagger : PM_VoreDagger
 
     void PM_VoreOrbParticles()
 	{
-	  A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 50,size: 15.0,xoff: frandom(-2,-10), velx: frandom(0,2), startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+	  A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 50,size: 12.0,xoff: frandom(-2,-10), velx: frandom(0,2), startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
 	  //A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: 15.0,xoff: 30,startalphaf: frandom(0.15,0.45),startroll: random(-180,180));
-	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,80),size: random(1,8),xoff: random(-3,3),yoff: random(-2,2),zoff: random(-2,2),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(-0.1,0.1),startalphaf: frandom(0.65,0.95),startroll: random(-180,180));
+	  A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,80),size: random(1,4),xoff: random(-3,3),yoff: random(-1,1),zoff: random(-1,1),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(-0.1,0.1),startalphaf: frandom(0.65,0.95),startroll: random(-180,180));
 	}
 	
   States

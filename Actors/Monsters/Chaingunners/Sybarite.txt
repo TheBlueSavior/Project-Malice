@@ -372,8 +372,9 @@ Class PM_SybGrenade : PM_ZTrooperFragGrenade
  Go:
   GREN AAABBBCCCDDDEEEFFF 1 BRIGHT
   {
+	let Coord = PM_Trailer.Trail(Self,lastpos,"ff2424",(0,0,6),0.5,0.3,13);lastpos=Coord;
 	A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80.0,xoff: -5,zoff:8,startalphaf: 0.45);
-	A_SpawnParticle("FF2A2A",SPF_FULLBRIGHT|SPF_RELATIVE,95,13,0,-5,0,8,0,0,0,0,0,0,0.85,-0.2,-1);
+	//A_SpawnParticle("FF2A2A",SPF_FULLBRIGHT|SPF_RELATIVE,95,13,0,-5,0,8,0,0,0,0,0,0,0.85,-0.2,-1);
 	A_SpawnParticleEx( "#d2d2d2", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(20,75),
 	size: frandom(15,35), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7),
 	startalphaf: frandom(0.6,0.85), fadestepf: -1, sizestep: frandom(0.0,2.5), startroll: random(-180,180), rollvel: frandom(-1,1));
@@ -515,9 +516,10 @@ Class PM_SybariteMicroMissile : PMProjectileBase
 	+THRUGHOST
 	+FORCEXYBILLBOARD
     }
-	
+	vector3 lastpos;
 	override void PostBeginPlay()
 	{
+	lastpos=self.pos;
 	 Super.PostBeginPlay();
 	 tex[0] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
 	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
@@ -558,6 +560,7 @@ Class PM_SybariteMicroMissile : PMProjectileBase
 	Go1:
 		MICR A 1 BRIGHT
 		{
+		let Coord = PM_Trailer.Trail(Self,lastpos,"ff5c24",(-10,0,0),0.5,0.1,1);lastpos=Coord;
 		A_Weave(2, 2, 2.0, 1.0);
 		A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,50),size: 10.0,xoff: frandom(-2,-15),startalphaf: 0.8
 		,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
@@ -567,6 +570,7 @@ Class PM_SybariteMicroMissile : PMProjectileBase
 	Go2:
 		MICR A 1 BRIGHT
 		{
+		let Coord = PM_Trailer.Trail(Self,lastpos,"ff5c24",(-10,0,0),0.5,0.1,1);lastpos=Coord;
 		A_Weave(-2, -2, -2.0, -1.0);
 		A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,50),size: 10.0,xoff: frandom(-2,-15),startalphaf: 0.8
 		,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
@@ -576,6 +580,7 @@ Class PM_SybariteMicroMissile : PMProjectileBase
 	Go3:
 		MICR A 1 BRIGHT
 		{
+		let Coord = PM_Trailer.Trail(Self,lastpos,"ff5c24",(-10,0,0),0.5,0.1,1);lastpos=Coord;
 		A_Weave(3, 3, 2.0, 1.0);
 		A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,50),size: 10.0,xoff: frandom(-2,-15),startalphaf: 0.8
 		,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));

@@ -518,7 +518,7 @@ Class PM_NailgunnerNail : PM_BulletTracer
   }
 }
 
-Class PM_NailgunnerNailBlur : Actor
+Class PM_NailgunnerNailBlur : PMProjectileBase
 {
    Default
    {
