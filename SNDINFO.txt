@@ -6060,6 +6060,7 @@ $volume ForlornWalker/Shield 0.8
 
 ForlornWalker/Cooldown "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerCooldown.ogg"
 ForlornWalker/Ready "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerReady.ogg"
+ForlornWalker/BlackHoleActive "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerBlackHoleActive.ogg"
 
 $random ForlornWalker/Sight { ForlornWalker/Sight1 ForlornWalker/Sight2 ForlornWalker/Sight3 }
 ForlornWalker/Sight1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerSight1.ogg"
