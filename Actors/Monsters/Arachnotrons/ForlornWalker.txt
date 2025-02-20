@@ -500,7 +500,7 @@ Class PM_ForlornLargeBall : PMMonsterBase
 				A_FaceTarget();
 				Radius_Quake(2, 1, 0, 40, 0);
 				A_SetRoll(roll+15);
-				A_RadiusThrust(-180,800,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
+				A_RadiusThrust(-180,600,RTF_NOIMPACTDAMAGE|RTF_NOTMISSILE);
 				PM_ChargeParticles(self,2,frandom(300,600),(frandom(-30.5,30.5),frandom(-40.5,40.5),frandom(10.9,35.9)),TexMan.CheckForTexture("DUSTA0"),"",0);
 				PM_ChargeParticles(self,2,frandom(300,600),(frandom(-30.5,30.5),frandom(-40.5,40.5),frandom(10.9,35.9)),TexMan.CheckForTexture("SPKRA0"),"",0);
 				A_SpawnParticleEx("",tex[6],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(1,4),size: random(500,1000), xoff: random(-80,80), yoff: random(-80,80), zoff: random(-80,80), startalphaf: frandom(0,0.65),fadestepf: -1,sizestep: -10,rollvel: random(-20,20));
