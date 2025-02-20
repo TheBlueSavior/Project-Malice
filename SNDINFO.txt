@@ -5694,6 +5694,9 @@ $random Cherub/Attack { Cherub/Attack1 Cherub/Attack2 }
 Cherub/Attack1 "Sounds/Monsters/Souls/Cherub/CherubAttack1.ogg"
 Cherub/Attack2 "Sounds/Monsters/Souls/Cherub/CherubAttack2.ogg"
 
+Cherub/FlyLoop "Sounds/Monsters/Souls/Cherub/CherubFlyLoop.ogg"
+$limit Cherub/FlyLoop 10
+
 $random Cherub/Death { Cherub/Death1 Cherub/Death2 }
 Cherub/Death1 "Sounds/Monsters/Souls/Cherub/CherubDeath1.ogg"
 Cherub/Death2 "Sounds/Monsters/Souls/Cherub/CherubDeath2.ogg"

@@ -6,7 +6,7 @@ Class PM_UmbralDisciple : PMUmbralMonsterBase
 	"What exactly is under those robes? No one knows. What's important is that they are exhalted entities from the deepest pit.
     
 	Think of elite veteran soldiers, but made solely out of Hell's hand. Considering they come from the freezing abyss,
-    Considering they come from the freezing abyss, they will try to glaciate you by spewing spherules made out of entropy and antiparticles.
+	they will try to glaciate you by spewing spherules made out of entropy and antiparticles.
 	When they raise their hands, they will often release the souls of the damned, either in a barrage or a loop.
 	
 	\cmThey are not so merciful to anyone, and will take your soul after the deed is done.";
