@@ -305,7 +305,8 @@ Class PM_EnceinteSac : PM_ZTrooperFragGrenade
     }
 	Loop;
   Bounce:
-	Goto Spawn2;
+	Goto Spawn;
+  XDeath:
   Death:
 	TNT1 A 0 A_SetRoll(90);
     TNT1 A 0 A_StartSound("Enceinte/SacBounce");
@@ -465,6 +466,7 @@ Class PM_BabyCherub : PM_Cherub
 		CHE_ A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
 		Goto Stare;
 	StareStart:
+		CHE_ A 0 A_CheckSight("See2");
 		CHE_ A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
 	Stare:
 		CHE_ A 0 A_ChangeVelocity(random(-1,1), random(-1,1), random(-1,1), CVF_REPLACE);
