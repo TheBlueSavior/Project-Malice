@@ -225,3 +225,36 @@ DoomEdNums
 	23112 = "PM_Fusionite"
 	23113 = "PM_Plasmatron"
 }
+
+skill pmroughskill
+{
+   Aggressiveness = 1.0
+   EasyKey
+   textcolor = white
+   SpawnFilter = hard
+   name = "\cj PM - Rough"
+   mustconfirm = "Custom Project Malice difficulty. Higher enemy aggressiveness without using Fast Monsters."
+}
+
+skill pmbrutal
+{
+   Aggressiveness = 1.0
+   DamageFactor = 2.0
+   EasyKey
+   textcolor = white
+   SpawnFilter = hard
+   name = "\cj PM - Brutal"
+   mustconfirm = "Custom Project Malice difficulty. Same as 'PM - Rough' but attacks hit twice as hard."
+}
+
+skill pmknifesedge
+{
+   Aggressiveness = 1.0
+   DamageFactor = 5.0
+   EasyKey
+   NoInfighting
+   textcolor = white
+   SpawnFilter = hard
+   name = "\cj PM - Knife's Edge"
+   mustconfirm = "Custom Project Malice difficulty. Balance your life on a knife's edge. A single mistake can mean death, and evil unites against you with no infighting. You will die extremely quickly. Kill them quicker."
+}
