@@ -75,22 +75,22 @@ Class PM_SpawnOfBelphegor : PMSlothMonsterBase
 		TNT1 A 0 A_Quake(1, 4, 0, 312);
 		TNT1 A 0
 		{
-			A_StartSound("hoofstep",9,CHANF_OVERLAP);
-			A_StartSound("director/servo",9,CHANF_OVERLAP);
-			A_StartSound("director/stomp",9,CHANF_OVERLAP,0.8,pitch:1.35);
+			A_StartSound("hoofstep",35,CHANF_OVERLAP);
+			A_StartSound("Belphegor/Step",36,pitch: frandom(0.92,0.98));
 			A_SpawnItemEx("PM_BelphegorWalkFire",6,10,flags:SXF_NOCHECKPOSITION);
 		}
 		BELP CCC 8;
+		TNT1 A 0 A_StartSound("Plasmatron/Servos",CHAN_7,CHANF_DEFAULT,0.7);
 		BELP DDDD 3 PM_LookingForPlayer();
 		TNT1 A 0 A_Quake(1, 4, 0, 312);
 		TNT1 A 0
 		{
-			A_StartSound("hoofstep",9,CHANF_OVERLAP);
-			A_StartSound("director/servo",9,CHANF_OVERLAP);
-			A_StartSound("director/stomp",9,CHANF_OVERLAP,0.8,pitch:1.35);
+			A_StartSound("hoofstep",35,CHANF_OVERLAP);
+			A_StartSound("Belphegor/Step",36,pitch: frandom(0.92,0.98));
 			A_SpawnItemEx("PM_BelphegorWalkFire",6,-10,flags:SXF_NOCHECKPOSITION);
 		}
 		BELP AAA 8;
+		TNT1 A 0 A_StartSound("Plasmatron/Servos",CHAN_7,CHANF_DEFAULT,0.7);
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
 		Loop;
 	Spotted:
@@ -106,22 +106,22 @@ Class PM_SpawnOfBelphegor : PMSlothMonsterBase
 		TNT1 A 0 A_Quake(1, 4, 0, 312);
 		TNT1 A 0
 		{
-			A_StartSound("hoofstep",9,CHANF_OVERLAP);
-			A_StartSound("director/servo",9,CHANF_OVERLAP);
-			A_StartSound("director/stomp",9,CHANF_OVERLAP,0.8,pitch:1.35);
+			A_StartSound("hoofstep",35,CHANF_OVERLAP);
+			A_StartSound("Belphegor/Step",36,pitch: frandom(0.92,0.98));
 			A_SpawnItemEx("PM_BelphegorWalkFire",6,10,flags:SXF_NOCHECKPOSITION);
 		}
 		BELP CCC 8 A_Chase("Missile","Missile",CHF_DONTMOVE);
+		TNT1 A 0 A_StartSound("Plasmatron/Servos",CHAN_7,CHANF_DEFAULT,0.7);
 		BELP DDDD 3 A_Chase();
 		TNT1 A 0 A_Quake(1, 4, 0, 312);
 		TNT1 A 0
 		{
-			A_StartSound("hoofstep",9,CHANF_OVERLAP);
-			A_StartSound("director/servo",9,CHANF_OVERLAP);
-			A_StartSound("director/stomp",9,CHANF_OVERLAP,0.8,pitch:1.35);
+			A_StartSound("hoofstep",35,CHANF_OVERLAP);
+			A_StartSound("Belphegor/Step",36,pitch: frandom(0.92,0.98));
 			A_SpawnItemEx("PM_BelphegorWalkFire",6,-10,flags:SXF_NOCHECKPOSITION);
 		}
 		BELP AAA 8 A_Chase("Missile","Missile",CHF_DONTMOVE);
+		TNT1 A 0 A_StartSound("Plasmatron/Servos",CHAN_7,CHANF_DEFAULT,0.7);
 		Loop;
 	Missile:
 		BELP A 0 { if (!random(0, 1)) A_StartSound("PMBelphegor/Attack", CHAN_VOICE); }

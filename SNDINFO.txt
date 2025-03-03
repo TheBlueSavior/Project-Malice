@@ -6035,6 +6035,13 @@ $rolloff PMBelphegor/Twilight2 1500 2000
 PMBelphegor/TwilightExplode "Sounds/Monsters/Barons/SpawnOfBelphegor/BelphegorTwilightExplode.ogg"
 $rolloff PMBelphegor/TwilightExplode 500 2500
 
+$random Belphegor/Step { Belphegor/Step1 Belphegor/Step2 }
+Belphegor/Step1 "Sounds/Monsters/SFX/LandrazerStep1.ogg"
+Belphegor/Step2 "Sounds/Monsters/SFX/LandrazerStep2.ogg"
+
+$rolloff Belphegor/Step 450 1700
+$volume Belphegor/Step 1
+
 //Forlorn Walker
 $random ForlornWalker/Active { ForlornWalker/Active1 ForlornWalker/Active2 ForlornWalker/Active3 }
 ForlornWalker/Active1 "Sounds/Monsters/Arachnotrons/ForlornWalker/ForlornWalkerActive1.ogg"
