@@ -626,9 +626,9 @@ Class PM_FiendSmallRocket : PMProjectileBase
 		{
 	     A_SpawnParticleEx
 		("",TexMan.CheckForTexture("EXN1B0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
-		lifetime: 30, size: 80.0, startalphaf: 1, fadestepf: -1, sizestep: frandom(0.0,2.5), startroll: random(-180,180));
+		lifetime: 40, size: 200.0, startalphaf: 1, fadestepf: -1, sizestep: -8, startroll: random(-180,180));
 		}
-		TNT1 AAAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
+		TNT1 AAAA 0 A_SpawnItemEx("PM_FiendBallExplode",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
 		FSHT BBCCDDEE 1 BRIGHT Light("AvatarFireball4");
 		Stop;
 	}
