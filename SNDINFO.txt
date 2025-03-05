@@ -795,6 +795,7 @@ $random Blob/Slosh { BlobSlosh1 BlobSlosh2 }
 BlobSlosh1 "Sounds/Monsters/Fodder/Pustule/BlobSlosh1.ogg"
 BlobSlosh2 "Sounds/Monsters/Fodder/Pustule/BlobSlosh2.ogg"
 $rolloff Blob/Slosh 25 750
+$limit Blob/Slosh 11
 
 Blob/Sight	DSBLBSEE
 Blob/Active	DSBLBACT
@@ -6326,3 +6327,21 @@ $rolloff Kurgan/PFireStart 300 4500
 $rolloff Kurgan/PFireLoop 300 4500
 $rolloff Kurgan/PFireEnd 300 4500
 $limit Kurgan/Step 10
+
+//Dusk Wyrm
+
+DuskWyrm/Sight "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmSight.ogg"
+$rolloff DuskWyrm/Sight 350 1600
+DuskWyrm/Attack "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmAttack.ogg"
+DuskWyrm/Death "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmDeath.ogg"
+
+$random DuskWyrm/Active { DuskWyrm/Active1 DuskWyrm/Active2 DuskWyrm/Active3 DuskWyrm/Active4 DuskWyrm/Active5 }
+DuskWyrm/Active1 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive1.ogg"
+DuskWyrm/Active2 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive2.ogg"
+DuskWyrm/Active3 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive3.ogg"
+DuskWyrm/Active4 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive4.ogg"
+DuskWyrm/Active5 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive5.ogg"
+
+$random DuskWyrm/Pain { DuskWyrm/Pain2 DuskWyrm/Pain2 }
+DuskWyrm/Pain1 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmPain1.ogg"
+DuskWyrm/Pain2 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmPain2.ogg"

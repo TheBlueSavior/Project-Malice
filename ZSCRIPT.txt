@@ -72,6 +72,7 @@ version "4.11.3"
 #include "Actors/Monsters/Imps/Wendigo.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
 #include "Actors/Monsters/Imps/NetherImp.txt"
+#include "Actors/Monsters/Imps/DuskWyrm.txt"
 
 //Pinkies
 #include "Actors/Monsters/Pinkies/Brute.txt"
