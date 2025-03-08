@@ -45,14 +45,14 @@ Class PM_DuskWyrm : PMSlothMonsterBase
 	Goto See;
   See:
 	I07_ AAAAAAAAAAAAAAA random(1,3) A_Chase(null,null,CHF_DONTMOVE);
-	TNT1 A 0 A_StartSound("PUSWAL",32,pitch: frandom(0.85,1.1));
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
 	I07_ BBBBBBB random(1,3)
 	{
 	A_Chase();
 	A_Recoil(-.3);
 	}
 	I07_ CCCCCCCCCCCCCCC random(1,3) A_Chase(null,null,CHF_DONTMOVE);
-	TNT1 A 0 A_StartSound("PUSWAL",32,pitch: frandom(0.85,1.1));
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
 	I07_ DDDDDDD random(1,3)
 	{
 	A_Chase();
@@ -60,19 +60,56 @@ Class PM_DuskWyrm : PMSlothMonsterBase
 	}
 	Loop;
   Missile:
-	TNT1 A 0 A_StartSound("DuskWyrm/Attack");
-    I07_ EEEE 3 A_FaceTarget();
+	TNT1 A 0 A_CheckLOF("MissileProceed");
+	TNT1 A 0 A_CheckSight("Realign");
+	Goto Realign;
+  MissileProceed:
+	TNT1 A 0;
+	TNT1 A 0 A_Jump(30,"Roar");
+	TNT1 A 0 A_StartSound("DuskWyrm/Attack",34);
+    I07_ EEEEEE 3 A_FaceTarget();
 	I07_ HHH 3 A_FaceTarget();
-	I07_ EE 3 A_FaceTarget();
+	I07_ EF 3 A_FaceTarget();
+	I07_ F 0 A_StartSound("Nymphite/Birth",33,CHANF_OVERLAP,volume:0.6,pitch:1.2);
 	I07_ F 0 A_SpawnProjectile("PM_DuskWyrmBall",40);
-	I07_ FFFFFFFFFEE 1 A_FaceTarget();
+	I07_ FFFFFFFFFFFFEE 1 A_FaceTarget();
   Melee:
     I07_ EFG 5;
   Goto See;
+  Realign:
+	I07_ AAAAAAAAA random(1,3);
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
+	I07_ BBBBB random(1,3)
+	{
+	A_Wander();
+	A_Recoil(-.3);
+	}
+	I07_ CCCCCCCCC random(1,3);
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
+	I07_ DDDDD random(1,3)
+	{
+	A_Wander();
+	A_Recoil(-.3);
+	}
+	I07_ AAAAAAAAA random(1,3);
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
+	I07_ BBBBB random(1,3)
+	{
+	A_Wander();
+	A_Recoil(-.3);
+	}
+	I07_ CCCCCCCCC random(1,3);
+	TNT1 A 0 A_StartSound("PUSWAL",32,attenuation:0.7,pitch: frandom(0.7,1.1));
+	I07_ DDDDD random(1,3)
+	{
+	A_Wander();
+	A_Recoil(-.3);
+	}
+	Goto See;
   Roar:
 	I07_ HHHHH 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("DuskWyrm/Sight");
-	I07_ EEEEEEEEEEEEEEEEE 3 A_FaceTarget();
+	I07_ EEEEEEEEEEEEEEEEEEEE 3 A_FaceTarget();
 	I07_ GGGGG 3 A_FaceTarget();
 	Goto See;
   Pain:
@@ -119,6 +156,9 @@ Class PM_DuskWyrmBall : DoomImpBall
 	states
   	{
   Spawn:
+	TNT1 A 0;
+	TNT1 A 0 A_StartSound("FeralImp/Ball",32,volume:0.8,pitch:0.75);
+	TNT1 A 0 A_StartSound("Harvester/PhaseLoop",33,CHANF_LOOPING,volume:0.75,attenuation:1.5,pitch:0.55);
 	I07A CCCDDD 1 bright A_SetRoll(roll+random(15,35));
   Go:
     I07A AAAABBBB 1 bright
@@ -132,6 +172,8 @@ Class PM_DuskWyrmBall : DoomImpBall
 	  A_SetRoll(roll+15);
 	}
 	Loop;
+  Bounce:
+	Goto Go;
   Death:
 	TNT1 A 0;
 	TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(18,40),size: frandom(0.5,20),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,7),accelz: frandom(-0.0,-0.8),startalphaf: 1.0
