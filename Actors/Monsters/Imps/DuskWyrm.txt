@@ -20,6 +20,7 @@ Class PM_DuskWyrm : PMSlothMonsterBase
   Obituary "%o was turned into sludge by a Dusk Wyrm.";
   Hitobituary "%o was dissolved into the void by a Dusk Wyrm.";
   Bloodtype "PM_SlothBloodBase";
+  BloodColor "DarkBlue";
   MeleeRange 5;
   +FLOORCLIP
   +MissileMore
