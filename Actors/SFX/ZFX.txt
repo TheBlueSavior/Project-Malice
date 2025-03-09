@@ -3365,8 +3365,22 @@ Class PM_SlothSlowdown : PowerSpeed
 		Powerup.Duration -3;
 		Speed 0.5;
 		Inventory.Icon "";
-		Powerup.Color "33 33 33", .15;
+		Powerup.Color "01 45 59", .15;
 		+POWERSPEED.NOTRAIL;
+		+INVENTORY.NOSCREENBLINK;
+	}
+}
+
+Class PM_SlothSlowdownMedium : PowerSpeed
+{
+	Default
+	{
+		Powerup.Duration -6;
+		Speed 0.5;
+		Inventory.Icon "";
+		Powerup.Color "01 45 59", .15;
+		+POWERSPEED.NOTRAIL;
+		+INVENTORY.NOSCREENBLINK;
 	}
 }
 
@@ -3379,6 +3393,7 @@ Class PM_SlothSlowdownLong : PowerSpeed
 		Inventory.Icon "";
 		Powerup.Color "01 45 59", .3;
 		+POWERSPEED.NOTRAIL;
+		+INVENTORY.NOSCREENBLINK;
 	}
 }
 
