@@ -47,7 +47,39 @@ Class PM_Charred : PMUnaffMonsterBase
   States
   {
   Spawn:
-    CH5R A 10 PM_Look();
+    CH5R AAAAAAAAAA 10 PM_Look();
+	CH5R A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound("Charred/Idle",554,volume:frandom(0.2,0.7),pitch:frandom(0.7,1));
+			}
+	}
+	CH5R A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0 { bMISSILEevenMore=False; }
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound("Charred/Idle",554,volume:frandom(0.2,0.7),pitch:frandom(0.7,1));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	CH5R AAABBB 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	CH5R CCCDDD 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	CH5R A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
 	TNT1 A 0 A_StartSound("Imp/Step",4);

@@ -38,16 +38,48 @@ Class PM_Zephyr : PMUnaffMonsterBase
   States
   {
   Spawn:
-    BELA A 10 PM_Look();
-    loop;
+    BELA AAAAAAAAAA 10 PM_Look();
+	BELA A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	BELA A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0 { bMISSILEevenMore=False; }
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	BELA CCCDDD 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	BELA EEEBBB 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	BELA A 0 A_Jump(40,"Spawn");
+    Loop;
   Look:
 	TNT1 A 0 { bMISSILEMORE = false; }
 	TNT1 A 0 A_SetRoll(0,SPF_INTERPOLATE);
 	TNT1 A 0 A_SetSpeed(16);
-    BELA EEBB 2 PM_LookingForPlayer();
+    BELA BBCC 2 PM_LookingForPlayer();
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
-	BELA CCDD 2 PM_LookingForPlayer();
+	BELA DDEE 2 PM_LookingForPlayer();
 	TNT1 A 0 A_StartSound("Imp/Step",4);
     Loop;
   Spotted:

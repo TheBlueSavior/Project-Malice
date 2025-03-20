@@ -33,7 +33,39 @@ Class PM_Devil : PMUnaffMonsterBase
   States
   {
   Spawn:
-    D3IM AB 10 PM_Look();
+    D3IM AAAAAAAAAA 10 PM_Look();
+	D3IM A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	D3IM A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0 { bMISSILEevenMore=False; }
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	D3IM AAABBB 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4);
+	D3IM CCCDDD 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	D3IM A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
 	TNT1 A 0 { bMISSILEevenMore=False; }
