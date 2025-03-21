@@ -43,7 +43,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	{
 	if (!random(0, 30))
 			{
-				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
 			}
 	}
 	BELA A 0 A_Jump(45,"Explore");
@@ -54,16 +54,16 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	{
 	if (!random(0, 12))
 			{
-				A_StartSound(activesound,554,volume:frandom(0.2,0.5),pitch:frandom(0.60,0.78));
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
 			}
 	}
-	TNT1 A 0 A_StartSound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
 	BELA CCCDDD 4
 	{
 	PM_Look();
 	A_Wander();
 	}
-	TNT1 A 0 A_StartSound("Imp/Step",4);
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
 	BELA EEEBBB 4
 	{
 	A_Wander();

@@ -44,20 +44,50 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
          user_numbullets = random(0,31);
         }
     Idle:
-        POS1 A 10 PM_Look();
-        Loop;
+        POS1 AAAAAAAAAA 10 PM_Look();
+		POS1 A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		POS1 A 0 A_Jump(45,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		POS1 AAABBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		POS1 CCCDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		POS1 A 0 A_Jump(40,"Idle");
+		Loop;
 	Look:
+		TNT1 A 0 A_SetSpeed(6);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         POS1 AA 4 PM_LookingForPlayer();
-		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_Recoil(-0.5);
 		POS1 BB 4 PM_LookingForPlayer();
-		TNT1 AA 0 A_Recoil(-1);
 		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
 		POS1 CC 4 PM_LookingForPlayer();
-		TNT1 AA 0 A_Recoil(-1);
+		TNT1 A 0 A_Recoil(-0.5);
 		POS1 DD 4 PM_LookingForPlayer();
-		TNT1 AA 0 A_Recoil(-1);
         Loop;
 	Spotted:
 	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See");
@@ -70,6 +100,7 @@ Class PM_ZombieSoldier : PMUnaffMonsterBase
 	    POS1 EEE 3 A_FaceTarget();
 	    Goto Missile;
 	See:
+		TNT1 A 0 A_SetSpeed(8);
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         POS1 AA 4 A_Chase();
 		TNT1 AAA 0 A_Recoil(-1);

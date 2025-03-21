@@ -56,8 +56,39 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
     Spawn:
         UTM2 A 0 NoDelay { user_numbullets = random(5,31); }
     Idle:
-		UTM2 A 10 PM_Look();
-        Loop;
+        UTM2 AAAAAAAAAA 10 PM_Look();
+		UTM2 A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		UTM2 A 0 A_Jump(45,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		UTM2 AAABBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		UTM2 CCCDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		UTM2 A 0 A_Jump(40,"Idle");
+		Loop;
 	Look:
 		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
         UTM2 AA 4 PM_LookingForPlayer();
