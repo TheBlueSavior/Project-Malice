@@ -41,8 +41,39 @@ Class PM_FallenShotgunner : PMUnaffMonsterBase
      user_numbullets = random(5,8);
     }
   Idle:
-    ZSP1 AB 8 PM_Look();
-    Loop;
+        ZSP1 AAAAAAAAAA 10 PM_Look();
+		ZSP1 A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		ZSP1 A 0 A_Jump(45,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		ZSP1 AAABBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		ZSP1 CCCDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		ZSP1 A 0 A_Jump(40,"Idle");
+		Loop;
   Look:
     TNT1 A 0 A_Jump(15,"Spotted");
 	TNT1 A 0 A_SetSpeed(7);

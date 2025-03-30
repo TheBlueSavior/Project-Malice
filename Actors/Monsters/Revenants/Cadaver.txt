@@ -46,9 +46,41 @@ Class PM_Cadaver : PMUnaffMonsterBase
   States
   {
   Spawn:
-    CREV A 10 PM_Look();
+    CREV AAAAAAAAAA 10 PM_Look();
+	CREV A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	CREV A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_SetSpeed(3);
+	TNT1 A 0 A_StartSound("Cadaver/Step",4,volume:0.4);
+	CREV AAAABBBBCCCC 3
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Cadaver/Step",4,volume:0.4);
+	CREV DDDDEEEEFFFF 3
+	{
+	A_Wander();
+	PM_Look();
+	}
+	CREV A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
+	TNT1 A 0 A_SetSpeed(10);
     CREV AABBCC 2 PM_LookingForPlayer();
 	NULL A 0 A_StartSound("Cadaver/Step",5);
     TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
@@ -62,6 +94,7 @@ Class PM_Cadaver : PMUnaffMonsterBase
   RoarNoAnim:
     TNT1 A 0 PM_AlertSound();
   See:
+	TNT1 A 0 A_SetSpeed(10);
     CREV AABBCC 2 A_Chase();
 	NULL A 0 A_StartSound("Cadaver/Step",5);
 	CREV DDEEFF 2 A_Chase();

@@ -51,9 +51,41 @@ Class PM_Bruiser : PMUnaffMonsterBase
     States
     {
     Spawn:
-        I01A A 10 PM_Look();
-        Loop;
+		I01A AAAAAAAAAA 10 PM_Look();
+		I01A A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.05,0.3),pitch:frandom(0.60,0.78));
+			}
+		}
+		I01A A 0 A_Jump(45,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.05,0.3),pitch:frandom(0.60,0.78));
+			}
+		}
+		TNT1 A 0 A_SetSpeed(5);
+		TNT1 A 0 A_StartSound("hoofstep",4,volume:0.4);
+		I01A AAAABBBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("hoofstep",4,volume:0.4);
+		I01A CCCCDDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		I01A A 0 A_Jump(40,"Spawn");
+		Loop;
     Look:
+		TNT1 A 0 A_SetSpeed(10);
         I01A AABB 4 PM_LookingForPlayer();
 		TNT1 A 0 A_Recoil(-2);
 		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,flags:SXF_NOCHECKPOSITION);
@@ -76,6 +108,7 @@ Class PM_Bruiser : PMUnaffMonsterBase
         Goto Missile;
     See:
 	    TNT1 A 0 { bSPRITEFLIP = false; }
+		TNT1 A 0 A_SetSpeed(10);
         I01A AABB 4 A_Chase();
 		TNT1 A 0 A_Recoil(-2);
 		TNT1 A 0 A_SpawnItemEx("PM_BruiserWalkFire",6,10,flags:SXF_NOCHECKPOSITION);

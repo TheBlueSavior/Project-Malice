@@ -47,8 +47,39 @@ Class PM_FeralImp : PMWrathMonsterBase
   Spawn:
     1ROZ A 0 NoDelay { pm_irecount = random(45,80); }
   Idle:
-    1ROO A 10 PM_Look();
-    loop;
+    1ROO AAAAAAAAAA 10 PM_Look();
+	1ROO A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	1ROO A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	1ROO AAABBB 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	1ROO CCCDDD 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	1ROO A 0 A_Jump(40,"Idle");
+    Loop;
   Look:
 	TNT1 A 0 A_SetSpeed(11);
 	1ROO AA 3 PM_LookingForPlayer();

@@ -31,9 +31,41 @@ Class PM_Hectebus : PMUnaffMonsterBase
   states
  {
   Spawn:
-    TABU A 10 PM_Look();
+    TABU AAAAAAAAAA 10 PM_Look();
+	TABU A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TABU A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_SetSpeed(3);
+	TNT1 A 0 A_StartSound("MancubStep",4,volume:0.3);
+	TABU AAAABBBBCCCC 3
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("MancubStep",4,volume:0.3);
+	TABU DDDDEEEEFFFF 3
+	{
+	A_Wander();
+	PM_Look();
+	}
+	GHUL A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
+	TNT1 A 0 A_SetSpeed(5);
 	TNT1 A 0 A_StartSound("MancubStep");
     TABU AAABBBCCC 3 PM_LookingForPlayer();
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
@@ -50,6 +82,7 @@ Class PM_Hectebus : PMUnaffMonsterBase
    Goto Missile;
   See:
 	TNT1 A 0 A_StartSound("MancubStep");
+	TNT1 A 0 A_SetSpeed(5);
     TABU AAA 3 A_Chase();
 	TABU BBBCCC 3 A_Chase();
 	TNT1 A 0 A_StartSound("MancubStep");

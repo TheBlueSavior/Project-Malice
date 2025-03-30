@@ -120,7 +120,38 @@ Class PM_Harvester : PMDeathMonsterBase
   States
   {
   Spawn:
-	SLHV AB 10 PM_Look();
+    SLHV AAAAAAAAAA 10 PM_Look();
+	SLHV A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	SLHV A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	SLHV AAABBB 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	SLHV CCCDDD 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	SLHV A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
 	TNT1 A 0 {bShootable = true;}

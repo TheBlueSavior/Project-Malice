@@ -35,9 +35,41 @@ Class PM_Fusionite : PMUnaffMonsterBase
 		Spawn:
 			FSPI A 0 NoDelay { user_numbullets = random(5,75); }
 		Idle:
-			FSPI A 10 PM_Look();
+			FSPI AAAAAAAAAA 10 PM_Look();
+			FSPI A 0
+			{
+			if (!random(0, 30))
+				{
+					A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+				}
+			}
+			FSPI A 0 A_Jump(45,"Explore");
+			Loop;
+		Explore:
+			TNT1 A 0
+			{
+			if (!random(0, 12))
+				{
+					A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+				}
+			}
+			TNT1 A 0 A_SetSpeed(3);
+			TNT1 A 0 A_StartSound("GenericArachWalk",4,volume:0.3);
+			FSPI AAAABBBBCCCC 3
+			{
+			PM_Look();
+			A_Wander();
+			}
+			TNT1 A 0 A_StartSound("GenericArachWalk",4,volume:0.3);
+			FSPI DDDDEEEEFFFF 3
+			{
+			A_Wander();
+			PM_Look();
+			}
+			FSPI A 0 A_Jump(40,"Idle");
 			Loop;
 		Look:
+			TNT1 A 0 A_SetSpeed(7);
 			FSPI A 2 A_StartSound("GenericArachWalk",12,CHANF_OVERLAP);
 			FSPI ABBCC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_JumpIfTargetinLOS("Spotted",270,JLOSF_DEADNOJUMP);
@@ -47,6 +79,7 @@ Class PM_Fusionite : PMUnaffMonsterBase
 		Spotted:
 			TNT1 A 0 PM_AlertSound();
 		See:
+			TNT1 A 0 A_SetSpeed(7);
 			FSPI A 2 A_StartSound("GenericArachWalk",12);
 			FSPI ABBCC 2 A_Chase();
 			FSPI D 2 A_StartSound("GenericArachWalk",12,CHANF_OVERLAP);

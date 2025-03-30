@@ -35,9 +35,41 @@ Class PM_Corpulent : PMUnaffMonsterBase
    states
  {
   Spawn:
-    M01A A 10 PM_Look();
+    M01A AAAAAAAAAA 10 PM_Look();
+	M01A A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	M01A A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_SetSpeed(3);
+	TNT1 A 0 A_StartSound("MancubStep",4,volume:0.3);
+	M01A AAAABBBBCCCC 3
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("MancubStep",4,volume:0.3);
+	M01A DDDDEEEEFFFF 3
+	{
+	A_Wander();
+	PM_Look();
+	}
+	GHUL A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
+	TNT1 A 0 A_SetSpeed(6);
 	TNT1 A 0 A_StartSound("MancubStep");
     M01A AAA 3 PM_LookingForPlayer();
 	M01A BBBCCC 3 PM_LookingForPlayer();
@@ -52,6 +84,7 @@ Class PM_Corpulent : PMUnaffMonsterBase
     TNT1 A 0 PM_AlertSound();
     Goto See;
   See:
+	TNT1 A 0 A_SetSpeed(6);
 	TNT1 A 0 A_StartSound("MancubStep");
     M01A AAA 3 A_Chase();
 	M01A BBBCCC 3 A_Chase();

@@ -55,7 +55,38 @@ Class PM_Husk : PMWrathMonsterBase
   Spawn:
     GH2L D 0 NoDelay { pm_irecount = random(70,144); }
   Idle:
-	GHUL A 10 PM_Look();
+	GHUL AAAAAAAAAA 10 PM_Look();
+	GHUL A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	GHUL A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_SetSpeed(3);
+	TNT1 A 0 A_StartSound("skeleton/step",4,volume:0.4);
+	GHUL AAAABBBBCCCC 3
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("skeleton/step",4,volume:0.4);
+	GHUL DDDDEEEEFFFF 3
+	{
+	A_Wander();
+	PM_Look();
+	}
+	GHUL A 0 A_Jump(40,"Idle");
     Loop;
    Look:
 	TNT1 A 0 A_SetSpeed(7);
@@ -90,6 +121,7 @@ Class PM_Husk : PMWrathMonsterBase
     Goto Missile;
   See:
     TNT1 A 0 { bSPRITEFLIP = false; }
+	TNT1 A 0 A_SetSpeed(7);
 	TNT1 A 0 A_Jump(40,"Sprint");
 	TNT1 A 0 A_StopSound(6);
 	TNT1 A 0 

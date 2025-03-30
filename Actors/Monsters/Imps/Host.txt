@@ -9,7 +9,7 @@ Class PM_Host : PMPestilenceMonsterBase
     Radius 20;
     Height 56;
     Mass 120;
-    Speed 10;
+    Speed 8;
 	Bloodcolor "DarkGreen";
 	BloodType "PM_PestilenceBloodBase";
 	Species "Imp";
@@ -31,7 +31,37 @@ Class PM_Host : PMPestilenceMonsterBase
   States
   {
   Spawn:
-    HOS1 AB 10 PM_Look();
+    HOS1 BBBBBBBBBB 10 PM_Look();
+	HOS1 A 0
+	{
+	if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	HOS1 A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+	if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+			}
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	HOS1 AAABBB 4
+	{
+	PM_Look();
+	A_Wander();
+	}
+	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
+	HOS1 CCCDDD 4
+	{
+	A_Wander();
+	PM_Look();
+	}
+	HOS1 A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
 	TNT1 A 0 A_SetSpeed(8);

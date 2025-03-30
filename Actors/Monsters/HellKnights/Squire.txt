@@ -36,7 +36,38 @@ Class PM_Squire : PMMonsterBase
 	States
 	{
 	Spawn:
-		BOS6 AB 10 PM_Look();
+		BOS6 AAAAAAAAAA 10 PM_Look();
+		BOS6 A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.05,0.3),pitch:frandom(0.60,0.78));
+			}
+		}
+		BOS6 A 0 A_Jump(45,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.05,0.3),pitch:frandom(0.60,0.78));
+			}
+		}
+		TNT1 A 0 A_SetSpeed(4);
+		TNT1 A 0 A_StartSound("Squire/Step",4,volume:0.35);
+		BOS6 AAAABBBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("Squire/Step",4,volume:0.35);
+		BOS6 CCCCDDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		BOS6 A 0 A_Jump(40,"Spawn");
 		Loop;
 	Look:
 		TNT1 A 0 A_SetSpeed(5);
