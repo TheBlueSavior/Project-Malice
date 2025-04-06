@@ -26,9 +26,19 @@ OptionMenu "projectmalice_options"
 	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
 	StaticText ""
 	StaticText ""
+	StaticText "Bullet Damage Multiplier"
+	StaticText "Change damage multipliers of every bullet."
+	Slider "Damage Multiplier:", "pm_bulletdamagefactor", 0.25, 10, 0.05, 2
+	StaticText ""
+	StaticText ""
+	StaticText "Bullet Speed Multiplier"
+	StaticText "Change speed multipliers of every bullet."
+	Slider "Speed Multiplier:", "pm_bulletspeedfactor", 0.5, 5, 0.05, 2
+	StaticText ""
+	StaticText ""
 	StaticText "Health Multiplier"
 	StaticText "Change health multipliers of every enemy. Save the hassle."
-	Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
+	Slider "Health Multiplier:", "pm_healthfactor", 0.25, 10, 0.05, 2
 	//Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
 	StaticText " "
 	StaticText " "
