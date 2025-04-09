@@ -287,7 +287,7 @@ Class PM_SlugBullet : PM_BulletTracer
  {
   Speed 35;
   FastSpeed 72;
-  DamageFunction (random(35,45));
+  DamageFunction (50*pm_bulletdamagefactor);
   DamageType "Shotgun";
   Scale 0.85;
   RenderStyle "Add";
