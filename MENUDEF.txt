@@ -38,7 +38,7 @@ OptionMenu "projectmalice_options"
 	StaticText ""
 	StaticText "Health Multiplier"
 	StaticText "Change health multipliers of every enemy. Save the hassle."
-	Slider "Health Multiplier:", "pm_healthfactor", 0.25, 10, 0.05, 2
+	Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
 	//Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
 	StaticText " "
 	StaticText " "
