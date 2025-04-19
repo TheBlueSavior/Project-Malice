@@ -34,7 +34,7 @@ Class Horrorspawnmap : RandomSpawner
 	DropItem "PM_HorrorspawnScreamer", 255, 2;
 	DropItem "HungryGroup", 255, 2;
 	DropItem "PM_HorrorspawnBurster", 255, 2;
-	DropItem "PM_AffScreamer", 255, 1;
+	DropItem "PM_AfflictedHordeManager", 255, 1;
 	DropItem "FodderDropper", 255, 1;
 	DropItem "PM_Voidspawn", 255, 1;
 	DropItem "PM_UmbralHorrorspawn", 255, 1;
@@ -1049,7 +1049,7 @@ Class PM_HSpawnChoose2 : Inventory { Default { Inventory.MaxAmount 1; } }
 Class PM_HSpawnChoose3 : Inventory { Default { Inventory.MaxAmount 1; } }
 Class PM_HSpawnChoose4 : Inventory { Default { Inventory.MaxAmount 1; } }
 
-Class PM_HorrorSeekSpawn : HungrySeekSpawn
+Class PM_HorrorSeekSpawn : PM_AfflictedHordeSpawner
 {
 	States
 	{

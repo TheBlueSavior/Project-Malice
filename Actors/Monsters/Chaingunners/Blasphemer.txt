@@ -882,7 +882,7 @@ Class PM_Blasphemer : PMPrideMonsterBase
 	}
 }
 
-Class PM_BlasphemerBall : DoomImpBall
+Class PM_BlasphemerBall : PM_ImpBallBase
 {
    Default
    {
@@ -1223,7 +1223,7 @@ Class PM_BlasphemerWeaver : PM_BlasphemerBall
   }
 }
 
-Class PM_BlashemerBHBall : Actor
+Class PM_BlashemerBHBall : PMProjectileBase
 {
    Default
    {
@@ -1378,7 +1378,7 @@ Class PM_BlasSigilGoAway : Inventory
  Default { Inventory.MaxAmount 1; }
 }
 
-Class PM_BlasphemerFireball : Actor
+Class PM_BlasphemerFireball : PMProjectileBase
 {
 	Default
 	{

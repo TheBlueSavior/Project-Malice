@@ -563,7 +563,7 @@ Class PM_Noble : PMMonsterBase
 	}
 }
 
-Class PM_NobleFireball : DoomImpBall
+Class PM_NobleFireball : PM_ImpBallBase
 {
     Default
     {

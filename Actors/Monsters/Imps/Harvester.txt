@@ -420,7 +420,7 @@ Class OrbitSpirit2 : OrbitSpirit
   }
 }
 
-Class PM_SoulHarvesterBall : Actor
+Class PM_SoulHarvesterBall : PM_ImpBallBase
 {
   Default
   {
@@ -549,7 +549,7 @@ Class PM_SmallSoulBallTrail : Actor
 }
 
 
-Class PM_SmallSoulHarvesterBall : Actor
+Class PM_SmallSoulHarvesterBall : PM_ImpBallBase
 {
   Default
   {
@@ -705,7 +705,7 @@ Class HSummonedSoul : Actor
   }
 }
 
-Class PM_HSummonedSoulBall : Actor
+Class PM_HSummonedSoulBall : PM_ImpBallBase
 {
    Default
    {

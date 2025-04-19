@@ -399,7 +399,7 @@ Class PM_Wretched : PMUnaffMonsterBase
 	}
 }
 
-Class PM_WretchedBall : Actor
+Class PM_WretchedBall : PM_CacodemonBallBase
 {
     Default
     {

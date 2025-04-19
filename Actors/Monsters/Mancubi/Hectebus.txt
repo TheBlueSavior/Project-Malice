@@ -130,13 +130,13 @@ Class PM_Hectebus : PMUnaffMonsterBase
 		{
 		A_FaceTarget();
 		A_StartSound("GenericMancShot",CHAN_6);
-		A_SpawnProjectile("PM_HectebusBall",28,34,random(-5,5));
+		A_SpawnProjectile("PM_HectebusBall",28,34,random(-3,3));
 		}
      TABU H 5 Light("AvatarFireBall2")
 		{
 		A_FaceTarget();
 		A_StartSound("GenericMancShot",CHAN_6);
-		A_SpawnProjectile("PM_HectebusBall",28,-34,random(-5,5));
+		A_SpawnProjectile("PM_HectebusBall",28,-34,random(-3,3));
 		}
 	TABU IG 5 A_FaceTarget();
 	Goto See;
@@ -181,7 +181,7 @@ Class PM_Hectebus : PMUnaffMonsterBase
   }
 }
 
-Class PM_HectebusBall : Fatshot
+Class PM_HectebusBall : PM_FatShotBase
 {
  Default
  {

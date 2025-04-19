@@ -210,7 +210,7 @@ Class PM_Beholder : PMGluttonyMonsterBase
 	}
 }
 
-Class PM_BeholderGoreShot : Actor
+Class PM_BeholderGoreShot : PMProjectileBase
 {
 	Default
 	{

@@ -329,7 +329,7 @@ Class PM_PhaseCaco : PMUnaffMonsterBase
 	}
 }
 
-Class PM_PhaseCacoBall : Actor
+Class PM_PhaseCacoBall : PM_CacodemonBallBase
 {
 	int user_phspeed;
 	int user_pvspeed;
@@ -534,7 +534,7 @@ Class PM_PhaseCacoBallTrail : Actor
 	}
 }
 
-Class PM_PhaseCacoBall2 : Actor
+Class PM_PhaseCacoBall2 : PM_CacodemonBallBase
 {
 	Default
 	{

@@ -380,7 +380,7 @@ Class PM_Infernal : PMWrathMonsterBase
 	}
 }
 
-Class PM_InfernalFireball : DoomImpBall
+Class PM_InfernalFireball : PM_ImpBallBase
 {
   Default
   {
@@ -443,7 +443,7 @@ Class PM_InfernalFireball : DoomImpBall
 	}
 }
 
-Class PM_InfernalLavaBall : CacodemonBall
+Class PM_InfernalLavaBall : PM_CacodemonBallBase
 {
   Default
   {

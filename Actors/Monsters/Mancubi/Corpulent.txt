@@ -235,7 +235,7 @@ LMissileLoopNoLead:
   }
 }
 
-Class PM_CorpulentBall : Fatshot
+Class PM_CorpulentBall : PM_FatShotBase
 {
   Default
   {

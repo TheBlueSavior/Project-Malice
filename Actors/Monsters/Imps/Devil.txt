@@ -481,7 +481,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
 }
 
-Class PM_DevilImpBall : PMProjectileBase
+Class PM_DevilImpBall : PM_ImpBallBase
 {
 	Default
 	{

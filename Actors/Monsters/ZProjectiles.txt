@@ -185,7 +185,7 @@ Default
  Radius 2;
  Speed 36;
  FastSpeed 72;
- DamageFunction (10*pm_bulletdamagefactor);
+ DamageFunction (8*pm_bulletdamagefactor);
  DamageType "Shotgun";
  Scale 0.85;
 }
@@ -262,4 +262,89 @@ Class PM_WeakMeleeHitbox : PM_FastMeleeHitbox
     TNT1 A 6;
 	Stop;
   }
+}
+
+class PM_ImpBallBase : PMProjectileBase
+{
+ Default
+ {
+   Radius 6;
+   Height 8;
+   Speed 10;
+   FastSpeed 20;
+   Damage 3;
+   Projectile;
+   +RANDOMIZE
+   +ZDOOMTRANS
+   RenderStyle "Add";
+   Alpha 1;
+   SeeSound "imp/attack";
+   DeathSound "imp/shotx";
+ }
+ States
+ {
+ Spawn:
+   BAL1 AB 4 BRIGHT;
+   Loop;
+ Death:
+   BAL1 CDE 6 BRIGHT;
+   Stop;
+ }
+}
+
+class PM_CacodemonBallBase : PMProjectileBase
+{
+	Default
+	{
+ 		Radius 6;
+		Height 8;
+		Speed 10;
+ 		FastSpeed 20;
+		Damage 5;
+		Projectile;
+		+RANDOMIZE
+ 		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 1;
+		SeeSound "caco/attack";
+ 		DeathSound "caco/shotx";
+	}
+	States
+	{
+	Spawn:
+ 		BAL2 AB 4 BRIGHT;
+		Loop;
+	Death:
+		BAL2 CDE 6 BRIGHT;
+		Stop;
+	}
+}
+
+class PM_FatShotBase : PMProjectileBase
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Speed 20;
+		Damage 8;
+		Projectile;
+		+RANDOMIZE
+		+ZDOOMTRANS
+		RenderStyle "Add";
+		Alpha 1;
+		SeeSound "fatso/attack";
+		DeathSound "fatso/shotx";
+	}
+	States
+	{
+	Spawn:
+		MANF AB 4 BRIGHT;
+		Loop;
+	Death:
+		MISL B 8 BRIGHT;
+		MISL C 6 BRIGHT;
+		MISL D 4 BRIGHT;
+		Stop;
+	}
 }

@@ -492,7 +492,7 @@ Class PM_Zephyr : PMUnaffMonsterBase
 	}
 }
 
-Class PM_FastImpBall : DoomImpBall
+Class PM_FastImpBall : PM_ImpBallBase
 {
     Default
 	{

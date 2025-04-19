@@ -361,7 +361,7 @@ Class PM_SquireLunge : Actor
     }
 }
 
-Class PM_SquireFireball : DoomImpBall
+Class PM_SquireFireball : PM_ImpBallBase
 {
     Default
     {

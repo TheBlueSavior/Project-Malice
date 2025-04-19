@@ -128,10 +128,11 @@ Class PM_DecayedShotgunner : PMPestilenceMonsterBase
 		}
 		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-		A_SpawnProjectile("PM_PelletTracer",31,7,random(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-5,5),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         user_numbullets--;
 		return ResolveState(null);
 		}
@@ -171,20 +172,6 @@ Class PM_DecayedShotgunner : PMPestilenceMonsterBase
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-        user_numbullets--;
-		return ResolveState(null);
-		}
-        SPO6 F 6 Bright Light("YellowMediumFlicker2")
-		{
-		if(user_numbullets < 0)
-		{
-		 return ResolveState("NoAmmo");
-		}
-		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
-		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
-		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
-		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
         user_numbullets--;
 		return ResolveState(null);
@@ -197,6 +184,23 @@ Class PM_DecayedShotgunner : PMPestilenceMonsterBase
 		}
 		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
 		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+        user_numbullets--;
+		return ResolveState(null);
+		}
+        SPO6 F 6 Bright Light("YellowMediumFlicker2")
+		{
+		if(user_numbullets < 0)
+		{
+		 return ResolveState("NoAmmo");
+		}
+		A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
+		A_StartSound("GenericShotgunFire",CHAN_WEAPON,1);
+		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		A_SpawnProjectile("PM_PelletTracer",31,7,frandom(-4,4),CMF_AIMDIRECTION,pitch+frandom(-3,3));

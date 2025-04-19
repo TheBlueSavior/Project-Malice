@@ -136,6 +136,7 @@ Class PM_SlugShotgunner : PMUnaffMonsterBase
             A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
 			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
 			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
+			A_SpawnProjectile("PM_PelletTracer",35,7,frandom(-8, 8),CMF_AIMDIRECTION,pitch+frandom(-4,4));
             user_numbullets--;
 			}
 		SPS4 EEE 5 A_FaceTarget();

@@ -232,7 +232,7 @@ Class PM_Abhorrent : PMDeathMonsterBase
   }
 }
 
-Class PM_AbhorBall : Fatshot
+Class PM_AbhorBall : PM_FatShotBase
 {
     Default
     {
@@ -291,7 +291,7 @@ Class PM_AbhorBall : Fatshot
   }
 }
 
-Class PM_AbhorBarrageBall : Fatshot
+Class PM_AbhorBarrageBall : PM_FatShotBase
 {
 	int soulhspeed;
 	int soulhdist;
@@ -353,7 +353,7 @@ Class PM_AbhorBarrageBall : Fatshot
   }
 }
 
-Class PM_AbhorSmallBall : Actor
+Class PM_AbhorSmallBall : PMProjectileBase
 {
     Default
 	{
@@ -399,7 +399,7 @@ Class PM_AbhorSmallBall : Actor
   }
 }
 
-Class PM_AbhorSoulVomit : Actor
+Class PM_AbhorSoulVomit : PMProjectileBase
 {
 	int soulhspeed;
 	int soulvspeed;

@@ -363,7 +363,7 @@ Class PM_GraveGuard : PMDeathMonsterBase
    }
 }
 
-Class PM_HellsFuryBall : Actor
+Class PM_HellsFuryBall : PM_ImpBallBase
 {
     Default
     {

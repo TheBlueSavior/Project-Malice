@@ -277,7 +277,7 @@ Class PM_Charred : PMUnaffMonsterBase
 	}
 }
 
-Class PM_CharredBall : DoomImpBall
+Class PM_CharredBall : PM_ImpBallBase
 {
   Default
   {

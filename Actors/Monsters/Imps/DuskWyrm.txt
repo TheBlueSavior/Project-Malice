@@ -169,7 +169,7 @@ Class PM_DuskWyrm : PMSlothMonsterBase
 	}
 }
 
-Class PM_DuskWyrmBall : DoomImpBall
+Class PM_DuskWyrmBall : PM_ImpBallBase
 {
 	int pm_wyrmballnum;
 	Default
@@ -397,7 +397,7 @@ Class PM_DuskWyrmBall : DoomImpBall
   }
 }
 
-Class PM_SmallWyrmBall : DoomImpBall
+Class PM_SmallWyrmBall : PM_ImpBallBase
 {
 	Default
 	{

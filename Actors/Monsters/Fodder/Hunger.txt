@@ -96,7 +96,7 @@ Class PM_AffScreamer : PMFodderMonsterBase
 	TNT1 A 0 A_StartSound("Afflicted/ScreechSummon",10);
 	ZHUN U 3 A_FaceTarget;
 	ZHUN VWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWVWU 1 A_FaceTarget;
-	TNT1 A 0 { for(int i=random(16,20);i>0;i--) A_SpawnItemEx("HungrySeekSpawn");  called = 1; }
+	TNT1 A 0 { for(int i=random(16,20);i>0;i--) A_SpawnItemEx("PM_HorrorSeekSpawn");  called = 1; }
 	ZHUN C 7 A_FaceTarget;
 	Goto See;
   Lunge:
@@ -141,15 +141,178 @@ Class PM_AffScreamer : PMFodderMonsterBase
   }
 }
 
-Class HungrySeekSpawn : Actor
+Class PM_AfflictedHordeManager : Actor
 {
 	Default
 	{
 	Speed 100;
 	Radius 20;
-  Height 56;
+    Height 56;
+	Mass 40;
+	MONSTER;
+	+THRUACTORS
+	-SOLID
+	-SHOOTABLE
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	+THRUGHOST
+	+GHOST
+	-ACTIVATEMCROSS
+	+INVULNERABLE
+	+LOOKALLAROUND
+	+NOTARGET
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	TeleFogSourceType "RailNullPuff";
+    TeleFogDestType "RailNullPuff";
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 1 A_Wander();
+		TNT1 A 5 A_Look();
+		Loop;
+	See:
+		TNT1 A 0;
+		TNT1 A 5 A_Chase();
+		TNT1 A 0 A_JumpIfTargetinLOS("Start",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_Jump(1,"Spawn");
+		Loop;
+	Start:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(50,"StartBig");
+		TNT1 A random(30,100);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(50,400);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,50);
+		TNT1 A random(30,350);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,60);
+		TNT1 A random(30,200);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(10,100);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,30) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,50);
+		TNT1 A random(1,30) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,50);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,10);
+	Create:
+		TNT1 AAAAAAAAAAAAA random(1,20) A_SpawnItemEx("PM_AfflictedHordeSpawner",0,0,0,0,0,0,random(-180,180),failchance:50);
+		Stop;
+	StartBig:
+		TNT1 A random(30,100);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(50,300);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(30,200);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(30,100);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(10,60);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(1,30) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(1,40);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,40);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(10,20) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,50);
+		TNT1 A random(1,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(10,20) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,50);
+		TNT1 A random(1,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(10,20) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,50);
+		TNT1 A random(1,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(10,20) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+	CreateBig:
+		TNT1 A random(1,10) A_SpawnItemEx("PM_AfflictedHordeIncomingBig",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(5,10) A_SpawnItemEx("PM_AfflictedHordeIncomingSmall",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(1,10) A_SpawnItemEx("PM_AfflictedHordeSpawner",0,0,0,0,0,0,random(-180,180),failchance:25);
+		Stop;
+	Die:
+		Stop;
+	}
+}
+
+Class PM_AfflictedHordeIncomingSmall : Actor
+{
+	Default
+	{
+	Speed 100;
+	Radius 20;
+    Height 56;
+	Mass 40;
+	-SHOOTABLE
+	-SOLID
+	+THRUGHOST
+	+THRUACTORS
+	+NOCLIP
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	+NOTELEPORT
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA random(0,5) A_Wander();
+		Goto SoundOff;
+	SoundOff:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Afflicted/Incoming",volume:frandom(0.8,1),attenuation:0.1,pitch:frandom(0.9,1.1));
+		Stop;
+	}
+}
+
+Class PM_AfflictedHordeIncomingBig : Actor
+{
+	Default
+	{
+	Speed 100;
+	Radius 20;
+    Height 56;
+	Mass 40;
+	-SHOOTABLE
+	+THRUACTORS
+	+NOCLIP
+	+THRUGHOST
+	+GHOST
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	+NOTELEPORT
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA random(0,5) A_Wander();
+		Goto SoundOff;
+	SoundOff:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Afflicted/IncomingBig",volume:frandom(0.8,1),attenuation:0.1,pitch:frandom(0.9,1.1));
+		Stop;
+	}
+}
+
+Class PM_AfflictedHordeSpawner : Actor
+{
+	Default
+	{
+	Speed 100;
+	Radius 20;
+    Height 56;
 	Mass 40;
 	+THRUACTORS
+	-SHOOTABLE
+	+LOOKALLAROUND
+	+GHOST
+	+THRUGHOST
 	MaxStepHeight 64;
 	MaxDropOffHeight 64;
 	+NOTELEPORT
@@ -158,8 +321,9 @@ Class HungrySeekSpawn : Actor
 	{
 	Spawn:
 		TNT1 A 0 NoDelay { bFRIGHTENED = true; }
-		TNT1 AAA 1 A_Chase();
-		TNT1 A 0 A_Jump(15,"SpawnLoop");
+		TNT1 A 0 A_Wander();
+		TNT1 AAAAA random(0,10) A_Chase();
+		TNT1 A 0 A_Jump(30,"SpawnLoop");
 		Loop;
 		SpawnLoop:
 		TNT1 A 0 { bFRIGHTENED = false; }
@@ -167,11 +331,11 @@ Class HungrySeekSpawn : Actor
 		TNT1 A 0 A_CheckSight ("Create");
 		TNT1 A 5 A_Wander();
 		TNT1 A 0 A_CheckSight ("Create");
-		TNT1 A 0 A_Jump(5,"Die");
+		TNT1 A 0 A_Jump(15,"Die");
 		Loop;
 	Create:
 		TNT1 A 0 A_SpawnItemEx("PM_Afflicted");
-		TNT1 A 0 A_StartSound("Afflicted/Spawn");
+		TNT1 A 0 A_StartSound("Afflicted/Spawn",38,pitch:frandom(0.9,1.1));
 		Stop;
 	Die:
 		Stop;

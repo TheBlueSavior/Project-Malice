@@ -1181,7 +1181,30 @@ AffSpawn3 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn3.ogg"
 AffSpawn4 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn4.ogg"
 AffSpawn5 "Sounds/Monsters/Fodder/Afflicted/AfflictedSpawn5.ogg"
 
-$rolloff Afflicted/Spawn 500 2500
+$rolloff Afflicted/Spawn 350 2500
+
+$random Afflicted/Incoming { Afflicted/Incoming1 Afflicted/Incoming2 Afflicted/Incoming3  Afflicted/Incoming4  Afflicted/Incoming5 }
+Afflicted/Incoming1 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncoming1.ogg"
+Afflicted/Incoming2 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncoming2.ogg"
+Afflicted/Incoming3 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncoming3.ogg"
+Afflicted/Incoming4 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncoming4.ogg"
+Afflicted/Incoming5 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncoming5.ogg"
+
+$random Afflicted/IncomingBig { Afflicted/IncomingBig1 Afflicted/IncomingBig2 Afflicted/IncomingBig3 Afflicted/IncomingBig4 Afflicted/IncomingBig5 Afflicted/IncomingBig6 Afflicted/IncomingBig7 }
+Afflicted/IncomingBig1 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig1.ogg"
+Afflicted/IncomingBig2 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig2.ogg"
+Afflicted/IncomingBig3 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig3.ogg"
+Afflicted/IncomingBig4 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig4.ogg"
+Afflicted/IncomingBig5 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig5.ogg"
+Afflicted/IncomingBig6 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig6.ogg"
+Afflicted/IncomingBig7 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig7.ogg"
+
+$rolloff Afflicted/Incoming 8000 19500
+
+$limit Afflicted/Incoming 12
+$limit Afflicted/IncomingBig 12
+
+$rolloff Afflicted/IncomingBig 8000 19500
 
 Flying/Fly FLYING
 FlyHit/Hit FLYHIT

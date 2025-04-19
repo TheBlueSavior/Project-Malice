@@ -475,7 +475,7 @@ Class PM_Bulltubus : PMWrathMonsterBase
   }
 }
 
-Class PM_BulltubusSlowTracer : Fatshot
+Class PM_BulltubusSlowTracer : PM_FatShotBase
 {
   Default
   {

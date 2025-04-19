@@ -571,7 +571,7 @@ Class PM_Wicked : PMEnvyMonsterBase
 	}
 }
 
-Class WickedShot : Actor
+Class WickedShot : PMProjectileBase
 {
 	Default
 	{
@@ -925,7 +925,7 @@ Class WickedRevolveShot2 : WickedShot
 	}
 }
 
-Class PM_WickedChaserBall : Actor
+Class PM_WickedChaserBall : PMProjectileBase
 {
     Default
 	{
