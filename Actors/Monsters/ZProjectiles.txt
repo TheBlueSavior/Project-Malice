@@ -57,7 +57,7 @@ Class PM_BulletTracer : PMProjectileBase
   Radius 2;
   Speed 36;
   FastSpeed 72;
-  DamageFunction (30*pm_bulletdamagefactor);
+  DamageFunction (10*pm_bulletdamagefactor);
   DamageType "Bullet";
   Scale 0.85;
   +BLOODSPLATTER 
@@ -123,7 +123,7 @@ Class PM_RevolverTracer : PM_BulletTracer
 {
 Default
  {
-  DamageFunction (20*pm_bulletdamagefactor);
+  DamageFunction (18*pm_bulletdamagefactor);
   DamageType "Revolver";
   Scale 0.75;
  }
@@ -134,7 +134,7 @@ Class PM_DirectorTracer : PM_BulletTracer
 Default
  {
   Speed 70;
-  DamageFunction (120*pm_bulletdamagefactor);
+  DamageFunction (50*pm_bulletdamagefactor);
   DamageType "Autocannon";
   Scale 1;
   PMProjectileBase.WhizSound "PM/HeavyBulletWhiz";
@@ -185,7 +185,7 @@ Default
  Radius 2;
  Speed 36;
  FastSpeed 72;
- DamageFunction (15*pm_bulletdamagefactor);
+ DamageFunction (10*pm_bulletdamagefactor);
  DamageType "Shotgun";
  Scale 0.85;
 }

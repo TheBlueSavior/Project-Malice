@@ -31,8 +31,8 @@ OptionMenu "projectmalice_options"
 	Slider "Damage Multiplier:", "pm_bulletdamagefactor", 0.25, 10, 0.05, 2
 	StaticText ""
 	StaticText ""
-	StaticText "Bullet Speed Multiplier"
-	StaticText "Change speed multipliers of every bullet."
+	StaticText "Projectile Speed Multiplier"
+	StaticText "Change speed multipliers of every projectile."
 	Slider "Speed Multiplier:", "pm_bulletspeedfactor", 0.5, 5, 0.05, 2
 	StaticText ""
 	StaticText ""

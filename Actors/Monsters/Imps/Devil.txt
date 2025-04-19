@@ -481,12 +481,17 @@ Class PM_Devil : PMUnaffMonsterBase
 	}
 }
 
-Class PM_DevilImpBall : DoomImpBall
+Class PM_DevilImpBall : PMProjectileBase
 {
 	Default
 	{
+	Radius 6;
+	Height 8;
+	Projectile;
 	DamageFunction 12;
+	+RANDOMIZE
 	+NOGRAVITY
+	RenderStyle "Add";
 	-LOWGRAVITY
 	seesound "FIREBA1";
 	Decal "PM_OrangeFireScorch";
