@@ -1199,12 +1199,12 @@ Afflicted/IncomingBig5 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig5.o
 Afflicted/IncomingBig6 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig6.ogg"
 Afflicted/IncomingBig7 "Sounds/Monsters/Fodder/Afflicted/AfflictedIncomingBig7.ogg"
 
-$rolloff Afflicted/Incoming 8000 19500
+$rolloff Afflicted/Incoming 12000 20000
 
 $limit Afflicted/Incoming 12
 $limit Afflicted/IncomingBig 12
 
-$rolloff Afflicted/IncomingBig 8000 19500
+$rolloff Afflicted/IncomingBig 12000 20000
 
 Flying/Fly FLYING
 FlyHit/Hit FLYHIT
