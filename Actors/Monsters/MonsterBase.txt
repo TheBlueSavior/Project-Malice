@@ -623,6 +623,14 @@ Class PMUnaffMonsterBase : PMMonsterBase abstract
  }
 }
 
+Class PMBossMonsterBase : PMMonsterBase abstract
+{
+ Default
+ {
+  PMMonsterBase.Sin "Boss", "Red";
+ }
+}
+
 //TIERS OF SIN
 Class PMLustMonsterBase : PMMonsterBase abstract
 {

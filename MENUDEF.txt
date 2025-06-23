@@ -47,6 +47,7 @@ OptionMenu "projectmalice_options"
 	StaticText " "
 	Slider "Fodder", "pm_healthfactor_fodder", 1, 10, 0.05, 2
 	Slider "Unaffiliated", "pm_healthfactor_unaffiliated", 1, 10, 0.05, 2
+	Slider "Boss", "pm_healthfactor_boss", 1, 10, 0.05, 2
 	StaticText " "
 	Slider "Lust", "pm_healthfactor_lust", 1, 10, 0.05, 2
 	Slider "Gluttony", "pm_healthfactor_gluttony", 1, 10, 0.05, 2

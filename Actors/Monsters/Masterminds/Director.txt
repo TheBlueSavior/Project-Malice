@@ -1,4 +1,4 @@
-Class PM_Director : PMUnaffMonsterBase
+Class PM_Director : PMBossMonsterBase
 {
     int misangle2;
     int misangle;

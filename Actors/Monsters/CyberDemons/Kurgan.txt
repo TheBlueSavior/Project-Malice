@@ -1,4 +1,4 @@
-Class PM_Kurgan : PMUnaffMonsterBase
+Class PM_Kurgan : PMBossMonsterBase
 {
   protected int rage;
   
