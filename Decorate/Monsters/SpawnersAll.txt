@@ -59,10 +59,10 @@ Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
 	DropItem "PM_PhaseBrute", 255, 74
 	DropItem "PM_CyberSpectre", 255, 24
 	DropItem "PM_Maggot", 255, 20
-	DropItem "PM_Nightmare", 255, 15
+	DropItem "PM_Nightmare", 255, 8
 	DropItem "PM_DemonTechSpectre", 255, 10
 	DropItem "PM_Prowler", 255, 9
-	DropItem "PM_Skulker", 255, 2
+	DropItem "PM_Skulker", 255, 1
 }
 
 
