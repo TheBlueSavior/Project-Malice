@@ -76,9 +76,10 @@ Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 	DropItem "PM_Hellion", 255, 1
 	DropItem "PM_Harvester", 255, 2
 	DropItem "PM_Zephyr", 255, 12
-	DropItem "PM_Devil", 255, 78
+	DropItem "PM_Devil", 255, 80
 	DropItem "PM_NetherImp", 255, 1
 	DropItem "PM_FeralImp", 255, 3
+	DropItem "PM_DuskWyrm", 255, 3
 }
 
 
