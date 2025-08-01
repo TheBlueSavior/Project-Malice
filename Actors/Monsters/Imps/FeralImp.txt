@@ -550,9 +550,9 @@ Class PM_FeralImpBall : PM_ImpBallBase
 	{
 	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 	  A_SpawnParticleEx("",tex[4],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 30.0,xoff: -10,startalphaf: 0.4
-	  ,fadestepf: 1,startroll: random(-180,180));
+	  ,fadestepf: -1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
-	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
 	Loop;
@@ -598,9 +598,9 @@ Class PM_FeralImpIreball : PM_FeralImpBall
 	{
 	  A_SpawnItemEx("PM_FeralFlameTrails",random(-1,1),random(-1,1),0,0,0,0,0,128,0);
 	  A_SpawnParticleEx("ffb521",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 45,size: 55.0,xoff: -10,startalphaf: 0.6
-	  ,fadestepf: 1,startroll: random(-180,180));
+	  ,fadestepf: -1,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,40),size: frandom(0.2,10),xoff: random(-10,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0
-	  ,fadestepf: 1,sizestep: -0.2,startroll: random(-180,180));
+	  ,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
 	  A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 80.0,xoff: -5,startalphaf: 0.6);
 	}
 	Loop;
