@@ -241,8 +241,8 @@ Class PM_HellifiedSoldierBall : PMProjectileBase
    {
      Height 3;
      Radius 3;
-     Speed 20;
-	 FastSpeed 40;
+     Speed 18;
+	 FastSpeed 38;
      Damagefunction (random(10,15));
 	 DamageType "Plasma";
      Scale 0.07;

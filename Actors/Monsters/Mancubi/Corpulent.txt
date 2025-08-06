@@ -99,7 +99,7 @@ Class PM_Corpulent : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(60,"QuickMissile");
 	TNT1 A 0 A_JumpIfCloser(365,"Flamethrower");
   LongMissile:
-	TNT1 A 0 { pm_attackloop = 2; }
+	TNT1 A 0 { pm_attackloop = random(2,10); }
 	TNT1 A 0 A_StartSound("Corpulent/Attack",CHAN_5);
 	M01A G 1;
 	M01A GGGGG 1 Light("AvatarFireBall2")
@@ -117,44 +117,44 @@ Class PM_Corpulent : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(128,"LMissileLoopNoLead");
    LMissileLoop:
 	 M01A H 1 Light("AvatarFireBall2");
-	 M01A H 5 Light("AvatarFireBall2")
+	 M01A H 4 Light("AvatarFireBall2")
 		{
 		PM_LeadTarget(20);
 		A_SpawnProjectile("PM_CorpulentBall",28,-34,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		}
-	 M01A IG 4;
+	 M01A IG random(3,4);
      M01A H 1 Light("AvatarFireBall2");
-	 M01A H 5 Light("AvatarFireBall2")
+	 M01A H 4 Light("AvatarFireBall2")
 		{
 		PM_LeadTarget(20);
 		A_SpawnProjectile("PM_CorpulentBall",28,34,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		pm_attackloop--;
 		}
-	M01A IG 4 { if(pm_attackloop < 0) SetStateLabel("LMissileEnd"); }
+	M01A IG random(3,4) { if(pm_attackloop < 0) SetStateLabel("LMissileEnd"); }
 	Loop;
 LMissileEnd:
 	M01A IG 6 A_FaceTarget();
 	Goto See;
 LMissileLoopNoLead:
 	 M01A H 1 Light("AvatarFireBall2");
-	 M01A H 5 Light("AvatarFireBall2")
+	 M01A H 4 Light("AvatarFireBall2")
 		{
 		A_FaceTarget();
-		A_SpawnProjectile("PM_CorpulentBall",28,-34,0);
+		A_SpawnProjectile("PM_CorpulentBall",28,-34,random(-15,15));
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		}
-	 M01A IG 4;
+	 M01A IG random(3,4);
      M01A H 1 Light("AvatarFireBall2");
-	 M01A H 5 Light("AvatarFireBall2")
+	 M01A H 4 Light("AvatarFireBall2")
 		{
 		A_FaceTarget();
-		A_SpawnProjectile("PM_CorpulentBall",28,34,0);
+		A_SpawnProjectile("PM_CorpulentBall",28,34,random(-15,15));
 		A_StartSound("Corpulent/Fire",CHAN_7);
 		pm_attackloop--;
 		}
-	M01A IG 4 { if(pm_attackloop < 0) SetStateLabel("LMissileEnd"); }
+	M01A IG random(3,4) { if(pm_attackloop < 0) SetStateLabel("LMissileEnd"); }
 	Loop;
   QuickMissile:
 	 M01A GGG 5 A_FaceTarget();

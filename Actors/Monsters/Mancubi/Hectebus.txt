@@ -91,7 +91,6 @@ Class PM_Hectebus : PMUnaffMonsterBase
     Loop;
   Missile:
 	TNT1 A 0 A_Jump(100,"QuickMissile");
-	TNT1 A 0 { pm_attackloop = 1; }
 	TNT1 A 0 A_StartSound("Hectebus/Aim",CHAN_5);
 	TABU G 1 A_StartSound("Hectebus/Attack");
 	TABU GGGGGGGG 1 Light("AvatarFireBall2")
@@ -110,16 +109,28 @@ Class PM_Hectebus : PMUnaffMonsterBase
   MissileLoop:
 	TABU H 10 Light("AvatarFireBall2")
 	{
-		if(pm_attackloop < 0)
-		SetStateLabel("MissileEnd");
 		A_FaceTarget();
 		A_StartSound("GenericMancShot",CHAN_6);
-		A_SpawnProjectile("PM_HectebusBall",28,-34,randompick(0,8,12,14,16));
-		A_SpawnProjectile("PM_HectebusBall",28,34,randompick(0,-8,-12,-14,-16));
-		pm_attackloop--;
+		A_SpawnProjectile("PM_HectebusBall",28,-34,15);
+		A_SpawnProjectile("PM_HectebusBall",28,34,0);
 	}
 	TABU IG 5 A_FaceTarget();
-	Loop;
+	TABU H 10 Light("AvatarFireBall2")
+	{
+		A_FaceTarget();
+		A_StartSound("GenericMancShot",CHAN_6);
+		A_SpawnProjectile("PM_HectebusBall",28,-34,0);
+		A_SpawnProjectile("PM_HectebusBall",28,34,-15);
+	}
+	TABU IG 5 A_FaceTarget();
+	TABU H 10 Light("AvatarFireBall2")
+	{
+		A_FaceTarget();
+		A_StartSound("GenericMancShot",CHAN_6);
+		A_SpawnProjectile("PM_HectebusBall",28,-34,5);
+		A_SpawnProjectile("PM_HectebusBall",28,34,-5);
+	}
+	TABU IG 5 A_FaceTarget();
   MissileEnd:
 	TABU IG 6 A_FaceTarget();
 	Goto See;
