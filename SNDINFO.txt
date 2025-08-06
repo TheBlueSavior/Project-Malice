@@ -2930,6 +2930,7 @@ FOC/Attack "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCAttack.ogg"
 $pitchset FOC/Attack 0.55 0.75
 
 FOC/Distort "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCDistort.ogg"
+FOC/Static "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCStatic.ogg"
 FOCShotgun/Sight "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCShotgunSight.ogg"
 FOCShotgun/Charge "Sounds/Monsters/Zombiemen/FragmentOfCain/FOCShotgunCharge.ogg"
 
