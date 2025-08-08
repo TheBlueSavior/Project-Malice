@@ -393,6 +393,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	+NOCLIP
 	+LOOKALLAROUND
 	+NEVERRESPAWN
+	+MISSILEevenMore
   States
   {
   Spawn:
@@ -410,6 +411,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	TNT1 A 0 A_SetSpeed(13)
   See1:
 	TNT1 A 0
+	TNT1 A 0 A_SetSpeed(13)
 	TNT1 A 0 A_SetRenderStyle(1.0,STYLE_Normal)
 	TNT1 A 0 A_ChangeFlag("SPRITEFLIP",0)
     0DEM BB 4 Light("PM_HorrorBlackflash")
@@ -419,8 +421,24 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Recoil(-0.5);
 	A_Quake(2,8,0,200,0);
 	}
+	TNT1 A 0 A_CheckSight("MoveCloser")
 	TNT1 A 0 A_Jump(256,"Flip1","See2","Flip2","Blink")
 	Loop
+  MoveCloser:
+	TNT1 A 0 A_JumpIfCloser(500,"See1")
+	TNT1 A 0 A_Jump(190,"See")
+  MovingCloser:
+	TNT1 A 0 A_SetSpeed(20)
+    0DEM BBCC 1 Fast
+	{
+	A_Chase("See1","See1");
+	}
+	0DEM AACC 1 Fast
+	{
+	A_Chase("See1","See1");
+	}
+	TNT1 A 0 A_CheckSight("MovingCloser")
+	Goto See1
   Flip1:
 	TNT1 A 0
 	TNT1 A 0 A_ChangeFlag("SPRITEFLIP",1)
@@ -498,7 +516,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	Goto See
   Missile:
 	TNT1 A 0
-	TNT1 A 0 A_Jump(256,"VoidMissile","Succ","Homing")
+	TNT1 A 0 A_Jump(256,"VoidMissile","Succ","Homing","Charge")
   VoidMissile:
 	0DEM A 5 Light("PM_HorrorBlackflash") A_FaceTarget
 	0DEM A 1 Light("PM_HorrorBlackflash")
@@ -581,7 +599,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
 	HomingLoop:
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -591,7 +609,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
     0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -601,7 +619,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	TNT1 A 0 A_FaceTarget(0,270,random(-180,180))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
@@ -612,7 +630,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -622,7 +640,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -632,7 +650,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -642,7 +660,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -652,7 +670,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -662,7 +680,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -672,7 +690,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -682,7 +700,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	TNT1 A 0 A_FaceTarget(0,270,random(-180,180))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
@@ -693,7 +711,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -703,7 +721,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
@@ -713,7 +731,7 @@ Actor PM_ExposedController : PMVoidMonsterBase
 	A_Chase("","");
 	}
 	0DEM A 0 A_SpawnProjectile("PM_ControllerHomingSoul",50,0,random(-180,180),CMF_OFFSETPITCH,random(-20,40))
-	TNT1 A 0 ThrustThing(random(0,360),30)
+	TNT1 A 0 ThrustThing(random(0,360),random(5,30))
 	0DEM CAACBABABAACBA 1 Light("PM_HorrorBlackflash")
 	{
 	A_SpawnItemEx("PM_BlackMist",random(-10,10),random(-10,10),random(0,60),0,0,0,0,0,128);
