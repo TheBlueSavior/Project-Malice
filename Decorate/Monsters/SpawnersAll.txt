@@ -85,7 +85,7 @@ Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 
 Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 {
-	DropItem "PM_Blot", 255, 2
+	DropItem "PM_Blot", 255, 4
 	DropItem "PM_BurntSoul", 255, 47
 	DropItem "PM_FleshspawnDropper", 255, 1
 	DropItem "PM_Cherub", 255, 5

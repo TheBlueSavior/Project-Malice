@@ -307,6 +307,7 @@ Class PM_Gazer : PMPrideMonsterBase
 		}
 	Goto See;
   MissileReady:
+	TNT1 A 0 A_Jump(128,"BulletHell1");
 	TNT1 A 0 A_Jump(130,"Dodge","PhaseOut","MissileProceed");
 	PRID A 0 { gazer = false; alpha = 1; }
 	PRID AAAAAAAA 1 A_GazerStop();

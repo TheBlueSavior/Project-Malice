@@ -286,7 +286,7 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
     Height 20;
     Mass 75;
     PainChance 150;
-    Speed 12;
+    Speed 7;
 	Tag "Venom Maggot";
     BloodType "PM_PestilenceBloodBase";
     BloodColor "Green";
@@ -316,16 +316,16 @@ Class PM_VenomMaggot : PMPestilenceMonsterBase
      Goto See;
    See:
      TNT1 A 0 { bFRIGHTENED = false; }
-     MA1G AABBCCDD 2 Fast A_Chase(null,"Missile");
+     MA1G AABBCCDD 3 Fast A_Chase(null,"Missile");
 	 TNT1 A 0 A_Jump(45,"Retreat");
 	 TNT1 A 0 A_Jump(10,"Slither");
      Loop;
    Slither:
-     MA1G AABBCCDDAABBCCDDAABBCCDD 1 Fast A_Chase(null,"Missile");
+     MA1G AABBCCDDAABBCCDDAABBCCDD 2 Fast A_Chase(null,"Missile");
 	 Goto See;
    Retreat:
      TNT1 A 0 { bFRIGHTENED = true; }
-	 MA1G AABBCCDDAABBCCDDAABBCCDD 1 Fast A_Chase(null,"Missile");
+	 MA1G AABBCCDDAABBCCDDAABBCCDD 2 Fast A_Chase(null,"Missile");
 	 TNT1 A 0 A_CheckSight("See");
 	 TNT1 A 0 A_Jump(20,"See");
 	 Loop;
