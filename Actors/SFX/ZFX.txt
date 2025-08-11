@@ -3405,7 +3405,7 @@ Class PM_PlasmaShieldBase : Actor
 		DamageFactor "Plasma", 1.5;
 		DamageFactor "Explosive", 0.3;
 		RadiusDamageFactor 0.5;
-		Height 60;
+		Height 80;
 		Radius 25;
 		Health 400;
 		+NORADIUSDMG
@@ -3414,7 +3414,6 @@ Class PM_PlasmaShieldBase : Actor
 		+NOGRAVITY
 		+SOLID
 		+THRUSPECIES
-		+NOBLOOD
 		+DONTSPLASH
 		+NOPAIN
 		+DONTTHRUST
@@ -3534,4 +3533,4 @@ Class PM_PlasmaShieldBase : Actor
 }
 
 Class PM_ShieldActive : Inventory { Default { Inventory.MaxAmount 1; } }
-Class PM_BelphegorShield : PM_PlasmaShieldBase { Default { Health 600; Tag "Belphegor's Barricade"; Scale 1.75; StencilColor "f716bf"; } }
+Class PM_BelphegorShield : PM_PlasmaShieldBase { Default { Health 600; Tag "Belphegor's Barricade"; Scale 1.75; StencilColor "f716bf"; Bloodtype "PM_ShieldImpactRed"; } }

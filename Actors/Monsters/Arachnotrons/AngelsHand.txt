@@ -150,7 +150,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			A_StartSound("AngelsHand/Spell",93,CHANF_DEFAULT,1);
 			A_FaceTarget();
 			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180);
-			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: -180);
 		}
 		MLCH EFG 5 A_FaceTarget();
 		MLCH H 10
@@ -175,7 +175,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			A_StartSound("GenericChargeHeavy",40);
 			A_FaceTarget();
 			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180);
-			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: -180);
 		}
 		MLCH FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF 1
 		{
@@ -203,7 +203,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 			A_StartSound("PMGazer/Death",94,CHANF_DEFAULT,1,pitch:2.0854735);
 			A_FaceTarget();
 			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 35, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: -1, sizestep: 5, startroll: 180, rollvel: 10);
-			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: 180, rollvel: 10);
+			A_SpawnParticleEx("ff0000", TexMan.CheckForTexture("C1TEA0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: 2, size: 180, xoff: 20, zoff: 45, startalphaf: 1, fadestepf: 0.1, startroll: -180, rollvel: -10);
 		}
 		MLCH EFG 5 PM_LeadTarget(30);
 		Goto BulletHelLLoop;

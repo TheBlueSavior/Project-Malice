@@ -1,3 +1,98 @@
+Class PM_ShieldImpactRed : Actor
+{
+    Default
+	{
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+    +NOBLOCKMAP
+    +NOTELEPORT
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
+	RenderStyle "Add";
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
+	-NOGRAVITY
+	Gravity 0.25;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0
+		{
+		A_StartSound("SlothBall/Impact",32,pitch:frandom(1.2,1.4));
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRR0"),
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(2,8),
+		size: random(70,150),
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 0,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: -15,
+		startroll: random(-180,180)
+		);
+		}
+		Stop;
+	}
+}
+
+Class PM_ShieldImpactSloth : Actor
+{
+    Default
+	{
+	+FORCEXYBILLBOARD
+	+ROLLSPRITE
+    +NOBLOCKMAP
+    +NOTELEPORT
+    -ALLOWPARTICLES
+    +PUFFGETSOWNER
+	RenderStyle "Add";
+	Scale 0.65;
+	Height 1;
+	Radius 1;
+	Mass 1;
+	-NOGRAVITY
+	Gravity 0.25;
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 A 0
+		{
+		A_StartSound("SlothBall/Impact",32,pitch:frandom(1.2,1.4));
+		A_SpawnParticleEx
+		(
+		"00ff64",
+		TexMan.CheckForTexture("DTPRB0"),
+		style: STYLE_Add,
+		flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,
+		lifetime: random(2,8),
+		size: random(70,150),
+		angle: 0,
+		xoff: 0,
+		yoff: 0,
+		zoff: 0,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: -15,
+		startroll: random(-180,180)
+		);
+		}
+		Stop;
+	}
+}
+
+
 Class PM_Blood : Actor replaces Blood
 {
   Default
