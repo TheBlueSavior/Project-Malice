@@ -7,6 +7,8 @@ version "4.11.3"
 
 #include "Actors/SinCodexMenu.txt"
 
+#include "Actors/Monsters/SystemMonsters/TeleportReinforcements.txt"
+
 //Fodder
 #include "Actors/Monsters/Fodder/Remnant.txt"
 #include "Actors/Monsters/Fodder/SmallRat.txt"

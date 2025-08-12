@@ -161,6 +161,7 @@ Class PM_AfflictedHordeManager : Actor
 	+INVULNERABLE
 	+LOOKALLAROUND
 	+NOTARGET
+	-COUNTKILL
 	MaxStepHeight 64;
 	MaxDropOffHeight 64;
 	TeleFogSourceType "RailNullPuff";
@@ -256,6 +257,7 @@ Class PM_AfflictedHordeIncomingSmall : Actor
 	MaxStepHeight 64;
 	MaxDropOffHeight 64;
 	+NOTELEPORT
+	-COUNTKILL
   }
 	States
 	{
@@ -286,6 +288,7 @@ Class PM_AfflictedHordeIncomingBig : Actor
 	MaxStepHeight 64;
 	MaxDropOffHeight 64;
 	+NOTELEPORT
+	-COUNTKILL
   }
 	States
 	{
@@ -316,6 +319,7 @@ Class PM_AfflictedHordeSpawner : Actor
 	MaxStepHeight 64;
 	MaxDropOffHeight 64;
 	+NOTELEPORT
+	-COUNTKILL
   }
 	States
 	{

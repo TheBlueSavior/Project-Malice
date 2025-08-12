@@ -1,0 +1,252 @@
+//
+Class PM_TeleportReinforcementManager : Actor
+{
+	Default
+	{
+	Speed 50;
+	Radius 20;
+    Height 56;
+	Mass 40;
+	MONSTER;
+	+THRUACTORS
+	-SOLID
+	-SHOOTABLE
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	+THRUGHOST
+	+GHOST
+	-ACTIVATEMCROSS
+	+INVULNERABLE
+	+LOOKALLAROUND
+	+NOTARGET
+	-COUNTKILL
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	TeleFogSourceType "RailNullPuff";
+    TeleFogDestType "RailNullPuff";
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 1 A_Wander();
+		TNT1 A 5 A_Look();
+		Loop;
+	See:
+		TNT1 A 0;
+		TNT1 A 5 A_Chase();
+		TNT1 A 0 A_JumpIfTargetinLOS("Start",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_Jump(1,"Spawn");
+		Loop;
+	Start:
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Teleport/Launch",34,CHANF_UI,1,ATTN_NONE);
+		TNT1 A random(30,100);
+		TNT1 A 0
+		{
+		A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		}
+		TNT1 A 0 A_SetAngle(random(-360,360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAA 1 A_SpawnItemEx("PM_TeleportReinforcementSpawner",0,0,0,random(-10,10),random(-10,10),random(0,10),random(-360,360),failchance:85);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,70);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(30,50);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(30,50);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(30,70);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(10,60);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(1,30) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION);
+		TNT1 A random(1,40);
+		TNT1 A random(1,10) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,40) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,20) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A random(1,30) A_SpawnItemEx("PM_TeleportIncomingSound",random(-500,500),random(-500,500),10,random(-500,500),random(-500,500),10,random(-180,180),SXF_NOCHECKPOSITION,30);
+		TNT1 A 0 A_StartSound("Teleport/Arrive",34,CHANF_UI,1,ATTN_NONE);
+		TNT1 A 50;
+		TNT1 A 0 A_StartSound("Teleport/Impact",34,CHANF_UI,1,ATTN_NONE);
+		Stop;
+	Die:
+		Stop;
+	}
+}
+
+Class PM_TeleportReinforcementSpawner : Actor
+{
+	Default
+	{
+	Speed 30;
+	Radius 20;
+    Height 56;
+	Mass 40;
+	+THRUACTORS
+	-SOLID
+	-SHOOTABLE
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	+THRUGHOST
+	+GHOST
+	-ACTIVATEMCROSS
+	+INVULNERABLE
+	+LOOKALLAROUND
+	+NOTARGET
+	-COUNTKILL
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	TeleFogSourceType "RailNullPuff";
+    TeleFogDestType "RailNullPuff";
+	}
+	
+	override void PostBeginPlay()
+	{
+	Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("REDLA0",TexMan.Type_Sprite);
+	}
+
+	TextureID tex[3];
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_SetAngle(random(-360,360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA random(0,2) A_Wander();
+	Begin:
+		TNT1 A 0;
+		TNT1 AAAAAAAAAAAAAAAAAA random(3,12)
+		{
+		A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,100), size: frandom(0.2,15),
+		xoff: random(-30,30), yoff: random(-30,30), velx: frandom(-0.2,0.2), vely: frandom(-0.2,0.2), velz: frandom(0.5,3), accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02), accelz: frandom(-0.02,0.02), startalphaf: 1.0, fadestepf: -1, sizestep: -0.5, startroll: random(-180,180), rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1) );
+		}
+		TNT1 A 0 A_StartSound("GenericChargeHeavy",35,CHANF_LOOP);
+		TNT1 A 0 A_SpawnItemEx("PM_TeleportIncomingBeacon",0,0,0,0,0,0);
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA random(3,8)
+		{
+		A_SpawnParticleEx( "ff1212", tex[0], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(50,90), size: frandom(15,50),
+		xoff: random(-10,10), yoff: random(-10,10), zoff: frandom(30,65), velx: frandom(-1,1), vely: frandom(-1,1), velz: frandom(-1,1),
+		startalphaf: frandom(0.05,0.2), fadestepf: -1, sizestep: frandom(0.2,6), startroll: random(-180,180), rollvel: frandom(-0.1,0.1));
+		A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(10,100), size: frandom(0.2,15),
+		xoff: random(-30,30), yoff: random(-30,30), velx: frandom(-0.2,0.2), vely: frandom(-0.2,0.2), velz: frandom(0.5,3), accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02), accelz: frandom(-0.02,0.02), startalphaf: 1.0, fadestepf: -1, sizestep: -0.5, startroll: random(-180,180), rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1) );
+		A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(2,4),size: random(1,130),xoff: random(-30,30),yoff: random(-30,30),zoff: random(0,60),velx: frandom(-2,2),vely: frandom(-2,2),velz: frandom(-2,2),startalphaf: frandom(0.3,0.9),startroll: random(-180,180),rollvel: frandom(-30,30));
+		}
+		TNT1 A 0 A_Jump(256,"Spawn1","Spawn1","Spawn2","Spawn2","Spawn3");
+		Stop;
+	Spawn1:
+		TNT1 A 0 A_SpawnItemEx("MaliceZombiemanSpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	Spawn2:
+		TNT1 A 0 A_SpawnItemEx("MaliceShotgunGuySpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	Spawn3:
+		TNT1 A 0 A_SpawnItemEx("MaliceChaingunGuySpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	Die:
+		TNT1 A 0;
+		Stop;
+	}
+}
+
+Class PM_TeleportIncomingSound : Actor
+{
+	Default
+	{
+	Speed 100;
+	Radius 20;
+    Height 56;
+	Mass 20;
+	-SHOOTABLE
+	-SOLID
+	+THRUGHOST
+	+THRUACTORS
+	+NOCLIP
+	-COUNTKILL
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	+NOTELEPORT
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		TNT1 AAAAAAAAAAAAAAAAAAAAAA random(0,5) A_Wander();
+		Goto SoundOff;
+	SoundOff:
+		TNT1 A 0;
+		TNT1 A 0 ThrustThingZ(0,random(20,150),0,1);
+		TNT1 A random(5,20);
+		TNT1 A 0 A_Stop();
+		TNT1 A 0 { bFLOAT = true; }
+		TNT1 A 0 A_StartSound("Teleport/Incoming",volume:frandom(0.05,0.9),attenuation:0.1,pitch:frandom(0.8,1.2));
+		Stop;
+	}
+}
+
+Class PM_TeleportIncomingBeacon : Actor
+{
+ Default
+ {
+ Alpha 0.7;
+ RenderStyle "AddShaded";
+ StencilColor "Red";
+ +BRIGHT
+ +NOINTERACTION
+ }
+ 
+ float destined;
+ 
+ override void PostBeginPlay()
+ {
+  Super.PostBeginPlay();
+  destined = alpha / 3;
+  alpha = 0.01;
+ }
+ 
+ 
+ void BeaconFX()
+ {
+	scale.x += 0.02;
+ }
+ 
+ void BeaconFX2()
+ {
+	scale.x += 0.08;
+ }
+ 
+ States
+ {
+ Spawn:
+  TNT1 A 0 NoDelay
+  {
+	scale.x = 0.15;
+	scale.y = 100.00;
+  }
+  NTGD Z 1
+  {
+	A_FadeIn(0.008);
+	BeaconFX();
+	if (alpha >= destined) SetStateLabel("Fade");
+  }
+  Loop;
+ Fade:
+  NTGD ZZZZZZZZZZ 5 BeaconFX2();
+  TNT1 A 0;
+  NTGD Z 220;
+  NTGD Z 1 { A_FadeOut(0.01); BeaconFX(); }
+  Wait;
+ }
+}

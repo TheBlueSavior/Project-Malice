@@ -6369,3 +6369,38 @@ DuskWyrm/Active5 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmActive5.ogg"
 $random DuskWyrm/Pain { DuskWyrm/Pain2 DuskWyrm/Pain2 }
 DuskWyrm/Pain1 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmPain1.ogg"
 DuskWyrm/Pain2 "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmPain2.ogg"
+
+//TELEPORT REINFORCEMENTS
+$random Teleport/Incoming { Teleport/Incoming1 Teleport/Incoming2 Teleport/Incoming3 Teleport/Incoming4 Teleport/Incoming5 Teleport/Incoming6 Teleport/Incoming7 Teleport/Incoming8 Teleport/Incoming9 Teleport/Incoming10 Teleport/Incoming11 Teleport/Incoming12 Teleport/Incoming13 Teleport/Incoming14 Teleport/Incoming15 Teleport/Incoming16 Teleport/Incoming17 Teleport/Incoming18 Teleport/Incoming19 }
+Teleport/Incoming1 "Sounds/Systems/PMTeleportIncoming1.ogg"
+Teleport/Incoming2 "Sounds/Systems/PMTeleportIncoming2.ogg"
+Teleport/Incoming3 "Sounds/Systems/PMTeleportIncoming3.ogg"
+Teleport/Incoming4 "Sounds/Systems/PMTeleportIncoming4.ogg"
+Teleport/Incoming5 "Sounds/Systems/PMTeleportIncoming5.ogg"
+Teleport/Incoming6 "Sounds/Systems/PMTeleportIncoming6.ogg"
+Teleport/Incoming7 "Sounds/Systems/PMTeleportIncoming7.ogg"
+Teleport/Incoming8 "Sounds/Systems/PMTeleportIncoming8.ogg"
+Teleport/Incoming9 "Sounds/Systems/PMTeleportIncoming9.ogg"
+Teleport/Incoming10 "Sounds/Systems/PMTeleportIncoming10.ogg"
+Teleport/Incoming11 "Sounds/Systems/PMTeleportIncoming11.ogg"
+Teleport/Incoming12 "Sounds/Systems/PMTeleportIncoming12.ogg"
+Teleport/Incoming13 "Sounds/Systems/PMTeleportIncoming13.ogg"
+Teleport/Incoming14 "Sounds/Systems/PMTeleportIncoming14.ogg"
+Teleport/Incoming15 "Sounds/Systems/PMTeleportIncoming15.ogg"
+Teleport/Incoming16 "Sounds/Systems/PMTeleportIncoming16.ogg"
+Teleport/Incoming17 "Sounds/Systems/PMTeleportIncoming17.ogg"
+Teleport/Incoming18 "Sounds/Systems/PMTeleportIncoming18.ogg"
+Teleport/Incoming19 "Sounds/Systems/PMTeleportIncoming19.ogg"
+
+$rolloff Teleport/Incoming 12000 20000
+
+$limit Teleport/Incoming 12
+$limit Teleport/IncomingBig 12
+
+Teleport/Launch "Sounds/Systems/PMTeleportLaunch.ogg"
+Teleport/Arrive "Sounds/Systems/PMTeleportArrive.ogg"
+Teleport/Impact "Sounds/Systems/PMTeleportImpact.ogg"
+
+$rolloff Teleport/Launch 12000 20000
+$rolloff Teleport/Arrive 12000 20000
+$rolloff Teleport/Impact 12000 20000
