@@ -6393,9 +6393,7 @@ Teleport/Incoming18 "Sounds/Systems/PMTeleportIncoming18.ogg"
 Teleport/Incoming19 "Sounds/Systems/PMTeleportIncoming19.ogg"
 
 $rolloff Teleport/Incoming 12000 20000
-
 $limit Teleport/Incoming 12
-$limit Teleport/IncomingBig 12
 
 Teleport/Launch "Sounds/Systems/PMTeleportLaunch.ogg"
 Teleport/Arrive "Sounds/Systems/PMTeleportArrive.ogg"
@@ -6404,3 +6402,55 @@ Teleport/Impact "Sounds/Systems/PMTeleportImpact.ogg"
 $rolloff Teleport/Launch 12000 20000
 $rolloff Teleport/Arrive 12000 20000
 $rolloff Teleport/Impact 12000 20000
+
+//DEMON REINFORCEMENTS
+$random DemonTP/Incoming { DemonTP/Incoming1 DemonTP/Incoming2 DemonTP/Incoming3 DemonTP/Incoming4 DemonTP/Incoming5 DemonTP/Incoming6 DemonTP/Incoming7 DemonTP/Incoming8 DemonTP/Incoming9 DemonTP/Incoming10 DemonTP/Incoming11 DemonTP/Incoming12 DemonTP/Incoming13 DemonTP/Incoming14 DemonTP/Incoming15 DemonTP/Incoming16 DemonTP/Incoming17 DemonTP/Incoming18 DemonTP/Incoming19 DemonTP/Incoming20 DemonTP/Incoming21 DemonTP/Incoming22 DemonTP/Incoming23 DemonTP/Incoming24 DemonTP/Incoming25 DemonTP/Incoming26 DemonTP/Incoming27 DemonTP/Incoming28 DemonTP/Incoming29 DemonTP/Incoming30 DemonTP/Incoming31 DemonTP/Incoming32 DemonTP/Incoming33 DemonTP/Incoming34 }
+DemonTP/Incoming1 "Sounds/Systems/PMDemonTPIncoming1.ogg"
+DemonTP/Incoming2 "Sounds/Systems/PMDemonTPIncoming2.ogg"
+DemonTP/Incoming3 "Sounds/Systems/PMDemonTPIncoming3.ogg"
+DemonTP/Incoming4 "Sounds/Systems/PMDemonTPIncoming4.ogg"
+DemonTP/Incoming5 "Sounds/Systems/PMDemonTPIncoming5.ogg"
+DemonTP/Incoming6 "Sounds/Systems/PMDemonTPIncoming6.ogg"
+DemonTP/Incoming7 "Sounds/Systems/PMDemonTPIncoming7.ogg"
+DemonTP/Incoming8 "Sounds/Systems/PMDemonTPIncoming8.ogg"
+DemonTP/Incoming9 "Sounds/Systems/PMDemonTPIncoming9.ogg"
+DemonTP/Incoming10 "Sounds/Systems/PMDemonTPIncoming10.ogg"
+DemonTP/Incoming11 "Sounds/Systems/PMDemonTPIncoming11.ogg"
+DemonTP/Incoming12 "Sounds/Systems/PMDemonTPIncoming12.ogg"
+DemonTP/Incoming13 "Sounds/Systems/PMDemonTPIncoming13.ogg"
+DemonTP/Incoming14 "Sounds/Systems/PMDemonTPIncoming14.ogg"
+DemonTP/Incoming15 "Sounds/Systems/PMDemonTPIncoming15.ogg"
+DemonTP/Incoming16 "Sounds/Systems/PMDemonTPIncoming16.ogg"
+DemonTP/Incoming17 "Sounds/Systems/PMDemonTPIncoming17.ogg"
+DemonTP/Incoming18 "Sounds/Systems/PMDemonTPIncoming18.ogg"
+DemonTP/Incoming19 "Sounds/Systems/PMDemonTPIncoming19.ogg"
+DemonTP/Incoming20 "Sounds/Systems/PMDemonTPIncoming20.ogg"
+DemonTP/Incoming21 "Sounds/Systems/PMDemonTPIncoming21.ogg"
+DemonTP/Incoming22 "Sounds/Systems/PMDemonTPIncoming22.ogg"
+DemonTP/Incoming23 "Sounds/Systems/PMDemonTPIncoming23.ogg"
+DemonTP/Incoming24 "Sounds/Systems/PMDemonTPIncoming24.ogg"
+DemonTP/Incoming25 "Sounds/Systems/PMDemonTPIncoming25.ogg"
+DemonTP/Incoming26 "Sounds/Systems/PMDemonTPIncoming26.ogg"
+DemonTP/Incoming27 "Sounds/Systems/PMDemonTPIncoming27.ogg"
+DemonTP/Incoming28 "Sounds/Systems/PMDemonTPIncoming28.ogg"
+DemonTP/Incoming29 "Sounds/Systems/PMDemonTPIncoming29.ogg"
+DemonTP/Incoming30 "Sounds/Systems/PMDemonTPIncoming30.ogg"
+DemonTP/Incoming31 "Sounds/Systems/PMDemonTPIncoming31.ogg"
+DemonTP/Incoming32 "Sounds/Systems/PMDemonTPIncoming32.ogg"
+DemonTP/Incoming33 "Sounds/Systems/PMDemonTPIncoming33.ogg"
+DemonTP/Incoming34 "Sounds/Systems/PMDemonTPIncoming34.ogg"
+
+$rolloff DemonTP/Incoming 12000 20000
+$limit DemonTP/Incoming 12
+
+DemonTP/Launch "Sounds/Systems/PMDemonTPLaunch.ogg"
+$rolloff DemonTP/Launch 12000 20000
+
+Charred/ScoutCall "Sounds/Systems/PMScoutCharredCall.ogg"
+$rolloff Charred/ScoutCall 400 3000
+
+Fallen/ScoutCall "Sounds/Systems/PMFallenSoldierBackup.ogg"
+$rolloff Fallen/ScoutCall 200 3000
+
+Fallen/ScoutReply "Sounds/Systems/PMFallenReinforceReply.ogg"
+$rolloff Fallen/ScoutReply 200 2000

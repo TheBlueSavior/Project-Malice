@@ -1,0 +1,127 @@
+
+Class PM_FallenScout : PMUnaffMonsterBase
+{
+  Default
+  {
+  Health 70;
+  Radius 20;
+  Height 56;
+  Speed 10;
+  PainChance 170;
+  Mass 100;
+  MONSTER;
+  +FLOORCLIP
+  +MISSILEMORE
+  +MISSILEEVENMORE
+  +HARMFRIENDS
+  +DOHARMSPECIES
+  -COUNTKILL
+  Tag "Fallen Marine";
+  SeeSound "";
+  ActiveSound "FallenSoldiers/Active";
+  PainSound "FallenSoldiers/Pain";
+  DeathSound "FallenSoldiers/Death";
+  Obituary "%o was gunned down by a Fallen Marine.";
+  Dropitem "Chaingun";
+  //DropItem "Lith_ClipBox";
+  Species "Chaingunner";
+  Bloodtype "PM_NormalBloodBase";
+  TeleFogSourceType "PM_PossessedTeleportFog";
+  TeleFogDestType "PM_PossessedTeleportFog";
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0;
+	TNT1 A 1
+		{
+		if (TestMobjLocation())
+			return A_Jump(256,"Begin");
+		else
+			return A_Jump(256,"Die");
+		}
+  Begin:
+	TNT1 A 0 A_SetAngle(random(-360,360));
+	TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,-8,0,0,0,0,SXF_NOCHECKPOSITION);
+  Standing:
+        ZSP2 AAAAAAAAAA 10 PM_Look();
+		ZSP2 A 0
+		{
+		if (!random(0, 30))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		ZSP2 A 0 A_Jump(30,"Despawn");
+		ZSP2 A 0 A_Jump(125,"Explore");
+		Loop;
+	Explore:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0
+		{
+		if (!random(0, 12))
+			{
+				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.75,0.88));
+			}
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		ZSP2 AAABBB 4
+		{
+		PM_Look();
+		A_Wander();
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",4,volume:0.5);
+		ZSP2 CCCDDD 4
+		{
+		A_Wander();
+		PM_Look();
+		}
+		ZSP2 A 0 A_Jump(20,"Standing");
+		Loop;
+  Despawn:
+	TNT1 A 0;
+	TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	Stop;
+  Look:
+	TNT1 A 0 { bFRIGHTENED = false; }
+	TNT1 A 0 A_JumpIfTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_SetSpeed(7);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+    ZSP2 AAA 2 PM_LookingForPlayer();
+	ZSP2 BBB 2 PM_LookingForPlayer();
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+	ZSP2 CCC 2 PM_LookingForPlayer();
+	ZSP2 DDD 2 PM_LookingForPlayer();
+    Loop;
+  Spotted:
+  See:
+	TNT1 A 0;
+	TNT1 A 0 { bNOPAIN = true; }
+	ZSP2 AAA 4 A_FaceTarget();
+	TNT1 A 0 A_StartSound("Fallen/ScoutCall",34,volume:0.85);
+	ZSP2 GGGGGGGAAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGAAAAAAAAACCCCAAAAAA 3 A_FaceTarget();
+	TNT1 A 0 A_SpawnItemEx("PM_TeleportReinforcementManager",0,0,0,0,0,0,random(-360,360));
+	TNT1 A 0 A_StartSound("Fallen/ScoutReply",35);
+	ZSP2 AAA 3 A_FaceTarget();
+	Goto Replace;
+  Replace:
+	TNT1 A 0;
+	TNT1 A 0 A_SpawnItemEx("PM_FallenMarine",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+	Stop;
+ Pain:
+    ZSP2 G 4;
+    ZSP2 G 4 A_Pain;
+    Goto See;
+  Die:
+	TNT1 A 0;
+	Stop;
+  Death:
+    ZSP2 H 5;
+    ZSP2 I 5 PM_Scream();
+    ZSP2 J 5;
+    ZSP2 K 5 A_NoBlocking;
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+    ZSP2 L -1;
+  }
+}
