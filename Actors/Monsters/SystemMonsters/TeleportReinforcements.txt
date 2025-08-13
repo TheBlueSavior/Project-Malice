@@ -560,7 +560,8 @@ Class PM_ArrivingGhostDemons : Actor
 	TNT1 A random(0,30);
   LookLoop:
 	TNT1 A 5 A_Look();
-	Loop;
+	TNT1 A 0 A_Jump(5,"Die");
+	Goto PickingTime;
   See:
   PickingTime:
 	TNT1 A 0 A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14");
@@ -666,6 +667,9 @@ Class PM_ArrivingGhostDemons : Actor
 		A_Recoil(frandom(-3,0.5));
 		}
 		Stop;
+	Die:
+		TNT1 A 0;
+		Stop;
 	}
 }
 
@@ -708,6 +712,7 @@ Class PM_SpawningGhostDemon : Actor
 		}
   LookLoop:
 	TNT1 C 1 A_Look();
+	TNT1 A 0 A_Jump(5,"Die");
   See:
   PickingTime:
 	TNT1 A 0 A_Jump(256,"S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13","S14");
@@ -767,6 +772,9 @@ Class PM_SpawningGhostDemon : Actor
 		user_scalery = user_scalery+frandom(0.0,0.04);
 		A_FadeIn(frandom(0.001,0.005));
 		}
+		Stop;
+	Die:
+		TNT1 A 0;
 		Stop;
 	}
 }
