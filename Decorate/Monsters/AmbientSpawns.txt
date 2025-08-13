@@ -184,7 +184,7 @@ class MonsterDropper : EventHandler {
 		CVar foddersetting = CVar.FindCVar('projectmalice_fodderdivider');
 		// take the total monster number, divide it by 4
 		// multiplication is faster than division
-		double extraMonsters = level.total_monsters * (foddersetting.GetFloat());
+		double extraMonsters = level.total_monsters * frandom(0,(foddersetting.GetFloat()));
 		if(pmd_world_extra_mon) console.printf("[PM]: Number of extra monsters: %i.", extraMonsters);
 
 		// time to spawn the monsters!
