@@ -173,8 +173,8 @@ Texture "SLOTHLIST", 450, 300
 	{
 		FlipX
 	}
-	Patch "TOT1A1", 121, 93
-	Patch "TOT1G1", 241, 89
+	Patch "C06_A1", 121, 93
+	Patch "C06_G1", 241, 89
 }
 
 Texture "ENVYLIST", 450, 300
