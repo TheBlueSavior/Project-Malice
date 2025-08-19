@@ -87,6 +87,10 @@ Class PM_UmbralHorrorspawn : PMUmbralMonsterBase
 	UMBE A 0
 	{
 		PM_Gib();
+		for(int i=0; i<2; i++){
+		for(int gib=0; gib<5; gib++){A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}
+		A_SpawnItemEx("PM_NormalInstestinGib",0,0,32,random(-10,10),random(-10,10),random(-10,10),frandom(0,360),SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
+		}
 		A_StartSound("Ice/Freeze", CHAN_7, volume: 0.5);
 		A_StartSound("Watcher/IShardExp",CHAN_6);
 	}

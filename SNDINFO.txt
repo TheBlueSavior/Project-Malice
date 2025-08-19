@@ -4674,11 +4674,8 @@ USpawn/TurnAround4  "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnTurnAround4.
 USpawn/TurnAround5  "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnTurnAround5.ogg"
 USpawn/TurnAround6  "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnTurnAround6.ogg"
 USpawn/TurnAround7  "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnTurnAround7.ogg"
-$random Umbralspawn/Scream { Umbralspawn/Scream1 Umbralspawn/Scream2 Umbralspawn/Scream3 Umbralspawn/Scream4 }
-Umbralspawn/Scream1 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream1.ogg"
-Umbralspawn/Scream2 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream2.ogg"
-Umbralspawn/Scream3 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream3.ogg"
-Umbralspawn/Scream4 "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream4.ogg"
+Umbralspawn/Scream "Sounds/Monsters/Fodder/FrozenCorpse/UmbralspawnScream.ogg"
+$pitchset Umbralspawn/Scream 0.9 1.1
 
 //Bulltubus
 $random Bulltubus/Sight { Bulltubus/Sight1 Bulltubus/Sight2 Bulltubus/Sight3 }

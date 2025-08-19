@@ -767,6 +767,33 @@ States
 }
 
 
+Class PM_TeleportFXMarker : Actor
+{
+	Default
+	{
+	-SHOOTABLE
+	-SOLID
+	+THRUGHOST
+	+THRUACTORS
+	+NOCLIP
+	-COUNTKILL
+	+NOTELEPORT
+	+NOINTERACTION
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_CheckProximity("Die","PM_TeleportFXMarker",80);
+		TNT1 A 0 A_QueueCorpse();
+		TNT1 A 80;
+		Stop;
+	Die:
+		TNT1 A 0;
+		Stop;
+	}
+}
+
 class PM_DemonicTeleportFog : Actor
 {
 Default
@@ -798,6 +825,7 @@ States
  {
  Spawn:
  TNT1 A 0;
+ TNT1 A 0 A_CheckProximity("LessFx","PM_TeleportFXMarker",100);
  TNT1 A 0
  {
 		A_SpawnParticleEx
@@ -976,6 +1004,7 @@ States
 		startroll: random(-180,180)
 		);
 	}
+TNT1 A 0 A_SpawnItemEx("PM_TeleportFXMarker",0,0,1,0,0,0,0,SXF_NOCHECKPOSITION);
 TNT1 AAA 0
 {
 A_SpawnParticleEx
@@ -999,6 +1028,186 @@ A_SpawnParticleEx
 		rollvel: frandom(-0.1,0.1)
 		);
 }
+ DB26 LMMNOPQRSTUV 2 BRIGHT Light("YellowMediumFlicker1")
+{
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+	A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: frandom(50,230),
+		zoff: 50,
+		startalphaf: frandom(0.1,0.5),
+		startroll: random(-180,180)
+		);
+	}
+ TNT1 A 0 A_StartSound("TeleportVoices",CHAN_6,CHANF_DEFAULT,0.35);
+ Stop;
+ 
+ LessFx:
+ TNT1 A 0;
+ TNT1 A 0
+ {
+		A_SpawnParticleEx
+		(
+		"ff9d1c",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 6,
+		size: 300,
+		zoff: 50,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: 20,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+		for(int i=2;i>0;i--)
+		A_SpawnParticleEx
+		(
+		"ff9d1c",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 6,
+		size: 300,
+		zoff: 10,
+		startalphaf: 1,
+		fadestepf: -1,
+		sizestep: 20,
+		startroll: random(-180,180),
+		rollvel: frandom(-5,5)
+		);
+	}
+ TNT1 A 0 A_StartSound("TeleportSound",CHAN_5,CHANF_DEFAULT,0.9);
+  TNT1 A 0 A_StartSound("PM/DemonTeleFire",CHAN_7,CHANF_DEFAULT,0.5);
+ TNT1 AAAAAAAAAAAAAAAAAAA 0
+	{
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+	}
+ TNT1 A 0
+	{
+	A_SpawnParticleEx
+	    (
+		"ffaa0d",
+		tex[2],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 86,
+		size: 4,
+		zoff: 53,
+		startalphaf: 0.6,
+		fadestepf: -1,
+		sizestep: 2,
+		startroll: 180
+		);
+	}
+ DB26 ABCDEFGHIJK 1 BRIGHT Light("YellowMediumFlicker2")
+ {
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[4],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(70,120),
+		size: frandom(60,90),
+		xoff: random(-20,20),
+		yoff: random(-20,20),
+		zoff: frandom(0,5),
+		velx: frandom(-1,1),
+		vely: frandom(-1,1),
+		velz: frandom(1,4),
+		startalphaf: frandom(0.4,0.7),
+		fadestepf: -0.02,
+		sizestep: frandom(-2,-4),
+		startroll: random(-180,180),
+		rollvel: frandom(-0.3,0.3)
+		);
+	A_SpawnParticleEx
+	    (
+		"",
+		tex[1],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(10,100),
+		size: frandom(1,25),
+		xoff: random(-30,30),
+		yoff: random(-30,30),
+		velx: frandom(-0.2,0.2),
+		vely: frandom(-0.2,0.2),
+		velz: frandom(0.5,3),
+		accelx: frandom(-0.02,0.02),
+		accely: frandom(-0.02,0.02),
+		accelz: frandom(-0.02,0.02),
+		startalphaf: 1.0,
+		fadestepf: -1,
+		sizestep: -0.5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		tex[0],
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: 1,
+		size: frandom(100,430),
+		zoff: 50,
+		startalphaf: frandom(0.1,0.5),
+		startroll: random(-180,180)
+		);
+	}
  DB26 LMMNOPQRSTUV 2 BRIGHT Light("YellowMediumFlicker1")
 {
 	A_SpawnParticleEx
