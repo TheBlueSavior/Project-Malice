@@ -113,7 +113,7 @@ Class PM_AmbientSpawner : Actor
 		}
 		Goto Spawn;
 	Create2:
-		TNT1 A 0 A_SpawnItemEx("Horrorspawnmap",0,0,0,0,0,0,random(0,360),0,0);
+		TNT1 A 0 A_SpawnItemEx("PM_HorrorPassiveSpawn",0,0,0,0,0,0,random(0,360),0,0);
 		Stop;
 	Die:
 		TNT1 A 0;

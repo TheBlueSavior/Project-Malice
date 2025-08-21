@@ -681,8 +681,8 @@ class PM_PotsBall : Actor
 {
 Default
 {
-  Speed 30;
-  FastSpeed 40;
+  Speed 15;
+  FastSpeed 25;
   DamageFunction (random(10,15));
   DamageType "Void";
   Radius 5;

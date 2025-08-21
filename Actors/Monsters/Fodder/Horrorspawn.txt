@@ -1095,6 +1095,14 @@ Class PM_HorrorPassiveSpawn : Actor
 	{
 	Spawn:
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 A 1
+		{
+		if (TestMobjLocation())
+			return A_Jump(256,"Begin");
+		else
+			return A_Jump(256,"Die");
+		}
+	Begin:
 		TNT1 A 5 A_Wander();
 		TNT1 A 0 A_CheckSight ("Create");
 		TNT1 A 5 A_Wander();
@@ -1112,7 +1120,7 @@ Class PM_HorrorPassiveSpawn : Actor
 		TNT1 A 5 A_Wander();
 		TNT1 A 0 A_CheckSight ("Create");
 		TNT1 A 0 A_Jump(50,"Die");
-		Loop;
+		Goto Spawn;
 	Create:
 		TNT1 A 0;
 		TNT1 A 0 A_CheckProximity("Reconsider","PMMonsterBase",150,1,CPXF_ANCESTOR);
