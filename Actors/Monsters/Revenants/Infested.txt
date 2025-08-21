@@ -236,6 +236,7 @@ Class PM_InfestedRotfly : PM_Rotfly
   {
   Scale 0.50;
   Health 5;
+  +LOOKALLAROUND
   PMMonsterBase.CodexLore "";
   Species "Elemental";
   }
@@ -243,13 +244,19 @@ Class PM_InfestedRotfly : PM_Rotfly
   States
   {
   Spawn:
-	BFLY A 5 PM_Look;
+	BFLY AB 3 PM_Look;
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
+	TNT1 A 0 A_Jump(5,"Die");
+	Goto Look;
   Look:
+	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
     BFLY ABABABAB 2
 	{
 	A_Wander();
+	A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 	PM_LookingForPlayer();
 	}
+	TNT1 A 0 A_Jump(5,"Die");
 	Loop;
   Spotted:
 	TNT1 A 0 PM_AlertSound();
@@ -300,6 +307,8 @@ Class PM_InfestedRotfly : PM_Rotfly
     TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
     TNT1 A 0 A_SpawnProjectile("PM_InfestedRotflyKamikaze",0,0,0);
 	Stop;
+  Die:
+	TNT1 A 0;
   Death:
 	TNT1 A 0;
 	TNT1 A 0 A_Scream;
@@ -340,7 +349,9 @@ Class PM_InfestedRotflyKamikaze : DoomImpBall
   States
   {
   Spawn:
-	BFLY AB 2 Bright
+	TNT1 A 0;
+	TNT1 AAA 0 A_StartSound("Rotfly/Active",35,CHANF_OVERLAP,attenuation:0.7,pitch:frandom(1.1,1.5),startTime:frandom(0.0,0.5));
+	BFLY ABABABABABABABAB 2 Bright
 	{
 	A_SpawnParticleEx
 		(
@@ -361,8 +372,32 @@ Class PM_InfestedRotflyKamikaze : DoomImpBall
 	A_SpawnItemEx("PM_RotflySmallSplash",random(-5,5),random(-10,10),random(1,8),0,0,0,0,SXF_NOCHECKPOSITION);
 	A_SeekerMissile(4,4,SMF_PRECISE);
 	}
+   Going:
+	BFLY ABABABABAB 2 Bright
+	{
+	A_SpawnParticleEx
+		(
+		"bdff00",
+		TexMan.CheckForTexture("DTPRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(1,2),
+		size: 90,
+		zoff: 6,
+		startalphaf: frandom(0.2,0.3),
+		fadestepf: -1,
+		sizestep: -30,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+	A_SpawnItemEx("PM_RotflySmallSplash",random(-5,5),random(-10,10),random(1,8),0,0,0,0,SXF_NOCHECKPOSITION);
+	}
+	TNT1 A 0 A_StartSound("Rotfly/Active",35,CHANF_OVERLAP,attenuation:0.7,pitch:frandom(1.1,1.5),startTime:frandom(0.0,0.5));
 	Loop;
   Death:
+	TNT1 A 0;
+	TNT1 A 0 A_StopSound(35);
 	TNT1 AA 0 A_SpawnItemEx("PM_PestilenceBloodMulti",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
 	TNT1 A 0 A_SpawnItemEx("PM_PestilenceBloodEX",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
 	TNT1 A 0 A_SpawnItemEx("PM_GagRotflySmokeCloud",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
