@@ -1,6 +1,6 @@
 //Monster Behavior and Spawns
 Server Int pm_forgetcheck = 0;
-Server Float projectmalice_fodderdivider = 0.25;
+Server Float projectmalice_fodderdivider = 2;
 Server Float pm_bulletdamagefactor = 1;
 Server Float pm_bulletspeedfactor = 1;
 
