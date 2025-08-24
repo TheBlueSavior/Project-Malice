@@ -205,24 +205,37 @@ Class PM_Host : PMPestilenceMonsterBase
     HOS1 H 2 A_Pain;
     goto See;
   Death:
+	TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
     HOS1 I 8 A_RemoveChildren(1,RMVF_EVERYTHING);
+	TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
+	TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
     HOS1 J 8 { A_StopSound(6); PM_Scream(); }
-    HOS1 KL 6;
-    HOS1 M 6 A_NoBlocking;
-	TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_HostSwarmFly",0,0,5);
-	TNT1 A 0 A_SpawnItemEx("PM_ActiveSwarm",0,0,7,0,0,0,0,0,200);
-	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-	HOS1 NNNNNNNNNN 30
+	TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
+    HOS1 KL 6
 	{
-	  A_SpawnParticleEx("252D00",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80,200),size: frandom(15,45),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(1,2),accelx: frandom(-0.02,0.02),accely: frandom(-0.02,0.02),accelz: frandom(-0.03,0.01),startalphaf: frandom(0.3,0.6)
-	  ,fadestepf: -0.001,sizestep: frandom(0.2,4),startroll: random(-180,180),rollvel: random(-2,2));
-	  A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0);
+	A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(10,20),0,0,0,0,SXF_NOCHECKPOSITION,60);
 	}
+    HOS1 M 6 A_NoBlocking;
+	TNT1 A 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(5,10),0,0,0,0,SXF_NOCHECKPOSITION,60);
+	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+	TNT1 A 0 A_Jump(200,"DeathSwarmRelease");
+	//HOS1 NNNNNNNNNN 30
+	//{
+	//  A_SpawnParticleEx("252D00",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(80,200),size: frandom(15,45),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(1,2),accelx: frandom(-0.02,0.02),accely: frandom(-0.02,0.02),accelz: frandom(-0.03,0.01),startalphaf: frandom(0.3,0.6)
+	//  ,fadestepf: -0.001,sizestep: frandom(0.2,4),startroll: random(-180,180),rollvel: random(-2,2));
+	//  A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-2,2),random(-2,2),random(0,1),0,0);
+	//}
     HOS1 N -1;
+    Stop;
+  DeathSwarmRelease:
+	HOS1 N 50;
+	HOS1 NNNN random(5,30) A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(2,10),0,0,0,0,SXF_NOCHECKPOSITION,60);
+	HOS1 NNNNNN 0 A_SpawnItemEx("PM_PestilenceMeatChunkLauncher",random(-2,2),random(-2,2),random(2,10),0,0,0,0,SXF_NOCHECKPOSITION,60);
+	HOS1 NNN random(0,2) A_SpawnItemEx("PM_ActiveSwarm",0,0,7,0,0,0,0,0,100);
+	HOS1 N -1;
     Stop;
   XDeath:
     TNT1 A 0 { A_StopSound(6); A_StopSound(555); }
-	TNT1 AAA 0 A_SpawnItemEx("PM_HostSmokeCloud2",0,0,1,random(-3,3),random(-3,3),random(0,2),0,0);
 	TNT1 A 0 PM_Gib();
     HOS1 O 5 A_RemoveChildren(1,RMVF_EVERYTHING);
     HOS1 P 5 A_XScream;
@@ -413,8 +426,8 @@ Class PM_HostSwarmFly : Actor
   Speed 1;
   PROJECTILE;
   +NOCLIP
-  ReactionTime 25;
-  Scale 1;
+  ReactionTime 45;
+  Scale 1.8;
   }
   States
   {

@@ -488,15 +488,20 @@ Class PM_Husk : PMWrathMonsterBase
 	 bSPRITEFLIP = false;
 	 PM_Scream();
     }
-    GHUL LLLLMMMM 2 Light("AvatarFireball4") A_SpawnItemEx("PM_DarkExpSmoke",frandom(-35,35),frandom(-35,35),frandom(1,75),frandom(-2,2),frandom(-2,2),frandom(-2,2));
-    GHUL NNN 2 Light("AvatarFireball4") A_SpawnItemEx("PM_DarkExpSmoke",frandom(-35,35),frandom(-35,35),frandom(1,55),frandom(-2,2),frandom(-2,2),frandom(-2,2));
+    GHUL LLLLMMMM 2 Light("AvatarFireball4");
+    GHUL NNN 2 Light("AvatarFireball4");
     GHUL O 7 Light("AvatarFireball4") A_NoBlocking;
     GHUL P 7 Light("AvatarFireball4");
 	TNT1 AAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-30,30),random(-30,30),0,0,0,0,0,SXF_NOCHECKPOSITION);
 	TNT1 A 0 A_StartSound("Corpse/FallMed",CHAN_6);
-	GHUL QQQQQ 15 Light("AvatarFireball4") A_SpawnItemEx("ExileDropFire",random(-70,70),random(-70,70),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	GHUL QQQQQ 3 Light("AvatarFireball4") A_SpawnItemEx("ExileDropFire",random(-70,70),random(-70,70),0,0,0,0,0,SXF_NOCHECKPOSITION);
 	TNT1 AAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("ExileDropFire",random(-80,80),random(-80,80),0,0,0,0,0,SXF_NOCHECKPOSITION);
-	GHUL QQQQQ 15 Light("AvatarFireball2") A_SpawnItemEx("ExileDropFire",random(-100,100),random(-100,100),0,0,0,0,0,SXF_NOCHECKPOSITION);
+	GHUL QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ 8
+	{
+	A_SpawnItemEx("ExileDropFire",random(-100,100),random(-100,100),0,0,0,0,0,SXF_NOCHECKPOSITION,128);
+	A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(50,150), size: frandom(40, 80), xoff: frandom(-25, 25), yoff: frandom(-25, 25), zoff: frandom(-5, 5), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(1, 2), startalphaf: frandom(0.8,1.0), fadestepf: -1, sizestep: frandom(0.5,3), startroll: random(-180,180), rollvel: frandom(-1, 1));
+	A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"), style: STYLE_Normal, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(300,500), size: frandom(40, 80), xoff: frandom(-105, 105), yoff: frandom(-105, 105), zoff: frandom(-30,3), velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(0.1, 0.8), startalphaf: frandom(0.4,0.7), fadestepf: -1, sizestep: frandom(0.3,3), startroll: random(-180,180), rollvel: frandom(-1, 1));
+	}
     GHUL Q -1;
     Stop;
   Raise:
