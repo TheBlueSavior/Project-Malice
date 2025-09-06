@@ -4599,3 +4599,11 @@ Pointlight SlothLight2
 Color 0.3 1.0 1.0
 Size 46
 }
+
+flickerlight PM_ShaverFireLight
+{
+    color 0.6 0.9 1.0
+    size 60
+    secondarySize 65
+    chance 0.4
+}

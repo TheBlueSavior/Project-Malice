@@ -711,7 +711,7 @@ Class PM_KurganStreamLaser : PM_CataclysmLaser
 	Default
 	{
 		Radius 12;
-		Speed 65;
+		Speed 52;
 		FastSpeed 75;
 		Scale 1.15;
 		SeeSound "";

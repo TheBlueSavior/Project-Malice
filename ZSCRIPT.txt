@@ -42,6 +42,8 @@ version "4.11.3"
 #include "Actors/Monsters/Zombiemen/DecayedSoldier.txt"
 #include "Actors/Monsters/Zombiemen/RuinedCavalier.txt"
 #include "Actors/Monsters/Zombiemen/FragmentofCainRifle.txt"
+#include "Actors/Monsters/Zombiemen/CabalEnforcer.txt"
+#include "Actors/Monsters/Zombiemen/CabalTrooper.txt"
 #include "Actors/Monsters/Zombiemen/WolfSS_MP40.txt"
 
 //Shotgunners

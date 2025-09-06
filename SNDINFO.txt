@@ -6451,3 +6451,33 @@ $rolloff Fallen/ScoutCall 200 3000
 
 Fallen/ScoutReply "Sounds/Systems/PMFallenReinforceReply.ogg"
 $rolloff Fallen/ScoutReply 200 2000
+
+Cabal/ShaverFire "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverFire.ogg"
+$rolloff Cabal/ShaverFire 350 2600
+
+Cabal/ShaverRifleFire "Sounds/Monsters/Zombiemen/CabalEnforcer/PMShaverRifleFire.ogg"
+$rolloff Cabal/ShaverRifleFire 350 2600
+
+$pitchset Cabal/ShaverFire 0.95 1.05
+
+Cabal/ShaverReload "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverReload.ogg"
+
+Cabal/ShaverDistant "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverDistant.ogg"
+$rolloff Cabal/ShaverDistant 200 3800
+
+$random PM/ShaverWhiz { PM/ShaverWhiz1 PM/ShaverWhiz2 PM/ShaverWhiz3 }
+PM/ShaverWhiz1 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverWhiz1.ogg"
+PM/ShaverWhiz2 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverWhiz2.ogg"
+PM/ShaverWhiz3 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverWhiz3.ogg"
+
+$pitchset PM/ShaverWhiz 0.9 1.3
+$limit PM/ShaverWhiz 12
+$limit Cabal/ShaverDistant 12
+$limit Cabal/ShaverFire 12
+
+$random PM/CabalMarch { PM/CabalMarch1 PM/CabalMarch2 PM/CabalMarch3 }
+PM/CabalMarch1 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalMarch1.ogg"
+PM/CabalMarch2 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalMarch2.ogg"
+PM/CabalMarch3 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalMarch3.ogg"
+$limit PM/CabalMarch 12
+$rolloff PM/CabalMarch 160 800
