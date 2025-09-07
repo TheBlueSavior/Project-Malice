@@ -279,7 +279,7 @@ Class PM_FusionShot : PMProjectileBase
 	{
 		Radius 6;
 		Height 8;
-		Speed 28;
+		Speed 26;
 		FastSpeed 34;
 		DamageFunction (random(15,25));
 		DamageType "Plasma";
