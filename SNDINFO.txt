@@ -590,12 +590,12 @@ WatchIShardExp1 "Sounds/Monsters/Cacodemons/Watcher/WatcherIShardExp1.ogg"
 WatchIShardExp2 "Sounds/Monsters/Cacodemons/Watcher/WatcherIShardExp2.ogg"
 WatchIShardExp3 "Sounds/Monsters/Cacodemons/Watcher/WatcherIShardExp3.ogg"
 
-$rolloff Watcher/IShard 720 1800
+$rolloff Watcher/IShard 400 1800
 
-$rolloff Watcher/IShardExp 780 1800
+$rolloff Watcher/IShardExp 600 1800
 
 Watcher/IBall "Sounds/Monsters/Cacodemons/Watcher/WatcherIBall.ogg"
-$rolloff Watcher/IBall 780 1800
+$rolloff Watcher/IBall 400 1900
 Watcher/IBallWhiz "Sounds/Monsters/Cacodemons/Watcher/WatcherIBallWhiz.ogg"
 
 $volume Watcher/IBallWhiz 0.8
@@ -603,9 +603,9 @@ $volume Watcher/IBallWhiz 0.8
 Watcher/ShardCharge "Sounds/Monsters/Cacodemons/Watcher/WatcherShardCharge.ogg"
 
 Watcher/IBallExp "Sounds/Monsters/Cacodemons/Watcher/WatcherIBallExp.ogg"
-$rolloff Watcher/IBallExp 780 1800
+$rolloff Watcher/IBallExp 700 1800
 
-$rolloff Watcher/IBall 750 1700
+$rolloff Watcher/IBall 300 1700
 
 $random Watcher/Roar { Watcher/Roar1 Watcher/Roar2 Watcher/Roar3 Watcher/Roar4 }
 Watcher/Roar1 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar1.ogg"
@@ -614,7 +614,7 @@ Watcher/Roar3 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar3.ogg"
 Watcher/Roar4 "Sounds/Monsters/Cacodemons/Watcher/WatcherRoar4.ogg"
 
 $volume Watcher/Roar 0.3
-$rolloff Watcher/Roar 250 1600
+$rolloff Watcher/Roar 200 1600
 
 caco/melee                      dsdembit
 
@@ -5464,7 +5464,7 @@ $random Bacillus/Death { Bacillus/Death1 Bacillus/Death2 Bacillus/Death3 }
 Bacillus/Death1 "Sounds/Monsters/Souls/Bacillus/BacillusDeath1.ogg"
 Bacillus/Death2 "Sounds/Monsters/Souls/Bacillus/BacillusDeath2.ogg"
 Bacillus/Death3 "Sounds/Monsters/Souls/Bacillus/BacillusDeath3.ogg"
-$volume Bacillus/Death 0.75
+$volume Bacillus/Death 0.7
 
 $random Bacillus/Impact { Bacillus/Impact1 Bacillus/Impact2 }
 Bacillus/Impact1 "Sounds/Monsters/Souls/Bacillus/BacillusImpact1.ogg"
@@ -5490,7 +5490,7 @@ $random Bacillus/Active { Bacillus/Active1 Bacillus/Active2 Bacillus/Active3 }
 Bacillus/Active1 "Sounds/Monsters/Souls/Bacillus/BacillusActive1.ogg"
 Bacillus/Active2 "Sounds/Monsters/Souls/Bacillus/BacillusActive2.ogg"
 Bacillus/Active3 "Sounds/Monsters/Souls/Bacillus/BacillusActive3.ogg"
-$volume Bacillus/Active 0.7
+$volume Bacillus/Active 0.5
 
 //Cataclysm
 

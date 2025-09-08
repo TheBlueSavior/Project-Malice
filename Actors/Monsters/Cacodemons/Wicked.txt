@@ -701,11 +701,12 @@ Class WickedShot : PMProjectileBase
 		     "",
 		     tex[1],
 		     style: STYLE_Add,
-		     flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+		     flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
 		     lifetime: random(5,10),
 		     size: 130.0,
 		     startalphaf: 0.8,
-		     sizestep: 0.75
+		     sizestep: 0.75,
+			 startroll: random(-180,180)
 		     );
 	        }
 			WIBL JKLMN 1 Bright A_FadeOut(0.5);
