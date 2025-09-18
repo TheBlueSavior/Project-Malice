@@ -138,7 +138,7 @@ DoomEdNums
 	23038 = "PM_BloodStalker"
 	23039 = "PM_Brute"
 	23040 = "PM_CyberBrute"
-	23041 = "PM_DemonTechBrute"
+	23041 = "PM_WarPig"
 	23042 = "PM_Glutton"
 	//Paranormal
 	23043 = "PM_Broken"

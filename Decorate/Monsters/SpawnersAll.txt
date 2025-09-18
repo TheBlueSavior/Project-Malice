@@ -48,7 +48,7 @@ Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 	DropItem "PM_Harpy", 255, 6
 	DropItem "PM_Glutton", 255, 4
 	DropItem "PM_Sawcubus", 255, 2
-	DropItem "PM_DemonTechBrute", 255, 2
+	DropItem "PM_WarPig", 255, 2
 	DropItem "PM_BloodStalker", 255, 1
 }
 

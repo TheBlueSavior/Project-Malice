@@ -3479,6 +3479,9 @@ $pitchshiftrange 0
 $volume DTechWalk 1
 $limit DTechWalk 12
 
+WarPig/Engine "Sounds/Monsters/Pinkies/DTechBrute/DTechBruteEngine.ogg"
+$limit WarPig/Engine 12
+
 //Demon Tech Spectre
 $random DTechSpectre/Sight { DTechSpecSee1 DTechSpecSee2 }
 DTechSpecSee1 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreSight1.ogg"
@@ -4717,6 +4720,7 @@ Bulltubus/Shotgun2 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG2.ogg"
 Bulltubus/Shotgun3 "Sounds/Monsters/Mancubis/Bulltubus/BulltubusSG3.ogg" 
 
 $rolloff Bulltubus/Gun 400 2200
+$limit Bulltubus/Gun 12
 $rolloff Bulltubus/Shotgun 400 2500
 $rolloff Bulltubus/IreGun 400 2500
 $rolloff Bulltubus/IreGunDown 400 2200
@@ -6481,3 +6485,9 @@ PM/CabalMarch2 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalMarch2.ogg"
 PM/CabalMarch3 "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalMarch3.ogg"
 $limit PM/CabalMarch 12
 $rolloff PM/CabalMarch 160 800
+
+PM/ChargingStomp "Sounds/Monsters/SFX/PMChargingStomp.ogg"
+$limit PM/ChargingStomp 12
+
+PM/ChargeImpact "Sounds/Monsters/SFX/PMChargeImpact.ogg"
+$limit PM/ChargeImpact 12

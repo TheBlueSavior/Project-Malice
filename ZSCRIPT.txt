@@ -86,7 +86,7 @@ version "4.11.3"
 #include "Actors/Monsters/Pinkies/Harpy.txt"
 #include "Actors/Monsters/Pinkies/Glutton.txt"
 #include "Actors/Monsters/Pinkies/Sawcubus.txt"
-#include "Actors/Monsters/Pinkies/DTechBrute.txt"
+#include "Actors/Monsters/Pinkies/WarPig.txt"
 #include "Actors/Monsters/Pinkies/BloodStalker.txt"
 
 //Revenants

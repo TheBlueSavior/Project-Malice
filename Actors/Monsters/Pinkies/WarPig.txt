@@ -1,0 +1,1057 @@
+Class PM_WarPig : PMWarMonsterBase
+{ 
+	Default
+	{
+	//$Category "PM_Monsters/Pinkies"
+    Health 230;
+    Speed 10;
+    Height 56;
+    Radius 30;
+    Mass 400;
+    PainChance 160;
+	MeleeThreshold 250;
+	//MaxTargetRange 500;
+	MeleeRange 60;
+	Scale 1.1;
+    Monster;
+	BloodType "PM_WarBloodBase";
+    +FLOORCLIP
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+MISSILEMORE
+	Species "Brute";
+	BloodColor "Green";
+    SeeSound "DTechSight";
+    PainSound "DTechPain";
+    DeathSound "DTechDeath";
+    ActiveSound "DTechActive";
+    Obituary "%o became a successful target practice participant for a War Pig.";
+	HitObituary "%o was seared by a War Pig.";
+	Tag "War Pig";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_WarTeleportFog";
+	}
+	
+    States 
+    { 
+    Spawn:
+       CRG2 A 0 NoDelay
+       {
+       user_numbullets = random(3,25);
+       }
+    Idle: 
+       CRG2 A 10 PM_Look();
+       Loop;
+	Look:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+	Looking:
+	   TNT1 A 0 A_SetTranslucent(1);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+	   TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP,volume:0.4);
+       CRG2 AA 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 BB 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+       TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+       TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP,volume:0.4);
+       CRG2 CC 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   CRG2 DD 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+       Goto Spotted; 
+	Spotted:
+	   TNT1 A 0 A_Jump(256,"Roar","Roar","Rush","Retreat");
+	Roar:
+	   TNT1 A 0 A_StartSound("DTechSee",CHAN_5);
+    See: 
+	   TNT1 A 0;
+	   TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOPING,0.5);
+	   TNT1 A 0 A_SetSpeed(10);
+	   TNT1 A 0 A_SetTranslucent(1);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+       TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP,0.7);
+       CRG2 AAA 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.3);
+	   CRG2 BBB 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.3);
+       TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP,0.7);
+       CRG2 CCC 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.3);
+	   CRG2 DDD 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.3);
+       Loop;
+	   
+	ChargeReady:
+		TNT1 A 0 { bNOPAIN = true; }
+		TNT1 A 0 { bNODROPOFF = true; }
+		TNT1 A 0 A_StartSound("DTechSee",CHAN_5);
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,1,attenuation:0.6,pitch:1.8);
+		CRG2 AAAA 5 A_FaceTarget();
+		TNT1 A 0 A_StartSound("GenericChargeHeavy",37,attenuation:0.6);
+		TNT1 A 0 A_Recoil(-8);
+	Charging: 
+	   TNT1 A 0;
+	   TNT1 A 0 A_SetSpeed(15);
+	   TNT1 A 0 A_SetTranslucent(1);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+       TNT1 A 0 A_StartSound("Landrazer/Step",90,CHANF_OVERLAP,pitch: frandom(1.6,1.7));
+	   TNT1 A 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+	   TNT1 A 0 A_Quake(2, 24, 0, 200, 0);
+       CRG2 AA 1
+	   {
+	   A_SpawnItemEx("PM_GenericPhaseGhost",-8, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	   A_SpawnProjectile("PM_WarPigMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+	   A_FaceTarget(3,1);
+	   A_Recoil(-2);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   TNT1 A 0 A_JumpIf(sqrt(vel.x * vel.x + vel.y * vel.y) < 3, "ChargeImpact");
+	   CRG2 BB 1
+	   {
+	   A_SpawnItemEx("PM_GenericPhaseGhost",-8, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	   A_SpawnProjectile("PM_WarPigMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+	   A_FaceTarget(3,1);
+	   A_Recoil(-2);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	    A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	    A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   TNT1 A 0 A_JumpIf(sqrt(vel.x * vel.x + vel.y * vel.y) < 3, "ChargeImpact");
+       TNT1 A 0 A_StartSound("Landrazer/Step",90,CHANF_OVERLAP,pitch: frandom(1.6,1.7));
+	   TNT1 A 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+	   TNT1 A 0 A_Quake(2, 24, 0, 200, 0);
+       CRG2 CC 1
+	   {
+	   A_SpawnItemEx("PM_GenericPhaseGhost",-8, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	   A_SpawnProjectile("PM_WarPigMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+	   A_FaceTarget(3,1);
+	   A_Recoil(-2);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   TNT1 A 0 A_JumpIf(sqrt(vel.x * vel.x + vel.y * vel.y) < 3, "ChargeImpact");
+	   CRG2 DD 1
+	   {
+	   A_SpawnItemEx("PM_GenericPhaseGhost",-8, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+	   A_SpawnProjectile("PM_WarPigMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+	   A_FaceTarget(3,1);
+	   A_Recoil(-2);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   TNT1 A 0 A_JumpIf(sqrt(vel.x * vel.x + vel.y * vel.y) < 3, "ChargeImpact");
+	   TNT1 A 0 A_Jump(10,"ChargeEnd");
+       Loop;
+	   
+	ChargeReady2:
+		TNT1 A 0 { bNOPAIN = true; }
+		TNT1 A 0 A_StartSound("DTechSee",CHAN_5);
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,1,attenuation:0.6,pitch:1.6);
+		CRG2 AAAA 5 A_FaceTarget();
+		TNT1 A 0 A_StartSound("GenericChargeHeavy",37,attenuation:0.6);
+		TNT1 A 0 A_Recoil(-8);
+	Charging2: 
+	   TNT1 A 0;
+	   TNT1 A 0 A_SetSpeed(16);
+	   TNT1 A 0 A_SetTranslucent(1);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+       TNT1 A 0 A_StartSound("Landrazer/Step",90,CHANF_OVERLAP,pitch: frandom(1.6,1.7));
+	   TNT1 A 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+       CRG2 AA random(1,2)
+	   {
+	   A_Recoil(-0.3);
+	   A_Chase(null,null);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   CRG2 BB random(1,2)
+	   {
+	   A_Recoil(-0.3);
+	   A_Chase(null,null);
+	    A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	    A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+       TNT1 A 0 A_StartSound("Landrazer/Step",90,CHANF_OVERLAP,pitch: frandom(1.6,1.7));
+	   TNT1 A 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+       CRG2 CC random(1,2)
+	   {
+	   A_Recoil(-0.3);
+	   A_Chase(null,null);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+		style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,120),
+		size: frandom(50,80), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+		velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+		sizestep: 0.2, startroll: random(-180,180));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   CRG2 DD random(1,2)
+	   {
+	   A_Recoil(-0.3);
+	   A_Chase(null,null);
+	   A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	    velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	    accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	   A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(0.8,10), xoff: random(-10,1), yoff: random(-25,25), zoff: random(5,45),
+		velx: frandom(2,2), vely: frandom(-2,2), velz: frandom(0,2),accelz: frandom(-0.4,-0.8), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+	   }
+	   TNT1 A 0 A_JumpIfCloser(250,"Charge2EndAttackCheck");
+	   TNT1 A 0 A_Jump(20,"ChargeEnd2");
+       Loop;
+	   
+	ChargeEnd2:
+		TNT1 A 0;
+		TNT1 A 0 { bNOPAIN = false; }
+		TNT1 A 0 A_StopSound(37);
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+		TNT1 A 0 A_StartSound("MechaAranea/Dodge",37, volume: 0.8);
+		TNT1 A 0 A_Recoil(-16);
+		CRG2 H 0 A_Pain();
+		CRG2 HHHHHHHHHHH 2
+		{
+		A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(1,10), xoff: random(-9,5), yoff: random(-15,15), zoff: random(0,3),
+		velx: frandom(5,5), vely: frandom(-5,5), velz: frandom(3,6),accelz: frandom(-0.1,-0.6), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+		A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(1,10), xoff: random(-5,5), yoff: random(-15,15), zoff: random(0,3),
+		velx: frandom(5,5), vely: frandom(-5,5), velz: frandom(3,6),accelz: frandom(-0.1,-0.6), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+		}
+		Goto See;
+	Charge2EndAttackCheck:
+		TNT1 A 0;
+		TNT1 A 0 A_JumpifTargetInLOS("Charge2EndAttack",360,JLOSF_DEADNOJUMP);
+		Goto Charging2;
+	Charge2EndAttack:
+		TNT1 A 0;
+		TNT1 A 0 { bNOPAIN = false; }
+		TNT1 A 0 A_StopSound(37);
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+		TNT1 A 0 A_StartSound("MechaAranea/Dodge",37, volume: 0.8);
+		TNT1 A 0 A_Recoil(-16);
+		CRG2 H 0 A_Pain();
+		CRG2 HHHHHHHHHHH 2
+		{
+		A_FaceTarget();
+		A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(1,10), xoff: random(-5,5), yoff: random(-15,15), zoff: random(0,3),
+		velx: frandom(5,5), vely: frandom(-5,5), velz: frandom(3,6),accelz: frandom(-0.1,-0.6), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+		A_SpawnParticleEx
+		( "8a8a8a", TexMan.CheckForTexture("SPKOA0"),
+		style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(50,120),
+		size: frandom(1,10), xoff: random(-5,5), yoff: random(-15,15), zoff: random(0,3),
+		velx: frandom(5,5), vely: frandom(-5,5), velz: frandom(3,6),accelz: frandom(-0.1,-0.6), startalphaf: 1, fadestepf: -1,
+		startroll: random(-180,180));
+		}
+		TNT1 A 0 { bNODROPOFF = false; }
+		Goto FireShotGo;
+	
+	ChargeImpact:
+		TNT1 A 0;
+		TNT1 A 0 A_Quake(10, 34, 0, 200);
+		TNT1 AAAAAAAAAAAAAA 0
+		{
+		A_SpawnParticleEx
+	    ( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(60,90), size: frandom(6,25), xoff: random(5,10), yoff: frandom(-10,10), zoff: random(20,50),
+	    velx: frandom(-4,4), vely: frandom(-10,10), velz: frandom(3,10),
+	    accelz: frandom(-0.1,-0.6), startalphaf: 1.0, startroll: random(-180,180), rollvel: random(-4,4));
+		A_SpawnParticleEx
+	    ( "8F8F8F", TexMan.CheckForTexture("GNSMK0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	    lifetime: random(80,140), size: frandom(15,45), xoff: random(5,10), yoff: frandom(-10,10), zoff: random(20,50),
+	    velx: frandom(-1,1), vely: frandom(-2,2), velz: frandom(-2,2), startalphaf: frandom(0.4,1),
+		sizestep: random(1,6), startroll: random(-180,180), rollvel: random(-4,4));
+	    }
+		TNT1 A 0 { bNOPAIN = false; }
+		TNT1 A 0 { bNODROPOFF = false; }
+		TNT1 A 0 A_StopSound(37);
+		TNT1 AAA 0 A_SpawnProjectile("PM_WarPigMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+		TNT1 A 0 A_RadiusThrust(4000,200,RTF_NOIMPACTDAMAGE);
+		TNT1 A 0 A_StartSound("PM/ChargeImpact",39,attenuation:0.6);
+		TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+        CRG2 H 45 A_Pain();
+		Goto Pain;
+		
+	 Reposition: 
+	    TNT1 A 0 A_SetSpeed(14);
+	    TNT1 A 0 A_SetTranslucent(1);
+        TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP);
+		TNT1 A 0 A_JumpIfCloser(500,"FireShot");
+		CRG2 AA 2
+			{
+			A_Wander();
+			}
+		TNT1 A 0 A_Recoil(-1);
+		CRG2 BB 2
+			{
+			A_Wander();
+			}
+		TNT1 A 0 A_Recoil(-1);
+		TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP);
+		CRG2 CC 2
+			{
+			A_Wander();
+			}
+		TNT1 A 0 A_Recoil(-1);
+		CRG2 DD 2
+			{
+			A_Wander();
+			}
+		TNT1 A 0 A_Recoil(-1);
+		TNT1 A 0 A_Jump(60,"ChargeReady2","See");
+		Loop;
+		
+    Missile: 
+	   TNT1 A 0 A_Jump(80,"ChargeReady2","SlugFire");
+	   TNT1 A 0 A_JumpIfCloser(700,"FireShot");
+	   TNT1 A 0 A_JumpIfCloser(300,"Melee");
+	   Goto Reposition;
+	FireShot:
+	   TNT1 A 0 A_Jump(100,"ChargeReady");
+	   TNT1 A 0 A_SetTranslucent(1);
+	   TNT1 A 0 A_JumpIfCloser(240,"Melee");
+	FireShotGo:
+	   TNT1 A 0 A_StartSound("DTechAttack",CHAN_7);
+	   CRG2 H 17 A_FaceTarget();
+       CRG2 EFEFEFEF 3 Light("PM_WarPigFireLight")
+	   {
+       if(user_numbullets < 0)
+        SetStateLabel("NoAmmo");
+	   A_FaceTarget();
+	   A_StartSound("Bulltubus/Gun",36,CHANF_OVERLAP);
+	   A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+	   A_SpawnProjectile("PM_WarPigFireShot",35,0,frandom(-12,12),CMF_OFFSETPITCH,frandom(-20,0));
+       user_numbullets--;
+	   }
+	   CRG2 H 5;
+	   Goto See;
+	SlugFire:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Nailgunner/Charge",35,attenuation:0.9,pitch:0.8);
+		CRG2 AAA 5 A_FaceTarget();
+		TNT1 A 0 A_StartSound("Sybarite/Reload3",35,pitch:0.8);
+		CRG2 HHHHHHH 5 A_FaceTarget();
+	SlugFiring:
+	    CRG2 E 6
+		{
+		A_FaceTarget(0.5,3);
+		}
+		CRG2 F 6 Light("PM_WarPigFireLight")
+		{
+		if(user_numbullets < 0)
+		SetStateLabel("NoAmmo");
+		A_FaceTarget(0.5,3);
+		A_StartSound("Sybarite/Autocannon",36,CHANF_OVERLAP);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("PM_WarPigSlug",35,0,frandom(-8,8),CMF_AIMDIRECTION,pitch+frandom(-6,-1));
+		user_numbullets--;
+		}
+		CRG2 E 6
+		{
+		A_FaceTarget(0.5,3);
+		}
+		CRG2 F 6 Light("PM_WarPigFireLight")
+		{
+		if(user_numbullets < 0)
+		SetStateLabel("NoAmmo");
+		A_FaceTarget(0.5,3);
+		A_StartSound("Sybarite/Autocannon",36,CHANF_OVERLAP);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("PM_WarPigSlug",35,0,frandom(-8,8),CMF_AIMDIRECTION,pitch+frandom(-6,-1));
+		user_numbullets--;
+		}
+		CRG2 E 6
+		{
+		A_FaceTarget(0.5,3);
+		}
+		CRG2 F 6 Light("PM_WarPigFireLight")
+		{
+		if(user_numbullets < 0)
+		SetStateLabel("NoAmmo");
+		A_FaceTarget(0.5,3);
+		A_StartSound("Sybarite/Autocannon",36,CHANF_OVERLAP);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("PM_WarPigSlug",35,0,frandom(-8,8),CMF_AIMDIRECTION,pitch+frandom(-6,-1));
+		user_numbullets--;
+		}
+		CRG2 E 6
+		{
+		A_FaceTarget(0.5,3);
+		}
+		CRG2 F 6 Light("PM_WarPigFireLight")
+		{
+		if(user_numbullets < 0)
+		SetStateLabel("NoAmmo");
+		A_FaceTarget(0.5,3);
+		A_StartSound("Sybarite/Autocannon",36,CHANF_OVERLAP);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("PM_WarPigSlug",35,0,frandom(-8,8),CMF_AIMDIRECTION,pitch+frandom(-6,-1));
+		user_numbullets--;
+		}
+		CRG2 E 6
+		{
+		A_FaceTarget(0.5,3);
+		}
+		CRG2 F 6 Light("PM_WarPigFireLight")
+		{
+		if(user_numbullets < 0)
+		SetStateLabel("NoAmmo");
+		A_FaceTarget(0.5,3);
+		A_StartSound("Sybarite/Autocannon",36,CHANF_OVERLAP);
+		A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		A_SpawnItemEx("PM_BigBulletCasing",-2,15,35,0,frandom(5,15),frandom(5,8),0,SXF_NOCHECKPOSITION);
+		A_SpawnProjectile("PM_WarPigSlug",35,0,frandom(-8,8),CMF_AIMDIRECTION,pitch+frandom(-6,-1));
+		user_numbullets--;
+		}
+		CRG2 HH 5;
+	   Goto See;
+    NoAmmo:
+	   TNT1 A 0 { bNOPAIN = true; }
+	   TNT1 A 0 A_StartSound("PM/ArachnoCooldown",35,CHANF_OVERLAP,pitch:1.1);
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaCooldown",36,CHANF_OVERLAP);
+	   TNT1 AAAAAAAAAAAA 0 A_SpawnParticle("ffaa21",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),32,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+       CRG2 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1 Light("PM_WarPigFireLight2")
+	   {
+			A_SpawnParticleEx
+			(
+			"", TexMan.CheckForTexture("LENYA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 3, size: 80.0, xoff: 10, zoff: 30, startalphaf: 0.9
+			);
+			A_SpawnParticleEx
+			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(1,70), size: frandom(0.4,8), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
+			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180) );
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(5,40),
+			size: frandom(40,120), xoff: random(3,5), yoff: random(-5,5), zoff: 32,
+			velx: frandom(2,4), vely: frandom(-2,2), velz: frandom(-1,1), startalphaf: 0.6, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180) );
+		}
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaReload",CHAN_6,CHANF_LOOPING);
+	   TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.8,attenuation:0.8,pitch:1.3);
+       Goto SeeNoAmmo;
+    SeeNoAmmo: 
+	   TNT1 A 0 A_SetSpeed(14);
+	   TNT1 A 0 A_SetTranslucent(1);
+       TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP);
+       CRG2 AA 2
+       {
+			A_SpawnParticleEx
+			(
+			"FF9D00", TexMan.CheckForTexture("LENYA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 6, size: 80.0, xoff: 25, zoff: 30, startalphaf: 0.9);
+			A_SpawnParticleEx
+			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(1,70), size: frandom(0.4,8), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
+			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       }
+	   TNT1 A 0 A_Recoil(-1);
+	   CRG2 BB 2
+       {
+			A_SpawnParticleEx
+			(
+			"FF9D00", TexMan.CheckForTexture("LENYA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 6, size: 80.0, xoff: 25, zoff: 30, startalphaf: 0.9);
+			A_SpawnParticleEx
+			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(1,70), size: frandom(0.4,8), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
+			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       }
+	   TNT1 A 0 A_Recoil(-1);
+       TNT1 A 0 A_StartSound("DTechWalk",4,CHANF_OVERLAP);
+       CRG2 CC 2
+       {
+			A_SpawnParticleEx
+			(
+			"FF9D00", TexMan.CheckForTexture("LENYA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 6, size: 80.0, xoff: 25, zoff: 30, startalphaf: 0.9);
+			A_SpawnParticleEx
+			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(1,70), size: frandom(0.4,8), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
+			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       }
+	   TNT1 A 0 A_Recoil(-1);
+	   CRG2 DD 2
+       {
+       if(user_numbullets > 25)
+        SetStateLabel("ZReload");
+			A_SpawnParticleEx
+			(
+			"FF9D00", TexMan.CheckForTexture("LENYA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 6, size: 80.0, xoff: 25, zoff: 30, startalphaf: 0.9);
+			A_SpawnParticleEx
+			( "ffbc6b", TexMan.CheckForTexture("SPKOA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		    lifetime: random(1,70), size: frandom(0.4,8), xoff: random(3,5), yoff: random(-5,5), zoff: 30,
+			velx: frandom(1,4), vely: frandom(-0.6,0.6), velz: frandom(-0.6,0.6), startalphaf: 1.0,
+			fadestepf: 0.5, sizestep: -0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,70),
+			size: frandom(30,60), xoff: 12, yoff: random(-15,15), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+			A_Chase("MeleeNoAmmo","MissileNoAmmo");
+       user_numbullets++;
+       }
+	   TNT1 A 0 A_Recoil(-1);
+       Loop;
+    MissileNoAmmo:
+       TNT1 A 0;
+       TNT1 A 0 A_JumpIfCloser(250,"MeleeNoAmmo");
+       Goto SeeNoAmmo;
+	MeleeNoAmmo:
+		CRG2 H 5 A_FaceTarget;
+		CRG2 HHH 1 A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+		TNT1 A 0 A_StartSound("DTechSee");
+		CRG2 H 3;
+		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 ThrustThingZ(0,5,0,1);
+		CRG2 EE 6 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+		CRG2 AAAAAA 2 A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+		Goto SeeNoAmmo;
+    ZReload:
+       TNT1 A 0;
+       CRG2 HHHHHHHHHHHHHHH 1
+	   {
+	   A_SpawnParticleEx
+			( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+			style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(5,70),
+			size: frandom(30,60), xoff: random(3,5), yoff: random(-5,5), zoff: 32,
+			velx: frandom(3,8), vely: frandom(-2,2), velz: frandom(0,1), startalphaf: 0.7, fadestepf: -1,
+			sizestep: 0.2, startroll: random(-180,180));
+		}
+       TNT1 A 0 { bNOPAIN = false; }
+       TNT1 A 0 A_StartSound("DTechSee",CHAN_6);
+	   TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+       Goto See;
+	Melee:
+		CRG2 H 5 A_FaceTarget;
+		CRG2 H 3;
+		TNT1 A 0 A_StartSound("DTechSee");
+		CRG2 H 3;
+		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 ThrustThingZ(0,5,0,1);
+		CRG2 EE 6 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+		CRG2 A 8;
+		Goto See;
+	Pain:
+       CRG2 H 2;
+       CRG2 H 4 A_Pain();
+	   TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5);
+       Goto See;
+    Death:
+       TNT1 A 0;
+	   TNT1 A 0 A_StopSound(38);
+	   TNT1 A 0 A_SetTranslucent(1);
+       SRG2 I 8;
+       SRG2 I 0 A_FaceTarget;
+	   TNT1 AAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",10,0,32);
+       SRG2 J 0 A_SpawnItemEx("BloodDemonArm", 10, 0, 32, 0, 8, 0, 0, 128);
+       SRG2 J 8 PM_Scream();
+       SRG2 K 4;
+       SRG2 L 4 A_NoBlocking;
+       SRG2 M 4;
+	   TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+       SRG2 N -1;
+       Stop; 
+    Raise: 
+       SRG2 NMLKJI 5; 
+       Goto See;
+    } 
+}
+
+Class PM_WarPigMeleeHitbox : Actor
+{
+  Default
+  {
+    Height 15;
+    Radius 15;
+    Speed 24;
+    DamageFunction 4;
+    +RIPPER
+    +THRUGHOST
+    +NODAMAGETHRUST
+    DeathSound "";
+    SeeSound "";
+    DamageType "Melee";
+    Projectile;
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 2;
+    Stop;
+  Death:
+  XDeath:
+	TNT1 A 0;
+  	TNT1 A 1 A_RadiusThrust(1800,150,RTF_NOIMPACTDAMAGE);
+    TNT1 A 0 A_StartSound("PM/BulletHitFlesh",2);
+    }
+}
+
+Class BloodDemonArm : Actor
+{
+    Default
+	{
+	Radius 8;
+	Height 8;
+	Speed 8;
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+	DeathSound "PM/BigGoreSplat";
+	}
+	
+    States
+	{
+	Spawn:
+         SG2A ABCDEFGH 2 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,30);
+         Loop;
+	Death:
+	 SG2A I -1;
+	 Loop;
+	}
+}
+
+Class PM_WarPigFireShot : PM_BulletTracer
+{
+    Default
+	{
+	DamageFunction (10);
+	-NOGRAVITY
+	DamageType "Fire";
+	Seesound "GenericSmallFireball";
+	Speed 18;
+	FastSpeed 20;
+	Scale 0.93;
+	Gravity 0.5;
+	}
+	
+	vector3 lastpos;
+	override void postbeginplay(){
+	  lastpos=self.pos;
+	  super.postbeginplay();
+	  }
+	
+	states
+  	{
+  Spawn:
+	TNT1 A 0 NoDelay A_SetGravity(frandom(0.8,0.05));
+	TNT1 A 0
+		{
+		  A_SpawnParticleEx( "#828282", tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(80,250)
+		  ,size: frandom(20,60), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7)
+		  ,startalphaf: frandom(0.5,0.8), fadestepf: -1, sizestep: frandom(0.0,1.6), startroll: random(-180,180), rollvel: frandom(-1,1));
+		
+		  A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(2,6)
+		  , size: frandom(40,300), xoff: -2, startalphaf: frandom(0.85,1), sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		  
+		  A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(2,6)
+		  , size: frandom(90,220), xoff: -2, startalphaf: 1.0, sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		}
+	TNT1 A 0 A_SetGravity(frandom(0.8,0.05));
+	TNT1 A 0 A_ScaleVelocity(frandom(0.8,1.3));
+  Go:
+    TNT1 A 1
+	{
+	let Coord = PM_Trailer.Trail(Self,lastpos,"ff7424",(-8,0,0),1.2,0.3,8);lastpos=Coord;
+	A_SpawnItemEx("PM_WarPigFlameTrails",0,0,0,0,0,0,0,128,0);
+	A_SpawnParticleEx("",TexMan.CheckForTexture("LENYA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 8,size: frandom(20,50),xoff: -10,startalphaf: 1,sizestep: -4);
+	}
+	loop;
+  Death:
+	TNT1 A 0;
+	TNT1 A 0
+	{
+	A_Explode (5, 56, 1);
+	A_SpawnParticleEx("",TexMan.CheckForTexture("LENYA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 5,size: frandom(30,60),xoff: -10,startalphaf: 0.6);
+	}
+	TNT1 A 0 A_StartSound("SmallMissileExplosion",volume:0.7);
+	TNT1 A 0 A_StartSound("Sybarite/MissileExp",35);
+	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
+	TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames");
+	TNT1 AA 0 A_SpawnItemEx("PM_SmallerGenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
+	TNT1 AAA 0 A_SpawnProjectile("PM_FiendBallExplode",0,0,random(0,360),2,random(0,360));
+	TNT1 A 0 A_SpawnItemEx("ZombieDropFire",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+    AFX5 D 2 Bright Light("AvatarFireball4");
+    AFX5 EFGH 2 Light("AvatarFireball4") Bright
+	{
+	 A_SpawnParticleEx("", TexMan.CheckForTexture("GNSML0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(10,250),size: frandom(20,110), xoff: 0, velx: frandom(-0.3,0.3), vely: frandom(-0.3,0.3), velz: frandom(0,1),startalphaf: frandom(0.3,0.8)
+	 , fadestepf: -1, sizestep: frandom(0.0,1.4), startroll: random(-180,180), rollvel: frandom(-1,1));
+	}
+    stop;
+  }
+}
+
+Class PM_WarPigSlug : PM_BulletTracer
+{
+ Default
+ {
+  Speed 45;
+  FastSpeed 52;
+  DamageFunction (20*pm_bulletdamagefactor);
+  DamageType "Shotgun";
+  Scale 0.85;
+  RenderStyle "Add";
+  Decal "PM_BulletHoleLarge";
+  Alpha 1.0;
+  -NOGRAVITY
+  Gravity 0.1;
+  PMProjectileBase.WhizSound "PM/HeavyBulletWhiz";
+ }
+ 
+ vector3 lastpos;
+	override void postbeginplay(){
+	  lastpos=self.pos;
+	  super.postbeginplay();
+	  }
+	States
+	{
+   Spawn:
+      TNT1 A 0 NoDelay A_SetGravity(frandom(0.01,0.3));
+	  TNT1 A 0
+		{
+		  A_SpawnParticleEx( "#828282", tex[0], style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(80,250)
+		  ,size: frandom(20,60), xoff: -5, velx: frandom(0,2), vely: frandom(-0.4,0.4), velz: frandom(-0.4,0.7)
+		  ,startalphaf: frandom(0.5,0.8), fadestepf: -1, sizestep: frandom(0.0,1.6), startroll: random(-180,180), rollvel: frandom(-1,1));
+		
+		  A_SpawnParticleEx( "", tex[2], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(2,6)
+		  , size: frandom(150,300), xoff: -2, startalphaf: frandom(0.85,1), sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		  
+		  A_SpawnParticleEx( "", tex[1], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(2,6)
+		  , size: frandom(150,220), xoff: -2, startalphaf: 1.0, sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		}
+	Go:
+		TRCR A 1 Bright {
+		PM_CheckWhiz();
+		A_Quake(1,4,0,100,0);
+		A_SpawnParticleEx("",TexMan.CheckForTexture("GNSML0"),style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 95,size: 15.0,xoff: -5, velx: frandom(0,2), startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+		let Coord = PM_Trailer.Trail(Self,lastpos,"ff7424",(-10,0,0),0.8,0.3,8);lastpos=Coord;
+		}
+        Loop;
+	Death:
+	    TNT1 AAAAA 0 A_SpawnItemEx("PM_HitPuff",0,0,0,random(-3,3),random(-3,3),random(-3,3),0,SXF_NOCHECKPOSITION);
+	    TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
+	    TNT1 A 0 A_SpawnItemEx("PM_OrangeEmbersSpawn");
+	    TNT1 AAAAAA 0 A_SpawnItemEx("PM_BulletHitDust",20,7,34,random(-1,1),random(-1,1),random(-1,1),0,0,0,0);
+	    TNT1 AAA 0 A_SpawnItemEx("PM_BulletHitDust",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,170);
+	    TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        TNT1 AAAAAAAAA 0 A_SpawnItemEx("PM_BulletShrapnelNoCheck",0,0,0,random(-10,10),random(-10,10),random(-10,10),random(-180,180),SXF_NOCHECKPOSITION,50);
+	    TNT1 AA 0 A_SpawnItemEx("PM_BulletHitFog",random(-10,10),random(-10,10),random(-10,10),0,0,0,0,SXF_NOCHECKPOSITION,150);
+        Stop;
+     XDeath:
+	    TNT1 A 1 Bright A_RadiusThrust(3000,90);
+        TNT1 A 0 A_SpawnItemEx("PM_HitPuff",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+        TRCR A 0 A_StartSound("PM/LargeBulletHit",2);
+        Stop;
+	}
+}
+
+Class PM_DTechBall : Actor
+{
+   Default
+   {
+   Height 4;
+   Radius 4;
+   Speed 15;
+   DamageFunction 20;
+   DamageType "Fire";
+   Scale 0.08;
+   Projectile;
+   +BRIGHT
+   +FORCEXYBILLBOARD
+   RenderStyle "Add";
+   Decal "PM_GreenFireScorch";
+   SeeSound "DTech/Fire";
+   DeathSound "DTech/Exp";
+   }
+   
+   override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("DTPRA0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[3];
+   
+   void PM_DTechShot()
+   {
+    A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: 5,size: 20.0,startalphaf: 0.85,sizestep: -1,startroll: random(-180,180));
+    A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: 3,size: 45.0,startalphaf: 0.85,sizestep: -1,startroll: random(-180,180));
+	A_SpawnParticleEx("79e54a",tex[0],style: STYLE_Stencil,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(10,12),size: random(15,19),velx: frandom(-0.3,-0.8),startalphaf: 0.75
+	,fadestepf: 0.085,sizestep: -2,startroll: random(-180,180));
+	A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(5,80),size: random(2,8),xoff: -10,yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: 1.0
+	,fadestepf: -1,sizestep: -0.1,startroll: random(-180,180),rollvel: random(-30,30));
+   }
+
+   States
+   {
+   Spawn:
+      TNT1 AAA 0
+	  {
+	    A_SpawnParticleEx("93fc65",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT|SPF_RELATIVE,lifetime: random(15,35),size: random(45,65),xoff: -10,zoff: -5,velx: random(1,3),vely: frandom(-0.8,0.8),velz: frandom(-0.9,0.9),startalphaf: 0.75,sizestep: 1,startroll: random(-180,180));
+	    A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_ROLL|SPF_FULLBRIGHT,lifetime: 2,size: random(80,85),startalphaf: 0.65,startroll: random(-180,180));
+	  }
+   Go:
+      DTPR A 1 Bright Light("DTechBall1") PM_DTechShot();
+	  TNT1 A 0 A_JumpIfTracerCloser(250,"Noise");
+	  Loop;
+	Noise:
+	  TNT1 A 0 A_StartSound("PM/PlasmaWhiz",3,volume:0.75);
+	Cont:
+      DTPR A 1 Bright Light("DTechBall1") PM_DTechShot();
+      Loop;
+   Death:
+	  TNT1 AAA 0 A_SpawnProjectile("DTechBallExplode",0,0,random(0,360),2,random(0,360));
+	  TNT1 AA 0 A_SpawnItemEx("DTechFlare",0,0,0);
+      Stop;
+	  }
+}
+
+Class DTechBallExplode : Actor
+{
+    Default
+	{
+	Scale 0.3;
+	Damage 0;
+	Projectile;
+	Renderstyle "Add";
+	+MISSILE
+	+NOINTERACTION
+	+ROLLSPRITE
+	+FORCEXYBILLBOARD
+	+Bright
+	Speed 1;
+	}
+	States
+{
+Spawn:
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+	FXPG AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.04);
+	Stop;
+	}
+}
+
+Class DTechBallExplodeSmall : DTechBallExplode
+{
+    Default
+	{ Scale 0.2; }
+	States
+{
+Spawn:
+	TNT1 A 0 NoDelay A_SetRoll(random(0,360));
+	FXPG AABBCDEFGHIJKLM 1 Bright A_FadeOut(0.04);
+	Stop;
+	}
+}
+
+Class DTechTrail : Actor
+{
+  Default
+  {
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +FORCEXYBILLBOARD
+  +Bright
+  Scale 0.08;
+  Alpha 0.95;
+  }
+States
+{
+Spawn:
+	TNT1 A 2;
+Go:
+    DTPR A 1 Bright 
+	{
+	A_SetScale(Scale.X-0.008);
+	A_FadeOut(0.27);
+	}
+    Loop;
+    }
+}
+
+Class DTechFlare : Actor
+{
+  Default
+  {
+  +CLIENTSIDEONLY
+  +NOINTERACTION
+  +Bright
+  Scale 0.25;
+  Alpha 0.95;
+  }
+States
+{
+Spawn:
+    DTPR A 1 Bright 
+	{
+	A_FadeOut(0.05);
+	}
+    Loop;
+    }
+}

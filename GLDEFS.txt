@@ -1535,6 +1535,22 @@ flickerlight YellowMediumFlicker2
     chance 0.4
 }
 
+flickerlight PM_WarPigFireLight
+{
+    color 1.0 0.6 0.0
+    size 20
+    secondarySize 70
+    chance 0.5
+}
+
+flickerlight PM_WarPigFireLight2
+{
+    color 1.0 0.6 0.0
+    size 40
+    secondarySize 30
+    chance 0.4
+}
+
 flickerlight PM_GTeleMediumFlicker1
 {
     color 0.4 1.0 0.3
@@ -4185,19 +4201,6 @@ pointlight DTechBall1
 color 0.3 0.9 0.0
 size 25
 }
-
-Object PM_DemonTechBrute
-	{
-	Frame CRG2E
-		{
-		Light ChaingunDemonAttack1
-		}
-	Frame CRG2F
-		{
-		Light ChaingunDemonAttack2
-		}
-	}
-	
 	
 Pointlight HostShot
 {
