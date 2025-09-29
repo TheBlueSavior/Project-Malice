@@ -1,355 +1,359 @@
-
 AddOptionMenu "OptionsMenu"
 {
-	StaticText ""
-	Submenu "Project Malice", "projectmalice_options"
-	StaticText ""
+    StaticText ""
+    Submenu "Project Malice", "projectmalice_options"
+    StaticText ""
 }
 
 OptionMenu "projectmalice_options"
 {
-	Title "Project Malice Options"
-	StaticText ""
-	Submenu "Sin Codex", "projectmalice_sincodex"
-	StaticText ""
-	StaticText "Project Malice Options", white
-	StaticText ""
-	StaticText "The option below enables stealth detection for almost all monsters."
-	StaticText "Detection Only: Enemies will never forget where you are once they have seen you.", "Orange"
-	StaticText "Same stealth detection rules as Full.", "Orange"
-	StaticText "Full: Enemies will have a harder time seeing you if you stick to the shadows.", "Green"
-	StaticText "They will forget about you eventually if you hide in a dark corner. Crouching helps too.", "Green"
-	StaticText "Disabled by default."
-	Option "Stealth Mechanics", "pm_forgetcheck", "PMStealth"
-	StaticText ""
-	StaticText "Fodder count is calcuated by multiplying the level's monster count by the number below."	
-	Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
-	StaticText ""
-	StaticText ""
-	StaticText "Bullet Damage Multiplier"
-	StaticText "Change damage multipliers of every bullet."
-	Slider "Damage Multiplier:", "pm_bulletdamagefactor", 0.25, 10, 0.05, 2
-	StaticText ""
-	StaticText ""
-	StaticText "Projectile Speed Multiplier"
-	StaticText "Change speed multipliers of every projectile."
-	Slider "Speed Multiplier:", "pm_bulletspeedfactor", 0.5, 5, 0.05, 2
+    Title "Project Malice Options"
+    StaticText ""
+    Submenu "Sin Codex", "projectmalice_sincodex"
+    StaticText ""
+    StaticText "Project Malice Options", white
+    StaticText ""
+    StaticText "The option below enables stealth detection for almost all monsters."
+    StaticText "Detection Only: Enemies will never forget where you are once they have seen you.", "Orange"
+    StaticText "Same stealth detection rules as Full.", "Orange"
+    StaticText "Full: Enemies will have a harder time seeing you if you stick to the shadows.", "Green"
+    StaticText "They will forget about you eventually if you hide in a dark corner. Crouching helps too.", "Green"
+    StaticText "Disabled by default."
+    Option "Stealth Mechanics", "pm_forgetcheck", "PMStealth"
+    StaticText ""
+
+    // ---------------- Fodder Settings ----------------
+    StaticText "Fodder Spawn Settings"
+    Option "Fodder Spawn Mode", "projectmalice_foddermode", "PMFodderMode"
+    Slider "Progression Increment (per level):", "projectmalice_fodderincrement", 0.05, 2.0, 0.05, 2
+	Option "Debug prints (fodder progression)", "projectmalice_fodder_debug", "OnOff"
 	StaticText ""
 	StaticText ""
-	StaticText "Health Multiplier"
-	StaticText "Change health multipliers of every enemy. Save the hassle."
-	Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
-	//Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
-	StaticText " "
-	StaticText " "
-	StaticText "Specific Health Multipliers", white
-	StaticText "Change health multipliers of each tier-specific demon by the numbers below."
-	StaticText " "
-	Slider "Fodder", "pm_healthfactor_fodder", 1, 10, 0.05, 2
-	Slider "Unaffiliated", "pm_healthfactor_unaffiliated", 1, 10, 0.05, 2
-	Slider "Boss", "pm_healthfactor_boss", 1, 10, 0.05, 2
-	StaticText " "
-	Slider "Lust", "pm_healthfactor_lust", 1, 10, 0.05, 2
-	Slider "Gluttony", "pm_healthfactor_gluttony", 1, 10, 0.05, 2
-	Slider "Greed", "pm_healthfactor_greed", 1, 10, 0.05, 2
-	Slider "Wrath", "pm_healthfactor_wrath", 1, 10, 0.05, 2
-	Slider "Sloth (WIP)", "pm_healthfactor_sloth", 1, 10, 0.05, 2
-	Slider "Envy", "pm_healthfactor_envy", 1, 10, 0.05, 2
-	Slider "Pride", "pm_healthfactor_pride", 1, 10, 0.05, 2
-	StaticText " " 
-	Slider "Pestilence", "pm_healthfactor_pestilence", 1, 10, 0.05, 2
-	Slider "Famine", "pm_healthfactor_famine", 1, 10, 0.05, 2
-	Slider "War", "pm_healthfactor_war", 1, 10, 0.05, 2
-	Slider "Death", "pm_healthfactor_death", 1, 10, 0.05, 2
-	StaticText " "
-	Slider "Umbral", "pm_healthfactor_umbral", 1, 10, 0.05, 2
-	Slider "Void", "pm_healthfactor_void", 1, 10, 0.05, 2
-	StaticText " "
+    StaticText "Fodder count is calculated by multiplying the level's monster count by the number below below."
+	StaticText "If progression is enabled, the option below will not be used."
+    Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
+    StaticText ""
+    StaticText ""
+
+    // ---------------- Scout Spawner ----------------
+    StaticText "Scout Spawner Options"
+    Option "Enabled",               "pm_scout_enabled",       "OnOff"
+    Slider "Base interval (sec) [default: 120]",   "pm_scout_interval_base", 1, 3600, 1
+    Slider "Step per level (sec) [default: 3]",  "pm_scout_interval_step", 0, 600,  1
+    Slider "Minimum interval (sec) [default: 30]","pm_scout_interval_min", 1, 3600, 1
+    Option "Debug prints",          "pm_scout_debug",         "OnOff"
+    StaticText ""
+    StaticText ""
+
+    // ---------------- Bullet Multiplier ----------------
+    StaticText "Bullet Damage Multiplier"
+    StaticText "Change damage multipliers of every bullet."
+    Slider "Damage Multiplier:", "pm_bulletdamagefactor", 0.25, 10, 0.05, 2
+    StaticText ""
+    StaticText ""
+
+    // ---------------- Projectile Speed ----------------
+    StaticText "Projectile Speed Multiplier"
+    StaticText "Change speed multipliers of every projectile."
+    Slider "Speed Multiplier:", "pm_bulletspeedfactor", 0.5, 5, 0.05, 2
+    StaticText ""
+    StaticText ""
+
+    // ---------------- Health Multiplier ----------------
+    StaticText "Health Multiplier"
+    StaticText "Change health multipliers of every enemy. Save the hassle."
+    Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
+    //Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
+    StaticText " "
+    StaticText " "
+    StaticText "Specific Health Multipliers", white
+    StaticText "Change health multipliers of each tier-specific demon by the numbers below."
+    StaticText " "
+    Slider "Fodder", "pm_healthfactor_fodder", 1, 10, 0.05, 2
+    Slider "Unaffiliated", "pm_healthfactor_unaffiliated", 1, 10, 0.05, 2
+    Slider "Boss", "pm_healthfactor_boss", 1, 10, 0.05, 2
+    StaticText " "
+    Slider "Lust", "pm_healthfactor_lust", 1, 10, 0.05, 2
+    Slider "Gluttony", "pm_healthfactor_gluttony", 1, 10, 0.05, 2
+    Slider "Greed", "pm_healthfactor_greed", 1, 10, 0.05, 2
+    Slider "Wrath", "pm_healthfactor_wrath", 1, 10, 0.05, 2
+    Slider "Sloth (WIP)", "pm_healthfactor_sloth", 1, 10, 0.05, 2
+    Slider "Envy", "pm_healthfactor_envy", 1, 10, 0.05, 2
+    Slider "Pride", "pm_healthfactor_pride", 1, 10, 0.05, 2
+    StaticText " " 
+    Slider "Pestilence", "pm_healthfactor_pestilence", 1, 10, 0.05, 2
+    Slider "Famine", "pm_healthfactor_famine", 1, 10, 0.05, 2
+    Slider "War", "pm_healthfactor_war", 1, 10, 0.05, 2
+    Slider "Death", "pm_healthfactor_death", 1, 10, 0.05, 2
+    StaticText " "
+    Slider "Umbral", "pm_healthfactor_umbral", 1, 10, 0.05, 2
+    Slider "Void", "pm_healthfactor_void", 1, 10, 0.05, 2
+    StaticText " "
 }
 
 OptionMenu "projectmalice_sincodex"
 {
-	Title "Sin Codex"
-	StaticText " "
-	StaticText "This menu will list down all the tiers and its enemies in Project Malice"
-	StaticText "that you will encounter. Keep in mind all of these tiers are"
-	StaticText "unfinished as of right now, and details may change as the mod progresses."
-	StaticText " "
-	StaticText "Press Left or Right arrow keys to scroll through the sin menu that you selected."
-	
-	SubMenu "Fodder", "PM_CodexMenu_Fodder"
-	SubMenu "Unaffiliated", "PM_CodexMenu_Unaffiliated"
-	StaticText " "
-	SubMenu "Lust", "PM_CodexMenu_Lust"
-	SubMenu "Gluttony", "PM_CodexMenu_Gluttony"
-	Submenu "Greed (WIP)", "PM_CodexMenu_Greed"
-	Submenu "Wrath", "PM_CodexMenu_Wrath"
-	Submenu "Sloth", "PM_CodexMenu_Sloth"
-	Submenu "Envy", "PM_CodexMenu_Envy"
-	Submenu "Pride", "PM_CodexMenu_Pride"
-	StaticText " "
-	Submenu "Pestilence", "PM_CodexMenu_Pestilence"
-	Submenu "Famine", "PM_CodexMenu_Famine"
-	Submenu "War", "PM_CodexMenu_War"
-	Submenu "Death", "PM_CodexMenu_Death"
-	StaticText " "
-	Submenu "Umbral", "PM_CodexMenu_Umbral"
-	Submenu "Void", "PM_CodexMenu_Void"
+    Title "Sin Codex"
+    StaticText " "
+    StaticText "This menu will list down all the tiers and its enemies in Project Malice"
+    StaticText "that you will encounter. Keep in mind all of these tiers are"
+    StaticText "unfinished as of right now, and details may change as the mod progresses."
+    StaticText " "
+    StaticText "Press Left or Right arrow keys to scroll through the sin menu that you selected."
+    
+    SubMenu "Fodder", "PM_CodexMenu_Fodder"
+    SubMenu "Unaffiliated", "PM_CodexMenu_Unaffiliated"
+    StaticText " "
+    SubMenu "Lust", "PM_CodexMenu_Lust"
+    SubMenu "Gluttony", "PM_CodexMenu_Gluttony"
+    Submenu "Greed (WIP)", "PM_CodexMenu_Greed"
+    Submenu "Wrath", "PM_CodexMenu_Wrath"
+    Submenu "Sloth", "PM_CodexMenu_Sloth"
+    Submenu "Envy", "PM_CodexMenu_Envy"
+    Submenu "Pride", "PM_CodexMenu_Pride"
+    StaticText " "
+    Submenu "Pestilence", "PM_CodexMenu_Pestilence"
+    Submenu "Famine", "PM_CodexMenu_Famine"
+    Submenu "War", "PM_CodexMenu_War"
+    Submenu "Death", "PM_CodexMenu_Death"
+    StaticText " "
+    Submenu "Umbral", "PM_CodexMenu_Umbral"
+    Submenu "Void", "PM_CodexMenu_Void"
 }
 
 ListMenu "PM_CodexMenu_Fodder"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Red"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "FODDER"
-	StaticPatch 320, 240, "FODDERLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Extremely common and usually lacks ranged attacks. They usually"
-	StaticTextCentered 320, 338, "spawn around already placed enemies within the map."
-	StaticTextCentered 320, 346, "Typically very weak, but may obstruct movement"
-	StaticTextCentered 320, 364, "simply by being in the way."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Red"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "FODDER"
+    StaticPatch 320, 240, "FODDERLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Extremely common and usually lacks ranged attacks. They usually"
+    StaticTextCentered 320, 338, "spawn around already placed enemies within the map."
+    StaticTextCentered 320, 346, "Typically very weak, but may obstruct movement"
+    StaticTextCentered 320, 364, "simply by being in the way."
 }
 
 ListMenu "PM_CodexMenu_Unaffiliated"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Red"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "UNAFFILIATED"
-	StaticPatch 320, 240, "UNAFFLIS"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Common and is faithful to their vanilla counterparts."
-	StaticTextCentered 320, 338, "Some extra types are added as a step above them, however."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Red"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "UNAFFILIATED"
+    StaticPatch 320, 240, "UNAFFLIS"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Common and is faithful to their vanilla counterparts."
+    StaticTextCentered 320, 338, "Some extra types are added as a step above them, however."
 }
 
 ListMenu "PM_CodexMenu_Lust"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Purple"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "LUST"
-	StaticPatch 320, 240, "LUSTLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Enemies of this tier sometimes fly, are fast,"
-	StaticTextCentered 320, 338, "And love phasing attacks. Has lower health to compensate for speed."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Purple"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "LUST"
+    StaticPatch 320, 240, "LUSTLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Enemies of this tier sometimes fly, are fast,"
+    StaticTextCentered 320, 338, "And love phasing attacks. Has lower health to compensate for speed."
 }
 
 ListMenu "PM_CodexMenu_Gluttony"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Red"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "GLUTTONY"
-	StaticPatch 320, 240, "GLUTTLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Enemies of this tier use gore and/or bile"
-	StaticTextCentered 320, 338, "to attack. Some enemies of this type are tanky."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Red"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "GLUTTONY"
+    StaticPatch 320, 240, "GLUTTLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Enemies of this tier use gore and/or bile"
+    StaticTextCentered 320, 338, "to attack. Some enemies of this type are tanky."
 }
 
 ListMenu "PM_CodexMenu_Wrath"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Orange"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "WRATH"
-	StaticPatch 320, 240, "WRATHLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Demons of this type are aggressive, and will close the gap between you"
-	StaticTextCentered 320, 338, "very quickly for melee attacks. Can turn enraged if constantly hurt"
-	StaticTextCentered 320, 346, "or left alone for too long."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Orange"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "WRATH"
+    StaticPatch 320, 240, "WRATHLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Demons of this type are aggressive, and will close the gap between you"
+    StaticTextCentered 320, 338, "very quickly for melee attacks. Can turn enraged if constantly hurt"
+    StaticTextCentered 320, 346, "or left alone for too long."
 }
 
 ListMenu "PM_CodexMenu_Sloth"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Olive"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "SLOTH"
-	StaticPatch 320, 240, "SLOTHLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Hosts eternally consumed by sorrow, despair, and nihilism. The death of hope."
-	StaticTextCentered 320, 338, "Demons of this tier are like snails, but very tanky."
-	StaticTextCentered 320, 346, "Cosmic-themed attacks, slowing tar, chains and barbed wire are a common sight."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Olive"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "SLOTH"
+    StaticPatch 320, 240, "SLOTHLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Hosts eternally consumed by sorrow, despair, and nihilism. The death of hope."
+    StaticTextCentered 320, 338, "Demons of this tier are like snails, but very tanky."
+    StaticTextCentered 320, 346, "Cosmic-themed attacks, slowing tar, chains and barbed wire are a common sight."
 }
 
 ListMenu "PM_CodexMenu_Envy"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "DarkGreen"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "ENVY"
-	StaticPatch 320, 240, "ENVYLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "Second most powerful sin."
-	StaticTextCentered 320, 338, "Has the ability to inherit one of each sin's attacks."
-	StaticTextCentered 320, 346, "Most demons of this sin like to keep its distance from the player."
+    Class "PM_CodexMenu"
+    Font "BigFont", "DarkGreen"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "ENVY"
+    StaticPatch 320, 240, "ENVYLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Second most powerful sin."
+    StaticTextCentered 320, 338, "Has the ability to inherit one of each sin's attacks."
+    StaticTextCentered 320, 346, "Most demons of this sin like to keep its distance from the player."
 }
 
 ListMenu "PM_CodexMenu_Pride"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "DarkRed"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "PRIDE"
-	StaticPatch 320, 240, "PRIDELIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The most powerful sin." 
-	StaticTextCentered 320, 338, "Attacks are fierce and intimidating."
-	StaticTextCentered 320, 346, "Lots of magic focused abilities and attacks."
+    Class "PM_CodexMenu"
+    Font "BigFont", "DarkRed"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "PRIDE"
+    StaticPatch 320, 240, "PRIDELIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The most powerful sin." 
+    StaticTextCentered 320, 338, "Attacks are fierce and intimidating."
+    StaticTextCentered 320, 346, "Lots of magic focused abilities and attacks."
 }
 
 ListMenu "PM_CodexMenu_Pestilence"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "DarkGreen"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "PESTILENCE"
-	StaticPatch 320, 240, "PESTLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The first apocalypse." 
-	StaticTextCentered 320, 338, "Nasty, pests and infection run wild in these demons."
-	StaticTextCentered 320, 346, "Dying enemies may leave behind 'parting gifts'."
+    Class "PM_CodexMenu"
+    Font "BigFont", "DarkGreen"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "PESTILENCE"
+    StaticPatch 320, 240, "PESTLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The first apocalypse." 
+    StaticTextCentered 320, 338, "Nasty, pests and infection run wild in these demons."
+    StaticTextCentered 320, 346, "Dying enemies may leave behind 'parting gifts'."
 }
 
 ListMenu "PM_CodexMenu_Famine"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Tan"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "FAMINE"
-	StaticPatch 320, 240, "FAMILIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The second apocalypse."
-	StaticTextCentered 320, 338, "Crazed, ravenous demons that suffer from eternal starvation."
-	StaticTextCentered 320, 346, "They are VERY aggressive, agile, and rely on swift melee attacks."
-	StaticTextCentered 320, 354, "However, they are very quick on turning on each other. Letting them infight isn't recommended."
-	StaticTextCentered 320, 362, "They get exponentially more tankier within eating carcasses."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Tan"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "FAMINE"
+    StaticPatch 320, 240, "FAMILIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The second apocalypse."
+    StaticTextCentered 320, 338, "Crazed, ravenous demons that suffer from eternal starvation."
+    StaticTextCentered 320, 346, "They are VERY aggressive, agile, and rely on swift melee attacks."
+    StaticTextCentered 320, 354, "However, they are very quick on turning on each other. Letting them infight isn't recommended."
+    StaticTextCentered 320, 362, "They get exponentially more tankier within eating carcasses."
 }
 
 ListMenu "PM_CodexMenu_War"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Grey"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "WAR"
-	StaticPatch 320, 240, "WARLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The third apocalypse." 
-	StaticTextCentered 320, 338, "All burns in war. Attacks with bullets, plasma, fire and poison."
-	StaticTextCentered 320, 346, "The most heavily equipped of the apocalypses."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Grey"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "WAR"
+    StaticPatch 320, 240, "WARLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The third apocalypse." 
+    StaticTextCentered 320, 338, "All burns in war. Attacks with bullets, plasma, fire and poison."
+    StaticTextCentered 320, 346, "The most heavily equipped of the apocalypses."
 }
 
 ListMenu "PM_CodexMenu_Death"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Sapphire"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "DEATH"
-	StaticPatch 320, 240, "DEATHLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The final apocalypse." 
-	StaticTextCentered 320, 338, "The eternal resting place of man. Primarily attacks with souls."
-	StaticTextCentered 320, 346, "Every demon uses varying degrees of phasing abilities."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Sapphire"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "DEATH"
+    StaticPatch 320, 240, "DEATHLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The final apocalypse." 
+    StaticTextCentered 320, 338, "The eternal resting place of man. Primarily attacks with souls."
+    StaticTextCentered 320, 346, "Every demon uses varying degrees of phasing abilities."
 }
 
 ListMenu "PM_CodexMenu_Umbral"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Black"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "UMBRAL"
-	StaticPatch 320, 240, "UMBRALIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The deep dwellers that lay restless within Hell." 
-	StaticTextCentered 320, 338, "Lightning and ice is a prominent method of attack,"
-	StaticTextCentered 320, 346, "but some demons can deviate. The second toughest tier in general."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Black"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "UMBRAL"
+    StaticPatch 320, 240, "UMBRALIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The deep dwellers that lay restless within Hell." 
+    StaticTextCentered 320, 338, "Lightning and ice is a prominent method of attack,"
+    StaticTextCentered 320, 346, "but some demons can deviate. The second toughest tier in general."
 }
 
 ListMenu "PM_CodexMenu_Void"
 {
-	Class "PM_CodexMenu"
-	Font "BigFont", "Black"
-	Size 640, 480
-	
-	StaticTextCentered 320, 100, "VOID"
-	StaticPatch 320, 240, "VOIDLIST"
-	
-	Font "SmallFont", "White"
-	
-	StaticTextCentered 320, 330, "The eternal darkness that rests beyond the inferno." 
-	StaticTextCentered 320, 338, "Defies our plane of existence, and uses it to their advantage to haunt."
-	StaticTextCentered 320, 346, "Very rare, and very dangerous."
+    Class "PM_CodexMenu"
+    Font "BigFont", "Black"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "VOID"
+    StaticPatch 320, 240, "VOIDLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "The eternal darkness that rests beyond the inferno." 
+    StaticTextCentered 320, 338, "Defies our plane of existence, and uses it to their advantage to haunt."
+    StaticTextCentered 320, 346, "Very rare, and very dangerous."
 }
-	/*StaticText " "
-	StaticText "Tiers of Sin"
-	StaticText " "
-	StaticText "Greed (WIP)", gold
-	StaticText "Comes in gold yellow. Seems to be made out of stone until you" 
-	StaticText "break open the outer layer. None of the enemies belong to the sin"
-	StaticText "as of right now."
-	StaticText " "
-	StaticText "Sloth", cyan
-	StaticText "Comes in teal. Attacks slow or generally restrict player movement."
-	StaticText "Uses teal projectiles with black cores, or pull the player forward with chains."
-	StaticText "None of the enemies belong to the sin as of right now."
-	StaticText "Famine", gray
-	StaticText "Comes in pale gray. Very quick to turn on each other, however"
-	StaticText "letting them infight isn't recommended. More ravenous than Gluttony."
-	StaticText "Endgame Tiers"
-	StaticText " "
-	StaticText "Umbral", darkgray
-	StaticText "Comes in pure black like its sibling tier. Most enemies of this tier"
-	StaticText "Attacks using lightning and ice. Compared to Void, they're all still affected by all things physical."
-	StaticText " "
-	StaticText "Void", darkgray
-	StaticText "Comes in pure black like its sibling tier. They can't die-- only be warded off."
-	StaticText "All physical barriers mean nothing in the face of entropic nightmares."
-	StaticText "Beware.", red*/
-
 
 OptionValue "PMStealth"
 {
-	0, "Disabled"
-	1, "Detection Only"
-	2, "Full"
+    0, "Disabled"
+    1, "Detection Only"
+    2, "Full"
+}
+
+OptionValue "PMFodderMode"
+{
+    0, "Static (uses Fodder Multiplier)"
+    1, "Progression (scales per level)"
 }

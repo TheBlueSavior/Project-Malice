@@ -1,4 +1,4 @@
-#include "Decorate/Monsters/SpawnersAll.txt"
+#include "System/SpawnersAll.txt"
 
 #include "Actors/SFX/VFX.txt"
 

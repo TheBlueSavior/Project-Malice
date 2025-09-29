@@ -123,6 +123,8 @@ Class PM_ScoutCharred : PMUnaffMonsterBase
 	TNT1 A 0;
 	Stop;
   Death:
+	TNT1 A 0;
+	TNT1 A 0 A_StopSound(35);
     CH5R I 8;
     CH5R J 8 PM_Scream();
     CH5R K 6;

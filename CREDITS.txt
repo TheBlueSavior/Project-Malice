@@ -87,8 +87,12 @@ Corruption Cards / CutmanMike - Code for checking corpses, used for Famine enemi
 Desfar - Lich sprites
 Antinous - Master switch spawn code
 High Councilor - Sprites for the Spawn of Belphegor
+44ang3ls - A coding wizard. Base for sector spawn code amongst many other things, including help in my other mod, HIH. Thank you.
 
 MY APOLOGIES IF I MISSED ANYONE!
+
+As a notice to be transparent, I have used AI/ChatGPT for coding assistance since that's my weakest area of knowledge, and obviously I take no credit for those portions of code.
+My goal is to get a complete working mod that is true to my vision, and I don't have half a decade to learn ZScript in order to do so.
 
 SOUND CREDIT SUMMARY
 

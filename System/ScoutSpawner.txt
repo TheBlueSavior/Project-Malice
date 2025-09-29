@@ -1,0 +1,274 @@
+// ====================================================================
+// Static event handler: owns campaign state + spawner setup
+// ====================================================================
+class PM_ScoutSpawnerEH : StaticEventHandler
+{
+    int LevelsCleared;                 // persists across maps/saves
+
+    SectorSpawnerThinker ThinkerRef;   // per-map thinker
+
+    override void NewGame()
+    {
+        // Reset campaign progression for a new run.
+        LevelsCleared = 0;
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        // Create one thinker per map and initialize it with current progression.
+        ThinkerRef = SectorSpawnerThinker(new("SectorSpawnerThinker"));
+        if (ThinkerRef != null) ThinkerRef.Init(LevelsCleared);
+    }
+
+    override void WorldUnloaded(WorldEvent e)
+    {
+        // Simple heuristic: count any map exit as completed.
+        // If you have custom completion logic, move this increment there instead.
+        LevelsCleared++;
+    }
+}
+
+
+// ====================================================================
+// Thinker: spawns one scout per interval; interval scales with clears
+// ====================================================================
+class SectorSpawnerThinker : Thinker
+{
+    // ---- Spawn pool ----
+    Array<Name> ScoutActors;              // class ids as Names
+    Array<int>  SpawnWeights;
+
+    // ---- Timing state ----
+    int IntervalCounter;                  // tics since last successful spawn
+    int SpawnIntervalSeconds;             // recomputed from cvars + clears
+    int SpawnIntervalTics;                // cached: seconds * TICRATE
+    int ResyncCounter;                    // re-read CVARs roughly once/second
+    int FailCooldownTics;                 // wait after full failure to avoid per-tic hammering
+
+    // --- Cached progression for this map ---
+    int LevelsClearedForThisMap;
+
+    // Called once after construction (from the EventHandler)
+    void Init(int levelsCleared)
+    {
+        LevelsClearedForThisMap = levelsCleared;
+
+        // ----- Configure spawn pool (names must match your classes exactly) -----
+        ScoutActors.Clear(); SpawnWeights.Clear();
+        ScoutActors.Push('PM_ScoutCharred');
+        ScoutActors.Push('PM_FallenScout');
+
+        // Equal probability
+        SpawnWeights.Push(50);
+        SpawnWeights.Push(50);
+
+        RecomputeIntervalFromCvars();
+        IntervalCounter  = 0;
+        ResyncCounter    = 0;
+        FailCooldownTics = 0;
+    }
+
+    void RecomputeIntervalFromCvars()
+    {
+        // Defaults
+        int baseSec = 120;
+        int stepSec = 3;
+        int minSec  = 30;
+
+        // Read CVARs through the CVar class (guard against nulls)
+        CVar cv;
+        cv = CVar.GetCVar('pm_scout_interval_base'); if (cv) baseSec = cv.GetInt();
+        cv = CVar.GetCVar('pm_scout_interval_step'); if (cv) stepSec = cv.GetInt();
+        cv = CVar.GetCVar('pm_scout_interval_min');  if (cv) minSec  = cv.GetInt();
+
+        int s = baseSec - (stepSec * LevelsClearedForThisMap);
+        if (s < minSec) s = minSec;
+
+        SpawnIntervalSeconds = s;
+        SpawnIntervalTics    = SpawnIntervalSeconds * TICRATE;
+    }
+
+    override void Tick()
+    {
+        // Master toggle (safe to flip mid-map)
+        CVar on = CVar.GetCVar('pm_scout_enabled');
+        if (on && !on.GetBool()) return;
+
+        if (SpawnIntervalTics <= 0) return;   // safety guard
+
+        // Keep timing in sync with CVAR tweaks (once per second)
+        ResyncCounter++;
+        if (ResyncCounter >= TICRATE)
+        {
+            ResyncCounter = 0;
+            RecomputeIntervalFromCvars();
+        }
+
+        // Tick down post-failure cooldown, if any
+        if (FailCooldownTics > 0)
+        {
+            FailCooldownTics--;
+            Super.Tick();
+            return;
+        }
+
+        IntervalCounter++;
+
+        // When the interval elapses, try to spawn — only reset on success
+        if (IntervalCounter >= SpawnIntervalTics)
+        {
+            bool spawned = TrySpawnOneRandomActor();
+            if (spawned)
+            {
+                IntervalCounter = 0; // reset only if we actually spawned
+            }
+            else
+            {
+                // Apply failure cooldown (seconds → tics)
+                int coolSec = 0;
+                CVar cv = CVar.GetCVar('pm_scout_fail_cooldown');
+                if (cv) coolSec = cv.GetInt();
+                if (coolSec < 0) coolSec = 0;
+                FailCooldownTics = coolSec * TICRATE;
+
+                // NOTE: We intentionally do NOT reset IntervalCounter here.
+                // We'll try again after the cooldown expires.
+            }
+        }
+
+        Super.Tick();
+    }
+
+    // ------------------- Walkability pre-checks -------------------
+    // Ensures enough headroom and rejects sharp steps/ledges near the point.
+    bool PrecheckSpot(Sector sec, Vector2 p2, out double outFloorZ)
+    {
+        // Read CVARs (with defaults)
+        int clearance = 56, flatStep = 24, flatRadius = 16;
+        CVar cv;
+        cv = CVar.GetCVar('pm_scout_clearance');       if (cv) clearance = cv.GetInt();
+        cv = CVar.GetCVar('pm_scout_flatness_step');   if (cv) flatStep  = cv.GetInt();
+        cv = CVar.GetCVar('pm_scout_flatness_radius'); if (cv) flatRadius= cv.GetInt();
+
+        // Floor & ceiling at the center
+        double floorZ  = sec.floorplane.ZAtPoint(p2);
+        double ceilZ   = sec.ceilingplane.ZAtPoint(p2);
+        if (ceilZ - floorZ < clearance) return false; // not enough headroom
+
+        // 8-direction ring around the point (axis + diagonals)
+        Vector2 dirs[8];
+        dirs[0].x=-1; dirs[0].y= 0; dirs[1].x= 1; dirs[1].y= 0;
+        dirs[2].x= 0; dirs[2].y=-1; dirs[3].x= 0; dirs[3].y= 1;
+        dirs[4].x=-1; dirs[4].y=-1; dirs[5].x= 1; dirs[5].y=-1;
+        dirs[6].x=-1; dirs[6].y= 1; dirs[7].x= 1; dirs[7].y= 1;
+
+        for (int i = 0; i < 8; i++)
+        {
+            Vector2 pn;
+            pn.x = p2.x + dirs[i].x * flatRadius;
+            pn.y = p2.y + dirs[i].y * flatRadius;
+
+            // If the neighbor point isn't in level bounds, treat as bad.
+            Vector3 probe;
+            probe.x = pn.x; probe.y = pn.y; probe.z = floorZ;
+            if (!level.IsPointInLevel(probe)) return false;
+
+            double nf = sec.floorplane.ZAtPoint(pn);
+            if (abs(nf - floorZ) > flatStep) return false; // too steep / step edge
+        }
+
+        outFloorZ = floorZ;
+        return true;
+    }
+
+    // ------------------- Spawn attempt -------------------
+    // Returns true if an actor was spawned successfully.
+    bool TrySpawnOneRandomActor()
+    {
+        if (ScoutActors.Size() == 0 || level == null || level.sectors.Size() == 0)
+            return false;
+
+        // Weighted pick
+        int idx = GetRandomActorIndex();
+        Name typeName = ScoutActors[idx];
+
+        // Cast Name -> class<Actor> for Actor.Spawn()
+        class<Actor> cls = typeName;
+        if (cls == null)
+        {
+            CVar dcv = CVar.GetCVar('pm_scout_debug');
+            if (dcv && dcv.GetBool())
+                Console.Printf("Scout spawner: unknown class '%s'", typeName);
+            return false;
+        }
+
+        // Search budget (read from CVARs, clamp to sane bounds)
+        int SectorTries = 128, JitterTries = 8;
+        int JitterMax   = 128;
+
+        CVar cv;
+        cv = CVar.GetCVar('pm_scout_attempt_sectors'); if (cv) SectorTries = cv.GetInt();
+        cv = CVar.GetCVar('pm_scout_attempt_jitter');  if (cv) JitterTries = cv.GetInt();
+
+        if (SectorTries < 8)   SectorTries = 8;
+        if (SectorTries > 256) SectorTries = 256;
+
+        if (JitterTries < 1)   JitterTries = 1;
+        if (JitterTries > 16)  JitterTries = 16;
+
+        for (int i = 0; i < SectorTries; i++)
+        {
+            int sidx = Random(0, level.sectors.Size() - 1);
+            Sector sec = level.sectors[sidx];
+
+            Vector2 c = sec.centerspot;
+
+            for (int j = 0; j < JitterTries; j++)
+            {
+                // Jitter around the sector center
+                double ox = c.x + Random(-JitterMax, JitterMax);
+                double oy = c.y + Random(-JitterMax, JitterMax);
+                Vector2 p2; p2.x = ox; p2.y = oy;
+
+                double floorZ;
+                if (!PrecheckSpot(sec, p2, floorZ)) continue;
+
+                Vector3 pos;
+                pos.x = p2.x; pos.y = p2.y; pos.z = floorZ;
+
+                if (!level.IsPointInLevel(pos)) continue;
+
+                let mo = Actor.Spawn(cls, pos);
+                if (mo && mo.TestMobjLocation())
+                {
+                    CVar dcv = CVar.GetCVar('pm_scout_debug');
+                    if (dcv && dcv.GetBool())
+                        Console.Printf("A scout is investigating...");
+                    return true;
+                }
+                else if (mo)
+                {
+                    mo.Destroy();
+                }
+            }
+        }
+        return false; // no legal spot found this attempt
+    }
+
+    int GetRandomActorIndex()
+    {
+        int total = 0;
+        for (int i = 0; i < SpawnWeights.Size(); i++)
+            total += SpawnWeights[i];
+        if (total <= 0) return 0;
+
+        int roll = Random(0, total - 1);
+        for (int i = 0; i < SpawnWeights.Size(); i++)
+        {
+            roll -= SpawnWeights[i];
+            if (roll < 0) return i;
+        }
+        return 0;
+    }
+}
+
