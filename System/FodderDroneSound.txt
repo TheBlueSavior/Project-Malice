@@ -1,0 +1,106 @@
+// System/FodderDroneSound.txt
+//
+// Global looping droning sound tied to fodder density.
+// Controlled by roll from PM_FodderDropper.
+// Togglable by server cvar, with its own debug print toggle.
+// Volume starts at 0.0 when roll=5.0, scales up, capped at 0.8.
+//
+
+// Invisible actor that actually plays the sound
+class PM_FodderDroneSounder : Actor
+{
+    Default
+    {
+        +NOBLOCKMAP
+        +NOINTERACTION
+        +NOGRAVITY
+        +NOCLIP
+        RenderStyle "None";
+        Alpha 0.0;
+    }
+
+    void StartDrone(double vol)
+    {
+        A_StartSound("Fodder/CrowdLoop", CHAN_7, CHANF_LOOP, vol, ATTN_NONE);
+    }
+
+    void StopDrone()
+    {
+        A_StopSound(CHAN_7);
+    }
+}
+
+class PM_FodderDroneHandler : EventHandler
+{
+    PM_FodderDroneSounder sounder;
+    double currentVolume;
+
+    override void WorldTick()
+    {
+        bool enabled = CVar.GetCVar("projectmalice_fodderdrone").GetBool();
+        bool debug   = CVar.GetCVar("projectmalice_fodderdrone_debug").GetBool();
+
+        if (!enabled)
+        {
+            if (sounder)
+            {
+                sounder.StopDrone();
+                sounder.Destroy();
+                sounder = null;
+
+                if (debug)
+                    Console.Printf("[PM:FodderDrone] Drone system disabled, stopping sound.");
+            }
+            return;
+        }
+
+        // Get PM_FodderDropper instance safely
+        PM_FodderDropper dropper = PM_FodderDropper(EventHandler.Find("PM_FodderDropper"));
+        if (dropper == null) return;
+
+        double r = dropper.roll;
+
+        if (r > 5.0)
+        {
+            // Scale volume: starts at 0.0 when roll=5.0, ramps to 0.8 max
+            double scale = (r - 5.0) / 15.0;
+            if (scale < 0.0) scale = 0.0;
+            if (scale > 0.8) scale = 0.8;
+
+            // Spawn sound actor if not present
+            if (!sounder)
+            {
+                sounder = PM_FodderDroneSounder(Actor.Spawn("PM_FodderDroneSounder", (0,0,0)));
+                sounder.StartDrone(scale);
+
+                if (debug)
+                    Console.Printf("[PM:FodderDrone] Starting loop at volume %.2f (roll=%.2f).",
+                                   scale, r);
+            }
+            else if (abs(scale - currentVolume) > 0.01)
+            {
+                // Update volume by restarting sound
+                sounder.StopDrone();
+                sounder.StartDrone(scale);
+
+                if (debug)
+                    Console.Printf("[PM:FodderDrone] Updating loop volume to %.2f (roll=%.2f).",
+                                   scale, r);
+            }
+
+            currentVolume = scale;
+        }
+        else
+        {
+            if (sounder)
+            {
+                sounder.StopDrone();
+                sounder.Destroy();
+                sounder = null;
+
+                if (debug)
+                    Console.Printf("[PM:FodderDrone] Roll=%.2f, stopping loop.", r);
+            }
+        }
+    }
+}

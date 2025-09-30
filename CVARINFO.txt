@@ -7,6 +7,10 @@ server float projectmalice_fodderprogression = 0.0;   // current progression val
 server float projectmalice_fodderincrement = 0.25;    // amount to increase per level
 server bool projectmalice_fodder_debug = false;
 
+server bool projectmalice_fodderdrone = true;
+server bool projectmalice_fodderdrone_debug = false;
+
+
 Server Float pm_bulletdamagefactor = 1;
 Server Float pm_bulletspeedfactor = 1;
 

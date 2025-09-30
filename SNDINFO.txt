@@ -6491,3 +6491,6 @@ $limit PM/ChargingStomp 12
 
 PM/ChargeImpact "Sounds/Monsters/SFX/PMChargeImpact.ogg"
 $limit PM/ChargeImpact 12
+
+Fodder/CrowdLoop "Sounds/Other/PMFodderCrowdLoop.ogg"
+$volume Fodder/CrowdLoop 0.3

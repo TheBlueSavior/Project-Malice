@@ -23,7 +23,7 @@ OptionMenu "projectmalice_options"
     StaticText ""
 
     // ---------------- Fodder Settings ----------------
-    StaticText "Fodder Spawn Settings"
+    StaticText "Fodder Settings"
     Option "Fodder Spawn Mode", "projectmalice_foddermode", "PMFodderMode"
     Slider "Progression Increment (per level):", "projectmalice_fodderincrement", 0.05, 2.0, 0.05, 2
 	Option "Debug prints (fodder progression)", "projectmalice_fodder_debug", "OnOff"
@@ -33,7 +33,11 @@ OptionMenu "projectmalice_options"
 	StaticText "If progression is enabled, the option below will not be used."
     Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
     StaticText ""
+	StaticText "Fodder Crowd Sound System"
+    Option "Enable Fodder Drone Ambience", "projectmalice_fodderdrone", "OnOff"
+    Option "Fodder Drone Debug Prints", "projectmalice_fodderdrone_debug", "OnOff"
     StaticText ""
+	StaticText ""
 
     // ---------------- Scout Spawner ----------------
     StaticText "Scout Spawner Options"

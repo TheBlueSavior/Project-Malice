@@ -8,6 +8,9 @@ class PM_FodderDropper : EventHandler {
     bool doSpawn;
     int spawnDelay;
 
+    // Roll is now an instance variable (accessible via EventHandler.Find)
+    double roll;
+
     override void WorldLoaded(WorldEvent e) {
         if (gameState == GS_TITLELEVEL || deathmatch || e.IsReopen)
             return;
@@ -16,16 +19,16 @@ class PM_FodderDropper : EventHandler {
         spawnDelay = 1;
 
         // progression mode: increment progression cvar at new level start
-        if (CVar.GetCVar('projectmalice_foddermode').GetInt() == 1) {
-            CVar prog = CVar.FindCVar('projectmalice_fodderprogression');
-            CVar inc  = CVar.FindCVar('projectmalice_fodderincrement');
+        if (CVar.GetCVar("projectmalice_foddermode").GetInt() == 1) {
+            CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
+            CVar inc  = CVar.FindCVar("projectmalice_fodderincrement");
 
             double newVal = prog.GetFloat() + inc.GetFloat();
             if (newVal > 20.0) newVal = 20.0; // ceiling
             prog.SetFloat(newVal);
 
-            if (CVar.FindCVar('projectmalice_fodder_debug').GetBool()) {
-                console.printf("[PM:Fodder] %s: Progression increased by %.2f → %.2f (capped at 20.0)",
+            if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
+                Console.Printf("[PM:Fodder] %s: Progression increased by %.2f → %.2f (capped at 20.0)",
                     level.MapName, inc.GetFloat(), prog.GetFloat());
             }
         }
@@ -33,10 +36,10 @@ class PM_FodderDropper : EventHandler {
 
     override void NewGame() {
         // reset progression on new game
-        CVar.FindCVar('projectmalice_fodderprogression').SetFloat(0.0);
+        CVar.FindCVar("projectmalice_fodderprogression").SetFloat(0.0);
 
-        if (CVar.FindCVar('projectmalice_fodder_debug').GetBool()) {
-            console.printf("[PM:Fodder] New game started, progression reset to 0.0");
+        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
+            Console.Printf("[PM:Fodder] New game started, progression reset to 0.0");
         }
     }
 
@@ -64,27 +67,26 @@ class PM_FodderDropper : EventHandler {
         }
         if (dropperPoints.Size() <= 0) return;
 
-        int mode = CVar.FindCVar('projectmalice_foddermode').GetInt();
-        double roll;
+        int mode = CVar.FindCVar("projectmalice_foddermode").GetInt();
         double extraMonsters;
 
         if (mode == 0) {
             // static divider
-            CVar foddersetting = CVar.FindCVar('projectmalice_fodderdivider');
+            CVar foddersetting = CVar.FindCVar("projectmalice_fodderdivider");
             roll = frandom(0, foddersetting.GetFloat());
             extraMonsters = level.total_monsters * roll;
         } else {
             // progression scaling (already capped in WorldLoaded)
-            CVar prog = CVar.FindCVar('projectmalice_fodderprogression');
+            CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
             roll = frandom(0, prog.GetFloat());
             extraMonsters = level.total_monsters * roll;
         }
 
         // Debug info
-        if (CVar.FindCVar('projectmalice_fodder_debug').GetBool()) {
-            console.printf("[PM:Fodder] %s: Mode=%d Progression=%.2f Roll=%.2f Extra=%i",
+        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
+            Console.Printf("[PM:Fodder] %s: Mode=%d Progression=%.2f Roll=%.2f Extra=%i",
                 level.MapName, mode,
-                CVar.FindCVar('projectmalice_fodderprogression').GetFloat(),
+                CVar.FindCVar("projectmalice_fodderprogression").GetFloat(),
                 roll, extraMonsters);
         }
 

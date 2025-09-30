@@ -1,6 +1,7 @@
 gameInfo
 {
-	addEventHandlers = "PM_FodderDropper"
+	AddEventHandlers = "PM_FodderDropper"
+	AddEventHandlers = "PM_FodderDroneHandler"
 	addEventHandlers = "PM_ScoutSpawnerEH"
 
 	PrecacheSounds =
