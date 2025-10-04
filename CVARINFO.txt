@@ -1,8 +1,8 @@
 //Monster Behavior and Spawns
-Server Int pm_forgetcheck = 0;
+server int pm_forgetcheck = 0;
 
-Server Float projectmalice_fodderdivider = 2;
-server int projectmalice_foddermode = 0;              // 0 = static, 1 = progression
+server float projectmalice_fodderdivider = 2;
+server int projectmalice_foddermode = 1;              // 0 = static, 1 = progression
 server float projectmalice_fodderprogression = 0.0;   // current progression value
 server float projectmalice_fodderincrement = 0.25;    // amount to increase per level
 server bool projectmalice_fodder_debug = false;
@@ -10,7 +10,16 @@ server bool projectmalice_fodder_debug = false;
 server bool projectmalice_fodderdrone = true;
 server bool projectmalice_fodderdrone_debug = false;
 
+server int   projectmalice_dimensionalstability_mode = 0;
+server float projectmalice_dimensionalstability       = 0.00;
+server float projectmalice_dimensionalstability_progression = 0.00;
+server float projectmalice_dimensionalstability_increment   = 0.05;
+server bool projectmalice_dimensionalstability_debug = false;
 
+server bool  projectmalice_ghostdrone = true;
+server bool  projectmalice_ghostdrone_debug = false;
+
+//Damage and Speed
 Server Float pm_bulletdamagefactor = 1;
 Server Float pm_bulletspeedfactor = 1;
 
@@ -47,6 +56,8 @@ server int  pm_scout_flatness_radius = 25;  // radius for flatness ring check (u
 server int pm_scout_attempt_sectors = 96;   // sectors sampled per attempt (was 128)
 server int pm_scout_attempt_jitter  = 6;    // jitter tries per sector     (was 8)
 server int pm_scout_fail_cooldown   = 1;    // seconds to wait after a full failed attempt
+server int  pm_scout_grace_seconds   = 30;
+
 
 // THIS IS ALL FOR DEBUG INFORMATION AND TESTING
 // math
@@ -60,3 +71,55 @@ server bool pmd_monster_behavior_log                = false;
 
 // world debugging
 server bool pmd_world_extra_mon                     = false;
+
+
+//ENVIRONMENTWAL WARPING CVARS
+server bool   pm_infect_enable        = false;
+server bool   pm_infect_debug         = false;
+server int    pm_infect_scandelay     = 2;      // tics after WorldLoaded() before scanning
+
+// === Ring 1 partial replacement ratio (0.0 .. 1.0) ===
+server float  pm_infect_ring1_ratio   = 1.00;
+
+// === Lighting & color deltas ===
+server int    pm_r0_light_drop        = 70;     // heavy dark
+
+server int    pm_r1_light_drop        = 40;  // slight dark
+
+server int    pm_r2_light_drop        = 15;   // tiny dark
+
+// === Safety clamps ===
+server int    pm_min_lightlevel       = 16;
+server int    pm_max_lightlevel       = 255;
+
+// === Texture pools (leave empty strings unused). Up to 8 per kind ===
+// Floors
+server string pm_infect_floor1        = "PMFLR01";
+server string pm_infect_floor2        = "PMFLR02";
+server string pm_infect_floor3        = "PMFLR03";
+server string pm_infect_floor4        = "PMFLR04";
+server string pm_infect_floor5        = "PMFLR05";
+server string pm_infect_floor6        = "PMFLR06";
+server string pm_infect_floor7        = "PMFLR07";
+server string pm_infect_floor8        = "PMFLR08";
+
+
+// Ceilings
+server string pm_infect_ceiling1      = "PMFLR01";
+server string pm_infect_ceiling2      = "PMFLR02";
+server string pm_infect_ceiling3      = "PMFLR03";
+server string pm_infect_ceiling4      = "PMFLR04";
+server string pm_infect_ceiling5      = "PMFLR05";
+server string pm_infect_ceiling6      = "PMFLR06";
+server string pm_infect_ceiling7      = "PMFLR07";
+server string pm_infect_ceiling8      = "PMFLR08";
+
+// Walls
+server string pm_infect_wall1         = "PMWAL01";
+server string pm_infect_wall2         = "PMWAL02";
+server string pm_infect_wall3         = "PMWAL03";
+server string pm_infect_wall4         = "PMWAL04";
+server string pm_infect_wall5         = "PMWAL05";
+server string pm_infect_wall6         = "PMWAL06";
+server string pm_infect_wall7         = "PMWAL07";
+server string pm_infect_wall8         = "PMWAL08";

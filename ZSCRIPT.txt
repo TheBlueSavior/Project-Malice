@@ -12,6 +12,11 @@ version "4.11.3"
 #include "Actors/Monsters/SystemMonsters/TeleportReinforcements.txt"
 #include "Actors/Monsters/SystemMonsters/ScoutCharred.txt"
 #include "Actors/Monsters/SystemMonsters/ScoutFallen.txt"
+#include "Actors/Monsters/SystemMonsters/GhostMonsters.txt"
+
+#include "System/DimensionalStability.txt"
+
+#include "System/EnvironmentalWarping.txt"
 
 //Fodder
 #include "Actors/Monsters/Fodder/Remnant.txt"

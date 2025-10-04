@@ -6494,3 +6494,6 @@ $limit PM/ChargeImpact 12
 
 Fodder/CrowdLoop "Sounds/Other/PMFodderCrowdLoop.ogg"
 $volume Fodder/CrowdLoop 0.3
+
+PM/GhostDroneLoop "Sounds/Other/PMGhostDroneLoop.ogg"
+$volume Fodder/CrowdLoop 0.3

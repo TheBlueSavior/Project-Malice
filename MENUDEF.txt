@@ -45,10 +45,34 @@ OptionMenu "projectmalice_options"
     Slider "Base interval (sec) [default: 120]",   "pm_scout_interval_base", 1, 3600, 1
     Slider "Step per level (sec) [default: 3]",  "pm_scout_interval_step", 0, 600,  1
     Slider "Minimum interval (sec) [default: 30]","pm_scout_interval_min", 1, 3600, 1
-    Option "Debug prints",          "pm_scout_debug",         "OnOff"
+	Slider "Grace period (sec)",      "pm_scout_grace_seconds",    0, 600,  1
+    Option "Debug Prints",          "pm_scout_debug",         "OnOff"
     StaticText ""
     StaticText ""
 
+	// --------------- Dimensional Instability ---------------
+    StaticText "Dimensional Instability Options"
+    Option "Dimensional Instability Mode", "projectmalice_dimensionalstability_mode", "PMDimensionalMode"
+    Slider "Progression Increment (per level):", "projectmalice_dimensionalstability_increment", 0.05, 1.00, 0.05, 2
+    StaticText ""
+    StaticText "If progression is enabled, the option below will not be used."
+    Slider "Dimensional Instability:", "projectmalice_dimensionalstability", 0.00, 1.00, 0.05
+	Option "Debug Prints", "projectmalice_dimensionalstability_debug", "OnOff"
+    StaticText ""
+	Option "Ghost Ambient Drone Sound", "projectmalice_ghostdrone", "OnOff"
+	Option "Ghost Drone Debug", "projectmalice_ghostdrone_debug", "OnOff"
+    StaticText ""
+	StaticText ""
+	
+	// --------------- Environment Warping ---------------
+	
+	StaticText "Environment Warping Options"
+	Option "Enable System",      "pm_infect_enable",    "OnOff"
+    Option "Debug Prints",       "pm_infect_debug",     "OnOff"
+    Slider "Scan Delay (tics)",  "pm_infect_scandelay", 0, 10, 1
+	StaticText ""
+	StaticText ""
+	
     // ---------------- Bullet Multiplier ----------------
     StaticText "Bullet Damage Multiplier"
     StaticText "Change damage multipliers of every bullet."
@@ -359,5 +383,11 @@ OptionValue "PMStealth"
 OptionValue "PMFodderMode"
 {
     0, "Static (uses Fodder Multiplier)"
+    1, "Progression (scales per level)"
+}
+
+OptionValue "PMDimensionalMode"
+{
+    0, "Static (uses Dimensional Instability)"
     1, "Progression (scales per level)"
 }

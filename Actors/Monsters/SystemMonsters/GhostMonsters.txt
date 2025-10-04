@@ -1,0 +1,151 @@
+// ==========================================================
+// GhostMonsters.txt  (Project Malice :system/)
+// ZScript classes for ghost variants (no version line)
+// - Black silhouette via RenderStyle "Stencil"
+// - Visual-only baseline; behaviors can be added here later
+// ==========================================================
+
+class PM_GhostImp : DoomImp
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostDemon : Demon
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostSpectre : Spectre
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostCacodemon : Cacodemon
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostHellKnight : HellKnight
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostBaron : BaronOfHell
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostRevenant : Revenant
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostArachnotron : Arachnotron
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+// Mancubus internal class name is "Fatso"
+class PM_GhostMancubus : Fatso
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostPainElemental : PainElemental
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostArchvile : Archvile
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}
+
+class PM_GhostLostSoul : LostSoul
+{
+    Default
+    {
+        RenderStyle "Stencil";
+        Alpha 1.0;
+        Species "PMGhost";
+        +DONTSPLASH;
+        +NOBLOOD;
+    }
+}

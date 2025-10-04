@@ -1,11 +1,3 @@
-// System/FodderDroneSound.txt
-//
-// Global looping droning sound tied to fodder density.
-// Controlled by roll from PM_FodderDropper.
-// Togglable by server cvar, with its own debug print toggle.
-// Volume starts at 0.0 when roll=5.0, scales up, capped at 0.8.
-//
-
 // Invisible actor that actually plays the sound
 class PM_FodderDroneSounder : Actor
 {

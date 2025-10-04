@@ -1,0 +1,297 @@
+// ----------------------------------------------------------
+// Ghost Drone Sounder (invisible helper that plays the loop)
+// ----------------------------------------------------------
+class PM_GhostDroneSounder : Actor
+{
+    Default
+    {
+        +NOSECTOR;
+        +NOBLOCKMAP;
+        +NOINTERACTION;
+        +NOGRAVITY;
+        +NOCLIP;
+    }
+
+    void StartDrone(double vol)
+    {
+        // Plays continuously on a dedicated channel.
+        A_StartSound("PM/GhostDroneLoop", CHAN_7, CHANF_LOOP, vol, ATTN_NONE);
+    }
+
+    void StopDrone()
+    {
+        A_StopSound(CHAN_7);
+    }
+}
+
+
+// ----------------------------------------------------------
+// Dimensional Stability Handler
+// ----------------------------------------------------------
+class PM_DimensionalStabilityHandler : EventHandler
+{
+    // --- Replacement / progression state ---
+    double dsLevelP;        // per-level random proportion (progression mode)
+    bool   dsRolledThisMap; // has dsLevelP been rolled for this map?
+    int    dsEligible;      // eligible monsters seen this map
+    int    dsReplaced;      // replacements done this map
+
+    // --- Ghost drone state ---
+    PM_GhostDroneSounder ghostSounder;
+    double ghostCurrentVolume;
+
+    // ---------------- Helpers ----------------
+    bool DS_DebugEnabled()
+    {
+        CVar dbg = CVar.FindCVar("projectmalice_dimensionalstability_debug");
+        return (dbg != null) && dbg.GetBool();
+    }
+
+    bool DroneEnabled()
+    {
+        CVar on = CVar.FindCVar("projectmalice_ghostdrone");
+        return (on != null) && on.GetBool();
+    }
+
+    bool DroneDebug()
+    {
+        CVar on = CVar.FindCVar("projectmalice_ghostdrone_debug");
+        return (on != null) && on.GetBool();
+    }
+
+    // Eligibility by class name
+    bool DS_IsEligible(Name c)
+    {
+        return  c == 'DoomImp'
+             || c == 'Demon'
+             || c == 'Spectre'
+             || c == 'LostSoul'
+             || c == 'Cacodemon'
+             || c == 'Hellknight' || c == 'HellKnight'
+             || c == 'BaronOfHell'
+             || c == 'Revenant'
+             || c == 'Arachnotron'
+             || c == 'Fatso'          // Mancubus
+             || c == 'PainElemental'
+             || c == 'Archvile';
+    }
+
+    // Active proportion p (0..1): static slider OR per-level rolled value
+    double DS_GetActiveP()
+    {
+        double p = 0.0;
+        CVar mode = CVar.FindCVar("projectmalice_dimensionalstability_mode");
+        if (mode != null && mode.GetInt() == 1)
+        {
+            if (!dsRolledThisMap)
+            {
+                CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
+                double ceiling = (prog != null) ? prog.GetFloat() : 0.0;
+                dsLevelP        = (ceiling > 0.0) ? frandom(0.0, ceiling) : 0.0;
+                dsRolledThisMap = true;
+
+                if (DS_DebugEnabled())
+                    Console.Printf("[DS] Rolled per-level proportion: %d%%", int(dsLevelP * 100.0 + 0.5));
+            }
+            p = dsLevelP;
+        }
+        else
+        {
+            CVar stat = CVar.FindCVar("projectmalice_dimensionalstability");
+            if (stat != null) p = stat.GetFloat();
+        }
+
+        if (p < 0.0) p = 0.0;
+        if (p > 1.0) p = 1.0;
+        return p;
+    }
+
+    // Drive the drone based on p, with silence gate at p<=0.2
+    void DS_UpdateDrone(double p)
+    {
+        if (!DroneEnabled())
+        {
+            if (ghostSounder)
+            {
+                ghostSounder.StopDrone();
+                ghostSounder.Destroy();
+                ghostSounder = null;
+                ghostCurrentVolume = 0.0;
+                if (DroneDebug()) Console.Printf("[DS:Drone] Disabled: stopping loop.");
+            }
+            return;
+        }
+
+        // Piecewise mapping:
+        //   p <= 0.2  => vol = 0.0 (silent)
+        //   p  > 0.2  => vol = (p - 0.2) / 0.8  (linear to 1.0 at p=1.0)
+        double vol;
+        if (p <= 0.2) vol = 0.0;
+        else          vol = (p - 0.2) / 0.8;
+        if (vol < 0.0) vol = 0.0;
+        if (vol > 1.0) vol = 1.0;
+
+        // Spawn & start if needed
+        if (!ghostSounder)
+        {
+            if (vol <= 0.0) return; // still silent; nothing to start
+            ghostSounder = PM_GhostDroneSounder(Actor.Spawn("PM_GhostDroneSounder", (0,0,0)));
+            if (ghostSounder)
+            {
+                ghostSounder.StartDrone(vol);
+                ghostCurrentVolume = vol;
+                if (DroneDebug()) Console.Printf("[DS:Drone] Start loop @ %.2f (p=%.2f).", vol, p);
+            }
+            return;
+        }
+
+        // Update or stop existing loop
+        double diff = vol - ghostCurrentVolume; if (diff < 0) diff = -diff;
+        if (vol <= 0.0)
+        {
+            ghostSounder.StopDrone();
+            ghostSounder.Destroy();
+            ghostSounder = null;
+            ghostCurrentVolume = 0.0;
+            if (DroneDebug()) Console.Printf("[DS:Drone] p=%.2f -> stopping loop.", p);
+        }
+        else if (diff > 0.01)
+        {
+            // Restart with new volume (reliable across ports/settings)
+            ghostSounder.StopDrone();
+            ghostSounder.StartDrone(vol);
+            ghostCurrentVolume = vol;
+            if (DroneDebug()) Console.Printf("[DS:Drone] Update volume -> %.2f (p=%.2f).", vol, p);
+        }
+    }
+
+    // ---------------- Lifecycle overrides ----------------
+
+    override void NewGame()
+    {
+        // Reset progression and per-level state
+        CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
+        if (prog != null) prog.SetFloat(0.0);
+
+        dsLevelP        = -1.0;
+        dsRolledThisMap = false;
+        dsEligible      = 0;
+        dsReplaced      = 0;
+
+        // Stop any lingering drone
+        if (ghostSounder)
+        {
+            ghostSounder.StopDrone();
+            ghostSounder.Destroy();
+            ghostSounder = null;
+        }
+        ghostCurrentVolume = 0.0;
+
+        if (DS_DebugEnabled())
+            Console.Printf("[DS] New Game: progression reset to 0%%");
+    }
+
+    override void WorldUnloaded(WorldEvent e)
+    {
+        if (deathmatch || e.IsReopen) return;
+
+        // Map summary (for the map we're leaving)
+        if (DS_DebugEnabled())
+            Console.Printf("[DS] Level summary: eligible=%d, replaced=%d", dsEligible, dsReplaced);
+
+        // Increment progression so the NEXT map uses the new ceiling
+        CVar mode = CVar.FindCVar("projectmalice_dimensionalstability_mode");
+        if (mode != null && mode.GetInt() == 1)
+        {
+            CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
+            CVar inc  = CVar.FindCVar("projectmalice_dimensionalstability_increment");
+            if (prog != null && inc != null)
+            {
+                double newVal = prog.GetFloat() + inc.GetFloat();
+                if (newVal > 1.0) newVal = 1.0;
+                prog.SetFloat(newVal);
+            }
+        }
+
+        // Prepare for next map AFTER summary
+        dsLevelP        = -1.0;
+        dsRolledThisMap = false;
+        dsEligible      = 0;
+        dsReplaced      = 0;
+
+        // Stop drone on level transition
+        if (ghostSounder)
+        {
+            ghostSounder.StopDrone();
+            ghostSounder.Destroy();
+            ghostSounder = null;
+        }
+        ghostCurrentVolume = 0.0;
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        // Info-only prints (do NOT reset counters here; spawn already ran)
+        if (gamestate == GS_TITLELEVEL || deathmatch || e.IsReopen) return;
+
+        if (!DS_DebugEnabled()) return;
+
+        CVar mode = CVar.FindCVar("projectmalice_dimensionalstability_mode");
+        if (mode != null && mode.GetInt() == 1)
+        {
+            CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
+            double ceiling = (prog != null) ? prog.GetFloat() : 0.0;
+            Console.Printf("[DS] Mode: Progression");
+            Console.Printf("[DS] Ceiling (this level): %d%%", int(ceiling * 100.0 + 0.5));
+            // Rolled p will print on first lazy roll (CheckReplacement/WorldTick)
+        }
+        else
+        {
+            CVar stat = CVar.FindCVar("projectmalice_dimensionalstability");
+            double sp = (stat != null) ? stat.GetFloat() : 0.0;
+            Console.Printf("[DS] Mode: Static");
+            Console.Printf("[DS] Static proportion: %d%%", int(sp * 100.0 + 0.5));
+        }
+    }
+
+    override void WorldTick()
+    {
+        // Drive the drone continuously according to active p
+        double p = DS_GetActiveP();
+        DS_UpdateDrone(p);
+    }
+
+    override void CheckReplacement(ReplaceEvent e)
+    {
+        Name cls = e.Replacee.GetClassName();
+
+        // Only consider eligible monsters; count them for debug
+        if (!DS_IsEligible(cls)) return;
+        dsEligible++;
+
+        // Active proportion p
+        double p = DS_GetActiveP();
+        if (p <= 0.0) return;
+        if (frandom(0.0, 1.0) > p) return;
+
+        // Perform replacement (FBSpawns-style)
+        switch (cls)
+        {
+            case 'DoomImp':       e.Replacement = "PM_GhostImp";           break;
+            case 'Demon':         e.Replacement = "PM_GhostDemon";         break;
+            case 'Spectre':       e.Replacement = "PM_GhostSpectre";       break;
+            case 'LostSoul':      e.Replacement = "PM_GhostLostSoul";      break;
+            case 'Cacodemon':     e.Replacement = "PM_GhostCacodemon";     break;
+            case 'Hellknight':
+            case 'HellKnight':    e.Replacement = "PM_GhostHellKnight";    break;
+            case 'BaronOfHell':   e.Replacement = "PM_GhostBaron";         break;
+            case 'Revenant':      e.Replacement = "PM_GhostRevenant";      break;
+            case 'Arachnotron':   e.Replacement = "PM_GhostArachnotron";   break;
+            case 'Fatso':         e.Replacement = "PM_GhostMancubus";      break; // Mancubus
+            case 'PainElemental': e.Replacement = "PM_GhostPainElemental"; break;
+            case 'Archvile':      e.Replacement = "PM_GhostArchvile";      break;
+        }
+
+        dsReplaced++;
+    }
+}

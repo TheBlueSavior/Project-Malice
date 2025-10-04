@@ -44,6 +44,7 @@ class SectorSpawnerThinker : Thinker
     int SpawnIntervalTics;                // cached: seconds * TICRATE
     int ResyncCounter;                    // re-read CVARs roughly once/second
     int FailCooldownTics;                 // wait after full failure to avoid per-tic hammering
+    int GraceTics;                        // NEW: initial grace period at map start
 
     // --- Cached progression for this map ---
     int LevelsClearedForThisMap;
@@ -63,6 +64,14 @@ class SectorSpawnerThinker : Thinker
         SpawnWeights.Push(50);
 
         RecomputeIntervalFromCvars();
+
+        // Read grace from CVAR (default 20s)
+        int gsec = 20;
+        CVar gcv = CVar.GetCVar('pm_scout_grace_seconds');
+        if (gcv) gsec = gcv.GetInt();
+        if (gsec < 0) gsec = 0;
+        GraceTics = gsec * TICRATE;
+
         IntervalCounter  = 0;
         ResyncCounter    = 0;
         FailCooldownTics = 0;
@@ -102,6 +111,15 @@ class SectorSpawnerThinker : Thinker
         {
             ResyncCounter = 0;
             RecomputeIntervalFromCvars();
+            // Note: we do not live-adjust GraceTics; it’s computed at map start.
+        }
+
+        // Tick down initial grace period first
+        if (GraceTics > 0)
+        {
+            GraceTics--;
+            Super.Tick();
+            return;
         }
 
         // Tick down post-failure cooldown, if any
@@ -131,8 +149,7 @@ class SectorSpawnerThinker : Thinker
                 if (coolSec < 0) coolSec = 0;
                 FailCooldownTics = coolSec * TICRATE;
 
-                // NOTE: We intentionally do NOT reset IntervalCounter here.
-                // We'll try again after the cooldown expires.
+                // We DO NOT reset IntervalCounter; we’ll retry after cooldown.
             }
         }
 
@@ -271,4 +288,3 @@ class SectorSpawnerThinker : Thinker
         return 0;
     }
 }
-

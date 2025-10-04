@@ -3,6 +3,8 @@ gameInfo
 	AddEventHandlers = "PM_FodderDropper"
 	AddEventHandlers = "PM_FodderDroneHandler"
 	addEventHandlers = "PM_ScoutSpawnerEH"
+	AddEventHandlers = "PM_DimensionalStabilityHandler"
+	AddEventHandlers = "PM_SectorBleedInfection"
 
 	PrecacheSounds =
 	//Common Sounds

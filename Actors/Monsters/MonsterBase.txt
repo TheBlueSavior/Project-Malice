@@ -306,7 +306,7 @@ class PMMonsterBase : Actor abstract
 			A_SetSize(-1, RealHeight, true);
 		}
 
-		if (GetAge() % 35 == 0 && StealthOption.GetInt() > 1)
+		if (!bNOCLIP && GetAge() % 35 == 0 && StealthOption.GetInt() > 1)
 		{
 			if (Target && Health > 0)
 			{
@@ -361,6 +361,9 @@ class PMMonsterBase : Actor abstract
 		
 	void PM_Look(double fov = 140, int flags = LOF_NOSEESOUND)
 	{
+		// Guard: never run look logic when dead
+		if (Health <= 0 || bCORPSE) { return; }
+
 		// [Ace] Simplify things for friendly monsters. Just attack.
 		if (!StealthOption || StealthOption.GetInt() == 0 || bFRIENDLY || Target && (!Target.Player || !Target.CurSector))
 		{
@@ -369,7 +372,7 @@ class PMMonsterBase : Actor abstract
 		}
         
 		A_LookEx(flags | LOF_NOJUMP, maxseedist: MaxSeeDistance, MaxHearDistance, fov);
-		if (Target && !LastHeard && Health >= 0)
+		if (Target && !LastHeard && Health > 0)
 		{
 			double dist, adjDist;
 			[dist, adjDist] = GetAdjustedSeeDistance();
@@ -378,7 +381,7 @@ class PMMonsterBase : Actor abstract
 				A_ClearTarget();
 			}
 		}
-		if (Target && (!bAMBUSH || CheckSight(Target)))
+		if (Target && Health > 0 && (!bAMBUSH || CheckSight(Target)))
 		{
 			SetStateLabel('Look');
 		}

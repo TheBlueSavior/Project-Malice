@@ -28,7 +28,7 @@ DBJ87, MagicWazard, IMX, Raven Software, DBJ87 - Doom RPG Ghoul
 DBThanatos, Zaneion - Doom 4 Cacodemon Sprites, Arachnotron Sounds, Doom 3 Hellknight Sprites/Sounds, Hellknight/Feral Imp jump code, sprite effects!
 Bouncy, Sandypaper, Tormentor668, Zippy - Lord of Heresy Sprites
 Ghastly Dragon, Keksdose, Sandypaper, Tormentor667, Vader - Hell's Fury
-The Abysswalker/Hellwalker - Butcher sprites, Tumour sprites, Ceiling crawling code, Prowler sprites, Trite sprites, (doom4) Imp sprites, Hunger howl sounds, Some of the ported Dead Space sounds, and special thanks for being the inspiration for me getting into modding!
+The Abysswalker/Hellwalker - Butcher sprites, Tumour sprites, Ceiling crawling code, Prowler sprites, Trite sprites, (doom4) Imp sprites, Warped environment textures, Hunger howl sounds, Some of the ported Dead Space sounds, and special thanks for being the inspiration for me getting into modding!
 Armaetus/Random Deaths & Decoration - Corpse sprites
 SGTMarkIV - Revenant Missile-Fireball/Trail sprites and Maggot/Flies sprites/code, Unmaker Sounds, Tortured Marine, Many fire/explosion sprites, Mancubus Alt Death
 Stopsignal - Mimic sprites; great work on these, seriously!

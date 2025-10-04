@@ -1,0 +1,593 @@
+// ===============================
+// Backups
+// ===============================
+class PM_SectorOrig : Object
+{
+	Sector    sec;
+	TextureID floorTex;
+	TextureID ceilTex;
+	int       lightLevel;
+	// Tint/fog are restored to neutral defaults (white light, black fade, density 0).
+}
+
+class PM_SideOrig : Object
+{
+	Side      side;
+	bool      hadTop, hadMid, hadBot;
+	TextureID topTex, midTex, botTex;
+}
+
+// ===============================
+// Infection controller (pool-enabled, with cleanse)
+// ===============================
+class PM_SectorBleedInfection : EventHandler
+{
+	bool didScan;
+	bool didRevert;
+	int  waitTics;
+
+	// Pools hold resolved TextureIDs.
+	Array<TextureID> floorPool;
+	Array<TextureID> ceilPool;
+	Array<TextureID> wallPool;
+
+	Array<PM_SectorOrig> sectorBackups;
+	Array<PM_SideOrig>   sideBackups;
+
+	int _clampi(int v, int lo, int hi) { return v < lo ? lo : (v > hi ? hi : v); }
+
+	// ---------------- IGNORE HELPERS ----------------
+
+	// Detect damaging floors (UDMF: damageamount). Extend with special codes if needed.
+	bool IsDamaging(Sector s)
+	{
+		return s != null && s.damageamount > 0;
+	}
+
+	// Detect sky ceilings without relying solely on flat names:
+	//  1) ceiling sector-portal types/flags (skybox/horizon/plane/skyflatonly)
+	//  2) fallback name check for legacy F_SKY1/F_SKY2
+	bool IsSkyCeiling(Sector s)
+	{
+		if (s == null) return false;
+
+		// (1) Portal on the ceiling? (skybox / horizon / plane / skyflat-only)
+		int pidx = s.Portals[Sector.Ceiling]; // 0 => none
+		if (pidx != 0)
+		{
+			SectorPortal sp = level.SectorPortals[pidx];
+			if (sp != null)
+			{
+				if (sp.mType == SectorPortal.TYPE_SKYVIEWPOINT
+				 || sp.mType == SectorPortal.TYPE_PLANE
+				 || sp.mType == SectorPortal.TYPE_HORIZON
+				 || (sp.mFlags & SectorPortal.FLAG_SKYFLATONLY) != 0
+				 || sp.mSkybox != null)
+				{
+					return true;
+				}
+			}
+		}
+
+		// (2) Fallback: legacy sky flats by name
+		TextureID cur = s.GetTexture(Sector.Ceiling);
+		if (cur.IsValid())
+		{
+			Name nm = TexMan.GetName(cur);
+			if (nm == 'F_SKY1' || nm == 'F_SKY2') return true;
+		}
+
+		return false;
+	}
+
+
+	// ---------------- TINT / FOG HELPERS ----------------
+
+	// Set light color/tint (no desaturation)
+	void SetSectorTint(Sector s, int r, int g, int b)
+	{
+		r = _clampi(r,0,255); g = _clampi(g,0,255); b = _clampi(b,0,255);
+		s.SetColor(Color(r,g,b), 0); // zero desaturation
+	}
+
+	// Set fog color + density
+	void SetSectorFog(Sector s, int r, int g, int b, int density)
+	{
+		r = _clampi(r,0,255); g = _clampi(g,0,255); b = _clampi(b,0,255);
+		if (density < 0) density = 0;
+		s.SetFade(Color(r,g,b));
+		s.SetFogDensity(density);
+	}
+
+	// Subtle warm tinting (as tuned)
+	void ApplyTintPreset(Sector s, string strength)
+	{
+		if (strength == "light")        // R0
+		{
+			SetSectorTint(s, 235, 230, 220);
+		}
+		else if (strength == "medium")  // R2
+		{
+			SetSectorTint(s, 205, 175, 155);
+		}
+		else                            // "heavy" -> R1
+		{
+			SetSectorTint(s, 205, 205, 205);
+		}
+	}
+
+	// Brown rust fog, modest densities (as tuned)
+	void ApplyFogPreset(Sector s, string which)
+	{
+		int RUST_FOG_R = 30;
+		int RUST_FOG_G = 10;
+		int RUST_FOG_B = 0;
+
+		if (which == "r0_black_veryheavy")
+		{
+			SetSectorFog(s, 4, 2, 1, 150);
+		}
+		else if (which == "r1_rust_heavy")
+		{
+			SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 50);
+		}
+		else // "r2_rust_mid"
+		{
+			SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 10);
+		}
+	}
+
+	// Neutralize color/fog on restore (safe defaults)
+	void ClearTintFog(Sector s)
+	{
+		s.SetColor(Color(255,255,255), 0);
+		s.SetFade(Color(0,0,0));
+		s.SetFogDensity(0);
+	}
+
+	// -------------------------------------------------------------------
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		if (gameState == GS_TITLELEVEL || deathmatch || e.IsReopen) return;
+
+		didScan   = false;
+		didRevert = false;
+
+		if (pm_infect_scandelay < 1) waitTics = 1;
+		else waitTics = pm_infect_scandelay;
+
+		sectorBackups.Clear();
+		sideBackups.Clear();
+
+		BuildPools();
+
+		if (pm_infect_debug)
+			Console.Printf("PM_Infect: pools -> floors=%d, ceilings=%d, walls=%d.",
+				floorPool.Size(), ceilPool.Size(), wallPool.Size());
+	}
+
+	override void WorldTick()
+	{
+		if (!pm_infect_enable) return;
+
+		if (!didScan)
+		{
+			waitTics--;
+			if (waitTics <= 0)
+			{
+				ApplyBleed();
+				didScan = true;
+			}
+		}
+		else if (!didRevert)
+		{
+			if (level.total_monsters > 0 && level.killed_monsters >= level.total_monsters)
+			{
+				RestoreAll();
+				didRevert = true;
+				if (pm_infect_debug) Console.Printf("PM_Infect: Cleansed (100%% kills).");
+			}
+		}
+	}
+
+	// ===============================
+	// Pools
+	// ===============================
+	void BuildPools()
+	{
+		floorPool.Clear();
+		ceilPool.Clear();
+		wallPool.Clear();
+
+		TextureID id;
+
+		// Floors
+		id = ResolveTex(pm_infect_floor1); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor2); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor3); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor4); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor5); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor6); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor7); if (id.IsValid()) floorPool.Push(id);
+		id = ResolveTex(pm_infect_floor8); if (id.IsValid()) floorPool.Push(id);
+
+		// Ceilings
+		id = ResolveTex(pm_infect_ceiling1); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling2); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling3); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling4); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling5); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling6); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling7); if (id.IsValid()) ceilPool.Push(id);
+		id = ResolveTex(pm_infect_ceiling8); if (id.IsValid()) ceilPool.Push(id);
+
+		// Walls
+		id = ResolveTex(pm_infect_wall1); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall2); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall3); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall4); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall5); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall6); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall7); if (id.IsValid()) wallPool.Push(id);
+		id = ResolveTex(pm_infect_wall8); if (id.IsValid()) wallPool.Push(id);
+
+		if (pm_infect_debug) Console.Printf("PM_Infect: pools ok.");
+	}
+
+	TextureID ResolveTex(string name)
+	{
+		if (name.Length() == 0) { TextureID t; t.SetInvalid(); return t; }
+		TextureID id = TexMan.CheckForTexture(name, TexMan.Type_Any);
+		if (!id.IsValid() && pm_infect_debug) Console.Printf("PM_Infect: missing texture '%s'", name);
+		return id;
+	}
+
+	TextureID Pick(Array<TextureID> pool)
+	{
+		if (pool.Size() == 0) { TextureID t; t.SetInvalid(); return t; }
+		int i = Random(0, pool.Size() - 1);
+		return pool[i];
+	}
+
+	// ===============================
+	// Core
+	// ===============================
+	void ApplyBleed()
+	{
+		int secCount = level.sectors.Size();
+		if (secCount <= 0) return;
+
+		Array<bool> r0, r1, r2, tmp;
+		r0.Resize(secCount); r1.Resize(secCount); r2.Resize(secCount); tmp.Resize(secCount);
+		for (int i = 0; i < secCount; i++) { r0[i]=r1[i]=r2[i]=tmp[i]=false; }
+
+		// Ring construction (adjacency)
+		MarkGroundZero(r0);
+		BuildNeighborRing(r0, r1);
+		BuildNeighborRing(r1, tmp);
+		for (int i = 0; i < secCount; i++) r2[i] = (tmp[i] && !r0[i] && !r1[i]);
+
+		// --- NEW: proximity promotion using live PMGhost actor positions ---
+		ProximityPromoteFromGhosts(r0, r1, r2, 400.0, 600.0); // r1 within 400, r2 within 600
+
+		// Apply
+		int c0=0, c1=0, c2=0;
+		for (int s = 0; s < secCount; s++) if (r0[s]) { ApplyRing0(level.sectors[s]); c0++; }
+		for (int s = 0; s < secCount; s++) if (r1[s] && !r0[s]) { ApplyRing1(level.sectors[s]); c1++; }
+		for (int s = 0; s < secCount; s++) if (r2[s] && !r0[s] && !r1[s]) { ApplyRing2(level.sectors[s]); c2++; }
+
+		if (pm_infect_debug) Console.Printf("PM_Infect Bleed: R0=%d, R1=%d, R2=%d.", c0, c1, c2);
+	}
+
+	void RestoreAll()
+	{
+		// Walls first
+		for (int i = 0; i < sideBackups.Size(); i++)
+		{
+			PM_SideOrig b = sideBackups[i];
+			if (b.side == null) continue;
+
+			if (b.hadTop) b.side.SetTexture(Side.top,    b.topTex);
+			if (b.hadMid) b.side.SetTexture(Side.mid,    b.midTex);
+			if (b.hadBot) b.side.SetTexture(Side.bottom, b.botTex);
+		}
+
+		// Then sectors
+		for (int i = 0; i < sectorBackups.Size(); i++)
+		{
+			PM_SectorOrig b = sectorBackups[i];
+			if (b.sec == null) continue;
+
+			b.sec.SetTexture(Sector.Floor,   b.floorTex);
+			b.sec.SetTexture(Sector.Ceiling, b.ceilTex);
+
+			b.sec.lightlevel = _clampi(b.lightLevel, pm_min_lightlevel, pm_max_lightlevel);
+
+			// Neutralize tint/fog to defaults (white light, black fog, density 0)
+			ClearTintFog(b.sec);
+		}
+	}
+
+	// ===============================
+	// Ring detection
+	// ===============================
+	void MarkGroundZero(Array<bool> r0)
+	{
+		ThinkerIterator it = ThinkerIterator.Create("Actor");
+		Actor a;
+		while ((a = Actor(it.Next())))
+		{
+			if (!a.bIsMonster) continue;
+			if (a.Species != 'PMGhost') continue;
+
+			Sector s = a.CurSector;
+			if (s == null) s = level.PointInSector(a.Pos.xy);
+			if (s == null) continue;
+
+			r0[s.Index()] = true;
+
+			if (pm_infect_debug)
+				Console.Printf("PM_Infect: Ground zero at sec %d (%.0f, %.0f)", s.Index(), a.Pos.X, a.Pos.Y);
+		}
+	}
+
+	void BuildNeighborRing(Array<bool> fromRing, Array<bool> outRing)
+	{
+		int secCount = level.sectors.Size();
+		for (int i = 0; i < secCount; i++)
+		{
+			if (!fromRing[i]) continue;
+			Sector s = level.sectors[i];
+
+			for (int li = 0; li < s.lines.Size(); li++)
+			{
+				Line ln = s.lines[li];
+
+				Side fs = ln.sidedef[0];
+				Side bs = ln.sidedef[1];
+
+				if (fs != null && fs.sector == s && bs != null && bs.sector != null) outRing[bs.sector.Index()] = true;
+				else if (bs != null && bs.sector == s && fs != null && fs.sector != null) outRing[fs.sector.Index()] = true;
+			}
+		}
+	}
+
+	// --- NEW: distance-based “fill” using PMGhost actor positions ---
+	// Promotes previously-unassigned sectors to r1 if their center is within r1dist
+	// of ANY PMGhost actor position, or r2 if within r2dist.
+	void ProximityPromoteFromGhosts(Array<bool> r0, Array<bool> r1, Array<bool> r2, double r1dist, double r2dist)
+	{
+		int secCount = level.sectors.Size();
+		if (secCount <= 0) return;
+
+		// First, check if there are any PMGhost actors at all.
+		bool hasGhost = false;
+		{
+			ThinkerIterator it0 = ThinkerIterator.Create("Actor");
+			Actor a0;
+			while ((a0 = Actor(it0.Next())))
+			{
+				if (a0.bIsMonster && a0.Species == 'PMGhost') { hasGhost = true; break; }
+			}
+		}
+		if (!hasGhost) return;
+
+		// For each sector that is NOT already r0/r1/r2, compute nearest distance
+		// to any PMGhost (XY only), using sector centers as the sector reference.
+		for (int s = 0; s < secCount; s++)
+		{
+			if (r0[s] || r1[s] || r2[s]) continue; // only affect previously-unassigned
+
+			Vector2 c = level.sectors[s].centerspot; // sector center
+			double best = 1e30;
+
+			ThinkerIterator it2 = ThinkerIterator.Create("Actor");
+			Actor g;
+			while ((g = Actor(it2.Next())))
+			{
+				if (!g.bIsMonster || g.Species != 'PMGhost') continue;
+
+				double dx = c.X - g.Pos.X;
+				double dy = c.Y - g.Pos.Y;
+				double d  = Sqrt(dx*dx + dy*dy);
+
+				if (d < best) best = d;
+				if (best <= r1dist) break; // early-out if already within r1
+			}
+
+			if (best <= r1dist)      r1[s] = true;  // within 400 of ANY PMGhost
+			else if (best <= r2dist) r2[s] = true;  // within 600 of ANY PMGhost
+		}
+	}
+
+	// ===============================
+	// Ring effects (with backup)
+	// ===============================
+	void ApplyRing0(Sector s)
+	{
+		BackupSectorOnce(s);
+
+		// Light drop
+		ApplyLightingOnly(s, pm_r0_light_drop);
+
+		// Fog/tint
+		ApplyFogPreset(s, "r0_black_veryheavy");
+		ApplyTintPreset(s, "light");
+
+		// Full flats — skip damaging floors / sky ceilings
+		if (!IsDamaging(s))
+		{
+			TextureID fl = Pick(floorPool);
+			if (fl.IsValid()) s.SetTexture(Sector.Floor, fl);
+		}
+
+		if (!IsSkyCeiling(s))
+		{
+			TextureID cl = Pick(ceilPool);
+			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
+		}
+
+		// Full walls (with switch-safe mid handling)
+		TextureID wl = Pick(wallPool);
+		if (wl.IsValid())
+		{
+			for (int i = 0; i < s.lines.Size(); i++)
+			{
+				Line ln = s.lines[i];
+
+				Side fs = ln.sidedef[0];
+				if (fs != null && fs.sector == s) ForceSideTextures(fs, wl);
+
+				Side bs = ln.sidedef[1];
+				if (bs != null && bs.sector == s) ForceSideTextures(bs, wl);
+			}
+		}
+	}
+
+	void ApplyRing1(Sector s)
+	{
+		BackupSectorOnce(s);
+
+		// Slight drop
+		ApplyLightingOnly(s, pm_r1_light_drop);
+
+		// Fog/tint
+		ApplyFogPreset(s, "r1_rust_heavy");
+		ApplyTintPreset(s, "heavy");
+
+		// Partial flats — skip damaging floors / sky ceilings
+		if (!IsDamaging(s) && frandom(0.0,1.0) < pm_infect_ring1_ratio)
+		{
+			TextureID fl = Pick(floorPool);
+			if (fl.IsValid()) s.SetTexture(Sector.Floor, fl);
+		}
+
+		if (!IsSkyCeiling(s) && frandom(0.0,1.0) < pm_infect_ring1_ratio)
+		{
+			TextureID cl = Pick(ceilPool);
+			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
+		}
+
+		// Partial walls per slot (switch-safe)
+		for (int i = 0; i < s.lines.Size(); i++)
+		{
+			Line ln = s.lines[i];
+
+			Side fs = ln.sidedef[0];
+			if (fs != null && fs.sector == s) PartialSideTextures(fs, pm_infect_ring1_ratio);
+
+			Side bs = ln.sidedef[1];
+			if (bs != null && bs.sector == s) PartialSideTextures(bs, pm_infect_ring1_ratio);
+		}
+	}
+
+	void ApplyRing2(Sector s)
+	{
+		BackupSectorOnce(s);
+
+		// Tiny drop
+		ApplyLightingOnly(s, pm_r2_light_drop);
+
+		// Fog/tint
+		ApplyFogPreset(s, "r2_rust_mid");
+		ApplyTintPreset(s, "medium");
+	}
+
+	// ===============================
+	// Visual helpers + backups
+	// ===============================
+	void ApplyLightingOnly(Sector s, int lightDrop)
+	{
+		int ll = s.lightlevel;
+		ll = _clampi(ll - lightDrop, pm_min_lightlevel, pm_max_lightlevel);
+		s.lightlevel = ll;
+	}
+
+	// Switch-safe force: handles TOP/MID/BOTTOM only if present
+	void ForceSideTextures(Side sd, TextureID forced)
+	{
+		BackupSideOnce(sd);
+
+		TextureID t;
+
+		// TOP
+		t = sd.GetTexture(Side.top);
+		if (!t.IsNull()) sd.SetTexture(Side.top, forced);
+
+		// MID
+		t = sd.GetTexture(Side.mid);
+		if (!t.IsNull()) sd.SetTexture(Side.mid, forced);
+
+		// BOTTOM
+		t = sd.GetTexture(Side.bottom);
+		if (!t.IsNull()) sd.SetTexture(Side.bottom, forced);
+	}
+
+	// Switch-safe partial: handles TOP/MID/BOTTOM only if present
+	void PartialSideTextures(Side sd, double chance)
+	{
+		BackupSideOnce(sd);
+
+		TextureID t;
+
+		// TOP
+		t = sd.GetTexture(Side.top);
+		if (!t.IsNull() && frandom(0.0,1.0) < chance)
+		{
+			TextureID pic = Pick(wallPool);
+			if (pic.IsValid()) sd.SetTexture(Side.top, pic);
+		}
+
+		// MID
+		t = sd.GetTexture(Side.mid);
+		if (!t.IsNull() && frandom(0.0,1.0) < chance)
+		{
+			TextureID pic2 = Pick(wallPool);
+			if (pic2.IsValid()) sd.SetTexture(Side.mid, pic2);
+		}
+
+		// BOTTOM
+		t = sd.GetTexture(Side.bottom);
+		if (!t.IsNull() && frandom(0.0,1.0) < chance)
+		{
+			TextureID pic3 = Pick(wallPool);
+			if (pic3.IsValid()) sd.SetTexture(Side.bottom, pic3);
+		}
+	}
+
+	void BackupSectorOnce(Sector s)
+	{
+		for (int i = 0; i < sectorBackups.Size(); i++)
+			if (sectorBackups[i].sec == s) return;
+
+		PM_SectorOrig b = new("PM_SectorOrig");
+		b.sec        = s;
+		b.floorTex   = s.GetTexture(Sector.Floor);
+		b.ceilTex    = s.GetTexture(Sector.Ceiling);
+		b.lightLevel = s.lightlevel;
+		sectorBackups.Push(b);
+	}
+
+	void BackupSideOnce(Side sd)
+	{
+		for (int i = 0; i < sideBackups.Size(); i++)
+			if (sideBackups[i].side == sd) return;
+
+		PM_SideOrig b = new("PM_SideOrig");
+		b.side = sd;
+
+		TextureID t;
+
+		t = sd.GetTexture(Side.top);
+		b.hadTop = !t.IsNull(); b.topTex = t;
+
+		t = sd.GetTexture(Side.mid);
+		b.hadMid = !t.IsNull(); b.midTex = t;
+
+		t = sd.GetTexture(Side.bottom);
+		b.hadBot = !t.IsNull(); b.botTex = t;
+
+		sideBackups.Push(b);
+	}
+}
