@@ -88,6 +88,7 @@ Desfar - Lich sprites
 Antinous - Master switch spawn code
 High Councilor - Sprites for the Spawn of Belphegor
 44ang3ls - A coding wizard. Base for sector spawn code amongst many other things, including help in my other mod, HIH. Thank you.
+Cryo Chamber - Cthulhu ambience music
 
 MY APOLOGIES IF I MISSED ANYONE!
 

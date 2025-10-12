@@ -1,3 +1,15 @@
+Class PM_NoCountRandomSpawner : RandomSpawner
+{
+    override void PostSpawn(Actor spawned)
+    {
+        Super.PostSpawn(spawned);
+        if (spawned)
+        {
+            spawned.A_ChangeFlag("COUNTKILL", false);
+        }
+    }
+}
+
 //POSSESSED TP MODULES
 Class PM_TeleportReinforcementManager : Actor
 {
@@ -167,20 +179,71 @@ Class PM_TeleportReinforcementSpawner : Actor
 		TNT1 A 0 A_Jump(256,"Spawn1","Spawn1","Spawn2","Spawn2","Spawn3");
 		Stop;
 	Spawn1:
-		TNT1 A 0 A_SpawnItemEx("MaliceZombiemanSpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_TPRZombiemanSpawner",0,0,0,0,0,0,random(-360,360));
 		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		Stop;
 	Spawn2:
-		TNT1 A 0 A_SpawnItemEx("MaliceShotgunGuySpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_TPRShotgunGuySpawner",0,0,0,0,0,0,random(-360,360));
 		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		Stop;
 	Spawn3:
-		TNT1 A 0 A_SpawnItemEx("MaliceChaingunGuySpawner",0,0,0,0,0,0,random(-360,360));
+		TNT1 A 0 A_SpawnItemEx("PM_TPRChaingunGuySpawner",0,0,0,0,0,0,random(-360,360));
 		TNT1 A 0 A_SpawnItemEx("PM_PossessedTeleportFog",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
 		Stop;
 	Die:
 		TNT1 A 0;
 		Stop;
+	}
+}
+
+Class PM_TPRZombiemanSpawner : PM_NoCountRandomSpawner
+{
+ Default
+    {
+	DropItem "PM_ZombieSoldier", 255, 80;
+	DropItem "PM_PistolZombie", 255, 67;
+	DropItem "PM_ZombieMarine", 255, 18;
+	DropItem "PM_CivilianZombie", 255, 12;
+	DropItem "PM_ZombieTrooper", 255, 11;
+	DropItem "PM_HellifiedSoldier", 255, 10;
+	DropItem "PM_RFZombie", 255, 7;
+	DropItem "PM_DecayedSoldier", 255, 7;
+	DropItem "PM_CyberFodder", 255, 4;
+	DropItem "PM_RuinedCavalier", 255, 2;
+	DropItem "PM_FOCRifle", 255, 1;
+	}
+}
+
+
+Class PM_TPRShotgunGuySpawner : PM_NoCountRandomSpawner
+{
+ Default
+    {
+	DropItem "PM_FShotgunner", 255, 80;
+	DropItem "PM_SlugShotgunner", 255, 28;
+	DropItem "PM_Nailgunner", 255, 11;
+	DropItem "PM_Pregnant", 255, 17;
+	DropItem "PM_FallenShotgunner", 255, 3;
+	DropItem "PM_EnragedBreacher", 255, 9;
+	DropItem "PM_CyberFodder", 255, 12;
+	DropItem "PM_DecayedShotgunner", 255, 7;
+	DropItem "PM_FOCShotgun", 255, 1;
+	}
+}
+
+
+Class PM_TPRChaingunGuySpawner : PM_NoCountRandomSpawner
+{
+ Default
+    {
+    DropItem "PM_HeavyCarbineZombie", 255, 57;
+	DropItem "PM_Sybarite", 255, 14;
+	DropItem "PM_MutatedGunner", 255, 12;
+	DropItem "PM_FallenMarine", 255, 9;
+	DropItem "PM_Sharpshooter", 255, 3;
+	DropItem "PM_Blasphemer", 255, 2;
+	DropItem "PM_DecayedCommando", 255, 2;
+	DropItem "PM_UmbralDisciple", 255, 1;
 	}
 }
 
@@ -507,24 +570,197 @@ Class PM_DemonTPIncomingSound : Actor
 	}
 }
 
+Class PM_TPRDemonSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Brute", 255, 44;
+	DropItem "PM_CyberBrute", 255, 6;
+	DropItem "PM_Harpy", 255, 6;
+	DropItem "PM_Glutton", 255, 4;;
+	DropItem "PM_Sawcubus", 255, 2;
+	DropItem "PM_WarPig", 255, 2;
+	DropItem "PM_BloodStalker", 255, 1;
+	}
+}
+
+
+
+Class PM_TPRSpectreSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_PhaseBrute", 255, 74;
+	DropItem "PM_CyberSpectre", 255, 24;
+	DropItem "PM_Maggot", 255, 20;
+	DropItem "PM_Nightmare", 255, 8;
+	DropItem "PM_DemonTechSpectre", 255, 10;
+	DropItem "PM_Prowler", 255, 9;
+	DropItem "PM_Skulker", 255, 1;
+	}
+}
+
+
+Class PM_TPRDoomImpSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Tainted", 255, 4;
+	DropItem "PM_Charred", 255, 12;
+	DropItem "PM_Host", 255, 3;
+	DropItem "PM_Wendigo", 255, 2;
+	DropItem "PM_WendigoGroup", 255, 1;
+	DropItem "PM_Hellion", 255, 1;
+	DropItem "PM_Harvester", 255, 2;
+	DropItem "PM_Zephyr", 255, 12;
+	DropItem "PM_Devil", 255, 80;
+	DropItem "PM_NetherImp", 255, 1;
+	DropItem "PM_FeralImp", 255, 3;
+	DropItem "PM_DuskWyrm", 255, 3;
+	}
+}
+
+
+Class PM_TPRLostSoulSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Blot", 255, 4;
+	DropItem "PM_BurntSoul", 255, 47;
+	DropItem "PM_FleshspawnDropper", 255, 1;
+	DropItem "PM_Cherub", 255, 5;
+	DropItem "PM_BloodSkull", 255, 4;
+	DropItem "PM_Bacillus", 255, 3;
+	DropItem "PM_Gazer", 255, 2;
+	}
+}
+
+
+Class PM_TPRRevenantSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Cadaver", 255, 56;
+	DropItem "PM_DormantReaver", 255, 1;
+	DropItem "PM_Depraved", 255, 2;
+	DropItem "PM_Infested", 255, 3;
+	DropItem "PM_Draugr", 255, 2;
+	DropItem "PM_Husk", 255, 3;
+	DropItem "PM_Grievance", 255, 3;
+	DropItem "PM_Fiend", 255, 8;
+	DropItem "PM_SoulReaverSpawner", 255, 1;
+	}
+}
+
+Class PM_TPRCacodemonSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Wretched", 255, 74;
+	DropItem "PM_PhaseCaco", 255, 28;
+	DropItem "PM_Nymphite", 225, 12;
+	DropItem "PM_Beholder", 225, 9;
+    DropItem "PM_Infernal", 225, 8;
+	DropItem "PM_Wicked", 255, 7;
+	DropItem "PM_Watcher", 225, 4;
+	DropItem "PM_Cataclysm", 225, 4;
+	DropItem "PM_VoidFloater", 225, 1;
+	}
+}
+
+Class PM_TPRPainElementalSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Defiler",255, 20;
+	DropItem "PM_Enceinte",255, 9;
+	DropItem "PM_GrossElemental",255, 5;
+	DropItem "PM_Warforge",255, 2;
+	}
+}
+
+Class PM_TPRHellKnightSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Squire", 255, 61;
+	DropItem "PM_Noble", 255, 28;
+    DropItem "PM_Whiplash", 255, 15;
+	DropItem "PM_Landrazer", 255, 11;
+	DropItem "PM_Vore", 255, 6;
+	DropItem "PM_GraveGuard", 255, 4;
+	}
+}
+
+Class PM_TPRBaronOfHellSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_HeresyLord",255, 82;
+	DropItem "PM_Bruiser",255, 30;
+	DropItem "PM_SpawnOfBelphegor", 255, 23;
+	DropItem "PM_Exalted", 255, 16;
+	DropItem "PM_DeathEmissary",255, 10;
+	DropItem "PM_ControlledSoldier",255, 2;
+	DropItem "PM_Broken",255, 2;
+	DropItem "PM_PreSoulReaver",255, 1;
+	DropItem "PM_PotsScreamer",100, 2;
+	}
+}
+
+Class PM_TPRFatsoSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Hectebus", 255, 32;
+	DropItem "PM_Corpulent", 255, 7;
+	DropItem "PM_Bulltubus", 255, 5;
+	DropItem "PM_Abhorrent", 255, 1;
+	//DropItem "PM_FireStarter", 255, 1
+	}
+}
+
+Class PM_TPRArachnotronSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Fusionite", 255, 45;
+	DropItem "PM_Plasmatron", 255, 18;
+	DropItem "PM_ForlornWalker", 255, 9;
+	DropItem "PM_MechaAranea", 255, 7;
+	DropItem "PM_AngelsHand", 255, 3;
+	}
+}
+
+Class PM_TPRArchvileSpawner : PM_NoCountRandomSpawner
+{
+	Default
+    {
+	DropItem "PM_Exile", 255, 6;
+	DropItem "PM_FleshMason", 255, 1;
+	}
+}
+
 Class PM_DemonTPRandomSpawner : RandomSpawner
 {
     Default
     {
-	DropItem "MaliceDoomImpSpawner", 255, 95;
-	DropItem "MaliceDemonSpawner", 255, 20;
-	DropItem "MaliceSpectreSpawner", 255, 20;
-	DropItem "MaliceLostSoulSpawner", 255, 25;
-	DropItem "MaliceHellknightSpawner", 255, 15;
-	DropItem "MaliceCacodemonSpawner", 255, 15;
-	DropItem "MaliceRevenantSpawner", 255, 15;
-	DropItem "MaliceFatsoSpawner", 255, 5;
-	DropItem "MaliceArachnotronSpawner", 255, 5;
-	DropItem "MalicePainElementalSpawner", 255, 4;
-	DropItem "MaliceBaronOfHellSpawner", 255, 3;
-	DropItem "MaliceArchvileSpawner", 255, 1;
+	DropItem "PM_TPRDoomImpSpawner", 255, 95;
+	DropItem "PM_TPRDemonSpawner", 255, 20;
+	DropItem "PM_TPRSpectreSpawner", 255, 20;
+	DropItem "PM_TPRLostSoulSpawner", 255, 25;
+	DropItem "PM_TPRHellknightSpawner", 255, 15;
+	DropItem "PM_TPRCacodemonSpawner", 255, 15;
+	DropItem "PM_TPRRevenantSpawner", 255, 15;
+	DropItem "PM_TPRFatsoSpawner", 255, 5;
+	DropItem "PM_TPRArachnotronSpawner", 255, 5;
+	DropItem "PM_TPRPainElementalSpawner", 255, 4;
+	DropItem "PM_TPRBaronOfHellSpawner", 255, 3;
+	DropItem "PM_TPRArchvileSpawner", 255, 1;
 	}
 }
+
+
 
 Class PM_ArrivingGhostDemons : Actor
 {

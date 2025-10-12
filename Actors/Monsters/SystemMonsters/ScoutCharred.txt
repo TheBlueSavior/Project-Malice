@@ -96,6 +96,7 @@ Class PM_ScoutCharred : PMUnaffMonsterBase
 	CH5R DDD 2 PM_LookingForPlayer();
 	TNT1 A 0 A_Recoil(-0.5);
 	TNT1 A 0 { bTHRUSPECIES = false; }
+	CH5R A 0 A_Jump(30,"Despawn");
     Loop;
   Spotted:
 	TNT1 A 0;
@@ -103,8 +104,8 @@ Class PM_ScoutCharred : PMUnaffMonsterBase
   See:
 	TNT1 A 0;
 	TNT1 A 0 { bNOPAIN = true; }
-	CH5R AAAAAAAAAA 4 A_FaceTarget();
-	CH5R VVVVVV 3 A_FaceTarget();
+	CH5R AAAAAAAAAAAAA 4 A_FaceTarget();
+	CH5R VVVVVVVVVVV 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Charred/ScoutCall",35);
 	CH5R WWWWWWWWWW 3 A_FaceTarget();
 	TNT1 A 0 A_SpawnItemEx("PM_DemonTPReinforcementManager",0,0,0,0,0,0,random(-360,360));

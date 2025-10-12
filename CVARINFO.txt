@@ -2,7 +2,7 @@
 server int pm_forgetcheck = 0;
 
 server float projectmalice_fodderdivider = 2;
-server int projectmalice_foddermode = 1;              // 0 = static, 1 = progression
+server int projectmalice_foddermode = 0;              // 0 = static, 1 = progression
 server float projectmalice_fodderprogression = 0.0;   // current progression value
 server float projectmalice_fodderincrement = 0.25;    // amount to increase per level
 server bool projectmalice_fodder_debug = false;
@@ -45,7 +45,7 @@ Server Float pm_healthfactor_umbral = 1;
 Server Float pm_healthfactor_void = 1;
 
 server bool pm_scout_enabled = true; // master toggle for the scout spawn system
-server int  pm_scout_interval_base = 120; // starting seconds
+server int  pm_scout_interval_base = 180; // starting seconds
 server int  pm_scout_interval_step = 3;   // seconds removed per cleared level
 server int  pm_scout_interval_min  = 30;  // minimum floor (seconds)
 server bool pm_scout_debug         = false; // print debug messages when a scout spawns
@@ -56,7 +56,7 @@ server int  pm_scout_flatness_radius = 25;  // radius for flatness ring check (u
 server int pm_scout_attempt_sectors = 96;   // sectors sampled per attempt (was 128)
 server int pm_scout_attempt_jitter  = 6;    // jitter tries per sector     (was 8)
 server int pm_scout_fail_cooldown   = 1;    // seconds to wait after a full failed attempt
-server int  pm_scout_grace_seconds   = 30;
+server int  pm_scout_grace_seconds   = 60;
 
 
 // THIS IS ALL FOR DEBUG INFORMATION AND TESTING
