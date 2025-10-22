@@ -80,6 +80,24 @@ class PM_SectorBleedInfection : EventHandler
 		return false;
 	}
 
+	// Treat a line as "interactive" if changing its wall textures might soft-lock the map.
+	// Conservative checks: nonzero special, locked lines, repeatable special flag.
+	bool IsInteractiveLine(Line ln)
+	{
+		if (ln == null) return false;
+
+		// Any explicit special (vanilla/generalized/UDMF)
+		if (ln.special != 0) return true;
+
+		// Locked activations (UDMF)
+		if (ln.locknumber > 0) return true;
+
+		// Repeatable special flag (UDMF): safer to skip too
+		if ((ln.flags & Line.ML_REPEAT_SPECIAL) != 0) return true;
+
+		// You can extend with name heuristics if desired (e.g., check side mid textures for SW1*/SW2*/DOOR*/EXIT*/BUTN*).
+		return false;
+	}
 
 	// ---------------- TINT / FOG HELPERS ----------------
 
@@ -268,7 +286,7 @@ class PM_SectorBleedInfection : EventHandler
 		BuildNeighborRing(r1, tmp);
 		for (int i = 0; i < secCount; i++) r2[i] = (tmp[i] && !r0[i] && !r1[i]);
 
-		// --- NEW: proximity promotion using live PMGhost actor positions ---
+		// --- Proximity promotion using live PMGhost actor positions ---
 		ProximityPromoteFromGhosts(r0, r1, r2, 400.0, 600.0); // r1 within 400, r2 within 600
 
 		// Apply
@@ -353,15 +371,13 @@ class PM_SectorBleedInfection : EventHandler
 		}
 	}
 
-	// --- NEW: distance-based “fill” using PMGhost actor positions ---
-	// Promotes previously-unassigned sectors to r1 if their center is within r1dist
-	// of ANY PMGhost actor position, or r2 if within r2dist.
+	// Distance-based “fill” using PMGhost actor positions
 	void ProximityPromoteFromGhosts(Array<bool> r0, Array<bool> r1, Array<bool> r2, double r1dist, double r2dist)
 	{
 		int secCount = level.sectors.Size();
 		if (secCount <= 0) return;
 
-		// First, check if there are any PMGhost actors at all.
+		// Any PMGhosts?
 		bool hasGhost = false;
 		{
 			ThinkerIterator it0 = ThinkerIterator.Create("Actor");
@@ -373,13 +389,12 @@ class PM_SectorBleedInfection : EventHandler
 		}
 		if (!hasGhost) return;
 
-		// For each sector that is NOT already r0/r1/r2, compute nearest distance
-		// to any PMGhost (XY only), using sector centers as the sector reference.
+		// Promote based on nearest ghost XY distance
 		for (int s = 0; s < secCount; s++)
 		{
-			if (r0[s] || r1[s] || r2[s]) continue; // only affect previously-unassigned
+			if (r0[s] || r1[s] || r2[s]) continue;
 
-			Vector2 c = level.sectors[s].centerspot; // sector center
+			Vector2 c = level.sectors[s].centerspot;
 			double best = 1e30;
 
 			ThinkerIterator it2 = ThinkerIterator.Create("Actor");
@@ -393,11 +408,11 @@ class PM_SectorBleedInfection : EventHandler
 				double d  = Sqrt(dx*dx + dy*dy);
 
 				if (d < best) best = d;
-				if (best <= r1dist) break; // early-out if already within r1
+				if (best <= r1dist) break;
 			}
 
-			if (best <= r1dist)      r1[s] = true;  // within 400 of ANY PMGhost
-			else if (best <= r2dist) r2[s] = true;  // within 600 of ANY PMGhost
+			if (best <= r1dist)      r1[s] = true;
+			else if (best <= r2dist) r2[s] = true;
 		}
 	}
 
@@ -411,7 +426,7 @@ class PM_SectorBleedInfection : EventHandler
 		// Light drop
 		ApplyLightingOnly(s, pm_r0_light_drop);
 
-		// Fog/tint
+		// Fog/tint (unchanged)
 		ApplyFogPreset(s, "r0_black_veryheavy");
 		ApplyTintPreset(s, "light");
 
@@ -428,13 +443,14 @@ class PM_SectorBleedInfection : EventHandler
 			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
 		}
 
-		// Full walls (with switch-safe mid handling)
+		// Full walls (switch/interactive-safe)
 		TextureID wl = Pick(wallPool);
 		if (wl.IsValid())
 		{
 			for (int i = 0; i < s.lines.Size(); i++)
 			{
 				Line ln = s.lines[i];
+				if (IsInteractiveLine(ln)) continue; // <-- SKIP interactive lines entirely
 
 				Side fs = ln.sidedef[0];
 				if (fs != null && fs.sector == s) ForceSideTextures(fs, wl);
@@ -452,7 +468,7 @@ class PM_SectorBleedInfection : EventHandler
 		// Slight drop
 		ApplyLightingOnly(s, pm_r1_light_drop);
 
-		// Fog/tint
+		// Fog/tint (unchanged)
 		ApplyFogPreset(s, "r1_rust_heavy");
 		ApplyTintPreset(s, "heavy");
 
@@ -469,10 +485,11 @@ class PM_SectorBleedInfection : EventHandler
 			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
 		}
 
-		// Partial walls per slot (switch-safe)
+		// Partial walls per slot (switch/interactive-safe)
 		for (int i = 0; i < s.lines.Size(); i++)
 		{
 			Line ln = s.lines[i];
+			if (IsInteractiveLine(ln)) continue; // <-- SKIP interactive lines entirely
 
 			Side fs = ln.sidedef[0];
 			if (fs != null && fs.sector == s) PartialSideTextures(fs, pm_infect_ring1_ratio);
@@ -489,7 +506,7 @@ class PM_SectorBleedInfection : EventHandler
 		// Tiny drop
 		ApplyLightingOnly(s, pm_r2_light_drop);
 
-		// Fog/tint
+		// Fog/tint (unchanged)
 		ApplyFogPreset(s, "r2_rust_mid");
 		ApplyTintPreset(s, "medium");
 	}
@@ -504,7 +521,7 @@ class PM_SectorBleedInfection : EventHandler
 		s.lightlevel = ll;
 	}
 
-	// Switch-safe force: handles TOP/MID/BOTTOM only if present
+	// Force: handles TOP/MID/BOTTOM only if present
 	void ForceSideTextures(Side sd, TextureID forced)
 	{
 		BackupSideOnce(sd);
@@ -524,7 +541,7 @@ class PM_SectorBleedInfection : EventHandler
 		if (!t.IsNull()) sd.SetTexture(Side.bottom, forced);
 	}
 
-	// Switch-safe partial: handles TOP/MID/BOTTOM only if present
+	// Partial (per slot)
 	void PartialSideTextures(Side sd, double chance)
 	{
 		BackupSideOnce(sd);
