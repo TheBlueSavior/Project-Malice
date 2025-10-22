@@ -122,7 +122,7 @@ class PM_SectorBleedInfection : EventHandler
 	{
 		if (strength == "light")        // R0
 		{
-			SetSectorTint(s, 235, 230, 220);
+			SetSectorTint(s, 195, 155, 135);
 		}
 		else if (strength == "medium")  // R2
 		{
@@ -130,7 +130,7 @@ class PM_SectorBleedInfection : EventHandler
 		}
 		else                            // "heavy" -> R1
 		{
-			SetSectorTint(s, 205, 205, 205);
+			SetSectorTint(s, 200, 165, 145);
 		}
 	}
 

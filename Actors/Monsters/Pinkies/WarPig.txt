@@ -20,7 +20,7 @@ Class PM_WarPig : PMWarMonsterBase
 	+DONTHARMSPECIES
 	+MISSILEMORE
 	Species "Brute";
-	BloodColor "Green";
+	BloodColor "Dark Red";
     SeeSound "DTechSight";
     PainSound "DTechPain";
     DeathSound "DTechDeath";
