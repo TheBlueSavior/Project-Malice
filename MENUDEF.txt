@@ -42,7 +42,7 @@ OptionMenu "projectmalice_options"
     // ---------------- Scout Spawner ----------------
     StaticText "Scout Spawner Options"
     Option "Enabled",               "pm_scout_enabled",       "OnOff"
-    Slider "Base interval (sec) [default: 120]",   "pm_scout_interval_base", 1, 3600, 1
+    Slider "Base interval (sec) [default: 180]",   "pm_scout_interval_base", 1, 3600, 1
     Slider "Step per level (sec) [default: 3]",  "pm_scout_interval_step", 0, 600,  1
     Slider "Minimum interval (sec) [default: 30]","pm_scout_interval_min", 1, 3600, 1
 	Slider "Grace period (sec)",      "pm_scout_grace_seconds",    0, 600,  1

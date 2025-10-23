@@ -1,100 +1,160 @@
-// a simple data class used to contain a position
-// arrays don't support vectors for some reason
-class DropperPoint {
+// AmbientSpawns.zs — GZDoom 4.14.x ZScript (no C++isms)
+
+class DropperPoint
+{
     vector3 pos;
 }
 
-class PM_FodderDropper : EventHandler {
-    bool doSpawn;
-    int spawnDelay;
-
-    // Roll is now an instance variable (accessible via EventHandler.Find)
+// Persistent across maps so state/cvars update every level.
+class PM_FodderDropper : StaticEventHandler
+{
+    bool   doSpawn;
+    int    spawnDelay;
     double roll;
 
-    override void WorldLoaded(WorldEvent e) {
-        if (gameState == GS_TITLELEVEL || deathmatch || e.IsReopen)
-            return;
+    // Track last map we *entered* so we can tell if a load is a new map or a restart of the same map.
+    String lastMapName;
 
+    // ===== Lifecycle =====
+
+    // Reset progression when a brand-new game starts.
+    override void NewGame()
+    {
+        CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
+        if (prog != null) prog.SetFloat(0.0);
+
+        lastMapName = ""; // forget map history for this run
+
+        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+            Console.Printf("[PM:Fodder] New Game: progression reset to 0.0");
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        // Skip titlemap or DM.
+        if (gamestate == GS_TITLELEVEL || deathmatch) return;
+
+        // ----- PROGRESSION INCREMENT RULE -----
+        // Only increment when we actually enter a *different* map than the last one seen.
+        // This naturally ignores death restarts (same map reloaded) and counts real progression.
+        int mode = CVar.GetCVar("projectmalice_foddermode").GetInt();
+        if (mode == 1)
+        {
+            if (lastMapName == "") // first playable map of run
+            {
+                if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+                {
+                    double prog0 = CVar.FindCVar("projectmalice_fodderprogression").GetFloat();
+                    Console.Printf("[PM:Fodder] First map of run: progression stays at %.2f", prog0);
+                }
+            }
+            else if (level.MapName != lastMapName)
+            {
+                CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
+                CVar inc  = CVar.FindCVar("projectmalice_fodderincrement");
+                if (prog != null && inc != null)
+                {
+                    double newVal = prog.GetFloat() + inc.GetFloat();
+                    if (newVal > 20.0) newVal = 20.0; // cap unchanged
+                    prog.SetFloat(newVal);
+
+                    if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+                    {
+                        Console.Printf("[PM:Fodder] Map change %s -> %s: progression +%.2f -> %.2f (cap 20.0)",
+                            lastMapName, level.MapName, inc.GetFloat(), newVal);
+                    }
+                }
+            }
+            else
+            {
+                // Same map reloaded (likely death/restart) — do NOT increment.
+                if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+                    Console.Printf("[PM:Fodder] Restart detected on %s: progression unchanged.", level.MapName);
+            }
+        }
+        // Update last seen map now that this map is loaded.
+        lastMapName = level.MapName;
+        // --------------------------------------
+
+        // normal per-map init
         doSpawn = true;
         spawnDelay = 1;
+        roll = 0.0;
 
-        // progression mode: increment progression cvar at new level start
-        if (CVar.GetCVar("projectmalice_foddermode").GetInt() == 1) {
-            CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
-            CVar inc  = CVar.FindCVar("projectmalice_fodderincrement");
-
-            double newVal = prog.GetFloat() + inc.GetFloat();
-            if (newVal > 20.0) newVal = 20.0; // ceiling
-            prog.SetFloat(newVal);
-
-            if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
-                Console.Printf("[PM:Fodder] %s: Progression increased by %.2f → %.2f (capped at 20.0)",
-                    level.MapName, inc.GetFloat(), prog.GetFloat());
+        // Informative debug for current map’s ceiling/divider.
+        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+        {
+            if (mode == 1)
+            {
+                double progVal = CVar.FindCVar("projectmalice_fodderprogression").GetFloat();
+                Console.Printf("[PM:Fodder] Mode: Progression. Ceiling this map: %.2f", progVal);
+            }
+            else
+            {
+                double div = CVar.FindCVar("projectmalice_fodderdivider").GetFloat();
+                Console.Printf("[PM:Fodder] Mode: Static. Divider: %.2f", div);
             }
         }
     }
 
-    override void NewGame() {
-        // reset progression on new game
-        CVar.FindCVar("projectmalice_fodderprogression").SetFloat(0.0);
+    // We no longer increment in WorldUnloaded — all progression decisions happen on WorldLoaded
+    // based on whether the new map differs from the previous one.
 
-        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
-            Console.Printf("[PM:Fodder] New game started, progression reset to 0.0");
-        }
-    }
+    // ===== Spawning pass =====
+    override void WorldTick()
+    {
+        // IMPORTANT: Do NOT destroy a StaticEventHandler when idle — that kills it for the rest of the run.
+        if (!doSpawn) return;
 
-    override void WorldTick() {
-        if (!doSpawn) {
-            if (!bDESTROYED)
-                Destroy();
-            return;
-        }
-        if (spawnDelay-- > 0)
-            return;
+        if (spawnDelay-- > 0) return;
 
         doSpawn = false;
+
         array<DropperPoint> dropperPoints;
 
-        actor mobj;
-        let it = ThinkerIterator.Create();        
-        while (mobj = Actor(it.Next())) {
-            if (mobj is "PlayerPawn" || !mobj.bISMONSTER) continue;
-            if (mobj.bFLOAT) continue;
+        Actor mo;
+        let it = ThinkerIterator.Create();
+        while (mo = Actor(it.Next()))
+        {
+            if (mo is "PlayerPawn" || !mo.bISMONSTER) continue;
+            if (mo.bFLOAT) continue;
 
-            let newPoint = New("DropperPoint");
-            newPoint.pos = mobj.pos;
-            dropperPoints.Push(newPoint);
+            let p = New("DropperPoint");
+            p.pos = mo.pos;
+            dropperPoints.Push(p);
         }
         if (dropperPoints.Size() <= 0) return;
 
         int mode = CVar.FindCVar("projectmalice_foddermode").GetInt();
         double extraMonsters;
 
-        if (mode == 0) {
-            // static divider
-            CVar foddersetting = CVar.FindCVar("projectmalice_fodderdivider");
-            roll = frandom(0, foddersetting.GetFloat());
+        if (mode == 0)
+        {
+            CVar div = CVar.FindCVar("projectmalice_fodderdivider");
+            roll = frandom(0.0, div.GetFloat());
             extraMonsters = level.total_monsters * roll;
-        } else {
-            // progression scaling (already capped in WorldLoaded)
+        }
+        else
+        {
             CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
-            roll = frandom(0, prog.GetFloat());
+            double ceiling = (prog != null) ? prog.GetFloat() : 0.0;
+            roll = frandom(0.0, ceiling);
             extraMonsters = level.total_monsters * roll;
         }
 
-        // Debug info
-        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool()) {
-            Console.Printf("[PM:Fodder] %s: Mode=%d Progression=%.2f Roll=%.2f Extra=%i",
+        if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
+        {
+            Console.Printf("[PM:Fodder] %s: Mode=%d Progression=%.2f Roll=%.2f Extra=%d",
                 level.MapName, mode,
                 CVar.FindCVar("projectmalice_fodderprogression").GetFloat(),
-                roll, extraMonsters);
+                roll, int(extraMonsters));
         }
 
-        // spawn the monsters
-        for (int i = 0; i < extraMonsters; i++) {
-            let dropPoint = dropperPoints[random(0, dropperPoints.Size() - 1)];
-            let act = Actor.Spawn("PM_HorrorPassiveSpawn", dropPoint.pos);
-            act.angle = random(0, 8) * 45;
+        for (int i = 0; i < extraMonsters; i++)
+        {
+            let dp = dropperPoints[random(0, dropperPoints.Size() - 1)];
+            let a = Actor.Spawn("PM_HorrorPassiveSpawn", dp.pos);
+            a.angle = random(0, 8) * 45;
         }
     }
 }
