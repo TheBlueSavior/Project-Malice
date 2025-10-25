@@ -6497,3 +6497,16 @@ $volume Fodder/CrowdLoop 0.3
 
 PM/GhostDroneLoop "Sounds/Environment/PMGhostDroneLoop.ogg"
 $volume PM/GhostDroneLoop 0.1
+
+PM/OtherSideDrone1 "Sounds/Environment/PMOtherSideDrone1.ogg"
+$limit PM/OtherSideDrone1 5
+PM/OtherSideDrone2 "Sounds/Environment/PMOtherSideDrone2.ogg"
+$limit PM/OtherSideDrone2 5
+PM/OtherSideDrone3 "Sounds/Environment/PMOtherSideDrone3.ogg"
+$limit PM/OtherSideDrone3 5
+PM/OtherSideDrone4 "Sounds/Environment/PMOtherSideDrone4.ogg"
+$limit PM/OtherSideDrone4 5
+PM/OtherSideDrone5 "Sounds/Environment/PMOtherSideDrone5.ogg"
+$limit PM/OtherSideDrone5 5
+
+PM/WarpingCleansed "Sounds/Environment/PMWarpingCleansed.ogg"

@@ -256,6 +256,20 @@ class PM_DimensionalStabilityHandler : EventHandler
 
     override void WorldTick()
     {
+        // stop drone permanently at 100% kills (match EnvironmentalWarping’s cleanse gate)
+        if (level.total_monsters > 0 && level.killed_monsters >= level.total_monsters)
+        {
+            if (ghostSounder)
+            {
+                ghostSounder.StopDrone();
+                ghostSounder.Destroy();
+                ghostSounder = null;
+                ghostCurrentVolume = 0.0;
+                if (DroneDebug()) Console.Printf("[DS:Drone] 100%% kills -> stopping loop.");
+            }
+            return; // do not re-drive the drone after cleanse
+        }
+
         // Drive the drone continuously according to active p
         double p = DS_GetActiveP();
         DS_UpdateDrone(p);

@@ -18,6 +18,48 @@ class PM_SideOrig : Object
 }
 
 // ===============================
+// Looped ambient drone for ground-zero sectors
+// ===============================
+class PM_OtherSideDrone : Actor
+{
+	Sound  Picked; // one of PM/OtherSideDrone1..5
+	double Vol;    // 0.0 .. 1.0 constant per instance
+
+	Default
+	{
+		+NOBLOCKMAP +NOGRAVITY +NOINTERACTION +NOBLOOD +DONTGIB
+		RenderStyle "Normal";
+		Alpha 0; // avoid float truncation warning
+		Radius 2;
+		Height 2;
+	}
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+
+		int r = Random(1, 5);
+		if (r == 1)      Picked = "PM/OtherSideDrone1";
+		else if (r == 2) Picked = "PM/OtherSideDrone2";
+		else if (r == 3) Picked = "PM/OtherSideDrone3";
+		else if (r == 4) Picked = "PM/OtherSideDrone4";
+		else             Picked = "PM/OtherSideDrone5";
+
+		Vol = frandom(0.0, 1.0);
+
+		// Loop the positional sound on this actor
+		A_StartSound(Picked, CHAN_BODY, CHANF_LOOP, Vol, ATTN_NORM);
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 35;
+		Loop;
+	}
+}
+
+// ===============================
 // Infection controller (pool-enabled, with cleanse)
 // ===============================
 class PM_SectorBleedInfection : EventHandler
@@ -34,24 +76,26 @@ class PM_SectorBleedInfection : EventHandler
 	Array<PM_SectorOrig> sectorBackups;
 	Array<PM_SideOrig>   sideBackups;
 
+	// track spawned drones for cleanup
+	Array<Actor> drones;
+
+	// -------- CLEANSE FX state (for center-message rendering) --------
+	int    cleanseMsgTics;     // countdown in tics (~35 tics/sec)
+	String cleanseMsg;         // text to draw centered
+
 	int _clampi(int v, int lo, int hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
 	// ---------------- IGNORE HELPERS ----------------
 
-	// Detect damaging floors (UDMF: damageamount). Extend with special codes if needed.
 	bool IsDamaging(Sector s)
 	{
 		return s != null && s.damageamount > 0;
 	}
 
-	// Detect sky ceilings without relying solely on flat names:
-	//  1) ceiling sector-portal types/flags (skybox/horizon/plane/skyflatonly)
-	//  2) fallback name check for legacy F_SKY1/F_SKY2
 	bool IsSkyCeiling(Sector s)
 	{
 		if (s == null) return false;
 
-		// (1) Portal on the ceiling? (skybox / horizon / plane / skyflat-only)
 		int pidx = s.Portals[Sector.Ceiling]; // 0 => none
 		if (pidx != 0)
 		{
@@ -69,7 +113,6 @@ class PM_SectorBleedInfection : EventHandler
 			}
 		}
 
-		// (2) Fallback: legacy sky flats by name
 		TextureID cur = s.GetTexture(Sector.Ceiling);
 		if (cur.IsValid())
 		{
@@ -80,35 +123,43 @@ class PM_SectorBleedInfection : EventHandler
 		return false;
 	}
 
-	// Treat a line as "interactive" if changing its wall textures might soft-lock the map.
-	// Conservative checks: nonzero special, locked lines, repeatable special flag.
 	bool IsInteractiveLine(Line ln)
 	{
 		if (ln == null) return false;
-
-		// Any explicit special (vanilla/generalized/UDMF)
 		if (ln.special != 0) return true;
-
-		// Locked activations (UDMF)
 		if (ln.locknumber > 0) return true;
-
-		// Repeatable special flag (UDMF): safer to skip too
 		if ((ln.flags & Line.ML_REPEAT_SPECIAL) != 0) return true;
-
-		// You can extend with name heuristics if desired (e.g., check side mid textures for SW1*/SW2*/DOOR*/EXIT*/BUTN*).
 		return false;
+	}
+
+	bool IsTwoSidedMidTextureLine(Line ln)
+	{
+		if (ln == null) return false;
+		if ((ln.flags & Line.ML_TWOSIDED) == 0) return false;
+
+		Side fs = ln.sidedef[0];
+		Side bs = ln.sidedef[1];
+
+		bool fmid = (fs != null) && !fs.GetTexture(Side.mid).IsNull();
+		bool bmid = (bs != null) && !bs.GetTexture(Side.mid).IsNull();
+
+		return fmid || bmid;
+	}
+
+	bool IsRailingFlagged(Line ln)
+	{
+		if (ln == null) return false;
+		return (ln.flags & (Line.ML_RAILING | Line.ML_3DMIDTEX)) != 0;
 	}
 
 	// ---------------- TINT / FOG HELPERS ----------------
 
-	// Set light color/tint (no desaturation)
 	void SetSectorTint(Sector s, int r, int g, int b)
 	{
 		r = _clampi(r,0,255); g = _clampi(g,0,255); b = _clampi(b,0,255);
-		s.SetColor(Color(r,g,b), 0); // zero desaturation
+		s.SetColor(Color(r,g,b), 0);
 	}
 
-	// Set fog color + density
 	void SetSectorFog(Sector s, int r, int g, int b, int density)
 	{
 		r = _clampi(r,0,255); g = _clampi(g,0,255); b = _clampi(b,0,255);
@@ -117,45 +168,22 @@ class PM_SectorBleedInfection : EventHandler
 		s.SetFogDensity(density);
 	}
 
-	// Subtle warm tinting (as tuned)
 	void ApplyTintPreset(Sector s, string strength)
 	{
-		if (strength == "light")        // R0
-		{
-			SetSectorTint(s, 195, 155, 135);
-		}
-		else if (strength == "medium")  // R2
-		{
-			SetSectorTint(s, 205, 175, 155);
-		}
-		else                            // "heavy" -> R1
-		{
-			SetSectorTint(s, 200, 165, 145);
-		}
+		if (strength == "light")        { SetSectorTint(s, 195, 85, 35); }
+		else if (strength == "medium")  { SetSectorTint(s, 205, 165, 145); }
+		else                            { SetSectorTint(s, 200, 95, 45); }
 	}
 
-	// Brown rust fog, modest densities (as tuned)
 	void ApplyFogPreset(Sector s, string which)
 	{
-		int RUST_FOG_R = 30;
-		int RUST_FOG_G = 10;
-		int RUST_FOG_B = 0;
+		int RUST_FOG_R = 30, RUST_FOG_G = 10, RUST_FOG_B = 0;
 
-		if (which == "r0_black_veryheavy")
-		{
-			SetSectorFog(s, 4, 2, 1, 150);
-		}
-		else if (which == "r1_rust_heavy")
-		{
-			SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 50);
-		}
-		else // "r2_rust_mid"
-		{
-			SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 10);
-		}
+		if (which == "r0_black_veryheavy") { SetSectorFog(s, 4, 2, 1, 150); }
+		else if (which == "r1_rust_heavy") { SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 50); }
+		else                                { SetSectorFog(s, RUST_FOG_R, RUST_FOG_G, RUST_FOG_B, 10); }
 	}
 
-	// Neutralize color/fog on restore (safe defaults)
 	void ClearTintFog(Sector s)
 	{
 		s.SetColor(Color(255,255,255), 0);
@@ -177,6 +205,11 @@ class PM_SectorBleedInfection : EventHandler
 
 		sectorBackups.Clear();
 		sideBackups.Clear();
+		drones.Clear();
+
+		// reset cleanse message state
+		cleanseMsgTics = 0;
+		cleanseMsg     = "";
 
 		BuildPools();
 
@@ -188,6 +221,9 @@ class PM_SectorBleedInfection : EventHandler
 	override void WorldTick()
 	{
 		if (!pm_infect_enable) return;
+
+		// tick down the center message timer if active
+		if (cleanseMsgTics > 0) cleanseMsgTics--;
 
 		if (!didScan)
 		{
@@ -208,6 +244,39 @@ class PM_SectorBleedInfection : EventHandler
 			}
 		}
 	}
+
+	// Draw the 3-second center message for all players when active
+	override void RenderOverlay(RenderEvent e)
+{
+    if (cleanseMsgTics <= 0 || cleanseMsg.Length() == 0) return;
+
+    Font f = "SmallFont";
+
+    // Virtual canvas (no 'const' in ZScript functions)
+    int vw = 320, vh = 200;
+
+    // Scale down to one-third
+    double sx = 1.0 / 3.0;
+    double sy = 1.0 / 3.0;
+
+    int baseW = f.StringWidth(cleanseMsg);
+    int baseH = f.GetHeight();
+
+    // Center using the *scaled* dimensions
+    int x = int((vw - baseW * sx) / 2.0);
+    int y = int((vh - baseH * sy) / 2.0);
+
+    Screen.DrawText(
+        f, Font.CR_WHITE, x, y, cleanseMsg,
+        DTA_VirtualWidth,  vw,
+        DTA_VirtualHeight, vh,
+        DTA_KeepRatio,     true,
+        DTA_ScaleX,        sx,
+        DTA_ScaleY,        sy
+    );
+}
+
+
 
 	// ===============================
 	// Pools
@@ -287,7 +356,7 @@ class PM_SectorBleedInfection : EventHandler
 		for (int i = 0; i < secCount; i++) r2[i] = (tmp[i] && !r0[i] && !r1[i]);
 
 		// --- Proximity promotion using live PMGhost actor positions ---
-		ProximityPromoteFromGhosts(r0, r1, r2, 400.0, 600.0); // r1 within 400, r2 within 600
+		ProximityPromoteFromGhosts(r0, r1, r2, 400.0, 600.0);
 
 		// Apply
 		int c0=0, c1=0, c2=0;
@@ -300,6 +369,52 @@ class PM_SectorBleedInfection : EventHandler
 
 	void RestoreAll()
 	{
+		// Only perform cleanse FX if we actually infected/restored anything this map
+		bool hadWarp = (drones.Size() > 0) || (sideBackups.Size() > 0) || (sectorBackups.Size() > 0);
+
+		// CLEANSE FX: blackout + center text + global sound (per player), before visual restore
+		if (hadWarp)
+		{
+			// 6 seconds @ 35 tics/sec
+			cleanseMsg     = "The air feels lighter...";
+			cleanseMsgTics = 210;
+
+			for (int i = 0; i < MAXPLAYERS; i++)
+			{
+				PlayerInfo p = players[i];
+				if (p && p.mo && (p.mo is "PlayerPawn"))
+				{
+					let pp = PlayerPawn(p.mo);
+
+					// Brief full black so players don't see the instant revert
+					pp.A_SetBlend("000000", 1.0, 140);
+
+					// Cleansed stinger (non-positional so everyone hears it equally)
+					pp.A_StartSound("PM/WarpingCleansed", CHAN_AUTO, CHANF_DEFAULT, 1.0, ATTN_NONE);
+				}
+			}
+		}
+
+		// stop and remove all drones
+		for (int i = 0; i < drones.Size(); i++)
+		{
+			if (drones[i] != null) drones[i].Destroy();
+		}
+		drones.Clear();
+
+		// Kill all PMGhosts on cleanse (ensure none remain)
+		{
+			ThinkerIterator itg = ThinkerIterator.Create("Actor");
+			Actor ga;
+			while ((ga = Actor(itg.Next())))
+			{
+				if (ga.bIsMonster && ga.Species == 'PMGhost')
+				{
+					ga.Destroy();
+				}
+			}
+		}
+
 		// Walls first
 		for (int i = 0; i < sideBackups.Size(); i++)
 		{
@@ -377,7 +492,6 @@ class PM_SectorBleedInfection : EventHandler
 		int secCount = level.sectors.Size();
 		if (secCount <= 0) return;
 
-		// Any PMGhosts?
 		bool hasGhost = false;
 		{
 			ThinkerIterator it0 = ThinkerIterator.Create("Actor");
@@ -389,7 +503,6 @@ class PM_SectorBleedInfection : EventHandler
 		}
 		if (!hasGhost) return;
 
-		// Promote based on nearest ghost XY distance
 		for (int s = 0; s < secCount; s++)
 		{
 			if (r0[s] || r1[s] || r2[s]) continue;
@@ -443,14 +556,14 @@ class PM_SectorBleedInfection : EventHandler
 			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
 		}
 
-		// Full walls (switch/interactive-safe)
+		// Full walls (switch/interactive-safe + skip two-sided midtextures + skip railing flags)
 		TextureID wl = Pick(wallPool);
 		if (wl.IsValid())
 		{
 			for (int i = 0; i < s.lines.Size(); i++)
 			{
 				Line ln = s.lines[i];
-				if (IsInteractiveLine(ln)) continue; // <-- SKIP interactive lines entirely
+				if (IsInteractiveLine(ln) || IsTwoSidedMidTextureLine(ln) || IsRailingFlagged(ln)) continue;
 
 				Side fs = ln.sidedef[0];
 				if (fs != null && fs.sector == s) ForceSideTextures(fs, wl);
@@ -459,6 +572,13 @@ class PM_SectorBleedInfection : EventHandler
 				if (bs != null && bs.sector == s) ForceSideTextures(bs, wl);
 			}
 		}
+
+		// Spawn a looped drone at sector center for ground-zero sectors
+		Vector2 c = s.centerspot;
+		double z = s.floorplane.ZAtPoint(c);
+		class<Actor> t = "PM_OtherSideDrone";
+		Actor drone = Actor.Spawn(t, (c.X, c.Y, z + 8), ALLOW_REPLACE);
+		if (drone != null) drones.Push(drone);
 	}
 
 	void ApplyRing1(Sector s)
@@ -485,11 +605,11 @@ class PM_SectorBleedInfection : EventHandler
 			if (cl.IsValid()) s.SetTexture(Sector.Ceiling, cl);
 		}
 
-		// Partial walls per slot (switch/interactive-safe)
+		// Partial walls per slot (switch/interactive-safe + skip two-sided midtextures + skip railing flags)
 		for (int i = 0; i < s.lines.Size(); i++)
 		{
 			Line ln = s.lines[i];
-			if (IsInteractiveLine(ln)) continue; // <-- SKIP interactive lines entirely
+			if (IsInteractiveLine(ln) || IsTwoSidedMidTextureLine(ln) || IsRailingFlagged(ln)) continue;
 
 			Side fs = ln.sidedef[0];
 			if (fs != null && fs.sector == s) PartialSideTextures(fs, pm_infect_ring1_ratio);
@@ -521,34 +641,28 @@ class PM_SectorBleedInfection : EventHandler
 		s.lightlevel = ll;
 	}
 
-	// Force: handles TOP/MID/BOTTOM only if present
 	void ForceSideTextures(Side sd, TextureID forced)
 	{
 		BackupSideOnce(sd);
 
 		TextureID t;
 
-		// TOP
 		t = sd.GetTexture(Side.top);
 		if (!t.IsNull()) sd.SetTexture(Side.top, forced);
 
-		// MID
 		t = sd.GetTexture(Side.mid);
 		if (!t.IsNull()) sd.SetTexture(Side.mid, forced);
 
-		// BOTTOM
 		t = sd.GetTexture(Side.bottom);
 		if (!t.IsNull()) sd.SetTexture(Side.bottom, forced);
 	}
 
-	// Partial (per slot)
 	void PartialSideTextures(Side sd, double chance)
 	{
 		BackupSideOnce(sd);
 
 		TextureID t;
 
-		// TOP
 		t = sd.GetTexture(Side.top);
 		if (!t.IsNull() && frandom(0.0,1.0) < chance)
 		{
@@ -556,7 +670,6 @@ class PM_SectorBleedInfection : EventHandler
 			if (pic.IsValid()) sd.SetTexture(Side.top, pic);
 		}
 
-		// MID
 		t = sd.GetTexture(Side.mid);
 		if (!t.IsNull() && frandom(0.0,1.0) < chance)
 		{
@@ -564,7 +677,6 @@ class PM_SectorBleedInfection : EventHandler
 			if (pic2.IsValid()) sd.SetTexture(Side.mid, pic2);
 		}
 
-		// BOTTOM
 		t = sd.GetTexture(Side.bottom);
 		if (!t.IsNull() && frandom(0.0,1.0) < chance)
 		{
