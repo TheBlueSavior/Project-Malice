@@ -2793,6 +2793,24 @@ $rolloff DComm/Fire 400 2200
 $rolloff DComm/GunLoop 400 2200
 $rolloff DComm/WindUp 400 2200
 
+$random DComm/Sight { DCommSight1 DCommSight2 }
+DCommSight1 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommSight1.ogg"
+DCommSight2 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommSight2.ogg"
+
+$random DComm/Active { DCommActive1 DCommActive2 DCommActive3 }
+DCommActive1 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommActive1.ogg"
+DCommActive2 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommActive2.ogg"
+DCommActive3 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommActive3.ogg"
+
+$random DComm/Attack { DCommAttack1 DCommAttack2 DCommAttack3 }
+DCommAttack1 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommAttack1.ogg"
+DCommAttack2 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommAttack2.ogg"
+DCommAttack3 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommAttack3.ogg"
+
+$random DComm/Death { DCommDeath1 DCommDeath2 }
+DCommDeath1 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommDeath1.ogg"
+DCommDeath2 "Sounds/Monsters/Chaingunners/DecayedCommando/DCommDeath2.ogg"
+
 //Draugr
 
 $random Draugr/Servos { DraugrServos1 DraugrServos2 DraugrServos3 }
