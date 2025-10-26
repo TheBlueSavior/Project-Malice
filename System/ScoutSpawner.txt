@@ -9,6 +9,10 @@ class PM_ScoutSpawnerEH : StaticEventHandler
     override void NewGame()
     {
         LevelsCleared = 0;
+
+        CVar dcv = CVar.GetCVar('pm_scout_debug');
+        if (dcv && dcv.GetBool())
+            Console.Printf("Scout spawner: progression reset on NewGame (LevelsCleared=%d)", LevelsCleared);
     }
 
     override void WorldLoaded(WorldEvent e)
@@ -19,14 +23,15 @@ class PM_ScoutSpawnerEH : StaticEventHandler
         {
             ThinkerRef.Init(LevelsCleared);
 
+            CVar dcv = CVar.GetCVar('pm_scout_debug');
+            if (dcv && dcv.GetBool())
+                Console.Printf("Scout spawner: progression loaded for map (LevelsCleared=%d)", LevelsCleared);
+
             // HUB FILTER (DELAYED): start paused and schedule a delayed evaluation (fixed 1s).
             ThinkerRef.BeginDelayedHubCheck();
 
-            CVar dcv = CVar.GetCVar('pm_scout_debug');
             if (dcv && dcv.GetBool())
-            {
                 Console.Printf("Scout spawner: waiting 1 s to evaluate monster count...");
-            }
         }
     }
 
@@ -34,6 +39,10 @@ class PM_ScoutSpawnerEH : StaticEventHandler
     {
         // Count any map exit as completed.
         LevelsCleared++;
+
+        CVar dcv = CVar.GetCVar('pm_scout_debug');
+        if (dcv && dcv.GetBool())
+            Console.Printf("Scout spawner: map complete → LevelsCleared now %d", LevelsCleared);
     }
 }
 
@@ -63,6 +72,10 @@ class SectorSpawnerThinker : Thinker
     bool HubCheckPending;         // true while waiting before evaluating total_monsters
     int  HubCheckDelayTics;       // countdown in tics before evaluating
 
+    // --- Debug helpers ---
+    int  LastIntervalSeconds;     // to avoid spamming recompute logs
+    int  LastPrintedRemaining;    // last remaining seconds we printed
+
     void Init(int levelsCleared)
     {
         LevelsClearedForThisMap = levelsCleared;
@@ -73,6 +86,9 @@ class SectorSpawnerThinker : Thinker
         ScoutActors.Push('PM_FallenScout');
         SpawnWeights.Push(50);
         SpawnWeights.Push(50);
+
+        LastIntervalSeconds   = -1;
+        LastPrintedRemaining  = -1;
 
         RecomputeIntervalFromCvars();
 
@@ -90,6 +106,11 @@ class SectorSpawnerThinker : Thinker
         PausedForHub     = true;
         HubCheckPending  = false;
         HubCheckDelayTics= 0;
+
+        CVar dcv = CVar.GetCVar('pm_scout_debug');
+        if (dcv && dcv.GetBool())
+            Console.Printf("Scout spawner Thinker.Init: LevelsClearedForThisMap=%d, Grace=%d s",
+                           LevelsClearedForThisMap, gsec);
     }
 
     // ---------------- HUB FILTER (delayed check) ----------------
@@ -132,6 +153,16 @@ class SectorSpawnerThinker : Thinker
 
         SpawnIntervalSeconds = s;
         SpawnIntervalTics    = SpawnIntervalSeconds * TICRATE;
+
+        // Only print if the computed value changed
+        if (LastIntervalSeconds != SpawnIntervalSeconds)
+        {
+            LastIntervalSeconds = SpawnIntervalSeconds;
+            CVar dcv = CVar.GetCVar('pm_scout_debug');
+            if (dcv && dcv.GetBool())
+                Console.Printf("Scout spawner: interval set → base=%d, step=%d, min=%d, clears=%d ⇒ %d s",
+                               baseSec, stepSec, minSec, LevelsClearedForThisMap, SpawnIntervalSeconds);
+        }
     }
 
     override void Tick()
@@ -167,6 +198,27 @@ class SectorSpawnerThinker : Thinker
         {
             ResyncCounter = 0;
             RecomputeIntervalFromCvars();
+
+            // Per-second countdown prints (throttled).
+            CVar dcv = CVar.GetCVar('pm_scout_debug');
+            if (dcv && dcv.GetBool())
+            {
+                int remaining = (SpawnIntervalTics - IntervalCounter) / TICRATE;
+                if (remaining < 0) remaining = 0;
+
+                // print every 5s when >10s remain; every second for last 10s
+                bool shouldPrint = false;
+                if (remaining <= 10)
+                    shouldPrint = (remaining != LastPrintedRemaining);
+                else if ((remaining % 5) == 0)
+                    shouldPrint = (remaining != LastPrintedRemaining);
+
+                if (shouldPrint)
+                {
+                    LastPrintedRemaining = remaining;
+                    Console.Printf("Scout spawner: next attempt in %d s (clears=%d)", remaining, LevelsClearedForThisMap);
+                }
+            }
         }
 
         // Initial grace period
@@ -189,10 +241,23 @@ class SectorSpawnerThinker : Thinker
 
         if (IntervalCounter >= SpawnIntervalTics)
         {
+            // About to try spawning
+            CVar dcv0 = CVar.GetCVar('pm_scout_debug');
+            if (dcv0 && dcv0.GetBool())
+                Console.Printf("Scout spawner: interval elapsed → attempting spawn (clears=%d)", LevelsClearedForThisMap);
+
             bool spawned = TrySpawnOneRandomActor();
             if (spawned)
             {
                 IntervalCounter = 0;
+
+                CVar dcv = CVar.GetCVar('pm_scout_debug');
+                if (dcv && dcv.GetBool())
+                    Console.Printf("Scout spawner: spawned (clears=%d, interval=%d s)",
+                                   LevelsClearedForThisMap, SpawnIntervalSeconds);
+
+                // reset countdown display
+                LastPrintedRemaining = -1;
             }
             else
             {
@@ -201,6 +266,13 @@ class SectorSpawnerThinker : Thinker
                 if (cv) coolSec = cv.GetInt();
                 if (coolSec < 0) coolSec = 0;
                 FailCooldownTics = coolSec * TICRATE;
+
+                CVar dcv2 = CVar.GetCVar('pm_scout_debug');
+                if (dcv2 && dcv2.GetBool())
+                    Console.Printf("Scout spawner: spawn failed, cooldown %d s (clears=%d)", coolSec, LevelsClearedForThisMap);
+
+                // keep IntervalCounter where it is; we'll retry after cooldown
+                LastPrintedRemaining = -1;
             }
         }
 

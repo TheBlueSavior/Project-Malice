@@ -245,7 +245,7 @@ Class PM_DecayedCommando : PMPestilenceMonsterBase
 	}
 	TNT1 A 0 
 	{
-	 A_StartSound("DComm/Attack",8,pitch:random(1,1.2));
+	 A_StartSound("DComm/Attack",8,pitch:frandom(1,1.2));
 	 A_StartSound("CivZombie/MutationRip",15,pitch:1.2);
 	}
 	DCOM GGGGGGGGGGGGG 2
