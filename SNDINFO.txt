@@ -6371,6 +6371,13 @@ $rolloff Kurgan/PFireLoop 300 4500
 $rolloff Kurgan/PFireEnd 300 4500
 $limit Kurgan/Step 10
 
+$random Kurgan/RailFireAdd { Director/PlasmaAdd1 Director/PlasmaAdd2 Director/PlasmaAdd3 }
+Director/PlasmaAdd1 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd1.ogg"
+Director/PlasmaAdd2 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd2.ogg"
+Director/PlasmaAdd3 "Sounds/Monsters/Bosses/Director/DirectorPlasmaAdd3.ogg"
+
+$rolloff Kurgan/RailFireAdd 300 4500
+
 //Dusk Wyrm
 
 DuskWyrm/Sight "Sounds/Monsters/Imps/DuskWyrm/DuskWyrmSight.ogg"
