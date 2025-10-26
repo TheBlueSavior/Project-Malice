@@ -151,7 +151,15 @@ Class PM_Bacillus : PMEnvyMonsterBase
 			A_FaceTarget();
 			A_Explode((4), 200, XF_NOTMISSILE);
 			
-			if (!target && Distance3D(target) > 180 || target.health <= 0) SetStateLabel("Cooldown");
+			if (!target || target.health <= 0)
+			{
+				SetStateLabel("Cooldown");
+			}
+			else if (Distance3D(target) > 180)
+			{
+				SetStateLabel("Cooldown");
+			}
+
 		}
 		TNT1 A 0 A_Jump(100,"Cooldown");
 		Loop;
