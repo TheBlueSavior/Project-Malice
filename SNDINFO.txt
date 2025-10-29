@@ -6481,6 +6481,11 @@ $rolloff Fallen/ScoutCall 200 3000
 Fallen/ScoutReply "Sounds/Systems/PMFallenReinforceReply.ogg"
 $rolloff Fallen/ScoutReply 200 2000
 
+$random Fallen/ScoutActive { Fallen/ScoutActive1 Fallen/ScoutActive2 }
+Fallen/ScoutActive1 "Sounds/Systems/PMScoutFallenActive1.ogg"
+Fallen/ScoutActive2 "Sounds/Systems/PMScoutFallenActive2.ogg"
+$rolloff Fallen/ScoutActive 400 2900
+
 Cabal/ShaverFire "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverFire.ogg"
 $rolloff Cabal/ShaverFire 350 2600
 
