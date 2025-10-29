@@ -327,6 +327,14 @@ CharIdle9 "Sounds/Monsters/Imps/Charred/CharIdle9.mp3"
 CharIdle10 "Sounds/Monsters/Imps/Charred/CharIdle10.mp3"
 CharIdle11 "Sounds/Monsters/Imps/Charred/CharIdle11.mp3"
 
+$random Charred/ScoutActive { CharActive2 CharActive3 CharActive4 }
+CharActive2 "Sounds/Monsters/Imps/Charred/CharActive2.ogg"
+CharActive3 "Sounds/Monsters/Imps/Charred/CharActive3.ogg"
+CharActive4 "Sounds/Monsters/Imps/Charred/CharActive4.ogg"
+
+$rolloff Charred/ScoutActive 200 2500
+$limit Charred/ScoutActive 10
+
 $volume CharActive1 0.6
 $limit Charred/Idle 4
 $volume Charred/Idle 0.3
@@ -6484,7 +6492,7 @@ $rolloff Fallen/ScoutReply 200 2000
 $random Fallen/ScoutActive { Fallen/ScoutActive1 Fallen/ScoutActive2 }
 Fallen/ScoutActive1 "Sounds/Systems/PMScoutFallenActive1.ogg"
 Fallen/ScoutActive2 "Sounds/Systems/PMScoutFallenActive2.ogg"
-$rolloff Fallen/ScoutActive 400 2900
+$rolloff Fallen/ScoutActive 200 2500
 
 Cabal/ShaverFire "Sounds/Monsters/Zombiemen/CabalEnforcer/PMCabalShaverFire.ogg"
 $rolloff Cabal/ShaverFire 350 2600
