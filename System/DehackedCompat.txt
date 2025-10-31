@@ -1,0 +1,14 @@
+class PM_DehackedCompatHandler : StaticEventHandler
+{
+    override void CheckReplacement(ReplaceEvent e)
+    {
+        CVar toggle = CVar.FindCVar("projectmalice_dehacked_wolfss_replace");
+        if (toggle == null || !toggle.GetBool())
+            return;
+
+        if (e.Replacee.GetClassName() == 'WolfensteinSS')
+        {
+            e.Replacement = "PM_WolfSS_MP40";
+        }
+    }
+}

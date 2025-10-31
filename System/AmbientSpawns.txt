@@ -1,23 +1,33 @@
-// AmbientSpawns.zs — GZDoom 4.14.x ZScript (no C++isms)
+// Minimal marker that persists in saves and lets us detect "this map already did the initial drop".
+class PM_FodderMapStamp : Actor
+{
+    Default
+    {
+        +NOINTERACTION
+        +NOBLOCKMAP
+        +NOSECTOR
+        +INVISIBLE
+        RenderStyle "None";
+        Alpha 0.0;
+        Scale 0; // single value; applies uniformly
+    }
+}
 
 class DropperPoint
 {
     vector3 pos;
 }
 
-// Persistent across maps so state/cvars update every level.
+// Persistent across maps/saves (same pattern as your Scout spawner).
 class PM_FodderDropper : StaticEventHandler
 {
     bool   doSpawn;
     int    spawnDelay;
     double roll;
 
-    // Track last map we *entered* so we can tell if a load is a new map or a restart of the same map.
-    String lastMapName;
+    // Used to tell real map changes from death reloads.
+    string lastMapName;
 
-    // ===== Lifecycle =====
-
-    // Reset progression when a brand-new game starts.
     override void NewGame()
     {
         CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
@@ -31,83 +41,81 @@ class PM_FodderDropper : StaticEventHandler
 
     override void WorldLoaded(WorldEvent e)
     {
-        // Skip titlemap or DM.
+        // Skip titlemap & DM. (Do not return on IsReopen here; reopens happen in many flows.)
         if (gamestate == GS_TITLELEVEL || deathmatch) return;
 
-        // ----- PROGRESSION INCREMENT RULE -----
-        // Only increment when we actually enter a *different* map than the last one seen.
-        // This naturally ignores death restarts (same map reloaded) and counts real progression.
+        // --- Decide whether to bump progression (only on actual map changes) ---
         int mode = CVar.GetCVar("projectmalice_foddermode").GetInt();
         if (mode == 1)
         {
-            if (lastMapName == "") // first playable map of run
+            if (lastMapName == "")  // first playable map of the run
             {
                 if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
-                {
-                    double prog0 = CVar.FindCVar("projectmalice_fodderprogression").GetFloat();
-                    Console.Printf("[PM:Fodder] First map of run: progression stays at %.2f", prog0);
-                }
+                    Console.Printf("[PM:Fodder] First map this run: progression stays at %.2f",
+                        CVar.FindCVar("projectmalice_fodderprogression").GetFloat());
             }
-            else if (level.MapName != lastMapName)
+            else if (level.MapName != lastMapName) // real map change
             {
                 CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
                 CVar inc  = CVar.FindCVar("projectmalice_fodderincrement");
                 if (prog != null && inc != null)
                 {
                     double newVal = prog.GetFloat() + inc.GetFloat();
-                    if (newVal > 20.0) newVal = 20.0; // cap unchanged
+                    if (newVal > 20.0) newVal = 20.0;
                     prog.SetFloat(newVal);
 
                     if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
                     {
-                        Console.Printf("[PM:Fodder] Map change %s -> %s: progression +%.2f -> %.2f (cap 20.0)",
+                        Console.Printf("[PM:Fodder] Map change %s -> %s: +%.2f -> %.2f (cap 20.0)",
                             lastMapName, level.MapName, inc.GetFloat(), newVal);
                     }
                 }
             }
             else
             {
-                // Same map reloaded (likely death/restart) — do NOT increment.
+                // Same map as last seen (likely death reload) — do NOT increment.
                 if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
-                    Console.Printf("[PM:Fodder] Restart detected on %s: progression unchanged.", level.MapName);
+                    Console.Printf("[PM:Fodder] Restart detected on %s: progression unchanged.",
+                        level.MapName);
             }
         }
-        // Update last seen map now that this map is loaded.
+
+        // Update last seen map now.
         lastMapName = level.MapName;
-        // --------------------------------------
 
-        // normal per-map init
-        doSpawn = true;
+        // --- Determine if this is a "fresh entry" or a save reload of the same map. ---
+        bool alreadyStamped = MapHasFodderStamp();
+
+        // Only perform the one-time spawn pass on fresh entry (no stamp yet).
+        doSpawn    = !alreadyStamped;
         spawnDelay = 1;
-        roll = 0.0;
+        roll       = 0.0;
 
-        // Informative debug for current map’s ceiling/divider.
         if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
         {
             if (mode == 1)
             {
                 double progVal = CVar.FindCVar("projectmalice_fodderprogression").GetFloat();
-                Console.Printf("[PM:Fodder] Mode: Progression. Ceiling this map: %.2f", progVal);
+                Console.Printf("[PM:Fodder] Mode: Progression. Ceiling this map: %.2f (%s)",
+                    progVal, alreadyStamped ? "reload detected: no initial drop" : "fresh entry");
             }
             else
             {
                 double div = CVar.FindCVar("projectmalice_fodderdivider").GetFloat();
-                Console.Printf("[PM:Fodder] Mode: Static. Divider: %.2f", div);
+                Console.Printf("[PM:Fodder] Mode: Static. Divider: %.2f (%s)",
+                    div, alreadyStamped ? "reload detected: no initial drop" : "fresh entry");
             }
         }
     }
 
-    // We no longer increment in WorldUnloaded — all progression decisions happen on WorldLoaded
-    // based on whether the new map differs from the previous one.
+    // We intentionally do not destroy a StaticEventHandler when idle; it must persist all run long.
 
-    // ===== Spawning pass =====
     override void WorldTick()
     {
-        // IMPORTANT: Do NOT destroy a StaticEventHandler when idle — that kills it for the rest of the run.
+        // Skip if we aren’t doing the one-time initial drop for this (fresh) map entry.
         if (!doSpawn) return;
 
         if (spawnDelay-- > 0) return;
-
         doSpawn = false;
 
         array<DropperPoint> dropperPoints;
@@ -126,20 +134,20 @@ class PM_FodderDropper : StaticEventHandler
         if (dropperPoints.Size() <= 0) return;
 
         int mode = CVar.FindCVar("projectmalice_foddermode").GetInt();
-        double extraMonsters;
+        int extraCount;
 
         if (mode == 0)
         {
             CVar div = CVar.FindCVar("projectmalice_fodderdivider");
             roll = frandom(0.0, div.GetFloat());
-            extraMonsters = level.total_monsters * roll;
+            extraCount = int(level.total_monsters * roll);
         }
         else
         {
             CVar prog = CVar.FindCVar("projectmalice_fodderprogression");
             double ceiling = (prog != null) ? prog.GetFloat() : 0.0;
             roll = frandom(0.0, ceiling);
-            extraMonsters = level.total_monsters * roll;
+            extraCount = int(level.total_monsters * roll);
         }
 
         if (CVar.GetCVar("projectmalice_fodder_debug").GetBool())
@@ -147,14 +155,46 @@ class PM_FodderDropper : StaticEventHandler
             Console.Printf("[PM:Fodder] %s: Mode=%d Progression=%.2f Roll=%.2f Extra=%d",
                 level.MapName, mode,
                 CVar.FindCVar("projectmalice_fodderprogression").GetFloat(),
-                roll, int(extraMonsters));
+                roll, extraCount);
         }
 
-        for (int i = 0; i < extraMonsters; i++)
+        for (int i = 0; i < extraCount; i++)
         {
             let dp = dropperPoints[random(0, dropperPoints.Size() - 1)];
             let a = Actor.Spawn("PM_HorrorPassiveSpawn", dp.pos);
             a.angle = random(0, 8) * 45;
         }
+
+        // Drop the per-map stamp so save reloads won't retrigger this pass.
+        SpawnOrEnsureStamp();
+    }
+
+    bool MapHasFodderStamp()
+    {
+        Actor a;
+        let it = ThinkerIterator.Create();
+        while (a = Actor(it.Next()))
+        {
+            if (a is "PM_FodderMapStamp") return true;
+        }
+        return false;
+    }
+
+    void SpawnOrEnsureStamp()
+    {
+        if (MapHasFodderStamp()) return;
+
+        // Place stamp at the first player's current position (guaranteed valid and inside the level).
+        Actor ply;
+        let it = ThinkerIterator.Create();
+        while (ply = Actor(it.Next()))
+        {
+            if (ply is "PlayerPawn")
+            {
+                Actor.Spawn("PM_FodderMapStamp", ply.pos);
+                return;
+            }
+        }
+        // Fallback: if no player found (edge cases), skip stamping.
     }
 }

@@ -5,6 +5,7 @@ gameInfo
 	addEventHandlers = "PM_ScoutSpawnerEH"
 	AddEventHandlers = "PM_DimensionalStabilityHandler"
 	AddEventHandlers = "PM_SectorBleedInfection"
+	AddEventHandlers = "PM_DehackedCompatHandler"
 
 	PrecacheSounds =
 	//Common Sounds

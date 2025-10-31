@@ -6,6 +6,7 @@ version "4.11.3"
 #include "System/AmbientSpawns.txt"
 #include "System/ScoutSpawner.txt"
 #include "System/FodderDroneSound.txt"
+#include "System/DehackedCompat.txt"
 
 #include "Actors/SinCodexMenu.txt"
 

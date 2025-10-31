@@ -19,60 +19,126 @@ OptionMenu "projectmalice_options"
     StaticText "Full: Enemies will have a harder time seeing you if you stick to the shadows.", "Green"
     StaticText "They will forget about you eventually if you hide in a dark corner. Crouching helps too.", "Green"
     StaticText "Disabled by default."
+	StaticText ""
     Option "Stealth Mechanics", "pm_forgetcheck", "PMStealth"
     StaticText ""
+	StaticText "DeHacked Map Compatibility"
+	Option "Replace WolfensteinSS", "projectmalice_dehacked_wolfss_replace", "OnOff"
+	StaticText ""
+	StaticText "Advanced Settings"
+	StaticText ""
+	Submenu "Fodder Spawning Settings", "projectmalice_foddersettings"
+	StaticText ""
+	Submenu "Scout/Reinforcement Settings", "projectmalice_scoutsettings"
+	StaticText ""
+	Submenu "Dimensional Instability Settings", "projectmalice_instabilitysettings"
+	StaticText ""
+	Submenu "Environment Warping Settings", "projectmalice_warpingsettings"
+	StaticText ""
+	Submenu "Health/Speed/Damage Multipliers", "projectmalice_allmultipliersettings"
+	StaticText ""
+}
+
 
     // ---------------- Fodder Settings ----------------
-    StaticText "Fodder Settings"
+OptionMenu "projectmalice_foddersettings"
+{
+    Title "Fodder Spawner Options"
+	StaticText ""
+    StaticText "Fodder Spawner Options", white
+	StaticText ""
+	StaticText "Controls how many fodder enemies spawn on top of the level's monster count."
+	StaticText ""
+	StaticText "Static = Use flat fodder multiplier. Progression = Increase per level."
     Option "Fodder Spawn Mode", "projectmalice_foddermode", "PMFodderMode"
+	StaticText ""
     Slider "Progression Increment (per level):", "projectmalice_fodderincrement", 0.05, 2.0, 0.05, 2
 	Option "Debug prints (fodder progression)", "projectmalice_fodder_debug", "OnOff"
 	StaticText ""
 	StaticText ""
     StaticText "Fodder count is calculated by multiplying the level's monster count by the number below below."
 	StaticText "If progression is enabled, the option below will not be used."
+	StaticText ""
     Slider "Fodder Multiplier:", "projectmalice_fodderdivider", 0.00, 20.00, 0.01, 2
     StaticText ""
-	StaticText "Fodder Crowd Sound System"
+	StaticText "Ambient fodder crowd drone that will play depending on fodder numbers."
     Option "Enable Fodder Drone Ambience", "projectmalice_fodderdrone", "OnOff"
     Option "Fodder Drone Debug Prints", "projectmalice_fodderdrone_debug", "OnOff"
-    StaticText ""
-	StaticText ""
+}
 
-    // ---------------- Scout Spawner ----------------
-    StaticText "Scout Spawner Options"
+// ---------------- Scout Spawner ----------------
+OptionMenu "projectmalice_scoutsettings"
+{
+    Title "Scout Spawner Options"
+	StaticText ""
+    StaticText "Scout Spawner Options", white
+	StaticText ""
+	StaticText "Controls how often 'scout' enemies spawn in the level, and spawn reinforcements when spotted."
+	StaticText ""
     Option "Enabled",               "pm_scout_enabled",       "OnOff"
+	StaticText ""
+	StaticText "How many seconds inbetween scouts spawning."
     Slider "Base interval (sec) [default: 180]",   "pm_scout_interval_base", 1, 3600, 1
+	StaticText ""
+	StaticText "How many seconds are taken off the interval per level completed."
     Slider "Step per level (sec) [default: 3]",  "pm_scout_interval_step", 0, 600,  1
+	StaticText ""
+	StaticText "The minimum time the interval can be."
     Slider "Minimum interval (sec) [default: 30]","pm_scout_interval_min", 1, 3600, 1
+	StaticText ""
+	StaticText "Grace period timer before the interval starts counting down."
 	Slider "Grace period (sec)",      "pm_scout_grace_seconds",    0, 600,  1
+	StaticText ""
     Option "Debug Prints",          "pm_scout_debug",         "OnOff"
-    StaticText ""
-    StaticText ""
+}
 
 	// --------------- Dimensional Instability ---------------
-    StaticText "Dimensional Instability Options"
+OptionMenu "projectmalice_instabilitysettings"
+{
+    Title "Dimensional Instability Options"
+	StaticText ""
+    StaticText "Dimensional Instability Options", white
+	StaticText ""
+	StaticText "Controls how many 'ghost' demons replace normal demons (zombiemen are untouched)."
+	StaticText ""
+	StaticText "Static or Progression modes."
     Option "Dimensional Instability Mode", "projectmalice_dimensionalstability_mode", "PMDimensionalMode"
+	StaticText ""
+	StaticText "How much dimensional instability increases per level completed."
     Slider "Progression Increment (per level):", "projectmalice_dimensionalstability_increment", 0.05, 1.00, 0.05, 2
     StaticText ""
-    StaticText "If progression is enabled, the option below will not be used."
+	StaticText "Flat value that can be set if progression is OFF, will not be used if progression is ON."
     Slider "Dimensional Instability:", "projectmalice_dimensionalstability", 0.00, 1.00, 0.05
+	StaticText ""
 	Option "Debug Prints", "projectmalice_dimensionalstability_debug", "OnOff"
     StaticText ""
+	StaticText "Ambient drone that will play depending on dimensional instability level."
 	Option "Ghost Ambient Drone Sound", "projectmalice_ghostdrone", "OnOff"
+	StaticText ""
 	Option "Ghost Drone Debug", "projectmalice_ghostdrone_debug", "OnOff"
-    StaticText ""
-	StaticText ""
-	
+}
+
 	// --------------- Environment Warping ---------------
-	
-	StaticText "Environment Warping Options"
-	Option "Enable System",      "pm_infect_enable",    "OnOff"
+OptionMenu "projectmalice_warpingsettings"
+{
+	Title "Environment Warping Options"
+	StaticText ""
+    StaticText "Environment Warping Options", white
+	StaticText ""
+	StaticText "If enabled, environment will be edited wherever 'ghost' demons spawn."
+	StaticText "If Dimensional Instability is completely off, this won't do anything."
+	StaticText ""
+	Option "Enable Warping System",      "pm_infect_enable",    "OnOff"
+	StaticText ""
     Option "Debug Prints",       "pm_infect_debug",     "OnOff"
-    Slider "Scan Delay (tics)",  "pm_infect_scandelay", 0, 10, 1
+}
+
+OptionMenu "projectmalice_allmultipliersettings"
+{
+	Title "Multiplier Options"
 	StaticText ""
+    StaticText "Multiplier Options", white
 	StaticText ""
-	
     // ---------------- Bullet Multiplier ----------------
     StaticText "Bullet Damage Multiplier"
     StaticText "Change damage multipliers of every bullet."
