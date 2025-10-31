@@ -1747,7 +1747,7 @@ $volume MancubStep 0.7
 
 PM/AvatarIntro	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarIntro.ogg"
 PM/AvatarIntroGiggle	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarIntroGiggle.ogg"
-$rolloff PM/AvatarIntroGiggle 600 8200
+$rolloff PM/AvatarIntroGiggle 600 15000
 
 PM/AvatarBreathe	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarBreath.ogg"
 $rolloff PM/AvatarBreathe 600 4200
@@ -1756,11 +1756,12 @@ $limit PM/AvatarBreathe 8
 $volume PM/AvatarBreathe 0.7
 
 EntAva/Footstep "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarFootstep.ogg"
-$rolloff EntAva/Footstep 350 1500
+$rolloff EntAva/Footstep 350 1700
 
 EntAva/MulchLoop "Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarMulchLoop.ogg"
 $rolloff EntAva/MulchLoop 1000 3500
 EntAva/Giggle	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarGiggles.ogg"
+$rolloff EntAva/Giggle 250 1800
 
 EntAva/ScreamLoop1	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop1.ogg"
 EntAva/ScreamLoop2	"Sounds/Monsters/Bosses/EntropicAvatar/EntAvatarScreamLoop2.ogg"

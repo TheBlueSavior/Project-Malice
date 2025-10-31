@@ -1,3 +1,334 @@
+Class PM_EntropicAvatarSpawner : Actor
+{
+	Default
+	{
+	Speed 50;
+	Radius 20;
+    Height 56;
+	Mass 40;
+	MONSTER;
+	+THRUACTORS
+	-SOLID
+	-SHOOTABLE
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	+THRUGHOST
+	+GHOST
+	-ACTIVATEMCROSS
+	+INVULNERABLE
+	+LOOKALLAROUND
+	+NOTARGET
+	-COUNTKILL
+	MaxStepHeight 64;
+	MaxDropOffHeight 64;
+	TeleFogSourceType "RailNullPuff";
+    TeleFogDestType "RailNullPuff";
+  }
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 1 A_Wander();
+		TNT1 A 5 A_Look();
+		Loop;
+	See:
+		TNT1 A 0;
+		TNT1 A 5 A_Chase();
+		TNT1 A 0 A_JumpIfTargetinLOS("Start",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_Jump(1,"Spawn");
+		Loop;
+	Start:
+		TNT1 A 0 {bNOCLIP = true;}
+		TNT1 A 0 A_SetAngle(random(-360,360));
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 A 0 A_StartSound("PM/AvatarIntro",34,CHANF_UI,1,ATTN_NONE);
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
+		TNT1 A 0 A_StartSound("PM/AvatarIntroGiggle",35,CHANF_DEFAULT,1,0.5);
+		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatarIntro",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	Die:
+		Stop;
+	}
+}
+
+Class PM_EntropicAvatarIntro : PMBossMonsterBase
+{
+	Default
+	{
+		Health 800;
+		Radius 28;
+		Height 90;
+		Mass 2000;
+		Speed 5;
+		Monster;
+		MeleeRange 90;
+		MaxStepHeight 80;
+		MaxDropOffHeight 80;
+		Species "VoidElder";
+		Tag "...";
+		+NORADIUSDMG;
+		+FLOORCLIP;
+		+BOSS;
+		+NOINFIGHTING;
+		+DONTHARMSPECIES;
+		+LOOKALLAROUND;
+		+BRIGHT;
+		+SLIDESONWALLS;
+		+NOEXTREMEDEATH;
+		+THRUSPECIES;
+		+DONTHARMCLASS;
+		+DONTFALL;
+		+NOICEDEATH;
+		+DROPOFF;
+		+NOBLOCKMONST;
+		+NOBLOOD;
+		+MISSILEevenMORE;
+		+NEVERFAST
+		+LOOKALLAROUND
+		+BRIGHT;
+		+NOCLIP
+		-COUNTKILL
+		+NOPAIN
+		Obituary "%o was hunted.";
+		HitObituary "%o was eviscerated.";
+		TeleFogSourceType "RailNullPuff";
+		TeleFogDestType "RailNullPuff";
+	}
+	
+	protected TextureId tex[8];
+	
+	void EAvatarEffects()
+	{
+		A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+	}
+	
+	static const string TagNames[] =
+	{
+		"RUN", "RUN", "Run.", "L?GHTBR?NGER", "!", "@", "#", "$", "???", "?", "%*$()", "@#$(", "$@(#)%*", "^", "*", "LIGHTBRINGER", "EN?ROP?C AV??AR", "VOID VOID VOID", "ENTROPIC AVATAR", "You will be beautiful.",
+		"RNU", "HELP.", "void", "($#%#@*%)(#@*$()*@#", "()%*&@#(&)%!&%*_&!%)*(@)$*", "^)%__+_#", "!_@#+!_", "Unknown", "", " ", "suffer", "CUT THE FLESH", "PEEL THE SKIN", "BREAK THE BONE", "THE VOICES",
+		"RRUUNN", "DEPR?V??Y ?F HUM??I?Y", "YOU ARE SEEING IT, AND IT IS BEAUTIFUL", "FACILIS DECENSUS AVERNO", "AVERNO", "HELL", "______________________________"
+	};
+	
+	override void PostBeginPlay()
+	{
+	 sightcheck = random(150, 400);
+	 tex[0] = TexMan.CheckForTexture("RUNGA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("RUNGB0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("RUNGC0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("RUNGD0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("RUNGE0",TexMan.Type_Sprite);
+	 tex[5] = TexMan.CheckForTexture("RUNGF0",TexMan.Type_Sprite);
+	 tex[6] = TexMan.CheckForTexture("RUNGG0",TexMan.Type_Sprite);
+	 tex[7] = TexMan.CheckForTexture("RUNGH0",TexMan.Type_Sprite);
+	}
+	
+	override void Tick()
+	{
+		if (level.isFrozen()) return;
+		super.Tick();
+		
+		if ((level.maptime % 2) == 0)
+		{
+		for (int i = 2; i > 0; i--)
+		{
+			A_SpawnParticleEx
+			(   
+			 "000000",
+			 TexMan.CheckForTexture("GNSMK0"),
+			 style: STYLE_Normal,
+			 flags: SPF_ROLL|SPF_RELATIVE,
+			 lifetime: random(3,80),
+			 size: frandom(30,200),
+			 angle: 0,
+			 xoff: frandom(-20,20),
+			 yoff: frandom(-20,20),
+			 zoff: frandom(0,115),
+			 velx: frandom(-1,1),
+			 vely: frandom(-1,1),
+			 velz: frandom(-1,1),
+			 accelx: 0,
+			 accely: 0,
+			 accelz: 0,
+			 startalphaf: frandom(0.1,0.6),
+			 fadestepf: -1,
+			 sizestep: frandom(0.2,5),
+			 startroll: random(-180,180),
+			 rollvel: frandom(-0.5,0.5),
+			 rollacc: 0
+			);
+			A_SpawnParticleEx
+			(
+			"000000",
+			TexMan.CheckForTexture("SPKOA0"),
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(200,500),
+			size: frandom(0.8,30),
+			xoff: random(-2000,2000),
+			yoff: random(-2000,2000),
+			zoff: random(-300,300),
+			velx: frandom(-1,1),
+			vely: frandom(-1,1),
+			velz: frandom(-1,1),
+			accelx: frandom(-0.1,0.1),
+			accely: frandom(-0.1,0.1),
+			accelz: frandom(-0.1,0.1),
+			startalphaf: 1.0,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180)
+			);
+		}
+
+		A_SpawnParticleEx
+		(
+		"000000",
+		TexMan.CheckForTexture("PURLA0"),
+		style: STYLE_Normal,
+		flags: SPF_ROLL|SPF_RELATIVE,
+		lifetime: random(1,25),
+		size: frandom(1,300),
+		xoff: frandom(-10,10),
+		yoff: frandom(-10,10),
+		zoff: frandom(0,110),
+		velx: random(-1,1),
+		vely: random(-1,1),
+		velz: random(-1,1),
+		startalphaf:frandom(0.1, 0.5),
+		fadestepf: -1,
+		sizestep: frandom(-5,5),
+		startroll: random(-180,180),
+		rollvel: frandom(-2,2)
+		);
+		}
+		EAvatarEffects();
+		
+		if (run)
+		{
+			if (!(GetAge() % 2))
+			{
+				A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+				A_AvatarGlitch();
+			}
+		}
+		
+		A_AvatarGlitch();
+		
+		//Tag
+		SetTag(TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]..TagNames[random(0, TagNames.size() - 1)]);
+	}
+	
+	void A_AvatarGlitch(vector3 pvel = (0, 0, 0))
+	{
+		A_SpawnParticleEx
+		(
+		"000000",
+		tex[random(0, 7)],
+		style: STYLE_Normal,
+		flags: SPF_RELATIVE,
+		lifetime: random(2, 5),
+		size: 50,
+		xoff: frandom(-radius,radius),
+		yoff: frandom(-radius,radius),
+		zoff: frandom(0,height * 1.65),
+		velx: pvel.x,
+		vely: pvel.y,
+		velz: pvel.z,
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0
+		);
+	}
+	
+	bool run;
+	int sightcheck;
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_StopSound(CHAN_ITEM);
+		TNT1 A 0 A_StopSound(CHAN_VOICE);
+		TNT1 A 0 A_AttachLightDef("ENTITY-Aurora","ENTITYAurora");
+	Floaty:
+		TNT1 A 0;
+		TNT1 A 0 A_QuakeEx(1,1,1,3,0,750,"*");
+		TNT1 A 0 {bFLOATBOB = true;}
+		TNT1 A 0 {bNOPAIN = true;}
+		RUNR A 1 A_Look();
+		TNT1 A 0
+		{
+			int start = Random(0, MAXPLAYERS-1);
+			for (int k = 0; k < MAXPLAYERS; k++)
+			{
+			int i = (start + k) % MAXPLAYERS;
+			if (!PlayerInGame[i]) continue;
+			PlayerPawn pp = players[i].mo;
+			if (pp && pp.health > 0) { target = pp; SetStateLabel("See"); break; }
+			}
+		}
+		loop;
+	See:
+		TNT1 A 0 A_StartSound("EntAva/Giggle",CHAN_VOICE,CHANF_LOOP);
+		TNT1 A 0 A_StartSound(random(0, 1) ? "EntAva/ScreamLoop2" : "EntAva/ScreamLoop1",CHAN_ITEM,CHANF_LOOP,0.5,0.6);
+		TNT1 A 0 A_AttachLightDef("ENTITY-Aurora","ENTITYAurora");
+	SeeWatch:
+		TNT1 A 0 A_SetSpeed(14);
+		RUNR AAAAAA 1
+			{
+			A_AvatarGlitch();
+			A_FaceTarget();
+			A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+			{bFLOATBOB = true;}
+			A_Chase(null,null);
+			}
+		TNT1 A 0 A_CheckSight("SeeWatch");
+	FloatyLooky:
+		TNT1 A 0;
+		TNT1 A 0 A_SetSpeed(3);
+		RUNR AAAAAA 2
+			{
+			A_AvatarGlitch();
+			A_FaceTarget();
+			A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+			{bFLOATBOB = true;}
+			A_Chase(null,null);
+			}
+		TNT1 A 0 A_Jump(25,"ShadowBallTry");
+		TNT1 A 0 A_CheckSight("SeeWatch");
+		Goto FloatyLooky;
+	ShadowBallTry:
+		TNT1 A 0 A_CheckSight("SeeWatch");
+	ShadowBall:
+		TNT1 A 0;
+		TNT1 A 0 A_SetSpeed(2);
+		RUNR AAAAAAAAAAAA 3
+			{
+			A_SpawnProjectile("PM_PotsBall",random(30,180),random(-90,90),frandom(-8,8),CMF_OFFSETPITCH,frandom(-5,5));
+			A_AvatarGlitch();
+			A_FaceTarget();
+			A_SetScale(frandom(.97,1.03),frandom(.99,1.01));
+			A_Chase(null,null);
+			{bFLOATBOB = true;}
+			}
+		Goto FloatyLooky;
+	Melee:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+
 Class PM_EntropicAvatar : PMBossMonsterBase
 {
 
@@ -45,6 +376,8 @@ Class PM_EntropicAvatar : PMBossMonsterBase
 		+NEVERFAST
 		+LOOKALLAROUND
 		+BRIGHT;
+		+NOCLIP
+		+NOPAIN
 		Obituary "%o was hunted.";
 		HitObituary "%o was eviscerated.";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";
@@ -214,6 +547,17 @@ Class PM_EntropicAvatar : PMBossMonsterBase
 		TNT1 A 0 {bFLOATBOB = true;}
 		TNT1 A 0 {bNOPAIN = true;}
 		RUNR A 1 A_Look();
+		TNT1 A 0
+		{
+			int start = Random(0, MAXPLAYERS-1);
+			for (int k = 0; k < MAXPLAYERS; k++)
+			{
+			int i = (start + k) % MAXPLAYERS;
+			if (!PlayerInGame[i]) continue;
+			PlayerPawn pp = players[i].mo;
+			if (pp && pp.health > 0) { target = pp; SetStateLabel("See"); break; }
+			}
+		}
 		loop;
 		
 //////////////////////////////////////////////////////////////STILL JOJO
@@ -245,11 +589,7 @@ Class PM_EntropicAvatar : PMBossMonsterBase
 			if (health < GetMaxHealth() && target && CheckSight(target)) SetStateLabel("ROAR");
 			if (sightcheck <= 0) SetStateLabel("ROAR");
 			}
-		TNT1 A 0 A_JumpIfInTargetLOS("Observe",30,JLOSF_DEADNOJUMP,800);
-		Goto FloatyLooky+2;
-	Observe:
-		TNT1 A 0 { sightcheck--; }
-		Goto FloatyLooky+2;
+		TNT1 A 0 A_JumpIfInTargetLOS("ROAR",30,JLOSF_DEADNOJUMP,800);
 //////////////////////////////////////////////////////////////YELL AT YOU
 		
 	ROAR:

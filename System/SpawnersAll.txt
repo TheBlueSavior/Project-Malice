@@ -185,14 +185,14 @@ Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 {
 	DropItem "PM_Director", 255, 55
-	DropItem "PM_EntropicAvatar", 255, 1
+	DropItem "PM_EntropicAvatarSpawner", 255, 1
 }
 
 Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 {
 	DropItem "PM_Tyrant", 255, 50
 	DropItem "PM_Kurgan", 255, 50
-	DropItem "PM_EntropicAvatar", 255, 1
+	DropItem "PM_EntropicAvatarSpawner", 255, 1
 }
 
 /*
