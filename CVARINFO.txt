@@ -47,6 +47,10 @@ Server Float pm_healthfactor_void = 1;
 //Dehacked compat
 server bool projectmalice_dehacked_wolfss_replace = true;
 
+//ghpstttttt
+server bool pm_ghost_debug = false;
+
+
 //Scout stuff
 server bool pm_scout_enabled = true; // master toggle for the scout spawn system
 server int  pm_scout_interval_base = 180; // starting seconds

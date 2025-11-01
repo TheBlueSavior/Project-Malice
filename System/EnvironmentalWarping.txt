@@ -99,7 +99,7 @@ class PM_SectorBleedInfection : EventHandler
 		int pidx = s.Portals[Sector.Ceiling]; // 0 => none
 		if (pidx != 0)
 		{
-			SectorPortal sp = level.SectorPortals[pidx];
+			let sp = level.SectorPortals[pidx];
 			if (sp != null)
 			{
 				if (sp.mType == SectorPortal.TYPE_SKYVIEWPOINT

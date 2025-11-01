@@ -43,6 +43,17 @@ Class PM_TeleportReinforcementManager : Actor
 		TNT1 A 0;
 		TNT1 A 1 A_Wander();
 		TNT1 A 5 A_Look();
+		TNT1 A 0
+		{
+			int start = Random(0, MAXPLAYERS-1);
+			for (int k = 0; k < MAXPLAYERS; k++)
+			{
+			int i = (start + k) % MAXPLAYERS;
+			if (!PlayerInGame[i]) continue;
+			PlayerPawn pp = players[i].mo;
+			if (pp && pp.health > 0) { target = pp; SetStateLabel("See"); break; }
+			}
+		}
 		Loop;
 	See:
 		TNT1 A 0;
@@ -372,6 +383,17 @@ Class PM_DemonTPReinforcementManager : Actor
 		TNT1 A 0;
 		TNT1 A 1 A_Wander();
 		TNT1 A 5 A_Look();
+		TNT1 A 0
+		{
+			int start = Random(0, MAXPLAYERS-1);
+			for (int k = 0; k < MAXPLAYERS; k++)
+			{
+			int i = (start + k) % MAXPLAYERS;
+			if (!PlayerInGame[i]) continue;
+			PlayerPawn pp = players[i].mo;
+			if (pp && pp.health > 0) { target = pp; SetStateLabel("See"); break; }
+			}
+		}
 		Loop;
 	See:
 		TNT1 A 0;
