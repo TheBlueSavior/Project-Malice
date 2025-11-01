@@ -6550,7 +6550,7 @@ $limit PM/OtherSideDrone5 5
 
 PM/WarpingCleansed "Sounds/Environment/PMWarpingCleansed.ogg"
 
-$random PM/GhostWhisper { PM/GhostWhisper1 PM/GhostWhisper2 PM/GhostWhisper3 PM/GhostWhisper4 PM/GhostWhisper5 PM/GhostWhisper6 PM/GhostWhisper7 }
+$random PM/GhostWhisper { PM/GhostWhisper1 PM/GhostWhisper2 PM/GhostWhisper3 PM/GhostWhisper4 PM/GhostWhisper5 PM/GhostWhisper6 PM/GhostWhisper7 PM/GhostWhisper8 PM/GhostWhisper9 PM/GhostWhisper10 PM/GhostWhisper11 }
 PM/GhostWhisper1 "Sounds/Monsters/Ghosts/PMGhostWhisper1.ogg"
 PM/GhostWhisper2 "Sounds/Monsters/Ghosts/PMGhostWhisper2.ogg"
 PM/GhostWhisper3 "Sounds/Monsters/Ghosts/PMGhostWhisper3.ogg"
@@ -6558,6 +6558,10 @@ PM/GhostWhisper4 "Sounds/Monsters/Ghosts/PMGhostWhisper4.ogg"
 PM/GhostWhisper5 "Sounds/Monsters/Ghosts/PMGhostWhisper5.ogg"
 PM/GhostWhisper6 "Sounds/Monsters/Ghosts/PMGhostWhisper6.ogg"
 PM/GhostWhisper7 "Sounds/Monsters/Ghosts/PMGhostWhisper7.ogg"
+PM/GhostWhisper8 "Sounds/Monsters/Spectres/Nightmare/NightmareActive1.ogg"
+PM/GhostWhisper9 "Sounds/Monsters/Spectres/Nightmare/NightmareActive2.ogg"
+PM/GhostWhisper10 "Sounds/Monsters/Spectres/Nightmare/NightmareActive3.ogg"
+PM/GhostWhisper11 "Sounds/Monsters/Spectres/Nightmare/NightmareActive4.ogg"
 
 PM/GhostImp "Sounds/Monsters/Ghosts/PMGhostImp.ogg"
 $limit PM/GhostImp 12

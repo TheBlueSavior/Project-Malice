@@ -13,7 +13,7 @@ class PM_GhostWhisperer : Actor
 	{
 	Spawn:
 		TNT1 A 0;
-		TNT1 A 0 A_StartSound("PM/GhostWhisper",35,volume:frandom(0.1,1),attenuation:frandom(0.4,1.2),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_StartSound("PM/GhostWhisper",35,volume:frandom(0.0,0.4),attenuation:frandom(0.4,1.2),pitch:frandom(0.5,1.2));
 		TNT1 A 20;
 		Stop;
 	}
@@ -210,17 +210,17 @@ class PM_GhostImp : DoomImp
 	// Enter visible, shootable attack silhouette (still noclipping)
 	BeginAttack:
 		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(120);
 		TNT1 A 0 A_StartSound("PM/GhostImp",36,volume:frandom(0.1,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		Goto StartFly;
 
 	// --- Ghost Imp Attack (replaced with custom sequence) ---
 	Attack:
 		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
 		CH5R AAABBBCCCDDD 1
 		{
-		bShootable = true;
-		bVulnerable = true;
-		bSolid = true;
 		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
 		A_Chase("StartFly","AttackRanged");
@@ -230,12 +230,11 @@ class PM_GhostImp : DoomImp
 	AttackWander:
 		TNT1 A 0;
 		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
 		TNT1 A 0 A_CheckSight("AttackOutSight");
 		CH5R AABBCCDDAABBCCDD 1
 		{
-		bShootable = true;
-		bVulnerable = true;
-		bSolid = true;
 		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
 		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
@@ -402,11 +401,7 @@ class PM_GhostImp : DoomImp
 	// Fake-death flee & recover (short wander) then resume haunt
 	Flee:
 		TNT1 A 0;
-		TNT1 A 0 A_RaiseSelf();
-	Raise:
-		TNT1 A 0 { bNoClip = true; bThruActors = true; bShootable = false; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false;}
-		TNT1 A 0 { bNOGRAVITY = true; }
-		TNT1 A 0 A_SetHealth(60); //Original actor's amount
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 ThrustThing(random(0,360),random(0,16));
 		TNT1 A 0 ThrustThingZ(0,random(20,70),0,1);
 		TNT1 AAAAAAAAAAAAAAAA 1
@@ -415,17 +410,15 @@ class PM_GhostImp : DoomImp
 			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 			A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE);
 			}
-		TNT1 A 0 { bNOGRAVITY = true; }
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
-		TNT1 A 0 A_Jump(32, "Haunt"); // ~12.5% chance per pass to resume
-		Loop;
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
 	
 	// Real death: brief silhouette hold then remove
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(128,"Flee");
 		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
-		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.1,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 A_SetSpeed(16);
 		CH5R ABCDABCDABCDABCDABCDABCD 1
 		{
@@ -735,12 +728,15 @@ class PM_GhostDemon : Demon
 	// Enter visible, shootable attack silhouette (still noclipping)
 	BeginAttack:
 		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(300);
 		TNT1 A 0 A_StartSound("PM/GhostPinky",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.7,1.2));
 		Goto StartFly;
 
 	// --- Ghost Imp Attack (replaced with custom sequence) ---
 	Attack:
 		TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
 		SAR2 AAABBBCCCDDD 1
 		{
 		bShootable = true;
@@ -755,6 +751,8 @@ class PM_GhostDemon : Demon
 		Loop;
 	AttackWander:
 		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
 		TNT1 A 0 A_SetSpeed(10);
 		TNT1 A 0 A_CheckSight("AttackOutSight");
 		SAR2 AABBCCDDAABBCCDD 1
@@ -999,14 +997,9 @@ class PM_GhostDemon : Demon
 		TNT1 A 0 { PMGhost_EndAttack(); }
 		Goto Haunt;
 
-	// Fake-death flee & recover (short wander) then resume haunt
 	Flee:
 		TNT1 A 0;
-		TNT1 A 0 A_RaiseSelf();
-	Raise:
-		TNT1 A 0 { bNoClip = true; bThruActors = true; bShootable = false; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false;}
-		TNT1 A 0 { bNOGRAVITY = true; }
-		TNT1 A 0 A_SetHealth(150); //Original actor's amount
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 ThrustThing(random(0,360),random(0,16));
 		TNT1 A 0 ThrustThingZ(0,random(20,70),0,1);
 		TNT1 AAAAAAAAAAAAAAAA 1
@@ -1015,18 +1008,15 @@ class PM_GhostDemon : Demon
 			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
 			A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE);
 			}
-		TNT1 A 0 { bNOGRAVITY = true; }
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
-		TNT1 A 0 A_Jump(32, "Haunt"); // ~12.5% chance per pass to resume
-		Loop;
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
 	
-	// Real death: brief silhouette hold then remove
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_StopSound(37);
 		TNT1 A 0 A_Jump(128,"Flee");
 		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
-		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.1,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 A_SetSpeed(16);
 		SAR2 ABCDABCDABCDABCDABCDABCD 1
 		{
