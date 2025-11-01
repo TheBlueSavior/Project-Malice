@@ -98,16 +98,16 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 	TP:
 	Missile:
 		WOPI A 10 A_StartSound("ForlornWalker/Attack", CHAN_VOICE);
-		WOPI GGGGGGGG 2 Light("PM_SlothLight2") A_FaceTarget();
-		WOPI G 5 Light("PM_SlothLight1");
+		WOPI GGGG 2 Light("PM_SlothLight2") A_FaceTarget();
+		WOPI G 3 Light("PM_SlothLight1");
 		WOPI E 0 { if (shielded) SetStateLabel("MissileLoop"); }
 		WOPI E 0
 		{
 			bNOPAIN = true;
-			A_StartSound("Fusionite/Charge", CHAN_WEAPON, pitch: 0.50);
+			A_StartSound("Fusionite/Charge", CHAN_WEAPON, pitch: 0.60);
 			A_FaceTarget();
 		}
-		WOPI GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGH 1 Light("PM_SlothLight1") A_SpawnParticleEx("", TexMan.CheckForTexture("STR_A0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(20,10), size: frandom(0.5,15), xoff: random(130,150), yoff: random(-30,30), zoff: random(10,50), accelx: -1, startalphaf: 1.0, fadestepf: 0.1, sizestep: -0.4, startroll: random(-180,180));
+		WOPI GHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGHGH 1 Light("PM_SlothLight1") A_SpawnParticleEx("", TexMan.CheckForTexture("STR_A0"), style: STYLE_ADD, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(20,10), size: frandom(0.5,15), xoff: random(130,150), yoff: random(-30,30), zoff: random(10,50), accelx: -1, startalphaf: 1.0, fadestepf: 0.1, sizestep: -0.4, startroll: random(-180,180));
 		WOPI H 35 SlothShield(true);
 		TNT1 A 0 A_Jump(35,"ScatterShot");
 		Goto MissileLoop;
@@ -179,6 +179,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		TNT1 A 0 A_StopSound(CHAN_7);
 		TNT1 A 0 A_StartSound("PM/BigVentEnd",CHAN_7);
 	ZReload:
+		WOPI H 0 SlothShield(true);
 		TNT1 A 0 A_StartSound("PM/ArachnoReloadStart",CHAN_5);
 		WOPI A 20 A_FaceTarget();
 		WOPI A 35
@@ -198,6 +199,7 @@ Class PM_ForlornWalker : PMSlothMonsterBase
 		TNT1 A 0 { bNOPAIN = false; user_numbullets = random(99,130); }
 		TNT1 A 0 A_StartSound("ForlornWalker/Ready",CHAN_5);
 		WOPI GGG 5 A_FaceTarget();
+		TNT1 A 0 { if (shielded) SlothShield(false); }
 		TNT1 A 0 A_Jump(56,"Missile");
 		Goto See3;
 	Pain:
@@ -310,6 +312,7 @@ Class PM_ForlornShield : PM_PlasmaShieldBase
 		BloodType "PM_ShieldImpactSloth";
 		Health 800;
 		Radius 52;
+		Height 100;
 		Scale 1.75;
 		Alpha 0.01;
 		-FLATSPRITE
@@ -320,7 +323,7 @@ Class PM_ForlornShield : PM_PlasmaShieldBase
 	override void Tick()
 	{
 	    super.Tick();
-		if (master && master.health > 0) A_Warp(AAPTR_MASTER,0,0,-5,flags:WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+		if (master && master.health > 0) A_Warp(AAPTR_MASTER,0,0,-25,flags:WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
 		else SetStateLabel("Nullify");
 	}
 
