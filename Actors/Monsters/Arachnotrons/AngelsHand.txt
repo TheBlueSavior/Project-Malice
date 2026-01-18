@@ -55,8 +55,8 @@ Class PM_AngelsHand : PMPrideMonsterBase
 	override void Tick()
 	{
 		super.Tick();
-		y1 = 10.5 * sin(MsTimeF() * 0.35);
-		z1 = 7.5 * sin(MSTimeF() * 0.32);
+		y1 = 10.5 * sin(1000.0 / TICRATE * GetAge() * 0.35);
+		z1 = 7.5 * sin(1000.0 / TICRATE * GetAge() * 0.32);
 		if (floatcooldown > 0) floatcooldown--;
 	}
 	
