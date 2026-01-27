@@ -157,6 +157,10 @@ OptionMenu "projectmalice_allmultipliersettings"
     StaticText "Health Multiplier"
     StaticText "Change health multipliers of every enemy. Save the hassle."
     Slider "Health Multiplier:", "pm_healthfactor", 1, 10, 0.05, 2
+    StaticText " "
+    StaticText "Decrease damage thrust proportional to health increase."
+    StaticText "Enable if compensating for extremely high-damage weapons."
+	Option "Knockback Compensation", "pm_healthfactor_mass", "OnOff"
     //Slider "Damage Multiplier:", "pm_damagefactor", 0, 10, 0.10, 2
     StaticText " "
     StaticText " "

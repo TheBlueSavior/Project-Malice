@@ -295,6 +295,14 @@ class PMMonsterBase : Actor abstract
 		int(ceil(Default.Health * pm_healthfactor *
 		(SinName != "" ? 
 		CVar.GetCVar("pm_healthfactor_"..SinName).GetFloat() : 1.0)));
+		
+		if(pm_healthfactor_mass)
+		{
+			Mass = 
+			int(ceil(Default.Mass * pm_healthfactor *
+			(SinName != "" ? 
+			CVar.GetCVar("pm_healthfactor_"..SinName).GetFloat() : 1.0)));
+		}
 	}
 
 	override void Tick()
