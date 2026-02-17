@@ -6572,3 +6572,11 @@ PM/GhostPinkyMelee "Sounds/Monsters/Ghosts/PMGhostPinkyMelee.ogg"
 $limit PM/GhostPinkyMelee 12
 PM/GhostPinkyCharge "Sounds/Monsters/Ghosts/PMGhostPinkyCharge.ogg"
 $limit PM/GhostPinkyCharge 12
+
+PM/GhostSpectre "Sounds/Monsters/Ghosts/PMGhostSpectre.ogg"
+$limit PM/GhostSpectre 12
+
+PM/GhostSoul "Sounds/Monsters/Ghosts/PMGhostSoul.ogg"
+$limit PM/GhostSoul 12
+PM/GhostSoulAttack "Sounds/Monsters/Ghosts/PMGhostSoulAttack.ogg"
+$limit PM/GhostSoulAttack 12

@@ -332,15 +332,14 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
             case 'Demon':         e.Replacement = "PM_GhostDemon";         break;
             case 'Spectre':       e.Replacement = "PM_GhostSpectre";       break;
             case 'LostSoul':      e.Replacement = "PM_GhostLostSoul";      break;
-            case 'Cacodemon':     e.Replacement = "PM_GhostCacodemon";     break;
-            case 'Hellknight':
+            /*case 'Cacodemon':     e.Replacement = "PM_GhostCacodemon";     break;
             case 'HellKnight':    e.Replacement = "PM_GhostHellKnight";    break;
             case 'BaronOfHell':   e.Replacement = "PM_GhostBaron";         break;
             case 'Revenant':      e.Replacement = "PM_GhostRevenant";      break;
             case 'Arachnotron':   e.Replacement = "PM_GhostArachnotron";   break;
             case 'Fatso':         e.Replacement = "PM_GhostMancubus";      break;
             case 'PainElemental': e.Replacement = "PM_GhostPainElemental"; break;
-            case 'Archvile':      e.Replacement = "PM_GhostArchvile";      break;
+            case 'Archvile':      e.Replacement = "PM_GhostArchvile";      break;*/
         }
 
         dsReplaced++;
