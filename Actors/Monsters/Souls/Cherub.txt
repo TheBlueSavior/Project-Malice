@@ -10,7 +10,7 @@ Class PM_Cherub : PMLustMonsterBase
 		Health 60;
 		Scale 0.865;
 		PainChance 255;
-		Speed 8;
+		Speed 7;
 		Radius 16;
 		Height 56;
 		Mass 50;
@@ -23,7 +23,7 @@ Class PM_Cherub : PMLustMonsterBase
 		Renderstyle "Normal";
 		DamageFunction 15;
 		DeathHeight 4;
-		Obituary "%o died a slow death, which is caused by a lucky Cherub.";
+		Obituary "%o was pricked by a Cherub.";
 		Tag "Cherub";
 		Species "Soul";
 		Bloodtype "PM_NormalBloodBase";

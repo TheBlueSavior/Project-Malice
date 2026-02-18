@@ -743,7 +743,7 @@ Class PM_AraneaSniper : PMProjectileBase
 			A_RadiusThrust(1200,300,RTF_NOIMPACTDAMAGE);
 			A_QuakeEx(2,2,2,10,0,700,"",QF_RELATIVE|QF_SCALEDOWN|QF_3D,rollintensity:0.8,rollwave:0.8);
 			for (int i = 2; i > 0; i--) A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE, lifetime: random(15,30), size: random(252,450), xoff: frandom(-4, 4), yoff: frandom(-4, 4), zoff: frandom(-4, 4), velx: frandom(-0.5,0.5), vely: frandom(-0.5,0.5), velz: frandom(-0.5,0.5), startalphaf: frandom(.8,1), sizestep: -20, startroll: random(-180,180), rollvel: frandom(-4, 4));
-			for (int i = random(5, 15); i > 0; i--) A_SpawnParticleEx("34eb3a", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(50, 180), size: frandom(30, 120), xoff: frandom(-25, 25), yoff: frandom(-25, 25), zoff: frandom(-25, 25), startalphaf: frandom(.4, .8), sizestep: 5, startroll: random(-180,180), rollvel: frandom(-2, 2));
+			for (int i = random(5, 15); i > 0; i--) A_SpawnParticleEx("34eb3a", tex[0], style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE, lifetime: random(35,50), size: frandom(30, 120), xoff: frandom(-25, 25), yoff: frandom(-25, 25), zoff: frandom(-25, 25), startalphaf: frandom(.4, .8), sizestep: 5, startroll: random(-180,180), rollvel: frandom(-2, 2));
 			
 			for(int i=random(5,15);i>0;i--)
 				A_SpawnParticleEx("", tex[3], style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT, lifetime: random(1,75), size: frandom(1,35), xoff: -22, velx: frandom(5,8), vely: frandom(-4,4), velz: frandom(-5,5), startalphaf: 1.0, fadestepf: -1, sizestep: frandom(-1,-0.1), startroll: random(-180,180));

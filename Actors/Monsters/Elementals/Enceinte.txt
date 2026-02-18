@@ -99,7 +99,7 @@ Class PM_Enceinte : PMLustMonsterBase
 		Goto See;
 	Phase:
 		HRN_ A 0 A_SetRenderStyle(1, STYLE_ADDSHADED);
-		HRN_ AABBCCAABBCCAABBCCAABBCCAABBCCAABBCCAABBCCAABBCC 1
+		HRN_ AABBCCAABBCCAABBCCAABBCC 1
 		{
 			if (!(GetAge() % 20)) bFRIGHTENED = !bFRIGHTENED;
 			for (int i = 3; i > 0; i--) A_Wander();
