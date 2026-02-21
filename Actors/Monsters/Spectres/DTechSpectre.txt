@@ -422,7 +422,7 @@ Class PM_DemonTechSpectre : PMWarMonsterBase
     Death:
 	   TNT1 A 0 A_SetTranslucent(1);
        SRG3 I 8;
-       SRG3 I 0 A_FaceTarget;
+	   TNT1 A 0 A_StopSound(38);
 	   TNT1 AAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",10,0,32);
        SRG3 J 0 A_SpawnItemEx("PM_DTechSpectreArm", 10, 0, 32, 0, 8, 0, 0, 128);
        SRG3 J 8 PM_Scream();
