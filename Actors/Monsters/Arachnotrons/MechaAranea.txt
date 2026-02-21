@@ -43,21 +43,16 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 	
 	void SlothShield(bool act)
 	{
-		bINVULNERABLE = act;
-		bNOPAIN = act;
-		
-		if (act)
+	    if(act)
 		{
-		A_TakeInventory("PM_EnvySigilGoAway", 1);
-		let slothshield = Spawn("PM_CopyForlornShield",pos);
-		slothshield.master = self;
+		A_SpawnItemEx("PM_CopyForlornShield",flags: SXF_NOCHECKPOSITION|SXF_SETMASTER);
 		shielded = true;
 		A_StartSound("PM/EnvyTele", CHAN_WEAPON, pitch:1);
-		A_StartSound("ForlornWalker/Shield", CHAN_6, volume: 0.75, pitch: 0.85);
+		A_StartSound("ForlornWalker/Shield", CHAN_6, volume: 0.5, pitch: 0.65);
 		}
 		else
 		{ 
-		if (shielded) A_GiveInventory("PM_EnvySigilGoAway");
+		if (shielded) A_KillChildren("Disable",filter:"PM_CopyForlornShield");
 		shielded = false;
 		}
 	}
@@ -136,6 +131,8 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			TNT1 A 0;
 			TNT1 A 0 A_Jump(128,"SnipeFlankStart");
 			TNT1 A 0 PM_AlertSound();
+	    ShieldCheck:
+	        TNT1 A 0 { if (shielded) SlothShield(false); }
 		See:
 			SCRP A 0 A_SetSpeed(11);
 			SCRP A 2 A_StartSound("MechaAranea/Step",CHAN_6,CHANF_OVERLAP);
@@ -234,7 +231,8 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 			Goto See;
 		ReloadRetreat:
 		    TNT1 A 0 
-			{ 
+			{
+			  if(shielded) SlothShield(false);
 			  A_StartSound("PhaseCaco/Phase",10); 
 			  bFRIGHTENED = true; 
 			  bNOPAIN = true; 
@@ -409,7 +407,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		CopyForlornWalker:
 			SCRP E 1
 			{
-				if (user_numbullets >= 75) SlothShield(true);
+			    SlothShield(true);
 				A_StartSound("PMBelphegor/AimAdd",13);
 				AraneaCopyFX("WOPI");
 			}
@@ -422,7 +420,6 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		ForlornCopy:
 			SCRP E random(0,5)
 			{
-				if (user_numbullets < 75) SlothShield(false);
 				PM_CheckForNoAmmo(5);
 				A_StartSound("ForlornWalker/Star", CHAN_WEAPON);
 				for (int i = random(1, 2); i > 0; i--) A_SpawnProjectile("PM_CopyForlornStar", 60, 0, frandom(-50, 50), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-1, 6));
@@ -434,12 +431,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 				if (CheckProximity("PM_MechaAranea", 400, 3, CPXF_CHECKSIGHT)) tics = random(2, 7);
 				A_FaceTarget(5, 5);
 			}
-			SCRP D 0
-			{
-				if (target && !CheckSight(target)) { if (shielded) SlothShield(false); SetStateLabel("See"); }
-				if (!target) { if (shielded) SlothShield(false); SetStateLabel("See"); }
-				if (target && target.Health <= 0) { if (shielded) SlothShield(false); SetStateLabel("See"); }
-			}
+			SCRP D 0 A_CheckSight("ShieldCheck");
 			Loop;
 		CopyPlasmatron:
 			SCRP E 1
@@ -490,6 +482,7 @@ Class PM_MechaAranea : PMEnvyMonsterBase
 		NoAmmo:
 			TNT1 A 0 A_StartSound("ForlornWalker/Cooldown");
 			TNT1 A 0 { bNOPAIN = true; }
+			TNT1 A 0 { if (shielded) SlothShield(false); }
 			SCRP DDDDDDDDDDD 1 Light("Greenball3")
 			{
 			 A_SpawnParticleEx("", TexMan.CheckForTexture("SPKOG0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 3, size: 100.0, xoff: 10, zoff: 66, startalphaf: 0.9);
@@ -938,11 +931,9 @@ Class PM_CopyForlornShield : PM_ForlornShield
 	override void Tick()
 	{
 		Super.Tick();
-		A_Warp(AAPTR_MASTER,0,0,-20, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
-		if(master && master.CountInv("PM_EnvySigilGoAway") == 1)
-		 SetStateLabel("Death");
-		else if(!master)
-		 SetStateLabel("Death");
+		A_Warp(AAPTR_MASTER,0,0,-25, flags: WARPF_INTERPOLATE|WARPF_NOCHECKPOSITION);
+		if (master && master.health < 0)
+		SetStateLabel("Nullify");
 	}
 
 	States
