@@ -3539,6 +3539,9 @@ $random DTechSpectre/Walk { DTechWalk2 DTechWalk2 }
 $volume DTechSpectre/Walk 0.5
 $limit DTechSpectre/Walk 12
 
+WarHound/LShtCharge "Sounds/Monsters/Spectres/DTechSpectre/WarHoundCharge.ogg"
+$rolloff WarHound/LShtCharge 800 2000
+
 //Wicked
 $random WickSight     { WickSight1 WickSight2 }
 WickSight1                "sounds/Monsters/Cacodemons/Wicked/WickedSight1.ogg"
