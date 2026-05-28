@@ -245,7 +245,7 @@ Class PM_FeralImp : PMWrathMonsterBase
 	1ROT G 1 A_Explode(8*random(1,5),50,XF_NOTMISSILE,0,50);
 	1ROT GGGG 3 A_CheckFloor("LeapEnd");
 	TNT1 A 0 ThrustThing(random(0,360)*256/360,2,0,0);
-	Wait;
+	Goto LeapMelee+2;
   LeapEnd:
 	1ROT A 0 A_StartSound("fiend/land",CHAN_AUTO,CHANF_DEFAULT,1,2);
 	1ROT A 0 
