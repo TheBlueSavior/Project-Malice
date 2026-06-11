@@ -183,7 +183,7 @@ Class PM_HangmanCorpse : Actor
 		}
 		Loop;
 	Death:
-		D3IM P 1
+		I00_ P 1
 		{
 		 roll = 0;
 		 A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
@@ -193,8 +193,8 @@ Class PM_HangmanCorpse : Actor
 		  A_StartSound("GBloodSplashBig",CHAN_7,CHANF_DEFAULT,0.75);
 		 A_SetScale(1.05, 0.75);
 		}
-		D3IM PQRST 4;
-		D3IM U -1;
+		I00_ PQRST 4;
+		I00_ U -1;
 		Stop;
 	}
 }

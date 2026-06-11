@@ -41,11 +41,8 @@ Class PM_Noble : PMMonsterBase
 			SetStateLabel("Spawn");
 			return;
 		}
-		int arc;
 		let p = A_SpawnProjectile("PM_NobleBomb",40,0,random(-1,1));
-		if(distance2d(target) <= 300) arc = 20;
-		else arc = 75;
-		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.15);
 		A_FaceTarget();
    }
    

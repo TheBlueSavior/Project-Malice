@@ -44,11 +44,8 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 			SetStateLabel("Spawn");
 			return;
 		}
-		int arc;
 		let p = A_SpawnProjectile("PM_ZTrooperFragGrenade",33,0,random(-1,1));
-		if(distance2d(target) <= 300) arc = 20;
-		else arc = 90;
-		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.15);
 		A_FaceTarget();
 	}
     states
@@ -241,7 +238,7 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
       TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2");
       TNT1 A 0
 	  {
-		if(distance2d(target) <= 600) SetStateLabel("RealGrenade");
+		if(target && distance2d(target) <= 600) SetStateLabel("RealGrenade");
 	  }
       TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"Missile2");
       Goto Missile;
@@ -260,7 +257,7 @@ Class PM_ZombieTrooper : PMUnaffMonsterBase
 	  TNT1 A 0 A_JumpIfInventory("ZTrooperToken",1,"See");
 	  TNT1 A 0
 	  {
-		if(distance2d(target) <= 600) SetStateLabel("RealGrenade");
+		if(target && distance2d(target) <= 600) SetStateLabel("RealGrenade");
 	  }
 	  TNT1 A 0 A_JumpIfInventory("ZTrooperFragToken",3,"See");
 	  Goto WaitGrenade1;

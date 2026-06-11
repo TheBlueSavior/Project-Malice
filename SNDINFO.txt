@@ -890,8 +890,8 @@ NailZDeath2 "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerDeath2.mp3"
 Nailgunner/Fire "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerFire.ogg"
 Nailgunner/Altfire "Sounds/Monsters/Shotgunners/Nailgunner/NailgunnerAltFire.ogg"
 $random Nail/Ricochet { NailRic1 NailRic2 }
-NailRic1 "Sounds/Monsters/Nailgunner/Shotgunners/NailImpact1.ogg"
-NailRic2 "Sounds/Monsters/Nailgunner/Shotgunners/NailImpact2.ogg"
+NailRic1 "Sounds/Monsters/Shotgunners/Nailgunner/NailImpact1.ogg"
+NailRic2 "Sounds/Monsters/Shotgunners/Nailgunner/NailImpact2.ogg"
 $limit Nailgunner/Fire 0
 $rolloff Nailgunner/Fire 300 2200
 
@@ -1852,8 +1852,8 @@ BSoul/Death1 "Sounds/Monsters/Souls/BurnedSoul/BSoulDeath1.ogg"
 BSoul/Death2 "Sounds/Monsters/Souls/BurnedSoul/BSoulDeath2.ogg"
 BSoul/Death3 "Sounds/Monsters/Souls/BurnedSoul/BSoulDeath3.ogg"
 
-DTech/Fire "Sounds/Monsters/Pinkies/DTechBrute/DTechFire.ogg"
-DTech/Exp "Sounds/Monsters/Pinkies/DTechBrute/DTechExp.ogg"
+DTech/Fire "Sounds/Monsters/Pinkies/WarPig/DTechFire.ogg"
+DTech/Exp "Sounds/Monsters/Pinkies/WarPig/DTechExp.ogg"
 $random GHeavyPlasmaExp { GHPlasmaExp1 GHPlasmaExp2 GHPlasmaExp3 }
 GHPlasmaExp1 "Sounds/Monsters/SFX/GHeavyPlasmaExp1.ogg"
 GHPlasmaExp2 "Sounds/Monsters/SFX/GHeavyPlasmaExp2.ogg"
@@ -2010,6 +2010,7 @@ NetherConduit/ThunderCharge "Sounds/Monsters/Imps/NetherConduit/NetherConduitThu
 NetherConduit/ThunderOrb "Sounds/Monsters/Imps/NetherConduit/NetherConduitThunderOrb.ogg"
 NetherConduit/HomingLoop "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingLoop.ogg"
 NetherConduit/HomingExp "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingExp.ogg"
+NetherConduit/HomingThunder "Sounds/Monsters/Imps/NetherConduit/NetherConduitHomingThunder.ogg"
 
 $rolloff NetherConduit/HomingLoop 400 800
 $rolloff NetherConduit/HomingExp 200 2200
@@ -3030,10 +3031,10 @@ CarbineZDeath3 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZDeath3.o
 CarbineZDeath4 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZDeath4.ogg"
 
 $random CarbineZombie/Pain { CarbineZPain1 CarbineZPain2 CarbineZPain3 CarbineZPain4 CarbineZPain5 }
-CarbineZPain1 "Sounds/Monsters/Chaingunners/HeavyCarbineZombies/CarbineZPain1.ogg"
-CarbineZPain2 "Sounds/Monsters/Chaingunners/HeavyCarbineZombies/CarbineZPain2.ogg"
-CarbineZPain3 "Sounds/Monsters/Chaingunners/HeavyCarbineZombies/CarbineZPain3.ogg"
-CarbineZPain4 "Sounds/Monsters/Chaingunners/HeavyCarbineZombies/CarbineZPain4.ogg"
+CarbineZPain1 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZPain1.ogg"
+CarbineZPain2 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZPain2.ogg"
+CarbineZPain3 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZPain3.ogg"
+CarbineZPain4 "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineZPain4.ogg"
 
 Carbine/Shot "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineShot.ogg"
 Carbine/Stab "Sounds/Monsters/Chaingunners/HeavyCarbineZombie/CarbineStab.ogg"
@@ -3352,7 +3353,7 @@ $rolloff RFZ/RapidFire 150 2200
 RFZ/Winddown "Sounds/Monsters/Zombiemen/RFZombie/RFTWinddown.ogg"
 $rolloff RFZ/Winddown 500 1800
 
-Voidspawn/See "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSee.ogg"
+Voidspawn/See "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnSight.ogg"
 Voidspawn/Charge "Sounds/Monsters/Fodder/Horrorspawn/Voidspawn/VoidspawnCharge.ogg"
 
 
@@ -3471,75 +3472,76 @@ Malice/FireHit4 "Sounds/Other/MaliceFireHit4.ogg"
 Beholder/Rush "Sounds/Monsters/Cacodemons/Beholder/BeholderRush.ogg"
 
 //Demon Tech Brute
-$random DTechSee { DTechSee1 DTechSee2 DTechSee3 }
-DTechSee1         "sounds/Monsters/Pinkies/DTechBrute/DTechBruteSight1.ogg"
-DTechSee2         "sounds/Monsters/Pinkies/DTechBrute/DTechBruteSight2.ogg"
-DTechSee3         "sounds/Monsters/Pinkies/DTechBrute/DTechBruteSight3.ogg"
-$random DTechActive { DTechActive1 DTechActive2 DTechActive3 }
-DTechActive1       "sounds/Monsters/Pinkies/DTechBrute/DTechBruteAct1.ogg"
-DTechActive2       "sounds/Monsters/Pinkies/DTechBrute/DTechBruteAct2.ogg"
-DTechActive2       "sounds/Monsters/Pinkies/DTechBrute/DTechBruteAct3.ogg"
-$random DTechPain { DTechPain1 DTechPain2 DTechPain3 DTechPain4 }
-DTechPain1         "sounds/Monsters/Pinkies/DTechBrute/DTechBrutePain1.ogg"
-DTechPain2         "sounds/Monsters/Pinkies/DTechBrute/DTechBrutePain2.ogg"
-DTechPain3         "sounds/Monsters/Pinkies/DTechBrute/DTechBrutePain3.ogg"
-DTechPain4         "sounds/Monsters/Pinkies/DTechBrute/DTechBrutePain4.ogg"      
+$random WarPig/See { DTechSee1 DTechSee2 DTechSee3 }
+DTechSee1         "sounds/Monsters/Pinkies/WarPig/DTechBruteSight1.ogg"
+DTechSee2         "sounds/Monsters/Pinkies/WarPig/DTechBruteSight2.ogg"
+DTechSee3         "sounds/Monsters/Pinkies/WarPig/DTechBruteSight3.ogg"
+$random WarPig/Active { DTechActive1 DTechActive2 DTechActive3 }
+DTechActive1       "sounds/Monsters/Pinkies/WarPig/DTechBruteAct1.ogg"
+DTechActive2       "sounds/Monsters/Pinkies/WarPig/DTechBruteAct2.ogg"
+DTechActive3       "sounds/Monsters/Pinkies/WarPig/DTechBruteAct3.ogg"
+$random WarPig/Pain { DTechPain1 DTechPain2 DTechPain3 DTechPain4 }
+DTechPain1         "sounds/Monsters/Pinkies/WarPig/DTechBrutePain1.ogg"
+DTechPain2         "sounds/Monsters/Pinkies/WarPig/DTechBrutePain2.ogg"
+DTechPain3         "sounds/Monsters/Pinkies/WarPig/DTechBrutePain3.ogg"
+DTechPain4         "sounds/Monsters/Pinkies/WarPig/DTechBrutePain4.ogg"      
 $random DTechAttack { DTechAttack1 DTechAttack2 }      
-DTechAttack1          "sounds/Monsters/Pinkies/DTechBrute/DTechBruteAttack1.ogg"
-DTechAttack2           "sounds/Monsters/Pinkies/DTechBrute/DTechBruteAttack2.ogg"
-DTechDeath           "sounds/Monsters/Pinkies/DTechBrute/DTechBruteDeath.ogg"
+DTechAttack1          "sounds/Monsters/Pinkies/WarPig/DTechBruteAttack1.ogg"
+DTechAttack2           "sounds/Monsters/Pinkies/WarPig/DTechBruteAttack2.ogg"
+$random WarPig/Attack { DTechAttack1 DTechAttack2 }
+WarPig/Death           "sounds/Monsters/Pinkies/WarPig/DTechBruteDeath.ogg"
 
 $rolloff DTechAttack 350 1900
 
-$volume DTechSee 0.8
-$volume DTechActive 0.8
-$volume DTechPain 0.7
-$volume DTechDeath 0.7
+$volume WarPig/See 0.8
+$volume WarPig/Active 0.8
+$volume WarPig/Pain 0.7
+$volume WarPig/Death 0.7
 
 
 $pitchshiftrange 3
-$random DTechWalk { DTechWalk3 DTechWalk3}       
+$random WarPig/Walk { DTechWalk3 DTechWalk3}       
 DTechWalk1	"sounds/Monsters/SFX/DTechBruteWalk1.ogg"
 DTechWalk2	"sounds/Monsters/SFX/DTechBruteWalk2.ogg"
 DTechWalk3	"sounds/Monsters/SFX/DTechBruteWalk3.ogg"
 $pitchshiftrange 0
-$volume DTechWalk 1
-$limit DTechWalk 12
+$volume WarPig/Walk 1
+$limit WarPig/Walk 12
 
-WarPig/Engine "Sounds/Monsters/Pinkies/DTechBrute/DTechBruteEngine.ogg"
+WarPig/Engine "Sounds/Monsters/Pinkies/WarPig/DTechBruteEngine.ogg"
 $limit WarPig/Engine 12
 
 //Demon Tech Spectre
-$random DTechSpectre/Sight { DTechSpecSee1 DTechSpecSee2 }
-DTechSpecSee1 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreSight1.ogg"
-DTechSpecSee2 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreSight2.ogg"
+$random WarHound/Sight { DTechSpecSee1 DTechSpecSee2 }
+DTechSpecSee1 "Sounds/Monsters/Spectres/WarHound/DTechSpectreSight1.ogg"
+DTechSpecSee2 "Sounds/Monsters/Spectres/WarHound/DTechSpectreSight2.ogg"
 
-$volume DTechSpectre/Sight 0.54
+$volume WarHound/Sight 0.54
 
-$random DTechSpectre/Active { DTechSpecActive1 DTechSpecActive2 DTechSpecActive3 }
-DTechSpecActive1 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreActive1.ogg"
-DTechSpecActive2 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreActive2.ogg"
-DTechSpecActive3 "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreActive3.ogg"
+$random WarHound/Active { DTechSpecActive1 DTechSpecActive2 DTechSpecActive3 }
+DTechSpecActive1 "Sounds/Monsters/Spectres/WarHound/DTechSpectreActive1.ogg"
+DTechSpecActive2 "Sounds/Monsters/Spectres/WarHound/DTechSpectreActive2.ogg"
+DTechSpecActive3 "Sounds/Monsters/Spectres/WarHound/DTechSpectreActive3.ogg"
 
-$volume DTechSpectre/Active 0.85
+$volume WarHound/Active 0.85
 
-DTechSpectre/Ready "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreReady.ogg"
-$rolloff DTechSpectre/Ready 800 2000
-$volume DTechSpectre/Ready 0.85
-DTechSpectre/Death "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreDeath.ogg"
-$volume DTechSpectre/Death 0.55
+WarHound/Ready "Sounds/Monsters/Spectres/WarHound/DTechSpectreReady.ogg"
+$rolloff WarHound/Ready 800 2000
+$volume WarHound/Ready 0.85
+WarHound/Death "Sounds/Monsters/Spectres/WarHound/DTechSpectreDeath.ogg"
+$volume WarHound/Death 0.55
 
-DTechSpectre/Fire "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreFire.ogg"
-$rolloff DTechSpectre/Fire 400 2500
+WarHound/Fire "Sounds/Monsters/Spectres/WarHound/DTechSpectreFire.ogg"
+$rolloff WarHound/Fire 400 2500
 
-DTechSpectre/Sniper "Sounds/Monsters/Spectres/DTechSpectre/DTechSpectreSniper.ogg"
-$rolloff DTechSpectre/Sniper 800 2000
+WarHound/Sniper "Sounds/Monsters/Spectres/WarHound/DTechSpectreSniper.ogg"
+$rolloff WarHound/Sniper 800 2000
 
-$random DTechSpectre/Walk { DTechWalk2 DTechWalk2 }       
-$volume DTechSpectre/Walk 0.5
-$limit DTechSpectre/Walk 12
+$random WarHound/Walk { DTechWalk2 DTechWalk2 }       
+$volume WarHound/Walk 0.5
+$limit WarHound/Walk 12
 
-WarHound/LShtCharge "Sounds/Monsters/Spectres/DTechSpectre/WarHoundCharge.ogg"
+WarHound/LShtCharge "Sounds/Monsters/Spectres/WarHound/WarHoundCharge.ogg"
 $rolloff WarHound/LShtCharge 800 2000
 
 //Wicked
@@ -3830,7 +3832,7 @@ $rolloff PistolZombie/Active 200 1200
 $random PistolZombie/Pain { PistolZombie/Pain1 PistolZombie/Pain2 PistolZombie/Pain3 }
 PistolZombie/Pain1 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombiePain1.ogg"
 PistolZombie/Pain2 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombiePain2.ogg"
-PistolZombie/Pain3 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombiePain3,ogg"
+PistolZombie/Pain3 "Sounds/Monsters/Zombiemen/PistolZombie/PistolZombiePain3.ogg"
 
 $rolloff PistolZombie/Pain 300 1200
 
@@ -4818,7 +4820,7 @@ CivZombie/IEDTakeOut "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDTakeOut3.o
 
 CivZombie/IEDBounce "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDBounce.ogg"
 CivZombie/IEDBeep   "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDBeep.ogg"
-CivZombie/IEDBeepConfirm "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDConfirm.ogg"
+CivZombie/IEDBeepConfirm "Sounds/Monsters/Zombiemen/CivilianZombie/CivZIEDBeepConfirm.ogg"
 CivZombie/MolotovFuse   "Sounds/Monsters/Zombiemen/CivilianZombie/CivZMolotovFuse.ogg"
 
 $random CivZombie/IEDDetonate { CivZombie/IEDDetonate1 CivZombie/IEDDetonate2 CivZombie/IEDDetonate3  }
@@ -6189,7 +6191,7 @@ $rolloff PMGreaterSigil 800 2500
 MechaAraneaReady "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaReady.ogg"
 MechaAraneaReadyAlt "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaReadyAlt.ogg"
 MechaAraneaBeamFire "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamFire.ogg"
-MechaAraneaBeamCooldown "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCooldow.ogg"
+MechaAraneaBeamCooldown "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCooldown.ogg"
 MechaAraneaBeamCharge "Sounds/Monsters/Arachnotrons/MechaAranea/MechaAraneaBeamCharge.ogg"
 
 Aranea/ArcCharge "Sounds/Monsters/Arachnotrons/MechaAranea/AraneaArcCharge.ogg"
@@ -6583,3 +6585,43 @@ PM/GhostSoul "Sounds/Monsters/Ghosts/PMGhostSoul.ogg"
 $limit PM/GhostSoul 12
 PM/GhostSoulAttack "Sounds/Monsters/Ghosts/PMGhostSoulAttack.ogg"
 $limit PM/GhostSoulAttack 12
+
+PM/GhostKnightAttack "Sounds/Monsters/Ghosts/PMGhostKnightAttack.ogg"
+$limit PM/GhostKnightAttack 12
+
+PM/GhostVileAttack "Sounds/Monsters/Ghosts/PMGhostVileAttack.ogg"
+$limit PM/GhostVileAttack 12
+
+Balor/Emerge "Sounds/Monsters/Paranormal/Balor/BalorEmerge.ogg"
+$rolloff Balor/Emerge 300 2200
+$limit Balor/Emerge 2
+
+Balor/Submerge "Sounds/Monsters/Paranormal/Balor/BalorSubmerge.ogg"
+$rolloff Balor/Submerge 200 1500
+$limit Balor/Submerge 2
+
+Balor/Spotted "Sounds/Monsters/Paranormal/Balor/BalorSpottedRoar.ogg"
+$rolloff Balor/Spotted 300 2400
+$limit Balor/Spotted 2
+
+Balor/ChaseLoop "Sounds/Monsters/Paranormal/Balor/BalorChaseLoop.ogg"
+$rolloff Balor/ChaseLoop 256 2000
+$limit Balor/ChaseLoop 2
+
+Balor/GazeScorch "Sounds/Monsters/Paranormal/Balor/BalorGazeScorchLoop.ogg"
+$rolloff Balor/GazeScorch 256 1600
+$limit Balor/GazeScorch 2
+
+Balor/GazeTinnitus "Sounds/Monsters/Paranormal/Balor/BalorGazeTinnitusLoop.ogg"
+$rolloff Balor/GazeTinnitus 200 1000
+$limit Balor/GazeTinnitus 1
+
+$random Balor/Pain { Balor/Pain1 Balor/Pain2 }
+Balor/Pain1 "Sounds/Monsters/Paranormal/Balor/BalorPain1.ogg"
+Balor/Pain2 "Sounds/Monsters/Paranormal/Balor/BalorPain2.ogg"
+$rolloff Balor/Pain 200 1300
+$limit Balor/Pain 3
+
+Balor/IdleLoop "Sounds/Monsters/Unused/Void/AVAVOIC.ogg"
+$rolloff Balor/IdleLoop 256 1400
+$limit Balor/IdleLoop 2

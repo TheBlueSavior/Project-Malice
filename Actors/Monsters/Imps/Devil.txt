@@ -33,15 +33,15 @@ Class PM_Devil : PMUnaffMonsterBase
   States
   {
   Spawn:
-    D3IM AAAAAAAAAA 10 PM_Look();
-	D3IM A 0
+    I00_ AAAAAAAAAA 10 PM_Look();
+	I00_ A 0
 	{
 	if (!random(0, 30))
 			{
 				A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
 			}
 	}
-	D3IM A 0 A_Jump(45,"Explore");
+	I00_ A 0 A_Jump(45,"Explore");
     Loop;
   Explore:
 	TNT1 A 0 { bMISSILEevenMore=False; }
@@ -53,27 +53,27 @@ Class PM_Devil : PMUnaffMonsterBase
 			}
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
-	D3IM AAABBB 4
+	I00_ AAABBB 4
 	{
 	PM_Look();
 	A_Wander();
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4,volume:0.7);
-	D3IM CCCDDD 4
+	I00_ CCCDDD 4
 	{
 	A_Wander();
 	PM_Look();
 	}
 	TNT1 A 0 A_SetSpeed(6);
-	D3IM A 0 A_Jump(40,"Spawn");
+	I00_ A 0 A_Jump(40,"Spawn");
     Loop;
   Look:
 	TNT1 A 0 { bMISSILEevenMore=False; }
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM AAABBB 2 PM_LookingForPlayer();
+	I00_ AAABBB 2 PM_LookingForPlayer();
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",150,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CCCDDD 2 PM_LookingForPlayer();
+	I00_ CCCDDD 2 PM_LookingForPlayer();
 	TNT1 A 0 A_SetSpeed(6);
     Loop;
   Spotted:
@@ -89,9 +89,9 @@ Class PM_Devil : PMUnaffMonsterBase
 	SetStateLabel("FearCheck"); 
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM AAABBB 2 A_Chase();
+	I00_ AAABBB 2 A_Chase();
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CCCDDD 2 A_Chase();
+	I00_ CCCDDD 2 A_Chase();
 	TNT1 A 0 A_SetSpeed(6);
 	TNT1 A 0 A_Jump(19,"AltSee","Fight");
 	Loop;
@@ -100,10 +100,10 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_SetSpeed(12);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AABB 2 A_Chase();
+    I00_ AABB 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CCDD 2 A_Chase();
+	I00_ CCDD 2 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_Jump(19,"See","Fight");
     loop;
@@ -112,43 +112,43 @@ Class PM_Devil : PMUnaffMonsterBase
 	Goto Fear;
    Backup:
 	TNT1 A 0 { bNODROPOFF=True; }
-	D3IM D 3
+	I00_ D 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CB 3
+	I00_ CB 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM AD 3
+	I00_ AD 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CB 3
+	I00_ CB 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM AD 3
+	I00_ AD 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CB 3
+	I00_ CB 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM A 3
+	I00_ A 3
 	{
 	 A_FaceTarget();
 	 A_Recoil(2);
@@ -163,24 +163,24 @@ Class PM_Devil : PMUnaffMonsterBase
 	 SetStateLabel("Missile");
 	return A_Jump(40,"FearCheck");
     }
-	D3IM W 1 A_FaceTarget();
-	D3IM WE 4 ;
+	I00_ W 1 A_FaceTarget();
+	I00_ WE 4 ;
     TNT1 A 0 ThrustThingZ(0,25,0,1);
     TNT1 A 0 A_FaceTarget();
     TNT1 A 0 A_Recoil (-12);
 	TNT1 A 0 A_StartSound("Devil/Roar",CHAN_7);
-	D3IM EF 2 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
-    D3IM F 6 A_FaceTarget();
-	D3IM G 1 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
-	D3IM GG 2;
-	D3IM GEEE 2;
+	I00_ EF 2 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
+    I00_ F 6 A_FaceTarget();
+	I00_ G 1 A_SpawnProjectile("PM_FeralLunge",18,0,0,CMF_AIMDIRECTION);
+	I00_ GG 2;
+	I00_ GEEE 2;
 	Goto Fear;
   Missile:
 	TNT1 A 0 A_Jump(140,"StandoffCheck");
 	TNT1 A 0 A_Jump(60,"FireDodge");
 	TNT1 A 0 A_Jump(20,"Roar");
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-    D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
+    I00_ EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -188,7 +188,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
-	D3IM FF 3 Light("Avatarfireball4") 
+	I00_ FF 3 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
@@ -197,17 +197,17 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",10,random(10,12),33,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
-    D3IM G 8 Light("Avatarfireball4") 
+    I00_ G 8 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_SpawnProjectile("PM_DevilImpBall");
 	}
-    D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
+    I00_ B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 A_Jump(30,"AltSee");
     goto See;
   FireDodge:
-    D3IM A 1 A_FaceTarget();
+    I00_ A 1 A_FaceTarget();
 	TNT1 A 0
 	{ 
 	bNODROPOFF = True;
@@ -222,9 +222,9 @@ Class PM_Devil : PMUnaffMonsterBase
 	  ThrustThingZ(0,30,0,1);
 	 }
 	}
-	D3IM CCBBB 1 A_FaceTarget();
+	I00_ CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-    D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
+    I00_ EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -232,7 +232,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
-	D3IM FF 3 Light("Avatarfireball4") 
+	I00_ FF 3 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
@@ -241,13 +241,13 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",10,random(10,12),33,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
-    D3IM G 8 Light("Avatarfireball4") 
+    I00_ G 8 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_SpawnProjectile("PM_DevilImpBall");
 	}
-    D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
+    I00_ B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
    Goto See;
   StandoffCheck:
@@ -259,7 +259,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(10,"See");
 	TNT1 A 0 A_JumpIfCloser(270,"FearCheck");
 	TNT1 A 0 A_SetSpeed(0);
-	D3IM AAAXXXAAAYYY 3 
+	I00_ AAAXXXAAAYYY 3 
 	{
 	A_Chase(null,"StandoffMissile");
 	A_FaceTarget();
@@ -268,13 +268,13 @@ Class PM_Devil : PMUnaffMonsterBase
 	Loop;
   StandoffRepos:
 	TNT1 A 0 { bFRIGHTENED=True; }
-	D3IM A 1 A_Chase();
+	I00_ A 1 A_Chase();
   StandoffReposLoop:
 	TNT1 A 0 A_SetSpeed(10);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AABB 2 A_Wander();
+    I00_ AABB 2 A_Wander();
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CCDD 2 A_Wander();
+	I00_ CCDD 2 A_Wander();
 	TNT1 A 0 { bFRIGHTENED=False; }
 	TNT1 A 0 A_Jump(115,"Standoff");
 	Loop;
@@ -282,7 +282,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Jump(60,"SFireDodge");
 	TNT1 A 0 A_Jump(50,"StandoffRoar");
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-    D3IM EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
+    I00_ EEEEEEEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -290,7 +290,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
-	D3IM FF 3 Light("Avatarfireball4") 
+	I00_ FF 3 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
@@ -299,19 +299,19 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",10,random(10,12),33,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
-	D3IM G 1 Light("Avatarfireball4");
-    D3IM G 7 Light("Avatarfireball4")
+	I00_ G 1 Light("Avatarfireball4");
+    I00_ G 7 Light("Avatarfireball4")
 	{
 	PM_LeadTarget(15);
 	A_SpawnProjectile("PM_DevilImpBall",32,0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch*1);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	}
-    D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
+    I00_ B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 A_JumpIfCloser(350,"Retreat");
 	Goto Standoff;
    SFireDodge:
-    D3IM A 1 A_FaceTarget();
+    I00_ A 1 A_FaceTarget();
 	TNT1 A 0
 	{ 
 	bNODROPOFF = True;
@@ -326,9 +326,9 @@ Class PM_Devil : PMUnaffMonsterBase
 	  ThrustThingZ(0,30,0,1);
 	 }
 	}
-	D3IM CCBBB 1 A_FaceTarget();
+	I00_ CCBBB 1 A_FaceTarget();
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-    D3IM EEEEEEEEEEE 1 Light("Avatarfireball4") 
+    I00_ EEEEEEEEEEE 1 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -336,7 +336,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
-	D3IM FF 3 Light("Avatarfireball4") 
+	I00_ FF 3 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
@@ -345,13 +345,13 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",10,random(10,12),33,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
-    D3IM G 8 Light("Avatarfireball4") 
+    I00_ G 8 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_SpawnProjectile("PM_DevilImpBall");
 	}
-    D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
+    I00_ B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 { bNODROPOFF=False; }
    Goto StandoffRepos;
   RetreatCheck:
@@ -359,24 +359,24 @@ Class PM_Devil : PMUnaffMonsterBase
   Retreat:
     TNT1 A 0 A_SetSpeed(9);
 	TNT1 A 0 { bFRIGHTENED=True; }
-    D3IM DD 2
+    I00_ DD 2
 	{
 	A_Chase();
 	A_FaceTarget();
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM CC 2
+    I00_ CC 2
 	{
 	A_Chase();
 	A_FaceTarget();
 	}
-    D3IM BB 2
+    I00_ BB 2
 	{
 	A_Chase();
 	A_FaceTarget();
 	}
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AA 2
+    I00_ AA 2
 	{
 	A_Chase();
 	A_FaceTarget();
@@ -387,7 +387,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 ThrustThingZ(0,24,0,1);
 	//TNT1 A 0 A_Recoil(5)
 	TNT1 A 0 A_StartSound("GenericChargeSmall");
-    D3IM EEEEEEEEEE 1 Light("Avatarfireball4")
+    I00_ EEEEEEEEEE 1 Light("Avatarfireball4")
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",2,random(18,24),30,0,0,2);
@@ -395,7 +395,7 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
-	D3IM FF 2 Light("Avatarfireball4") 
+	I00_ FF 2 Light("Avatarfireball4") 
 	{
 	A_FaceTarget();
 	A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
@@ -404,13 +404,13 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",7,random(12,14),32,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",10,random(10,12),33,0,0,2);
 	TNT1 A 0 A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
-    D3IM G 6 Light("Avatarfireball4") 
+    I00_ G 6 Light("Avatarfireball4") 
 	{
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_Spawnitemex("PM_OrangeFireEffect",15,random(10,12),33,0,0,2);
 	A_SpawnProjectile("PM_DevilImpBall",32,0,random(-30,30),CMF_OFFSETPITCH,random(-15,15));
 	}
-    D3IM B 2 Light("Avatarfireball4") A_FaceTarget();
+    I00_ B 2 Light("Avatarfireball4") A_FaceTarget();
 	TNT1 A 0 A_Jump(30,"See");
     goto FearCheck;
   FearCheck:
@@ -421,16 +421,16 @@ Class PM_Devil : PMUnaffMonsterBase
 	TNT1 A 0 { bFRIGHTENED=True; }
 	TNT1 A 0 A_SetSpeed(12);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AB 3 A_Chase();
+    I00_ AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CD 3 A_Chase();
+	I00_ CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-    D3IM AB 3 A_Chase();
+    I00_ AB 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	D3IM CD 3 A_Chase();
+	I00_ CD 3 A_Chase();
 	TNT1 AA 0 A_Recoil(-1);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 A_Jump(100,"DespMissile");
@@ -439,44 +439,44 @@ Class PM_Devil : PMUnaffMonsterBase
 	//TNT1 A 0 A_ChangeFlag("MISSILEevenMORE",0)
 	Goto See;
   Roar:
-	D3IM VVVVVV 3 A_FaceTarget();
+	I00_ VVVVVV 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Devil/Roar");
-	D3IM WWWWWWWWW 3 A_FaceTarget();
-	D3IM AAAAA 3 A_FaceTarget();
+	I00_ WWWWWWWWW 3 A_FaceTarget();
+	I00_ AAAAA 3 A_FaceTarget();
 	Goto See;
    StandoffRoar:
-	D3IM VVVVVV 3 A_FaceTarget();
+	I00_ VVVVVV 3 A_FaceTarget();
 	TNT1 A 0 A_StartSound("Devil/Roar");
-	D3IM WWWWWWWWW 3 A_FaceTarget();
-	D3IM AAAAA 3 A_FaceTarget();
+	I00_ WWWWWWWWW 3 A_FaceTarget();
+	I00_ AAAAA 3 A_FaceTarget();
 	Goto Standoff;
   Pain:
-    D3IM H 2;
+    I00_ H 2;
 	TNT1 A 0 { bNODROPOFF=False; }
-    D3IM H 2 A_Pain();
+    I00_ H 2 A_Pain();
 	TNT1 A 0 A_Jump(140,"Fear","Backup","AltSee");
 	TNT1 A 0 A_Jump(100,"DespMissile");
     goto See;
   Death:
-    D3IM I 8;
-    D3IM J 8 PM_Scream();
-    D3IM K 6;
-    D3IM L 6 A_NoBlocking();
+    I00_ I 8;
+    I00_ J 8 PM_Scream();
+    I00_ K 6;
+    I00_ L 6 A_NoBlocking();
 	  TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-    D3IM M -1;
+    I00_ M -1;
     stop;
   XDeath:
     TNT1 A 0 A_StopSound(555);
-    D3IM N 5 PM_Gib();
-    D3IM O 5 A_XScream();
-    D3IM P 5;
-    D3IM Q 5 A_NoBlocking();
-    D3IM RST 5;
-    D3IM U -1;
+    I00_ N 5 PM_Gib();
+    I00_ O 5 A_XScream();
+    I00_ P 5;
+    I00_ Q 5 A_NoBlocking();
+    I00_ RST 5;
+    I00_ U -1;
     stop;
   Raise:
-    D3IM ML 8;
-    D3IM KJI 6;
+    I00_ ML 8;
+    I00_ KJI 6;
     goto Look;
 	}
 }

@@ -166,7 +166,7 @@ Class PM_Warforge : PMWarMonsterBase
 			pm_attackloop = random(3,15);
 			A_StartSound("CyberZ/Prefire",CHAN_WEAPON);
 			A_StartSound("HellSoldier/ChargeReady",22);
-			A_StartSound("DTechAttack",CHAN_7);
+			A_StartSound("WarPig/Attack",CHAN_7);
 			//A_StartSound("Grievance/Charge", CHAN_WEAPON, pitch: 1.2);
 		}
 		MATR DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1 Light("ShadowBall4")
@@ -397,7 +397,7 @@ Class PM_WarforgeFlamer : PM_CyberFodderFire
    }
 }
 
-Class PM_WarforgeSniperTracer : PM_DTechSpectreSniperTracer
+Class PM_WarforgeSniperTracer : PM_WarHoundSniperTracer
 {
 	Default
 	{

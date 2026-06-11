@@ -1,0 +1,361 @@
+class PM_ProgressiveSpawnerHandler : StaticEventHandler
+{
+
+    string lastMapName;
+
+    CVar cvMode, cvProg, cvFullUnlock, cvDebug;
+
+    Array<Name>   tC;
+    Array<int>    tW;
+    Array<int>    tT;
+    Array<double> tEW;
+
+    private void EnsureCVars()
+    {
+        if (!cvMode)       cvMode       = CVar.FindCVar('pm_spawner_mode');
+        if (!cvProg)       cvProg       = CVar.FindCVar('pm_spawner_progression');
+        if (!cvFullUnlock) cvFullUnlock = CVar.FindCVar('pm_spawner_fullunlock');
+        if (!cvDebug)      cvDebug      = CVar.FindCVar('pm_spawner_debug');
+    }
+
+    private bool DebugEnabled()
+    {
+        EnsureCVars();
+        return cvDebug && cvDebug.GetBool();
+    }
+
+    override void NewGame()
+    {
+        EnsureCVars();
+        if (cvProg) cvProg.SetInt(0);
+        lastMapName = "";
+
+        if (DebugEnabled())
+            Console.Printf("[PM:Spawner] New Game: progression reset to 0");
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        if (gamestate == GS_TITLELEVEL || deathmatch) return;
+        EnsureCVars();
+
+        bool haveLast   = (lastMapName != "");
+        bool mapChanged = haveLast && (level.MapName != lastMapName);
+
+        if (mapChanged && !e.IsSaveGame && cvProg)
+        {
+            int newVal = cvProg.GetInt() + 1;
+            cvProg.SetInt(newVal);
+
+            if (DebugEnabled())
+            {
+                int full = cvFullUnlock ? cvFullUnlock.GetInt() : 25;
+                Console.Printf("[PM:Spawner] Map change %s -> %s: progression now %d/%d",
+                    lastMapName, level.MapName, newVal, full);
+            }
+        }
+        else if (!haveLast && DebugEnabled())
+        {
+            int cur  = cvProg ? cvProg.GetInt() : 0;
+            int full = cvFullUnlock ? cvFullUnlock.GetInt() : 25;
+            Console.Printf("[PM:Spawner] First map this run: %s, progression=%d/%d",
+                level.MapName, cur, full);
+        }
+
+        lastMapName = level.MapName;
+    }
+
+    override void CheckReplacement(ReplaceEvent e)
+    {
+        EnsureCVars();
+        if (!cvMode || cvMode.GetInt() != 1) return;
+
+        Name cls = e.Replacee.GetClassName();
+        if (!BuildTable(cls)) return;
+
+        Name picked = PickProgressive();
+        if (picked != 'None')
+        {
+            e.Replacement = picked;
+
+            if (DebugEnabled())
+            {
+                int cur = cvProg ? cvProg.GetInt() : 0;
+                Console.Printf("[PM:Spawner] %s -> %s (prog=%d)", cls, picked, cur);
+            }
+        }
+    }
+
+    double CalcWeight(int baseWeight, int tier, int maxTier, int maxBW, double progress)
+    {
+
+        if (tier == 0)
+        {
+            return double(baseWeight) * (1.0 - progress);
+        }
+
+        double unlockFrac = double(tier) / (maxTier + 1);
+        if (progress < unlockFrac) return 0.0;
+
+        double rampRange = 1.0 - unlockFrac;
+        if (rampRange <= 0.0) return double(baseWeight);
+
+        double maturity = (progress - unlockFrac) / rampRange;
+        double invertedW = double(maxBW + 1 - baseWeight);
+        return invertedW * maturity;
+    }
+
+    Name PickProgressive()
+    {
+        if (tC.Size() == 0) return 'None';
+
+        int full = cvFullUnlock ? cvFullUnlock.GetInt() : 25;
+        if (full < 1) full = 1;
+        int cur = cvProg ? cvProg.GetInt() : 0;
+        double progress = double(cur) / full;
+        if (progress > 1.0) progress = 1.0;
+
+        int maxTier = 0;
+        int maxBW   = 0;
+        for (int i = 0; i < tT.Size(); i++)
+        {
+            if (tT[i] > maxTier) maxTier = tT[i];
+            if (tW[i] > maxBW)   maxBW   = tW[i];
+        }
+        if (maxTier < 1) maxTier = 1;
+
+        tEW.Clear();
+        double totalWeight = 0;
+        for (int i = 0; i < tC.Size(); i++)
+        {
+            double ew = CalcWeight(tW[i], tT[i], maxTier, maxBW, progress);
+            tEW.Push(ew);
+            totalWeight += ew;
+        }
+
+        if (totalWeight <= 0.0) return tC[0];
+
+        double roll = frandom(0.0, totalWeight);
+        for (int i = 0; i < tEW.Size(); i++)
+        {
+            roll -= tEW[i];
+            if (roll <= 0.0) return tC[i];
+        }
+        return tC[tC.Size() - 1];
+    }
+
+    private void E(Name cls, int weight, int tier)
+    {
+        tC.Push(cls);
+        tW.Push(weight);
+        tT.Push(tier);
+    }
+
+    bool BuildTable(Name cls)
+    {
+        tC.Clear(); tW.Clear(); tT.Clear();
+
+        if      (cls == 'ZombieMan')        BuildZombiemanTable();
+        else if (cls == 'ShotgunGuy')       BuildShotgunGuyTable();
+        else if (cls == 'ChaingunGuy')      BuildChaingunGuyTable();
+        else if (cls == 'DoomImp')          BuildDoomImpTable();
+        else if (cls == 'Demon')            BuildDemonTable();
+        else if (cls == 'Spectre')          BuildSpectreTable();
+        else if (cls == 'LostSoul')         BuildLostSoulTable();
+        else if (cls == 'Revenant')         BuildRevenantTable();
+        else if (cls == 'Cacodemon')        BuildCacodemonTable();
+        else if (cls == 'PainElemental')    BuildPainElementalTable();
+        else if (cls == 'HellKnight')       BuildHellKnightTable();
+        else if (cls == 'BaronOfHell')      BuildBaronOfHellTable();
+        else if (cls == 'Fatso')            BuildFatsoTable();
+        else if (cls == 'Arachnotron')      BuildArachnotronTable();
+        else if (cls == 'Archvile')         BuildArchvileTable();
+        else if (cls == 'SpiderMastermind') BuildSpiderMastermindTable();
+        else if (cls == 'Cyberdemon')       BuildCyberdemonTable();
+        else return false;
+
+        return tC.Size() > 0;
+    }
+
+    void BuildZombiemanTable()
+    {
+        E('PM_ZombieSoldier',    80, 0);
+        E('PM_PistolZombie',     67, 0);
+        E('PM_ZombieMarine',     18, 1);
+        E('PM_CivilianZombie',   12, 1);
+        E('PM_ZombieTrooper',    11, 1);
+        E('PM_HellifiedSoldier', 10, 1);
+        E('PM_RFZombie',          7, 2);
+        E('PM_DecayedSoldier',    7, 2);
+        E('PM_CyberFodder',       4, 2);
+        E('PM_RuinedCavalier',    2, 3);
+        E('PM_FOCRifle',          1, 3);
+    }
+
+    void BuildShotgunGuyTable()
+    {
+        E('PM_FShotgunner',       80, 0);
+        E('PM_SlugShotgunner',    28, 1);
+        E('PM_Pregnant',          17, 1);
+        E('PM_CyberFodder',      12, 1);
+        E('PM_Nailgunner',        11, 1);
+        E('PM_EnragedBreacher',    9, 2);
+        E('PM_DecayedShotgunner',  7, 2);
+        E('PM_FallenShotgunner',   3, 3);
+        E('PM_FOCShotgun',         1, 3);
+    }
+
+    void BuildChaingunGuyTable()
+    {
+        E('PM_HeavyCarbineZombie', 57, 0);
+        E('PM_Sybarite',           14, 1);
+        E('PM_MutatedGunner',     12, 1);
+        E('PM_FallenMarine',        9, 1);
+        E('PM_Sharpshooter',        3, 2);
+        E('PM_Blasphemer',           2, 2);
+        E('PM_DecayedCommando',      2, 2);
+        E('PM_UmbralDisciple',       1, 3);
+    }
+
+    void BuildDoomImpTable()
+    {
+        E('PM_Devil',        80, 0);
+        E('PM_Charred',      12, 1);
+        E('PM_Zephyr',       12, 1);
+        E('PM_Tainted',       4, 2);
+        E('PM_Host',          3, 2);
+        E('PM_FeralImp',      3, 2);
+        E('PM_DuskWyrm',      3, 2);
+        E('PM_Harvester',     2, 3);
+        E('PM_Wendigo',       2, 3);
+        E('PM_WendigoGroup',  1, 3);
+        E('PM_Hellion',       1, 3);
+        E('PM_NetherConduit',     1, 3);
+    }
+
+    void BuildDemonTable()
+    {
+        E('PM_Brute',        44, 0);
+        E('PM_CyberBrute',    6, 1);
+        E('PM_Harpy',         6, 1);
+        E('PM_Glutton',       4, 1);
+        E('PM_Sawcubus',      2, 2);
+        E('PM_WarPig',        2, 2);
+        E('PM_BloodStalker',  1, 3);
+    }
+
+    void BuildSpectreTable()
+    {
+        E('PM_PhaseBrute',       74, 0);
+        E('PM_CyberSpectre',     24, 1);
+        E('PM_Maggot',           20, 1);
+        E('PM_WarHound', 10, 2);
+        E('PM_Prowler',           9, 2);
+        E('PM_Nightmare',         8, 2);
+        E('PM_Skulker',           1, 3);
+    }
+
+    void BuildLostSoulTable()
+    {
+        E('PM_BurntSoul',         47, 0);
+        E('PM_Cherub',             5, 1);
+        E('PM_Blot',               4, 1);
+        E('PM_BloodSkull',         4, 1);
+        E('PM_Bacillus',           3, 2);
+        E('PM_Gazer',              2, 2);
+        E('PM_FleshspawnDropper',   1, 3);
+    }
+
+    void BuildRevenantTable()
+    {
+        E('PM_Cadaver',            56, 0);
+        E('PM_Fiend',               8, 1);
+        E('PM_Husk',                3, 2);
+        E('PM_Grievance',           3, 2);
+        E('PM_Infested',            3, 2);
+        E('PM_Depraved',            2, 3);
+        E('PM_Draugr',              2, 3);
+        E('PM_DormantReaver',       1, 4);
+        E('PM_SoulReaverSpawner',   1, 4);
+    }
+
+    void BuildCacodemonTable()
+    {
+        E('PM_Wretched',     74, 0);
+        E('PM_PhaseCaco',    28, 1);
+        E('PM_Nymphite',     12, 1);
+        E('PM_Beholder',      9, 2);
+        E('PM_Infernal',      8, 2);
+        E('PM_Wicked',        7, 2);
+        E('PM_Watcher',       4, 3);
+        E('PM_Cataclysm',     4, 3);
+        E('PM_VoidFloater',   1, 4);
+    }
+
+    void BuildPainElementalTable()
+    {
+        E('PM_Defiler',         20, 0);
+        E('PM_Enceinte',         9, 1);
+        E('PM_GrossElemental',   5, 2);
+        E('PM_Warforge',         2, 3);
+    }
+
+    void BuildHellKnightTable()
+    {
+        E('PM_Squire',     61, 0);
+        E('PM_Noble',      28, 1);
+        E('PM_Whiplash',   15, 1);
+        E('PM_Landrazer',  11, 2);
+        E('PM_Vore',        6, 2);
+        E('PM_GraveGuard',  4, 3);
+    }
+
+    void BuildBaronOfHellTable()
+    {
+        E('PM_HeresyLord',        82, 0);
+        E('PM_Bruiser',           30, 1);
+        E('PM_SpawnOfBelphegor',  23, 1);
+        E('PM_Exalted',           16, 2);
+        E('PM_DeathEmissary',     10, 2);
+        E('PM_ControlledSoldier',  2, 3);
+        E('PM_Broken',             2, 3);
+        E('PM_PreSoulReaver',      1, 3);
+        E('PM_PotsScreamer',       2, 3);
+    }
+
+    void BuildFatsoTable()
+    {
+        E('PM_Hectebus',   32, 0);
+        E('PM_Corpulent',   7, 1);
+        E('PM_Bulltubus',   5, 2);
+        E('PM_Abhorrent',   1, 3);
+    }
+
+    void BuildArachnotronTable()
+    {
+        E('PM_Fusionite',      45, 0);
+        E('PM_Plasmatron',     18, 1);
+        E('PM_ForlornWalker',   9, 2);
+        E('PM_MechaAranea',     7, 2);
+        E('PM_AngelsHand',      3, 3);
+    }
+
+    void BuildArchvileTable()
+    {
+        E('PM_Exile',      6, 0);
+        E('PM_FleshMason', 1, 1);
+    }
+
+    void BuildSpiderMastermindTable()
+    {
+        E('PM_Director',               55, 0);
+        E('PM_EntropicAvatarSpawner',   1, 1);
+    }
+
+    void BuildCyberdemonTable()
+    {
+        E('PM_Tyrant',                 50, 0);
+        E('PM_Kurgan',                 50, 0);
+        E('PM_EntropicAvatarSpawner',   1, 1);
+    }
+}

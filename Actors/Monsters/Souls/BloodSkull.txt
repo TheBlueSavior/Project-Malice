@@ -162,7 +162,7 @@ Pain:
 	TNT1 A 0 A_Jump(80,"Retreat");
 	Goto See;
 Death:
-	TNT1 A 0;
+	SWBS A 1;
 	TNT1 A 0 A_SpawnItemEx("PM_BloodSkullDeathHead",0,0,0,random(-7,7),random(-7,7),random(0,7));
 	Stop;
 }
@@ -194,7 +194,7 @@ Class PM_BloodSkullDeathHead : Actor
 	States
 	{
 	Spawn:
-		TNT1 A 1;
+		SWBS A 1;
 		TNT1 A 0 A_StartSound("BSkull/Death",7);
 	Spawn1:
 		SWBS J 2 A_SpawnItemEx("MaliceBloodSplash",random(-5,5),random(-5,5),random(-5,5),random(-2,2),random(-2,2),random(0,3),0,SXF_NOCHECKPOSITION);
@@ -238,7 +238,7 @@ Spawn:
 	BDR2 A 5 A_CountDown;
 	Loop;
 Death:
-	TNT1 A 1;
+	SWBS A 1;
 	Stop;
   }
 }

@@ -27,11 +27,15 @@ OptionMenu "projectmalice_options"
 	StaticText ""
 	StaticText "Advanced Settings"
 	StaticText ""
+	Submenu "Spawner Progression Settings", "projectmalice_spawnersettings"
+	StaticText ""
 	Submenu "Fodder Spawning Settings", "projectmalice_foddersettings"
 	StaticText ""
 	Submenu "Scout/Reinforcement Settings", "projectmalice_scoutsettings"
 	StaticText ""
 	Submenu "Dimensional Instability Settings", "projectmalice_instabilitysettings"
+	StaticText ""
+	Submenu "Horror Spawner Settings", "projectmalice_horrorsettings"
 	StaticText ""
 	Submenu "Environment Warping Settings", "projectmalice_warpingsettings"
 	StaticText ""
@@ -90,6 +94,53 @@ OptionMenu "projectmalice_scoutsettings"
 	Slider "Grace period (sec)",      "pm_scout_grace_seconds",    0, 600,  1
 	StaticText ""
     Option "Debug Prints",          "pm_scout_debug",         "OnOff"
+}
+
+	// --------------- Spawner Progression ---------------
+OptionMenu "projectmalice_spawnersettings"
+{
+	Title "Spawner Progression Options"
+	StaticText ""
+	StaticText "Spawner Progression Options", white
+	StaticText ""
+	StaticText "Controls how monster variant selection evolves as you progress."
+	StaticText ""
+	StaticText "Weighted = Fixed spawn weights (default behavior)."
+	StaticText "Progressive = Common variants fade out, rarer variants unlock over time."
+	Option "Spawner Mode", "pm_spawner_mode", "PMSpawnerMode"
+	StaticText ""
+	StaticText "How many maps until the full roster is unlocked and weights are fully inverted."
+	Slider "Full Unlock (maps):", "pm_spawner_fullunlock", 1, 50, 1
+	StaticText ""
+	Option "Debug Prints", "pm_spawner_debug", "OnOff"
+}
+
+	// --------------- Horror Spawner ---------------
+OptionMenu "projectmalice_horrorsettings"
+{
+	Title "Horror Spawner Options"
+	StaticText ""
+	StaticText "Horror Spawner Options", white
+	StaticText ""
+	StaticText "Controls whether a horror-themed miniboss spawns in each level."
+	StaticText ""
+	StaticText "Static = Flat chance per level. Progression = Scales with levels completed."
+	Option "Horror Spawner Mode", "pm_horror_mode", "PMHorrorMode"
+	StaticText ""
+	StaticText "Static Mode", white
+	StaticText "Flat percentage chance of a horror miniboss spawning in each level."
+	StaticText "Only used in Static mode."
+	Slider "Spawn Chance (%):", "pm_horror_chance", 0, 100, 1
+	StaticText ""
+	StaticText "Progression Mode", white
+	StaticText "How many levels must be completed before horror minibosses can begin spawning."
+	Slider "Spawning Threshold (levels):", "pm_horror_threshold", 0, 30, 1
+	StaticText ""
+	StaticText "How many levels until a horror miniboss is guaranteed to spawn."
+	StaticText "Between threshold and this value, spawn chance scales linearly."
+	Slider "Guaranteed After (levels):", "pm_horror_max", 1, 50, 1
+	StaticText ""
+	Option "Debug Prints", "pm_horror_debug", "OnOff"
 }
 
 	// --------------- Dimensional Instability ---------------
@@ -454,6 +505,18 @@ OptionValue "PMFodderMode"
 {
     0, "Static (uses Fodder Multiplier)"
     1, "Progression (scales per level)"
+}
+
+OptionValue "PMSpawnerMode"
+{
+    0, "Weighted (fixed spawn weights)"
+    1, "Progressive (unlocks over time)"
+}
+
+OptionValue "PMHorrorMode"
+{
+    0, "Static (flat chance per level)"
+    1, "Progression (scales with levels completed)"
 }
 
 OptionValue "PMDimensionalMode"

@@ -425,7 +425,7 @@ Rotation-Speed 15.0
 FrameIndex TRCR A 0 0
 }
 
-Model PM_DTechSpectreShot
+Model PM_WarHoundShot
 { 
 Path "Models"
 Skin 0 "malicetracer2.tga"
@@ -435,7 +435,7 @@ PITCHFROMMOMENTUM
 FrameIndex TRCR B 0 0
 }
 
-Model PM_DTechSpectreSniperTracer
+Model PM_WarHoundSniperTracer
 { 
 Path "Models"
 Skin 0 "malicetracer2.tga"

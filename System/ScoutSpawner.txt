@@ -1,62 +1,66 @@
-// ====================================================================
-// Static event handler: owns campaign state + spawner setup
-// ====================================================================
 class PM_ScoutSpawnerEH : StaticEventHandler
 {
-    int LevelsCleared;                 // persists across maps/saves
-    SectorSpawnerThinker ThinkerRef;   // per-map thinker
+    int LevelsCleared;
+    PM_SectorSpawnerThinker ThinkerRef;
+    CVar cvDebug;
+
+    private bool DebugEnabled()
+    {
+        if (!cvDebug) cvDebug = CVar.GetCVar('pm_scout_debug');
+        return cvDebug && cvDebug.GetBool();
+    }
 
     override void NewGame()
     {
         LevelsCleared = 0;
 
-        CVar dcv = CVar.GetCVar('pm_scout_debug');
-        if (dcv && dcv.GetBool())
+        if (DebugEnabled())
             Console.Printf("Scout spawner: progression reset on NewGame (LevelsCleared=%d)", LevelsCleared);
     }
 
     override void WorldLoaded(WorldEvent e)
     {
-        // Create one thinker per map and initialize it with current progression.
-        ThinkerRef = SectorSpawnerThinker(new("SectorSpawnerThinker"));
+        if (gameState == GS_TITLELEVEL || deathmatch) return;
+
+        if (e.IsSaveGame)
+        {
+            ThinkerIterator it = ThinkerIterator.Create("PM_SectorSpawnerThinker");
+            ThinkerRef = PM_SectorSpawnerThinker(it.Next());
+            return;
+        }
+
+        ThinkerRef = PM_SectorSpawnerThinker(new("PM_SectorSpawnerThinker"));
         if (ThinkerRef != null)
         {
             ThinkerRef.Init(LevelsCleared);
 
-            CVar dcv = CVar.GetCVar('pm_scout_debug');
-            if (dcv && dcv.GetBool())
+            if (DebugEnabled())
                 Console.Printf("Scout spawner: progression loaded for map (LevelsCleared=%d)", LevelsCleared);
 
-            // HUB FILTER (DELAYED): start paused and schedule a delayed evaluation (fixed 1s).
             ThinkerRef.BeginDelayedHubCheck();
 
-            if (dcv && dcv.GetBool())
+            if (DebugEnabled())
                 Console.Printf("Scout spawner: waiting 1 s to evaluate monster count...");
         }
     }
 
     override void WorldUnloaded(WorldEvent e)
     {
-        // Count any map exit as completed.
+        if (gameState == GS_TITLELEVEL || deathmatch || e.IsReopen) return;
+
         LevelsCleared++;
 
-        CVar dcv = CVar.GetCVar('pm_scout_debug');
-        if (dcv && dcv.GetBool())
+        if (DebugEnabled())
             Console.Printf("Scout spawner: map complete → LevelsCleared now %d", LevelsCleared);
     }
 }
 
-
-// ====================================================================
-// Thinker: spawns one scout per interval; interval scales with clears
-// ====================================================================
-class SectorSpawnerThinker : Thinker
+class PM_SectorSpawnerThinker : Thinker
 {
-    // ---- Spawn pool ----
-    Array<Name> ScoutActors;              
+
+    Array<Name> ScoutActors;
     Array<int>  SpawnWeights;
 
-    // ---- Timing state ----
     int IntervalCounter;
     int SpawnIntervalSeconds;
     int SpawnIntervalTics;
@@ -64,23 +68,43 @@ class SectorSpawnerThinker : Thinker
     int FailCooldownTics;
     int GraceTics;
 
-    // --- Cached progression for this map ---
     int LevelsClearedForThisMap;
 
-    // --- HUB FILTER state ---
-    bool PausedForHub;            // true if this map is hub/empty or while checking
-    bool HubCheckPending;         // true while waiting before evaluating total_monsters
-    int  HubCheckDelayTics;       // countdown in tics before evaluating
+    bool PausedForHub;
+    bool HubCheckPending;
+    int  HubCheckDelayTics;
 
-    // --- Debug helpers ---
-    int  LastIntervalSeconds;     // to avoid spamming recompute logs
-    int  LastPrintedRemaining;    // last remaining seconds we printed
+    int  LastIntervalSeconds;
+    int  LastPrintedRemaining;
+
+    CVar cvDebug, cvEnabled;
+    CVar cvGraceSeconds, cvIntervalBase, cvIntervalStep, cvIntervalMin;
+    CVar cvFailCooldown, cvClearance, cvFlatnessStep, cvFlatnessRadius;
+    CVar cvAttemptSectors, cvAttemptJitter;
+
+    private bool DebugEnabled() { return cvDebug && cvDebug.GetBool(); }
+
+    void CacheCVars()
+    {
+        cvDebug          = CVar.GetCVar('pm_scout_debug');
+        cvEnabled        = CVar.GetCVar('pm_scout_enabled');
+        cvGraceSeconds   = CVar.GetCVar('pm_scout_grace_seconds');
+        cvIntervalBase   = CVar.GetCVar('pm_scout_interval_base');
+        cvIntervalStep   = CVar.GetCVar('pm_scout_interval_step');
+        cvIntervalMin    = CVar.GetCVar('pm_scout_interval_min');
+        cvFailCooldown   = CVar.GetCVar('pm_scout_fail_cooldown');
+        cvClearance      = CVar.GetCVar('pm_scout_clearance');
+        cvFlatnessStep   = CVar.GetCVar('pm_scout_flatness_step');
+        cvFlatnessRadius = CVar.GetCVar('pm_scout_flatness_radius');
+        cvAttemptSectors = CVar.GetCVar('pm_scout_attempt_sectors');
+        cvAttemptJitter  = CVar.GetCVar('pm_scout_attempt_jitter');
+    }
 
     void Init(int levelsCleared)
     {
         LevelsClearedForThisMap = levelsCleared;
+        CacheCVars();
 
-        // Spawn pool
         ScoutActors.Clear(); SpawnWeights.Clear();
         ScoutActors.Push('PM_ScoutCharred');
         ScoutActors.Push('PM_FallenScout');
@@ -93,8 +117,7 @@ class SectorSpawnerThinker : Thinker
         RecomputeIntervalFromCvars();
 
         int gsec = 20;
-        CVar gcv = CVar.GetCVar('pm_scout_grace_seconds');
-        if (gcv) gsec = gcv.GetInt();
+        if (cvGraceSeconds) gsec = cvGraceSeconds.GetInt();
         if (gsec < 0) gsec = 0;
         GraceTics = gsec * TICRATE;
 
@@ -102,51 +125,45 @@ class SectorSpawnerThinker : Thinker
         ResyncCounter    = 0;
         FailCooldownTics = 0;
 
-        // Start paused until we finish the delayed hub check.
         PausedForHub     = true;
         HubCheckPending  = false;
         HubCheckDelayTics= 0;
 
-        CVar dcv = CVar.GetCVar('pm_scout_debug');
-        if (dcv && dcv.GetBool())
+        if (DebugEnabled())
             Console.Printf("Scout spawner Thinker.Init: LevelsClearedForThisMap=%d, Grace=%d s",
                            LevelsClearedForThisMap, gsec);
     }
 
-    // ---------------- HUB FILTER (delayed check) ----------------
     void BeginDelayedHubCheck()
     {
-        // Fixed 1-second delay; no CVAR involved.
+
         HubCheckDelayTics = TICRATE;
         HubCheckPending   = true;
-        PausedForHub      = true; // remain paused until we evaluate
+        PausedForHub      = true;
     }
 
     void FinalizeHubCheck()
     {
-        bool shouldPause = (level != null) && (level.total_monsters <= 3);
+        bool shouldPause = (level.total_monsters <= 3);
         PausedForHub = shouldPause;
         HubCheckPending = false;
 
-        CVar dcv = CVar.GetCVar('pm_scout_debug');
-        if (dcv && dcv.GetBool())
+        if (DebugEnabled())
         {
             if (shouldPause)
-                Console.Printf("Scout spawner: paused (hub/empty map detected: total_monsters=%d)", level ? level.total_monsters : -1);
+                Console.Printf("Scout spawner: paused (hub/empty map detected: total_monsters=%d)", level.total_monsters);
             else
-                Console.Printf("Scout spawner: active (combat map detected: total_monsters=%d)", level ? level.total_monsters : -1);
+                Console.Printf("Scout spawner: active (combat map detected: total_monsters=%d)", level.total_monsters);
         }
     }
-    // ------------------------------------------------------------
 
     void RecomputeIntervalFromCvars()
     {
         int baseSec = 120, stepSec = 3, minSec = 30;
 
-        CVar cv;
-        cv = CVar.GetCVar('pm_scout_interval_base'); if (cv) baseSec = cv.GetInt();
-        cv = CVar.GetCVar('pm_scout_interval_step'); if (cv) stepSec = cv.GetInt();
-        cv = CVar.GetCVar('pm_scout_interval_min');  if (cv) minSec  = cv.GetInt();
+        if (cvIntervalBase) baseSec = cvIntervalBase.GetInt();
+        if (cvIntervalStep) stepSec = cvIntervalStep.GetInt();
+        if (cvIntervalMin)  minSec  = cvIntervalMin.GetInt();
 
         int s = baseSec - (stepSec * LevelsClearedForThisMap);
         if (s < minSec) s = minSec;
@@ -154,12 +171,10 @@ class SectorSpawnerThinker : Thinker
         SpawnIntervalSeconds = s;
         SpawnIntervalTics    = SpawnIntervalSeconds * TICRATE;
 
-        // Only print if the computed value changed
         if (LastIntervalSeconds != SpawnIntervalSeconds)
         {
             LastIntervalSeconds = SpawnIntervalSeconds;
-            CVar dcv = CVar.GetCVar('pm_scout_debug');
-            if (dcv && dcv.GetBool())
+            if (DebugEnabled())
                 Console.Printf("Scout spawner: interval set → base=%d, step=%d, min=%d, clears=%d ⇒ %d s",
                                baseSec, stepSec, minSec, LevelsClearedForThisMap, SpawnIntervalSeconds);
         }
@@ -167,12 +182,10 @@ class SectorSpawnerThinker : Thinker
 
     override void Tick()
     {
-        // Master toggle
-        CVar on = CVar.GetCVar('pm_scout_enabled');
-        if (on && !on.GetBool()) return;
+
+        if (cvEnabled && !cvEnabled.GetBool()) return;
         if (SpawnIntervalTics <= 0) return;
 
-        // Handle delayed hub check (stay paused while waiting)
         if (HubCheckPending)
         {
             if (HubCheckDelayTics > 0)
@@ -182,31 +195,26 @@ class SectorSpawnerThinker : Thinker
                 return;
             }
             FinalizeHubCheck();
-            // fall through; if we just unpaused, we can continue ticking normally
+
         }
 
-        // Pause gate (hub/empty maps)
         if (PausedForHub)
         {
             Super.Tick();
             return;
         }
 
-        // Keep timing in sync with CVAR tweaks (once per second)
         ResyncCounter++;
         if (ResyncCounter >= TICRATE)
         {
             ResyncCounter = 0;
             RecomputeIntervalFromCvars();
 
-            // Per-second countdown prints (throttled).
-            CVar dcv = CVar.GetCVar('pm_scout_debug');
-            if (dcv && dcv.GetBool())
+            if (DebugEnabled())
             {
                 int remaining = (SpawnIntervalTics - IntervalCounter) / TICRATE;
                 if (remaining < 0) remaining = 0;
 
-                // print every 5s when >10s remain; every second for last 10s
                 bool shouldPrint = false;
                 if (remaining <= 10)
                     shouldPrint = (remaining != LastPrintedRemaining);
@@ -221,7 +229,6 @@ class SectorSpawnerThinker : Thinker
             }
         }
 
-        // Initial grace period
         if (GraceTics > 0)
         {
             GraceTics--;
@@ -229,7 +236,6 @@ class SectorSpawnerThinker : Thinker
             return;
         }
 
-        // Post-failure cooldown
         if (FailCooldownTics > 0)
         {
             FailCooldownTics--;
@@ -241,9 +247,7 @@ class SectorSpawnerThinker : Thinker
 
         if (IntervalCounter >= SpawnIntervalTics)
         {
-            // About to try spawning
-            CVar dcv0 = CVar.GetCVar('pm_scout_debug');
-            if (dcv0 && dcv0.GetBool())
+            if (DebugEnabled())
                 Console.Printf("Scout spawner: interval elapsed → attempting spawn (clears=%d)", LevelsClearedForThisMap);
 
             bool spawned = TrySpawnOneRandomActor();
@@ -251,27 +255,22 @@ class SectorSpawnerThinker : Thinker
             {
                 IntervalCounter = 0;
 
-                CVar dcv = CVar.GetCVar('pm_scout_debug');
-                if (dcv && dcv.GetBool())
+                if (DebugEnabled())
                     Console.Printf("Scout spawner: spawned (clears=%d, interval=%d s)",
                                    LevelsClearedForThisMap, SpawnIntervalSeconds);
 
-                // reset countdown display
                 LastPrintedRemaining = -1;
             }
             else
             {
                 int coolSec = 0;
-                CVar cv = CVar.GetCVar('pm_scout_fail_cooldown');
-                if (cv) coolSec = cv.GetInt();
+                if (cvFailCooldown) coolSec = cvFailCooldown.GetInt();
                 if (coolSec < 0) coolSec = 0;
                 FailCooldownTics = coolSec * TICRATE;
 
-                CVar dcv2 = CVar.GetCVar('pm_scout_debug');
-                if (dcv2 && dcv2.GetBool())
+                if (DebugEnabled())
                     Console.Printf("Scout spawner: spawn failed, cooldown %d s (clears=%d)", coolSec, LevelsClearedForThisMap);
 
-                // keep IntervalCounter where it is; we'll retry after cooldown
                 LastPrintedRemaining = -1;
             }
         }
@@ -279,14 +278,12 @@ class SectorSpawnerThinker : Thinker
         Super.Tick();
     }
 
-    // ------------------- Walkability pre-checks -------------------
     bool PrecheckSpot(Sector sec, Vector2 p2, out double outFloorZ)
     {
         int clearance = 56, flatStep = 24, flatRadius = 16;
-        CVar cv;
-        cv = CVar.GetCVar('pm_scout_clearance');       if (cv) clearance = cv.GetInt();
-        cv = CVar.GetCVar('pm_scout_flatness_step');   if (cv) flatStep  = cv.GetInt();
-        cv = CVar.GetCVar('pm_scout_flatness_radius'); if (cv) flatRadius= cv.GetInt();
+        if (cvClearance)      clearance  = cvClearance.GetInt();
+        if (cvFlatnessStep)   flatStep   = cvFlatnessStep.GetInt();
+        if (cvFlatnessRadius) flatRadius = cvFlatnessRadius.GetInt();
 
         double floorZ  = sec.floorplane.ZAtPoint(p2);
         double ceilZ   = sec.ceilingplane.ZAtPoint(p2);
@@ -316,10 +313,9 @@ class SectorSpawnerThinker : Thinker
         return true;
     }
 
-    // ------------------- Spawn attempt -------------------
     bool TrySpawnOneRandomActor()
     {
-        if (ScoutActors.Size() == 0 || level == null || level.sectors.Size() == 0)
+        if (ScoutActors.Size() == 0 || level.sectors.Size() == 0)
             return false;
 
         int idx = GetRandomActorIndex();
@@ -328,8 +324,7 @@ class SectorSpawnerThinker : Thinker
         class<Actor> cls = typeName;
         if (cls == null)
         {
-            CVar dcv = CVar.GetCVar('pm_scout_debug');
-            if (dcv && dcv.GetBool())
+            if (DebugEnabled())
                 Console.Printf("Scout spawner: unknown class '%s'", typeName);
             return false;
         }
@@ -337,9 +332,8 @@ class SectorSpawnerThinker : Thinker
         int SectorTries = 128, JitterTries = 8;
         int JitterMax   = 128;
 
-        CVar cv;
-        cv = CVar.GetCVar('pm_scout_attempt_sectors'); if (cv) SectorTries = cv.GetInt();
-        cv = CVar.GetCVar('pm_scout_attempt_jitter');  if (cv) JitterTries = cv.GetInt();
+        if (cvAttemptSectors) SectorTries = cvAttemptSectors.GetInt();
+        if (cvAttemptJitter)  JitterTries = cvAttemptJitter.GetInt();
 
         if (SectorTries < 8)   SectorTries = 8;
         if (SectorTries > 256) SectorTries = 256;
@@ -359,8 +353,11 @@ class SectorSpawnerThinker : Thinker
                 double oy = c.y + Random(-JitterMax, JitterMax);
                 Vector2 p2; p2.x = ox; p2.y = oy;
 
+                Sector actualSec = level.PointInSector(p2);
+                if (actualSec == null) continue;
+
                 double floorZ;
-                if (!PrecheckSpot(sec, p2, floorZ)) continue;
+                if (!PrecheckSpot(actualSec, p2, floorZ)) continue;
 
                 Vector3 pos;
                 pos.x = p2.x; pos.y = p2.y; pos.z = floorZ;
@@ -370,8 +367,7 @@ class SectorSpawnerThinker : Thinker
                 let mo = Actor.Spawn(cls, pos);
                 if (mo && mo.TestMobjLocation())
                 {
-                    CVar dcv2 = CVar.GetCVar('pm_scout_debug');
-                    if (dcv2 && dcv2.GetBool())
+                    if (DebugEnabled())
                         Console.Printf("A scout is investigating...");
                     return true;
                 }

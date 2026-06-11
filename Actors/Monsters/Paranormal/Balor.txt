@@ -1,0 +1,907 @@
+
+class PM_BalorEye : PointLight
+{
+    Actor source;
+
+    Default
+    {
+        +DYNAMICLIGHT.ATTENUATE;
+    }
+
+    override void PostBeginPlay()
+    {
+        super.PostBeginPlay();
+        args[DynamicLight.LIGHT_RED]       = 255;
+        args[DynamicLight.LIGHT_GREEN]     = 20;
+        args[DynamicLight.LIGHT_BLUE]      = 20;
+        args[DynamicLight.LIGHT_INTENSITY] = 48;
+    }
+
+    override void Tick()
+    {
+        super.Tick();
+        if (!source || source.health <= 0)
+        {
+            Destroy();
+            return;
+        }
+    }
+}
+
+class PM_BalorStain : Actor
+{
+    double peakAlpha, targetScale;
+    int    formTics, holdTics, fadeTics, ageTics;
+
+    Default
+    {
+        +NOBLOCKMAP;
+        +NOGRAVITY;
+        +NOCLIP;
+        +FLATSPRITE;
+        RenderStyle "Stencil";
+        StencilColor "Black";
+        Alpha 0.0;
+    }
+
+    override void PostBeginPlay()
+    {
+        super.PostBeginPlay();
+        if (formTics + holdTics + fadeTics == 0) { formTics = 35; holdTics = 245; fadeTics = 90; }
+        Scale = (0.05, 0.05);
+        Alpha = 0.0;
+        A_SetRenderStyle(0.0, STYLE_TranslucentStencil);
+        angle = frandom(0, 360);
+    }
+
+    void SetTiming(int form, int hold, int fade) { formTics = form; holdTics = hold; fadeTics = fade; }
+
+    override void Tick()
+    {
+        super.Tick();
+        if (IsFrozen()) return;
+        ageTics++;
+
+        int growEnd = formTics;
+        int holdEnd = formTics + holdTics;
+        int fadeEnd = formTics + holdTics + fadeTics;
+
+        if (ageTics <= growEnd)
+        {
+            double t = double(ageTics) / double(max(growEnd, 1));
+            double s = 0.05 + (targetScale - 0.05) * t;
+            Scale = (s, s);
+            Alpha = peakAlpha * t;
+        }
+        else if (ageTics <= holdEnd)
+        {
+            Scale = (targetScale, targetScale);
+            Alpha = peakAlpha;
+        }
+        else if (ageTics <= fadeEnd)
+        {
+            double t = double(ageTics - holdEnd) / double(max(fadeTics, 1));
+            Alpha = peakAlpha * (1.0 - t);
+        }
+        else
+        {
+            Destroy();
+        }
+    }
+
+    States
+    {
+    Spawn:
+        TNT1 A -1;
+        Stop;
+    }
+}
+
+class PM_BalorStainCore : PM_BalorStain
+{
+    override void PostBeginPlay()
+    {
+        targetScale = 0.91;
+        peakAlpha   = 0.9;
+        super.PostBeginPlay();
+    }
+
+    States
+    {
+    Spawn:
+        FIR1 W -1;
+        Stop;
+    }
+}
+
+class PM_BalorStainEdge : PM_BalorStain
+{
+    override void PostBeginPlay()
+    {
+        targetScale = 0.65;
+        peakAlpha   = 0.5;
+        super.PostBeginPlay();
+    }
+
+    States
+    {
+    Spawn:
+        GNSM L -1;
+        Stop;
+    }
+}
+
+class PM_Balor : PMVoidMonsterBase
+{
+    PM_BalorEye eye;
+
+    double eyeAngle, eyePitch;
+    double fixYaw, fixPitch;
+    int fixTimer;
+    bool fixLarge;
+    double scanTime;
+    double np1, np2, np3;
+
+    int awareness;
+    int idlePhase;
+    int idleTimer;
+    double turnTarget;
+    vector3 lastKnownPos;
+    int lostSightTics;
+    int searchTics;
+    int wallBlockTics;
+    int idleStaleTics;
+    int prevHealth;
+    int activeLoop;
+
+    int     teleState;
+    int     teleTimer;
+    vector3 teleDest;
+
+    const EYE_HEIGHT_FRAC = 1.0;
+    const HEAD_FWD        = 12.0;
+    const FLARE_FWD       = 8.0;
+    const EYE_YAW_LIMIT   = 60.0;
+    const EYE_PITCH_LIMIT = 30.0;
+    const EYE_PITCH_UP    = 10.0;
+    const EYE_PITCH_DOWN  = 30.0;
+    const DETECT_RANGE    = 1024.0;
+    const LOST_SIGHT_MAX  = 105;
+    const SEARCH_MAX      = 350;
+    const SLIDE_SPEED     = 4.2;
+    const WALL_NEAR       = 128.0;
+    const WALL_BLOCK_MAX  = 35;
+    const TELEPORT_TRIES    = 48;
+    const ARRIVAL_SEEN_PCT  = 30;
+    const SINK_TICS         = 230;
+    const FORM_TICS         = 35;
+    const RISE_TICS         = 245;
+    const SETTLE_TICS       = 18;
+    const STALE_TICS        = 700;
+    const STALE_MIGRATE_PCT = 35;
+    const STALE_MIGRATE_MAX = 1400;
+    const BEAM_CONE_DEG   = 8.0;
+    const WANDER_MIN      = 105;
+    const WANDER_MAX      = 280;
+    const SCAN_MIN        = 350;
+    const SCAN_MAX        = 700;
+
+    Default
+    {
+        Health 500;
+        Radius 20;
+        Height 56;
+        Speed 2;
+        Mass 400;
+        PainChance 100;
+        -NOCLIP;
+        +BUDDHA;
+
+        +SLIDESONWALLS;
+        RenderStyle "Stencil";
+        StencilColor "Black";
+        SeeSound "Balor/Spotted";
+        PainSound "Balor/Pain";
+        DeathSound "baron/death";
+        ActiveSound "baron/active";
+        Obituary "%o was spotted by the Balor.";
+        Tag "Balor";
+        PMMonsterBase.RealHeight 76;
+    }
+
+    override void PostBeginPlay()
+    {
+        super.PostBeginPlay();
+        eyeAngle = angle;
+        eyePitch = 0;
+        fixYaw   = angle;
+        fixPitch = 0;
+        fixTimer = 0;
+        np1 = frandom(0, 360);
+        np2 = frandom(0, 360);
+        np3 = frandom(0, 360);
+        scanTime = frandom(0, 1000);
+        idlePhase = 0;
+        idleTimer = random(WANDER_MIN, WANDER_MAX);
+        wallBlockTics = 0;
+        idleStaleTics = 0;
+        prevHealth    = health;
+    }
+
+    override void Tick()
+    {
+
+        if (awareness != 0) ForgetThreshold = Default.ForgetThreshold;
+        super.Tick();
+        if (IsFrozen() || health <= 0) return;
+
+        if (teleState != 0) { RunEmergence(); return; }
+
+        bool tookDamage = (health < prevHealth);
+        prevHealth = health;
+        if (tookDamage && target && target.health > 0)
+        {
+            if (awareness == 0)
+            {
+                lastKnownPos  = target.pos;
+                idleStaleTics = 0;
+                GoSearch();
+            }
+            else if (awareness == 2)
+            {
+                lastKnownPos  = target.pos;
+                searchTics    = 0;
+                idleStaleTics = 0;
+            }
+        }
+
+        switch (awareness)
+        {
+            case 0: IdleBehavior(); break;
+            case 1: AlertTrack();   break;
+            case 2: SearchScan();   break;
+        }
+
+        bool beamActive = (teleState == 0) && (awareness != 0 || idlePhase >= 1);
+        if (beamActive)
+            UpdateBeamAndDetect();
+        else
+            HideEye();
+
+        frame = beamActive ? 5 : 4;
+
+        UpdateLoops();
+    }
+
+    override void OnDestroy()
+    {
+        if (eye) eye.Destroy();
+        super.OnDestroy();
+    }
+
+    void UpdateBeamAndDetect()
+    {
+
+        if (!eye)
+        {
+            eye = PM_BalorEye(Spawn("PM_BalorEye", pos, NO_REPLACE));
+            if (eye) eye.source = self;
+        }
+
+        vector3 headPos = pos + (cos(angle) * HEAD_FWD, sin(angle) * HEAD_FWD, height * EYE_HEIGHT_FRAC);
+        FLineTraceData ltd;
+        LineTrace(eyeAngle, DETECT_RANGE, eyePitch, 0, height * EYE_HEIGHT_FRAC, data: ltd);
+
+        vector3 hitPos = ltd.HitLocation;
+
+        if (eye)
+        {
+            eye.Activate(self);
+            eye.SetOrigin(hitPos, true);
+            eye.vel = (0, 0, 0);
+        }
+
+        DrawBeam(headPos, hitPos);
+        EmitHeadFlare();
+
+        if (awareness != 1
+            && ltd.HitActor
+            && ltd.HitActor is "PlayerPawn"
+            && ltd.HitActor.health > 0)
+        {
+            target        = ltd.HitActor;
+            lastKnownPos  = target.pos;
+            awareness     = 1;
+            lostSightTics = 0;
+            idleStaleTics = 0;
+            A_StartSound(SeeSound, CHAN_5);
+            SetStateLabel("See");
+        }
+
+        if (awareness == 0 && (idlePhase == 1 || idlePhase == 3))
+        {
+            if (ltd.HitType == FLineTraceData.TRACE_HitWall && ltd.Distance < WALL_NEAR)
+                wallBlockTics++;
+            else
+                wallBlockTics = max(0, wallBlockTics - 2);
+
+            if (wallBlockTics >= WALL_BLOCK_MAX)
+            {
+                wallBlockTics = 0;
+                if (random(0, 9) < 7)
+                {
+
+                    idlePhase  = 2;
+                    turnTarget = eyeAngle + 180 + frandom(-70, 70);
+                }
+                else
+                {
+
+                    idlePhase = 0;
+                    idleTimer = random(WANDER_MIN, WANDER_MAX);
+                }
+            }
+        }
+        else
+        {
+            wallBlockTics = 0;
+        }
+    }
+
+    void DrawBeam(vector3 from, vector3 to)
+    {
+        vector3 dir = level.Vec3Diff(from, to);
+        double len = dir.length();
+        if (len < 1) return;
+
+        vector3 dirNorm = dir / len;
+
+        FSpawnParticleParams pp;
+        pp.Style = STYLE_Add;
+        pp.Color1 = 0xC80F0F;
+        pp.Flags = SPF_FULLBRIGHT | SPF_NOTIMEFREEZE;
+        pp.Lifetime = 2;
+        pp.SizeStep = 0;
+        pp.FadeStep = -1;
+        pp.Texture = TexMan.CheckForTexture("glstuff/glpart.png");
+
+        for (double d = 4; d < len; d += max(d * 0.25, 4))
+        {
+            pp.Pos = from + dirNorm * d;
+            pp.Vel = (0, 0, 0);
+
+            pp.Size = sin(BEAM_CONE_DEG) * d * 6;
+
+            pp.StartAlpha = 0.9 / max(d * 0.03, 1.0);
+
+            Level.SpawnParticle(pp);
+        }
+    }
+
+    void IdleBehavior()
+    {
+        idleTimer--;
+        idleStaleTics++;
+
+        if (idleStaleTics >= STALE_MIGRATE_MAX && TryMigrate())
+            return;
+
+        if (idlePhase == 0)
+        {
+            A_Wander();
+
+            if (idleTimer <= 0)
+            {
+
+                if (idleStaleTics >= STALE_TICS && random(0, 99) < STALE_MIGRATE_PCT
+                    && TryMigrate())
+                {
+                    return;
+                }
+
+                idlePhase = random(0, 4) < 4 ? 1 : 3;
+                idleTimer = random(SCAN_MIN, SCAN_MAX);
+                vel.x = 0;
+                vel.y = 0;
+                eyeAngle = angle;
+                eyePitch = 0;
+                fixTimer = 0;
+            }
+        }
+        else if (idlePhase == 1)
+        {
+
+            vel.x *= 0.9;
+            vel.y *= 0.9;
+
+            if (fixTimer <= 0)
+            {
+                if (random(0, 4) < 2)
+                {
+
+                    double newYaw = eyeAngle + frandom(-10, 10);
+                    fixYaw   = angle + clamp(deltaangle(angle, newYaw),
+                                             -EYE_YAW_LIMIT, EYE_YAW_LIMIT);
+                    fixPitch = clamp(eyePitch + frandom(-6, 6),
+                                    -EYE_PITCH_UP, EYE_PITCH_DOWN);
+                    fixTimer = random(15, 70);
+                    fixLarge = false;
+                }
+                else
+                {
+
+                    fixYaw   = angle + frandom(-EYE_YAW_LIMIT, EYE_YAW_LIMIT);
+                    fixPitch = frandom(-EYE_PITCH_UP, EYE_PITCH_DOWN);
+                    fixTimer = random(70, 175);
+                    fixLarge = true;
+                }
+            }
+            fixTimer--;
+
+            double rate = fixLarge ? 0.04 : 0.15;
+            eyeAngle += rate * deltaangle(eyeAngle, fixYaw);
+            eyePitch += rate * deltaangle(eyePitch, fixPitch);
+
+            if (idleTimer <= 0)
+            {
+                if (random(0, 4) < 3)
+                {
+
+                    idlePhase  = 2;
+                    turnTarget = angle + frandom(-135, 135);
+                }
+                else
+                {
+                    idlePhase = 0;
+                    idleTimer = random(WANDER_MIN, WANDER_MAX);
+                }
+            }
+        }
+        else if (idlePhase == 3)
+        {
+
+            vel.x *= 0.9;
+            vel.y *= 0.9;
+
+            scanTime += 1.0;
+
+            double yawNoise =
+                sin(scanTime * 0.7 + np1) * 0.5 +
+                sin(scanTime * 1.3 + np2) * 0.3 +
+                sin(scanTime * 2.3 + np3) * 0.2;
+
+            double pitchNoise =
+                sin(scanTime * 0.5 + np2) * 0.5 +
+                sin(scanTime * 1.1 + np3) * 0.3 +
+                sin(scanTime * 1.9 + np1) * 0.2;
+
+            double targetYaw   = angle + yawNoise * EYE_YAW_LIMIT;
+
+            double pitchHalf   = (EYE_PITCH_DOWN + EYE_PITCH_UP) * 0.5;
+            double pitchMid    = (EYE_PITCH_DOWN - EYE_PITCH_UP) * 0.5;
+            double targetPitch = pitchNoise * pitchHalf + pitchMid;
+
+            eyeAngle += 0.08 * deltaangle(eyeAngle, targetYaw);
+            eyePitch += 0.08 * deltaangle(eyePitch, targetPitch);
+
+            if (idleTimer <= 0)
+            {
+                if (random(0, 4) < 3)
+                {
+                    idlePhase  = 2;
+                    turnTarget = angle + frandom(-135, 135);
+                }
+                else
+                {
+                    idlePhase = 0;
+                    idleTimer = random(WANDER_MIN, WANDER_MAX);
+                }
+            }
+        }
+        else
+        {
+            vel.x *= 0.9;
+            vel.y *= 0.9;
+
+            double da = deltaangle(angle, turnTarget);
+            angle += 0.03 * da;
+
+            eyeAngle += 0.1 * deltaangle(eyeAngle, angle);
+            eyePitch *= 0.95;
+
+            if (abs(da) < 3.0)
+            {
+                idlePhase = random(0, 4) < 4 ? 1 : 3;
+                idleTimer = random(SCAN_MIN, SCAN_MAX);
+                eyeAngle  = angle;
+                eyePitch  = 0;
+                fixTimer  = 0;
+            }
+        }
+    }
+
+    void HideEye()
+    {
+        if (eye)
+        {
+            eye.Deactivate(self);
+        }
+    }
+
+    void UpdateLoops()
+    {
+        int desired;
+        if (teleState != 0 || health <= 0) desired = 0;
+        else if (awareness == 1)           desired = 2;
+        else                               desired = 1;
+
+        if (desired == activeLoop) return;
+
+        if (activeLoop == 1)      A_StopSound(CHAN_6);
+        else if (activeLoop == 2) A_StopSound(CHAN_7);
+
+        if (desired == 1)         A_StartSound("Balor/IdleLoop",  CHAN_6, CHANF_LOOP);
+        else if (desired == 2)    A_StartSound("Balor/ChaseLoop", CHAN_7, CHANF_LOOP);
+
+        activeLoop = desired;
+    }
+
+    void EmitHeadFlare()
+    {
+        A_SpawnParticleEx(
+            "ff1414",
+            TexMan.CheckForTexture("SPKRA0", TexMan.Type_Sprite),
+            style:       STYLE_Add,
+            flags:       SPF_RELATIVE | SPF_FULLBRIGHT,
+            lifetime:    random(2, 4),
+            size:        frandom(20, 36),
+            xoff:        FLARE_FWD,
+            zoff:        height * EYE_HEIGHT_FRAC,
+            startalphaf: frandom(0.7, 1.0),
+            fadestepf:   -1,
+            sizestep:    -0.5
+        );
+    }
+
+    void AlertTrack()
+    {
+        if (!target || target.health <= 0)
+        {
+            GoSearch();
+            return;
+        }
+
+        vector3 eyeOrigin    = pos + (0, 0, height * EYE_HEIGHT_FRAC);
+        vector3 targetCenter = target.pos + (0, 0, target.height * 0.5);
+        vector3 toTarget     = level.Vec3Diff(eyeOrigin, targetCenter);
+        double dist          = toTarget.length();
+
+        if (dist > 0)
+        {
+            double tYaw   = atan2(toTarget.y, toTarget.x);
+            double tPitch = -asin(toTarget.z / dist);
+            eyeAngle += 0.25 * deltaangle(eyeAngle, tYaw);
+            eyePitch += 0.25 * deltaangle(eyePitch, tPitch);
+        }
+
+        if (CheckSight(target))
+        {
+            lostSightTics = 0;
+            lastKnownPos = target.pos;
+        }
+        else
+        {
+            lostSightTics++;
+            if (lostSightTics >= LOST_SIGHT_MAX)
+            {
+                GoSearch();
+                return;
+            }
+        }
+
+        SlideToward(target.pos);
+
+        vector2 bodyDir = level.Vec2Diff(pos.xy, target.pos.xy);
+        angle += 0.05 * deltaangle(angle, atan2(bodyDir.y, bodyDir.x));
+
+    }
+
+    void SearchScan()
+    {
+        searchTics++;
+        if (searchTics >= SEARCH_MAX)
+        {
+
+            awareness     = 0;
+            target        = null;
+            idlePhase     = 0;
+            idleTimer     = random(WANDER_MIN, WANDER_MAX);
+            eyeAngle      = angle;
+            eyePitch      = 0;
+            fixTimer      = 0;
+            wallBlockTics = 0;
+            idleStaleTics = 0;
+            SetStateLabel("Spawn");
+            return;
+        }
+
+        vector2 diff = level.Vec2Diff(pos.xy, lastKnownPos.xy);
+        double dist = diff.length();
+        if (dist > 48)
+        {
+            SlideToward(lastKnownPos);
+            angle += 0.05 * deltaangle(angle, atan2(diff.y, diff.x));
+        }
+        else
+        {
+            vel.x *= 0.9;
+            vel.y *= 0.9;
+
+            if (fixTimer <= 0 && random(0, 2) == 0)
+            {
+                turnTarget = angle + frandom(-160, 160);
+            }
+            angle += 0.06 * deltaangle(angle, turnTarget);
+        }
+
+        double lkpYaw = angle;
+
+        if (fixTimer <= 0)
+        {
+
+            if (random(0, 3) == 0)
+            {
+
+                fixYaw   = lkpYaw + frandom(-EYE_YAW_LIMIT * 1.2, EYE_YAW_LIMIT * 1.2);
+                fixPitch = frandom(-EYE_PITCH_LIMIT, EYE_PITCH_LIMIT);
+                fixTimer = random(5, 15);
+            }
+            else
+            {
+
+                fixYaw   = lkpYaw + frandom(-25, 25);
+                fixPitch = frandom(-EYE_PITCH_LIMIT * 0.7, EYE_PITCH_LIMIT * 0.7);
+                fixTimer = random(2, 10);
+            }
+        }
+        fixTimer--;
+
+        eyeAngle += 0.4 * deltaangle(eyeAngle, fixYaw);
+        eyePitch += 0.4 * deltaangle(eyePitch, fixPitch);
+    }
+
+    void GoSearch()
+    {
+        awareness  = 2;
+        searchTics = 0;
+        fixTimer   = 0;
+        turnTarget = angle;
+        SetStateLabel("Search");
+    }
+
+    bool TryMigrate()
+    {
+        if (level.Sectors.Size() == 0) return false;
+
+        vector3 oldPos = pos;
+        vector3 fallback = pos;
+        bool haveFallback = false;
+        bool wantSeen = (random(0, 99) < ARRIVAL_SEEN_PCT);
+
+        for (int i = 0; i < TELEPORT_TRIES; i++)
+        {
+            Sector sec = level.Sectors[random(0, level.Sectors.Size() - 1)];
+            vector2 p2 = sec.centerspot;
+            p2.x += frandom(-64, 64);
+            p2.y += frandom(-64, 64);
+
+            Sector actual = level.PointInSector(p2);
+            if (!actual) continue;
+
+            double floorZ = actual.floorplane.ZAtPoint(p2);
+            double ceilZ  = actual.ceilingplane.ZAtPoint(p2);
+            if (ceilZ - floorZ < Height) continue;
+
+            vector3 dest = (p2.x, p2.y, floorZ);
+            if (!level.IsPointInLevel(dest)) continue;
+
+            SetOrigin(dest, false);
+            bool fits = TestMobjLocation();
+            bool seen = false;
+            if (fits)
+            {
+                for (int p = 0; p < MAXPLAYERS; p++)
+                {
+                    if (!playeringame[p] || !players[p].mo || players[p].mo.health <= 0) continue;
+                    if (players[p].mo.CheckSight(self)) { seen = true; break; }
+                }
+            }
+            SetOrigin(oldPos, false);
+            if (!fits) continue;
+
+            if (!haveFallback) { fallback = dest; haveFallback = true; }
+
+            if (seen == wantSeen)
+            {
+                ArmEmergence(dest);
+                return true;
+            }
+        }
+
+        if (haveFallback)
+        {
+            ArmEmergence(fallback);
+            return true;
+        }
+
+        return false;
+    }
+
+    void ArmEmergence(vector3 dest)
+    {
+        teleDest  = dest;
+        teleState = 1;
+        teleTimer = SINK_TICS;
+
+        bSpecialFloorClip = true;
+        FloorClip = 0;
+        bINVULNERABLE = true;
+        vel = (0, 0, 0);
+
+        A_SetRenderStyle(1.0, STYLE_TranslucentStencil);
+
+        HideEye();
+        SetStateLabel("Spawn");
+        SpawnStain(36, 204, 84);
+        A_StartSound("Balor/Submerge", CHAN_BODY);
+    }
+
+    void RunEmergence()
+    {
+        vel = (0, 0, 0);
+        bSpecialFloorClip = true;
+        if (teleTimer > 0) teleTimer--;
+
+        double bury = (RealHeight > Height ? RealHeight : Height) + 8.0;
+
+        if (teleState == 1)
+        {
+            double prog = clamp(1.0 - double(teleTimer) / double(SINK_TICS), 0.0, 1.0);
+            FloorClip = bury * prog;
+            if (prog > 0.55 && (teleTimer % 3) == 0) EmitMist();
+            if (teleTimer <= 0)
+            {
+
+                FloorClip = bury;
+                SetOrigin(teleDest, false);
+                FloorClip = bury;
+                vel = (0, 0, 0);
+                angle = frandom(0, 360);
+                eyeAngle = angle;
+                eyePitch = 0;
+                Alpha = 0.0;
+                SpawnStain(42, 294, 108);
+                A_StartSound("Balor/Emerge", CHAN_BODY);
+                teleState = 2;
+                teleTimer = FORM_TICS;
+            }
+        }
+        else if (teleState == 2)
+        {
+            FloorClip = bury;
+            Alpha = 0.0;
+            if (teleTimer <= 0) { teleState = 3; teleTimer = RISE_TICS; }
+        }
+        else if (teleState == 3)
+        {
+            double prog = clamp(1.0 - double(teleTimer) / double(RISE_TICS), 0.0, 1.0);
+            FloorClip = bury * (1.0 - prog);
+            Alpha = clamp(prog * 2.0, 0.0, 1.0);
+            if ((teleTimer % 3) == 0) EmitMist();
+            if (teleTimer <= 0)
+            {
+                FloorClip = 0;
+                Alpha = 1.0;
+                teleState = 4;
+                teleTimer = SETTLE_TICS;
+            }
+        }
+        else
+        {
+            FloorClip = 0;
+            Alpha = 1.0;
+            if (teleTimer <= 0) EndEmergence();
+        }
+    }
+
+    void EndEmergence()
+    {
+        teleState = 0;
+        bSpecialFloorClip = false;
+        FloorClip = 0;
+        bINVULNERABLE = false;
+        A_SetRenderStyle(1.0, STYLE_Stencil);
+
+        awareness     = 0;
+        idlePhase     = 0;
+        idleTimer     = random(WANDER_MIN, WANDER_MAX);
+        eyeAngle      = angle;
+        eyePitch      = 0;
+        fixTimer      = 0;
+        wallBlockTics = 0;
+        idleStaleTics = 0;
+        SetStateLabel("Spawn");
+    }
+
+    void SpawnStain(int form, int hold, int fade)
+    {
+        vector3 sp = (pos.x, pos.y, pos.z + 1.0);
+        let edge = PM_BalorStainEdge(Spawn("PM_BalorStainEdge", sp, ALLOW_REPLACE));
+        if (edge) edge.SetTiming(form, hold, fade);
+        let core = PM_BalorStainCore(Spawn("PM_BalorStainCore", (sp.x, sp.y, sp.z + 0.5), ALLOW_REPLACE));
+        if (core) core.SetTiming(form, hold, fade);
+    }
+
+    void EmitMist()
+    {
+        A_SpawnParticleEx(
+            "000000",
+            TexMan.CheckForTexture("GNSML0", TexMan.Type_Sprite),
+            style:       STYLE_Normal,
+            flags:       SPF_ROLL | SPF_RELATIVE | SPF_FULLBRIGHT,
+            lifetime:    random(35, 90),
+            size:        frandom(45, 90),
+            xoff:        frandom(-30, 30),
+            yoff:        frandom(-30, 30),
+            zoff:        frandom(-5, 5),
+            velx:        frandom(-1, 1),
+            vely:        frandom(-1, 1),
+            velz:        frandom(0, 1),
+            startalphaf: frandom(0.15, 0.5),
+            fadestepf:   -1,
+            sizestep:    1,
+            startroll:   random(-180, 180),
+            rollvel:     frandom(-1, 1)
+        );
+    }
+
+    void SlideToward(vector3 dest)
+    {
+        vector2 dir = level.Vec2Diff(pos.xy, dest.xy);
+        double dist = dir.length();
+        if (dist > 1)
+        {
+            dir  = dir / dist;
+            vel.x = dir.x * SLIDE_SPEED;
+            vel.y = dir.y * SLIDE_SPEED;
+        }
+    }
+
+    States
+    {
+        Spawn:
+            LMWZ E 10;
+            Loop;
+        See:
+            LMWZ E 10;
+            Loop;
+        Search:
+            LMWZ E 6;
+            Loop;
+        Pain:
+            LMWZ I 2;
+            LMWZ I 2 A_Pain;
+            Goto See;
+        Death:
+            LMWZ J 8;
+            LMWZ K 8 A_Scream;
+            LMWZ L 6;
+            LMWZ M 6 A_NoBlocking;
+            LMWZ NOP 6;
+            LMWZ P -1;
+            Stop;
+        Raise:
+            LMWZ PONMLKJ 8;
+            Goto See;
+    }
+}

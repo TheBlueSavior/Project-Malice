@@ -91,16 +91,12 @@ class PMMonsterBase : Actor abstract
 
 	//Deimos:
 	//based on the Source SDK's calcThrowVelocity method
-	//This function is mostly based on the arcSize
-	//	Larger arc - slower travel speed
-	//	Smaller arc - faster travel speed
-	//	Set it to 1.0 for a fun time
-	//NEVER set arcSize to zero or negative
+	//arcSize is a ratio of horizontal distance (e.g. 0.2 = apex at 20% of distance)
 
 	//Example:
 	//let p = A_SpawnProjectile("PM_FeralImpIreball",32,0,0);
-	//p.vel = CalcThrowVector(pos, target.pos, p.gravity, 105.5);
-	vector3 CalcThrowVector(vector3 startPos, vector3 endPos, float pGravity = 1.0, float arcSize = 105.0)
+	//p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.25);
+	vector3 CalcThrowVector(vector3 startPos, vector3 endPos, float pGravity = 1.0, float arcSize = 0.25)
 	{
 		if(arcSize <= 0) {
 			console.printf("bruh this shit is NaN");
@@ -121,19 +117,21 @@ class PMMonsterBase : Actor abstract
 		vector2 normDir = targetDir.unit(); // normalized director to end point
 		if(pmd_math_throw_debug) console.printf("CalcThrowVector(): Normalized direction: x:%f, y:%f", normDir.x, normDir.y);
 
-		// If jumping up we want to throw a bit higher than the height diff	
-		if (stepHeight > 0) 
+		float effectiveArc = max(distance * arcSize, 1.0);
+
+		// If jumping up we want to throw a bit higher than the height diff
+		if (stepHeight > 0)
 		{
-			throwHeight = stepHeight + arcSize;	
-		}	
+			throwHeight = stepHeight + effectiveArc;
+		}
 		else
 		{
-			throwHeight = arcSize;
+			throwHeight = effectiveArc;
 		}
 		// Make sure that I at least catch some air
-		if (throwHeight < arcSize)
+		if (throwHeight < effectiveArc)
 		{
-			throwHeight = arcSize;
+			throwHeight = effectiveArc;
 		}
 
 		// the fun part, actually calculating the throw velocities
@@ -755,7 +753,7 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
   PMMonsterBase.Sin "Famine", "Tan";
  }
  
-	void HandleEating(int maxHealth = 350)
+	void HandleEating(int maxHealth = 350, double maxScale = 1.5)
 	{
 		if(Health > 0 && !isFrozen())
 		{
@@ -766,7 +764,11 @@ Class PMFamineMonsterBase : PMMonsterBase abstract
 				int victimbasehp = (int(ceil((a.SpawnHealth() * 0.65))));
 				int newhp = self.health + victimbasehp;
 					self.health = newhp;
-				
+
+				double growth = victimbasehp * 0.001;
+				scale.x = min(scale.x + growth, maxScale);
+				scale.y = min(scale.y + growth, maxScale);
+
 				for(int i=0; i<2; i++){
 				a.A_SpawnItemEx("PM_NormalBloodyCloud",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);
 				 for(int gib=0; gib<5; gib++){a.A_SpawnItemEx("PM_NormalMeatChunkLauncher",0,0,random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_ABSOLUTEVELOCITY);}

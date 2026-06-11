@@ -228,7 +228,7 @@ Class PM_Plasmatron : PMUnaffMonsterBase
 				}
 				A_SpawnProjectile("PlasmatronFlare",22,0);
 				let p = A_SpawnProjectile("PM_PTronScatterBall",22,0,frandom(-1.5,1.5),CMF_OFFSETPITCH);
-				if (p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 85.0);
+				if (p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.20);
 				user_numbullets--;
 				Return ResolveState(null);
 			}

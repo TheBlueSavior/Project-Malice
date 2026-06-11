@@ -13,7 +13,6 @@ Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 	DropItem "PM_FOCRifle", 255, 1
 }
 
-
 Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 {
 	DropItem "PM_FShotgunner", 255, 80
@@ -27,7 +26,6 @@ Actor MaliceShotgunGuySpawner : RandomSpawner replaces ShotgunGuy
 	DropItem "PM_FOCShotgun", 255, 1
 }
 
-
 Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 {
     DropItem "PM_HeavyCarbineZombie", 255, 57
@@ -40,7 +38,6 @@ Actor MaliceChaingunGuySpawner : RandomSpawner replaces ChaingunGuy
 	DropItem "PM_UmbralDisciple", 255, 1
 }
 
-
 Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 {
 	DropItem "PM_Brute", 255, 44
@@ -52,19 +49,16 @@ Actor MaliceDemonSpawner : RandomSpawner replaces Demon
 	DropItem "PM_BloodStalker", 255, 1
 }
 
-
-
 Actor MaliceSpectreSpawner : RandomSpawner replaces Spectre
 {
 	DropItem "PM_PhaseBrute", 255, 74
 	DropItem "PM_CyberSpectre", 255, 24
 	DropItem "PM_Maggot", 255, 20
 	DropItem "PM_Nightmare", 255, 8
-	DropItem "PM_DemonTechSpectre", 255, 10
+	DropItem "PM_WarHound", 255, 10
 	DropItem "PM_Prowler", 255, 9
 	DropItem "PM_Skulker", 255, 1
 }
-
 
 Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 {
@@ -77,11 +71,10 @@ Actor MaliceDoomImpSpawner : RandomSpawner replaces DoomImp
 	DropItem "PM_Harvester", 255, 2
 	DropItem "PM_Zephyr", 255, 12
 	DropItem "PM_Devil", 255, 80
-	DropItem "PM_NetherImp", 255, 1
+	DropItem "PM_NetherConduit", 255, 1
 	DropItem "PM_FeralImp", 255, 3
 	DropItem "PM_DuskWyrm", 255, 3
 }
-
 
 Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 {
@@ -93,7 +86,6 @@ Actor MaliceLostSoulSpawner : RandomSpawner replaces LostSoul
 	DropItem "PM_Bacillus", 255, 3
 	DropItem "PM_Gazer", 255, 2
 }
-
 
 Actor MaliceRevenantSpawner : RandomSpawner replaces Revenant
 {
@@ -118,13 +110,13 @@ Actor MaliceCacodemonSpawner : RandomSpawner replaces Cacodemon
 {
 	DropItem "PM_Wretched", 255, 74
 	DropItem "PM_PhaseCaco", 255, 28
-	DropItem "PM_Nymphite", 225, 12
-	DropItem "PM_Beholder", 225, 9
-    DropItem "PM_Infernal", 225, 8
+	DropItem "PM_Nymphite", 255, 12
+	DropItem "PM_Beholder", 255, 9
+    DropItem "PM_Infernal", 255, 8
 	DropItem "PM_Wicked", 255, 7
-	DropItem "PM_Watcher", 225, 4
-	DropItem "PM_Cataclysm", 225, 4
-	DropItem "PM_VoidFloater", 225, 1
+	DropItem "PM_Watcher", 255, 4
+	DropItem "PM_Cataclysm", 255, 4
+	DropItem "PM_VoidFloater", 255, 1
 }
 
 Actor MalicePainElementalSpawner : RandomSpawner replaces PainElemental
@@ -158,13 +150,13 @@ Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 	DropItem "PM_PotsScreamer",100, 2
 }
 
-Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso 
+Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 {
 	DropItem "PM_Hectebus", 255, 32
 	DropItem "PM_Corpulent", 255, 7
 	DropItem "PM_Bulltubus", 255, 5
 	DropItem "PM_Abhorrent", 255, 1
-	//DropItem "PM_FireStarter", 255, 1
+
 }
 
 Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
@@ -194,23 +186,6 @@ Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon
 	DropItem "PM_Kurgan", 255, 50
 	DropItem "PM_EntropicAvatarSpawner", 255, 1
 }
-
-/*
-{
-	DropItem "PM_FOCRifle", 255, 20
-	DropItem "PM_FOCShotgun", 255, 20
-	DropItem "Voidspawn",100, 20
-	DropItem "PM_PotsGroup",100, 15
-	DropItem "PM_VoidFloater", 100, 5
-	DropItem "PM_Skulker", 100, 5
-	DropItem "PM_ControlledSoldier",100, 2
-	DropItem "PM_PotsScreamer",100, 2
-	DropItem "PM_Broken",100, 2
-	DropItem "PM_EntropicAvatar" 50, 1
-}
-*/
-
-//Decoration
 
 Actor MaliceDeadCacodemonSpawner : RandomSpawner replaces DeadCacodemon
 {
@@ -301,10 +276,7 @@ Actor MaliceGibSpawner : RandomSpawner replaces Gibs
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
 	DropItem "PM_DecoMeatChunks", 255, 6
-	//DropItem "MMeat2", 255, 1
-	//DropItem "MMeat3", 255, 1
-	//DropItem "MMeat4", 255, 1
-	//DropItem "MMeat5", 255, 1
+
 }
 
 Actor MaliceColonGibsSpawner : RandomSpawner replaces ColonGibs
@@ -326,10 +298,7 @@ Actor MaliceColonGibsSpawner : RandomSpawner replaces ColonGibs
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
 	DropItem "PM_DecoMeatChunks", 255, 6
-	//DropItem "MMeat2", 255, 1
-	//DropItem "MMeat3", 255, 1
-	//DropItem "MMeat4", 255, 1
-	//DropItem "MMeat5", 255, 1
+
 }
 
 Actor MaliceBrainStemSpawner : RandomSpawner replaces BrainStem
@@ -351,10 +320,7 @@ Actor MaliceBrainStemSpawner : RandomSpawner replaces BrainStem
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
 	DropItem "PM_DecoMeatChunks", 255, 6
-	//DropItem "MMeat2", 255, 1
-	//DropItem "MMeat3", 255, 1
-	//DropItem "MMeat4", 255, 1
-	//DropItem "MMeat5", 255, 1
+
 }
 
 Actor MaliceSmallBloodPoolSpawner : RandomSpawner replaces SmallBloodPool
@@ -376,8 +342,5 @@ Actor MaliceSmallBloodPoolSpawner : RandomSpawner replaces SmallBloodPool
 	DropItem "Head4", 255, 1
 	DropItem "MColonGibs", 255, 1
 	DropItem "PM_DecoMeatChunks", 255, 6
-	//DropItem "MMeat2", 255, 1
-	//DropItem "MMeat3", 255, 1
-	//DropItem "MMeat4", 255, 1
-	//DropItem "MMeat5", 255, 1
+
 }

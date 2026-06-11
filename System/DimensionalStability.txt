@@ -1,6 +1,3 @@
-// ----------------------------------------------------------
-// Ghost Drone Sounder (invisible helper that plays the loop)
-// ----------------------------------------------------------
 class PM_GhostDroneSounder : Actor
 {
     Default
@@ -23,47 +20,53 @@ class PM_GhostDroneSounder : Actor
     }
 }
 
-
-// ----------------------------------------------------------
-// Dimensional Stability Handler (summary moved to map start)
-// ----------------------------------------------------------
 class PM_DimensionalStabilityHandler : StaticEventHandler
 {
-    // --- Per-map state ---
-    double dsLevelP;        // per-level random proportion (progression mode)
-    bool   dsRolledThisMap; // has dsLevelP been rolled for this map?
-    int    dsEligible;      // eligible monsters seen this map
-    int    dsReplaced;      // replacements done this map
 
-    // --- Ghost drone state ---
+    double dsLevelP;
+    bool   dsRolledThisMap;
+    int    dsEligible;
+    int    dsReplaced;
+
     PM_GhostDroneSounder ghostSounder;
     double ghostCurrentVolume;
 
-    // --- Map-change tracking (prevents death-reload bumps) ---
     string lastMapName;
 
-    // --- Deferred summary (printed at start of next map) ---
     string prevMapName;
     int    prevEligible;
     int    prevReplaced;
 
-    // ---------------- Helpers ----------------
+    CVar cvDebug, cvMode, cvProg, cvIncrement, cvStatic;
+    CVar cvDrone, cvDroneDebug;
+
+    private void EnsureCVars()
+    {
+        if (!cvDebug)      cvDebug      = CVar.FindCVar('projectmalice_dimensionalstability_debug');
+        if (!cvMode)       cvMode       = CVar.FindCVar('projectmalice_dimensionalstability_mode');
+        if (!cvProg)       cvProg       = CVar.FindCVar('projectmalice_dimensionalstability_progression');
+        if (!cvIncrement)  cvIncrement  = CVar.FindCVar('projectmalice_dimensionalstability_increment');
+        if (!cvStatic)     cvStatic     = CVar.FindCVar('projectmalice_dimensionalstability');
+        if (!cvDrone)      cvDrone      = CVar.FindCVar('projectmalice_ghostdrone');
+        if (!cvDroneDebug) cvDroneDebug = CVar.FindCVar('projectmalice_ghostdrone_debug');
+    }
+
     bool DS_DebugEnabled()
     {
-        CVar dbg = CVar.FindCVar("projectmalice_dimensionalstability_debug");
-        return (dbg != null) && dbg.GetBool();
+        EnsureCVars();
+        return cvDebug && cvDebug.GetBool();
     }
 
     bool DroneEnabled()
     {
-        CVar on = CVar.FindCVar("projectmalice_ghostdrone");
-        return (on != null) && on.GetBool();
+        EnsureCVars();
+        return cvDrone && cvDrone.GetBool();
     }
 
     bool DroneDebug()
     {
-        CVar on = CVar.FindCVar("projectmalice_ghostdrone_debug");
-        return (on != null) && on.GetBool();
+        EnsureCVars();
+        return cvDroneDebug && cvDroneDebug.GetBool();
     }
 
     bool DS_IsEligible(Name c)
@@ -73,7 +76,7 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
              || c == 'Spectre'
              || c == 'LostSoul'
              || c == 'Cacodemon'
-             || c == 'Hellknight' || c == 'HellKnight'
+             || c == 'HellKnight'
              || c == 'BaronOfHell'
              || c == 'Revenant'
              || c == 'Arachnotron'
@@ -84,14 +87,13 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
 
     double DS_GetActiveP()
     {
+        EnsureCVars();
         double p = 0.0;
-        CVar mode = CVar.FindCVar("projectmalice_dimensionalstability_mode");
-        if (mode != null && mode.GetInt() == 1)
+        if (cvMode && cvMode.GetInt() == 1)
         {
             if (!dsRolledThisMap)
             {
-                CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
-                double ceiling = (prog != null) ? prog.GetFloat() : 0.0;
+                double ceiling = cvProg ? cvProg.GetFloat() : 0.0;
                 dsLevelP        = (ceiling > 0.0) ? frandom(0.0, ceiling) : 0.0;
                 dsRolledThisMap = true;
 
@@ -102,8 +104,7 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
         }
         else
         {
-            CVar stat = CVar.FindCVar("projectmalice_dimensionalstability");
-            if (stat != null) p = stat.GetFloat();
+            p = cvStatic ? cvStatic.GetFloat() : 0.0;
         }
 
         if (p < 0.0) p = 0.0;
@@ -163,20 +164,19 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
         }
     }
 
-    // ---------------- Lifecycle overrides ----------------
+    override void OnRegister() { SetOrder(100); }
 
     override void NewGame()
     {
-        // Reset progression and per-level state
-        CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
-        if (prog != null) prog.SetFloat(0.0);
+        EnsureCVars();
+
+        if (cvProg) cvProg.SetFloat(0.0);
 
         dsLevelP        = -1.0;
         dsRolledThisMap = false;
         dsEligible      = 0;
         dsReplaced      = 0;
 
-        // Drone state
         if (ghostSounder)
         {
             ghostSounder.StopDrone();
@@ -185,7 +185,6 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
         }
         ghostCurrentVolume = 0.0;
 
-        // Map tracking
         lastMapName  = "";
         prevMapName  = "";
         prevEligible = 0;
@@ -195,17 +194,16 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
             Console.Printf("[DS] New Game: progression reset to 0%%");
     }
 
-    // Increment on REAL map changes; print the previous level's summary here.
     override void WorldLoaded(WorldEvent e)
     {
         if (gamestate == GS_TITLELEVEL || deathmatch) return;
+        EnsureCVars();
 
-        // --- Print deferred summary for the level that just ended ---
         if (DS_DebugEnabled() && prevMapName != "")
         {
             Console.Printf("[DS] Level summary (%s): eligible=%d, replaced=%d",
                 prevMapName, prevEligible, prevReplaced);
-            // Clear once printed
+
             prevMapName  = "";
             prevEligible = 0;
             prevReplaced = 0;
@@ -214,29 +212,24 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
         bool haveLast   = (lastMapName != "");
         bool mapChanged = haveLast && (level.MapName != lastMapName);
 
-        // Bump progression only when the map actually changes
-        CVar mode = CVar.FindCVar("projectmalice_dimensionalstability_mode");
-        if (mode != null && mode.GetInt() == 1 && mapChanged)
+        if (cvMode && cvMode.GetInt() == 1 && mapChanged && !e.IsSaveGame)
         {
-            CVar prog = CVar.FindCVar("projectmalice_dimensionalstability_progression");
-            CVar inc  = CVar.FindCVar("projectmalice_dimensionalstability_increment");
-            if (prog != null && inc != null)
+            if (cvProg && cvIncrement)
             {
-                double newVal = prog.GetFloat() + inc.GetFloat();
+                double newVal = cvProg.GetFloat() + cvIncrement.GetFloat();
                 if (newVal > 1.0) newVal = 1.0;
-                prog.SetFloat(newVal);
+                cvProg.SetFloat(newVal);
 
                 if (DS_DebugEnabled())
                 {
                     Console.Printf("[DS] Map change %s -> %s: +%d%% -> %d%% (cap 100%%)",
                         lastMapName, level.MapName,
-                        int(inc.GetFloat() * 100.0 + 0.5),
+                        int(cvIncrement.GetFloat() * 100.0 + 0.5),
                         int(newVal * 100.0 + 0.5));
                 }
             }
         }
 
-        // Reset per-map state on actual map change (or first playable map)
         if (!haveLast || mapChanged)
         {
             dsLevelP        = -1.0;
@@ -244,7 +237,6 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
             dsEligible      = 0;
             dsReplaced      = 0;
 
-            // Ensure the drone starts fresh on a new map
             if (ghostSounder)
             {
                 ghostSounder.StopDrone();
@@ -254,39 +246,32 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
             ghostCurrentVolume = 0.0;
         }
 
-        // Update last seen map
         lastMapName = level.MapName;
 
-        // Info-only prints for current map
         if (!DS_DebugEnabled()) return;
 
-        if (mode != null && mode.GetInt() == 1)
+        if (cvMode && cvMode.GetInt() == 1)
         {
-            CVar prog2 = CVar.FindCVar("projectmalice_dimensionalstability_progression");
-            double ceiling = (prog2 != null) ? prog2.GetFloat() : 0.0;
+            double ceiling = cvProg ? cvProg.GetFloat() : 0.0;
             Console.Printf("[DS] Mode: Progression");
             Console.Printf("[DS] Ceiling (this level): %d%%", int(ceiling * 100.0 + 0.5));
         }
         else
         {
-            CVar stat = CVar.FindCVar("projectmalice_dimensionalstability");
-            double sp = (stat != null) ? stat.GetFloat() : 0.0;
+            double sp = cvStatic ? cvStatic.GetFloat() : 0.0;
             Console.Printf("[DS] Mode: Static");
             Console.Printf("[DS] Static proportion: %d%%", int(sp * 100.0 + 0.5));
         }
     }
 
-    // Keep drone cleanup at the end of the level (no summary here anymore).
     override void WorldUnloaded(WorldEvent e)
     {
-        if (deathmatch || e.IsReopen) return;
+        if (gamestate == GS_TITLELEVEL || deathmatch || e.IsReopen) return;
 
-        // Store summary for next map's WorldLoaded to print
         prevMapName  = level.MapName;
         prevEligible = dsEligible;
         prevReplaced = dsReplaced;
 
-        // Stop drone on level transition
         if (ghostSounder)
         {
             ghostSounder.StopDrone();
@@ -332,14 +317,15 @@ class PM_DimensionalStabilityHandler : StaticEventHandler
             case 'Demon':         e.Replacement = "PM_GhostDemon";         break;
             case 'Spectre':       e.Replacement = "PM_GhostSpectre";       break;
             case 'LostSoul':      e.Replacement = "PM_GhostLostSoul";      break;
-            /*case 'Cacodemon':     e.Replacement = "PM_GhostCacodemon";     break;
+            case 'Cacodemon':     e.Replacement = "PM_GhostCacodemon";     break;
             case 'HellKnight':    e.Replacement = "PM_GhostHellKnight";    break;
             case 'BaronOfHell':   e.Replacement = "PM_GhostBaron";         break;
             case 'Revenant':      e.Replacement = "PM_GhostRevenant";      break;
             case 'Arachnotron':   e.Replacement = "PM_GhostArachnotron";   break;
             case 'Fatso':         e.Replacement = "PM_GhostMancubus";      break;
             case 'PainElemental': e.Replacement = "PM_GhostPainElemental"; break;
-            case 'Archvile':      e.Replacement = "PM_GhostArchvile";      break;*/
+            case 'Archvile':      e.Replacement = "PM_GhostArchvile";      break;
+            default: return;
         }
 
         dsReplaced++;

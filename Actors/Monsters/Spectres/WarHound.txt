@@ -1,0 +1,593 @@
+Class PM_WarHound : PMWarMonsterBase
+{ 
+    int sneaky;
+	Default
+	{
+	//$Category "PM_Monsters/Spectres"
+    Health 200;
+    Speed 10;
+    Height 56;
+    Radius 30;
+    Mass 400;
+    PainChance 160;
+	MeleeThreshold 300;
+	MeleeRange 230;
+	DamageType "Bite";
+	Scale 1.1;
+    Monster;
+    +FLOORCLIP
+	+DONTHARMSPECIES
+	+DONTHARMCLASS
+	Species "Brute";
+	BloodColor "Dark Red";
+	Bloodtype "PM_WarBloodBase";
+    SeeSound "WarHound/Sight";
+    PainSound "WarPig/Pain";
+    DeathSound "WarHound/Death";
+    ActiveSound "WarHound/Active";
+    Obituary "%o fell in intervals to a War Hound.";
+	Tag "War Hound";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_WarTeleportFog";
+	}
+
+  override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[2];
+   
+   void PM_WarhoundRush()
+   {
+	A_Chase();
+    A_Recoil(-0.8);
+	A_SpawnItemEx("PM_GenericRushGhost",flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+	A_SpawnParticleEx
+	( "727272", TexMan.CheckForTexture("DUSTC0"), style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL,
+	lifetime: random(40,70), size: frandom(2,15), xoff: random(-5,5), yoff: frandom(-25,25), zoff: random(10,35),
+	velx: frandom(-5,5), vely: frandom(-5,5), velz: frandom(3,5),
+	accelz: frandom(-0.3,-0.6), startalphaf: 1.0, sizestep: -0.3, startroll: random(-180,180), rollvel: random(-4,4));
+	A_SpawnParticleEx
+	( "8a8a8a", TexMan.CheckForTexture("GNSMK0"),
+	style: STYLE_Normal, flags: SPF_RELATIVE|SPF_ROLL, lifetime: random(50,80),
+	size: frandom(45,75), xoff: -10, yoff: random(-25,25), zoff: random(0,5),
+	velx: frandom(1,1), vely: frandom(-1,1), velz: frandom(0,1), startalphaf: frandom(0.3,0.7), fadestepf: -1,
+	sizestep: 0.2, startroll: random(-180,180));
+   }
+   
+    States 
+    { 
+    Spawn:
+       TNT1 A 0 NoDelay
+       {
+       user_numbullets = 4;
+       }
+    Idle: 
+       V10_ AB 10 PM_Look();
+       Loop;
+    Look:
+	   TNT1 A 0;
+	   TNT1 A 0 A_SetTranslucent(0.1);
+	   TNT1 A 0 A_StartSound("WarPig/Engine",38,CHANF_LOOP,0.5,pitch:0.85);
+	Looking:
+       V10_ A 0 A_StartSound("WarHound/Walk",CHAN_7);
+       V10_ AA 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ BB 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+	   TNT1 A 0 A_Recoil(-0.5);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7);
+       V10_ CC 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ DD 2 PM_LookingForPlayer();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   Loop;
+	Spotted:
+	   TNT1 A 0 A_Jump(65,"Roar");
+	   Goto See;
+	 Roar:
+	   TNT1 A 0 PM_AlertSound();
+    See: 
+	   TNT1 A 0 A_SetTranslucent(0.1);
+	   TNT1 A 0 
+	   {
+	   bFRIGHTENED = false;
+       bAVOIDMELEE = false;
+	   }
+       V10_ A 0 A_StartSound("WarHound/Walk",CHAN_7);
+       V10_ AA 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ BB 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7);
+       V10_ CC 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ DD 2 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   TNT1 A 0 A_Jump(30,"Rush");
+	   TNT1 A 0 A_Jump(75,"Hide");
+       Loop;
+	Rush:
+       TNT1 A 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+       V10_ AA 1 PM_WarhoundRush();
+	   V10_ BB 1 PM_WarhoundRush();
+       V10_ C 0 A_StartSound("PM/ChargingStomp",36,CHANF_OVERLAP,0.6,pitch:frandom(0.9,1.1));
+       V10_ CC 1 PM_WarhoundRush();
+	   V10_ DD 1 PM_WarhoundRush();
+	   TNT1 A 0 A_Jump(5,"See");
+       Loop;
+	Hide:
+	   TNT1 A 0 A_SetTranslucent(0.1);
+	   TNT1 A 0 
+	   { 
+	   bFRIGHTENED = true; 
+	   pm_attackloop = random(5,6);
+	   }
+	   TNT1 A 0 {
+	   if(pm_attackloop < 0)
+	   SetStateLabel("HideSeek");
+	   }
+	   V10_ A 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ BB 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ DD 1 A_Chase(null,null,CHF_NOPLAYACTIVE);
+	   TNT1 A 0 A_Recoil(-0.8);
+	   TNT1 A 0 { pm_attackloop--; }
+	   Goto Hide+2;
+	HideSeek:
+	   TNT1 A 0 A_SetTranslucent(0.1);
+	   TNT1 A 0 { bFRIGHTENED = false; }
+       V10_ A 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ BB 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-2);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-0.5);
+	   V10_ DD 4 A_Chase();
+	   TNT1 A 0 A_Recoil(-2);
+	   TNT1 A 0 A_Jump(20,"Rush");
+	   Loop;
+    Melee:
+	   TNT1 A 0 { bNOPAIN = true; }
+	   TNT1 A 0 
+	   {
+	    A_StartSound("Sybarite/Reload1",13,pitch:0.80);
+	    A_StartSound("Director/GLaserCharge",14,volume:0.5,pitch:1.45);
+	   }
+	   TNT1 A 0 A_SetTranslucent(0.3);
+	   TNT1 A 0 A_SetTranslucent(0.5);
+	   V10_ H 13 A_FaceTarget(360,180);
+	   TNT1 A 0 
+	   {
+		 A_StartSound("WarPig/Attack",15,volume:0.7,pitch:0.90);
+		 A_StartSound("WarHound/LShtCharge",12,attenuation:0.9,pitch:frandom(1,1.30));
+	   }
+	   TNT1 A 0 A_SetTranslucent(1);
+	   V10_ EEEEEEE 2 Light("ShadowBall")
+	   {
+	    A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(25,56),size: frandom(120,156),xoff: 30,zoff: frandom(-6.5,6.5) + 32,velx: frandom(0.3,0.6),startalphaf: 0.55,fadestepf: -1,startroll: random(-180,180),rollvel: frandom(-1,1));
+	    A_FaceTarget(0.8,0.8,0.8,0.8);
+	   }
+	   V10_ EEEEEEEEEEEE 1 
+	   {
+	    A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(25,56),size: 50,xoff: 30,zoff: frandom(-3.5,3.5) + 32,startalphaf: 0.85,fadestepf: 0.55,sizestep: 0.30,startroll: random(-180,180));
+	    A_FaceTarget(0.5,0.5,0.5,0.5);
+	   }
+	   TNT1 A 0 
+	   {
+	    A_StartSound("PMBelphegor/TwilightExplode",13,attenuation:0.8,pitch:0.90);
+		A_StartSound("Fusionite/Scattershot",14,attenuation:0.9);
+		user_numbullets--;
+	   }
+       TNT1 AAAAAAA 0 A_SpawnProjectile("PM_WarHoundShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(-5,5));
+	   V10_ F 5 Light("ShadowBall2");
+	   V10_ E 1 A_Recoil(7);
+	   V10_ E 2 
+	   {
+	    if(target && Distance3D(target) < 350 && random(1,2) == 1)
+	    SetStateLabel("DoubleTap");
+	   }
+	   Goto MissileEnd;
+	  DoubleTap:
+	   TNT1 A 0 
+	   {
+		 A_StartSound("WarPig/Attack",15,volume:0.7,pitch:0.90);
+		 A_StartSound("WarHound/LShtCharge",12,pitch:1.55);
+	   }
+	   V10_ EEEEE 2 Light("ShadowBall")
+	   {
+	    A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(25,56),size: frandom(120,156),xoff: 30,zoff: frandom(-6.5,6.5) + 32,velx: frandom(0.3,0.6),startalphaf: 0.55,fadestepf: -1,startroll: random(-180,180),rollvel: frandom(-1,1));
+	   }
+	   V10_ EEEEEEEEE 1 
+	   {
+	    A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(25,56),size: 50,xoff: 30,zoff: frandom(-3.5,3.5) + 32,startalphaf: 0.85,fadestepf: 0.55,sizestep: 0.30,startroll: random(-180,180));
+	   }
+	   TNT1 A 0 
+	   {
+	    A_StartSound("PMBelphegor/TwilightExplode",13,attenuation:0.8,pitch:0.90);
+		A_StartSound("Fusionite/Scattershot",14,attenuation:0.9);
+		user_numbullets--;
+	   }
+       TNT1 AAAAAAA 0 A_SpawnProjectile("PM_WarHoundShot",35,0,random(-10,10),CMF_OFFSETPITCH|CMF_AIMDIRECTION,random(-5,5));
+	  MissileEnd:
+	   V10_ E 3 { bNOPAIN = false; }
+	   TNT1 A 0 A_SetTranslucent(0.4);
+	   TNT1 A 0 A_StartSound("GenericSteam",pitch:0.85);
+	   V10_ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1
+	   {
+	    if(user_numbullets <= 0)
+		 { SetStateLabel("NoAmmo"); }
+	    A_FaceTarget();
+	    A_SpawnItemEx("PM_VentSmoke",0,4,36,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+	   }
+       V10_ H 5 A_FaceTarget;
+	   TNT1 A 0 A_Jump(75,"See");
+	   Goto Hide;
+	/*Missile:
+	   TNT1 A 0 A_StartSound("WarHound/Ready");
+	   TNT1 A 0 A_Stop;
+	   TNT1 A 0 A_SetTranslucent(0.3);
+	   TNT1 A 0 A_SetTranslucent(0.5);
+	   V10_ H 25 Light("Shadowball") PM_LeadTarget(40);
+	   TNT1 A 0 A_SetTranslucent(1);
+	   V10_ EE 3 Light("Shadowball2") PM_LeadTarget(40);
+	   TNT1 AAAAAA 0 A_SpawnItemEx("CFodFlare",29,0,35);
+	   TNT1 A 0 
+	   {
+	   if(user_numbullets < 0)
+	   SetStateLabel("NoAmmo");
+	   user_numbullets--;
+	   }
+       TNT1 A 0 A_SpawnProjectile("PM_WarHoundSniperTracer",35,0,random(-2,2),CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch*1);
+	   TNT1 A 0
+	   {
+	   for(int a=0;a<11;a++)
+	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+	   }
+	   V10_ F 5 Light("ShadowBall") A_SpawnItemEx("CFodFlare",29,0,35);
+	   V10_ E 7;
+	   Goto See;*/
+    NoAmmo:
+	   V10_ E 1;
+	   TNT1 A 0 { bNOPAIN = true; }
+       TNT1 AA 0 A_SpawnItemEx("CFodFlare",29,0,35);
+       TNT1 A 0 A_StartSound("Fusionite/ScattershotDry",CHAN_6);
+	   TNT1 A 0
+	   {
+	   for(int a=0;a<11;a++)
+	   A_SpawnParticle("FF8989",SPF_FULLBRIGHT|SPF_RELATIVE,105,random(8,20),0,random(5,10),random(-3,3),35,random(3,8),random(-2,2),random(-2,2),0,0,0,1,-1,-0.4);
+	   }
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaCooldown");
+       V10_ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH 1  A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       TNT1 A 0 A_StartSound("PM/HeavyPlasmaReload",CHAN_6,CHANF_LOOPING);
+       Goto RetreatNoAmmo;
+    SeeNoAmmo: 
+	   TNT1 A 0 A_SetTranslucent(0.1);
+       TNT1 A 0 { bFRIGHTENED = false; }
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ BB 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ DD 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ BB 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ DD 2
+       {
+       if(user_numbullets >= 2)
+       SetStateLabel("ZReload");
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       user_numbullets++;
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       Loop;
+    RetreatNoAmmo: 
+	   TNT1 A 0 A_SetTranslucent(0.0);
+	   TNT1 A 0 {
+	   bFRIGHTENED = true;
+	   bNOPAIN = true;
+	   }
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ BB 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ DD 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ AA 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ BB 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       V10_ C 0 A_StartSound("WarHound/Walk",CHAN_7,volume:0.4);
+       V10_ CC 2
+       {
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+	   V10_ DD 2
+       {
+       if(user_numbullets >= 2)
+       SetStateLabel("ZReload");
+       A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       A_Chase("MeleeNoAmmo",null);
+       user_numbullets++;
+       }
+	   TNT1 A 0 A_Recoil(-0.8);
+       TNT1 A 0 A_Jump(15,"SeeNoAmmo");
+       Loop;
+	MeleeNoAmmo:
+		TNT1 A 0 A_SetTranslucent(0.5);
+		V10_ H 5 A_FaceTarget;
+		V10_ H 3;
+		TNT1 A 0 A_StartSound("WarHound/Sight");
+		V10_ H 3;
+		TNT1 A 0 A_SetTranslucent(1);
+		TNT1 A 0 A_Recoil(-12);
+		TNT1 A 0 ThrustThingZ(0,5,0,1);
+		V10_ E 6 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+		V10_ E 6 A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
+		TNT1 A 0 A_SetTranslucent(0.5);
+		V10_ A 8;
+        Goto SeeNoAmmo;
+    ZReload:
+       TNT1 A 0;
+       V10_ HHHHHHHHHHHHHHH 1 A_SpawnItemEx("PM_VentSmoke",10,0,32,random(2,-2),random(2,-2),random(1,3),0,0,0,0);
+       TNT1 A 0 { bNOPAIN = false; }
+       TNT1 A 0 A_StartSound("WarHound/Sight",CHAN_6);
+       Goto See;
+	Pain: 
+	   TNT1 A 0 A_SetTranslucent(1);
+       V10_ H 2;
+       V10_ H 2 A_Pain;
+	   TNT1 A 0 A_Jump(100,"Rush");
+       Goto See;
+    Death:
+	   TNT1 A 0 A_SetTranslucent(1);
+       V10_ I 8;
+	   TNT1 A 0 A_StopSound(38);
+	   TNT1 AAA 0 A_SpawnItemEx("PM_NormalMeatChunkLauncher",10,0,32);
+       V10_ J 0 A_SpawnItemEx("PM_WarHoundArm", 10, 0, 32, 0, 8, 0, 0, 128);
+       V10_ J 8 PM_Scream();
+       V10_ K 4;
+       V10_ L 4 A_NoBlocking;
+       V10_ M 4;
+	   TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+       V10_ N -1 ;
+       Stop;
+    Raise: 
+       V10_ NMLKJI 5;
+	   TNT1 A 0 { bNOPAIN = false; }
+       Goto Look;
+    } 
+}
+
+Class PM_WarHoundShot : Actor
+{
+   Default
+   {
+   Projectile;
+   +BLOODSPLATTER 
+   +THRUGHOST
+   Height 2;
+   Radius 2;
+   Speed 40;
+   DamageFunction 14;
+   DamageType "Plasma";
+   Decal "PM_HellPlasmaScorch";
+   DeathSound "GHeavyPlasmaExp";
+   Scale 0.45;
+   RenderStyle "Add";
+   Alpha 0.5;
+   }
+   
+   override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[2] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[3];
+
+   States
+   {
+	Spawn:
+	   TNT1 A 0;
+		TNT1 AA 0 { A_SpawnParticleEx("", tex[2], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: 5,size: random(150,250), startalphaf: 0.75, startroll: random(-180,180)); }
+	   TNT1 AAA 0 { A_SpawnParticleEx("FF4444", tex[0], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(15,65),size: random(56,80), xoff: random(-3,3), yoff: random(-3,3), zoff: random(-3,3), velx: frandom(2,4), vely: frandom(-3,3),velz: frandom(-3,3), startalphaf: 0.65, startroll: random(-180,180)); }
+		TNT1 AA 0 { A_SpawnParticleEx("", tex[1], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(20,50),size: random(1,10), xoff: random(-3,3), yoff: random(-3,3), zoff: random(-3,3), velx: frandom(2,4), vely: frandom(-5,5), velz: frandom(-5,5),startalphaf: 0.85, startroll: random(-180,180)); }
+	Go:
+		TRCR BBBBBBBBB 1 Bright 
+		{
+		 if(alpha < 0.2)
+		  {
+		   bTHRUACTORS = true;
+		   bMISSILE = false;
+		  }
+		 A_QuakeEx(1, 0, 0, 30, 0, 300, "", QF_SCALEDOWN|QF_RELATIVE|QF_3D, rollintensity: 0.5, rollwave: 0.5);
+		 A_FadeOut(0.05);
+		}
+      Wait;
+	Fade:
+	 TRCR B 1 A_FadeOut(0.05);
+	  Wait;
+	XDeath:
+	 TNT1 A 0;
+	 TNT1 A 0 A_RadiusThrust(800,400,RTF_NOIMPACTDAMAGE);
+    Crash:
+	Death:
+	 TNT1 A 0;
+	 TNT1 AAA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(2,8), size: random(200,300), startalphaf: 0.95, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+	 TNT1 AAAA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("SPKRA0"), STYLE_ADD, SPF_ROLL||SPF_RELATIVE, random(10, 45), random(2,20), 0, frandom(-10, 10), frandom(-15, 15), frandom(-5,5), velx: frandom(-9, 9), vely: frandom(-9, 9), velz: frandom(1, 10), accelz: -0.5, sizestep: -0.05, startroll:frandom(-180,180));
+	 TNT1 A 0 A_SetScale(0.5);
+	 DTPR RRRRRRRRRRRRRRRRRRRR 1 Light("ShadowBall4")
+	 {
+	 A_SetScale(Scale.X-0.010);
+	 A_FadeOut(0.02);
+	 }
+    Stop;
+    }
+}
+
+Class PM_WarHoundArm : Actor
+{
+    Default
+	{
+	Radius 8;
+	Height 8;
+	Speed 8;
+	+DOOMBOUNCE
+	+DROPOFF
+	+Missile
+	DeathSound "PM/BigGoreSplat";
+	}
+   States
+   {
+	Spawn:
+         V10A ABCDEFGH 2 A_SpawnItemEx("PM_NormalBloodEx",random(3,-3),random(3,-3),random(3,-3),0,0,0,0,SXF_NOCHECKPOSITION,30);
+         Loop;
+	Death:
+	 V10A I -1;
+	 Loop;
+	}
+}
+
+Class PM_WarHoundSniperTracer : Actor
+{
+   Default
+   {
+   Height 4;
+   Radius 4;
+   Speed 40;
+   DamageFunction 30;
+   DamageType "Plasma";
+   Scale 0.65;
+   Projectile;
+   +FORCERADIUSDMG
+   RenderStyle "Add";
+   +BRIGHT
+   +SEEKERMISSILE
+   SeeSound "WarHound/Sniper";
+   DeathSound "DTech/Exp";
+   }
+   
+   override void PostBeginPlay()
+   {
+    Super.PostBeginPlay();
+	tex[0] = TexMan.CheckForTexture("SPKRA0",TexMan.Type_Sprite);
+	tex[1] = TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite);
+   }
+   
+   TextureID tex[2];
+
+   States
+   {
+   Spawn:
+      TNT1 AAAAAAA 0
+	  {
+	   A_SpawnParticleEx("", tex[0], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(45,65), size: random(5,30), xoff: random(-3,3), yoff: random(-3,3), zoff: random(-3,3), velx: frandom(5,7), vely: frandom(-5,5), velz: frandom(-5,5), sizestep: -1, startroll: random(-180,180), rollvel: random(-10,10));
+	  }
+   Go:
+      TRCR B 1 Bright Light("Shadowball2")
+	  {
+	   A_SpawnParticle("E10000", flags: SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(15,35), size: random(5,8), xoff: random(-3,3), yoff: random(-3,3), zoff: random(-3,3), velx: random(-2,2),startalphaf: 0.85);
+	   A_SpawnParticle("FF2525", flags: SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(15,35), size: random(5,8), xoff: random(-5,5), yoff: random(-5,5), zoff: random(-5,5), velx: random(-6,6), startalphaf: 0.95);
+	  }
+	  TNT1 A 0 A_JumpIfTracerCloser(150,"Noise");
+        Loop;
+    Noise:
+        TNT1 A 0 A_StartSound("PM/BulletWhiz",3,CHANF_DEFAULT,0.50);
+    Cont:
+	    TRCR B 1 Bright Light("Shadowball2")
+	  {
+	   A_SpawnParticle("E10000",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(15,35),size: random(5,8),xoff: random(-3,3),yoff: random(-3,3),zoff: random(-3,3),velx: random(-2,2),startalphaf: 0.85);
+	   A_SpawnParticle("FF2525",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(15,35),size: random(5,8),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: random(-6,6),startalphaf: 0.95);
+	  }
+	  Loop;
+   Death:
+     TNT1 AAAA 0 { A_SpawnParticleEx("",tex[1],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: 25,size: random(80,120),startalphaf: 0.85,startroll: random(-180,180)); }
+	  TNT1 AAAAAAAA 0 { A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(67,87),size: random(5,45),xoff: random(-5,5),yoff: random(-5,5),zoff: random(-5,5),velx: frandom(-5,5),vely: frandom(-5,5),velz: frandom(-5,5),sizestep: -1,startroll: random(-180,180),rollvel: random(-10,10)); }
+	  TNT1 AAA 0 A_SpawnProjectile("PM_RFireBallExplode",0,0,random(0,360),2,random(0,360));
+	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0);
+      Stop;
+	  }
+}

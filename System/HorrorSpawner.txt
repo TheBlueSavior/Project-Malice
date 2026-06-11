@@ -1,0 +1,256 @@
+class PM_HorrorMapStamp : Actor
+{
+    Default
+    {
+        +NOINTERACTION
+        +NOBLOCKMAP
+        +NOSECTOR
+        +INVISIBLE
+        RenderStyle "None";
+        Alpha 0.0;
+        Scale 0;
+    }
+}
+
+class PM_HorrorSpawnerHandler : StaticEventHandler
+{
+    bool   doSpawn;
+    int    spawnDelay;
+
+    string lastMapName;
+
+    CVar cvMode, cvChance, cvProg, cvThreshold, cvMax, cvDebug;
+
+    private void EnsureCVars()
+    {
+        if (!cvMode)      cvMode      = CVar.FindCVar('pm_horror_mode');
+        if (!cvChance)    cvChance    = CVar.FindCVar('pm_horror_chance');
+        if (!cvProg)      cvProg      = CVar.FindCVar('pm_horror_progression');
+        if (!cvThreshold) cvThreshold = CVar.FindCVar('pm_horror_threshold');
+        if (!cvMax)       cvMax       = CVar.FindCVar('pm_horror_max');
+        if (!cvDebug)     cvDebug     = CVar.FindCVar('pm_horror_debug');
+    }
+
+    private bool DebugEnabled()
+    {
+        EnsureCVars();
+        return cvDebug && cvDebug.GetBool();
+    }
+
+    override void NewGame()
+    {
+        EnsureCVars();
+        if (cvProg) cvProg.SetInt(0);
+        lastMapName = "";
+
+        if (DebugEnabled())
+            Console.Printf("[PM:Horror] New Game: progression reset to 0");
+    }
+
+    override void WorldLoaded(WorldEvent e)
+    {
+        if (gamestate == GS_TITLELEVEL || deathmatch) return;
+        EnsureCVars();
+
+        int mode = cvMode ? cvMode.GetInt() : 0;
+
+        if (mode == 1)
+        {
+            if (lastMapName == "")
+            {
+                if (DebugEnabled())
+                    Console.Printf("[PM:Horror] First map this run: progression stays at %d",
+                        cvProg ? cvProg.GetInt() : 0);
+            }
+            else if (level.MapName != lastMapName && !e.IsSaveGame)
+            {
+                if (cvProg)
+                {
+                    int newVal = cvProg.GetInt() + 1;
+                    cvProg.SetInt(newVal);
+
+                    if (DebugEnabled())
+                    {
+                        int thresh = cvThreshold ? cvThreshold.GetInt() : 3;
+                        int mx     = cvMax ? cvMax.GetInt() : 15;
+                        Console.Printf("[PM:Horror] Map change %s -> %s: progression now %d (threshold=%d, max=%d)",
+                            lastMapName, level.MapName, newVal, thresh, mx);
+                    }
+                }
+            }
+            else
+            {
+                if (DebugEnabled())
+                    Console.Printf("[PM:Horror] Restart detected on %s: progression unchanged.", level.MapName);
+            }
+        }
+
+        lastMapName = level.MapName;
+
+        bool alreadyStamped = HorrorMapHasStamp();
+        doSpawn    = !alreadyStamped;
+        spawnDelay = 1;
+
+        if (DebugEnabled())
+        {
+            if (mode == 0)
+            {
+                Console.Printf("[PM:Horror] Mode: Static. Chance: %d%% (%s)",
+                    cvChance ? cvChance.GetInt() : 0,
+                    alreadyStamped ? "reload: skipping spawn" : "fresh entry");
+            }
+            else
+            {
+                Console.Printf("[PM:Horror] Mode: Progression. Level count: %d (%s)",
+                    cvProg ? cvProg.GetInt() : 0,
+                    alreadyStamped ? "reload: skipping spawn" : "fresh entry");
+            }
+        }
+    }
+
+    override void WorldTick()
+    {
+        if (!doSpawn) return;
+
+        if (spawnDelay-- > 0) return;
+        doSpawn = false;
+
+        EnsureCVars();
+
+        int mode = cvMode ? cvMode.GetInt() : 0;
+        double chance;
+
+        if (mode == 0)
+        {
+
+            chance = cvChance ? cvChance.GetInt() : 0;
+        }
+        else
+        {
+
+            int prog   = cvProg ? cvProg.GetInt() : 0;
+            int thresh = cvThreshold ? cvThreshold.GetInt() : 3;
+            int mx     = cvMax ? cvMax.GetInt() : 15;
+
+            if (mx <= thresh) mx = thresh + 1;
+
+            if (prog < thresh)
+            {
+                chance = 0.0;
+            }
+            else if (prog >= mx)
+            {
+                chance = 100.0;
+            }
+            else
+            {
+                chance = double(prog - thresh) / double(mx - thresh) * 100.0;
+            }
+        }
+
+        double roll = frandom(0.0, 100.0);
+        bool spawn = (roll <= chance);
+
+        if (DebugEnabled())
+            Console.Printf("[PM:Horror] Chance: %.1f%%, Roll: %.1f -> %s",
+                chance, roll, spawn ? "SPAWNING" : "no spawn");
+
+        if (!spawn)
+        {
+            SpawnOrEnsureStamp();
+            return;
+        }
+
+        Array<double> posX, posY, posZ;
+        double minDist = 1024.0;
+
+        Actor mo;
+        let it = ThinkerIterator.Create("Actor");
+        while (mo = Actor(it.Next()))
+        {
+            if (mo is "PlayerPawn" || !mo.bISMONSTER) continue;
+            if (mo.bFLOAT) continue;
+
+            bool tooClose = false;
+            for (int p = 0; p < MAXPLAYERS; p++)
+            {
+                if (playeringame[p] && players[p].mo)
+                {
+                    if (mo.Distance2D(players[p].mo) < minDist)
+                    {
+                        tooClose = true;
+                        break;
+                    }
+                }
+            }
+            if (tooClose) continue;
+
+            posX.Push(mo.pos.X);
+            posY.Push(mo.pos.Y);
+            posZ.Push(mo.pos.Z);
+        }
+
+        if (posX.Size() == 0)
+        {
+            if (DebugEnabled())
+                Console.Printf("[PM:Horror] No valid monster positions found, aborting.");
+            SpawnOrEnsureStamp();
+            return;
+        }
+
+        Actor a = null;
+        Vector3 sp = (0, 0, 0);
+        while (posX.Size() > 0)
+        {
+            int idx = random(0, posX.Size() - 1);
+            sp = (posX[idx], posY[idx], posZ[idx]);
+
+            let cand = Actor.Spawn("PM_ControlledSoldier", sp);
+            if (cand && cand.TestMobjLocation())
+            {
+                cand.angle = random(0, 7) * 45;
+                a = cand;
+                break;
+            }
+            else if (cand)
+            {
+                cand.Destroy();
+            }
+
+            posX.Delete(idx);
+            posY.Delete(idx);
+            posZ.Delete(idx);
+        }
+
+        if (DebugEnabled())
+        {
+            if (a)
+                Console.Printf("[PM:Horror] Spawned horror miniboss at (%.0f, %.0f, %.0f)",
+                    sp.X, sp.Y, sp.Z);
+            else
+                Console.Printf("[PM:Horror] No valid spawn spot found for miniboss.");
+        }
+
+        SpawnOrEnsureStamp();
+    }
+
+    bool HorrorMapHasStamp()
+    {
+        let it = ThinkerIterator.Create("PM_HorrorMapStamp");
+        return it.Next() != null;
+    }
+
+    void SpawnOrEnsureStamp()
+    {
+        if (HorrorMapHasStamp()) return;
+
+        for (int i = 0; i < MAXPLAYERS; i++)
+        {
+            if (playeringame[i] && players[i].mo)
+            {
+                Actor.Spawn("PM_HorrorMapStamp", players[i].mo.pos);
+                return;
+            }
+        }
+    }
+}

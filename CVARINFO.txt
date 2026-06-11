@@ -49,9 +49,15 @@ server bool pm_healthfactor_mass = false;
 //Dehacked compat
 server bool projectmalice_dehacked_wolfss_replace = true;
 
-//ghpstttttt
+//Ghost monster debug
 server bool pm_ghost_debug = false;
 
+
+//Progressive Spawner
+server int  pm_spawner_mode        = 0;   // 0 = weighted (RandomSpawner), 1 = progressive
+server int  pm_spawner_progression = 0;   // maps completed (auto-tracked)
+server int  pm_spawner_fullunlock  = 28;  // maps for full curve unlock
+server bool pm_spawner_debug       = false;
 
 //Scout stuff
 server bool pm_scout_enabled = true; // master toggle for the scout spawn system
@@ -68,6 +74,14 @@ server int pm_scout_attempt_jitter  = 6;    // jitter tries per sector     (was 
 server int pm_scout_fail_cooldown   = 1;    // seconds to wait after a full failed attempt
 server int  pm_scout_grace_seconds   = 60;
 
+
+//Horror Spawner
+server int  pm_horror_mode        = 0;    // 0 = static, 1 = progression
+server int  pm_horror_chance      = 0;    // static flat % chance (0-100)
+server int  pm_horror_progression = 0;    // levels completed (auto-tracked)
+server int  pm_horror_threshold   = 3;    // levels before horror can spawn
+server int  pm_horror_max         = 15;   // levels until guaranteed spawn
+server bool pm_horror_debug       = false;
 
 // THIS IS ALL FOR DEBUG INFORMATION AND TESTING
 // math

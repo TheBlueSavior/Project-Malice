@@ -340,7 +340,7 @@ Class PM_CivilianZombie : PMLustMonsterBase
       {
 		let p = A_SpawnProjectile("PM_CivZombieMolotov",33,0,random(-1,1),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
 		let tgt = target;
-		if (p && tgt) { p.vel = CalcThrowVector(pos, tgt.pos, 1.25, 125.0); }
+		if (p && tgt) { p.vel = CalcThrowVector(pos, tgt.pos, 1.25, 0.30); }
 		grenadecount--;
       }
       Goto Retreat;

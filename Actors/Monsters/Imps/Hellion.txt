@@ -65,16 +65,16 @@ Class PM_Hellion : PMUnaffMonsterBase
   States
   {
   Spawn:
-    HELN AA 10 PM_Look();
+    I09_ AA 10 PM_Look();
     Loop;
   Look:
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
-    HELN AABBCC 2 PM_LookingForPlayer();
+    I09_ AABBCC 2 PM_LookingForPlayer();
 	TNT1 A 0 A_Jump(35,"LookBuffCheck");
 	TNT1 A 0 A_JumpIfTargetinLOS("Spotted",180,JLOSF_DEADNOJUMP);
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN DDEEFF 2 PM_LookingForPlayer();
+	I09_ DDEEFF 2 PM_LookingForPlayer();
 	TNT1 A 0 A_Jump(35,"LookBuffCheck");
     Loop;
   Spotted:
@@ -83,10 +83,10 @@ Class PM_Hellion : PMUnaffMonsterBase
 	See:
 	TNT1 A 0 A_StartSound("Imp/Step",4);
 	TNT1 A 0 {bFRIGHTENED = false;}//A_ChangeFlag("FRIGHTENED",0);
-    HELN AABBCC 2 PM_HellionChase();
+    I09_ AABBCC 2 PM_HellionChase();
 	TNT1 A 0 A_Jump(35,"BuffCheck");
 	TNT1 A 0 A_StartSound("Imp/Step",4);
-	HELN DDEEFF 2 PM_HellionChase();
+	I09_ DDEEFF 2 PM_HellionChase();
 	TNT1 A 0 A_Jump(35,"BuffCheck");
     Loop;
   BuffCheck: 
@@ -116,16 +116,16 @@ Class PM_Hellion : PMUnaffMonsterBase
 	bufflimit += 1;
 	}
 	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
-	2ELN A 1 Light("Greenball3");
+	I09A A 1 Light("Greenball3");
 	TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6);
 	TNT1 A 0 A_StartSound("Hellion/BuffGive",CHAN_7);
 	TNT1 A 0 A_RadiusGive("PM_HellionMendingBuffGiver",100,RGF_MONSTERS,1,limit:1);
-	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
+	I09A AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
 	{
 	A_SpawnItemEx("PM_HellionHandFire",5,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	A_SpawnItemEx("PM_HellionHandFire",5,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	}
-	2ELN AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
+	I09A AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
 	{
 	A_SpawnItemEx("PM_HellionHandFire",0,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	A_SpawnItemEx("PM_HellionHandFire",0,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
@@ -138,16 +138,16 @@ Class PM_Hellion : PMUnaffMonsterBase
 	bufflimit += 1;
 	}
 	TNT1 A 0 {bFRIGHTENED = true;} //A_ChangeFlag("FRIGHTENED",1);
-	2ELN A 1 Light("Greenball3");
+	I09A A 1 Light("Greenball3");
 	TNT1 A 0 A_StartSound("Hellion/Sight",CHAN_6);
 	TNT1 A 0 A_StartSound("Hellion/BuffGive",CHAN_7);
 	TNT1 A 0 A_RadiusGive("PM_HellionMendingBuffGiver",100,RGF_MONSTERS,1,limit:1);
-	2ELN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
+	I09A AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 Light("Greenball3")
 	{
 	A_SpawnItemEx("PM_HellionHandFire",5,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	A_SpawnItemEx("PM_HellionHandFire",5,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	}
-	2ELN AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
+	I09A AAAAAAAAAAAAAAAAAAAA 1 Light("Greenball2")
 	{
 	A_SpawnItemEx("PM_HellionHandFire",0,-30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
 	A_SpawnItemEx("PM_HellionHandFire",0,30,68,frandom(-1,1),frandom(-1,1),frandom(0,5));
@@ -162,26 +162,26 @@ Class PM_Hellion : PMUnaffMonsterBase
     TNT1 A 0 A_Jump(75,"Burst");
     TNT1 A 0 A_Jump(45,"Barrage","SweepRight","SweepLeft");
   SpreadShot:
-    HELN G 0 A_VileStart();
-    HELN G 6 Bright { A_FaceTarget(360,180); }
-	HELN HIJK 6 Bright;
-	HELN KKKKKKKKKKKK 1 Bright A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,3));
-    HELN L 6 Bright 
+    I09_ G 0 A_VileStart();
+    I09_ G 6 Bright { A_FaceTarget(360,180); }
+	I09_ HIJK 6 Bright;
+	I09_ KKKKKKKKKKKK 1 Bright A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,3));
+    I09_ L 6 Bright 
 	{
 	A_StartSound("FeralImp/Ireball",11,flags:CHANF_OVERLAP,pitch:0.75);
 	for(int i=random(5,9);i>0;i--)
 	A_SpawnProjectile("PM_HellionFlare",32,0,random(-8,8),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 	}
-    HELN L 2;
+    I09_ L 2;
     Goto See;
   Burst:
     TNT1 A 0 { pm_attackloop = random(5,8); }
-    HELN G 0 A_VileStart();
-    HELN G 6 Bright { A_FaceTarget(360,180); }
-	HELN HIJK 6 Bright;
-	HELN KKKKKKKKKKKK 1 Bright A_SpawnItemEx("PM_HuskRushFire",random(23,30),random(-8,8),random(32,45),0,0,frandom(1,3));
+    I09_ G 0 A_VileStart();
+    I09_ G 6 Bright { A_FaceTarget(360,180); }
+	I09_ HIJK 6 Bright;
+	I09_ KKKKKKKKKKKK 1 Bright A_SpawnItemEx("PM_HuskRushFire",random(23,30),random(-8,8),random(32,45),0,0,frandom(1,3));
   BurstGo:
-    HELN L 3 Bright 
+    I09_ L 3 Bright 
 	{
 	if(pm_attackloop < 0)
 	SetStateLabel("AttackEnd");
@@ -189,41 +189,41 @@ Class PM_Hellion : PMUnaffMonsterBase
 	A_SpawnProjectile("PM_HellionFlare",32,0,random(-4,4),CMF_AIMDIRECTION,pitch+frandom(-2,2));
 	pm_attackloop--;
 	}
-    HELN L 1;
+    I09_ L 1;
 	Loop;
   Barrage:
-    HELN G 0 A_VileStart();
-	HELN G 1 Bright { A_FaceTarget(360,180); }
-    HELN GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
+    I09_ G 0 A_VileStart();
+	I09_ G 1 Bright { A_FaceTarget(360,180); }
+    I09_ GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
 	{
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,3));
 	A_FaceTarget();
 	}
   BarrageGo:
-    HELN L 5 Bright 
+    I09_ L 5 Bright 
 	{
 	A_StartSound("FeralImp/Ireball",11,flags:CHANF_OVERLAP);
     A_SpawnProjectile("PM_HellionHoming",32,0,random(-30,30),CMF_OFFSETPITCH,random(3,-10));
 	A_FaceTarget();
 	}
-    HELN L 2;
+    I09_ L 2;
 	TNT1 A 0 A_CheckSight("AttackEnd");
 	TNT1 A 0 A_Jump(5,"AttackEnd");
 	Loop;
   AttackEnd:
-    HELN L 10;
+    I09_ L 10;
     Goto See;
   SweepRight:
     TNT1 A 0 { pm_attackloop = 45; }
-    HELN G 0 A_VileStart();
-	HELN G 1 Bright { A_FaceTarget(360,180); }
-    HELN GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
+    I09_ G 0 A_VileStart();
+	I09_ G 1 Bright { A_FaceTarget(360,180); }
+    I09_ GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
 	{
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,3));
 	A_FaceTarget();
 	}
   SweepRightGo:
-    HELN L 2 Bright 
+    I09_ L 2 Bright 
 	{
 	if(pm_attackloop <= -45)
 	SetStateLabel("AttackEnd");
@@ -232,19 +232,19 @@ Class PM_Hellion : PMUnaffMonsterBase
 	A_FaceTarget();
 	pm_attackloop -= 5;
 	}
-    HELN L 1;
+    I09_ L 1;
 	Loop;
   SweepLeft:
     TNT1 A 0 { pm_attackloop = -45; }
-    HELN G 0 A_VileStart();
-	HELN G 1 Bright { A_FaceTarget(360,180); }
-    HELN GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
+    I09_ G 0 A_VileStart();
+	I09_ G 1 Bright { A_FaceTarget(360,180); }
+    I09_ GGGGGGGHHHHHHHIIIIIIIJJJJJJJKKKKKKKKKKKKKK 1 Bright Light("AvatarFireball1")
 	{
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,3));
 	A_FaceTarget();
 	}
   SweepLeftGo:
-    HELN L 2 Bright 
+    I09_ L 2 Bright 
 	{
 	if(pm_attackloop >= 45)
 	SetStateLabel("AttackEnd");
@@ -253,66 +253,66 @@ Class PM_Hellion : PMUnaffMonsterBase
 	A_FaceTarget();
 	pm_attackloop += 5;
 	}
-    HELN L 1;
+    I09_ L 1;
 	Loop;
  Geyser:
     TNT1 A 0 A_CheckProximity("Burst","PM_HellionGeyser",2000,2);
  GeyserGo:
-    HELN G 6 Bright A_StartSound("Hellion/Sight");
-    HELN GGGGGGGHHHHHHHIIIIIIIJJJJJJJ 1 Bright Light("HellionBallA")
+    I09_ G 6 Bright A_StartSound("Hellion/Sight");
+    I09_ GGGGGGGHHHHHHHIIIIIIIJJJJJJJ 1 Bright Light("HellionBallA")
 	{
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,5));
 	A_CheckProximity("Burst","PM_HellionGeyser",2000,2);
 	A_FaceTarget();
 	}
-	HELN K 6 { 
+	I09_ K 6 { 
 	if(target && CheckSight(target))
 	A_SpawnProjectile("PM_HellionGeyser");
 	else
 	A_Jump(256,1);
 	}
-	HELN KKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
+	I09_ KKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
 	{
 	A_SpawnItemEx("ExileHandFire",8,random(-8,1),30,0,0,1);
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,6));
 	A_FaceTarget();
 	}
-	HELN KKKKKKKKKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
+	I09_ KKKKKKKKKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
 	{
 	A_SpawnItemEx("ExileHandFire",8,random(-8,1),30,0,0,1);
     A_SpawnItemEx("PM_HuskRushFire",random(-10,10),random(-16,16),random(5,65),0,0,frandom(1,6));
 	A_FaceTarget();
 	}
-	HELN KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
+	I09_ KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK 1 Bright Light("HellionBallA")
 	{
 	A_SpawnItemEx("ExileHandFire",8,random(-8,1),30,0,0,1);
 	A_FaceTarget();
 	}
 	Goto See;
   Pain:
-    HELN M 2;
-    HELN M 6 A_Pain();
+    I09_ M 2;
+    I09_ M 6 A_Pain();
     Goto See;
   Death:
-    HELN N 6;
-    HELN O 6 PM_Scream();
-    HELN PQR 6;
-    HELN S 6 A_NoBlocking();
+    I09_ N 6;
+    I09_ O 6 PM_Scream();
+    I09_ PQR 6;
+    I09_ S 6 A_NoBlocking();
 	TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
-    HELN T -1;
+    I09_ T -1;
     Stop;
   XDeath:
     TNT1 A 0 A_StopSound(555);
-    HELN U 5 PM_Gib();
-    HELN V 5 A_XScream();
-    HELN W 5;
-    HELN X 5 A_NoBlocking();
-    HELN YZ 5;
-    HEL2 AB 5;
-    HEL2 C -1;
+    I09_ U 5 PM_Gib();
+    I09_ V 5 A_XScream();
+    I09_ W 5;
+    I09_ X 5 A_NoBlocking();
+    I09_ YZ 5;
+    I09B AB 5;
+    I09B C -1;
     Stop;
   Raise:
-    HELN TSRQPON 6;
+    I09_ TSRQPON 6;
     Goto Look;
   }
 }

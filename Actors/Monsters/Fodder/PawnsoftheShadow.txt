@@ -102,7 +102,7 @@ Class PM_POTS : PMVoidMonsterBase
 		ZOM3 A 0;	
 		Goto See2;
 	S5:
-		BZRD A 0;	
+		I04_ A 0;	
 		Goto See2;
 	S6:
 		SCZC A 0;	
@@ -114,19 +114,19 @@ Class PM_POTS : PMVoidMonsterBase
 		VFOD A 0;	
 		Goto See2;
 	S9:
-		D3IM A 0;	
+		I00_ A 0;	
 		Goto See2;
 	S10:
-		CH5R A 0;	
+		I02_ A 0;	
 		Goto See2;
 	S11:
-		SLHV A 0;	
+		I13_ A 0;
 		Goto See2;
 	S12:
-		DRKF A 0;	
+		I14_ A 0;
 		Goto See2;
 	S13:
-		BELA A 0;	
+		I01_ A 0;	
 		Goto See2;
 	S14:
 		BRUT A 0;	

@@ -28,15 +28,15 @@
    scr: 1200 exp: 5       type: imp           filter: "PM_Harvester";
    scr: 1200 exp: 5       type: imp           filter: "PM_Hellion";
    scr: 1200 exp: 5       type: imp           filter: "PM_Host";
-   scr: 1200 exp: 5       type: imp           filter: "PM_NetherImp";
+   scr: 1200 exp: 5       type: imp           filter: "PM_NetherConduit";
    scr: 1200 exp: 5       type: imp           filter: "PM_Tainted";
    scr: 2000 exp: 10      type: demon         filter: "PM_BloodStalker";
    scr: 2000 exp: 10      type: demon         filter: "PM_Brute";
    scr: 2000 exp: 10      type: demon         filter: "PM_CyberBrute";
-   scr: 2000 exp: 10      type: demon         filter: "PM_DemonTechBrute";
+   scr: 2000 exp: 10      type: demon         filter: "PM_WarPig";
    scr: 2000 exp: 10      type: demon         filter: "PM_Glutton";
    scr: 2100 exp: 10      type: demon         filter: "PM_CyberSpectre";
-   scr: 2100 exp: 10      type: demon         filter: "PM_DemonTechSpectre";
+   scr: 2100 exp: 10      type: demon         filter: "PM_WarHound";
    scr: 2100 exp: 10      type: demon         filter: "PM_Nightmare";
    scr: 2100 exp: 10      type: demon         filter: "PM_PhaseBrute";
    scr: 2100 exp: 10      type: demon         filter: "PM_Prowler";

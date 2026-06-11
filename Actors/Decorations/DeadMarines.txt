@@ -453,7 +453,7 @@ Actor DeadDevil : DeadDoomImp
 	States
 	{
 	Spawn:
-		D3IM M -1
+		I00_ M -1
 		Stop
 	}
 }

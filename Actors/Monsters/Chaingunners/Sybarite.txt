@@ -38,11 +38,8 @@ Class PM_Sybarite : PMLustMonsterBase
 			SetStateLabel("Spawn");
 			return;
 		}
-		int arc;
 		let p = A_SpawnProjectile("PM_SybGrenade",28,15,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH);
-		if(distance2d(target) <= 400) arc = 20;
-		else arc = 60;
-		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.10);
 	}
 	
 	void PM_SybariteNetFired()
@@ -51,11 +48,8 @@ Class PM_Sybarite : PMLustMonsterBase
 			SetStateLabel("Spawn");
 			return;
 		}
-		int arc;
 		let p = A_SpawnProjectile("PM_SybariteNet",30,15);
-		if(distance2d(target) <= 400) arc = 15;
-		else arc = 40;
-		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, arc);
+		if(p) p.vel = CalcThrowVector(pos, target.pos, p.gravity, 0.07);
 	}
 
   States
@@ -744,5 +738,31 @@ Class PM_SybariteNetted : PowerSpeed
 			}
 			}
 		}
+	}
+}
+
+Class PM_SybariteNetOverlay : EventHandler
+{
+	override void RenderOverlay(RenderEvent e)
+	{
+		let pmo = players[consoleplayer].mo;
+		if (!pmo || pmo.CountInv("PM_SybariteNetted") <= 0) return;
+
+		TextureID netTex = TexMan.CheckForTexture("_NETD0", TexMan.Type_Sprite);
+		if (!netTex.IsValid()) return;
+
+		double sw = double(Screen.GetWidth());
+		double sh = double(Screen.GetHeight());
+		double ow = sw * 1.45;
+		double oh = sh * 1.45;
+		double ox = (sw - ow) * 0.5;
+		double oy = (sh - oh) * 0.5;
+
+		Screen.DrawTexture(netTex, false, ox, oy,
+			DTA_DestWidthF, ow,
+			DTA_DestHeightF, oh,
+			DTA_LeftOffset, 0,
+			DTA_TopOffset, 0,
+			DTA_Alpha, 0.6);
 	}
 }

@@ -40,19 +40,19 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 	States
 	{
 		Spawn:
-			PRUT A 4 PM_Look();
+			V00A A 4 PM_Look();
 			Loop;
 		Look:
-			PRU1 AA 2 PM_LookingForPlayer();
+			V00_ AA 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 BB 2 PM_LookingForPlayer();
+			V00_ BB 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
             TNT1 A 0 A_JumpifTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
-			PRU1 CC 2 PM_LookingForPlayer();
+			V00_ CC 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 DD 2 PM_LookingForPlayer();
+			V00_ DD 2 PM_LookingForPlayer();
 			TNT1 A 0 A_Recoil(-0.5);
 			Loop;
 		Spotted:
@@ -61,47 +61,47 @@ Class PM_PhaseBrute : PMUnaffMonsterBase
 		    TNT1 A 0 PM_AlertSound();
 			Goto See;
 		See:
-			PRU1 AA 2 A_Chase(flags:CHF_NORANDOMTURN);
+			V00_ AA 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 BB 2 A_Chase(flags:CHF_NORANDOMTURN);
+			V00_ BB 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
-			PRU1 CC 2 A_Chase(flags:CHF_NORANDOMTURN);
+			V00_ CC 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			TNT1 A 0 A_StartSound("demonstep",3);
-			PRU1 DD 2 A_Chase(flags:CHF_NORANDOMTURN);
+			V00_ DD 2 A_Chase(flags:CHF_NORANDOMTURN);
 			TNT1 A 0 A_Recoil(-0.5);
 			loop;
 		Melee:
 			TNT1 A 0 A_JumpIfCloser(52,"Bite");
-			PRUT A 7 A_FaceTarget();
-			PRUT E 4 A_FaceTarget();
+			V00A A 7 A_FaceTarget();
+			V00A E 4 A_FaceTarget();
 			TNT1 A 0 ThrustThingZ(0,20,0,1);
 			TNT1 A 0 A_Recoil(-4);
-			PRUT FFBBB 1;
-			PRUT GGG 4 A_SpawnProjectile("PM_MeleeHitbox",40,0,0,2);
+			V00A FFBBB 1;
+			V00A GGG 4 A_SpawnProjectile("PM_MeleeHitbox",40,0,0,2);
 			TNT1 A 0 A_SpawnProjectile("PM_MeleeHitbox",5,0,0,2);
 			Goto See;
 		Bite:
 		    TNT1 A 0 A_StartSound("GenericPinkyBite");
-			PRUT E 8 A_FaceTarget();
-			PRUT F 8 A_FaceTarget();
-			PRUT G 8 A_SpawnProjectile("PM_MeleeHitbox",5,0,0,2);
+			V00A E 8 A_FaceTarget();
+			V00A F 8 A_FaceTarget();
+			V00A G 8 A_SpawnProjectile("PM_MeleeHitbox",5,0,0,2);
 			Goto See;
 		Pain:
-			PRUT H 9 A_Pain;
+			V00A H 9 A_Pain;
 			Goto See;
 		Death:
-			PRUT I 8 PM_Scream();
-			PRUT J 6 A_NoBlocking;
-			PRUT KL 6;
+			V00A I 8 PM_Scream();
+			V00A J 6 A_NoBlocking;
+			V00A KL 6;
 			TNT1 A 0 A_StartSound("Corpse/Fall",6);
-			PRUT M 6;
+			V00A M 6;
 			TNT1 A 0 A_StartSound("Corpse/Fall",7);
-			PRUT N -1;
+			V00A N -1;
 			Stop;
 		Raise:
-			PRUT NMLKJIA 3;
+			V00A NMLKJIA 3;
 			Goto Look;
 	}
 }

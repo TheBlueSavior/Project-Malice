@@ -7,6 +7,7 @@ version "4.11.3"
 #include "System/ScoutSpawner.txt"
 #include "System/FodderDroneSound.txt"
 #include "System/DehackedCompat.txt"
+#include "System/ProgressiveSpawner.txt"
 
 #include "Actors/SinCodexMenu.txt"
 
@@ -15,6 +16,7 @@ version "4.11.3"
 #include "Actors/Monsters/SystemMonsters/ScoutFallen.txt"
 #include "Actors/Monsters/SystemMonsters/GhostMonsters.txt"
 
+#include "System/HorrorSpawner.txt"
 #include "System/DimensionalStability.txt"
 
 #include "System/EnvironmentalWarping.txt"
@@ -85,7 +87,7 @@ version "4.11.3"
 #include "Actors/Monsters/Imps/Host.txt"
 #include "Actors/Monsters/Imps/Wendigo.txt"
 #include "Actors/Monsters/Imps/Harvester.txt"
-#include "Actors/Monsters/Imps/NetherImp.txt"
+#include "Actors/Monsters/Imps/NetherConduit.txt"
 #include "Actors/Monsters/Imps/DuskWyrm.txt"
 
 //Pinkies
@@ -111,7 +113,7 @@ version "4.11.3"
 #include "Actors/Monsters/Spectres/PhaseBrute.txt"
 #include "Actors/Monsters/Spectres/CyberSpectre.txt"
 #include "Actors/Monsters/Spectres/Maggot.txt"
-#include "Actors/Monsters/Spectres/DTechSpectre.txt"
+#include "Actors/Monsters/Spectres/WarHound.txt"
 #include "Actors/Monsters/Spectres/Nightmare.txt"
 #include "Actors/Monsters/Spectres/Prowler.txt"
 #include "Actors/Monsters/Spectres/Skulker.txt"
@@ -184,6 +186,7 @@ version "4.11.3"
 
 //Paranormal
 #include "Actors/Monsters/Paranormal/Broken.txt"
+#include "Actors/Monsters/Paranormal/Balor.txt"
 
 //Fodder
 #include "Actors/Monsters/Fodder/Pustule.txt"

@@ -1,11 +1,9 @@
-// Rally token: used to nudge nearby ghosts to join an attack.
 class PM_GhostAttackStim : Inventory
 {
 	Default { Inventory.MaxAmount 1; +INVENTORY.UNDROPPABLE; }
 	States { Spawn: TNT1 A 0; Stop; }
 }
 
-// One-shot whisperer spawned near the player during haunt actions.
 class PM_GhostWhisperer : Actor
 {
 	Default { +NOBLOCKMAP; +NOGRAVITY; RenderStyle "None"; }
@@ -19,19 +17,149 @@ class PM_GhostWhisperer : Actor
 	}
 }
 
-// Placeholder token for cold-breath proximity. Detect on player to render breath/apply chill.
 class PM_ColdBreathToken : Inventory
 {
+	int breathTimer;
+	int puffCount;
+	int nextPuff;
+
 	Default
 	{
 		Inventory.MaxAmount 1;
 		+INVENTORY.UNDROPPABLE;
 		+INVENTORY.ALWAYSPICKUP;
+		+INVENTORY.AUTOACTIVATE;
+	}
+
+	override void DoEffect()
+	{
+		Super.DoEffect();
+		if (!Owner || Owner.health <= 0 || !Owner.player) { Destroy(); return; }
+
+		breathTimer++;
+
+		if (breathTimer > 430) { Destroy(); return; }
+
+		int billowDuration = 12;
+		int billowStart1 = 10;
+		int billowStart2 = billowStart1 + 70;
+		int billowStart3 = billowStart2 + 70;
+
+		bool inBillow = (breathTimer >= billowStart1 && breathTimer < billowStart1 + billowDuration)
+					 || (breathTimer >= billowStart2 && breathTimer < billowStart2 + billowDuration)
+					 || (breathTimer >= billowStart3 && breathTimer < billowStart3 + billowDuration);
+
+		if (!inBillow) return;
+
+		double mouthZ = Owner.Height * 0.55;
+		double fwdDist = 10.0;
+		double fwdX = cos(Owner.angle) * fwdDist;
+		double fwdY = sin(Owner.angle) * fwdDist;
+
+		for (int i = 0; i < random(2, 3); i++)
+		{
+			Owner.A_SpawnParticleEx("",
+				TexMan.CheckForTexture("GNSMI0"),
+				style: STYLE_Normal,
+				flags: SPF_ROLL,
+				lifetime: random(110, 210),
+				size: frandom(2, 5),
+				xoff: fwdX + frandom(-3, 3),
+				yoff: fwdY + frandom(-3, 3),
+				zoff: mouthZ + frandom(-2, 2),
+				velx: cos(Owner.angle) * frandom(0.3, 0.8) + frandom(-0.1, 0.1),
+				vely: sin(Owner.angle) * frandom(0.3, 0.8) + frandom(-0.1, 0.1),
+				velz: frandom(0.1, 0.4),
+				startalphaf: frandom(0.10, 0.25),
+				fadestepf: -1,
+				sizestep: frandom(0.5, 1.25),
+				startroll: random(-180, 180),
+				rollvel: frandom(-1.5, 1.5)
+			);
+		}
+
+		if (breathTimer % 2 == 0)
+		{
+			Owner.A_SpawnParticleEx("",
+				TexMan.CheckForTexture("GNSMI0"),
+				style: STYLE_Normal,
+				flags: SPF_ROLL,
+				lifetime: random(140, 260),
+				size: frandom(3, 6),
+				xoff: fwdX + frandom(-4, 4),
+				yoff: fwdY + frandom(-4, 4),
+				zoff: mouthZ + frandom(-2, 2),
+				velx: cos(Owner.angle) * frandom(0.2, 0.5) + frandom(-0.15, 0.15),
+				vely: sin(Owner.angle) * frandom(0.2, 0.5) + frandom(-0.15, 0.15),
+				velz: frandom(0.15, 0.5),
+				startalphaf: frandom(0.05, 0.14),
+				fadestepf: -1,
+				sizestep: frandom(0.75, 1.5),
+				startroll: random(-180, 180),
+				rollvel: frandom(-2, 2)
+			);
+		}
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A -1;
+		Stop;
+	}
+}
+
+class PM_GhostBlood : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOTELEPORT
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+NOINTERACTION
+		RenderStyle "None";
+		Mass 5;
 	}
 	States
 	{
 	Spawn:
-		TNT1 A 35; // short-lived
+		TNT1 A 1;
+		TNT1 A 0
+		{
+		A_StartSound("FOC/Static",CHAN_BODY,CHANF_OVERLAP,volume:frandom(0.15,0.35),pitch:frandom(1.6,2.2));
+		for (int i = 0; i < 4; i++)
+		{
+			A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL,
+				lifetime: random(10,22),
+				size: frandom(12,30),
+				xoff: frandom(-6,6), yoff: frandom(-6,6), zoff: frandom(-6,6),
+				velx: frandom(-1.5,1.5), vely: frandom(-1.5,1.5), velz: frandom(0.2,1.5),
+				startalphaf: frandom(0.6,0.9), fadestepf: -1,
+				sizestep: frandom(0.5,2.0),
+				startroll: random(-180,180), rollvel: frandom(-2,2));
+		}
+		}
+		Stop;
+	Spray:
+		TNT1 A 1;
+		TNT1 A 0
+		{
+		A_StartSound("FOC/Static",CHAN_BODY,CHANF_OVERLAP,volume:frandom(0.1,0.25),pitch:frandom(1.8,2.4));
+		for (int i = 0; i < 6; i++)
+		{
+			A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL,
+				lifetime: random(12,28),
+				size: frandom(10,25),
+				xoff: frandom(-8,8), yoff: frandom(-8,8), zoff: frandom(-4,8),
+				velx: frandom(-2.5,2.5), vely: frandom(-2.5,2.5), velz: frandom(0.5,2.5),
+				startalphaf: frandom(0.5,0.8), fadestepf: -1,
+				sizestep: frandom(0.3,1.5),
+				startroll: random(-180,180), rollvel: frandom(-3,3));
+		}
+		}
 		Stop;
 	}
 }
@@ -53,10 +181,11 @@ class PM_GhostImp : PMMonsterBase
 		-SHOOTABLE;
 		+THRUACTORS;
 		+DONTSPLASH;
-		+NOBLOOD;
 		+NOPAIN
 		+NOINFIGHTING
 		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+		BloodColor "00 00 00";
 	}
 	int    PMG_AttackTics;
 	double PMG_SignalRadius;
@@ -65,11 +194,10 @@ class PM_GhostImp : PMMonsterBase
 	override void PostBeginPlay()
 	{
 		Super.PostBeginPlay();
-		PMG_SignalRadius  = 1536;
+		PMG_SignalRadius  = 800;
 		PMG_InAttack      = false;
 	}
 
-	// ---- Helpers (normal member funcs; called from code blocks) --------------
 	void PMGhost_Debug(string msg)
 	{
 		if (PM_GHOST_DEBUG) Console.Printf("[PM_GhostImp] %s", msg);
@@ -77,17 +205,17 @@ class PM_GhostImp : PMMonsterBase
 
 	void PMGhost_BeginHaunt()
 	{
-		bNoClip     = true;   // noclip for rest of life once haunting
+		bNoClip     = true;
 		bShootable  = false;
 		bThruActors = true;
-		A_SetRenderStyle(0.0,STYLE_TranslucentStencil); // fully invisible
+		A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
 	}
 
 	void PMGhost_BeginAttack()
 	{
 		PMG_InAttack   = true;
 		bShootable     = true;
-		A_SetRenderStyle(1.0,STYLE_TranslucentStencil); // solid black silhouette
+		A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
 		A_RadiusGive("PM_GhostAttackStim", PMG_SignalRadius, RGF_MONSTERS, 1);
 		PMGhost_Debug("BeginAttack + Rally");
 	}
@@ -97,6 +225,10 @@ class PM_GhostImp : PMMonsterBase
 		PMG_InAttack = false;
 		bShootable   = false;
 		A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+
+		let stim = FindInventory("PM_GhostAttackStim");
+		if (stim) stim.Destroy();
+
 		PMGhost_Debug("EndAttack");
 	}
 
@@ -116,10 +248,8 @@ class PM_GhostImp : PMMonsterBase
 		return false;
 	}
 
-	// ---- STATES ---------------------------------------------------------------
 	states
 	{
-	// Spawns completely invisible; hearing → Finding, sight → Haunt
 	Spawn:
 		TNT1 A 0
 		{
@@ -132,96 +262,83 @@ class PM_GhostImp : PMMonsterBase
 		TNT1 A 3 A_LookEx(LOF_NOSOUNDCHECK, 0, 0, 0, 360, "Haunt");     // sight-only  → Haunt
 		Loop;
 
-	// If anything forces us to See, just go haunt logic immediately
 	See:
 		Goto Haunt;
 
-	// Silent pursuit of the noise source until we actually see a target
 	Finding:
 		TNT1 A 0 A_JumpIf(target == null || (target.player && target.player.playerstate == PST_DEAD), "Spawn");
-		TNT1 A 3 A_Chase(null, null);       // disable melee/missile jumps explicitly
+		TNT1 A 3 A_Chase(null, null);
 		TNT1 A 0 A_JumpIfTargetInLOS("Haunt");
 		Loop;
 
-	// Main haunt loop: invisible, noclipping; wander/idle, do rare haunt actions, or attack rarely
 	Haunt:
 		TNT1 A 0 { PMGhost_BeginHaunt(); }
 	HauntLoop:
-		// Reacquire any living player; harmless if none (prevents crashes/OOB drift)
 		TNT1 A 0 { PMGhost_AcquireAnyPlayer(); }
-
-		// Ally rally preempts
 		TNT1 A 0
 		{
 			let stim = FindInventory("PM_GhostAttackStim");
 			if (stim) { stim.Destroy(); SetStateLabel("BeginAttack"); }
 		}
-
-		// Rarely decide to attack on our own
 		TNT1 A 0 A_Jump(2, "BeginAttack");
-
-		// Occasional haunt action (creepy sound / brief manifest / cold breath)
 		TNT1 A 0
 		{
-			if (Random(0,31) < 8) // ~1/4 chance this pass
+			if (Random(0,31) < 8)
 			{
 				int r = Random(0, 2);
-				if (r == 0) // whisper near random nearby offset
+				if (r == 0)
 				{
 					A_SpawnItemEx("PM_GhostWhisperer",random(-128,128),random(-128,128),0,0,0,0);
 					PMGhost_Debug("HauntAction: Whisper");
 				}
-				else if (r == 1) // brief manifest
+				else if (r == 1)
 				{
 					SetStateLabel("HauntManifest");
 				}
-				else // cold breath token
+				else
 				{
-					A_RadiusGive("PM_ColdBreathToken", 192, RGF_PLAYERS, 1);
+					A_RadiusGive("PM_ColdBreathToken", 576, RGF_PLAYERS, 1);
 					PMGhost_Debug("HauntAction: ColdBreath");
 				}
 			}
 		}
 
-		// Drift vs hover bias
 		TNT1 A 0 A_Jump(128, "HauntWander");
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 3;                              // brief hover
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 3;
 		TNT1 A 0 { bNOGRAVITY = false; }
 		Goto HauntLoop;
 
 	HauntWander:
-		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_Wander();                      // drift aimlessly
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 2 A_Wander();
 		TNT1 A 0 A_JumpIfTargetInLOS("HauntLoop");
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, null);
 		Goto HauntLoop;
 
-	// Defensive stubs so any stray chase-attack attempt never faults
 	Melee:
 		Goto HauntLoop;
 
 	Missile:
 		Goto HauntLoop;
 
-	// Brief “manifest” as a black silhouette then return to haunt loop
 	HauntManifest:
 		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
-		CH5R AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));                            // any imp frame works; silhouette only
+		I02_ AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
 		Goto HauntLoop;
 
-	// Enter visible, shootable attack silhouette (still noclipping)
 	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
 		TNT1 A 0 { PMGhost_BeginAttack(); }
 		TNT1 A 0 A_SetHealth(120);
 		TNT1 A 0 A_StartSound("PM/GhostImp",36,volume:frandom(0.1,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		Goto StartFly;
 
-	// --- Ghost Imp Attack (replaced with custom sequence) ---
 	Attack:
 		TNT1 A 0 A_SetSpeed(6);
 		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
 		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
-		CH5R AAABBBCCCDDD 1
+		I02_ AAABBBCCCDDD 1
 		{
 		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
@@ -235,7 +352,7 @@ class PM_GhostImp : PMMonsterBase
 		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
 		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
 		TNT1 A 0 A_CheckSight("AttackOutSight");
-		CH5R AABBCCDDAABBCCDD 1
+		I02_ AABBCCDDAABBCCDD 1
 		{
 		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
@@ -251,22 +368,23 @@ class PM_GhostImp : PMMonsterBase
 	AttackOutSight:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(256,"StartFly","Attack");
-		Goto Attack;
+		TNT1 A 0 { SetStateLabel("Attack"); }
+		Stop;
 	AttackRanged:
 		TNT1 A 0 A_Jump(100,"AttackRangedWander");
-		CH5R EEEEEEEEEEEEEFFFFFF 1
+		I02_ EEEEEEEEEEEEEFFFFFF 1
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
 		A_FaceTarget();
 		}
-		CH5R G 8
+		I02_ G 8
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
 		A_CustomMissile("PM_GhostImpBall", 32, 0, 0);
 		}
-		CH5R FFFFEEEEA 1
+		I02_ FFFFEEEEA 1
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
@@ -274,19 +392,19 @@ class PM_GhostImp : PMMonsterBase
 		}
 		Goto Attack;
 	AttackRangedWander:
-		CH5R EEEEEEEEEEEEEFFFFFF 1
+		I02_ EEEEEEEEEEEEEFFFFFF 1
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
 		A_FaceTarget();
 		}
-		CH5R G 8
+		I02_ G 8
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
 		A_CustomMissile("PM_GhostImpBall", 32, 0, 0);
 		}
-		CH5R FFFFEEEEA 1
+		I02_ FFFFEEEEA 1
 		{
 		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
 		A_SetRenderStyle(1,STYLE_TranslucentStencil);
@@ -394,13 +512,13 @@ class PM_GhostImp : PMMonsterBase
 			);
 			}
 			TNT1 A 0 A_FaceTarget();
-			Goto Attack;
+			TNT1 A 0 { SetStateLabel("Attack"); }
+			Stop;
 
 	EndAttack:
 		TNT1 A 0 { PMGhost_EndAttack(); }
 		Goto Haunt;
 
-	// Fake-death flee & recover (short wander) then resume haunt
 	Flee:
 		TNT1 A 0;
 		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
@@ -415,14 +533,13 @@ class PM_GhostImp : PMMonsterBase
 		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
 		Stop;
 	
-	// Real death: brief silhouette hold then remove
 	Death:
 		TNT1 A 0;
 		TNT1 A 0 A_Jump(128,"Flee");
 		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
 		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 A_SetSpeed(16);
-		CH5R ABCDABCDABCDABCDABCDABCD 1
+		I02_ ABCDABCDABCDABCDABCDABCD 1
 		{
 		A_Wander();
 		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
@@ -432,7 +549,8 @@ class PM_GhostImp : PMMonsterBase
 		Stop;
 
 	XDeath:
-		Goto Death;
+		TNT1 A 0 { SetStateLabel("Death"); }
+		Stop;
 	}
 }
 
@@ -503,6 +621,227 @@ Default
 	}
 }
 
+class PM_GhostArachBall : Actor
+{
+Default
+{
+  Speed 20;
+  FastSpeed 30;
+  DamageFunction (random(8,12));
+  DamageType "Void";
+  Radius 4;
+  Height 4;
+  Scale 0.3;
+  SeeSound "";
+  DeathSound "";
+  Renderstyle "Subtract";
+  PROJECTILE;
+   }
+   void ArachSpriteSmoke()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(4,12),size: frandom(8,18),xoff: frandom(-6,-1),yoff: frandom(-4,4),zoff: frandom(-4,4),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.2,1.2),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,8),size: frandom(8,35),xoff: frandom(-6,-1),yoff: frandom(-4,4),zoff: frandom(-4,4),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.2,1.2),startroll: random(-180,180));
+  }
+  States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Paranormal/EvilDrone",34,CHANF_LOOPING,volume:0.3,pitch:1.5);
+	Go:
+		SPKW EEE 1
+	    {
+	    ArachSpriteSmoke();
+		A_Weave(random(-2,2), random(-2,2), random(0,2), random(0,1));
+	    }
+		Loop;
+	Death:
+		TNT1 A 1;
+		TNT1 AAAAAA 0
+		{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(8,25),size: frandom(8,65),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.2,1.2),startroll: random(-180,180));
+		 }
+		TNT1 A 0 A_StartSound("Abhor/SoulExp",37,volume:0.15,attenuation:1.3,pitch:frandom(0.8,1.2));
+		Stop;
+	}
+}
+
+class PM_GhostMancBall : Actor
+{
+Default
+{
+  Speed 10;
+  FastSpeed 18;
+  DamageFunction (random(14,20));
+  DamageType "Void";
+  Radius 7;
+  Height 7;
+  Scale 0.55;
+  SeeSound "";
+  DeathSound "";
+  Renderstyle "Subtract";
+  PROJECTILE;
+   }
+   void MancSpriteSmoke()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(6,18),size: frandom(16,35),xoff: frandom(-10,-1),yoff: frandom(-7,7),zoff: frandom(-7,7),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(4,12),size: frandom(14,65),xoff: frandom(-10,-1),yoff: frandom(-7,7),zoff: frandom(-7,7),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+  }
+  States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Paranormal/EvilDrone",34,CHANF_LOOPING,volume:0.5,pitch:0.8);
+	Go:
+		SPKW EEE 1
+	    {
+	    MancSpriteSmoke();
+		A_Weave(random(-4,4), random(-4,4), random(0,4), random(0,3));
+	    }
+		Loop;
+	Death:
+		TNT1 A 1;
+		TNT1 AAAAAA 0
+		{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(12,35),size: frandom(14,110),velx: frandom(-1.2,1.2),vely: frandom(-1.2,1.2),velz: frandom(-1.2,1.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+		 }
+		TNT1 A 0 A_StartSound("Abhor/SoulExp",37,volume:0.25,attenuation:1.3,pitch:frandom(0.4,0.7));
+		Stop;
+	}
+}
+
+class PM_GhostBaronBall : Actor
+{
+Default
+{
+  Speed 15;
+  FastSpeed 25;
+  DamageFunction (random(14,20));
+  DamageType "Void";
+  Radius 7;
+  Height 7;
+  Scale 0.55;
+  SeeSound "";
+  DeathSound "";
+  Renderstyle "Subtract";
+  PROJECTILE;
+   }
+   void BaronSpriteSmoke()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(6,18),size: frandom(16,35),xoff: frandom(-10,-1),yoff: frandom(-7,7),zoff: frandom(-7,7),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(4,12),size: frandom(14,65),xoff: frandom(-10,-1),yoff: frandom(-7,7),zoff: frandom(-7,7),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+  }
+  States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Paranormal/EvilDrone",34,CHANF_LOOPING,volume:0.5,pitch:1.0);
+	Go:
+		SPKW EEE 1
+	    {
+	    BaronSpriteSmoke();
+		A_Weave(random(-4,4), random(-4,4), random(0,4), random(0,3));
+	    }
+		Loop;
+	Death:
+		TNT1 A 1;
+		TNT1 AAAAAA 0
+		{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(12,35),size: frandom(14,110),velx: frandom(-1.2,1.2),vely: frandom(-1.2,1.2),velz: frandom(-1.2,1.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.3,2.0),startroll: random(-180,180));
+		 }
+		TNT1 A 0 A_StartSound("Abhor/SoulExp",37,volume:0.25,attenuation:1.3,pitch:frandom(0.4,0.7));
+		Stop;
+	}
+}
+
+class PM_GhostHomingBall : Actor
+{
+	Default
+	{
+		Speed 10;
+		DamageFunction (random(12,18));
+		DamageType "Void";
+		Radius 5;
+		Height 5;
+		Scale 0.5;
+		SeeSound "";
+		DeathSound "";
+		Renderstyle "Subtract";
+		PROJECTILE;
+		+SEEKERMISSILE
+	}
+	void GhostHomingPulseTight()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(4,10),size: frandom(8,16),xoff: frandom(-4,-1),yoff: frandom(-3,3),zoff: frandom(-3,3),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(-0.1,0.1),startalphaf: frandom(0.9,1),fadestepf: -1,sizestep: frandom(-0.2,0.5),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,7),size: frandom(10,22),xoff: frandom(-4,-1),yoff: frandom(-3,3),zoff: frandom(-3,3),velx: frandom(-0.1,0.1),vely: frandom(-0.1,0.1),velz: frandom(-0.1,0.1),startalphaf: frandom(0.9,1),fadestepf: -1,sizestep: frandom(-0.2,0.5),startroll: random(-180,180));
+	}
+	void GhostHomingPulseWide()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(5,12),size: frandom(22,45),xoff: frandom(-6,-1),yoff: frandom(-6,6),zoff: frandom(-6,6),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.7,0.9),fadestepf: -1,sizestep: frandom(0.5,2.0),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(4,10),size: frandom(18,55),xoff: frandom(-6,-1),yoff: frandom(-6,6),zoff: frandom(-6,6),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(-0.3,0.3),startalphaf: frandom(0.6,0.8),fadestepf: -1,sizestep: frandom(0.8,2.5),startroll: random(-180,180));
+	}
+	void GhostHomingTrail()
+	{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(18,35),size: frandom(10,20),xoff: frandom(-12,-4),yoff: frandom(-4,4),zoff: frandom(-4,4),velx: frandom(-0.05,0.05),vely: frandom(-0.05,0.05),velz: frandom(0.05,0.3),startalphaf: frandom(0.5,0.7),fadestepf: -1,sizestep: frandom(0.3,1.0),startroll: random(-180,180),rollvel: frandom(-1,1));
+	}
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("Paranormal/EvilDrone",34,CHANF_LOOPING,volume:0.5,pitch:0.7);
+		TNT1 A 0 A_ScaleVelocity(0.5);
+		SPKW EEEEEEE 1
+		{
+		GhostHomingPulseTight();
+		GhostHomingTrail();
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+		TNT1 A 0 A_ScaleVelocity(3);
+	Go:
+		SPKW EE 1
+		{
+		GhostHomingPulseTight();
+		GhostHomingTrail();
+		A_SeekerMissile(2, 4, SMF_PRECISE);
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+		SPKW E 1
+		{
+		GhostHomingPulseWide();
+		GhostHomingTrail();
+		A_SeekerMissile(2, 4, SMF_PRECISE);
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+		TNT1 A 0 A_Jump(3,"Free");
+		Loop;
+	Free:
+		SPKW EE 1
+		{
+		GhostHomingPulseTight();
+		GhostHomingTrail();
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+		SPKW E 1
+		{
+		GhostHomingPulseWide();
+		GhostHomingTrail();
+		A_Weave(random(-3,3), random(-3,3), random(0,3), random(0,2));
+		}
+		Loop;
+	Death:
+		TNT1 A 1;
+		TNT1 AAAAAAAA 0
+		{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL,lifetime: random(15,35),size: frandom(12,80),velx: frandom(-1.5,1.5),vely: frandom(-1.5,1.5),velz: frandom(-0.5,2.0),startalphaf: frandom(0.7,1),fadestepf: -1,sizestep: frandom(0.5,2.0),startroll: random(-180,180),rollvel: frandom(-2,2));
+		}
+		TNT1 AAAA 0
+		{
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL,lifetime: random(25,45),size: frandom(8,18),velx: frandom(-0.3,0.3),vely: frandom(-0.3,0.3),velz: frandom(0.2,1.0),startalphaf: frandom(0.4,0.6),fadestepf: -1,sizestep: frandom(0.3,1.0),startroll: random(-180,180),rollvel: frandom(-1,1));
+		}
+		TNT1 A 0 A_StartSound("Abhor/SoulExp",37,volume:0.2,attenuation:1.3,pitch:frandom(0.4,0.8));
+		Stop;
+	}
+}
+
 class PM_GhostDemon : PM_GhostImp
 {
 	Default
@@ -523,15 +862,15 @@ class PM_GhostDemon : PM_GhostImp
 		-SHOOTABLE;
 		+THRUACTORS;
 		+DONTSPLASH;
-		+NOBLOOD;
 		+NOPAIN
 		+NOINFIGHTING
 		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
 	}
 	override void PostBeginPlay()
 	{
 		Super.PostBeginPlay();
-		PMG_SignalRadius  = 1536;
+		PMG_SignalRadius  = 800;
 		PMG_InAttack      = false;
 	}
 	States
@@ -581,7 +920,7 @@ class PM_GhostDemon : PM_GhostImp
 				}
 				else
 				{
-					A_RadiusGive("PM_ColdBreathToken", 192, RGF_PLAYERS, 1);
+					A_RadiusGive("PM_ColdBreathToken", 576, RGF_PLAYERS, 1);
 					PMGhost_Debug("HauntAction: ColdBreath");
 				}
 			}
@@ -622,6 +961,8 @@ class PM_GhostDemon : PM_GhostImp
 		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
 		Goto HauntLoop;
 	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
 		TNT1 A 0 { PMGhost_BeginAttack(); }
 		TNT1 A 0 A_SetHealth(300);
 		TNT1 A 0 A_StartSound("PM/GhostPinky",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.7,1.2));
@@ -918,7 +1259,6 @@ class PM_GhostSpectre : PM_GhostImp
 		MeleeDamage 5;
         Species "PMGhost";
         +DONTSPLASH;
-        +NOBLOOD;
 		-COUNTKILL;
     }
 	States
@@ -968,7 +1308,7 @@ class PM_GhostSpectre : PM_GhostImp
 				}
 				else
 				{
-					A_RadiusGive("PM_ColdBreathToken", 192, RGF_PLAYERS, 1);
+					A_RadiusGive("PM_ColdBreathToken", 576, RGF_PLAYERS, 1);
 					PMGhost_Debug("HauntAction: ColdBreath");
 				}
 			}
@@ -983,33 +1323,35 @@ class PM_GhostSpectre : PM_GhostImp
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Chase(null, null);
 		Goto HauntLoop;
 	Melee:
-		SHDW EE 5 A_FaceTarget;
-		SHDW F 5;
+		V13_ EE 5 A_FaceTarget;
+		V13_ F 5;
 		TNT1 A 0 A_StopSound(7);
-		SHDW E 0 A_StartSound("Prowler/Swing",pitch:0.85);
+		V13_ E 0 A_StartSound("Prowler/Swing",pitch:0.85);
 		TNT1 A 0 A_Recoil(-18);
 		TNT1 A 0 ThrustThingZ(0,16,0,1);
-		SHDW FFF 1 
+		V13_ FFF 1 
 		    {
 			A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
 		    A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 			}
-		SHDW G 3 
+		V13_ G 3 
 			{
 			A_SpawnProjectile("PM_FastMeleeHitbox",18,0,0,CMF_AIMDIRECTION);
 			A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
 			}
-		SHDW FFF 1 A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
-		SHDW A 4 A_FaceTarget;
+		V13_ FFF 1 A_SpawnItemEx("PM_GenericPhaseGhost",flags:SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		V13_ A 4 A_FaceTarget;
 		Goto Attack;
 	Missile:
 		Goto HauntLoop;
 	HauntManifest:
 		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
-		SHDW AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		V13_ AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
 		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
 		Goto HauntLoop;
 	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
 		TNT1 A 0 { PMGhost_BeginAttack(); }
 		TNT1 A 0 A_SetHealth(300);
 		TNT1 A 0 A_StartSound("PM/GhostSpectre",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.7,1.2));
@@ -1018,7 +1360,7 @@ class PM_GhostSpectre : PM_GhostImp
 		TNT1 A 0 A_SetSpeed(7);
 		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
 		TNT1 A 0 { bNoClip = true; bThruActors = false; bNoInteraction = false; bCorpse = false; }
-		SHDW AAABBBCCCDDD 1
+		V13_ AAABBBCCCDDD 1
 		{
 		bShootable = true;
 		bVulnerable = true;
@@ -1036,7 +1378,7 @@ class PM_GhostSpectre : PM_GhostImp
 		TNT1 A 0 { bNoClip = true; bThruActors = false; bNoInteraction = false; bCorpse = false; }
 		TNT1 A 0 A_SetSpeed(10);
 		TNT1 A 0 A_CheckSight("AttackOutSight");
-		SHDW AABBCCDDAABBCCDD 1
+		V13_ AABBCCDDAABBCCDD 1
 		{
 		bShootable = true;
 		bVulnerable = true;
@@ -1163,7 +1505,7 @@ class PM_GhostSpectre : PM_GhostImp
 		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
 		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
 		TNT1 A 0 A_SetSpeed(16);
-		SHDW ABCDABCDABCDABCDABCDABCD 1
+		V13_ ABCDABCDABCDABCDABCDABCD 1
 		{
 		A_Wander();
 		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
@@ -1193,7 +1535,6 @@ class PM_GhostLostSoul : PM_GhostImp
 		MeleeDamage 5;
         Species "PMGhost";
         +DONTSPLASH;
-        +NOBLOOD;
 		-COUNTKILL;
     }
 	States
@@ -1243,7 +1584,7 @@ class PM_GhostLostSoul : PM_GhostImp
 				}
 				else
 				{
-					A_RadiusGive("PM_ColdBreathToken", 192, RGF_PLAYERS, 1);
+					A_RadiusGive("PM_ColdBreathToken", 576, RGF_PLAYERS, 1);
 					PMGhost_Debug("HauntAction: ColdBreath");
 				}
 			}
@@ -1265,6 +1606,8 @@ class PM_GhostLostSoul : PM_GhostImp
 		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
 		Goto HauntLoop;
 	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
 		TNT1 A 0 { PMGhost_BeginAttack(); }
 		TNT1 A 0 A_SetHealth(120);
 		TNT1 A 0 A_StartSound("PM/GhostSoul",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.7,1.2));
@@ -1455,107 +1798,1725 @@ class PM_GhostLostSoul : PM_GhostImp
 	}
 }
 
-/*class PM_GhostCacodemon : Cacodemon
+class PM_GhostLostSoulSpawned : PM_GhostImp
 {
+	int PMG_LifeTimer;
+
     Default
     {
+        Health 120;
+        Radius 16;
+        Height 25;
+        Alpha 0.0;
         RenderStyle "Stencil";
-        Alpha 1.0;
+        SeeSound "";
+		ActiveSound "";
+		AttackSound "PM/GhostSoulAttack";
+		MeleeRange 70;
+		MeleeDamage 5;
         Species "PMGhost";
         +DONTSPLASH;
-        +NOBLOOD;
 		-COUNTKILL;
     }
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+		PMG_LifeTimer    = 30 * 35; // ~30 seconds
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		if (!bDestroyed && health > 0 && PMG_LifeTimer > 0)
+		{
+			PMG_LifeTimer--;
+			if (PMG_LifeTimer <= 0)
+			{
+				SetStateLabel("Death");
+			}
+		}
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 0
+		{
+			bNoClip     = true;
+			bFloat      = true;
+			bNoGravity  = true;
+			bShootable  = true;
+			bVulnerable = true;
+			bSolid      = true;
+			bThruActors = false;
+			bNoInteraction = false;
+			PMGhost_AcquireAnyPlayer();
+			A_SetRenderStyle(1.0, STYLE_TranslucentStencil);
+		}
+		Goto Attack;
+	See:
+		Goto Attack;
+	Melee:
+	Missile:
+		Goto Attack;
+	HauntManifest:
+		Goto Attack;
+	BeginAttack:
+		Goto Attack;
+	Attack:
+		TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+        EYES AAAAAA 1 Light("SmallBlacklight")
+	    {
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+	    A_Chase(null,"Charge");
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_ChangeVelocity(random(-1,1), random(-1,1), random(-1,1));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+	    A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(35,95),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+	    ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+	    }
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true;  bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		EYES AAAAAAAAAAAAAAAA 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_ChangeVelocity(random(-2,2), random(-2,2), random(-2,2));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(35,95),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+	    ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		Goto AttackWander;
+	AttackRangedWander:
+		TNT1 A 0 A_Jump(128,"Attack");
+        Goto AttackWander;
+	Charge:
+	    TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+		EYES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1
+		{
+	     A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(12,35),xoff: frandom(-3,3),yoff: frandom(-3,3),zoff: frandom(0,6),velx: frandom(-1.4,1.4),vely: frandom(-1.4,1.4),velz: frandom(-1.4,1.4),startalphaf: frandom(0.1,0.35)
+	     ,fadestepf: -1,sizestep: frandom(4,6.4),startroll: random(-180,180));
+		}
+		EYES A 2 A_SkullAttack();
+		EYES AAAAAAAAAAAAAA 2
+		{
+		 A_SpawnProjectile("PM_FastMeleeHitbox",random(1,10),0,0,CMF_AIMDIRECTION|CMF_OFFSETPITCH,random(40,0));
+	     A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,20),size: frandom(35,95),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 1
+	     ,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		EYES D 0 A_Stop();
+		Goto Attack;
+	EndAttack:
+		Goto Death;
+	Flee:
+		TNT1 A 0;
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 ThrustThing(random(0,360),random(0,16));
+		TNT1 A 0 ThrustThingZ(0,random(20,70),0,1);
+		TNT1 AAAAAAAAAAAAAAAA 1
+			{
+			A_ChangeVelocity(random(-3,3), random(-3,3), random(-3,3));
+			A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,16),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+			A_SpawnItemEx("PM_GenericPhaseGhost",0,0,0,0,0,0,0,SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE);
+			}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_StopSound(37);
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		EYES AAAAAAAAAAAAAAAAAAAA 1
+		{
+		A_ChangeVelocity(random(-3,3), random(-3,3), random(-3,3));
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostHellKnight : HellKnight
+class PM_GhostCacodemon : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 400;
+		Radius 31;
+		Height 56;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		MeleeRange 64;
+		Speed 8;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		C1C2 B 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		C1C2 C 4
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		C1C2 D 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMeleeAttack(random(5,30));
+		}
+		C1C2 A 8;
+		Goto Attack;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		C1C2 AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(400);
+		TNT1 A 0 A_StartSound("PM/GhostImp",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.4,0.8));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		C1C2 AAABBBCCCDDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase("Melee","AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		C1C2 AABBCCDDAABBCCDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		C1C2 BBBBBBBCCCC 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		C1C2 D 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 32, 0, 0);
+		}
+		C1C2 CCCBBBA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		C1C2 BBBBBBBCCCC 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		C1C2 D 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 32, 0, 0);
+		}
+		C1C2 CCCBBBA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		C1C2 ABCDABCDABCDABCDABCDABCD 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostBaron : BaronOfHell
+class PM_GhostHellKnight : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 500;
+		Radius 24;
+		Height 64;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		MeleeRange 64;
+		Speed 8;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		BOS6 E 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		BOS6 F 4
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_Recoil(-4);
+		A_FaceTarget();
+		}
+		BOS6 G 4
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_MeleeHitbox",40,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",20,0,0,CMF_AIMDIRECTION);
+		}
+		BOS6 A 6;
+		Goto Attack;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		BOS6 AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(500);
+		TNT1 A 0 A_StartSound("PM/GhostKnightAttack",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.8,1.2));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		BOS6 AAABBBCCCDDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase("Melee","AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		BOS6 AABBCCDDAABBCCDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		BOS6 EEEEEEEEEE 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		BOS6 G 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 40, 0, 0);
+		}
+		BOS6 FFEEEA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		BOS6 EEEEEEEEEE 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		BOS6 G 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 40, 0, 0);
+		}
+		BOS6 FFEEEA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		BOS6 ABCDABCDABCDABCDABCDABCD 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostRevenant : Revenant
+class PM_GhostBaron : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 1000;
+		Radius 22;
+		Height 64;
+		Scale 1.2;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		MeleeRange 64;
+		Speed 8;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		TNT1 A 0 A_Jump(128,"Melee2");
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		LOHS E 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_Recoil(-5);
+		A_FaceTarget();
+		}
+		LOHS G 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_MeleeHitbox",40,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",20,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",5,0,0,CMF_AIMDIRECTION);
+		}
+		LOHS A 8;
+		Goto Attack;
+	Melee2:
+		TNT1 A 0 { bSPRITEFLIP = true; }
+		LOHS E 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_Recoil(-5);
+		A_FaceTarget();
+		}
+		LOHS G 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_MeleeHitbox",40,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",20,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",5,0,0,CMF_AIMDIRECTION);
+		}
+		LOHS A 8;
+		Goto Attack;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		LOHS AAAAAA 1 A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(1000);
+		TNT1 A 0 A_StartSound("PM/GhostPinky",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.3,0.7));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		LOHS AAABBBCCCDDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase("Melee","AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		LOHS AABBCCDDAABBCCDD 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		LOHS EEEEEE 1
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 0, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		TNT1 A 0 { bSPRITEFLIP = true; }
+		LOHS EEE 2
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, -50, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 50, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		LOHS EEE 2
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 0, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		LOHS FEA 3
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		}
+		Goto Attack;
+	AttackRangedWander:
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		LOHS EEEEEE 1
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 0, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		TNT1 A 0 { bSPRITEFLIP = true; }
+		LOHS EEE 2
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, -50, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 50, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		TNT1 A 0 { bSPRITEFLIP = false; }
+		LOHS EEE 2
+		{
+		A_SetScale(frandom(1.18,1.22),frandom(1.18,1.22));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		LOHS F 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		LOHS G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostBaronBall", 40, 0, 0, CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch);
+		}
+		LOHS FEA 3
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		LOHS ABCDABCDABCDABCDABCDABCD 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostArachnotron : Arachnotron
+class PM_GhostRevenant : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 300;
+		Radius 20;
+		Height 56;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		MeleeRange 64;
+		Speed 8;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		CREV G 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		CREV H 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_Recoil(-3);
+		A_FaceTarget();
+		}
+		CREV I 5
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_MeleeHitbox",40,0,0,CMF_AIMDIRECTION);
+		A_SpawnProjectile("PM_MeleeHitbox",20,0,0,CMF_AIMDIRECTION);
+		}
+		CREV A 6;
+		Goto Attack;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		CREV AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(300);
+		TNT1 A 0 A_StartSound("PM/GhostImp",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.9,1.3));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		CREV AABBCCDDEEFF 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase("Melee","AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		CREV AABBCCDDEEFFAABB 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		TNT1 A 0 A_Jump(100,"AttackHoming");
+		CREV JJJJJJJJJJ 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		CREV J 6
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 56, 10, 0);
+		A_CustomMissile("PM_GhostImpBall", 56, -10, 0);
+		}
+		CREV KKA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackHoming:
+		CREV JJJJJJJJJJJJJJ 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(5,12),size: frandom(10,25),xoff: frandom(4,10),yoff: frandom(-8,8),zoff: frandom(50,60),startalphaf: 0.6,fadestepf: -1,sizestep: frandom(0.5,2),startroll: random(-180,180));
+		}
+		CREV J 8
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostHomingBall", 56, 0, 0);
+		}
+		CREV KKA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		TNT1 A 0 A_Jump(100,"AttackHomingWander");
+		CREV JJJJJJJJJJ 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		CREV J 6
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostImpBall", 56, 10, 0);
+		A_CustomMissile("PM_GhostImpBall", 56, -10, 0);
+		}
+		CREV KKA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	AttackHomingWander:
+		CREV JJJJJJJJJJJJJJ 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(5,12),size: frandom(10,25),xoff: frandom(4,10),yoff: frandom(-8,8),zoff: frandom(50,60),startalphaf: 0.6,fadestepf: -1,sizestep: frandom(0.5,2),startroll: random(-180,180));
+		}
+		CREV J 8
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostHomingBall", 56, 0, 0);
+		}
+		CREV KKA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		CREV ABCDEFABCDEFABCDEFABCDEF 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-// Mancubus internal class name is "Fatso"
-class PM_GhostMancubus : Fatso
+class PM_GhostArachnotron : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 500;
+		Radius 48;
+		Height 64;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		Speed 6;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		Goto HauntLoop;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		FSPI AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(500);
+		TNT1 A 0 A_StartSound("PM/GhostSpectre",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.6,1.0));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(4);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		FSPI AABBCCDDEEFF 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase(null,"AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		FSPI AABBCCDDEEFFAABB 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		TNT1 A 0 { pm_attackloop = random(4,10); }
+		FSPI GGGGG 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+	ArachFireLoop:
+		FSPI G 2
+		{
+		if (!pm_attackloop) { SetStateLabel("ArachFireEnd"); }
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostArachBall", 32, 0, frandom(-4,4), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-3,3));
+		pm_attackloop--;
+		}
+		FSPI G 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		Loop;
+	ArachFireEnd:
+		FSPI GGGA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		TNT1 A 0 { pm_attackloop = random(4,10); }
+		FSPI GGGGG 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+	ArachFireLoopW:
+		FSPI G 2
+		{
+		if (!pm_attackloop) { SetStateLabel("ArachFireEndW"); }
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnProjectile("PM_GhostArachBall", 32, 0, frandom(-4,4), CMF_OFFSETPITCH|CMF_AIMDIRECTION, pitch+frandom(-3,3));
+		pm_attackloop--;
+		}
+		FSPI G 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget(8,8);
+		}
+		Loop;
+	ArachFireEndW:
+		FSPI GGGA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		FSPI ABCDEFABCDEFABCDEFABCDEF 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostPainElemental : PainElemental
+class PM_GhostMancubus : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 600;
+		Radius 48;
+		Height 64;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		Speed 5;
 		-COUNTKILL;
-    }
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		Goto HauntLoop;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		TABU AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(600);
+		TNT1 A 0 A_StartSound("PM/GhostPinky",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.4,0.8));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(3);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TABU AABBCCDDEEFF 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase(null,"AttackRanged");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(6);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		TABU AABBCCDDEEFFAABB 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	AttackRanged:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		TABU GGGGGGGGG 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		TABU H 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostMancBall", 28, -34, 15);
+		A_CustomMissile("PM_GhostMancBall", 28, 34, 0);
+		}
+		TABU I 5 A_FaceTarget();
+		TABU H 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostMancBall", 28, -34, 0);
+		A_CustomMissile("PM_GhostMancBall", 28, 34, -15);
+		}
+		TABU IGA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		TABU GGGGGGGGG 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		TABU H 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostMancBall", 28, -34, 15);
+		A_CustomMissile("PM_GhostMancBall", 28, 34, 0);
+		}
+		TABU I 5 A_FaceTarget();
+		TABU H 8
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_CustomMissile("PM_GhostMancBall", 28, -34, 0);
+		A_CustomMissile("PM_GhostMancBall", 28, 34, -15);
+		}
+		TABU IGA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		TABU ABCDEFABCDEFABCDEFABCDEF 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
 }
 
-class PM_GhostArchvile : Archvile
+class PM_GhostPainElemental : PM_GhostImp
 {
-    Default
-    {
-        RenderStyle "Stencil";
-        Alpha 1.0;
-        Species "PMGhost";
-        +DONTSPLASH;
-        +NOBLOOD;
+	Default
+	{
+		Health 480;
+		Radius 31;
+		Height 56;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		Speed 6;
 		-COUNTKILL;
-    }
-}*/
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		Goto HauntLoop;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		DEFI AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(480);
+		TNT1 A 0 A_StartSound("PM/GhostSoul",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.5,0.9));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(4);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		DEFI AAAABBBBCCCC 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase(null,"SpawnSouls");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bFloat = true; bNoGravity = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		DEFI AABBCCAABBCCAABB 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	SpawnSouls:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		DEFI DDDDDDDDD 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		DEFI E 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		DEFI F 8
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnItemEx("PM_GhostLostSoulSpawned", 32, 0, 0, random(2,5), random(-2,2), random(1,3), 0, SXF_SETTARGET);
+		}
+		DEFI EEDDA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		DEFI DDDDDDDDD 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		DEFI E 6
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		DEFI F 8
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_SpawnItemEx("PM_GhostLostSoulSpawned", 32, 0, 0, random(2,5), random(-2,2), random(1,3), 0, SXF_SETTARGET);
+		}
+		DEFI EEDDA 1
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		DEFI ABCABCABCABCABCABCABCABC 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
+}
+
+class PM_GhostArchvile : PM_GhostImp
+{
+	Default
+	{
+		Health 700;
+		Radius 20;
+		Height 56;
+		Alpha 0.0;
+		Species "PMGhost";
+		RenderStyle "Stencil";
+		SeeSound "";
+		ActiveSound "";
+		AttackSound "";
+		Speed 10;
+		-COUNTKILL;
+		-SHOOTABLE;
+		+THRUACTORS;
+		+DONTSPLASH;
+		+NOPAIN
+		+NOINFIGHTING
+		+DONTHARMSPECIES
+		Bloodtype "PM_GhostBlood";
+	}
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		PMG_SignalRadius = 800;
+		PMG_InAttack     = false;
+	}
+	States
+	{
+	Melee:
+		Goto HauntLoop;
+	Missile:
+		Goto HauntLoop;
+	HauntManifest:
+		TNT1 A 0 A_SetRenderStyle(1.0,STYLE_TranslucentStencil);
+		EILE AAAAAA 1 A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		TNT1 A 0 A_SetRenderStyle(0.0,STYLE_TranslucentStencil);
+		Goto HauntLoop;
+	BeginAttack:
+		TNT1 A 0 A_StartSound("DemonTP/Incoming",volume:frandom(0.02,0.60),attenuation:0.6,pitch:frandom(0.8,1.2));
+		TNT1 A 175;
+		TNT1 A 0 { PMGhost_BeginAttack(); }
+		TNT1 A 0 A_SetHealth(700);
+		TNT1 A 0 A_StartSound("PM/GhostVileAttack",36,volume:frandom(0.2,1),attenuation:frandom(0.5,1.1),pitch:frandom(0.3,0.7));
+		Goto StartFly;
+	Attack:
+		TNT1 A 0 A_SetSpeed(8);
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		EILE AABBCCDDEEFF 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_Chase(null,"VileAttack");
+		}
+		TNT1 A 0 A_Jump(50,"AttackWander");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Loop;
+	AttackWander:
+		TNT1 A 0;
+		TNT1 A 0 A_ChangeLinkFlags(false,FLAG_NO_CHANGE);
+		TNT1 A 0 { bNoClip = true; bThruActors = false; bShootable = true; bVulnerable = true; bSolid = true; bNoInteraction = false; bCorpse = false; }
+		TNT1 A 0 A_SetSpeed(10);
+		TNT1 A 0 A_CheckSight("AttackOutSight");
+		EILE AABBCCDDEEFFAABB 1
+		{
+		bShootable = true;
+		bVulnerable = true;
+		bSolid = true;
+		A_SetScale(frandom(0.95,1.05),frandom(0.95,1.05));
+		A_SetRenderStyle(frandom(0,1),STYLE_TranslucentStencil);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(55,110),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.1
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: frandom(50,100),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.3
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		A_Wander();
+		}
+		TNT1 A 0 A_Jump(128,"AttackRangedWander","Attack");
+		TNT1 A 0 A_Jump(20,"EndAttack");
+		Goto AttackWander;
+	VileAttack:
+		TNT1 A 0 A_Jump(100,"AttackRangedWander");
+		TNT1 A 0 A_StartSound("vile/start",CHAN_BODY);
+		EILE GGGGG 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		TNT1 A 0
+		{
+		if (target)
+		{
+			let blast = Spawn("PM_GhostVileBlast", target.pos, ALLOW_REPLACE);
+			if (blast) blast.target = self;
+		}
+		}
+		EILE GGGGGGGGGGG 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		EILE HHHIII 2
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		EILE IBA 4
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto Attack;
+	AttackRangedWander:
+		TNT1 A 0 A_StartSound("vile/start",CHAN_BODY);
+		EILE GGGGG 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		TNT1 A 0
+		{
+		if (target)
+		{
+			let blast = Spawn("PM_GhostVileBlast", target.pos, ALLOW_REPLACE);
+			if (blast) blast.target = self;
+		}
+		}
+		EILE GGGGGGGGGGG 2
+		{
+		A_SetScale(frandom(0.98,1.02),frandom(0.98,1.02));
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		EILE HHHIII 2
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		EILE IBA 4
+		{
+		A_SetRenderStyle(1,STYLE_TranslucentStencil);
+		A_FaceTarget();
+		}
+		Goto AttackWander;
+	Death:
+		TNT1 A 0;
+		TNT1 A 0 A_Jump(128,"Flee");
+		TNT1 A 0 { bShootable = false; A_SetRenderStyle(0.5,STYLE_TranslucentStencil); }
+		TNT1 A 0 A_StartSound("DemonicSprite/Flee",35,volume:frandom(0.6,1),attenuation:frandom(0.4,1),pitch:frandom(0.5,1.2));
+		TNT1 A 0 A_SetSpeed(16);
+		EILE ABCDEFABCDEFABCDEFABCDEF 1
+		{
+		A_Wander();
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(10,30),size: frandom(20,70),xoff: frandom(-8,8),yoff: frandom(-8,8),zoff: frandom(0,50),velx: frandom(-1,1),vely: frandom(-1,1),velz: frandom(-1,1),startalphaf: 0.4
+			,fadestepf: -1,sizestep: frandom(1,4.4),startroll: random(-180,180));
+		}
+		TNT1 A 0 A_Remove(AAPTR_DEFAULT, RMVF_EVERYTHING);
+		Stop;
+	XDeath:
+		Goto Death;
+	}
+}
+
+Class PM_GhostVileBlast : Actor
+{
+	Default
+	{
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+NOINTERACTION
+		RenderStyle "None";
+	}
+
+	void GhostVileWarning()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			A_SpawnParticleEx("000000", TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL|SPF_FULLBRIGHT,
+				lifetime: random(15, 25),
+				size: frandom(20, 45),
+				xoff: frandom(-40, 40), yoff: frandom(-40, 40), zoff: frandom(0, 4),
+				velx: frandom(-1.5, 1.5), vely: frandom(-1.5, 1.5), velz: frandom(0.1, 0.6),
+				startalphaf: frandom(0.3, 0.5), fadestepf: -1,
+				sizestep: frandom(1.0, 3.0),
+				startroll: random(-180, 180), rollvel: frandom(-2, 2));
+		}
+	}
+
+	void GhostVileBuildup()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			A_SpawnParticleEx("000000", TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL|SPF_FULLBRIGHT,
+				lifetime: random(12, 22),
+				size: frandom(25, 55),
+				xoff: frandom(-30, 30), yoff: frandom(-30, 30), zoff: frandom(0, 8),
+				velx: frandom(-0.8, 0.8), vely: frandom(-0.8, 0.8), velz: frandom(0.8, 2.5),
+				startalphaf: frandom(0.5, 0.8), fadestepf: -1,
+				sizestep: frandom(0.5, 2.5),
+				startroll: random(-180, 180), rollvel: frandom(-3, 3));
+		}
+	}
+
+	void GhostVileDetonate()
+	{
+		for (int i = 0; i < 12; i++)
+		{
+			A_SpawnParticleEx("000000", TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL|SPF_FULLBRIGHT,
+				lifetime: random(18, 35),
+				size: frandom(30, 70),
+				xoff: frandom(-15, 15), yoff: frandom(-15, 15), zoff: frandom(0, 20),
+				velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(1, 5),
+				startalphaf: frandom(0.8, 1.0), fadestepf: -1,
+				sizestep: frandom(1.5, 4.0),
+				startroll: random(-180, 180), rollvel: frandom(-5, 5));
+		}
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 0 A_StartSound("vile/firestrt", CHAN_BODY, volume: 0.6, pitch: 0.5);
+		TNT1 AAAAAAAAAA 2 GhostVileWarning();
+		TNT1 A 0 A_StartSound("vile/firecrkl", CHAN_6, volume: 0.7, pitch: 0.4);
+		TNT1 AAAAAAAAAAAAAA 1 GhostVileBuildup();
+		TNT1 A 0
+		{
+			GhostVileDetonate();
+			A_Explode(70, 70, XF_NOSPLASH);
+			A_StartSound("vile/stop", CHAN_7, volume: 1.0, pitch: 0.6);
+		}
+		TNT1 AAAAAA 2
+		{
+			A_SpawnParticleEx("000000", TexMan.CheckForTexture("GNSMK0"),
+				style: STYLE_Normal, flags: SPF_ROLL,
+				lifetime: random(20, 40),
+				size: frandom(35, 80),
+				xoff: frandom(-25, 25), yoff: frandom(-25, 25), zoff: frandom(5, 30),
+				velx: frandom(-0.5, 0.5), vely: frandom(-0.5, 0.5), velz: frandom(0.3, 1.2),
+				startalphaf: frandom(0.4, 0.7), fadestepf: -1,
+				sizestep: frandom(1.0, 3.0),
+				startroll: random(-180, 180), rollvel: frandom(-1, 1));
+		}
+		Stop;
+	}
+}
+
+// ===================================================================
+// Stealth Monster Replacers — vanilla stealth monsters become ghosts
+// ===================================================================
+
+class PM_StealthImpReplacer : PM_GhostImp replaces StealthDoomImp {}
+class PM_StealthDemonReplacer : PM_GhostDemon replaces StealthDemon {}
+class PM_StealthCacoReplacer : PM_GhostCacodemon replaces StealthCacodemon {}
+class PM_StealthKnightReplacer : PM_GhostHellKnight replaces StealthHellKnight {}
+class PM_StealthBaronReplacer : PM_GhostBaron replaces StealthBaron {}
+class PM_StealthRevenantReplacer : PM_GhostRevenant replaces StealthRevenant {}
+class PM_StealthArachReplacer : PM_GhostArachnotron replaces StealthArachnotron {}
+class PM_StealthMancReplacer : PM_GhostMancubus replaces StealthFatso {}
+class PM_StealthVileReplacer : PM_GhostArchvile replaces StealthArchvile {}
