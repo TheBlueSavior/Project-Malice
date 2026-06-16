@@ -62,7 +62,7 @@ Texture "UNAFFLIS", 450, 300
 	Patch "FSPIH1", 6, 174
 	Patch "PL01G1", 346, 175
 	Patch "M01AH1", 288, 109
-	Patch "I01AI1", 213, 116
+	Patch "B01_I1", 213, 116
 	Patch "BOS6E1", 235, 143
 	Patch "TABUH1", 60, 115
 	Patch "I02_E1", 216, 167
