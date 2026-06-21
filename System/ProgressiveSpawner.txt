@@ -185,7 +185,7 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_CivilianZombie',   12, 1);
         E('PM_ZombieTrooper',    11, 1);
         E('PM_HellifiedSoldier', 10, 1);
-        E('PM_RFZombie',          7, 2);
+        E('PM_Heretic',          7, 2);
         E('PM_DecayedSoldier',    7, 2);
         E('PM_CyberFodder',       4, 2);
         E('PM_RuinedCavalier',    2, 3);
@@ -197,9 +197,10 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_FShotgunner',       80, 0);
         E('PM_SlugShotgunner',    28, 1);
         E('PM_Pregnant',          17, 1);
-        E('PM_CyberFodder',      12, 1);
+        E('PM_CyberFodder',       12, 1);
         E('PM_Nailgunner',        11, 1);
         E('PM_EnragedBreacher',    9, 2);
+		E('PM_Cultist',            8, 2);
         E('PM_DecayedShotgunner',  7, 2);
         E('PM_FallenShotgunner',   3, 3);
         E('PM_FOCShotgun',         1, 3);

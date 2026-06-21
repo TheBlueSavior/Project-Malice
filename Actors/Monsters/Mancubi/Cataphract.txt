@@ -1,0 +1,133 @@
+Class PM_Cataphract : PMWarMonsterBase
+{
+ int deathwither;
+ Default
+ {
+ PMMonsterBase.CodexLore
+ "ITS BIG FAT FUCKING CATAPHRACT, HE SAYS FLESH POUND ALL THE DAMN TIME, PLEASE HELP ME";
+ health 700;
+ Radius 48;
+ Height 64;
+ painchance 100;
+ Speed 6;
+ Scale 1.15;
+ Mass 2000; //tank
+ SeeSound "PMCataphract/Sight";
+ PainSound "PMCataphract/Pain";
+ DeathSound "PMCataphract/Death";
+ ActiveSound "PMCataphract/Active";
+ BloodType "PM_WarBloodBase";
+ BloodColor "DarkRed";
+ Species "Mancubus";
+ StencilColor "Orange";
+ +DONTHARMSPECIES
+ +MissileMore
+ MinMissileChance 2000;
+ Obituary "A Cataphract utterly obliterated %o's soul out with its soulless arsenal.";
+ Tag "Cataphract";
+ +DONTHARMCLASS
+ TeleFogSourceType "PM_SmallDemonicTeleportFog";
+ TeleFogDestType "PM_WarTeleportFog";
+ }
+ 
+ override void Tick()
+ {
+	super.Tick();
+	if (target && distance3D(target) <= 1200) A_StartSound("PMCataphract/Radio", 30, CHANF_LOOPING);
+	else A_StopSound(30);
+ }
+
+  States
+ {
+  Spawn:
+    AAA_ A 10 PM_Look();
+    Loop;
+  Look:
+	TNT1 A 0 { bSHOOTABLE = true; }
+	TNT1 A 0 { bNOPAIN = false; }
+	TNT1 A 0
+	{
+		A_Quake(2, 6, 0, 312);
+		A_StartSound("PMCataphract/Step",20);
+	}
+    AAA_ A 20 PM_LookingForPlayer();
+	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
+	AAA_ BBBBCCCC 3 PM_LookingForPlayer();
+    TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+	TNT1 A 0
+	{
+		A_Quake(2, 6, 0, 312);
+		A_StartSound("PMCataphract/Step",20);
+	}
+	AAA_ D 20 PM_LookingForPlayer();
+	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
+	AAA_ EEEEFFFF 3 PM_LookingForPlayer();
+    Loop;
+  See:
+	TNT1 A 0 { bSHOOTABLE = true; }
+	TNT1 A 0 { bNOPAIN = false; }
+	TNT1 A 0 A_Jump(30,"Phase");
+	TNT1 A 0
+	{
+		A_Quake(2, 6, 0, 312);
+		A_StartSound("PMCataphract/Step",20);
+	}
+    AAA_ A 15 A_Chase();
+	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
+	AAA_ BBBBCCCC 3 A_Chase();
+	TNT1 A 0
+	{
+		A_Quake(2, 6, 0, 312);
+		A_StartSound("PMCataphract/Step",20);
+	}
+	AAA_ D 15 A_Chase();
+	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
+	AAA_ EEEEFFFF 3 A_Chase();
+    Loop;
+  Spotted:
+	AAA_ E 20 A_FaceTarget();
+	AAA_ A 0 PM_AlertSound();
+	AAA_ GGGGGGGGGGGGG 2 A_FaceTarget();
+    Goto See;
+  Missile:
+    TNT1 A 0 A_JumpIfCloser(365,"CloseShotgun");
+	Goto See;
+  CloseShotgun:
+	TNT1 A 0 { pm_attackloop = 1; }
+	TNT1 A 0 { if(!random(0,1)) A_StartSound("PMCataphract/Attack",CHAN_6); A_StartSound("Hectebus/Aim",CHAN_5); }
+	AAA_ G 5;
+	AAA_ GGGGGG 2 Light("AvatarFireBall2") A_FaceTarget();
+   CShotgunLoop:
+	 AAA_ H 1 Light("AvatarFireBall2");
+	 AAA_ H 2 Light("AvatarFireBall2")
+		{
+	     A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
+         A_StartSound("FSGunner/Fire", CHAN_WEAPON,pitch:0.7);
+		 for(int i=5;i>0;i--)
+	     A_SpawnProjectile("PM_BulletTracer",28,-34,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		}
+	 AAA_ GG 1 A_FaceTarget(0.5,0.5);
+     AAA_ H 1 Light("AvatarFireBall2");
+	 AAA_ H 2 Light("AvatarFireBall2")
+		{
+	     A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
+         A_StartSound("FSGunner/Fire", CHAN_WEAPON,pitch:0.7);
+		 for(int i=5;i>0;i--)
+	     A_SpawnProjectile("PM_BulletTracer",28,34,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
+		pm_attackloop--;
+		}
+	AAA_ GG 4 { if(pm_attackloop < 0) SetStateLabel("CShotgunEnd"); }
+	Loop;
+CShotgunEnd:
+	AAA_ GG 4 A_FaceTarget();
+	Goto See;
+  Death:
+	AAA_ G 10 A_NoBlocking();
+	Stop;
+  Pain:
+    AAA_ I 1;
+	TNT1 A 0 A_StartSound("PMCataphract/Step", 20);
+    AAA_ I 13 A_Pain;
+    Goto See;
+  }
+}

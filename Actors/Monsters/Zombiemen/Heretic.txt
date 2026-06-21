@@ -1,0 +1,319 @@
+Class PM_Heretic : PMPrideMonsterBase
+{ 
+    int timer;
+		
+	Default
+	{
+	PMMonsterBase.CodexLore
+	"Previously converted cultists that waited for the right time to strike within the human resistance, but to you, they're zombies wielding jury-rigged laser rifles.
+	 Equipped with a marksman issued laser rifle, and somewhat smarter than the average zombie.";
+    Health 30;
+    Radius 20;
+    Height 56;
+    Mass 100;
+    Speed 8;
+    PainChance 200;
+	+AVOIDMELEE
+    MONSTER;
+	+MISSILEevenMORE
+    +FloorClip
+	+SLIDESONWALLS
+	+HARMFRIENDS
+	+DOHARMSPECIES
+	Species "Zombie";
+	Tag "Heretic";
+    OBITUARY "%o is deemed inferior to the Heretic.";
+    SeeSound "Heretic/Sight";
+	PainSound "Heretic/Pain";
+	DeathSound "Heretic/Death";
+	ActiveSound "Heretic/Active";
+	Bloodtype "PM_DarkRedBloodBase";
+    DropItem "Clip";
+    Decal "Bulletchip";
+	TeleFogSourceType "PM_PossessedTeleportFog";
+	TeleFogDestType "PM_PossessedTeleportFog";
+	}
+    states
+    {
+    Spawn:
+        Z09_ A 0 NoDelay
+        {
+         user_numbullets = random(10,45);
+        }
+    Idle:
+		Z09_ A 10 PM_Look();
+        Loop;
+    Look:
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+        Z09_ AA 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ BB 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-0.5);
+        TNT1 A 0 A_JumpifTargetInLOS("Spotted",150,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ CC 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ DD 4 PM_LookingForPlayer();
+		TNT1 AA 0 A_Recoil(-0.5);
+        Loop;
+	Spotted:
+	    TNT1 A 0 A_Jump(256,"Roar","SpotMissile","See");
+		Goto See;
+	Roar:
+	    TNT1 A 0 PM_AlertSound();
+		Goto See;
+	SpotMissile:
+        TNT1 A 0 PM_AlertSound();
+	    Z09_ EEE 3 A_FaceTarget();
+	    Goto Missile;
+	See:
+		TNT1 A 0 { bFRIGHTENED = false; }
+	    TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+        Z09_ AA 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ BB 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ CC 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ DD 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		TNT1 A 0 A_Jump(35,"Retreat");
+        Loop;
+	See3:
+		TNT1 A 0 { bFRIGHTENED = false; }
+	    TNT1 A 0 A_SetSpeed(7);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+        Z09_ AA 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ BB 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ CC 3 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		Z09_ DD 4 A_Chase();
+		TNT1 AA 0 A_Recoil(-0.5);
+		TNT1 A 0 A_CheckSight("See3");
+		Goto See;
+	AttackWander:
+		TNT1 A 0 A_SetSpeed(11);
+		TNT1 A 0 A_SetAngle(random(-360,360));
+		Z09_ DDCC 2
+		{
+		A_Wander();
+		A_Recoil(-0.3);
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ BBAA 2
+		{ 
+		A_Wander();
+		A_Recoil(-0.3);
+		}
+		TNT1 A 0 
+		{
+		 timer++;
+		 if(timer < 6)
+		  SetStateLabel("AttackWander"); 
+		 else if(target && !CheckSight(target))
+		  SetStateLabel("Missile");
+		}
+		Goto See;
+    Missile:
+		TNT1 A 0 A_CheckLOF("MissileProceed");
+		TNT1 A 0 A_CheckSight("AttackWander");
+		Goto AttackWander;
+	MissileProceed:
+        TNT1 A 0;
+		TNT1 A 0 { bFRIGHTENED = false; }
+    RMissile:
+        Z09_ EE 5
+	    {
+		  timer == 0;
+		  if(user_numbullets < 0)
+		   SetStateLabel("NoAmmo");
+	    A_FaceTarget(360,180,0,0);
+	    A_SetAngle(angle+random(-2,2));
+	    A_SetPitch(pitch+random(-1,1));
+	    }
+		Z09_ E 13 Light("Shadowball2") 
+		  {
+		   pm_attackloop = random(1,6);
+		   A_StartSound("Fusionite/Charge",pitch:1.65);
+		  }
+	RMissileGo:
+        Z09_ F random(5,7) BRIGHT Light("Shadowball3")
+		{
+		  if(pm_attackloop <= 0)
+		   SetStateLabel("RMissileEnd");
+		  if(user_numbullets < 0)
+		   SetStateLabel("NoAmmo");
+		  A_StartSound("ZombieRifleDistant",CHAN_7,CHANF_OVERLAP);
+		  A_StartSound("RFZ/LaserFire");
+		  A_SpawnProjectile("PM_RFZombieLaser",35,7,frandom(-0.5, 0.5),CMF_AIMDIRECTION,pitch+frandom(-1.0,1.0));
+		  A_FaceTarget(0.65,0.85,0,0);
+          user_numbullets--;
+		  pm_attackloop--;
+        }
+		Loop;
+	RMissileEnd:
+		Z09_ E 8 A_FaceTarget(0.65,0.75,0,0);
+        Goto AttackingChoose;
+   AttackingChoose:
+		TNT1 A 0;
+		TNT1 A 0 { bFRIGHTENED = false; }
+		TNT1 A 0 A_Jump(256,"AttackRetreat","AttackWander");
+		Goto See;
+	AttackRetreat:
+	    TNT1 A 0 { bFRIGHTENED = true; }
+		TNT1 A 0 A_SetSpeed(11);
+		TNT1 A 0 A_SetAngle(random(-360,360));
+		Z09_ DDCC 2
+		{
+		A_Chase();
+		A_Recoil(-0.3);
+		}
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ BBAA 2
+		{ 
+		A_Chase();
+		A_Recoil(-0.3);
+		}
+		TNT1 A 0 
+		{
+		 timer++;
+		 if(timer < 6)
+		  SetStateLabel("See"); 
+		 else if(target && CheckSight(target))
+		  SetStateLabel("Missile");
+		}
+		Goto AttackRetreat+3;
+	 NoAmmo:
+        Z09_ E 7 A_FaceTarget(10,20,0,0);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+        Z09_ EE 10 A_FaceTarget(10,20,0,0);
+		TNT1 A 0 A_Jump(100,"ZRetreat");
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+        Z09_ E 8 A_FaceTarget(10,20,0,0);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+		Z09_ E 8 A_FaceTarget(10,20,0,0);
+        TNT1 A 0 A_StartSound("PM/GunClick",CHAN_5);
+        Z09_ AAAA 5 A_FaceTarget(10,20,0,0);
+		Goto ZReload;
+	ZRetreat:
+		TNT1 A 0 A_SetSpeed(12);
+		TNT1 A 0 { bFRIGHTENED = true; }
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ AABB random(1,2) A_Chase(null,null);
+		TNT1 A 0 A_StartSound("ZombieSoldier/Step",CHAN_6);
+		Z09_ CCDD random(1,2) A_Chase(null,null);
+		TNT1 A 0 
+		  {
+		   if(Distance3D(target) >= 800 || !CheckSight(target))
+		    SetStateLabel("ZReload");
+		  }
+	    Loop;
+    ZReload:
+       Z09_ EEE 4 A_FaceTarget(10,20,0,0);
+       TNT1 A 0 A_StartSound("PM/RifleMagOut",CHAN_5);
+       Z09_ AA 8 A_FaceTarget(10,20,0,0);
+       TNT1 A 0 A_SpawnItemEx("PM_EmptyRifleMag",0,0,20,frandom(-1,1),frandom(-1,-5),random(-2,0));
+       Z09_ AAA random(3,6) A_FaceTarget(10,20,0,0);
+       TNT1 A 0 A_StartSound("PM/RifleMagIn",CHAN_5);
+	   TNT1 A 0
+	   {
+	   user_numbullets = (user_numbullets + random(30,45));
+	   }
+       Z09_ BBBB 5 A_FaceTarget(10,20,0,0);
+	   TNT1 A 0 A_StartSound("PM/RifleBoltSlide",CHAN_5);
+       Z09_ AABB 4 A_FaceTarget(10,20,0,0);
+       Goto See;
+    Pain:
+        Z09_ G 5;
+        Z09_ G 3 A_Pain;
+        Goto See;
+    Death:
+        Z09_ H 5 A_NoBlocking;
+        Z09_ I 5 PM_Scream();
+        Z09_ J 5;
+        Z09_ K 5;
+		TNT1 A 0 A_StartSound("Corpse/Fall",CHAN_6);
+		Z09_ L 90;
+		TNT1 A 0 { if(random(1,3) == 1) A_SpawnItemEx("PM_PossessingDemon",0,0,5,0,0,0,random(0,360),SXF_NOCHECKPOSITION); }
+        Z09_ L -1;
+        Stop;
+    XDeath:
+        TNT1 A 0 A_StopSound(555);
+        Z09_ OP 5 PM_Gib();
+        Z09_ Q 5 A_XScream;
+        Z09_ R 5 A_NoBlocking; 
+        Z09_ STUV 5;
+        Z09_ W -1;
+        Stop;
+    Raise:
+        UDM2 NMLKJIH 5;
+        Goto Look;
+    }
+}
+
+Class RFZToken : Inventory
+{
+ Default
+ {
+ Inventory.MaxAmount 1;
+ }
+}
+
+Class PM_RFZombieLaser : PMProjectileBase
+{
+   Default
+   {
+     Height 4;
+     Radius 4;
+     Speed 59;
+	 FastSpeed 70;
+     Damagefunction (random(10,20));
+	 DamageType "Plasma";
+     Scale 1.15;
+     Projectile;
+     RenderStyle "Add";
+     SeeSound "";
+     Decal "PM_HellPlasmaScorch";
+     DeathSound "GenericPlasmaExp";
+     PMProjectileBase.WhizSound "PM/PlasmaWhiz";
+     PMProjectileBase.WhizRangeCheck 250;
+     +BRIGHT
+   }
+   
+   States
+   {
+	Spawn:
+        TNT1 A 0;
+		TNT1 A 0
+		{
+		  A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKRA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4)
+		  , size: frandom(40,100), xoff: -22, startalphaf: frandom(0.75,1), sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		  
+		  A_SpawnParticleEx( "", TexMan.CheckForTexture("SPKRC0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: random(1,4)
+		  , size: frandom(40,190), xoff: -22, startalphaf: 1.0, sizestep: frandom(0.0,3),startroll: random(-180,180) );
+		}
+	Go:
+		TRCR A 1 Bright { PM_CheckWhiz(); A_Quake(1,4,0,100,0); }
+        Loop;
+   Death:
+	  TNT1 AAAAAA 0 { A_SpawnParticleEx("",TexMan.CheckForTexture("RLSSA0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(6,15),size: random(10,20),velx: random(-6,6),vely: random(-6,6),velz: random(-6,6),startalphaf: 0.7,fadestepf: -1,startroll: random(-180,180)); }
+	  TNT1 AAA 0 A_SpawnItemEx("HellPlasmaExp",0,0,0);
+	  TNT1 A 0 A_SpawnItemEx("HellPlasmaFlare",0,0,0);
+	  TNT1 A 5 Light("Shadowball2");
+      Stop;
+	  }
+}
+
+Class PM_RFZombieLaserSmall : PM_RFZombieLaser
+{
+ Default
+ {
+  Scale 0.75;
+  DamageFunction (random(10,15));
+ }
+}

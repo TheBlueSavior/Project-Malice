@@ -105,7 +105,7 @@ DoomEdNums
 	23002 = "PM_FOCRifle"
 	23003 = "PM_HellifiedSoldier"
 	23004 = "PM_PistolZombie"
-	23005 = "PM_RFZombie"
+	23005 = "PM_Heretic"
 	23006 = "PM_WolfSS_MP40"
 	23007 = "PM_ZombieMarine"
 	23008 = "PM_ZombieSoldier"
