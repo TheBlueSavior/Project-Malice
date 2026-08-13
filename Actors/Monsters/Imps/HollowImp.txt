@@ -1,0 +1,207 @@
+Class PM_HollowImp : PMUmbralMonsterBase
+{
+	int user_leapstrength;
+	
+    Default
+	{
+	PMMonsterBase.CodexLore
+	"Hollow Imps are nothing but shadows idk";
+	Obituary "%o was consumed by darkness by a Hollow Imp.";
+	HitObituary "Due to the Hollow Imp, %o is now one with the shadows.";
+	Tag "Hollow Imp";
+	Health 80;
+	Speed 12;
+	Radius 20;
+    Height 56;
+	PainChance 50;
+	+NOFEAR
+	+SLIDESONWALLS
+	+DONTHARMSPECIES
+	+DONTHARMCLASS
+	+FLOORCLIP
+	+MISSILEEVENMORE
+	+MISSILEMORE
+	Species "Imps";
+	BloodType "PM_BlackBloodBase";
+    SeeSound "HollowImp/Sight";
+    PainSound "HollowImp/Pain";
+    DeathSound "HollowImp/Death";
+    ActiveSound "HollowImp/Active";
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_DemonicTeleportFog";
+	}
+	
+	void A_UmbralFog()
+	{
+		for(int i=random(7,12);i>0;i--)
+			A_SpawnParticleEx("222222",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(80,150),size: frandom(90,160),xoff: random(15,-15),yoff: frandom(-15,15),zoff: frandom(5,35),velx:frandom(-2,2),vely:frandom(-2,2),velz:frandom(-2,2),startalphaf: 1,fadestepf: -1,sizestep: 0.05,startroll: random(-180,180),rollvel:frandom(-2,2));
+	}
+	
+	States
+	{
+	Spawn:
+		I16_ A 0;
+		Goto Idle;
+	Idle:
+		I16_ A 10 PM_Look();
+		Loop;
+	Look:
+		I16_ AAABBB 5
+		{
+			A_Recoil(-0.5);
+			PM_LookingForPlayer();
+		}
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		I16_ CCCDDD 5
+		{
+			A_Recoil(-0.5);
+			PM_LookingForPlayer();
+		}
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		Loop;
+	Spotted:
+		TNT1 A 0 A_FaceTarget();
+		TNT1 A 0 A_Jump(128,"RoarMissile","Teleport");
+	Roar:
+		I16_ H 0 PM_AlertSound();
+		Goto See;
+	RoarMissile:
+		I16_ H 0 PM_AlertSound();
+		Goto See;
+	See:
+		I16_ AABB 3
+		{
+			bSPRITEFLIP = false;
+			A_Recoil(-0.5);
+			A_Chase();
+		}
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		I16_ CCDD 3
+		{
+			bSPRITEFLIP = false;
+			A_Recoil(-0.5);
+			A_Chase();
+		}
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		TNT1 A 0 A_Jump(20, "Rush", "Teleport");
+		Loop;
+	Rush:
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		I16_ AAAABBBB 1
+		{
+			A_Recoil(-.75);
+			A_FaceTarget(4, 4);
+			A_Chase(null, null);
+			A_SpawnItemEx("PM_GenericPhaseGhost", zofs: 6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+		}
+		TNT1 A 0 A_StartSound("Revenant/Step",CHAN_6);
+		I16_ CCCCDDDD 1
+		{
+			A_Recoil(-.75);
+			A_Chase("Pounce", null);
+			A_FaceTarget(4, 4);
+			A_SpawnItemEx("PM_GenericPhaseGhost", zofs: 6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+		}
+		I16_ A 0 A_Jump(40, "See", "Teleport");
+		Loop;
+	Pain:
+		I16_ E 2
+		{
+			bSPRITEFLIP = false;
+			if (random(0, 255) < 80)
+				SetStateLabel("Teleport");
+		}
+		I16_ E 4 A_Pain();
+		Goto See;
+	Missile:
+		TNT1 A 0 A_Jump(80, "Teleport");
+		TNT1 A 0 A_Jump(168, "Dodge");
+	Orbs:
+		I16_ FFGG 2 A_FaceTarget();
+		I16_ H 6
+		{
+			A_FaceTarget();
+			A_StartSound("HPriest/VoidShot",pitch:frandom(1.5,1.75));
+			A_SpawnProjectile("PM_HollowImpBall", 32);
+		}
+		I16_ F 0 { bSPRITEFLIP = true; }
+		I16_ FFGG 2 A_FaceTarget();
+		I16_ H 6
+		{
+			A_FaceTarget();
+			A_StartSound("HPriest/VoidShot",pitch:frandom(1.5,1.75));
+			A_SpawnProjectile("PM_HollowImpBall", 32);
+		}
+		I16_ F 0 { bSPRITEFLIP = false; }
+		Goto See;
+	Dodge:
+		I16_ F 0 { Vel3DFromAngle(random(15, 25), Angle*128/256+random(64, 192), 0); vel.z += 4; }
+		Goto Orbs;
+	Teleport:
+		I16_ A 10;
+		I16_ A 5
+		{
+			bSPRITEFLIP = false;
+			bSHOOTABLE = false;
+			A_StartSound("HollowImp/Warp",15);
+			A_UmbralFog();
+		}
+		TNT1 A 5                           
+		{
+			for (int i = 0; i < 255; i++)
+				A_Chase(null,null,CHF_NOPLAYACTIVE);
+		}
+		I16_ A 15
+		{
+			if (target && CheckSight(target)) A_FaceTarget();
+			bSHOOTABLE = true;
+			A_StartSound("HollowImp/Warp",15);
+			A_UmbralFog();
+		}
+		Goto See;
+	Death:
+		I16_ E 5 { bSPRITEFLIP = false; }
+		I16_ I 5 A_ScreamAndUnblock();
+		I16_ JKL 5;
+		I16_ M 5 A_StartSound("Corpse/Fall", CHAN_BODY);
+		I16_ M -1;
+		Stop;
+	Raise:
+		I16_ LKJI 8;
+		Goto See;
+	}
+}
+
+Class PM_HollowImpBall : DoomImpBall
+{
+    Default
+	{
+	DamageFunction 15;
+	Seesound "";
+	DeathSound "Abhor/BallExp";
+	Decal "Scorch";
+	DamageType "Ice";
+	Speed 25;
+	FastSpeed 30;
+	Scale 0.93;
+	}
+	
+	void HollowFX()
+	{
+		A_SpawnItemEx("PM_HellPriestBlackFlameTrails",0,0,0,0,0,0,0,128,0);
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(5,15),size: frandom(12,25),xoff: frandom(-8,-1),yoff: frandom(-5,5),zoff: frandom(-5,5),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.2,1.5),startroll: random(-180,180));
+		A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(3,10),size: frandom(10,35),xoff: frandom(-8,-1),yoff: frandom(-5,5),zoff: frandom(-5,5),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.8,1),fadestepf: -1,sizestep: frandom(0.2,1.5),startroll: random(-180,180));
+	}
+	
+	states
+  	{
+  Spawn:
+    TNT1 A 1 Light("SmallBlacklight") HollowFX();
+	loop;
+  Death:
+	TNT1 AAA 0 { A_SpawnParticleEx("#000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(25,200),size: frandom(10,150),velx: frandom(-0.4,0.4),vely: frandom(-0.4,0.4),velz: frandom(-0.1,0.2),startalphaf: frandom(0.5,1.0),fadestepf: -1,sizestep: frandom(0.0,2.5),startroll: random(-180,180),rollvel: frandom(-0.5,0.5)); }
+	TNT1 AA 0 A_SpawnItemEx("PM_VoidSmoke",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+    TNT1 AAA 2 Light("SmallBlacklight") A_SpawnItemEx("PM_VoidSmoke",0,0,20,random(-1,1),random(-1,1),random(-1,1),random(1,360));
+    stop;
+  }
+}

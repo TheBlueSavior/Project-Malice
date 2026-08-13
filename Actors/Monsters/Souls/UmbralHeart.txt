@@ -95,7 +95,7 @@ Class PM_UmbralHeart : PMUmbralMonsterBase
   MeleeLoop:
     EYES AAA 5 Light("Shadowball3")
 	{
-	  if(Distance3D(target) > 300)
+	  if(!target || Distance3D(target) > 300)
 	  SetStateLabel("MeleeEnd");
 	  A_FaceTarget(15,90);
 	  A_CustomRailgun(6,random(-10,10),"","",RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT,0,9000,"PM_DepravedElectricFx",50,30,random(200,425),0,6.2,0,"PM_DepravedArcs",frandom(-2,2));

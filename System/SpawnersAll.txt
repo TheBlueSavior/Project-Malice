@@ -3,7 +3,7 @@ Actor MaliceZombiemanSpawner : RandomSpawner replaces ZombieMan
 	DropItem "PM_ZombieSoldier", 255, 80
 	DropItem "PM_PistolZombie", 255, 67
 	DropItem "PM_ZombieMarine", 255, 18
-	DropItem "PM_CivilianZombie", 255, 12
+	DropItem "PM_Hedonist", 255, 12
 	DropItem "PM_ZombieTrooper", 255, 11
 	DropItem "PM_HellifiedSoldier", 255, 10
 	DropItem "PM_Heretic", 255, 7
@@ -144,6 +144,7 @@ Actor MaliceBaronOfHellSpawner : RandomSpawner replaces BaronOfHell
 	DropItem "PM_Bruiser",255, 30
 	DropItem "PM_SpawnOfBelphegor", 255, 23
 	DropItem "PM_Exalted", 255, 16
+	DropItem "PM_Warmonger", 255, 14
 	DropItem "PM_DeathEmissary",255, 10
 	DropItem "PM_ControlledSoldier",255, 2
 	DropItem "PM_Broken",255, 2
@@ -156,6 +157,7 @@ Actor MaliceFatsoSpawner : RandomSpawner replaces Fatso
 	DropItem "PM_Hectebus", 255, 32
 	DropItem "PM_Corpulent", 255, 7
 	DropItem "PM_Bulltubus", 255, 5
+	DropItem "PM_Cataphract", 255, 4
 	DropItem "PM_Abhorrent", 255, 1
 
 }
@@ -165,6 +167,7 @@ Actor MaliceArachnotronSpawner : RandomSpawner replaces Arachnotron
 	DropItem "PM_Fusionite", 255, 45
 	DropItem "PM_Plasmatron", 255, 18
 	DropItem "PM_ForlornWalker", 255, 9
+	DropItem "PM_NaniteNexus", 255, 8
 	DropItem "PM_MechaAranea", 255, 7
 	DropItem "PM_AngelsHand", 255, 3
 }
@@ -178,7 +181,7 @@ Actor MaliceArchvileSpawner : RandomSpawner replaces Archvile
 Actor MaliceSpiderMastermindSpawner : RandomSpawner replaces SpiderMastermind
 {
 	DropItem "PM_Director", 255, 55
-	DropItem "PM_EntropicAvatarSpawner", 255, 1
+	DropItem "PM_EntropicAvatarSpawnerMM", 255, 1
 }
 
 Actor MaliceCyberdemonSpawner : RandomSpawner replaces Cyberdemon

@@ -101,7 +101,7 @@ Class PM_Watcher : PMUmbralMonsterBase
 			Goto SeeGood;
 		RandomDodge:
 			TNT1 A 0;
-			TNT1 A 0 ThrustThing(random(0,360),16);
+			TNT1 A 0 ThrustThing(random(0,255),16);
 			TNT1 A 0 ThrustThingZ(0,13,random(0,1),1);
 			WATC AAAAAA 2
 			{

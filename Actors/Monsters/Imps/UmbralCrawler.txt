@@ -1,0 +1,173 @@
+Class PM_UmbralCrawler : PMUmbralMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"lol, something omori";
+		Health 100;
+		Radius 20;
+		Height 56;
+		Speed 10;
+		PainChance 50;
+		Mass 100;
+		+FLOORCLIP
+		+SLIDESONWALLS
+		+NOFEAR
+		+DONTHARMSPECIES
+		+DONTHARMCLASS
+		+MISSILEMORE
+		+MISSILEEVENMORE
+		Monster;
+		SeeSound "UmbralCrawler/Idle";
+		PainSound "UmbralCrawler/Idle";
+		DeathSound "UmbralCrawler/Death";
+		ActiveSound "UmbralCrawler/Active";
+		Tag "Umbral Crawler";
+		Obituary "%o got sniped by a Umbral Crawler.";
+		HitObituary "%o got caught off guard by a Umbral Crawler's swipe.";
+		Species "Imps";
+		Bloodtype "PM_BlackBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+		MeleeThreshold 120;
+		MaxTargetRange 1250;
+	}
+	
+	States
+	{
+	Spawn:
+		I15_ I 0 NoDelay;
+	Idle:
+		I15_ A 10 PM_Look();
+		Loop;
+	Look:
+		I15_ BBCCDDEE random(2,3)
+		{
+			A_Recoil(-0.5);
+			PM_LookingForPlayer();
+		}
+		Loop;
+	Spotted:
+		TNT1 A 0 A_Jump(128,"RoarMissile");
+	Roar:
+		I15_ H 0 PM_AlertSound();
+		Goto See;
+	RoarMissile:
+		I15_ H 0 PM_AlertSound();
+		Goto See;
+	See:
+		I15_ AABBCCDD random(2,3)
+		{
+			A_Recoil(-0.5);
+			A_FastChase();
+		}
+		Loop;
+	Pain:
+		I15_ H 2;
+		I15_ H 4 A_Pain();
+		Goto See;
+	Missile:
+	Snipe:
+		I15_ AAFF 2 A_FaceTarget();
+		I15_ I 0
+		{
+			A_StartSound("GenericChargeSmall", 12);
+			A_StartSound("UmbralCrawler/EyeOpen",CHAN_6);
+		}
+		I15_ IIII 3 A_FaceTarget();
+		I15_ I 0 A_CheckSight("SnipeWait");
+		Goto SnipeFire;
+	SnipeWait:
+		I15_ II 2 A_FaceTarget();
+		TNT1 A 0 A_JumpIfTargetInLOS("SnipeFire",360,JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_Jump(4,"See");
+		Loop;
+	SnipeFire:
+		I15_ II 2 A_FaceTarget();
+		I15_ KKK 3
+		{
+			A_StartSound("Bacillus/Proj",11,attenuation: 0.8);
+			A_StartSound("UmbralCrawler/Fire",10,pitch:frandom(1, 1.5));
+			A_FaceTarget();
+			A_SpawnProjectile("PM_UmbralCrawlerBall",40);
+		}
+		I15_ IIIIIIIII 2 A_FaceTarget();
+		I15_ A 0 A_StartSound("UmbralCrawler/EyeClose",CHAN_6);
+		I15_ FFAA 4 A_FaceTarget();
+		Goto See;
+	Death:
+		I15_ H 5;
+		I15_ L 5 A_ScreamAndUnblock();
+		I15_ MNO 4 A_SpawnItemEx("PM_BlackInstestinGib",random(-4,4),random(-4,4),random(25,35),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		I15_ P 0 A_StartSound("Corpse/Fall",CHAN_6);
+		I15_ P -1;
+		Stop;
+	XDeath:
+		I15_ Q 5 PM_Gib();
+		I15_ R 5 A_XScream;
+		I15_ S 5;
+		I15_ T 5 A_NoBlocking;
+		I15_ U -1;
+		Stop;
+	Melee:
+		I15_ E 10 A_StartSound("UmbralCrawler/Attack", CHAN_VOICE);
+		I15_ F 4 A_FaceTarget();
+		I15_ G 6
+		{
+			A_StartSound("Doom4/Other/MeleeSwing",22,CHANF_OVERLAP,pitch:1.75);
+			A_Recoil(-10);
+			A_SpawnProjectile("PM_FeralLunge",18,flags:CMF_AIMDIRECTION,pitch);
+		}
+		I15_ F 0 { if (target && Distance3D(target) > 128) SetStateLabel("See"); }
+		Loop;
+	Raise:
+		I15_ PONML 7;
+		Goto See;
+	}
+}
+
+Class PM_UmbralCrawlerBall : PM_ImpBallBase
+{
+	Default
+	{
+		Radius 6;
+		Height 8;
+		Projectile;
+		DamageFunction 15;
+		+RANDOMIZE
+		+NOGRAVITY
+		RenderStyle "Add";
+		-LOWGRAVITY
+		SeeSound "FIREBA1";
+		Decal "PM_WhiteFireScorch";
+		DamageType "Ice";
+		Speed 40;
+		FastSpeed 45;
+		Scale 0.15;
+		Alpha 0.5;
+	}
+	states
+  	{
+	Spawn:
+		FIR4 R 1 bright Light("SatyrLordWhiteMissile1") 
+		{
+			A_SpawnParticleEx("ffffff",TexMan.CheckForTexture("FIR4R0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,5),size: random(1,60),startalphaf: 0.9,startroll: random(-180,180));
+			A_SpawnParticleEx("aaaaaa",TexMan.CheckForTexture("SPKWE0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,90),size: frandom(5,15),xoff: random(-1,-10),velx: frandom(-0.2,0.2),vely: frandom(-0.2,0.2),velz: frandom(-0.2,0.2),startalphaf: frandom(0.4, 1.0),fadestepf: -1,sizestep: -0.25,startroll: random(-180,180));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("GNSMI0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(30,80),size: frandom(20,35),xoff: random(-1,-10),yoff: frandom(-2,2),zoff: frandom(-2,2),startalphaf: frandom(0.7, 1),sizestep: 0.05,startroll: random(-180,180),rollvel:frandom(-4,4));
+			alpha = frandom(0.6, 1);
+			scale.x = frandom(0.15, 0.175);
+			scale.y = scale.x;
+		}
+		Loop;
+	Death:
+		TNT1 A 0
+		{
+			A_StartSound("HeresyLord/WhiteDeath",10,pitch:frandom(1.5,1.75));
+			 for(int i=6;i>0;i--)
+				A_SpawnParticleEx("",TexMan.CheckForTexture("SPKWE0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(80,128),size: frandom(1,8),velx:frandom(-3, 3),vely:frandom(-3, 3),velz:frandom(-4, 4),accelz:-0.1,startalphaf: 0.9,fadestepf: 0.1,sizestep: 0,startroll: random(-180,180));
+			 for(int i=random(7,12);i>0;i--)
+				A_SpawnParticleEx("",TexMan.CheckForTexture("GNSMI0"),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(60,90),size: frandom(15,80),xoff: random(15,-15),yoff: frandom(-15,15),zoff: frandom(5,35),velx:frandom(-0.5,0.5),vely:frandom(-0.5,0.5),velz:frandom(-0.5,0.5),startalphaf: frandom(0.3, 0.8),fadestepf: -1,sizestep: 1,startroll: random(-180,180),rollvel:frandom(-2,2));
+		}
+		Stop;
+	}
+}

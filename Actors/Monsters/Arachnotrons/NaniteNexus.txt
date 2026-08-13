@@ -1,0 +1,823 @@
+Class PM_NaniteNexus : PMGreedMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"Placeholder text.";
+		Health 600;
+		Height 64;
+		Mass 600;
+		PainChance 100;
+		Speed 6;
+		Radius 30;
+		Scale 1.25;
+		Tag "Nanite Nexus";
+		Obituary "%o became one with the nanite clouds.";
+		Species "Arachnotron";
+		MeleeRange 200;
+		+DONTHARMSPECIES
+		+NOINFIGHTING
+		+NOFEAR
+		+NOGRAVITY
+		+FLOAT
+		+MISSILEMORE
+		Floatspeed 4;
+		SEESOUND "NaniteNexus/Sight";
+		PAINSOUND "NaniteNexus/Pain";
+		DEATHSOUND "NaniteNexus/Death";
+		Bloodtype "PM_NormalHitSpark";
+		+NOBLOODDECALS
+		StencilColor "ff cc 24";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+	}
+
+	TextureID tex[5];
+
+	int droneTimer;
+	Actor siphonVictim;
+	int siphonTics;
+	bool humOn;
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("T04_U0", TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("T04_V0", TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("T04_W0", TexMan.Type_Sprite);
+		tex[3] = TexMan.CheckForTexture("DTPRO0", TexMan.Type_Sprite);
+		tex[4] = TexMan.CheckForTexture("YLWLA0", TexMan.Type_Sprite);
+		droneTimer = random(70, 140);
+	}
+
+	void NaniteBody(Vector3 wofs, double sz, Vector3 pvel, double step, bool dense = true)
+	{
+		int life = int(sz / abs(step)) + 8;
+		A_SpawnParticleEx("9a9aa2", dense ? tex[0] : tex[1], STYLE_Normal, SPF_ROLL,
+			life, sz,
+			xoff: wofs.x, yoff: wofs.y, zoff: wofs.z,
+			velx: pvel.x, vely: pvel.y, velz: pvel.z,
+			startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: step,
+			startroll: random(-180, 180), rollvel: frandom(-6, 6));
+	}
+
+	void NaniteGlint(Vector3 wofs, double sz, Vector3 pvel, double step)
+	{
+		int life = int(sz / abs(step)) + 8;
+		A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+			life, sz,
+			xoff: wofs.x, yoff: wofs.y, zoff: wofs.z,
+			velx: pvel.x, vely: pvel.y, velz: pvel.z,
+			startalphaf: frandom(0.7, 1.0), fadestepf: 0, sizestep: step,
+			startroll: random(-180, 180), rollvel: frandom(-8, 8));
+	}
+
+	void BarrageHalo(double a)
+	{
+		A_SpawnParticleEx("", tex[3], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+			54, frandom(175, 205), xoff: random(-3,3), yoff: random(-3,3), zoff: 38,
+			startalphaf: a, fadestepf: -1,
+			startroll: random(-180, 180), rollvel: frandom(-3, 3));
+	}
+
+	void BarrageSparks()
+	{
+		for (int i = random(1, 2); i > 0; i--)
+			A_SpawnParticleEx("", tex[4], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				random(10, 18), frandom(45, 110),
+				xoff: frandom(-50, 50), yoff: frandom(-50, 50), zoff: frandom(15, 60),
+				velx: frandom(-3, 3), vely: frandom(-3, 3), velz: frandom(-3, 3),
+				startalphaf: frandom(0.6, 0.9), fadestepf: -1,
+				startroll: random(-180, 180), rollvel: frandom(-6, 6));
+	}
+
+	void NaniteRope(Vector3 endPos, bool bright = false)
+	{
+		Vector3 start = Vec3Offset(0, 0, Height * 0.5);
+		Vector3 d = Level.Vec3Diff(start, endPos);
+		double len = d.Length();
+		if (len < 1) return;
+		int steps = clamp(int(len / 34), 2, 30);
+		for (int i = 0; i <= steps; i++)
+		{
+			Vector3 p = d * (double(i) / double(steps));
+			Vector3 wofs = (p.x, p.y, p.z + Height * 0.5);
+			NaniteBody(wofs, frandom(34, 58), (0, 0, 0), -7.8, false);
+			if (bright || !random(0, 3))
+				NaniteGlint(wofs, frandom(29, 50), (0, 0, 0), -6.8);
+		}
+	}
+
+	void NaniteShed(double ang)
+	{
+		for (int i = random(6, 9); i > 0; i--)
+		{
+			double sp = frandom(2.5, 5.5);
+			double sk = frandom(-16, 16);
+			NaniteBody((frandom(-8, 8), frandom(-8, 8), frandom(14, 46)),
+				frandom(64, 104),
+				(cos(ang + sk) * sp, sin(ang + sk) * sp, frandom(-0.6, 0.9)),
+				frandom(-1.95, -3.05));
+		}
+		for (int i = random(2, 4); i > 0; i--)
+		{
+			double sp = frandom(3.0, 6.0);
+			double sk = frandom(-16, 16);
+			NaniteGlint((frandom(-7, 7), frandom(-7, 7), frandom(16, 42)),
+				frandom(39, 64),
+				(cos(ang + sk) * sp, sin(ang + sk) * sp, frandom(-0.5, 0.8)),
+				-2.8);
+		}
+	}
+
+	bool SpawnDrone()
+	{
+		if (!target) return false;
+		double a = AngleTo(target) + (random(0, 1) ? frandom(50, 110) : -frandom(50, 110));
+		Vector3 launch = Vec3Offset(cos(a) * 20, sin(a) * 20, Height * 0.55);
+		let d = Spawn("PM_NaniteOrb", launch, ALLOW_REPLACE);
+		if (!d) return false;
+
+		d.target = target;
+		d.master = self;
+		double drift = frandom(2.4, 3.6);
+		d.Vel = (cos(a) * drift, sin(a) * drift, frandom(-0.2, 0.7));
+		d.angle = a;
+
+		NaniteShed(a);
+		A_StartSound("Sybarite/Reload3", 28, volume: 0.55, pitch: frandom(1.2, 1.45));
+		return true;
+	}
+
+	void SiphonTrack(double maxstep)
+	{
+		if (!target) return;
+		Vector3 muzzle = Vec3Offset(0, 0, Height * 0.5);
+		Vector3 diff = Level.Vec3Diff(muzzle, target.Vec3Offset(0, 0, target.Height * 0.5));
+		double desAng = atan2(diff.y, diff.x);
+		double desPit = -atan2(diff.z, diff.xy.Length());
+		angle += clamp(deltaangle(angle, desAng), -maxstep, maxstep);
+		pitch += clamp(deltaangle(pitch, desPit), -maxstep, maxstep);
+	}
+
+	void SiphonLaser()
+	{
+		FLineTraceData lt;
+		LineTrace(angle, 900, pitch, 0, Height * 0.5, 0, 0, lt);
+		PM_SpawnBolt(self, lt.HitLocation, "ffc430", TexMan.CheckForTexture("RLSSA0"), maxDiff: 0, scale: 0.45, offset: (0, 0, Height * 0.5), baseTime: 2, fadeTime: 0);
+		if (part) { part.Destroy(); part = null; }
+	}
+
+	void SiphonTake(Actor victim)
+	{
+		if (!victim || victim.health <= 0) return;
+		let arm = BasicArmor(victim.FindInventory("BasicArmor"));
+		if (arm && arm.Amount > 0)
+			arm.Amount = max(0, arm.Amount - random(8, 12));
+		else
+			victim.DamageMobj(self, self, 1, "Plasma", DMG_THRUSTLESS);
+	}
+
+	bool SiphonHold()
+	{
+		if (!siphonVictim || siphonVictim.health <= 0) return false;
+		if (--siphonTics <= 0) return false;
+		if (Distance3D(siphonVictim) > 900) return false;
+		if (!CheckSight(siphonVictim)) return false;
+
+		Vector3 gut = siphonVictim.Vec3Offset(0, 0, siphonVictim.Height * 0.5);
+		NaniteRope(gut, true);
+		PM_SpawnBolt(self, gut, "596070", TexMan.CheckForTexture("RLSSA0"), maxDiff: 0, scale: 1.8, offset: (0, 0, Height * 0.5), baseTime: 2, fadeTime: 0, alpha: 0.1);
+		if (part) { part.Destroy(); part = null; }
+
+		Vector3 d = Level.Vec3Diff(Vec3Offset(0, 0, Height * 0.5), gut);
+		double len = d.Length();
+		if (len > 1)
+		{
+			Vector3 u = d.Unit();
+			for (int i = random(4, 6); i > 0; i--)
+			{
+				double f = frandom(0.15, 1.0);
+				Vector3 p = d * f;
+				NaniteGlint((p.x, p.y, p.z + Height * 0.5), frandom(44, 70),
+					(-u.x * 9, -u.y * 9, -u.z * 9), -5.8);
+			}
+		}
+
+		return true;
+	}
+
+	bool SiphonBite()
+	{
+		if (!SiphonHold()) return false;
+		SiphonTake(siphonVictim);
+		A_StartSound("Draugr/BuffStart", 29, volume: 0.5, pitch: frandom(1.5, 1.7));
+		Vector3 d = Level.Vec3Diff(Vec3Offset(0, 0, Height * 0.5), siphonVictim.Vec3Offset(0, 0, siphonVictim.Height * 0.5));
+		if (d.Length() > 1)
+		{
+			Vector3 u = d.Unit();
+			for (int i = random(8, 11); i > 0; i--)
+			{
+				Vector3 p = d * frandom(0.1, 0.95);
+				NaniteGlint((p.x, p.y, p.z + Height * 0.5), frandom(55, 84),
+					(-u.x * 11, -u.y * 11, -u.z * 11), -5.6);
+			}
+		}
+		return true;
+	}
+
+	override void Tick()
+	{
+		Super.Tick();
+		if (level.isFrozen() || health <= 0) return;
+
+		bool wantHum = (target && target.health > 0);
+		if (wantHum != humOn)
+		{
+			humOn = wantHum;
+			if (humOn) A_StartSound("NaniteNexus/IdleLoop", 30, CHANF_LOOPING);
+			else A_StopSound(30);
+		}
+
+		double rim = radius + 4;
+		for (int i = random(1, 2); i > 0; i--)
+		{
+			double sa = frandom(0, 360);
+			double rr = frandom(rim * 0.35, rim * 0.8);
+			double insp = frandom(0.4, 1.0);
+			double sz = frandom(100, 175);
+			double step = frandom(-3.4, -5.8);
+			A_SpawnParticleEx("9a9aa2", tex[1], STYLE_Normal, SPF_ROLL,
+				int(sz / abs(step)) + 8, sz,
+				xoff: cos(sa) * rr, yoff: sin(sa) * rr, zoff: frandom(2, height),
+				velx: -cos(sa) * insp, vely: -sin(sa) * insp, velz: frandom(-0.15, 0.15),
+				startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: step,
+				startroll: random(-180, 180), rollvel: frandom(-6, 6));
+		}
+		if (!random(0, 2))
+		{
+			double sa = frandom(0, 360);
+			double rr = frandom(rim * 0.35, rim * 0.8);
+			double sz = frandom(56, 95);
+			A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				int(sz / 4.6) + 8, sz,
+				xoff: cos(sa) * rr, yoff: sin(sa) * rr, zoff: frandom(2, height),
+				velx: -cos(sa) * 0.6, vely: -sin(sa) * 0.6, velz: frandom(-0.1, 0.1),
+				startalphaf: frandom(0.7, 1.0), fadestepf: 0, sizestep: -4.6,
+				startroll: random(-180, 180), rollvel: frandom(-8, 8));
+		}
+
+		if (droneTimer > 0) droneTimer--;
+		else if (target && target.health > 0 && Distance3D(target) < 1400 && CheckSight(target))
+		{
+			if (SpawnDrone()) droneTimer = random(20, 260);
+			else droneTimer = 35;
+		}
+	}
+
+	States
+	{
+	Spawn:
+		T04_ A 0;
+		Goto Idle;
+	Idle:
+		T04_ ABCDEF 10 PM_Look();
+		Loop;
+	Look:
+		T04_ AABBCC 5 PM_LookingForPlayer();
+		TNT1 A 0 A_JumpifTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+		T04_ DDEEFF 5 PM_LookingForPlayer();
+		TNT1 A 0 A_CheckSight("See");
+		Goto Spotted;
+	Spotted:
+		TNT1 A 0 PM_AlertSound();
+	See:
+		TNT1 A 0 A_JumpIfTargetInLOS("SeeBrake", 0, JLOSF_DEADNOJUMP);
+		TNT1 A 0 A_SetSpeed(6);
+		T04_ AABBCC 3 { bINFLOAT = false; A_Chase(); }
+		TNT1 A 0 A_JumpIfTargetInLOS("SeeBrake", 0, JLOSF_DEADNOJUMP);
+		T04_ DDEEFF 3 { bINFLOAT = false; A_Chase(); }
+		Loop;
+	SeeBrake:
+		TNT1 A 0 A_ChangeVelocity(0, 0, 0, CVF_REPLACE);
+		T04_ ABCDEF 4
+		{
+			A_SetSpeed(0);
+			A_Chase();
+			A_FaceTarget();
+			if (!random(0, 14)) SetStateLabel("SwarmDart");
+		}
+		Goto See;
+	SwarmDart:
+		TNT1 A 0 ThrustThing(random(0, 255), random(3,12), 0, 0);
+		TNT1 A 0 ThrustThingZ(0, 8, random(0, 1), 1);
+		T04_ ABCDEFABCDEF random(1,3)
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_GenericPhaseGhost", xofs: -5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+		}
+		Goto See;
+	Pain:
+		T04_ J 4;
+		T04_ J 4 A_Pain();
+		Goto See;
+	Missile:
+		T04_ A 0 A_Jump(85, "Surge");
+		T04_ A 0 { if (target && Distance3D(target) < 850 && random(0, 255) < 128) SetStateLabel("Siphon"); }
+		Goto SpinBarrage;
+
+	SpinBarrage:
+		T04_ A 4 A_FaceTarget();
+		T04_ A 0 A_StartSound("Cataclysm/Machinery", 26, pitch: 1.35);
+		T04_ A 0 A_StartSound("WarHound/LShtCharge",12,volume:0.7);
+		T04_ ABCDEFBDFBDFBDFBDFBDFBDF 1
+		{
+			A_FaceTarget();
+			BarrageHalo(0.20);
+		}
+		T04_ A 0 { pm_attackloop = random(35, 65); }
+		Goto SpinBarrageLoop;
+	SpinBarrageLoop:
+		T04_ BDF 1 Bright
+		{
+			A_FaceTarget();
+			BarrageHalo(0.30);
+			if (!random(0, 2))
+			{
+			A_StartSound("Cataclysm/SmallLaser", CHAN_WEAPON, CHANF_OVERLAP, pitch: frandom(.7, 1.1));
+			A_SpawnProjectile("PM_NaniteLaser", 38, random(-20, 20), frandom(-4, 4), CMF_OFFSETPITCH, frandom(-3, 3));
+			NaniteGlint((frandom(-9, 9), frandom(-9, 9), frandom(26, 44)), frandom(34, 58), (0, 0, 0), -6.1);
+			BarrageSparks();
+			pm_attackloop--;
+			}
+		}
+		T04_ A 0 { if (pm_attackloop <= 0) SetStateLabel("SpinDown"); }
+		Loop;
+	SpinDown:
+		T04_ ABCDEF 1;
+		T04_ ABCDEF 2;
+		T04_ A 0 A_StopSound(26);
+		Goto See;
+
+	Surge:
+		T04_ GGGG 3
+		{
+			A_FaceTarget();
+			NaniteBody((frandom(-10, 10), frandom(-10, 10), frandom(18, 44)), frandom(64, 102),
+				(0, 0, frandom(-0.3, 0.3)), -2.8);
+		}
+		T04_ H 6 Bright
+		{
+			A_FaceTarget();
+			A_StartSound("PM/BulletHellSpawn", CHAN_WEAPON, pitch: frandom(0.7, 0.9));
+			int n = random(1, 5);
+			for (int i = 0; i < n; i++)
+			{
+				double sa = frandom(0, 360);
+				double sp = frandom(-45, 10);
+				let s = Spawn("PM_NaniteSurge", Vec3Offset(cos(sa) * 18, sin(sa) * 18, Height * 0.55), ALLOW_REPLACE);
+				if (s)
+				{
+					s.target = self;
+					s.tracer = target;
+					s.angle = sa;
+					s.pitch = sp;
+					s.Vel3DFromAngle(s.Speed, sa, sp);
+					NaniteShed(sa);
+				}
+			}
+		}
+		T04_ I 6 A_FaceTarget();
+		Goto See;
+
+	Siphon:
+		T04_ GGGG 3
+		{
+			A_FaceTarget();
+			NaniteGlint((frandom(-9, 9), frandom(-9, 9), frandom(20, 44)), frandom(34, 54), (0, 0, 0), -3.9);
+		}
+		T04_ G 0
+		{
+			A_StartSound("Sharpshooter/Aim", 27, pitch: 0.85);
+			A_FaceTarget();
+			angle += frandom(-35, 35);
+			pitch = 0;
+			if (target)
+			{
+				Vector3 dv = Level.Vec3Diff(Vec3Offset(0, 0, Height * 0.5), target.Vec3Offset(0, 0, target.Height * 0.5));
+				pitch = -atan2(dv.z, dv.xy.Length()) + frandom(-15, 15);
+			}
+		}
+		T04_ GGGGGGGGGGGGGGGGGG 1 { SiphonTrack(3); SiphonLaser(); }
+		T04_ G 0 A_StartSound("Sharpshooter/Aim", 27, pitch: 1.35);
+		T04_ GGGGGGGGGGGGGGGGG 1 { SiphonTrack(1.5); SiphonLaser(); }
+		T04_ H 0
+		{
+			siphonVictim = null;
+			FLineTraceData lt;
+			LineTrace(angle, 900, pitch, 0, Height * 0.5, 0, 0, lt);
+			Vector3 mark = lt.HitLocation;
+			if (target)
+			{
+				bool direct = (lt.HitActor == target);
+				Vector3 muzzle = Vec3Offset(0, 0, Height * 0.5);
+				Vector3 ray = Level.Vec3Diff(muzzle, mark);
+				Vector3 tp = Level.Vec3Diff(muzzle, target.Vec3Offset(0, 0, target.Height * 0.5));
+				double raydist = tp.Length();
+				if (ray.Length() > 1)
+				{
+					Vector3 u = ray.Unit();
+					double along = clamp(tp dot u, 0, ray.Length());
+					raydist = (tp - u * along).Length();
+				}
+				NaniteRope(mark, true);
+				for (int i = random(6, 9); i > 0; i--)
+				{
+					double a = frandom(0, 360);
+					Vector3 hit = Level.Vec3Diff(pos, mark);
+					NaniteBody((hit.x + cos(a) * frandom(2, 14), hit.y + sin(a) * frandom(2, 14), hit.z + frandom(-8, 16)),
+						frandom(54, 90), (cos(a) * 1.4, sin(a) * 1.4, frandom(0, 1.2)), -3.05);
+				}
+				if (target.health > 0 && (direct || raydist < 46))
+				{
+					siphonVictim = target;
+					siphonTics = random(140, 175);
+					A_StartSound("Draugr/BuffStart", 29, volume: 0.7, pitch: 1.25);
+				}
+			}
+		}
+		T04_ H 6 { if (!siphonVictim) SetStateLabel("SiphonEnd"); }
+		Goto SiphonDrain;
+	SiphonDrain:
+		T04_ H 3
+		{
+			A_FaceTarget();
+			BarrageHalo(0.12);
+			if (!SiphonBite()) SetStateLabel("SiphonEnd");
+		}
+		T04_ HIIHHII 2
+		{
+			A_FaceTarget();
+			BarrageHalo(0.05);
+			if (!SiphonHold()) SetStateLabel("SiphonEnd");
+		}
+		Loop;
+	SiphonEnd:
+		T04_ I 6 { siphonVictim = null; pitch = 0; A_StopSound(27); A_StopSound(29); }
+		Goto See;
+
+	Melee:
+		T04_ GG 3;
+		TNT1 A 0 ThrustThing(random(0, 255), random(3,12), 0, 0);
+		TNT1 A 0 ThrustThingZ(0, 8, random(0, 1), 1);
+		T04_ ABCDEFABCDEF random(1,3)
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_GenericPhaseGhost", xofs: -5, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERSTENCILCOL);
+		}
+		Goto Missile;
+
+	Death:
+		T04_ K 6
+		{
+			A_StopSound(30);
+			vel.z += frandom(0, 5);
+			vel.xy += (frandom(-2, 2), frandom(-2, 2));
+		}
+		T04_ L 6
+		{
+			bNOGRAVITY = false;
+			bFLOAT = false;
+			A_ScreamAndUnblock();
+		}
+		T04_ L 4;
+		Wait;
+	Crash:
+		TNT1 A 0
+		{
+			A_StartSound("Director/Step", CHAN_7, attenuation: 0.9);
+			A_StartSound("GenericPlasmaExp", CHAN_6);
+			A_QuakeEx(1, 1, 2, 25, 0, 300, "", QF_SCALEDOWN|QF_3D);
+			A_SpawnParticleEx("", tex[3], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				8, 320, zoff: 20, startalphaf: 1.0, fadestepf: -1,
+				startroll: random(-180, 180));
+			A_SpawnParticleEx("", tex[3], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				20, 210, zoff: 20, startalphaf: 0.9, fadestepf: -1,
+				startroll: random(-180, 180), rollvel: frandom(-4, 4));
+			for (int i = random(4, 6); i > 0; i--)
+			{
+				let fx = Spawn("PM_GenericExplosionFlames", Vec3Offset(0, 0, 8));
+				if (fx)
+				{
+					fx.A_SetRenderStyle(1, STYLE_ADDSHADED);
+					fx.SetShade("ffc430");
+					fx.vel = (frandom(-6, 6), frandom(-6, 6), frandom(1, 6));
+				}
+			}
+			for (int i = random(10, 14); i > 0; i--)
+				A_SpawnParticleEx("", tex[4], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+					random(14, 26), frandom(40, 90),
+					xoff: frandom(-12, 12), yoff: frandom(-12, 12), zoff: frandom(4, 24),
+					velx: frandom(-6, 6), vely: frandom(-6, 6), velz: frandom(1, 7),
+					startalphaf: frandom(0.7, 1.0), fadestepf: -1,
+					startroll: random(-180, 180), rollvel: frandom(-8, 8));
+			for (int i = random(5, 10); i > 0; i--)
+				A_SpawnItemEx("PM_WarMeatChunkLauncher", frandom(-20, 20), frandom(-20, 20), frandom(15, 25), frandom(-18, 18), frandom(-18, 18), frandom(-1, 22), frandom(0, 360), SXF_NOCHECKPOSITION);
+			for (int i = random(10, 14); i > 0; i--)
+			{
+				double sa = frandom(0, 360);
+				double sp = frandom(2.0, 5.0);
+				NaniteBody((frandom(-10, 10), frandom(-10, 10), frandom(4, 30)),
+					frandom(55, 95),
+					(cos(sa) * sp, sin(sa) * sp, frandom(0.5, 3.0)),
+					frandom(-1.6, -2.6));
+			}
+			for (int i = random(4, 6); i > 0; i--)
+			{
+				double sa = frandom(0, 360);
+				NaniteGlint((frandom(-8, 8), frandom(-8, 8), frandom(6, 26)),
+					frandom(30, 52),
+					(cos(sa) * frandom(2, 4), sin(sa) * frandom(2, 4), frandom(1, 3)),
+					-1.8);
+			}
+		}
+		T04_ MNOPQR 6;
+		T04_ SSSSSSSSSSSSSSS random(8, 16)
+		{
+			if (!random(0, 1)) A_CustomRailgun(0, 0, "", "White", RGF_SILENT|RGF_CENTERZ|RGF_FULLBRIGHT, 0, 9000, "PM_BlueLongFlare2", 180, 180, random(40, 260), 0, 3, 0, "PM_ConduitArcs");
+			NaniteBody((frandom(-22, 22), frandom(-22, 22), frandom(2, 14)),
+				frandom(90, 150),
+				(frandom(-0.4, 0.4), frandom(-0.4, 0.4), frandom(0.8, 1.8)),
+				-3.4, false);
+			if (!random(0, 2))
+				NaniteGlint((frandom(-18, 18), frandom(-18, 18), frandom(2, 12)),
+					frandom(50, 85), (0, 0, frandom(1, 2.5)), -3.4);
+		}
+		T04_ S -1;
+		Stop;
+	Raise:
+		T04_ SRQPONMLK 4;
+		TNT1 A 0 { bNOGRAVITY = true; bFLOAT = true; }
+		Goto See;
+	}
+}
+
+Class PM_NaniteOrb : PM_BlashemerBHBall
+{
+	Default
+	{
+		Radius 10;
+		Height 10;
+		DamageFunction (0);
+		Projectile;
+		Speed 12;
+		Scale 1.5;
+		Species "Arachnotron";
+		+NEVERFAST
+		+THRUACTORS
+		+THRUSPECIES
+		RenderStyle "Normal";
+		SeeSound "";
+		DeathSound "";
+	}
+
+	TextureID tex[3];
+	int atkloop;
+	int shots;
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("T04_U0", TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("T04_V0", TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("T04_W0", TexMan.Type_Sprite);
+		shots = random(8, 13);
+	}
+
+	override void Tick()
+	{
+		super.Tick();
+		if (level.isFrozen()) return;
+		A_SetRoll(roll + 8);
+	}
+
+	void DriftCloud()
+	{
+		for (int i = random(2, 3); i > 0; i--)
+		{
+			double sz = frandom(55, 95);
+			A_SpawnParticleEx("9a9aa2", tex[0], STYLE_Normal, SPF_ROLL,
+				int(sz / 3.2) + 8, sz,
+				xoff: frandom(-10, 10), yoff: frandom(-10, 10), zoff: frandom(-8, 8),
+				velx: frandom(-0.4, 0.4), vely: frandom(-0.4, 0.4), velz: frandom(-0.3, 0.3),
+				startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: -3.2,
+				startroll: random(-180, 180), rollvel: frandom(-7, 7));
+		}
+		if (!random(0, 2))
+		{
+			double sz = frandom(34, 56);
+			A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				int(sz / 2.8) + 8, sz,
+				xoff: frandom(-8, 8), yoff: frandom(-8, 8), zoff: frandom(-8, 8),
+				startalphaf: frandom(0.7, 1.0), fadestepf: 0, sizestep: -2.8,
+				startroll: random(-180, 180), rollvel: frandom(-9, 9));
+		}
+	}
+
+	void DroneConverge()
+	{
+		for (int i = 2; i > 0; i--)
+		{
+			double a = frandom(0, 360);
+			double rr = frandom(30, 58);
+			double sz = frandom(54, 90);
+			A_SpawnParticleEx("9a9aa2", tex[0], STYLE_Normal, SPF_ROLL,
+				int(sz / 3.9) + 8, sz,
+				xoff: cos(a) * rr, yoff: sin(a) * rr, zoff: frandom(-14, 14),
+				velx: -cos(a) * frandom(2.0, 3.4), vely: -sin(a) * frandom(2.0, 3.4), velz: frandom(-0.4, 0.4),
+				startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: -3.9,
+				startroll: random(-180, 180), rollvel: frandom(-9, 9));
+		}
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 1 NoDelay DriftCloud();
+		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 DriftCloud();
+		Goto Assemble;
+	Death:
+		TNT1 A 1;
+		Goto Assemble;
+	Assemble:
+		TNT1 AAAAAAAA 1
+		{
+			vel *= 0.6;
+			DroneConverge();
+		}
+		T04_ T 3 Bright
+		{
+			vel = (0, 0, 0);
+			A_StartSound("Sybarite/Reload3", CHAN_BODY, pitch: 1.5);
+			A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				30, 230, startalphaf: 1.0, fadestepf: 0, sizestep: -12.0,
+				startroll: random(-180, 180), rollvel: frandom(-10, 10));
+		}
+		Goto Firing;
+	Firing:
+		T04_ T random(6, 10) Bright
+		{
+			if (!target || target.health <= 0) { SetStateLabel("Disperse"); return; }
+			A_FaceTarget();
+			A_StartSound("CyberZ/Fire", CHAN_WEAPON, CHANF_OVERLAP, volume: 0.8, pitch: frandom(1.2, 2.1));
+			let m = A_SpawnProjectile("PM_NaniteLaser", 0, 0, frandom(-5, 5), CMF_OFFSETPITCH, frandom(-4, 4));
+			if (m) { m.target = master; if (!m.target) m.target = self; }
+			A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				22, frandom(58, 94), startalphaf: 1.0, fadestepf: 0, sizestep: -7.8,
+				startroll: random(-180, 180));
+			if (++atkloop >= shots) SetStateLabel("Disperse");
+		}
+		Loop;
+	Disperse:
+		T04_ T 1 Bright
+		{
+			A_StartSound("PM/BulletHellSpawn", CHAN_BODY, volume: 0.5, pitch: 1.4);
+			for (int i = random(9, 13); i > 0; i--)
+			{
+				double a = frandom(0, 360);
+				double sp = frandom(1.8, 4.2);
+				double sz = frandom(58, 96);
+				A_SpawnParticleEx("9a9aa2", tex[0], STYLE_Normal, SPF_ROLL,
+					int(sz / 2.8) + 8, sz,
+					xoff: frandom(-6, 6), yoff: frandom(-6, 6), zoff: frandom(-6, 6),
+					velx: cos(a) * sp, vely: sin(a) * sp, velz: frandom(-1.2, 1.6),
+					startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: -2.8,
+					startroll: random(-180, 180), rollvel: frandom(-8, 8));
+			}
+		}
+		TNT1 A 2;
+		Stop;
+	}
+}
+
+Class PM_NaniteSurge : PMProjectileBase
+{
+	Default
+	{
+		Radius 16;
+		Height 16;
+		Speed 13;
+		DamageFunction (2);
+		DamageType "Plasma";
+		Projectile;
+		+RIPPER
+		+SEEKERMISSILE
+		+NEVERFAST
+		+THRUSPECIES
+		+DONTHARMSPECIES
+		RenderStyle "None";
+		SeeSound "";
+		DeathSound "";
+	}
+
+	TextureID tex[3];
+	int lifeTics;
+	bool passed;
+
+	override void PostBeginPlay()
+	{
+		Super.PostBeginPlay();
+		tex[0] = TexMan.CheckForTexture("T04_U0", TexMan.Type_Sprite);
+		tex[1] = TexMan.CheckForTexture("T04_V0", TexMan.Type_Sprite);
+		tex[2] = TexMan.CheckForTexture("T04_W0", TexMan.Type_Sprite);
+		A_StartSound("NaniteNexus/Surge", CHAN_BODY, CHANF_LOOPING, 0.8, ATTN_NORM, frandom(0.85, 1.2));
+	}
+
+	void SurgeCloud(int count, double stepScale)
+	{
+		for (int i = count; i > 0; i--)
+		{
+			double sz = frandom(78, 130);
+			double step = frandom(-1.95, -3.4) * stepScale;
+			A_SpawnParticleEx("9a9aa2", tex[0], STYLE_Normal, SPF_ROLL,
+				int(sz / abs(step)) + 8, sz,
+				xoff: frandom(-14, 14), yoff: frandom(-14, 14), zoff: frandom(-12, 12),
+				velx: frandom(-0.7, 0.7), vely: frandom(-0.7, 0.7), velz: frandom(-0.5, 0.5),
+				startalphaf: frandom(0.85, 1.0), fadestepf: 0, sizestep: step,
+				startroll: random(-180, 180), rollvel: frandom(-7, 7));
+		}
+		if (!random(0, 1))
+		{
+			double sz = frandom(34, 56);
+			A_SpawnParticleEx("ffc430", tex[2], STYLE_Add, SPF_ROLL|SPF_FULLBRIGHT,
+				int(sz / 2.8) + 8, sz,
+				xoff: frandom(-12, 12), yoff: frandom(-12, 12), zoff: frandom(-10, 10),
+				startalphaf: frandom(0.7, 1.0), fadestepf: 0, sizestep: -2.8,
+				startroll: random(-180, 180), rollvel: frandom(-9, 9));
+		}
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 1
+		{
+			SurgeCloud(random(2, 3), 1.0);
+			lifeTics++;
+			if (!passed && lifeTics > 10 && tracer)
+			{
+				if (Distance3D(tracer) < 50) passed = true;
+				else
+				{
+					int turn;
+					if (lifeTics <= 45) turn = 2 + (lifeTics - 10) / 5;
+					else turn = max(9 - (lifeTics - 45) / 5, 1);
+					A_SeekerMissile(turn, turn, SMF_PRECISE);
+				}
+			}
+			if (lifeTics > 130 && (lifeTics > 190 || !random(0, 20))) SetStateLabel("Dissipate");
+		}
+		Loop;
+	Death:
+	Dissipate:
+		TNT1 A 1 { A_StopSound(CHAN_BODY); vel *= 0.5; SurgeCloud(random(3, 4), 1.6); }
+		TNT1 A 1 { vel *= 0.5; SurgeCloud(random(2, 3), 1.6); }
+		TNT1 A 1 { vel = (0, 0, 0); SurgeCloud(random(2, 2), 1.8); }
+		TNT1 A 2;
+		Stop;
+	}
+}
+
+Class PM_NaniteLaser : PM_BlashemerBHBall
+{
+	Default
+	{
+		Radius 10;
+		Speed 27;
+		+NEVERFAST
+		+MTHRUSPECIES
+		Scale .5;
+		SeeSound "";
+		DamageType "Plasma";
+		DamageFunction 8;
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay
+		{
+			for (int i = 3; i > 0; i--)
+				A_SpawnParticleEx("", TexMan.CheckForTexture("YLWLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(6,15), size: random(15,25), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: 0.7, fadestepf: -1, startroll: random(-180,180));
+			A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(3,8), size: random(40,80), startalphaf: 1, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+		}
+	Go:
+		TRCR A 1 Bright A_SetRoll(roll+25);
+		Loop;
+	Death:
+		TNT1 AA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("DTPRO0"), style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(2,8), size: random(100,150), startalphaf: 0.95, fadestepf: -1, sizestep: -15, startroll: random(-180,180));
+		TNT1 AAA 0 A_SpawnParticleEx("", TexMan.CheckForTexture("YLWLA0"), style: STYLE_Add, flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, lifetime: random(6,15), size: random(15,25), velx: random(-3,3), vely: random(-3,3), velz: random(-3,3), startalphaf: 0.7, fadestepf: -1, startroll: random(-180,180));
+		TNT1 A 5 Light("AvatarFireball4");
+		Stop;
+	}
+}

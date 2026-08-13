@@ -90,7 +90,6 @@ Texture "UNAFFLIS", 450, 300
 	{
 		FlipX
 	}
-	Patch "RFTRD1", 199, 220
 	Patch "ZSP1A2", 289, 211
 	{
 		FlipX
@@ -190,6 +189,7 @@ Texture "PRIDELIST", 450, 300
 	Patch "DRGRH1", 229, 141
 	Patch "DISCE1", 188, 95
 	Patch "PRIDA0", 159, 160
+	Patch "Z10_D1", 100, 165
 	Patch "PRIDX0", 148, 148
 	{
 		FlipY

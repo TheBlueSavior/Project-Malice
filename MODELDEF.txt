@@ -109,7 +109,31 @@ FrameIndex TRCR B 0 0
 }
 
 Model PM_SlugBullet
-{ 
+{
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 1.35 1.35
+PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_WarmongerHMGSlug
+{
+Path "Models"
+Skin 0 "malicetracer1.tga"
+Model 0 "Tracer.md3"
+Scale 0.6 1.35 1.35
+PITCHFROMMOMENTUM
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
+}
+
+Model PM_WarmongerCannonShell
+{
 Path "Models"
 Skin 0 "malicetracer1.tga"
 Model 0 "Tracer.md3"
@@ -743,4 +767,17 @@ Model 0 "Tracer.md3"
 Scale 0.15 0.5 0.5
 PITCHFROMMOMENTUM
 FrameIndex N_EN A 0 0
+}
+
+Model PM_NaniteLaser
+{ 
+Path "Models"
+Skin 0 "yellowbeam.png"
+Model 0 "Tracer.md3"
+Scale 0.7 1.0 1.0
+PITCHFROMMOMENTUM
+ROTATING
+Rotation-Vector 1.0 0.0 0.0
+Rotation-Speed 15.0
+FrameIndex TRCR A 0 0
 }

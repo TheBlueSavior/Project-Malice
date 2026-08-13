@@ -117,7 +117,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
   Smoke:
     TNT1 A 0;
 	TNT1 A 0 A_CheckProximity("Reposition","PM_SniperSmoke",800);
-    TNT1 A 0 A_StartSound("CivZombie/IEDTakeOut",10);
+    TNT1 A 0 A_StartSound("Hedonist/IEDTakeOut",10);
     SN0P AABB 3 A_FaceTarget();
 	TNT1 A 0 
 	{
@@ -153,7 +153,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	 if(cloak)
 	  { SetStateLabel("See"); }
 	}
-    TNT1 A 0 A_StartSound("CivZombie/IEDTakeOut",10);
+    TNT1 A 0 A_StartSound("Hedonist/IEDTakeOut",10);
     SN0P AABB 3 A_FaceTarget();
 	TNT1 A 0 
 	{
@@ -220,7 +220,7 @@ Class PM_Sharpshooter : PMEnvyMonsterBase
 	 if(standoff && cloak)
 	  SetStateLabel("Standoff");
 	}
-    TNT1 A 0 A_StartSound("CivZombie/IEDTakeOut",10);
+    TNT1 A 0 A_StartSound("Hedonist/IEDTakeOut",10);
     SN0P AABB 3 A_FaceTarget();
 	TNT1 A 0 
 	{

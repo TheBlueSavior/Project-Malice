@@ -4,7 +4,7 @@
    scr: 1000 exp: 5   type: zombie        filter: "PM_DecayedSoldier";
    scr: 1000 exp: 5   type: zombie        filter: "PM_HellifiedSoldier";
    scr: 1000 exp: 5   type: zombie        filter: "PM_PistolZombie";
-   scr: 1000 exp: 5   type: zombie        filter: "PM_RFZombie";
+   scr: 1000 exp: 5   type: zombie        filter: "PM_Heretic";
    scr: 1000 exp: 5   type: zombie        filter: "PM_ZombieMarine";
    scr: 1000 exp: 5   type: zombie        filter: "PM_ZombieSoldier";
    scr: 1000 exp: 5   type: zombie        filter: "PM_ZombieTrooper";
@@ -15,7 +15,7 @@
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_FShotgunner";
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_Nailgunner";
    scr: 1200 exp: 10  type: zombiesg      filter: "PM_SlugShotgunner";
-   scr: 1200 exp: 15  type: zombiesg      filter; "PM_FOCShotgun";
+   scr: 1200 exp: 15  type: zombiesg      filter: "PM_FOCShotgun";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_DecayedCommando";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_FallenMarine";
    scr: 1400 exp: 15  type: zombiecg      filter: "PM_HeavyCarbineZombie";
@@ -59,6 +59,7 @@
    scr: 4100 exp: 40      type: hellknight    filter: "PM_Whiplash";
    scr: 7000 exp: 80      type: baron         filter: "PM_HeresyLord";
    scr: 7000 exp: 80      type: baron         filter: "PM_Bruiser";
+   scr: 7000 exp: 80      type: baron         filter: "PM_Warmonger";
    scr: 0    exp: 85      type: baron         filter: "PM_ExposedController";
    scr: 0    exp: 85      type: baron         filter: "PM_Broken";
    scr: 4300 exp: 40      type: arachnotron   filter: "PM_Fusionite";
@@ -74,6 +75,7 @@
    scr: 4400  exp: 40     type: mancubus      filter: "PM_Abhorrent";
    scr: 4400  exp: 40     type: mancubus      filter: "PM_Corpulent";
    scr: 4400  exp: 40     type: mancubus      filter: "PM_Hectebus";
+   scr: 4400  exp: 40     type: mancubus      filter: "PM_Cataphract";
    scr: 9000  exp: 170    type: archvile      filter: "PM_Exile";
    scr: 30000 exp: 570    type: cyberdemon    filter: "PM_Tyrant";
    scr: 28000 exp: 560    type: mastermind    filter: "PM_AracnorbQueen";

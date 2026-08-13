@@ -1,17 +1,20 @@
 Class PM_Cataphract : PMWarMonsterBase
 {
- int deathwither;
+ double shellArm;
+ int exhaustTimer;
  Default
  {
  PMMonsterBase.CodexLore
- "ITS BIG FAT FUCKING CATAPHRACT, HE SAYS FLESH POUND ALL THE DAMN TIME, PLEASE HELP ME";
+  "Cataphracts are the siege-line of War's host -- mancubi sealed inside layered warplate and fed through the grinder of the apocalypse until nothing remains but the order to advance. Cataphracts simply stomp forward, saturating enemies with explosives.
+  
+  A slow, heavily armored bruiser that can fire volleys of rockets and grenades. Do not let it pin you.";
  health 700;
  Radius 48;
  Height 64;
- painchance 100;
+ painchance 10;
  Speed 6;
  Scale 1.15;
- Mass 2000; //tank
+ Mass 2000;
  SeeSound "PMCataphract/Sight";
  PainSound "PMCataphract/Pain";
  DeathSound "PMCataphract/Death";
@@ -22,7 +25,7 @@ Class PM_Cataphract : PMWarMonsterBase
  StencilColor "Orange";
  +DONTHARMSPECIES
  +MissileMore
- MinMissileChance 2000;
+ MinMissileChance 580;
  Obituary "A Cataphract utterly obliterated %o's soul out with its soulless arsenal.";
  Tag "Cataphract";
  +DONTHARMCLASS
@@ -33,14 +36,49 @@ Class PM_Cataphract : PMWarMonsterBase
  override void Tick()
  {
 	super.Tick();
-	if (target && distance3D(target) <= 1200) A_StartSound("PMCataphract/Radio", 30, CHANF_LOOPING);
+	if (health <= 0)
+	{
+		A_StopSound(30);
+		A_StopSound(31);
+		return;
+	}
+	if (target && distance3D(target) <= 1800) A_StartSound("PMCataphract/Engine", 30, CHANF_LOOPING);
 	else A_StopSound(30);
+
+	if (--exhaustTimer <= 0)
+	{
+		exhaustTimer = random(2, 4);
+		let cs = CurState;
+		if (cs && !InStateSequence(cs, FindState("Spawn")) && !InStateSequence(cs, FindState("Look")))
+		{
+			A_SpawnParticleEx("555555", TexMan.CheckForTexture("GNSML0"),
+				style: STYLE_Normal, flags: SPF_RELATIVE | SPF_ROLL,
+				lifetime: random(50, 80), size: frandom(8, 16),
+				xoff: -28, yoff: 0, zoff: 50,
+				velx: frandom(-0.8, 0.3), vely: frandom(-0.5, 0.5), velz: frandom(2.5, 4.0),
+				accelz: -0.03,
+				startalphaf: frandom(0.4, 0.65), fadestepf: -1,
+				sizestep: frandom(0.5, 1.0), startroll: random(-180, 180), rollvel: frandom(-1.2, 1.2));
+		}
+	}
+ }
+
+ void CataAimLaser(double side = 0)
+ {
+	if (!target) return;
+	FLineTraceData lt;
+	LineTrace(angle, 2200, pitch, 0, height * 0.6, data: lt);
+	double sa = sin(angle);
+	double ca = cos(angle);
+	double fwd = 24;
+	Vector2 relOff = (fwd * ca + side * sa, fwd * sa - side * ca);
+	PM_SpawnBolt(self, lt.HitLocation, "ff0000", TexMan.CheckForTexture("RLSSA0"), maxDiff: 0, scale: 0.25, offset: (relOff.X, relOff.Y, 32), baseTime: 2, fadeTime: 0);
  }
 
   States
  {
   Spawn:
-    AAA_ A 10 PM_Look();
+    M10_ A 10 PM_Look();
     Loop;
   Look:
 	TNT1 A 0 { bSHOOTABLE = true; }
@@ -50,65 +88,73 @@ Class PM_Cataphract : PMWarMonsterBase
 		A_Quake(2, 6, 0, 312);
 		A_StartSound("PMCataphract/Step",20);
 	}
-    AAA_ A 20 PM_LookingForPlayer();
+    M10_ A 20 PM_LookingForPlayer();
 	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
-	AAA_ BBBBCCCC 3 PM_LookingForPlayer();
+	M10_ BBBBCCCC 3 PM_LookingForPlayer();
     TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
 	TNT1 A 0
 	{
 		A_Quake(2, 6, 0, 312);
 		A_StartSound("PMCataphract/Step",20);
 	}
-	AAA_ D 20 PM_LookingForPlayer();
+	M10_ D 20 PM_LookingForPlayer();
 	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
-	AAA_ EEEEFFFF 3 PM_LookingForPlayer();
+	M10_ EEEEFFFF 3 PM_LookingForPlayer();
     Loop;
   See:
 	TNT1 A 0 { bSHOOTABLE = true; }
 	TNT1 A 0 { bNOPAIN = false; }
-	TNT1 A 0 A_Jump(30,"Phase");
+	TNT1 A 0 A_StopSound(31);
 	TNT1 A 0
 	{
 		A_Quake(2, 6, 0, 312);
 		A_StartSound("PMCataphract/Step",20);
 	}
-    AAA_ A 15 A_Chase();
+    M10_ A 15 A_Chase();
 	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
-	AAA_ BBBBCCCC 3 A_Chase();
+	M10_ BBBBCCCC 3 A_Chase();
 	TNT1 A 0
 	{
 		A_Quake(2, 6, 0, 312);
 		A_StartSound("PMCataphract/Step",20);
 	}
-	AAA_ D 15 A_Chase();
+	M10_ D 15 A_Chase();
 	TNT1 A 0 A_StartSound("PMCataphract/Servo",21);
-	AAA_ EEEEFFFF 3 A_Chase();
+	M10_ EEEEFFFF 3 A_Chase();
     Loop;
   Spotted:
-	AAA_ E 20 A_FaceTarget();
-	AAA_ A 0 PM_AlertSound();
-	AAA_ GGGGGGGGGGGGG 2 A_FaceTarget();
+	M10_ E 20 A_FaceTarget();
+	M10_ A 0 PM_AlertSound();
+	M10_ GGGGGGGGGGGGG 2 A_FaceTarget();
     Goto See;
   Missile:
     TNT1 A 0 A_JumpIfCloser(365,"CloseShotgun");
+	TNT1 A 0 A_JumpIfCloser(500,"RocketSalvo");
+	TNT1 A 0
+	{
+		if (!target) return ResolveState("See");
+		if (Distance2D(target) > 1600) return ResolveState("TankShell");
+		if (random(0,1)) return ResolveState("RocketSalvo");
+		return ResolveState("TankShell");
+	}
 	Goto See;
   CloseShotgun:
 	TNT1 A 0 { pm_attackloop = 1; }
 	TNT1 A 0 { if(!random(0,1)) A_StartSound("PMCataphract/Attack",CHAN_6); A_StartSound("Hectebus/Aim",CHAN_5); }
-	AAA_ G 5;
-	AAA_ GGGGGG 2 Light("AvatarFireBall2") A_FaceTarget();
+	M10_ G 5;
+	M10_ GGGGGG 2 Light("AvatarFireBall2") A_FaceTarget();
    CShotgunLoop:
-	 AAA_ H 1 Light("AvatarFireBall2");
-	 AAA_ H 2 Light("AvatarFireBall2")
+	 M10_ H 1 Light("AvatarFireBall2");
+	 M10_ H 2 Light("AvatarFireBall2")
 		{
 	     A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
          A_StartSound("FSGunner/Fire", CHAN_WEAPON,pitch:0.7);
 		 for(int i=5;i>0;i--)
 	     A_SpawnProjectile("PM_BulletTracer",28,-34,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		}
-	 AAA_ GG 1 A_FaceTarget(0.5,0.5);
-     AAA_ H 1 Light("AvatarFireBall2");
-	 AAA_ H 2 Light("AvatarFireBall2")
+	 M10_ GG 1 A_FaceTarget(0.5,0.5);
+     M10_ H 1 Light("AvatarFireBall2");
+	 M10_ H 2 Light("AvatarFireBall2")
 		{
 	     A_StartSound("ShotgunnerGunDistant",CHAN_7,CHANF_OVERLAP);
          A_StartSound("FSGunner/Fire", CHAN_WEAPON,pitch:0.7);
@@ -116,18 +162,349 @@ Class PM_Cataphract : PMWarMonsterBase
 	     A_SpawnProjectile("PM_BulletTracer",28,34,frandom(-2, 2),CMF_AIMDIRECTION,pitch+frandom(-3,3));
 		pm_attackloop--;
 		}
-	AAA_ GG 4 { if(pm_attackloop < 0) SetStateLabel("CShotgunEnd"); }
+	M10_ GG 4 { if(pm_attackloop < 0) SetStateLabel("CShotgunEnd"); }
 	Loop;
-CShotgunEnd:
-	AAA_ GG 4 A_FaceTarget();
+  CShotgunEnd:
+	M10_ GG 4 A_FaceTarget();
 	Goto See;
+  RocketSalvo:
+	TNT1 A 0 { pm_attackloop = random(2,8); }
+	TNT1 A 0 A_Jump(120,"GrenadeSalvo");
+	TNT1 A 0 A_StartSound("PMCataphract/Engine",31,CHANF_LOOPING,1.0,pitch:1.4);
+	TNT1 A 0 A_StartSound("Hectebus/Aim",CHAN_5);
+	TNT1 A 0 A_StartSound("PMCataphract/Attack",CHAN_6);
+	M10_ GGGGGGGG 1 A_FaceTarget();
+	TNT1 A 0 A_Jump(120,"BigRocketSalvoLoop");
+	M10_ H 10 Light("AvatarFireBall4")
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("PM_CataphractRocket",28,-34,frandom(-5,5),CMF_OFFSETPITCH,random(-2,2));
+		A_SpawnProjectile("PM_CataphractRocket",28,34,frandom(-5,5),CMF_OFFSETPITCH,random(-2,2));
+	}
+	M10_ GG 7 A_FaceTarget();
+	M10_ H 10 Light("AvatarFireBall4")
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("PM_CataphractRocket",28,-34,frandom(-3,3),CMF_OFFSETPITCH,random(-1,1));
+		A_SpawnProjectile("PM_CataphractRocket",28,34,frandom(-3,3),CMF_OFFSETPITCH,random(-1,1));
+	}
+	M10_ GG 7 A_FaceTarget();
+	M10_ H 10 Light("AvatarFireBall4")
+	{
+		A_FaceTarget();
+		A_SpawnProjectile("PM_CataphractRocket",28,-34,frandom(-1,1),CMF_OFFSETPITCH,random(-1,1));
+		A_SpawnProjectile("PM_CataphractRocket",28,34,frandom(-1,1),CMF_OFFSETPITCH,random(-1,1));
+	}
+	TNT1 A 0 A_StopSound(31);
+	M10_ GG 6 A_FaceTarget();
+	Goto See;
+BigRocketSalvoSalvoEnd:
+	TNT1 A 0 A_StopSound(31);
+	M10_ GG 6 A_FaceTarget();
+	Goto See;
+BigRocketSalvoLoop:
+	M10_ H 1 Light("AvatarFireBall2");
+	M10_ H 4 Light("AvatarFireBall2")
+		{
+		A_FaceTarget(1,8);
+		A_StartSound("Sybarite/Thump",13);
+	 	A_SpawnProjectile("PM_CataphractRocket",28,-36,frandom(-2,2),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
+		}
+	M10_ GG random(3,4);
+    M10_ H 1 Light("AvatarFireBall2");
+	M10_ H 4 Light("AvatarFireBall2")
+		{
+		A_FaceTarget(1,8);
+		A_StartSound("Sybarite/Thump",13);
+	 	A_SpawnProjectile("PM_CataphractRocket",28,46,frandom(-2,2),CMF_AIMDIRECTION|CMF_OFFSETPITCH,pitch+frandom(-2,2));
+		pm_attackloop--;
+		}
+	M10_ GG random(3,4) { if(pm_attackloop < 0) SetStateLabel("BigRocketSalvoSalvoEnd"); }
+	Loop;
+TankShell:
+	TNT1 A 0 { shellArm = (random(0,1) ? 34.0 : -34.0); }
+	TNT1 A 0 A_StartSound("PMCataphract/Attack",CHAN_6);
+	TNT1 A 0 A_StartSound("Hectebus/Aim",CHAN_5);
+	TNT1 A 0 A_StartSound("PMCataphract/Engine",31,CHANF_LOOPING,0.9,pitch:1.3);
+	TNT1 A 0 A_StartSound("Tyrant/ShellLoad");
+	M10_ GGGGGGGGGGGGGGGGGGGG 2 { A_FaceTarget(2,2); CataAimLaser(shellArm); }
+	TNT1 A 0 A_StartSound("Tyrant/ShellLoadReady");
+	M10_ GGGGGGGGGGGG 2 { A_FaceTarget(2,2); CataAimLaser(shellArm); }
+	M10_ H 12 Light("TyrantFire")
+	{
+		A_StartSound("Tyrant/ShellFire",CHAN_7,CHANF_OVERLAP);
+		A_StartSound("Tyrant/ShellFireAdd",8,CHANF_OVERLAP);
+		A_StartSound("Tyrant/ShellFireAdd2",9,CHANF_OVERLAP);
+		A_SpawnProjectile("PM_CataphractShell",28,shellArm,0,CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch);
+		Radius_Quake(2,20,0,20,0);
+	}
+	TNT1 A 0 A_StartSound("Tyrant/ShellOpen",CHAN_6);
+	M10_ G 12 A_FaceTarget(2,2);
+	TNT1 A 0 A_StartSound("Tyrant/ShellFall",CHAN_7,pitch:frandom(0.75,1.25));
+	TNT1 A 0 A_StopSound(31);
+	M10_ GG 6 A_FaceTarget();
+	Goto See;
+GrenadeSalvo:
+	TNT1 A 0 { pm_attackloop = random(2,8); }
+	TNT1 A 0 A_StartSound("Director/ASPodExtend",24,attenuation:1.2);
+	TNT1 A 0 A_StartSound("PMCataphract/Attack",CHAN_6);
+	TNT1 A 0 A_StartSound("Hectebus/Aim",CHAN_5);
+	M10_ GGGGGGGGGGGGGG 2 A_FaceTarget();
+	TNT1 A 0 A_StartSound("Sybarite/Reload3",35,pitch:0.8);
+	M10_ GGGGGGGGGGGGGGGGGGGGGGGGG 2 A_FaceTarget();
+	Goto GrenadeSalvoLoop;
+GrenadeSalvoEnd:
+	M10_ GG 6 A_FaceTarget();
+	Goto See;
+GrenadeSalvoLoop:
+	M10_ H 1 Light("AvatarFireBall2");
+	M10_ H 4 Light("AvatarFireBall2")
+		{
+		A_FaceTarget();
+		A_StartSound("Sybarite/Thump",13);
+	 	A_SpawnProjectile("PM_SybGrenadeNoArc",28,-36,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-35,-6));
+		}
+	M10_ GG random(3,4);
+    M10_ H 1 Light("AvatarFireBall2");
+	M10_ H 4 Light("AvatarFireBall2")
+		{
+		A_FaceTarget();
+		A_StartSound("Sybarite/Thump",13);
+	 	A_SpawnProjectile("PM_SybGrenadeNoArc",28,46,frandom(-3,3),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-35,-6));
+		pm_attackloop--;
+		}
+	M10_ GG random(3,4) { if(pm_attackloop < 0) SetStateLabel("GrenadeSalvoEnd"); }
+	Loop;
   Death:
-	AAA_ G 10 A_NoBlocking();
-	Stop;
+	TNT1 A 0;
+	M10_ II 4
+	{
+		A_SpawnItemEx("PM_WarMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_WarMeatChunkLauncher",random(-4,4),random(-4,4),random(20,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
+	}
+    M10_ JJ 4
+	{
+	   PM_Scream();
+	   A_SpawnItemEx("PM_WarMeatChunkLauncher",random(-4,4),random(-4,4),random(10,30),random(-3,3),random(-3,3),random(0,5),random(-50,50),SXF_NOCHECKPOSITION);
+	   A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-4,4),random(-4,4),random(10,30),random(-6,6),random(-6,6),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+	   A_SpawnItemEx("PM_WarMeatChunkLauncher",random(-4,4),random(-4,4),random(10,20),random(-6,6),random(-6,6),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+	   A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(10,20),random(-3,3),random(-3,3),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+	}
+    M10_ KK 4 A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-4,4),random(-4,4),random(10,20),random(-6,6),random(-6,6),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+    M10_ LLMMNN 4 A_SpawnItemEx("PM_WarMeatChunkLauncher",random(-4,4),random(-4,4),random(10,20),random(-6,6),random(-6,6),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+	TNT1 A 0 A_StartSound("Corpse/FallMetal",CHAN_6);
+	M10_ OOPP 4 A_SpawnItemEx("PM_NormalInstestinGib",random(-4,4),random(-4,4),random(10,20),random(-3,3),random(-3,3),random(0,8),random(-50,50),SXF_NOCHECKPOSITION);
+    M10_ Q 6 A_NoBlocking;
+    M10_ Q -1;
+    Stop;
   Pain:
-    AAA_ I 1;
+    TNT1 A 0 A_StopSound(31);
+    M10_ B 1;
 	TNT1 A 0 A_StartSound("PMCataphract/Step", 20);
-    AAA_ I 13 A_Pain;
+    M10_ B 13 A_Pain;
     Goto See;
   }
+}
+
+Class PM_CataphractRocket : PMProjectileBase
+{
+    Default
+	{
+	Radius 6;
+	Height 6;
+	Scale 1.1;
+	DamageFunction (42);
+	DamageType "Explosive";
+	Speed 18;
+	Projectile;
+	+RANDOMIZE
+	RenderStyle "Normal";
+	SeeSound "Tyrant/Rocket";
+	DeathSound "Tyrant/RocketExp";
+	Decal "BigScorch";
+	}
+
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+	}
+
+	TextureID tex[3];
+
+	States
+	{
+	Spawn:
+		TNT1 A 0;
+		TNT1 AAA 0
+	  	{
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("LEYSO0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(5,10),
+		size: frandom(130,200),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRO0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(5,10),
+		size: frandom(90,155),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		}
+		CBRK AAAAAA 1 BRIGHT
+		{
+		 A_ScaleVelocity(0.90);
+		 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,60),size: frandom(0.2,7),xoff: random(-8,1),yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+		}
+		CBRK AAAAA 1 BRIGHT
+		{
+		 A_ScaleVelocity(0.93);
+		 A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,60),size: frandom(0.2,7),xoff: random(-8,1),yoff: random(-3,3),zoff: random(-3,3),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+		}
+		TNT1 A 0 A_StartSound("FastMissileFlyby",24,CHANF_DEFAULT,0.90,ATTN_NORM,frandom(0.7,0.9));
+		TNT1 A 0 A_StartSound("Draugr/RocketLaunch",CHAN_6,CHANF_LOOPING,volume:0.3,pitch:1.15);
+		TNT1 A 0 A_ScaleVelocity(5);
+	Go:
+		CBRK AAAAAA 1 BRIGHT Light("AvatarFireball4")
+		{
+		 A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,2),size: frandom(70.0,140.0),xoff: -8,startalphaf: frandom(0.3,0.95),startroll: random(-180,180));
+		 A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(60,120),size: 22.0,xoff: frandom(-2,-12),startalphaf: 0.8,fadestepf: -1,sizestep: 0.8,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
+		 A_SpawnItemEx("PM_DraugrRocketFireGlobs",random(-1,1),random(-1,1),random(-1,1),0,0,0,0,128,0);
+		}
+		Loop;
+	Death:
+		TNT1 A 0
+		{
+		A_Explode(30,125);
+		Radius_Quake (2, 40, 0, 20, 0);
+		}
+		TNT1 A 0 A_StopSound(CHAN_6);
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode");
+		TNT1 A 18 BRIGHT Light("TyrantMExp");
+		Stop;
+	}
+}
+
+Class PM_CataphractShell : PMProjectileBase
+{
+    Default
+	{
+	Radius 10;
+	Height 10;
+	Scale 0.8;
+	DamageFunction (55);
+	DamageType "Explosive";
+	Speed 50;
+	Projectile;
+	+RANDOMIZE
+	SeeSound "";
+	DeathSound "";
+	RenderStyle "Add";
+	Decal "BigScorch";
+	}
+
+  override void PostBeginPlay()
+  {
+   Super.PostBeginPlay();
+   tex[0] = TexMan.CheckForTexture("LEYSO0",TexMan.Type_Sprite);
+   tex[1] = TexMan.CheckForTexture("DTPRO0",TexMan.Type_Sprite);
+   tex[2] = TexMan.CheckForTexture("SPKOA0",TexMan.Type_Sprite);
+   tex[3] = TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite);
+   tex[4] = TexMan.CheckForTexture("BLHDA0",TexMan.Type_Sprite);
+   tex[5] = TexMan.CheckForTexture("DUSTC0",TexMan.Type_Sprite);
+   tex[6] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+  }
+
+  TextureID tex[7];
+
+	States
+	{
+	Spawn:
+	    TNT1 A 0;
+		TNT1 AA 0
+	  	{
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("LEYSO0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,5),
+		size: frandom(130,200),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		A_SpawnParticleEx
+		(
+		"",
+		TexMan.CheckForTexture("DTPRO0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,
+		lifetime: random(1,7),
+		size: frandom(90,155),
+		startalphaf: 1.0,
+		fadestepf: 0,
+		sizestep: frandom(0.0,3),
+		startroll: random(-180,180)
+		);
+		}
+		TNT1 A 0
+		{
+		for(int i=random(4,9);i>0;i--)
+	     { A_SpawnParticleEx("",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,120),size: frandom(1,15),xoff: frandom(-2,2),yoff: frandom(-2,2),zoff: frandom(-2,2),velx: frandom(1,10),vely: frandom(-5,5),velz: frandom(-0.3,4),accelx: frandom(-0.005,0.005),accely: frandom(-0.005,0.005),accelz: frandom(-0.0,-0.8),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180)); }
+		}
+	Go:
+		TRCR AAAA 1 BRIGHT Light("AvatarFireball4")
+		{
+			Radius_Quake(2,24,0,20,0);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("LEYSO0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 1,size: frandom(80,220),xoff: -8,velx: frandom(5,12),startalphaf: 1.0,fadestepf: -0.002,sizestep: frandom(0.0,2),startroll: random(-180,180));
+			A_SpawnParticleEx("",tex[6],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(20,70),size: 20.0,xoff: frandom(-2,-20),startalphaf: 0.8,fadestepf: -1,sizestep: 1,startroll: random(-180,180),rollvel: frandom(-0.5,0.5));
+		}
+		Loop;
+	Death:
+		TNT1 A 0
+		{
+		  A_Explode(30,120);
+		  Radius_Quake (3, 44, 0, 22, 0);
+		}
+		TNT1 A 0 A_StartSound("Tyrant/ShellExplode", CHAN_6);
+		TNT1 A 0 A_SpawnItemEx("OrangeShockwaveBig");
+		TNT1 A 0 A_SpawnItemEx("OrangeExplosionFlare");
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		TNT1 AAAAA 0 A_SpawnItemEx("PM_GenericExplosionFlames",0,0,0,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+		TNT1 A 0 A_SpawnParticleEx("",TexMan.CheckForTexture("LEYSO0"),style: STYLE_Add,flags: SPF_RELATIVE|SPF_ROLL|SPF_FULLBRIGHT,lifetime: 4,size: 300,xoff: -8,velx: frandom(5,12),startalphaf: 1.0,fadestepf: -0.002,sizestep: frandom(0.0,2),startroll: random(-180,180));
+		TNT1 AAAA 0
+		{
+		 A_SpawnParticleEx("",tex[3],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 8,size: 240,zoff: 30,startalphaf: 1,startroll: random(-180,180));
+		 A_SpawnParticleEx("",tex[4],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 20,size: 550,zoff: 40, startalphaf: 1,fadestepf: -1,sizestep: -20,startroll: random(-180,180));
+		for(int i=random(10,25);i>0;i--)
+		{
+		  A_SpawnParticleEx("727272",tex[5],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(40,70),size: frandom(1,25),zoff: random(10,50),velx: frandom(-10,10),vely: frandom(-10,10),velz: frandom(-5,12),accelz: frandom(-0.1,-0.5),startalphaf: 1.0,fadestepf: 0,sizestep: -0.2,startroll: random(-180,180),rollvel: random(-4,4));
+		  A_SpawnParticleEx("6C6C6C",tex[6],style: STYLE_Normal,flags: SPF_RELATIVE|SPF_ROLL,lifetime: random(30,60),size: frandom(10,180),zoff: random(10,50),velx: random(-8,8),vely: random(-8,8),velz: random(-8,8),startalphaf: frandom(0.2,0.75),fadestepf: -1,sizestep: 10,startroll: random(-180,180),rollvel: random(-2,2));
+		 }
+		}
+		TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionLongerSmokeBig",0,0,1,random(-8,8),random(-8,8),random(0,3),0,0,70);
+		TNT1 A 18 BRIGHT Light("TyrantMExp");
+		Stop;
+	}
 }

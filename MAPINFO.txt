@@ -9,6 +9,7 @@ gameInfo
 	AddEventHandlers = "PM_SectorBleedInfection"
 	AddEventHandlers = "PM_DehackedCompatHandler"
 	AddEventHandlers = "PM_SybariteNetOverlay"
+	AddEventHandlers = "PM_WarmongerRadOverlay"
 
 	PrecacheSounds =
 	//Common Sounds
@@ -96,6 +97,11 @@ DamageType PM_BulltubusMelee
 {
    Factor = 1.0
    ReplaceFactor
+}
+
+DamageType Radiation
+{
+   NoArmor
 }
 
 DoomEdNums

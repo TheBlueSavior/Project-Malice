@@ -22,7 +22,7 @@ class PM_ScoutSpawnerEH : StaticEventHandler
     {
         if (gameState == GS_TITLELEVEL || deathmatch) return;
 
-        if (e.IsSaveGame)
+        if (e.IsSaveGame || e.IsReopen)
         {
             ThinkerIterator it = ThinkerIterator.Create("PM_SectorSpawnerThinker");
             ThinkerRef = PM_SectorSpawnerThinker(it.Next());
@@ -66,6 +66,7 @@ class PM_SectorSpawnerThinker : Thinker
     int SpawnIntervalTics;
     int ResyncCounter;
     int FailCooldownTics;
+    int FailStreak;
     int GraceTics;
 
     int LevelsClearedForThisMap;
@@ -124,6 +125,7 @@ class PM_SectorSpawnerThinker : Thinker
         IntervalCounter  = 0;
         ResyncCounter    = 0;
         FailCooldownTics = 0;
+        FailStreak       = 0;
 
         PausedForHub     = true;
         HubCheckPending  = false;
@@ -254,6 +256,7 @@ class PM_SectorSpawnerThinker : Thinker
             if (spawned)
             {
                 IntervalCounter = 0;
+                FailStreak = 0;
 
                 if (DebugEnabled())
                     Console.Printf("Scout spawner: spawned (clears=%d, interval=%d s)",
@@ -263,9 +266,11 @@ class PM_SectorSpawnerThinker : Thinker
             }
             else
             {
-                int coolSec = 0;
+                FailStreak++;
+                int coolSec = 1;
                 if (cvFailCooldown) coolSec = cvFailCooldown.GetInt();
-                if (coolSec < 0) coolSec = 0;
+                if (coolSec < 1) coolSec = 1;
+                coolSec = min(coolSec * FailStreak, 30);
                 FailCooldownTics = coolSec * TICRATE;
 
                 if (DebugEnabled())

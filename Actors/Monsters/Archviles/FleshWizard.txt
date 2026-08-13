@@ -21,12 +21,11 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore
-		"Flesh Masons are archdemons residing within Gluttony. These slender abominations are heavily reliant on haemo magic and will make mortals succumb to the belly of the beast.
-		There is nothing much to say about it except that it is a bit more tactic with its blood magic, and with its abscence of legs it can dodge fairly easily compared to its predecessors.
+		"Flesh Masons are archdemons residing within Gluttony. These slender abominations are heavily reliant on haemo magic to make mortals succumb to the belly of the beast.
 		
 		We're all blood here. You will be consumed.
 		
-		Slower than usual due to its mutated torso, but heavier than the Exile. Will spawn runes underneath its target to summon blood blasts. Can also summon fleshy pustules at will.";
+		Will spawn runes underneath its target to summon blood blasts. Can also summon fleshy pustules and groups of Tainted at will.";
 		Health 850;
 		Radius 20;
 		Height 56;
@@ -263,7 +262,7 @@ Class PM_FleshMason : PMGluttonyMonsterBase
 		Goto See;
 	Heart:
 		LMWZ E 10 A_FaceTarget();
-		LMW2 A 0 A_StartSound("CivZombie/MutationRip",15);
+		LMW2 A 0 A_StartSound("Hedonist/MutationRip",15);
 		LMW2 AAAAAAAAAA 2
 		{
 			A_FaceTarget();
@@ -391,7 +390,7 @@ Class PM_MasonBall : PM_BloodSpit
 	Default
 	{
 		SeeSound "FleshMason/Fire";
-		DeathSound "Enceinte/CumImpact";
+		DeathSound "Enceinte/Impact";
 		RenderStyle "Add";
 		Speed 20;
 		+NEVERFAST
@@ -732,7 +731,6 @@ Class PM_MasonGeyser : PM_BloodSpit
 		DeathSound "";
 		DamageFunction 5;
 		-NOGRAVITY
-		+CLIENTSIDEONLY
 		Gravity .5;
 		Scale 1.75;
 	}

@@ -383,8 +383,11 @@ class PM_Balor : PMVoidMonsterBase
         idleTimer--;
         idleStaleTics++;
 
-        if (idleStaleTics >= STALE_MIGRATE_MAX && TryMigrate())
-            return;
+        if (idleStaleTics >= STALE_MIGRATE_MAX)
+        {
+            if (TryMigrate()) return;
+            idleStaleTics = STALE_MIGRATE_MAX - 350;
+        }
 
         if (idlePhase == 0)
         {

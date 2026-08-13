@@ -186,7 +186,7 @@ Class PM_CherubSpit : DoomImpBall
     Loop;
   Death:
     TNT1 A 0;
-	TNT1 A 0 A_StartSound("Enceinte/CumImpact", volume: 0.7, pitch: 1.45);
+	TNT1 A 0 A_StartSound("Enceinte/Impact", volume: 0.7, pitch: 1.45);
 	TNT1 AAAAA 0 A_SpawnItemEx("PM_InfernalLavaTrail",xvel:random(-1,1),yvel:random(-1,2),flags:SXF_CLIENTSIDE|SXF_NOCHECKPOSITION|SXF_TRANSFERSCALE|SXF_TRANSFERTRANSLATION);
 	TNT1 A 0 A_SpawnItemEx("PM_OFireBallExplode", flags: SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
     Stop;

@@ -747,9 +747,9 @@ Class PM_Director : PMBossMonsterBase
 			while(ti.Next())
 			{
 				a = ti.thing;
-				double rad = abs((500 - Distance3D(a)) / 2);
-				if (a && a.Health > 0 && a.bSHOOTABLE && !a.bINVULNERABLE && !a.bDORMANT && !a.bNODAMAGE && CheckSight(a) && distance3D(a) < 450 && !a.bDONTTHRUST)
+				if (a && a.Health > 0 && a.bSHOOTABLE && !a.bINVULNERABLE && !a.bDORMANT && !a.bNODAMAGE && !a.bDONTTHRUST && Distance3D(a) < 450 && CheckSight(a))
 				{
+					double rad = abs((500 - Distance3D(a)) / 2);
 					if (a != self && a.species != "Cyberdemon" && a.species != "Mastermind" && a.species != "PM_VoidElder")
 					{
 						a.VelFromAngle((rad / 2.65), self.AngleTo(a));

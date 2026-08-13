@@ -4,10 +4,7 @@ Class PM_Maggot : PMLustMonsterBase
 	Default
 	{
 	PMMonsterBase.CodexLore
-	"Maggots are demons belonging to the same line as Zephyrs, having adapted within the circle of Lust. Just like Zephyrs, they like to confuse and distract their victims before lunging in for a kill, or worse.
-	 Their lack of fire magic is made up for the fact that they have the ability to cloak, however how they're able to is still unknown to mortals. It seems the extent of humanity's sin continues to influence the demons invading.
-	 
-	 Employs hit and run tactics, but is a bit more predictable than a Zephyr.";
+	"Maggots are opportunistic demons of Lust that are as lowly as their name describes. Allowing one the chance to close the distance is extremely ill-advised.";
 	Health 100;
 	Radius 20;
 	Height 56;

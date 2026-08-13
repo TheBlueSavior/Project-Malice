@@ -979,9 +979,9 @@ Class PM_DEmiSpherule : Actor
 			while(ti.Next())
 			{
 				a = ti.thing;
-				double rad = abs((999 - Distance3D(a)) / 2);
-				if (a && a.Health > 0 && a.bSHOOTABLE && !a.bINVULNERABLE && !a.bDORMANT && !a.bNODAMAGE && CheckSight(a) && distance3D(a) < 999 && !a.bDONTTHRUST)
+				if (a && a.Health > 0 && a.bSHOOTABLE && !a.bINVULNERABLE && !a.bDORMANT && !a.bNODAMAGE && !a.bDONTTHRUST && Distance3D(a) < 999 && CheckSight(a))
 				{
+					double rad = abs((999 - Distance3D(a)) / 2);
 					if (!(a is "PM_DeathEmissary"))
 					{
 						if (a is "PlayerPawn" && distance3D(a) < 700) a.DamageMobj(self, self, (distance3D(a) < 256) ? 75 : 45, "Plasma", DMG_THRUSTLESS);

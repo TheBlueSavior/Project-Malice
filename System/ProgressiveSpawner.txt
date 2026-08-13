@@ -10,6 +10,9 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
     Array<int>    tT;
     Array<double> tEW;
 
+    Array<Name> revC;
+    Array<Name> revO;
+
     private void EnsureCVars()
     {
         if (!cvMode)       cvMode       = CVar.FindCVar('pm_spawner_mode');
@@ -22,6 +25,71 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
     {
         EnsureCVars();
         return cvDebug && cvDebug.GetBool();
+    }
+
+    static const Name revOwners[] =
+    {
+        'ZombieMan', 'ShotgunGuy', 'ChaingunGuy', 'DoomImp', 'Demon', 'Spectre',
+        'LostSoul', 'Revenant', 'Cacodemon', 'PainElemental', 'HellKnight',
+        'BaronOfHell', 'Fatso', 'Arachnotron', 'Archvile', 'SpiderMastermind', 'Cyberdemon'
+    };
+
+    private void AddRev(Name cls, Name owner)
+    {
+        if (revC.Find(cls) == revC.Size())
+        {
+            revC.Push(cls);
+            revO.Push(owner);
+        }
+    }
+
+    override void OnRegister()
+    {
+        AddRev('PM_EntropicAvatarSpawner',   'Cyberdemon');
+        AddRev('PM_EntropicAvatarSpawnerMM', 'SpiderMastermind');
+        AddRev('PM_GhostMancubus',      'Fatso');
+        AddRev('PM_GhostArachnotron',   'Arachnotron');
+        AddRev('PM_GhostBaron',         'BaronOfHell');
+        AddRev('PM_GhostImp',           'DoomImp');
+        AddRev('PM_GhostDemon',         'Demon');
+        AddRev('PM_GhostSpectre',       'Spectre');
+        AddRev('PM_GhostLostSoul',      'LostSoul');
+        AddRev('PM_GhostCacodemon',     'Cacodemon');
+        AddRev('PM_GhostHellKnight',    'HellKnight');
+        AddRev('PM_GhostRevenant',      'Revenant');
+        AddRev('PM_GhostPainElemental', 'PainElemental');
+        AddRev('PM_GhostArchvile',      'Archvile');
+
+        for (int i = 0; i < revOwners.Size(); i++)
+        {
+            if (!BuildTable(revOwners[i])) continue;
+            for (int j = 0; j < tC.Size(); j++) AddRev(tC[j], revOwners[i]);
+        }
+        tC.Clear(); tW.Clear(); tT.Clear();
+    }
+
+    override void CheckReplacee(ReplacedEvent e)
+    {
+        if (!e.Replacement) return;
+        int i = revC.Find(e.Replacement.GetClassName());
+        if (i < revC.Size())
+        {
+            e.Replacee = revO[i];
+            e.IsFinal = true;
+        }
+    }
+
+    override void WorldThingDied(WorldEvent e)
+    {
+        if (!e.Thing || !e.Thing.bIsMonster) return;
+        int i = revC.Find(e.Thing.GetClassName());
+        if (i >= revC.Size()) return;
+        Name o = revO[i];
+        if (o == 'Fatso' || o == 'Arachnotron' || o == 'BaronOfHell'
+            || o == 'Cyberdemon' || o == 'SpiderMastermind')
+        {
+            e.Thing.A_BossDeath();
+        }
     }
 
     override void NewGame()
@@ -182,7 +250,7 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_ZombieSoldier',    80, 0);
         E('PM_PistolZombie',     67, 0);
         E('PM_ZombieMarine',     18, 1);
-        E('PM_CivilianZombie',   12, 1);
+        E('PM_Hedonist',   12, 1);
         E('PM_ZombieTrooper',    11, 1);
         E('PM_HellifiedSoldier', 10, 1);
         E('PM_Heretic',          7, 2);
@@ -317,6 +385,7 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_Bruiser',           30, 1);
         E('PM_SpawnOfBelphegor',  23, 1);
         E('PM_Exalted',           16, 2);
+        E('PM_Warmonger',         14, 2);
         E('PM_DeathEmissary',     10, 2);
         E('PM_ControlledSoldier',  2, 3);
         E('PM_Broken',             2, 3);
@@ -329,6 +398,7 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_Hectebus',   32, 0);
         E('PM_Corpulent',   7, 1);
         E('PM_Bulltubus',   5, 2);
+        E('PM_Cataphract',  4, 2);
         E('PM_Abhorrent',   1, 3);
     }
 
@@ -337,6 +407,7 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
         E('PM_Fusionite',      45, 0);
         E('PM_Plasmatron',     18, 1);
         E('PM_ForlornWalker',   9, 2);
+        E('PM_NaniteNexus',     8, 2);
         E('PM_MechaAranea',     7, 2);
         E('PM_AngelsHand',      3, 3);
     }
@@ -349,8 +420,8 @@ class PM_ProgressiveSpawnerHandler : StaticEventHandler
 
     void BuildSpiderMastermindTable()
     {
-        E('PM_Director',               55, 0);
-        E('PM_EntropicAvatarSpawner',   1, 1);
+        E('PM_Director',                 55, 0);
+        E('PM_EntropicAvatarSpawnerMM',   1, 1);
     }
 
     void BuildCyberdemonTable()

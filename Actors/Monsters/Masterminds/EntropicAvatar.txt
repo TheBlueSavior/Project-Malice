@@ -50,12 +50,28 @@ Class PM_EntropicAvatarSpawner : Actor
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
 		TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_Wander();
 		TNT1 A 0 A_StartSound("PM/AvatarIntroGiggle",35,CHANF_DEFAULT,1,0.5);
-		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatarIntro",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
-		Stop;
+		TNT1 A 0
+		{
+			bool s; Actor mo;
+			[s, mo] = A_SpawnItemEx("PM_EntropicAvatarIntro",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION|SXF_SETMASTER);
+			tracer = mo;
+		}
+	Watch:
+		TNT1 A 35
+		{
+			if (!tracer || tracer.health <= 0)
+			{
+				A_BossDeath();
+				Destroy();
+			}
+		}
+		Loop;
 	Die:
 		Stop;
 	}
 }
+
+Class PM_EntropicAvatarSpawnerMM : PM_EntropicAvatarSpawner {}
 
 Class PM_EntropicAvatarIntro : PMBossMonsterBase
 {
@@ -320,11 +336,21 @@ Class PM_EntropicAvatarIntro : PMBossMonsterBase
 		Goto FloatyLooky;
 	Melee:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 0
+		{
+			bool s; Actor mo;
+			[s, mo] = A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+			if (mo && master) master.tracer = mo;
+		}
 		Stop;
 	Death:
 		TNT1 A 0;
-		TNT1 A 0 A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+		TNT1 A 1
+		{
+			bool s; Actor mo;
+			[s, mo] = A_SpawnItemEx("PM_EntropicAvatar",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION);
+			if (mo && master) master.tracer = mo;
+		}
 		Stop;
 	}
 }
