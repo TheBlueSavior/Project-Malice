@@ -665,7 +665,7 @@ Class PMGreedMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.Sin "Greed", "Green";
+  PMMonsterBase.Sin "Greed", "Yellow";
  }
 }
 
@@ -714,7 +714,7 @@ Class PMEnvyMonsterBase : PMMonsterBase abstract
 {
  Default
  {
-  PMMonsterBase.Sin "Envy", "DarkGreen";
+  PMMonsterBase.Sin "Envy", "Green";
  }
 }
 

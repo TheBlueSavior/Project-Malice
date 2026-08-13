@@ -226,7 +226,7 @@ OptionMenu "projectmalice_allmultipliersettings"
     Slider "Gluttony", "pm_healthfactor_gluttony", 1, 10, 0.05, 2
     Slider "Greed", "pm_healthfactor_greed", 1, 10, 0.05, 2
     Slider "Wrath", "pm_healthfactor_wrath", 1, 10, 0.05, 2
-    Slider "Sloth (WIP)", "pm_healthfactor_sloth", 1, 10, 0.05, 2
+    Slider "Sloth", "pm_healthfactor_sloth", 1, 10, 0.05, 2
     Slider "Envy", "pm_healthfactor_envy", 1, 10, 0.05, 2
     Slider "Pride", "pm_healthfactor_pride", 1, 10, 0.05, 2
     StaticText " " 
@@ -255,7 +255,7 @@ OptionMenu "projectmalice_sincodex"
     StaticText " "
     SubMenu "Lust", "PM_CodexMenu_Lust"
     SubMenu "Gluttony", "PM_CodexMenu_Gluttony"
-    Submenu "Greed (WIP)", "PM_CodexMenu_Greed"
+    Submenu "Greed", "PM_CodexMenu_Greed"
     Submenu "Wrath", "PM_CodexMenu_Wrath"
     Submenu "Sloth", "PM_CodexMenu_Sloth"
     Submenu "Envy", "PM_CodexMenu_Envy"
@@ -332,6 +332,22 @@ ListMenu "PM_CodexMenu_Gluttony"
     StaticTextCentered 320, 338, "to attack. Some enemies of this type are tanky."
 }
 
+ListMenu "PM_CodexMenu_Greed"
+{
+    Class "PM_CodexMenu"
+    Font "BigFont", "Yellow"
+    Size 640, 480
+    
+    StaticTextCentered 320, 100, "GREED"
+    StaticPatch 320, 240, "GREEDLIST"
+    
+    Font "SmallFont", "White"
+    
+    StaticTextCentered 320, 330, "Enemies of this tier use molten gold, stones, and technology"
+    StaticTextCentered 320, 338, "to attack you. Some of them tend to go more quicker when they do not"
+	StaticTextCentered 320, 346, "see you, or even teleport."
+}
+
 ListMenu "PM_CodexMenu_Wrath"
 {
     Class "PM_CodexMenu"
@@ -367,7 +383,7 @@ ListMenu "PM_CodexMenu_Sloth"
 ListMenu "PM_CodexMenu_Envy"
 {
     Class "PM_CodexMenu"
-    Font "BigFont", "DarkGreen"
+    Font "BigFont", "Green"
     Size 640, 480
     
     StaticTextCentered 320, 100, "ENVY"

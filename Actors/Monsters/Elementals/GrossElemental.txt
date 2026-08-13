@@ -2,6 +2,8 @@ Class PM_GrossElemental : PMPestilenceMonsterBase
 {
   Default
   {
+  PMMonsterBase.CodexLore
+  "placeholder text.";
   Health 500;
   Radius 31;
   Height 56;

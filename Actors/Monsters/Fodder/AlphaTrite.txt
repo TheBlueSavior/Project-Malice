@@ -1,0 +1,274 @@
+Class PM_AlphaTrite : PMFodderMonsterBase
+{
+  Default
+  {
+  PMMonsterBase.CodexLore
+  "They are Trites that have been fully matured, which are heavier in mass, but less agile and more recognizable.
+  When trites become mature, they secrete acid more than usual, in which they can use it as a weapon against marines.";
+  Obituary "%o got mulched by an Alpha ATR_e.";
+  HitObituary "%o got caught off guard by an Alpha ATR_e.";
+  Health 40;
+  Radius 19;
+  Height 21;
+  Mass 100;
+  Speed 6;
+  Scale 0.55;
+  PainChance 160;
+  BloodColor "DarkGreen";
+  BloodType "PM_DarkGreenBloodBase";
+  PainSound "AlphaTrite/Pain";
+  SeeSound "AlphaTrite/Sight";
+  DeathSound "AlphaTrite/Death";
+  ActiveSound "AlphaTrite/Idle";
+  MeleeSound "Trite/MeleeHit";
+  Tag "Alpha Trite";
+  MeleeDamage 1;
+  MeleeThreshold 60;
+  MaxTargetRange 250;
+  MeleeRange 10;
+  MaxStepHeight 40;
+  MaxDropOffHeight 50;
+  MinMissileChance 10;
+  Damage 2;
+  Monster;
+  Species "Fodder";
+  +FloorClip
+  +DONTHARMSPECIES
+  +NoTarget
+  +Jumpdown
+  -solid
+  +shootable
+  -Countkill
+  +NOINFIGHTING
+  +THRUSPECIES  
+  +NOBLOCKMONST
+  +DONTHARMCLASS
+  +DONTHARMSPECIES
+  +ROLLSPRITE
+  +ROLLCENTER
+  -CANUSEWALLS
+  -CANPUSHWALLS
+  +CANTSEEK
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_SmallDemonicTeleportFog";
+  }
+  
+  void TriteChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) <= 1200)
+	  A_Chase();
+	  else
+	  A_Wander();
+	 }
+	 A_Recoil(-0.2);
+	}
+  
+  States
+  {
+  Spawn:
+    ATR_ AA 2 A_Wander();
+	TNT1 A 0 A_Look();
+	ATR_ BB 2 A_Wander();
+	TNT1 A 0 A_Look();
+	ATR_ CC 2 A_Wander();
+	TNT1 A 0 A_Look();
+	ATR_ DD 2 A_Wander();
+	TNT1 A 0 A_Look();
+    Goto Spawn;
+  See:
+	TNT1 A 0
+	{
+		A_SetRoll(0,SPF_INTERPOLATE);
+		bNOGRAVITY = false;
+	}
+    ATR_ A 2 TriteChase();
+    ATR_ A 2 TriteChase();
+    ATR_ A 0 A_StartSound("Trite/Step", CHAN_7);
+    ATR_ BB 2 TriteChase();
+    ATR_ B 0 A_StartSound("Trite/Step", CHAN_7);
+    ATR_ CC 2 TriteChase();
+    ATR_ C 0 A_StartSound("Trite/Step", CHAN_7);
+    ATR_ DD 2 TriteChase();
+    ATR_ D 0 A_StartSound("Trite/Step", CHAN_7);
+	TNT1 A 0 A_Jump(20,"Leap");
+	TNT1 A 0 A_JumpIfCloser(235,"BackCheck");
+    Loop;
+  BackCheck:
+    TNT1 A 0 A_Jump(35,"Backup");
+    Goto See;
+  Backup:
+	ATR_ DDCCBBAADDCCBBAADDCCBBAA 2
+	{
+		A_FaceTarget();
+		A_Recoil(0.6);
+	}
+    Goto See;
+  Leap:
+	ATR_ A 3 A_Jump(100,"LeapBack","Dodge");
+	TNT1 A 0
+	{
+		A_Recoil(-7);
+		ThrustThingZ(0,28,0,1);
+	}
+	ATR_ F 15;
+	Goto See;
+  LeapBack:
+	ATR_ A 3;
+	TNT1 A 0
+	{
+		A_Recoil(7);
+		ThrustThingZ(0,28,0,1);
+	}
+	ATR_ F 15;
+	Goto See;
+  Melee:
+    ATR_ A 12 A_FaceTarget;
+    ATR_ A 0 A_Jump(192, 2);
+    ATR_ A 0 A_StartSound("AlphaTrite/Attack");
+    ATR_ E 6 A_CustomMeleeAttack(1);
+    Goto See;
+  Missile:
+	TNT1 A 0 A_Jump(128, "Acid");
+	TNT1 A 0 A_Jump(55, "Dodge");
+  Lunge:
+	TNT1 A 0 A_JumpIfCloser(100,"See");
+    ATR_ A 0 A_Jump(128, "See");
+    ATR_ AAAAA 3 A_FaceTarget;
+    ATR_ F 10
+	{
+		A_StartSound("AlphaTrite/Attack");
+		A_Recoil(-12);
+		ThrustThingZ(0, 20, 0, 1);
+	}
+    ATR_ E 15;
+    Goto See;
+  Dodge:
+	ATR_ A 3 A_FaceTarget();
+	TNT1 A 0
+	{
+		angle += randompick(-90, 90);
+		A_Recoil(10);
+		ThrustThingZ(0,28,0,1);
+	}
+	ATR_ F 15;
+	Goto See;
+  Acid:
+	ATR_ A 10 A_FaceTarget();
+	ATR_ E 0 A_StartSound("Host/AcidCharge", 9, pitch: 1.5);
+	ATR_ EEEEEE 2
+	{
+		A_FaceTarget();
+		A_SpawnItemEx("PM_HostPoisonSplashSmall",random(-1,1),random(-1,1),15,random(2,5),random(-1,1),frandom(-1,1),0,SXF_NOCHECKPOSITION);
+	}
+	ATR_ E 8
+	{
+		A_StartSound("AlphaTrite/Spit", 10);
+		PM_LeadTarget(5);
+		let p = A_SpawnProjectile("PM_AlphaTriteAcid", 14, flags: CMF_AIMDIRECTION|CMF_OFFSETPITCH, -5);
+		if (p) p.vel = CalcThrowVector(pos, target.pos, 0.6, frandom(0.08, 0.16));
+	}
+  Pain:
+	TNT1 A 0
+	{
+		bNOGRAVITY = false;
+		A_SetRoll(0,SPF_INTERPOLATE);
+	}
+    ATR_ E 3;
+    ATR_ E 3 A_Pain;
+    Goto See;
+  Death:
+    ATR_ G 5 A_Scream;
+	TNT1 AA 0 A_SpawnItemEx("PM_DarkGreenBloodMist",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION);
+	TNT1 AAA 0 A_SpawnItemEx("PM_DarkGreenBloodMulti",random(-2,2),random(-2,2),random(2,5),random(-2,2),random(-2,2),random(2,5),0,SXF_NOCHECKPOSITION);
+	TNT1 AAAA 0 A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-2,2),random(-2,2),random(2,5),0,0,0,0,SXF_NOCHECKPOSITION,130);
+    ATR_ H 0 A_StartSound("Trite/Splat", CHAN_7);
+    ATR_ H 5 A_NoBlocking;
+    ATR_ IJ 5;
+    Stop;
+  }
+}
+
+Class PM_AlphaTriteAcid : DoomImpBall
+{
+	Default
+	{
+	DamageFunction 5;
+	DamageType "Poison";
+	SeeSound "";
+	DeathSound "";
+	Speed 12;
+	FastSpeed 14;
+	Scale 0.93;
+	Gravity 0.8;
+	-NOGRAVITY
+	}
+	
+	States
+  	{
+	Spawn:
+		TNT1 A 1
+		{
+		A_SpawnParticleEx
+		(
+		"75ff00",
+		TexMan.CheckForTexture("DTPRA0"),
+		style: STYLE_Add,
+		flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+		lifetime: random(5,10),
+		size: 20,
+		xoff: 0,
+		startalphaf: frandom(0.3,0.95),
+		fadestepf: -1,
+		sizestep: -5,
+		startroll: random(-180,180),
+		rollvel: frandom(-10,10),
+		rollacc: frandom(-1,1)
+		);
+		A_SpawnParticle("AAFF21",SPF_RELATIVE,random(5,15),random(1,8),0,0,random(-3,3),random(-3,3),startalphaf:1
+		,fadestepf:-1,sizestep:0);
+		for (int i = 0; i < random(1, 3); i++) A_SpawnItemEx("PM_HostPoisonSplashSmall",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION);
+		}
+		Loop;
+	Death:
+		TNT1 A 0 A_StartSound("PM/GibSplat",39,pitch:1.5);
+		TNT1 A 0
+		{
+			A_SpawnParticleEx
+			(
+			"bdff00",
+			TexMan.CheckForTexture("DTPRA0"),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(25,50),
+			size: 90,
+			startalphaf: frandom(0.8,0.95),
+			fadestepf: -1,
+			sizestep: -10,
+			startroll: random(-180,180),
+			rollvel: frandom(-10,10),
+			rollacc: frandom(-1,1)
+			);
+		}
+		TNT1 AAAAAAA 0 A_SpawnItemEx("PM_HostPoisonSplashSmall",random(-1,1),random(-1,1),random(-1,1),random(-1,1),random(-1,1),frandom(-1,1),random(-360,360),SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+Class PM_AlphaHeadDropper : Actor
+{
+    Default { +ISMONSTER }
+	
+	States
+	{
+	Spawn:
+	    TNT1 A 1 Nodelay;
+		TNT1 A 0
+		{
+			for (int i = 0; i < random(2, 3); i++)
+				A_SpawnItemEx("PM_AlphaTrite",0,0,0,frandom(-4,4),frandom(-4,4),frandom(1,5),0,SXF_NOCHECKPOSITION);
+		}
+		Stop;
+	}
+}

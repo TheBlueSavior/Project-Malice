@@ -5,7 +5,7 @@ Class PM_HollowImp : PMUmbralMonsterBase
     Default
 	{
 	PMMonsterBase.CodexLore
-	"Hollow Imps are nothing but shadows idk";
+	"placeholder text.";
 	Obituary "%o was consumed by darkness by a Hollow Imp.";
 	HitObituary "Due to the Hollow Imp, %o is now one with the shadows.";
 	Tag "Hollow Imp";

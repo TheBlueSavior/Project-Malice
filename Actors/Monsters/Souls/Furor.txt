@@ -1,0 +1,124 @@
+Class PM_Furor : PMWrathMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"Wrathful souls are often manifested as Furors, in which are conflagrated skulls full of contempt.
+		Unlike other demons residing within the sin of Wrath, they will not be ireful, but will instead rely on explosive charging as their strength.";
+		Health 75;
+		PainChance 255;
+		Speed 5;
+		Radius 16;
+		Height 25;
+		Mass 50;
+		Monster;
+		SeeSound  "Furor/Sight";
+		PainSound "Furor/Pain";
+		DeathSound "Furor/Death";
+		ActiveSound "Furor/Sight";
+		AttackSound "Furor/Scream";
+		Renderstyle "Normal";
+		DamageFunction 15;
+		DeathHeight 4;
+		Obituary "%o got bombarded by a host of Furor.";
+		Tag "Furor";
+		Species "Soul";
+		//+NOINFIGHTING
+		+FLOATBOB
+		+FLOAT
+		FloatBobStrength 0.2;
+		+NOGRAVITY
+		+NOICEDEATH
+		+DONTFALL
+		+NOBLOOD
+		+FORCEXYBILLBOARD
+		+DONTHARMCLASS
+		+DONTHARMSPECIES
+		+MISSILEEVENMORE
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+ 
+	override void Tick()
+	{
+		if (level.isFrozen()) return;
+		super.Tick();
+		
+		if ((level.maptime % 3) == 0)
+			A_SpawnItemEx("PM_ExileFireGlobs",-7+frandom(-2,2),frandom(-4,4),frandom(-5,5),zvel:frandom(1,2.25),flags:SXF_NOCHECKPOSITION);
+	}
+	
+	States
+	{
+	Spawn:
+		O04_ ABCB 10 PM_Look();
+		Loop;
+	Look:
+		O04_ AABBCCBB 1 PM_LookingForPlayer();
+		TNT1 A 0 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+		Loop;
+	Spotted:
+		TNT1 A 0 PM_AlertSound();
+		Goto See;
+	See:
+		O04_ A 0 A_ChangeVelocity(random(-1,1), random(-1,1), random(-1,1));
+		O04_ AAABBB 1 A_Chase("Melee",null);
+		TNT1 A 0 A_Jump(35,"WanderingFly");
+		TNT1 A 0 A_JumpIfCloser(500,"AttackCharge");
+		Loop;
+	WanderingFly:
+		O04_ A 0 A_ChangeVelocity(random(-1,1), random(-1,1), random(-1,1));
+		O04_ AAABBB 1 A_Wander();
+		TNT1 A 0 A_Jump(30,"See");
+		Loop;
+	AttackCharge:
+		O04_ AABBAABBAA 1 A_FaceTarget();
+		O04_ C 2
+		{
+			bNOPAIN = true;
+			A_StartSound("Furor/Scream",8);
+			Vel3DFromAngle(25, angle, pitch);
+		}
+		Goto AttackChargeLoop;
+	AttackChargeLoop:
+		O04_ C 1
+		{
+			Vel3DFromAngle(25, angle, pitch);
+			A_FaceTarget(1.5, 1.5);
+		}
+		O04_ C 0 A_JumpIf(sqrt(vel.x * vel.x + vel.y * vel.y) < 3, "Melee");
+		O04_ C 0 A_CheckFloor("Melee");
+		O04_ C 0 A_CheckCeiling("Melee");
+		Loop;
+	Pain:
+		O04_ F 2;
+		O04_ F 2 A_Pain();
+		O04_ A 0 A_Jump(100, "AttackCharge", "WanderingFly");
+		Goto See;
+	Melee:
+		TNT1 A 0 A_Explode((35),100,XF_NOTMISSILE);
+	Death:
+		TNT1 A 0;
+		TNT1 A 0
+		{
+			A_StopSound(8);
+			A_ScreamAndUnblock();
+		}
+		O04_ DE 2;
+		O04_ F 2
+		{
+			A_StopSound(10);
+			A_StartSound("Noble/BombExp",9,pitch:1.3);
+			for (int i = 0; i < 3; i++)
+			{
+				A_SpawnProjectile("PM_SmallBurntSoulPart1",0,0,random(0,360),2,random(0,360));
+				A_SpawnProjectile("PM_SmallBurntSoulPart3",0,0,random(0,360),2,random(0,360));
+				A_SpawnProjectile("PM_DarkExpSmoke",7,0,random(0,360),2,random(0,360));
+				A_SpawnProjectile("PM_HectebusBallExplode",0,0,random(0,360),2,random(0,360));
+				A_SpawnItemEx("PM_BigFireGlobs",0,0,0,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+			}
+			A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,0,0,0,0,0,SXF_NOCHECKPOSITION,0);
+		}
+		Stop;
+	}
+}

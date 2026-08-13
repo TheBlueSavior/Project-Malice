@@ -3,7 +3,7 @@ Class PM_UmbralCrawler : PMUmbralMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore
-		"lol, something omori";
+		"placeholder text.";
 		Health 100;
 		Radius 20;
 		Height 56;

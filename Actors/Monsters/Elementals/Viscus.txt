@@ -1,0 +1,275 @@
+Class PM_Viscus : PMGluttonyMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"When there's exceeding amounts of hellish energy and vast amounts of guts around the area, specifically within the circle of Gluttony, everything starts to go wrong.
+		A huge pile of flesh, some that appears to be decaying, turned into a organic sphere of eradication. While it's mostly intact, it is falling apart at the same time, and will tend to throw chunks and blood at you.
+		On top of that, the eye can shoot plasmatic orbs to hinder you from progressing.";
+		BloodType "PM_DarkRedBloodBase";
+		Health 500;
+		Tag "Viscus";
+		Radius 31;
+		Height 56;
+		Mass 1000;
+		Speed 2;
+		PainChance 66;
+		SeeSound "Viscus/Sight";
+		ActiveSound "Viscus/Active";
+		PainSound "Viscus/Pain";
+		DeathSound "Viscus/Death";
+		BloodColor "aa 00 00";
+		Monster;
+		+SLIDESONWALLS
+		+NOTARGET
+		+DONTHARMSPECIES
+		+DONTHARMCLASS
+		+NOINFIGHTING
+		+FLOATBOB
+		+NOGRAVITY
+		+LOWGRAVITY
+		+FLOAT
+		FloatBobStrength 0.3;
+		MinMissileChance 200;
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_GluttonyTeleportFog";
+		Obituary "%o summitted to the Viscus' hivemind.";
+		StencilColor "Red";
+		XScale 0.7;
+		YScale 0.6;
+	}
+	
+	States
+	{
+	Spawn:
+		E02_ A 10 PM_Look();
+		Loop;
+	Look:
+		E02_ A 3 PM_LookingForPlayer();
+		TNT1 A 0 A_JumpIfTargetinLOS("Spotted",250,JLOSF_DEADNOJUMP);
+		Loop;
+	Spotted:
+		E02_ A 0 PM_AlertSound();
+		Goto See;
+	See:
+		E02_ A 2 A_Chase();
+		Loop;
+	Pain:
+		E02_ D 4;
+		E02_ D 4 A_Pain();
+		Goto See;
+	Missile:
+		TNT1 A 0 A_Jump(128, "LaserBarrage");
+	MeatballBarrage:
+		E02_ A 10 A_FaceTarget();
+		E02_ A 0
+		{
+			pm_attackloop = random(5,8);
+			A_StartSound("Beholder/BarrageReady",15,pitch:frandom(0.5,0.75));
+			A_StartSound("GenericChargeSmall",16,pitch:frandom(0.5,0.75));
+		}
+		E02_ BBBBBBBBB 2
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_DarkRedBloodMulti",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+		}
+		Goto MeatBarrageLoop;
+	MeatBarrageLoop:
+		E02_ B random(2, 5)
+		{
+			if (--pm_attackloop <= 0) SetStateLabel("See");
+			A_FaceTarget();
+			A_StartSound("Enceinte/CumImpact", 20, pitch: frandom(0.6, 0.8));
+			A_SpawnProjectile("PM_ViscusMeat", random(10, 30), random(-22, 22), frandom(0, 360), CMF_OFFSETPITCH|CMF_AIMDIRECTION, frandom(20, -45));
+			A_SpawnItemEx("PM_DarkRedBloodMulti",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+		}
+		Loop;
+	LaserBarrage:
+		E02_ A 10 A_FaceTarget();
+		E02_ A 0
+		{
+			pm_attackloop = random(6,12);
+			A_StartSound("GenericChargeSmall",16,pitch:frandom(0.5,0.75));
+			A_StartSound("PM/SigilBurn",17,pitch:1.35);
+		}
+		E02_ BBBBBBBBBBBBBBBBB 1
+		{
+			A_FaceTarget();
+			A_SpawnParticleEx("ffaaaa",TexMan.CheckForTexture("DTPRR0"),STYLE_Add,SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,random(10,100),frandom(5, 10),0,8,-20,28,frandom(1,4),frandom(-4,4),frandom(-4,4),frandom(-.01,.01),frandom(-.01,.01),frandom(-.01,.01),sizestep:-1,startroll:frandom(0,360),rollvel:frandom(-5,5));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),STYLE_Add,SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,random(5,15),frandom(50, 150),0,8,-20,28,sizestep:-1,startroll:frandom(0,360),rollvel:frandom(-10,10));
+		}
+		E02_ B 1 PM_LeadTarget(35);
+	LaserLoop:
+		E02_ C random(2, 3)
+		{
+			if (--pm_attackloop <= 0) SetStateLabel("See");
+			A_FaceTarget(5, 5);
+			A_StartSound("Bacillus/Proj", 15, CHANF_OVERLAP, attenuation: 0.85);
+			A_SpawnProjectile("PM_ViscusPlasma", 28, -20, flags: CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch: pitch);
+			A_SpawnParticleEx("ffaaaa",TexMan.CheckForTexture("DTPRR0"),STYLE_Add,SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,random(10,100),frandom(5, 10),0,8,-20,28,frandom(1,4),frandom(-4,4),frandom(-4,4),frandom(-.01,.01),frandom(-.01,.01),frandom(-.01,.01),sizestep:-1,startroll:frandom(0,360),rollvel:frandom(-5,5));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0"),STYLE_Add,SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,random(5,15),frandom(50, 150),0,8,-20,28,sizestep:-1,startroll:frandom(0,360),rollvel:frandom(-10,10));
+		}
+		Loop;
+	Death:
+		E02_ D 1;
+		E02_ D 6
+		{
+			A_ScreamAndUnblock();
+			bFLOATBOB = false;
+			bFLOAT = false;
+			bNOGRAVITY = false;
+		}
+		E02_ DDDEEE random(3, 4)
+		{
+			A_SpawnItemEx("PM_DarkRedBloodMulti",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+			if (!random(0, 2)) A_SpawnItemEx("PM_DarkRedMeatChunkLauncher",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+		}
+		E02_ FFFGGHH random(2, 3)
+		{
+			A_SpawnItemEx("PM_DarkRedBloodMulti",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+			if (!random(0, 2)) A_SpawnItemEx("PM_DarkRedMeatChunkLauncher",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+			if (!random(0, 3))
+			{
+				A_StartSound("HeresyLord/RedDeath",10,pitch:frandom(1.5,1.6));
+				A_SpawnItemEx("PM_RFireBallExplode",random(-30,30),random(-30,30),random(8,40),random(-1,1),random(-1,1),frandom(-1,1),frandom(0,360),SXF_NOCHECKPOSITION);
+			}
+		}
+		E02_ IIJJ random(2, 3)
+		{
+			A_SpawnItemEx("PM_ArachExpGoreSplash", random(-10,10), random(-10,10), random(5,30),random(-10,10),random(-10,10),random(3,10),random(0,360),SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+			A_SpawnItemEx("PM_DarkRedMeatChunkLauncher",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+			A_StartSound("HeresyLord/RedDeath",10,pitch:frandom(1.5,1.6));
+			A_SpawnItemEx("PM_NetherFireGlobs",random(-30,30),random(-30,30),random(8,40),random(-1,1),random(-1,1),frandom(-1,1),frandom(0,360),SXF_NOCHECKPOSITION);
+		}
+		E02_ K 3
+		{
+			A_SpawnItemEx("PM_LargeRedFlare",flags:SXF_NOCHECKPOSITION);
+			A_StartSound("HSpawnBurster/Explode",5);
+			A_StartSound("GBloodSplashBig",7);
+			A_StartSound("GenericCometExp",8,pitch:1.2);
+			A_QuakeEx(3,3,3,40,0,500,"",QF_3D|QF_SCALEDOWN);
+			A_SpawnItemEx("PM_ArachExpMist",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+			for (int i = 10; i > 0; i--)
+			{
+				A_SpawnItemEx("PM_NetherFireGlobs",random(-30,30),random(-30,30),random(8,40),random(-4,4),random(-4,4),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("PM_DarkRedMeatChunk",random(-10,10),random(-10,10),random(10,30),random(-40,40),random(-40,40),random(0,45),0,SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("PM_ArachExpGoreSplash", random(-10,10), random(-10,10), random(5,30),random (-18,18),random(-18,18),random(4,20),random(0,360),SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+			}
+			for (int i = 3; i > 0; i--)
+			{
+				let xp = Spawn("PM_NetherFireGlobs",Vec3Offset(0,0,20));
+				xp.scale = (2,2);
+				xp.vel = (frandom(-3,3),frandom(-3,3),frandom(-3,3));
+			}
+			A_SpawnItemEx("PM_NormalBloodyCloudBig",0,0,20,0,0,0,0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+		}
+		E02_ KKLLMMNNO random(2, 3)
+		{
+			A_SpawnItemEx("PM_DarkRedMeatChunkLauncher",random(-30,30),random(-30,30),random(8,40),random(-5,5),random(-5,5),frandom(-4,4),frandom(0,360),SXF_NOCHECKPOSITION);
+			A_StartSound("HeresyLord/RedDeath",10,pitch:frandom(1.5,1.6));
+			A_SpawnItemEx("PM_NetherFireGlobs",random(-30,30),random(-30,30),random(8,40),random(-1,1),random(-1,1),frandom(-1,1),frandom(0,360),SXF_NOCHECKPOSITION);
+		}
+		E02_ O 3;
+		E02_ P -1;
+		Stop;
+	}
+}
+
+Class PM_ViscusMeat : PM_DregMeatSmall
+{
+	Default
+	{
+		DamageFunction (10);
+		Scale 1.25;
+		Translation "0:255=%[0.00,0.00,0.00]:[1.11,0.26,0.26]";
+	}
+	
+	override void Tick()
+	{
+		PMProjectileBase.Tick();
+		if (!level.isFrozen())
+		{
+			roll += rollp;
+			if (launched)
+			{
+				let Coord = PM_Trailer.Trail(Self,lastpos,"aa0909",(-4,0,0),1.2,0.25,5);
+				lastpos=Coord;
+			}
+			if (!(getAge() % 3)) A_SpawnItemEx("PM_DarkRedBlood1",random(-2,2),random(-2,2),random(-2,2),random(3,6),random(-3,3),frandom(-4,4),flags:SXF_NOCHECKPOSITION);
+		}
+	}
+	
+	States
+	{
+	Spawn:
+		R03M AAAAAAAAAAAAAAAAAAAAA 1 { vel *= 0.925; }
+		R03M A 10;
+		R03M A 0
+		{
+			A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),100,startalphaf:0.4,sizestep:-1);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),60,sizestep:-1,startroll:random(0,360));
+			A_SeekerMissile(999, 999);
+			A_StartSound("Grievance/Launch", 10, pitch: 1.6);
+			launched = true;
+		}
+		R03M A 1 { vel *= 1.13; }
+		R03M A 1 A_SeekerMissile(999, 999);
+		R03M AAA random(1,2) { vel *= 1.13; }
+		Goto LaunchLoop;
+	Death:
+		TNT1 AAAA 0 A_SpawnItemEx("PM_DarkRedBlood1",random(-2,2),random(-2,2),random(-2,2),random(-5,5),random(-5,5),frandom(-5,5),flags:SXF_NOCHECKPOSITION);
+		Stop;
+	}
+}
+
+Class PM_ViscusPlasma : PMProjectileBase
+{
+	Default
+	{
+		DamageFunction (15);
+		Radius 7;
+		Height 7;
+		+BRIGHT
+		Speed 30;
+		FastSpeed 40;
+		RenderStyle "Add";
+	}
+	
+	vector3 lastpos;
+	vector2 weave_spd, weave_dist;
+	override void PostBeginPlay()
+	{
+		lastpos = self.pos;
+		weave_spd = (random(1,4),random(1,4));
+		weave_dist = (random(1,5),random(1,5));
+		super.PostBeginPlay();
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay
+		{
+			A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),100,startalphaf:0.4,sizestep:-1);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),60,sizestep:-1,startroll:random(0,360));
+		}
+		Goto Go;
+	Go:
+		TNT1 A 1
+		{
+			let Coord = PM_Trailer.Trail(Self,lastpos,"aa0909",(0,0,0),1.85,0.3,7);
+			let Coord2 = PM_Trailer.Trail(Self,lastpos,"ffaaaa",(-2,0,0),1.2,0.5,7);
+			lastpos=Coord;
+			A_Weave(weave_spd.x, weave_spd.y, weave_dist.x, weave_dist.y);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(1,3),frandom(60,90),sizestep:-1,startroll:random(0,360));
+		}
+		Loop;
+	Death:
+		TNT1 A 0
+		{
+			A_SpawnParticleEx("",TexMan.CheckForTexture("LENRA0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),100,startalphaf:0.4,sizestep:-1);
+			A_SpawnParticleEx("",TexMan.CheckForTexture("DTPRR0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),60,sizestep:-1,startroll:random(0,360));
+		}
+		Stop;
+	}
+}

@@ -7004,3 +7004,274 @@ $limit NaniteNexus/IdleLoop 12
 NaniteNexus/Surge "Sounds/Monsters/Arachnotrons/NaniteNexus/NaniteNexusSurge.ogg"
 $rolloff NaniteNexus/Surge 200 1400
 $limit NaniteNexus/Surge 12
+
+//Furor
+
+$random Furor/Death { Furor/Death1 Furor/Death2 Furor/Death3 Furor/Death4 Furor/Death5 }
+Furor/Death1 "Sounds/Monsters/Souls/Furor/FurorDeath1.ogg"
+Furor/Death2 "Sounds/Monsters/Souls/Furor/FurorDeath2.ogg"
+Furor/Death3 "Sounds/Monsters/Souls/Furor/FurorDeath3.ogg"
+Furor/Death4 "Sounds/Monsters/Souls/Furor/FurorDeath4.ogg"
+Furor/Death5 "Sounds/Monsters/Souls/Furor/FurorDeath5.ogg"
+$random Furor/Scream { Furor/Scream1 Furor/Scream2 Furor/Scream3 Furor/Scream4 Furor/Scream5 Furor/Scream6 }
+Furor/Scream1 "Sounds/Monsters/Souls/Furor/FurorScream1.ogg"
+Furor/Scream2 "Sounds/Monsters/Souls/Furor/FurorScream2.ogg"
+Furor/Scream3 "Sounds/Monsters/Souls/Furor/FurorScream3.ogg"
+Furor/Scream4 "Sounds/Monsters/Souls/Furor/FurorScream4.ogg"
+Furor/Scream5 "Sounds/Monsters/Souls/Furor/FurorScream5.ogg"
+Furor/Scream6 "Sounds/Monsters/Souls/Furor/FurorScream6.ogg"
+$rolloff Furor/Scream 500 1200
+Furor/Sight "Sounds/Monsters/Souls/Furor/FurorSight.ogg"
+Furor/Pain "Sounds/Monsters/Souls/Furor/FurorPain.ogg"
+
+//Lacerator
+
+$random Lacerator/Death { Lacerator/Death1 Lacerator/Death2 Lacerator/Death3 }
+Lacerator/Death1 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorDeath1.ogg"
+Lacerator/Death2 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorDeath2.ogg"
+Lacerator/Death3 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorDeath3.ogg"
+$random Lacerator/Idle { Lacerator/Idle1 Lacerator/Idle2 Lacerator/Idle5 }
+Lacerator/Idle1 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorIdle1.ogg"
+Lacerator/Idle2 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorIdle2.ogg"
+Lacerator/Idle5 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorIdle5.ogg"
+$random Lacerator/Lunge { Lacerator/Lunge1 Lacerator/Lunge2 Lacerator/Lunge3 Lacerator/Lunge4 }
+Lacerator/Lunge1 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorLunge1.ogg"
+Lacerator/Lunge2 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorLunge2.ogg"
+Lacerator/Lunge3 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorLunge3.ogg"
+Lacerator/Lunge4 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorLunge4.ogg"
+$random Lacerator/Sight { Lacerator/Sight1 Lacerator/Sight2 Lacerator/Sight3 Lacerator/Sight4 Lacerator/Sight5 }
+Lacerator/Sight1 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorSight1.ogg"
+Lacerator/Sight2 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorSight2.ogg"
+Lacerator/Sight3 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorSight3.ogg"
+Lacerator/Sight4 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorSight4.ogg"
+Lacerator/Sight5 "Sounds/Monsters/Cacodemons/Lacerator/LaceratorSight5.ogg"
+
+//Animosity
+
+$random Animosity/Attack { Animosity/Attack1 Animosity/Attack2 Animosity/Attack3 Animosity/Attack4 Animosity/Attack5 }
+Animosity/Attack1 "Sounds/Monsters/Mancubi/Animosity/AnimosityAttack1.ogg"
+Animosity/Attack2 "Sounds/Monsters/Mancubi/Animosity/AnimosityAttack2.ogg"
+Animosity/Attack3 "Sounds/Monsters/Mancubi/Animosity/AnimosityAttack3.ogg"
+Animosity/Attack4 "Sounds/Monsters/Mancubi/Animosity/AnimosityAttack4.ogg"
+Animosity/Attack5 "Sounds/Monsters/Mancubi/Animosity/AnimosityAttack5.ogg"
+$random Animosity/Death { Animosity/Death1 Animosity/Death2 }
+Animosity/Death1 "Sounds/Monsters/Mancubi/Animosity/AnimosityDeath1.ogg"
+Animosity/Death2 "Sounds/Monsters/Mancubi/Animosity/AnimosityDeath2.ogg"
+$random Animosity/Idle { Animosity/Idle1 Animosity/Idle2 Animosity/Idle3 Animosity/Idle4 }
+Animosity/Idle1 "Sounds/Monsters/Mancubi/Animosity/AnimosityIdle1.ogg"
+Animosity/Idle2 "Sounds/Monsters/Mancubi/Animosity/AnimosityIdle2.ogg"
+Animosity/Idle3 "Sounds/Monsters/Mancubi/Animosity/AnimosityIdle3.ogg"
+Animosity/Idle4 "Sounds/Monsters/Mancubi/Animosity/AnimosityIdle4.ogg"
+$random Animosity/Pain { Animosity/Pain1 Animosity/Pain2 }
+Animosity/Pain1 "Sounds/Monsters/Mancubi/Animosity/AnimosityPain1.wav"
+Animosity/Pain2 "Sounds/Monsters/Mancubi/Animosity/AnimosityPain2.wav"
+Animosity/Plasma "Sounds/Monsters/Mancubi/Animosity/AnimosityPlasma.ogg"
+$volume Animosity/Plasma 0.7
+
+//Enmity
+
+//Cacolich
+
+PMCacolich/Absorb "Sounds/Monsters/Cacodemons/Cacolich/CacolichAbsorb.ogg"
+
+//Immolator
+
+$random Immolator/Sight { Immolator/Sight1 Immolator/Sight2 Immolator/Sight3 }
+Immolator/Sight3 "Sounds/Monsters/Archviles/Immolator/ImmolatorSight3.ogg"
+Immolator/Sight2 "Sounds/Monsters/Archviles/Immolator/ImmolatorSight2.ogg"
+Immolator/Sight1 "Sounds/Monsters/Archviles/Immolator/ImmolatorSight1.ogg"
+$random Immolator/Attack { Immolator/Attack1 Immolator/Attack2 Immolator/Attack3 Immolator/Attack4 }
+Immolator/Attack4 "Sounds/Monsters/Archviles/Immolator/ImmolatorAttack4.ogg"
+Immolator/Attack3 "Sounds/Monsters/Archviles/Immolator/ImmolatorAttack3.ogg"
+Immolator/Attack2 "Sounds/Monsters/Archviles/Immolator/ImmolatorAttack2.ogg"
+Immolator/Attack1 "Sounds/Monsters/Archviles/Immolator/ImmolatorAttack1.ogg"
+$random Immolator/Idle { Immolator/Idle1 Immolator/Idle2 }
+Immolator/Idle2 "Sounds/Monsters/Archviles/Immolator/ImmolatorIdle2.ogg"
+Immolator/Idle1 "Sounds/Monsters/Archviles/Immolator/ImmolatorIdle1.ogg"
+$random Immolator/Pain { Immolator/Pain1 Immolator/Pain2 Immolator/Pain3 }
+Immolator/Pain3 "Sounds/Monsters/Archviles/Immolator/ImmolatorPain3.ogg"
+Immolator/Pain2 "Sounds/Monsters/Archviles/Immolator/ImmolatorPain2.ogg"
+Immolator/Pain1 "Sounds/Monsters/Archviles/Immolator/ImmolatorPain1.ogg"
+
+//Glimpse
+
+PMGlimpse/Loop "Sounds/Monsters/Souls/Glimpse/GlimpseLoop.ogg"
+$rolloff PMGlimpse/Loop 1000 3000
+PMGlimpse/Death "Sounds/Monsters/Souls/Glimpse/GlimpseDeath.ogg"
+$rolloff PMGlimpse/Death 1000 3000
+PMGlimpse/Break "Sounds/Monsters/Souls/Glimpse/GlimpseBreak.ogg"
+$rolloff PMGlimpse/Break 600 2000
+PMGlimpse/See "Sounds/Monsters/Souls/Glimpse/GlimpseSee.ogg"
+$rolloff PMGlimpse/See 1000 3000
+PMGlimpse/Sight "Sounds/Monsters/Souls/Glimpse/GlimpseSight.ogg"
+$rolloff PMGlimpse/Sight 500 2000
+$random PMGlimpse/Idle { PMGlimpse/Idle1 PMGlimpse/Idle1 PMGlimpse/Idle1 PMGlimpse/Idle2 PMGlimpse/Idle3 PMGlimpse/Idle4 PMGlimpse/Idle5 }
+PMGlimpse/Idle1 "Sounds/Monsters/Souls/Glimpse/GlimpseIdle1.ogg"
+PMGlimpse/Idle2 "Sounds/Monsters/Souls/Glimpse/GlimpseIdle2.ogg"
+PMGlimpse/Idle3 "Sounds/Monsters/Souls/Glimpse/GlimpseIdle3.ogg"
+PMGlimpse/Idle4 "Sounds/Monsters/Souls/Glimpse/GlimpseIdle4.ogg"
+PMGlimpse/Idle5 "Sounds/Monsters/Souls/Glimpse/GlimpseIdle5.ogg"
+$rolloff PMGlimpse/Idle 1000 2000
+
+//Entrail Dreg
+
+$random EntrailDreg/Attack { EntrailDreg/Attack1 EntrailDreg/Attack2 EntrailDreg/Attack3 EntrailDreg/Attack4 EntrailDreg/Attack5 }
+EntrailDreg/Attack1 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregAttack1.ogg"
+EntrailDreg/Attack2 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregAttack2.ogg"
+EntrailDreg/Attack3 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregAttack3.ogg"
+EntrailDreg/Attack4 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregAttack4.ogg"
+EntrailDreg/Attack5 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregAttack5.ogg"
+$random EntrailDreg/Death { EntrailDreg/Death1 EntrailDreg/Death2 }
+EntrailDreg/Death1 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregDeath1.ogg"
+EntrailDreg/Death2 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregDeath2.ogg"
+$random EntrailDreg/Idle { EntrailDreg/Idle1 EntrailDreg/Idle2 EntrailDreg/Idle3 EntrailDreg/Idle4 EntrailDreg/Idle5 EntrailDreg/Idle6 }
+EntrailDreg/Idle1 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle1.ogg"
+EntrailDreg/Idle2 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle2.ogg"
+EntrailDreg/Idle3 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle3.ogg"
+EntrailDreg/Idle4 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle4.ogg"
+EntrailDreg/Idle5 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle5.ogg"
+EntrailDreg/Idle6 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregIdle6.ogg"
+$random EntrailDreg/Pain { EntrailDreg/Pain1 EntrailDreg/Pain2 EntrailDreg/Pain3 EntrailDreg/Pain4 EntrailDreg/Pain5 }
+EntrailDreg/Pain1 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregPain1.ogg"
+EntrailDreg/Pain2 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregPain2.ogg"
+EntrailDreg/Pain3 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregPain3.ogg"
+EntrailDreg/Pain4 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregPain4.ogg"
+EntrailDreg/Pain5 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregPain5.ogg"
+$random EntrailDreg/Sight { EntrailDreg/Sight1 EntrailDreg/Sight2 }
+EntrailDreg/Sight1 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregSight1.ogg"
+EntrailDreg/Sight2 "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregSight2.ogg"
+EntrailDreg/Laser "Sounds/Monsters/Revenants/EntrailDreg/EntrailDregLaser.ogg"
+
+//Alpha Trite
+
+$random AlphaTrite/Attack { AlphaTrite/Attack1 AlphaTrite/Attack2 }
+AlphaTrite/Attack1 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteAttack1.ogg"
+AlphaTrite/Attack2 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteAttack2.ogg"
+$random AlphaTrite/Death { AlphaTrite/Death1 AlphaTrite/Death2 AlphaTrite/Death3 }
+AlphaTrite/Death1 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteDeath1.ogg"
+AlphaTrite/Death2 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteDeath2.ogg"
+AlphaTrite/Death3 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteDeath3.ogg"
+$random AlphaTrite/Idle { AlphaTrite/Idle1 AlphaTrite/Idle2 AlphaTrite/Idle3 }
+AlphaTrite/Idle1 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteIdle1.ogg"
+AlphaTrite/Idle2 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteIdle2.ogg"
+$random AlphaTrite/Sight { AlphaTrite/Sight1 AlphaTrite/Sight2 AlphaTrite/Sight3 }
+AlphaTrite/Sight1 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSight1.ogg"
+AlphaTrite/Sight2 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSight2.ogg"
+AlphaTrite/Sight3 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSight3.ogg"
+$random AlphaTrite/Spit { AlphaTrite/Spit1 AlphaTrite/Spit2 AlphaTrite/Spit3 }
+AlphaTrite/Spit1 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSpit1.ogg"
+AlphaTrite/Spit2 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSpit2.ogg"
+AlphaTrite/Spit3 "Sounds/Monsters/Fodder/AlphaTrite/AlphaTriteSpit3.ogg"
+
+//Profane One
+
+ProfaneOne/Death "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneDeath.ogg"
+$rolloff ProfaneOne/Death 500 1500
+$random ProfaneOne/Idle { ProfaneOne/Idle1 ProfaneOne/Idle2 ProfaneOne/Idle3 ProfaneOne/Idle4 ProfaneOne/Idle5 ProfaneOne/Idle6 }
+ProfaneOne/Idle1 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle1.ogg"
+ProfaneOne/Idle2 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle2.ogg"
+ProfaneOne/Idle3 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle3.ogg"
+ProfaneOne/Idle4 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle4.ogg"
+ProfaneOne/Idle5 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle5.ogg"
+ProfaneOne/Idle6 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneIdle6.ogg"
+$random ProfaneOne/Sight { ProfaneOne/Sight1 ProfaneOne/Sight2 ProfaneOne/Sight3 ProfaneOne/Sight4 }
+ProfaneOne/Sight1 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneSight1.ogg"
+ProfaneOne/Sight2 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneSight2.ogg"
+ProfaneOne/Sight3 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneSight3.ogg"
+ProfaneOne/Sight4 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneSight4.ogg"
+$rolloff ProfaneOne/Sight 500 1500
+$random ProfaneOne/Step { ProfaneOne/Step1 ProfaneOne/Step2 ProfaneOne/Step3 ProfaneOne/Step4 }
+ProfaneOne/Step1 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneStep1.ogg"
+ProfaneOne/Step2 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneStep2.ogg"
+ProfaneOne/Step3 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneStep3.ogg"
+ProfaneOne/Step4 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOneStep4.ogg"
+$random ProfaneOne/Pain { ProfaneOne/Pain1 ProfaneOne/Pain2 ProfaneOne/Pain3 }
+ProfaneOne/Pain1 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOnePain1.ogg"
+ProfaneOne/Pain2 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOnePain2.ogg"
+ProfaneOne/Pain3 "Sounds/Monsters/Barons/ProfaneOne/ProfaneOnePain3.ogg"
+
+//Hellspawn
+
+$random PMHellspawn/Attack { PMHellspawn/Attack1 PMHellspawn/Attack2 PMHellspawn/Attack3 PMHellspawn/Attack4 }
+PMHellspawn/Attack1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnAttack1.ogg"
+PMHellspawn/Attack2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnAttack2.ogg"
+PMHellspawn/Attack3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnAttack3.ogg"
+PMHellspawn/Attack4 "Sounds/Monsters/Fodder/Hellspawn/HellspawnAttack4.ogg"
+$random PMHellspawn/Call { PMHellspawn/Call1 PMHellspawn/Call1 PMHellspawn/Call2 PMHellspawn/Call3 }
+PMHellspawn/Call1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnCall1.ogg"
+PMHellspawn/Call2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnCall2.ogg"
+PMHellspawn/Call3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnCall3.ogg"
+$rolloff PMHellspawn/Call 1500 5000
+$random PMHellspawn/Death { PMHellspawn/Death1 PMHellspawn/Death2 PMHellspawn/Death3 }
+PMHellspawn/Death1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnDeath1.ogg"
+PMHellspawn/Death2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnDeath2.ogg"
+PMHellspawn/Death3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnDeath3.ogg"
+$random PMHellspawn/Idle { PMHellspawn/Idle1 PMHellspawn/Idle2 PMHellspawn/Idle3 PMHellspawn/Idle4 }
+PMHellspawn/Idle1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnIdle1.ogg"
+PMHellspawn/Idle2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnIdle2.ogg"
+PMHellspawn/Idle3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnIdle3.ogg"
+PMHellspawn/Idle4 "Sounds/Monsters/Fodder/Hellspawn/HellspawnIdle4.ogg"
+$rolloff PMHellspawn/Idle 500 2000
+$random PMHellspawn/Pain { PMHellspawn/Pain1 PMHellspawn/Pain2 }
+PMHellspawn/Pain1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnPain1.ogg"
+PMHellspawn/Pain2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnPain2.ogg"
+$random PMHellspawn/Roar { PMHellspawn/Roar1 PMHellspawn/Roar2 PMHellspawn/Roar3 PMHellspawn/Roar4 }
+PMHellspawn/Roar1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnRoar1.ogg"
+PMHellspawn/Roar2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnRoar2.ogg"
+PMHellspawn/Roar3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnRoar3.ogg"
+PMHellspawn/Roar4 "Sounds/Monsters/Fodder/Hellspawn/HellspawnRoar4.ogg"
+$rolloff PMHellspawn/Roar 1000 2000
+$random PMHellspawn/Horde { PMHellspawn/Horde1 PMHellspawn/Horde2 PMHellspawn/Horde3 PMHellspawn/Horde4 PMHellspawn/Horde5 PMHellspawn/Horde6 PMHellspawn/Horde7 }
+PMHellspawn/Horde1 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde1.ogg"
+PMHellspawn/Horde2 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde2.ogg"
+PMHellspawn/Horde3 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde3.ogg"
+PMHellspawn/Horde4 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde4.ogg"
+PMHellspawn/Horde5 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde5.ogg"
+PMHellspawn/Horde6 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde6.ogg"
+PMHellspawn/Horde7 "Sounds/Monsters/Fodder/Hellspawn/HellspawnHorde7.ogg"
+$rolloff PMHellspawn/Horde 2000 6000
+PMHellspawn/CrowdLoop "Sounds/Monsters/Fodder/Hellspawn/HellspawnCrowdLoop.ogg"
+$volume PMHellspawn/CrowdLoop 0.35
+
+//Apostate Scanner
+
+ApostateScanner/Loop "Sounds/Monsters/Souls/ApostateScanner/ApostateScannerLoop.ogg"
+$limit ApostateScanner/Loop 9
+$rolloff ApostateScanner/Loop 400 900
+
+//Abductor
+
+$random PMAbductor/Pain { PMAbductor/Pain1 PMAbductor/Pain2 PMAbductor/Pain3 PMAbductor/Pain4 }
+PMAbductor/Pain1 "Sounds/Monsters/Revenants/Abductor/AbductorPain1.ogg"
+PMAbductor/Pain2 "Sounds/Monsters/Revenants/Abductor/AbductorPain2.ogg"
+PMAbductor/Pain3 "Sounds/Monsters/Revenants/Abductor/AbductorPain3.ogg"
+PMAbductor/Pain4 "Sounds/Monsters/Revenants/Abductor/AbductorPain4.ogg"
+$random PMAbductor/Attack { PMAbductor/Attack1 PMAbductor/Attack2 PMAbductor/Attack3 PMAbductor/Attack4 }
+PMAbductor/Attack1 "Sounds/Monsters/Revenants/Abductor/AbductorAttack1.ogg"
+PMAbductor/Attack2 "Sounds/Monsters/Revenants/Abductor/AbductorAttack2.ogg"
+PMAbductor/Attack3 "Sounds/Monsters/Revenants/Abductor/AbductorAttack3.ogg"
+PMAbductor/Attack4 "Sounds/Monsters/Revenants/Abductor/AbductorAttack4.ogg"
+PMAbductor/Attack5 "Sounds/Monsters/Revenants/Abductor/AbductorAttack5.ogg"
+$rolloff PMAbductor/Attack 400 800
+$random PMAbductor/Sight { PMAbductor/Sight1 PMAbductor/Sight2 PMAbductor/Sight3 PMAbductor/Sight4 }
+PMAbductor/Sight1 "Sounds/Monsters/Revenants/Abductor/AbductorSight1.ogg"
+PMAbductor/Sight2 "Sounds/Monsters/Revenants/Abductor/AbductorSight2.ogg"
+PMAbductor/Sight3 "Sounds/Monsters/Revenants/Abductor/AbductorSight3.ogg"
+PMAbductor/Sight4 "Sounds/Monsters/Revenants/Abductor/AbductorSight4.ogg"
+$random PMAbductor/Idle { PMAbductor/Idle1 PMAbductor/Idle2 PMAbductor/Idle3 PMAbductor/Idle4 }
+PMAbductor/Idle1 "Sounds/Monsters/Revenants/Abductor/AbductorIdle1.ogg"
+PMAbductor/Idle2 "Sounds/Monsters/Revenants/Abductor/AbductorIdle2.ogg"
+PMAbductor/Idle3 "Sounds/Monsters/Revenants/Abductor/AbductorIdle3.ogg"
+PMAbductor/Idle4 "Sounds/Monsters/Revenants/Abductor/AbductorIdle4.ogg"
+PMAbductor/Idle5 "Sounds/Monsters/Revenants/Abductor/AbductorIdle5.ogg"
+$random PMAbductor/Death { PMAbductor/Death1 PMAbductor/Death2 PMAbductor/Death3 PMAbductor/Death4 }
+PMAbductor/Death1 "Sounds/Monsters/Revenants/Abductor/AbductorDeath1.ogg"
+PMAbductor/Death2 "Sounds/Monsters/Revenants/Abductor/AbductorDeath2.ogg"
+PMAbductor/Death3 "Sounds/Monsters/Revenants/Abductor/AbductorDeath3.ogg"
+PMAbductor/Death4 "Sounds/Monsters/Revenants/Abductor/AbductorDeath4.ogg"
+$random PMAbductor/Scream { PMAbductor/Scream1 PMAbductor/Scream2 PMAbductor/Scream3 PMAbductor/Scream4 }
+PMAbductor/Scream1 "Sounds/Monsters/Revenants/Abductor/AbductorScream1.ogg"
+PMAbductor/Scream2 "Sounds/Monsters/Revenants/Abductor/AbductorScream2.ogg"
+PMAbductor/Scream3 "Sounds/Monsters/Revenants/Abductor/AbductorScream3.ogg"
+PMAbductor/Scream4 "Sounds/Monsters/Revenants/Abductor/AbductorScream4.ogg"
+$rolloff PMAbductor/Scream 500 1000

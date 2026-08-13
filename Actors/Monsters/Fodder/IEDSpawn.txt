@@ -1,0 +1,275 @@
+Class PM_IEDHorrorspawn : PMWarMonsterBase
+{
+    Default
+	{
+	PMMonsterBase.CodexLore
+	"They're the same as ever before, the only difference is that it is silent, and its eyes are completely hollow.
+	
+	Just don't get close to them. Kill them with shotgun blasts then stay away from them.";
+	Health 15;
+    GibHealth 20;
+    Radius 18;
+    Height 56;
+    Speed 6;
+    PainChance 256;
+    SeeSound "";
+    PainSound "";
+    DeathSound "";
+    ActiveSound "";
+    Obituary "%o was consumed by a Horrorspawn.";
+	DropItem "Clip", 100;
+	Species "Fodder";
+	Tag "Horrorspawn";
+    Monster;
+	BloodColor "DarkRed";
+	Bloodtype "PM_NormalBloodBase";
+	MeleeRange 70;
+	XScale 0.84;
+	YScale 0.91;
+    +FLOORCLIP
+	+NOINFIGHTING
+	-Countkill
+	+THRUSPECIES
+	+SLIDESONWALLS
+	+DONTHARMCLASS
+	+DONTHARMSPECIES
+	+NOBLOCKMONST
+	-ACTIVATEMCROSS
+	-CANUSEWALLS
+	-CANPUSHWALLS
+	TeleFogSourceType "PM_SmallDemonicTeleportFog";
+	TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+  
+  void IEDExplode()
+  {
+	A_StartSound("Wrath/Tele1",23,pitch:1.25);
+	A_StartSound("ZTrooper/FragExp",CHAN_6);
+	A_StartSound("GenericCometExp",25);
+	A_QuakeEx(2,2,2,30,0,1250,"",QF_SCALEDOWN|QF_3D);
+	A_Explode((60),200,XF_NOTMISSILE,0,50,0,0,"BulletPuff","Explode");
+	for (int i = 7; i > 0; i--) A_SpawnItemEx("PM_ExplosionLongerSmoke",0,0,1,random(-3,3),random(-3,3),random(0,2));
+	for (int i = 10; i > 0; i--) A_SpawnItemEx("PM_BigFireGlobs",0,0,40,random(-11,11),random(-11,11),random(-9,11),0,SXF_NOCHECKPOSITION);
+	for (int i = 5; i > 0; i--) A_SpawnItemEx("PM_DarkExpSmoke",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	for (int i = 2; i > 0; i--) A_SpawnItemEx("PM_ExplosionFlareSpawner",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION,0);
+	for (int i = 3; i > 0; i--) A_SpawnItemEx("PM_GenericExplosionFlames",-10,0,40,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+  }
+  
+  int wanderchoice;
+  bool isbomb;
+  
+  void PM_HorrorspawnChase()
+	{
+	 if(target)
+	 {
+	  if(CheckSight(target) && Distance3D(target) <= 1200 || wanderchoice == 1)
+	  A_Chase();
+	  else
+	  A_Wander();
+	 }
+	}
+
+  void IEDBeep(int zpos = 13)
+  {
+	A_StartSound("Decayed/ShottyCharge", 15, pitch: 0.6);
+	A_SpawnParticleEx("",TexMan.CheckForTexture("FLARB0",TexMan.Type_Sprite),STYLE_ADD,SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,15,30,xoff:5,zoff:zpos,sizestep:-1,startroll:random(-360,360));
+  }
+  
+  States
+  {
+  Spawn:
+    IED_ A 0 NoDelay;
+  Idle:
+	IED_ AB 7 A_Wander();
+	IED_ AB 0 A_Look();
+	IED_ CD 7 A_Wander();
+	IED_ AB 0 A_Look();
+	IED_ A 0 A_Jump(5,"IdleStill");
+	Loop;
+  IdleStill:
+	IED_ A 1 A_Jump(5,"Idle");
+    Loop;
+  WanderTowardsSwitch:
+	IED_ A 0
+		{
+		wanderchoice = random(0,1);
+		}
+  See:
+	IED_ A 0 A_Jump(10,"See2");
+	IED_ A 0 A_SetSpeed(7);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+    IED_ AABB 4 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CCDD 4 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Jump(3,"Lunge");
+	IED_ A 0 A_Jump(30,"See2","See3","See6","See8","See9");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+    Loop;
+  See2:
+	IED_ A 0 A_SetSpeed(7);
+	IED_ A 0 A_Recoil(-3);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ AB 4 Fast PM_HorrorspawnChase();
+	IED_ B 20 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Recoil(-3);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CD 4 Fast PM_HorrorspawnChase();
+	IED_ D 20 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Jump(4,"Lunge");
+	IED_ A 0 A_Jump(15,"See");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+    Loop;
+  See3:
+	IED_ A 0 A_SetSpeed(9);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+    IED_ AA 4 Fast PM_HorrorspawnChase();
+	IED_ A 0 ThrustThing( int(ceil( angle * 256 / 360 + 64 )),3);
+	IED_ BB 4 Fast PM_HorrorspawnChase();
+	IED_ AAA 0 A_Recoil(-0.3);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CC 4 Fast PM_HorrorspawnChase();
+	IED_ A 0 ThrustThing( int(ceil( angle * 256 / 360 + 192 )) ,3);
+	IED_ DD 4 Fast PM_HorrorspawnChase();
+	IED_ AAA 0 A_Recoil(-0.3);
+	IED_ A 0 A_Jump(4,"Lunge");
+	IED_ A 0 A_Jump(10,"See");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+    Loop;
+  See6:
+	IED_ A 0 A_SetSpeed(9);
+	IED_ A 0 A_Recoil(-3);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ AB 3 Fast PM_HorrorspawnChase();
+	IED_ B 8 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Recoil(-3);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CD 3 Fast PM_HorrorspawnChase();
+	IED_ D 8 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Jump(4,"Lunge");
+	IED_ A 0 A_Jump(15,"See");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+    Loop;
+  See8:
+	IED_ A 0 A_SetSpeed(6);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+    IED_ AABB 10 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CCDD 10 Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Jump(3,"Lunge");
+	IED_ A 0 A_Jump(90,"See","See2","See3","See6","See9","See8","SeeAngry");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+    Loop;
+  See9:
+	IED_ A 0 A_SetSpeed(4,12);
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+    IED_ AABB random(1, 12) Fast PM_HorrorspawnChase();
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CCDD random(1, 12) Fast PM_HorrorspawnChase();
+	IED_ A 0 A_Jump(4,"Lunge");
+	IED_ A 0 A_Jump(10,"See");
+	IED_ A 1 A_Jump(100,"WanderTowardsSwitch");
+	Loop;
+  Lunge:
+	IED_ C 25 Fast;
+	IED_ A 0 A_Recoil(-15);
+	IED_ A 0 ThrustThingZ(0,40,0,1);
+	IED_ B 35 Fast;
+	IED_ D 15 Fast;
+	Goto See;
+  SeeAngry:
+	IED_ A 0 A_SetSpeed(14);
+    IED_ AB 2 A_Chase();
+	IED_ AAA 0 A_Recoil(-0.5);
+	IED_ CD 2 A_Chase();
+	IED_ AAA 0 A_Recoil(-0.5);
+	IED_ A 0 A_Jump(25,"See2","See3","See6","See8","See9","Lunge");
+    Loop;
+  Melee:
+	IED_ A 0;
+	IED_ A 0 A_JumpIfCloser(44,"MeleeClose");
+    IED_ A 0 A_Jump(140,"Bite");
+    IED_ EE 9 A_FaceTarget();
+	IED_ F 2;
+	IED_ F 0 A_Recoil(-6);
+	IED_ F 0 ThrustThingZ(0,16,0,1);
+	IED_ G 2;
+    IED_ G 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	IED_ G 5;
+	IED_ A 0 A_Jump(240,"See2","See3","See6","See8","See9");
+    Goto See;
+  MeleeClose:
+    IED_ EF 10 A_FaceTarget();
+    IED_ G 10 A_CustomMeleeAttack(random(2,16)*1,"ZombieFodder/Melee");
+    Goto See;
+  Bite:
+	IED_ B 3;
+	IED_ BB 3 A_FaceTarget();
+	IED_ B 0 A_Recoil(-10);
+	IED_ B 0 ThrustThingZ(0,6,0,1);
+	IED_ B 2;
+    IED_ C 8 A_SpawnProjectile("HorrorLunge",18,0,0,CMF_AIMDIRECTION);
+	IED_ C 3;
+	IED_ C 0 A_Jump(240,"See2","See3","See6","See8","See9");
+    Goto See;
+  Pain:
+    ZFOD H 1;
+    IED_ H 1 A_Pain;
+	IED_ H random(2,18);
+	IED_ H 0 A_Jump(128,"See","Suicide");
+    Goto SeeAngry;
+  Suicide:
+	IED_ A 0
+	{
+		A_StartSound("FAfflicted/Howl",CHAN_VOICE,volume:0.7,pitch:0.64);
+		bNOPAIN = true;
+		isbomb = true;
+		pm_attackloop = random(5, 8);
+	}
+	IED_ A 0
+	{
+		if (--pm_attackloop > 0) IEDBeep(32);
+		else
+		{
+			A_Die();
+			SetStateLabel("XDeath");
+		}
+	}
+	IED_ AAABBB 1 Fast
+	{
+		A_FaceTarget(50, 50);
+		A_Recoil(-1);
+	}
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	IED_ CCCDDD 1 Fast
+	{
+		A_FaceTarget(30, 30);
+		A_Recoil(-1);
+	}
+	IED_ A 0 A_StartSound("Horrorspawn/Step",6);
+	Goto Suicide+1;
+  Death:
+	IED_ I 0
+	{
+		if (isbomb)
+			SetStateLabel("XDeath");
+	}
+    IED_ I 7;
+    IED_ J 7 A_Scream;
+    IED_ K 5 A_NoBlocking;
+    IED_ L 5;
+	IED_ L 0 A_StartSound("Corpse/Fall",6);
+    IED_ M random(50, 90);
+	IED_ MMM 13 IEDBeep();
+  XDeath:
+    ZFOD O 2
+	{
+		IEDExplode();
+		PM_Gib();
+	}
+    ZFOD O 2 A_XScream;
+    ZFOD P 3 A_NoBlocking;
+    ZFOD QR 3; 
+    ZFOD S -1;
+    Stop;
+  }
+}

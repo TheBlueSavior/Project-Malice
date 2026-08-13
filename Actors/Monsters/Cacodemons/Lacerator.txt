@@ -1,0 +1,277 @@
+Class PM_Lacerator : PMFamineMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"They are but specialized Fleshspawns that appear to be more matured and overgrown, yet it still is extremely ravenous for carcasses.
+		Relentless as they are, can shoot a spread of balls and can even vomit a lot of substance to slow you down.";
+		Health 400;
+		Radius 20;
+		Height 56;
+		Speed 12;
+		PainChance 50;
+		Mass 500;
+		+FLOORCLIP
+		+HARMFRIENDS
+		+DOHARMSPECIES
+		+QUICKTORETALIATE
+		+SLIDESONWALLS
+		+MISSILEMORE
+		+MISSILEEVENMORE
+		+NOGRAVITY
+		+FLOAT
+		+FLOATBOB
+		FloatBobStrength 0.2;
+		MeleeDamage (20);
+		Monster;
+		SeeSound "Lacerator/Sight";
+		PainSound "Lacerator/Lunge";
+		DeathSound "Lacerator/Death";
+		ActiveSound "Lacerator/Active";
+		Tag "Lacerator";
+		Obituary "%o got lacerated by a Lacerator.";
+		HitObituary "%o was ferociously mauled by a Lacerator.";
+		Species "Cacodemon";
+		Bloodtype "PM_BlackBloodBase";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_DemonicTeleportFog";
+		MeleeThreshold 80;
+		MaxTargetRange 1250;
+	}
+	
+	override void Tick()
+	{
+		super.Tick();
+		if (!level.isFrozen())
+		{
+			vel *= 0.98;
+			HandleEating(400);
+		}
+	}
+   
+	States
+	{
+	Spawn:
+		C11_ D 0 nodelay { eaten = false; }
+	Idle:
+		C11_ A 10 PM_Look();
+		Loop;
+	Look:
+		C11_ A 4 A_JumpIfTargetInLOS("Spotted",270,JLOSF_DEADNOJUMP);
+		Loop;
+	Spotted:
+		C11_ H 0 PM_AlertSound();
+		Goto See;
+	See:
+		C11_ AAAAAAAAA 1
+		{
+			A_Recoil(-0.4);
+			A_Chase();
+		}
+		TNT1 A 0 A_Jump(50, "Rush", "Dodge");
+		Loop;
+	Rush:
+		C11_ AABB 1
+		{
+			vel = (frandom(-1,1),frandom(-1,1),frandom(-1,1));
+			A_SpawnItemEx("PM_GenericPhaseGhost", zofs:6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+			for (int i = random(1,3); i > 0; i--) A_Chase();
+			if (target && distance3D(target) < 150) SetStateLabel("Melee");
+			A_Recoil(-0.5);
+		}
+		TNT1 A 0 A_Jump(10, "See");
+		Loop;
+	Dodge:
+		C11_ B 1
+		{ Vel3DFromAngle(random(15, 25), random(-180, 180), random(-90, 90)); }
+		C11_ BBBBBBBBBBBBBB 1 A_SpawnItemEx("PM_GenericPhaseGhost",flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+		C11_ B 15 A_Stop();
+		Goto See;
+	Pain:
+		C11_ E 10;
+		C11_ F 10 A_Pain();
+		TNT1 A 0 A_Jump(100, "Rush", "Lunge");
+		Goto See;
+	Missile:
+		TNT1 A 0 A_Jump(80, "Balls");
+		TNT1 A 0 A_Jump(60, "Vomit");
+	Lunge:
+		C11_ B 0
+		{
+			A_Stop();
+			A_StartSound("Lacerator/Lunge", CHAN_VOICE);
+		}
+		C11_ BC 8 A_FaceTarget();
+		C11_ D 0
+		{
+			A_FaceTarget();
+			Vel3DFromAngle(30, angle, pitch);
+		}
+		C11_ DDDDDDDDDDDDDDD 2
+		{
+			A_FaceTarget(3, 3);
+			Vel3DFromAngle(30, angle, pitch);
+			A_SpawnItemEx("PM_GenericPhaseGhost",flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+			A_CustomMissile("PM_WeakMeleeHitbox", 24);
+		}
+		C11_ CBA 3 A_Stop();
+		Goto See;
+	Balls:
+		C11_ B 0
+		{
+			A_StartSound("Lacerator/Sight", CHAN_VOICE, pitch: 1.5);
+			A_Stop();
+		}
+		C11_ ABC 5 A_FaceTarget();
+		C11_ DDDDDDDDDDDD random(1,3) A_SpawnProjectile("PM_LaceratorBall",angle:random(-40,40),flags:CMF_OFFSETPITCH|CMF_AIMDIRECTION,pitch:random(25, -25));
+		C11_ CB 3;
+		Goto See;
+	Vomit:
+		C11_ B 0
+		{
+			A_StartSound("Host/AcidCharge", 10, CHANF_OVERLAP, pitch: 0.2);
+			A_StartSound("Host/AcidCharge", 10, CHANF_OVERLAP, pitch: 0.7);
+			A_StartSound("Lacerator/Sight", CHAN_VOICE, pitch: 1.5);
+			A_StartSound("GenericChargeHeavy", 12);
+			A_Stop();
+		}
+		C11_ ABCCCCCCCCCCCCCCCCCCCCCCCCCCC random(1, 2)
+		{
+			A_FaceTarget(10, 10);
+		}
+		C11_ D 0
+		{
+			A_StartSound("Abductor/Scream1", 13, volume: 0.75, pitch: 0.75);
+			A_StartSound("Abductor/Sight", 11, pitch: 1.2);
+		}
+		C11_ DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD 1
+		{
+			A_FaceTarget(1, 1);
+			A_SpawnProjectile("PM_LaceratorVomit", flags: CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch: pitch);
+		}
+		Goto See;
+	Death:
+		C11_ F 15 { bSPRITEFLIP = false; }
+		C11_ G 5 A_ScreamAndUnblock();
+		C11_ H 4 A_SpawnItemEx("PM_BlackMeatChunkLauncher",random(-2,2),random(-2,2),random(20,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		C11_ IJKL 4 A_SpawnItemEx("PM_BlackInstestinGib",random(-4,4),random(-4,4),random(25,35),random(-3,3),random(-3,3),random(0,5),random(-180,180),SXF_NOCHECKPOSITION);
+		C11_ L -1;
+		Stop;
+	Melee:
+		C11_ B 10 A_StartSound("PMWheetigo/Attack", CHAN_VOICE, pitch: 1.35);
+		C11_ C 3 A_FaceTarget();
+		C11_ D 3
+		{
+			A_StartSound("Doom4/Other/MeleeSwing",22,CHANF_OVERLAP,pitch:1.75);
+			A_Recoil(-10);
+			A_SpawnProjectile("PM_MeleeHitbox",flags:CMF_AIMDIRECTION,pitch);
+		}
+		C11_ C 2 A_FaceTarget();
+		C11_ F 0 { if (target && Distance3D(target) > 150) SetStateLabel("See"); }
+		Loop;
+	Eat:
+		C11_ BCDCBABCDBCA 4;
+		C11_ A 0 { eaten = false; bNOPAIN = false; }
+		Goto See;
+	Raise:
+		F_HD LKJIHGF 7;
+		Goto See;
+	}
+}
+
+Class PM_LaceratorBall : DoomImpBall
+{
+  Default
+  {
+  Speed 20;
+  Scale 0.27;
+  BounceType "Hexen";
+  BounceFactor 0.9;
+  DamageFunction (10);
+  WallBounceFactor 1.2;
+  BounceCount 2;
+  SeeSound "";
+  BounceSound "Grievance/HomingExp";
+  DeathSound "imp/shotx";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.13,0.96,0.88]";
+  DamageType "Fire";
+  Decal " ";
+  +BOUNCEONWALLS
+  +BOUNCEONCEILINGS
+  +BOUNCEONFLOORS
+  +NEVERFAST
+  +CANBOUNCEWATER
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay A_StartSound("PhaseCaco/Fire",pitch:frandom(1.5,1.85));
+	SPKO A 1 Bright
+	{
+		A_SpawnItemEx("PM_NymphiteDrool",0,frandom(-2,2),frandom(-2,2),flags:SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+		A_SpawnItemEx("PM_GreenFlameTrails",0,frandom(-6,6),frandom(-6,6),frandom(-2,0),flags:SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+		A_SpawnItemEx("PM_PhaseCacoBallTrail",0,frandom(-2,2),frandom(-2,2),flags:SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	}
+	Goto Spawn+1;
+  Death:
+  XDeath:
+	TNT1 A 0 A_StartSound("Nymphite/BallPop",CHAN_7,volume:0.5,pitch:frandom(0.7, 1.3));
+	TNT1 A 0 A_StartSound("PhaseCaco/BallExp",CHAN_6,pitch:1.5);
+	TNT1 AAA 0 A_SpawnItemEx("PM_HuskFireGlobs",0,0,0,random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+	TNT1 AAA 0 A_SpawnItemEx("PM_RedShock",0,frandom(-2,2),frandom(-2,2),frandom(-2,2),frandom(-2,2),frandom(-2,2),flags:SXF_TRANSFERTRANSLATION);
+	TNT1 A 0 A_QuakeEx(1,1,1,10,0,300,0,0,0,0,0,150);
+	Stop;
+	}
+}
+
+Class PM_LaceratorVomit : PMProjectileBase
+{
+  Default
+  {
+  Projectile;
+  DamageFunction (random(2,3));
+  Speed 30;
+  Scale 1.5;
+  BounceCount 2;
+  SeeSound "";
+  BounceSound "Grievance/HomingExp";
+  DeathSound "imp/shotx";
+  Translation "0:255=%[0.00,0.00,0.00]:[1.13,0.96,0.88]";
+  DamageType "Drowning";
+  Gravity 0.2;
+  Decal " ";
+  +NEVERFAST
+  +CANBOUNCEWATER
+  -NOGRAVITY
+  }
+  States
+  {
+  Spawn:
+	TNT1 A 0 NoDelay
+	{
+		vel.z += 0.5;
+		A_StartSound("PhaseCaco/Fire",pitch:frandom(1.5,1.85));
+	}
+	TNT1 A random(1,4) A_SpawnItemEx("PM_NymphiteDrool",0,frandom(-2,2),frandom(-2,2),frandom(5, 10),frandom(-3,3),frandom(-3,3),flags:SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	Goto Spawn+1;
+  Death:
+  XDeath:
+	TNT1 A 0;
+	TNT1 A 0 A_RadiusGive("PM_LaceratorSlowdown",40,RGF_PLAYERS|RGF_MONSTERS,1);
+	TNT1 AAA 0 A_SpawnItemEx("PM_NymphiteDrool",0,frandom(-2,2),frandom(-2,2),frandom(-5,5),frandom(-5,5),frandom(-3,8),flags:SXF_TRANSFERTRANSLATION|SXF_TRANSFERSCALE);
+	TNT1 A 0 A_QuakeEx(1,1,1,10,0,300,0,0,0,0,0,150);
+	Stop;
+	}
+}
+
+Class PM_LaceratorSlowdown : PowerSpeed
+{
+	Default
+	{
+		Speed 0.6;
+		Powerup.Color "78736d", 0.2;
+		Powerup.Duration -4;
+		Inventory.Icon "";
+		+POWERSPEED.NOTRAIL;
+	}
+}

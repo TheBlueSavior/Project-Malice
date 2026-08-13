@@ -3,6 +3,8 @@ Class PM_Host : PMPestilenceMonsterBase
     Default
 	{
 	//$Category "PM_Monsters/Imps"
+	PMMonsterBase.CodexLore
+	"placeholder text.";
     Obituary "%o was poisoned by a Host.";
     HitObituary "A Host had %o for lunch.";
     Health 125;

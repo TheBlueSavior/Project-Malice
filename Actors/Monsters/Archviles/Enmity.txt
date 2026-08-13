@@ -1,0 +1,769 @@
+Class PM_Enmity : PMEnvyMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"\c[Green]O, beware, my lord, of jealousy! It is the green-eyed monster, which doth mock the meat it feeds on.\c-
+		The paladins of Envy, and the most agile from the circle. They are best known for their powerful mimicry abilities and their teleporation speeds.
+		When they encounter rebels or oppressors, they tend to absorb their strengths to weaken them, sometimes even obtaining their powers as a result. It could be known that it may have defeated other of their species from lower circles of sin.
+		
+		They can summon a orbital beam beneath the player as a normal attack. Sometimes, they can also copy \c[Green]YOU.\c-";
+		Tag "Enmity";
+		Scale 1.1;
+		Health 800;
+		Radius 20;
+		Height 56;
+		Mass 500;
+		Speed 13;
+		PainChance 55;
+		//MaxTargetRange 896;
+		Species "Archvile";
+		DamageFactor "Vile", 0;
+		PainChance "Vile", 0;
+		Obituary "%o has gone off the deep end.";
+		SeeSound "PMEnmity/Sight";
+		PainSound "PMEnmity/Pain";
+		DeathSound "PMEnmity/Death";
+		ActiveSound "PMEnmity/Active";
+		Bloodtype "PM_DarkGreenBloodBase";
+		+NOTARGET
+		+DONTHARMSPECIES
+		+DONTHARMCLASS
+		+NOINFIGHTSPECIES
+		+NOINFIGHTING
+		+MISSILEMORE
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_EnvyTeleportFog";
+		StencilColor "DarkGreen";
+		BloodColor "DarkGreen";
+	}
+	
+	bool isPlayer;
+	int neg;
+	
+	void PM_EnmityFX()
+	{
+		if (!random(0, 1)) A_SpawnParticleEx("55ff55", TexMan.CheckForTexture("FIG1A0"), STYLE_Add, SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL, random(50, 256), random(40,200), xoff: frandom(-100, 100), yoff: frandom(-100, 100), zoff: 50 + frandom(-20, 20), velx: frandom(-1, 1), vely: frandom(-1, 1), velz: frandom(-.51, .51), startalphaf: frandom(0.3, 0.45), sizestep: frandom(0, 2), startroll: random(-180,180), rollvel: frandom(-4, 4));
+		if (!random(0, 4)) A_SpawnParticleEx("", TexMan.CheckForTexture("GRNLA0"), style: STYLE_Add, flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT, lifetime: random(1,25), size: frandom(1,300), xoff: frandom(-60,60), yoff: frandom(-60,60), zoff: frandom(40,110), velx: random(-1,1), vely: random(-1,1), velz: random(-1,1), startalphaf: frandom(0.1, 0.5), fadestepf: -1, sizestep: frandom(-5,5), startroll: random(-180,180), rollvel: frandom(-2,2));
+	}
+	
+	void CopyFX(name sprt = "EILE")
+	{
+		A_StartSound("PMGreaterSigil", 20);
+		A_StartSound("Envy/SigilSummon", 21, volume: 0.75, pitch: 0.9);
+		A_StartSound("PM/EnvyTele", 22, volume: 0.75, pitch: 0.9);
+		
+		A_SpawnItemEx("PM_GreatEnvyCircle", flags: SXF_NOCHECKPOSITION);
+		let spr = Spawn("PM_GreatEnvySprite", Vec3Offset(0, 0, 6));
+		if (spr)
+		{
+			spr.sprite = GetSpriteIndex(sprt);
+			spr.angle = angle;
+			spr.scale = scale;
+		}
+	}
+	
+	void Strafe()
+	{
+		ThrustThing(angle * 256 / 360 + 18.7, random(-6, 6), 0, 0);
+			
+		if (target && distance3D(target) < 300)
+			A_Recoil(frandom(0, 1));
+		if (target && distance3D(target) < 900)
+			A_Recoil(frandom(0, -1));
+	}
+	
+	void PlayerRevert()
+	{
+		isPlayer = false;
+		scale = (1.1, 1.1);
+		A_StartSound("Draugr/BuffStart",10,volume:0.45,pitch:1.65);
+		for(int a=0;a<20;a++)
+		{ A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(75,80),xoff: random(-15,15),yoff: random(-30,30),zoff: random(20,50),velx: random(-5,5),vely: random(-5,5),velz: random(-5,5)); }
+	}
+	
+	void CopyImmolatorExplode()
+	{
+			A_StartSound("PMInfernal/MeleeBlast",23,pitch:1.25);
+			A_StartSound("BigExplosionDistant",24);
+			A_StartSound("GenericCometExp",25,pitch:1.25);
+			A_QuakeEx(3,3,2,80,0,1250,"",QF_SCALEDOWN|QF_3D);
+			A_RadiusThrust(10000,300);
+			A_Explode((75),310,XF_NOTMISSILE,0,50,0,0,"BulletPuff","Vile");
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("DTPRA0", TexMan.Type_Sprite),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: 8,
+			size: 360,
+			angle: 0,
+			zoff: 40,
+			startalphaf: 1,
+			startroll: random(-180,180)
+			);
+			A_SpawnParticleEx
+			(   
+			"",
+			TexMan.CheckForTexture("PBALC0", TexMan.Type_Sprite),
+			style: STYLE_Add,
+			flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,
+			lifetime: 20,
+			size: 800,
+			xoff: 0,
+			yoff: 0,
+			zoff: 50,
+			startalphaf: 1,
+			fadestepf: -1,
+			sizestep: -25,
+			startroll: random(-180,180)
+			);
+			for (int i = 30; i > 0; i--)
+			{
+			A_SpawnParticleEx
+			(
+			"727272",
+			TexMan.CheckForTexture("DUSTC0", TexMan.Type_Sprite),
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(40,70),
+			size: frandom(2,35),
+			angle: 0,
+			xoff: 0,
+			yoff: 0,
+			zoff: random(10,60),
+			velx: frandom(-8,8),
+			vely: frandom(-8,8),
+			velz: frandom(-8,12),
+			accelx: 0,
+			accely: 0,
+			accelz: frandom(-0.1,-0.5),
+			startalphaf: 1.0,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-4,4),
+			rollacc: 0
+			);
+			A_SpawnParticleEx
+			(
+			"6C6C6C",
+			TexMan.CheckForTexture("GNSMK0", TexMan.Type_Sprite),
+			style: STYLE_Normal,
+			flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(30,60),
+			size: frandom(80,220),
+			zoff: random(10,60),
+			velx: random(-9,9),
+			vely: random(-9,9),
+			velz: random(-9,9),
+			startalphaf: frandom(0.4,0.75),
+			fadestepf: -1,
+			sizestep: 12,
+			startroll: random(-180,180),
+			rollvel: random(-2,2)
+			);
+			A_SpawnParticleEx
+			(
+			"",
+			TexMan.CheckForTexture("SPKOG0", TexMan.Type_Sprite),
+			style: STYLE_Add,
+			flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,
+			lifetime: random(80,120),
+			size: frandom(1,35),
+			zoff: random(10,60),
+			velx: random(-8,8),
+			vely: random(-8,8),
+			velz: random(-8,8),
+			accelz: frandom(-0.1,-0.3),
+			startalphaf: 1,
+			fadestepf: 0,
+			sizestep: -0.2,
+			startroll: random(-180,180),
+			rollvel: random(-2,2)
+			);
+			}
+			A_ChangeVelocity(0,0,0,CVF_REPLACE);
+			for (int i = 10; i > 0; i--) A_SpawnItemEx("PM_NobleFireShrapnel",0,0,30,random(-2,15),random(-2,15),random(-2,15),0,SXF_NOCHECKPOSITION);
+			for (int i = 5; i > 0; i--) A_SpawnItemEx("PM_CopyHuskMeteorFire",random(-150,150),random(-150,150),0,0,0,0,0,SXF_NOCHECKPOSITION);
+			for (int i = 2; i > 0; i--) A_SpawnItemEx("PM_BruiserExplosionFlareSpawner",0,0,40,0,0,0,0,SXF_NOCHECKPOSITION,0);
+			for (int i = 5; i > 0; i--) A_SpawnItemEx("PM_BruiserFireGlobs",-10,0,40,random(-3,3),random(-3,3),random(-2,3),0,SXF_NOCHECKPOSITION);
+	}
+	
+	States
+	{
+	Spawn:
+		A06_ P 0 NoDelay;
+	Idle:
+		A06_ A 10 PM_Look();
+		Loop;
+	Look:
+		A06_ AAABBBCCC 3 PM_LookingForPlayer();
+		TNT1 A 0 A_StartSound("Exile/Step",CHAN_5);
+		TNT1 A 0 A_JumpifTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+		A06_ DDDEEEFFF 3 PM_LookingForPlayer();
+		TNT1 A 0 A_StartSound("Exile/Step",CHAN_5);
+		TNT1 A 0 A_CheckSight("See");
+		Goto Spotted;
+	Spotted:
+		TNT1 A 0 PM_AlertSound();
+	See:
+		A06_ AAABBBCCC 3 A_VileChase();
+		TNT1 A 0 A_StartSound("Exile/Step",CHAN_5);
+		A06_ DDDEEEFFF 3 A_VileChase();
+		TNT1 A 0 A_StartSound("Exile/Step",CHAN_5);
+		TNT1 A 0 A_Jump(2, "Teleportation", "CopyPlayer");
+		Loop; 
+	Heal:
+		A06_ G 4;
+		A06_ "[][][][" 4;
+		A06_ G 4;
+		Goto See;
+	Missile:
+		TNT1 A 0 A_Jump(45, "CopyPlayer");
+		TNT1 A 0 A_Jump(80, "Copy");
+		TNT1 A 0 A_Jump(100, "TeleportationMissile");
+		Goto Laser;
+	Melee:
+	Laser:
+		A06_ P 0
+		{
+			neg = randompick(-1, 1);
+			pm_attackloop = 50;
+			A_StartSound("PM/GigalaserStart", 40, pitch: 1.3);
+		}
+		A06_ PPPPPPPPPPPPPPPPPPPPPPPP 1
+		{
+			A_FaceTarget();
+			
+			A_SpawnParticleEx
+			(
+			"00ff99",
+			TexMan.CheckForTexture("FIG1A0",TexMan.Type_Sprite), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(1, 6), size: frandom(80,1), xoff: 10, zoff: 56,
+			startalphaf: 1, fadestepf: -1, sizestep: -10, 
+			startroll: random(-180,180), rollvel: frandom(-1,1)
+			);
+		}
+		A06_ PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP 1
+		{
+			A_FaceTarget(2, 2);
+			 
+			A_SpawnParticleEx
+			(
+			"00ff99",
+			TexMan.CheckForTexture("FIG1A0",TexMan.Type_Sprite), style: STYLE_Add, flags: SPF_RELATIVE|SPF_ROLL,
+			lifetime: random(1, 6), size: frandom(80,1), xoff: 10, zoff: 56,
+			startalphaf: 1, fadestepf: -1, sizestep: -10, 
+			startroll: random(-180,180), rollvel: frandom(-1,1)
+			);
+		}
+		A06_ P 0
+		{
+			A_StartSound("Exile/ShieldSpawn", 40, CHANF_OVERLAP, pitch: 0.65);
+			A_StartSound("Grievance/Launch", 40, CHANF_OVERLAP, attenuation: 0.5, pitch: 0.7);
+		}
+		Goto BLARG;
+	BLARG:
+		A06_ O 1
+		{
+			A_SpawnProjectile("PM_EnmityLaser", 56, 0, pm_attackloop * neg, CMF_OFFSETPITCH|CMF_AIMDIRECTION, 13);
+			A_FaceTarget(1, 1);
+			
+			pm_attackloop -= 4;
+			
+			if (pm_attackloop <= -51) SetStateLabel("Cooldown");
+		}
+		Loop;
+	Cooldown:
+		A06_ PA 20 A_FaceTarget();
+		Goto See;
+	Copy:
+		A06_ E 0
+		{
+			A_StartSound("GenericChargeHeavy", 20);
+		}
+		A06_ GGGHHHIIIJJJKKKLLL 1 Light("FeralImpFireball3") A_FaceTarget();
+		A06_ D 0 A_Jump(256, "CopyExile", "CopyFleshMason", "CopyImmolator");
+		Goto CopyExile;
+	CopyExile:
+		A06_ L 1
+		{
+			A_StartSound("Exile/Attack",12,volume:0.7,pitch:0.8);
+			CopyFX();
+			pm_attackloop = random(3, 4);
+		}
+		A06_ LLLLLMMMMMLLLLLMMMMMLLLLLMMMMM 1 Light("FeralImpFireball3")
+		{
+			A_FaceTarget();
+			PM_EnmityFX();
+		}
+		Goto ExileLoop;
+	ExileLoop:
+		A06_ O 10 Light("FeralImpFireball2")
+		{
+			pm_attackloop--;
+			A_FaceTarget();
+			A_StartSound("Exile/GroundStart",CHAN_6);
+			A_SpawnProjectile("PM_CopyExileGroundFlames",20,0,random(-20,20));
+			for (int i = 6; i > 0; i--) A_SpawnItemEx("PM_NobleBombExplosionFlames",10,0,random(0,40),random(-4,4),random(-4,4),random(-4,4));
+		}
+		A06_ PP 5 Light("FeralImpFireball2")
+		{
+			A_FaceTarget();
+			if(!random(0, 2))
+			{
+				A_StartSound("Exile/ShieldSpawn",6,CHANF_OVERLAP);
+				A_SpawnProjectile("PM_CopyExileOrbShower",28,0,random(-80,80));
+			    A_SpawnProjectile("PM_CopyExileOrbShowerRise",28,0,random(-30,30),CMF_AIMDIRECTION|CMF_OFFSETPITCH,frandom(-80,-100));
+			}
+			if (pm_attackloop <= 0) SetStateLabel("See");
+		}
+		Loop;
+	CopyFleshMason:
+		A06_ L 1
+		{
+			A_StartSound("FleshMason/Active",12,volume:0.7,pitch:0.8);
+			CopyFX("LMWZ");
+			pm_attackloop = random(3, 4);
+		}
+		A06_ LLLLLMMMMMLLLLL 1 Light("FeralImpFireball3")
+		{
+			A_FaceTarget();
+			PM_EnmityFX();
+		}
+		A06_ A 0 A_StartSound("CivZombie/MutationRip",15);
+		A06_ LLLMMMLLLMM 2
+		{
+			A_FaceTarget();
+			PM_EnmityFX();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+		}
+		A06_ MLLLMMMLLLM 1
+		{
+			A_FaceTarget();
+			A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,2),random(-2,2),random(0,2),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+		}
+		A06_ O 20
+		{
+			A_StartSound("GBloodSplashBig",16, volume:.5);
+			A_StartSound("ArachExpGore",17,CHANF_DEFAULT,0.5);
+			A_StartSound("FleshMason/Heart",18, attenuation: 0.75);
+			
+			for (int i = random(10, 22); i > 0; i--) A_SpawnItemEx("PM_TumorBurstBlood",random(-5,5) + 8,random(-5,5),70,random(0,8),random(-8,8),random(0,8),0,SXF_NOCHECKPOSITION|SXF_USEBLOODCOLOR);
+			for (int i = random(6, 2); i > 0; i--) A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-5,5) + 8,random(-5,5),70,random(0,4),random(-4,4),random(0,5),0,SXF_NOCHECKPOSITION);
+			
+			A_Facetarget();
+			Radius_Quake(4, 10, 0, 10, 0);
+			for (int i = -1; i < 2; i += 2)
+				A_SpawnItemEx("PM_CopyMasonHeart",0,0,65,random(2,6),random(-1,1),random(-1,1),random(-50,50)+(50*i),SXF_SETMASTER);
+		}
+		A06_ P 20;
+		Goto See;
+	CopyPlayer:
+		A06_ Q 15 A_FaceTarget();
+		TNT1 A 0
+		{
+			isPlayer = true;
+			scale = (1, 1);
+			A_StartSound("Draugr/BuffStart",10,volume:0.35,pitch:0.45);
+			A_StartSound("Envy/SigilSummon",11,volume:0.5,pitch:frandom(0.6,1));
+			for(int a=0;a<20;a++)
+			 { A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(75,80),xoff: random(-15,15),yoff: random(-30,30),zoff: random(20,50),velx: random(-5,5),vely: random(-5,5),velz: random(-5,5)); }
+		}
+		PLAY G 10 A_FaceTarget();
+		Goto PlayerMode;
+	CopyImmolator:
+		A06_ L 1
+		{
+			A_StartSound("Immolator/Sight",12,volume:0.7,pitch:0.8);
+			CopyFX("A04_");
+			pm_attackloop = random(3, 4);
+		}
+		A06_ LLLLLMMMMMLLLLL 1 Light("FeralImpFireball3")
+		{
+			A_FaceTarget();
+			PM_EnmityFX();
+		}
+		TNT1 A 0 A_SetSpeed(35);
+		A06_ MLK 5 A_FaceTarget();
+		A06_ M 0
+		{
+			for (int i = 0; i < 256; i++)
+			{
+				A_FaceTarget();
+				if (target)
+				{
+				if (distance3D(target) > 120)
+				{
+					A_Chase(null, null);
+					if (CheckSight(target)) A_SpawnItemEx("PM_BruiserFireGlobs",0,0,30,0,0,0,0,128);
+				}
+				else SetStateLabel("ImmolatorExplode");
+				}
+			}
+		}
+		Goto See;
+	ImmolatorExplode:
+		A06_ M 1
+		{
+			A_StartSound("GenericChargeHeavy", CHAN_7);
+			A_StartSound("Immolator/Attack", CHAN_VOICE);
+			A_StartSound("Watcher/ShardCharge",11);
+			A_SetSpeed(13);
+		}
+		A06_ LLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLLLMMMLL 1 PM_EnmityFX();
+		A06_ I 0 CopyImmolatorExplode();
+		A06_ OPPA 10 A_FaceTarget();
+		Goto See;
+	PlayerMode:
+		PLAY AABBCCDD 2
+		{
+			A_FaceTarget();
+			Strafe();
+		}
+		PLAY A 0
+		{
+			if (target && CheckSight(target) && !random(0, 6) && Distance3D(target) < 200)
+				SetStateLabel("PlayerRevert");
+		}
+		Loop;
+	PlayerRevert:
+		TNT1 A 0 PlayerRevert();
+		A06_ PPPPPPPPPPPPP 1 Light("GreenBall2") 
+		{
+			for(int a=0;a<random(1,5);a++)
+			{ A_SpawnParticle("80FF38",flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(20,40),size: random(15,20),xoff: random(-20,20),yoff: random(-30,30),zoff: random(20,45),velz: frandom(0.5,3)); }
+			A_SpawnItemEx("PM_EnvyMorphGhost",zvel:1,flags:SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE);
+		}
+		Goto See;
+	Pain:
+		A06_ Q 0 { if (isPlayer) PlayerRevert(); }
+		A06_ Q 3 A_Jump(60, "Teleportation");
+		A06_ Q 3 A_Pain();
+		Goto See;
+	Teleportation:
+		A06_ Q 5 { bFRIGHTENED = true; bNOPAIN = true; }
+		A06_ Q 0
+		{
+			A_StartSound("PM/EnvyTeleport", 22, pitch: 1.5);
+			A_StartSound("Director/PsychicTeleport", 23, pitch: 1.5);
+			A_QuakeEx(1,1,1,30,0,550,"",QF_SCALEDOWN|QF_3D,rollintensity:1,rollwave:0.5);
+			for (int i = 0; i < 75; i++)
+			{
+				PM_EnmityFX();
+				A_SpawnItemEx("PM_GenericPhaseGhost", zofs:6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+				A_Chase(null, null);
+			}
+		}
+		A06_ Q 10 { bFRIGHTENED = false; bNOPAIN = false; }
+		A06_ A 10;
+		Goto See;
+	TeleportationMissile:
+		A06_ Q 5 { bFRIGHTENED = true; bNOPAIN = true; }
+		A06_ Q 0
+		{
+			A_StartSound("PM/EnvyTeleport", 22, pitch: 1.5);
+			A_StartSound("Director/PsychicTeleport", 23, pitch: 1.5);
+			A_QuakeEx(1,1,1,30,0,550,"",QF_SCALEDOWN|QF_3D,rollintensity:1,rollwave:0.5);
+			for (int i = 0; i < 40; i++)
+			{
+				PM_EnmityFX();
+				A_SpawnItemEx("PM_GenericPhaseGhost", zofs:6, flags: SXF_TRANSFERSPRITEFRAME|SXF_TRANSFERSCALE|SXF_TRANSFERRENDERSTYLE|SXF_TRANSFERSTENCILCOL);
+				A_Chase(null, null);
+			}
+		}
+		A06_ Q 10 { bFRIGHTENED = false; bNOPAIN = false; }
+		Goto Missile;
+	Death:
+		A06_ Q 5 { if (isPlayer) PlayerRevert(); }
+		A06_ R 6
+		{
+			bNOGRAVITY = false;
+			bFLOAT = false;
+			A_ScreamAndUnblock();
+			for (int i = 6; i > 0; i--) A_SpawnItemEX("PM_ArachExpGoreSplash", 0, 0, 15, random (-3, 3), random(-3,3), random (4, 15), flags: SXF_USEBLOODCOLOR);
+			for (int i = 5; i > 0; i--) A_SpawnItemEx("PM_DarkGreenBloodMulti",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
+			for (int i = 3; i > 0; i--) A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
+		}
+		A06_ RSTUV 5 A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-2,2),random(-2,2),random(10,40),0,0,0,0,SXF_NOCHECKPOSITION,60);
+		A06_ WX 5;
+		A06_ Y 5 A_StartSound("Corpse/FallMed",CHAN_BODY);
+		A06_ Z -1;
+		Stop;
+	}
+}
+
+Class PM_EnmityLaser : PM_DraugrLightningArcs
+{
+  Default
+  {
+  Speed 50;
+  DamageFunction 10;
+  DamageType "Vile";
+  Decal "PM_GreenFireScorch";
+  +MTHRUSPECIES
+  Scale 0.5;
+  }
+  
+  override void PostBeginPlay()
+ {
+ Super.PostBeginPlay();
+ tex[0] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+ tex[1] = TexMan.CheckForTexture("FIG1A0",TexMan.Type_Sprite);
+ tex[2] = TexMan.CheckForTexture("PBALC0",TexMan.Type_Sprite);
+ tex[3] = TexMan.CheckForTexture("GRNLA0",TexMan.Type_Sprite);
+ }
+	
+  States
+  {
+  
+  Death:
+	    TNT1 A 0
+		{
+			Radius_Quake(3, 24, 0, 6, 0);
+			A_SpawnParticleEx
+			 ( "", tex[1], style: STYLE_Add, flags: SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL, lifetime: random(2,20),
+			 size: random(200,500), startalphaf: 0.95, fadestepf: -1, sizestep: -15, startroll: random(-180,180) );
+			for (int i = random(3, 6); i > 0; i--)
+			{
+				let glob = Spawn("PM_FireGlobs", pos);
+				if (glob)
+				{
+					glob.vel.x = random(-1, 1);
+					glob.vel.y = random(-1, 1);
+					glob.vel.z = random(-1, 1);
+					glob.SetShade("26fc75");
+					glob.A_SetRenderStyle(1, STYLE_AddShaded);
+				}
+			}
+		}
+		Stop;
+	}
+}
+
+//Copy Attacks
+Class PM_CopyExileGroundFlames : PM_ExileGroundFlames
+{
+	Default
+	{
+		Speed 20;
+	    Translation "0:255=%[0.00,0.00,0.00]:[0.85,2.00,0.01]";
+	}
+
+	States
+	{
+		Spawn: 
+			TNT1 A 1;
+			TNT1 A 0 A_StartSound("Exile/GroundLoop",CHAN_7,CHANF_LOOPING,0.7);
+		Go:
+			FLME ABCDEFGHIJKLM 1 Bright Light("HectebusBallLight") 
+			{
+				A_SpawnItemEx("PM_LargerRedFlare",zofs:10,flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+				A_SpawnItemEx("PM_LargerRedFlare",zofs:10,flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+				A_SeekerMissile(1,1);
+				A_SpawnItemEx("PM_ExileGroundFlameTrail",random(-6,6),random(-6,6),flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			}
+			TNT1 A 0 Bright A_CountDown();
+			Loop;
+		Death:
+			TNT1 A 0 A_StopSound(CHAN_7);
+			TNT1 A 1 Bright A_RadiusThrust(1000,90);
+			TNT1 AAA 0 A_SpawnItemEx("PM_ExplosionFlareSpawner",flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			TNT1 A 0 A_SpawnItemEx("OrangeShockwave",flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			TNT1 AAAAAAAA 0 A_SpawnItemEx("PM_NobleBombExplosionFlames",10,0,random(0,40),random(-4,4),random(-4,4),random(-2,7));
+			Stop;
+	}
+}
+
+Class PM_CopyExileOrbShowerRise : PM_ExileOrbShowerRise { }
+Class PM_CopyExileOrbShower : PM_ExileOrbShower
+{
+	Default
+	{
+		Speed 6;
+		Translation "0:255=%[0.00,0.00,0.00]:[0.85,2.00,0.01]";
+	}
+	
+	States
+	{
+	Spawn:
+		SBLL AABBCC random(0, 4)
+		{
+			vel.x += frandom(-2, 2);
+			vel.y += frandom(-2, 2);
+			A_Wander();
+			time++;
+			
+			if (time > 100) SetStateLabel("Death");
+		}
+		SBLL A random(3, 16) A_SpawnProjectile("PM_CopyExileOrb",-24,random(0,128),random(0,360),2,-random(1,89));
+		Loop;
+	}
+}
+
+Class PM_CopyExileOrb : PM_ExileOrb
+{
+	Default
+	{
+		Translation "0:255=%[0.00,0.00,0.00]:[0.85,2.00,0.01]";
+		Decal "GreenFireScorch";
+	}
+	
+	override void PostBeginPlay()
+	{
+	 Super.PostBeginPlay();
+	 tex[0] = TexMan.CheckForTexture("FRPGE0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("GNSML0",TexMan.Type_Sprite);
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay;
+		TNT1 A 1 Light("Feralfireball1")
+		{
+			vel.x += frandom(-3, 3);
+			vel.y += frandom(-3, 3);
+			
+			A_StartSound("PMInfernal/Explode", 40, volume: 0.6, pitch: frandom(1.5, 2.5));
+			A_SpawnItemEx("PM_SmallDemonicTeleportFog");
+		}
+		Goto Go;
+	Go:
+		COMT AABBCC 1 Light("Feralfireball1")
+		{
+			roll = frandom(0, 360);
+			
+			vel.z = clamp(vel.z, -17, 17);
+			
+			A_SpawnItemEx("PM_CadaverFireGlobs",flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+			A_SpawnParticleEx("",tex[0],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: 1,size: frandom(10.0,30.0),startalphaf: frandom(0.8,1),startroll: random(-180,180));
+			A_SpawnParticleEx("",tex[1],style: STYLE_None,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(60,100),size: 20.0,startalphaf: frandom(0.3,0.55),fadestepf: -1,sizestep: frandom(0.0,0.8),startroll: random(-180,180));
+		}
+		Loop;
+	Death:
+		TNT1 A 0 { for (int i = 360; i > 0; i -= random(30, 60)) A_SpawnItemEx("PM_OFireBallExplode", xvel: frandom(-2, 2), yvel: frandom(-2, 2), zvel: frandom(-0.75, 0.75),flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION); }
+		TNT1 A 0 A_SpawnItemEx("PM_FireballExplosionFlames",flags:SXF_TRANSFERTRANSLATION|SXF_NOCHECKPOSITION);
+		AFX5 D 2 bright Light("Feralfireball4");
+		AFX5 EFGH 2 Light("Feralfireball4") Bright;
+		Stop;
+	}
+}
+
+Class PM_CopyMasonHeart : PM_MasonHeart
+{
+	Default
+	{
+		Health 100;
+		Tag "Enmity Faux-Heart";
+		Translation "0:255=%[0.00,0.00,0.00]:[0.50,1.48,0.17]";
+	}
+
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("FRPGD0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+    }
+	
+	States
+	{
+		Spawn:
+			HEE_ AAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAABBCCDDDAAA 1 Bright Light("Feralfireball1")
+			{
+				A_Recoil(-.6);
+				vel.x += frandom(-.5, .5);
+				vel.y += frandom(-.5, .5);
+				vel.z += frandom(-.5, .5);
+				vel *= .93;
+				A_FaceTarget();
+				if (!random(0, 10)) A_SpawnProjectile("PM_CopyBloodSpit", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-90, 90));
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			}
+			Goto Go;
+		Go:	
+			HEE_ AAABBCCDDD 1 Bright Light("Feralfireball1")
+			{
+				vel.x += frandom(-1, 1);
+				vel.y += frandom(-1, 1);
+				vel.z += frandom(-1, 1);
+				vel *= .93;
+				if (!random(0, 7)) A_SpawnProjectile("PM_CopyBloodSpit", 0, 0, frandom(0, 360), CMF_OFFSETPITCH, frandom(-90, 90));
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			}
+			TNT1 A 0 A_Jump(60,"Charge");
+			Loop;
+		Charge:
+			HEE_ AAAAAAAAAAAAAA 2 Light("Feralfireball1") 
+			{
+				A_FaceTarget();
+				vel *= .93;
+				A_SpawnParticleEx("00ff00",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+				A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("00ff00",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
+			}
+			BEYE A 0 A_SpawnProjectile("PM_CopyMasonHeartAttack",0,0,0,CMF_TRACKOWNER);
+			Stop;
+		Bounce:
+			TNT1 A 0;
+			Goto Spawn;
+		Death:
+			TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",zofs:3,flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_LargerBloodSplash",0,0,0,random(-7,7),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 A 0 A_SpawnItemEx("PM_RFireBallExplode",flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags:SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180));
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RedGroundOoze",0,0,0,random(-8,8),random(-8,8),random(-8,8),flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 A 0 A_SpawnItemEx("RedGroundStain",flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			BEYX ABC 4 Bright Light("Feralfireball1");
+			Stop;
+	}
+}
+
+Class PM_CopyMasonHeartAttack : PM_MasonHeartAttack
+{
+	Default { Translation "0:255=%[0.00,0.00,0.00]:[0.50,1.48,0.17]"; }
+	
+	override void PostBeginPlay()
+    {
+     Super.PostBeginPlay();
+     tex[0] = TexMan.CheckForTexture("GNSMK0",TexMan.Type_Sprite);
+     tex[1] = TexMan.CheckForTexture("FRPGD0",TexMan.Type_Sprite);
+     tex[2] = TexMan.CheckForTexture("SPKOG0",TexMan.Type_Sprite);
+    }
+	
+	States
+	{
+		Spawn:
+			HEE_ AAABBCCDDD 1 Bright Light("Feralfireball1")
+			{
+				vel.x += frandom(-.1, .1);
+				vel.y += frandom(-.1, .1);
+				vel.z += frandom(-.1, .1);
+				A_SetRoll(roll+5);
+				A_SeekerMissile(2,2,SMF_PRECISE);
+				A_SpawnItemEx("MaliceBloodSplash",frandom(-20, 20),frandom(-20, 20),frandom(-20, 20),random(-1,1),random(-1,1),random(-1,1),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+				A_SpawnItemEx("PM_BelphFlameTrails",random(-20,20),random(-20,20),0,0,0,0,0,128,0);
+				A_SpawnParticleEx("00ff00",tex[0],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE,lifetime: 120,size: 80.0,xoff: -10,startalphaf: 0.4,fadestepf: -1,startroll: random(-180,180));
+				A_SpawnParticleEx("00ff00",tex[2],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(1,70),size: frandom(0.2,20),xoff: random(-10,5),yoff: random(-15,15),zoff: random(-15,15),velx: frandom(-0.6,0.6),vely: frandom(-0.6,0.6),velz: frandom(-0.6,0.6),startalphaf: 1.0,fadestepf: -1,sizestep: -0.2,startroll: random(-180,180));
+				A_SpawnParticleEx("00ff00",tex[1],style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 1,size: 180.0,xoff: -5,startalphaf: 0.6);
+				A_SpawnItemEx("PM_BloodTrail", flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			}
+			Loop;
+		Death:
+			TNT1 A 0 A_SpawnItemEx("PM_TumorBloodMist",zofs:3,flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_LargerBloodSplash",0,0,0,random(-7,7),random(-7,7),random(1,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAAA 0 A_SpawnItemEx("MaliceBloodSplash",0,0,0,random(-4,4),random(-4,4),random(1,10),0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnItemEx("PM_DarkGreenMeatChunkLauncher",random(-2,2),random(-2,2),random(10,30),0,0,0,0,SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 A 0 A_SpawnItemEx("PM_RFireBallExplode",flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 AAAAAA 0 A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOG0"),style: STYLE_Add,flags:SPF_FULLBRIGHT|SPF_RELATIVE|SPF_ROLL,lifetime: random(4,8),size: random(140,220),startalphaf: 0.95,fadestepf: -1,sizestep: -15,startroll: random(-180,180));
+			TNT1 AAAAAAAAAA 0 A_SpawnItemEx("RedGroundOoze",0,0,0,random(-8,8),random(-8,8),random(-8,8),flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			TNT1 A 0 A_SpawnItemEx("RedGroundStain",flags:SXF_NOCHECKPOSITION|SXF_TRANSFERTRANSLATION);
+			BEYX ABC 4 Bright Light("Feralfireball1");
+			Stop;
+	}
+}

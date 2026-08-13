@@ -23,8 +23,8 @@ Class PM_Wheetigo : PMFamineMonsterBase
 		DeathSound "PMWheetigo/Death";
 		ActiveSound "PMWheetigo/Active";
 		Tag "Wheetigo";
-		Obituary "%o thought %h saw a skinwalker.";
-		HitObituary "STOP IT";
+		Obituary "%o thought %h saw a Wheetigo.";
+		HitObituary "%o got murked over and over again by a Wheetigo.";
 		Species "Nobles";
 		Bloodtype "PM_DarkRedBloodBase";
 		TeleFogSourceType "PM_SmallDemonicTeleportFog";

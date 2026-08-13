@@ -1,0 +1,234 @@
+Class PM_Abductor : PMLustMonsterBase
+{
+  Default
+  {
+  PMMonsterBase.CodexLore
+  ".";
+  Health 400;
+  Radius 20;
+  Height 56;
+  Mass 500;
+  Speed 11;
+  PainChance 80;
+  MeleeThreshold 130;
+  MeleeRange 60;
+  Monster;
+  +FLOAT
+  +FLOATBOB
+  +NOGRAVITY
+  +FLOORCLIP
+  +DONTHARMCLASS
+  +DONTHARMSPECIES
+  +DONTHARMCLASS
+  +MISSILEMORE
+  FloatBobStrength 0.1;
+  Species "Revenant";
+  SeeSound "PMAbductor/Sight";
+  PainSound "PMAbductor/Pain";
+  DeathSound "PMAbductor/Death";
+  ActiveSound "PMAbductor/Idle";
+  HitObituary "%o has been stunned by an Abductor.";
+  Obituary "%o's nervous system has been shut down due to the Abductor's knife.";
+  Tag "Abductor";
+  Bloodtype "PM_NormalCyberBloodBase";
+  TeleFogSourceType "PM_SmallDemonicTeleportFog";
+  TeleFogDestType "PM_LustTeleportFog";
+  }
+  
+  States
+  {
+  Spawn:
+	R02_ B 0 NoDelay;
+  Idle:
+	R02_ AAAAAAAAAA 10 PM_Look();
+	R02_ A 0
+	{
+		if (!random(0, 30))
+			A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+	}
+	R02_ A 0 A_Jump(45,"Explore");
+    Loop;
+  Explore:
+	TNT1 A 0
+	{
+		if (!random(0, 12))
+			A_StartSound(activesound,554,volume:frandom(0.1,0.5),pitch:frandom(0.60,0.78));
+	}
+	TNT1 A 0 A_SetSpeed(6);
+	R02_ AAAAAAAAAAA 3
+	{
+	PM_Look();
+	A_Wander();
+	}
+	R02_ A 0 A_Jump(40,"Idle");
+    Loop;
+  Look:
+	TNT1 A 0 A_SetSpeed(11);
+    R02_ A 3 PM_LookingForPlayer();
+	TNT1 A 0 A_JumpIfTargetInLOS("Spotted",180,JLOSF_DEADNOJUMP);
+    Loop;
+  Spotted:
+    TNT1 A 0 A_Jump(60,"SeeNoRoar","SpotMissile","Roar");
+    Goto Roar;
+  SeeNoRoar:
+    TNT1 A 0 PM_AlertSound();
+    Goto See;
+  Roar:
+	R02_ A 10 A_FaceTarget();
+	R02_ F 0 A_StartSound("PMAbductor/Scream", CHAN_VOICE);
+	R02_ FFFFFFFFFFFFFFFFFFFFFF 2
+	{
+		A_FaceTarget();
+		A_SpawnItemEx((!random(0, 2)) ? "MaliceBloodSplash" : "PM_NymphiteDrool", 2, 0, 60, frandom(-2,2), frandom(-2, 2), frandom(1, 4), frandom(0, 360), SXF_NOCHECKPOSITION);
+	}
+	R02_ E 5 A_FaceTarget();
+	Goto See;
+  SpotMissile:
+    TNT1 A 0 PM_AlertSound();
+    R02_ A 10 A_FaceTarget;
+    Goto Missile;
+  See:
+	TNT1 A 0 A_SetSpeed(7);
+    R02_ AAAAA 3 A_Chase();
+	R02_ A 0 A_Jump(10, "Dodge");
+    Loop;
+  Melee:
+    R02_ B 5
+	{
+		A_FaceTarget();
+		A_Recoil(-7);
+		A_StartSound("Doom4/Other/MeleeSwing",20,pitch:0.7);
+	}
+    R02_ BBB 2 A_FaceTarget();
+    R02_ C 2
+	{
+		A_StartSound("Skulker/Miss",21,pitch:0.7);
+		A_CustomMeleeAttack(40,"PM/BulletHitFlesh");
+	}
+	R02_ CCCCC 2 { vel *= 0.9; }
+    Goto See;
+  Dodge:
+	R02_ E 20
+	{
+		A_FaceTarget();
+		Vel3DFromAngle(random(5, 15),frandom(0, 360),frandom(-10, 10));
+	}
+	R02_ E 0 A_Stop();
+	Goto See;
+  Missile:
+	TNT1 A 0 A_Jump(50, "Roar");
+  LightningBeam:
+	R02_ A 5 A_FaceTarget();
+	R02_ E 0
+	{
+		pm_attackloop = random(40, 60);
+		A_StartSound("PMAbductor/Attack", CHAN_VOICE);
+	}
+	R02_ EEEEEEEEEEEEEEEEEEE 2
+	{
+		A_FaceTarget();
+		A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0"),STYLE_Add,SPF_FULLBRIGHT|SPF_ROLL|SPF_RELATIVE,random(2,8),frandom(30, 100),0,8,10,60,frandom(1,4),frandom(-4,4),frandom(-4,4),frandom(-.01,.01),frandom(-.01,.01),frandom(-.01,.01),sizestep:-1,startroll:frandom(0,360),rollvel:frandom(-5,5));
+	}
+	Goto LightningLoop;
+  LightningLoop:
+	R02_ D random(2, 3)
+	{
+		if (--pm_attackloop <= 0) SetStateLabel("Cooldown");
+		A_FaceTarget(5, 10);
+		A_SpawnProjectile("PM_AbductorLightning", 60, 10, 0, CMF_AIMDIRECTION|CMF_OFFSETPITCH, pitch);
+		vel *= 0.8;
+		if (!random(0, 12)) Vel3DFromAngle(random(5, 15),frandom(0, 360),frandom(-10, 10));
+	}
+	Loop;
+  Cooldown:
+	R02_ E 20;
+	Goto See;
+  Pain:
+    R02_ F 4;
+    R02_ F 4 A_Pain;
+    Goto See;
+  Death:
+	R02_ F 1;
+	R02_ F 5
+	{
+		bNOGRAVITY = false;
+		bFLOAT = false;
+		bFLOATBOB = false;
+	}
+	R02_ G 5
+	{
+		A_NoBlocking();
+		PM_Scream();
+	}
+    R02_ HIJ 5
+	{
+		A_SpawnItemEx("PM_NymphiteMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+		A_SpawnItemEx("PM_NormalMeatChunkLauncher",random(-2,2),random(-2,2),random(10,50),0,0,0,0,SXF_NOCHECKPOSITION);
+	}
+	R02_ K 5 A_StartSound("Corpse/FallMetal",CHAN_6);
+    R02_ K -1;
+    Stop;
+  Raise:
+    R02_ KJHIGF 5;
+	R02_ F 0
+	{
+		bNOGRAVITY = true;
+		bFLOAT = true;
+		bFLOATBOB = true;
+	}
+    Goto Look;
+  }
+}
+
+Class PM_AbductorLightning : PMProjectileBase
+{
+	Default
+	{
+		DamageFunction (10);
+		Radius 7;
+		Height 7;
+		+BRIGHT
+		+SEEKERMISSILE
+		Speed 30;
+		FastSpeed 40;
+		RenderStyle "Add";
+		DamageType "Lightning";
+		SeeSound "NLITE";
+		DeathSound "NetherConduit/SmallZap";
+		Projectile;
+		DamageType "Electric";
+	}
+	
+	vector3 lastpos;
+	vector2 weave_spd, weave_dist;
+	override void PostBeginPlay()
+	{
+		lastpos = self.pos;
+		super.PostBeginPlay();
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 0 NoDelay A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),60,sizestep:-1,startroll:random(0,360));
+		Goto Go;
+	Go:
+		TNT1 A 1
+		{
+			let Coord = PM_Trailer.Trail(Self,lastpos,"7332a8",(0,0,0),1.5,0.3,6);
+			lastpos=Coord;
+			A_Weave(random(1,25),random(1,25),frandom(0,1),frandom(0,1));
+			A_Tracer2(1);
+			for (int i = random(1,2); i > 0; i--) A_SpawnParticleEx("",TexMan.CheckForTexture("PURLA0",TexMan.Type_Sprite),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(3,70),size: frandom(1,45),xoff: frandom(-25,5),startalphaf: frandom(0.5,0.9),sizestep: 0.3,startroll: random(-180,180),rollvel: frandom(-1,1));
+		}
+		Loop;
+	Death:
+		TNT1 A 0
+		{
+			A_SpawnItemEx("PM_ConduitFallingSparks",0,0,0,random(-8,8),random(-8,8),random(2,15),0,SXF_NOCHECKPOSITION,225);
+			for (int i = random(1,2); i > 0; i--) A_SpawnParticleEx("",TexMan.CheckForTexture("PURLA0",TexMan.Type_Sprite),style: STYLE_Add,flags: SPF_RELATIVE|SPF_FULLBRIGHT|SPF_ROLL,lifetime: random(5,30),size: random(20,195),startalphaf: 0.9,startroll: random(-180,180));
+			A_SpawnParticleEx("",TexMan.CheckForTexture("SPKOP0",TexMan.Type_Sprite),STYLE_Add,SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,random(10,20),60,sizestep:-1,startroll:random(0,360));
+		}
+		Stop;
+	}
+}

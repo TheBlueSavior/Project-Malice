@@ -1,0 +1,261 @@
+class PM_Glimpse : PMVoidMonsterBase
+{
+	Default
+	{
+		PMMonsterBase.CodexLore
+		"As it is said, when you gaze into the void long enough...
+		
+		The void stares back at you.";
+		obituary "%o couldn't.";
+		health 150;
+		radius 16;
+		height 30;
+		mass 1000;
+		speed 5;
+		Scale 0.5;
+		PainChance 256;
+		Species "Soul";
+		Tag "TH? GL?MPS?";
+		activesound "PMGlimpse/Active";
+		seesound "PMGlimpse/Sight";
+		painsound "";
+		deathsound "PMGlimpse/Death";
+		Species "Soul";
+		damagefactor "blot", 0;
+		Bloodcolor "Black";
+		MONSTER;
+		Bloodtype "PM_GhostBlood";
+		+FLOAT
+		+NOGRAVITY
+		+STANDSTILL
+		+DONTHARMSPECIES
+		+NOINFIGHTING
+		+NODAMAGETHRUST
+		+BLOODLESSIMPACT
+		+AVOIDMELEE
+		+AVOIDHAZARDS
+		Renderstyle "Add";
+		TeleFogSourceType "PM_SmallDemonicTeleportFog";
+		TeleFogDestType "PM_SmallDemonicTeleportFog";
+	}
+  
+  protected TextureID tex[8];
+  protected TextureID tex2[3];
+  
+  override void PostBeginPlay()
+  {
+	 tex[0] = TexMan.CheckForTexture("RUNGA0",TexMan.Type_Sprite);
+	 tex[1] = TexMan.CheckForTexture("RUNGB0",TexMan.Type_Sprite);
+	 tex[2] = TexMan.CheckForTexture("RUNGC0",TexMan.Type_Sprite);
+	 tex[3] = TexMan.CheckForTexture("RUNGD0",TexMan.Type_Sprite);
+	 tex[4] = TexMan.CheckForTexture("RUNGE0",TexMan.Type_Sprite);
+	 tex[5] = TexMan.CheckForTexture("RUNGF0",TexMan.Type_Sprite);
+	 tex[6] = TexMan.CheckForTexture("RUNGG0",TexMan.Type_Sprite);
+	 tex[7] = TexMan.CheckForTexture("RUNGH0",TexMan.Type_Sprite);
+	 tex2[0] = TexMan.CheckForTexture("L13_H0",TexMan.Type_Sprite);
+	 tex2[1] = TexMan.CheckForTexture("L13_I0",TexMan.Type_Sprite);
+	 tex2[2] = TexMan.CheckForTexture("L13_J0",TexMan.Type_Sprite);
+  }
+  
+  void A_AvatarGlitch(vector3 pvel = (0, 0, 0))
+  {
+		A_SpawnParticleEx
+		(
+		"000000",
+		tex[random(0, 7)],
+		style: STYLE_Normal,
+		flags: SPF_RELATIVE,
+		lifetime: random(2, 5),
+		size: 50,
+		xoff: frandom(-radius,radius),
+		yoff: frandom(-radius,radius),
+		zoff: frandom(-height,height),
+		velx: pvel.x,
+		vely: pvel.y,
+		velz: pvel.z,
+		startalphaf: 1,
+		fadestepf: 0,
+		sizestep: 0
+		);
+  }
+	
+  void GlimpseFX()
+  {
+	A_SetScale(frandom(.94,1.06),frandom(.96,1.04));
+	A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(40,80),size: frandom(12,40),xoff: frandom(-3,3),yoff: frandom(-3,3),zoff: frandom(0,6),velx: frandom(-1.4,1.4),vely: frandom(-1.4,1.4),velz: frandom(-1.4,1.4),startalphaf: frandom(0.5,0.8),fadestepf: -1,sizestep: frandom(3,6.4),startroll: random(-180,180));
+	if (!random(0, 90))
+	{
+		for (int i = random(1, 3); i > 0; i--)
+			A_SpawnParticleEx(0x000000,TexMan.CheckForTexture(random(0, 1) ? "GE1_A0" : "GE1_B0"),style: STYLE_Normal,flags: SPF_RELATIVE,lifetime: 3,size: frandom(20,85),xoff: frandom(-25,25),yoff: frandom(-25,25),zoff: frandom(-25,25),fadestepf: 0,sizestep: 0);
+	}
+	if (!random(0, 5)) A_AvatarGlitch();
+  }
+
+  override void Tick()
+  {
+	super.Tick();
+	if (!level.isFrozen()) vel *= 0.97;
+  }
+  
+  string sprite;
+	
+  states
+  {
+  Spawn:
+	L13_ C 0 NoDelay;
+  Idle:
+    TNT1 A 10 PM_Look();
+    loop;
+  Look:
+    EYES A 1
+	{
+	  PM_LookingForPlayer();
+	  GlimpseFX();
+	}
+    Loop;
+  Spotted:
+    TNT1 A 0 PM_AlertSound();
+  See:
+	TNT1 A 0 { bNOPAIN = true; }
+    TNT1 AAAAAA 1 Light("Blacklight")
+	{
+	  A_Chase();
+	  GlimpseFX();
+	  vel.x += random(-1, 1);
+	  vel.y += random(-1, 1);
+	  vel.z += random(-1, 1);
+	}
+	TNT1 A 0 A_Jump(10, "Dodge", "Teleporte");
+    Goto See+1;
+  Dodge:
+	TNT1 A 20
+	{
+		A_FaceTarget();
+		Vel3DFromAngle(frandom(5, 15), frandom(0,360), frandom(0,360));
+	}
+	TNT1 AAAAAAAAAAAAA 1 { vel *= 0.9; }
+	Goto See;
+  Teleporte:
+	TNT1 A 20;
+	TNT1 A 1
+	{
+		A_StartSound("Skulker/Port",9);
+		for (int i = 0; i < 250; i++)
+			A_Chase(null, null);
+		A_FaceTarget();
+	}
+	TNT1 A 10;
+	Goto See;
+  Missile:
+	TNT1 A 10 A_StopSound(CHAN_VOICE);
+	TNT1 A 10
+	{
+		A_Stop();
+		bNOPAIN = true;
+		pm_attackloop = 0;
+		sprite = "L13_A0";
+		A_StartSound("PMGlimpse/See", 30, CHANF_OVERLAP, pitch: frandom(0.7, 1.4));
+	}
+	TNT1 A 1
+	{
+		pm_attackloop++;
+		switch (pm_attackloop)
+		{
+			case 30: sprite = "L13_B0"; break;
+			case 60: sprite = "L13_C0"; break;
+			case 90: sprite = "L13_D0"; break;
+			case 120: sprite = "L13_E0"; break;
+			case 150: sprite = "L13_F0"; break;
+			case 170: sprite = "L13_G0"; break;
+		}
+		if (pm_attackloop >= 190)
+		{
+			A_StartSound("PMGlimpse/Break", 20, volume: 0.85, pitch: frandom(0.6, 0.9));
+			A_StartSound("PMGlimpse/Loop", 21, CHANF_OVERLAP|CHANF_LOOPING, pitch: 0.65);
+			A_StartSound("PMGlimpse/Loop", 21, CHANF_OVERLAP|CHANF_LOOPING, pitch: 1.45);
+			A_StartSound("PMGlimpse/See", 30, CHANF_OVERLAP, pitch: frandom(0.7, 1.4));
+			A_StartSound("PMGlimpse/See", 30, CHANF_OVERLAP, pitch: frandom(0.2, 0.4));
+			SetStateLabel("StaringContest");
+		}
+		if ((pm_attackloop % 30) == 0) A_StartSound((!random(0, 3)) ? "PMGlimpse/Idle" : "PMGlimpse/Sight", 40, pitch: frandom(0.4, 0.8));
+		GlimpseFX();
+		A_FaceTarget();
+		A_SpawnParticleEx("",TexMan.CheckForTexture(sprite, TexMan.Type_Sprite),style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: 2,size: 80,xoff:15,zoff:6,startalphaf: 1,startroll: 180);
+		if (target && !checkSight(target))
+		{
+			SetStateLabel("Dodge");
+			A_StopSounds(0,0);
+		}
+	}
+	Goto Missile+2;
+  StaringContest:
+	TNT1 A 1
+	{
+		A_FaceTarget();
+		GlimpseFX();
+		if (!(getAge() % 2)) A_SpawnProjectile("PM_GlimpseProjectile", 10);
+		A_QuakeEx(1,1,1,5,0,600,"",QF_SCALEDOWN|QF_3D,rollintensity:0.2);
+		A_SpawnParticleEx("",tex2[random(0, 2)],style: STYLE_Add,flags: SPF_ROLL|SPF_RELATIVE|SPF_FULLBRIGHT,lifetime: random(1,2),size: 80,xoff: frandom(14,16),zoff: frandom(5,7),startalphaf: 1,startroll: 180);
+		if (target && !checkSight(target))
+		{
+			SetStateLabel("Dodge");
+			A_StopSounds(0,0);
+		}
+	}
+	Loop;
+  Pain:
+	TNT1 A 1 A_StopSound(21);
+	TNT1 A 0 A_Jump(248,"Dodge","Teleporte");
+	Goto See;
+  Death:
+    TNT1 A 1 A_Stop();
+	TNT1 A 1 bright Light("Blacklight");
+	TNT1 A 1 A_StopSound(21);
+    TNT1 A 1 PM_Scream();
+    TNT1 A 0 A_Fall();
+	TNT1 A 0 A_SpawnProjectile("PM_GlimpseFlee",10,0,random(-180,180),CMF_OFFSETPITCH,random(-90,90));
+    stop;
+  }
+}
+
+Class PM_GlimpseFlee : Actor
+{
+Default
+{
+  +NOINTERACTION
+  +CLIENTSIDEONLY
+  +THRUACTORS
+  +MISSILE
+  Speed 35;
+  }
+  States
+  {
+  Spawn:
+	TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 1 A_SpawnParticleEx("000000",TexMan.CheckForTexture("GNSMK0"),style: STYLE_Normal,flags: SPF_ROLL|SPF_RELATIVE,lifetime: random(40,80),size: frandom(12,40),xoff: frandom(-3,3),yoff: frandom(-3,3),zoff: frandom(0,6),velx: frandom(-1.4,1.4),vely: frandom(-1.4,1.4),velz: frandom(-1.4,1.4),startalphaf: frandom(0.5,0.8),fadestepf: -1,sizestep: frandom(3,6.4),startroll: random(-180,180));
+	Stop;
+  }
+}
+
+Class PM_GlimpseProjectile : PMProjectileBase
+{
+	Default
+	{
+		DamageType "Void";
+		DamageFunction (2);
+		Speed 90;
+		+NEVERFAST;
+		+DONTREFLECT
+		+NOSHIELDREFLECT
+		obituary "%o couldn't.";
+	}
+	
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		Loop;
+	Death:
+		TNT1 A 1;
+		Stop;
+	}
+}

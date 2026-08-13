@@ -5,7 +5,7 @@ Class PM_VoidFloater : PMVoidMonsterBase
 		PMMonsterBase.CodexLore
 	    "\c[Black]What a fine little star you are. I'm going to enjoy staring at you. So that you can stare back and we can gaze into the ABYSS together.
 		
-		\c[Black]So that we can be delighted and be beaufitul for ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and\c-
+		\c[Black]So that we can be together for ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and ever, and\c-
 		
 		\crT O R T U R E .";
 		Obituary "%o is gone.";

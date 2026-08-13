@@ -2,6 +2,8 @@ Class PM_Infested : PMPestilenceMonsterBase
 {
   Default
   {
+  PMMonsterBase.CodexLore
+  "placeholder text.";
   //$Category "PM_Monsters/Revenants"
   Health 360;
   Radius 20;

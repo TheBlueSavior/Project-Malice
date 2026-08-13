@@ -3,7 +3,7 @@ Class PM_AngelsHand : PMPrideMonsterBase
 	Default
 	{
 		PMMonsterBase.CodexLore
-		"\c[red]Do you know who are you dealing with, you ignoramus? You better believe it...\c-
+		"\c[red]Those insolent mortals don't know what they're dealing with... They shall fall before the Angel's Hand, gladly and profusely.\c-
 		
 		Will shoot a helix of bullets at you, cast orbital lasers, and can sometimes grow wings to fly.";
 		PMMonsterBase.ForgetThreshold 9999;
